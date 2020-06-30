@@ -64,21 +64,6 @@ export default () => {
 					}
 				`}
 			>
-				<div>
-					<em>En partenariat avec l'</em>
-					{/* Un jour
-				<img
-					css="height: 3rem"
-					src="https://www.ademe.fr/sites/all/themes/ademe/logo.png"
-				/>
-				*/}
-					<a href="https://www.associationbilancarbone.fr/">
-						<img
-							css="height: 2.5rem"
-							src="https://www.associationbilancarbone.fr/wp-content/themes/abc/assets/images/brand/abc_main_logo.svg"
-						/>
-					</a>
-				</div>
 				<a href="https://github.com/betagouv/ecolab-data#ecolab-climat-">
 					{emoji('🖊️ ')}
 					Comment contribuer
