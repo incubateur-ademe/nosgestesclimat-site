@@ -10,7 +10,8 @@ import { getRuleFromAnalysis, encodeRuleName } from 'Engine/rules'
 import Bar from './Bar'
 import emoji from 'react-easy-emoji'
 
-const sustainableLifeGoal = [2000, '2 tonnes']
+const sustainableLifeGoal = 2000 // kgCO2e
+const barWidth = '6rem'
 
 export default ({ details, color, noText, value }) => {
 	const analysis = useSelector(analysisWithDefaultsSelector),
@@ -32,33 +33,32 @@ export default ({ details, color, noText, value }) => {
 					margin: 0.6rem 0 0.1rem;
 					font-size: 140%;
 				}
+				strong {
+					font-weight: 600;
+				}
 				padding: 0;
 			`}
 		>
-			<a
-				css="color: inherit"
-				href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
-			>
-				Comment ça ?
-			</a>
 			<div
 				css={`
 					position: relative;
 					display: flex;
 					justify-content: space-evenly;
 					align-items: flex-end;
-					height: 18rem;
+					height: 40vh;
 				`}
 			>
 				<div css="height: 100%">
 					<div css="line-height: 1.2rem">
-						{Math.round(value / 1000)} <br />
+						<strong>
+							{Math.round(value / 1000)} <br />
+						</strong>
 						tonnes
 					</div>
 					<ul
 						css={`
 							margin: 0;
-							width: 4rem;
+							width: ${barWidth};
 							height: calc(100% - 2.4rem);
 							border-radius: 0.3rem;
 							border: 3px solid ${color};
@@ -103,16 +103,57 @@ export default ({ details, color, noText, value }) => {
 						))}
 					</ul>
 				</div>
+				<div css="display: flex; justify-content: center; flex-wrap: wrap; max-width: 10rem">
+					<div
+						css={`
+							border-radius: 0.3rem;
+							border: 3px solid ${color};
+							background: #78e08f;
+							height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
+							width: ${barWidth};
+						`}
+					>
+						<strong>{sustainableLifeGoal / 1000}</strong>
+						<br />
+						tonnes
+					</div>
+				</div>
+			</div>
+			<div
+				css={`
+					display: flex;
+					justify-content: space-between;
+					margin-top: 1rem;
+				`}
+			>
 				<div
 					css={`
-						border-radius: 0.3rem;
-						border: 3px solid ${color};
-						background: #78e08f;
-						height: ${(sustainableLifeGoal[0] / empreinteTotale) * 100}%;
-						width: 4rem;
+						background: #ffffff3d;
+						border-radius: 0.6rem;
+						margin: 0 0.6rem;
+						padding: 0.4rem 1rem;
 					`}
 				>
-					{sustainableLifeGoal[1]}
+					{emoji('☝️')} Votre empreinte climat
+				</div>
+				<div
+					css={`
+						background: #ffffff3d;
+
+						border-radius: 0.6rem;
+						margin: 0 0.6rem;
+						padding: 0.4rem 1rem;
+					`}
+				>
+					<div>{emoji('🎯')} L'objectif pour être écolo.</div>
+					<div>
+						<a
+							css="color: inherit"
+							href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+						>
+							Comment ça ?
+						</a>
+					</div>
 				</div>
 			</div>
 		</section>

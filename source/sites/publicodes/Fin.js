@@ -85,20 +85,13 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 					font-size: 110%;
 				`}
 			>
-				<div css="display: flex; align-items: center; justify-content: center">
-					<h1>Mon empreinte climat</h1>
-					<img src={BallonGES} css="height: 10rem" />
-					<div></div>
-				</div>
-				<div css="padding: 1rem">
-					<ClimateTargetChart
-						value={value}
-						details={details}
-						color={textColor}
-						noAnimation
-						noText
-					/>
-				</div>
+				<ClimateTargetChart
+					value={value}
+					details={details}
+					color={textColor}
+					noAnimation
+					noText
+				/>
 
 				<div css="display: flex; flex-direction: column;">
 					<ShareButton
