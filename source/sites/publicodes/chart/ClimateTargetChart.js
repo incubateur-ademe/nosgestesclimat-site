@@ -10,7 +10,9 @@ import { getRuleFromAnalysis, encodeRuleName } from 'Engine/rules'
 import Bar from './Bar'
 import emoji from 'react-easy-emoji'
 
-export default ({ details, color, noText }) => {
+const sustainableLifeGoal = [2000, '2 tonnes']
+
+export default ({ details, color, noText, value }) => {
 	const analysis = useSelector(analysisWithDefaultsSelector),
 		rules = useSelector(parsedRulesSelector)
 
@@ -33,53 +35,85 @@ export default ({ details, color, noText }) => {
 				padding: 0;
 			`}
 		>
+			<a
+				css="color: inherit"
+				href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+			>
+				Comment ça ?
+			</a>
 			<div
 				css={`
 					position: relative;
+					display: flex;
+					justify-content: space-evenly;
+					align-items: flex-end;
+					height: 18rem;
 				`}
 			>
-				<ul
+				<div css="height: 100%">
+					<div css="line-height: 1.2rem">
+						{Math.round(value / 1000)} <br />
+						tonnes
+					</div>
+					<ul
+						css={`
+							margin: 0;
+							width: 4rem;
+							height: calc(100% - 2.4rem);
+							border-radius: 0.3rem;
+							border: 3px solid ${color};
+							padding: 0;
+						`}
+					>
+						{categories.map((category) => (
+							<li
+								key={category.title}
+								css={`
+									margin: 0;
+									list-style-type: none;
+									> a {
+										display: block;
+										text-decoration: none;
+										line-height: inherit;
+									}
+									background: ${category.couleur};
+									height: ${(category.nodeValue / empreinteTotale) * 100}%;
+									display: flex;
+									align-items: center;
+									justify-content: center;
+								`}
+							>
+								<Link
+									to={'/documentation/' + encodeRuleName(category.dottedName)}
+								>
+									<div
+										css={`
+											height: 100%;
+											img {
+												font-size: 120%;
+											}
+										`}
+									>
+										{category.nodeValue / empreinteTotale > 0.1
+											? emoji(category.icons)
+											: ''}
+									</div>
+								</Link>
+							</li>
+						))}
+					</ul>
+				</div>
+				<div
 					css={`
-						margin-left: 2rem;
-						width: 4rem;
-						height: 18rem;
 						border-radius: 0.3rem;
 						border: 3px solid ${color};
-						padding: 0;
+						background: #78e08f;
+						height: ${(sustainableLifeGoal[0] / empreinteTotale) * 100}%;
+						width: 4rem;
 					`}
 				>
-					{categories.map((category) => (
-						<li
-							key={category.title}
-							css={`
-								margin: 0;
-								list-style-type: none;
-								> a {
-									display: block;
-									text-decoration: none;
-									line-height: inherit;
-								}
-								background: ${category.couleur};
-								height: ${(category.nodeValue / empreinteTotale) * 100}%;
-								display: flex;
-								align-items: center;
-								justify-content: center;
-							`}
-						>
-							<Link
-								to={'/documentation/' + encodeRuleName(category.dottedName)}
-							>
-								<div
-									css={`
-										height: 100%;
-									`}
-								>
-									{emoji(category.icons)}
-								</div>
-							</Link>
-						</li>
-					))}
-				</ul>
+					{sustainableLifeGoal[1]}
+				</div>
 			</div>
 		</section>
 	)
