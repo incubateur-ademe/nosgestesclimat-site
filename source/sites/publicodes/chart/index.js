@@ -10,7 +10,7 @@ import Bar from './Bar'
 import { sortBy } from 'ramda'
 import { Link } from 'react-router-dom'
 
-const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
+export const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
 export const extractCategories = (analysis) => {
 	const getRule = getRuleFromAnalysis(analysis)
 
@@ -23,7 +23,7 @@ export const extractCategories = (analysis) => {
 	return sortCategories(categories)
 }
 
-const getCategories = (analysis, details, rules) =>
+export const getCategories = (analysis, details, rules) =>
 	analysis?.targets.length
 		? extractCategories(analysis)
 		: details &&
@@ -37,7 +37,7 @@ const getCategories = (analysis, details, rules) =>
 				})
 		  )
 
-const computeEmpreinteMaximum = (categories) =>
+export const computeEmpreinteMaximum = (categories) =>
 	categories.reduce(
 		(memo, next) => (memo.nodeValue > next.nodeValue ? memo : next),
 		-1
@@ -55,10 +55,6 @@ export default ({ details, color, noText, noAnimation }) => {
 	return (
 		<section
 			css={`
-				h2 {
-					margin: 0.6rem 0 0.1rem;
-					font-size: 140%;
-				}
 				padding: 0;
 			`}
 		>

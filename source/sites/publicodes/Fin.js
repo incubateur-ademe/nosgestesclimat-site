@@ -10,7 +10,7 @@ import { motion } from 'framer-motion'
 import BallonGES from './images/ballonGES.svg'
 import StartingBlock from './images/starting block.svg'
 import SessionBar from 'Components/SessionBar'
-import Chart from './chart'
+import ClimateTargetChart from './chart/ClimateTargetChart'
 import { Link } from 'react-router-dom'
 
 const gradient = tinygradient([
@@ -140,7 +140,12 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 					</div>
 				</div>
 				<div css="padding: 1rem">
-					<Chart details={details} color={textColor} noAnimation noText />
+					<ClimateTargetChart
+						details={details}
+						color={textColor}
+						noAnimation
+						noText
+					/>
 				</div>
 
 				<div css="display: flex; flex-direction: column;">
