@@ -2,7 +2,7 @@ import { setSimulationConfig } from 'Actions/actions'
 import SessionBar from 'Components/SessionBar'
 import { decodeRuleName, encodeRuleName } from 'Engine/rules'
 import { motion } from 'framer-motion'
-import { partition, sortBy, union } from 'ramda'
+import { partition, sortBy, union, negate, compose } from 'ramda'
 import React, { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
@@ -81,7 +81,7 @@ const AnimatedDiv = animated(({}) => {
 		analysis.targets
 	)
 
-	const sortedActions = sortBy((a) => a.nodeValue)(actions)
+	const sortedActions = sortBy(compose(negate, (a) => a.nodeValue))(actions)
 
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">
