@@ -16,6 +16,7 @@ import './AnswerList.css'
 import { parentName } from 'Components/publicodesUtils'
 import { sortCategories, extractCategories } from '../../sites/publicodes/chart'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
+import mosaicQuestions from './mosaicQuestions'
 
 type AnswerListProps = {
 	onClose: () => void
@@ -124,16 +125,44 @@ function StepsTable({
 	return (
 		<table>
 			<tbody>
-				{rules.map((rule) => (
-					<Answer
-						{...{
-							rule,
-							dispatch,
-							onClose,
-							language,
-						}}
-					/>
-				))}
+				{mosaicQuestions.map((question) => {
+					const rulesToGroup = rules.filter((rule) =>
+						question.isApplicable(rule.dottedName)
+					)
+					return (
+						<div css="background: chartreuse">
+
+								<Answer
+									{...{
+										rule,
+										dispatch,
+										onClose,
+										language,
+									}}
+								/>
+							{rulesToGroup.map((rule) => (
+									
+							))}
+						</div>
+					)
+				})}
+				{rules
+					.filter(
+						(rule) =>
+							!mosaicQuestions.find((question) =>
+								question.isApplicable(rule.dottedName)
+							)
+					)
+					.map((rule) => (
+						<Answer
+							{...{
+								rule,
+								dispatch,
+								onClose,
+								language,
+							}}
+						/>
+					))}
 			</tbody>
 		</table>
 	)
