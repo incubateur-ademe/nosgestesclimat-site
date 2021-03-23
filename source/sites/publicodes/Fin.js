@@ -70,7 +70,7 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 0 auto;">
-			<SessionBar />
+			<SessionBar noResults />
 			<motion.div
 				animate={{ scale: [0.85, 1] }}
 				transition={{ duration: 0.2, ease: 'easeIn' }}
@@ -85,7 +85,7 @@ const AnimatedDiv = animated(({ score, value, details }) => {
 					color: ${textColor};
 					margin: 0 auto;
 					border-radius: 0.6rem;
-					height: 65vh;
+					height: 70vh;
 					display: flex;
 					flex-direction: column;
 					justify-content: space-evenly;
