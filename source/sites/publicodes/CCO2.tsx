@@ -80,7 +80,10 @@ export default () => {
 						>
 							<h3>{el.name}</h3>
 							<div>
-								{formatValue(engine.evaluate('transport . ' + el.name))}
+								{formatValue(engine.evaluate('transport . ' + el.name)).replace(
+									' / an',
+									''
+								)}
 							</div>
 						</div>
 					</li>
