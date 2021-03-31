@@ -56,7 +56,7 @@ export default () => {
 						align-items: center;
 					}
 					li img {
-						font-size: 500%;
+						font-size: 400%;
 						margin: 0 1rem !important;
 					}
 					li:nth-child(2n) {
