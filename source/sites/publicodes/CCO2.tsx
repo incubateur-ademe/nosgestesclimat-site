@@ -38,7 +38,7 @@ export default () => {
 					width: 20%;
 					font-size: 100%;
 					padding: 0.4rem;
-					margin: 1rem 0;
+					margin: 0.4rem 0;
 				`}
 			>
 				{emoji('🎯 ')}
