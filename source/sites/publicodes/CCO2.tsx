@@ -3,6 +3,17 @@ import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { EngineContext } from '../../components/utils/EngineContext'
 import { formatValue } from 'publicodes'
+import styled from 'styled-components'
+
+const Banner = styled.div`
+	background: rgba(0, 0, 0, 0) linear-gradient(60deg, #b151dd 0%, #7875d9 100%)
+		repeat scroll 0% 0%;
+	color: white;
+	font-size: 200%;
+	padding: 0.6rem 1rem;
+	text-align: center;
+	width: 80%;
+`
 
 export default () => {
 	const engine = useContext(EngineContext),
@@ -14,25 +25,25 @@ export default () => {
 
 			name: el,
 		}))
-	console.log(elements)
 
 	return (
 		<div>
 			<h1>Coach CO2</h1>
 			<p>{emoji('📆 ')} Année 2021</p>
-			<p>Voilà comment je me déplace.</p>
-			<div
+			<Banner>Mon total : {formatValue(evaluation)}</Banner>
+			<Banner
 				css={`
 					background: rgba(0, 0, 0, 0)
-						linear-gradient(60deg, #b151dd 0%, #7875d9 100%) repeat scroll 0% 0%;
-					color: white;
-					font-size: 200%;
-					padding: 0.3rem 1rem;
-					text-align: center;
+						linear-gradient(60deg, #10ac84 0%, #1dd1a1 100%) repeat scroll 0% 0%;
+					width: 20%;
+					font-size: 100%;
+					padding: 0.4rem;
+					margin: 1rem 0;
 				`}
 			>
-				Mon total : {formatValue(evaluation)}
-			</div>
+				{emoji('🎯 ')}
+				Objectif climat
+			</Banner>
 			<ul
 				css={`
 					display: flex;
@@ -45,6 +56,7 @@ export default () => {
 					}
 					li img {
 						font-size: 500%;
+						margin: 0 1rem !important;
 					}
 					li:nth-child(2n) {
 						justify-content: flex-end;
