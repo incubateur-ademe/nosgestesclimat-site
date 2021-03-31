@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux'
 import { EngineContext } from '../../components/utils/EngineContext'
 import { formatValue } from 'publicodes'
 import styled from 'styled-components'
+import { motion } from 'framer-motion'
 
 const Banner = styled.div`
 	background: rgba(0, 0, 0, 0) linear-gradient(60deg, #b151dd 0%, #7875d9 100%)
@@ -64,7 +65,11 @@ export default () => {
 				`}
 			>
 				{elements.map((el) => (
-					<li key={el.name}>
+					<motion.li
+						animate={{ scale: [0.8, 1] }}
+						transition={{ duration: 0.5 }}
+						key={el.name}
+					>
 						<div>{emoji(el.icônes || '')}</div>
 						<div
 							css={`
@@ -86,7 +91,7 @@ export default () => {
 								)}
 							</div>
 						</div>
-					</li>
+					</motion.li>
 				))}
 			</ul>
 		</div>
