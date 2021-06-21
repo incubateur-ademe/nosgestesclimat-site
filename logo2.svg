@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="210mm"
+   width="400mm"
    height="297mm"
-   viewBox="0 0 210 297"
+   viewBox="0 0 400 297"
    version="1.1"
    id="svg5"
    inkscape:version="1.1 (ce6663b3b7, 2021-05-25)"
@@ -24,18 +24,34 @@
      inkscape:pagecheckerboard="0"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.48252498"
-     inkscape:cx="1221.6984"
-     inkscape:cy="635.20028"
+     inkscape:zoom="0.68239336"
+     inkscape:cx="1017.0087"
+     inkscape:cy="688.01959"
      inkscape:window-width="1920"
      inkscape:window-height="1016"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="g190047-2"
+     inkscape:current-layer="g202241-6"
      showguides="false" />
   <defs
      id="defs2">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient203201">
+      <stop
+         style="stop-color:#aecaf3;stop-opacity:1"
+         offset="0"
+         id="stop203195" />
+      <stop
+         style="stop-color:#5758bb;stop-opacity:1"
+         offset="0.50876385"
+         id="stop203197" />
+      <stop
+         style="stop-color:#d30700;stop-opacity:1"
+         offset="1"
+         id="stop203199" />
+    </linearGradient>
     <linearGradient
        inkscape:collect="always"
        id="linearGradient190134">
@@ -73,19 +89,19 @@
          id="stop45213" />
     </linearGradient>
     <rect
-       x="694.86363"
-       y="586.23503"
-       width="28.410932"
+       x="694.86365"
+       y="586.23505"
+       width="28.410933"
        height="12.159344"
        id="rect134073" />
     <linearGradient
        inkscape:collect="always"
        xlink:href="#linearGradient45215-1"
        id="linearGradient45217"
-       x1="157.37365"
-       y1="258.94087"
-       x2="184.48104"
-       y2="258.94087"
+       x1="157.37366"
+       y1="258.94086"
+       x2="184.48103"
+       y2="258.94086"
        gradientUnits="userSpaceOnUse" />
     <linearGradient
        inkscape:collect="always"
@@ -93,9 +109,29 @@
        id="linearGradient190136"
        x1="231.57219"
        y1="90.469086"
-       x2="296.21358"
+       x2="296.21359"
        y2="90.469086"
        gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient203201"
+       id="linearGradient192031"
+       x1="231.57219"
+       y1="90.469086"
+       x2="296.21359"
+       y2="90.469086"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.0376868,0,0,1.0376868,-9.4409346,-3.6834471)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient203201"
+       id="linearGradient203574"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(2.0591286,0,0,0.48584105,-219.35255,88.884403)"
+       x1="231.57219"
+       y1="90.469086"
+       x2="296.21359"
+       y2="90.469086" />
   </defs>
   <g
      inkscape:label="Calque 1"
@@ -281,7 +317,7 @@
        xml:space="preserve"
        transform="scale(0.26458333)"
        id="text134071"
-       style="line-height:1.25;font-family:sans-serif;font-size:5.33333333px;white-space:pre;shape-inside:url(#rect134073)" />
+       style="font-size:5.33333px;line-height:1.25;font-family:sans-serif;white-space:pre;shape-inside:url(#rect134073)" />
     <g
        id="g26751"
        transform="translate(75.495089,-127.40017)">
@@ -758,6 +794,101 @@
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.6389px;font-family:'Josefin Sans Thin';-inkscape-font-specification:'Josefin Sans Thin, ';fill:#ffffff;fill-opacity:1;stroke-width:0.264583"
              x="230.44063"
              y="113.4038">CLIMAT</tspan></text>
+      </g>
+      <g
+         id="g190047-2-1"
+         transform="translate(113.64804,-22.360553)">
+        <g
+           id="g227686"
+           transform="translate(55.658795,-13.619382)">
+          <rect
+             style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient192031);stroke-width:4.15075;stroke-miterlimit:4;stroke-dasharray:none"
+             id="rect106865-4-2-7"
+             width="67.077515"
+             height="47.467236"
+             x="230.85847"
+             y="66.46151"
+             ry="0" />
+          <g
+             id="g202241"
+             style="fill:#5758bb;fill-opacity:1"
+             transform="matrix(0.85470482,0,0,0.85470482,38.648758,13.214136)">
+            <text
+               xml:space="preserve"
+               style="font-size:17.6389px;line-height:1.25;font-family:sans-serif;fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+               x="243.89514"
+               y="80.527817"
+               id="text1838-98-8-9-6-7"><tspan
+                 sodipodi:role="line"
+                 id="tspan1836-4-6-5-1-1"
+                 style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.6389px;font-family:'Josefin Sans Thin';-inkscape-font-specification:'Josefin Sans Thin, ';fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+                 x="243.89514"
+                 y="80.527817">NOS</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:17.6389px;line-height:1.25;font-family:sans-serif;fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+               x="230.19914"
+               y="96.542839"
+               id="text1838-8-0-8-0-0-1"><tspan
+                 sodipodi:role="line"
+                 id="tspan1836-8-3-8-4-6-5"
+                 style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.6389px;font-family:'Josefin Sans Thin';-inkscape-font-specification:'Josefin Sans Thin, ';fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+                 x="230.19914"
+                 y="96.542839">GES</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:17.6389px;line-height:1.25;font-family:sans-serif;fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+               x="265.39084"
+               y="96.988121"
+               id="text1838-5-0-4-8-1-9"><tspan
+                 sodipodi:role="line"
+                 id="tspan1836-0-4-3-7-5-7"
+                 style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.6389px;font-family:'Josefin Sans Thin';-inkscape-font-specification:'Josefin Sans Thin, ';fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+                 x="265.39084"
+                 y="96.988121">TES</tspan></text>
+            <text
+               xml:space="preserve"
+               style="font-size:17.6389px;line-height:1.25;font-family:sans-serif;fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+               x="230.44063"
+               y="113.4038"
+               id="text1838-9-4-1-1-9-7"><tspan
+                 sodipodi:role="line"
+                 id="tspan1836-6-4-4-7-4-6"
+                 style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:17.6389px;font-family:'Josefin Sans Thin';-inkscape-font-specification:'Josefin Sans Thin, ';fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+                 x="230.44063"
+                 y="113.4038">CLIMAT</tspan></text>
+          </g>
+        </g>
+        <g
+           id="g227694"
+           transform="translate(-3.0918578,-9.440501)">
+          <rect
+             style="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:url(#linearGradient203574);stroke-width:4.00082;stroke-miterlimit:4;stroke-dasharray:none"
+             id="rect106865-4-2-7-5"
+             width="133.10493"
+             height="22.22398"
+             x="257.48444"
+             y="121.72601"
+             ry="0" />
+          <g
+             id="g202241-6"
+             style="fill:#5758bb;fill-opacity:1"
+             transform="matrix(0.85470482,0,0,0.85470482,131.75125,14.13759)">
+            <text
+               xml:space="preserve"
+               style="font-size:14.4462px;line-height:1.25;font-family:sans-serif;fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+               x="153.24326"
+               y="144.51019"
+               id="text1838-98-8-9-6-7-3"><tspan
+                 sodipodi:role="line"
+                 id="tspan1836-4-6-5-1-1-9"
+                 style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.4462px;font-family:'Josefin Sans Thin';-inkscape-font-specification:'Josefin Sans Thin, ';fill:#5758bb;fill-opacity:1;stroke-width:0.264583"
+                 x="153.24326"
+                 y="144.51019">NOS<tspan
+   style="fill:#5858b1;fill-opacity:1"
+   id="tspan235937">GES</tspan>TESCLIMAT</tspan></text>
+          </g>
+        </g>
       </g>
       <text
          xml:space="preserve"
