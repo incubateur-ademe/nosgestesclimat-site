@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
+import AnimatedTargetValue from '../../components/ui/AnimatedTargetValue'
 
 export const humanWeight = (possiblyNegativeValue, concise = false) => {
 	const v = Math.abs(possiblyNegativeValue)
@@ -19,10 +20,10 @@ export const humanWeight = (possiblyNegativeValue, concise = false) => {
 				? raw.toLocaleString('fr-FR', { maximumSignificantDigits: 2 })
 				: Math.round(raw).toLocaleString('fr-FR')
 
-	return [value, unit]
+	return [value, unit, raw]
 }
 export default ({ nodeValue, overrideValue }) => {
-	const [value, unit] = humanWeight(nodeValue)
+	const [value, unit, raw] = humanWeight(nodeValue)
 	return (
 		<span
 			css={`
@@ -32,6 +33,7 @@ export default ({ nodeValue, overrideValue }) => {
 				align-items: baseline;
 			`}
 		>
+			<AnimatedTargetValue value={raw} unit={unit} />
 			<strong
 				classname="humanvalue"
 				css={`

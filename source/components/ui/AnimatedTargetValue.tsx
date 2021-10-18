@@ -10,23 +10,22 @@ type AnimatedTargetValueProps = {
 	children?: React.ReactNode
 }
 
-const formatDifference = (difference: number, language: string) => {
+const formatDifference = (difference: number, unit: string) => {
 	const prefix = difference > 0 ? '+' : ''
-	return prefix + formatValue(difference, { displayedUnit: '€', language })
+	return (
+		prefix +
+		difference.toLocaleString('fr-FR', { maximumSignificantDigits: 1 }) +
+		' ' +
+		unit
+	)
 }
 
 export default function AnimatedTargetValue({
 	value,
-	children
+	children,
+	unit,
 }: AnimatedTargetValueProps) {
 	const previousValue = useRef<number>()
-	const { language } = useTranslation().i18n
-
-	// We don't want to show the animated if the difference comes from a change in the unit
-	const currentUnit = useSelector(
-		(state: RootState) => state?.simulation?.targetUnit
-	)
-	const previousUnit = useRef(currentUnit)
 
 	const difference =
 		previousValue.current === value || (value && Number.isNaN(value))
@@ -34,26 +33,24 @@ export default function AnimatedTargetValue({
 			: (value || 0) - (previousValue.current || 0)
 	const shouldDisplayDifference =
 		difference != null &&
-		previousUnit.current === currentUnit &&
-		Math.abs(difference) > 1 &&
 		previousValue.current != null &&
 		previousValue.current != 0 &&
 		value != null
 
+	console.log(shouldDisplayDifference, value, previousValue.current)
 	previousValue.current = value
-	previousUnit.current = currentUnit
 
 	return (
 		<>
 			<span className="Rule-value">
-				{shouldDisplayDifference && difference !== null && (
+				{shouldDisplayDifference && (
 					<Evaporate
 						style={{
 							color: difference > 0 ? 'chartreuse' : 'red',
-							pointerEvents: 'none'
+							pointerEvents: 'none',
 						}}
 					>
-						{formatDifference(difference, language)}
+						{formatDifference(difference, unit)}
 					</Evaporate>
 				)}{' '}
 				{children}
@@ -64,7 +61,7 @@ export default function AnimatedTargetValue({
 
 const Evaporate = React.memo(function Evaporate({
 	children,
-	style
+	style,
 }: {
 	children: string
 	style: React.CSSProperties
