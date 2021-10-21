@@ -6,8 +6,11 @@ import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 export default () => (
 	<span
 		id="blockLogo"
-		css="margin-top: .6rem;font-weight: 400;color: black; position: relative; "
+		css="margin-top: 2rem;font-weight: 400;color: black; position: relative; "
 	>
+		<span css="position: absolute; top: 0rem; left: -2.8rem; font-size: 150%; ">
+			🎓
+		</span>
 		<span css="position: absolute; top: -.95rem; left: 0rem; font-size: 60%;">
 			nos
 		</span>
@@ -80,5 +83,6 @@ const NosGestesClimatInline = () => (
 			tes
 		</span>
 		<span css="font-size: 70%; align-self: center">climat</span>
+		<span css="font-size: 100%; align-self: center; margin-left: 0.5rem;">🎓</span>
 	</span>
 )

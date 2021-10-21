@@ -38,6 +38,7 @@ export default ({ isHomePage }) => (
 					}
 					@media (min-width: 800px) {
 						margin-bottom: 0.4rem;
+						margin-left: 2.5rem;
 						#inlineLogo {
 							display: none;
 						}
