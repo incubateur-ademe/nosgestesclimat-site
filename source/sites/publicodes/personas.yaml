@@ -294,8 +294,8 @@
 
 - nom: Mehdi d'Agen 
   description: |
-    Travaille à 20km en voiture. Vacances & weekend en voiture avec sa femme et 2 enfants.
-    Adore la viande.
+    Travaille à 20km en voiture. Vacances & weekend en voiture avec sa femme et 2 enfants. Habite dans une résidence moderne. Chauffage élec.
+    Adore la viande. Branché tech et jeux vidéos
   icônes: 🚗🥩
   data:
     alimentation . déchets . niveau d'engagement: "'pas du tout'"
@@ -355,6 +355,58 @@
     transport . voiture 5km . fréquence:
       valeur: 7
       unité: trajets
+    logement . surface:
+      valeur: 90
+      unité: m2
+    logement . habitants:
+      valeur: 4
+      unité: personnes
+    logement . électricité . consommation:
+      valeur: 14000
+      unité: kWh
+    logement . fioul . chauffage au fioul: non
+    logement . gaz . chauffage au gaz: non
+    logement . bois . chauffage au bois: non
+    logement . âge:
+      valeur: 10
+      unité: an
+    logement . éco-construit: non
+    logement . appartement: oui  
+    divers . électroménager . préservation: '''faible'''
+    divers . électroménager . mini réfrigérateur . présent: non
+    divers . électroménager . robot cuisine . présent: oui
+    divers . autres produits . montant:
+      valeur: 300
+      unité: an
+    divers . textile . t-shirt . nombre: 4
+    divers . textile . pantalon . nombre: 2
+    divers . textile . short . nombre: 0
+    divers . textile . robe . nombre: 0
+    divers . textile . sweat . nombre: 1
+    divers . textile . chaussure . nombre: 2
+    divers . textile . manteau . nombre: 1   
+    numérique . téléphone . durée:
+      valeur: 1
+      unité: an
+    numérique . ordinateur portable . durée:
+      valeur: 2
+      unité: an
+    numérique . ordinateur fixe . présent: oui
+      valeur: 2
+      unité: an
+    numérique . tablette . présent: oui
+      valeur: 2
+      unité: an    
+    numérique . home cinéma . présent: oui
+      valeur: 4
+      unité: an  
+    numérique . TV . présent: oui
+      valeur: 2
+      unité: an    
+    numérique . téléphone . type: '''smartphone haut de gamme'''
+    numérique . internet . durée journalière:
+      valeur: 4
+      unité: heure  
 
 - nom: Ximun d'Arcangues 
   description: |
