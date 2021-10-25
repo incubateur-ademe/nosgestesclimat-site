@@ -224,8 +224,7 @@
       valeur: 20
       unité: an
     logement . éco-construit: non
-    logement . appartement: non      
-      
+    logement . appartement: non
     transport . voiture . km:
       valeur: 20000
       unité: km / an
@@ -255,17 +254,6 @@
     transport . vélo . km:
       valeur: 0
       unité: km
-    transport . jours travaillés en voiture:
-      valeur: 5
-      unité: jours
-    transport . boulot . distance:
-      valeur: 11
-      unité: km
-    transport . boulot . commun . type: "'tramway'"
-    transport . boulot . télétravail . compatible: "'non'"
-    transport . voiture 5km . fréquence:
-      valeur: 15
-      unité: trajets
     divers . électroménager . préservation: '''maximum'''
     divers . électroménager . mini réfrigérateur . présent: non
     divers . électroménager . tondeuse électrique . présent: oui
@@ -347,20 +335,6 @@
     transport . vélo . km:
       valeur: 0
       unité: km
-    transport . jours travaillés en voiture:
-      valeur: 5
-      unité: jours
-    transport . boulot . distance:
-      valeur: 20
-      unité: km
-    transport . boulot . commun . type: "'bus'"
-    transport . boulot . télétravail . compatible: "'oui'"
-    transport . boulot . jours télétravaillés:
-      valeur: 2
-      unité: jours
-    transport . voiture 5km . fréquence:
-      valeur: 7
-      unité: trajets
     logement . surface:
       valeur: 90
       unité: m2
