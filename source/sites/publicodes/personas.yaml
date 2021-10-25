@@ -285,8 +285,14 @@
     numérique . ordinateur portable . durée:
       valeur: 6
       unité: an
-    numérique . ordinateur fixe . présent: non
+    numérique . TV . durée:
+      valeur: 6
+      unité: an
     numérique . tablette . présent: oui
+    numérique . tablette . durée:
+      valeur: 4
+      unité: an
+    numérique . ordinateur fixe . présent: non
     numérique . téléphone . type: '''smartphone classique'''
     numérique . internet . durée journalière:
       valeur: 2
