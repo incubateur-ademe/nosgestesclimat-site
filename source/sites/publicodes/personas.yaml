@@ -416,11 +416,24 @@
 
 - nom: Ximun d'Arcangues 
   description: |
-    Au travail en bus mais voiture pour trajets quotidiens. Partage une vieille ferme au fioul mal isolée. 
+    Au travail en bus mais voiture pour trajets quotidiens. Partage une vieille ferme au fioul mal isolée. Aime les bières locales
   icônes: 🚗🏚️
   data:
+    alimentation . déchets . niveau d'engagement: "'en partie'"
+    alimentation . petit déjeuner . type: "'français'"
+    alimentation . boisson . sucrées . litres:
+      valeur: 0
+      unité: l / semaine
+    alimentation . boisson . alcool . litres:
+      valeur: 3
+      unité: l / semaine
+    alimentation . boisson . eau en bouteille . affirmatif: non
+    alimentation . plats . viande 2 . nombre: 5
+    alimentation . plats . viande 1 . nombre: 7
+    alimentation . plats . végétarien . nombre: 2
+    alimentation . plats . végétalien . nombre: 0
     transport . voiture . km:
-      valeur: 4000
+      valeur: 5000
       unité: km / an
     transport . voiture . propriétaire: oui
     transport . voiture . gabarit: "'moyenne'"
@@ -468,7 +481,34 @@
       valeur: 600
       unité: litre
     logement . bois . chauffage au bois: non
-    
+    divers . électroménager . préservation: '''moyen'''
+    divers . électroménager . mini réfrigérateur . présent: non
+    divers . autres produits . montant:
+      valeur: 300
+      unité: an
+    divers . textile . t-shirt . nombre: 4
+    divers . textile . pantalon . nombre: 2
+    divers . textile . short . nombre: 1
+    divers . textile . robe . nombre: 0
+    divers . textile . sweat . nombre: 2
+    divers . textile . chaussure . nombre: 1
+    divers . textile . manteau . nombre: 1   
+    numérique . téléphone . durée:
+      valeur: 4
+      unité: an
+    numérique . ordinateur portable . durée:
+      valeur: 3
+      unité: an
+    numérique . ordinateur fixe . durée:
+      valeur: 5
+      unité: an 
+    numérique . TV . durée:
+      valeur: 2
+      unité: an    
+    numérique . téléphone . type: '''smartphone classique'''
+    numérique . internet . durée journalière:
+      valeur: 4
+      unité: heure      
     
 - nom: Marie de Laval
   description: |
