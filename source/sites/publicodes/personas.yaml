@@ -286,7 +286,9 @@
       valeur: 2
       unité: heure
 
-- nom: Mehdi d'Agen 
+- nom: Mehdi d'Agen
+  résumé: |
+    Voiture pour travail (20km) et weekends fréquents avec famille. Appartement moderne. Chauffage élec. Branché viande et tech.
   description: |
     Travaille à 20km en voiture. Vacances & weekend en voiture avec sa femme et 2 enfants. Habite dans une résidence moderne. Chauffage élec.
     Adore la viande. Branché tech et jeux vidéos
@@ -392,8 +394,11 @@
       unité: heure  
 
 - nom: Ximun d'Arcangues 
+  résumé: |
+    Bus pour le travail. A 2 dans une ferme mal isolée. Chauffage fioul. Plutôt viande mais ouvert à tous. Aime les bières locales 
   description: |
-    Au travail en bus mais voiture pour trajets quotidiens. Partage une vieille ferme au fioul mal isolée. Aime les bières locales
+    Au travail en bus mais voiture pour trajets quotidiens. Partage avec son frère une vieille ferme au fioul mal isolée. Aime les bières locales. Plutôt viande 
+    mais est ouvert à toutes les gastronomies. Fait assez attention à ces équipements.
   icônes: 🚗🏚️
   data:
     alimentation . déchets . niveau d'engagement: "'en partie'"
