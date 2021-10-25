@@ -398,15 +398,18 @@
       valeur: 2
       unité: an
     numérique . ordinateur fixe . présent: oui
+    numérique . ordinateur fixe . durée:
       valeur: 2
       unité: an
     numérique . tablette . présent: oui
+    numérique . tablette . durée:
       valeur: 2
       unité: an    
     numérique . home cinéma . présent: oui
+    numérique . home cinéma . durée:
       valeur: 4
       unité: an  
-    numérique . TV . présent: oui
+    numérique . TV . durée: oui
       valeur: 2
       unité: an    
     numérique . téléphone . type: '''smartphone haut de gamme'''
