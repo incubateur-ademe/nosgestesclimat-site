@@ -188,7 +188,8 @@
 - nom: Sandy de Pacé
   icônes: 🚗🏡
   description: |
-    Vit à 11km de Rennes. 20 000km de voiture souvent seule. Grande maison partagée à 3.
+    Vit à 11km de Rennes dans une grande maison seule avec ses deux enfants. Chauffage gaz. 20 000km de voiture partagés entre le travail et les activités des enfants.
+    Fait attention à ses équipements et a un budget serré.
   data: 
     alimentation . déchets . niveau d'engagement: "'en partie'"
     alimentation . petit déjeuner . type: "'lait céréales'"
@@ -208,6 +209,21 @@
     logement . habitants:
       valeur: 3
       unité: personnes
+    logement . gaz . chauffage au gaz: oui
+    logement . gaz . consommation:
+      valeur: 10000
+      unité: kWh
+    logement . électricité . consommation:
+      valeur: 4000
+      unité: kWh
+    logement . fioul . chauffage au fioul: non
+    logement . bois . chauffage au bois: non
+    logement . âge:
+      valeur: 20
+      unité: an
+    logement . éco-construit: non
+    logement . appartement: non      
+      
     transport . voiture . km:
       valeur: 20000
       unité: km / an
@@ -248,7 +264,31 @@
     transport . voiture 5km . fréquence:
       valeur: 15
       unité: trajets
-
+    divers . électroménager . préservation: '''maximum'''
+    divers . électroménager . mini réfrigérateur . présent: non
+    divers . électroménager . tondeuse électrique . présent: oui
+    divers . autres produits . montant:
+      valeur: 200
+      unité: an
+    divers . textile . t-shirt . nombre: 2
+    divers . textile . pantalon . nombre: 1
+    divers . textile . short . nombre: 0
+    divers . textile . robe . nombre: 1
+    divers . textile . sweat . nombre: 0
+    divers . textile . chaussure . nombre: 1
+    divers . textile . manteau . nombre: 0   
+    numérique . téléphone . durée:
+      valeur: 6
+      unité: an
+    numérique . ordinateur portable . durée:
+      valeur: 6
+      unité: an
+    numérique . ordinateur fixe . présent: non
+    numérique . tablette . présent: oui
+    numérique . téléphone . type: '''smartphone classique'''
+    numérique . internet . durée journalière:
+      valeur: 2
+      unité: heure
 
 - nom: Mehdi d'Agen 
   description: |
