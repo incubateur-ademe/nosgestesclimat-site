@@ -78,35 +78,36 @@ export const ActionListCard = ({
 				width: 100%;
 				display: flex;
 				flex-direction: column;
-				justify-content: start;
+				justify-content: center;
+				align-items: center;
 				height: 100%;
 				${hasRemainingQuestions && `background: #eee !important; `}
 			`}
 		>
+			{icons && (
+				<div
+					css={`
+						font-size: 150%;
+						${noFormula && `font-size: 250%; `}
+					`}
+				>
+					{emoji(icons)}
+				</div>
+			)}
 			<Link
 				css={`
-					display: block;
-					margin-top: 0.6rem;
 					h2 {
-						margin-left: 0.6rem;
+						margin-top: 0.6rem;
+						text-align: center;
 						display: inline;
 						font-size: 110%;
 						font-weight: 500;
+						line-height: 1.3rem;
 					}
 					text-decoration: none;
-					height: 5.5rem;
 				`}
 				to={'/actions/' + encodeRuleName(dottedName)}
 			>
-				{icons && (
-					<span
-						css={`
-							font-size: 150%;
-						`}
-					>
-						{emoji(icons)}
-					</span>
-				)}
 				<h2>{title}</h2>
 			</Link>
 
@@ -236,6 +237,7 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 			css={`
 				margin-top: 1.6rem;
 				font-size: 100%;
+				text-align: center;
 				strong {
 					background: var(--lightColor);
 					border-radius: 0.3rem;
@@ -247,7 +249,7 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 			`}
 		>
 			{noFormula ? (
-				'Non chiffré'
+				<small>Non chiffré</small>
 			) : disabled ? (
 				'Non applicable'
 			) : (
