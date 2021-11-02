@@ -49,7 +49,7 @@ Si tous vos appareils ne sont pas proposés dans cette liste, ce n'est pas grave
 
 Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners. 
 
-> Aujourd'hui nous travaillons pour que les menus associés à vos repas soient les plus représentatifs de vos habitudes, n'hésitez pas à aller plus loin en parcourant [la documentation](https://nosgestesclimat.fr/documentation/alimentation/plats).
+> Aujourd'hui nous travaillons pour que les menus associés à vos repas soient les plus représentatifs de vos habitudes, n'hésitez pas à aller plus loin en parcourant la documentation.
 
 			`,
 		isApplicable: (dottedName: DottedName) =>
