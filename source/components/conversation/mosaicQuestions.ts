@@ -1,5 +1,6 @@
 import NumberedMosaic from './select/NumberedMosaic'
 import SelectDevices from './select/SelectDevices'
+import SelectWeeklyTransport from './select/SelectWeeklyTransport'
 import { DottedName } from 'Rules'
 
 const mosaicQuestions: Array<{
@@ -46,19 +47,34 @@ Si tous vos appareils ne sont pas proposés dans cette liste, ce n'est pas grave
 	{
 		dottedName: 'alimentation . régime',
 		question:
-			'Choisissez les plats de vos midis et dîners pour une semaine type',
+			'🎓 Choisis les 5 déjeuners qui représentent ta semaine-type sur le campus (self, RU...)',
 		description: `
 
-Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners. 
+Choisis les 5 déjeuners qui représentent tes habitudes alimentaires lorsque tu es en cours.
 
-> Aujourd'hui nous travaillons pour que les menus associés à vos repas soient les plus représentatifs de vos habitudes, n'hésitez pas à aller plus loin en parcourant [la documentation](https://nosgestesclimat.fr/documentation/alimentation/plats).
-
+> A compléter
 			`,
 		isApplicable: (dottedName: DottedName) =>
-			dottedName.includes('alimentation . plats') &&
+			dottedName.includes('alimentation . plats campus') &&
 			dottedName.includes(' . nombre'),
 		component: NumberedMosaic,
-		options: { chipsTotal: 14 },
+		options: { chipsTotal: 5 },
+	},
+	{
+		dottedName: 'alimentation . régime',
+		question:
+			'Quels sont les repas qui complètent ta semaine (soir, week-end...), et on oublie pas le kebab de fin de soirée !',
+		description: `
+
+Choisis les 9 repas qui complètent une semaine-type.
+
+> A compléter
+			`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('alimentation . plats perso') &&
+			dottedName.includes(' . nombre'),
+		component: NumberedMosaic,
+		options: { chipsTotal: 9 },
 	},
 	{
 		dottedName: 'divers . textile',
@@ -67,6 +83,19 @@ Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners.
 			dottedName.includes('divers . textile') &&
 			dottedName.includes(' . nombre'),
 		component: NumberedMosaic,
+	},
+	{
+		dottedName: 'impact école . domicile-travail . moyens de transport',
+		question:
+			'Quelle à la répartition d’usage des différents modes de transports que vous utilisez ? ',
+		description: `
+Indiquez, ici, la répartition de vos moyens de transport pour vous rendre sur votre lieu de travail. 
+Par exemple, si vous utilisez différents moyens de transport sur un même trajet (voiture plus tramway par exemple) ou encore si vous utilisez différents moyens de transport selon les jours ou les saisons, etc. (vélo en été, voiture en hiver par exemple).
+		`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('trajets domicile-travail . moyens de transport') &&
+			dottedName.includes(' . pourcent'),
+		component: SelectWeeklyTransport,
 	},
 ]
 
