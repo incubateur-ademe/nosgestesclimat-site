@@ -12,7 +12,7 @@ export default function NumberedMosaic({
 	selectedRules,
 	value: currentValue,
 	question,
-	options: { chipsTotal },
+	options: { chipsTotal, chipStep },
 }) {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
@@ -62,7 +62,7 @@ export default function NumberedMosaic({
 										onClick={() =>
 											nodeValue > 0 &&
 											dispatch(
-												updateSituation(question.dottedName, nodeValue - 1)
+												updateSituation(question.dottedName, nodeValue - chipStep)
 											)
 										}
 									>
@@ -96,7 +96,7 @@ export default function NumberedMosaic({
 										className="ui__ button small plain"
 										onClick={() =>
 											dispatch(
-												updateSituation(question.dottedName, nodeValue + 1)
+												updateSituation(question.dottedName, nodeValue + chipStep)
 											)
 										}
 									>
