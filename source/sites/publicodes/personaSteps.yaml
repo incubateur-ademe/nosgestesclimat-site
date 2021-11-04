@@ -7,10 +7,14 @@
 - alimentation . plats campus . végétarien . nombre
 - alimentation . plats campus . viande 1 . nombre
 - alimentation . plats campus . viande 2 . nombre
+- alimentation . plats campus . poisson 1 . nombre
+- alimentation . plats campus . poisson 2 . nombre
 - alimentation . plats perso . végétalien . nombre
 - alimentation . plats perso . végétarien . nombre
 - alimentation . plats perso . viande 1 . nombre
 - alimentation . plats perso . viande 2 . nombre
+- alimentation . plats perso . poisson 1 . nombre
+- alimentation . plats perso . poisson 2 . nombre
 - transport . voiture . km
 - transport . voiture . gabarit
 - transport . voiture . propriétaire
