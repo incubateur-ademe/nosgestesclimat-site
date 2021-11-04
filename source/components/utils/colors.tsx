@@ -57,7 +57,7 @@ const deriveAnalogousPalettes = (hex: string) => {
 
 const generateTheme = (themeColor?: string) => {
 	const // Use the default theme color if the host page hasn't made a choice
-		color = themeColor || '#5758BB',
+		color = themeColor || '#532fc5',
 		lightColor = lightenColor(color, 10),
 		darkColor = lightenColor(color, -20),
 		lighterColor = lightenColor(color, 39),
