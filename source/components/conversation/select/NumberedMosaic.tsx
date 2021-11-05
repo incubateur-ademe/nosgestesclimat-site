@@ -12,7 +12,7 @@ export default function NumberedMosaic({
 	selectedRules,
 	value: currentValue,
 	question,
-	options: { chipsTotal, chipStep },
+	options: { chipsTotal: fixedChipsTotal, chipsTotalRule, chipStep }, //if not given, undefined
 }) {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
@@ -22,6 +22,10 @@ export default function NumberedMosaic({
 		const evaluated = engine.evaluate(dottedName)
 		return memo + evaluated.nodeValue
 	}, 0)
+
+	const evaluatedChipsTotal = chipsTotalRule && engine.evaluate(chipsTotalRule).nodeValue
+
+	const chipsTotal = fixedChipsTotal || evaluatedChipsTotal
 
 	const choiceElements = (
 		<div>

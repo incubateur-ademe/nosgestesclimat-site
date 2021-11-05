@@ -1,6 +1,7 @@
 import NumberedMosaic from './select/NumberedMosaic'
 import SelectDevices from './select/SelectDevices'
 import { DottedName } from 'Rules'
+import { useEngine } from '../utils/EngineContext'
 
 const mosaicQuestions: Array<{
 	question: string
@@ -62,7 +63,7 @@ Choisis les 5 déjeuners qui représentent tes habitudes alimentaires lorsque tu
 	{
 		dottedName: 'alimentation . régime',
 		question:
-			'Quels sont les repas qui complètent ta semaine (soir, week-end...) ? Et on n"oublie pas le kebab de fin de soirée !',
+			"Quels sont les repas qui complètent ta semaine (soir, week-end...) ? Et on n'oublie pas le kebab de fin de soirée !",
 		description: `
 
 Choisis les 9 repas qui complètent une semaine-type.
@@ -73,9 +74,12 @@ Choisis les 9 repas qui complètent une semaine-type.
 			dottedName.includes('alimentation . plats perso') &&
 			dottedName.includes(' . nombre'),
 		component: NumberedMosaic,
-		options: { chipsTotal: 9, chipStep: 1 },
+		options: {
+			chipsTotalRule: 'alimentation . plats perso . chipstotal',
+			chipStep: 1,
+		},
 	},
-		{
+	{
 		dottedName: 'transport . domicile-travail',
 		question:
 			'Quelle à la répartition d’usage des différents modes de transports que vous utilisez ? ',
@@ -84,10 +88,11 @@ Indiquez, ici, la répartition de vos moyens de transport pour vous rendre sur v
 Par exemple, si vous utilisez différents moyens de transport sur un même trajet (voiture plus tramway par exemple) ou encore si vous utilisez différents moyens de transport selon les jours ou les saisons, etc. (vélo en été, voiture en hiver par exemple).
 		`,
 		isApplicable: (dottedName: DottedName) =>
-			dottedName.includes('transport . domicile-travail . moyens de transport') &&
-			dottedName.includes(' . pourcent'),
+			dottedName.includes(
+				'transport . domicile-travail . moyens de transport'
+			) && dottedName.includes(' . pourcent'),
 		component: NumberedMosaic,
-		options: { chipsTotal: 100, chipStep: 5},
+		options: { chipsTotal: 100, chipStep: 5 },
 	},
 	{
 		dottedName: 'divers . textile',
