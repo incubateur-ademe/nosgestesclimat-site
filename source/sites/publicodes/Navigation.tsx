@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import SessionBar from 'Components/SessionBar'
-import Logo, { InlineLogo } from './Logo'
+import Logo from './Logo'
 
 export default ({ isHomePage }) => (
 	<>
@@ -50,7 +50,6 @@ export default ({ isHomePage }) => (
 				`}
 			>
 				<Logo />
-				<InlineLogo />
 			</Link>
 			{location.pathname !== '/' &&
 				!decodeURIComponent(location.pathname).includes('nouveautés') && (

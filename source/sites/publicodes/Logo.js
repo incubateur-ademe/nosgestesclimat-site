@@ -1,84 +1,54 @@
-import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
-import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
-//This component is unfortunately repeated in index.html, where we can't yet use a component :-(
+// Created with Inkscape (http://www.inkscape.org/)
 
-export default () => (
-	<span
-		id="blockLogo"
-		css="margin-top: .6rem;font-weight: 400;color: black; position: relative; "
-	>
-		<span css="position: absolute; top: -.95rem; left: 0rem; font-size: 60%;">
-			nos
-		</span>
-		<span css="color: var(--color); font-weight: bold; text-transform: uppercase; font-size: 75%">
-			ges
-		</span>
-		tes
-		<span css="position: absolute; top: 1.2rem; left: 2.3rem; font-size: 60%; ">
-			climat
-		</span>
-	</span>
+export default ({ withText = true }) => (
+	<div css="display: flex; margin: .4rem ; align-items: center">
+		<svg
+			viewBox="0 0 210 210"
+			version="1.1"
+			id="svg20794"
+			width="100px"
+			css="width: 3.5rem"
+		>
+			<defs id="defs20791" />
+			<g id="layer1">
+				<g
+					id="g12764"
+					transform="matrix(3.2687351,0,0,3.2687351,-975.59786,-744.64683)"
+				>
+					<rect
+						css="fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#532fc5;stroke-width:3;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+						id="rect846-5-2-2"
+						width="59.360001"
+						height="59.360325"
+						x="301.05234"
+						y="230.32544"
+					/>
+					<path
+						css="fill:#532fc5;fill-opacity:1;stroke:none;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+						d="m 301.7089,259.18322 c 6.66355,-10.78996 13.07193,-23.45851 20.1518,-23.45851 10.60493,0 7.75671,35.67638 17.59501,49.03228 2.36318,3.2081 7.51272,3.89799 19.44672,3.50567 0,2.05152 -41.65332,1.17582 -57.93717,1.17582 z"
+						id="path2165"
+					/>
+				</g>
+			</g>
+		</svg>
+		{withText && <Name />}
+	</div>
 )
 
-export const InlineLogo = () => {
-	const { integratorLogo, integratorName } = useContext(IframeOptionsContext)
-
-	return (
-		<div
-			css={`
-				display: flex;
-				justify-content: space-between;
-				align-items: center;
-				@media (max-width: 800px) {
-					flex-direction: column;
-					justify-content: center;
-					align-items: center;
-				}
-				> span {
-					color: black;
-				}
-			`}
-		>
-			{integratorLogo && integratorName && (
-				<>
-					<span
-						css={`
-							display: flex;
-							justify-content: center;
-							align-items: center;
-						`}
-					>
-						<img src={integratorLogo} width="40px" css={``} />
-						<span css="font-size: 70%">{integratorName}</span>
-					</span>
-					<span css="margin: 0 .6rem; font-size: 80%">x</span>
-				</>
-			)}
-
-			<NosGestesClimatInline />
-		</div>
-	)
-}
-
-const NosGestesClimatInline = () => (
+const Name = ({}) => (
 	<span
-		id="inlineLogo"
 		css={`
 			display: flex;
-			align-items: center;
-			font-weight: 400;
-			color: black;
-			position: relative;
+			flex-direction: column;
+			font-weight: bold;
+			color: var(--color);
+			font-size: 75%;
+			line-height: 1.1rem;
+			margin-left: 0.4rem;
 		`}
 	>
-		<span css=" font-size: 70%; align-self: center">nos</span>
-		<span css="margin: 0 .25rem">
-			<span css="color: var(--color); font-weight: bold; text-transform: uppercase; font-size: 75%">
-				ges
-			</span>
-			tes
-		</span>
-		<span css="font-size: 70%; align-self: center">climat</span>
+		<span>Nos</span>
+		<span>Gestes</span>
+		<span>Climat</span>
 	</span>
 )
