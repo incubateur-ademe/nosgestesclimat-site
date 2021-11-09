@@ -80,7 +80,7 @@ Choisis les 9 repas qui complètent une semaine-type.
 		},
 	},
 	{
-		dottedName: 'transport . domicile-travail',
+		dottedName: 'transport . domicile-campus',
 		question:
 			'Quelle à la répartition d’usage des différents modes de transports que vous utilisez ? ',
 		description: `
@@ -89,7 +89,7 @@ Par exemple, si vous utilisez différents moyens de transport sur un même traje
 		`,
 		isApplicable: (dottedName: DottedName) =>
 			dottedName.includes(
-				'transport . domicile-travail . moyens de transport'
+				'transport . domicile-campus . moyens de transport'
 			) && dottedName.includes(' . pourcent'),
 		component: NumberedMosaic,
 		options: { chipsTotal: 100, chipStep: 5 },
