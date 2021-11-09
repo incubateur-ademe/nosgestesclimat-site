@@ -287,11 +287,10 @@
       unité: heure
 
 - nom: Mehdi d'Agen
-  résumé: |
-    Voiture pour travail (20km) et weekends fréquents avec famille. Appartement moderne. Chauffage élec. Branché viande et tech.
+  résumé: Voiture pour travail (20km) et weekends fréquents avec famille. Appartement moderne. Chauffage élec. Branché viande et tech.
   description: |
     Travaille à 20km en voiture. Vacances & weekend en voiture avec sa femme et 2 enfants. Habite dans une résidence moderne. Chauffage élec.
-    Adore la viande. Branché tech et jeux vidéos
+    Adore la viande. Branché tech et jeux vidéos.
   icônes: 🚗🥩
   data:
     alimentation . déchets . niveau d'engagement: "'pas du tout'"
@@ -353,8 +352,8 @@
       valeur: 10
       unité: an
     logement . éco-construit: non
-    logement . appartement: oui  
-    divers . électroménager . préservation: '''faible'''
+    logement . appartement: oui
+    divers . électroménager . préservation: "'faible'"
     divers . électroménager . mini réfrigérateur . présent: non
     divers . électroménager . robot cuisine . présent: oui
     divers . autres produits . montant:
@@ -380,19 +379,19 @@
     numérique . tablette . présent: oui
     numérique . tablette . durée:
       valeur: 2
-      unité: an    
+      unité: an
     numérique . home cinéma . présent: oui
     numérique . home cinéma . durée:
       valeur: 4
-      unité: an  
-    numérique . TV . durée: oui
+      unité: an
+    numérique . TV . présent: oui
+    numérique . TV . durée:
       valeur: 2
-      unité: an    
-    numérique . téléphone . type: '''smartphone haut de gamme'''
+      unité: an
+    numérique . téléphone . type: "'smartphone haut de gamme'"
     numérique . internet . durée journalière:
       valeur: 4
-      unité: heure  
-
+      unité: heure
 - nom: Ximun d'Arcangues 
   résumé: |
     Bus pour le travail. A 2 dans une ferme mal isolée. Chauffage fioul. Plutôt viande mais ouvert à tous. Aime les bières locales 
