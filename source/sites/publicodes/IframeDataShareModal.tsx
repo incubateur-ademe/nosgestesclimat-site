@@ -22,13 +22,13 @@ export default ({ data }) => {
 	}, [])
 	function onReject() {
 		window.parent.postMessage(
-			{ error: 'The user refused to share his result.' },
+			{ messageType: 'ngc', error: 'The user refused to share his result.' },
 			'*'
 		)
 		setIsOpen(false)
 	}
 	function onAccept() {
-		window.parent.postMessage(data, '*')
+		window.parent.postMessage({ messageType: 'ngc', data} , '*')
 		setIsOpen(false)
 	}
 	function onClose() {
