@@ -25,6 +25,7 @@ import { sessionBarMargin } from '../../components/SessionBar'
 import { FullName, splitName } from '../../components/publicodesUtils'
 import Title from 'Components/Title'
 import Meta from '../../components/utils/Meta'
+import { skipTutorial } from '../../actions/actions'
 
 const eqValues = compose(isEmpty, symmetricDifference)
 
@@ -91,7 +92,24 @@ const Simulateur = (props) => {
 					className="ui__ card light colored content"
 					css="margin-top: 1.6rem"
 				>
-					Mon empreinte climat ? Qu'est-ce que c'est {emoji('😶‍🌫️')} ?
+					<h1>Mon empreinte climat ? Qu'est-ce que c'est {emoji('😶‍🌫️')} ?</h1>
+					<p>
+						La planète se réchauffe, au fur et à mesure des gaz à effet de serre
+						que l'on émet.
+					</p>
+					<p>
+						Ce test donne une mesure de <strong>votre part </strong> dans ce
+						réchauffement, en mesurant votre consommation personnelle.
+					</p>
+					<div css="button {margin: 0 .4rem}">
+						<button className="ui__ button small plain">Suivant</button>
+						<button
+							className="ui__ button small"
+							onClick={() => dispatch(skipTutorial('testIntro'))}
+						>
+							Passer le tutoriel
+						</button>
+					</div>
 				</div>
 			)}
 			{tutorials.testIntro && <BandeauContribuer />}
