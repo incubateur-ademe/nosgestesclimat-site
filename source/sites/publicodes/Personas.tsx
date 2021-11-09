@@ -16,7 +16,7 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { situationSelector } from '../../selectors/simulationSelectors'
 
 export default ({}) => {
-	const configSet = useSelector((state) => state.simulation?.config)
+	const persona = useSelector((state) => state.simulation?.persona)
 
 	return (
 		<div>
@@ -25,6 +25,13 @@ export default ({}) => {
 			<p>
 				<em>Cliquez pour charger un dans le simulateur.</em>
 			</p>
+			{persona && (
+				<IllustratedMessage
+					emoji="✅"
+					message={<p>Persona sélectionné : {persona}</p>}
+				/>
+			)}
+
 			<PersonaGrid />
 			<p>
 				Les personas nous permettront de prendre le parti d'une diversité
@@ -89,7 +96,10 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 						</p>{' '}
 						<button
 							className="ui__ button simple"
-							onClick={() => setPersona(warning)}
+							onClick={() => {
+								setPersona(warning)
+								setWarning(false)
+							}}
 						>
 							Continuer
 						</button>
@@ -107,7 +117,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 	return (
 		<CardGrid css="padding: 0; justify-content: center">
 			{personas.map((persona) => {
-				const { nom, icônes, data, description } = persona
+				const { nom, icônes, data, description, résumé } = persona
 				return (
 					<li key={nom}>
 						<div
@@ -130,7 +140,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 								<div>{nom}</div>
 							</Link>
 							<p css=" overflow-x: scroll">
-								<small>{description}</small>
+								<small>{résumé || description}</small>
 							</p>
 						</div>
 					</li>

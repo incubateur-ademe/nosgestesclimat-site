@@ -187,8 +187,11 @@
 
 - nom: Sandy de Pacé
   icônes: 🚗🏡
+  résumé: |
+    Grande maison chauffage gaz à 11 km de Rennes. 20 000km de voiture. Peu d'achats.
   description: |
-    Vit à 11km de Rennes. 20 000km de voiture souvent seule. Grande maison partagée à 3.
+    Vit à 11km de Rennes dans une grande maison seule avec ses deux enfants. Chauffage gaz. 20 000km de voiture partagés entre le travail et les activités des enfants.
+    Fait attention à ses équipements et a un budget serré.
   data: 
     alimentation . déchets . niveau d'engagement: "'en partie'"
     alimentation . petit déjeuner . type: "'lait céréales'"
@@ -208,6 +211,20 @@
     logement . habitants:
       valeur: 3
       unité: personnes
+    logement . gaz . chauffage au gaz: oui
+    logement . gaz . consommation:
+      valeur: 10000
+      unité: kWh
+    logement . électricité . consommation:
+      valeur: 4000
+      unité: kWh
+    logement . fioul . chauffage au fioul: non
+    logement . bois . chauffage au bois: non
+    logement . âge:
+      valeur: 20
+      unité: an
+    logement . éco-construit: non
+    logement . appartement: non
     transport . voiture . km:
       valeur: 20000
       unité: km / an
@@ -237,23 +254,43 @@
     transport . vélo . km:
       valeur: 0
       unité: km
-    transport . jours travaillés en voiture:
-      valeur: 5
-      unité: jours
-    transport . boulot . distance:
-      valeur: 11
-      unité: km
-    transport . boulot . commun . type: "'tramway'"
-    transport . boulot . télétravail . compatible: "'non'"
-    transport . voiture 5km . fréquence:
-      valeur: 15
-      unité: trajets
+    divers . électroménager . préservation: '''maximum'''
+    divers . électroménager . mini réfrigérateur . présent: non
+    divers . électroménager . tondeuse électrique . présent: oui
+    divers . autres produits . montant:
+      valeur: 200
+      unité: an
+    divers . textile . t-shirt . nombre: 2
+    divers . textile . pantalon . nombre: 1
+    divers . textile . short . nombre: 0
+    divers . textile . robe . nombre: 1
+    divers . textile . sweat . nombre: 0
+    divers . textile . chaussure . nombre: 1
+    divers . textile . manteau . nombre: 0   
+    numérique . téléphone . durée:
+      valeur: 6
+      unité: an
+    numérique . ordinateur portable . durée:
+      valeur: 6
+      unité: an
+    numérique . TV . durée:
+      valeur: 6
+      unité: an
+    numérique . tablette . présent: oui
+    numérique . tablette . durée:
+      valeur: 4
+      unité: an
+    numérique . ordinateur fixe . présent: non
+    numérique . téléphone . type: '''smartphone classique'''
+    numérique . internet . durée journalière:
+      valeur: 2
+      unité: heure
 
-
-- nom: Mehdi d'Agen 
+- nom: Mehdi d'Agen
+  résumé: Voiture pour travail (20km) et weekends fréquents avec famille. Appartement neuf, chauffage ⚡️. Branché viande et tech.
   description: |
-    Travaille à 20km en voiture. Vacances & weekend en voiture avec sa femme et 2 enfants.
-    Adore la viande.
+    Travaille à 20km en voiture. Vacances & weekend en voiture avec sa femme et 2 enfants. Habite dans une résidence moderne. Chauffage élec.
+    Adore la viande. Branché tech et jeux vidéos.
   icônes: 🚗🥩
   data:
     alimentation . déchets . niveau d'engagement: "'pas du tout'"
@@ -299,28 +336,85 @@
     transport . vélo . km:
       valeur: 0
       unité: km
-    transport . jours travaillés en voiture:
-      valeur: 5
-      unité: jours
-    transport . boulot . distance:
-      valeur: 20
-      unité: km
-    transport . boulot . commun . type: "'bus'"
-    transport . boulot . télétravail . compatible: "'oui'"
-    transport . boulot . jours télétravaillés:
+    logement . surface:
+      valeur: 90
+      unité: m2
+    logement . habitants:
+      valeur: 4
+      unité: personnes
+    logement . électricité . consommation:
+      valeur: 14000
+      unité: kWh
+    logement . fioul . chauffage au fioul: non
+    logement . gaz . chauffage au gaz: non
+    logement . bois . chauffage au bois: non
+    logement . âge:
+      valeur: 10
+      unité: an
+    logement . éco-construit: non
+    logement . appartement: oui
+    divers . électroménager . préservation: "'faible'"
+    divers . électroménager . mini réfrigérateur . présent: non
+    divers . électroménager . robot cuisine . présent: oui
+    divers . autres produits . montant:
+      valeur: 300
+      unité: an
+    divers . textile . t-shirt . nombre: 4
+    divers . textile . pantalon . nombre: 2
+    divers . textile . short . nombre: 0
+    divers . textile . robe . nombre: 0
+    divers . textile . sweat . nombre: 1
+    divers . textile . chaussure . nombre: 2
+    divers . textile . manteau . nombre: 1   
+    numérique . téléphone . durée:
+      valeur: 1
+      unité: an
+    numérique . ordinateur portable . durée:
       valeur: 2
-      unité: jours
-    transport . voiture 5km . fréquence:
-      valeur: 7
-      unité: trajets
-
+      unité: an
+    numérique . ordinateur fixe . présent: oui
+    numérique . ordinateur fixe . durée:
+      valeur: 2
+      unité: an
+    numérique . tablette . présent: oui
+    numérique . tablette . durée:
+      valeur: 2
+      unité: an
+    numérique . home cinéma . présent: oui
+    numérique . home cinéma . durée:
+      valeur: 4
+      unité: an
+    numérique . TV . présent: oui
+    numérique . TV . durée:
+      valeur: 2
+      unité: an
+    numérique . téléphone . type: "'smartphone haut de gamme'"
+    numérique . internet . durée journalière:
+      valeur: 4
+      unité: heure
 - nom: Ximun d'Arcangues 
+  résumé: |
+    Bus pour le travail. À 2 dans ferme mal isolée, chauffée au fioul. Plutôt viande.
   description: |
-    Au travail en bus mais voiture pour trajets quotidiens. Partage une vieille ferme au fioul mal isolée. 
+    Au travail en bus mais voiture pour trajets quotidiens. Partage avec son frère une vieille ferme au fioul mal isolée. Aime les bières locales. Plutôt viande 
+    mais est ouvert à toutes les gastronomies. Fait assez attention à ces équipements.
   icônes: 🚗🏚️
   data:
+    alimentation . déchets . niveau d'engagement: "'en partie'"
+    alimentation . petit déjeuner . type: "'français'"
+    alimentation . boisson . sucrées . litres:
+      valeur: 0
+      unité: l / semaine
+    alimentation . boisson . alcool . litres:
+      valeur: 3
+      unité: l / semaine
+    alimentation . boisson . eau en bouteille . affirmatif: non
+    alimentation . plats . viande 2 . nombre: 5
+    alimentation . plats . viande 1 . nombre: 7
+    alimentation . plats . végétarien . nombre: 2
+    alimentation . plats . végétalien . nombre: 0
     transport . voiture . km:
-      valeur: 4000
+      valeur: 5000
       unité: km / an
     transport . voiture . propriétaire: oui
     transport . voiture . gabarit: "'moyenne'"
@@ -368,7 +462,34 @@
       valeur: 600
       unité: litre
     logement . bois . chauffage au bois: non
-    
+    divers . électroménager . préservation: '''moyen'''
+    divers . électroménager . mini réfrigérateur . présent: non
+    divers . autres produits . montant:
+      valeur: 300
+      unité: an
+    divers . textile . t-shirt . nombre: 4
+    divers . textile . pantalon . nombre: 2
+    divers . textile . short . nombre: 1
+    divers . textile . robe . nombre: 0
+    divers . textile . sweat . nombre: 2
+    divers . textile . chaussure . nombre: 1
+    divers . textile . manteau . nombre: 1   
+    numérique . téléphone . durée:
+      valeur: 4
+      unité: an
+    numérique . ordinateur portable . durée:
+      valeur: 3
+      unité: an
+    numérique . ordinateur fixe . durée:
+      valeur: 5
+      unité: an 
+    numérique . TV . durée:
+      valeur: 2
+      unité: an    
+    numérique . téléphone . type: '''smartphone classique'''
+    numérique . internet . durée journalière:
+      valeur: 4
+      unité: heure      
     
 - nom: Marie de Laval
   description: |
