@@ -9,6 +9,8 @@
 - alimentation . plats . viande 2 . nombre
 - alimentation . plats . poisson 2 . nombre
 - alimentation . plats . poisson 1 . nombre
+- alimentation . de saison . consommation
+- alimentation . local . consommation
 - transport . voiture . km
 - transport . voiture . gabarit
 - transport . voiture . propriétaire
