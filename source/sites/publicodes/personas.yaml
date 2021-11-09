@@ -25,6 +25,8 @@
       alimentation . plats . viande 2 . nombre: 0
       alimentation . plats . viande 1 . nombre: 0
       alimentation . plats . végétarien . nombre: 7
+      alimentation . plats . poisson 1 . nombre: 0
+      alimentation . plats . poisson 2 . nombre: 0
       transport . voiture . km:
         valeur: 0
         unité: km / an
@@ -90,7 +92,7 @@
 
 - nom: Corentin de Paris
   description: |
-    Presque zéro voiture, vit seul dans un studio au gaz, végétarien.
+    Presque zéro voiture, vit seul dans un studio au gaz, flexitarien.
   icônes: 🛴🏢
   data:
     situation:
@@ -104,6 +106,8 @@
         valeur: 2
         unité: l / semaine
       alimentation . boisson . eau en bouteille . affirmatif: non
+      alimentation . plats . poisson 1 . nombre: 0
+      alimentation . plats . poisson 2 . nombre: 0
       alimentation . plats . viande 1 . nombre: 1
       alimentation . plats . viande 2 . nombre: 0
       alimentation . plats . végétarien . nombre: 8
@@ -202,6 +206,7 @@
     alimentation . boisson . eau en bouteille . affirmatif: oui
     alimentation . plats . viande 2 . nombre: 8
     alimentation . plats . viande 1 . nombre: 0
+    alimentation . plats . poisson 1 . nombre: 0
     logement . surface:
       valeur: 150
       unité: m2
@@ -270,6 +275,8 @@
     alimentation . plats . viande 1 . nombre: 7
     alimentation . plats . végétarien . nombre: 0
     alimentation . plats . végétalien . nombre: 0
+    alimentation . plats . poisson 1 . nombre: 0
+    alimentation . plats . poisson 2 . nombre: 0
     transport . voiture . km:
       valeur: 30000
       unité: km / an
@@ -389,7 +396,8 @@
     alimentation . plats . viande 1 . nombre: 7
     alimentation . plats . végétarien . nombre: 0
     alimentation . plats . végétalien . nombre: 0
-
+    alimentation . plats . poisson 1 . nombre: 0
+    alimentation . plats . poisson 2 . nombre: 0
 
 - nom: Jessica de Lyon 
   description: |
@@ -411,6 +419,12 @@
     transport . avion . long courrier . heures de vol:
       valeur: 14
       unité: kgCO2e/km
+    alimentation . plats . végétarien . nombre: 6
+    alimentation . plats . végétalien . nombre: 6
+    alimentation . plats . viande 1 . nombre: 2
+    alimentation . plats . viande 2 . nombre: 0
+    alimentation . plats . poisson 1 . nombre: 0
+    alimentation . plats . poisson 2 . nombre: 0
 
 
 - nom: Zoé de Damblain
