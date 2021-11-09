@@ -57,6 +57,18 @@ A compléter
 		component: SelectDevices,
 	},
 	{
+		dottedName: 'transport . autres déplacements',
+		options: { defaultsToFalse: true },
+		question: 'perso ?',
+		description: `
+A compléter
+			`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . autres déplacements') &&
+			dottedName.includes(' . présent'),
+		component: SelectDevices,
+	},
+	{
 		dottedName: 'alimentation . régime',
 		question:
 			'🎓 Choisis les 5 déjeuners qui représentent ta semaine-type sur le campus (self, RU...)',
@@ -94,9 +106,9 @@ Choisis les 9 repas qui complètent une semaine-type.
 	{
 		dottedName: 'transport . domicile-campus',
 		question:
-			'Quelle à la répartition d’usage des différents modes de transports que vous utilisez ? ',
+			'🎓 Quelle à la répartition d’usage des différents modes de transports que vous utilisez pour vos trajets domicile-campus ? ',
 		description: `
-Indiquez, ici, la répartition de vos moyens de transport pour vous rendre sur votre lieu de travail. 
+Indiquez, ici, la répartition de vos moyens de transport pour vous rendre sur votre campus (si vous vivez sur la campus, indiquez que vous marchez à 100%). 
 Par exemple, si vous utilisez différents moyens de transport sur un même trajet (voiture plus tramway par exemple) ou encore si vous utilisez différents moyens de transport selon les jours ou les saisons, etc. (vélo en été, voiture en hiver par exemple).
 		`,
 		isApplicable: (dottedName: DottedName) =>
