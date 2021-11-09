@@ -22,13 +22,13 @@ export default ({ data }) => {
 	}, [])
 	function onReject() {
 		window.parent.postMessage(
-			{ messageType: 'ngc', error: 'The user refused to share his result.' },
+			{ messageType: 'ngc-iframe-share', error: 'The user refused to share his result.' },
 			'*'
 		)
 		setIsOpen(false)
 	}
 	function onAccept() {
-		window.parent.postMessage({ messageType: 'ngc', data} , '*')
+		window.parent.postMessage({ messageType: 'ngc-iframe-share', data} , '*')
 		setIsOpen(false)
 	}
 	function onClose() {
