@@ -45,6 +45,18 @@ Si tous vos appareils ne sont pas proposés dans cette liste, ce n'est pas grave
 		component: SelectDevices,
 	},
 	{
+		dottedName: 'logement . chauffage',
+		options: { defaultsToFalse: true },
+		question: 'Comment est chauffé ton logement ?',
+		description: `
+A compléter
+			`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('logement . chauffage') &&
+			dottedName.includes(' . présent'),
+		component: SelectDevices,
+	},
+	{
 		dottedName: 'alimentation . régime',
 		question:
 			'🎓 Choisis les 5 déjeuners qui représentent ta semaine-type sur le campus (self, RU...)',
