@@ -66,26 +66,35 @@ const Simulateur = (props) => {
 					)}
 				</h1>
 			)}
-			<Simulation
-				noFeedback
-				orderByCategories={categories}
-				customEnd={
-					isMainSimulation ? (
-						<RedirectionToEndPage {...{ rules, engine }} />
-					) : rule.description ? (
-						<Markdown source={rule.description} />
-					) : (
-						<EndingCongratulations />
-					)
-				}
-				targets={<>{rule.period === 'flexible' && <PeriodBlock />}</>}
-				explanations={
-					<>
-						<Chart />
-					</>
-				}
-			/>
-			<BandeauContribuer />
+			{tutorials.testIntro ? (
+				<Simulation
+					noFeedback
+					orderByCategories={categories}
+					customEnd={
+						isMainSimulation ? (
+							<RedirectionToEndPage {...{ rules, engine }} />
+						) : rule.description ? (
+							<Markdown source={rule.description} />
+						) : (
+							<EndingCongratulations />
+						)
+					}
+					targets={<>{rule.period === 'flexible' && <PeriodBlock />}</>}
+					explanations={
+						<>
+							<Chart />
+						</>
+					}
+				/>
+			) : (
+				<div
+					className="ui__ card light colored content"
+					css="margin-top: 1.6rem"
+				>
+					Mon empreinte climat ? Qu'est-ce que c'est {emoji('😶‍🌫️')} ?
+				</div>
+			)}
+			{tutorials.testIntro && <BandeauContribuer />}
 		</div>
 	)
 }
