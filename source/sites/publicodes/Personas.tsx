@@ -107,7 +107,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 	return (
 		<CardGrid css="padding: 0; justify-content: center">
 			{personas.map((persona) => {
-				const { nom, icônes, data, description } = persona
+				const { nom, icônes, data, description, résumé } = persona
 				return (
 					<li key={nom}>
 						<div
@@ -130,7 +130,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 								<div>{nom}</div>
 							</Link>
 							<p css=" overflow-x: scroll">
-								<small>{description}</small>
+								<small>{résumé || description}</small>
 							</p>
 						</div>
 					</li>
