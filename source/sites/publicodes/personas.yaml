@@ -207,6 +207,9 @@
     alimentation . plats . viande 2 . nombre: 8
     alimentation . plats . viande 1 . nombre: 0
     alimentation . plats . poisson 1 . nombre: 0
+    alimentation . plats . poisson 2 . nombre: 0
+    alimentation . plats . végétarien . nombre: 5
+    alimentation . plats . végétalien . nombre: 1
     logement . surface:
       valeur: 150
       unité: m2
