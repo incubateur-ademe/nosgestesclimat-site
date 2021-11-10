@@ -34,11 +34,14 @@
 - logement . appartement
 - logement . surface
 - logement . habitants
-- logement . gaz . chauffage au gaz
-- logement . gaz . consommation
 - logement . électricité . consommation
-- logement . fioul . chauffage au fioul
-- logement . bois . chauffage au bois
+- logement . chauffage . électricité . présent
+- logement . chauffage . gaz . présent
+- logement . chauffage . gaz . consommation
+- logement . chauffage . bois . présent
+- logement . chauffage . bois . consommation
+- logement . chauffage . fioul . présent
+- logement . chauffage . fioul . consommation
 - divers . électroménager . préservation
 - divers . électroménager . réfrigérateur . présent
 - divers . électroménager . mini réfrigérateur . présent
