@@ -64,13 +64,14 @@ export default function Root({}) {
 				actionChoices: persistedSimulation?.actionChoices || {},
 				tutorials: persistedSimulation?.tutorials || {},
 			}}
-			rulesURL={`https://${
-				branch
-					? `${branch}--`
-					: pullRequestNumber
-					? `deploy-preview-${pullRequestNumber}--`
-					: ''
-			}ecolab-data.netlify.app/co2.json`}
+			rulesURL={`https://ngc-campus-model.netlify.app/co2.json`}
+			// rulesURL={`https://${
+			// 	branch
+			// 		? `${branch}--`
+			// 		: pullRequestNumber
+			// 		? `deploy-preview-${pullRequestNumber}--`
+			// 		: ''
+			// }ecolab-data.netlify.app/co2.json`}
 			dataBranch={branch || pullRequestNumber}
 		>
 			<Main />

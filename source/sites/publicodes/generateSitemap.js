@@ -2,7 +2,7 @@ const fs = require('fs')
 const fetch = require('node-fetch')
 const lines = require('./base-URLs.js')
 
-fetch('https://ecolab-data.netlify.app/co2.json')
+fetch('https://ngc-campus-model.netlify.app/co2.json')
 	.then((res) => res.json())
 	.then((json) => {
 		const documentationLines = Object.keys(json).map(
