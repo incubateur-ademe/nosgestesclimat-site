@@ -69,6 +69,21 @@ A compléter
 		component: SelectDevices,
 	},
 	{
+		dottedName: 'divers . associatif',
+		question: 'A quelle(s) association(s) adhéres-tu ?',
+		description: `
+
+A compléter 
+
+> A compléter
+
+		`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('divers . associatif . asso') &&
+			dottedName.includes(' . adhésion'),
+		component: SelectDevices,
+	},
+	{
 		dottedName: 'alimentation . régime',
 		question:
 			'🎓 Choisis les 5 déjeuners qui représentent ta semaine-type sur le campus (self, RU...)',
