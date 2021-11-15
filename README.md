@@ -23,3 +23,10 @@ You need to clone another repo, https://github.com/datagir/nosgestesclimat, in t
 Then run this command in this repo :
 
 `yarn && yarn start`
+
+
+## Réutilisations du code de Nos Gestes Climat
+
+- [L'Empreinte Carbone de vos activités à Centrale Nantes](https://github.com/SustainabilityCN/nosgestesclimat-site-ECN)
+- [Mon Match Carbone](https://github.com/pascalbes/monmatchcarbone-site)
+- [Mon Empreinte Pro](https://github.com/WeCount-io/nosgestesclimat-WC-site)
