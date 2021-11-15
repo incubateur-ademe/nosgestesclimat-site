@@ -84,22 +84,22 @@ export default ({
 									focusedAction,
 								}}
 							/>
-							<div css="background: var(--color); color: white;width:100%; height: 5rem">
-								{label}
+							<div
+								css={`
+									width: 100%;
+									height: 2rem;
+									text-align: center;
+									border-bottom: 2px dashed var(--lightColor);
+									margin-bottom: 1rem;
+									h4 {
+									}
+								`}
+							>
+								<h4>{label}</h4>
 							</div>
 						</div>
 					)
 			)}
-			<List
-				{...{
-					actions: notRejected.filter((a) => a.value < 1000),
-					rules,
-					bilans,
-					actionChoices,
-					focusAction,
-					focusedAction,
-				}}
-			/>
 			{rejected.length > 0 && (
 				<div>
 					<h2>Actions écartées</h2>
