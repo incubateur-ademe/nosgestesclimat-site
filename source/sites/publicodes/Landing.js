@@ -4,6 +4,7 @@ import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
 import emoji from 'react-easy-emoji'
 import NewsBanner from '../../components/NewsBanner'
+import LogoADEME from 'Images/LogoADEME'
 
 export default () => {
 	return (
@@ -75,11 +76,7 @@ export default () => {
 						alt="Logo Marianne de la République Française"
 					/>
 					<a href="https://ademe.fr">
-						<img
-							css="height: 5rem; margin-right: .6rem"
-							src="https://www.ademe.fr/sites/all/themes/ademe/logo.png"
-							alt="Logo de l'ADEME"
-						/>
+						<LogoADEME />
 					</a>
 					<a href="https://www.associationbilancarbone.fr/">
 						<img
