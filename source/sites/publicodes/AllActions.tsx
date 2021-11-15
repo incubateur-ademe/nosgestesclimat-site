@@ -12,8 +12,27 @@ import { ScrollToElement } from '../../components/utils/Scroll'
 import DisableScroll from '../../components/utils/DisableScroll'
 import IllustratedButton from '../../components/IllustratedButton'
 
-export default ({ actions, bilans, rules, focusedAction, focusAction }) => {
+const thresholds = [
+	[10000, '10 tonnes'],
+	[1000, '1 tonne'],
+	[100, '100 kg'],
+	[10, '10 kg'],
+	[1, '1 kg'],
+]
+
+export default ({
+	actions: rawActions,
+	bilans,
+	rules,
+	focusedAction,
+	focusAction,
+}) => {
 	const engine = useContext(EngineContext)
+
+	const actions = rawActions.map((a) => ({
+		...a,
+		value: correctValue({ nodeValue: a.nodeValue, unit: a.unit }),
+	}))
 
 	const actionChoices = useSelector((state) => state.actionChoices)
 	const rejected = actions.filter((a) => actionChoices[a.dottedName] === false)
@@ -22,18 +41,9 @@ export default ({ actions, bilans, rules, focusedAction, focusAction }) => {
 	)
 	const maxImpactAction = notRejected.reduce(
 		(memo, next) => {
-			const nextValue = correctValue({
-				nodeValue: next.nodeValue,
-				unit: next.unit,
-			})
-
-			const memoValue = correctValue({
-				nodeValue: memo.nodeValue,
-				unit: memo.unit,
-			})
-			return nextValue > memoValue ? { ...next, value: nextValue } : memo
+			return next.value > memo.value ? next : memo
 		},
-		{ nodeValue: 0 }
+		{ value: 0 }
 	)
 
 	return (
@@ -55,13 +65,37 @@ export default ({ actions, bilans, rules, focusedAction, focusAction }) => {
 					</div>
 				</animate.fromTop>
 			)}
+
+			{thresholds.map(
+				([threshold, label], index) =>
+					notRejected.find(({ value }) => value >= threshold) && (
+						<div>
+							<List
+								{...{
+									actions: notRejected.filter(
+										(a) =>
+											a.value >= threshold &&
+											(index === 0 || a.value < thresholds[index - 1][0])
+									),
+									rules,
+									bilans,
+									actionChoices,
+									focusAction,
+									focusedAction,
+								}}
+							/>
+							<div css="background: var(--color); color: white;width:100%; height: 5rem">
+								{label}
+							</div>
+						</div>
+					)
+			)}
 			<List
 				{...{
-					actions: notRejected,
+					actions: notRejected.filter((a) => a.value < 1000),
 					rules,
 					bilans,
 					actionChoices,
-
 					focusAction,
 					focusedAction,
 				}}
