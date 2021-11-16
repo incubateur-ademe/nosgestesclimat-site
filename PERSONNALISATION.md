@@ -17,6 +17,8 @@ Nous vous proposons de placer ce paragraphe sur la page d'accueil de votre site.
 
 En effet, nosgestesclimat.fr est activement développé, nous ne pouvons nous permettre que les citoyens aient accès à plusieurs versions désynchronisées de l'outil, à la fois en termes de modèle d'empreinte climat que d'interface utilisateur.
 
+**Sauf accord explicite, les logos ADEME, ABC, Datagir, Nos Gestes Climat, doivent être enlevés par vos soins de votre version du code.**
+
 ## B) Intégrer notre iframe personnalisé
 
 L'énorme avantage de cette solution est de recevoir automatiquement les mises à jour de la plateforme, sans aucun effort. Cela permet donc de garder la marque NGC.
