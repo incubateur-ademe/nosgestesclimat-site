@@ -46,7 +46,7 @@ Si tous vos appareils ne sont pas proposés dans cette liste, ce n'est pas grave
 	{
 		dottedName: 'logement . chauffage',
 		options: { defaultsToFalse: true },
-		question: 'Comment est chauffé ton logement ?',
+		question: 'Comment est chauffé votre logement ?',
 		description: `
 A compléter
 			`,
