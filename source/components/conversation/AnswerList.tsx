@@ -107,18 +107,6 @@ const CategoryTable = ({ steps, categories, engine }) =>
 
 		if (!categoryRules.length) return null
 
-		const byParent = categoryRules.reduce((memo, next) => {
-			const split = splitName(next.dottedName),
-				parent = split.slice(0, 2).join(' . ')
-			return {
-				...memo,
-				[parent]: [...(memo[parent] || []), next],
-			}
-		}, {})
-		const lonelyRules = Object.values(byParent)
-			.map((els) => (els.length === 1 ? els : []))
-			.flat()
-
 		return (
 			<div>
 				<div
@@ -144,23 +132,51 @@ const CategoryTable = ({ steps, categories, engine }) =>
 					{emoji(category.icons)}
 					<h2>{category.title}</h2>
 				</div>
-
-				<StepsTable
-					{...{
-						rules: lonelyRules,
-					}}
-				/>
-				{Object.entries(byParent).map(
-					([key, values]) =>
-						values.length > 1 && (
-							<SubCategory rules={values} rule={engine.getRule(key)} />
-						)
-				)}
+				<RecursiveStepsTable {...{ rules: categoryRules, engine, level: 2 }} />
 			</div>
 		)
 	})
-const SubCategory = ({ rule, rules }) => {
+
+const RecursiveStepsTable = ({ rules, engine, level }) => {
+	const byParent = rules.reduce((memo, next) => {
+		const split = splitName(next.dottedName),
+			parent = split.slice(0, level).join(' . ')
+		return {
+			...memo,
+			[parent]: [...(memo[parent] || []), next],
+		}
+	}, {})
+	const lonelyRules = Object.values(byParent)
+		.map((els) => (els.length === 1 ? els : []))
+		.flat()
+
+	return (
+		<div>
+			<StepsTable
+				{...{
+					rules: lonelyRules,
+				}}
+			/>
+			{Object.entries(byParent).map(
+				([key, values]) =>
+					values.length > 1 && (
+						<SubCategory
+							{...{
+								rules: values,
+								rule: engine.getRule(key),
+								engine,
+								level: level + 1,
+							}}
+						/>
+					)
+			)}
+		</div>
+	)
+}
+
+const SubCategory = ({ rule, rules, engine, level }) => {
 	const [open, setOpen] = useState(false)
+
 	return (
 		console.log('RULE', rule) || (
 			<div>
@@ -193,9 +209,11 @@ const SubCategory = ({ rule, rules }) => {
 				</div>
 				{open && (
 					<div css="padding-left: 1rem">
-						<StepsTable
+						<RecursiveStepsTable
 							{...{
 								rules,
+								engine,
+								level,
 							}}
 						/>
 					</div>
