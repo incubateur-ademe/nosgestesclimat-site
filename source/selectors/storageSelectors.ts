@@ -26,15 +26,22 @@ export const currentSimulationSelector = (
 
 export const createStateFromSavedSimulation = (
 	state: RootState
-): Partial<RootState> =>
-	state.previousSimulation
-		? {
-				simulation: {
-					...state.simulation,
-					situation: state.previousSimulation.situation || {},
-					foldedSteps: state.previousSimulation.foldedSteps,
-					persona: state.previousSimulation.persona,
-				} as Simulation,
-				previousSimulation: null,
-		  }
-		: {}
+): Partial<RootState> => {
+	const rules = state.rules
+
+	if (!state.previousSimulation) return {}
+
+	const safeFoldedSteps = state.previousSimulation.foldedSteps.filter(
+		(step) => rules[step] != null
+	)
+
+	return {
+		simulation: {
+			...state.simulation,
+			situation: state.previousSimulation.situation || {},
+			foldedSteps: safeFoldedSteps,
+			persona: state.previousSimulation.persona,
+		} as Simulation,
+		previousSimulation: null,
+	}
+}
