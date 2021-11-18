@@ -23,7 +23,8 @@ export default function NumberedMosaic({
 		return memo + evaluated.nodeValue
 	}, 0)
 
-	const evaluatedChipsTotal = chipsTotalRule && engine.evaluate(chipsTotalRule).nodeValue
+	const evaluatedChipsTotal =
+		chipsTotalRule && engine.evaluate(chipsTotalRule).nodeValue
 
 	const chipsTotal = fixedChipsTotal || evaluatedChipsTotal
 
@@ -66,7 +67,10 @@ export default function NumberedMosaic({
 										onClick={() =>
 											nodeValue > 0 &&
 											dispatch(
-												updateSituation(question.dottedName, nodeValue - chipStep)
+												updateSituation(
+													question.dottedName,
+													nodeValue - chipStep
+												)
 											)
 										}
 									>
@@ -100,7 +104,10 @@ export default function NumberedMosaic({
 										className="ui__ button small plain"
 										onClick={() =>
 											dispatch(
-												updateSituation(question.dottedName, nodeValue + chipStep)
+												updateSituation(
+													question.dottedName,
+													nodeValue + chipStep
+												)
 											)
 										}
 									>

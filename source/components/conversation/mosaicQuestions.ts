@@ -13,7 +13,7 @@ const mosaicQuestions: Array<{
 	{
 		dottedName: "numérique . liste d'appareils",
 		options: { defaultsToFalse: true },
-		question: 'Quels appareils numériques de moins de 10 ans possédez-vous ?',
+		question: 'Quels appareils numériques de moins de 10 ans possèdes-tu ?',
 		description: `
 L'essentiel de l'empreinte du numérique réside dans les appareils que nous achetons. Renseignez ici vos appareils.
 
@@ -31,7 +31,7 @@ L'essentiel de l'empreinte du numérique réside dans les appareils que nous ach
 		dottedName: "divers . électroménager . liste d'appareils",
 		options: { defaultsToFalse: true },
 		question:
-			'Quels appareils électroménagers de moins de 10 ans possédez-vous ?',
+			'Quels appareils électroménagers de moins de 10 ans possèdes-tu ?',
 		description: `
 L'essentiel de l'empreinte de l'électroménager réside dans les appareils que nous achetons.
 
@@ -59,9 +59,10 @@ A compléter
 	{
 		dottedName: 'transport . autres déplacements',
 		options: { defaultsToFalse: true },
-		question: 'perso ?',
+		question:
+			"Au cours de l'année, quels modes de trasnports utilises-tu pour tes déplacements personnels (loisirs, sport, vacances, week-ends) ?",
 		description: `
-A compléter
+Il s'agit de renseigner ici les déplacements que tu fais pour tes déplacements personnels (vacances, loisirs)
 			`,
 		isApplicable: (dottedName: DottedName) =>
 			dottedName.includes('transport . autres déplacements') &&
@@ -121,10 +122,10 @@ Choisis les 9 repas qui complètent une semaine-type.
 	{
 		dottedName: 'transport . domicile-campus',
 		question:
-			'🎓 Quelle à la répartition d’usage des différents modes de transports que vous utilisez pour vos trajets domicile-campus ? ',
+			'🎓 Quelle à la répartition d’usage des différents modes de transports que tu utilises pour tes trajets domicile-campus ? ',
 		description: `
-Indiquez, ici, la répartition de vos moyens de transport pour vous rendre sur votre campus (si vous vivez sur la campus, indiquez que vous marchez à 100%). 
-Par exemple, si vous utilisez différents moyens de transport sur un même trajet (voiture plus tramway par exemple) ou encore si vous utilisez différents moyens de transport selon les jours ou les saisons, etc. (vélo en été, voiture en hiver par exemple).
+Indiques, ici, la répartition de tes moyens de transport pour te rendre sur votre campus (si tu vis sur la campus, indiques que tu marches à 100%). 
+Par exemple, si tu utilises différents moyens de transport sur un même trajet (voiture et tramway par exemple) ou encore si tu utilises différents moyens de transport selon les jours ou les saisons, etc. (vélo en été, voiture en hiver par exemple).
 		`,
 		isApplicable: (dottedName: DottedName) =>
 			dottedName.includes(
@@ -135,11 +136,32 @@ Par exemple, si vous utilisez différents moyens de transport sur un même traje
 	},
 	{
 		dottedName: 'divers . textile',
-		question: 'Quels vêtements achetez-vous en général dans une année ?',
+		question: 'Quels vêtements achetes-tu en général dans une année ?',
 		isApplicable: (dottedName: DottedName) =>
 			dottedName.includes('divers . textile') &&
 			dottedName.includes(' . nombre'),
 		component: NumberedMosaic,
+		options: { chipStep: 1 },
+	},
+	{
+		dottedName: 'transport . autres déplacements . train',
+		question:
+			'Combien d’heures par an voyages-tu en train dans le cadre de tes déplacements personnels ?',
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . autres déplacements . train') &&
+			dottedName.includes(' . heures'),
+		component: NumberedMosaic,
+		options: { chipStep: 1 },
+	},
+	{
+		dottedName: 'transport . autres déplacements . avion',
+		question:
+			'Combien d’heures par an voyages-tu en avion dans le cadre de tes déplacements personnels ?',
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . autres déplacements . avion') &&
+			dottedName.includes(' . heures'),
+		component: NumberedMosaic,
+		options: { chipStep: 1 },
 	},
 ]
 
