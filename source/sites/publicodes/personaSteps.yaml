@@ -40,6 +40,9 @@
 - logement . chauffage . gaz . consommation
 - logement . chauffage . bois . présent
 - logement . chauffage . bois . consommation
+- logement . chauffage . bois . présent
+- logement . chauffage . bois . type
+- logement . chauffage . bois . type . granulés . consommation
 - logement . chauffage . fioul . présent
 - logement . chauffage . fioul . consommation
 - divers . électroménager . préservation
