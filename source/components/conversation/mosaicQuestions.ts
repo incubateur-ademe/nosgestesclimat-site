@@ -85,6 +85,25 @@ Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners.
 			dottedName.includes(' . nombre'),
 		component: NumberedMosaic,
 	},
+	{
+		dottedName: 'transport . avion',
+		question:
+			'Combien d’heures par an voyagez-vous en avion dans le cadre de vos déplacements personnels ?',
+		description: `
+
+		Comptez les heures que vous avez passé dans un avion pour des vols d'une distance inférieure à 1000km, des vols d'une distance entre 1000km et 3500km,. 
+		
+		Si vous faites des escales, additionnez simplement les durées de chaque vol.
+		
+		> 💡 Ne comptez que les km de déplacement personnel et de déplacement domicile travail pour rejoindre votre lieu de travail habituel.
+		Par exemple, si vous êtes en mission professionnelle dans un autre pays, cela rentre dans la comptabilité de votre entreprise.
+		
+					`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . avion') &&
+			dottedName.includes(' . heures de vol'),
+		component: NumberedMosaic,
+	},
 ]
 
 export default mosaicQuestions
