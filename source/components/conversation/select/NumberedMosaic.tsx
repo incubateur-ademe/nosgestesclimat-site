@@ -25,7 +25,13 @@ export default function NumberedMosaic({
 
 	const choiceElements = (
 		<div>
-			<Mosaic>
+			<Mosaic
+				css={`
+					li {
+						margin: 0.5rem;
+					}
+				`}
+			>
 				{selectedRules.map(
 					([
 						{
