@@ -170,9 +170,9 @@ function conference(state = null, { type, room, ydoc, provider }) {
 		}
 	} else return state
 }
-function tutorials(state = {}, { type, id }) {
+function tutorials(state = {}, { type, id, unskip }) {
 	if (type === 'SKIP_TUTORIAL') {
-		return { ...state, [id]: 'skip' }
+		return { ...state, [id]: unskip ? undefined : 'skip' }
 	} else if (type === 'RESET_TUTORIALS') {
 		return {}
 	} else return state

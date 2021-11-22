@@ -154,8 +154,9 @@ export default ({}) => (
 
 const Slide = ({ children, index, last, delay = 0 }) => {
 	const dispatch = useDispatch(),
-		skip = (name) => dispatch(skipTutorial(name)),
+		skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
 		next = () => skip(last ? 'testIntro' : 'testIntro' + index),
+		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true)),
 		tutorials = useSelector((state) => state.tutorials),
 		display =
 			!tutorials['testIntro' + index] &&
@@ -174,7 +175,22 @@ const Slide = ({ children, index, last, delay = 0 }) => {
 				`}
 			>
 				{children}
-				<div css="button {margin: 1rem .4rem .4rem}">
+				<div
+					css={`
+						display: flex;
+						justify-content: end;
+						align-items: center;
+						margin: 2rem 0 0.6rem;
+						button {
+							margin: 0 0.6rem !important;
+						}
+					`}
+				>
+					{index > 1 && (
+						<button className="ui__ link-button small" onClick={previous}>
+							Précédent
+						</button>
+					)}
 					<button className="ui__ button small plain" onClick={next}>
 						{!last ? 'Suivant' : "C'est parti"}
 					</button>
