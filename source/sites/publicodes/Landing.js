@@ -99,9 +99,9 @@ export default () => {
 						}
 					`}
 				>
-					<Link to="/à-propos">{emoji('❔ ')}À propos</Link>
+					<Link to="/à-propos">À propos</Link>
 					<DocumentationButton />
-					<Link to="/diffuser">{emoji('📤 ')}Diffuser</Link>
+					<Link to="/diffuser">Diffuser</Link>
 				</div>
 			</footer>
 		</div>
