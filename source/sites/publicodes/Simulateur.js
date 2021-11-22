@@ -27,6 +27,7 @@ import Title from 'Components/Title'
 import Meta from '../../components/utils/Meta'
 import { skipTutorial } from '../../actions/actions'
 import animate from '../../components/ui/animate'
+import Tutorial from './Tutorial'
 
 const eqValues = compose(isEmpty, symmetricDifference)
 
@@ -96,42 +97,7 @@ const Simulateur = (props) => {
 					}
 				/>
 			) : (
-				<animate.appear>
-					<div
-						className="ui__ card light colored content"
-						css="margin-top: 1.6rem"
-					>
-						<h1> {emoji('😶‍🌫️')}&nbsp;Mon empreinte climat ?</h1>
-						<p>Pas de panique, on vous l'explique pas à pas.</p>
-						<img
-							src="https://raw.githubusercontent.com/laem/openmoji-environment/greenhouse/greenhouse-effect.svg"
-							css="width: 10rem"
-						/>
-						<p>
-							La planète se réchauffe, au fur et à mesure des gaz à effet de
-							serre que l'on émet.
-						</p>
-						<p>
-							Ce test donne une mesure de <strong>votre part </strong> dans ce
-							réchauffement, en mesurant votre <strong>consommation</strong>{' '}
-							personnelle.
-						</p>
-						<div css="button {margin: 0 .4rem}">
-							<button
-								className="ui__ button small plain"
-								onClick={() => dispatch(skipTutorial('testIntro1'))}
-							>
-								Suivant
-							</button>
-							<button
-								className="ui__ button small"
-								onClick={() => dispatch(skipTutorial('testIntro'))}
-							>
-								Passer le tutoriel
-							</button>
-						</div>
-					</div>
-				</animate.appear>
+				<Tutorial skip={(name) => dispatch(skipTutorial(name))} />
 			)}
 			{tutorials.testIntro && <BandeauContribuer />}
 		</div>
