@@ -1,6 +1,6 @@
 import DocumentationButton from './DocumentationButton'
 import { Link } from 'react-router-dom'
-import Illustration from './images/dessin.svg'
+import Dessin from './images/Dessin.tsx'
 import Marianne from './images/Marianne.svg'
 import emoji from 'react-easy-emoji'
 import NewsBanner from '../../components/NewsBanner'
@@ -33,17 +33,7 @@ export default () => {
 			`}
 		>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
-			<img
-				css={`
-					width: 60%;
-					border-radius: 0.8rem;
-					@media (max-width: 800px) {
-						width: 95%;
-					}
-				`}
-				src={Illustration}
-				alt="Illustration sur fond mauve d'une scène mélant grande ville, péri-urbain et rural, où on peut voir quelques éléments d'une vie quotidienne, chaque élément étant émetteur d'une certaine empreinte sur le climat."
-			/>
+			<Dessin />
 			<div css="margin: 1rem 0">
 				<div>
 					<Link to="/simulateur/bilan" className="ui__ plain button cta">
@@ -57,7 +47,6 @@ export default () => {
 				</div>
 				<NewsBanner />
 			</div>
-
 			<footer>
 				<div
 					css={`
