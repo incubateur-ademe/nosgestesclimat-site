@@ -5,15 +5,16 @@ import emoji from '../../components/emoji'
 import animate from '../../components/ui/animate'
 import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
+import { Link } from 'react-router-dom'
 
 export default ({}) => (
 	<>
 		<Slide index={1}>
-			<h1>Tester mon empreinte climat ?</h1>
-			<p>Pas de panique, on vous explique tout ça.</p>
+			<h1>Mon empreinte climat {emoji('😶‍🌫️')} ?</h1>
+			<p>Pas de panique, on vous explique ce que c'est.</p>
 			<p>
-				La planète se réchauffe, au fur et à mesure des gaz à effet de serre que
-				l'on émet.
+				La planète <strong>se réchauffe dangereusement</strong>, au fur et à
+				mesure des gaz à effet de serre que l'on émet.
 			</p>
 			<img
 				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/greenhouse-effect.svg"
@@ -67,7 +68,7 @@ export default ({}) => (
 				</div>
 			</blockquote>
 		</Slide>
-		<Slide index={3} delay={1.5}>
+		<Slide index={3} delay={0}>
 			<h1>Et concrètement ?</h1>
 			<p>
 				Chaque année, un français émet en moyenne{' '}
@@ -129,24 +130,32 @@ export default ({}) => (
 				les activités qui font notre vie moderne.{' '}
 			</p>
 		</Slide>
-		<Slide index={6} delay={0}>
+		<Slide index={6} delay={0} last>
 			<h1>Alors, c'est parti ?</h1>
 			<p>Quelques astuces pour vous aider à compléter le test.</p>
-			<div css="margin:2rem">
-				<Chart />
-			</div>
-			<p>
-				L'empreinte de notre consommation individuelle, c'est la somme de toutes
-				les activités qui font notre vie moderne.{' '}
-			</p>
+			<ul>
+				<li>
+					{emoji('👤')}&nbsp; Répondez aux questions en votre nom, pas au nom de
+					votre foyer : c'est un test individuel.
+				</li>
+				<li>
+					{emoji('💼')}&nbsp; Répondez pour votre vie perso, pas pour votre
+					boulot (ou vos études). Une seule exception : votre trajet
+					domicile-travail doit être inclus dans les kilomètres parcourus.
+				</li>
+				<li>
+					{emoji('❓️')}&nbsp; D'autres questions ? Consultez notre{' '}
+					<Link to="/contribuer">FAQ</Link> à tout moment.
+				</li>
+			</ul>
 		</Slide>
 	</>
 )
 
-const Slide = ({ children, index, delay = 0 }) => {
+const Slide = ({ children, index, last, delay = 0 }) => {
 	const dispatch = useDispatch(),
 		skip = (name) => dispatch(skipTutorial(name)),
-		next = () => skip('testIntro' + index),
+		next = () => skip(last ? 'testIntro' : 'testIntro' + index),
 		tutorials = useSelector((state) => state.tutorials),
 		display =
 			!tutorials['testIntro' + index] &&
@@ -167,9 +176,9 @@ const Slide = ({ children, index, delay = 0 }) => {
 				{children}
 				<div css="button {margin: 1rem .4rem .4rem}">
 					<button className="ui__ button small plain" onClick={next}>
-						{index ? 'Suivant' : "C'est parti"}
+						{!last ? 'Suivant' : "C'est parti"}
 					</button>
-					{index && (
+					{!last && (
 						<button
 							className="ui__ button small"
 							onClick={() => skip('testIntro')}

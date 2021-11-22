@@ -71,7 +71,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 			`}
 		>
 			<Link
-				to={endURL}
+				to={demoMode ? '#' : endURL}
 				css=":hover {opacity: 1 !important}; text-decoration: none"
 			>
 				<div
