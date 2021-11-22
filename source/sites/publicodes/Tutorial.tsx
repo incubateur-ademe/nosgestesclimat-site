@@ -23,27 +23,27 @@ export default ({}) => (
 				personnelle.
 			</p>
 		</Slide>
-		<Slide index={2} delay={1.5}>
+		<Slide index={2}>
 			<h1>Ça se mesure comment ?</h1>
 			<p>
-				L'empreinte sur le climat se mesure en une unité un peu barbare, appelée
-				équivalent CO₂.{' '}
+				On utilise une unité au nom barbare : l'équivalent CO₂. Mais pas de
+				panique !
 			</p>
-			<p>
-				Le CO₂, vous connaissez : on l'expire toute la journée... mais c'est
-				aussi ce que les machines qui font notre confort moderne rejettent, en
-				quantités bien plus massives, et c'est le principal gaz à effet de
-				serre.{' '}
-			</p>
+			<p>Le CO₂, vous connaissez : on l'expire toute la journée... </p>
 			<img
 				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
 				css="width: 6rem"
 			/>
+			<p>
+				... mais c'est aussi ce que les machines qui font notre confort moderne
+				rejettent, en quantités bien plus massives, à tel point qu'on le compte
+				en milliers de kilos par an, donc en <strong>tonnes</strong> de CO₂e !
+			</p>
 			<blockquote>
 				<p>
 					{emoji('💡')}&nbsp; D'autres gaz, surtout le méthane et le dioxyde
 					d'azote, réchauffent aussi la planète : on les convertit en CO₂ pour
-					simplifier la mesure, d'où le "e" dans "CO₂e".
+					simplifier la mesure, d'où le <em>e</em> dans "CO₂e".
 				</p>
 				<div
 					css={`
@@ -65,22 +65,29 @@ export default ({}) => (
 				</div>
 			</blockquote>
 		</Slide>
-		<Slide index={3}>
-			<h1>Ça se mesure comment ?</h1>
+		<Slide index={3} delay={1.5}>
+			<h1>Et concrètement ?</h1>
 			<p>
-				L'empreinte sur le climat se mesure en une unité un peu barbare, appelée
-				équivalent CO₂.{' '}
-			</p>
-			<p>
-				Le CO₂, vous connaissez : c'est ce qu'on rejette quand on respire...
-				mais c'est aussi ce que les machines qui font notre confort moderne
-				rejettent, en quantités bien plus massives.{' '}
+				Chaque année, un français émet en moyenne{' '}
+				<strong> à peu près 10 tonnes</strong>.
 			</p>
 			<img
-				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
-				css="width: 10rem"
+				src={require('Images/abacus-france.svg').default}
+				css="width:10rem"
 			/>
-			<p>Et ce "équivalent", d'où vient-il ?</p>
+			<p>
+				C'est votre point de départ dans ce test : chaque réponse que vous
+				donnerez va personnaliser ce résultat dans la barre{' '}
+				<span css="@media(min-width: 800px){display: none}">
+					ci-dessous {emoji('⤵️')}{' '}
+				</span>
+				<span css="@media(max-width: 800px){display: none}">
+					ci-dessus {emoji('⤴️')}{' '}
+				</span>
+				.
+			</p>
+
+			<p></p>
 		</Slide>
 	</>
 )
