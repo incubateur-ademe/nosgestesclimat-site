@@ -35,6 +35,15 @@ export default () => {
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
 			<div
 				css={`
+					svg {
+						width: 95%;
+						@media (min-width: 800px) {
+							width: 60%;
+						}
+						height: auto;
+						margin-top: 1rem;
+						border-radius: 0.6rem;
+					}
 					.prefix__avion {
 						animation: traversée 60s infinite;
 						animation-timing-function: linear;

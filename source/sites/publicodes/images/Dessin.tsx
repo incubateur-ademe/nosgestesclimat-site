@@ -176,7 +176,7 @@ function SvgComponent(props) {
           x={-48.074}
           height={42.721}
           width={223.97}
-          fill="#6861b3"
+          fill="var(--color)"
           fillRule="evenodd"
         />
         <g fill="#00ff16" strokeWidth={3.78} fillRule="evenodd">
@@ -199,7 +199,7 @@ function SvgComponent(props) {
         </g>
         <path
           d="M68.216 115.968l17.633 21.599-18.612-.392-8.727-21.207z"
-          fill="#6861b3"
+          fill="var(--color)"
         />
         <rect
           ry={0.179}
