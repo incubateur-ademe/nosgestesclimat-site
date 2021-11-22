@@ -48,6 +48,39 @@ export default () => {
 							transform: translateX(100%);
 						}
 					}
+					.prefix__fenetres rect:nth-child(3) {
+						animation: jour-nuit 60s infinite;
+						animation-timing-function: steps(5, end);
+					}
+					.prefix__fenetres rect:nth-child(5) {
+						animation: jour-nuit 60s infinite;
+						animation-timing-function: steps(5, end);
+					}
+
+					@keyframes jour-nuit {
+						0% {
+							opacity: 0;
+						}
+						20% {
+							opacity: 1;
+						}
+						40% {
+							opacity: 0;
+						}
+						60% {
+							opacity: 1;
+						}
+						80% {
+							opacity: 0;
+						}
+						100% {
+							opacity: 1;
+						}
+					}
+
+					.animate-this-element {
+						animation: name-of-animation 5s infinite;
+					}
 				`}
 			>
 				<Dessin />
