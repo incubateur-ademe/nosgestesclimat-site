@@ -89,6 +89,30 @@ export default ({}) => (
 
 			<p></p>
 		</Slide>
+		<Slide index={4} delay={0}>
+			<h1>Et l'objectif ?</h1>
+			<p>Nous devons diminiuer notre empreinte climat au plus vite.</p>
+			<p>
+				En France, ça consiste donc à passer de ~10 tonnes à{' '}
+				<strong>moins de 2 tonnes</strong> par an.
+			</p>
+			<img
+				src={require('Images/objectif-climat.svg').default}
+				css="width:16rem"
+			/>
+			<p>
+				<em>
+					Pour en savoir plus, tout est expliqué dans{' '}
+					<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
+						cet article
+					</a>{' '}
+					(15 min de lecture)
+				</em>
+				.
+			</p>
+
+			<p></p>
+		</Slide>
 	</>
 )
 
