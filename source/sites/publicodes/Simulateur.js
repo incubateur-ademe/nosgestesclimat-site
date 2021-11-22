@@ -97,7 +97,7 @@ const Simulateur = (props) => {
 					}
 				/>
 			) : (
-				<Tutorial skip={(name) => dispatch(skipTutorial(name))} />
+				<Tutorial tutorials={tutorials} />
 			)}
 			{tutorials.testIntro && <BandeauContribuer />}
 		</div>
