@@ -82,7 +82,6 @@ const Simulateur = (props) => {
 							<EndingCongratulations />
 						)
 					}
-					targets={<>{rule.period === 'flexible' && <PeriodBlock />}</>}
 					explanations={
 						<>
 							<Chart />

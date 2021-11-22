@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
 import animate from '../../components/ui/animate'
+import Chart from './chart/index.js'
 
 export default ({}) => (
 	<>
@@ -86,8 +87,6 @@ export default ({}) => (
 				</span>
 				.
 			</p>
-
-			<p></p>
 		</Slide>
 		<Slide index={4} delay={0}>
 			<h1>Et l'objectif ?</h1>
@@ -110,8 +109,21 @@ export default ({}) => (
 				</em>
 				.
 			</p>
-
-			<p></p>
+		</Slide>
+		<Slide index={5} delay={0}>
+			<h1>D'où vient cette empreinte ?</h1>
+			<p>
+				Faire des kilomètres en voiture (transport), manger un steak
+				(alimentation), chauffer sa maison (logement), se faire soigner
+				(services publics), acheter une nouvelle télévision (numérique)...
+			</p>
+			<div css="margin:2rem">
+				<Chart />
+			</div>
+			<p>
+				L'empreinte de notre consommation individuelle, c'est la somme de toutes
+				les activités qui font notre vie moderne.{' '}
+			</p>
 		</Slide>
 	</>
 )
