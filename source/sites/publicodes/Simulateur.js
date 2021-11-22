@@ -103,13 +103,18 @@ const Simulateur = (props) => {
 					>
 						<h1> {emoji('😶‍🌫️')}&nbsp;Mon empreinte climat ?</h1>
 						<p>Pas de panique, on vous l'explique pas à pas.</p>
+						<img
+							src="https://raw.githubusercontent.com/laem/openmoji-environment/greenhouse/greenhouse-effect.svg"
+							css="width: 10rem"
+						/>
 						<p>
 							La planète se réchauffe, au fur et à mesure des gaz à effet de
 							serre que l'on émet.
 						</p>
 						<p>
 							Ce test donne une mesure de <strong>votre part </strong> dans ce
-							réchauffement, en mesurant votre consommation personnelle.
+							réchauffement, en mesurant votre <strong>consommation</strong>{' '}
+							personnelle.
 						</p>
 						<div css="button {margin: 0 .4rem}">
 							<button
