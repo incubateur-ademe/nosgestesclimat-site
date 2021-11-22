@@ -56,9 +56,8 @@ const Simulateur = (props) => {
 		<div>
 			<Meta title={rule.title} title={evaluation.title || ''} />
 			<Title>Le test</Title>
-			{(introPassed || tutorials.testIntro2) && (
-				<animate.appear delay=".5">
-					{' '}
+			{introPassed && (
+				<animate.appear>
 					<CarbonImpact />
 				</animate.appear>
 			)}

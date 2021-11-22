@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
 import animate from '../../components/ui/animate'
+import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
 
 export default ({}) => (
@@ -87,6 +88,9 @@ export default ({}) => (
 				</span>
 				.
 			</p>
+			<div css="margin: 1rem 0">
+				<CarbonImpact demoMode />
+			</div>
 		</Slide>
 		<Slide index={4} delay={0}>
 			<h1>Et l'objectif ?</h1>
