@@ -33,7 +33,25 @@ export default () => {
 			`}
 		>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
-			<Dessin />
+			<div
+				css={`
+					.prefix__avion {
+						animation: traversée 60s infinite;
+						animation-timing-function: linear;
+					}
+
+					@keyframes traversée {
+						from {
+							transform: translateX(0%);
+						}
+						to {
+							transform: translateX(100%);
+						}
+					}
+				`}
+			>
+				<Dessin />
+			</div>
 			<div css="margin: 1rem 0">
 				<div>
 					<Link to="/simulateur/bilan" className="ui__ plain button cta">

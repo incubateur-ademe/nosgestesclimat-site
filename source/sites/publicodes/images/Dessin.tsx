@@ -21,6 +21,7 @@ function SvgComponent(props) {
         </linearGradient>
         <linearGradient id="prefix__c">
           <stop offset={0} stopColor="#fff" />
+          <stop offset={0.897} stopColor="#fff" stopOpacity={0.616} />
           <stop offset={1} stopColor="#fff" stopOpacity={0} />
         </linearGradient>
         <linearGradient id="prefix__b">
@@ -73,10 +74,10 @@ function SvgComponent(props) {
           gradientTransform="matrix(.39504 0 0 .8803 -20.998 15.214)"
         />
         <linearGradient
-          gradientTransform="translate(-6.05 -3.34) scale(1.02802)"
+          gradientTransform="matrix(4.00466 0 0 1.02802 -130.847 -3.34)"
           gradientUnits="userSpaceOnUse"
-          y2={25.537}
-          x2={41.926}
+          y2={25.585}
+          x2={40.033}
           y1={25.537}
           x1={-3.811}
           id="prefix__g"
@@ -996,10 +997,10 @@ function SvgComponent(props) {
       </g>
       <g className="prefix__avion">
         <path
-          d="M-9.967 22.912h47.019"
+          d="M-146.11 22.912H37.051"
           fill="none"
           stroke="url(#prefix__g)"
-          strokeWidth={0.272}
+          strokeWidth={0.537}
         />
         <path
           d="M33.784 23.013l5.605 1.485 12.48.07s6.223-.168 4.07-1.25c-1.595-.802-5.5-1.183-5.5-1.183s-8.369.525-11.94.218c-.461-.04-2.802-1.48-4.075-3.034-.376-.458-2.652.072-2.766-.373z"

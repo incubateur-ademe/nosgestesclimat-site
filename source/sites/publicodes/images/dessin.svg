@@ -52,6 +52,10 @@
          offset="0"
          style="stop-color:#ffffff;stop-opacity:1;" />
       <stop
+         id="stop2533"
+         offset="0.8969993"
+         style="stop-color:#ffffff;stop-opacity:0.61563385" />
+      <stop
          id="stop1625"
          offset="1"
          style="stop-color:#ffffff;stop-opacity:0;" />
@@ -149,10 +153,10 @@
        y2="119.91743"
        gradientTransform="matrix(0.39504379,0,0,0.88030778,-20.998095,15.213783)" />
     <linearGradient
-       gradientTransform="matrix(1.0280221,0,0,1.0280221,-6.0491606,-3.3400717)"
+       gradientTransform="matrix(4.0046581,0,0,1.0280221,-130.84713,-3.3400717)"
        gradientUnits="userSpaceOnUse"
-       y2="25.536654"
-       x2="41.925846"
+       y2="25.585342"
+       x2="40.032581"
        y1="25.536654"
        x1="-3.8114409"
        id="linearGradient1629"
@@ -230,9 +234,9 @@
      fit-margin-left="0"
      fit-margin-top="0"
      inkscape:window-maximized="1"
-     inkscape:window-y="27"
+     inkscape:window-y="0"
      inkscape:window-x="0"
-     inkscape:window-height="1136"
+     inkscape:window-height="1080"
      inkscape:window-width="1920"
      width="148mm"
      units="mm"
@@ -240,9 +244,9 @@
      inkscape:document-rotation="0"
      inkscape:current-layer="layer7"
      inkscape:document-units="mm"
-     inkscape:cy="141.44858"
-     inkscape:cx="146.54853"
-     inkscape:zoom="3.3333668"
+     inkscape:cy="71.002806"
+     inkscape:cx="104.35852"
+     inkscape:zoom="2.563279"
      inkscape:pageshadow="2"
      inkscape:pageopacity="0.0"
      borderopacity="1.0"
@@ -1322,8 +1326,8 @@
      inkscape:groupmode="layer">
     <path
        id="path1621"
-       d="M -9.9674063,22.912173 H 37.051534"
-       style="fill:none;stroke:url(#linearGradient1629);stroke-width:0.271997px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
+       d="M -146.11066,22.912173 H 37.051534"
+       style="fill:none;stroke:url(#linearGradient1629);stroke-width:0.536841px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1" />
     <g
        style="fill:#4b4586;fill-opacity:1"
        transform="matrix(0.94908719,0,0,0.72844922,-3.5656575,5.3829686)"
