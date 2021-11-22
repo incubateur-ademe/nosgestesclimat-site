@@ -8,8 +8,8 @@ import Chart from './chart/index.js'
 export default ({}) => (
 	<>
 		<Slide index={1}>
-			<h1>Mon empreinte climat ?</h1>
-			<p>Pas de panique, on vous l'explique pas à pas.</p>
+			<h1>Tester mon empreinte climat ?</h1>
+			<p>Pas de panique, on vous explique tout ça.</p>
 			<p>
 				La planète se réchauffe, au fur et à mesure des gaz à effet de serre que
 				l'on émet.
@@ -19,26 +19,26 @@ export default ({}) => (
 				css="width: 12rem"
 			/>
 			<p>
-				Ce test donne une mesure de <strong>votre part </strong> dans ce
-				réchauffement, en mesurant votre <strong>consommation</strong>{' '}
-				personnelle.
+				Ce test vous donnera, en {emoji('⏱️')} 10 minutes chrono,{' '}
+				<strong>une mesure de votre part </strong> dans ce réchauffement.
 			</p>
 		</Slide>
 		<Slide index={2}>
 			<h1>Ça se mesure comment ?</h1>
+			<p>On utilise une unité au nom barbare : l'équivalent CO₂.</p>
 			<p>
-				On utilise une unité au nom barbare : l'équivalent CO₂. Mais pas de
-				panique !
+				Le dioxyde de carbone (CO₂), vous connaissez : on l'expire toute la
+				journée...{' '}
 			</p>
-			<p>Le CO₂, vous connaissez : on l'expire toute la journée... </p>
 			<img
 				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
 				css="width: 6rem"
 			/>
 			<p>
 				... mais c'est aussi ce que les machines qui font notre confort moderne
-				rejettent, en quantités bien plus massives, à tel point qu'on le compte
-				en milliers de kilos par an, donc en <strong>tonnes</strong> de CO₂e !
+				rejettent, en quantités bien plus massives, à tel point qu'on les compte
+				en milliers de kilos par an et par personne, donc en{' '}
+				<strong>tonnes</strong> de CO₂e !
 			</p>
 			<blockquote>
 				<p>
@@ -117,6 +117,17 @@ export default ({}) => (
 				(alimentation), chauffer sa maison (logement), se faire soigner
 				(services publics), acheter une nouvelle télévision (numérique)...
 			</p>
+			<div css="margin:2rem">
+				<Chart />
+			</div>
+			<p>
+				L'empreinte de notre consommation individuelle, c'est la somme de toutes
+				les activités qui font notre vie moderne.{' '}
+			</p>
+		</Slide>
+		<Slide index={6} delay={0}>
+			<h1>Alors, c'est parti ?</h1>
+			<p>Quelques astuces pour vous aider à compléter le test.</p>
 			<div css="margin:2rem">
 				<Chart />
 			</div>
