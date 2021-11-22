@@ -45,7 +45,7 @@ export default () => {
 						border-radius: 0.6rem;
 					}
 					.prefix__avion {
-						animation: traversée 60s infinite;
+						animation: traversée 90s infinite;
 						animation-timing-function: linear;
 					}
 
@@ -87,8 +87,30 @@ export default () => {
 						}
 					}
 
-					.animate-this-element {
-						animation: name-of-animation 5s infinite;
+					.prefix__cycliste {
+						animation: saute 1s infinite;
+						animation-timing-function: linear;
+						animation: traversée-inversée 60s infinite;
+					}
+					.prefix__velo {
+						animation: traversée-inversée 60s infinite;
+					}
+
+					@keyframes saute {
+						from {
+							transform: translateY(0%);
+						}
+						to {
+							transform: translateY(0.5%);
+						}
+					}
+					@keyframes traversée-inversée {
+						from {
+							transform: translateX(0%);
+						}
+						to {
+							transform: translateX(-100%);
+						}
 					}
 				`}
 			>

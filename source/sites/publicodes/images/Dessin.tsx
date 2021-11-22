@@ -612,6 +612,85 @@ function SvgComponent(props) {
           </g>
         </g>
       </g>
+      <g className="prefix__velo">
+        <rect
+          width={0.191}
+          height={0.335}
+          x={-235.605}
+          y={-99.178}
+          ry={0.054}
+          transform="matrix(-.9809 -.1945 .25774 -.96622 0 0)"
+          fill="#ff002f"
+        />
+        <rect
+          width={0.191}
+          height={0.335}
+          x={-229.92}
+          y={-99.365}
+          ry={0.054}
+          transform="matrix(-.9809 -.1945 .25774 -.96622 0 0)"
+          fill="#fff"
+        />
+        <g
+          transform="matrix(2.97976 0 0 2.97976 -389.394 -254.36)"
+          fill="none"
+          stroke="#332d66"
+        >
+          <path
+            d="M198.19 132.514l-.353.008c-.22.206.113.194.192.3"
+            strokeWidth={0.1}
+            strokeLinejoin="round"
+          />
+          <circle cx={197.766} cy={133.829} r={0.858} strokeWidth={0.165} />
+          <circle r={0.858} cy={133.872} cx={200.39} strokeWidth={0.165} />
+          <path
+            d="M197.753 133.828l.42-1.01v-.236l-.016.236 1.398.017.017-.186-.303 1.533-1.095-1.347h1.38l-.066.354.91.673-1.13.286.337-1.465-.202-.034.354.034"
+            strokeWidth={0.1}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            paintOrder="markers fill stroke"
+          />
+        </g>
+        <path
+          d="M206.73 141.922c.917.04 2.94.609 2.94.609s-.57-.612-1.528-.755a2.718 2.718 0 00-1.411.146z"
+          opacity={0.89}
+          fill="#ff002f"
+          fillOpacity={0.99}
+        />
+        <path
+          d="M198.954 141.784l-1.724 1.769s.268-.782.765-1.186c.478-.456.96-.583.96-.583z"
+          opacity={0.89}
+          fill="#fff"
+        />
+      </g>
+      <g className="prefix__cycliste">
+        <path
+          d="M203.976 137.49c.979 1.03 1.305 3.413 1.305 3.413l-2.208 1.13 1.305 3.338"
+          fill="none"
+          stroke="#332d66"
+          strokeWidth={0.788}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path
+          d="M203.888 137.573l-2.585 2.896"
+          fill="none"
+          stroke="#332d66"
+          strokeWidth={0.447}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <ellipse
+          transform="rotate(-14.003)"
+          ry={1.142}
+          rx={0.828}
+          cy={181.318}
+          cx={164.41}
+          fill="#332d66"
+          fillRule="evenodd"
+          paintOrder="markers fill stroke"
+        />
+      </g>
       <g className="prefix__foret" fill="none" stroke="#4b4586">
         <path
           d="M12.88 100.277v-5.29M13.702 95.585l-.814.285-.853-.325M14.718 98.553l-1.83.773-1.26-1.22"
@@ -1307,44 +1386,82 @@ function SvgComponent(props) {
       <g
         className="prefix__fenetres"
         transform="translate(44.653 1.13)"
-        fill="#f9e5b6"
         fillRule="evenodd"
       >
-        <rect ry={0} y={80.572} x={142.866} height={4.155} width={6.723} />
+        <rect
+          ry={0}
+          y={80.572}
+          x={142.866}
+          height={4.155}
+          width={6.723}
+          fill="#f9e5b6"
+        />
         <rect
           width={6.723}
           height={4.155}
           x={142.758}
           y={88.091}
           ry={0}
+          fill="#f9e5b6"
           fillOpacity={0.163}
         />
-        <rect width={6.723} height={4.155} x={142.81} y={65.493} ry={0} />
+        <rect
+          width={6.723}
+          height={4.155}
+          x={142.81}
+          y={65.493}
+          ry={0}
+          fill="var(--color)"
+        />
         <rect
           ry={0}
           y={73.013}
           x={142.702}
           height={4.155}
           width={6.723}
+          fill="#f9e5b6"
           fillOpacity={0.163}
         />
-        <rect width={6.723} height={4.155} x={142.81} y={95.694} ry={0} />
-        <rect ry={0} y={103.213} x={142.702} height={4.155} width={6.723} />
+        <rect
+          width={6.723}
+          height={4.155}
+          x={142.81}
+          y={95.694}
+          ry={0}
+          fill="#f9e5b6"
+        />
+        <rect
+          ry={0}
+          y={103.213}
+          x={142.702}
+          height={4.155}
+          width={6.723}
+          fill="#f9e5b6"
+        />
         <rect
           width={6.723}
           height={4.155}
           x={155.803}
           y={80.573}
           ry={0}
+          fill="#f9e5b6"
           fillOpacity={0.447}
         />
-        <rect ry={0} y={88.092} x={155.696} height={4.155} width={6.723} />
+        <rect
+          ry={0}
+          y={88.092}
+          x={155.696}
+          height={4.155}
+          width={6.723}
+          fill="#f9e5b6"
+        />
         <rect
           ry={0}
           y={65.494}
           x={155.747}
           height={4.155}
           width={6.723}
+          fill="#f9e5b6"
           fillOpacity={0.163}
         />
         <rect
@@ -1353,6 +1470,7 @@ function SvgComponent(props) {
           x={155.64}
           y={73.014}
           ry={0}
+          fill="#f9e5b6"
           fillOpacity={0.163}
         />
         <rect
@@ -1361,6 +1479,7 @@ function SvgComponent(props) {
           x={155.747}
           height={4.155}
           width={6.723}
+          fill="#f9e5b6"
           fillOpacity={0.447}
         />
         <rect
@@ -1369,6 +1488,7 @@ function SvgComponent(props) {
           x={155.64}
           y={103.214}
           ry={0}
+          fill="#f9e5b6"
           fillOpacity={0.163}
         />
       </g>
@@ -1439,83 +1559,6 @@ function SvgComponent(props) {
         <path d="M152.02 76.693s.056-.52.457-1.048c.548-.716 1.043-1.058 1.043-1.058s-.816-.095-1.196.19c-.38.284-.55.398-.588.55l.295-.08s-.314-.338-.865-.547c-.55-.208-1.025-.113-1.025-.113s.57.018 1.88 2.106zM154.57 74.545s.042-.399.349-.803c.42-.548.798-.81.798-.81s-.625-.073-.915.145c-.291.218-.422.305-.45.421l.225-.061s-.24-.258-.662-.418c-.421-.16-.785-.087-.785-.087s.436.014 1.44 1.613z" />
       </g>
       <g className="prefix__vache">
-        <g transform="translate(-3.833 -5.205)">
-          <path
-            d="M202.408 143.582c.979 1.03 1.305 3.414 1.305 3.414l-2.208 1.129 1.305 3.338"
-            fill="none"
-            stroke="#332d66"
-            strokeWidth={0.788}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <path
-            d="M202.32 143.665l-2.584 2.896"
-            fill="none"
-            stroke="#332d66"
-            strokeWidth={0.447}
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          />
-          <ellipse
-            transform="rotate(-14.003 26.925 -181.229)"
-            ry={1.142}
-            rx={0.828}
-            cy={174.949}
-            cx={118.363}
-            fill="#332d66"
-            fillRule="evenodd"
-            paintOrder="markers fill stroke"
-          />
-          <rect
-            width={0.191}
-            height={0.335}
-            x={-192.134}
-            y={-113.065}
-            ry={0.054}
-            transform="matrix(-.9809 -.1945 .25774 -.96622 44.653 1.13)"
-            fill="#ff002f"
-          />
-          <rect
-            width={0.191}
-            height={0.335}
-            x={-186.449}
-            y={-113.252}
-            ry={0.054}
-            transform="matrix(-.9809 -.1945 .25774 -.96622 44.653 1.13)"
-            fill="#fff"
-          />
-          <g
-            transform="matrix(2.97976 0 0 2.97976 -390.962 -248.267)"
-            fill="none"
-            stroke="#332d66"
-          >
-            <path
-              d="M198.19 132.514l-.353.008c-.22.206.113.194.192.3"
-              strokeWidth={0.1}
-              strokeLinejoin="round"
-            />
-            <circle cx={197.766} cy={133.829} r={0.858} strokeWidth={0.165} />
-            <circle r={0.858} cy={133.872} cx={200.39} strokeWidth={0.165} />
-            <path
-              d="M197.753 133.828l.42-1.01v-.236l-.016.236 1.398.017.017-.186-.303 1.533-1.095-1.347h1.38l-.066.354.91.673-1.13.286.337-1.465-.202-.034.354.034"
-              strokeWidth={0.1}
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              paintOrder="markers fill stroke"
-            />
-          </g>
-          <path
-            d="M205.163 148.014c.917.04 2.939.609 2.939.609s-.57-.612-1.528-.755a2.718 2.718 0 00-1.411.146z"
-            opacity={0.89}
-            fill="#ff002f"
-            fillOpacity={0.99}
-          />
-          <path
-            d="M197.387 147.876l-1.725 1.769s.269-.782.766-1.186c.477-.456.959-.583.959-.583z"
-            opacity={0.89}
-            fill="#fff"
-          />
-        </g>
         <path
           d="M43.284 102.684l.026-.402c.026-.59.006-.613-.584-.708-.48-.078-.543-.106-1.118-.508-.42-.293-.63-.44-.765-.454-.136-.014-.199.105-.327.342a4.574 4.574 0 00-.317.776l-.118.453-.46-.093c.185-.113.28-2.218.217-2.305-.033-.045-.09-.021-.156.066-.126.168-.832.857-1.057 1.033-.21.164-.261.058-.335-.063-.089-.145.009-.294.345-.402.388-.125.647-.403 1.063-1.213.102-.2.204-.377.287-.506a1.48 1.48 0 01.205-.254c.03-.024.35-.078.868.088.38.122.844.157 1.38.236 2.702.399 3.115.383 3.47-.117.13-.185.225-.262.27-.237.047.024.045.151-.015.374a4.073 4.073 0 01-.156.48c-.037.079 0 .265.108.53.186.465.197.63-.02.83-.198.182-.637.191-.827.018-.183-.168-.282-.103-.31.065-.03.19-.249.463-.583.729-.286.229-.474.586-.548 1.021l-.052.304"
           fill="#4b4586"
