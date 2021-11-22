@@ -90,10 +90,10 @@ export default () => {
 					.prefix__cycliste {
 						animation: saute 1s infinite;
 						animation-timing-function: linear;
-						animation: traversée-inversée 60s infinite;
+						animation: traversée-inversée 45s infinite;
 					}
 					.prefix__velo {
-						animation: traversée-inversée 60s infinite;
+						animation: traversée-inversée 45s infinite;
 					}
 
 					@keyframes saute {
