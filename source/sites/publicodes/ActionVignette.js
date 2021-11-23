@@ -229,6 +229,8 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 	const [value, unit] = humanWeight(correctedValue),
 		relativeValue = Math.round(100 * (correctedValue / total))
 
+	const sign = value > 0 ? '-' : '+'
+
 	return (
 		<div
 			css={`
@@ -240,6 +242,7 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 					color: var(--textColor);
 					padding: 0.1rem 0.4rem;
 					font-weight: bold;
+					${value < 0 && `background: #e33e3e`}
 				}
 			`}
 		>
@@ -250,9 +253,13 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 			) : (
 				<div>
 					<strong>
-						-&nbsp;{value} {unit}
+						{sign}&nbsp;{Math.abs(value)} {unit}
 					</strong>{' '}
-					{total && <span>&nbsp;{relativeValue}%</span>}
+					{total && (
+						<span css="margin-left: .4rem">
+							{sign}&nbsp;{Math.abs(relativeValue)}%
+						</span>
+					)}
 				</div>
 			)}
 		</div>
