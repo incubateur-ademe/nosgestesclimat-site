@@ -34,7 +34,7 @@ export default ({}) => (
 			</p>
 			<img
 				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
-				css="width: 6rem"
+				css="width: 4rem"
 			/>
 			<p>
 				... mais c'est surtout ce que les machines qui font notre confort
@@ -59,11 +59,11 @@ export default ({}) => (
 				>
 					<img
 						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/methane.svg"
-						css="3rem"
+						css="width: 3rem"
 					/>
 					<img
 						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/no2.svg"
-						css="3rem"
+						css="width: 3rem"
 					/>
 				</div>
 			</blockquote>
