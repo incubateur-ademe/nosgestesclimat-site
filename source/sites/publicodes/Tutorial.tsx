@@ -21,7 +21,7 @@ export default ({}) => (
 				css="width: 12rem"
 			/>
 			<p>
-				Ce test vous donnera, en {emoji('⏱️')} 10 minutes chrono,{' '}
+				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
 				<strong>une mesure de votre part </strong> dans ce réchauffement.
 			</p>
 		</Slide>
@@ -167,10 +167,14 @@ const Slide = ({ children, index, last, delay = 0 }) => {
 			<div
 				className="ui__ card light colored content"
 				css={`
-					margin-top: 1.6rem;
+					margin-top: 0.6rem;
 					img {
 						margin: 0.4rem auto;
 						display: block;
+					}
+					h1 {
+						margin-top: 1rem;
+						font-size: 160%;
 					}
 				`}
 			>
