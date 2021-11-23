@@ -10,6 +10,7 @@ export default ({ withText = true }) => (
 			height: 3.5rem;
 			svg {
 				width: 3.5rem;
+				height: 3.5rem;
 			}
 
 			:hover path {

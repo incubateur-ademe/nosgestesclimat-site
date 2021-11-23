@@ -50,15 +50,15 @@ export default ({ isHomePage }) => {
 								display: block;
 							}
 						}
-						${pathname.includes('simulateur/') ||
-						(pathname.includes('actions/') &&
-							`
+						${(pathname.includes('simulateur/') ||
+							pathname.includes('actions/')) &&
+						`
 							@media (max-width: 800px){
-					svg {width: 2.6rem}
+					svg {width: 2.6rem !important}
 					span {display:none}
 					}
 
-					`)}
+					`}
 					`}
 				>
 					<Logo />
