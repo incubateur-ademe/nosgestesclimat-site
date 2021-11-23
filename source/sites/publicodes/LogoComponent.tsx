@@ -45,6 +45,33 @@ export default ({ withText = true }) => (
 					transform: translateX(150%);
 				}
 			}
+
+			${
+				false &&
+				`
+							//tentative pour animer le texte avec un petit reflect ^
+
+			:hover {
+				mask-size: 200%;
+				animation: shine .5s linear;
+				animation-delay: 2s;
+
+				@keyframes shine {
+					from {
+						mask-position: 0%;
+					}
+					to {
+						mask-position: -100%;
+						mask-image: linear-gradient(
+							-75deg,
+							rgba(0, 0, 0, 0.6) 30%,
+							#000 50%,
+							rgba(0, 0, 0, 0.6) 70%
+						);
+					}
+				}`
+			}
+			}
 		`}
 	>
 		<Logo />
