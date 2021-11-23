@@ -13,15 +13,36 @@ export default ({ withText = true }) => (
 				height: 3.5rem;
 			}
 
-			:hover path {
-				stroke-dasharray: 1000;
-				stroke-dashoffset: 1000;
-				animation: dash 5s ease-in-out forwards;
+			:hover path:nth-child(2) {
+				animation: reveal 4s linear forwards;
+			}
+			:hover path:first-child {
+				fill: '#d6a405';
+			}
+			@keyframes golden {
+				0% {
+					fill: 'red';
+				}
+				100% {
+					fill: '#d6a405';
+				}
 			}
 
-			@keyframes dash {
-				to {
-					stroke-dashoffset: 0;
+			@keyframes reveal {
+				0% {
+					transform: translateX(150%);
+					fill: white;
+				}
+				20% {
+					transform: translateX(0);
+					fill: white;
+				}
+				30% {
+					transform: translateX(0);
+					fill: white;
+				}
+				100% {
+					transform: translateX(150%);
 				}
 			}
 		`}
