@@ -56,11 +56,7 @@ const Simulateur = (props) => {
 		<div>
 			<Meta title={rule.title} title={evaluation.title || ''} />
 			<Title>Le test</Title>
-			{introPassed && (
-				<animate.appear>
-					<CarbonImpact />
-				</animate.appear>
-			)}
+			{introPassed && <CarbonImpact />}
 			{!isMainSimulation && (
 				<h1>
 					{evaluation.rawNode.title || (
