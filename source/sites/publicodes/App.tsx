@@ -115,7 +115,7 @@ const Main = ({}) => {
 							justify-content: center;
 							text-decoration: none;
 							font-size: 170%;
-							margin-bottom: 1rem;
+							margin: 1rem auto;
 						`}
 					>
 						<Logo />
