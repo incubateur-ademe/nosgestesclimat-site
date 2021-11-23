@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import SessionBar from 'Components/SessionBar'
-import Logo from './Logo'
+import Logo from './LogoComponent'
 
 export default ({ isHomePage }) => {
 	const pathname = decodeURIComponent(location.pathname)

@@ -154,6 +154,7 @@
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
 		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
-		"publish:publicodes": "yarn run lint && yarn run "
+		"publish:publicodes": "yarn run lint && yarn run ",
+		"convertLogoSVG": "svgr --replace-attr-values '#4143d6=var(--color)'  ~/Documents/logo-ngc-github.svg > source/images/Logo.tsx"
 	}
 }
