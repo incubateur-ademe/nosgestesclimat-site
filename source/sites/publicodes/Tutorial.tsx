@@ -37,16 +37,16 @@ export default ({}) => (
 				css="width: 6rem"
 			/>
 			<p>
-				... mais c'est aussi ce que les machines qui font notre confort moderne
-				rejettent, en quantités bien plus massives, à tel point qu'on les compte
+				... mais c'est surtout ce que les machines qui font notre confort
+				moderne rejettent, en quantités massives, à tel point qu'on les compte
 				en milliers de kilos par an et par personne, donc en{' '}
 				<strong>tonnes</strong> de CO₂e !
 			</p>
 			<blockquote>
 				<p>
-					{emoji('💡')}&nbsp; D'autres gaz, surtout le méthane et le dioxyde
-					d'azote, réchauffent aussi la planète : on les convertit en CO₂ pour
-					simplifier la mesure, d'où le <em>e</em> dans "CO₂e".
+					{emoji('💡')}&nbsp; Et d'où vient ce petit <em>e</em> ? D'autres gaz,
+					surtout le méthane et le dioxyde d'azote, réchauffent aussi la planète
+					: on les convertit en CO₂ pour simplifier la mesure.
 				</p>
 				<div
 					css={`
@@ -58,11 +58,11 @@ export default ({}) => (
 					`}
 				>
 					<img
-						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/no2.svg"
+						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/methane.svg"
 						css="3rem"
 					/>
 					<img
-						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/methane.svg"
+						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/no2.svg"
 						css="3rem"
 					/>
 				</div>
@@ -72,7 +72,7 @@ export default ({}) => (
 			<h1>Et concrètement ?</h1>
 			<p>
 				Chaque année, un français émet en moyenne{' '}
-				<strong> à peu près 10 tonnes</strong>.
+				<strong> à peu près 10 tonnes</strong> de CO₂e.
 			</p>
 			<img
 				src={require('Images/abacus-france.svg').default}
@@ -97,16 +97,17 @@ export default ({}) => (
 			<h1>Et l'objectif ?</h1>
 			<p>Nous devons diminiuer notre empreinte climat au plus vite.</p>
 			<p>
-				En France, ça consiste donc à passer de ~10 tonnes à{' '}
+				En France, ça consiste à passer de ~10 tonnes à{' '}
 				<strong>moins de 2 tonnes</strong> par an.
 			</p>
 			<img
 				src={require('Images/objectif-climat.svg').default}
 				css="width:16rem"
 			/>
-			<p>
+			<p css="text-align: center; line-height: 1.2rem">
 				<em>
-					Pour en savoir plus, tout est expliqué dans{' '}
+					Pour en savoir plus, tout est expliqué <br />
+					dans{' '}
 					<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
 						cet article
 					</a>{' '}
@@ -118,9 +119,9 @@ export default ({}) => (
 		<Slide index={5} delay={0}>
 			<h1>D'où vient cette empreinte ?</h1>
 			<p>
-				Faire des kilomètres en voiture (transport), manger un steak
-				(alimentation), chauffer sa maison (logement), se faire soigner
-				(services publics), acheter une nouvelle télévision (numérique)...
+				Faire des km en voiture (transport), manger un steak (alimentation),
+				chauffer sa maison (logement), se faire soigner (services publics),
+				acheter une nouvelle télévision (numérique)...
 			</p>
 			<div css="margin:2rem">
 				<Chart />
@@ -140,8 +141,8 @@ export default ({}) => (
 				</li>
 				<li>
 					{emoji('💼')}&nbsp; Répondez pour votre vie perso, pas pour votre
-					boulot (ou vos études). Une seule exception : votre trajet
-					domicile-travail doit être inclus dans les kilomètres parcourus.
+					boulot (ou vos études). <em>Une seule exception </em>: votre trajet
+					domicile-travail doit être inclus dans les km parcourus.
 				</li>
 				<li>
 					{emoji('❓️')}&nbsp; D'autres questions ? Consultez notre{' '}
@@ -190,22 +191,22 @@ const Slide = ({ children, index, last, delay = 0 }) => {
 						}
 					`}
 				>
-					{index > 1 && (
-						<button className="ui__ link-button small" onClick={previous}>
-							Précédent
-						</button>
-					)}
-					<button className="ui__ button small plain" onClick={next}>
-						{!last ? 'Suivant' : "C'est parti"}
-					</button>
 					{!last && (
 						<button
 							className="ui__ button small"
 							onClick={() => skip('testIntro')}
 						>
-							Passer le tutoriel
+							{index === 1 ? 'Passer le tutoriel' : 'Ignorer'}
 						</button>
 					)}
+					{index > 1 && (
+						<button className="ui__ link-button small" onClick={previous}>
+							Précédent
+						</button>
+					)}
+					<button className="ui__ button plain " onClick={next}>
+						{!last ? 'Suivant' : "C'est parti"}
+					</button>
 				</div>
 			</div>
 		</animate.appear>
