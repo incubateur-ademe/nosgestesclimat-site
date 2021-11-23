@@ -394,7 +394,7 @@
   description: |
     Au travail en bus mais voiture pour trajets quotidiens. Partage avec son frère une vieille ferme au fioul mal isolée. Aime les bières locales. Plutôt viande 
     mais est ouvert à toutes les gastronomies. Fait assez attention à ces équipements.
-  icônes: 🚗🏚️
+  icônes: 🚌🏚️
   data:
     alimentation . déchets . niveau d'engagement: "'en partie'"
     alimentation . petit déjeuner . type: "'français'"
