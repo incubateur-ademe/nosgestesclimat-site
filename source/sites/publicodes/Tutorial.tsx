@@ -211,16 +211,15 @@ const slides = [
 		<>
 			<h1>D'où vient notre empreinte ?</h1>
 			<p>
-				Faire des km en voiture (transport), manger un steak (alimentation),
-				chauffer sa maison (logement), se faire soigner (services publics),
-				acheter une nouvelle télévision (numérique)...
+				Faire des km en voiture, manger un steak, chauffer sa maison, se faire
+				soigner, acheter une nouvelle chaise ou télévision...
 			</p>
 			<div css="margin:2rem">
 				<Chart />
 			</div>
 			<p>
 				L'empreinte de notre consommation individuelle, c'est la somme de toutes
-				les activités qui font notre vie moderne.{' '}
+				ces activités qui font notre vie moderne.{' '}
 			</p>
 		</>
 	),
