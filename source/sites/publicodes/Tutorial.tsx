@@ -185,7 +185,7 @@ const slides = [
 	() => (
 		<>
 			<h1>Et l'objectif ?</h1>
-			<p>Nous devons diminiuer notre empreinte climat au plus vite.</p>
+			<p>Nous devons diminuer notre empreinte climat au plus vite.</p>
 			<p>
 				En France, ça consiste à passer de ~10 tonnes à{' '}
 				<strong>moins de 2 tonnes</strong> par an.
