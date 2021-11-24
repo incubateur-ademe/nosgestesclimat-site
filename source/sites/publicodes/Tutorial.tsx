@@ -32,8 +32,8 @@ export default ({}) => (
 			<div
 				css={`
 					svg {
-						height: 8rem;
-						margin: 0 auto;
+						height: 7rem;
+						margin: 0.6rem auto;
 						display: block;
 					}
 
@@ -63,34 +63,24 @@ export default ({}) => (
 				<CO2e />
 			</div>
 			<p>
-				Le dioxyde de carbone (CO₂), vous connaissez : on l'expire toute la
-				journée...{' '}
+				Le dioxyde de carbone (CO₂{' '}
+				<img
+					src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
+					css="width: 3rem; height: 1.5rem; object-fit: cover;"
+				/>
+				), vous connaissez : on l'expire toute la journée... mais c'est surtout
+				ce que les machines qui font notre confort moderne rejettent, en
+				quantités massives.
 			</p>
-			<img
-				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
-				css="width: 4rem"
-			/>
 			<p>
-				... mais c'est surtout ce que les machines qui font notre confort
-				moderne rejettent, en quantités massives, à tel point qu'on les compte
-				en milliers de kilos par an et par personne, donc en{' '}
-				<strong>tonnes</strong> de CO₂e !
+				À tel point qu'on le compte en milliers de kilos par an et par personne,
+				donc en <strong>tonnes</strong> de CO₂e !
 			</p>
 			<blockquote>
 				<p>
 					{emoji('💡')}&nbsp; Et d'où vient ce petit <em>e</em> ? D'autres gaz,
 					surtout le méthane et le dioxyde d'azote, réchauffent aussi la planète
 					: on les convertit en CO₂ pour simplifier la mesure.
-				</p>
-				<div
-					css={`
-						display: flex;
-						justify-content: center;
-						img {
-							display: inline;
-						}
-					`}
-				>
 					<img
 						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/methane.svg"
 						css="width: 3rem"
@@ -99,7 +89,7 @@ export default ({}) => (
 						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/no2.svg"
 						css="width: 3rem"
 					/>
-				</div>
+				</p>
 			</blockquote>
 		</Slide>
 		<Slide index={3} delay={0}>
@@ -151,7 +141,7 @@ export default ({}) => (
 			</p>
 		</Slide>
 		<Slide index={5} delay={0}>
-			<h1>D'où vient cette empreinte ?</h1>
+			<h1>D'où vient notre empreinte ?</h1>
 			<p>
 				Faire des km en voiture (transport), manger un steak (alimentation),
 				chauffer sa maison (logement), se faire soigner (services publics),
@@ -203,9 +193,12 @@ const Slide = ({ children, index, last, delay = 0 }) => {
 				className="ui__ card light colored content"
 				css={`
 					margin-top: 0.6rem;
-					img {
+					> img {
 						margin: 0.4rem auto;
 						display: block;
+					}
+					p > img {
+						vertical-align: middle;
 					}
 					h1 {
 						margin-top: 1rem;
