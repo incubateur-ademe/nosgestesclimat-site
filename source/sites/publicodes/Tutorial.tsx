@@ -36,6 +36,28 @@ export default ({}) => (
 						margin: 0 auto;
 						display: block;
 					}
+
+					svg text {
+						mask-size: 200%;
+
+						mask-image: linear-gradient(
+							-75deg,
+							rgba(0, 0, 0, 0.6) 30%,
+							#000 50%,
+							rgba(0, 0, 0, 0.6) 70%
+						);
+						mask-size: 200%;
+						animation: shine 2s linear infinite;
+
+						@keyframes shine {
+							from {
+								-webkit-mask-position: 150%;
+							}
+							to {
+								-webkit-mask-position: -50%;
+							}
+						}
+					}
 				`}
 			>
 				<CO2e />
