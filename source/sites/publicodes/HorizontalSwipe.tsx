@@ -2,6 +2,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { wrap } from 'popmotion'
+import styled from 'styled-components'
 
 const variants = {
 	enter: (direction: number) => {
@@ -35,16 +36,11 @@ const swipePower = (offset: number, velocity: number) => {
 	return Math.abs(offset) * velocity
 }
 
-export default ({ children }) => {
+export default ({ children, next, previous }) => {
 	const [[page, direction], setPage] = useState([0, 0])
 
-	// We only have 3 images, but we paginate them absolutely (ie 1, 2, 3, 4, 5...) and
-	// then wrap that within 0-2 to find our image ID in the array below. By passing an
-	// absolute page index as the `motion` component's `key` prop, `AnimatePresence` will
-	// detect it as an entirely new image. So you can infinitely paginate as few as 1 images.
-	const imageIndex = wrap(0, images.length, page)
-
 	const paginate = (newDirection: number) => {
+		newDirection < 0 ? previous() : next()
 		setPage([page + newDirection, newDirection])
 	}
 
@@ -53,6 +49,7 @@ export default ({ children }) => {
 			<AnimatePresence initial={false} custom={direction}>
 				<motion.div
 					className="slides"
+					css="position: absolute"
 					key={page}
 					custom={direction}
 					variants={variants}
@@ -79,12 +76,39 @@ export default ({ children }) => {
 					{children}
 				</motion.div>
 			</AnimatePresence>
-			<div className="next" onClick={() => paginate(1)}>
+			<NextButton onClick={() => paginate(1)}>{'‣'}</NextButton>
+			<NextButton reverse onClick={() => paginate(-1)}>
 				{'‣'}
-			</div>
-			<div className="prev" onClick={() => paginate(-1)}>
-				{'‣'}
-			</div>
+			</NextButton>
 		</>
 	)
 }
+
+const NextButton = styled.button`
+	opacity: 0.6;
+	top: calc(50% - 20px);
+	position: absolute;
+	background: white;
+	border: 1px solid var(--color);
+	color: var(--color);
+	border-radius: 30px;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	user-select: none;
+	cursor: pointer;
+	font-weight: bold;
+	font-size: 18px;
+	z-index: 2;
+	right: 10px;
+
+	${(props) =>
+		props.reverse &&
+		`
+ left: 10px;
+  transform: scale(-1);
+
+	`}
+`

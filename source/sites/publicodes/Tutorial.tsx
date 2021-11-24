@@ -1,16 +1,60 @@
-import { useState } from 'react'
+import CO2e from 'Images/CO2e'
 import { useDispatch, useSelector } from 'react-redux'
-import { skipTutorial } from '../../actions/actions'
+import { Link } from 'react-router-dom'
 import emoji from '../../components/emoji'
-import animate from '../../components/ui/animate'
 import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
-import { Link } from 'react-router-dom'
-import CO2e from 'Images/CO2e'
+import HorizontalSwipe from './HorizontalSwipe'
+import Slide from './TutorialSlide'
+import { skipTutorial } from '../../actions/actions'
 
-export default ({}) => (
-	<>
-		<Slide index={1}>
+export default ({}) => {
+	const tutorials = useSelector((state) => state.tutorials)
+
+	if (tutorials['testIntro']) return null
+	const tutos = Object.entries(tutorials)
+		.map(([k, v]) => v != null && k.split('testIntro')[1])
+		.filter(Boolean)
+
+	const index = tutos.length
+	console.log('I', index, tutorials, tutos)
+
+	const Component = slides[index]
+
+	const dispatch = useDispatch()
+
+	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
+		last = index === slides.length - 1,
+		next = () => skip(last ? 'testIntro' : 'testIntro' + index),
+		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
+
+	return (
+		<div
+			css={`
+				height: 70vh;
+				position: relative;
+				display: flex;
+				justify-content: center;
+				align-items: center;
+			`}
+		>
+			<HorizontalSwipe {...{ next, previous }}>
+				<Slide
+					{...{
+						last,
+						skip,
+					}}
+				>
+					<Component />
+				</Slide>
+			</HorizontalSwipe>
+		</div>
+	)
+}
+
+const slides = [
+	() => (
+		<>
 			<h1>Mon empreinte climat {emoji('😶‍🌫️')} ?</h1>
 			<p>Pas de panique, on vous explique ce que c'est.</p>
 			<p>
@@ -25,10 +69,22 @@ export default ({}) => (
 				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
 				<strong>une mesure de votre part </strong> dans ce réchauffement.
 			</p>
-		</Slide>
-		<Slide index={2}>
+		</>
+	),
+	() => (
+		<>
 			<h1>Ça se mesure comment ?</h1>
-			<p>On utilise une unité au nom barbare : l'équivalent CO₂.</p>
+			<p>Avec une unité au nom barbare : l'équivalent CO₂.</p>
+			<p>
+				Le dioxyde de carbone (CO₂{' '}
+				<img
+					src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
+					css="width: 3rem; height: 1.5rem; object-fit: cover;"
+				/>
+				), vous connaissez : on l'expire toute la journée... mais c'est surtout
+				ce que les machines qui font notre confort moderne rejettent, en
+				quantités massives.
+			</p>
 			<div
 				css={`
 					svg {
@@ -63,16 +119,6 @@ export default ({}) => (
 				<CO2e />
 			</div>
 			<p>
-				Le dioxyde de carbone (CO₂{' '}
-				<img
-					src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
-					css="width: 3rem; height: 1.5rem; object-fit: cover;"
-				/>
-				), vous connaissez : on l'expire toute la journée... mais c'est surtout
-				ce que les machines qui font notre confort moderne rejettent, en
-				quantités massives.
-			</p>
-			<p>
 				À tel point qu'on le compte en milliers de kilos par an et par personne,
 				donc en <strong>tonnes</strong> de CO₂e !
 			</p>
@@ -91,8 +137,10 @@ export default ({}) => (
 					/>
 				</p>
 			</blockquote>
-		</Slide>
-		<Slide index={3} delay={0}>
+		</>
+	),
+	() => (
+		<>
 			<h1>Et concrètement ?</h1>
 			<p>
 				Chaque année, un français émet en moyenne{' '}
@@ -116,8 +164,10 @@ export default ({}) => (
 			<div css="margin: 1rem 0">
 				<CarbonImpact demoMode />
 			</div>
-		</Slide>
-		<Slide index={4} delay={0}>
+		</>
+	),
+	() => (
+		<>
 			<h1>Et l'objectif ?</h1>
 			<p>Nous devons diminiuer notre empreinte climat au plus vite.</p>
 			<p>
@@ -139,8 +189,10 @@ export default ({}) => (
 				</em>
 				.
 			</p>
-		</Slide>
-		<Slide index={5} delay={0}>
+		</>
+	),
+	() => (
+		<>
 			<h1>D'où vient notre empreinte ?</h1>
 			<p>
 				Faire des km en voiture (transport), manger un steak (alimentation),
@@ -154,8 +206,10 @@ export default ({}) => (
 				L'empreinte de notre consommation individuelle, c'est la somme de toutes
 				les activités qui font notre vie moderne.{' '}
 			</p>
-		</Slide>
-		<Slide index={6} delay={0} last>
+		</>
+	),
+	() => (
+		<>
 			<h1>Alors, c'est parti ?</h1>
 			<p>Quelques astuces pour vous aider à compléter le test.</p>
 			<ul>
@@ -173,69 +227,6 @@ export default ({}) => (
 					<Link to="/contribuer">FAQ</Link> à tout moment.
 				</li>
 			</ul>
-		</Slide>
-	</>
-)
-
-const Slide = ({ children, index, last, delay = 0 }) => {
-	const dispatch = useDispatch(),
-		skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
-		next = () => skip(last ? 'testIntro' : 'testIntro' + index),
-		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true)),
-		tutorials = useSelector((state) => state.tutorials),
-		display =
-			!tutorials['testIntro' + index] &&
-			(index === 1 || tutorials['testIntro' + (index - 1)])
-	if (!display) return null
-	return (
-		<animate.appear delay={delay}>
-			<div
-				className="ui__ card light colored content"
-				css={`
-					margin-top: 0.6rem;
-					> img {
-						margin: 0.4rem auto;
-						display: block;
-					}
-					p > img {
-						vertical-align: middle;
-					}
-					h1 {
-						margin-top: 1rem;
-						font-size: 160%;
-					}
-				`}
-			>
-				{children}
-				<div
-					css={`
-						display: flex;
-						justify-content: end;
-						align-items: center;
-						margin: 2rem 0 0.6rem;
-						button {
-							margin: 0 0.6rem !important;
-						}
-					`}
-				>
-					{!last && (
-						<button
-							className="ui__ button small"
-							onClick={() => skip('testIntro')}
-						>
-							{index === 1 ? 'Passer le tutoriel' : 'Ignorer'}
-						</button>
-					)}
-					{index > 1 && (
-						<button className="ui__ link-button small" onClick={previous}>
-							Précédent
-						</button>
-					)}
-					<button className="ui__ button plain " onClick={next}>
-						{!last ? 'Suivant' : "C'est parti"}
-					</button>
-				</div>
-			</div>
-		</animate.appear>
-	)
-}
+		</>
+	),
+]
