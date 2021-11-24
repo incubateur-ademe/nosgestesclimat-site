@@ -91,6 +91,22 @@ const slides = [
 						height: 7rem;
 						margin: 0.6rem auto;
 						display: block;
+						animation: fall 0.5s ease-in;
+					}
+
+					@keyframes fall {
+						from {
+							transform: translateY(-100%);
+							opacity: 0;
+						}
+						80% {
+							transform: translateY(10%);
+							opacity: 1;
+						}
+						100% {
+							transform: translateY(0%);
+							opacity: 1;
+						}
 					}
 
 					svg text {
