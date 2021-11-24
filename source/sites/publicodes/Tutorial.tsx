@@ -18,7 +18,7 @@ export default ({}) => (
 			</p>
 			<img
 				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/greenhouse-effect.svg"
-				css="width: 12rem"
+				css="width: 14rem"
 			/>
 			<p>
 				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
