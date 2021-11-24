@@ -6,6 +6,7 @@ import animate from '../../components/ui/animate'
 import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
 import { Link } from 'react-router-dom'
+import CO2e from 'Images/CO2e'
 
 export default ({}) => (
 	<>
@@ -28,6 +29,17 @@ export default ({}) => (
 		<Slide index={2}>
 			<h1>Ça se mesure comment ?</h1>
 			<p>On utilise une unité au nom barbare : l'équivalent CO₂.</p>
+			<div
+				css={`
+					svg {
+						height: 8rem;
+						margin: 0 auto;
+						display: block;
+					}
+				`}
+			>
+				<CO2e />
+			</div>
 			<p>
 				Le dioxyde de carbone (CO₂), vous connaissez : on l'expire toute la
 				journée...{' '}
