@@ -18,6 +18,7 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
 import mosaicQuestions from './mosaicQuestions'
+import estimationQuestions from './estimationQuestions'
 import ParagrapheInput from './ParagrapheInput'
 import TextInput from './TextInput'
 
@@ -52,6 +53,9 @@ export const binaryQuestion = [
 
 export const isMosaic = (dottedName) =>
 	mosaicQuestions.find(({ isApplicable }) => isApplicable(dottedName))
+
+export const isTransportEstimation = (dottedName) =>
+	estimationQuestions.find(({ isApplicable }) => isApplicable(dottedName))
 
 // This function takes the unknown rule and finds which React component should
 // be displayed to get a user input through successive if statements
@@ -109,6 +113,11 @@ export default function RuleInput<Name extends string = DottedName>({
 				}}
 			/>
 		)
+	}
+
+	if (isTransportEstimation(rule.dottedName)) {
+		const question = isTransportEstimation(rule.dottedName)
+		return <question.component {...commonProps} />
 	}
 
 	if (getVariant(engine.getRule(dottedName))) {
@@ -248,9 +257,11 @@ export const buildVariantTree = <Name extends string>(
 		variant
 			? {
 					canGiveUp,
-					children: (variant.explanation as (ASTNode & {
-						nodeKind: 'reference'
-					})[]).map(({ dottedName }) =>
+					children: (
+						variant.explanation as (ASTNode & {
+							nodeKind: 'reference'
+						})[]
+					).map(({ dottedName }) =>
 						buildVariantTree(engine, dottedName as Name)
 					),
 			  }
