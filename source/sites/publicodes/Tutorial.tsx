@@ -9,6 +9,10 @@ import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
+import GreenhouseEffect from 'Images/greenhouse-effect.svg'
+import Methane from 'Images/methane.svg'
+import CO2 from 'Images/co2.svg'
+import N2O from 'Images/n2o.svg'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -19,7 +23,6 @@ export default ({}) => {
 		.filter(Boolean)
 
 	const index = tutos.length
-	console.log('I', index, tutorials, tutos)
 
 	const Component = slides[index]
 
@@ -63,10 +66,7 @@ const slides = [
 				La planète <strong>se réchauffe dangereusement</strong>, au fur et à
 				mesure des gaz à effet de serre que l'on émet.
 			</p>
-			<img
-				src="https://raw.githubusercontent.com/laem/openmoji-environment/master/greenhouse-effect.svg"
-				css="width: 14rem"
-			/>
+			<GreenhouseEffect css="width: 14rem" />
 			<p>
 				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
 				<strong>une mesure de votre part </strong> dans ce réchauffement.
@@ -78,11 +78,7 @@ const slides = [
 			<h1>Ça se mesure comment ?</h1>
 			<p>Avec une unité au nom barbare : l'équivalent CO₂.</p>
 			<p>
-				Le dioxyde de carbone (CO₂{' '}
-				<img
-					src="https://raw.githubusercontent.com/laem/openmoji-environment/master/co2.svg"
-					css="width: 3rem; height: 1.5rem; object-fit: cover;"
-				/>
+				Le dioxyde de carbone (CO₂ <CO2 css="" />
 				), vous connaissez : on l'expire toute la journée... mais c'est surtout
 				ce que les machines qui font notre confort moderne rejettent, en
 				quantités massives.
@@ -145,14 +141,8 @@ const slides = [
 					{emoji('💡')}&nbsp; Et d'où vient ce petit <em>e</em> ? D'autres gaz,
 					surtout le méthane et le dioxyde d'azote, réchauffent aussi la planète
 					: on les convertit en CO₂ pour simplifier la mesure.
-					<img
-						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/methane.svg"
-						css="width: 3rem"
-					/>
-					<img
-						src="https://raw.githubusercontent.com/laem/openmoji-environment/master/no2.svg"
-						css="width: 3rem"
-					/>
+					<Methane css="" />
+					<N2O css="" />
 				</p>
 			</blockquote>
 		</>

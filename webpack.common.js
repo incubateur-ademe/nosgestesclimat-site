@@ -122,7 +122,7 @@ module.exports.commonLoaders = (mode = 'production') => {
 			},
 		},
 		{
-			test: /\.svg$/i,
+			test: /\.svg$/,
 			issuer: /\.[jt]sx?$/,
 			use: [
 				{

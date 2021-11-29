@@ -9,7 +9,8 @@ export default ({ children, last, skip }) => {
 					margin: 0.4rem auto;
 					display: block;
 				}
-				p > img {
+				p > img,
+				p > svg {
 					vertical-align: middle;
 				}
 				h1 {
