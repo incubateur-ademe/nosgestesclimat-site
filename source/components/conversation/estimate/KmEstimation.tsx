@@ -1,6 +1,6 @@
 import React from 'react'
 import Input from '../Input'
-import KmHelp from '../KmHelp'
+import KmHelp from './KmHelp'
 import { useState } from 'react'
 
 export default function KmEstimation({

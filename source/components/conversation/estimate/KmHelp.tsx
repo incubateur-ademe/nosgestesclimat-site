@@ -1,7 +1,8 @@
 import animate from 'Components/ui/animate'
 import { nanoid } from 'nanoid'
+import { composeP } from 'ramda'
 import { useState } from 'react'
-import { motifList, freqList } from './estimate/dataHelp'
+import { motifList, freqList } from './dataHelp'
 import './KmHelp.css'
 
 export default function KmHelp({ sum, updateSum }) {
@@ -12,7 +13,14 @@ export default function KmHelp({ sum, updateSum }) {
 			motif: 'Exemple',
 			label: 'Mon trajet',
 			distance: 60,
-			fréquence: '3 fois/semaine',
+			fréquence: '1 fois par semaine',
+			personnes: 3,
+		},
+		{
+			motif: 'Exemple',
+			label: 'Mon trajet',
+			distance: 60,
+			fréquence: '1 fois par an',
 			personnes: 2,
 		},
 	])
@@ -53,6 +61,18 @@ export default function KmHelp({ sum, updateSum }) {
 		setTrajets(newTrajets)
 	}
 
+	const calculateSum = () => {
+		const trajetsActualisés = trajets.map((trajet) => {
+			const freq = freqList.find((f) => f.name === trajet.fréquence)
+			const freqValue = freq ? freq.value : 0
+			return (trajet.distance * freqValue) / trajet.personnes
+		})
+		const newSum = trajetsActualisés.reduce((memo, elt) => {
+			return memo + elt
+		}, 0)
+		updateSum(newSum)
+	}
+
 	return isOpen ? (
 		<animate.fromTop>
 			<div>
@@ -69,8 +89,7 @@ export default function KmHelp({ sum, updateSum }) {
 						className="item"
 						name="label"
 						type="text"
-						required="optionnal"
-						placeholder="Trajet"
+						placeholder="Trajet (Optionnel)"
 						onChange={handleAddFormChange}
 					/>
 					<input
@@ -101,7 +120,9 @@ export default function KmHelp({ sum, updateSum }) {
 						placeholder="Nombre de personnes"
 						onChange={handleAddFormChange}
 					/>
-					<button type="submit">Add</button>
+					<button type="submit" onClick={() => calculateSum()}>
+						Add
+					</button>
 				</form>
 				<div id="table-scroll">
 					<table>
