@@ -10,9 +10,6 @@ import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import Methane from 'Images/methane.svg'
-import CO2 from 'Images/co2.svg'
-import N2O from 'Images/n2o.svg'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -78,7 +75,16 @@ const slides = [
 			<h1>Ça se mesure comment ?</h1>
 			<p>Avec une unité au nom barbare : l'équivalent CO₂.</p>
 			<p>
-				Le dioxyde de carbone (CO₂ <CO2 css="" />
+				Le dioxyde de carbone (CO₂{' '}
+				<img
+					src="/images/co2.svg"
+					css={`
+						object-fit: cover;
+						vertical-align: middle;
+						width: 3.5rem;
+						height: 1.7rem;
+					`}
+				/>
 				), vous connaissez : on l'expire toute la journée... mais c'est surtout
 				ce que les machines qui font notre confort moderne rejettent, en
 				quantités massives.
@@ -139,10 +145,18 @@ const slides = [
 			<blockquote>
 				<p>
 					{emoji('💡')}&nbsp; Et d'où vient ce petit <em>e</em> ? D'autres gaz,
-					surtout le méthane et le dioxyde d'azote, réchauffent aussi la planète
-					: on les convertit en CO₂ pour simplifier la mesure.
-					<Methane css="" />
-					<N2O css="" />
+					surtout le méthane&nbsp;
+					<img
+						src="/images/methane.svg"
+						css="width: 1.8rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
+					/>{' '}
+					et le protoxyde d'azote{' '}
+					<img
+						src="/images/n2o.svg"
+						css="width: 3rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
+					/>
+					, réchauffent aussi la planète : on les convertit en CO₂ pour
+					simplifier la mesure.{' '}
 				</p>
 			</blockquote>
 		</>

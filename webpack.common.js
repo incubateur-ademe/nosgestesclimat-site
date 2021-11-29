@@ -39,9 +39,10 @@ module.exports.default = {
 			'./manifest.webmanifest',
 			'./source/sites/publicodes/sitemap.txt',
 			'./iframeResizer.contentWindow.min.js',
-			'./source/images/nosgestesclimat.png',
-			'./source/images/dessin-nosgestesclimat.png',
-			'./source/images/transparent.png',
+			{
+				from: './source/images',
+				to: 'images',
+			},
 			{
 				from: './source/data',
 				to: 'data',
@@ -128,6 +129,7 @@ module.exports.commonLoaders = (mode = 'production') => {
 				{
 					loader: '@svgr/webpack',
 					options: {
+						throwIfNamespace: false,
 						replaceAttrValues: { '#4143d6': 'var(--color)' },
 					},
 				},
