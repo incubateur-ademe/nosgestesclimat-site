@@ -1,0 +1,52 @@
+#box {
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
+	gap: 0.5rem;
+}
+.item {
+	background: rgb(214, 214, 214);
+	width: 10rem;
+	height: 2rem;
+	border: 1px black solid;
+}
+
+#table-scroll {
+	overflow: auto;
+	margin-top: 20px;
+}
+
+table {
+	border-collapse: collapse;
+	width: 100%;
+}
+
+th,
+td {
+	border: 1px solid #ffffff;
+	text-align: left;
+	padding: 8px;
+}
+
+th {
+	background-color: rgb(80, 80, 80);
+	color: #ffffff;
+}
+
+td {
+	background-color: rgb(233, 233, 233);
+}
+
+/* form {
+	display: flex;
+	gap: 5px;
+}
+
+form td:last-child {
+	display: flex;
+	justify-content: space-evenly;
+}
+
+form * {
+	font-size: 28px;
+} */

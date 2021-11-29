@@ -117,7 +117,14 @@ export default function RuleInput<Name extends string = DottedName>({
 
 	if (isTransportEstimation(rule.dottedName)) {
 		const question = isTransportEstimation(rule.dottedName)
-		return <question.component {...commonProps} />
+		return (
+			<question.component
+				commonProps={commonProps}
+				evaluation={evaluation}
+				onSubmit={onSubmit}
+				value={value as Evaluation<string>}
+			/>
+		)
 	}
 
 	if (getVariant(engine.getRule(dottedName))) {
