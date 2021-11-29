@@ -193,7 +193,38 @@ const slides = [
 				En France, ça consiste à passer de ~10 tonnes à{' '}
 				<strong>moins de 2 tonnes</strong> par an.
 			</p>
-			<ObjectifClimat css="width:16rem" />
+
+			<ObjectifClimat
+				css={`
+					width: 16rem;
+					g path:first-child {
+						stroke-dasharray: 1000;
+						stroke-dashoffset: 1000;
+						animation: dash 5s ease-in forwards;
+						animation-delay: 1s;
+					}
+
+					@keyframes dash {
+						to {
+							stroke-dashoffset: 0;
+						}
+					}
+					g path:nth-child(2) {
+						animation: appear 2s ease-in;
+					}
+					@keyframes appear {
+						from {
+							opacity: 0;
+						}
+						30% {
+							opacity: 0;
+						}
+						100% {
+							opacity: 1;
+						}
+					}
+				`}
+			/>
 			<p css="text-align: center; line-height: 1.2rem">
 				<em>
 					Pour en savoir plus, tout est expliqué <br />
