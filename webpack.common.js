@@ -113,13 +113,25 @@ module.exports.commonLoaders = (mode = 'production') => {
 			exclude: /node_modules|dist/,
 		},
 		{
-			test: /\.(jpe?g|png|svg)$/,
+			test: /\.(jpe?g|png)$/,
 			use: {
 				loader: 'file-loader',
 				options: {
 					name: 'images/[name].[ext]',
 				},
 			},
+		},
+		{
+			test: /\.svg$/i,
+			issuer: /\.[jt]sx?$/,
+			use: [
+				{
+					loader: '@svgr/webpack',
+					options: {
+						replaceAttrValues: { '#4143d6': 'var(--color)' },
+					},
+				},
+			],
 		},
 		{
 			test: /\.yaml$/,

@@ -1,5 +1,5 @@
 // Created with Inkscape (http://www.inkscape.org/)
-import Logo from 'Images/Logo'
+import Logo from 'Images/logo.svg'
 
 export default ({ withText = true }) => (
 	<div
@@ -49,7 +49,7 @@ export default ({ withText = true }) => (
 			${
 				false &&
 				`
-							//tentative pour animer le texte avec un petit reflect ^
+							//tentative mise de côtée d'animer le texte avec un petit reflect ^
 
 			:hover {
 				mask-size: 200%;

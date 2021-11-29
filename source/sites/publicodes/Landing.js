@@ -1,10 +1,10 @@
-import DocumentationButton from './DocumentationButton'
+import LogoADEME from 'Images/LogoADEME'
+import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
+import NewsBanner from '../../components/NewsBanner'
+import DocumentationButton from './DocumentationButton'
 import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
-import emoji from 'react-easy-emoji'
-import NewsBanner from '../../components/NewsBanner'
-import LogoADEME from 'Images/LogoADEME'
 
 export default () => {
 	return (
@@ -33,15 +33,15 @@ export default () => {
 			`}
 		>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
-			<img
+			<Illustration
 				css={`
 					width: 60%;
+					height: 100%;
 					border-radius: 0.8rem;
 					@media (max-width: 800px) {
 						width: 95%;
 					}
 				`}
-				src={Illustration}
 				alt="Illustration sur fond mauve d'une scène mélant grande ville, péri-urbain et rural, où on peut voir quelques éléments d'une vie quotidienne, chaque élément étant émetteur d'une certaine empreinte sur le climat."
 			/>
 			<div css="margin: 1rem 0">
@@ -70,9 +70,8 @@ export default () => {
 						}
 					`}
 				>
-					<img
+					<Marianne
 						css="height: 6rem; margin-right: .6rem"
-						src={Marianne}
 						alt="Logo Marianne de la République Française"
 					/>
 					<a href="https://ademe.fr">

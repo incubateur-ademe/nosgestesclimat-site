@@ -1,4 +1,4 @@
-import CO2e from 'Images/CO2e'
+import CO2e from 'Images/co2e.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import emoji from '../../components/emoji'
