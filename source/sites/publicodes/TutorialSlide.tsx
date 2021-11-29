@@ -4,6 +4,7 @@ export default ({ children, last, skip }) => {
 			className="ui__ card light colored content"
 			css={`
 				margin-top: 0.6rem;
+				> svg,
 				> img {
 					margin: 0.4rem auto;
 					display: block;

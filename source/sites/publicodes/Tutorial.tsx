@@ -1,12 +1,14 @@
+import AbacusFrance from 'Images/abacus-france.svg'
 import CO2e from 'Images/co2e.svg'
+import ObjectifClimat from 'Images/objectif-climat.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
 import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
-import { skipTutorial } from '../../actions/actions'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -162,10 +164,7 @@ const slides = [
 				Chaque année, un français émet en moyenne{' '}
 				<strong> à peu près 10 tonnes</strong> de CO₂e.
 			</p>
-			<img
-				src={require('Images/abacus-france.svg').default}
-				css="width:10rem"
-			/>
+			<AbacusFrance css="width:10rem; height: 100%" />
 			<p>
 				C'est votre point de départ dans ce test : chaque réponse que vous
 				donnerez va personnaliser ce résultat dans la barre{' '}
@@ -190,10 +189,7 @@ const slides = [
 				En France, ça consiste à passer de ~10 tonnes à{' '}
 				<strong>moins de 2 tonnes</strong> par an.
 			</p>
-			<img
-				src={require('Images/objectif-climat.svg').default}
-				css="width:16rem"
-			/>
+			<ObjectifClimat css="width:16rem" />
 			<p css="text-align: center; line-height: 1.2rem">
 				<em>
 					Pour en savoir plus, tout est expliqué <br />
