@@ -261,21 +261,19 @@ const slides = [
 		<>
 			<h1>Alors, c'est parti ?</h1>
 			<p>Quelques astuces pour vous aider à compléter le test.</p>
-			<ul>
-				<li>
-					{emoji('👤')}&nbsp; Répondez aux questions en votre nom, pas au nom de
-					votre foyer : c'est un test individuel.
-				</li>
-				<li>
-					{emoji('💼')}&nbsp; Répondez pour votre vie perso, pas pour votre
-					boulot (ou vos études). <em>Une seule exception </em>: votre trajet
-					domicile-travail doit être inclus dans les km parcourus.
-				</li>
-				<li>
-					{emoji('❓️')}&nbsp; D'autres questions ? Consultez notre{' '}
-					<Link to="/contribuer">FAQ</Link> à tout moment.
-				</li>
-			</ul>
+			<blockquote>
+				{emoji('👤')}&nbsp; Répondez aux questions en votre nom, pas au nom de
+				votre foyer : c'est un test individuel.
+			</blockquote>
+			<blockquote>
+				{emoji('💼')}&nbsp; Répondez pour votre vie perso, pas pour votre boulot
+				(ou vos études). <em>Une seule exception </em>: votre trajet
+				domicile-travail doit être inclus dans les km parcourus.
+			</blockquote>
+			<blockquote>
+				{emoji('❓️')}&nbsp; D'autres questions ? Consultez notre{' '}
+				<Link to="/contribuer">FAQ</Link> à tout moment.
+			</blockquote>
 		</>
 	),
 ]
