@@ -18,6 +18,11 @@ export default ({}) => {
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
+	const tutorials = useSelector((state) => state.tutorials)
+	const hasData =
+		answeredQuestionsLength > 0 ||
+		Object.entries(tutorials).find(([k, v]) => v != null)
+	console.log(tutorials)
 	const actionChoicesLength = Object.keys(
 		useSelector((state) => state.actionChoices)
 	).length
@@ -38,12 +43,14 @@ export default ({}) => {
 						</em>
 					</p>
 				)}
-				{answeredQuestionsLength > 0 ? (
+				{hasData ? (
 					<div>
-						<p>
-							Vous avez répondu à {answeredQuestionsLength} questions et choisi{' '}
-							{actionChoicesLength} actions.{' '}
-						</p>
+						{answeredQuestionsLength > 0 && (
+							<p>
+								Vous avez répondu à {answeredQuestionsLength} questions et
+								choisi {actionChoicesLength} actions.{' '}
+							</p>
+						)}
 						<details>
 							<summary>Où sont mes données ? </summary>
 							Vos données sont stockées dans votre navigateur, vous avez donc le
