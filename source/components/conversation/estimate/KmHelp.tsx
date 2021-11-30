@@ -1,7 +1,7 @@
 import animate from 'Components/ui/animate'
 import { nanoid } from 'nanoid'
 import { composeP } from 'ramda'
-import { useState, Fragment } from 'react'
+import { useState, Fragment, useEffect } from 'react'
 import { motifList, freqList } from './dataHelp'
 import './KmHelp.css'
 import ReadOnlyRow from './ReadOnlyRow'
@@ -30,17 +30,19 @@ export default function KmHelp({ sum, updateSum }) {
 
 	const [editTrajetId, setEditTrajetId] = useState(null)
 
-	updateSum(
-		trajets
-			.map((trajet) => {
-				const freq = freqList.find((f) => f.name === trajet.frequence)
-				const freqValue = freq ? freq.value : 0
-				return (trajet.distance * 2 * freqValue) / trajet.personnes
-			})
-			.reduce((memo, elt) => {
-				return memo + elt
-			}, 0)
-	)
+	useEffect(() => {
+		updateSum(
+			trajets
+				.map((trajet) => {
+					const freq = freqList.find((f) => f.name === trajet.frequence)
+					const freqValue = freq ? freq.value : 0
+					return (trajet.distance * 2 * freqValue) / trajet.personnes
+				})
+				.reduce((memo, elt) => {
+					return memo + elt
+				}, 0)
+		)
+	}, [trajets])
 
 	const handleAddFormChange = (event) => {
 		event.preventDefault()
@@ -62,7 +64,6 @@ export default function KmHelp({ sum, updateSum }) {
 
 		const newFormData = { ...editFormData }
 		newFormData[fieldName] = fieldValue
-		console.log(newFormData)
 
 		setEditFormData(newFormData)
 	}
