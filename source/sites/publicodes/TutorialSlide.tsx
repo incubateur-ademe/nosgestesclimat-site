@@ -14,6 +14,7 @@ export default ({ children, last, skip }) => {
 					margin-top: 1rem;
 					font-size: 160%;
 				}
+				border: 2px solid var(--color);
 			`}
 		>
 			{children}
