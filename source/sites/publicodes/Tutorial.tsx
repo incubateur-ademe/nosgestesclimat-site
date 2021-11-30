@@ -223,6 +223,9 @@ const slides = [
 							opacity: 1;
 						}
 					}
+					path[fill='#532fc5'] {
+						fill: var(--color);
+					}
 				`}
 			/>
 			<p css="text-align: center; line-height: 1.2rem">
