@@ -31,9 +31,10 @@ export const createStateFromSavedSimulation = (
 
 	if (!state.previousSimulation) return {}
 
-	const safeFoldedSteps = state.previousSimulation.foldedSteps.filter(
-		(step) => rules[step] != null
-	)
+	const safeFoldedSteps =
+		state.previousSimulation.foldedSteps?.filter(
+			(step) => rules[step] != null
+		) || []
 
 	return {
 		simulation: {
