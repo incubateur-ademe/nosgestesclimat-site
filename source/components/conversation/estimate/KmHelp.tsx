@@ -1,37 +1,46 @@
 import animate from 'Components/ui/animate'
 import { nanoid } from 'nanoid'
 import { composeP } from 'ramda'
-import { useState } from 'react'
+import { useState, Fragment } from 'react'
 import { motifList, freqList } from './dataHelp'
 import './KmHelp.css'
+import ReadOnlyRow from './ReadOnlyRow'
+import EditableRow from './EditableRow'
 
 export default function KmHelp({ sum, updateSum }) {
 	const [isOpen, setIsOpen] = useState(false)
 
-	const [trajets, setTrajets] = useState([
-		{
-			motif: 'Exemple',
-			label: 'Mon trajet',
-			distance: 60,
-			fréquence: '1 fois par semaine',
-			personnes: 3,
-		},
-		{
-			motif: 'Exemple',
-			label: 'Mon trajet',
-			distance: 60,
-			fréquence: '1 fois par an',
-			personnes: 2,
-		},
-	])
+	const [trajets, setTrajets] = useState([])
 
 	const [addFormData, setAddFormData] = useState({
 		motif: '',
 		label: '',
 		distance: 0,
-		fréquence: '',
+		frequence: '',
 		personnes: 0,
 	})
+
+	const [editFormData, setEditFormData] = useState({
+		motif: '',
+		label: '',
+		distance: 0,
+		frequence: '',
+		personnes: 0,
+	})
+
+	const [editTrajetId, setEditTrajetId] = useState(null)
+
+	updateSum(
+		trajets
+			.map((trajet) => {
+				const freq = freqList.find((f) => f.name === trajet.frequence)
+				const freqValue = freq ? freq.value : 0
+				return (trajet.distance * 2 * freqValue) / trajet.personnes
+			})
+			.reduce((memo, elt) => {
+				return memo + elt
+			}, 0)
+	)
 
 	const handleAddFormChange = (event) => {
 		event.preventDefault()
@@ -45,6 +54,19 @@ export default function KmHelp({ sum, updateSum }) {
 		setAddFormData(newFormData)
 	}
 
+	const handleEditFormChange = (event) => {
+		event.preventDefault()
+
+		const fieldName = event.target.getAttribute('name')
+		const fieldValue = event.target.value
+
+		const newFormData = { ...editFormData }
+		newFormData[fieldName] = fieldValue
+		console.log(newFormData)
+
+		setEditFormData(newFormData)
+	}
+
 	const handleAddFormSubmit = (event) => {
 		event.preventDefault()
 
@@ -53,7 +75,7 @@ export default function KmHelp({ sum, updateSum }) {
 			motif: addFormData.motif,
 			label: addFormData.label,
 			distance: addFormData.distance,
-			fréquence: addFormData.fréquence,
+			frequence: addFormData.frequence,
 			personnes: addFormData.personnes,
 		}
 
@@ -61,16 +83,55 @@ export default function KmHelp({ sum, updateSum }) {
 		setTrajets(newTrajets)
 	}
 
-	const calculateSum = () => {
-		const trajetsActualisés = trajets.map((trajet) => {
-			const freq = freqList.find((f) => f.name === trajet.fréquence)
-			const freqValue = freq ? freq.value : 0
-			return (trajet.distance * freqValue) / trajet.personnes
-		})
-		const newSum = trajetsActualisés.reduce((memo, elt) => {
-			return memo + elt
-		}, 0)
-		updateSum(newSum)
+	const handleEditFormSubmit = (event) => {
+		event.preventDefault()
+
+		const editedTrajet = {
+			id: editTrajetId,
+			motif: editFormData.motif,
+			label: editFormData.label,
+			distance: editFormData.distance,
+			frequence: editFormData.frequence,
+			personnes: editFormData.personnes,
+		}
+
+		const newTrajets = [...trajets]
+
+		const index = trajets.findIndex((trajet) => trajet.id === editTrajetId)
+
+		newTrajets[index] = editedTrajet
+
+		setTrajets(newTrajets)
+		setEditTrajetId(null)
+	}
+
+	const handleEditClick = (event, trajet) => {
+		event.preventDefault()
+		setEditTrajetId(trajet.id)
+
+		const formValues = {
+			motif: trajet.motif,
+			label: trajet.label,
+			distance: trajet.distance,
+			frequence: trajet.frequence,
+			personnes: trajet.personnes,
+		}
+
+		setEditFormData(formValues)
+	}
+
+	const handleCancelClick = () => {
+		setEditTrajetId(null)
+	}
+
+	const handleDeleteClick = (trajetId) => {
+		const newTrajets = [...trajets]
+
+		const index = trajets.findIndex((trajet) => trajet.id === trajetId)
+
+		newTrajets.splice(index, 1)
+
+		setTrajets(newTrajets)
 	}
 
 	return isOpen ? (
@@ -102,7 +163,7 @@ export default function KmHelp({ sum, updateSum }) {
 					/>
 					<select
 						className="item"
-						name="fréquence"
+						name="frequence"
 						onChange={handleAddFormChange}
 					>
 						<option value="">---</option>
@@ -120,36 +181,42 @@ export default function KmHelp({ sum, updateSum }) {
 						placeholder="Nombre de personnes"
 						onChange={handleAddFormChange}
 					/>
-					<button type="submit" onClick={() => calculateSum()}>
-						Add
-					</button>
+					<button type="submit">Add</button>
 				</form>
 				<div id="table-scroll">
-					<table>
-						<thead>
-							<tr>
-								<th scope="col">Motif</th>
-								<th scope="col">Label</th>
-								<th scope="col">Distance (Aller seulement)</th>
-								<th scope="col">Fréquence</th>
-								<th scope="col">Nbre de personnes</th>
-							</tr>
-						</thead>
-						<tbody>
-							{trajets.map((trajet) => (
+					<form onSubmit={handleEditFormSubmit}>
+						<table>
+							<thead>
 								<tr>
-									<td>{trajet.motif}</td>
-									<td>{trajet.label}</td>
-									<td>{trajet.distance}</td>
-									<td>{trajet.fréquence}</td>
-									<td>{trajet.personnes}</td>
-									<td>✏️</td>
+									<th scope="col">Motif</th>
+									<th scope="col">Label</th>
+									<th scope="col">Distance (Aller seulement)</th>
+									<th scope="col">Fréquence</th>
+									<th scope="col">Nbre de personnes</th>
 								</tr>
-							))}
-						</tbody>
-					</table>
+							</thead>
+							<tbody>
+								{trajets.map((trajet) => (
+									<Fragment>
+										{editTrajetId === trajet.id ? (
+											<EditableRow
+												editFormData={editFormData}
+												handleEditFormChange={handleEditFormChange}
+												handleCancelClick={handleCancelClick}
+											/>
+										) : (
+											<ReadOnlyRow
+												trajet={trajet}
+												handleEditClick={handleEditClick}
+												handleDeleteClick={handleDeleteClick}
+											/>
+										)}
+									</Fragment>
+								))}
+							</tbody>
+						</table>
+					</form>
 				</div>
-				<div>{sum}</div>
 				<button onClick={() => setIsOpen(false)}>🧮 Close</button>
 			</div>
 		</animate.fromTop>

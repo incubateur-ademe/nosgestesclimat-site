@@ -16,8 +16,13 @@ export const freqList = [
 		value: 52,
 	},
 	{
+		name: '1 fois par mois',
+		id: '1m',
+		value: 12,
+	},
+	{
 		name: '1 fois par an',
 		id: '1a',
-		value: 12,
+		value: 1,
 	},
 ]
