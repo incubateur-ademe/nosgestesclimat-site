@@ -77,7 +77,7 @@ const slides = [
 			<h1>Ça se mesure comment ?</h1>
 			<p>Avec une unité au nom barbare : l'équivalent CO₂.</p>
 			<p>
-				Le dioxyde de carbone (CO₂
+				Le dioxyde de carbone
 				<img
 					src="/images/co2.svg"
 					css={`
@@ -87,7 +87,7 @@ const slides = [
 						height: 1.7rem;
 					`}
 				/>
-				), vous connaissez : on l'expire toute la journée. Mais c'est surtout ce
+				, vous connaissez : on l'expire toute la journée. Mais c'est surtout ce
 				que les machines qui font notre confort moderne rejettent massivement.
 			</p>
 			<div
