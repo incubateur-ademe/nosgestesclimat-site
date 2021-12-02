@@ -15,6 +15,7 @@ export default ({
 	color,
 	completed,
 	title,
+	abbreviation,
 	empreinteMaximum,
 	noText,
 	valueColor,
@@ -41,6 +42,7 @@ export default ({
 				noText={noText}
 				color={color}
 				text={title}
+				shortText={abbreviation}
 				widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
 			/>
 
@@ -53,16 +55,17 @@ export const capitalizeFirst = (text) =>
 
 const Check = ({}) => <span css="margin-left: .3rem">{emoji(' ✅')}</span>
 
-const BarContent = ({ noText, text, widthPercentage, color }) => {
+const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 	const textRef = useRef(null)
 	const barRef = useRef(null)
 	const [show, setShow] = useState(true)
+	const [usedText, setUsedText] = useState(text)
 	useEffect(() => {
 		if (!textRef.current || !barRef.current) return undefined
 		if (textRef.current.clientWidth + 10 >= barRef.current.clientWidth) {
-			setShow(false)
+			usedText === shortText ? setShow(false) : setUsedText(shortText)
 		}
-	}, [barRef, textRef])
+	}, [barRef, textRef, usedText])
 
 	return (
 		<span
@@ -93,7 +96,7 @@ const BarContent = ({ noText, text, widthPercentage, color }) => {
 						${!show && `display: none`}
 					`}
 				>
-					<span>{text}</span>
+					<span>{usedText}</span>
 				</span>
 			)}
 		</span>

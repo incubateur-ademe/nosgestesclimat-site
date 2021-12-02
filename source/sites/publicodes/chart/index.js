@@ -34,7 +34,12 @@ export default ({
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
-	const categories = extractCategories(rules, engine, details)
+	const categories = extractCategories(rules, engine, details).map(
+		(category) => ({
+			...category,
+			abbreviation: rules[category.dottedName].abbréviation,
+		})
+	)
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
 		.filter(
