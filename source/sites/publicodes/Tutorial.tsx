@@ -75,9 +75,8 @@ const slides = [
 	() => (
 		<>
 			<h1>Ça se mesure comment ?</h1>
-			<p>Avec une unité au nom barbare : l'équivalent CO₂.</p>
 			<p>
-				Le dioxyde de carbone
+				Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone
 				<img
 					src="/images/co2.svg"
 					css={`
@@ -87,8 +86,8 @@ const slides = [
 						height: 1.7rem;
 					`}
 				/>
-				, vous connaissez : on l'expire toute la journée. Mais c'est surtout ce
-				que les machines qui font notre confort moderne rejettent massivement.
+				, vous le connaissez : on l'expire toute la journée, mais sans influence
+				sur le climat.
 			</p>
 			<div
 				css={`
@@ -140,8 +139,9 @@ const slides = [
 				<CO2e />
 			</div>
 			<p>
-				À tel point qu'on le compte en milliers de kilos par an et par personne,
-				donc en <strong>tonnes</strong> de CO₂e !
+				Ce sont les machines qui font notre confort moderne qui en rejettent
+				massivement, à tel point qu'on le compte en milliers de kilos par an et
+				par personne, donc en <strong>tonnes</strong> de CO₂e !
 			</p>
 			<blockquote>
 				<p>
