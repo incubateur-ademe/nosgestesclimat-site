@@ -116,6 +116,7 @@ export default function SessionBar({
 		}
 		`
 			: ''
+
 	let buttons = [
 		<Button
 			className="simple small"
@@ -200,6 +201,8 @@ export default function SessionBar({
 			</div>
 		),
 	]
+
+	if (path === '/tutoriel') return null
 
 	return (
 		<div
