@@ -211,9 +211,9 @@ const slides = [
 						}
 					}
 					g path:nth-child(2) {
-						animation: appear 2s ease-in;
+						animation: objective-line-appear 2s ease-in;
 					}
-					@keyframes appear {
+					@keyframes objective-line-appear {
 						from {
 							opacity: 0;
 						}
