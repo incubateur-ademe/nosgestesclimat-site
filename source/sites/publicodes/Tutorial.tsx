@@ -65,7 +65,7 @@ const slides = [
 				La planète <strong>se réchauffe dangereusement</strong>, au fur et à
 				mesure des gaz à effet de serre que l'on émet.
 			</p>
-			<GreenhouseEffect css="width: 14rem" />
+			<GreenhouseEffect css="max-height: 30vh" />
 			<p>
 				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
 				<strong>une mesure de votre part </strong> dans ce réchauffement.
@@ -74,7 +74,7 @@ const slides = [
 	),
 	() => (
 		<>
-			<h1>Ça se mesure comment ?</h1>
+			<h1>On la mesure comment ?</h1>
 			<p>
 				Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone
 				<img
@@ -251,7 +251,11 @@ const slides = [
 				Prendre la voiture, manger un steak, chauffer sa maison, se faire
 				soigner, acheter une TV...
 			</p>
-			<div css="margin:.6rem 0 1rem">
+			<div
+				css={`
+					margin: 0.6rem 0 1rem;
+				`}
+			>
 				<Chart />
 			</div>
 			<p>

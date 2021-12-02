@@ -13,6 +13,9 @@ export default ({ children, last, skip }) => {
 				h1 {
 					margin-top: 1rem;
 					font-size: 160%;
+					@media (max-height: 600px) {
+						font-size: 140%;
+					}
 				}
 				border: 2px solid var(--color);
 			`}
