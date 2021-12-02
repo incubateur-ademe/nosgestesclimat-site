@@ -36,7 +36,7 @@ export default () => {
 			<Illustration
 				css={`
 					width: 60%;
-					height: 100%;
+					height: auto;
 					border-radius: 0.8rem;
 					@media (max-width: 800px) {
 						width: 95%;
