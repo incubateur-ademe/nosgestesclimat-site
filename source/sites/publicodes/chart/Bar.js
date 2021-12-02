@@ -28,6 +28,7 @@ export default ({
 				height: 1.3rem;
 				position: relative;
 			`}
+			title={title}
 		>
 			<span
 				css={`
