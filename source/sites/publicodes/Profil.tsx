@@ -13,6 +13,8 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
+import { skipTutorial } from '../../actions/actions'
+import { useHistory } from 'react-router'
 
 export default ({}) => {
 	const dispatch = useDispatch()
@@ -22,7 +24,7 @@ export default ({}) => {
 	const hasData =
 		answeredQuestionsLength > 0 ||
 		Object.entries(tutorials).find(([k, v]) => v != null)
-	console.log(tutorials)
+	const history = useHistory()
 	const actionChoicesLength = Object.keys(
 		useSelector((state) => state.actionChoices)
 	).length
@@ -45,6 +47,19 @@ export default ({}) => {
 				)}
 				{hasData ? (
 					<div>
+						{tutorials.testIntro && (
+							<div>
+								<button
+									className="ui__ dashed-button"
+									onClick={() => {
+										dispatch(skipTutorial('testIntro', true))
+										history.push('/tutoriel')
+									}}
+								>
+									{emoji('🧑‍🏫')} Revoir le tutoriel
+								</button>
+							</div>
+						)}
 						{answeredQuestionsLength > 0 && (
 							<p>
 								Vous avez répondu à {answeredQuestionsLength} questions et
