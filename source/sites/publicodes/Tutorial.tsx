@@ -144,9 +144,11 @@ const slides = [
 				par personne, donc en <strong>tonnes</strong> de CO₂e !
 			</p>
 			<blockquote>
-				<p>
-					{emoji('💡')}&nbsp; Et ce petit <em>e</em> ? D'autres gaz, surtout le
-					méthane&nbsp;
+				<details>
+					<summary>
+						{emoji('💡')}&nbsp; Mais que veut dire ce petit <em>e</em> ?
+					</summary>{' '}
+					D'autres gaz, surtout le méthane&nbsp;
 					<img
 						src="/images/methane.svg"
 						css="width: 1.8rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
@@ -156,9 +158,9 @@ const slides = [
 						src="/images/n2o.svg"
 						css="width: 3rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
 					/>{' '}
-					réchauffent aussi la planète : on les convertit en CO₂ pour simplifier
-					la mesure.{' '}
-				</p>
+					réchauffent aussi la planète : on convertit leur potentiel de
+					réchauffement en équivalent CO₂ pour simplifier la mesure.{' '}
+				</details>
 			</blockquote>
 		</>
 	),
