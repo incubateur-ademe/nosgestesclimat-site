@@ -14,17 +14,12 @@ export default ({
 	valueColor,
 }) => (
 	<>
-		{!noText && (
-			<div css="color: var(--textColorOnWhite)">
-				<span>{title}</span>
-				{completed && <Check />}
-			</div>
-		)}
 		<div
 			css={`
 				display: flex;
 				align-items: center;
-				height: 1rem;
+				height: 1.3rem;
+				position: relative;
 			`}
 		>
 			<span
@@ -42,13 +37,30 @@ export default ({
 					background: ${color};
 					margin-top: 0rem;
 					margin-right: 0.8rem;
-					height: 1.1rem;
+					height: 1.3rem;
 					padding-left: 0.1rem;
-					border-radius: 0.4rem;
+					border-radius: 1rem;
 					width: ${(nodeValue / empreinteMaximum) * 100 * 0.85}%;
 					color: white;
 				`}
-			></span>
+			>
+				{!noText && (
+					<div
+						css={`
+							position: absolute;
+							margin-left: 0.6rem;
+							opacity: 0.9;
+							font-weight: bold;
+							color: white;
+							font-size: 80%;
+							line-height: 1.3rem;
+						`}
+					>
+						<span>{title}</span>
+						{completed && <Check />}
+					</div>
+				)}
+			</span>
 			<Value {...{ nodeValue, completed, color: valueColor }} />
 		</div>
 	</>
