@@ -86,16 +86,10 @@ const Simulateur = (props) => {
 			) : (
 				<Redirect to="/tutoriel" />
 			)}
-			{tutorials.testIntro && <BandeauContribuer />}
+			<BandeauContribuer />
 		</div>
 	)
 }
-
-let PeriodBlock = () => (
-	<div css="display: flex; justify-content: center">
-		<PeriodSwitch />
-	</div>
-)
 
 const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
