@@ -59,7 +59,7 @@ const BarContent = ({ noText, text, widthPercentage, color }) => {
 	const [show, setShow] = useState(true)
 	useEffect(() => {
 		if (!textRef.current || !barRef.current) return undefined
-		if (textRef.current.clientWidth >= barRef.current.clientWidth) {
+		if (textRef.current.clientWidth + 10 >= barRef.current.clientWidth) {
 			setShow(false)
 		}
 	}, [barRef, textRef])
