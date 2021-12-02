@@ -58,6 +58,7 @@ export default ({
 					font-size: 140%;
 				}
 				padding: 0;
+				margin: 1rem 0;
 			`}
 		>
 			<div
