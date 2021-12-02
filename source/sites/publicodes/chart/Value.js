@@ -12,16 +12,15 @@ export default ({ nodeValue, color, completed }) => {
 			`}
 		>
 			{value}&nbsp;{unit}{' '}
-			{completed && (
-				<img
-					src="/images/2714.svg"
-					css={`
-						display: inline;
-						width: 1.2rem;
-						margin-left: 0.2rem;
-					`}
-				/>
-			)}
+			<img
+				src="/images/2714.svg"
+				css={`
+					visibility: ${completed ? 'visible' : 'hidden'};
+					display: inline;
+					width: 1.2rem;
+					margin-left: 0.2rem;
+				`}
+			/>
 		</span>
 	)
 }
