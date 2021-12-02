@@ -1,4 +1,10 @@
-import React, { createRef, useLayoutEffect, useRef, useState } from 'react'
+import React, {
+	createRef,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react'
 import { shadowStyle } from '../styles'
 import Value from './Value'
 import emoji from 'react-easy-emoji'
@@ -51,8 +57,8 @@ const BarContent = ({ noText, text, widthPercentage, color }) => {
 	const textRef = useRef(null)
 	const barRef = useRef(null)
 	const [show, setShow] = useState(true)
-	useLayoutEffect(() => {
-		if (!textRef.current || !barRef.current) return null
+	useEffect(() => {
+		if (!textRef.current || !barRef.current) return undefined
 		if (textRef.current.clientWidth >= barRef.current.clientWidth) {
 			setShow(false)
 		}
@@ -82,7 +88,7 @@ const BarContent = ({ noText, text, widthPercentage, color }) => {
 						opacity: 0.9;
 						font-weight: bold;
 						color: white;
-						font-size: 80%;
+						font-size: 90%;
 						line-height: 1.3rem;
 						${!show && `display: none`}
 					`}
