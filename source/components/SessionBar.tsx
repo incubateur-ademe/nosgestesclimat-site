@@ -15,8 +15,16 @@ import CarbonImpact from '../sites/publicodes/CarbonImpact'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 
-export const actionImg = 'https://openmoji.org/data/black/svg/E10C.svg'
-export const conferenceImg = 'https://openmoji.org/data/black/svg/1F3DF.svg'
+const openmojis = {
+	test: '25B6',
+	action: 'E10C',
+	conference: '1F3DF',
+	profile: '1F464',
+	personas: '1F465',
+}
+const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
+export const actionImg = openmojiURL('action')
+export const conferenceImg = openmojiURL('conference')
 
 const Button = styled.button`
 	margin: 0 0.2rem;
@@ -117,10 +125,7 @@ export default function SessionBar({
 			}}
 			css={buttonStyle('simulateur')}
 		>
-			<img
-				src="https://openmoji.org/data/black/svg/25B6.svg"
-				css="width: 2rem"
-			/>
+			<img src={openmojiURL('test')} css="width: 2rem" />
 			Le test
 		</Button>,
 		<Button
@@ -138,10 +143,7 @@ export default function SessionBar({
 			onClick={() => history.push('/profil')}
 			css={buttonStyle('profil')}
 		>
-			<img
-				src="https://openmoji.org/data/black/svg/1F464.svg"
-				css="width: 2rem"
-			/>
+			<img src={openmojiURL('profile')} css="width: 2rem" />
 			Mon profil
 		</Button>,
 		NODE_ENV === 'development' && (
@@ -151,10 +153,7 @@ export default function SessionBar({
 				onClick={() => history.push('/personas')}
 				css={buttonStyle('personas')}
 			>
-				<img
-					src="https://openmoji.org/data/black/svg/1F465.svg"
-					css="width: 2rem"
-				/>
+				<img src={openmojiURL('personas')} css="width: 2rem" />
 				Personas
 			</Button>
 		),
