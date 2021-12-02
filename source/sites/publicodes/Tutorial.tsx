@@ -75,7 +75,7 @@ const slides = [
 			<h1>Ça se mesure comment ?</h1>
 			<p>Avec une unité au nom barbare : l'équivalent CO₂.</p>
 			<p>
-				Le dioxyde de carbone (CO₂{' '}
+				Le dioxyde de carbone (CO₂
 				<img
 					src="/images/co2.svg"
 					css={`
@@ -85,9 +85,8 @@ const slides = [
 						height: 1.7rem;
 					`}
 				/>
-				), vous connaissez : on l'expire toute la journée... mais c'est surtout
-				ce que les machines qui font notre confort moderne rejettent, en
-				quantités massives.
+				), vous connaissez : on l'expire toute la journée. Mais c'est surtout ce
+				que les machines qui font notre confort moderne rejettent massivement.
 			</p>
 			<div
 				css={`
@@ -144,8 +143,8 @@ const slides = [
 			</p>
 			<blockquote>
 				<p>
-					{emoji('💡')}&nbsp; Et d'où vient ce petit <em>e</em> ? D'autres gaz,
-					surtout le méthane&nbsp;
+					{emoji('💡')}&nbsp; Et ce petit <em>e</em> ? D'autres gaz, surtout le
+					méthane&nbsp;
 					<img
 						src="/images/methane.svg"
 						css="width: 1.8rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
@@ -154,9 +153,9 @@ const slides = [
 					<img
 						src="/images/n2o.svg"
 						css="width: 3rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
-					/>
-					, réchauffent aussi la planète : on les convertit en CO₂ pour
-					simplifier la mesure.{' '}
+					/>{' '}
+					réchauffent aussi la planète : on les convertit en CO₂ pour simplifier
+					la mesure.{' '}
 				</p>
 			</blockquote>
 		</>
@@ -245,10 +244,10 @@ const slides = [
 		<>
 			<h1>D'où vient notre empreinte ?</h1>
 			<p>
-				Faire des km en voiture, manger un steak, chauffer sa maison, se faire
-				soigner, acheter une nouvelle chaise ou télévision...
+				Prendre la voiture, manger un steak, chauffer sa maison, se faire
+				soigner, acheter une TV...
 			</p>
-			<div css="margin:2rem">
+			<div css="margin:.6rem 0 1rem">
 				<Chart />
 			</div>
 			<p>
@@ -267,8 +266,8 @@ const slides = [
 			</blockquote>
 			<blockquote>
 				{emoji('💼')}&nbsp; Répondez pour votre vie perso, pas pour votre boulot
-				(ou vos études). <em>Une seule exception </em>: votre trajet
-				domicile-travail doit être inclus dans les km parcourus.
+				ou études. <em>Une seule exception </em>: votre trajet domicile-travail
+				doit être inclus dans les km parcourus.
 			</blockquote>
 			<blockquote>
 				{emoji('❓️')}&nbsp; D'autres questions ? Consultez notre{' '}
