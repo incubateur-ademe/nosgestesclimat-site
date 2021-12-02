@@ -10,11 +10,13 @@ import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
+import { Redirect } from 'react-router'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
 
-	if (tutorials['testIntro']) return null
+	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
+
 	const tutos = Object.entries(tutorials)
 		.map(([k, v]) => v != null && k.split('testIntro')[1])
 		.filter(Boolean)

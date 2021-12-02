@@ -84,7 +84,7 @@ const Simulateur = (props) => {
 					}
 				/>
 			) : (
-				<Tutorial tutorials={tutorials} />
+				<Redirect to="/tutoriel" />
 			)}
 			{tutorials.testIntro && <BandeauContribuer />}
 		</div>

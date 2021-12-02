@@ -17,7 +17,8 @@ import { buildEndURL } from '../../components/SessionBar'
 import { disabledAction, supersededAction } from './ActionVignette'
 
 export default ({ actionMode = false, demoMode = false }) => {
-	const objectif = actionMode ? 'bilan' : useSelector(objectifsSelector)[0],
+	const objectif =
+			actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0],
 		// needed for this component to refresh on situation change :
 		situation = useSelector(situationSelector),
 		engine = useEngine(),
