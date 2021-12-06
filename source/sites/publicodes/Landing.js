@@ -1,12 +1,15 @@
 import LogoADEME from 'Images/LogoADEME'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
+import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
 import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
 
 export default () => {
+	const tracker = useContext(TrackerContext)
 	return (
 		<div
 			css={`
@@ -46,7 +49,13 @@ export default () => {
 			/>
 			<div css="margin: 1rem 0">
 				<div>
-					<Link to="/simulateur/bilan" className="ui__ plain button cta">
+					<Link
+						to="/simulateur/bilan"
+						className="ui__ plain button cta"
+						onClick={() =>
+							tracker.push(['trackEvent', 'NGC', 'Clic CTA accueil'])
+						}
+					>
 						Faire le test
 					</Link>
 				</div>

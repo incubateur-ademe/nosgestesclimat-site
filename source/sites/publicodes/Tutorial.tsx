@@ -11,6 +11,8 @@ import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import { Redirect } from 'react-router'
+import { useContext } from 'react'
+import { TrackerContext } from '../../components/utils/withTracker'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -26,10 +28,19 @@ export default ({}) => {
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
+	const tracker = useContext(TrackerContext)
 
 	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
 		last = index === slides.length - 1,
-		next = () => skip(last ? 'testIntro' : 'testIntro' + index),
+		next = () => {
+			tracker.push([
+				'trackEvent',
+				'testIntro',
+				last ? `tuto passé` : `diapo ${index} passée`,
+			])
+
+			skip(last ? 'testIntro' : 'testIntro' + index)
+		},
 		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
 	return (
