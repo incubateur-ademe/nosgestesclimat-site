@@ -1,11 +1,12 @@
 import { motion } from 'framer-motion'
-import React, { useState, Children } from 'react'
+import React, { useState, useContext, Children } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { Card } from './ActionCard'
 import ActionConversation from './ActionConversation'
 import { ActionGameCard } from './ActionVignette'
+import { TrackerContext } from '../../components/utils/withTracker'
 
 // basic default styles for container
 const Frame = styled.div`
@@ -17,6 +18,8 @@ const Frame = styled.div`
 `
 
 export default ({ onVote, actions, total }) => {
+	const tracker = useContext(TrackerContext)
+
 	const [stack, setStack] = useState(actions)
 
 	const rules = useSelector((state) => state.rules)
@@ -32,6 +35,8 @@ export default ({ onVote, actions, total }) => {
 		// update the stack
 		let newStack = pop(stack)
 		setStack(newStack)
+
+		tracker.push(['trackEvent', 'NGC', 'Nbre votes cartes action'])
 
 		// run function from onVote prop, passing the current item and value of vote
 		onVote(item, vote)
