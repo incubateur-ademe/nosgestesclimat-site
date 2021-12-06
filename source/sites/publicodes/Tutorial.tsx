@@ -47,6 +47,12 @@ export default ({}) => {
 		<div
 			css={`
 				height: 70vh;
+				@media (max-width: 800px) {
+					height: 95vh;
+				}
+				@media (min-aspect-ratio: 1280/700) {
+					height: 95vh;
+				}
 				position: relative;
 				display: flex;
 				justify-content: center;
@@ -185,14 +191,7 @@ const slides = [
 			<AbacusFrance css="width:10rem; height: 100%" />
 			<p>
 				C'est votre point de départ dans ce test : chaque réponse que vous
-				donnerez va personnaliser ce résultat dans la barre{' '}
-				<span css="@media(min-width: 800px){display: none}">
-					ci-dessous {emoji('⤵️')}{' '}
-				</span>
-				<span css="@media(max-width: 800px){display: none}">
-					ci-dessus {emoji('⤴️')}{' '}
-				</span>
-				.
+				donnerez va personnaliser ce résultat dans la barre de résultat.
 			</p>
 			<div css="margin: 1rem 0">
 				<CarbonImpact demoMode />
