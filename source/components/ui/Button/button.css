@@ -59,9 +59,8 @@
 	);
 	background-image: linear-gradient(
 		50deg,
-		var(--darkColor) -50%,
-		var(--color) 50%,
-		var(--lightColor) 55%
+		var(--darkestColor) -50%,
+		var(--color) 30%
 	);
 
 	color: white;
