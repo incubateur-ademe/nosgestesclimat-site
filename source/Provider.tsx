@@ -87,6 +87,19 @@ export default function Provider({
 			'couleur'
 		) ?? undefined
 
+	const urlParams = new URLSearchParams(window.location.search)
+	const isIframe = urlParams.get('iframe'),
+		integratorUrl = isIframe && urlParams.get('integratorUrl')
+
+	tracker &&
+		tracker.push([
+			'setCustomVariable',
+			'1',
+			'visite depuis iframe ?',
+			!isIframe ? 'non' : integratorUrl,
+			'visit',
+		])
+
 	return (
 		// If IE < 11 display nothing
 		<ReduxProvider store={store}>

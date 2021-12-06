@@ -81,6 +81,7 @@ export default function Root({}) {
 const Main = ({}) => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/'
+
 	return (
 		<div
 			className="ui__ container"
