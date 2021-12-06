@@ -4,7 +4,7 @@
 	"display": "standalone",
 	"lang": "fr",
 	"orientation": "portrait-primary",
-	"theme_color": "#2975D1",
+	"theme_color": "#532fc5",
 	"icons": [
 		{
 			"src": "/images/logo.svg",

@@ -1,5 +1,4 @@
 import React from 'react'
-import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 
 const DocumentationButton = (props) => {
@@ -14,7 +13,6 @@ const DocumentationButton = (props) => {
 				}
 			`}
 		>
-			{emoji('📄')}
 			<Link {...props} to={'/documentation'}>
 				Documentation
 			</Link>

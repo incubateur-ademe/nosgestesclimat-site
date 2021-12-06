@@ -1,7 +1,9 @@
-import emoji from 'react-easy-emoji'
+import { Twemoji } from 'Components/emoji'
+import { getEmojiComponents } from './emoji'
 
 export default ({ emojiBackground = '#ffffffa6', emojis }) => {
-	const emojiComponents = emoji(emojis || '')
+	const emojiComponents = getEmojiComponents(emojis || '')
+
 	return (
 		<span
 			css={`

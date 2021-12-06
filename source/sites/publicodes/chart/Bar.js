@@ -1,4 +1,10 @@
-import React from 'react'
+import React, {
+	createRef,
+	useEffect,
+	useLayoutEffect,
+	useRef,
+	useState,
+} from 'react'
 import { shadowStyle } from '../styles'
 import Value from './Value'
 import emoji from 'react-easy-emoji'
@@ -9,23 +15,20 @@ export default ({
 	color,
 	completed,
 	title,
+	abbreviation,
 	empreinteMaximum,
 	noText,
 	valueColor,
 }) => (
 	<>
-		{!noText && (
-			<div css="color: var(--textColorOnWhite)">
-				<span>{title}</span>
-				{completed && <Check />}
-			</div>
-		)}
 		<div
 			css={`
 				display: flex;
 				align-items: center;
-				height: 1rem;
+				height: 1.3rem;
+				position: relative;
 			`}
+			title={title}
 		>
 			<span
 				css={`
@@ -36,19 +39,14 @@ export default ({
 			>
 				{emoji(icons)}
 			</span>
-			<span
-				css={`
-					display: inline-block;
-					background: ${color};
-					margin-top: 0rem;
-					margin-right: 0.8rem;
-					height: 1.1rem;
-					padding-left: 0.1rem;
-					border-radius: 0.4rem;
-					width: ${(nodeValue / empreinteMaximum) * 100 * 0.85}%;
-					color: white;
-				`}
-			></span>
+			<BarContent
+				noText={noText}
+				color={color}
+				text={title}
+				shortText={abbreviation}
+				widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
+			/>
+
 			<Value {...{ nodeValue, completed, color: valueColor }} />
 		</div>
 	</>
@@ -57,3 +55,51 @@ export const capitalizeFirst = (text) =>
 	text[0].toUpperCase() + text.slice(1, text.length)
 
 const Check = ({}) => <span css="margin-left: .3rem">{emoji(' ✅')}</span>
+
+const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
+	const textRef = useRef(null)
+	const barRef = useRef(null)
+	const [show, setShow] = useState(true)
+	const [usedText, setUsedText] = useState(text)
+	useEffect(() => {
+		if (!textRef.current || !barRef.current) return undefined
+		if (textRef.current.clientWidth + 10 >= barRef.current.clientWidth) {
+			usedText === shortText ? setShow(false) : setUsedText(shortText)
+		}
+	}, [barRef, textRef, usedText])
+
+	return (
+		<span
+			ref={barRef}
+			css={`
+				display: inline-block;
+				background: ${color};
+				margin-top: 0rem;
+				margin-right: 0.8rem;
+				height: 1.3rem;
+				padding-left: 0.1rem;
+				border-radius: 1rem;
+				width: ${widthPercentage}%;
+				color: white;
+			`}
+		>
+			{!noText && (
+				<span
+					ref={textRef}
+					css={`
+						position: absolute;
+						margin-left: 0.6rem;
+						opacity: 0.9;
+						font-weight: bold;
+						color: white;
+						font-size: 90%;
+						line-height: 1.3rem;
+						${!show && `display: none`}
+					`}
+				>
+					<span>{usedText}</span>
+				</span>
+			)}
+		</span>
+	)
+}
