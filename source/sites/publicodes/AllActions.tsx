@@ -11,9 +11,29 @@ import animate from 'Components/ui/animate'
 import { ScrollToElement } from '../../components/utils/Scroll'
 import DisableScroll from '../../components/utils/DisableScroll'
 import IllustratedButton from '../../components/IllustratedButton'
+import styled from 'styled-components'
 
-export default ({ actions, bilans, rules, focusedAction, focusAction }) => {
+const thresholds = [
+	[10000, 'plus de 10 tonnes'],
+	[1000, "plus d'1 tonne"],
+	[100, 'plus de 100 kg'],
+	[10, 'plus de 10 kg'],
+	[1, "plus d'1 kg"],
+]
+
+export default ({
+	actions: rawActions,
+	bilans,
+	rules,
+	focusedAction,
+	focusAction,
+}) => {
 	const engine = useContext(EngineContext)
+
+	const actions = rawActions.map((a) => ({
+		...a,
+		value: correctValue({ nodeValue: a.nodeValue, unit: a.unit }),
+	}))
 
 	const actionChoices = useSelector((state) => state.actionChoices)
 	const rejected = actions.filter((a) => actionChoices[a.dottedName] === false)
@@ -22,18 +42,9 @@ export default ({ actions, bilans, rules, focusedAction, focusAction }) => {
 	)
 	const maxImpactAction = notRejected.reduce(
 		(memo, next) => {
-			const nextValue = correctValue({
-				nodeValue: next.nodeValue,
-				unit: next.unit,
-			})
-
-			const memoValue = correctValue({
-				nodeValue: memo.nodeValue,
-				unit: memo.unit,
-			})
-			return nextValue > memoValue ? { ...next, value: nextValue } : memo
+			return next.value > memo.value ? next : memo
 		},
-		{ nodeValue: 0 }
+		{ value: 0 }
 	)
 
 	return (
@@ -55,17 +66,31 @@ export default ({ actions, bilans, rules, focusedAction, focusAction }) => {
 					</div>
 				</animate.fromTop>
 			)}
-			<List
-				{...{
-					actions: notRejected,
-					rules,
-					bilans,
-					actionChoices,
 
-					focusAction,
-					focusedAction,
-				}}
-			/>
+			{thresholds.map(
+				([threshold, label], index) =>
+					notRejected.find(({ value }) => value >= threshold) && (
+						<div>
+							<List
+								{...{
+									actions: notRejected.filter(
+										(a) =>
+											a.value >= threshold &&
+											(index === 0 || a.value < thresholds[index - 1][0])
+									),
+									rules,
+									bilans,
+									actionChoices,
+									focusAction,
+									focusedAction,
+								}}
+							/>
+							<ThresholdSeparator>
+								<h4>{label} &#9650;</h4>
+							</ThresholdSeparator>
+						</div>
+					)
+			)}
 			{rejected.length > 0 && (
 				<div>
 					<h2>Actions écartées</h2>
@@ -176,3 +201,20 @@ const List = ({
 		</AnimatePresence>
 	</ul>
 )
+
+const ThresholdSeparator = styled.div`
+	width: 100%;
+	height: 2rem;
+	text-align: center;
+	margin-bottom: 1rem;
+
+	h4 {
+		border-bottom: 1px dashed #aaa;
+		display: inline-block;
+		font-weight: 400;
+		padding: 0 0.8rem;
+		background: var(--color);
+		color: white;
+		border-radius: 1rem;
+	}
+`
