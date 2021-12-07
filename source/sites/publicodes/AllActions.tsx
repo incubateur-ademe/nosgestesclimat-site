@@ -14,11 +14,11 @@ import IllustratedButton from '../../components/IllustratedButton'
 import styled from 'styled-components'
 
 const thresholds = [
-	[10000, '10 tonnes'],
-	[1000, '1 tonne'],
-	[100, '100 kg'],
-	[10, '10 kg'],
-	[1, '1 kg'],
+	[10000, 'plus de 10 tonnes'],
+	[1000, "plus d'1 tonne"],
+	[100, 'plus de 100 kg'],
+	[10, 'plus de 10 kg'],
+	[1, "plus d'1 kg"],
 ]
 
 export default ({
