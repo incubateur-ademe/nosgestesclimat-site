@@ -416,12 +416,12 @@
       valeur: 3
       unité: l / semaine
     alimentation . boisson . eau en bouteille . affirmatif: non
-    alimentation . plats . viande 2 . nombre: 5
-    alimentation . plats . viande 1 . nombre: 7
+    alimentation . plats . viande 2 . nombre: 6
+    alimentation . plats . viande 1 . nombre: 6
     alimentation . plats . végétarien . nombre: 2
     alimentation . plats . végétalien . nombre: 0
     transport . voiture . km:
-      valeur: 5000
+      valeur: 15000
       unité: km / an
     transport . voiture . propriétaire: oui
     transport . voiture . gabarit: "'moyenne'"
@@ -430,13 +430,22 @@
       unité: années
     transport . voiture . motorisation: "'thermique'"
     transport . voiture . voyageurs:
-      valeur: 1
+      valeur: 1.2
       unité: voyageurs
     transport . voiture . thermique . consommation aux 100:
       valeur: 7
       unité: l / centkm
     transport . deux roues thermique . usager: non
-    transport . avion . usager: non
+    transport . avion . usager: oui
+    transport . avion . court courrier . heures de vol:
+      valeur: 0
+      unité: h / an
+    transport . avion . moyen courrier . heures de vol:
+      valeur: 0
+      unité: h / an
+    transport . avion . long courrier . heures de vol:
+      valeur: 20
+      unité: h / an
     transport . bus . heures par semaine:
       valeur: 6
       unité: heure / semaine
@@ -466,13 +475,24 @@
       unité: kWh
     logement . fioul . chauffage au fioul: oui
     logement . fioul . consommation:
-      valeur: 600
+      valeur: 2600
       unité: litre
     logement . bois . chauffage au bois: non
     divers . électroménager . préservation: "'moyen'"
     divers . électroménager . mini réfrigérateur . présent: non
+    divers . électroménager . robot cuisine . présent: oui
+    divers . électroménager . réfrigérateur . présent: oui
+    divers . électroménager . lave-linge . présent: oui
+    divers . électroménager . sèche-linge . présent: oui
+    divers . électroménager . lave-vaisselle . présent: oui
+    divers . électroménager . four . présent: oui
+    divers . électroménager . micro-ondes . présent: oui
+    divers . électroménager . bouilloire . présent: oui
+    divers . électroménager . cafetière . présent: oui
+    divers . électroménager . aspirateur . présent: oui
+    divers . électroménager . tondeuse électrique . présent: oui
     divers . autres produits . montant:
-      valeur: 300
+      valeur: 2000
       unité: an
     divers . textile . t-shirt . nombre: 4
     divers . textile . pantalon . nombre: 2
