@@ -1,9 +1,8 @@
-import { AnimatePresence, motion } from 'framer-motion'
-import emoji from 'react-easy-emoji'
-import styled from 'styled-components'
 import { extractCategories } from 'Components/publicodesUtils'
-import SubCategoryBar from './SubCategoryBar'
+import { AnimatePresence } from 'framer-motion'
+import styled from 'styled-components'
 import { shadowStyle } from './styles'
+import SubCategoryBar from './SubCategoryBar'
 
 export default ({ rules, engine, sumToDisplay, color, total }) => {
 	const subCategories = extractCategories(

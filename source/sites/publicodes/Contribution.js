@@ -88,7 +88,7 @@ export default ({}) => {
 					{JSON.stringify(structuredFAQ)}
 				</script>
 			</Meta>
-			<h1>Contribuer</h1>
+			<h1>Questions fréquentes</h1>
 			<p>
 				Vous trouverez ici les réponses aux questions les plus fréquentes. S’il
 				vous reste des interrogations ou si vous souhaitez nous proposer des

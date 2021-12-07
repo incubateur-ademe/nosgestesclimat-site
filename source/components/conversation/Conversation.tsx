@@ -167,7 +167,7 @@ export default function Conversation({
 		((mosaicQuestion &&
 			(mosaicQuestion.description ||
 				rules[mosaicQuestion.dottedName].rawNode.description)) ||
-			rules[currentQuestion].rawNode.description) != null
+			rules[currentQuestion]?.rawNode.description) != null
 
 	return orderByCategories &&
 		isCategoryFirstQuestion &&

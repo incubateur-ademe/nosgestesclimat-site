@@ -2,7 +2,7 @@
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
-const { EnvironmentPlugin } = require('webpack')
+const { EnvironmentPlugin, NormalModuleReplacementPlugin } = require('webpack')
 
 module.exports.default = {
 	watchOptions: {
@@ -39,14 +39,19 @@ module.exports.default = {
 			'./manifest.webmanifest',
 			'./source/sites/publicodes/sitemap.txt',
 			'./iframeResizer.contentWindow.min.js',
-			'./source/images/nosgestesclimat.png',
-			'./source/images/dessin-nosgestesclimat.png',
-			'./source/images/transparent.png',
+			{
+				from: './source/images',
+				to: 'images',
+			},
 			{
 				from: './source/data',
 				to: 'data',
 			},
 		]),
+		new NormalModuleReplacementPlugin(
+			/react-easy-emoji/,
+			'Components/emoji.js'
+		),
 	],
 }
 
@@ -109,13 +114,26 @@ module.exports.commonLoaders = (mode = 'production') => {
 			exclude: /node_modules|dist/,
 		},
 		{
-			test: /\.(jpe?g|png|svg)$/,
+			test: /\.(jpe?g|png)$/,
 			use: {
 				loader: 'file-loader',
 				options: {
 					name: 'images/[name].[ext]',
 				},
 			},
+		},
+		{
+			test: /\.svg$/,
+			issuer: /\.[jt]sx?$/,
+			use: [
+				{
+					loader: '@svgr/webpack',
+					options: {
+						throwIfNamespace: false,
+						replaceAttrValues: { '#4143d6': 'var(--color)' },
+					},
+				},
+			],
 		},
 		{
 			test: /\.yaml$/,
