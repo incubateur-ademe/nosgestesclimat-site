@@ -398,6 +398,7 @@
     numérique . internet . durée journalière:
       valeur: 4
       unité: heure
+      
 - nom: Ximun d'Arcangues
   résumé: |
     Bus pour le travail. À 2 dans ferme mal isolée, chauffée au fioul. Plutôt viande.
@@ -589,3 +590,163 @@
     logement . chauffage . bois . type . granulés . consommation:
       valeur: 5000
       unité: kWh
+
+- nom: Nadia de Marseille
+  résumé: |
+    Aime bien la mode. Roule en SUV, et s'envole pour des weekends en Europe et d'autres continents pour les vacances.
+  icônes: ✈️👗
+  data:
+    transport . voiture . km:
+      valeur: 20000
+      unité: km / an
+    transport . voiture . propriétaire: oui
+    transport . voiture . gabarit: "'SUV'"
+    transport . voiture . âge:
+      valeur: 3
+      unité: années
+    transport . voiture . motorisation: "'thermique'"
+    transport . voiture . voyageurs:
+      valeur: 1.2
+      unité: voyageurs
+    transport . voiture . thermique . consommation aux 100:
+      valeur: 10
+      unité: l / centkm
+    transport . deux roues thermique . usager: non
+    transport . avion . usager: oui
+    transport . avion . court courrier . heures de vol:
+      valeur: 8
+      unité: h / an
+    transport . avion . moyen courrier . heures de vol:
+      valeur: 6
+      unité: h / an
+    transport . avion . long courrier . heures de vol:
+      valeur: 14
+      unité: h / an
+    alimentation . déchets . niveau d'engagement: "'affirmatif'"
+    alimentation . local . consommation: "'oui toujours'"
+    alimentation . plats . végétalien . nombre: 1
+    alimentation . plats . végétarien . nombre: 1
+    alimentation . plats . viande 1 . nombre: 4
+    alimentation . plats . viande 2 . nombre: 4
+    alimentation . plats . poisson 1 . nombre: 2
+    alimentation . plats . poisson 2 . nombre: 2
+    divers . textile . t-shirt . nombre: 4
+    divers . textile . pantalon . nombre: 2
+    divers . textile . short . nombre: 0
+    divers . textile . robe . nombre: 4
+    divers . textile . sweat . nombre: 2
+    divers . textile . chaussure . nombre: 4
+    divers . textile . manteau . nombre: 2
+    numérique . téléphone . durée:
+      valeur: 2
+      unité: an
+    numérique . ordinateur portable . durée:
+      valeur: 3
+      unité: an
+    numérique . ordinateur fixe . durée:
+      valeur: 5
+      unité: an
+    numérique . TV . durée:
+      valeur: 2
+      unité: an
+    numérique . téléphone . type: "'smartphone haut de gamme'"
+    numérique . internet . durée journalière:
+      valeur: 4
+      unité: heure
+      
+- nom: Serge de Libourne
+  résumé: Voiture pour travail (30km) et weekends fréquents. Maison récente, chauffage gaz. Branché viande et tech.
+  description: |
+    Vacances & weekend en voiture avec sa femme. Habite dans une maison moderne. Chauffage gaz.
+    Adore la viande. Branché tech.
+  icônes:🥩📺
+  data:
+    alimentation . déchets . niveau d'engagement: "'pas du tout'"
+    alimentation . petit déjeuner . type: "'lait céréales'"
+    alimentation . lait . type: "'lait de vache'"
+    alimentation . boisson . sucrées . litres:
+      valeur: 1
+      unité: l / semaine
+    alimentation . boisson . alcool . litres:
+      valeur: 3
+      unité: l / semaine
+    alimentation . boisson . eau en bouteille . affirmatif: oui
+    alimentation . plats . viande 2 . nombre: 9
+    alimentation . plats . viande 1 . nombre: 5
+    alimentation . plats . végétarien . nombre: 0
+    alimentation . plats . végétalien . nombre: 0
+    alimentation . plats . poisson 1 . nombre: 0
+    alimentation . plats . poisson 2 . nombre: 0
+    logement . surface:
+      valeur: 150
+      unité: m2
+    logement . habitants:
+      valeur: 2
+      unité: personnes
+    logement . électricité . consommation:
+      valeur: 7000
+      unité: kWh
+    logement . fioul . chauffage au fioul: non
+    logement . gaz . chauffage au gaz: oui
+    logement . gaz . consommation:
+      valeur: 15000
+      unité: kWh
+    logement . bois . chauffage au bois: non
+    logement . âge:
+      valeur: 10
+      unité: an
+    logement . éco-construit: non
+    logement . appartement: non
+    divers . électroménager . préservation: "'achat neuf'"
+    divers . électroménager . mini réfrigérateur . présent: non
+    divers . électroménager . robot cuisine . présent: oui
+    divers . électroménager . réfrigérateur . présent: oui
+    divers . électroménager . lave-linge . présent: oui
+    divers . électroménager . sèche-linge . présent: oui
+    divers . électroménager . lave-vaisselle . présent: oui
+    divers . électroménager . four . présent: oui
+    divers . électroménager . micro-ondes . présent: oui
+    divers . électroménager . bouilloire . présent: oui
+    divers . électroménager . cafetière . présent: oui
+    divers . électroménager . aspirateur . présent: oui
+    divers . électroménager . tondeuse électrique . présent: oui
+    divers . autres produits . montant:
+      valeur: 2000
+      unité: an
+    divers . textile . t-shirt . nombre: 4
+    divers . textile . pantalon . nombre: 2
+    divers . textile . short . nombre: 0
+    divers . textile . robe . nombre: 0
+    divers . textile . sweat . nombre: 1
+    divers . textile . chaussure . nombre: 2
+    divers . textile . manteau . nombre: 1
+    numérique . téléphone . durée:
+      valeur: 2
+      unité: an
+    numérique . ordinateur portable . durée:
+      valeur: 2
+      unité: an
+    numérique . ordinateur fixe . présent: oui
+    numérique . ordinateur fixe . durée:
+      valeur: 2
+      unité: an
+    numérique . tablette . présent: oui
+    numérique . tablette . durée:
+      valeur: 2
+      unité: an
+    numérique . home cinéma . présent: oui
+    numérique . home cinéma . durée:
+      valeur: 2
+      unité: an
+    numérique . TV . présent: oui
+    numérique . TV . durée:
+      valeur: 2
+      unité: an
+    numérique . téléphone . type: "'smartphone haut de gamme'"
+    numérique . internet . durée journalière:
+      valeur: 2
+      unité: heure
+    numérique . appareil photo . présent: oui
+    numérique . appareil photo . durée:
+      valeur: 2
+      unité: an
