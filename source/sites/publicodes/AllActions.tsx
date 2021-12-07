@@ -11,6 +11,7 @@ import animate from 'Components/ui/animate'
 import { ScrollToElement } from '../../components/utils/Scroll'
 import DisableScroll from '../../components/utils/DisableScroll'
 import IllustratedButton from '../../components/IllustratedButton'
+import styled from 'styled-components'
 
 const thresholds = [
 	[10000, '10 tonnes'],
@@ -84,19 +85,9 @@ export default ({
 									focusedAction,
 								}}
 							/>
-							<div
-								css={`
-									width: 100%;
-									height: 2rem;
-									text-align: center;
-									border-bottom: 2px dashed var(--lightColor);
-									margin-bottom: 1rem;
-									h4 {
-									}
-								`}
-							>
-								<h4>{label}</h4>
-							</div>
+							<ThresholdSeparator>
+								<h4>{label} &#9650;</h4>
+							</ThresholdSeparator>
 						</div>
 					)
 			)}
@@ -210,3 +201,16 @@ const List = ({
 		</AnimatePresence>
 	</ul>
 )
+
+const ThresholdSeparator = styled.div`
+	width: 100%;
+	height: 2rem;
+	text-align: center;
+	margin-bottom: 1rem;
+
+	h4 {
+		border-bottom: 1px dashed #aaa;
+		display: inline-block;
+		padding: 0 0.4rem;
+	}
+`
