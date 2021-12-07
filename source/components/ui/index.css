@@ -245,7 +245,7 @@ input.ui__.suffixed {
 }
 input.ui__:focus,
 select.ui__:focus {
-	border-color: var(--color);
+	outline: 1px solid var(--color);
 }
 
 /* Remove IE's clear button the appears before our suffix */
@@ -255,6 +255,11 @@ input.ui__::-ms-clear {
 }
 
 input.ui__::placeholder {
+	opacity: 0.6;
+	color: grey;
+}
+
+select.ui__:invalid {
 	opacity: 0.6;
 	color: grey;
 }

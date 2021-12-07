@@ -3,9 +3,9 @@ import { nanoid } from 'nanoid'
 import { composeP } from 'ramda'
 import { useState, Fragment, useEffect } from 'react'
 import { motifList, freqList } from './dataHelp'
-import './KmHelp.css'
 import ReadOnlyRow from './ReadOnlyRow'
 import EditableRow from './EditableRow'
+import './KmHelp.css'
 
 export default function KmHelp({ sum, updateSum }) {
 	const [isOpen, setIsOpen] = useState(false)
@@ -135,63 +135,150 @@ export default function KmHelp({ sum, updateSum }) {
 		setTrajets(newTrajets)
 	}
 
-	return isOpen ? (
+	return !isOpen ? (
+		<div
+			css={`
+				text-align: right;
+			`}
+		>
+			<button
+				className="ui__ plain small button"
+				onClick={() => setIsOpen(true)}
+			>
+				🧮 &nbsp; Aide à la saisie
+			</button>
+		</div>
+	) : (
 		<animate.fromTop>
-			<div>
-				<form id="box" onSubmit={handleAddFormSubmit}>
-					<select className="item" name="motif" onChange={handleAddFormChange}>
-						<option value="">---</option>
-						{motifList.map((m) => (
-							<option key={m.id} value={m.name}>
-								{m.name}
-							</option>
-						))}
-					</select>
-					<input
-						className="item"
-						name="label"
-						type="text"
-						placeholder="Trajet (Optionnel)"
-						onChange={handleAddFormChange}
-					/>
-					<input
-						className="item"
-						name="distance"
-						type="number"
-						required
-						placeholder="Distance"
-						onChange={handleAddFormChange}
-					/>
-					<select
-						className="item"
-						name="frequence"
-						onChange={handleAddFormChange}
+			<div className="ui__ card content">
+				<div
+					css={`
+						text-align: right;
+					`}
+				>
+					<button
+						className="ui__ simple small button"
+						onClick={() => setIsOpen(false)}
 					>
-						<option value="">---</option>
-						{freqList.map((f) => (
-							<option key={f.id} value={f.name}>
-								{f.name}
-							</option>
-						))}
-					</select>
-					<input
-						className="item"
-						name="personnes"
-						type="number"
-						required
-						placeholder="Nombre de personnes"
-						onChange={handleAddFormChange}
-					/>
-					<button type="submit">Add</button>
+						Fermer
+					</button>
+				</div>
+				<form
+					css={`
+						display: flex;
+						flex-direction: row;
+						flex-wrap: wrap;
+						gap: 0.5rem;
+					`}
+					onSubmit={handleAddFormSubmit}
+				>
+					<label title="motif">
+						<select
+							className="ui__"
+							name="motif"
+							onChange={handleAddFormChange}
+							required
+						>
+							<option value="">---</option>
+							{motifList.map((m) => (
+								<option key={m.id} value={m.name}>
+									{m.name}
+								</option>
+							))}
+						</select>
+					</label>
+					<label title="intitule">
+						<input
+							className="ui__"
+							css={`
+								width: 15rem !important;
+							`}
+							name="intitule"
+							type="text"
+							placeholder="Trajet (Optionnel)"
+							onChange={handleAddFormChange}
+						/>
+					</label>
+					<label title="distance">
+						<input
+							className="ui__"
+							css={`
+								width: 5rem !important;
+							`}
+							name="distance"
+							type="number"
+							required
+							placeholder="Distance"
+							onChange={handleAddFormChange}
+						/>
+					</label>
+					<label title="frequence">
+						<select
+							className="ui__"
+							name="frequence"
+							onChange={handleAddFormChange}
+							required
+						>
+							<option value="">Fréquence</option>
+							{freqList.map((f) => (
+								<option key={f.id} value={f.name}>
+									{f.name}
+								</option>
+							))}
+						</select>
+					</label>
+					<label title="personnes">
+						<input
+							className="ui__"
+							css={`
+								width: 10rem !important;
+							`}
+							name="personnes"
+							type="number"
+							required
+							placeholder="Nbre de personnes"
+							onChange={handleAddFormChange}
+						/>
+					</label>
+					<button
+						className="ui__ plain small button"
+						css="max-height: 2.1rem"
+						type="submit"
+					>
+						Add
+					</button>
 				</form>
-				<div id="table-scroll">
+				<div
+					css={`
+						overflow: auto;
+						margin-top: 20px;
+					`}
+				>
 					<form onSubmit={handleEditFormSubmit}>
-						<table>
+						<table
+							css={`
+								border-collapse: collapse;
+								width: 100%;
+								th,
+								td {
+									border: 1px solid #ffffff;
+									text-align: left;
+									padding: 8px;
+								}
+								th {
+									background-color: rgb(80, 80, 80);
+									color: #ffffff;
+								}
+								td {
+									background-color: rgb(233, 233, 233);
+								}
+							`}
+						>
 							<thead>
 								<tr>
 									<th scope="col">Motif</th>
 									<th scope="col">Label</th>
-									<th scope="col">Distance (Aller seulement)</th>
+									<th scope="col">Distance (Aller)</th>
 									<th scope="col">Fréquence</th>
 									<th scope="col">Nbre de personnes</th>
 								</tr>
@@ -218,10 +305,7 @@ export default function KmHelp({ sum, updateSum }) {
 						</table>
 					</form>
 				</div>
-				<button onClick={() => setIsOpen(false)}>🧮 Close</button>
 			</div>
 		</animate.fromTop>
-	) : (
-		<button onClick={() => setIsOpen(true)}>🧮 Help !</button>
 	)
 }
