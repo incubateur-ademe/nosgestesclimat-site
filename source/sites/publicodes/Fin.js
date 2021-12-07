@@ -248,6 +248,7 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 					{!integratorActionText && <ActionButton text="Passer à l'action" />}
 					<div css="padding: 1rem">
 						<Chart
+							noAnimation
 							details={details}
 							links
 							color={textColor}

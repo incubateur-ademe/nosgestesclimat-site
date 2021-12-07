@@ -9,6 +9,7 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import Bar from './Bar'
 
@@ -28,6 +29,7 @@ export default ({
 	valueColor,
 	links,
 	demoMode,
+	noAnimation,
 }) => {
 	// needed for this component to refresh on situation change :
 	const situation = useSelector(situationSelector)
@@ -112,18 +114,10 @@ export default ({
 							/>
 						)
 						return (
-							<motion.li
+							<BarContainer
+								as={noAnimation ? null : motion.li}
 								layout
 								key={category.title}
-								css={`
-									margin: 0.4rem 0;
-									list-style-type: none;
-									> a {
-										display: block;
-										text-decoration: none;
-										line-height: inherit;
-									}
-								`}
 							>
 								{links ? (
 									<Link
@@ -137,7 +131,7 @@ export default ({
 								) : (
 									bar
 								)}
-							</motion.li>
+							</BarContainer>
 						)
 					})}
 				</ul>
@@ -150,3 +144,13 @@ export default ({
 		</section>
 	)
 }
+
+const BarContainer = styled.li`
+	margin: 0.4rem 0;
+	list-style-type: none;
+	> a {
+		display: block;
+		text-decoration: none;
+		line-height: inherit;
+	}
+`
