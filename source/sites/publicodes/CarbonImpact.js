@@ -16,8 +16,9 @@ import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { buildEndURL } from '../../components/SessionBar'
 import { disabledAction, supersededAction } from './ActionVignette'
 
-export default ({ actionMode = false }) => {
-	const objectif = actionMode ? 'bilan' : useSelector(objectifsSelector)[0],
+export default ({ actionMode = false, demoMode = false }) => {
+	const objectif =
+			actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0],
 		// needed for this component to refresh on situation change :
 		situation = useSelector(situationSelector),
 		engine = useEngine(),
@@ -40,14 +41,17 @@ export default ({ actionMode = false }) => {
 	return (
 		<div
 			css={`
+				${!demoMode &&
+				`
 				@media (max-width: 800px) {
 					margin: 0;
+					
 					position: fixed;
 					bottom: 4rem;
 					left: 0;
 					z-index: 10;
 					width: 100%;
-				}
+				}`}
 				background: rgba(0, 0, 0, 0)
 					linear-gradient(
 						60deg,
@@ -68,7 +72,7 @@ export default ({ actionMode = false }) => {
 			`}
 		>
 			<Link
-				to={endURL}
+				to={demoMode ? '#' : endURL}
 				css=":hover {opacity: 1 !important}; text-decoration: none"
 			>
 				<div
@@ -111,10 +115,12 @@ export default ({ actionMode = false }) => {
 							)}
 						</div>
 					</div>
-					{!actionMode && <DocumentationLink dottedName={dottedName} />}
+					{!demoMode && !actionMode && (
+						<DocumentationLink dottedName={dottedName} />
+					)}
 					{actionMode && <ActionCount count={actionsChosen} />}
 				</div>
-				{progress < 1 && (
+				{!demoMode && progress < 1 && (
 					<Progress progress={progress} style={!progress ? 'height: 0' : ''} />
 				)}
 			</Link>

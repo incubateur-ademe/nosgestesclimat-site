@@ -24,6 +24,7 @@ import Documentation from './pages/Documentation'
 import Personas from './Personas.tsx'
 import Privacy from './Privacy'
 import Profil from './Profil.tsx'
+import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
@@ -80,6 +81,7 @@ export default function Root({}) {
 const Main = ({}) => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/'
+
 	return (
 		<div
 			className="ui__ container"
@@ -115,7 +117,7 @@ const Main = ({}) => {
 							justify-content: center;
 							text-decoration: none;
 							font-size: 170%;
-							margin-bottom: 1rem;
+							margin: 1rem auto;
 						`}
 					>
 						<Logo />
@@ -161,6 +163,7 @@ const Routes = ({}) => {
 				</Suspense>
 			</Route>
 			<Redirect from="/conference/:room" to="/conférence/:room" />
+			<Route path="/tutoriel" component={Tutorial} />
 			<Route component={Route404} />
 		</Switch>
 	)

@@ -1,30 +1,26 @@
 import { setSimulationConfig } from 'Actions/actions'
 import PeriodSwitch from 'Components/PeriodSwitch'
-import SessionBar, { buildEndURL } from 'Components/SessionBar'
-import ShareButton from 'Components/ShareButton'
+import { extractCategories } from 'Components/publicodesUtils'
+import { buildEndURL } from 'Components/SessionBar'
 import Simulation from 'Components/Simulation'
+import Title from 'Components/Title'
+import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
-
 import { compose, isEmpty, symmetricDifference } from 'ramda'
 import React, { useContext, useEffect } from 'react'
-import { Helmet } from 'react-helmet'
+import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
-import CarbonImpact from './CarbonImpact'
-import Chart from './chart/index.js'
-import { extractCategories } from 'Components/publicodesUtils'
-
-import { objectifsSelector } from 'Selectors/simulationSelectors'
-import { useEngine } from 'Components/utils/EngineContext'
-import emoji from 'react-easy-emoji'
+import { FullName } from '../../components/publicodesUtils'
+import animate from '../../components/ui/animate'
+import Meta from '../../components/utils/Meta'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
-import { sessionBarMargin } from '../../components/SessionBar'
-import { FullName, splitName } from '../../components/publicodesUtils'
-import Title from 'Components/Title'
-import Meta from '../../components/utils/Meta'
+import CarbonImpact from './CarbonImpact'
+import Chart from './chart/index.js'
+import Tutorial from './Tutorial'
 
 const eqValues = compose(isEmpty, symmetricDifference)
 
@@ -54,11 +50,13 @@ const Simulateur = (props) => {
 	const isMainSimulation = decoded === 'bilan'
 	if (!configSet) return null
 
+	const introPassed = tutorials.testIntro
+
 	return (
 		<div>
 			<Meta title={rule.title} title={evaluation.title || ''} />
 			<Title>Le test</Title>
-			<CarbonImpact />
+			{introPassed && <CarbonImpact />}
 			{!isMainSimulation && (
 				<h1>
 					{evaluation.rawNode.title || (
@@ -66,40 +64,32 @@ const Simulateur = (props) => {
 					)}
 				</h1>
 			)}
-			<Simulation
-				noFeedback
-				orderByCategories={categories}
-				customEnd={
-					isMainSimulation ? (
-						<RedirectionToEndPage {...{ rules, engine }} />
-					) : rule.description ? (
-						<Markdown source={rule.description} />
-					) : (
-						<EndingCongratulations />
-					)
-				}
-				targets={<>{rule.period === 'flexible' && <PeriodBlock />}</>}
-				explanations={
-					<>
-						<Chart />
-					</>
-				}
-			/>
-			<ShareButton
-				text="Mesure ton impact sur le simulateur Ecolab climat !"
-				url={'https://' + window.location.hostname + props.match.url}
-				title={rule.title}
-			/>
+			{tutorials.testIntro ? (
+				<Simulation
+					noFeedback
+					orderByCategories={categories}
+					customEnd={
+						isMainSimulation ? (
+							<RedirectionToEndPage {...{ rules, engine }} />
+						) : rule.description ? (
+							<Markdown source={rule.description} />
+						) : (
+							<EndingCongratulations />
+						)
+					}
+					explanations={
+						<>
+							<Chart />
+						</>
+					}
+				/>
+			) : (
+				<Redirect to="/tutoriel" />
+			)}
 			<BandeauContribuer />
 		</div>
 	)
 }
-
-let PeriodBlock = () => (
-	<div css="display: flex; justify-content: center">
-		<PeriodSwitch />
-	</div>
-)
 
 const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation

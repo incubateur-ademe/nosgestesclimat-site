@@ -167,7 +167,7 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 			>
 				<div id="shareImage" css="padding: 2rem 0 0">
 					<div css="display: flex; align-items: center; justify-content: center">
-						<img src={BallonGES} css="height: 10rem" />
+						<BallonGES css="height: 10rem; width: auto" />
 						<div
 							css={`
 								flex-direction: ${headlessMode ? 'column-reverse' : 'column'};

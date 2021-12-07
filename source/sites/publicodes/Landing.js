@@ -1,11 +1,15 @@
-import DocumentationButton from './DocumentationButton'
+import LogoADEME from 'Images/LogoADEME'
+import { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
+import NewsBanner from '../../components/NewsBanner'
+import { TrackerContext } from '../../components/utils/withTracker'
+import DocumentationButton from './DocumentationButton'
 import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
-import emoji from 'react-easy-emoji'
-import NewsBanner from '../../components/NewsBanner'
 
 export default () => {
+	const tracker = useContext(TrackerContext)
 	return (
 		<div
 			css={`
@@ -32,20 +36,26 @@ export default () => {
 			`}
 		>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
-			<img
+			<Illustration
 				css={`
 					width: 60%;
+					height: auto;
 					border-radius: 0.8rem;
 					@media (max-width: 800px) {
 						width: 95%;
 					}
 				`}
-				src={Illustration}
 				alt="Illustration sur fond mauve d'une scène mélant grande ville, péri-urbain et rural, où on peut voir quelques éléments d'une vie quotidienne, chaque élément étant émetteur d'une certaine empreinte sur le climat."
 			/>
 			<div css="margin: 1rem 0">
 				<div>
-					<Link to="/simulateur/bilan" className="ui__ plain button cta">
+					<Link
+						to="/simulateur/bilan"
+						className="ui__ plain button cta"
+						onClick={() =>
+							tracker.push(['trackEvent', 'NGC', 'Clic CTA accueil'])
+						}
+					>
 						Faire le test
 					</Link>
 				</div>
@@ -69,17 +79,12 @@ export default () => {
 						}
 					`}
 				>
-					<img
+					<Marianne
 						css="height: 6rem; margin-right: .6rem"
-						src={Marianne}
 						alt="Logo Marianne de la République Française"
 					/>
 					<a href="https://ademe.fr">
-						<img
-							css="height: 5rem; margin-right: .6rem"
-							src="https://www.ademe.fr/sites/all/themes/ademe/logo.png"
-							alt="Logo de l'ADEME"
-						/>
+						<LogoADEME />
 					</a>
 					<a href="https://www.associationbilancarbone.fr/">
 						<img
@@ -102,9 +107,9 @@ export default () => {
 						}
 					`}
 				>
-					<Link to="/à-propos">{emoji('❔ ')}À propos</Link>
+					<Link to="/à-propos">À propos</Link>
 					<DocumentationButton />
-					<Link to="/diffuser">{emoji('📤 ')}Diffuser</Link>
+					<Link to="/diffuser">Diffuser</Link>
 				</div>
 			</footer>
 		</div>

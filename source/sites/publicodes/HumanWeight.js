@@ -2,7 +2,7 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 
-export const humanWeight = (possiblyNegativeValue, concise = false) => {
+export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 	const v = Math.abs(possiblyNegativeValue)
 	const [raw, unit] =
 		v === 0
@@ -14,10 +14,11 @@ export const humanWeight = (possiblyNegativeValue, concise = false) => {
 			: [v / 1000, concise ? 't' : v > 2000 ? 'tonnes' : 'tonne']
 
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
+		resultValue = noSign ? raw : signedValue,
 		value =
 			raw < 10
-				? raw.toLocaleString('fr-FR', { maximumSignificantDigits: 2 })
-				: Math.round(raw).toLocaleString('fr-FR')
+				? resultValue.toLocaleString('fr-FR', { maximumSignificantDigits: 2 })
+				: Math.round(resultValue).toLocaleString('fr-FR')
 
 	return [value, unit]
 }
