@@ -1,6 +1,6 @@
 import { humanWeight } from '../HumanWeight'
 
-export default ({ nodeValue, color, completed }) => {
+export default ({ nodeValue, color, completed, demoMode }) => {
 	const [value, unit] = humanWeight(nodeValue, true)
 	return (
 		<span
@@ -11,12 +11,13 @@ export default ({ nodeValue, color, completed }) => {
 				align-items: center;
 			`}
 		>
-			{value}&nbsp;{unit}{' '}
+			{value}&nbsp;{unit}
 			<img
 				src="/images/2714.svg"
 				css={`
 					visibility: ${completed ? 'visible' : 'hidden'};
 					display: inline;
+					${demoMode && `display: none`};
 					width: 1.2rem;
 					margin-left: 0.2rem;
 				`}
