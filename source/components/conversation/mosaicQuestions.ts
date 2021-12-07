@@ -60,7 +60,7 @@ A compléter
 		dottedName: 'transport . autres déplacements',
 		options: { defaultsToFalse: true },
 		question:
-			"Au cours de l'année, quels modes de trasnports utilises-tu pour tes déplacements personnels (loisirs, sport, vacances, week-ends) ?",
+			"Au cours de l'année, quels modes de transport utilises-tu pour tes déplacements personnels (loisirs, sport, vacances, week-ends) ?",
 		description: `
 Il s'agit de renseigner ici les déplacements que tu fais pour tes déplacements personnels (vacances, loisirs)
 			`,

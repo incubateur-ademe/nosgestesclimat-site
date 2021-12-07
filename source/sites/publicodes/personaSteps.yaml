@@ -80,6 +80,8 @@
 - numérique . téléphone . type
 - numérique . téléphone . durée
 - numérique . ordinateur fixe . durée
-- numérique . internet . durée journalière
 - numérique . TV . durée
 - numérique . ordinateur portable . durée
+- numérique . internet . durée journalière
+- numérique . visio cours . durée journalière
+- numérique . mails . nbre journalier
