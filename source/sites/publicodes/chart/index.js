@@ -24,7 +24,6 @@ const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
 export default ({
 	details,
 	noText,
-	noAnimation,
 	noCompletion,
 	valueColor,
 	links,
@@ -114,15 +113,7 @@ export default ({
 						)
 						return (
 							<motion.li
-								layoutTransition={
-									noAnimation
-										? null
-										: {
-												type: 'spring',
-												damping: 100,
-												stiffness: 100,
-										  }
-								}
+								layout
 								key={category.title}
 								css={`
 									margin: 0.4rem 0;

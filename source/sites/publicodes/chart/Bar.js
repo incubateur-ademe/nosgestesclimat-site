@@ -82,6 +82,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 				border-radius: 1rem;
 				width: ${widthPercentage}%;
 				color: white;
+				transition: width 0.3s ease-in;
 			`}
 		>
 			{!noText && (
