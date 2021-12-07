@@ -19,6 +19,7 @@ export default ({
 	empreinteMaximum,
 	noText,
 	valueColor,
+	demoMode,
 }) => (
 	<>
 		<div
@@ -47,7 +48,7 @@ export default ({
 				widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
 			/>
 
-			<Value {...{ nodeValue, completed, color: valueColor }} />
+			<Value {...{ nodeValue, demoMode, completed, color: valueColor }} />
 		</div>
 	</>
 )

@@ -266,7 +266,7 @@ const slides = [
 					margin: 0.6rem 0 1rem;
 				`}
 			>
-				<Chart />
+				<Chart demoMode />
 			</div>
 			<p>
 				L'empreinte de notre consommation individuelle, c'est la somme de toutes
