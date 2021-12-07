@@ -9,6 +9,7 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import Bar from './Bar'
 
@@ -24,11 +25,11 @@ const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
 export default ({
 	details,
 	noText,
-	noAnimation,
 	noCompletion,
 	valueColor,
 	links,
 	demoMode,
+	noAnimation,
 }) => {
 	// needed for this component to refresh on situation change :
 	const situation = useSelector(situationSelector)
@@ -113,26 +114,10 @@ export default ({
 							/>
 						)
 						return (
-							<motion.li
-								layoutTransition={
-									noAnimation
-										? null
-										: {
-												type: 'spring',
-												damping: 100,
-												stiffness: 100,
-										  }
-								}
+							<BarContainer
+								as={noAnimation ? null : motion.li}
+								layout
 								key={category.title}
-								css={`
-									margin: 0.4rem 0;
-									list-style-type: none;
-									> a {
-										display: block;
-										text-decoration: none;
-										line-height: inherit;
-									}
-								`}
 							>
 								{links ? (
 									<Link
@@ -146,7 +131,7 @@ export default ({
 								) : (
 									bar
 								)}
-							</motion.li>
+							</BarContainer>
 						)
 					})}
 				</ul>
@@ -159,3 +144,13 @@ export default ({
 		</section>
 	)
 }
+
+const BarContainer = styled.li`
+	margin: 0.4rem 0;
+	list-style-type: none;
+	> a {
+		display: block;
+		text-decoration: none;
+		line-height: inherit;
+	}
+`

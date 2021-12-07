@@ -122,11 +122,8 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 			window.location.origin +
 			'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
 			window.location
-	const {
-		integratorYoutubeVideo,
-		integratorActionText,
-		integratorActionUrl,
-	} = useContext(IframeOptionsContext)
+	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
+		useContext(IframeOptionsContext)
 
 	return (
 		<div
@@ -251,10 +248,10 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 					{!integratorActionText && <ActionButton text="Passer à l'action" />}
 					<div css="padding: 1rem">
 						<Chart
+							noAnimation
 							details={details}
 							links
 							color={textColor}
-							noAnimation
 							noText
 							noCompletion
 							valueColor={textColor}
@@ -345,11 +342,8 @@ const ActionButton = ({ text }) => (
 )
 
 const IntegratorActionButton = () => {
-	const {
-		integratorLogo,
-		integratorActionUrl,
-		integratorActionText,
-	} = useContext(IframeOptionsContext)
+	const { integratorLogo, integratorActionUrl, integratorActionText } =
+		useContext(IframeOptionsContext)
 
 	return (
 		<a
