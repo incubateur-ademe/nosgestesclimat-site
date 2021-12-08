@@ -177,6 +177,11 @@ function tutorials(state = {}, { type, id, unskip }) {
 		return {}
 	} else return state
 }
+function tracking(state = {}, { type, name, value }) {
+	if (type === 'SET_TRACKING_VARIABLE') {
+		return { ...state, [name]: value }
+	} else return state
+}
 
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
@@ -191,6 +196,7 @@ const mainReducer = (state: any, action: Action) =>
 		conference,
 		iframeOptions: defaultTo(null),
 		tutorials,
+		tracking,
 	})(state, action)
 
 export default reduceReducers<RootState>(
