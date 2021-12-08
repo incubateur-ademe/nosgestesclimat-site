@@ -114,9 +114,16 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 	const byParent = rules.reduce((memo, next) => {
 		const split = splitName(next.dottedName),
 			parent = split.slice(0, level + 1).join(' . ')
+
+		const oldList = memo[parent] || []
+		const list = oldList.find(
+			({ dottedName }) => dottedName === next.dottedName
+		)
+			? oldList
+			: [...oldList, next]
 		return {
 			...memo,
-			[parent]: [...(memo[parent] || []), next],
+			[parent]: list,
 		}
 	}, {})
 	const lonelyRules = Object.values(byParent)
@@ -152,27 +159,26 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 	const [open, setOpen] = useState(false)
 
 	return (
-		console.log('RULE', rule) || (
-			<div>
-				<div
-					onClick={() => setOpen(!open)}
-					className="ui__ card"
-					css={`
-						cursor: pointer;
-						display: inline-flex;
-						justify-content: start;
-						align-items: center;
-						img {
-							font-size: 150%;
-						}
-						margin: 0.6rem 0;
-						padding: 0.4rem 0;
-						h3 {
-							margin: 0;
-							font-weight: 300;
-						}
-						${level === 1 &&
-						`background: ${rule.color} !important;
+		<div>
+			<div
+				onClick={() => setOpen(!open)}
+				className="ui__ card"
+				css={`
+					cursor: pointer;
+					display: inline-flex;
+					justify-content: start;
+					align-items: center;
+					img {
+						font-size: 150%;
+					}
+					margin: 0.6rem 0;
+					padding: 0.4rem 0;
+					h3 {
+						margin: 0;
+						font-weight: 300;
+					}
+					${level === 1 &&
+					`background: ${rule.color} !important;
 
 						img {
 							font-size: 230%;
@@ -190,28 +196,27 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 						small{color: white}
 
 						`}
-					`}
-				>
-					{emoji(rule.rawNode.icônes || '')}
-					{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
-					<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
-						<small>
-							{rules.length} {level === 1 && emoji('💬')}
-						</small>
-						<span>{!open ? '▶' : '▼'}</span>
-					</div>
+				`}
+			>
+				{emoji(rule.rawNode.icônes || '')}
+				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
+				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
+					<small>
+						{rules.length} {level === 1 && emoji('💬')}
+					</small>
+					<span>{!open ? '▶' : '▼'}</span>
 				</div>
-				{open && (
-					<RecursiveStepsTable
-						{...{
-							rules,
-							engine,
-							level,
-						}}
-					/>
-				)}
 			</div>
-		)
+			{open && (
+				<RecursiveStepsTable
+					{...{
+						rules,
+						engine,
+						level,
+					}}
+				/>
+			)}
+		</div>
 	)
 }
 function StepsTable({
