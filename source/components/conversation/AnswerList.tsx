@@ -86,15 +86,6 @@ export default function AnswerList() {
 					/>
 				</div>
 			)}
-			{false && !!nextSteps.length && (
-				<div className="ui__ card">
-					<h2>
-						{emoji('🔮 ')}
-						<Trans>Prochaines questions</Trans>
-					</h2>
-					<CategoryTable {...{ steps: nextSteps, categories }} />
-				</div>
-			)}
 		</div>
 	)
 }
@@ -108,39 +99,21 @@ const CategoryTable = ({ steps, categories, engine }) =>
 		if (!categoryRules.length) return null
 
 		return (
-			<div>
-				<div
-					className="ui__ card"
-					css={`
-						background: ${category.color} !important;
-						display: flex;
-						justify-content: start;
-						align-items: center;
-						img {
-							font-size: 300%;
-						}
-						max-width: 20rem;
-						margin: 1rem 0;
-						h2 {
-							color: white;
-							margin: 1rem;
-							font-weight: 300;
-							text-transform: uppercase;
-						}
-					`}
-				>
-					{emoji(category.icons)}
-					<h2>{category.title}</h2>
-				</div>
-				<RecursiveStepsTable {...{ rules: categoryRules, engine, level: 2 }} />
-			</div>
+			<SubCategory
+				{...{
+					rules: categoryRules,
+					rule: category,
+					engine,
+					level: 1,
+				}}
+			/>
 		)
 	})
 
 const RecursiveStepsTable = ({ rules, engine, level }) => {
 	const byParent = rules.reduce((memo, next) => {
 		const split = splitName(next.dottedName),
-			parent = split.slice(0, level).join(' . ')
+			parent = split.slice(0, level + 1).join(' . ')
 		return {
 			...memo,
 			[parent]: [...(memo[parent] || []), next],
@@ -151,12 +124,7 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 		.flat()
 
 	return (
-		<div>
-			<StepsTable
-				{...{
-					rules: lonelyRules,
-				}}
-			/>
+		<div css="padding-left: 1rem; border-left: 1px dashed var(--lightColor)">
 			{Object.entries(byParent).map(
 				([key, values]) =>
 					values.length > 1 && (
@@ -170,6 +138,12 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 						/>
 					)
 			)}
+			<StepsTable
+				{...{
+					rules: lonelyRules,
+					level,
+				}}
+			/>
 		</div>
 	)
 }
@@ -187,7 +161,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 						cursor: pointer;
 						display: inline-flex;
 						justify-content: start;
-						align-items: flex-end;
+						align-items: center;
 						img {
 							font-size: 150%;
 						}
@@ -197,26 +171,44 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 							margin: 0;
 							font-weight: 300;
 						}
-						> * {
-							margin: 0 0.4rem !important;
+						${level === 1 &&
+						`background: ${rule.color} !important;
+
+						img {
+							font-size: 230%;
 						}
+						width: 30rem;
+						max-width: 100%;
+						margin: 1rem 0;
+						h2 {
+							color: white;
+							margin: 1rem;
+							font-weight: 300;
+							text-transform: uppercase;
+						}
+						color: white;
+						small{color: white}
+
+						`}
 					`}
 				>
 					{emoji(rule.rawNode.icônes || '')}
-					<h3>{rule.title}</h3>
-					<small>{rules.length} réponses</small>
-					<span>{!open ? '▶' : '▼'}</span>
+					{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
+					<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
+						<small>
+							{rules.length} {level === 1 && emoji('💬')}
+						</small>
+						<span>{!open ? '▶' : '▼'}</span>
+					</div>
 				</div>
 				{open && (
-					<div css="padding-left: 1rem">
-						<RecursiveStepsTable
-							{...{
-								rules,
-								engine,
-								level,
-							}}
-						/>
-					</div>
+					<RecursiveStepsTable
+						{...{
+							rules,
+							engine,
+							level,
+						}}
+					/>
 				)}
 			</div>
 		)
@@ -224,6 +216,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 }
 function StepsTable({
 	rules,
+	level,
 }: {
 	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
 }) {
@@ -235,6 +228,7 @@ function StepsTable({
 				{rules.map((rule) => (
 					<Answer
 						{...{
+							level,
 							rule,
 							dispatch,
 							language,
@@ -246,9 +240,9 @@ function StepsTable({
 	)
 }
 
-const Answer = ({ rule, dispatch, language }) => {
+const Answer = ({ rule, dispatch, language, level }) => {
 	const history = useHistory()
-	const path = parentName(rule.dottedName, ' · ', 1)
+	const path = parentName(rule.dottedName, ' · ', level)
 	return (
 		<tr
 			key={rule.dottedName}
