@@ -9,10 +9,11 @@ import { Markdown } from 'Components/utils/markdown'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
 import { compose, isEmpty, symmetricDifference } from 'ramda'
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
+import { setTrackingVariable } from '../../actions/actions'
 import { FullName } from '../../components/publicodesUtils'
 import animate from '../../components/ui/animate'
 import Meta from '../../components/utils/Meta'
@@ -95,15 +96,19 @@ const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 	const situation = useSelector(situationSelector)
 	const tracker = useContext(TrackerContext)
+	const { endEventFired } = useState((state) => state.tracking)
 
 	useEffect(() => {
-		tracker.push([
-			'trackEvent',
-			'NGC',
-			'A terminé la simulation',
-			null,
-			rules['bilan'].nodeValue,
-		])
+		!endEventFired &&
+			tracker.push([
+				'trackEvent',
+				'NGC',
+				'A terminé la simulation',
+				null,
+				rules['bilan'].nodeValue,
+			])
+
+		setTrackingVariable('endEventFired', true)
 	}, [tracker])
 
 	return <Redirect to={buildEndURL(rules, engine)} />
