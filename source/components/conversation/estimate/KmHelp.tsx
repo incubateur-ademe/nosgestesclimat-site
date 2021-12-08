@@ -5,12 +5,16 @@ import { useState, Fragment, useEffect } from 'react'
 import { motifList, freqList } from './dataHelp'
 import ReadOnlyRow from './ReadOnlyRow'
 import EditableRow from './EditableRow'
+import { motion } from 'framer-motion'
+import styled from 'styled-components'
 import './KmHelp.css'
 
-export default function KmHelp({ sum, updateSum }) {
+export default function KmHelp({ setFinalValue }) {
 	const [isOpen, setIsOpen] = useState(false)
 
 	const [trajets, setTrajets] = useState([])
+
+	const [sum, updateSum] = useState(0)
 
 	const [addFormData, setAddFormData] = useState({
 		motif: '',
@@ -43,6 +47,24 @@ export default function KmHelp({ sum, updateSum }) {
 				}, 0)
 		)
 	}, [trajets])
+
+	useEffect(() => {
+		if (sum) setFinalValue(Math.round(+sum))
+	}, [sum])
+
+	// useEffect(() => {
+	// 	updateSum(
+	// 		trajets
+	// 			.map((trajet) => {
+	// 				const freq = freqList.find((f) => f.name === trajet.frequence)
+	// 				const freqValue = freq ? freq.value : 0
+	// 				return (trajet.distance * 2 * freqValue) / trajet.personnes
+	// 			})
+	// 			.reduce((memo, elt) => {
+	// 				return memo + elt
+	// 			}, 0)
+	// 	)
+	// }, [{sum}])
 
 	const handleAddFormChange = (event) => {
 		event.preventDefault()
@@ -141,16 +163,11 @@ export default function KmHelp({ sum, updateSum }) {
 				text-align: right;
 			`}
 		>
-			<button
-				className="ui__ plain small button"
-				onClick={() => setIsOpen(true)}
-			>
-				🧮 &nbsp; Aide à la saisie
-			</button>
+			<HelpButton text="&nbsp; Aide à la saisie" setIsOpen={setIsOpen} />
 		</div>
 	) : (
 		<animate.fromTop>
-			<div className="ui__ card content">
+			<div className="ui__ card content" css="margin-bottom: 1rem">
 				<div
 					css={`
 						text-align: right;
@@ -175,11 +192,15 @@ export default function KmHelp({ sum, updateSum }) {
 					<label title="motif">
 						<select
 							className="ui__"
+							css={`
+								max-width: 10rem !important;
+								max-height: 2rem;
+							`}
 							name="motif"
 							onChange={handleAddFormChange}
 							required
 						>
-							<option value="">---</option>
+							<option value="">Motif</option>
 							{motifList.map((m) => (
 								<option key={m.id} value={m.name}>
 									{m.name}
@@ -187,34 +208,42 @@ export default function KmHelp({ sum, updateSum }) {
 							))}
 						</select>
 					</label>
-					<label title="intitule">
+					<label title="label">
 						<input
 							className="ui__"
 							css={`
-								width: 15rem !important;
+								width: 9rem !important;
+								max-height: 2rem;
 							`}
-							name="intitule"
+							name="label"
 							type="text"
-							placeholder="Trajet (Optionnel)"
+							placeholder="Label (Optionnel)"
 							onChange={handleAddFormChange}
 						/>
 					</label>
 					<label title="distance">
-						<input
-							className="ui__"
-							css={`
-								width: 5rem !important;
-							`}
-							name="distance"
-							type="number"
-							required
-							placeholder="Distance"
-							onChange={handleAddFormChange}
-						/>
+						<InputWrapper>
+							<InputSuffixed
+								className="ui__"
+								css={`
+									width: 3rem !important;
+								`}
+								name="distance"
+								type="number"
+								required
+								placeholder="Distance (Aller)"
+								onChange={handleAddFormChange}
+							/>
+							<InputSuffix>km</InputSuffix>
+						</InputWrapper>
 					</label>
 					<label title="frequence">
 						<select
 							className="ui__"
+							css={`
+								max-width: 10rem !important;
+								max-height: 2rem;
+							`}
 							name="frequence"
 							onChange={handleAddFormChange}
 							required
@@ -228,21 +257,24 @@ export default function KmHelp({ sum, updateSum }) {
 						</select>
 					</label>
 					<label title="personnes">
-						<input
-							className="ui__"
-							css={`
-								width: 10rem !important;
-							`}
-							name="personnes"
-							type="number"
-							required
-							placeholder="Nbre de personnes"
-							onChange={handleAddFormChange}
-						/>
+						<InputWrapper>
+							<InputSuffixed
+								className="ui__"
+								css={`
+									width: 3rem !important;
+								`}
+								name="personnes"
+								type="number"
+								required
+								placeholder="Nbre de personnes"
+								onChange={handleAddFormChange}
+							/>
+							<InputSuffix>👥</InputSuffix>
+						</InputWrapper>
 					</label>
 					<button
 						className="ui__ plain small button"
-						css="max-height: 2.1rem"
+						css="max-height: 2rem"
 						type="submit"
 					>
 						Add
@@ -252,25 +284,55 @@ export default function KmHelp({ sum, updateSum }) {
 					css={`
 						overflow: auto;
 						margin-top: 20px;
+						padding: 0rem 0.5rem 0rem 0.5rem;
 					`}
 				>
 					<form onSubmit={handleEditFormSubmit}>
 						<table
 							css={`
-								border-collapse: collapse;
+								font-family: 'Roboto', sans-serif;
+								border-spacing: 0 1rem;
+								border-collapse: separate;
+								background: white;
 								width: 100%;
-								th,
-								td {
-									border: 1px solid #ffffff;
-									text-align: left;
-									padding: 8px;
-								}
+								font-size: 1rem;
+
+								td,
 								th {
-									background-color: rgb(80, 80, 80);
+									padding: 0.5rem;
+									text-align: center;
+								}
+
+								tr {
+									border-radius: 1rem;
+								}
+
+								thead th {
+									background: var(--color);
+									font-weight: normal !important;
+									text-transform: uppercase;
+									letter-spacing: 0.03rem;
 									color: #ffffff;
 								}
-								td {
-									background-color: rgb(233, 233, 233);
+
+								thead tr {
+									height: 2rem;
+								}
+
+								tbody tr {
+									height: 1.5rem;
+									box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+								}
+
+								th:first-child,
+								td:first-child {
+									border-top-left-radius: 0.5rem;
+									border-bottom-left-radius: 0.5rem;
+								}
+								th:last-child,
+								td:last-child {
+									border-bottom-right-radius: 0.5rem;
+									border-top-right-radius: 0.5rem;
 								}
 							`}
 						>
@@ -281,6 +343,7 @@ export default function KmHelp({ sum, updateSum }) {
 									<th scope="col">Distance (Aller)</th>
 									<th scope="col">Fréquence</th>
 									<th scope="col">Nbre de personnes</th>
+									<th scope="col">Modifier</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -309,3 +372,67 @@ export default function KmHelp({ sum, updateSum }) {
 		</animate.fromTop>
 	)
 }
+
+const HelpButton = ({ text, setIsOpen }) => (
+	<button
+		className="ui__ plain small button"
+		css="margin-bottom: 0.5rem"
+		onClick={() => setIsOpen(true)}
+	>
+		<div
+			css={`
+				display: flex;
+				justify-content: center;
+				align-items: center;
+				width: 100%;
+			`}
+		>
+			<motion.div
+				animate={{
+					rotate: [0, 15, -15, 0],
+					y: [0, 0, 0, -3, 4, 3],
+				}}
+				transition={{
+					duration: 1.5,
+					delay: 1,
+					repeat: Infinity,
+					repeatDelay: 2,
+				}}
+			>
+				✏️
+			</motion.div>
+			{text}
+		</div>
+	</button>
+)
+
+const InputWrapper = styled.div`
+	display: flex;
+	max-width: 100%;
+	margin-bottom: 0.6rem;
+	border: 1px solid var(--lighterTextColor);
+	border-radius: 0.3rem;
+	background-color: white;
+	color: inherit;
+	font-size: inherit;
+	transition: border-color 0.1s;
+	position: relative;
+	font-family: inherit;
+	max-height: 2rem;
+	&:focus {
+		outline: 1px solid var(--color);
+	}
+`
+
+const InputSuffixed = styled.input`
+	border: none !important;
+	outline: none !important;
+	position: relative;
+	padding: 0.3rem !important;
+	margin-bottom: 0rem !important;
+`
+
+const InputSuffix = styled.div`
+	position: relative;
+	padding: 0.1rem 0.5rem 0rem 0rem;
+`

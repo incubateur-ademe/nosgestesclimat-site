@@ -11,6 +11,7 @@ export default function EditableRow({
 			<td>
 				<select
 					name="motif"
+					className="ui__"
 					value={editFormData.motif}
 					onChange={handleEditFormChange}
 				>
@@ -25,6 +26,10 @@ export default function EditableRow({
 				<input
 					name="label"
 					type="text"
+					className="ui__"
+					css={`
+						width: 8rem !important;
+					`}
 					placeholder="Trajet (Optionnel)"
 					value={editFormData.label}
 					onChange={handleEditFormChange}
@@ -33,6 +38,10 @@ export default function EditableRow({
 			<td>
 				<input
 					name="distance"
+					className="ui__"
+					css={`
+						width: 3rem !important;
+					`}
 					type="number"
 					required
 					value={editFormData.distance}
@@ -42,6 +51,7 @@ export default function EditableRow({
 			<td>
 				<select
 					name="frequence"
+					className="ui__"
 					value={editFormData.frequence}
 					onChange={handleEditFormChange}
 				>
@@ -55,6 +65,10 @@ export default function EditableRow({
 			<td>
 				<input
 					name="personnes"
+					className="ui__"
+					css={`
+						width: 3rem !important;
+					`}
 					type="number"
 					required
 					placeholder="Nombre de personnes"
@@ -63,9 +77,9 @@ export default function EditableRow({
 				/>
 			</td>
 			<td>
-				<button type="submit">Save</button>
+				<button type="submit">💾</button>
 				<button type="button" onClick={handleCancelClick}>
-					Cancel
+					🔙
 				</button>
 			</td>
 		</tr>

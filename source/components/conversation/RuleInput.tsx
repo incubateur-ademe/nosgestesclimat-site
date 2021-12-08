@@ -117,11 +117,19 @@ export default function RuleInput<Name extends string = DottedName>({
 
 	if (isTransportEstimation(rule.dottedName)) {
 		const question = isTransportEstimation(rule.dottedName)
+		//je ne sais pas pourquoi j'ai du ajouter cette définition de variable
+		const unité = formatValue(
+			{ nodeValue: value ?? 0, unit: evaluation.unit },
+			{ language }
+		)
+			.replace(/[\d,.]/g, '')
+			.trim()
 		return (
 			<question.component
 				commonProps={commonProps}
 				evaluation={evaluation}
 				onSubmit={onSubmit}
+				setFinalValue={(value) => onChange({ valeur: value, unité })}
 				value={value as Evaluation<string>}
 			/>
 		)

@@ -7,9 +7,11 @@ export default function KmEstimation({
 	commonProps,
 	evaluation,
 	onSubmit,
+	setFinalValue,
 	value,
 }) {
-	const [sum, updateSum] = useState(0)
+	const [isOpen, setIsOpen] = useState(false)
+
 	return (
 		<div>
 			<Input
@@ -24,8 +26,7 @@ export default function KmEstimation({
 					display: block;
 				`}
 			>
-				<div> Le résultat du calul : {sum} </div>
-				<KmHelp sum={sum} updateSum={updateSum} />
+				<KmHelp setFinalValue={setFinalValue} />
 			</div>
 		</div>
 	)
