@@ -3,10 +3,13 @@ import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
+import { openmojiURL } from '../../components/SessionBar'
 import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
 import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
+import { useProfileData } from './Profil'
+import animate from 'Components/ui/animate'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
@@ -98,6 +101,7 @@ export default () => {
 					css={`
 						display: flex;
 						justify-content: center;
+						align-items: center;
 						flex-wrap: wrap;
 						> * {
 							margin: 0 0.6rem;
@@ -110,8 +114,35 @@ export default () => {
 					<Link to="/à-propos">À propos</Link>
 					<DocumentationButton />
 					<Link to="/diffuser">Diffuser</Link>
+					<ProfileLink />
 				</div>
 			</footer>
 		</div>
+	)
+}
+
+const ProfileLink = () => {
+	const { hasData } = useProfileData()
+	if (!hasData) return null
+	return (
+		<animate.fromTop delay="1">
+			<div
+				css={`
+					button {
+						padding: 0 0.2rem !important;
+						border-radius: 1rem !important;
+					}
+				`}
+			>
+				<Link to="/profil">
+					<button className="ui__ button plain small" title="Mon profil">
+						<img
+							src={openmojiURL('profile')}
+							css="width: 2rem; filter: invert(1)"
+						/>
+					</button>
+				</Link>
+			</div>
+		</animate.fromTop>
 	)
 }

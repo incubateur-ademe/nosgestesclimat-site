@@ -86,15 +86,6 @@ export default function AnswerList() {
 					/>
 				</div>
 			)}
-			{false && !!nextSteps.length && (
-				<div className="ui__ card">
-					<h2>
-						{emoji('🔮 ')}
-						<Trans>Prochaines questions</Trans>
-					</h2>
-					<CategoryTable {...{ steps: nextSteps, categories }} />
-				</div>
-			)}
 		</div>
 	)
 }
@@ -107,31 +98,93 @@ const CategoryTable = ({ steps, categories, engine }) =>
 
 		if (!categoryRules.length) return null
 
-		const byParent = categoryRules.reduce((memo, next) => {
-			const split = splitName(next.dottedName),
-				parent = split.slice(0, 2).join(' . ')
-			return {
-				...memo,
-				[parent]: [...(memo[parent] || []), next],
-			}
-		}, {})
-		const lonelyRules = Object.values(byParent)
-			.map((els) => (els.length === 1 ? els : []))
-			.flat()
-
 		return (
-			<div>
-				<div
-					className="ui__ card"
-					css={`
-						background: ${category.color} !important;
-						display: flex;
-						justify-content: start;
-						align-items: center;
+			<SubCategory
+				{...{
+					rules: categoryRules,
+					rule: category,
+					engine,
+					level: 1,
+				}}
+			/>
+		)
+	})
+
+const RecursiveStepsTable = ({ rules, engine, level }) => {
+	const byParent = rules.reduce((memo, next) => {
+		const split = splitName(next.dottedName),
+			parent = split.slice(0, level + 1).join(' . ')
+
+		const oldList = memo[parent] || []
+		const list = oldList.find(
+			({ dottedName }) => dottedName === next.dottedName
+		)
+			? oldList
+			: [...oldList, next]
+		return {
+			...memo,
+			[parent]: list,
+		}
+	}, {})
+	const lonelyRules = Object.values(byParent)
+		.map((els) => (els.length === 1 ? els : []))
+		.flat()
+
+	return (
+		<div css="padding-left: 1rem; border-left: 1px dashed var(--lightColor)">
+			{Object.entries(byParent).map(
+				([key, values]) =>
+					values.length > 1 && (
+						<SubCategory
+							{...{
+								rules: values,
+								rule: engine.getRule(key),
+								engine,
+								level: level + 1,
+							}}
+						/>
+					)
+			)}
+			<StepsTable
+				{...{
+					rules: lonelyRules,
+					level,
+				}}
+			/>
+		</div>
+	)
+}
+
+const SubCategory = ({ rule, rules, engine, level }) => {
+	const [open, setOpen] = useState(false)
+
+	return (
+		<div>
+			<div
+				onClick={() => setOpen(!open)}
+				className="ui__ card"
+				css={`
+					cursor: pointer;
+					display: inline-flex;
+					justify-content: start;
+					align-items: center;
+					img {
+						font-size: 150%;
+					}
+					margin: 0.6rem 0;
+					padding: 0.4rem 0;
+					h3 {
+						margin: 0;
+						font-weight: 300;
+					}
+					${level === 1 &&
+					`background: ${rule.color} !important;
+
 						img {
-							font-size: 300%;
+							font-size: 230%;
 						}
-						max-width: 20rem;
+						width: 30rem;
+						max-width: 100%;
 						margin: 1rem 0;
 						h2 {
 							color: white;
@@ -139,73 +192,36 @@ const CategoryTable = ({ steps, categories, engine }) =>
 							font-weight: 300;
 							text-transform: uppercase;
 						}
-					`}
-				>
-					{emoji(category.icons)}
-					<h2>{category.title}</h2>
-				</div>
+						color: white;
+						small{color: white}
 
-				<StepsTable
-					{...{
-						rules: lonelyRules,
-					}}
-				/>
-				{Object.entries(byParent).map(
-					([key, values]) =>
-						values.length > 1 && (
-							<SubCategory rules={values} rule={engine.getRule(key)} />
-						)
-				)}
-			</div>
-		)
-	})
-const SubCategory = ({ rule, rules }) => {
-	const [open, setOpen] = useState(false)
-	return (
-		console.log('RULE', rule) || (
-			<div>
-				<div
-					onClick={() => setOpen(!open)}
-					className="ui__ card"
-					css={`
-						cursor: pointer;
-						display: inline-flex;
-						justify-content: start;
-						align-items: flex-end;
-						img {
-							font-size: 150%;
-						}
-						margin: 0.6rem 0;
-						padding: 0.4rem 0;
-						h3 {
-							margin: 0;
-							font-weight: 300;
-						}
-						> * {
-							margin: 0 0.4rem !important;
-						}
-					`}
-				>
-					{emoji(rule.rawNode.icônes || '')}
-					<h3>{rule.title}</h3>
-					<small>{rules.length} réponses</small>
+						`}
+				`}
+			>
+				{emoji(rule.rawNode.icônes || '')}
+				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
+				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
+					<small>
+						{rules.length} {level === 1 && emoji('💬')}
+					</small>
 					<span>{!open ? '▶' : '▼'}</span>
 				</div>
-				{open && (
-					<div css="padding-left: 1rem">
-						<StepsTable
-							{...{
-								rules,
-							}}
-						/>
-					</div>
-				)}
 			</div>
-		)
+			{open && (
+				<RecursiveStepsTable
+					{...{
+						rules,
+						engine,
+						level,
+					}}
+				/>
+			)}
+		</div>
 	)
 }
 function StepsTable({
 	rules,
+	level,
 }: {
 	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
 }) {
@@ -217,6 +233,7 @@ function StepsTable({
 				{rules.map((rule) => (
 					<Answer
 						{...{
+							level,
 							rule,
 							dispatch,
 							language,
@@ -228,9 +245,9 @@ function StepsTable({
 	)
 }
 
-const Answer = ({ rule, dispatch, language }) => {
+const Answer = ({ rule, dispatch, language, level }) => {
 	const history = useHistory()
-	const path = parentName(rule.dottedName, ' · ', 1)
+	const path = parentName(rule.dottedName, ' · ', level)
 	return (
 		<tr
 			key={rule.dottedName}
