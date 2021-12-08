@@ -1,12 +1,11 @@
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { useContext, useEffect } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
 import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
-import useSWR from 'swr'
 import { determinant, hideNewsBanner } from 'Components/NewsBanner'
 import Meta from '../components/utils/Meta'
 
@@ -25,14 +24,18 @@ type ReleasesData = Array<{
 }>
 
 export default function News() {
-	// The release.json file may be big, we don't want to include it in the main
-	// bundle, that's why we only fetch it on this page. Alternatively we could
-	// use import("data/release.json") and configure code splitting with Webpack.
-	const { data } = useSWR<ReleasesData>('/data/releases.json', fetcher)
+	const [data, setData] = useState()
 	const history = useHistory()
 	const slug = useRouteMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
 		?.slug
 	useEffect(hideNewsBanner, [])
+	useEffect(
+		() =>
+			fetch('/data/releases.json')
+				.then((r) => r.json())
+				.then((json) => setData(json)),
+		[]
+	)
 
 	if (!data) {
 		return null
