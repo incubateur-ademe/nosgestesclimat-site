@@ -13,6 +13,7 @@ import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import { Redirect } from 'react-router'
 import { useContext } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
+import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -43,6 +44,8 @@ export default ({}) => {
 		},
 		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
+	const { isIframe } = useContext(IframeOptionsContext)
+
 	return (
 		<div
 			css={`
@@ -53,6 +56,7 @@ export default ({}) => {
 				@media (min-aspect-ratio: 1280/700) {
 					height: 95vh;
 				}
+				${isIframe && `height: 45rem !important;`}
 				position: relative;
 				display: flex;
 				justify-content: center;
