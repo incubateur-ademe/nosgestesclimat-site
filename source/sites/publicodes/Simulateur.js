@@ -1,5 +1,4 @@
 import { setSimulationConfig } from 'Actions/actions'
-import PeriodSwitch from 'Components/PeriodSwitch'
 import { extractCategories } from 'Components/publicodesUtils'
 import { buildEndURL } from 'Components/SessionBar'
 import Simulation from 'Components/Simulation'
@@ -9,19 +8,17 @@ import { Markdown } from 'Components/utils/markdown'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
 import { compose, isEmpty, symmetricDifference } from 'ramda'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Redirect } from 'react-router'
 import { setTrackingVariable } from '../../actions/actions'
 import { FullName } from '../../components/publicodesUtils'
-import animate from '../../components/ui/animate'
 import Meta from '../../components/utils/Meta'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
 import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
-import Tutorial from './Tutorial'
 
 const eqValues = compose(isEmpty, symmetricDifference)
 
@@ -96,7 +93,7 @@ const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 	const situation = useSelector(situationSelector)
 	const tracker = useContext(TrackerContext)
-	const { endEventFired } = useState((state) => state.tracking)
+	const { endEventFired } = useSelector((state) => state.tracking)
 
 	useEffect(() => {
 		!endEventFired &&
