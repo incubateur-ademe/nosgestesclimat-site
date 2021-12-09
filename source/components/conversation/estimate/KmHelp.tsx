@@ -181,109 +181,122 @@ export default function KmHelp({ setFinalValue }) {
 					</button>
 				</div>
 				<form
-					css={`
-						display: flex;
-						flex-direction: row;
-						flex-wrap: wrap;
-						gap: 0.5rem;
-					`}
 					onSubmit={handleAddFormSubmit}
+					css={`
+						padding: 0rem 0.5rem 0rem 0.5rem;
+					`}
 				>
-					<label title="motif">
-						<select
-							className="ui__"
-							css={`
-								max-width: 10rem !important;
-								max-height: 2rem;
-							`}
-							name="motif"
-							onChange={handleAddFormChange}
-							required
-						>
-							<option value="">Motif</option>
-							{motifList.map((m) => (
-								<option key={m.id} value={m.name}>
-									{m.name}
-								</option>
-							))}
-						</select>
-					</label>
-					<label title="label">
-						<input
-							className="ui__"
-							css={`
-								width: 9rem !important;
-								max-height: 2rem;
-							`}
-							name="label"
-							type="text"
-							placeholder="Label (Optionnel)"
-							onChange={handleAddFormChange}
-						/>
-					</label>
-					<label title="distance">
-						<InputWrapper>
-							<InputSuffixed
-								className="ui__"
-								css={`
-									width: 3rem !important;
-								`}
-								name="distance"
-								type="number"
-								required
-								placeholder="Distance (Aller)"
-								onChange={handleAddFormChange}
-							/>
-							<InputSuffix>km</InputSuffix>
-						</InputWrapper>
-					</label>
-					<label title="frequence">
-						<select
-							className="ui__"
-							css={`
-								max-width: 10rem !important;
-								max-height: 2rem;
-							`}
-							name="frequence"
-							onChange={handleAddFormChange}
-							required
-						>
-							<option value="">Fréquence</option>
-							{freqList.map((f) => (
-								<option key={f.id} value={f.name}>
-									{f.name}
-								</option>
-							))}
-						</select>
-					</label>
-					<label title="personnes">
-						<InputWrapper>
-							<InputSuffixed
-								className="ui__"
-								css={`
-									width: 3rem !important;
-								`}
-								name="personnes"
-								type="number"
-								required
-								placeholder="Nbre de personnes"
-								onChange={handleAddFormChange}
-							/>
-							<InputSuffix>👥</InputSuffix>
-						</InputWrapper>
-					</label>
-					<button
-						className="ui__ plain small button"
-						css="max-height: 2rem"
-						type="submit"
+					<div
+						css={`
+							display: flex;
+							flex-direction: row;
+							flex-wrap: wrap;
+							gap: 0.5rem;
+							margin-top: 0.5rem;
+							padding: 0rem 0.5rem 0rem 0.5rem;
+						`}
 					>
-						Add
-					</button>
+						<label title="motif">
+							<select
+								className="ui__"
+								css={`
+									max-width: 10rem !important;
+									max-height: 2rem;
+								`}
+								name="motif"
+								onChange={handleAddFormChange}
+								required
+							>
+								<option value="">Motif</option>
+								{motifList.map((m) => (
+									<option key={m.id} value={m.name}>
+										{m.name}
+									</option>
+								))}
+							</select>
+						</label>
+						<label title="label">
+							<input
+								className="ui__"
+								css={`
+									width: 9rem !important;
+									max-height: 2rem;
+								`}
+								name="label"
+								type="text"
+								placeholder="Label (Optionnel)"
+								onChange={handleAddFormChange}
+							/>
+						</label>
+						<label title="distance">
+							<InputWrapper>
+								<InputSuffixed
+									className="ui__"
+									css={`
+										width: 3rem !important;
+									`}
+									name="distance"
+									type="number"
+									required
+									placeholder="Distance (Aller)"
+									onChange={handleAddFormChange}
+								/>
+								<InputSuffix>km</InputSuffix>
+							</InputWrapper>
+						</label>
+						<label title="frequence">
+							<select
+								className="ui__"
+								css={`
+									max-width: 10rem !important;
+									max-height: 2rem;
+								`}
+								name="frequence"
+								onChange={handleAddFormChange}
+								required
+							>
+								<option value="">Fréquence</option>
+								{freqList.map((f) => (
+									<option key={f.id} value={f.name}>
+										{f.name}
+									</option>
+								))}
+							</select>
+						</label>
+						<label title="personnes">
+							<InputWrapper>
+								<InputSuffixed
+									className="ui__"
+									css={`
+										width: 3rem !important;
+									`}
+									name="personnes"
+									type="number"
+									required
+									placeholder="Nbre de personnes"
+									onChange={handleAddFormChange}
+								/>
+								<InputSuffix>👥</InputSuffix>
+							</InputWrapper>
+						</label>
+					</div>
+					<div
+						css={`
+							text-align: right;
+						`}
+					>
+						<button
+							className="ui__ plain small button"
+							css="max-height: 2rem"
+							type="submit"
+						>
+							Ajouter
+						</button>
+					</div>
 				</form>
 				<div
 					css={`
 						overflow: auto;
-						margin-top: 20px;
 						padding: 0rem 0.5rem 0rem 0.5rem;
 					`}
 				>
@@ -295,11 +308,11 @@ export default function KmHelp({ setFinalValue }) {
 								border-collapse: separate;
 								background: white;
 								width: 100%;
-								font-size: 1rem;
+								font-size: 90%;
 
 								td,
 								th {
-									padding: 0.5rem;
+									padding: 0.2rem;
 									text-align: center;
 								}
 
@@ -321,7 +334,7 @@ export default function KmHelp({ setFinalValue }) {
 
 								tbody tr {
 									height: 1.5rem;
-									box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+									box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 								}
 
 								th:first-child,
@@ -340,31 +353,66 @@ export default function KmHelp({ setFinalValue }) {
 								<tr>
 									<th scope="col">Motif</th>
 									<th scope="col">Label</th>
-									<th scope="col">Distance (Aller)</th>
+									<th scope="col">Distance</th>
 									<th scope="col">Fréquence</th>
-									<th scope="col">Nbre de personnes</th>
-									<th scope="col">Modifier</th>
+									<th scope="col">Personnes</th>
+									<th scope="col" css="min-width: 6rem">
+										Modifier
+									</th>
 								</tr>
 							</thead>
-							<tbody>
-								{trajets.map((trajet) => (
-									<Fragment>
-										{editTrajetId === trajet.id ? (
-											<EditableRow
-												editFormData={editFormData}
-												handleEditFormChange={handleEditFormChange}
-												handleCancelClick={handleCancelClick}
-											/>
-										) : (
-											<ReadOnlyRow
-												trajet={trajet}
-												handleEditClick={handleEditClick}
-												handleDeleteClick={handleDeleteClick}
-											/>
-										)}
-									</Fragment>
-								))}
-							</tbody>
+							{sum ? (
+								<tbody>
+									{trajets.map((trajet) => (
+										<Fragment>
+											{editTrajetId === trajet.id ? (
+												<EditableRow
+													editFormData={editFormData}
+													handleEditFormChange={handleEditFormChange}
+													handleCancelClick={handleCancelClick}
+												/>
+											) : (
+												<ReadOnlyRow
+													trajet={trajet}
+													handleEditClick={handleEditClick}
+													handleDeleteClick={handleDeleteClick}
+												/>
+											)}
+										</Fragment>
+									))}
+								</tbody>
+							) : (
+								<tbody>
+									<div
+										css={`
+											width: 200%;
+											display: flex;
+											justify-content: left;
+											align-items: left;
+										`}
+									>
+										<MouvingArrow />
+										&nbsp; C'est un exemple ! &nbsp;
+										<MouvingArrow />
+									</div>
+									<tr
+										css={`
+											opacity: 0.5;
+											background-color: #e9f1ff;
+										`}
+									>
+										<td>Loisirs</td>
+										<td>Entrainement Basket</td>
+										<td>10</td>
+										<td>1 fois par semaine</td>
+										<td>1.5</td>
+										<td>
+											<button>✏️</button>
+											<button>🗑</button>
+										</td>
+									</tr>
+								</tbody>
+							)}
 						</table>
 					</form>
 				</div>
@@ -404,6 +452,22 @@ const HelpButton = ({ text, setIsOpen }) => (
 			{text}
 		</div>
 	</button>
+)
+
+const MouvingArrow = () => (
+	<motion.div
+		animate={{
+			y: [0, 0, 0, -3, 4, 3],
+		}}
+		transition={{
+			duration: 1.5,
+			delay: 1,
+			repeat: Infinity,
+			repeatDelay: 0,
+		}}
+	>
+		⬇️
+	</motion.div>
 )
 
 const InputWrapper = styled.div`

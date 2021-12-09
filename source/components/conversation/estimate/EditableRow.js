@@ -7,7 +7,14 @@ export default function EditableRow({
 	handleCancelClick,
 }) {
 	return (
-		<tr>
+		<tr
+			css={`
+				select,
+				input {
+					margin-bottom: 0rem;
+				}
+			`}
+		>
 			<td>
 				<select
 					name="motif"
