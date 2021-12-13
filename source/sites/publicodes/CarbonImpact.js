@@ -27,8 +27,9 @@ export default ({ actionMode = false, demoMode = false }) => {
 		{ nodeValue: rawNodeValue, dottedName, unit, rawNode } = evaluation
 	const persona = useSelector((state) => state.simulation?.persona)
 	const actionChoices = useSelector((state) => state.actionChoices),
-		actionsChosen = Object.values(actionChoices).filter((a) => a === true)
-			.length
+		actionsChosen = Object.values(actionChoices).filter(
+			(a) => a === true
+		).length
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
@@ -71,59 +72,59 @@ export default ({ actionMode = false, demoMode = false }) => {
 				}
 			`}
 		>
-			<Link
-				to={demoMode ? '#' : endURL}
-				css=":hover {opacity: 1 !important}; text-decoration: none"
+			<div
+				css={`
+					display: flex;
+					justify-content: space-evenly;
+					align-items: center;
+					> div {
+						display: flex;
+						justify-content: center;
+						align-items: center;
+					}
+					padding: 0.4rem;
+					min-height: 4rem;
+				`}
 			>
-				<div
+				<Link
+					to={demoMode ? '#' : endURL}
 					css={`
+						:hover {
+							opacity: 1 !important;
+						}
+						text-decoration: none;
 						display: flex;
 						justify-content: space-evenly;
-						align-items: center;
-						> div {
-							display: flex;
-							justify-content: center;
-							align-items: center;
-						}
-						padding: 0.4rem;
-						min-height: 4rem;
+						flex-direction: column;
+						width: 80%;
 					`}
 				>
-					<div
-						css={`
-							display: flex;
-							justify-content: space-evenly;
-							flex-direction: column;
-							width: 80%;
-						`}
-					>
-						{persona && (
-							<em>
-								{emoji('👤')} {persona}
-							</em>
-						)}
-						<div>
-							{!actionMode ? (
-								<HumanWeight
-									nodeValue={nodeValue}
-									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
-								/>
-							) : (
-								<DiffHumanWeight
-									{...{ nodeValue, engine, rules, actionChoices }}
-								/>
-							)}
-						</div>
-					</div>
-					{!demoMode && !actionMode && (
-						<DocumentationLink dottedName={dottedName} />
+					{persona && (
+						<em>
+							{emoji('👤')} {persona}
+						</em>
 					)}
-					{actionMode && <ActionCount count={actionsChosen} />}
-				</div>
-				{!demoMode && progress < 1 && (
-					<Progress progress={progress} style={!progress ? 'height: 0' : ''} />
+					<div>
+						{!actionMode ? (
+							<HumanWeight
+								nodeValue={nodeValue}
+								overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+							/>
+						) : (
+							<DiffHumanWeight
+								{...{ nodeValue, engine, rules, actionChoices }}
+							/>
+						)}
+					</div>
+				</Link>
+				{!demoMode && !actionMode && (
+					<DocumentationLink dottedName={dottedName} />
 				)}
-			</Link>
+				{actionMode && <ActionCount count={actionsChosen} />}
+			</div>
+			{!demoMode && progress < 1 && (
+				<Progress progress={progress} style={!progress ? 'height: 0' : ''} />
+			)}
 		</div>
 	)
 }
