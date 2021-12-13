@@ -20,7 +20,7 @@ export default ({}) => {
 		<>
 			<Meta
 				title="Passer à l'action"
-				title="Découvrez les gestes qui vous permettent de réduire votre empreinte climat"
+				description="Découvrez les gestes qui vous permettent de réduire votre empreinte climat"
 			/>
 			<Title>Agir</Title>
 			<CarbonImpact actionMode />
