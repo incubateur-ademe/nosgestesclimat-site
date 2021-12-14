@@ -12,7 +12,13 @@ export default function ReadOnlyRow({
 			<td>{trajet.distance}</td>
 			<td>{trajet.frequence}</td>
 			<td>{trajet.personnes}</td>
-			<td>
+			<td
+				css={`
+					> button {
+						padding: 0.4rem;
+					}
+				`}
+			>
 				<button
 					type="button"
 					onClick={(event) => handleEditClick(event, trajet)}

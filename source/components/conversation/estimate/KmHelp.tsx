@@ -167,7 +167,12 @@ export default function KmHelp({ setFinalValue }) {
 		</div>
 	) : (
 		<animate.fromTop>
-			<div className="ui__ card content" css="margin-bottom: 1rem">
+			<div
+				className="ui__ card content"
+				css={`
+					margin-bottom: 1rem;
+				`}
+			>
 				<div
 					css={`
 						text-align: right;
@@ -233,7 +238,7 @@ export default function KmHelp({ setFinalValue }) {
 								<InputSuffixed
 									className="ui__"
 									css={`
-										width: 3rem !important;
+										width: 8rem !important;
 									`}
 									name="distance"
 									type="number"
@@ -268,7 +273,7 @@ export default function KmHelp({ setFinalValue }) {
 								<InputSuffixed
 									className="ui__"
 									css={`
-										width: 3rem !important;
+										width: 9.5rem !important;
 									`}
 									name="personnes"
 									type="number"
@@ -307,8 +312,9 @@ export default function KmHelp({ setFinalValue }) {
 								border-spacing: 0 1rem;
 								border-collapse: separate;
 								background: white;
+								font-size: 85%;
+								table-layout: fixed;
 								width: 100%;
-								font-size: 90%;
 
 								td,
 								th {
@@ -352,11 +358,22 @@ export default function KmHelp({ setFinalValue }) {
 							<thead>
 								<tr>
 									<th scope="col">Motif</th>
-									<th scope="col">Label</th>
-									<th scope="col">Distance</th>
-									<th scope="col">Fréquence</th>
-									<th scope="col">Personnes</th>
-									<th scope="col" css="min-width: 6rem">
+									<th scope="col" css="width: 22%">
+										Label
+									</th>
+									<th scope="col" css="width: 10%">
+										"KM"
+									</th>
+									<th scope="col" css="width: 22%">
+										Fréquence
+									</th>
+									<th
+										scope="col"
+										css="width: 10%; color: transparent; text-shadow: 0 0 0 white;"
+									>
+										👥
+									</th>
+									<th scope="col" css="width: 5.5rem">
 										Modifier
 									</th>
 								</tr>
@@ -383,18 +400,18 @@ export default function KmHelp({ setFinalValue }) {
 								</tbody>
 							) : (
 								<tbody>
-									<div
-										css={`
-											width: 200%;
-											display: flex;
-											justify-content: left;
-											align-items: left;
-										`}
-									>
-										<MouvingArrow />
-										&nbsp; C'est un exemple ! &nbsp;
-										<MouvingArrow />
-									</div>
+									<td colspan="6">
+										<div
+											css={`
+												display: flex;
+												justify-content: center;
+											`}
+										>
+											<MouvingArrow />
+											&nbsp; C'est un exemple &nbsp;
+											<MouvingArrow />
+										</div>
+									</td>
 									<tr
 										css={`
 											opacity: 0.5;
