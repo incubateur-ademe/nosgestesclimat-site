@@ -13,6 +13,7 @@ import { extractCategories } from 'Components/publicodesUtils'
 import { computeHumanMean } from './Stats'
 import { filterExtremes } from './utils'
 import { backgroundConferenceAnimation } from './conferenceStyle'
+import { WebsocketProvider } from 'y-websocket'
 
 export default () => {
 	const conference = useSelector((state) => state.conference)
@@ -46,7 +47,7 @@ export default () => {
 		console.log('useeffect with ?', conference)
 		if (!conference) {
 			const ydoc = new Y.Doc()
-			const provider = new WebrtcProvider(room, ydoc, {})
+			const provider = new WebsocketProvider('ws://localhost:1234', room, ydoc)
 			dispatch({ type: 'SET_CONFERENCE', room, ydoc, provider })
 		} else {
 			awareness.on('change', (changes) => {
