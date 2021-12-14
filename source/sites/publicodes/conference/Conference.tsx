@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { WebrtcProvider } from 'y-webrtc'
+import { WebsocketProvider } from 'y-websocket'
 import * as Y from 'yjs'
 import { conferenceImg } from '../../../components/SessionBar'
 import ShareButton from '../../../components/ShareButton'
@@ -40,7 +41,11 @@ export default () => {
 	useEffect(() => {
 		if (!conference) {
 			const ydoc = new Y.Doc()
-			const provider = new WebrtcProvider(room, ydoc, {})
+			const provider = new WebsocketProvider('ws://localhost:1234', room, ydoc)
+			provider.on('status', (event) => {
+				console.log(event.status) // logs "connected" or "disconnected"
+			})
+
 			dispatch({ type: 'SET_CONFERENCE', room, ydoc, provider })
 		} else {
 			const { room } = conference
