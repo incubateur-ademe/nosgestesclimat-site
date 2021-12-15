@@ -55,3 +55,5 @@ Martin Régner - ADEME
 Netlify, Inc
 2325 3rd Street, Suite 296,
 San Francisco, California 94107
+
+Le site est hébergé sur Netlify. C'est un site statique servi via un CDN : malgré la domiciliation en Californie, le site vous sera servi [depuis l'Europe](https://answers.netlify.com/t/is-there-a-list-of-where-netlifys-cdn-pops-are-located/855/2).
