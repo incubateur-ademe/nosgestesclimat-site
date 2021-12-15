@@ -7,14 +7,13 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
-import * as Y from 'yjs'
 import { conferenceImg } from '../../../components/SessionBar'
 import ShareButton from '../../../components/ShareButton'
 import { ThemeColorsContext } from '../../../components/utils/colors'
 import { ScrollToTop } from '../../../components/utils/Scroll'
-import fruits from './fruits.json'
 import Stats from './Stats'
 import UserList from './UserList'
+import useYjs from './useYjs'
 import {
 	extremeThreshold,
 	filterExtremes,
@@ -25,63 +24,12 @@ import {
 } from './utils'
 
 export default () => {
-	const [rawElements, setElements] = useState([])
-	const [users, setUsers] = useState([])
 	const [newRoom, setNewRoom] = useState(generateRoomName())
 	const { room } = useParams()
-	const [username, setUsername] = usePersistingState(
-		'pseudo',
-		fruits[getRandomInt(fruits.length)]
-	)
 
-	const dispatch = useDispatch()
+	const { rawElements, users, username } = useYjs(room)
 
-	const conference = useSelector((state) => state.conference)
-
-	useEffect(() => {
-		if (!conference) {
-			const ydoc = new Y.Doc()
-			const provider = new WebsocketProvider(
-				'ws://ngc.cleverapps.io:8080',
-				room,
-				ydoc
-			)
-			provider.on('status', (event) => {
-				console.log(event.status) // logs "connected" or "disconnected"
-			})
-
-			dispatch({ type: 'SET_CONFERENCE', room, ydoc, provider })
-		} else {
-			const { room } = conference
-
-			const ydoc = conference.ydoc,
-				provider = conference.provider
-
-			const awareness = provider.awareness
-
-			setUsers(Array.from(awareness.getStates().values()))
-
-			// You can observe when a any user updated their awareness information
-			awareness.on('change', (changes) => {
-				// Whenever somebody updates their awareness information,
-				// we log all awareness information from all users.
-				setUsers(Array.from(awareness.getStates().values()))
-			})
-
-			awareness.setLocalState({
-				// Define a print name that should be displayed
-				name: username,
-				// Define a color that should be associated to the user:
-				color: stringToColour(username), // should be a hex color
-			})
-			const simulations = conference.ydoc.get('simulations', Y.Map)
-			setElements(simulations.toJSON())
-			simulations.observe((event) => {
-				console.log('did observe from Conf', event)
-				setElements(simulations.toJSON())
-			})
-		}
-	}, [room, conference])
+	console.log('ALLOQUOI', rawElements, users, username)
 
 	const elements = filterExtremes(rawElements),
 		extremes = getExtremes(rawElements)
