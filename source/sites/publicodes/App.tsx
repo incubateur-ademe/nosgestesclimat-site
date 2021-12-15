@@ -163,6 +163,11 @@ const Routes = ({}) => {
 					<ConferenceLazy />
 				</Suspense>
 			</Route>
+			<Route path="/sondage/:room?">
+				<Suspense fallback="Chargement">
+					<ConferenceLazy />
+				</Suspense>
+			</Route>
 			<Redirect from="/conference/:room" to="/conférence/:room" />
 			<Route path="/tutoriel" component={Tutorial} />
 			<Route component={Route404} />

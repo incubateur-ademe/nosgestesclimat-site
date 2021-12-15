@@ -3,7 +3,7 @@ import QRCode from 'qrcode.react'
 import { useContext, useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router'
+import { useLocation, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
@@ -26,7 +26,11 @@ import {
 export default () => {
 	const [newRoom, setNewRoom] = useState(generateRoomName())
 	const { room } = useParams()
-	const [connectionType, setConnectionType] = useState('p2p')
+	const location = useLocation(),
+		conferenceType = location.pathname.includes('/conférence/')
+			? 'p2p'
+			: 'database'
+	const [connectionType, setConnectionType] = useState(conferenceType)
 
 	const { elements, extremes, users, username } = useYjs(room, connectionType)
 
@@ -219,44 +223,48 @@ const Instructions = ({
 				{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
 				{room && <p>{emoji('✅')} C'est fait</p>}
 			</InstructionBlock>
-			<InstructionBlock
-				index="2"
-				title={<span>{emoji('⏲️')} Choississez votre type de conférence</span>}
-			>
-				<div
-					css={`
-						display: flex;
-						label {
-							flex: auto;
-						}
-					`}
+			{newRoom !== '' && !room && (
+				<InstructionBlock
+					index="2"
+					title={
+						<span>{emoji('⏲️')} Choississez votre type de conférence</span>
+					}
 				>
-					<label className="ui__ card box interactive">
-						<input
-							type="radio"
-							name="connectionType"
-							value="p2p"
-							checked={connectionType === 'p2p'}
-							onChange={(e) => setConnectionType(e.target.value)}
-						/>
-						Mode éphémère : parfait entre amis, ou pour une présentation
-						intéractive lors d'une conférence. Les données restent entre vous
-						(pair-à-pair), sans serveur.
-					</label>
-					<label className="ui__ card box interactive">
-						<input
-							type="radio"
-							name="connectionType"
-							value="database"
-							checked={connectionType === 'database'}
-							onChange={(e) => setConnectionType(e.target.value)}
-						/>
-						Mode sondage : les données sont stockées sur notre serveur, restent
-						accessibles dans le temps. Si votre entreprise bride votre réseau
-						interne, utilisez ce mode.
-					</label>
-				</div>
-			</InstructionBlock>
+					<div
+						css={`
+							display: flex;
+							label {
+								flex: auto !important;
+							}
+						`}
+					>
+						<label className="ui__ card box interactive">
+							<input
+								type="radio"
+								name="connectionType"
+								value="p2p"
+								checked={connectionType === 'p2p'}
+								onChange={(e) => setConnectionType(e.target.value)}
+							/>
+							Mode éphémère : parfait entre amis, ou pour une présentation
+							intéractive lors d'une conférence. Les données restent entre vous
+							(pair-à-pair), sans serveur.
+						</label>
+						<label className="ui__ card box interactive">
+							<input
+								type="radio"
+								name="connectionType"
+								value="database"
+								checked={connectionType === 'database'}
+								onChange={(e) => setConnectionType(e.target.value)}
+							/>
+							Mode sondage : les données sont stockées sur notre serveur,
+							restent accessibles dans le temps. Si votre entreprise bride votre
+							réseau interne, utilisez ce mode.
+						</label>
+					</div>
+				</InstructionBlock>
+			)}
 			<InstructionBlock
 				index="3"
 				title={
