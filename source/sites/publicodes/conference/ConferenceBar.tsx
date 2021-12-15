@@ -24,13 +24,11 @@ export default () => {
 	const rules = useSelector((state) => state.rules)
 
 	const progress = useSimulationProgress()
-	const { rawElements, users, username, conference } = useYjs()
+	const { elements, users, username, conference } = useYjs(null)
 
 	const byCategory = extractCategories(rules, engine)
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
-
-	const elements = filterExtremes(rawElements)
 
 	useEffect(() => {
 		if (!conference?.ydoc) return null
