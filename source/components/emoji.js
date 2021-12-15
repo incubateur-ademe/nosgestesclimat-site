@@ -25,15 +25,19 @@ export const getEmojiComponents = (text) => {
 
 // Here text can include emojis and text
 export const Twemoji = ({ text }) => {
-	return (
+	const parsed = twemoji.parse(text, {
+		folder: 'svg',
+		ext: '.svg',
+	})
+
+	return parsed.includes('<img class="emoji"') ? (
 		<EmojiStyle
 			dangerouslySetInnerHTML={{
-				__html: twemoji.parse(text, {
-					folder: 'svg',
-					ext: '.svg',
-				}),
+				__html: parsed,
 			}}
 		/>
+	) : (
+		text
 	)
 }
 
