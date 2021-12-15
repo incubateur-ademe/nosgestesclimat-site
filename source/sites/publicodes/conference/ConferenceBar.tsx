@@ -47,7 +47,11 @@ export default () => {
 		console.log('useeffect with ?', conference)
 		if (!conference) {
 			const ydoc = new Y.Doc()
-			const provider = new WebsocketProvider('ws://localhost:1234', room, ydoc)
+			const provider = new WebsocketProvider(
+				'ws://ngc.cleverapps.io:8080',
+				room,
+				ydoc
+			)
 			dispatch({ type: 'SET_CONFERENCE', room, ydoc, provider })
 		} else {
 			awareness.on('change', (changes) => {

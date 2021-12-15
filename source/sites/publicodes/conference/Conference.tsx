@@ -41,7 +41,11 @@ export default () => {
 	useEffect(() => {
 		if (!conference) {
 			const ydoc = new Y.Doc()
-			const provider = new WebsocketProvider('ws://localhost:1234', room, ydoc)
+			const provider = new WebsocketProvider(
+				'ws://ngc.cleverapps.io:8080',
+				room,
+				ydoc
+			)
 			provider.on('status', (event) => {
 				console.log(event.status) // logs "connected" or "disconnected"
 			})
