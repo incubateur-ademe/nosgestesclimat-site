@@ -27,9 +27,10 @@ export default () => {
 	const [newRoom, setNewRoom] = useState(generateRoomName())
 	const { room } = useParams()
 	const location = useLocation(),
-		conferenceType = location.pathname.includes('/conférence/')
+		conferenceType = location.pathname.includes('/conférence')
 			? 'p2p'
 			: 'database'
+
 	const [connectionType, setConnectionType] = useState(conferenceType)
 
 	const { elements, extremes, users, username } = useYjs(room, connectionType)
