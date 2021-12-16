@@ -32,7 +32,7 @@ export default (room, connectionType: 'p2p' | 'database') => {
 				connectionType === 'p2p'
 					? new WebrtcProvider(room, ydoc, {})
 					: new WebsocketProvider(
-							'ws://nosgestesclimat-serveur.osc-fr1.scalingo.io',
+							'wss://nosgestesclimat-serveur.osc-fr1.scalingo.io',
 							room,
 							ydoc
 					  )
