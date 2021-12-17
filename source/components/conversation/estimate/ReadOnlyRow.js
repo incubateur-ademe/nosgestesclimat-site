@@ -10,7 +10,9 @@ export default function ReadOnlyRow({
 			<td>{trajet.motif}</td>
 			<td>{trajet.label}</td>
 			<td>{trajet.distance}</td>
-			<td>{trajet.frequence}</td>
+			<td>
+				{trajet.xfois} x / {trajet.periode}
+			</td>
 			<td>{trajet.personnes}</td>
 			<td
 				css={`

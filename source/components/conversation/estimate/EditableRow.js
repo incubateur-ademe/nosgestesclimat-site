@@ -1,5 +1,6 @@
 import React from 'react'
 import { motifList, freqList } from './dataHelp'
+import { range } from 'ramda'
 
 export default function EditableRow({
 	editFormData,
@@ -12,6 +13,7 @@ export default function EditableRow({
 				select,
 				input {
 					margin-bottom: 0rem;
+					height: 2rem;
 				}
 			`}
 		>
@@ -51,10 +53,25 @@ export default function EditableRow({
 			</td>
 			<td>
 				<select
-					name="frequence"
 					className="ui__"
-					value={editFormData.frequence}
+					name="xfois"
+					value={editFormData.xfois}
 					onChange={handleEditFormChange}
+					required
+				>
+					{range(1, 10).map((v) => (
+						<option key={v} value={v}>
+							{v}
+						</option>
+					))}
+				</select>
+				<strong> &nbsp; x / </strong>
+				<select
+					className="ui__"
+					name="periode"
+					value={editFormData.periode}
+					onChange={handleEditFormChange}
+					required
 				>
 					{freqList.map((f) => (
 						<option key={f.id} value={f.name}>

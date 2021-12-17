@@ -1,6 +1,6 @@
 import animate from 'Components/ui/animate'
 import { nanoid } from 'nanoid'
-import { composeP } from 'ramda'
+import { composeP, range } from 'ramda'
 import { useState, Fragment, useEffect } from 'react'
 import { motifList, freqList } from './dataHelp'
 import ReadOnlyRow from './ReadOnlyRow'
@@ -20,7 +20,8 @@ export default function KmHelp({ setFinalValue }) {
 		motif: '',
 		label: '',
 		distance: 0,
-		frequence: '',
+		xfois: '',
+		periode: '',
 		personnes: 0,
 	})
 
@@ -28,7 +29,8 @@ export default function KmHelp({ setFinalValue }) {
 		motif: '',
 		label: '',
 		distance: 0,
-		frequence: '',
+		xfois: '',
+		periode: '',
 		personnes: 0,
 	})
 
@@ -38,8 +40,8 @@ export default function KmHelp({ setFinalValue }) {
 		updateSum(
 			trajets
 				.map((trajet) => {
-					const freq = freqList.find((f) => f.name === trajet.frequence)
-					const freqValue = freq ? freq.value : 0
+					const period = freqList.find((f) => f.name === trajet.periode)
+					const freqValue = period ? period.value * trajet.xfois : 0
 					return (trajet.distance * 2 * freqValue) / trajet.personnes
 				})
 				.reduce((memo, elt) => {
@@ -51,20 +53,6 @@ export default function KmHelp({ setFinalValue }) {
 	useEffect(() => {
 		if (sum) setFinalValue(Math.round(+sum))
 	}, [sum])
-
-	// useEffect(() => {
-	// 	updateSum(
-	// 		trajets
-	// 			.map((trajet) => {
-	// 				const freq = freqList.find((f) => f.name === trajet.frequence)
-	// 				const freqValue = freq ? freq.value : 0
-	// 				return (trajet.distance * 2 * freqValue) / trajet.personnes
-	// 			})
-	// 			.reduce((memo, elt) => {
-	// 				return memo + elt
-	// 			}, 0)
-	// 	)
-	// }, [{sum}])
 
 	const handleAddFormChange = (event) => {
 		event.preventDefault()
@@ -98,7 +86,8 @@ export default function KmHelp({ setFinalValue }) {
 			motif: addFormData.motif,
 			label: addFormData.label,
 			distance: addFormData.distance,
-			frequence: addFormData.frequence,
+			xfois: addFormData.xfois,
+			periode: addFormData.periode,
 			personnes: addFormData.personnes,
 		}
 
@@ -114,7 +103,8 @@ export default function KmHelp({ setFinalValue }) {
 			motif: editFormData.motif,
 			label: editFormData.label,
 			distance: editFormData.distance,
-			frequence: editFormData.frequence,
+			xfois: editFormData.xfois,
+			periode: editFormData.periode,
 			personnes: editFormData.personnes,
 		}
 
@@ -136,7 +126,8 @@ export default function KmHelp({ setFinalValue }) {
 			motif: trajet.motif,
 			label: trajet.label,
 			distance: trajet.distance,
-			frequence: trajet.frequence,
+			xfois: trajet.xfois,
+			periode: trajet.periode,
 			personnes: trajet.personnes,
 		}
 
@@ -199,14 +190,17 @@ export default function KmHelp({ setFinalValue }) {
 							gap: 0.5rem;
 							margin-top: 0.5rem;
 							padding: 0rem 0.5rem 0rem 0.5rem;
+							input,
+							select {
+								height: 2rem;
+							}
 						`}
 					>
 						<label title="motif">
 							<select
 								className="ui__"
 								css={`
-									max-width: 10rem !important;
-									max-height: 2rem;
+									max-width: 9rem !important;
 								`}
 								name="motif"
 								onChange={handleAddFormChange}
@@ -224,12 +218,11 @@ export default function KmHelp({ setFinalValue }) {
 							<input
 								className="ui__"
 								css={`
-									width: 9rem !important;
-									max-height: 2rem;
+									width: 8rem !important;
 								`}
 								name="label"
 								type="text"
-								placeholder="Label (Optionnel)"
+								placeholder="Label (facultatif)"
 								onChange={handleAddFormChange}
 							/>
 						</label>
@@ -249,25 +242,47 @@ export default function KmHelp({ setFinalValue }) {
 								<InputSuffix>km</InputSuffix>
 							</InputWrapper>
 						</label>
-						<label title="frequence">
-							<select
-								className="ui__"
-								css={`
-									max-width: 10rem !important;
-									max-height: 2rem;
-								`}
-								name="frequence"
-								onChange={handleAddFormChange}
-								required
-							>
-								<option value="">Fréquence</option>
-								{freqList.map((f) => (
-									<option key={f.id} value={f.name}>
-										{f.name}
-									</option>
-								))}
-							</select>
-						</label>
+						<SelectWrapper>
+							<label title="frequence">
+								<select
+									className="ui__"
+									css={`
+										max-width: 10rem !important;
+										outline: none !important;
+										border: none !important;
+									`}
+									name="xfois"
+									onChange={handleAddFormChange}
+									required
+								>
+									<option value="">x</option>
+									{range(1, 10).map((v) => (
+										<option key={v} value={v}>
+											{v}
+										</option>
+									))}
+								</select>
+								<strong> &nbsp; fois par </strong>
+								<select
+									className="ui__"
+									css={`
+										max-width: 10rem !important;
+										outline: none !important;
+										border: none !important;
+									`}
+									name="periode"
+									onChange={handleAddFormChange}
+									required
+								>
+									<option value="">semaine</option>
+									{freqList.map((f) => (
+										<option key={f.id} value={f.name}>
+											{f.name}
+										</option>
+									))}
+								</select>
+							</label>
+						</SelectWrapper>
 						<label title="personnes">
 							<InputWrapper>
 								<InputSuffixed
@@ -315,6 +330,7 @@ export default function KmHelp({ setFinalValue }) {
 								font-size: 85%;
 								table-layout: fixed;
 								width: 100%;
+								min-width: 500px;
 
 								td,
 								th {
@@ -419,7 +435,7 @@ export default function KmHelp({ setFinalValue }) {
 										`}
 									>
 										<td>Loisirs</td>
-										<td>Entrainement Basket</td>
+										<td>Entrainement</td>
 										<td>10</td>
 										<td>1 fois par semaine</td>
 										<td>1.5</td>
@@ -455,7 +471,7 @@ const HelpButton = ({ text, setIsOpen }) => (
 			<motion.div
 				animate={{
 					rotate: [0, 15, -15, 0],
-					y: [0, 0, 0, -3, 4, 3],
+					y: [0, 0, 0, -3, 4, 0],
 				}}
 				transition={{
 					duration: 1.5,
@@ -474,7 +490,7 @@ const HelpButton = ({ text, setIsOpen }) => (
 const MouvingArrow = () => (
 	<motion.div
 		animate={{
-			y: [0, 0, 0, -3, 4, 3],
+			y: [0, 0, 0, -3, 4, 0],
 		}}
 		transition={{
 			duration: 1.5,
@@ -491,7 +507,7 @@ const InputWrapper = styled.div`
 	display: flex;
 	max-width: 100%;
 	margin-bottom: 0.6rem;
-	border: 1px solid var(--lighterTextColor);
+	outline: 1px solid var(--lighterTextColor);
 	border-radius: 0.3rem;
 	background-color: white;
 	color: inherit;
@@ -516,4 +532,22 @@ const InputSuffixed = styled.input`
 const InputSuffix = styled.div`
 	position: relative;
 	padding: 0.1rem 0.5rem 0rem 0rem;
+`
+
+const SelectWrapper = styled.div`
+	display: flex;
+	max-width: 100%;
+	margin-bottom: 0.6rem;
+	outline: 1px solid var(--lighterTextColor);
+	border-radius: 0.3rem;
+	background-color: white;
+	color: inherit;
+	font-size: inherit;
+	transition: border-color 0.1s;
+	position: relative;
+	font-family: inherit;
+	max-height: 2rem;
+	&:focus {
+		outline: 1px solid var(--color);
+	}
 `
