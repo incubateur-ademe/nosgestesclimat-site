@@ -1,10 +1,10 @@
 import animate from 'Components/ui/animate'
-import { nanoid } from 'nanoid'
-import { composeP, range } from 'ramda'
-import { useState, Fragment, useEffect } from 'react'
+import { useState, Fragment, useEffect, useRef } from 'react'
 import { motifList, freqList } from './dataHelp'
 import ReadOnlyRow from './ReadOnlyRow'
 import EditableRow from './EditableRow'
+import KmForm from './KmForm'
+import KmHelpButton from './KmHelpButton'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import './KmHelp.css'
@@ -15,15 +15,6 @@ export default function KmHelp({ setFinalValue }) {
 	const [trajets, setTrajets] = useState([])
 
 	const [sum, updateSum] = useState(0)
-
-	const [addFormData, setAddFormData] = useState({
-		motif: '',
-		label: '',
-		distance: 0,
-		xfois: '',
-		periode: '',
-		personnes: 0,
-	})
 
 	const [editFormData, setEditFormData] = useState({
 		motif: '',
@@ -50,50 +41,15 @@ export default function KmHelp({ setFinalValue }) {
 		)
 	}, [trajets])
 
+	const firstRender = useRef(true)
+
 	useEffect(() => {
-		if (sum) setFinalValue(Math.round(+sum))
-	}, [sum])
-
-	const handleAddFormChange = (event) => {
-		event.preventDefault()
-
-		const fieldName = event.target.getAttribute('name')
-		const fieldValue = event.target.value
-
-		const newFormData = { ...addFormData }
-		newFormData[fieldName] = fieldValue
-
-		setAddFormData(newFormData)
-	}
-
-	const handleEditFormChange = (event) => {
-		event.preventDefault()
-
-		const fieldName = event.target.getAttribute('name')
-		const fieldValue = event.target.value
-
-		const newFormData = { ...editFormData }
-		newFormData[fieldName] = fieldValue
-
-		setEditFormData(newFormData)
-	}
-
-	const handleAddFormSubmit = (event) => {
-		event.preventDefault()
-
-		const newTrajet = {
-			id: nanoid(),
-			motif: addFormData.motif,
-			label: addFormData.label,
-			distance: addFormData.distance,
-			xfois: addFormData.xfois,
-			periode: addFormData.periode,
-			personnes: addFormData.personnes,
+		if (firstRender.current) {
+			firstRender.current = false
+			return
 		}
-
-		const newTrajets = [...trajets, newTrajet]
-		setTrajets(newTrajets)
-	}
+		setFinalValue(Math.round(+sum))
+	}, [sum])
 
 	const handleEditFormSubmit = (event) => {
 		event.preventDefault()
@@ -118,43 +74,13 @@ export default function KmHelp({ setFinalValue }) {
 		setEditTrajetId(null)
 	}
 
-	const handleEditClick = (event, trajet) => {
-		event.preventDefault()
-		setEditTrajetId(trajet.id)
-
-		const formValues = {
-			motif: trajet.motif,
-			label: trajet.label,
-			distance: trajet.distance,
-			xfois: trajet.xfois,
-			periode: trajet.periode,
-			personnes: trajet.personnes,
-		}
-
-		setEditFormData(formValues)
-	}
-
-	const handleCancelClick = () => {
-		setEditTrajetId(null)
-	}
-
-	const handleDeleteClick = (trajetId) => {
-		const newTrajets = [...trajets]
-
-		const index = trajets.findIndex((trajet) => trajet.id === trajetId)
-
-		newTrajets.splice(index, 1)
-
-		setTrajets(newTrajets)
-	}
-
 	return !isOpen ? (
 		<div
 			css={`
 				text-align: right;
 			`}
 		>
-			<HelpButton text="&nbsp; Aide à la saisie" setIsOpen={setIsOpen} />
+			<KmHelpButton text="&nbsp; Aide à la saisie" setIsOpen={setIsOpen} />
 		</div>
 	) : (
 		<animate.fromTop>
@@ -176,144 +102,7 @@ export default function KmHelp({ setFinalValue }) {
 						Fermer
 					</button>
 				</div>
-				<form
-					onSubmit={handleAddFormSubmit}
-					css={`
-						padding: 0rem 0.5rem 0rem 0.5rem;
-					`}
-				>
-					<div
-						css={`
-							display: flex;
-							flex-direction: row;
-							flex-wrap: wrap;
-							gap: 0.5rem;
-							margin-top: 0.5rem;
-							padding: 0rem 0.5rem 0rem 0.5rem;
-							input,
-							select {
-								height: 2rem;
-							}
-						`}
-					>
-						<label title="motif">
-							<select
-								className="ui__"
-								css={`
-									max-width: 9rem !important;
-								`}
-								name="motif"
-								onChange={handleAddFormChange}
-								required
-							>
-								<option value="">Motif</option>
-								{motifList.map((m) => (
-									<option key={m.id} value={m.name}>
-										{m.name}
-									</option>
-								))}
-							</select>
-						</label>
-						<label title="label">
-							<input
-								className="ui__"
-								css={`
-									width: 8rem !important;
-								`}
-								name="label"
-								type="text"
-								placeholder="Label (facultatif)"
-								onChange={handleAddFormChange}
-							/>
-						</label>
-						<label title="distance">
-							<InputWrapper>
-								<InputSuffixed
-									className="ui__"
-									css={`
-										width: 8rem !important;
-									`}
-									name="distance"
-									type="number"
-									required
-									placeholder="Distance (Aller)"
-									onChange={handleAddFormChange}
-								/>
-								<InputSuffix>km</InputSuffix>
-							</InputWrapper>
-						</label>
-						<SelectWrapper>
-							<label title="frequence">
-								<select
-									className="ui__"
-									css={`
-										max-width: 10rem !important;
-										outline: none !important;
-										border: none !important;
-									`}
-									name="xfois"
-									onChange={handleAddFormChange}
-									required
-								>
-									<option value="">x</option>
-									{range(1, 10).map((v) => (
-										<option key={v} value={v}>
-											{v}
-										</option>
-									))}
-								</select>
-								<strong> &nbsp; fois par </strong>
-								<select
-									className="ui__"
-									css={`
-										max-width: 10rem !important;
-										outline: none !important;
-										border: none !important;
-									`}
-									name="periode"
-									onChange={handleAddFormChange}
-									required
-								>
-									<option value="">semaine</option>
-									{freqList.map((f) => (
-										<option key={f.id} value={f.name}>
-											{f.name}
-										</option>
-									))}
-								</select>
-							</label>
-						</SelectWrapper>
-						<label title="personnes">
-							<InputWrapper>
-								<InputSuffixed
-									className="ui__"
-									css={`
-										width: 9.5rem !important;
-									`}
-									name="personnes"
-									type="number"
-									required
-									placeholder="Nbre de personnes"
-									onChange={handleAddFormChange}
-								/>
-								<InputSuffix>👥</InputSuffix>
-							</InputWrapper>
-						</label>
-					</div>
-					<div
-						css={`
-							text-align: right;
-						`}
-					>
-						<button
-							className="ui__ plain small button"
-							css="max-height: 2rem"
-							type="submit"
-						>
-							Ajouter
-						</button>
-					</div>
-				</form>
+				<KmForm trajets={trajets} setTrajets={setTrajets} />
 				<div
 					css={`
 						overflow: auto;
@@ -321,56 +110,7 @@ export default function KmHelp({ setFinalValue }) {
 					`}
 				>
 					<form onSubmit={handleEditFormSubmit}>
-						<table
-							css={`
-								font-family: 'Roboto', sans-serif;
-								border-spacing: 0 1rem;
-								border-collapse: separate;
-								background: white;
-								font-size: 85%;
-								table-layout: fixed;
-								width: 100%;
-								min-width: 500px;
-
-								td,
-								th {
-									padding: 0.2rem;
-									text-align: center;
-								}
-
-								tr {
-									border-radius: 1rem;
-								}
-
-								thead th {
-									background: var(--color);
-									font-weight: normal !important;
-									text-transform: uppercase;
-									letter-spacing: 0.03rem;
-									color: #ffffff;
-								}
-
-								thead tr {
-									height: 2rem;
-								}
-
-								tbody tr {
-									height: 1.5rem;
-									box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-								}
-
-								th:first-child,
-								td:first-child {
-									border-top-left-radius: 0.5rem;
-									border-bottom-left-radius: 0.5rem;
-								}
-								th:last-child,
-								td:last-child {
-									border-bottom-right-radius: 0.5rem;
-									border-top-right-radius: 0.5rem;
-								}
-							`}
-						>
+						<TableTrajets>
 							<thead>
 								<tr>
 									<th scope="col">Motif</th>
@@ -401,14 +141,16 @@ export default function KmHelp({ setFinalValue }) {
 											{editTrajetId === trajet.id ? (
 												<EditableRow
 													editFormData={editFormData}
-													handleEditFormChange={handleEditFormChange}
-													handleCancelClick={handleCancelClick}
+													setEditFormData={setEditFormData}
+													setEditTrajetId={setEditTrajetId}
 												/>
 											) : (
 												<ReadOnlyRow
 													trajet={trajet}
-													handleEditClick={handleEditClick}
-													handleDeleteClick={handleDeleteClick}
+													trajets={trajets}
+													setEditFormData={setEditFormData}
+													setEditTrajetId={setEditTrajetId}
+													setTrajets={setTrajets}
 												/>
 											)}
 										</Fragment>
@@ -446,46 +188,13 @@ export default function KmHelp({ setFinalValue }) {
 									</tr>
 								</tbody>
 							)}
-						</table>
+						</TableTrajets>
 					</form>
 				</div>
 			</div>
 		</animate.fromTop>
 	)
 }
-
-const HelpButton = ({ text, setIsOpen }) => (
-	<button
-		className="ui__ plain small button"
-		css="margin-bottom: 0.5rem"
-		onClick={() => setIsOpen(true)}
-	>
-		<div
-			css={`
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: 100%;
-			`}
-		>
-			<motion.div
-				animate={{
-					rotate: [0, 15, -15, 0],
-					y: [0, 0, 0, -3, 4, 0],
-				}}
-				transition={{
-					duration: 1.5,
-					delay: 1,
-					repeat: Infinity,
-					repeatDelay: 2,
-				}}
-			>
-				✏️
-			</motion.div>
-			{text}
-		</div>
-	</button>
-)
 
 const MouvingArrow = () => (
 	<motion.div
@@ -503,51 +212,51 @@ const MouvingArrow = () => (
 	</motion.div>
 )
 
-const InputWrapper = styled.div`
-	display: flex;
-	max-width: 100%;
-	margin-bottom: 0.6rem;
-	outline: 1px solid var(--lighterTextColor);
-	border-radius: 0.3rem;
-	background-color: white;
-	color: inherit;
-	font-size: inherit;
-	transition: border-color 0.1s;
-	position: relative;
-	font-family: inherit;
-	max-height: 2rem;
-	&:focus {
-		outline: 1px solid var(--color);
+const TableTrajets = styled.table`
+	font-family: 'Roboto', sans-serif;
+	border-spacing: 0 1rem;
+	border-collapse: separate;
+	background: white;
+	font-size: 85%;
+	table-layout: fixed;
+	width: 100%;
+	min-width: 500px;
+
+	td,
+	th {
+		padding: 0.2rem;
+		text-align: center;
 	}
-`
 
-const InputSuffixed = styled.input`
-	border: none !important;
-	outline: none !important;
-	position: relative;
-	padding: 0.3rem !important;
-	margin-bottom: 0rem !important;
-`
+	tr {
+		border-radius: 1rem;
+	}
 
-const InputSuffix = styled.div`
-	position: relative;
-	padding: 0.1rem 0.5rem 0rem 0rem;
-`
+	thead th {
+		background: var(--color);
+		font-weight: normal !important;
+		text-transform: uppercase;
+		letter-spacing: 0.03rem;
+		color: #ffffff;
+	}
 
-const SelectWrapper = styled.div`
-	display: flex;
-	max-width: 100%;
-	margin-bottom: 0.6rem;
-	outline: 1px solid var(--lighterTextColor);
-	border-radius: 0.3rem;
-	background-color: white;
-	color: inherit;
-	font-size: inherit;
-	transition: border-color 0.1s;
-	position: relative;
-	font-family: inherit;
-	max-height: 2rem;
-	&:focus {
-		outline: 1px solid var(--color);
+	thead tr {
+		height: 2rem;
+	}
+
+	tbody tr {
+		height: 1.5rem;
+		box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+	}
+
+	th:first-child,
+	td:first-child {
+		border-top-left-radius: 0.5rem;
+		border-bottom-left-radius: 0.5rem;
+	}
+	th:last-child,
+	td:last-child {
+		border-bottom-right-radius: 0.5rem;
+		border-top-right-radius: 0.5rem;
 	}
 `

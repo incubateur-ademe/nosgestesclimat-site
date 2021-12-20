@@ -4,9 +4,24 @@ import { range } from 'ramda'
 
 export default function EditableRow({
 	editFormData,
-	handleEditFormChange,
-	handleCancelClick,
+	setEditFormData,
+	setEditTrajetId,
 }) {
+	const handleEditFormChange = (event) => {
+		event.preventDefault()
+
+		const fieldName = event.target.getAttribute('name')
+		const fieldValue = event.target.value
+
+		const newFormData = { ...editFormData }
+		newFormData[fieldName] = fieldValue
+
+		setEditFormData(newFormData)
+	}
+
+	const handleCancelClick = () => {
+		setEditTrajetId(null)
+	}
 	return (
 		<tr
 			css={`

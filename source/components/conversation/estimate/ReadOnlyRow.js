@@ -2,9 +2,37 @@ import React from 'react'
 
 export default function ReadOnlyRow({
 	trajet,
-	handleEditClick,
-	handleDeleteClick,
+	setEditFormData,
+	setEditTrajetId,
+	trajets,
+	setTrajets,
 }) {
+	const handleEditClick = (event, trajet) => {
+		event.preventDefault()
+		setEditTrajetId(trajet.id)
+
+		const formValues = {
+			motif: trajet.motif,
+			label: trajet.label,
+			distance: trajet.distance,
+			xfois: trajet.xfois,
+			periode: trajet.periode,
+			personnes: trajet.personnes,
+		}
+
+		setEditFormData(formValues)
+	}
+
+	const handleDeleteClick = (trajetId) => {
+		const newTrajets = [...trajets]
+
+		const index = trajets.findIndex((trajet) => trajet.id === trajetId)
+
+		newTrajets.splice(index, 1)
+
+		setTrajets(newTrajets)
+	}
+
 	return (
 		<tr>
 			<td>{trajet.motif}</td>
