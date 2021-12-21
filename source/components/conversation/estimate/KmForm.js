@@ -62,17 +62,14 @@ export default function KmForm({ trajets, setTrajets }) {
 						border: none !important;
 						outline: none !important;
 					}
-					select {
-						appearance: none;
-					}
 				`}
 			>
 				<label title="motif">
 					<SelectWrapper>
-						<select
+						<WrappedSelect
 							className="ui__"
 							css={`
-								max-width: 9rem !important;
+								max-width: 10rem !important;
 							`}
 							name="motif"
 							onChange={handleAddFormChange}
@@ -84,7 +81,7 @@ export default function KmForm({ trajets, setTrajets }) {
 									{m.name}
 								</option>
 							))}
-						</select>
+						</WrappedSelect>
 					</SelectWrapper>
 				</label>
 				<label title="label">
@@ -103,7 +100,7 @@ export default function KmForm({ trajets, setTrajets }) {
 				</label>
 				<label title="distance">
 					<InputWrapper>
-						<InputSuffixed
+						<WrappedInput
 							className="ui__"
 							css={`
 								width: 8rem !important;
@@ -119,31 +116,21 @@ export default function KmForm({ trajets, setTrajets }) {
 				</label>
 				<label title="frequence">
 					<SelectWrapper>
-						<select
+						<input
 							className="ui__"
 							css={`
-								max-width: 10rem !important;
-								outline: none !important;
-								border: none !important;
+								max-width: 2rem !important;
 							`}
 							name="xfois"
 							onChange={handleAddFormChange}
 							required
 						>
-							<option value="">x</option>
-							{Array.from({ length: 9 }, (_, i) => i + 1).map((v) => (
-								<option key={v} value={v}>
-									{v}
-								</option>
-							))}
-						</select>
+						</input>
 						<strong css="padding: 0.2rem"> fois par </strong>
-						<select
+						<WrappedSelect
 							className="ui__"
 							css={`
 								max-width: 10rem !important;
-								outline: none !important;
-								border: none !important;
 							`}
 							name="periode"
 							onChange={handleAddFormChange}
@@ -155,12 +142,13 @@ export default function KmForm({ trajets, setTrajets }) {
 									{f.name}
 								</option>
 							))}
-						</select>
+						</WrappedSelect>
+						<SelectSuffix>📅</SelectSuffix>
 					</SelectWrapper>
 				</label>
 				<label title="personnes">
 					<InputWrapper>
-						<InputSuffixed
+						<WrappedInput
 							className="ui__"
 							css={`
 								width: 9.5rem !important;
@@ -209,7 +197,7 @@ const InputWrapper = styled.span`
 	}
 `
 
-const InputSuffixed = styled.input`
+const WrappedInput = styled.input`
 	position: relative;
 	padding: 0.3rem !important;
 	margin-bottom: 0rem !important;
@@ -217,7 +205,7 @@ const InputSuffixed = styled.input`
 
 const InputSuffix = styled.span`
 	position: relative;
-	padding: 0.2rem 0.3rem 0rem 0rem;
+	padding: 0.2rem 0.5rem 0rem 0rem !important;
 `
 
 const SelectWrapper = styled.span`
@@ -235,4 +223,18 @@ const SelectWrapper = styled.span`
 	&:focus {
 		box-shadow: 0px 0.25rem 0px 0px solid var(--color);
 	}
+`
+
+const WrappedSelect = styled.select`
+	appearance: none;
+	padding-right: 1.5rem !important;
+	background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c7/Antu-go-down-24.svg');
+	background-repeat: no-repeat;
+	background-position: calc(100% - 0.2rem) 0.55rem;
+	background-size: 1rem;
+`
+
+const SelectSuffix = styled.span`
+	position: relative;
+	padding: 0.2rem 0.5rem 0rem 0.2rem;
 `
