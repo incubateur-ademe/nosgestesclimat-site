@@ -1,5 +1,7 @@
 import animate from 'Components/ui/animate'
 import { useState, Fragment, useEffect, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setStoredTrajets } from '../../../actions/actions'
 import { motifList, freqList } from './dataHelp'
 import ReadOnlyRow from './ReadOnlyRow'
 import EditableRow from './EditableRow'
@@ -9,10 +11,13 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import './KmHelp.css'
 
-export default function KmHelp({ setFinalValue }) {
+export default function KmHelp({ setFinalValue, dottedName }) {
+	const dispatch = useDispatch()
+	const storedTrajets = useSelector((state) => state.storedTrajets)
+
 	const [isOpen, setIsOpen] = useState(false)
 
-	const [trajets, setTrajets] = useState([])
+	const [trajets, setTrajets] = useState(storedTrajets[dottedName] || [])
 
 	const [sum, updateSum] = useState(0)
 
@@ -49,6 +54,7 @@ export default function KmHelp({ setFinalValue }) {
 			return
 		}
 		setFinalValue(Math.round(+sum))
+		dispatch(setStoredTrajets(dottedName, trajets))
 	}, [sum])
 
 	const handleEditFormSubmit = (event) => {
@@ -155,6 +161,17 @@ export default function KmHelp({ setFinalValue }) {
 											)}
 										</Fragment>
 									))}
+									<td colspan="6">
+										<span
+											css={`
+												display: flex;
+												justify-content: right;
+											`}
+										>
+											Mon total :{' '}
+											<strong>&nbsp;{Math.round(+sum)} km&nbsp;</strong>
+										</span>
+									</td>
 								</tbody>
 							) : (
 								<tbody>
@@ -247,6 +264,11 @@ const TableTrajets = styled.table`
 	tbody tr {
 		height: 1.5rem;
 		box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+		/* -moz-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+		-webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
+		transform: scale(1);
+		-webkit-transform: scale(1);
+		-moz-transform: scale(1); */
 	}
 
 	th:first-child,

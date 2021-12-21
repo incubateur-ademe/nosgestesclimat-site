@@ -23,7 +23,10 @@ export default function KmEstimation({
 					display: block;
 				`}
 			>
-				<KmHelp setFinalValue={setFinalValue} />
+				<KmHelp
+					setFinalValue={setFinalValue}
+					dottedName={commonProps.dottedName}
+				/>
 			</div>
 		</div>
 	)
