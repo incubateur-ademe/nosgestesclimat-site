@@ -126,8 +126,7 @@ export default function KmForm({ trajets, setTrajets }) {
 							type="number"
 							required
 							placeholder="x"
-						>
-						</input>
+						></input>
 						<strong css="padding: 0.2rem"> fois par </strong>
 						<WrappedSelect
 							className="ui__"
@@ -157,6 +156,7 @@ export default function KmForm({ trajets, setTrajets }) {
 							`}
 							name="personnes"
 							type="number"
+							min="1"
 							required
 							placeholder="Nbre de personnes"
 							onChange={handleAddFormChange}
