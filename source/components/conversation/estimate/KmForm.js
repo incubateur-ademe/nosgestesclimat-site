@@ -123,7 +123,9 @@ export default function KmForm({ trajets, setTrajets }) {
 							`}
 							name="xfois"
 							onChange={handleAddFormChange}
+							type="number"
 							required
+							placeholder="x"
 						>
 						</input>
 						<strong css="padding: 0.2rem"> fois par </strong>
