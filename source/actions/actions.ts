@@ -67,6 +67,10 @@ export const resetTutorials = () =>
 	({
 		type: 'RESET_TUTORIALS',
 	} as const)
+export const resetStoredTrajets = () =>
+	({
+		type: 'RESET_TRAJETS',
+	} as const)
 
 export const goToQuestion = (question: DottedName) =>
 	({
@@ -75,17 +79,16 @@ export const goToQuestion = (question: DottedName) =>
 		step: question,
 	} as const)
 
-export const validateStepWithValue = (
-	dottedName: DottedName,
-	value: unknown
-): ThunkResult<void> => (dispatch) => {
-	dispatch(updateSituation(dottedName, value))
-	dispatch({
-		type: 'STEP_ACTION',
-		name: 'fold',
-		step: dottedName,
-	})
-}
+export const validateStepWithValue =
+	(dottedName: DottedName, value: unknown): ThunkResult<void> =>
+	(dispatch) => {
+		dispatch(updateSituation(dottedName, value))
+		dispatch({
+			type: 'STEP_ACTION',
+			name: 'fold',
+			step: dottedName,
+		})
+	}
 
 export const setSituationBranch = (id: number) =>
 	({
@@ -108,22 +111,20 @@ export const setDifferentSituation = ({
 	foldedSteps,
 })
 
-export const setSimulationConfig = (config: Object): ThunkResult<void> => (
-	dispatch,
-	getState,
-	{ history }
-): void => {
-	const pastSimulationConfig = getState().simulation?.config
-	if (pastSimulationConfig === config) {
-		return
+export const setSimulationConfig =
+	(config: Object): ThunkResult<void> =>
+	(dispatch, getState, { history }): void => {
+		const pastSimulationConfig = getState().simulation?.config
+		if (pastSimulationConfig === config) {
+			return
+		}
+		const url = history.location.pathname
+		dispatch({
+			type: 'SET_SIMULATION',
+			url,
+			config,
+		})
 	}
-	const url = history.location.pathname
-	dispatch({
-		type: 'SET_SIMULATION',
-		url,
-		config,
-	})
-}
 
 export const setActiveTarget = (targetName: DottedName) =>
 	({
@@ -157,14 +158,12 @@ export const updateUnit = (targetUnit: string) =>
 		targetUnit,
 	} as const)
 
-export const goBackToSimulation = (): ThunkResult<void> => (
-	_,
-	getState,
-	{ history }
-) => {
-	const url = getState().simulation?.url
-	url && history.push(url)
-}
+export const goBackToSimulation =
+	(): ThunkResult<void> =>
+	(_, getState, { history }) => {
+		const url = getState().simulation?.url
+		url && history.push(url)
+	}
 
 export function loadPreviousSimulation() {
 	return {
@@ -187,4 +186,11 @@ export const setActionChoice = (action: string, choice: boolean) =>
 		type: 'SET_ACTION_CHOICE',
 		action,
 		choice,
+	} as const)
+
+export const setStoredTrajets = (vehicule: string, trajets: object) =>
+	({
+		type: 'SET_TRAJETS',
+		vehicule,
+		trajets,
 	} as const)
