@@ -10,8 +10,6 @@ export default function KmEstimation({
 	setFinalValue,
 	value,
 }) {
-	const [isOpen, setIsOpen] = useState(false)
-
 	return (
 		<div>
 			<Input
@@ -19,7 +17,6 @@ export default function KmEstimation({
 				onSubmit={onSubmit}
 				unit={evaluation.unit}
 				value={value}
-				suggestions={null}
 			/>
 			<div
 				css={`
