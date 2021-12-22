@@ -112,7 +112,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				<div
 					css={`
 						overflow: auto;
-						padding: 0rem 0.5rem 0rem 0.5rem;
+						padding: 0.5rem 0.5rem 0rem 0.5rem;
 					`}
 				>
 					<form onSubmit={handleEditFormSubmit}>
@@ -189,7 +189,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 									</td>
 									<tr
 										css={`
-											opacity: 0.5;
+											opacity: 0.6;
 											background-color: #e9f1ff;
 										`}
 									>
@@ -231,7 +231,7 @@ const MouvingArrow = () => (
 
 const TableTrajets = styled.table`
 	font-family: 'Roboto', sans-serif;
-	border-spacing: 0 1rem;
+	border-spacing: 0 0.5rem;
 	border-collapse: separate;
 	background: white;
 	font-size: 85%;
@@ -249,6 +249,10 @@ const TableTrajets = styled.table`
 		border-radius: 1rem;
 	}
 
+	tr:nth-child(2n) {
+		background: var(--lighterColor) !important;
+	}
+
 	thead th {
 		background: var(--color);
 		font-weight: normal !important;
@@ -263,12 +267,6 @@ const TableTrajets = styled.table`
 
 	tbody tr {
 		height: 1.5rem;
-		box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-		/* -moz-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-		-webkit-box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
-		transform: scale(1);
-		-webkit-transform: scale(1);
-		-moz-transform: scale(1); */
 	}
 
 	th:first-child,

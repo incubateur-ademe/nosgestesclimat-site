@@ -50,7 +50,7 @@ export default function AnswerTrajetsTable({ trajets }) {
 
 const TableTrajets = styled.table`
 	font-family: 'Roboto', sans-serif;
-	border-spacing: 0 0.5rem;
+	border-spacing: 0 0.1rem;
 	border-collapse: separate !important;
 	background: white;
 	font-size: 70%;
@@ -68,6 +68,10 @@ const TableTrajets = styled.table`
 		border-radius: 1rem;
 	}
 
+	tr:nth-child(2n) {
+		background: var(--lighterColor) !important;
+	}
+
 	thead th {
 		background: var(--color);
 		font-weight: normal !important;
@@ -82,7 +86,6 @@ const TableTrajets = styled.table`
 
 	tbody tr {
 		height: 1rem;
-		box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.2);
 	}
 
 	th:first-child,
