@@ -13,7 +13,7 @@ export default function AnswerTrajetsTable({ trajets }) {
 				distance: 0,
 			})
 		}
-		memo.find((elt) => elt.motif === trajet.motif).distance += dist
+		memo.find((elt) => elt.motif === trajet.motif).distance += Math.round(+dist)
 		return memo
 	}, [])
 
