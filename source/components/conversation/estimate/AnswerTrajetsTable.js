@@ -1,7 +1,24 @@
 import React from 'react'
 import styled from 'styled-components'
+import { freqList } from './dataHelp'
 
 export default function AnswerTrajetsTable({ trajets }) {
+	const trajetsMotif = trajets.reduce((memo, trajet) => {
+		const period = freqList.find((f) => f.name === trajet.periode)
+		const freqValue = period ? period.value * trajet.xfois : 0
+		const dist = (trajet.distance * 2 * freqValue) / trajet.personnes
+		if (!memo.find((elt) => elt.motif === trajet.motif)) {
+			memo.push({
+				motif: trajet.motif,
+				distance: 0,
+			})
+		}
+		memo.find((elt) => elt.motif === trajet.motif).distance += dist
+		return memo
+	}, [])
+
+	console.log(trajetsMotif)
+
 	return (
 		<div
 			css={`
@@ -13,33 +30,16 @@ export default function AnswerTrajetsTable({ trajets }) {
 				<thead>
 					<tr>
 						<th scope="col">Motif</th>
-						<th scope="col" css="width: 22%">
-							Label
-						</th>
-						<th scope="col" css="width: 10%">
+						<th scope="col" css="width: 30%">
 							"KM"
-						</th>
-						<th scope="col" css="width: 25%">
-							Fréquence
-						</th>
-						<th
-							scope="col"
-							css="width: 10%; color: transparent; text-shadow: 0 0 0 white;"
-						>
-							👥
 						</th>
 					</tr>
 				</thead>
 				<tbody>
-					{trajets.map((trajet) => (
+					{trajetsMotif.map((trajet) => (
 						<tr>
 							<td>{trajet.motif}</td>
-							<td>{trajet.label}</td>
 							<td>{trajet.distance}</td>
-							<td>
-								{trajet.xfois} x / {trajet.periode}
-							</td>
-							<td>{trajet.personnes}</td>
 						</tr>
 					))}
 				</tbody>
@@ -56,7 +56,7 @@ const TableTrajets = styled.table`
 	font-size: 70%;
 	table-layout: fixed;
 	width: 100%;
-	min-width: 20rem;
+	min-width: 10rem;
 
 	td,
 	th {
