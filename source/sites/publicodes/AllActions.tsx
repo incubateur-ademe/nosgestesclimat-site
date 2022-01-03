@@ -209,7 +209,6 @@ const ThresholdSeparator = styled.div`
 	margin-bottom: 1rem;
 
 	h4 {
-		border-bottom: 1px dashed #aaa;
 		display: inline-block;
 		font-weight: 400;
 		padding: 0 0.8rem;
