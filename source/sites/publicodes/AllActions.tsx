@@ -91,6 +91,19 @@ export default ({
 						</div>
 					)
 			)}
+			<ThresholdSeparator>
+				<h4>Actions non chiffrées &#9660;</h4>
+			</ThresholdSeparator>
+			<List
+				{...{
+					actions: notRejected.filter((a) => a.value == null),
+					rules,
+					bilans,
+					actionChoices,
+					focusAction,
+					focusedAction,
+				}}
+			/>
 			{rejected.length > 0 && (
 				<div>
 					<h2>Actions écartées</h2>
