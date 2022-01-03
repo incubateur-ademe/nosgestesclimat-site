@@ -87,8 +87,8 @@ export const ActionListCard = ({
 			{icons && (
 				<div
 					css={`
-						font-size: 150%;
-						${noFormula && `font-size: 250%; `}
+						margin: 0.4rem 0;
+						font-size: 200%;
 					`}
 				>
 					{emoji(icons)}
@@ -103,6 +103,7 @@ export const ActionListCard = ({
 						font-size: 110%;
 						font-weight: 500;
 						line-height: 1.3rem;
+						display: inline-block;
 					}
 					text-decoration: none;
 				`}
@@ -111,73 +112,75 @@ export const ActionListCard = ({
 				<h2>{title}</h2>
 			</Link>
 
-			<div
-				css={`
-					position: relative;
-				`}
-			>
+			<div css="					margin-top: auto;">
 				<div
-					css={hasRemainingQuestions ? `filter: blur(1px) grayscale(1)` : ''}
-				>
-					<ActionValue
-						{...{ dottedName, total, disabled, noFormula, engine }}
-					/>
-				</div>
-				{hasRemainingQuestions && (
-					<Stamp onClick={() => focusAction(dottedName)} clickable>
-						{remainingQuestions.length} question
-						{remainingQuestions.length > 1 && 's'}
-					</Stamp>
-				)}
-			</div>
-			<div
-				css={`
-					display: flex;
-					justify-content: space-evenly;
-					button img {
-						font-size: 200%;
-					}
-					margin-bottom: 1rem;
-					margin-top: auto;
-				`}
-			>
-				<button
 					css={`
-						${hasRemainingQuestions && 'filter: grayscale(1)'}
+						position: relative;
+						margin-bottom: 1.4rem;
 					`}
-					onClick={(e) => {
-						if (hasRemainingQuestions) {
-							focusAction(dottedName)
-							return null
+				>
+					<div
+						css={hasRemainingQuestions ? `filter: blur(1px) grayscale(1)` : ''}
+					>
+						<ActionValue
+							{...{ dottedName, total, disabled, noFormula, engine }}
+						/>
+					</div>
+					{hasRemainingQuestions && (
+						<Stamp onClick={() => focusAction(dottedName)} clickable>
+							{remainingQuestions.length} question
+							{remainingQuestions.length > 1 && 's'}
+						</Stamp>
+					)}
+				</div>
+				<div
+					css={`
+						display: flex;
+						justify-content: space-evenly;
+						button img {
+							font-size: 200%;
 						}
-
-						dispatch(
-							setActionChoice(
-								dottedName,
-								actionChoices[dottedName] === true ? null : true
-							)
-						)
-						e.stopPropagation()
-						e.preventDefault()
-					}}
+						margin-bottom: 1rem;
+					`}
 				>
-					{emoji('✅')}
-				</button>
-				<button
-					onClick={(e) => {
-						dispatch(
-							setActionChoice(
-								dottedName,
+					<button
+						css={`
+							${hasRemainingQuestions && 'filter: grayscale(1)'}
+						`}
+						onClick={(e) => {
+							if (hasRemainingQuestions) {
+								focusAction(dottedName)
+								return null
+							}
 
-								actionChoices[dottedName] === false ? null : false
+							dispatch(
+								setActionChoice(
+									dottedName,
+									actionChoices[dottedName] === true ? null : true
+								)
 							)
-						)
-						e.stopPropagation()
-						e.preventDefault()
-					}}
-				>
-					{emoji('❌')}
-				</button>
+							e.stopPropagation()
+							e.preventDefault()
+						}}
+					>
+						{emoji('✅')}
+					</button>
+					<button
+						onClick={(e) => {
+							dispatch(
+								setActionChoice(
+									dottedName,
+
+									actionChoices[dottedName] === false ? null : false
+								)
+							)
+							e.stopPropagation()
+							e.preventDefault()
+						}}
+					>
+						{emoji('❌')}
+					</button>
+				</div>
 			</div>
 		</div>
 	)
@@ -235,7 +238,6 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 	return (
 		<div
 			css={`
-				margin-top: 1.6rem;
 				font-size: 100%;
 				text-align: center;
 				strong {
