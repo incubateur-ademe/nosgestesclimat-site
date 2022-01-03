@@ -127,9 +127,8 @@ export const ActionListCard = ({
 						/>
 					</div>
 					{hasRemainingQuestions && (
-						<Stamp onClick={() => focusAction(dottedName)} clickable>
-							{remainingQuestions.length} question
-							{remainingQuestions.length > 1 && 's'}
+						<img onClick={() => focusAction(dottedName)} clickable>
+							{remainingQuestions.length} {emoji('💬')}
 						</Stamp>
 					)}
 				</div>

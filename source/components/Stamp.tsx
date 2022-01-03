@@ -12,29 +12,6 @@ const Stamp = styled.div`
 	left: 1em;
 	line-height: 1rem;
 
-	::before {
-		border: 12.5px solid transparent;
-		border-top-color: transparent;
-		border-top-style: solid;
-		border-top-width: 12.5px;
-		border-bottom-color: transparent;
-		border-bottom-style: solid;
-		border-bottom-width: 12.5px;
-		border-top: 12.5px solid var(--color);
-		border-top-width: 12.5px;
-		border-bottom: 0;
-		height: 0;
-		width: 0;
-		border-top-width: 25px;
-		content: '';
-		display: block;
-		position: absolute;
-		left: 3rem;
-		bottom: -25px;
-		transform-origin: center;
-		transform: rotate(90deg) skew(-25deg) translateY(16.6666666667px);
-	}
-
 	${({ clickable }) => clickable && `cursor: pointer`}
 `
 
