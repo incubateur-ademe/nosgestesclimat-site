@@ -14,9 +14,24 @@ import { Redirect } from 'react-router'
 import { useContext } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
+import useKeypress from '../../components/utils/useKeyPress'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
+	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
+		last = index === slides.length - 1,
+		next = () => {
+			tracker.push([
+				'trackEvent',
+				'testIntro',
+				last ? `tuto passé` : `diapo ${index} passée`,
+			])
+
+			skip(last ? 'testIntro' : 'testIntro' + index)
+		},
+		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
+
+	useKeypress('Escape', () => skip('testIntro'), [])
 
 	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
 
@@ -30,19 +45,6 @@ export default ({}) => {
 
 	const dispatch = useDispatch()
 	const tracker = useContext(TrackerContext)
-
-	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
-		last = index === slides.length - 1,
-		next = () => {
-			tracker.push([
-				'trackEvent',
-				'testIntro',
-				last ? `tuto passé` : `diapo ${index} passée`,
-			])
-
-			skip(last ? 'testIntro' : 'testIntro' + index)
-		},
-		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
 	const { isIframe } = useContext(IframeOptionsContext)
 
