@@ -91,6 +91,25 @@ export default ({
 						</div>
 					)
 			)}
+			<ThresholdSeparator>
+				<h4>
+					<img
+						src="/images/270A.svg"
+						css="filter: invert(1); height: 2rem; vertical-align: middle"
+					/>
+					Actions non chiffrées &#9660;
+				</h4>
+			</ThresholdSeparator>
+			<List
+				{...{
+					actions: notRejected.filter((a) => a.value == null),
+					rules,
+					bilans,
+					actionChoices,
+					focusAction,
+					focusedAction,
+				}}
+			/>
 			{rejected.length > 0 && (
 				<div>
 					<h2>Actions écartées</h2>
@@ -209,7 +228,6 @@ const ThresholdSeparator = styled.div`
 	margin-bottom: 1rem;
 
 	h4 {
-		border-bottom: 1px dashed #aaa;
 		display: inline-block;
 		font-weight: 400;
 		padding: 0 0.8rem;

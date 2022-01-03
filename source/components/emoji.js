@@ -29,7 +29,6 @@ export const Twemoji = ({ text }) => {
 		folder: 'svg',
 		ext: '.svg',
 	})
-
 	return parsed.includes('<img class="emoji"') ? (
 		<EmojiStyle
 			dangerouslySetInnerHTML={{
@@ -46,13 +45,10 @@ export default (text) => {
 }
 
 const EmojiStyle = styled.span`
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
 	img {
 		height: 1em;
 		width: auto;
 		margin: 0 0.2rem;
+		vertical-align: -0.125em;
 	}
-	vertical-align: -0.125em;
 `
