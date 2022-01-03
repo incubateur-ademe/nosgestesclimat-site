@@ -92,7 +92,13 @@ export default ({
 					)
 			)}
 			<ThresholdSeparator>
-				<h4>Actions non chiffrées &#9660;</h4>
+				<h4>
+					<img
+						src="/images/270A.svg"
+						css="filter: invert(1); height: 2rem; vertical-align: middle"
+					/>
+					Actions non chiffrées &#9660;
+				</h4>
 			</ThresholdSeparator>
 			<List
 				{...{
