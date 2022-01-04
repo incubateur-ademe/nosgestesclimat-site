@@ -2,8 +2,8 @@ import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
-import Logo from './Logo'
 import SkipLinks from './SkipLinks'
+import Logo from './LogoComponent'
 
 export default ({ isHomePage }) => {
 	const pathname = decodeURIComponent(location.pathname)
