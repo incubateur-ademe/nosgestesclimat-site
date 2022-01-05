@@ -230,7 +230,7 @@ const SelectWrapper = styled.span`
 const WrappedSelect = styled.select`
 	appearance: none;
 	padding-right: 1.5rem !important;
-	background-image: url('https://upload.wikimedia.org/wikipedia/commons/c/c7/Antu-go-down-24.svg');
+	background-image: url('/images/arrow.svg');
 	background-repeat: no-repeat;
 	background-position: calc(100% - 0.2rem) 0.55rem;
 	background-size: 1rem;
