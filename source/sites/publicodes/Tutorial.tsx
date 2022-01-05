@@ -11,7 +11,7 @@ import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import { Redirect } from 'react-router'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useKeypress from '../../components/utils/useKeyPress'
@@ -46,7 +46,17 @@ export default ({}) => {
 
 	const { isIframe } = useContext(IframeOptionsContext)
 
+	// This results from a bug that introduced "slide5" in users' cache :/
+	// Here we correct the bug in the user's cache
+	useEffect(() => {
+		if (Object.keys(tutorials).includes('testIntro5'))
+			dispatch(skipTutorial('testIntro'))
+	}, [tutorials])
+
 	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
+	// This results from a bug that introduced "slide5" in users' cache :/
+	// Here we avoid an error
+	if (slides[index] == null) return null
 
 	return (
 		<div
