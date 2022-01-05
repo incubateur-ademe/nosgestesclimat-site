@@ -18,6 +18,12 @@ import useKeypress from '../../components/utils/useKeyPress'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
+	const tutos = Object.entries(tutorials)
+		.map(([k, v]) => v != null && k.split('testIntro')[1])
+		.filter(Boolean)
+
+	const index = tutos.length
+
 	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
 		last = index === slides.length - 1,
 		next = () => {
@@ -34,12 +40,6 @@ export default ({}) => {
 	useKeypress('Escape', () => skip('testIntro'), [])
 
 	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
-
-	const tutos = Object.entries(tutorials)
-		.map(([k, v]) => v != null && k.split('testIntro')[1])
-		.filter(Boolean)
-
-	const index = tutos.length
 
 	const Component = slides[index]
 
