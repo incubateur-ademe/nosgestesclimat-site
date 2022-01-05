@@ -39,14 +39,14 @@ export default ({}) => {
 
 	useKeypress('Escape', () => skip('testIntro'), [])
 
-	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
-
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
 	const tracker = useContext(TrackerContext)
 
 	const { isIframe } = useContext(IframeOptionsContext)
+
+	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
 
 	return (
 		<div
