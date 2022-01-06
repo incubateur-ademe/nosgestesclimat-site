@@ -5,7 +5,7 @@ import { range } from 'ramda'
 export default function EditableRow({
 	editFormData,
 	setEditFormData,
-	setEditTrajetId,
+	openmojiURL,
 }) {
 	const handleEditFormChange = (event) => {
 		event.preventDefault()
@@ -19,9 +19,6 @@ export default function EditableRow({
 		setEditFormData(newFormData)
 	}
 
-	const handleCancelClick = () => {
-		setEditTrajetId(null)
-	}
 	return (
 		<tr
 			css={`
@@ -113,9 +110,8 @@ export default function EditableRow({
 					}
 				`}
 			>
-				<button type="submit">💾</button>
-				<button type="button" onClick={handleCancelClick}>
-					🔙
+				<button type="submit">
+					<img src={openmojiURL('sauvegarder')} css="width: 1.7rem" />
 				</button>
 			</td>
 		</tr>

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { motifList, freqList } from './dataHelp'
 import { nanoid } from 'nanoid'
 
-export default function KmForm({ trajets, setTrajets }) {
+export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 	const [addFormData, setAddFormData] = useState({
 		motif: '',
 		label: '',
@@ -144,7 +144,9 @@ export default function KmForm({ trajets, setTrajets }) {
 								</option>
 							))}
 						</WrappedSelect>
-						<SelectSuffix>📅</SelectSuffix>
+						<SelectSuffix>
+							<img src={openmojiURL('calendrier')} css="width: 1.5rem;" />
+						</SelectSuffix>
 					</SelectWrapper>
 				</label>
 				<label title="personnes">
@@ -161,7 +163,10 @@ export default function KmForm({ trajets, setTrajets }) {
 							placeholder="Nbre de personnes"
 							onChange={handleAddFormChange}
 						/>
-						<InputSuffix>👥</InputSuffix>
+						<InputSuffix>
+							{' '}
+							<img src={openmojiURL('silhouette')} css="width: 1.5rem;" />
+						</InputSuffix>
 					</InputWrapper>
 				</label>
 			</div>

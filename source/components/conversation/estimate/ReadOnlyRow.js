@@ -6,6 +6,7 @@ export default function ReadOnlyRow({
 	setEditTrajetId,
 	trajets,
 	setTrajets,
+	openmojiURL,
 }) {
 	const handleEditClick = (event, trajet) => {
 		event.preventDefault()
@@ -53,10 +54,10 @@ export default function ReadOnlyRow({
 					type="button"
 					onClick={(event) => handleEditClick(event, trajet)}
 				>
-					✏️
+					<img src={openmojiURL('modifier')} css="width: 1.7rem" />
 				</button>
 				<button type="button" onClick={() => handleDeleteClick(trajet.id)}>
-					🗑
+					<img src={openmojiURL('supprimer')} css="width: 1.7rem" />
 				</button>
 			</td>
 		</tr>

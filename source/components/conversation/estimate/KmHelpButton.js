@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 
-export default function KmHelpButton({ text, setIsOpen }) {
+export default function KmHelpButton({ text, setIsOpen, openmojiURL }) {
 	return (
 		<button
 			className="ui__ plain small button"
@@ -17,17 +17,16 @@ export default function KmHelpButton({ text, setIsOpen }) {
 			>
 				<motion.div
 					animate={{
-						rotate: [0, 15, -15, 0],
-						y: [0, 0, 0, -3, 4, 0],
+						rotate: [0, 360, 0, 0],
 					}}
 					transition={{
-						duration: 1.5,
+						duration: 4,
 						delay: 1,
 						repeat: Infinity,
 						repeatDelay: 2,
 					}}
 				>
-					✏️
+					<img src={openmojiURL('aide')} css="display: block; width: 2rem" />
 				</motion.div>
 				{text}
 			</div>

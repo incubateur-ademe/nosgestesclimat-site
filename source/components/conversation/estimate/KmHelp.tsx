@@ -11,6 +11,17 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import './KmHelp.css'
 
+const openmojis = {
+	calendrier: '1F4C5',
+	silhouette: '1F465',
+	pointer: '1F447',
+	modifier: '270F',
+	supprimer: 'E262',
+	aide: '2699',
+	sauvegarder: '1F4BE',
+}
+const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
+
 export default function KmHelp({ setFinalValue, dottedName }) {
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
@@ -86,7 +97,11 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				text-align: right;
 			`}
 		>
-			<KmHelpButton text="&nbsp; Aide à la saisie" setIsOpen={setIsOpen} />
+			<KmHelpButton
+				text="&nbsp; Aide à la saisie"
+				setIsOpen={setIsOpen}
+				openmojiURL={openmojiURL}
+			/>
 		</div>
 	) : (
 		<animate.fromTop>
@@ -108,7 +123,11 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 						Fermer
 					</button>
 				</div>
-				<KmForm trajets={trajets} setTrajets={setTrajets} />
+				<KmForm
+					trajets={trajets}
+					setTrajets={setTrajets}
+					openmojiURL={openmojiURL}
+				/>
 				<div
 					css={`
 						overflow: auto;
@@ -149,6 +168,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 													editFormData={editFormData}
 													setEditFormData={setEditFormData}
 													setEditTrajetId={setEditTrajetId}
+													openmojiURL={openmojiURL}
 												/>
 											) : (
 												<ReadOnlyRow
@@ -157,6 +177,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 													setEditFormData={setEditFormData}
 													setEditTrajetId={setEditTrajetId}
 													setTrajets={setTrajets}
+													openmojiURL={openmojiURL}
 												/>
 											)}
 										</Fragment>
@@ -198,9 +219,25 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 										<td>10</td>
 										<td>1 fois par semaine</td>
 										<td>1.5</td>
-										<td>
-											<button>✏️</button>
-											<button>🗑</button>
+										<td
+											css={`
+												> button {
+													padding: 0.4rem;
+												}
+											`}
+										>
+											<button>
+												<img
+													src={openmojiURL('modifier')}
+													css="width: 1.7rem"
+												/>
+											</button>
+											<button>
+												<img
+													src={openmojiURL('supprimer')}
+													css="width: 1.7rem"
+												/>
+											</button>
 										</td>
 									</tr>
 								</tbody>
@@ -225,7 +262,7 @@ const MouvingArrow = () => (
 			repeatDelay: 0,
 		}}
 	>
-		⬇️
+		<img src={openmojiURL('pointer')} css="width: 1.5rem;" />
 	</motion.div>
 )
 
