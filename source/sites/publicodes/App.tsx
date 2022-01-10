@@ -27,8 +27,11 @@ import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import GroupSwitch from './conference/GroupSwitch'
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
+
+const SurveyLazy = React.lazy(() => import('./conference/Survey'))
 
 let tracker = devTracker
 if (NODE_ENV === 'production') {
@@ -172,9 +175,13 @@ const Routes = ({}) => {
 					<ConferenceLazy />
 				</Suspense>
 			</Route>
+
+			<Route path="/groupe/:room?">
+				<GroupSwitch />
+			</Route>
 			<Route path="/sondage/:room?">
 				<Suspense fallback="Chargement">
-					<ConferenceLazy />
+					<SurveyLazy />
 				</Suspense>
 			</Route>
 			<Redirect from="/conference/:room" to="/conférence/:room" />
