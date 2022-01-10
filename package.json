@@ -74,6 +74,7 @@
 		"@react-pdf/renderer": "^1.6.10",
 		"@rehooks/local-storage": "^2.1.1",
 		"@sentry/browser": "5.15.5",
+		"@supabase/supabase-js": "^1.29.1",
 		"@svgr/webpack": "5",
 		"add": "^2.0.6",
 		"babel-plugin-webpack-alias": "^2.1.2",
