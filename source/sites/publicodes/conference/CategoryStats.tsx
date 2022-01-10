@@ -52,7 +52,7 @@ export default ({ categories, maxCategory, spotlight }) => {
 									css={`
 										left: ${(value / maxCategory) * 100}%;
 										${spotlight === username
-											? `background: yellow !important; opacity: 1 !important; z-index: 2`
+											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
 											: ''}
 									`}
 								></li>
