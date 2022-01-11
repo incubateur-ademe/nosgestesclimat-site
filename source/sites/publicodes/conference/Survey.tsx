@@ -22,16 +22,8 @@ import {
 	getRandomInt,
 	stringToColour,
 } from './utils'
-import { createClient } from '@supabase/supabase-js'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
-
-console.log(SUPABASE_URL, SUPABASE_ANON_KEY)
-
-const client = createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-
-const useDatabase = ({}) => {
-	return { elements: [{}], username: 'bob' }
-}
+import useDatabase from './useDatabase'
 
 export default () => {
 	const survey = useSelector((state) => state.survey)
@@ -75,9 +67,12 @@ export default () => {
 }
 
 const Supa = ({}) => {
+	const database = useDatabase()
 	const [data, setData] = useState([])
 	useEffect(async () => {
-		let { data: sondages, error } = await client.from('sondages').select('name')
+		let { data: sondages, error } = await database
+			.from('sondages')
+			.select('name')
 
 		if (!error) setData(sondages)
 	}, [])

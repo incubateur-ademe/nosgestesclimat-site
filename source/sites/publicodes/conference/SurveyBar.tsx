@@ -15,6 +15,7 @@ import { filterExtremes } from './utils'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { WebsocketProvider } from 'y-websocket'
 import useYjs from './useYjs'
+import useDatabase from './useDatabase'
 
 export default () => {
 	const situation = useSelector(situationSelector),
@@ -29,20 +30,56 @@ export default () => {
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
-	useEffect(() => {
-		if (!conference?.ydoc) return null
+	const database = useDatabase()
 
-		/* Here we update the database's entry for this user */
+	const survey = useSelector((state) => state.survey)
+
+	const [surveyIds, setSurveyIds] = usePersistingState('surveyIds', {})
+
+	useEffect(async () => {
+		return null
+		const { data, error } = await database
+			.from('sondages')
+			.insert([{ name: survey.room }], { upsert: true })
+
+		console.log('SUPABASE', data, error)
+	}, [survey])
+
+	const data = { total: nodeValue, progress, byCategory }
+
+	useEffect(async () => {
+		const cachedSurveyId = surveyIds[survey.room],
+			payload = {
+				sondage: survey.room,
+				data,
+				...(cachedSurveyId ? { id: cachedSurveyId } : {}),
+			}
+		const { data: requestData, error } = await database
+			.from('réponses')
+			.insert([payload], {
+				upsert: true,
+			})
+		console.log('SUPABASE', requestData, error, payload)
+
+		if (!error && !surveyIds[survey.room]) {
+			const newSet = { ...surveyIds, [survey.room]: requestData[0].id }
+			console.log(newSet)
+			setSurveyIds(newSet)
+		}
 	}, [situation])
 
+	/*
 	if (!conference?.ydoc)
 		return <Link to="/conférence">Lancer une conférence</Link>
+		*/
 
-	const simulationArray = elements && Object.values(elements),
-		result = computeHumanMean(simulationArray.map((el) => el.bilan))
+	const simulationArray = [],
+		result = 6666 || computeHumanMean(simulationArray.map((el) => el.bilan))
+
+	const answersCount = 666
 
 	return (
-		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
+		<Link to={'/sondage/' + survey.room} css="text-decoration: none;">
 			<div
 				css={`
 					${backgroundConferenceAnimation}
@@ -68,9 +105,7 @@ export default () => {
 					}
 				`}
 			>
-				<span css="text-transform: uppercase">
-					«&nbsp;{conference.room}&nbsp;»
-				</span>
+				<span css="text-transform: uppercase">«&nbsp;{survey.room}&nbsp;»</span>
 				<span>
 					{emoji('🧮')} {result}
 				</span>
@@ -87,7 +122,7 @@ export default () => {
 							text-align: center;
 						`}
 					>
-						{users.length}
+						{answersCount}
 					</span>
 				</span>
 			</div>
