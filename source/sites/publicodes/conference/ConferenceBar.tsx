@@ -15,6 +15,7 @@ import { filterExtremes } from './utils'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { WebsocketProvider } from 'y-websocket'
 import useYjs from './useYjs'
+import { minimalCategoryData } from '../../../components/publicodesUtils'
 
 export default () => {
 	const situation = useSelector(situationSelector),
@@ -26,7 +27,7 @@ export default () => {
 	const progress = useSimulationProgress()
 	const { elements, users, username, conference } = useYjs(null)
 
-	const byCategory = extractCategories(rules, engine)
+	const byCategory = minimalCategoryData(extractCategories(rules, engine))
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
@@ -35,7 +36,11 @@ export default () => {
 
 		const simulations = conference.ydoc.get('simulations', Y.Map)
 
-		simulations.set(username, { bilan: nodeValue, progress, byCategory })
+		simulations.set(username, {
+			total: Math.round(nodeValue),
+			progress,
+			byCategory,
+		})
 	}, [situation])
 
 	if (!conference?.ydoc)

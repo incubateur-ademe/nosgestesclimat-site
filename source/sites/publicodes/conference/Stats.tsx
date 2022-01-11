@@ -18,12 +18,11 @@ export const computeHumanMean = (simulationArray) => {
 	return result ? meanFormatter(result) : 'résultats en attente'
 }
 
-export default ({ elements, users, username }) => {
+export default ({ elements, users = [], username }) => {
 	const [spotlight, setSpotlightRaw] = useState(null)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	if (!users) return null
-	const values = Object.values(elements).map((el) => el.bilan)
+	const values = Object.values(elements).map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean(values)
 
@@ -49,8 +48,6 @@ export default ({ elements, users, username }) => {
 		max = humanWeight(maxValue, true).join(' '),
 		min = humanWeight(minValue, true).join(' ')
 
-	console.log('ALL', elements, users, username)
-
 	return (
 		<div>
 			<div css=" text-align: center">
@@ -75,7 +72,7 @@ export default ({ elements, users, username }) => {
 						}
 					`}
 				>
-					{Object.entries(elements).map(([usernameI, { bilan: value }]) => (
+					{Object.entries(elements).map(([usernameI, { total: value }]) => (
 						<li
 							key={usernameI}
 							css={`
@@ -112,7 +109,10 @@ export default ({ elements, users, username }) => {
 
 const reduceCategories = (list) =>
 	list.reduce(
-		(memo, [username, categories]) => {
+		(memo, [username, categoriesValueSet]) => {
+			const categories = Object.entries(categoriesValueSet).map(
+				([name, nodeValue]) => ({ name, nodeValue })
+			)
 			return categories.reduce(
 				(countByCategory, nextCategory) => ({
 					...countByCategory,
