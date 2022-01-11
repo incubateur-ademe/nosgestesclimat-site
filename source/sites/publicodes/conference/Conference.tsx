@@ -11,6 +11,7 @@ import { conferenceImg } from '../../../components/SessionBar'
 import ShareButton from '../../../components/ShareButton'
 import { ThemeColorsContext } from '../../../components/utils/colors'
 import { ScrollToTop } from '../../../components/utils/Scroll'
+import Instructions from './Instructions'
 import Stats from './Stats'
 import { UserList, UserBlock } from './UserList'
 import useYjs from './useYjs'
@@ -24,6 +25,7 @@ import {
 } from './utils'
 
 export default () => {
+	const { room } = useParams()
 	const { elements, extremes, users, username } = useYjs(room, 'p2p')
 
 	return (
@@ -54,7 +56,7 @@ export default () => {
 					<UserBlock {...{ users, extremes, username, room }} />
 				</div>
 			)}
-			<Instructions {...{ room, newRoom, setNewRoom }} />
+			<Instructions {...{ room }} />
 			<h2>Et mes données ?</h2>
 			<p>
 				{emoji('🕵 ')}En participant, vous acceptez de partager vos résultats
@@ -72,5 +74,3 @@ export default () => {
 		</div>
 	)
 }
-
-const plural = (list) => (list.length > 1 ? 's' : '')
