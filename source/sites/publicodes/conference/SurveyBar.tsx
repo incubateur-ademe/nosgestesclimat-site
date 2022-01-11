@@ -60,11 +60,9 @@ export default () => {
 			.insert([payload], {
 				upsert: true,
 			})
-		console.log('SUPABASE', requestData, error, payload)
 
 		if (!error && !surveyIds[survey.room]) {
 			const newSet = { ...surveyIds, [survey.room]: requestData[0].id }
-			console.log(newSet)
 			setSurveyIds(newSet)
 		}
 	}, [situation])

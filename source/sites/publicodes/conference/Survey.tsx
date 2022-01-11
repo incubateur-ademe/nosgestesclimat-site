@@ -63,18 +63,30 @@ export default () => {
 				}
 			/>
 		)
-	return <Supa />
+	return <Supa room={survey.room} />
 }
 
-const Supa = ({}) => {
+const Supa = ({ room }) => {
 	const database = useDatabase()
 	const [data, setData] = useState([])
+	console.log('DATA', data)
 	useEffect(async () => {
 		let { data: requestData, error } = await database
 			.from('réponses')
 			.select('data,id')
 
 		if (!error) setData(requestData)
+
+		database
+			.from('réponses:sondage=eq.' + room)
+			.on('UPDATE', (payload) => {
+				if (payload.new) {
+					setData((data) =>
+						data.map((el) => (el.id === payload.new.id ? payload.new : el))
+					)
+				}
+			})
+			.subscribe()
 	}, [])
 
 	return (
