@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import LogoMIT from '../../../images/LogoMIT'
 
 export default function KmHelpButton({ text, setIsOpen, openmojiURL }) {
 	return (
@@ -15,19 +16,7 @@ export default function KmHelpButton({ text, setIsOpen, openmojiURL }) {
 					width: 100%;
 				`}
 			>
-				<motion.div
-					animate={{
-						rotate: [0, 360, 0, 0],
-					}}
-					transition={{
-						duration: 4,
-						delay: 1,
-						repeat: Infinity,
-						repeatDelay: 2,
-					}}
-				>
-					<img src={openmojiURL('aide')} css="display: block; width: 2rem" />
-				</motion.div>
+				<LogoMIT />
 				{text}
 			</div>
 		</button>
