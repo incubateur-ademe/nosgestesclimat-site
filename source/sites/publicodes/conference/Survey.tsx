@@ -70,12 +70,23 @@ const Supa = ({}) => {
 	const database = useDatabase()
 	const [data, setData] = useState([])
 	useEffect(async () => {
-		let { data: sondages, error } = await database
-			.from('sondages')
-			.select('name')
+		let { data: requestData, error } = await database
+			.from('réponses')
+			.select('data,id')
 
-		if (!error) setData(sondages)
+		if (!error) setData(requestData)
 	}, [])
 
-	return data.length && JSON.stringify(data)
+	return (
+		data.length != null && (
+			<Stats
+				{...{
+					elements: data.reduce(
+						(memo, next) => ({ ...memo, [next.id]: next.data }),
+						{}
+					),
+				}}
+			/>
+		)
+	)
 }
