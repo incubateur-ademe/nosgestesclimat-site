@@ -16,6 +16,7 @@ import { backgroundConferenceAnimation } from './conferenceStyle'
 import { WebsocketProvider } from 'y-websocket'
 import useYjs from './useYjs'
 import useDatabase from './useDatabase'
+import { minimalCategoryData } from '../../../components/publicodesUtils'
 
 export default () => {
 	const situation = useSelector(situationSelector),
@@ -26,7 +27,7 @@ export default () => {
 
 	const progress = useSimulationProgress()
 
-	const byCategory = extractCategories(rules, engine)
+	const byCategory = minimalCategoryData(extractCategories(rules, engine))
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
@@ -45,7 +46,7 @@ export default () => {
 		console.log('SUPABASE', data, error)
 	}, [survey])
 
-	const data = { total: nodeValue, progress, byCategory }
+	const data = { total: Math.round(nodeValue), progress, byCategory }
 
 	useEffect(async () => {
 		const cachedSurveyId = surveyIds[survey.room],

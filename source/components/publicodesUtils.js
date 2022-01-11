@@ -63,6 +63,14 @@ export const extractCategoriesNamespaces = (
 	return categories
 }
 
+export const minimalCategoryData = (categories) =>
+	Object.fromEntries(
+		categories.map(({ dottedName, nodeValue }) => [
+			dottedName,
+			Math.round(nodeValue),
+		])
+	)
+
 export const extractCategories = (
 	rules,
 	engine,
