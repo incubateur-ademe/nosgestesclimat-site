@@ -20,7 +20,7 @@ export default (room, connectionType: 'p2p' | 'database') => {
 	const [users, setUsers] = useState([])
 
 	const [username, setUsername] = usePersistingState(
-		'pseudo',
+		'conferenceId',
 		fruits[getRandomInt(fruits.length)]
 	)
 
