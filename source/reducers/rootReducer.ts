@@ -159,6 +159,14 @@ function actionChoices(state = {}, { type, action, choice }) {
 		return {}
 	} else return state
 }
+function survey(state = null, { type, room, ydoc, provider }) {
+	if (type === 'SET_SURVEY') {
+		if (state?.room === room) return state
+		return {
+			room,
+		}
+	} else return state
+}
 
 function conference(state = null, { type, room, ydoc, provider }) {
 	if (type === 'SET_CONFERENCE') {
@@ -194,6 +202,7 @@ const mainReducer = (state: any, action: Action) =>
 		rules,
 		actionChoices,
 		conference,
+		survey,
 		iframeOptions: defaultTo(null),
 		tutorials,
 		tracking,

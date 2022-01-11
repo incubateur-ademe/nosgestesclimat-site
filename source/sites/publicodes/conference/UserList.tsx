@@ -49,3 +49,4 @@ export const UserBlock = ({ extremes, users, username, room }) => (
 		)}
 	</div>
 )
+const plural = (list) => (list.length > 1 ? 's' : '')
