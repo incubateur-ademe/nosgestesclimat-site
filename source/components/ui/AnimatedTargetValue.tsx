@@ -1,8 +1,4 @@
-import { formatValue } from 'publicodes'
 import React, { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { targetUnitSelector } from 'Selectors/simulationSelectors'
 import styled, { keyframes } from 'styled-components'
 
 type AnimatedTargetValueProps = {
@@ -31,7 +27,6 @@ export default function AnimatedTargetValue({
 		previousValue.current = value
 		previousDifference.current = difference
 	} else {
-		console.log(!difference || Math.abs(difference) < 1)
 		difference = previousDifference.current
 	}
 
@@ -46,14 +41,14 @@ export default function AnimatedTargetValue({
 
 	return (
 		<div
-			key={difference}
+			key={difference + (value ?? 0)}
 			css={`
 				position: relative;
 				text-align: right;
 			`}
 		>
 			<StyledEvaporate>
-				{formatDifference(difference ?? 0, unit)}
+				{formatDifference(difference ?? 0, unit ?? '')}
 			</StyledEvaporate>
 		</div>
 	)
