@@ -86,6 +86,11 @@ const Supa = ({ room }) => {
 					)
 				}
 			})
+			.on('INSERT', (payload) => {
+				if (payload.new) {
+					setData((data) => [...data, payload.new])
+				}
+			})
 			.subscribe()
 	}, [])
 
