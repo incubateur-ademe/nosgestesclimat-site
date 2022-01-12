@@ -43,6 +43,16 @@ export default () => {
 			</ConferenceTitle>
 
 			{!survey ? <DataWarning room={room} /> : <Supa room={survey.room} />}
+			<button
+				className="ui__ link-button"
+				onClick={() => {
+					history.push('/')
+
+					dispatch({ type: 'UNSET_SURVEY' })
+				}}
+			>
+				{emoji('🚪')} Quitter le sondage
+			</button>
 			<Instructions {...{ room }} />
 		</div>
 	)
@@ -51,7 +61,6 @@ export default () => {
 const Supa = ({ room }) => {
 	const database = useDatabase()
 	const [data, setData] = useState([])
-	console.log('DATA', data)
 	useEffect(async () => {
 		let { data: requestData, error } = await database
 			.from('réponses')
