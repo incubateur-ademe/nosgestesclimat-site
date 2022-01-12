@@ -154,7 +154,7 @@ export default ({ room, newRoom, setNewRoom }) => {
 			{newRoom !== '' && !room && (
 				<InstructionBlock index="6" title="Prêt à démarrer ?">
 					<p>
-						<LoadingButton {...{ mode, URLPath }} />
+						<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
 					</p>
 				</InstructionBlock>
 			)}

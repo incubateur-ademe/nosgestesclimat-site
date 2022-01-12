@@ -1,22 +1,41 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { useHistory } from 'react-router'
+import useDatabase from './useDatabase'
 
-export default ({ mode, URLPath }) => {
+const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
+
+const existsCode = '23505'
+export default ({ mode, URLPath, room }) => {
 	const [clicked, setClicked] = useState(false)
+	const [text, setText] = useState(null)
 
 	const history = useHistory()
 
 	const actionImg = '/images/2714.svg'
 
+	const database = useDatabase()
+
 	return (
 		<button
 			type="submit"
 			className="ui__ button plain"
-			onClick={() => {
+			onClick={async () => {
 				setClicked(true)
 
-				setTimeout(() => history.push(URLPath), 2000)
+				if (mode === 'conférence') {
+					setTimeout(() => history.push(URLPath), 2000)
+				}
+				const creation = database.from('sondages').insert([{ name: room }])
+
+				creation.then(
+					({ error }) =>
+						error?.code === existsCode && setText('Sondage éxistant')
+				)
+
+				Promise.all([creation, wait(3000)]).then(([a, b]) => {
+					if (!a.error || a.error.code === existsCode) history.push(URLPath)
+				})
 			}}
 			css={`
 				display: flex !important;
@@ -35,7 +54,7 @@ export default ({ mode, URLPath }) => {
 					src={actionImg}
 				/>
 			)}
-			<span>{clicked ? 'Initialisation...' : "C'est parti ! "}</span>
+			<span>{text || (clicked ? 'Initialisation...' : "C'est parti ! ")}</span>
 		</button>
 	)
 }
