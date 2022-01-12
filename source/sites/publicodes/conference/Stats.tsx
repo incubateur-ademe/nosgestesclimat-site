@@ -48,6 +48,8 @@ export default ({ elements, users = [], username }) => {
 		max = humanWeight(maxValue, true).join(' '),
 		min = humanWeight(minValue, true).join(' ')
 
+	console.log('ELEMENTS', elements)
+
 	return (
 		<div>
 			<div css=" text-align: center">
@@ -81,7 +83,7 @@ export default ({ elements, users = [], username }) => {
 								margin-left: -10px;
 								left: ${((value - minValue) / (maxValue - minValue)) * 100}%;
 								background: ${users.find((u) => u.name === usernameI)?.color ||
-								'black'};
+								'var(--color)'};
 								opacity: 0.5;
 
 								cursor: pointer;
