@@ -127,7 +127,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 							required
 							placeholder="x"
 						></input>
-						<span css="padding: 0.2rem"> fois par </span>
+						<span css="padding-top: 0.25rem"> fois par </span>
 						<WrappedSelect
 							className="ui__"
 							css={`

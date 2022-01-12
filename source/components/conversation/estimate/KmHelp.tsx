@@ -101,6 +101,9 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				text="&nbsp; Aide à la saisie"
 				setIsOpen={setIsOpen}
 				openmojiURL={openmojiURL}
+				onHandleClick={() => {
+					setFinalValue(Math.round(+sum))
+				}}
 			/>
 		</div>
 	) : (
