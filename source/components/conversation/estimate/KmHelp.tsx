@@ -105,7 +105,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				onHandleClick={() => {
 					setIsOpen(true)
 					setFinalValue(Math.round(+sum))
-					tracker.push(['trackEvent', 'NGC', 'Click ide à la saisie'])
+					tracker.push(['trackEvent', 'NGC', 'Click aide à la saisie'])
 				}}
 			/>
 		</div>
