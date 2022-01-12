@@ -56,6 +56,7 @@ const Supa = ({ room }) => {
 		let { data: requestData, error } = await database
 			.from('réponses')
 			.select('data,id')
+			.eq('sondage', room)
 
 		if (!error) setData(requestData)
 

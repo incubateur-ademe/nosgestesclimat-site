@@ -40,7 +40,7 @@ export default ({ room }) => {
 								dispatch({ type: 'SET_SURVEY', room })
 							}}
 						>
-							Lancer le sondage
+							Participer au sondage
 						</button>
 						<button
 							className="ui__ button simple"
