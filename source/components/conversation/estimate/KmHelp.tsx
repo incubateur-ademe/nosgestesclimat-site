@@ -49,7 +49,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				.map((trajet) => {
 					const period = freqList.find((f) => f.name === trajet.periode)
 					const freqValue = period ? period.value * trajet.xfois : 0
-					return (trajet.distance * 2 * freqValue) / trajet.personnes
+					return (trajet.distance * freqValue) / trajet.personnes
 				})
 				.reduce((memo, elt) => {
 					return memo + elt

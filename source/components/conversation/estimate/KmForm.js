@@ -103,15 +103,15 @@ export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 						<WrappedInput
 							className="ui__"
 							css={`
-								width: 8rem !important;
+								width: 5rem !important;
 							`}
 							name="distance"
 							type="number"
 							required
-							placeholder="Distance (Aller)"
+							placeholder="Distance"
 							onChange={handleAddFormChange}
 						/>
-						<InputSuffix>km</InputSuffix>
+						<InputSuffix>km (A/R)</InputSuffix>
 					</InputWrapper>
 				</label>
 				<label title="frequence">
@@ -127,7 +127,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 							required
 							placeholder="x"
 						></input>
-						<strong css="padding: 0.2rem"> fois par </strong>
+						<span css="padding: 0.2rem"> fois par </span>
 						<WrappedSelect
 							className="ui__"
 							css={`

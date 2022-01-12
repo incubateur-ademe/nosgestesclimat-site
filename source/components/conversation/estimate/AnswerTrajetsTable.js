@@ -6,7 +6,7 @@ export default function AnswerTrajetsTable({ trajets }) {
 	const trajetsMotif = trajets.reduce((memo, trajet) => {
 		const period = freqList.find((f) => f.name === trajet.periode)
 		const freqValue = period ? period.value * trajet.xfois : 0
-		const dist = (trajet.distance * 2 * freqValue) / trajet.personnes
+		const dist = (trajet.distance * freqValue) / trajet.personnes
 		if (!memo.find((elt) => elt.motif === trajet.motif)) {
 			memo.push({
 				motif: trajet.motif,
