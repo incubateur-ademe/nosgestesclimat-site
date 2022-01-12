@@ -5,6 +5,9 @@ import { ThemeColorsContext } from '../../../components/utils/colors'
 import NamingBlock from './NamingBlock'
 import QRCode from 'qrcode.react'
 import ShareButton from '../../../components/ShareButton'
+import { Redirect, useHistory } from 'react-router'
+import { motion } from 'framer-motion'
+import LoadingButton from './LoadingButton'
 
 /* The conference mode can be used with two type of communication between users : P2P or database. The P2P mode was implemented first, then we decided that we needed a survey mode, with permanent data. But YJS is not yet designed plug and play for persistence, hence our survey mode will be implemented using Supabase/Postgre.
  *
@@ -151,17 +154,14 @@ export default ({ room, newRoom, setNewRoom }) => {
 			{newRoom !== '' && !room && (
 				<InstructionBlock index="6" title="Prêt à démarrer ?">
 					<p>
-						<Link to={URLPath}>
-							<button type="submit" className="ui__ button plain">
-								C'est parti !{' '}
-							</button>
-						</Link>
+						<LoadingButton {...{ mode, URLPath }} />
 					</p>
 				</InstructionBlock>
 			)}
 		</div>
 	)
 }
+
 const InstructionBlock = ({ title, index, children }) => (
 	<div
 		className="ui__ card"
