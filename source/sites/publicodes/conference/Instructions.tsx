@@ -23,15 +23,16 @@ export default ({ room, newRoom, setNewRoom }) => {
 		shareURL = URLbase + URLPath
 	return (
 		<div>
-			{!room && <p>Faites le test à plusieurs ! </p>}
-			<h2>Comment ça marche ?</h2>
+			{!room && (
+				<p>
+					Le test d'empreinte climat est individuel, mais nous vous proposons
+					ici de le faire à plusieurs.
+				</p>
+			)}
+			<h2>{emoji('📘')} Comment ça marche ?</h2>
 			<InstructionBlock
 				index="1"
-				title={
-					<span>
-						{emoji('💡 ')} Choisissez un nom de salle pour lancer une conf
-					</span>
-				}
+				title={<span>{emoji('💡 ')} Choisissez un nom de salle</span>}
 			>
 				{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
 				{room && <p>{emoji('✅')} C'est fait</p>}
@@ -40,7 +41,7 @@ export default ({ room, newRoom, setNewRoom }) => {
 				<InstructionBlock
 					index="2"
 					title={
-						<span>{emoji('⏲️')} Choississez votre type de conférence</span>
+						<span>{emoji('⏲️')} Choississez votre mode de simulation</span>
 					}
 				>
 					<div
@@ -63,9 +64,13 @@ export default ({ room, newRoom, setNewRoom }) => {
 								checked={mode === 'conférence'}
 								onChange={(e) => setMode(e.target.value)}
 							/>
-							Mode éphémère : parfait entre amis, ou pour une présentation
-							intéractive lors d'une conférence. Les données restent entre vous
-							(pair-à-pair), sans serveur.
+							<h3>Conférence</h3>
+							<p>
+								Mode éphémère : parfait entre amis, ou pour une présentation
+								intéractive lors d'une conférence. Les données restent entre les
+								participants (pair-à-pair), sans serveur, juste le temps de la
+								conférence.
+							</p>
 						</label>
 						<label
 							className={`ui__ card box interactive ${
@@ -79,9 +84,15 @@ export default ({ room, newRoom, setNewRoom }) => {
 								checked={mode === 'sondage'}
 								onChange={(e) => setMode(e.target.value)}
 							/>
-							Mode sondage : les données sont stockées sur notre serveur,
-							restent accessibles dans le temps. Si votre entreprise bride votre
-							réseau interne, utilisez ce mode.
+							<h3>Sondage</h3>
+							<p>
+								Mode persistant : les données sont stockées sur notre serveur,
+								restent accessibles dans le temps.{' '}
+							</p>
+							<p>
+								Si votre entreprise bride votre réseau interne, utilisez ce
+								mode.
+							</p>
 						</label>
 					</div>
 				</InstructionBlock>
@@ -143,7 +154,7 @@ export default ({ room, newRoom, setNewRoom }) => {
 				index="5"
 				title={
 					<span>
-						{emoji('🧮 ')}Visualisez ensemble les résultats de votre groupe
+						{emoji('🧮 ')} Visualisez ensemble les résultats de votre groupe
 					</span>
 				}
 			>

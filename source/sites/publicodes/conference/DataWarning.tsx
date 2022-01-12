@@ -18,6 +18,7 @@ export default ({ room }) => {
 							<span css="background: var(--color); color: var(--textColor); padding: 0 .2rem">
 								{room}
 							</span>
+							.
 						</p>
 					</div>
 				}
@@ -45,7 +46,7 @@ export default ({ room }) => {
 							className="ui__ button simple"
 							onClick={() => history.push('/')}
 						>
-							Non
+							Quitter
 						</button>
 					</div>
 				}

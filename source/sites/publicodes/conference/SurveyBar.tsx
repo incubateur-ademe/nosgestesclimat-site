@@ -67,13 +67,8 @@ export default () => {
 		}
 	}, [situation])
 
-	/*
-	if (!conference?.ydoc)
-		return <Link to="/conférence">Lancer une conférence</Link>
-		*/
-
 	const simulationArray = [],
-		result = 6666 || computeHumanMean(simulationArray.map((el) => el.bilan))
+		result = 6666 || computeHumanMean(simulationArray.map((el) => el.total))
 
 	const answersCount = 666
 

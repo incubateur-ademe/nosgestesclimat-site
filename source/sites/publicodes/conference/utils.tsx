@@ -42,9 +42,9 @@ export const extremeThreshold = 100 * 1000
 export const filterExtremes = (elements) =>
 	Object.fromEntries(
 		Object.entries(elements).filter(
-			([_, { bilan }]) => bilan < extremeThreshold
+			([_, { total }]) => total < extremeThreshold
 		)
 	)
 
 export const getExtremes = (elements) =>
-	Object.entries(elements).filter(([_, { bilan }]) => bilan >= extremeThreshold)
+	Object.entries(elements).filter(([_, { total }]) => total >= extremeThreshold)

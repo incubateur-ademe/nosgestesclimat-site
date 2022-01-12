@@ -47,7 +47,7 @@ export default () => {
 		return <Link to="/conférence">Lancer une conférence</Link>
 
 	const simulationArray = elements && Object.values(elements),
-		result = computeHumanMean(simulationArray.map((el) => el.bilan))
+		result = computeHumanMean(simulationArray.map((el) => el.total))
 
 	return (
 		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
