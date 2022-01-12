@@ -24,17 +24,22 @@ export default ({ mode, URLPath, room }) => {
 				setClicked(true)
 
 				if (mode === 'conférence') {
-					return setTimeout(() => history.push(URLPath), 2000)
+					return setTimeout(() => history.push(URLPath), 3000)
 				}
 				const creation = database.from('sondages').insert([{ name: room }])
 
-				creation.then(
-					({ error }) =>
-						error?.code === existsCode && setText('Sondage éxistant')
-				)
+				creation.then(({ data, error }) => {
+					if (!error)
+						return setTimeout(() => {
+							history.push(URLPath)
+						}, 2000)
 
-				Promise.all([creation, wait(3000)]).then(([a, b]) => {
-					if (!a.error || a.error.code === existsCode) history.push(URLPath)
+					if (error && error.code === existsCode) {
+						setText('Sondage éxistant')
+						setTimeout(() => {
+							history.push(URLPath)
+						}, 3000)
+					}
 				})
 			}}
 			css={`
