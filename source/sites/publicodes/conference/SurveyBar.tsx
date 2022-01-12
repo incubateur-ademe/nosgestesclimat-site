@@ -37,15 +37,6 @@ export default () => {
 
 	const [surveyIds, setSurveyIds] = usePersistingState('surveyIds', {})
 
-	useEffect(async () => {
-		return null
-		const { data, error } = await database
-			.from('sondages')
-			.insert([{ name: survey.room }], { upsert: true })
-
-		console.log('SUPABASE', data, error)
-	}, [survey])
-
 	const data = { total: Math.round(nodeValue), progress, byCategory }
 
 	useEffect(async () => {
@@ -68,9 +59,9 @@ export default () => {
 	}, [situation])
 
 	const simulationArray = [],
-		result = 6666 || computeHumanMean(simulationArray.map((el) => el.total))
+		result = null && computeHumanMean(simulationArray.map((el) => el.total))
 
-	const answersCount = 666
+	const answersCount = null
 
 	return (
 		<Link to={'/sondage/' + survey.room} css="text-decoration: none;">
@@ -100,25 +91,29 @@ export default () => {
 				`}
 			>
 				<span css="text-transform: uppercase">«&nbsp;{survey.room}&nbsp;»</span>
-				<span>
-					{emoji('🧮')} {result}
-				</span>
-				<span>
-					{emoji('👥')}{' '}
-					<span
-						css={`
-							background: #78b159;
-							width: 1.5rem;
-							height: 1.5rem;
-							border-radius: 2rem;
-							display: inline-block;
-							line-height: 1.5rem;
-							text-align: center;
-						`}
-					>
-						{answersCount}
+				{result && (
+					<span>
+						{emoji('🧮')} {result}
 					</span>
-				</span>
+				)}
+				{answersCount && (
+					<span>
+						{emoji('👥')}{' '}
+						<span
+							css={`
+								background: #78b159;
+								width: 1.5rem;
+								height: 1.5rem;
+								border-radius: 2rem;
+								display: inline-block;
+								line-height: 1.5rem;
+								text-align: center;
+							`}
+						>
+							{answersCount}
+						</span>
+					</span>
+				)}
 			</div>
 		</Link>
 	)
