@@ -145,10 +145,10 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 									<th scope="col" css="width: 22%">
 										Label
 									</th>
-									<th scope="col" css="width: 10%">
+									<th scope="col" css="width: 3rem">
 										"KM"
 									</th>
-									<th scope="col" css="width: 22%">
+									<th scope="col" css="width: 20%">
 										Fréquence
 									</th>
 									<th
