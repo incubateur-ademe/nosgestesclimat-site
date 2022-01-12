@@ -21,13 +21,13 @@ const Path = styled.path`
 `
 
 const rotation = () => keyframes`
-  66% { transform: rotate(0deg)}
+  50% { transform: rotate(0deg)}
   100% { transform: rotate(360deg)}
 `
 
 const Wheel = styled.g`
 	${Wrapper} & {
-		animation: ${rotation} 4s ease-out infinite;
+		animation: ${rotation} 5s ease-in-out infinite;
 	}
 `
 export default function Logo() {
