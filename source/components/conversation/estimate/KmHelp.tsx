@@ -133,6 +133,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 					trajets={trajets}
 					setTrajets={setTrajets}
 					openmojiURL={openmojiURL}
+					tracker={tracker}
 				/>
 				<div
 					css={`

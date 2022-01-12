@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { motifList, freqList } from './dataHelp'
 import { nanoid } from 'nanoid'
 
-export default function KmForm({ trajets, setTrajets, openmojiURL }) {
+export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 	const [addFormData, setAddFormData] = useState({
 		motif: '',
 		label: '',
@@ -179,6 +179,11 @@ export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 					className="ui__ plain small button"
 					css="max-height: 2rem"
 					type="submit"
+					onClick={tracker.push([
+						'trackEvent',
+						'NGC',
+						'Ajout trajet km voiture',
+					])}
 				>
 					Ajouter
 				</button>
