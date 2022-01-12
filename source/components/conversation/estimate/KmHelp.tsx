@@ -1,5 +1,5 @@
 import animate from 'Components/ui/animate'
-import { useState, Fragment, useEffect, useRef } from 'react'
+import { useState, Fragment, useEffect, useRef, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setStoredTrajets } from '../../../actions/actions'
 import { motifList, freqList } from './dataHelp'
@@ -9,7 +9,7 @@ import KmForm from './KmForm'
 import KmHelpButton from './KmHelpButton'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
-import './KmHelp.css'
+import { TrackerContext } from '../../utils/withTracker'
 
 const openmojis = {
 	calendrier: '1F4C5',
@@ -23,6 +23,8 @@ const openmojis = {
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 export default function KmHelp({ setFinalValue, dottedName }) {
+	const tracker = useContext(TrackerContext)
+
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
 
@@ -99,10 +101,11 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		>
 			<KmHelpButton
 				text="&nbsp; Aide à la saisie"
-				setIsOpen={setIsOpen}
 				openmojiURL={openmojiURL}
 				onHandleClick={() => {
+					setIsOpen(true)
 					setFinalValue(Math.round(+sum))
+					tracker.push(['trackEvent', 'NGC', 'Click ide à la saisie'])
 				}}
 			/>
 		</div>
