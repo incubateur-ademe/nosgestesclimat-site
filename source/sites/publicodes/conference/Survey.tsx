@@ -26,6 +26,7 @@ import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 import useDatabase from './useDatabase'
 import { ConferenceTitle } from './Conference'
 import DataWarning from './DataWarning'
+import Instructions from './Instructions'
 
 export default () => {
 	const survey = useSelector((state) => state.survey)
@@ -42,6 +43,7 @@ export default () => {
 			</ConferenceTitle>
 
 			{!survey ? <DataWarning room={room} /> : <Supa room={survey.room} />}
+			<Instructions {...{ room }} />
 		</div>
 	)
 }
