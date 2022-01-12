@@ -169,6 +169,7 @@ function survey(state = null, { type, room, ydoc, provider }) {
 }
 
 function conference(state = null, { type, room, ydoc, provider }) {
+	if (type === 'UNSET_CONFERENCE') return null
 	if (type === 'SET_CONFERENCE') {
 		if (state?.room === room) return state
 		return {

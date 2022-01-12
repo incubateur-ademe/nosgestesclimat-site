@@ -3,7 +3,7 @@ import QRCode from 'qrcode.react'
 import { useContext, useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useParams } from 'react-router'
+import { useHistory, useLocation, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { WebrtcProvider } from 'y-webrtc'
@@ -41,6 +41,10 @@ export const ConferenceTitle = styled.h2`
 export default () => {
 	const { room } = useParams()
 	const { elements, extremes, users, username } = useYjs(room, 'p2p')
+	const dispatch = useDispatch()
+	const history = useHistory()
+
+	console.log(elements)
 
 	return (
 		<div>
@@ -57,6 +61,16 @@ export default () => {
 					<UserBlock {...{ users, extremes, username, room }} />
 				</div>
 			)}
+			<button
+				className="ui__ link-button"
+				onClick={() => {
+					history.push('/')
+
+					dispatch({ type: 'UNSET_CONFERENCE' })
+				}}
+			>
+				{emoji('🚪')} Quitter la conférence
+			</button>
 			<Instructions {...{ room }} />
 			<h2>Et mes données ?</h2>
 			<p>
