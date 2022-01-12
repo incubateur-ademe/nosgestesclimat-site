@@ -5,6 +5,7 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation, useParams } from 'react-router'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
 import { conferenceImg } from '../../../components/SessionBar'
@@ -24,6 +25,19 @@ import {
 	stringToColour,
 } from './utils'
 
+export const ConferenceTitle = styled.h2`
+	margin-top: 0.6rem;
+	@media (min-width: 800px) {
+		display: none;
+	}
+	> img {
+		width: 4rem;
+	}
+	display: flex;
+	align-items: center;
+	font-size: 120%;
+`
+
 export default () => {
 	const { room } = useParams()
 	const { elements, extremes, users, username } = useYjs(room, 'p2p')
@@ -32,23 +46,10 @@ export default () => {
 		<div>
 			{room && <ScrollToTop />}
 			<h1>Conférence</h1>
-			<h2
-				css={`
-					margin-top: 0.6rem;
-					@media (min-width: 800px) {
-						display: none;
-					}
-					> img {
-						width: 4rem;
-					}
-					display: flex;
-					align-items: center;
-					font-size: 120%;
-				`}
-			>
+			<ConferenceTitle>
 				<img src={conferenceImg} />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
-			</h2>
+			</ConferenceTitle>
 			<Stats {...{ elements, users, username }} />
 
 			{room && (

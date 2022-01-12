@@ -24,46 +24,26 @@ import {
 } from './utils'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 import useDatabase from './useDatabase'
+import { ConferenceTitle } from './Conference'
+import DataWarning from './DataWarning'
 
 export default () => {
 	const survey = useSelector((state) => state.survey)
 	const history = useHistory()
 	const dispatch = useDispatch()
 	const { room } = useParams()
-	if (!survey)
-		return (
-			<IllustratedMessage
-				emoji="🕵️📊"
-				message={
-					<div>
-						<p>
-							Vous avez été invités à un sondage Nos Gestes Climat.
-							Acceptez-vous que vos données de simulation soit collectées
-							anonymement pour les besoins de ce sondage <em>{room}</em>?
-							<p>
-								EXPLIQUER SIMPLEMENT QUELLES DONNEES ET UN LIEN VERS LA PAGE QUI
-								EXPLIQUE TOUT
-							</p>
-						</p>{' '}
-						<button
-							className="ui__ button simple"
-							onClick={() => {
-								dispatch({ type: 'SET_SURVEY', room })
-							}}
-						>
-							Lancer le sondage
-						</button>
-						<button
-							className="ui__ button simple"
-							onClick={() => history.push('/')}
-						>
-							Non
-						</button>
-					</div>
-				}
-			/>
-		)
-	return <Supa room={survey.room} />
+
+	return (
+		<div>
+			<h1>Sondage</h1>
+			<ConferenceTitle>
+				<img src={conferenceImg} />
+				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
+			</ConferenceTitle>
+
+			{!survey ? <DataWarning room={room} /> : <Supa room={survey.room} />}
+		</div>
+	)
 }
 
 const Supa = ({ room }) => {
