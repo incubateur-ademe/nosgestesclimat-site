@@ -16,8 +16,10 @@ import { TrackerContext } from '../../components/utils/withTracker'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
+	const thenRedirectTo = useSelector((state) => state.thenRedirectTo)
 
-	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
+	if (tutorials['testIntro'])
+		return <Redirect to={thenRedirectTo || '/simulateur/bilan'} />
 
 	const tutos = Object.entries(tutorials)
 		.map(([k, v]) => v != null && k.split('testIntro')[1])

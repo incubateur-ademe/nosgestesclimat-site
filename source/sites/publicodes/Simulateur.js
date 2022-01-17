@@ -12,7 +12,7 @@ import { compose, isEmpty, symmetricDifference } from 'ramda'
 import React, { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect } from 'react-router'
+import { Redirect, useLocation } from 'react-router'
 import { FullName } from '../../components/publicodesUtils'
 import animate from '../../components/ui/animate'
 import Meta from '../../components/utils/Meta'
@@ -84,11 +84,18 @@ const Simulateur = (props) => {
 					}
 				/>
 			) : (
-				<Redirect to="/tutoriel" />
+				<TutorialRedirection />
 			)}
 			<BandeauContribuer />
 		</div>
 	)
+}
+
+const TutorialRedirection = () => {
+	const dispatch = useDispatch(),
+		to = useLocation().pathname
+	useEffect(() => dispatch({ type: 'SET_THEN_REDIRECT_TO', to }), [to])
+	return <Redirect to="/tutoriel" />
 }
 
 const RedirectionToEndPage = ({ rules, engine }) => {
