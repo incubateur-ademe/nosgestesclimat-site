@@ -13,12 +13,12 @@ export default function KmEstimation({
 }) {
 	return (
 		<div>
-			<AnimatedTargetValue value={value} unit="km" />
 			<Input
 				{...commonProps}
 				onSubmit={onSubmit}
 				unit={evaluation.unit}
 				value={value}
+				showAnimation
 			/>
 			<div>
 				<KmHelp

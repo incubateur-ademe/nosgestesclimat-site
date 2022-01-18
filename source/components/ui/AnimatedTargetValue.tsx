@@ -70,13 +70,8 @@ const evaporateAnimation = keyframes`
 `
 
 const StyledEvaporate = styled.div`
-	display: block;
-	position: absolute;
-	z-index: 3;
-	right: 7rem;
-	color: #ffbb00;
-	top: 2.1rem;
 	opacity: 0;
+	color: var(--color);
 	animation: ${evaporateAnimation} 2.5s linear;
 	transform: scaleY(0.1);
 `
