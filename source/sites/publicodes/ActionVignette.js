@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
+import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
@@ -13,6 +14,8 @@ import {
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
+import { TrackerContext } from '../../components/utils/withTracker'
+
 const { encodeRuleName, decodeRuleName } = utils
 
 export const disabledAction = (flatRule, nodeValue) =>
@@ -43,6 +46,8 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
+	const tracker = useContext(TrackerContext)
+
 	const dispatch = useDispatch()
 	const rules = useSelector((state) => state.rules),
 		{ nodeValue, dottedName, title, unit } = evaluation,
@@ -156,6 +161,13 @@ export const ActionListCard = ({
 								actionChoices[dottedName] === true ? null : true
 							)
 						)
+						tracker.push([
+							'trackEvent',
+							'/actions',
+							'Vote carte action',
+							'oui',
+							1,
+						])
 						e.stopPropagation()
 						e.preventDefault()
 					}}
@@ -171,6 +183,13 @@ export const ActionListCard = ({
 								actionChoices[dottedName] === false ? null : false
 							)
 						)
+						tracker.push([
+							'trackEvent',
+							'/actions',
+							'Vote carte action',
+							'non',
+							-1,
+						])
 						e.stopPropagation()
 						e.preventDefault()
 					}}
