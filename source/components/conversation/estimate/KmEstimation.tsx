@@ -20,11 +20,7 @@ export default function KmEstimation({
 				unit={evaluation.unit}
 				value={value}
 			/>
-			<div
-				css={`
-					display: block;
-				`}
-			>
+			<div>
 				<KmHelp
 					setFinalValue={setFinalValue}
 					dottedName={commonProps.dottedName}
