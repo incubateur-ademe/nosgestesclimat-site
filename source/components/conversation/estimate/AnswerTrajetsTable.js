@@ -7,17 +7,27 @@ export default function AnswerTrajetsTable({ trajets }) {
 		const period = freqList.find((f) => f.name === trajet.periode)
 		const freqValue = period ? period.value * trajet.xfois : 0
 		const dist = (trajet.distance * freqValue) / trajet.personnes
-		if (!memo.find((elt) => elt.motif === trajet.motif)) {
-			memo.push({
-				motif: trajet.motif,
-				distance: 0,
-			})
-		}
-		memo.find((elt) => elt.motif === trajet.motif).distance += Math.round(+dist)
-		return memo
-	}, [])
 
-	console.log(trajetsMotif)
+		const currentDistance = memo[trajet.motif] ?? 0
+		console.log(currentDistance)
+		return {
+			...memo,
+			[trajet.motif]: currentDistance + Math.round(+dist),
+		}
+	}, {})
+
+	// 	if (!memo.find((elt) => elt.motif === trajet.motif)) {
+	// 		memo.push({
+	// 			motif: trajet.motif,
+	// 			distance: 0,
+	// 		})
+	// 	}
+	// 	memo.find((elt) => elt.motif === trajet.motif).distance += Math.round(+dist)
+	// 	return memo
+	// }, [])
+	console.log(trajets)
+	const trajetsMotifTable = Object.entries(trajetsMotif)
+	console.log(trajetsMotifTable)
 
 	return (
 		<div
@@ -36,10 +46,10 @@ export default function AnswerTrajetsTable({ trajets }) {
 					</tr>
 				</thead>
 				<tbody>
-					{trajetsMotif.map((trajet) => (
+					{trajetsMotifTable.map((trajet) => (
 						<tr>
-							<td>{trajet.motif}</td>
-							<td>{trajet.distance}</td>
+							<td>{trajet[0]}</td>
+							<td>{trajet[1]}</td>
 						</tr>
 					))}
 				</tbody>
