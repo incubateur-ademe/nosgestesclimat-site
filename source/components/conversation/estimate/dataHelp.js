@@ -12,32 +12,28 @@ export const motifList = [
 		id: '3vf',
 	},
 	{
-		name: 'Mobilité académique (France)',
-		id: '4maf',
-	},
-	{
-		name: 'Mobilité académique (Etranger)',
-		id: '5mae',
+		name: 'Mobilité académique',
+		id: '4ma',
 	},
 	{
 		name: 'Sport ou Loisir',
-		id: '6sl',
+		id: '5sl',
 	},
 	{
 		name: 'Sorties ponctuelles',
-		id: '7sp',
+		id: '6sp',
 	},
 	{
 		name: 'Courses',
-		id: '8c',
+		id: '7c',
 	},
 	{
 		name: 'RDV médicaux',
-		id: '9rm',
+		id: '8rm',
 	},
 	{
 		name: 'Week-end',
-		id: '10we',
+		id: '9we',
 	},
 ]
 
