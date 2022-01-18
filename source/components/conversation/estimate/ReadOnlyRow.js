@@ -12,14 +12,7 @@ export default function ReadOnlyRow({
 		event.preventDefault()
 		setEditTrajetId(trajet.id)
 
-		const formValues = {
-			motif: trajet.motif,
-			label: trajet.label,
-			distance: trajet.distance,
-			xfois: trajet.xfois,
-			periode: trajet.periode,
-			personnes: trajet.personnes,
-		}
+		const formValues = { ...trajet }
 
 		setEditFormData(formValues)
 	}

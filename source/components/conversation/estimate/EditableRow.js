@@ -13,8 +13,7 @@ export default function EditableRow({
 		const fieldName = event.target.getAttribute('name')
 		const fieldValue = event.target.value
 
-		const newFormData = { ...editFormData }
-		newFormData[fieldName] = fieldValue
+		const newFormData = { ...editFormData, [fieldName]: fieldValue }
 
 		setEditFormData(newFormData)
 	}

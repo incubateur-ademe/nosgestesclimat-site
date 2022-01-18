@@ -28,16 +28,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 	const handleAddFormSubmit = (event) => {
 		event.preventDefault()
 
-		const newTrajet = {
-			id: nanoid(),
-			motif: addFormData.motif,
-			label: addFormData.label,
-			distance: addFormData.distance,
-			xfois: addFormData.xfois,
-			periode: addFormData.periode,
-			personnes: addFormData.personnes,
-		}
-
+		const newTrajet = { ...addFormData, id: nanoid() }
 		const newTrajets = [...trajets, newTrajet]
 		setTrajets(newTrajets)
 	}
