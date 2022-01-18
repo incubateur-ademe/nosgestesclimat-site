@@ -161,7 +161,13 @@ export const ActionListCard = ({
 								actionChoices[dottedName] === true ? null : true
 							)
 						)
-						tracker.push(['trackEvent', 'NGC', 'Nbre votes cartes action'])
+						tracker.push([
+							'trackEvent',
+							'/actions',
+							'Vote carte action',
+							'oui',
+							1,
+						])
 						e.stopPropagation()
 						e.preventDefault()
 					}}
@@ -177,7 +183,13 @@ export const ActionListCard = ({
 								actionChoices[dottedName] === false ? null : false
 							)
 						)
-						tracker.push(['trackEvent', 'NGC', 'Nbre votes cartes action'])
+						tracker.push([
+							'trackEvent',
+							'/actions',
+							'Vote carte action',
+							'non',
+							-1,
+						])
 						e.stopPropagation()
 						e.preventDefault()
 					}}
