@@ -9,25 +9,13 @@ export default function AnswerTrajetsTable({ trajets }) {
 		const dist = (trajet.distance * freqValue) / trajet.personnes
 
 		const currentDistance = memo[trajet.motif] ?? 0
-		console.log(currentDistance)
 		return {
 			...memo,
 			[trajet.motif]: currentDistance + Math.round(+dist),
 		}
 	}, {})
 
-	// 	if (!memo.find((elt) => elt.motif === trajet.motif)) {
-	// 		memo.push({
-	// 			motif: trajet.motif,
-	// 			distance: 0,
-	// 		})
-	// 	}
-	// 	memo.find((elt) => elt.motif === trajet.motif).distance += Math.round(+dist)
-	// 	return memo
-	// }, [])
-	console.log(trajets)
 	const trajetsMotifTable = Object.entries(trajetsMotif)
-	console.log(trajetsMotifTable)
 
 	return (
 		<div
