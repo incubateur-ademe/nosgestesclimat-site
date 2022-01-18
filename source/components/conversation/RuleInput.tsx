@@ -13,6 +13,7 @@ import {
 	reduceAST,
 	utils,
 } from 'publicodes'
+const { serializeUnit } = require('publicodes')
 import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
@@ -117,13 +118,7 @@ export default function RuleInput<Name extends string = DottedName>({
 
 	if (isTransportEstimation(rule.dottedName)) {
 		const question = isTransportEstimation(rule.dottedName)
-		//je ne sais pas pourquoi j'ai du ajouter cette définition de variable
-		const unité = formatValue(
-			{ nodeValue: value ?? 0, unit: evaluation.unit },
-			{ language }
-		)
-			.replace(/[\d,.]/g, '')
-			.trim()
+		const unité = serializeUnit(evaluation.unit)
 		return (
 			<question.component
 				commonProps={commonProps}
