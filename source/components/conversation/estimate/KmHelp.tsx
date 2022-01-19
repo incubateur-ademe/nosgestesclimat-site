@@ -93,6 +93,28 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		setEditTrajetId(null)
 	}
 
+	const kmBrut = trajets
+		.map((trajet) => {
+			const period = freqList.find((f) => f.name === trajet.periode)
+			const freqValue = period ? period.value * trajet.xfois : 0
+			return trajet.distance * freqValue
+		})
+		.reduce((memo, elt) => {
+			return memo + elt
+		}, 0)
+
+	const covoitAvg = (
+		trajets
+			.map((trajet) => {
+				const period = freqList.find((f) => f.name === trajet.periode)
+				const freqValue = period ? period.value * trajet.xfois : 0
+				return trajet.distance * freqValue * trajet.personnes
+			})
+			.reduce((memo, elt) => {
+				return memo + elt
+			}) / kmBrut
+	).toFixed(1)
+
 	return !isOpen ? (
 		<div
 			css={`
@@ -111,6 +133,28 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		</div>
 	) : (
 		<animate.fromTop>
+			{trajets.length != 0 && (
+				<div
+					css={`
+						display: flex;
+						justify-content: end;
+					`}
+				>
+					<div
+						css={`
+							font-size: 80%;
+							font-style: italic;
+							width: 50%;
+							line-height: 1rem;
+							margin-bottom: 0.5rem;
+							text-align: right;
+						`}
+					>
+						Vous parcourez {kmBrut} kms par an en étant en moyenne {covoitAvg}{' '}
+						personnes dans la voiture.
+					</div>
+				</div>
+			)}
 			<div
 				className="ui__ card content"
 				css={`
@@ -197,7 +241,8 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 											`}
 										>
 											Mon total :{' '}
-											<strong>&nbsp;{Math.round(+sum)} km&nbsp;</strong>
+											<strong>&nbsp;{Math.round(+sum)} km&nbsp;</strong>{' '}
+											(co-voiturage pris en compte)
 										</span>
 									</td>
 								</tbody>
