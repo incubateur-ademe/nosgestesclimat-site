@@ -62,20 +62,15 @@ const Supa = ({ room }) => {
 	const database = useDatabase()
 	const [data, setData] = useState([])
 	useEffect(async () => {
-		let { data: requestData, error } = await database.rpc('get_answers', {
-			value: room,
-		})
-
-		console.log('RD', requestData)
+		let { data: requestData, error } = await database
+			.from('réponses')
+			.select('data,id')
+			.eq('sondage', room)
 
 		if (!error) setData(requestData)
 
-		/* To ensure the réponses table security, as it leaks the keys of all existing sondages, we've restricted access to réponses of a specific sondage only through a postgres function 
-			 * But we can't subscribe to a function yet, hence no realtime is available with this level of security
-			 * 
-			 *
 		database
-			.from('answers:sondage=eq.' + room)
+			.from('réponses:sondage=eq.' + room)
 			.on('UPDATE', (payload) => {
 				if (payload.new) {
 					setData((data) =>
@@ -89,7 +84,6 @@ const Supa = ({ room }) => {
 				}
 			})
 			.subscribe()
-			*/
 	}, [])
 
 	return (
