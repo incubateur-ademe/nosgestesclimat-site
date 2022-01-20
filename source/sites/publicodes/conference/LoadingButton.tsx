@@ -26,7 +26,9 @@ export default ({ mode, URLPath, room }) => {
 				if (mode === 'conférence') {
 					return setTimeout(() => history.push(URLPath), 3000)
 				}
-				const creation = database.from('sondages').insert([{ name: room }])
+				const creation = database
+					.from('surveys')
+					.insert([{ name: room }], { returning: 'minimal' })
 
 				creation.then(({ data, error }) => {
 					if (!error)

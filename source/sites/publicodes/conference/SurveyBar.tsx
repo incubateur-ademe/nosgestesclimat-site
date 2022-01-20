@@ -40,20 +40,23 @@ export default () => {
 	const data = { total: Math.round(nodeValue), progress, byCategory }
 
 	useEffect(async () => {
-		const cachedSurveyId = surveyIds[survey.room],
+		const cachedSurveyId = surveyIds[survey.room] || crypto.randomUUID(),
 			payload = {
-				sondage: survey.room,
+				survey: survey.room,
 				data,
-				...(cachedSurveyId ? { id: cachedSurveyId } : {}),
+				id: cachedSurveyId,
 			}
-		const { data: requestData, error } = await database
-			.from('réponses')
-			.insert([payload], {
-				upsert: true,
-			})
+
+		const { data: requestData, error } = await (surveyIds[survey.room] == null
+			? database.from('answers').insert(payload, {
+					returning: 'minimal',
+			  })
+			: database.from('answers').update({ data }).eq('id', cachedSurveyId))
+
+		console.log('supabase UPSERT', cachedSurveyId, requestData, error)
 
 		if (!error && !surveyIds[survey.room]) {
-			const newSet = { ...surveyIds, [survey.room]: requestData[0].id }
+			const newSet = { ...surveyIds, [survey.room]: cachedSurveyId }
 			setSurveyIds(newSet)
 		}
 	}, [situation])
