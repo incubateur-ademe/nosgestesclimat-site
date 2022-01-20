@@ -63,14 +63,14 @@ const Supa = ({ room }) => {
 	const [data, setData] = useState([])
 	useEffect(async () => {
 		let { data: requestData, error } = await database
-			.from('réponses')
+			.from('answers')
 			.select('data,id')
-			.eq('sondage', room)
+			.eq('survey', room)
 
 		if (!error) setData(requestData)
 
 		database
-			.from('réponses:sondage=eq.' + room)
+			.from('answers:survey=eq.' + room)
 			.on('UPDATE', (payload) => {
 				if (payload.new) {
 					setData((data) =>

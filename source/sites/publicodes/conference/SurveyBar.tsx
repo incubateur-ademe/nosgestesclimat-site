@@ -42,12 +42,12 @@ export default () => {
 	useEffect(async () => {
 		const cachedSurveyId = surveyIds[survey.room],
 			payload = {
-				sondage: survey.room,
+				survey: survey.room,
 				data,
 				...(cachedSurveyId ? { id: cachedSurveyId } : {}),
 			}
 		const { data: requestData, error } = await database
-			.from('réponses')
+			.from('answers')
 			.insert([payload], {
 				upsert: true,
 			})
