@@ -245,7 +245,9 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 											`}
 										>
 											Mon total :{' '}
-											<strong>&nbsp;{Math.round(+sum)} km&nbsp;</strong>{' '}
+											<strong>
+												&nbsp;{sum.toLocaleString('fr-FR')} km&nbsp;
+											</strong>{' '}
 											(co-voiturage pris en compte)
 										</span>
 									</td>
