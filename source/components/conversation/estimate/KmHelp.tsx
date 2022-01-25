@@ -103,7 +103,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			return memo + elt
 		}, 0)
 
-	const covoitAvg = (
+	const covoitAvg =
 		trajets
 			.map((trajet) => {
 				const period = freqList.find((f) => f.name === trajet.periode)
@@ -112,8 +112,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			})
 			.reduce((memo, elt) => {
 				return memo + elt
-			}) / kmBrut
-	).toFixed(1)
+			}, 0) / kmBrut
 
 	return !isOpen ? (
 		<div
@@ -150,7 +149,12 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 							text-align: right;
 						`}
 					>
-						Vous parcourez {kmBrut} kms par an en étant en moyenne {covoitAvg}{' '}
+						Vous parcourez {kmBrut.toLocaleString('fr-FR')} km en étant en
+						moyenne{' '}
+						{covoitAvg.toLocaleString('fr-FR', {
+							minimumFractionDigits: 1,
+							maximumFractionDigits: 1,
+						})}{' '}
 						personnes dans la voiture.
 					</div>
 				</div>
