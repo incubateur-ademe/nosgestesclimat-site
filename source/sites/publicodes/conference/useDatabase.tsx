@@ -1,10 +1,16 @@
-import { createClient } from '@supabase/supabase-js'
 import { useMemo } from 'react'
+import { initializeParse } from '@parse/react'
+
 export default () => {
-	const supabase = useMemo(
-		() => createClient(SUPABASE_URL, SUPABASE_ANON_KEY),
+	const database = useMemo(
+		() =>
+			initializeParse(
+				'PARSE_SERVER_URL',
+				'PARSE_APPLICATION_ID',
+				'PARSE_JAVASCRIPT_KEY'
+			),
 		[]
 	)
 
-	return supabase
+	return database
 }

@@ -26,10 +26,9 @@ module.exports = {
 		...HTMLPlugins({ injectTrackingScript: true }),
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('development'),
-			SUPABASE_URL: JSON.stringify(process.env.REACT_APP_SUPABASE_URL),
-			SUPABASE_ANON_KEY: JSON.stringify(
-				process.env.REACT_APP_SUPABASE_ANON_KEY
-			),
+			PARSE_SERVER_URL: JSON.stringify(process.env.PARSE_SERVER_URL),
+			PARSE_APPLICATION_ID: JSON.stringify(process.env.PARSE_APPLICATION_ID),
+			PARSE_JAVASCRIPT_KEY: JSON.stringify(process.env.PARSE_JAVASCRIPT_KEY),
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new ReactRefreshWebpackPlugin(),
