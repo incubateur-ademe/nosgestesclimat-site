@@ -18,6 +18,7 @@ import IframeDataShareModal from './IframeDataShareModal'
 import BallonGES from './images/ballonGES.svg'
 import animate from 'Components/ui/animate'
 import { actionImg } from '../../components/SessionBar'
+import { TrackerContext } from 'Components/utils/withTracker'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -37,6 +38,8 @@ const sumFromDetails = (details) =>
 	details.reduce((memo, [name, value]) => memo + value, 0)
 
 export default ({}) => {
+	const tracker = useContext(TrackerContext)
+
 	const query = new URLSearchParams(useLocation().search)
 	const details = query.get('details')
 
@@ -245,7 +248,9 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 							</div>
 						</div>
 					</div>
-					{!integratorActionText && <ActionButton text="Passer à l'action" />}
+					{!integratorActionText && (
+						<ActionButton text="Passer à l'action" score={score} />
+					)}
 					<div css="padding: 1rem">
 						<Chart
 							noAnimation
@@ -299,10 +304,19 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 	)
 }
 
-const ActionButton = ({ text }) => (
+const ActionButton = ({ text, score }) => (
 	<Link
 		to="/actions"
 		className="ui__ button plain"
+		onClick={() =>
+			tracker.push([
+				'trackEvent',
+				'NGC',
+				'Clic bouton action page /fin',
+				null,
+				score,
+			])
+		}
 		css={`
 			margin: 0.6rem auto;
 			width: 90%;

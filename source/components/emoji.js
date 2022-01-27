@@ -25,15 +25,18 @@ export const getEmojiComponents = (text) => {
 
 // Here text can include emojis and text
 export const Twemoji = ({ text }) => {
-	return (
+	const parsed = twemoji.parse(text, {
+		folder: 'svg',
+		ext: '.svg',
+	})
+	return parsed.includes('<img class="emoji"') ? (
 		<EmojiStyle
 			dangerouslySetInnerHTML={{
-				__html: twemoji.parse(text, {
-					folder: 'svg',
-					ext: '.svg',
-				}),
+				__html: parsed,
 			}}
 		/>
+	) : (
+		text
 	)
 }
 
@@ -42,13 +45,10 @@ export default (text) => {
 }
 
 const EmojiStyle = styled.span`
-	display: inline-flex;
-	justify-content: center;
-	align-items: center;
 	img {
 		height: 1em;
 		width: auto;
 		margin: 0 0.2rem;
+		vertical-align: -0.125em;
 	}
-	vertical-align: -0.125em;
 `

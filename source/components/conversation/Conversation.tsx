@@ -77,16 +77,8 @@ export default function Conversation({
 		}
 	}, [previousAnswers, tracker])
 
-	const currentQuestionIndex = previousAnswers.findIndex(
-			(a) => a === unfoldedStep
-		),
-		previousQuestion =
-			currentQuestionIndex < 0 && previousAnswers.length > 0
-				? previousAnswers[previousAnswers.length - 1]
-				: previousAnswers[currentQuestionIndex - 1]
-
 	useEffect(() => {
-		// It is important to test for "previousSimulation" : if it exists, it's not loadedYet. Then currentQuestion could be the wrong one, already answered, don't put it as the unfoldedStep
+		// It is important to test for "previousSimulation" : if it exists, it's not loaded yet. Then currentQuestion could be the wrong one, already answered, don't put it as the unfoldedStep
 		// TODO this is really unclear
 		if (
 			currentQuestion &&
@@ -116,6 +108,22 @@ export default function Conversation({
 				)
 				.map(([dottedName]) => dottedName)
 		: [currentQuestion]
+
+	const currentQuestionIndex = previousAnswers.findIndex(
+			(a) => a === unfoldedStep
+		),
+		previousQuestion =
+			currentQuestionIndex < 0 && previousAnswers.length > 0
+				? previousAnswers[previousAnswers.length - 1]
+				: mosaicQuestion
+				? [...previousAnswers]
+						.reverse()
+						.find(
+							(el, index) =>
+								index < currentQuestionIndex && !questionsToSubmit.includes(el)
+						)
+				: previousAnswers[currentQuestionIndex - 1]
+
 	const submit = (source: string) => {
 		if (mosaicQuestion?.options?.defaultsToFalse) {
 			questionsToSubmit.map((question) =>

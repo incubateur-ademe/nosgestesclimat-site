@@ -1,9 +1,13 @@
-import { Link } from 'react-router-dom'
 import SessionBar from 'Components/SessionBar'
+import { useContext } from 'react'
+import { Link } from 'react-router-dom'
+import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Logo from './Logo'
 
 export default ({ isHomePage }) => {
 	const pathname = decodeURIComponent(location.pathname)
+
+	const { isIframe } = useContext(IframeOptionsContext)
 
 	return (
 		<>
@@ -17,6 +21,7 @@ export default ({ isHomePage }) => {
 						flex-shrink: 0;
 						width: 12rem;
 						height: 100vh;
+						${isIframe && `height: 100% !important;`}
 						overflow: auto;
 						position: sticky;
 						top: 0;

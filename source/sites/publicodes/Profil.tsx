@@ -17,14 +17,21 @@ import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { skipTutorial } from '../../actions/actions'
 import { useHistory } from 'react-router'
 
-export default ({}) => {
-	const dispatch = useDispatch()
-	const persona = useSelector((state) => state.simulation?.persona)
+export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
 	const tutorials = useSelector((state) => state.tutorials)
+
 	const hasData =
 		answeredQuestionsLength > 0 ||
 		Object.entries(tutorials).find(([k, v]) => v != null)
+
+	return { hasData, tutorials, answeredQuestionsLength }
+}
+
+export default ({}) => {
+	const dispatch = useDispatch()
+	const persona = useSelector((state) => state.simulation?.persona)
+	const { hasData, answeredQuestionsLength, tutorials } = useProfileData()
 	const history = useHistory()
 	const actionChoicesLength = Object.keys(
 		useSelector((state) => state.actionChoices)
@@ -84,8 +91,7 @@ export default ({}) => {
 								dispatch(resetStoredTrajets())
 							}}
 						>
-							{emoji('♻️ ')}
-							Recommencer
+							{emoji('♻️ ')} Recommencer
 						</button>
 					</div>
 				) : (

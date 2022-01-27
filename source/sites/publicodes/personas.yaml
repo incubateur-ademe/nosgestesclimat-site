@@ -12,6 +12,7 @@
   data:
     situation:
       alimentation . déchets . niveau d'engagement: "'affirmatif'"
+      alimentation . gaspillage alimentaire . fréquence: "'jamais'"
       alimentation . petit déjeuner . type: "'lait céréales'"
       alimentation . lait . type: "'lait végétal'"
       alimentation . boisson . sucrées . litres:
@@ -21,10 +22,10 @@
         valeur: 1
         unité: l / semaine
       alimentation . boisson . eau en bouteille . affirmatif: non
-      alimentation . plats . végétalien . nombre: 7
+      alimentation . plats . végétalien . nombre: 10
       alimentation . plats . viande 2 . nombre: 0
       alimentation . plats . viande 1 . nombre: 0
-      alimentation . plats . végétarien . nombre: 7
+      alimentation . plats . végétarien . nombre: 4
       alimentation . plats . poisson 1 . nombre: 0
       alimentation . plats . poisson 2 . nombre: 0
       transport . voiture . km:
@@ -50,12 +51,10 @@
       logement . habitants:
         valeur: 2
         unité: personnes
-      logement . gaz . chauffage au gaz: non
+      logement . chauffage . gaz: non
       logement . électricité . consommation:
         valeur: 800
         unité: kWh
-      logement . fioul . chauffage au fioul: non
-      logement . bois . chauffage au bois: non
       divers . électroménager . préservation: "'maximum'"
       divers . électroménager . mini réfrigérateur . présent: oui
       divers . électroménager . réfrigérateur . présent: non
@@ -140,15 +139,13 @@
       logement . habitants:
         valeur: 1
         unité: personnes
-      logement . gaz . chauffage au gaz: oui
-      logement . gaz . consommation:
+      logement . chauffage . gaz . présent: oui
+      logement . chauffage . gaz . consommation:
         valeur: 3243
         unité: kWh
       logement . électricité . consommation:
         valeur: 800
         unité: kWh
-      logement . fioul . chauffage au fioul: non
-      logement . bois . chauffage au bois: non
       divers . autres produits . montant:
         valeur: 200
         unité: an
@@ -215,15 +212,13 @@
     logement . habitants:
       valeur: 3
       unité: personnes
-    logement . gaz . chauffage au gaz: oui
-    logement . gaz . consommation:
+    logement . chauffage . gaz . présent: oui
+    logement . chauffage . gaz . consommation:
       valeur: 10000
       unité: kWh
     logement . électricité . consommation:
       valeur: 4000
       unité: kWh
-    logement . fioul . chauffage au fioul: non
-    logement . bois . chauffage au bois: non
     logement . âge:
       valeur: 20
       unité: an
@@ -351,9 +346,7 @@
     logement . électricité . consommation:
       valeur: 14000
       unité: kWh
-    logement . fioul . chauffage au fioul: non
-    logement . gaz . chauffage au gaz: non
-    logement . bois . chauffage au bois: non
+    logement . chauffage . gaz: non
     logement . âge:
       valeur: 10
       unité: an
@@ -404,7 +397,7 @@
     Bus pour le travail. À 2 dans ferme mal isolée, chauffée au fioul. Plutôt viande.
   description: |
     Au travail en bus mais voiture pour trajets quotidiens. Partage avec son frère une vieille ferme au fioul mal isolée. Aime les bières locales. Plutôt viande 
-    mais est ouvert à toutes les gastronomies. Fait assez attention à ces équipements.
+    mais est ouvert à toutes les gastronomies. Fait assez attention à ses équipements.
   icônes: 🚌🏚️
   data:
     alimentation . déchets . niveau d'engagement: "'en partie'"
@@ -469,15 +462,14 @@
     logement . habitants:
       valeur: 2
       unité: personnes
-    logement . gaz . chauffage au gaz: non
+    logement . chauffage . gaz: non
     logement . électricité . consommation:
       valeur: 5000
       unité: kWh
-    logement . fioul . chauffage au fioul: oui
-    logement . fioul . consommation:
+    logement . chauffage . fioul . présent: oui
+    logement . chauffage . fioul . consommation:
       valeur: 2600
       unité: litre
-    logement . bois . chauffage au bois: non
     divers . électroménager . préservation: "'moyen'"
     divers . électroménager . mini réfrigérateur . présent: non
     divers . électroménager . robot cuisine . présent: oui
@@ -706,12 +698,10 @@
     logement . électricité . consommation:
       valeur: 7000
       unité: kWh
-    logement . fioul . chauffage au fioul: non
-    logement . gaz . chauffage au gaz: oui
-    logement . gaz . consommation:
+    logement . chauffage . gaz . présent: oui
+    logement . chauffage . gaz . consommation:
       valeur: 15000
       unité: kWh
-    logement . bois . chauffage au bois: non
     logement . âge:
       valeur: 10
       unité: an

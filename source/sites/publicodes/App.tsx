@@ -81,7 +81,8 @@ export default function Root({}) {
 }
 const Main = ({}) => {
 	const location = useLocation()
-	const isHomePage = location.pathname === '/'
+	const isHomePage = location.pathname === '/',
+		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
 	return (
 		<div
@@ -98,7 +99,7 @@ const Main = ({}) => {
 						transform: translateX(-4vw);
 						`}
 				}
-				${!isHomePage && sessionBarMargin}
+				${!isHomePage && !isTuto && sessionBarMargin}
 			`}
 		>
 			<Navigation isHomePage={isHomePage} />

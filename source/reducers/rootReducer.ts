@@ -177,6 +177,11 @@ function tutorials(state = {}, { type, id, unskip }) {
 		return {}
 	} else return state
 }
+function tracking(state = {}, { type, name, value }) {
+	if (type === 'SET_TRACKING_VARIABLE') {
+		return { ...state, [name]: value }
+	} else return state
+}
 
 function storedTrajets(state = {}, { type, vehicule, trajets }) {
 	if (type === 'SET_TRAJETS') {
@@ -207,6 +212,7 @@ const mainReducer = (state: any, action: Action) =>
 		tutorials,
 		storedTrajets,
 		thenRedirectTo,
+		tracking,
 	})(state, action)
 
 export default reduceReducers<RootState>(

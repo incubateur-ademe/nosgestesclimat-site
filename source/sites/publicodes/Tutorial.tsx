@@ -11,8 +11,10 @@ import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import { Redirect } from 'react-router'
-import { useContext } from 'react'
+import { useContext, useEffect } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
+import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
+import useKeypress from '../../components/utils/useKeyPress'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -21,16 +23,12 @@ export default ({}) => {
 	if (tutorials['testIntro'])
 		return <Redirect to={thenRedirectTo || '/simulateur/bilan'} />
 
+
 	const tutos = Object.entries(tutorials)
 		.map(([k, v]) => v != null && k.split('testIntro')[1])
 		.filter(Boolean)
 
 	const index = tutos.length
-
-	const Component = slides[index]
-
-	const dispatch = useDispatch()
-	const tracker = useContext(TrackerContext)
 
 	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
 		last = index === slides.length - 1,
@@ -45,6 +43,27 @@ export default ({}) => {
 		},
 		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
+	useKeypress('Escape', () => skip('testIntro'), [])
+
+	const Component = slides[index]
+
+	const dispatch = useDispatch()
+	const tracker = useContext(TrackerContext)
+
+	const { isIframe } = useContext(IframeOptionsContext)
+
+	// This results from a bug that introduced "slide5" in users' cache :/
+	// Here we correct the bug in the user's cache
+	useEffect(() => {
+		if (Object.keys(tutorials).includes('testIntro5'))
+			dispatch(skipTutorial('testIntro'))
+	}, [tutorials])
+
+	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
+	// This results from a bug that introduced "slide5" in users' cache :/
+	// Here we avoid an error
+	if (slides[index] == null) return null
+
 	return (
 		<div
 			css={`
@@ -55,6 +74,7 @@ export default ({}) => {
 				@media (min-aspect-ratio: 1280/700) {
 					height: 95vh;
 				}
+				${isIframe && `height: 45rem !important;`}
 				position: relative;
 				display: flex;
 				justify-content: center;

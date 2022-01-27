@@ -22,7 +22,7 @@ const openmojis = {
 	profile: '1F464',
 	personas: '1F465',
 }
-const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
+export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 

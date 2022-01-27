@@ -151,6 +151,11 @@ export const skipTutorial = (id: string, unskip: boolean) => ({
 	id,
 	unskip,
 })
+export const setTrackingVariable = (name: string, value) => ({
+	type: 'SET_TRACKING_VARIABLE',
+	name,
+	value,
+})
 
 export const updateUnit = (targetUnit: string) =>
 	({
