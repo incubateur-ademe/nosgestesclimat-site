@@ -1,7 +1,7 @@
 import animate from 'Components/ui/animate'
 import { useState, Fragment, useEffect, useRef, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStoredTrajets } from '../../../actions/actions'
+import { setStoredTrajets, updateSituation } from '../../../actions/actions'
 import { motifList, freqList } from './dataHelp'
 import ReadOnlyRow from './ReadOnlyRow'
 import EditableRow from './EditableRow'
@@ -32,8 +32,6 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 
 	const [trajets, setTrajets] = useState(storedTrajets[dottedName] || [])
 
-	const [sum, updateSum] = useState(0)
-
 	const [editFormData, setEditFormData] = useState({
 		motif: '',
 		label: '',
@@ -45,19 +43,23 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 
 	const [editTrajetId, setEditTrajetId] = useState(null)
 
-	useEffect(() => {
-		updateSum(
-			trajets
-				.map((trajet) => {
-					const period = freqList.find((f) => f.name === trajet.periode)
-					const freqValue = period ? period.value * trajet.xfois : 0
-					return (trajet.distance * freqValue) / trajet.personnes
-				})
-				.reduce((memo, elt) => {
-					return memo + elt
-				}, 0)
-		)
-	}, [trajets])
+	const trajetValue = (trajet, factor) => {
+		const period = freqList.find((f) => f.name === trajet.periode)
+		const freqValue = period ? period.value * trajet.xfois : 0
+		return trajet.distance * freqValue * factor(trajet)
+	}
+	const sum = trajets.reduce((memo, next) => {
+		return memo + trajetValue(next, (trajet) => 1 / trajet.personnes)
+	}, 0)
+
+	const rawSum = trajets.reduce((memo, next) => {
+		return memo + trajetValue(next, (trajet) => 1)
+	}, 0)
+
+	const covoitAvg =
+		trajets.reduce((memo, next) => {
+			return memo + trajetValue(next, (trajet) => trajet.personnes)
+		}, 0) / rawSum
 
 	const firstRender = useRef(true)
 
@@ -68,6 +70,12 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		}
 		setFinalValue(Math.round(+sum))
 		dispatch(setStoredTrajets(dottedName, trajets))
+
+		dispatch(updateSituation('transport . voiture . aide km', 'oui'))
+		if (rawSum > 0 && sum > 0)
+			dispatch(
+				updateSituation('transport . voiture . ratio voyageurs', rawSum / sum)
+			)
 	}, [sum])
 
 	const handleEditFormSubmit = (event) => {
@@ -92,27 +100,6 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		setTrajets(newTrajets)
 		setEditTrajetId(null)
 	}
-
-	const kmBrut = trajets
-		.map((trajet) => {
-			const period = freqList.find((f) => f.name === trajet.periode)
-			const freqValue = period ? period.value * trajet.xfois : 0
-			return trajet.distance * freqValue
-		})
-		.reduce((memo, elt) => {
-			return memo + elt
-		}, 0)
-
-	const covoitAvg =
-		trajets
-			.map((trajet) => {
-				const period = freqList.find((f) => f.name === trajet.periode)
-				const freqValue = period ? period.value * trajet.xfois : 0
-				return trajet.distance * freqValue * trajet.personnes
-			})
-			.reduce((memo, elt) => {
-				return memo + elt
-			}, 0) / kmBrut
 
 	return !isOpen ? (
 		<div
@@ -149,7 +136,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 							text-align: right;
 						`}
 					>
-						Vous parcourez {kmBrut.toLocaleString('fr-FR')} km en étant en
+						Vous parcourez {rawSum.toLocaleString('fr-FR')} km en étant en
 						moyenne{' '}
 						{covoitAvg.toLocaleString('fr-FR', {
 							minimumFractionDigits: 1,
