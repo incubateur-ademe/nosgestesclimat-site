@@ -27,19 +27,19 @@ export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
-const MenuButton = styled.button`
+const Button = styled(Link)`
 	margin: 0 0.2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	font-size: 80%;
 	color: var(--darkColor);
+	text-decoration: none;
 	@media (min-width: 800px) {
 		flex-direction: row;
 		justify-content: start;
 		padding: 0;
-		font-size: 100%;
+		font-size: 110%;
 	}
 	> img {
 		display: block;
@@ -50,12 +50,6 @@ const MenuButton = styled.button`
 		}
 	}
 `
-
-const Button = (props) => (
-	<Link to={props.url} css="text-decoration: none">
-		<MenuButton {...props} />{' '}
-	</Link>
-)
 
 export const sessionBarMargin = `
 		@media (max-width: 800px) {
@@ -127,7 +121,7 @@ export default function SessionBar({
 	let elements = [
 		<Button
 			className="simple small"
-			url={'/simulateur/bilan'}
+			to={'/simulateur/bilan'}
 			onClick={() => {
 				dispatch(goToQuestion(last(answeredQuestions)))
 			}}
@@ -138,13 +132,13 @@ export default function SessionBar({
 		</Button>,
 		<Button
 			className="simple small"
-			url="/actions/liste"
+			to="/actions/liste"
 			css={buttonStyle('/actions')}
 		>
 			<img src={actionImg} css="width: 2rem" />
 			Agir
 		</Button>,
-		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
+		<Button className="simple small" to="/profil" css={buttonStyle('profil')}>
 			<img src={openmojiURL('profile')} css="width: 2rem" />
 			Mon profil
 		</Button>,
@@ -152,7 +146,7 @@ export default function SessionBar({
 			<Button
 				key="personas"
 				className="simple small"
-				url="/personas"
+				to="/personas"
 				css={buttonStyle('personas')}
 			>
 				<img src={openmojiURL('personas')} css="width: 2rem" />
@@ -170,7 +164,7 @@ export default function SessionBar({
 			>
 				<Button
 					className="simple small"
-					url={'/conférence/' + conference.room}
+					to={'/conférence/' + conference.room}
 					css={`
 						${buttonStyle('conf')}
 						padding: 0.4rem;
