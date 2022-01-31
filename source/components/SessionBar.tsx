@@ -14,6 +14,7 @@ import styled from 'styled-components'
 import CarbonImpact from '../sites/publicodes/CarbonImpact'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
+import { Link } from 'react-router-dom'
 
 const openmojis = {
 	test: '25B6',
@@ -26,7 +27,7 @@ export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
-const Button = styled.button`
+const MenuButton = styled.button`
 	margin: 0 0.2rem;
 	display: flex;
 	flex-direction: column;
@@ -49,6 +50,12 @@ const Button = styled.button`
 		}
 	}
 `
+
+const Button = (props) => (
+	<Link to={props.url} css="text-decoration: none">
+		<MenuButton {...props} />{' '}
+	</Link>
+)
 
 export const sessionBarMargin = `
 		@media (max-width: 800px) {
@@ -117,12 +124,12 @@ export default function SessionBar({
 		`
 			: ''
 
-	let buttons = [
+	let elements = [
 		<Button
 			className="simple small"
+			url={'/simulateur/bilan'}
 			onClick={() => {
 				dispatch(goToQuestion(last(answeredQuestions)))
-				history.push('/simulateur/bilan')
 			}}
 			css={buttonStyle('simulateur')}
 		>
@@ -131,19 +138,13 @@ export default function SessionBar({
 		</Button>,
 		<Button
 			className="simple small"
-			onClick={() => {
-				history.push('/actions/liste')
-			}}
+			url="/actions/liste"
 			css={buttonStyle('/actions')}
 		>
 			<img src={actionImg} css="width: 2rem" />
 			Agir
 		</Button>,
-		<Button
-			className="simple small"
-			onClick={() => history.push('/profil')}
-			css={buttonStyle('profil')}
-		>
+		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
 			<img src={openmojiURL('profile')} css="width: 2rem" />
 			Mon profil
 		</Button>,
@@ -151,7 +152,7 @@ export default function SessionBar({
 			<Button
 				key="personas"
 				className="simple small"
-				onClick={() => history.push('/personas')}
+				url="/personas"
 				css={buttonStyle('personas')}
 			>
 				<img src={openmojiURL('personas')} css="width: 2rem" />
@@ -169,7 +170,7 @@ export default function SessionBar({
 			>
 				<Button
 					className="simple small"
-					onClick={() => history.push('/conférence/' + conference.room)}
+					url={'/conférence/' + conference.room}
 					css={`
 						${buttonStyle('conf')}
 						padding: 0.4rem;
@@ -219,9 +220,9 @@ export default function SessionBar({
 				}
 			`}
 		>
-			{buttons.filter(Boolean).length > 0 && (
+			{elements.filter(Boolean).length > 0 && (
 				<NavBar>
-					{buttons.filter(Boolean).map((Comp, i) => (
+					{elements.filter(Boolean).map((Comp, i) => (
 						<li key={i}>{Comp}</li>
 					))}
 				</NavBar>
