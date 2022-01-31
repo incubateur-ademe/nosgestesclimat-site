@@ -102,7 +102,7 @@ const slides = [
 				La planète <strong>se réchauffe dangereusement</strong>, au fur et à
 				mesure des gaz à effet de serre que l'on émet.
 			</p>
-			<GreenhouseEffect css="max-height: 30vh" />
+			<GreenhouseEffect css="width: 60%; max-height: 20rem" />
 			<p>
 				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
 				<strong>une mesure de votre part </strong> dans ce réchauffement.
