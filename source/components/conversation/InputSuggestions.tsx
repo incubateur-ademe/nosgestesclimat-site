@@ -35,6 +35,9 @@ export default function InputSuggestions({
 					justify-content: normal;
 					height: 1.6rem;
 					scrollbar-width: none;
+					::-webkit-scrollbar {
+						display: none;
+					}
 				}
 			`}
 		>
