@@ -136,8 +136,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 							text-align: right;
 						`}
 					>
-						Vous parcourez {rawSum.toLocaleString('fr-FR')} km en étant en
-						moyenne{' '}
+						Vous parcourez {rawSum.toLocaleString('fr-FR')} km avec en moyenne{' '}
 						{covoitAvg.toLocaleString('fr-FR', {
 							minimumFractionDigits: 1,
 							maximumFractionDigits: 1,
