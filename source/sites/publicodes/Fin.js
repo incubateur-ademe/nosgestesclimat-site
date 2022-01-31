@@ -38,8 +38,6 @@ const sumFromDetails = (details) =>
 	details.reduce((memo, [name, value]) => memo + value, 0)
 
 export default ({}) => {
-	const tracker = useContext(TrackerContext)
-
 	const query = new URLSearchParams(useLocation().search)
 	const details = query.get('details')
 
@@ -304,56 +302,60 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 	)
 }
 
-const ActionButton = ({ text, score }) => (
-	<Link
-		to="/actions"
-		className="ui__ button plain"
-		onClick={() =>
-			tracker.push([
-				'trackEvent',
-				'NGC',
-				'Clic bouton action page /fin',
-				null,
-				score,
-			])
-		}
-		css={`
-			margin: 0.6rem auto;
-			width: 90%;
+const ActionButton = ({ text, score }) => {
+	const tracker = useContext(TrackerContext)
 
-			img {
-				height: 2.6rem;
-				filter: invert(100%);
-				margin: 0 0.6rem;
-				display: inline-block;
+	return (
+		<Link
+			to="/actions"
+			className="ui__ button plain"
+			onClick={() =>
+				tracker.push([
+					'trackEvent',
+					'NGC',
+					'Clic bouton action page /fin',
+					null,
+					score,
+				])
 			}
-			a {
-				color: var(--textColor);
-				text-decoration: none;
-			}
-		`}
-	>
-		<div
 			css={`
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				width: 100%;
+				margin: 0.6rem auto;
+				width: 90%;
+
+				img {
+					height: 2.6rem;
+					filter: invert(100%);
+					margin: 0 0.6rem;
+					display: inline-block;
+				}
+				a {
+					color: var(--textColor);
+					text-decoration: none;
+				}
 			`}
 		>
-			<motion.div
-				animate={{
-					rotate: [0, 15, -15, 0],
-					y: [0, 0, 0, -3, 8, 3],
-				}}
-				transition={{ duration: 2, delay: 4 }}
+			<div
+				css={`
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					width: 100%;
+				`}
 			>
-				<img src={actionImg} />
-			</motion.div>
-			{text}
-		</div>
-	</Link>
-)
+				<motion.div
+					animate={{
+						rotate: [0, 15, -15, 0],
+						y: [0, 0, 0, -3, 8, 3],
+					}}
+					transition={{ duration: 2, delay: 4 }}
+				>
+					<img src={actionImg} />
+				</motion.div>
+				{text}
+			</div>
+		</Link>
+	)
+}
 
 const IntegratorActionButton = () => {
 	const { integratorLogo, integratorActionUrl, integratorActionText } =
