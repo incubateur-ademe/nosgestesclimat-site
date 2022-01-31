@@ -20,10 +20,6 @@ export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
 	const thenRedirectTo = useSelector((state) => state.thenRedirectTo)
 
-	if (tutorials['testIntro'])
-		return <Redirect to={thenRedirectTo || '/simulateur/bilan'} />
-
-
 	const tutos = Object.entries(tutorials)
 		.map(([k, v]) => v != null && k.split('testIntro')[1])
 		.filter(Boolean)
@@ -59,7 +55,9 @@ export default ({}) => {
 			dispatch(skipTutorial('testIntro'))
 	}, [tutorials])
 
-	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
+	if (tutorials['testIntro'])
+		return <Redirect to={thenRedirectTo || '/simulateur/bilan'} />
+
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we avoid an error
 	if (slides[index] == null) return null
