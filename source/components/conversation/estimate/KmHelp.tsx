@@ -130,7 +130,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 						css={`
 							font-size: 80%;
 							font-style: italic;
-							width: 50%;
+							max-width: 15rem;
 							line-height: 1rem;
 							margin-bottom: 0.5rem;
 							text-align: right;
