@@ -32,6 +32,7 @@ const Simulateur = (props) => {
 		dispatch = useDispatch(),
 		config = {
 			objectifs: [decoded],
+			questions: { 'liste noire': ['transport . voiture . aide km'] },
 		},
 		configSet = useSelector((state) => state.simulation?.config),
 		categories = decoded === 'bilan' && extractCategories(rules, engine)
@@ -49,8 +50,6 @@ const Simulateur = (props) => {
 	if (!configSet) return null
 
 	const introPassed = tutorials.testIntro
-
-	console.log(engine.evaluate('transport . voiture . aide km'))
 
 	return (
 		<div>
