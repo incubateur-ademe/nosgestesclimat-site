@@ -10,6 +10,7 @@ export type SavedSimulation = {
 	actionChoices: Object
 	persona: string
 	tutorials: Object
+	storedTrajets: Object
 }
 
 export const currentSimulationSelector = (
@@ -21,6 +22,7 @@ export const currentSimulationSelector = (
 		actionChoices: state.actionChoices,
 		persona: state.simulation?.persona,
 		tutorials: state.tutorials,
+		storedTrajets: state.storedTrajets,
 	}
 }
 

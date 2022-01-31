@@ -183,6 +183,20 @@ function tracking(state = {}, { type, name, value }) {
 	} else return state
 }
 
+function storedTrajets(state = {}, { type, vehicule, trajets }) {
+	if (type === 'SET_TRAJETS') {
+		return { ...state, [vehicule]: trajets }
+	} else if (type === 'RESET_TRAJETS') {
+		return {}
+	} else return state
+}
+
+function thenRedirectTo(state = null, { type, to }) {
+	if (type === 'SET_THEN_REDIRECT_TO') {
+		return to
+	} else return state
+}
+
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
@@ -196,6 +210,8 @@ const mainReducer = (state: any, action: Action) =>
 		conference,
 		iframeOptions: defaultTo(null),
 		tutorials,
+		storedTrajets,
+		thenRedirectTo,
 		tracking,
 	})(state, action)
 

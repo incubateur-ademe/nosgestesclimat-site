@@ -27,6 +27,18 @@ export default function InputSuggestions({
 				justify-content: flex-end;
 				margin-bottom: 0.4rem;
 				flew-wrap: wrap;
+
+				@media (max-width: 800px) {
+					flex-wrap: nowrap;
+					overflow-x: auto;
+					white-space: nowrap;
+					justify-content: normal;
+					height: 1.6rem;
+					scrollbar-width: none;
+					::-webkit-scrollbar {
+						display: none;
+					}
+				}
 			`}
 		>
 			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {

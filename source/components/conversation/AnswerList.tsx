@@ -15,7 +15,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
+import { StoreProvider } from '../../sites/publicodes/StoreContext'
 import { splitName, safeGetRule } from '../publicodesUtils'
+import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 import './AnswerList.css'
 
 export default function AnswerList() {
@@ -247,6 +249,7 @@ function StepsTable({
 
 const Answer = ({ rule, dispatch, language, level }) => {
 	const history = useHistory()
+	const storedTrajets = useSelector((state) => state.storedTrajets)
 	const path = parentName(rule.dottedName, ' · ', level)
 	return (
 		<tr
@@ -297,6 +300,28 @@ const Answer = ({ rule, dispatch, language, level }) => {
 						{rule.passedQuestion && emoji(' 🤷🏻')}
 					</span>
 				</button>
+				{storedTrajets[rule.dottedName] &&
+					storedTrajets[rule.dottedName].length > 0 && (
+						<details
+							className="ui__"
+							css={`
+								max-width: 20rem;
+								margin-right: 0px;
+								margin-left: auto;
+							`}
+						>
+							<summary
+								css={`
+									text-align: end !important;
+								`}
+							>
+								Voir en détails
+							</summary>
+							<AnswerTrajetsTable
+								trajets={storedTrajets[rule.dottedName]}
+							></AnswerTrajetsTable>
+						</details>
+					)}
 			</td>
 		</tr>
 	)

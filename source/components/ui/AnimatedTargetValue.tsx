@@ -1,77 +1,77 @@
-import { formatValue } from 'publicodes'
 import React, { useRef } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
-import './AnimatedTargetValue.css'
+import styled, { keyframes } from 'styled-components'
 
 type AnimatedTargetValueProps = {
 	value?: number
-	children?: React.ReactNode
+	unit?: string
 }
 
-const formatDifference = (difference: number, language: string) => {
+const formatDifference = (difference: number, unit: string) => {
 	const prefix = difference > 0 ? '+' : ''
-	return prefix + formatValue(difference, { displayedUnit: '€', language })
+	return prefix + difference + ' ' + unit
 }
 
 export default function AnimatedTargetValue({
 	value,
-	children
+	unit,
 }: AnimatedTargetValueProps) {
 	const previousValue = useRef<number>()
-	const { language } = useTranslation().i18n
+	const previousDifference = useRef<number>()
 
-	// We don't want to show the animated if the difference comes from a change in the unit
-	const currentUnit = useSelector(
-		(state: RootState) => state?.simulation?.targetUnit
-	)
-	const previousUnit = useRef(currentUnit)
+	let difference =
+		value == null || previousValue.current == null
+			? undefined
+			: value - previousValue.current
 
-	const difference =
-		previousValue.current === value || (value && Number.isNaN(value))
-			? null
-			: (value || 0) - (previousValue.current || 0)
-	const shouldDisplayDifference =
-		difference != null &&
-		previousUnit.current === currentUnit &&
-		Math.abs(difference) > 1 &&
-		previousValue.current != null &&
-		previousValue.current != 0 &&
-		value != null
+	if (previousValue.current !== value) {
+		previousValue.current = value
+		previousDifference.current = difference
+	} else {
+		difference = previousDifference.current
+	}
 
-	previousValue.current = value
-	previousUnit.current = currentUnit
+	if (!difference || Math.abs(difference) < 1) {
+		return null
+	}
+
+	if (value == 0) {
+		previousValue.current = value
+		return null
+	}
 
 	return (
-		<>
-			<span className="Rule-value">
-				{shouldDisplayDifference && difference !== null && (
-					<Evaporate
-						style={{
-							color: difference > 0 ? 'chartreuse' : 'red',
-							pointerEvents: 'none'
-						}}
-					>
-						{formatDifference(difference, language)}
-					</Evaporate>
-				)}{' '}
-				{children}
-			</span>
-		</>
+		<div
+			key={difference + (value ?? 0)}
+			css={`
+				position: relative;
+				text-align: right;
+			`}
+		>
+			<StyledEvaporate>
+				{formatDifference(difference ?? 0, unit ?? '')}
+			</StyledEvaporate>
+		</div>
 	)
 }
 
-const Evaporate = React.memo(function Evaporate({
-	children,
-	style
-}: {
-	children: string
-	style: React.CSSProperties
-}) {
-	return (
-		<span key={children} style={style} className="evaporate">
-			{children}
-		</span>
-	)
-})
+const evaporateAnimation = keyframes`
+	5% {
+		opacity: 1;
+		transform: translateX(-10px) scaleY(1);
+	}
+	95% {
+		opacity: 1;
+		transform: translateX(-20px) scaleY(1);
+	}
+	to {
+		transform: translateX(-35px) scaleY(0.1);
+		opacity: 0;
+	}
+`
+
+const StyledEvaporate = styled.div`
+	opacity: 0;
+	color: var(--color);
+	animation: ${evaporateAnimation} 2.5s linear;
+	transform: scaleY(0.1);
+`

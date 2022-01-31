@@ -67,6 +67,10 @@ export const resetTutorials = () =>
 	({
 		type: 'RESET_TUTORIALS',
 	} as const)
+export const resetStoredTrajets = () =>
+	({
+		type: 'RESET_TRAJETS',
+	} as const)
 
 export const goToQuestion = (question: DottedName) =>
 	({
@@ -187,4 +191,11 @@ export const setActionChoice = (action: string, choice: boolean) =>
 		type: 'SET_ACTION_CHOICE',
 		action,
 		choice,
+	} as const)
+
+export const setStoredTrajets = (vehicule: string, trajets: object) =>
+	({
+		type: 'SET_TRAJETS',
+		vehicule,
+		trajets,
 	} as const)

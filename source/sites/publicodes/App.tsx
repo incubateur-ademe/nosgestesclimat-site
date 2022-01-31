@@ -64,6 +64,7 @@ export default function Root({}) {
 				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices || {},
 				tutorials: persistedSimulation?.tutorials || {},
+				storedTrajets: persistedSimulation?.storedTrajets || {},
 			}}
 			rulesURL={`https://${
 				branch

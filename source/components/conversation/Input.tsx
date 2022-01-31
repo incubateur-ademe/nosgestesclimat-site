@@ -7,6 +7,7 @@ import { currencyFormat, debounce } from '../../utils'
 import InputSuggestions from './InputSuggestions'
 import InputEstimation from './InputEstimation'
 import { InputCommonProps } from './RuleInput'
+import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 
 // TODO: fusionner Input.js et CurrencyInput.js
 export default function Input({
@@ -19,6 +20,7 @@ export default function Input({
 	unit,
 	autoFocus,
 	inputEstimation,
+	showAnimation,
 }: InputCommonProps & {
 	onSubmit: (source: string) => void
 	unit: Unit | undefined
@@ -41,24 +43,27 @@ export default function Input({
 						}}
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
-					<NumberFormat
-						autoFocus={autoFocus}
-						className="suffixed ui__"
-						id={id}
-						thousandSeparator={thousandSeparator}
-						decimalSeparator={decimalSeparator}
-						allowEmptyFormatting={true}
-						// We don't want to call `onValueChange` in case this component is
-						// re-render with a new "value" prop from the outside.
-						onValueChange={({ floatValue }) => {
-							debouncedOnChange(
-								floatValue != undefined ? { valeur: floatValue, unité } : {}
-							)
-						}}
-						autoComplete="off"
-						{...{ [missing ? 'placeholder' : 'value']: value ?? '' }}
-					/>
-					<span className="suffix">&nbsp;{unité}</span>
+					<div css="display: flex; justify-content: end; align-items: center">
+						{showAnimation && <AnimatedTargetValue value={value} unit="km" />}
+						<NumberFormat
+							autoFocus={autoFocus}
+							className="suffixed ui__"
+							id={id}
+							thousandSeparator={thousandSeparator}
+							decimalSeparator={decimalSeparator}
+							allowEmptyFormatting={true}
+							// We don't want to call `onValueChange` in case this component is
+							// re-render with a new "value" prop from the outside.
+							onValueChange={({ floatValue }) => {
+								debouncedOnChange(
+									floatValue != undefined ? { valeur: floatValue, unité } : {}
+								)
+							}}
+							autoComplete="off"
+							{...{ [missing ? 'placeholder' : 'value']: value ?? '' }}
+						/>
+						<span className="suffix">&nbsp;{unité}</span>
+					</div>
 				</div>
 			</div>
 			<div css="width: 100%">
