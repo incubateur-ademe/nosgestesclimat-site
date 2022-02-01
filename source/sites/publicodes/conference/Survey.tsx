@@ -27,6 +27,7 @@ import useDatabase from './useDatabase'
 import { ConferenceTitle } from './Conference'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
+import Parse from 'parse'
 
 export default () => {
 	const survey = useSelector((state) => state.survey)
@@ -62,6 +63,22 @@ const Supa = ({ room }) => {
 	const database = useDatabase()
 	const [data, setData] = useState([])
 	useEffect(async () => {
+		let query = new Parse.Query('Survey').equalTo('name', room)
+		const result = await query.first()
+		console.log(result, result.get('answers'))
+
+		/*
+		let subscription = await query.subscribe()
+		subscription
+			.on('open', () => {
+				console.log('subscription opened')
+			})
+			.on('update', (object) => {
+				console.log('object updated', object)
+			})
+			*/
+
+		/*
 		let { data: requestData, error } = await database
 			.from('answers')
 			.select('data,id')
@@ -84,6 +101,7 @@ const Supa = ({ room }) => {
 				}
 			})
 			.subscribe()
+			*/
 	}, [])
 
 	return (

@@ -3,9 +3,6 @@ import Parse from 'parse'
 import { useEffect } from 'react'
 import useDatabase from './useDatabase'
 
-Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY) //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
-Parse.serverURL = 'https://parseapi.back4app.com/'
-
 export default () => {
 	const parseQuery = new Parse.Query('Survey')
 
@@ -27,6 +24,7 @@ export default () => {
 	useEffect(() => {
 		const Survey = Parse.Object.extend('Survey')
 		const newPost = new Survey()
+		console.log('will save')
 		newPost.save({
 			name: 'monsondage' + Math.round(Math.random() * 10),
 			answers: ['a', 'b'],

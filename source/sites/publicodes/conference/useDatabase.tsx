@@ -3,15 +3,10 @@ import { initializeParse } from '@parse/react'
 import Parse from 'parse'
 
 export default () => {
-	const database = useMemo(
-		() =>
-			initializeParse(
-				PARSE_SERVER_URL,
-				PARSE_APPLICATION_ID,
-				PARSE_JAVASCRIPT_KEY
-			),
-		[]
-	)
+	const database = useMemo(() => {
+		Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY) //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
+		Parse.serverURL = 'https://parseapi.back4app.com/'
+	}, [])
 
 	return database
 }
