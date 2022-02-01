@@ -63,8 +63,8 @@ const Supa = ({ room }) => {
 	const database = useDatabase()
 	const [data, setData] = useState([])
 	useEffect(async () => {
-		let query = new Parse.Query('Survey').equalTo('name', room)
-		const result = await query.first()
+		let query = new Parse.Query('Survey')
+		const result = await query.get('PDC3CTREcc')
 		console.log(result, result.get('answers'))
 
 		/*
