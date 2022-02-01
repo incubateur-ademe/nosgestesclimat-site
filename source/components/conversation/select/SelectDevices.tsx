@@ -5,6 +5,7 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { Mosaic } from './UI'
+import Stamp from '../../Stamp'
 
 export default function SelectDevices({
 	name,
@@ -37,9 +38,41 @@ export default function SelectDevices({
 									// user tests showed us it is now well received
 									defaultsToFalse
 									? 'non'
-									: question.rawNode['par défaut']
+									: question.rawNode['par défaut'],
+							isNotActive = question.rawNode['inactif']
 
-						return (
+						return isNotActive ? (
+							<li
+								css="padding: 2rem"
+								className={`ui__ card inactive`}
+								key={name}
+							>
+								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
+								<h4>{title}</h4>{' '}
+								<div
+									css={`
+										position: relative;
+									`}
+								>
+									<Stamp
+										css={`
+											opacity: 100%;
+										`}
+									>
+										Bientôt disponible !
+									</Stamp>
+									{false && description && <p>{description.split('\n')[0]}</p>}
+									<div css={'font-size: 1.8rem'}>
+										<Checkbox
+											name={name}
+											id={name}
+											checked={value === 'oui'}
+											readOnly
+										/>
+									</div>
+								</div>
+							</li>
+						) : (
 							<li
 								css="padding: 2rem"
 								className={`ui__ card interactive light-border ${

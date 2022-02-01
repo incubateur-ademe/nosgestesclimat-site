@@ -61,6 +61,19 @@ Cochez tous les modes que vous utilisez.
 		component: SelectDevices,
 	},
 	{
+		dottedName: 'transport . vacances',
+		options: { defaultsToFalse: true },
+		question: 'Que possédez-vous pour vos week-end, vos vacances ?',
+		description: `
+A compléter
+
+			`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . vacances') &&
+			dottedName.includes(' . propriétaire'),
+		component: SelectDevices,
+	},
+	{
 		dottedName: 'alimentation . régime',
 		question:
 			'Choisissez les plats de vos midis et dîners pour une semaine type',
