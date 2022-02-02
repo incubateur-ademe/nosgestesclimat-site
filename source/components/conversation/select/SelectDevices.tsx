@@ -41,43 +41,46 @@ export default function SelectDevices({
 									: question.rawNode['par défaut'],
 							isNotActive = question.rawNode['inactif']
 
-						return isNotActive ? (
+						return (
+							// <li
+							// 	css="padding: 2rem"
+							// 	className={`ui__ card inactive`}
+							// 	key={name}
+							// >
+							// 	{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
+							// 	<h4>{title}</h4>{' '}
+							// 	<div
+							// 		css={`
+							// 			position: relative;
+							// 		`}
+							// 	>
+							// 		<Stamp
+							// 			css={`
+							// 				opacity: 100%;
+							// 			`}
+							// 		>
+							// 			Bientôt disponible !
+							// 		</Stamp>
+							// 	</div>
+							// 	{false && description && <p>{description.split('\n')[0]}</p>}
+							// 	<div css={'font-size: 1.8rem'}>
+							// 		<Checkbox
+							// 			name={name}
+							// 			id={name}
+							// 			checked={value === 'oui'}
+							// 			readOnly
+							// 		/>
+							// 	</div>
+							// </li>
 							<li
-								css="padding: 2rem"
-								className={`ui__ card inactive`}
-								key={name}
-							>
-								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-								<h4>{title}</h4>{' '}
-								<div
-									css={`
-										position: relative;
-									`}
-								>
-									<Stamp
-										css={`
-											opacity: 100%;
-										`}
-									>
-										Bientôt disponible !
-									</Stamp>
-									{false && description && <p>{description.split('\n')[0]}</p>}
-									<div css={'font-size: 1.8rem'}>
-										<Checkbox
-											name={name}
-											id={name}
-											checked={value === 'oui'}
-											readOnly
-										/>
-									</div>
-								</div>
-							</li>
-						) : (
-							<li
-								css="padding: 2rem"
-								className={`ui__ card interactive light-border ${
-									value === 'oui' ? `selected` : ''
-								}`}
+								css="padding: 2rem; position: relative;"
+								className={
+									isNotActive
+										? `ui__ card inactive`
+										: `ui__ card interactive light-border ${
+												value === 'oui' ? `selected` : ''
+										  }`
+								}
 								key={name}
 								onMouseDown={() =>
 									dispatch(
@@ -99,6 +102,11 @@ export default function SelectDevices({
 										readOnly
 									/>
 								</div>
+								{isNotActive && (
+									<Stamp css="z-index: 1000; opacity: 100% !important">
+										Bientôt disponible !
+									</Stamp>
+								)}
 							</li>
 						)
 					}
