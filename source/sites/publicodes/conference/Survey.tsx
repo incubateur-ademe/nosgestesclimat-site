@@ -60,12 +60,29 @@ export default () => {
 }
 
 const Supa = ({ room }) => {
-	const database = useDatabase()
+	useDatabase()
 	const [data, setData] = useState([])
 	useEffect(async () => {
-		let query = new Parse.Query('Survey')
+		/*
+		let query = new Parse.Query('Answer')
 		const result = await query.get('PDC3CTREcc')
 		console.log(result, result.get('answers'))
+		*/
+
+		var client = new Parse.LiveQueryClient({
+			applicationId: PARSE_APPLICATION_ID,
+			serverURL: 'wss://' + PARSE_SERVER_URL,
+			javascriptKey: PARSE_JAVASCRIPT_KEY,
+		})
+		client.open()
+
+		var answerQuery = new Parse.Query('Answer') //.equalTo('survey', 'monsondage')
+		answerQuery.ascending('createdAt').limit(5)
+		var subscription = client.subscribe(answerQuery)
+
+		subscription.on('update', (answer) => {
+			console.log('On update', answer)
+		})
 
 		/*
 		let subscription = await query.subscribe()

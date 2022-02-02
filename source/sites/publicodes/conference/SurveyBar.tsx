@@ -31,7 +31,7 @@ export default () => {
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
-	const database = useDatabase()
+	useDatabase()
 
 	const survey = useSelector((state) => state.survey)
 
@@ -40,6 +40,7 @@ export default () => {
 	const data = { total: Math.round(nodeValue), progress, byCategory }
 
 	useEffect(async () => {
+		return
 		const cachedSurveyId = surveyIds[survey.room],
 			payload = {
 				survey: survey.room,
