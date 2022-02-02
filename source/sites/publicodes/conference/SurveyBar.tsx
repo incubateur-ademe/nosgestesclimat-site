@@ -31,32 +31,49 @@ export default () => {
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
-	useDatabase()
+	const socket = useDatabase()
 
 	const survey = useSelector((state) => state.survey)
+	const dispatch = useDispatch()
 
 	const [surveyIds, setSurveyIds] = usePersistingState('surveyIds', {})
 
+	const cachedSurveyId = surveyIds[survey.room]
+
 	const data = { total: Math.round(nodeValue), progress, byCategory }
 
-	useEffect(async () => {
-		return
-		const cachedSurveyId = surveyIds[survey.room],
-			payload = {
-				survey: survey.room,
-				data,
-				...(cachedSurveyId ? { id: cachedSurveyId } : {}),
-			}
-		const { data: requestData, error } = await database
-			.from('answers')
-			.insert([payload], {
-				upsert: true,
-			})
+	useEffect(() => {
+		if (!survey || !survey.room) return null
+		fetch('http://' + SERVER_URL + '/answers')
+			.then((res) => res.json())
+			.then((json) =>
+				dispatch({
+					type: 'SET_SURVEY',
+					answers: json,
+					room: survey.room,
+				})
+			)
 
-		if (!error && !surveyIds[survey.room]) {
-			const newSet = { ...surveyIds, [survey.room]: requestData[0].id }
-			setSurveyIds(newSet)
+		if (!cachedSurveyId) {
+			setSurveyIds({ ...setSurveyIds, [survey.room]: crypto.randomUUID() })
 		}
+	}, [survey.room])
+
+	useEffect(async () => {
+		const payload = {
+			survey: survey.room,
+			data,
+			id: cachedSurveyId,
+		}
+
+		socket.emit('answer', payload)
+		socket.on('received', (data) => {
+			dispatch({
+				type: 'SET_SURVEY',
+				answers: [...survey.answers, data],
+				room: survey.rool,
+			})
+		})
 	}, [situation])
 
 	const simulationArray = [],

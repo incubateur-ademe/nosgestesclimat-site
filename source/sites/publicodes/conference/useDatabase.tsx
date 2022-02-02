@@ -1,12 +1,10 @@
 import { useMemo } from 'react'
 import { initializeParse } from '@parse/react'
 import Parse from 'parse'
+import { io } from 'socket.io-client'
 
 export default () => {
-	const database = useMemo(() => {
-		Parse.initialize(PARSE_APPLICATION_ID, PARSE_JAVASCRIPT_KEY) //PASTE HERE YOUR Back4App APPLICATION ID AND YOUR JavaScript KEY
-		Parse.serverURL = 'https://' + PARSE_SERVER_URL + '/'
-	}, [])
+	const database = useMemo(() => io('ws://' + SERVER_URL), [])
 
 	return database
 }
