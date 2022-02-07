@@ -1,7 +1,7 @@
 import { correctValue } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -60,21 +60,29 @@ export default () => {
 	}, [survey.room])
 
 	useEffect(async () => {
+		if (!survey || !survey.room) return null
+
 		const payload = {
 			survey: survey.room,
 			data,
 			id: cachedSurveyId,
 		}
-
 		socket.emit('answer', payload)
+	}, [situation])
+
+	const answers = useRef(survey.answers)
+	console.log('ANSWERS', survey.answers)
+
+	useEffect(async () => {
 		socket.on('received', (data) => {
+			console.log('received', data)
 			dispatch({
-				type: 'SET_SURVEY',
-				answers: [...survey.answers, data],
-				room: survey.rool,
+				type: 'ADD_SURVEY_ANSWERS',
+				answer: data.answer,
+				room: survey.room,
 			})
 		})
-	}, [situation])
+	}, [])
 
 	const simulationArray = [],
 		result = null && computeHumanMean(simulationArray.map((el) => el.total))
