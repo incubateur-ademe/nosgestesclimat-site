@@ -15,7 +15,7 @@ import { filterExtremes } from './utils'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { WebsocketProvider } from 'y-websocket'
 import useYjs from './useYjs'
-import useDatabase from './useDatabase'
+import useDatabase, { answersURL } from './useDatabase'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 
 export default () => {
@@ -44,7 +44,7 @@ export default () => {
 
 	useEffect(() => {
 		if (!survey || !survey.room) return null
-		fetch('http://' + SERVER_URL + '/answers/' + survey.room)
+		fetch(answersURL + survey.room)
 			.then((res) => res.json())
 			.then((json) =>
 				dispatch({
