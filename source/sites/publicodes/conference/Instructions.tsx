@@ -51,6 +51,7 @@ export default ({ room, newRoom, setNewRoom }) => {
 							flex-wrap: wrap;
 							label {
 								flex: auto !important;
+								max-width: 16rem !important;
 							}
 						`}
 					>
