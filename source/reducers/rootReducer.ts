@@ -159,7 +159,7 @@ function actionChoices(state = {}, { type, action, choice }) {
 		return {}
 	} else return state
 }
-function survey(state = null, { type, room, answer }) {
+function survey(state = null, { type, room, answers }) {
 	if (type === 'UNSET_SURVEY') return {}
 	if (type === 'SET_SURVEY') {
 		if (state?.room === room) return state
@@ -171,7 +171,7 @@ function survey(state = null, { type, room, answer }) {
 	if (type === 'ADD_SURVEY_ANSWERS') {
 		return {
 			room,
-			answers: [...state.answers, answer],
+			answers: [...state.answers, ...answers],
 		}
 	} else return state
 }

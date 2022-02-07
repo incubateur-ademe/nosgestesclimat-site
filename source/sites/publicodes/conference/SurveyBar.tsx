@@ -44,11 +44,11 @@ export default () => {
 
 	useEffect(() => {
 		if (!survey || !survey.room) return null
-		fetch('http://' + SERVER_URL + '/answers')
+		fetch('http://' + SERVER_URL + '/answers/' + survey.room)
 			.then((res) => res.json())
 			.then((json) =>
 				dispatch({
-					type: 'SET_SURVEY',
+					type: 'ADD_SURVEY_ANSWERS',
 					answers: json,
 					room: survey.room,
 				})
@@ -62,12 +62,12 @@ export default () => {
 	useEffect(async () => {
 		if (!survey || !survey.room) return null
 
-		const payload = {
+		const answer = {
 			survey: survey.room,
 			data,
 			id: cachedSurveyId,
 		}
-		socket.emit('answer', payload)
+		socket.emit('answer', { room: survey.room, answer })
 	}, [situation])
 
 	const answers = useRef(survey.answers)
@@ -78,7 +78,7 @@ export default () => {
 			console.log('received', data)
 			dispatch({
 				type: 'ADD_SURVEY_ANSWERS',
-				answer: data.answer,
+				answers: [data.answer],
 				room: survey.room,
 			})
 		})
