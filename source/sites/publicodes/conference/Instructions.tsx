@@ -26,7 +26,8 @@ export default ({ room, newRoom, setNewRoom }) => {
 			{!room && (
 				<p>
 					Le test d'empreinte climat est individuel, mais nous vous proposons
-					ici de le faire à plusieurs.
+					ici de le faire à plusieurs. Chacun sera derrière son écran, mais
+					visualisera en temps-réel les résultats des autres.
 				</p>
 			)}
 			<h2>{emoji('📘')} Comment ça marche ?</h2>
