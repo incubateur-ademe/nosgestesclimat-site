@@ -20,7 +20,6 @@ export default ({ mode, URLPath, room }) => {
 
 	return (
 		<div>
-			{JSON.stringify(survey)}
 			<button
 				type="submit"
 				className="ui__ button plain"
@@ -30,9 +29,31 @@ export default ({ mode, URLPath, room }) => {
 					if (mode === 'conférence') {
 						return setTimeout(() => history.push(URLPath), 3000)
 					}
-					const creation = fetch(surveysURL, { method: 'POST', body: { room } })
-						.then((res) => res.json())
-						.then((json) => setSurvey(json))
+					const request = await fetch(surveysURL, {
+						method: 'POST',
+						body: JSON.stringify({ room }),
+						headers: {
+							Accept: 'application/json',
+							'Content-Type': 'application/json',
+						},
+					})
+					if (!request.ok) {
+						if (request.status === 409) {
+							setText('Ce sondage existe déjà')
+							return setTimeout(() => {
+								history.push(URLPath)
+							}, 3000)
+						} else {
+							throw Error('Erreur inconue.')
+						}
+					}
+
+					const newSurvey = await request.json()
+					setText('Sondage créé')
+
+					return setTimeout(() => {
+						history.push(URLPath)
+					}, 3000)
 
 					/*
 					creation.then(({ data, error }) => {
