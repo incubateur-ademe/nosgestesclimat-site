@@ -48,6 +48,7 @@ export default ({ room, newRoom, setNewRoom }) => {
 					<div
 						css={`
 							display: flex;
+							flex-wrap: wrap;
 							label {
 								flex: auto !important;
 							}
@@ -69,8 +70,8 @@ export default ({ room, newRoom, setNewRoom }) => {
 							<p>
 								Mode éphémère : parfait entre amis, ou pour une présentation
 								intéractive lors d'une conférence. Les données restent entre les
-								participants (pair-à-pair), sans serveur, juste le temps de la
-								conférence.
+								participants (pair-à-pair), sans serveur,{' '}
+								<strong>juste le temps de la conférence</strong>.
 							</p>
 						</label>
 						<label
@@ -88,7 +89,7 @@ export default ({ room, newRoom, setNewRoom }) => {
 							<h3>Sondage</h3>
 							<p>
 								Mode persistant : les données sont stockées sur notre serveur,
-								restent accessibles dans le temps.{' '}
+								restent accessibles <strong>pendant deux semaines</strong>.
 							</p>
 							<p>
 								Si votre entreprise bride votre réseau interne, utilisez ce
@@ -144,10 +145,15 @@ export default ({ room, newRoom, setNewRoom }) => {
 					<Link to={'/simulateur/bilan'}>
 						<button className="ui__ button plain">Faites votre test </button>
 					</Link>
+				) : mode === 'conférence' ? (
+					<p>
+						Au moment convenu, ouvrez ce lien tous en même temps et faites
+						chacun de votre côté votre simulation.
+					</p>
 				) : (
 					<p>
-						Au moment convenu, ouvrez ce lien tous en même temps et
-						commencez&nbsp; votre simulation.
+						Pendant 2 semaines, les participants doivent venir faire leur
+						simulation sur ce lien.
 					</p>
 				)}
 			</InstructionBlock>
