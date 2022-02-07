@@ -34,17 +34,10 @@ export default ({ newRoom, setNewRoom }) => {
 			>
 				{emoji('🔃')} Générer un autre nom
 			</button>
-			<p>
-				<em>
-					{emoji('🕵️‍♀️')} Le nom apparaitra dans nos{' '}
-					<a href="https://nosgestesclimat.fr/vie-privée">stats</a>.
-				</em>
-			</p>
-
-			{newRoom && newRoom.length < 10 && (
+			{newRoom && newRoom.length < 12 && (
 				<p>
-					⚠️ Votre nom de salle est court, vous risquez de vous retrouver avec
-					des inconnus...
+					⚠️ Votre nom de salle est court, il y a un petit risque que des
+					inconnus puissent le deviner
 				</p>
 			)}
 		</>
