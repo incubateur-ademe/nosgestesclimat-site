@@ -42,41 +42,14 @@ export default function SelectDevices({
 							isNotActive = question.rawNode['inactif']
 
 						return (
-							// <li
-							// 	css="padding: 2rem"
-							// 	className={`ui__ card inactive`}
-							// 	key={name}
-							// >
-							// 	{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-							// 	<h4>{title}</h4>{' '}
-							// 	<div
-							// 		css={`
-							// 			position: relative;
-							// 		`}
-							// 	>
-							// 		<Stamp
-							// 			css={`
-							// 				opacity: 100%;
-							// 			`}
-							// 		>
-							// 			Bientôt disponible !
-							// 		</Stamp>
-							// 	</div>
-							// 	{false && description && <p>{description.split('\n')[0]}</p>}
-							// 	<div css={'font-size: 1.8rem'}>
-							// 		<Checkbox
-							// 			name={name}
-							// 			id={name}
-							// 			checked={value === 'oui'}
-							// 			readOnly
-							// 		/>
-							// 	</div>
-							// </li>
 							<li
-								css="padding: 2rem; position: relative;"
+								css={`
+									padding: 2rem;
+									position: relative;
+								`}
 								className={
 									isNotActive
-										? `ui__ card inactive`
+										? `ui__ card light-border inactive`
 										: `ui__ card interactive light-border ${
 												value === 'oui' ? `selected` : ''
 										  }`
@@ -94,16 +67,32 @@ export default function SelectDevices({
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
 								<h4>{title}</h4>
 								{false && description && <p>{description.split('\n')[0]}</p>}
-								<div css={'font-size: 1.8rem'}>
-									<Checkbox
-										name={name}
-										id={name}
-										checked={value === 'oui'}
-										readOnly
-									/>
-								</div>
+								{!isNotActive && (
+									<div css={'font-size: 1.8rem'}>
+										<Checkbox
+											name={name}
+											id={name}
+											checked={value === 'oui'}
+											readOnly
+										/>
+									</div>
+								)}
 								{isNotActive && (
-									<Stamp css="z-index: 1000; opacity: 100% !important">
+									<Stamp
+										css={`
+											z-index: 1;
+											opacity: 1 !important;
+											max-width: 8rem;
+											text-align: center;
+											border: 2px solid rgb(255, 0, 0, 1);
+											color: rgb(255, 0, 0, 1);
+											font-size: 90%;
+											@media (min-width: 800px) {
+												left: 3rem;
+												top: 4rem;
+											}
+										`}
+									>
 										Bientôt disponible !
 									</Stamp>
 								)}
