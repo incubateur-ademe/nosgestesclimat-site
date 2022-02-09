@@ -31,7 +31,11 @@ export default () => {
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
 
-			{!survey ? <DataWarning room={room} /> : <Supa room={survey.room} />}
+			{!survey ? (
+				<DataWarning room={room} />
+			) : (
+				<Results room={survey.room} cachedSurveyId={cachedSurveyId} />
+			)}
 			{survey && (
 				<button
 					className="ui__ link-button"
@@ -49,7 +53,7 @@ export default () => {
 	)
 }
 
-const Supa = ({ room }) => {
+const Results = ({ cachedSurveyId }) => {
 	const survey = useSelector((state) => state.survey)
 	const answerMap = survey.answers
 	if (!answerMap || !Object.values(answerMap)) return null
@@ -60,6 +64,7 @@ const Supa = ({ room }) => {
 				...el.data,
 				username: el.id,
 			}))}
+			username={cachedSurveyId}
 		/>
 	)
 }

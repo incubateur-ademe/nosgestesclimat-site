@@ -18,8 +18,8 @@ export const computeHumanMean = (simulationArray) => {
 	return result ? meanFormatter(result) : 'résultats en attente'
 }
 
-export default ({ elements, users = [], username }) => {
-	const [spotlight, setSpotlightRaw] = useState(null)
+export default ({ elements, users = [], username: currentUser }) => {
+	const [spotlight, setSpotlightRaw] = useState(currentUser)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
 	const values = elements.map((el) => el.total)
@@ -44,8 +44,6 @@ export default ({ elements, users = [], username }) => {
 		minValue = 2000, // 2 tonnes, the ultimate objective
 		max = humanWeight(maxValue, true).join(' '),
 		min = humanWeight(minValue, true).join(' ')
-
-	console.log('ELEMENTS', elements)
 
 	return (
 		<div>
@@ -85,7 +83,9 @@ export default ({ elements, users = [], username }) => {
 
 								cursor: pointer;
 								${spotlight === username
-									? `background: yellow; opacity: 1`
+									? `background: yellow; opacity: 1; 
+										border-right: 2px dashed black;
+										border-left: 2px dashed black`
 									: ''}
 							`}
 							onClick={() => setSpotlight(username)}
@@ -102,6 +102,12 @@ export default ({ elements, users = [], username }) => {
 				</div>
 			</div>
 			<CategoryStats {...{ categories, maxCategory, spotlight }} />
+
+			<div>
+				{spotlight === currentUser && (
+					<span css="background: yellow;">Jaune = toi</span>
+				)}
+			</div>
 		</div>
 	)
 }

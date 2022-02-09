@@ -72,6 +72,13 @@ export default () => {
 			id: cachedSurveyId,
 		}
 		socket.emit('answer', { room: survey.room, answer })
+
+		// This should not be necessary, but for a reason I don't understand the server doesn't emit to A A's response
+		dispatch({
+			type: 'ADD_SURVEY_ANSWERS',
+			answers: [answer],
+			room: survey.room,
+		})
 	}, [situation])
 
 	useEffect(async () => {
