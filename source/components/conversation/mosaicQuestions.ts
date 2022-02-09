@@ -63,7 +63,7 @@ Cochez tous les modes que vous utilisez.
 	{
 		dottedName: 'transport . vacances',
 		options: { defaultsToFalse: true },
-		question: 'Que possédez-vous pour vos week-end, vos vacances ?',
+		question: 'Que possédez-vous pour vos week-ends, vos vacances ?',
 		description: `
 A compléter
 
