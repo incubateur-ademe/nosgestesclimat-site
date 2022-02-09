@@ -21,6 +21,7 @@ import Landing from './Landing'
 import Logo from './Logo'
 import Navigation from './Navigation'
 import Documentation from './pages/Documentation'
+import Stats from './pages/Stats'
 import Personas from './Personas.tsx'
 import Privacy from './Privacy'
 import Profil from './Profil.tsx'
@@ -147,6 +148,7 @@ const Routes = ({}) => {
 
 			<Route path="/documentation" component={Documentation} />
 			<Route path="/simulateur/:name+" component={Simulateur} />
+			<Route path="/stats" component={Stats} />
 			{/* Lien de compatibilité, à retirer par exemple mi-juillet 2020*/}
 			<Route path="/fin/:score" component={Fin} />
 			<Route path="/fin" component={Fin} />
