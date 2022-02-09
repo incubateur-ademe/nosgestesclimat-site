@@ -15,8 +15,13 @@ import LoadingButton from './LoadingButton'
  *
  * */
 
-export default ({ room, newRoom, setNewRoom }) => {
-	const [mode, setMode] = useState('conférence')
+export default ({
+	room,
+	newRoom,
+	setNewRoom,
+	mode: defaultMode = 'conférence',
+}) => {
+	const [mode, setMode] = useState(defaultMode)
 	const { color } = useContext(ThemeColorsContext)
 	const URLbase = `https://${window.location.hostname}`
 	const URLPath = `/${mode}/${room || newRoom}`,

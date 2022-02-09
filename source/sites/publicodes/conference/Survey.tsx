@@ -48,7 +48,7 @@ export default () => {
 					{emoji('🚪')} Quitter le sondage
 				</button>
 			)}
-			<Instructions {...{ room }} />
+			<Instructions {...{ room, mode: 'sondage' }} />
 		</div>
 	)
 }
