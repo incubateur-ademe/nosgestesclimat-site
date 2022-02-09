@@ -129,7 +129,7 @@ export default () => {
 						{emoji('🧮')} {result}
 					</span>
 				)}
-				{answersCount && (
+				{answersCount != null && (
 					<span>
 						{emoji('👥')}{' '}
 						<span
