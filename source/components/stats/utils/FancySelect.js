@@ -24,7 +24,7 @@ const Input = styled.select`
 `
 export default function FancySelect(props) {
 	return (
-		<Wrapper color={props.color}>
+		<Wrapper>
 			<Value
 				dangerouslySetInnerHTML={{
 					__html: props.options.find((option) => option.value === props.value)
@@ -40,7 +40,6 @@ export default function FancySelect(props) {
 				onChange={(e) => {
 					props.onChange(e.currentTarget.value)
 				}}
-				color={props.color}
 			>
 				{props.options.map((option, index) => (
 					<option

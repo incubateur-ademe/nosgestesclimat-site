@@ -2,9 +2,17 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TileWrapper = styled.div`
-	width: 25rem;
+	width: calc(100% / 2);
 	margin-bottom: 1rem;
 	padding: 0 0.5rem;
+
+	/* @media screen and (max-width: ${1200}px) {
+		width: 33.3333vw;
+		padding: 0 0.5rem;
+	} */
+	@media screen and (max-width: ${1200}px) {
+		width: 100%;
+	}
 `
 const Content = styled.div`
 	position: relative;
@@ -13,6 +21,8 @@ const Content = styled.div`
 	justify-content: space-between;
 	height: 100%;
 	padding: 1.5rem 1.5rem 1.8125rem;
+	background-color: #f9f8f6;
+
 	&:before {
 		content: '';
 		position: absolute;
@@ -20,6 +30,10 @@ const Content = styled.div`
 		left: 0;
 		right: 0;
 		height: 0.3125rem;
+		background-color: var(--color);
+	}
+	@media screen and (max-width: ${1200}px) {
+		padding: 1rem 1rem calc(1rem + 0.3125rem);
 	}
 `
 const Top = styled.div`
@@ -38,7 +52,7 @@ const ButtonWrapper = styled.div`
 export default function Tile(props) {
 	return (
 		<TileWrapper>
-			<Content color={props.color}>
+			<Content>
 				<Top>
 					{props.title && <Title margin={props.margin}>{props.title}</Title>}
 					{props.text && <Text>{props.text}</Text>}

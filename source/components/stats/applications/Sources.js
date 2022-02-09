@@ -42,12 +42,6 @@ export default function Sources(props) {
 					total={props.total}
 					limit={10}
 				/>
-				<Table
-					title="Recherches"
-					data={props.keywords}
-					total={props.total}
-					limit={10}
-				/>
 			</Tile.Wrapper>
 		</>
 	)

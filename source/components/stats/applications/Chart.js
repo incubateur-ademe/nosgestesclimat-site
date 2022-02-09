@@ -15,6 +15,10 @@ import CustomTooltip from './chart/CustomTooltip'
 const Wrapper = styled.div`
 	width: 66.666%;
 
+	@media screen and (max-width: ${1200}px) {
+		width: 100%;
+	}
+
 	svg {
 		overflow: visible;
 	}
@@ -43,7 +47,6 @@ export default function AreaWeekly(props) {
 				date={props.date}
 				setPeriod={props.setPeriod}
 				setDate={props.setDate}
-				color={props.color}
 			/>
 			<ChartWrapper>
 				<ResponsiveContainer>
@@ -75,8 +78,8 @@ export default function AreaWeekly(props) {
 						<Area
 							type="monotone"
 							dataKey={'Visiteurs'}
-							stroke={props.color}
-							fill={props.color}
+							stroke="var(--darkColor)"
+							fill="var(--color)"
 							fillOpacity={1}
 						/>
 					</AreaChart>

@@ -26,7 +26,10 @@ const Wrapper = styled.div`
 	display: flex;
 	width: 100%;
 	margin-bottom: 2rem;
-	flex-direction: column;
+
+	@media screen and (max-width: ${1200}px) {
+		flex-direction: column;
+	}
 `
 export default function Data(props) {
 	const [chartDate, setChartDate] = useState('12')
@@ -46,17 +49,17 @@ export default function Data(props) {
 	const { data: pages } = usePages()
 	const { data: allTime } = useAllTime()
 
-	console.log({
-		total,
-		websites,
-		oldWebsites,
-		socials,
-		keywords,
-		period,
-		reference,
-		pages,
-		allTime,
-	})
+	// console.log({
+	// 	total,
+	// 	websites,
+	// 	oldWebsites,
+	// 	socials,
+	// 	keywords,
+	// 	period,
+	// 	reference,
+	// 	pages,
+	// 	allTime,
+	// })
 
 	return total &&
 		websites &&
@@ -88,20 +91,20 @@ export default function Data(props) {
 					)}
 				</Wrapper>
 				<Sources
-					total={total}
+					total={total.value}
 					websites={websites}
 					oldWebsites={oldWebsites}
 					socials={socials}
 					keywords={keywords}
 				/>
 			</Section>
-			<Section>
+			{/* <Section>
 				<Section.Title>Nos GEStes Climat en chiffres</Section.Title>
 				<Tile.Wrapper>
 					<NumSimulations />
 					<NumForks />
 				</Tile.Wrapper>
-			</Section>
+			</Section> */}
 		</>
 	) : (
 		<div>Loading</div>

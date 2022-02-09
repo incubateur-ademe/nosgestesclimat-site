@@ -7,25 +7,25 @@ const Wrapper = styled.table`
 	table-layout: fixed;
 	width: 100%;
 	margin-bottom: 0.5rem;
-	/* background-color: ${(props) => props.theme.colors.background};
-	border-bottom: 2px solid ${(props) => props.theme.colors.input}; */
+	background-color: #fff;
+	border-bottom: 2px solid #f0f0f0;
 	border-collapse: collapse;
 	overflow: hidden;
 
 	tr:nth-child(2n + 1) {
-		/* background-color: ${(props) => props.theme.colors.tile}; */
+		background-color: #f9f8f6;
 	}
 
 	th {
 		padding: 0.75rem 0 0.75rem 0.75rem;
 		font-size: 0.875rem;
 		text-align: left;
-		/* border-bottom: 2px solid ${(props) => props.theme.colors.title}; */
+		border-bottom: 2px solid #1e1e1e;
 	}
 	td {
 		font-size: 0.8125rem;
 		width: 60%;
-		padding: 0.75rem;
+		padding: 0.5rem;
 	}
 	td + td,
 	th + th {
@@ -45,14 +45,14 @@ const Toggle = styled.button`
 	margin: 0;
 	padding: 0;
 	font-size: 0.65rem;
-	/* color: ${(props) => props.theme.colors.main}; */
+	color: var(--color);
 	background: none;
 	border: none;
 	cursor: pointer;
 `
 export default function Table(props) {
 	return (
-		<Tile.Tile large>
+		<Tile.Tile>
 			<Tile.Content>
 				<Wrapper>
 					<tbody>

@@ -1,8 +1,6 @@
 import React from 'react'
 import emoji from 'react-easy-emoji'
 
-import FancySelect from '../utils/FancySelect'
-
 export default ({ setInput, input }) => (
 	<div
 		css={`

@@ -59,7 +59,6 @@ export default function Search(props) {
 					{ value: 'week', label: 'semaines' },
 					{ value: 'month', label: 'mois' },
 				]}
-				color={props.color}
 			/>
 		</Wrapper>
 	)

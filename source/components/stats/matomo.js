@@ -119,4 +119,9 @@ export const useAllTime = () =>
 				`https://stats.data.gouv.fr/?module=API&date=last6000&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`
 			)
 			.then((res) => res.data)
+			.then((data) => {
+				const base = 109689 //base NGC
+				data.value += base
+				return data
+			})
 	)

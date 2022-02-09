@@ -3,12 +3,12 @@ import styled from 'styled-components'
 
 const Wrapper = styled.div`
 	padding: 1rem;
-	/* background-color: ${(props) => props.theme.colors.background};
-  border: 1px solid ${(props) => props.theme.colors.input}; */
+	background-color: #fff;
+	border: 1px solid #f0f0f0;
 `
 const Label = styled.div`
 	line-height: 1.5;
-	/* color: ${(props) => props.theme.colors.footer}; */
+	color: #6a6a6a;
 	&::first-letter {
 		text-transform: uppercase;
 	}
