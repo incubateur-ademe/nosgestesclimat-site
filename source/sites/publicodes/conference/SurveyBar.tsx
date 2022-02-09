@@ -40,7 +40,11 @@ export default () => {
 
 	const cachedSurveyId = surveyIds[survey.room]
 
-	const data = { total: Math.round(nodeValue), progress, byCategory }
+	const data = {
+		total: Math.round(nodeValue),
+		progress: +progress.toFixed(4),
+		byCategory,
+	}
 
 	useEffect(() => {
 		if (!survey || !survey.room) return null
@@ -70,12 +74,8 @@ export default () => {
 		socket.emit('answer', { room: survey.room, answer })
 	}, [situation])
 
-	const answers = useRef(survey.answers)
-	console.log('ANSWERS', survey.answers)
-
 	useEffect(async () => {
 		socket.on('received', (data) => {
-			console.log('received', data)
 			dispatch({
 				type: 'ADD_SURVEY_ANSWERS',
 				answers: [data.answer],
@@ -87,7 +87,7 @@ export default () => {
 	const simulationArray = [],
 		result = null && computeHumanMean(simulationArray.map((el) => el.total))
 
-	const answersCount = null
+	const answersCount = Object.values(survey.answers).length
 
 	return (
 		<Link to={'/sondage/' + survey.room} css="text-decoration: none;">

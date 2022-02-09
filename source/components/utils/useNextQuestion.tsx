@@ -157,5 +157,7 @@ export function useSimulationProgress(): number {
 	const numberQuestionAnswered = useSelector(answeredQuestionsSelector).length
 	const numberQuestionLeft = useNextQuestions().length
 
-	return numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft)
+	return (
+		numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft) || 0
+	)
 }

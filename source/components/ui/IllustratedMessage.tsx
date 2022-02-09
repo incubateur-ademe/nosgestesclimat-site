@@ -7,15 +7,20 @@ export default ({ emoji: e, message, inline }) => (
 			display: flex;
 			flex-direction: column;
 			align-items: center;
-			img {
-				font-size: 300%;
-				margin: 0.6rem !important;
-			}
 			${inline &&
 			`flex-direction: row; justify-content: start; max-width: 100%; p {margin: 0}`}
 		`}
 	>
-		{emoji(e)}
+		<span
+			css={`
+				img {
+					font-size: 300%;
+					margin: 0.6rem !important;
+				}
+			`}
+		>
+			{emoji(e)}
+		</span>
 		{message}
 	</div>
 )

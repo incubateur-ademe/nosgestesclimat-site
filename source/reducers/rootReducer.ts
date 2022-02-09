@@ -165,13 +165,16 @@ function survey(state = null, { type, room, answers }) {
 		if (state?.room === room) return state
 		return {
 			room,
-			answers: [],
+			answers: {},
 		}
 	}
 	if (type === 'ADD_SURVEY_ANSWERS') {
 		return {
 			room,
-			answers: [...state.answers, ...answers],
+			answers: answers.reduce(
+				(memo, next) => ({ ...memo, [next.id]: next }),
+				state.answers
+			),
 		}
 	} else return state
 }

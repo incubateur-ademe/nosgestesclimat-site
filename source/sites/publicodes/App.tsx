@@ -28,7 +28,6 @@ import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import GroupSwitch from './conference/GroupSwitch'
-import Surveys from './conference/Surveys'
 
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
@@ -185,9 +184,6 @@ const Routes = ({}) => {
 				<Suspense fallback="Chargement">
 					<SurveyLazy />
 				</Suspense>
-			</Route>
-			<Route path="/sondages">
-				<Surveys />
 			</Route>
 			<Redirect from="/conference/:room" to="/conférence/:room" />
 			<Route path="/tutoriel" component={Tutorial} />

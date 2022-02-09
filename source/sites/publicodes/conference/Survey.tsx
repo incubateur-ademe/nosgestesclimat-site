@@ -44,16 +44,18 @@ export default () => {
 			</ConferenceTitle>
 
 			{!survey ? <DataWarning room={room} /> : <Supa room={survey.room} />}
-			<button
-				className="ui__ link-button"
-				onClick={() => {
-					history.push('/')
+			{survey && (
+				<button
+					className="ui__ link-button"
+					onClick={() => {
+						history.push('/')
 
-					dispatch({ type: 'UNSET_SURVEY' })
-				}}
-			>
-				{emoji('🚪')} Quitter le sondage
-			</button>
+						dispatch({ type: 'UNSET_SURVEY' })
+					}}
+				>
+					{emoji('🚪')} Quitter le sondage
+				</button>
+			)}
 			<Instructions {...{ room }} />
 		</div>
 	)
@@ -61,18 +63,8 @@ export default () => {
 
 const Supa = ({ room }) => {
 	const survey = useSelector((state) => state.survey)
-	const data = survey.answers
+	const elements = survey.answers
+	if (!elements || !Object.values(elements)) return null
 
-	return (
-		data?.length != null && (
-			<Stats
-				{...{
-					elements: data.reduce(
-						(memo, next) => ({ ...memo, [next.id]: next.data }),
-						{}
-					),
-				}}
-			/>
-		)
-	)
+	return <Stats elements={elements} />
 }

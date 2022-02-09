@@ -31,10 +31,12 @@ export default ({ elements, users = [], username }) => {
 
 	if (isNaN(mean)) return null
 
+	console.log('ELEMENTS', elements)
+
 	const categories = reduceCategories(
 			Object.entries(elements).map(([username, data]) => [
 				username,
-				data.byCategory,
+				data.data.byCategory,
 			])
 		),
 		yo = console.log('CAT', categories),

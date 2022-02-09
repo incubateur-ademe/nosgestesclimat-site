@@ -20,34 +20,28 @@ export default ({ room }) => {
 							</span>
 							.
 						</p>
-					</div>
-				}
-			/>
-
-			<IllustratedMessage
-				emoji="🕵"
-				message={
-					<div>
 						<p>
-							En participant, vous acceptez la collecte <em>anonyme</em> de vos
-							résultats agrégés de simulation sur notre serveur : l'empreinte
-							climat totale et les catégories (transport, logement, etc.).{' '}
-							<Link to="/vie-privée">En savoir plus</Link>
+							{emoji('🕵')} En participant, vous acceptez la collecte{' '}
+							<em>anonyme</em> de vos résultats agrégés de simulation sur notre
+							serveur : l'empreinte climat totale et les catégories (transport,
+							logement, etc.). <Link to="/vie-privée">En savoir plus</Link>
 						</p>
-						<button
-							className="ui__ button simple"
-							onClick={() => {
-								dispatch({ type: 'SET_SURVEY', room })
-							}}
-						>
-							Participer au sondage
-						</button>
-						<button
-							className="ui__ button simple"
-							onClick={() => history.push('/')}
-						>
-							Quitter
-						</button>
+						<div>
+							<button
+								className="ui__ button simple"
+								onClick={() => {
+									dispatch({ type: 'SET_SURVEY', room })
+								}}
+							>
+								Participer au sondage
+							</button>
+							<button
+								className="ui__ button simple"
+								onClick={() => history.push('/')}
+							>
+								Quitter
+							</button>
+						</div>
 					</div>
 				}
 			/>

@@ -1,6 +1,4 @@
 import { useMemo } from 'react'
-import { initializeParse } from '@parse/react'
-import Parse from 'parse'
 import { io } from 'socket.io-client'
 
 const protocol = `http${NODE_ENV === 'development' ? '' : 's'}://`
