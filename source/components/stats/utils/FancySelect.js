@@ -5,6 +5,7 @@ const Wrapper = styled.span`
 	position: relative;
 	display: inline-block;
 	line-height: 1.3;
+	color: var(--darkColor);
 `
 const Value = styled.span``
 const Input = styled.select`
@@ -18,6 +19,7 @@ const Input = styled.select`
 	color: transparent;
 	background-color: transparent;
 	border: none;
+	box-shadow: 0px 0.1em 0px 0px var(--darkColor);
 	transition: box-shadow 300ms ease-out;
 	appearance: none;
 	cursor: pointer;

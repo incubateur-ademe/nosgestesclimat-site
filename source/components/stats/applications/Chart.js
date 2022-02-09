@@ -14,6 +14,7 @@ import CustomTooltip from './chart/CustomTooltip'
 
 const Wrapper = styled.div`
 	width: 66.666%;
+	padding-left: 1rem;
 
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;

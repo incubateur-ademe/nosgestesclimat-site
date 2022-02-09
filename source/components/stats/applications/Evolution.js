@@ -6,6 +6,7 @@ import { useTotalNgcSimulations } from '../matomo'
 const Wrapper = styled.div`
 	width: 33.333%;
 	text-align: center;
+	padding-top: 2rem;
 
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;
