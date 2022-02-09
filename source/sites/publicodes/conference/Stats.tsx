@@ -22,22 +22,17 @@ export default ({ elements, users = [], username }) => {
 	const [spotlight, setSpotlightRaw] = useState(null)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	const values = Object.values(elements).map((el) => el.data.total)
+	const values = elements.map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean(values)
 
-	const progressList = Object.values(elements).map((el) => el.progress),
+	const progressList = elements.map((el) => el.progress),
 		meanProgress = computeMean(progressList)
 
 	if (isNaN(mean)) return null
 
-	console.log('ELEMENTS', elements)
-
 	const categories = reduceCategories(
-			Object.entries(elements).map(([username, data]) => [
-				username,
-				data.data.byCategory,
-			])
+			elements.map(({ byCategory, username }) => [username, byCategory])
 		),
 		yo = console.log('CAT', categories),
 		maxCategory = Object.values(categories).reduce(
@@ -76,24 +71,24 @@ export default ({ elements, users = [], username }) => {
 						}
 					`}
 				>
-					{Object.entries(elements).map(([usernameI, { total: value }]) => (
+					{elements.map(({ total: value, username }) => (
 						<li
-							key={usernameI}
+							key={username}
 							css={`
 								height: 100%;
 								width: 10px;
 								margin-left: -10px;
 								left: ${((value - minValue) / (maxValue - minValue)) * 100}%;
-								background: ${users.find((u) => u.name === usernameI)?.color ||
+								background: ${users.find((u) => u.name === username)?.color ||
 								'var(--color)'};
 								opacity: 0.5;
 
 								cursor: pointer;
-								${spotlight === usernameI
+								${spotlight === username
 									? `background: yellow; opacity: 1`
 									: ''}
 							`}
-							onClick={() => setSpotlight(usernameI)}
+							onClick={() => setSpotlight(username)}
 						></li>
 					))}
 				</div>

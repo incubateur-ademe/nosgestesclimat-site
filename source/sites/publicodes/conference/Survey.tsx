@@ -51,8 +51,15 @@ export default () => {
 
 const Supa = ({ room }) => {
 	const survey = useSelector((state) => state.survey)
-	const elements = survey.answers
-	if (!elements || !Object.values(elements)) return null
+	const answerMap = survey.answers
+	if (!answerMap || !Object.values(answerMap)) return null
 
-	return <Stats elements={elements} />
+	return (
+		<Stats
+			elements={Object.values(answerMap).map((el) => ({
+				...el.data,
+				username: el.id,
+			}))}
+		/>
+	)
 }

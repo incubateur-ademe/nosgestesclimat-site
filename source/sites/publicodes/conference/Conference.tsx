@@ -44,7 +44,7 @@ export default () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 
-	console.log(elements)
+	console.log('ELEMENTS', elements)
 
 	return (
 		<div>
@@ -54,7 +54,16 @@ export default () => {
 				<img src={conferenceImg} />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
-			<Stats {...{ elements, users, username }} />
+			<Stats
+				{...{
+					elements: Object.entries(elements).map(([username, data]) => ({
+						...data,
+						username,
+					})),
+					users,
+					username,
+				}}
+			/>
 
 			{room && (
 				<div>
