@@ -37,10 +37,7 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('production'),
-			SUPABASE_URL: JSON.stringify(process.env.REACT_APP_SUPABASE_URL),
-			SUPABASE_ANON_KEY: JSON.stringify(
-				process.env.REACT_APP_SUPABASE_ANON_KEY
-			),
+			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
 		}),
 	],
 }
