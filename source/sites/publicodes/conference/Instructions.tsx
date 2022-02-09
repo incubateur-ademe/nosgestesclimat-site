@@ -29,11 +29,17 @@ export default ({
 	return (
 		<div>
 			{!room && (
-				<p>
-					Le test d'empreinte climat est individuel, mais nous vous proposons
-					ici de le faire à plusieurs. Chacun sera derrière son écran, mais
-					visualisera en temps-réel les résultats des autres.
-				</p>
+				<>
+					<p>
+						Le test d'empreinte climat est individuel, mais nous vous proposons
+						ici de le faire à plusieurs. Chacun sera derrière son écran, mais
+						visualisera en temps-réel les résultats des autres.
+					</p>
+					<p>
+						C'est l'occasion de se confronter aux autres et de réfléchir
+						ensemble aux enjeux de notre propre impact.
+					</p>
+				</>
 			)}
 			<h2>{emoji('📘')} Comment ça marche ?</h2>
 			<InstructionBlock
@@ -74,9 +80,9 @@ export default ({
 							/>
 							<h3>Conférence</h3>
 							<p>
-								Mode éphémère : parfait entre amis, ou pour une présentation
-								intéractive lors d'une conférence. Les données restent entre les
-								participants (pair-à-pair), sans serveur,{' '}
+								Mode éphémère : parfait pour l'animation d'un atelier, une
+								présentation interactive ou entre amis. Les données restent
+								entre les participants (pair-à-pair), sans serveur,{' '}
 								<strong>juste le temps de la conférence</strong>.
 							</p>
 						</label>
@@ -94,15 +100,18 @@ export default ({
 							/>
 							<h3>Sondage</h3>
 							<p>
-								Mode persistant : les données sont stockées sur notre serveur,
-								restent accessibles <strong>pendant deux semaines</strong>.
-							</p>
-							<p>
-								Si votre entreprise bride votre réseau interne, utilisez ce
-								mode.
+								Mode persistant : l'interface est presque la même, mais les
+								données sont stockées sur notre serveur et ainsi restent
+								accessibles <strong>pendant deux semaines</strong>.
 							</p>
 						</label>
 					</div>
+
+					<p>
+						{emoji('🔒️')} Votre organisation peut bloquer l'utilisation du mode
+						conférence. Faites le test au préalable en duo : en cas de problème,
+						vous pouvez utiliser le mode sondage.
+					</p>
 				</InstructionBlock>
 			)}
 			<InstructionBlock
