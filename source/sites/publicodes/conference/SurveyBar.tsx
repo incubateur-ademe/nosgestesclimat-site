@@ -64,7 +64,7 @@ export default () => {
 	}, [survey.room])
 
 	useEffect(async () => {
-		if (!survey || !survey.room) return null
+		if (!survey || !survey.room || !cachedSurveyId) return null
 
 		const answer = {
 			survey: survey.room,
