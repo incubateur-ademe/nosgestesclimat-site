@@ -205,5 +205,5 @@
 .ui__.card.inactive {
 	border: 4px solid grey;
 	background: #2da44e0f;
-	opacity: 50%;
+	filter: grayscale(50%);
 }

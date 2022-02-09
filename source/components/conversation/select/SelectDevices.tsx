@@ -81,11 +81,10 @@ export default function SelectDevices({
 									<Stamp
 										css={`
 											z-index: 1;
-											opacity: 1 !important;
 											max-width: 8rem;
 											text-align: center;
-											border: 2px solid rgb(255, 0, 0, 1);
-											color: rgb(255, 0, 0, 1);
+											border: 2px solid var(--darkColor);
+											color: var(--darkColor);
 											font-size: 90%;
 											@media (min-width: 800px) {
 												left: 3rem;
