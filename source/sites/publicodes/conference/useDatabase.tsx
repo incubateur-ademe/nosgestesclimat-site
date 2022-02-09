@@ -1,14 +1,15 @@
 import { useMemo } from 'react'
 import { io } from 'socket.io-client'
 
-const protocol = `http${NODE_ENV === 'development' ? '' : 's'}://`
+const secure = NODE_ENV === 'development' ? '' : 's'
+const protocol = `http${secure}://`
 
 export const answersURL = protocol + SERVER_URL + '/answers/'
 
 export const surveysURL = protocol + SERVER_URL + '/surveys/'
 
 export default () => {
-	const database = useMemo(() => io('ws://' + SERVER_URL), [])
+	const database = useMemo(() => io(`ws${secure}://` + SERVER_URL), [])
 
 	return database
 }
