@@ -22,7 +22,7 @@ export default ({ elements, users = [], username }) => {
 	const [spotlight, setSpotlightRaw] = useState(null)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	const values = Object.values(elements).map((el) => el.total)
+	const values = Object.values(elements).map((el) => el.data.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean(values)
 
