@@ -12,6 +12,7 @@ Section.TopTitle = styled.h1`
 `
 Section.Title = styled.h2`
 	font-size: 2.5em;
+	font-family: 'Marianne', sans-serif;
 `
 Section.Sector = styled.span`
 	color: red;
