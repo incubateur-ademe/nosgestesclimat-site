@@ -4,12 +4,11 @@ import styled from 'styled-components'
 import FancySelect from '../../utils/FancySelect'
 
 const Wrapper = styled.div`
-	margin-bottom: 1.5rem;
+	margin-bottom: 0.5rem;
 	text-align: right;
 
 	@media screen and (max-width: ${800}px) {
 		font-size: 0.75rem;
-		text-align: center;
 	}
 `
 export default function Search(props) {

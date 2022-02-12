@@ -61,53 +61,57 @@ export default function Data(props) {
 	// 	allTime,
 	// })
 
-	return total &&
-		websites &&
-		oldWebsites &&
-		socials &&
-		keywords &&
-		period &&
-		reference &&
-		pages &&
-		allTime ? (
-		<>
-			{' '}
-			<Section>
-				<Wrapper>
-					<Evolution
-						period={period.value}
-						reference={reference.value}
-						pages={pages.value}
-						allTime={allTime.value}
-					/>
-					{chart && (
-						<Chart
-							chart={chart}
-							period={chartPeriod}
-							date={chartDate}
-							setPeriod={setChartPeriod}
-							setDate={setChartDate}
+	return (
+		<div>
+			<Section.TopTitle>Statistiques</Section.TopTitle>
+			{total &&
+			websites &&
+			oldWebsites &&
+			socials &&
+			keywords &&
+			period &&
+			reference &&
+			pages &&
+			allTime ? (
+				<>
+					<Section>
+						<Wrapper>
+							<Evolution
+								period={period.value}
+								reference={reference.value}
+								pages={pages.value}
+								allTime={allTime.value}
+							/>
+							{chart && (
+								<Chart
+									chart={chart}
+									period={chartPeriod}
+									date={chartDate}
+									setPeriod={setChartPeriod}
+									setDate={setChartDate}
+								/>
+							)}
+						</Wrapper>
+						<Sources
+							total={total.value}
+							websites={websites}
+							oldWebsites={oldWebsites}
+							socials={socials}
+							keywords={keywords}
 						/>
-					)}
-				</Wrapper>
-				<Sources
-					total={total.value}
-					websites={websites}
-					oldWebsites={oldWebsites}
-					socials={socials}
-					keywords={keywords}
-				/>
-			</Section>
-			{/* <Section>
+					</Section>
+					{/* <Section>
 				<Section.Title>Nos GEStes Climat en chiffres</Section.Title>
 				<Tile.Wrapper>
 					<NumSimulations />
 					<NumForks />
 				</Tile.Wrapper>
 			</Section> */}
-		</>
-	) : (
-		<div>Loading</div>
-		// <Loader />
+				</>
+			) : (
+				<div>Loading</div>
+				// <Loader />
+			)}
+		</div>
 	)
 }

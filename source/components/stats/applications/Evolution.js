@@ -10,17 +10,43 @@ const Wrapper = styled.div`
 
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;
+		padding-top: 0rem;
 	}
 `
+
+const TopBlock = styled.div`
+	margin-bottom: 2rem;
+	width: 100%;
+	font-size: 150%;
+	@media screen and (max-width: ${1200}px) {
+		display: inline-flex;
+		justify-content: center;
+		align-items: baseline;
+	}
+`
+const BlockWrapper = styled.div`
+	margin-bottom: 2rem;
+	width: 100%;
+
+	@media screen and (max-width: ${1200}px) {
+		display: inline-flex;
+		justify-content: space-evenly;
+	}
+`
+
 const Block = styled.div`
 	margin-bottom: 2rem;
+
+	@media screen and (max-width: ${1200}px) {
+		width: 50%;
+	}
 `
+
 const Number = styled.span`
 	display: block;
 	font-size: 2.5rem;
 	font-weight: 800;
 	line-height: 1;
-	color: var(--color);
 	transition: color 500ms ease-out;
 `
 const BigNumber = styled(Number)`
@@ -43,29 +69,30 @@ export default function Evolution(props) {
 
 	return (
 		<Wrapper>
-			<Block>
+			<TopBlock>
 				<BigNumber>
 					{props.allTime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
 				</BigNumber>{' '}
-				visiteurs depuis le lancement
-			</Block>
-			<Block>
-				<Number>
-					{percent > 0 && '+'}
-					{Math.round(percent * 10) / 10}%
-				</Number>
-				de visiteurs ce mois ci
-				<br />
-				<Small>(par rapport au mois d'avant)</Small>
-			</Block>
-			<Block>
-				<Number>
-					{(simulations?.nb_visits + baseSimulations)
-						.toString()
-						.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-				</Number>{' '}
-				simulations terminées depuis le lancement
-			</Block>
+				&nbsp;visiteurs depuis le lancement
+			</TopBlock>
+			<BlockWrapper>
+				<Block>
+					<Number>
+						{percent > 0 && '+'}
+						{Math.round(percent * 10) / 10}%
+					</Number>
+					de visiteurs ce mois ci
+					<Small>&nbsp;(par rapport au mois d'avant)</Small>
+				</Block>
+				<Block>
+					<Number>
+						{(simulations?.nb_visits + baseSimulations)
+							.toString()
+							.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+					</Number>{' '}
+					simulations terminées depuis le lancement
+				</Block>
+			</BlockWrapper>
 		</Wrapper>
 	)
 }
