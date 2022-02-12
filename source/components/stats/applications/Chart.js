@@ -18,6 +18,7 @@ const Wrapper = styled.div`
 
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;
+		padding-left: 0rem;
 	}
 
 	svg {
