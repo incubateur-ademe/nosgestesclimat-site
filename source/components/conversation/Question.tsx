@@ -69,33 +69,34 @@ export default function Question({
 	}, [currentSelection])
 
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
-		return choices.map(({ value, label }) => (
-			<span
-				key={value}
-				css={`
-					:not(:first-child) {
-						margin-left: 0.6rem;
-					}
-					input {
-						width: 0;
-						opacity: 0;
-						height: 0;
-						position: absolute;
-					}
-				`}
-			>
-				<RadioLabel
-					{...{
-						value,
-						label,
-						currentSelection,
-						onSubmit: handleSubmit,
-						name: questionDottedName,
-						onChange: handleChange,
-					}}
-				/>
-			</span>
-		))
+		return (
+			<div className="ui__ radio">
+				{choices.map(({ value, label }) => (
+					<span
+						key={value}
+						css={`
+							input {
+								width: 0;
+								opacity: 0;
+								height: 0;
+								position: absolute;
+							}
+						`}
+					>
+						<RadioLabel
+							{...{
+								value,
+								label,
+								currentSelection,
+								onSubmit: handleSubmit,
+								name: questionDottedName,
+								onChange: handleChange,
+							}}
+						/>
+					</span>
+				))}
+			</div>
+		)
 	}
 	const renderChildren = (choices: Choice) => {
 		// seront stockées ainsi dans le state :
