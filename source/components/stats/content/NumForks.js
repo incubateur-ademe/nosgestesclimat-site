@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 
-import Tile from './utils/Tile'
+import Tile from '../utils/Tile'
 
 const Number = styled.span`
 	display: block;

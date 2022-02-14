@@ -4,6 +4,15 @@ import styled from 'styled-components'
 import Tile from '../utils/Tile'
 import Table from './sources/Table'
 
+const StyledTile = styled(Tile.Wrapper)`
+	> div {
+		width: 50%;
+		@media screen and (max-width: ${1200}px) {
+			width: 100%;
+		}
+	}
+`
+
 const Title = styled.h3`
 	text-align: center;
 `
@@ -12,7 +21,7 @@ export default function Sources(props) {
 	return (
 		<>
 			<Title>Origine des visites</Title>
-			<Tile.Wrapper>
+			<StyledTile>
 				{newWebsites ? (
 					<Table
 						title="Sites Web"
@@ -31,7 +40,7 @@ export default function Sources(props) {
 						title="Sites Web"
 						data={props.websites}
 						total={props.total}
-						limit={10}
+						limit={5}
 						setNewWebsites={setNewWebsites}
 						newWebsites={newWebsites}
 					/>
@@ -40,9 +49,9 @@ export default function Sources(props) {
 					title="Réseaux Sociaux"
 					data={props.socials}
 					total={props.total}
-					limit={10}
+					limit={5}
 				/>
-			</Tile.Wrapper>
+			</StyledTile>
 		</>
 	)
 }

@@ -2,17 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 
 const TileWrapper = styled.div`
-	width: calc(100% / 2);
 	margin-bottom: 1rem;
 	padding: 0 0.5rem;
-
-	/* @media screen and (max-width: ${1200}px) {
-		width: 33.3333vw;
-		padding: 0 0.5rem;
-	} */
-	@media screen and (max-width: ${1200}px) {
-		width: 100%;
-	}
 `
 const Content = styled.div`
 	position: relative;

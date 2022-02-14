@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-import { useTotalNgcSimulations } from '../matomo'
-
 const Wrapper = styled.div`
 	width: 33.333%;
 	text-align: center;
@@ -65,8 +63,7 @@ export default function Evolution(props) {
 
 	// We didn't track this stat at the beginning so we're guessing based on todays average completion
 	const baseSimulations = 32015
-	const { data: simulations } = useTotalNgcSimulations()
-
+	const simulations = props.simulations
 	return (
 		<Wrapper>
 			<TopBlock>

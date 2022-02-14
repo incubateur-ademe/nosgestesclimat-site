@@ -4,6 +4,7 @@ import styled from 'styled-components'
 import {
 	useChart,
 	useTotal,
+	useSimulationsTerminees,
 	useWebsites,
 	useOldWebsites,
 	useSocials,
@@ -12,14 +13,15 @@ import {
 	useReference,
 	usePages,
 	useAllTime,
+	useKmHelp,
+	useSimulationsfromKmHelp,
+	useRidesNumber,
 } from './matomo'
 import Section from './utils/Section'
-import Evolution from './applications/Evolution'
-import Sources from './applications/Sources'
-import Chart from './applications/Chart'
-import NumSimulations from './NumSimulations'
-import NumForks from './NumForks'
-import Tile from './utils/Tile'
+import Evolution from './content/Evolution'
+import Sources from './content/Sources'
+import Chart from './content/Chart'
+import KmFigures from './content/KmFigures'
 // import Loader from './applications/Loader'
 
 const Wrapper = styled.div`
@@ -40,6 +42,7 @@ export default function Data(props) {
 		chartPeriod,
 	})
 	const { data: total } = useTotal()
+	const { data: simulations } = useSimulationsTerminees()
 	const { data: websites } = useWebsites()
 	const { data: oldWebsites } = useOldWebsites()
 	const { data: socials } = useSocials()
@@ -48,6 +51,9 @@ export default function Data(props) {
 	const { data: reference } = useReference()
 	const { data: pages } = usePages()
 	const { data: allTime } = useAllTime()
+	const { data: kmhelp } = useKmHelp()
+	const { data: simulationsfromhelp } = useSimulationsfromKmHelp()
+	const { data: ridesnumber } = useRidesNumber()
 
 	// console.log({
 	// 	total,
@@ -81,6 +87,7 @@ export default function Data(props) {
 								reference={reference.value}
 								pages={pages.value}
 								allTime={allTime.value}
+								simulations={simulations}
 							/>
 							{chart && (
 								<Chart
@@ -100,13 +107,14 @@ export default function Data(props) {
 							keywords={keywords}
 						/>
 					</Section>
-					{/* <Section>
-				<Section.Title>Nos GEStes Climat en chiffres</Section.Title>
-				<Tile.Wrapper>
-					<NumSimulations />
-					<NumForks />
-				</Tile.Wrapper>
-			</Section> */}
+					<Section>
+						<Section.Title>La voiture en chiffres</Section.Title>
+						<KmFigures
+							kmhelp={kmhelp?.nb_visits}
+							simulationsfromhelp={simulationsfromhelp?.nb_visits}
+							ridesnumber={ridesnumber?.nb_events}
+						/>
+					</Section>
 				</>
 			) : (
 				<div>Loading</div>

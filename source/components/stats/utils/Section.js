@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Section = styled.section`
-	margin: 0 auto 5.5rem;
+	margin: 0 auto 1rem;
 	font-family: 'Marianne', sans-serif;
 `
 Section.TopTitle = styled.h1`

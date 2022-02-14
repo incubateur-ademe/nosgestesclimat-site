@@ -30,9 +30,9 @@ export const useChart = ({ chartPeriod, chartDate }) =>
 		}
 	)
 
-export const useTotalNgcSimulations = () =>
+export const useSimulationsTerminees = () =>
 	useQuery(
-		['totalNgcSimulations'],
+		['SimulationsTerminees'],
 		() =>
 			axios
 				.get(
@@ -124,4 +124,55 @@ export const useAllTime = () =>
 				data.value += base
 				return data
 			})
+	)
+
+const kmDate = '2022-02-01,today'
+
+export const useKmHelp = () =>
+	useQuery(
+		['KmHelp'],
+
+		() =>
+			axios
+				.get(
+					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`
+				)
+				.then((res) =>
+					res.data.find((action) => action.label === 'Click aide à la saisie')
+				),
+		{
+			keepPreviousData: true,
+		}
+	)
+
+export const useSimulationsfromKmHelp = () =>
+	useQuery(
+		['SimulationsTermineesfromKmHelp'],
+		() =>
+			axios
+				.get(
+					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`
+				)
+				.then((res) =>
+					res.data.find((action) => action.label === 'A terminé la simulation')
+				),
+		{
+			keepPreviousData: true,
+		}
+	)
+
+export const useRidesNumber = () =>
+	useQuery(
+		'ridesNumber',
+		() =>
+			axios
+				.get(
+					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`
+				)
+				.then((res) =>
+					res.data.find((action) => action.label === 'Ajout trajet km voiture')
+				),
+		{
+			keepPreviousData: true,
+		}
 	)
