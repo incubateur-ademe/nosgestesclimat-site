@@ -197,7 +197,12 @@ export default function Conversation({
 				}
 			`}
 		>
-			<div style={{ outline: 'none' }}>
+			<form
+				style={{ outline: 'none' }}
+				onSubmit={(e) => {
+					e.preventDefault()
+				}}
+			>
 				{orderByCategories && questionCategory && (
 					<CategoryVisualisation questionCategory={questionCategory} />
 				)}
@@ -258,7 +263,7 @@ export default function Conversation({
 					)}
 				</div>
 				<Notifications currentQuestion={currentQuestion} />
-			</div>
+			</form>
 		</section>
 	)
 }
