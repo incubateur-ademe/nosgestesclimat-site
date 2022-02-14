@@ -200,7 +200,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 									</th>
 								</tr>
 							</thead>
-							{sum ? (
+							{sum != null && (
 								<tbody>
 									{trajets.map((trajet) => (
 										<Fragment>
@@ -223,57 +223,36 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 											)}
 										</Fragment>
 									))}
-									<td colspan="6">
-										<span
-											css={`
-												display: flex;
-												justify-content: right;
-											`}
-										>
-											Mon total :{' '}
-											<strong>
-												&nbsp;{sum.toLocaleString('fr-FR')} km&nbsp;
-											</strong>{' '}
-											(co-voiturage pris en compte)
-										</span>
-									</td>
-								</tbody>
-							) : (
-								<tbody>
-									<td colspan="6">
-										<div
-											css={`
-												display: flex;
-												justify-content: center;
-											`}
-										>
-											<MouvingArrow />
-											&nbsp; C'est un exemple &nbsp;
-											<MouvingArrow />
-										</div>
-									</td>
-									<tr
-										css={`
-											opacity: 0.6;
-											background-color: #e9f1ff;
-										`}
-									>
-										<td>Loisirs</td>
-										<td>Entrainement</td>
-										<td>10</td>
-										<td>1 fois par semaine</td>
-										<td>1.5</td>
-										<td
-											css={`
-												> button {
-													padding: 0.4rem;
-												}
-											`}
-										></td>
-									</tr>
+									{sum > 0 && (
+										<td colspan="6">
+											<span
+												css={`
+													display: flex;
+													justify-content: right;
+												`}
+											>
+												Mon total :{' '}
+												<strong>
+													&nbsp;{sum.toLocaleString('fr-FR')} km&nbsp;
+												</strong>{' '}
+												(co-voiturage pris en compte)
+											</span>
+										</td>
+									)}
 								</tbody>
 							)}
 						</TableTrajets>
+						{!sum && (
+							<small
+								css={`
+									text-align: center;
+									font-style: italic;
+									display: block;
+								`}
+							>
+								Vos trajets apparaîtront dans ce tableau.{' '}
+							</small>
+						)}
 					</form>
 				</div>
 			</div>
