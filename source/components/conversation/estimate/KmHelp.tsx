@@ -175,7 +175,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 						padding: 0.5rem 0.5rem 0rem 0.5rem;
 					`}
 				>
-					<form onSubmit={handleEditFormSubmit}>
+					<form id="tableTrajets" onSubmit={handleEditFormSubmit}>
 						<TableTrajets>
 							<thead>
 								<tr>
@@ -269,20 +269,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 													padding: 0.4rem;
 												}
 											`}
-										>
-											<button>
-												<img
-													src={openmojiURL('modifier')}
-													css="width: 1.7rem"
-												/>
-											</button>
-											<button>
-												<img
-													src={openmojiURL('supprimer')}
-													css="width: 1.7rem"
-												/>
-											</button>
-										</td>
+										></td>
 									</tr>
 								</tbody>
 							)}
