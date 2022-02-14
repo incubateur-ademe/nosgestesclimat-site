@@ -153,7 +153,6 @@ export default function Conversation({
 	}
 
 	useKeypress('Escape', setDefault, [currentQuestion])
-	useKeypress('Enter', () => submit('enter'), [currentQuestion])
 
 	if (!currentQuestion)
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
