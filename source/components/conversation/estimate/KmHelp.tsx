@@ -210,6 +210,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 													setEditFormData={setEditFormData}
 													setEditTrajetId={setEditTrajetId}
 													openmojiURL={openmojiURL}
+													handleEditFormSubmit={handleEditFormSubmit}
 												/>
 											) : (
 												<ReadOnlyRow

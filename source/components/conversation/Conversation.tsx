@@ -198,6 +198,7 @@ export default function Conversation({
 			`}
 		>
 			<form
+				id="step"
 				style={{ outline: 'none' }}
 				onSubmit={(e) => {
 					e.preventDefault()

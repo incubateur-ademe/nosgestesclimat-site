@@ -1,11 +1,11 @@
-import React from 'react'
-import { motifList, freqList } from './dataHelp'
 import { range } from 'ramda'
+import { freqList, motifList } from './dataHelp'
 
 export default function EditableRow({
 	editFormData,
 	setEditFormData,
 	openmojiURL,
+	handleEditFormSubmit,
 }) {
 	const handleEditFormChange = (event) => {
 		event.preventDefault()
@@ -109,7 +109,13 @@ export default function EditableRow({
 					}
 				`}
 			>
-				<button type="submit">
+				<button
+					type="submit"
+					form="tableTrajets"
+					onClick={(e) => {
+						handleEditFormSubmit(e)
+					}}
+				>
 					<img src={openmojiURL('sauvegarder')} css="width: 1.7rem" />
 				</button>
 			</td>

@@ -34,7 +34,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 	}
 	return (
 		<form
-			onSubmit={handleAddFormSubmit}
+			id="kmForm"
 			css={`
 				padding: 0rem 0.5rem 0rem 0.5rem;
 			`}
@@ -175,14 +175,14 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 				`}
 			>
 				<button
+					form="kmForm"
 					className="ui__ plain small button"
 					css="max-height: 2rem"
-					type="submit"
-					onClick={tracker.push([
-						'trackEvent',
-						'NGC',
-						'Ajout trajet km voiture',
-					])}
+					type="button"
+					onClick={(e) => {
+						handleAddFormSubmit(e)
+						tracker.push(['trackEvent', 'NGC', 'Ajout trajet km voiture'])
+					}}
 				>
 					Ajouter
 				</button>
