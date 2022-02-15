@@ -22,6 +22,7 @@ export default ({ dottedName }) => {
 	const config = {
 		objectifs: [dottedName],
 		situation: { ...(configSet?.situation || {}) },
+		questions: { 'liste noire': ['transport . voiture . aide km'] },
 	}
 
 	const engine = useContext(EngineContext)
