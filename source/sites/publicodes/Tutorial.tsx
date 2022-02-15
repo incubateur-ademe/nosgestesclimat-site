@@ -39,7 +39,7 @@ export default ({}) => {
 		},
 		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
-	useKeypress('Escape', () => skip('testIntro'), [])
+	useKeypress('Escape', false, () => skip('testIntro'), 'keyup', [])
 
 	const Component = slides[index]
 

@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import Worker from 'worker-loader!./SearchBar.worker.js'
-import RuleLink from './RuleLink'
-import './SearchBar.css'
-import { EngineContext, useEngine } from './utils/EngineContext'
-import { utils } from 'publicodes'
+import { goToQuestion } from 'Actions/actions'
 import highlightMatches from 'Components/highlightMatches'
+import { useEngine } from 'Components/utils/EngineContext'
+import React, { useEffect, useMemo, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import Worker from 'worker-loader!./QuestionFinder.worker.ts'
+import emoji from '../emoji'
+import useKeypress from '../utils/useKeyPress'
 
 const worker = new Worker()
 
@@ -25,8 +26,9 @@ type Matches = Array<{
 	indices: Array<[number, number]>
 }>
 
-export default function SearchBar({
+export default function QuestionFinder({
 	showListByDefault = false,
+	close,
 }: SearchBarProps) {
 	const rules = useEngine().getParsedRules()
 	const [input, setInput] = useState('')
@@ -41,16 +43,19 @@ export default function SearchBar({
 	const searchIndex: Array<SearchItem> = useMemo(
 		() =>
 			Object.values(rules)
-				.filter(utils.ruleWithDedicatedDocumentationPage)
+				.filter((rule) => rule.rawNode.question)
 				.map((rule) => ({
 					title:
 						rule.title +
 						(rule.rawNode.acronyme ? ` (${rule.rawNode.acronyme})` : ''),
 					dottedName: rule.dottedName,
 					espace: rule.dottedName.split(' . ').reverse(),
+					question: rule.rawNode.question,
 				})),
 		[rules]
 	)
+
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		worker.postMessage({
@@ -64,12 +69,36 @@ export default function SearchBar({
 	}, [searchIndex, setResults])
 
 	return (
-		<>
+		<div
+			className="ui__ card box"
+			css={`
+				max-height: 20rem;
+				max-width: 100% !important;
+				overflow: scroll;
+				position: relative;
+			`}
+		>
+			<button
+				css={`
+					position: absolute;
+					top: 0;
+					right: 0;
+					padding: 0;
+					img {
+						width: 1.2rem;
+					}
+				`}
+				onClick={close}
+			>
+				<img src={`/images/274C.svg`} />
+			</button>
 			<input
 				type="search"
+				autoFocus
 				className="ui__"
 				value={input}
-				placeholder={i18n.t('Entrez des mots clefs ici')}
+				css="margin: 0 !important"
+				placeholder={i18n.t('Naviguez vers une question précise')}
 				onChange={(e) => {
 					const input = e.target.value
 					if (input.length > 0) worker.postMessage({ input })
@@ -106,40 +135,43 @@ export default function SearchBar({
 						.slice(0, showListByDefault ? 100 : 6)
 						.map(({ item, matches }) => (
 							<li key={item.dottedName}>
-								<RuleLink
-									dottedName={item.dottedName}
-									style={{
-										width: '100%',
-										textDecoration: 'none',
-										lineHeight: '1.5rem',
+								<button
+									onClick={() => {
+										dispatch(goToQuestion(item.dottedName))
+										close()
 									}}
 								>
-									<small>
-										{item.espace
-											.slice(1)
-											.reverse()
-											.map((name) => (
-												<span key={name}>
-													{highlightMatches(
-														name,
-														matches.filter(
-															(m) => m.key === 'espace' && m.value === name
-														)
-													)}{' '}
-													›{' '}
-												</span>
-											))}
-										<br />
-									</small>
-									{highlightMatches(
-										item.title,
-										matches.filter((m) => m.key === 'title')
-									)}
-								</RuleLink>
+									<div>
+										<small>
+											{item.espace
+												.slice(1)
+												.reverse()
+												.map((name) => (
+													<span key={name}>
+														{highlightMatches(
+															name,
+															matches.filter(
+																(m) => m.key === 'espace' && m.value === name
+															)
+														)}{' '}
+														›{' '}
+													</span>
+												))}
+											{highlightMatches(
+												item.title,
+												matches.filter((m) => m.key === 'title')
+											)}
+										</small>
+									</div>
+									<p>
+										{item.question.slice(0, 100)}
+										{item.question.length > 100 ? '...' : ''}
+									</p>
+								</button>
 							</li>
 						))}
 				</ul>
 			)}
-		</>
+		</div>
 	)
 }

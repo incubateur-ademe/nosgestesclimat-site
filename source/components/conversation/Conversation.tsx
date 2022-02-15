@@ -28,6 +28,8 @@ import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
 import SimulationEnding from './SimulationEnding'
+import QuestionFinder from './QuestionFinder'
+import emoji from '../emoji'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -70,6 +72,7 @@ export default function Conversation({
 			: situation[currentQuestion] != null
 
 	const [dismissedRespirations, dismissRespiration] = useState([])
+	const [finder, setFinder] = useState(false)
 
 	useEffect(() => {
 		if (previousAnswers.length === 1) {
@@ -152,7 +155,17 @@ export default function Conversation({
 		dispatch(updateSituation(currentQuestion, value))
 	}
 
-	useKeypress('Escape', setDefault, [currentQuestion])
+	useKeypress('Escape', false, setDefault, 'keyup', [currentQuestion])
+	useKeypress(
+		'k',
+		true,
+		(e) => {
+			e.preventDefault()
+			setFinder((finder) => !finder)
+		},
+		'keydown',
+		[]
+	)
 
 	if (!currentQuestion)
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
@@ -195,8 +208,48 @@ export default function Conversation({
 				@media (max-width: 800px) {
 					padding: 0.4rem 0 0.4rem;
 				}
+				position: relative;
+				padding-top: 1.2rem;
 			`}
 		>
+			{finder ? (
+				<QuestionFinder close={() => setFinder(false)} />
+			) : (
+				<div
+					css={`
+						position: absolute;
+						top: 0;
+						right: 0;
+						line-height: 1rem;
+						button {
+							padding: 0;
+							display: flex;
+							align-items: center;
+							color: var(--color);
+							opacity: 0.4;
+						}
+						img {
+							width: 1.2rem;
+						}
+						span {
+							display: none;
+							font-weight: bold;
+							font-size: 70%;
+							margin-right: 0.3rem;
+						}
+						@media (min-width: 800px) {
+							span {
+								display: inline;
+							}
+						}
+					`}
+				>
+					<button onClick={() => setFinder(!finder)}>
+						<img src={`/images/1F50D.svg`} />
+						<span>Ctrl-K</span>
+					</button>
+				</div>
+			)}
 			<form
 				id="step"
 				style={{ outline: 'none' }}
