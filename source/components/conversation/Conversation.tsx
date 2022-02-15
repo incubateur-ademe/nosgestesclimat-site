@@ -230,6 +230,7 @@ export default function Conversation({
 						}
 						img {
 							width: 1.2rem;
+							padding-top: 0.1rem;
 						}
 						span {
 							display: none;
@@ -263,9 +264,7 @@ export default function Conversation({
 				<div className="step">
 					<h3
 						css={`
-							@media (max-width: 800px) {
-								margin: 0.4rem 0;
-							}
+							margin: 0.4rem 0;
 						`}
 					>
 						{questionText}{' '}
