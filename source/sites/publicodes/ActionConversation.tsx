@@ -7,6 +7,7 @@ import React, { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { parentName } from '../../components/publicodesUtils'
 import { EngineContext } from '../../components/utils/EngineContext'
+import { questionConfig } from './questionConfig'
 
 const { decodeRuleName, encodeRuleName } = utils
 
@@ -22,7 +23,7 @@ export default ({ dottedName }) => {
 	const config = {
 		objectifs: [dottedName],
 		situation: { ...(configSet?.situation || {}) },
-		questions: { 'liste noire': ['transport . voiture . aide km'] },
+		questions: questionConfig,
 	}
 
 	const engine = useContext(EngineContext)

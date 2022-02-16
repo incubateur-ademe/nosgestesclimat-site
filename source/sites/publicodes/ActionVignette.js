@@ -18,6 +18,7 @@ import {
 } from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
 import { TrackerContext } from '../../components/utils/withTracker'
+import { questionConfig } from './questionConfig'
 
 const { encodeRuleName, decodeRuleName } = utils
 
@@ -65,13 +66,9 @@ export const ActionListCard = ({
 		noFormula = flatRule.formule == null,
 		disabled = disabledAction(flatRule, nodeValue)
 
-	const config = {
-		questions: { 'liste noire': ['transport . voiture . aide km'] },
-	}
-
 	const remainingQuestions = getNextQuestions(
 			[evaluation.missingVariables],
-			config.questions,
+			questionConfig,
 			answeredQuestions,
 			situation,
 			engine
