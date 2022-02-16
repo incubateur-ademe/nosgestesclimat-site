@@ -245,7 +245,10 @@ export default function Conversation({
 						}
 					`}
 				>
-					<button onClick={() => setFinder(!finder)}>
+					<button
+						onClick={() => setFinder(!finder)}
+						title="Recherche rapide de questions dans le formulaire"
+					>
 						<img src={`/images/1F50D.svg`} />
 						<span>Ctrl-K</span>
 					</button>
