@@ -19,6 +19,7 @@ import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
 import CarbonImpact from './CarbonImpact'
 import Chart from './chart/index.js'
+import { questionConfig } from './questionConfig'
 
 const eqValues = compose(isEmpty, symmetricDifference)
 
@@ -32,7 +33,7 @@ const Simulateur = (props) => {
 		dispatch = useDispatch(),
 		config = {
 			objectifs: [decoded],
-			questions: { 'liste noire': ['transport . voiture . aide km'] },
+			questions: questionConfig,
 		},
 		configSet = useSelector((state) => state.simulation?.config),
 		categories = decoded === 'bilan' && extractCategories(rules, engine)

@@ -8,13 +8,17 @@ import { setActionChoice } from '../../actions/actions'
 import { correctValue } from '../../components/publicodesUtils'
 import Stamp from '../../components/Stamp'
 import { useEngine } from '../../components/utils/EngineContext'
-import { getNextQuestions } from '../../components/utils/useNextQuestion'
+import {
+	getNextQuestions,
+	useNextQuestions,
+} from '../../components/utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
 import { TrackerContext } from '../../components/utils/withTracker'
+import { questionConfig } from './questionConfig'
 
 const { encodeRuleName, decodeRuleName } = utils
 
@@ -64,7 +68,7 @@ export const ActionListCard = ({
 
 	const remainingQuestions = getNextQuestions(
 			[evaluation.missingVariables],
-			{},
+			questionConfig,
 			answeredQuestions,
 			situation,
 			engine
