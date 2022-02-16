@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ASTNode } from 'publicodes'
 import { References } from 'publicodes-react'
@@ -6,9 +7,7 @@ import { Rule } from 'publicodes/dist/types/rule'
 import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Explicable } from './Explicable'
 import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
-import animate from 'Components/ui/animate'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -190,6 +189,7 @@ export const RadioLabel = (props: RadioLabelProps) => {
 				<>
 					<button
 						className="ui__ link-button"
+						type="button"
 						onClick={() => setIsOpen(!isOpen)}
 						css={`
 							margin-left: 0.3rem !important;
