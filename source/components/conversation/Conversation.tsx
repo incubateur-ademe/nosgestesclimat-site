@@ -291,6 +291,7 @@ export default function Conversation({
 						<>
 							<button
 								onClick={goToPrevious}
+								type="button"
 								className="ui__ simple small push-left button"
 							>
 								← <Trans>Précédent</Trans>
@@ -309,6 +310,7 @@ export default function Conversation({
 					) : (
 						<button
 							onClick={setDefault}
+							type="button"
 							className="ui__ simple small push-right button"
 						>
 							<Trans>Je ne sais pas</Trans> →
