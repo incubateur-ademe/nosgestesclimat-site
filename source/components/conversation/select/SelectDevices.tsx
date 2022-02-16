@@ -5,6 +5,7 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { Mosaic } from './UI'
+import Stamp from '../../Stamp'
 
 export default function SelectDevices({
 	name,
@@ -37,14 +38,22 @@ export default function SelectDevices({
 									// user tests showed us it is now well received
 									defaultsToFalse
 									? 'non'
-									: question.rawNode['par défaut']
+									: question.rawNode['par défaut'],
+							isNotActive = question.rawNode['inactif']
 
 						return (
 							<li
-								css="padding: 2rem"
-								className={`ui__ card interactive light-border ${
-									value === 'oui' ? `selected` : ''
-								}`}
+								css={`
+									padding: 2rem;
+									position: relative;
+								`}
+								className={
+									isNotActive
+										? `ui__ card light-border inactive`
+										: `ui__ card interactive light-border ${
+												value === 'oui' ? `selected` : ''
+										  }`
+								}
 								key={name}
 								onMouseDown={() =>
 									dispatch(
@@ -58,14 +67,34 @@ export default function SelectDevices({
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
 								<h4>{title}</h4>
 								{false && description && <p>{description.split('\n')[0]}</p>}
-								<div css={'font-size: 1.8rem'}>
-									<Checkbox
-										name={name}
-										id={name}
-										checked={value === 'oui'}
-										readOnly
-									/>
-								</div>
+								{!isNotActive && (
+									<div css={'font-size: 1.8rem'}>
+										<Checkbox
+											name={name}
+											id={name}
+											checked={value === 'oui'}
+											readOnly
+										/>
+									</div>
+								)}
+								{isNotActive && (
+									<Stamp
+										css={`
+											z-index: 1;
+											max-width: 8rem;
+											text-align: center;
+											border: 2px solid var(--darkColor);
+											color: var(--darkColor);
+											font-size: 90%;
+											@media (min-width: 800px) {
+												left: 3rem;
+												top: 4rem;
+											}
+										`}
+									>
+										Bientôt disponible !
+									</Stamp>
+								)}
 							</li>
 						)
 					}
