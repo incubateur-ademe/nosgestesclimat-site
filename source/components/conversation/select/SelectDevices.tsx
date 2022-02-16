@@ -24,7 +24,7 @@ export default function SelectDevices({
 				{selectedRules.map(
 					([
 						{
-							name,
+							dottedName: name,
 							title,
 							rawNode: { description, icônes },
 						},
@@ -55,14 +55,6 @@ export default function SelectDevices({
 										  }`
 								}
 								key={name}
-								onMouseDown={() =>
-									dispatch(
-										updateSituation(
-											question.dottedName,
-											value == 'oui' ? 'non' : 'oui'
-										)
-									)
-								}
 							>
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
 								<h4>{title}</h4>
@@ -73,7 +65,14 @@ export default function SelectDevices({
 											name={name}
 											id={name}
 											checked={value === 'oui'}
-											readOnly
+											onChange={() =>
+												dispatch(
+													updateSituation(
+														question.dottedName,
+														value == 'oui' ? 'non' : 'oui'
+													)
+												)
+											}
 										/>
 									</div>
 								)}

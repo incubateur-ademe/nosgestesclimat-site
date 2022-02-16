@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import React, { useEffect, useRef } from 'react'
 import emoji from 'react-easy-emoji'
+import useKeypress from '../utils/useKeyPress'
 
 // Naive implementation - in reality would want to attach
 // a window or resize listener. Also use state/layoutEffect instead of ref/effect
@@ -40,6 +41,8 @@ const sidebar = {
 export default ({ dismiss, questionCategory }) => {
 	const containerRef = useRef(null)
 	const { height, width } = useDimensions(containerRef)
+
+	useKeypress('Enter', false, dismiss, 'keyup', [])
 
 	return (
 		<motion.section
