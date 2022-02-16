@@ -8,7 +8,10 @@ import { setActionChoice } from '../../actions/actions'
 import { correctValue } from '../../components/publicodesUtils'
 import Stamp from '../../components/Stamp'
 import { useEngine } from '../../components/utils/EngineContext'
-import { getNextQuestions } from '../../components/utils/useNextQuestion'
+import {
+	getNextQuestions,
+	useNextQuestions,
+} from '../../components/utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -62,9 +65,13 @@ export const ActionListCard = ({
 		noFormula = flatRule.formule == null,
 		disabled = disabledAction(flatRule, nodeValue)
 
+	const config = {
+		questions: { 'liste noire': ['transport . voiture . aide km'] },
+	}
+
 	const remainingQuestions = getNextQuestions(
 			[evaluation.missingVariables],
-			{},
+			config.questions,
 			answeredQuestions,
 			situation,
 			engine
