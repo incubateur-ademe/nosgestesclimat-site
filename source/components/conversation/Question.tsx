@@ -1,4 +1,5 @@
 import classnames from 'classnames'
+import animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ASTNode } from 'publicodes'
 import { References } from 'publicodes-react'
@@ -6,9 +7,7 @@ import { Rule } from 'publicodes/dist/types/rule'
 import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Explicable } from './Explicable'
 import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
-import animate from 'Components/ui/animate'
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -69,33 +68,34 @@ export default function Question({
 	}, [currentSelection])
 
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
-		return choices.map(({ value, label }) => (
-			<span
-				key={value}
-				css={`
-					:not(:first-child) {
-						margin-left: 0.6rem;
-					}
-					input {
-						width: 0;
-						opacity: 0;
-						height: 0;
-						position: absolute;
-					}
-				`}
-			>
-				<RadioLabel
-					{...{
-						value,
-						label,
-						currentSelection,
-						onSubmit: handleSubmit,
-						name: questionDottedName,
-						onChange: handleChange,
-					}}
-				/>
-			</span>
-		))
+		return (
+			<div className="ui__ radio">
+				{choices.map(({ value, label }) => (
+					<span
+						key={value}
+						css={`
+							input {
+								width: 0;
+								opacity: 0;
+								height: 0;
+								position: absolute;
+							}
+						`}
+					>
+						<RadioLabel
+							{...{
+								value,
+								label,
+								currentSelection,
+								onSubmit: handleSubmit,
+								name: questionDottedName,
+								onChange: handleChange,
+							}}
+						/>
+					</span>
+				))}
+			</div>
+		)
 	}
 	const renderChildren = (choices: Choice) => {
 		// seront stockées ainsi dans le state :
@@ -189,6 +189,7 @@ export const RadioLabel = (props: RadioLabelProps) => {
 				<>
 					<button
 						className="ui__ link-button"
+						type="button"
 						onClick={() => setIsOpen(!isOpen)}
 						css={`
 							margin-left: 0.3rem !important;
@@ -262,7 +263,9 @@ function RadioLabelContent({
 			/>
 			<span>
 				{icônes && <>{emoji(icônes)}&nbsp;</>}
-				<Trans>{label}</Trans>
+				<span className="radioText">
+					<Trans>{label}</Trans>
+				</span>
 			</span>
 		</label>
 	)

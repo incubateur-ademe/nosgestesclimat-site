@@ -45,6 +45,7 @@ export default function InputSuggestions({
 				return (
 					<button
 						className="ui__ link-button"
+						type="button"
 						key={text}
 						css={`
 							margin: 0.2rem 0.4rem !important;

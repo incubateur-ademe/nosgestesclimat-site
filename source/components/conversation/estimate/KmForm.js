@@ -34,7 +34,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 	}
 	return (
 		<form
-			onSubmit={handleAddFormSubmit}
+			id="kmForm"
 			css={`
 				padding: 0rem 0.5rem 0rem 0.5rem;
 			`}
@@ -119,22 +119,30 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 							placeholder="x"
 						></input>
 						<span css="padding-top: 0.25rem"> fois par </span>
-						<WrappedSelect
-							className="ui__"
+						<span
 							css={`
-								max-width: 10rem !important;
+								:focus-within {
+									outline: 1px solid var(--color);
+								}
 							`}
-							name="periode"
-							onChange={handleAddFormChange}
-							required
 						>
-							<option value="">période</option>
-							{freqList.map((f) => (
-								<option key={f.id} value={f.name}>
-									{f.name}
-								</option>
-							))}
-						</WrappedSelect>
+							<WrappedSelect
+								className="ui__"
+								css={`
+									max-width: 10rem !important;
+								`}
+								name="periode"
+								onChange={handleAddFormChange}
+								required
+							>
+								<option value="">période</option>
+								{freqList.map((f) => (
+									<option key={f.id} value={f.name}>
+										{f.name}
+									</option>
+								))}
+							</WrappedSelect>
+						</span>
 						<SelectSuffix>
 							<img src={openmojiURL('calendrier')} css="width: 1.5rem;" />
 						</SelectSuffix>
@@ -167,14 +175,14 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 				`}
 			>
 				<button
+					form="kmForm"
 					className="ui__ plain small button"
 					css="max-height: 2rem"
-					type="submit"
-					onClick={tracker.push([
-						'trackEvent',
-						'NGC',
-						'Ajout trajet km voiture',
-					])}
+					type="button"
+					onClick={(e) => {
+						handleAddFormSubmit(e)
+						tracker.push(['trackEvent', 'NGC', 'Ajout trajet km voiture'])
+					}}
 				>
 					Ajouter
 				</button>
@@ -195,7 +203,7 @@ const InputWrapper = styled.span`
 	height: 2.2rem;
 	border: 1px solid var(--lighterTextColor);
 	border-radius: 0.3rem;
-	&:focus {
+	:focus-within {
 		outline: 1px solid var(--color);
 	}
 `
@@ -223,8 +231,8 @@ const SelectWrapper = styled.span`
 	height: 2.2rem;
 	border: 1px solid var(--lighterTextColor);
 	border-radius: 0.3rem;
-	&:focus {
-		box-shadow: 0px 0.25rem 0px 0px solid var(--color);
+	:focus-within {
+		outline: 1px solid var(--color);
 	}
 `
 

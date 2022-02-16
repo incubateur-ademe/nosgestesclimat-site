@@ -2,7 +2,6 @@ import Conversation, {
 	ConversationProps,
 } from 'Components/conversation/Conversation'
 import PageFeedback from 'Components/Feedback/PageFeedback'
-import SearchButton from 'Components/SearchButton'
 import * as animate from 'Components/ui/animate'
 import React from 'react'
 import { Trans } from 'react-i18next'
@@ -31,7 +30,6 @@ export default function Simulation({
 	const Animation = animate[animation]
 	return (
 		<>
-			<SearchButton invisibleButton />
 			<Animation delay={0.3}>
 				{results}
 				<Questions

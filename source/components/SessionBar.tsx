@@ -27,14 +27,15 @@ export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
-const MenuButton = styled.button`
+const MenuButton = styled.div`
 	margin: 0 0.2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	font-size: 80%;
+	font-size: 110% !important;
 	color: var(--darkColor);
+	padding: 0 0.4rem !important;
 	@media (min-width: 800px) {
 		flex-direction: row;
 		justify-content: start;
