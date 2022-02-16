@@ -45,6 +45,10 @@ export default function SelectDevices({
 							<li
 								css={`
 									padding: 2rem;
+
+									:focus-within {
+										outline: 3px solid var(--lightColor);
+									}
 									position: relative;
 								`}
 								className={

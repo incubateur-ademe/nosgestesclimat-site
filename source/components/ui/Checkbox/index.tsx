@@ -11,8 +11,8 @@ export default function Checkbox(
 				type="checkbox"
 				className="ui__ checkbox-input"
 				css={`
-					position: absolute;
-					width: 1px;
+					position: absolute !important;
+					width: 1px !important;
 					height: 1px;
 					padding: 0px;
 					margin: -1px;
@@ -25,7 +25,6 @@ export default function Checkbox(
 			/>
 			<label
 				htmlFor={props.id}
-				tabIndex={0}
 				style={{ display: 'flex', alignItems: 'center' }}
 			>
 				<div className="ui__ checkbox">
