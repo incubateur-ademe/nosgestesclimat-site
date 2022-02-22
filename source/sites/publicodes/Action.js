@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom'
 import { parentName } from '../../components/publicodesUtils'
 import { EngineContext } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
+import { questionConfig } from './questionConfig'
 
 const { decodeRuleName, encodeRuleName } = utils
 
@@ -30,6 +31,7 @@ export default ({}) => {
 	const config = {
 		objectifs: [dottedName],
 		situation: { ...(configSet?.situation || {}) },
+		questions: questionConfig,
 	}
 
 	const engine = useContext(EngineContext)
