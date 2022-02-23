@@ -5,6 +5,8 @@ import {
 	useChart,
 	useTotal,
 	useSimulationsTerminees,
+	useSimulationsDuration,
+	useSimulationAvgDuration,
 	useWebsites,
 	useOldWebsites,
 	useSocials,
@@ -21,6 +23,8 @@ import Section from './utils/Section'
 import Evolution from './content/Evolution'
 import Sources from './content/Sources'
 import Chart from './content/Chart'
+import DurationChart from './content/DurationChart'
+import DurationFigures from './content/DurationFigures'
 import KmFigures from './content/KmFigures'
 // import Loader from './applications/Loader'
 
@@ -43,6 +47,8 @@ export default function Data(props) {
 	})
 	const { data: total } = useTotal()
 	const { data: simulations } = useSimulationsTerminees()
+	const { data: duration } = useSimulationsDuration()
+	const { data: avgduration } = useSimulationAvgDuration()
 	const { data: websites } = useWebsites()
 	const { data: oldWebsites } = useOldWebsites()
 	const { data: socials } = useSocials()
@@ -54,18 +60,6 @@ export default function Data(props) {
 	const { data: kmhelp } = useKmHelp()
 	const { data: simulationsfromhelp } = useSimulationsfromKmHelp()
 	const { data: ridesnumber } = useRidesNumber()
-
-	// console.log({
-	// 	total,
-	// 	websites,
-	// 	oldWebsites,
-	// 	socials,
-	// 	keywords,
-	// 	period,
-	// 	reference,
-	// 	pages,
-	// 	allTime,
-	// })
 
 	return (
 		<div>
@@ -106,6 +100,13 @@ export default function Data(props) {
 							socials={socials}
 							keywords={keywords}
 						/>
+					</Section>
+					<Section>
+						<Section.Title>Durée des visites</Section.Title>
+						<Wrapper>
+							<DurationFigures avgduration={avgduration} />
+							{duration && <DurationChart duration={duration} />}
+						</Wrapper>
 					</Section>
 					<Section>
 						<Section.Title>La voiture en chiffres</Section.Title>
