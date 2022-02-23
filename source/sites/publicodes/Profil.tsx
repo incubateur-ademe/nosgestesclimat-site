@@ -40,7 +40,7 @@ export default ({}) => {
 		<div>
 			<Meta
 				title="Mon profil"
-				title="Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat."
+				description="Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat."
 			/>
 			<Title>Mon profil</Title>
 			<div className="ui__ container" css="padding-top: 1rem">

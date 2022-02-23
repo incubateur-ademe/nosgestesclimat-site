@@ -62,7 +62,7 @@ export default ({}) => {
 				margin: 1rem auto;
 			`}
 		>
-			<Meta title={title} description={description} />
+			<Meta title={'Action : ' + title} description={description} />
 			<ScrollToTop />
 			<Link to="/actions/liste">
 				<button className="ui__ button simple small ">

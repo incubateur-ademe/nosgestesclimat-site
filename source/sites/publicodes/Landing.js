@@ -10,6 +10,7 @@ import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
 import { useProfileData } from './Profil'
 import animate from 'Components/ui/animate'
+import Meta from '../../components/utils/Meta'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
@@ -38,6 +39,10 @@ export default () => {
 				}
 			`}
 		>
+			<Meta
+				title="Connaissez-vous votre empreinte climat ?"
+				description="Faites le test, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire."
+			/>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
 			<Illustration
 				css={`
