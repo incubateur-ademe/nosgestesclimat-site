@@ -113,7 +113,11 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				onHandleClick={() => {
 					setIsOpen(true)
 					setFinalValue(Math.round(+sum))
-					tracker.push(['trackEvent', 'NGC', 'Click aide à la saisie'])
+					tracker.push([
+						'trackEvent',
+						'Aide saisie km',
+						'Ouvre aide à la saisie km voiture',
+					])
 				}}
 			/>
 		</div>
@@ -158,7 +162,14 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				>
 					<button
 						className="ui__ simple small button"
-						onClick={() => setIsOpen(false)}
+						onClick={() => {
+							setIsOpen(false)
+							tracker.push([
+								'trackEvent',
+								'Aide saisie km',
+								'Ferme aide à la saisie km voiture',
+							])
+						}}
 					>
 						Fermer
 					</button>
