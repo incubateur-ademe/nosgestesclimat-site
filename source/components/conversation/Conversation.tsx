@@ -32,6 +32,8 @@ import QuestionFinder from './QuestionFinder'
 import emoji from '../emoji'
 import { useQuery } from '../../utils'
 
+import Meta from '../../components/utils/Meta'
+
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 	customEnd?: React.ReactNode
@@ -270,6 +272,12 @@ export default function Conversation({
 						<span>Ctrl-K</span>
 					</button>
 				</div>
+			)}
+			{console.log(questionCategory.title)}
+			{orderByCategories && (
+				<Meta
+					title={rules[objectifs[0]].title + ' - ' + questionCategory.title}
+				/>
 			)}
 			<form
 				id="step"
