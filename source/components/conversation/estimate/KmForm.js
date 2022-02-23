@@ -181,7 +181,11 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 					type="button"
 					onClick={(e) => {
 						handleAddFormSubmit(e)
-						tracker.push(['trackEvent', 'NGC', 'Ajout trajet km voiture'])
+						tracker.push([
+							'trackEvent',
+							'Aide saisie km',
+							'Ajout trajet km voiture',
+						])
 					}}
 				>
 					Ajouter
