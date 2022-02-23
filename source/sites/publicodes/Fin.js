@@ -343,6 +343,7 @@ const ActionButton = ({ text, score }) => {
 				`}
 			>
 				<motion.div
+					aria-hidden="true"
 					animate={{
 						rotate: [0, 15, -15, 0],
 						y: [0, 0, 0, -3, 8, 3],

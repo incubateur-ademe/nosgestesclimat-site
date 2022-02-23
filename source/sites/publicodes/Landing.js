@@ -48,7 +48,6 @@ export default () => {
 						width: 95%;
 					}
 				`}
-				alt="Illustration sur fond mauve d'une scène mélant grande ville, péri-urbain et rural, où on peut voir quelques éléments d'une vie quotidienne, chaque élément étant émetteur d'une certaine empreinte sur le climat."
 			/>
 			<div css="margin: 1rem 0">
 				<div>

@@ -134,7 +134,7 @@ export default function SessionBar({
 			}}
 			css={buttonStyle('simulateur')}
 		>
-			<img src={openmojiURL('test')} css="width: 2rem" />
+			<img src={openmojiURL('test')} css="width: 2rem" aria-hidden="true" />
 			Le test
 		</Button>,
 		<Button
@@ -142,11 +142,11 @@ export default function SessionBar({
 			url="/actions/liste"
 			css={buttonStyle('/actions')}
 		>
-			<img src={actionImg} css="width: 2rem" />
+			<img src={actionImg} css="width: 2rem" aria-hidden="true" />
 			Agir
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
-			<img src={openmojiURL('profile')} css="width: 2rem" />
+			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />
 			Mon profil
 		</Button>,
 		NODE_ENV === 'development' && (
@@ -156,7 +156,11 @@ export default function SessionBar({
 				url="/personas"
 				css={buttonStyle('personas')}
 			>
-				<img src={openmojiURL('personas')} css="width: 2rem" />
+				<img
+					src={openmojiURL('personas')}
+					css="width: 2rem"
+					aria-hidden="true"
+				/>
 				Personas
 			</Button>
 		),
@@ -188,7 +192,7 @@ export default function SessionBar({
 						}
 					`}
 				>
-					<img src={conferenceImg} css="width: 2rem" />
+					<img src={conferenceImg} css="width: 2rem" aria-hidden="true" />
 					Conférence
 				</Button>
 				<div
