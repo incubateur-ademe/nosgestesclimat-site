@@ -21,6 +21,18 @@ export default ({
 		history = useHistory(),
 		query = useQuery()
 
+	const emojiComponent = (
+		<span
+			css={`
+				font-size: 140%;
+				width: 2.3rem;
+				margin-left: -2.3rem;
+			`}
+		>
+			{emoji(icons)}
+		</span>
+	)
+
 	return (
 		<>
 			<div
@@ -32,27 +44,24 @@ export default ({
 				`}
 				title={title}
 			>
-				<button
-					type="button"
-					css={`
-						margin: 0;
-						padding: 0;
-						font-size: 100%;
-					`}
-					onClick={() =>
-						history.push({ pathname, search: '?catégorie=' + dottedName })
-					}
-				>
-					<span
+				{pathname.includes('simulateur/bilan') ? (
+					<button
+						type="button"
+						title={`N'afficher que les questions ` + dottedName}
 						css={`
-							font-size: 140%;
-							width: 2.3rem;
-							margin-left: -2.3rem;
+							margin: 0;
+							padding: 0;
+							font-size: 100%;
 						`}
+						onClick={() =>
+							history.push({ pathname, search: '?catégorie=' + dottedName })
+						}
 					>
-						{emoji(icons)}
-					</span>
-				</button>
+						{emojiComponent}
+					</button>
+				) : (
+					emojiComponent
+				)}
 				<BarContent
 					noText={noText}
 					color={color}
@@ -60,7 +69,6 @@ export default ({
 					shortText={abbreviation}
 					widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
 				/>
-
 				<Value {...{ nodeValue, demoMode, completed, color: valueColor }} />
 			</div>
 		</>
