@@ -13,7 +13,7 @@ import Search from './chart/Search'
 import CustomTooltip from './chart/CustomTooltip'
 
 const Wrapper = styled.div`
-	width: 66.666%;
+	width: 60%;
 	padding-left: 1rem;
 
 	@media screen and (max-width: ${1200}px) {

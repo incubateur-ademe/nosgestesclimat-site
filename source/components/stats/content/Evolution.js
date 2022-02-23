@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 
-const Wrapper = styled.div`
-	width: 33.333%;
+import Tile from '../utils/Tile'
+
+const Wrapper = styled(Tile.Content)`
+	width: 40%;
 	text-align: center;
 	padding-top: 2rem;
+	margin-bottom: 2rem;
 
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;
@@ -14,6 +17,7 @@ const Wrapper = styled.div`
 
 const TopBlock = styled.div`
 	margin-bottom: 2rem;
+	margin-top: 1rem;
 	width: 100%;
 	font-size: 150%;
 	@media screen and (max-width: ${1200}px) {
@@ -23,7 +27,6 @@ const TopBlock = styled.div`
 	}
 `
 const BlockWrapper = styled.div`
-	margin-bottom: 2rem;
 	width: 100%;
 
 	@media screen and (max-width: ${1200}px) {
@@ -33,8 +36,6 @@ const BlockWrapper = styled.div`
 `
 
 const Block = styled.div`
-	margin-bottom: 2rem;
-
 	@media screen and (max-width: ${1200}px) {
 		width: 50%;
 	}
