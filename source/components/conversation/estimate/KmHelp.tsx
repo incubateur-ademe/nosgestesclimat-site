@@ -74,7 +74,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		dispatch(updateSituation('transport . voiture . aide km', 'oui'))
 		if (rawSum > 0 && sum > 0)
 			dispatch(
-				updateSituation('transport . voiture . ratio voyageurs', rawSum / sum)
+				updateSituation('transport . voiture . ratio voyageurs', covoitAvg)
 			)
 	}, [sum])
 
