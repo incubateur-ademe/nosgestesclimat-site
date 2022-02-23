@@ -135,7 +135,7 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 			`}
 		>
 			<Meta
-				title="Nos Gestes Climat"
+				title="Mon empreinte climat"
 				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO2e. Mesure la tienne !`}
 				image={shareImage}
 				url={window.location}
@@ -343,6 +343,7 @@ const ActionButton = ({ text, score }) => {
 				`}
 			>
 				<motion.div
+					aria-hidden="true"
 					animate={{
 						rotate: [0, 15, -15, 0],
 						y: [0, 0, 0, -3, 8, 3],

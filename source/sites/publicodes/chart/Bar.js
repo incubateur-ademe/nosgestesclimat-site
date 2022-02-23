@@ -1,13 +1,8 @@
-import React, {
-	createRef,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-	useState,
-} from 'react'
-import { shadowStyle } from '../styles'
-import Value from './Value'
+import React, { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { useHistory, useLocation } from 'react-router'
+import { useQuery } from '../../../utils'
+import Value from './Value'
 
 export default ({
 	nodeValue,
@@ -20,38 +15,65 @@ export default ({
 	noText,
 	valueColor,
 	demoMode,
-}) => (
-	<>
-		<div
-			css={`
-				display: flex;
-				align-items: center;
-				height: 1.3rem;
-				position: relative;
-			`}
-			title={title}
-		>
-			<span
-				css={`
-					font-size: 140%;
-					width: 2.3rem;
-					margin-left: -2.3rem;
-				`}
-			>
-				{emoji(icons)}
-			</span>
-			<BarContent
-				noText={noText}
-				color={color}
-				text={title}
-				shortText={abbreviation}
-				widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
-			/>
+	dottedName,
+}) => {
+	const { pathname } = useLocation(),
+		history = useHistory(),
+		query = useQuery()
 
-			<Value {...{ nodeValue, demoMode, completed, color: valueColor }} />
-		</div>
-	</>
-)
+	const emojiComponent = (
+		<span
+			css={`
+				font-size: 140%;
+				width: 2.3rem;
+				margin-left: -2.3rem;
+			`}
+		>
+			{emoji(icons)}
+		</span>
+	)
+
+	return (
+		<>
+			<div
+				css={`
+					display: flex;
+					align-items: center;
+					height: 1.3rem;
+					position: relative;
+				`}
+				title={title}
+			>
+				{pathname.includes('simulateur/bilan') ? (
+					<button
+						type="button"
+						title={`N'afficher que les questions ` + dottedName}
+						css={`
+							margin: 0;
+							padding: 0;
+							font-size: 100%;
+						`}
+						onClick={() =>
+							history.push({ pathname, search: '?catégorie=' + dottedName })
+						}
+					>
+						{emojiComponent}
+					</button>
+				) : (
+					emojiComponent
+				)}
+				<BarContent
+					noText={noText}
+					color={color}
+					text={title}
+					shortText={abbreviation}
+					widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
+				/>
+				<Value {...{ nodeValue, demoMode, completed, color: valueColor }} />
+			</div>
+		</>
+	)
+}
 export const capitalizeFirst = (text) =>
 	text[0].toUpperCase() + text.slice(1, text.length)
 

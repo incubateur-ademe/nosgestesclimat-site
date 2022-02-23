@@ -50,7 +50,7 @@ export default ({ categories, selected, countByCategory }) => {
 								: location.pathname + '?catégorie=' + category.dottedName
 						}
 					>
-						<button>
+						<button tabindex="-1">
 							{category.dottedName}{' '}
 							<span
 								css={`

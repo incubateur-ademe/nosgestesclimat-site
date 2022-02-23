@@ -54,6 +54,7 @@ export const DesktopShareButton = (props) => {
 			</div>
 			<form css="text-align: center">
 				<input
+					id="urlInput"
 					css={`
 						box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
 						border-radius: 0.3rem;
@@ -72,28 +73,31 @@ export const DesktopShareButton = (props) => {
 					ref={textAreaRef}
 					value={props.url}
 				/>
-				{
-					/* Logical shortcut for only displaying the 
+
+				<label htmlFor="urlInput">
+					{
+						/* Logical shortcut for only displaying the 
           button if the copy command exists */
-					document.queryCommandSupported('copy') && (
-						<button
-							css={`
-								border-radius: 0.3rem;
-								border-bottom-left-radius: 0;
-								border-top-left-radius: 0;
-								border: 1px solid var(--color);
-								margin-left: -1px;
-								height: 1.6rem;
-								background: #ffffffb3;
-								box-shadow: 0 1px 0 rgba(27, 31, 35, 0.04),
-									inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
-							`}
-							onClick={copyToClipboard}
-						>
-							{!copySuccess ? 'Copier le lien' : 'Copié'}
-						</button>
-					)
-				}
+						document.queryCommandSupported('copy') && (
+							<button
+								css={`
+									border-radius: 0.3rem;
+									border-bottom-left-radius: 0;
+									border-top-left-radius: 0;
+									border: 1px solid var(--color);
+									margin-left: -1px;
+									height: 1.6rem;
+									background: #ffffffb3;
+									box-shadow: 0 1px 0 rgba(27, 31, 35, 0.04),
+										inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
+								`}
+								onClick={copyToClipboard}
+							>
+								{!copySuccess ? 'Copier le lien' : 'Copié'}
+							</button>
+						)
+					}
+				</label>
 			</form>
 		</div>
 	)
@@ -113,7 +117,14 @@ const Icon = ({}) => (
 			}
 		`}
 	>
-		<svg version="1.1" x="0px" y="0px" viewBox="0 0 100 100" width="4rem">
+		<svg
+			aria-hidden="true"
+			version="1.1"
+			x="0px"
+			y="0px"
+			viewBox="0 0 100 100"
+			width="4rem"
+		>
 			<g transform="translate(0,-952.36218)">
 				<path
 					css={`

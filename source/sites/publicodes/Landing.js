@@ -10,6 +10,7 @@ import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
 import { useProfileData } from './Profil'
 import animate from 'Components/ui/animate'
+import Meta from '../../components/utils/Meta'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
@@ -38,6 +39,10 @@ export default () => {
 				}
 			`}
 		>
+			<Meta
+				title="Connaissez-vous votre empreinte climat ?"
+				description="Faites le test, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire."
+			/>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
 			<Illustration
 				css={`
@@ -48,7 +53,6 @@ export default () => {
 						width: 95%;
 					}
 				`}
-				alt="Illustration sur fond mauve d'une scène mélant grande ville, péri-urbain et rural, où on peut voir quelques éléments d'une vie quotidienne, chaque élément étant émetteur d'une certaine empreinte sur le climat."
 			/>
 			<div css="margin: 1rem 0">
 				<div>
@@ -82,10 +86,7 @@ export default () => {
 						}
 					`}
 				>
-					<Marianne
-						css="height: 6rem; margin-right: .6rem"
-						alt="Logo Marianne de la République Française"
-					/>
+					<Marianne css="height: 6rem; margin-right: .6rem" />
 					<a href="https://ademe.fr">
 						<LogoADEME />
 					</a>
@@ -134,9 +135,10 @@ const ProfileLink = () => {
 					}
 				`}
 			>
-				<Link to="/profil">
-					<button className="ui__ button plain small" title="Mon profil">
+				<Link to="/profil" title="Page profil">
+					<button className="ui__ button plain small" type="button">
 						<img
+							aria-hidden="true"
 							src={openmojiURL('profile')}
 							css="width: 2rem; filter: invert(1)"
 						/>

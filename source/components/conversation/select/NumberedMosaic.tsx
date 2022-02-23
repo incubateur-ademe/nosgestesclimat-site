@@ -3,6 +3,7 @@ import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import { useEngine } from '../../utils/EngineContext'
 import { Mosaic } from './UI'
 
@@ -44,8 +45,8 @@ export default function NumberedMosaic({
 									: Math.round(Math.random() * 10) |
 									  question.rawNode['par défaut']
 						return (
-							<li className="ui__ card interactive" key={name}>
-								<h4>{title}</h4>
+							<li className="ui__ card interactive" key={question.dottedName}>
+								<MosaicLabel htmlFor={question.dottedName}>{title}</MosaicLabel>
 								<div
 									css={`
 										${!description ? 'font-size: 200%' : ''}
@@ -65,11 +66,13 @@ export default function NumberedMosaic({
 												updateSituation(question.dottedName, nodeValue - 1)
 											)
 										}
+										title={`Enlever un repas ${title.toLowerCase()}`}
 									>
 										-
 									</button>
 									<input
 										type="number"
+										id={question.dottedName}
 										css={`
 											width: 1.5rem;
 											padding: 0; /* Necessary for iPhone Safari 7-12 at least */
@@ -100,6 +103,7 @@ export default function NumberedMosaic({
 												updateSituation(question.dottedName, nodeValue + 1)
 											)
 										}
+										title={`Ajouter un repas ${title.toLowerCase()}`}
 									>
 										+
 									</button>
@@ -135,3 +139,11 @@ export default function NumberedMosaic({
 		</div>
 	)
 }
+
+export const MosaicLabel = styled.label`
+	text-align: center;
+	line-height: 1.2rem;
+	margin-top: 0.6rem;
+	margin-bottom: 0.4rem;
+	font-weight: bold;
+`

@@ -88,6 +88,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 			>
 				<Link
 					to={demoMode ? '#' : endURL}
+					title="Page de fin de simulation"
 					css={`
 						:hover {
 							opacity: 1 !important;
