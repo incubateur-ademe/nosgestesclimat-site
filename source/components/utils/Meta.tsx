@@ -20,7 +20,7 @@ export default function Meta({
 	const { pathname } = useLocation()
 	return (
 		<Helmet>
-			<title>{title}</title>
+			<title>{title} - Nos Gestes Climat</title>
 			<meta name="description" content={description} />
 			<meta property="og:type" content="website" />
 			<meta property="og:title" content={title} />
