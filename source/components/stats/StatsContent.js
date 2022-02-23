@@ -75,6 +75,7 @@ export default function Data(props) {
 			allTime ? (
 				<>
 					<Section>
+						<Section.Title>Stats générales</Section.Title>
 						<Wrapper>
 							<Evolution
 								period={period.value}
