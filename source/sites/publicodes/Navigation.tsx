@@ -3,6 +3,7 @@ import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Logo from './Logo'
+import SkipLinks from './SkipLinks'
 
 export default ({ isHomePage }) => {
 	const pathname = decodeURIComponent(location.pathname)
@@ -11,7 +12,10 @@ export default ({ isHomePage }) => {
 
 	return (
 		<>
+			<SkipLinks />
 			<nav
+				id="mainNavigation"
+				tabIndex="0"
 				css={`
 					display: flex;
 					justify-content: center;

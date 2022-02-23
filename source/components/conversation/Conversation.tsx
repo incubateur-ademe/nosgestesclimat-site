@@ -84,7 +84,6 @@ export default function Conversation({
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
 		currentQuestion = !isMainSimulation ? nextQuestions[0] : sortedQuestions[0]
 
-	console.log(focusedCategory, currentQuestion, unfoldedStep)
 	const currentQuestionIsAnswered =
 		currentQuestion && isMosaic(currentQuestion)
 			? true
