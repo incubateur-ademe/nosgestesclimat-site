@@ -150,6 +150,7 @@ export const ActionListCard = ({
 				`}
 			>
 				<button
+					title="Choisir l'action"
 					css={`
 						${hasRemainingQuestions && 'filter: grayscale(1)'}
 					`}
@@ -179,6 +180,7 @@ export const ActionListCard = ({
 					{emoji('✅')}
 				</button>
 				<button
+					title="Rejeter l'action"
 					onClick={(e) => {
 						dispatch(
 							setActionChoice(

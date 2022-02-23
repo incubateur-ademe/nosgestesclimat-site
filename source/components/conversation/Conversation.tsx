@@ -273,7 +273,6 @@ export default function Conversation({
 					</button>
 				</div>
 			)}
-			{console.log(questionCategory.title)}
 			{orderByCategories && (
 				<Meta
 					title={rules[objectifs[0]].title + ' - ' + questionCategory.title}
