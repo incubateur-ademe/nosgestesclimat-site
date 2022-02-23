@@ -135,7 +135,7 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 			`}
 		>
 			<Meta
-				title="Nos Gestes Climat"
+				title="Mon empreinte climat"
 				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO2e. Mesure la tienne !`}
 				image={shareImage}
 				url={window.location}

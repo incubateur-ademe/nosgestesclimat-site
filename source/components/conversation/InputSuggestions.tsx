@@ -58,7 +58,7 @@ export default function InputSuggestions({
 							if (suggestion !== value) setSuggestion(value)
 							else onSecondClick && onSecondClick(value)
 						}}
-						title={t('cliquez pour insérer cette suggestion')}
+						title={t('Insérer cette suggestion')}
 					>
 						{emoji(text)}
 					</button>

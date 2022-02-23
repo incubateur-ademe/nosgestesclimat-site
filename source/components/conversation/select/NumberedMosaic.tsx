@@ -66,6 +66,7 @@ export default function NumberedMosaic({
 												updateSituation(question.dottedName, nodeValue - 1)
 											)
 										}
+										title={`Enlever un repas ${title.toLowerCase()}`}
 									>
 										-
 									</button>
@@ -102,6 +103,7 @@ export default function NumberedMosaic({
 												updateSituation(question.dottedName, nodeValue + 1)
 											)
 										}
+										title={`Ajouter un repas ${title.toLowerCase()}`}
 									>
 										+
 									</button>
