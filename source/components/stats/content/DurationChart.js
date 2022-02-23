@@ -13,6 +13,15 @@ import {
 
 import CustomTooltip from './histogram/CustomTooltip'
 
+const ChartTitle = styled.div`
+	margin-bottom: 0.5rem;
+	text-align: right;
+
+	@media screen and (max-width: ${800}px) {
+		font-size: 0.75rem;
+	}
+`
+
 const ChartWrapper = styled.div`
 	width: 60%;
 	padding-left: 1rem;
@@ -44,6 +53,7 @@ export default function visitDuration(props) {
 
 	return (
 		<ChartWrapper>
+			<ChartTitle>Nombre de visites pour les 60 derniers jours</ChartTitle>
 			<ResponsiveContainer width="100%" height="100%">
 				<BarChart data={duration}>
 					<XAxis dataKey="label" />

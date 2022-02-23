@@ -50,7 +50,7 @@ export const useSimulationsDuration = () =>
 	useQuery(['SimulationsDuration'], () =>
 		axios
 			.get(
-				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last6000&format=JSON`
+				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON`
 			)
 			.then((res) => res.data)
 	)
@@ -59,7 +59,7 @@ export const useSimulationAvgDuration = () =>
 	useQuery(['SimulationAvgDuration'], () =>
 		axios
 			.get(
-				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last6000&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
+				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
 			)
 			.then((res) => res.data.avg_time_on_site_new / 60)
 	)
