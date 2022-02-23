@@ -1,8 +1,6 @@
 import React from 'react'
 import Input from '../Input'
 import KmHelp from './KmHelp'
-import { useState } from 'react'
-import AnimatedTargetValue from '../../ui/AnimatedTargetValue'
 
 export default function KmEstimation({
 	commonProps,
