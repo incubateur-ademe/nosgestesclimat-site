@@ -110,7 +110,7 @@ export default function Data(props) {
 					<Section>
 						<Section.Title>La voiture en chiffres</Section.Title>
 						<KmFigures
-							kmhelp={kmhelp?.nb_visits}
+							kmhelp={kmhelp}
 							simulationsfromhelp={simulationsfromhelp?.nb_visits}
 							ridesnumber={ridesnumber?.nb_events}
 						/>

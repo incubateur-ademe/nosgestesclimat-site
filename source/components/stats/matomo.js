@@ -126,7 +126,7 @@ export const useAllTime = () =>
 			})
 	)
 
-const kmDate = '2022-02-01,today'
+const kmDate = '2022-02-23,today'
 
 export const useKmHelp = () =>
 	useQuery(
@@ -137,9 +137,16 @@ export const useKmHelp = () =>
 				.get(
 					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`
 				)
-				.then((res) =>
-					res.data.find((action) => action.label === 'Click aide à la saisie')
-				),
+				.then((res) => {
+					const open = res.data.find(
+						(action) => action.label === 'Ouvre aide à la saisie km voiture'
+					).nb_visits
+					const close = res.data.find(
+						(action) => action.label === 'Ferme aide à la saisie km voiture'
+					).nb_visits
+					const realUse = open - close
+					return realUse
+				}),
 		{
 			keepPreviousData: true,
 		}
