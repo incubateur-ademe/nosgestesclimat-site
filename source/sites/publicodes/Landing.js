@@ -81,10 +81,7 @@ export default () => {
 						}
 					`}
 				>
-					<Marianne
-						css="height: 6rem; margin-right: .6rem"
-						alt="Logo Marianne de la République Française"
-					/>
+					<Marianne css="height: 6rem; margin-right: .6rem" />
 					<a href="https://ademe.fr">
 						<LogoADEME />
 					</a>
@@ -133,9 +130,10 @@ const ProfileLink = () => {
 					}
 				`}
 			>
-				<Link to="/profil">
-					<button className="ui__ button plain small" title="Mon profil">
+				<Link to="/profil" title="Page profil">
+					<button className="ui__ button plain small" type="button">
 						<img
+							aria-hidden="true"
 							src={openmojiURL('profile')}
 							css="width: 2rem; filter: invert(1)"
 						/>

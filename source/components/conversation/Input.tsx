@@ -62,7 +62,9 @@ export default function Input({
 							autoComplete="off"
 							{...{ [missing ? 'placeholder' : 'value']: value ?? '' }}
 						/>
-						<span className="suffix">&nbsp;{unité}</span>
+						<label htmlFor={id}>
+							<span className="suffix">&nbsp;{unité}</span>
+						</label>
 					</div>
 				</div>
 			</div>
