@@ -5,8 +5,11 @@ import {
 	useChart,
 	useTotal,
 	useSimulationsTerminees,
-	useSimulationsDuration,
+	useVisitsDuration,
+	useVisitsAvgDuration,
 	useSimulationAvgDuration,
+	useActionAvgDuration,
+	useVisitsLast60,
 	useWebsites,
 	useOldWebsites,
 	useSocials,
@@ -47,8 +50,11 @@ export default function Data(props) {
 	})
 	const { data: total } = useTotal()
 	const { data: simulations } = useSimulationsTerminees()
-	const { data: duration } = useSimulationsDuration()
-	const { data: avgduration } = useSimulationAvgDuration()
+	const { data: duration } = useVisitsDuration()
+	const { data: avgduration } = useVisitsAvgDuration()
+	const { data: avgsimulation } = useSimulationAvgDuration()
+	const { data: avgaction } = useActionAvgDuration()
+	const { data: visitslast60 } = useVisitsLast60()
 	const { data: websites } = useWebsites()
 	const { data: oldWebsites } = useOldWebsites()
 	const { data: socials } = useSocials()
@@ -60,6 +66,9 @@ export default function Data(props) {
 	const { data: kmhelp } = useKmHelp()
 	const { data: simulationsfromhelp } = useSimulationsfromKmHelp()
 	const { data: ridesnumber } = useRidesNumber()
+
+	console.log(visitslast60)
+	console.log(avgaction)
 
 	return (
 		<div>

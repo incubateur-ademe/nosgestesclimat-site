@@ -46,8 +46,8 @@ export const useSimulationsTerminees = () =>
 		}
 	)
 
-export const useSimulationsDuration = () =>
-	useQuery(['SimulationsDuration'], () =>
+export const useVisitsDuration = () =>
+	useQuery(['VisitsDuration'], () =>
 		axios
 			.get(
 				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON`
@@ -55,13 +55,41 @@ export const useSimulationsDuration = () =>
 			.then((res) => res.data)
 	)
 
-export const useSimulationAvgDuration = () =>
-	useQuery(['SimulationAvgDuration'], () =>
+export const useVisitsAvgDuration = () =>
+	useQuery(['VisitsAvgDuration'], () =>
 		axios
 			.get(
 				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
 			)
 			.then((res) => res.data.avg_time_on_site_new / 60)
+	)
+
+export const useSimulationAvgDuration = () =>
+	useQuery(['SimulationAvgDuration'], () =>
+		axios
+			.get(
+				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=Actions.getPageUrls&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
+			)
+			.then((res) => res.data.find((page) => page.label === 'simulateur/bilan'))
+			.then((res) => res.avg_time_on_page)
+	)
+
+export const useActionAvgDuration = () =>
+	useQuery(
+		['ActionAvgDuration'],
+		() =>
+			axios.get(
+				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=Actions.getPageUrls&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
+			)
+		// .then((res) => res.data.find((page) => page.label === 'actions'))
+		// .then((res) => res.sum_time_spent)
+	)
+
+export const useVisitsLast60 = () =>
+	useQuery(['useVisitsLast60'], () =>
+		axios.get(
+			`https://stats.data.gouv.fr/?module=API&method=VisitsSummary.getVisits&idSite=${idSite}&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
+		)
 	)
 
 export const useTotal = () =>
@@ -145,7 +173,7 @@ export const useAllTime = () =>
 			})
 	)
 
-const kmDate = '2022-02-23,today'
+const kmDate = '2022-02-24,today'
 
 export const useKmHelp = () =>
 	useQuery(
