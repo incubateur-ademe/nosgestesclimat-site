@@ -4,6 +4,7 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
 import { conferenceImg } from '../../../components/SessionBar'
+import Beta from './Beta'
 import { ConferenceTitle } from './Conference'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
@@ -25,7 +26,9 @@ export default () => {
 
 	return (
 		<div>
-			<h1>Sondage</h1>
+			<h1>
+				Sondage <Beta />
+			</h1>
 			<ConferenceTitle>
 				<img src={conferenceImg} />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>

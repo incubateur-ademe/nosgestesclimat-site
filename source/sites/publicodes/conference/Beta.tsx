@@ -1,7 +1,7 @@
 export default () => (
 	<span
 		css={`
-			margin-left: 1rem;
+			margin-left: 0.6rem;
 			background: var(--color);
 			color: var(--textColor);
 			padding: 0.1rem 0.4rem;
