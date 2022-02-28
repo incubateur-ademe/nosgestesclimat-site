@@ -28,6 +28,7 @@ export default ({
 }) => {
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 	const elements = rawElements.filter((el) => el.total < threshold)
+	console.log('EL', elements)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
 	const values = elements.map((el) => el.total)
@@ -52,6 +53,14 @@ export default ({
 		minValue = 2000, // 2 tonnes, the ultimate objective
 		max = humanWeight(maxValue, true).join(' '),
 		min = humanWeight(minValue, true).join(' ')
+
+	const spotlightElement = elements.find((el) => el.username === spotlight),
+		spotlightValue =
+			spotlightElement &&
+			(spotlightElement.total / 1000).toLocaleString('fr-FR', {
+				maximumSignificantDigits: 2,
+			})
+	console.log(spotlightValue)
 
 	return (
 		<div>
@@ -143,7 +152,8 @@ export default ({
 				{spotlight && (
 					<span>
 						En <span css="background: yellow;">jaune</span> :{' '}
-						{spotlight === currentUser ? 'toi' : spotlight}
+						{spotlight === currentUser ? 'toi' : spotlight} à {spotlightValue}{' '}
+						t.
 					</span>
 				)}
 			</div>
