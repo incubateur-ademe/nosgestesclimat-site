@@ -8,6 +8,7 @@ import { extremeThreshold } from './utils'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
+	simulationArray.length > 0 &&
 	simulationArray
 		.filter((el) => el !== null)
 		.reduce((memo, next) => memo + next || 0, 0) / simulationArray.length
@@ -18,8 +19,14 @@ export const computeHumanMean = (simulationArray) => {
 	return result ? meanFormatter(result) : 'résultats en attente'
 }
 
-export default ({ elements, users = [], username: currentUser }) => {
+export default ({
+	elements: rawElements,
+	users = [],
+	username: currentUser,
+}) => {
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
+	const [outlierValue, setOutlierValue] = useState(100)
+	const elements = rawElements.filter((el) => el.total < outlierValue * 1000)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
 	const values = elements.map((el) => el.total)
@@ -28,6 +35,7 @@ export default ({ elements, users = [], username: currentUser }) => {
 
 	const progressList = elements.map((el) => el.progress),
 		meanProgress = computeMean(progressList)
+	console.log(rawElements, elements, outlierValue, mean)
 
 	if (isNaN(mean)) return null
 
@@ -48,14 +56,42 @@ export default ({ elements, users = [], username: currentUser }) => {
 	return (
 		<div>
 			<div css=" text-align: center">
-				<p>Avancement du groupe</p>
+				<p>
+					Avancement du groupe ({rawElements.length} participant
+					{rawElements.length > 1 ? 's' : ''})
+				</p>
 				<Progress progress={meanProgress} />
 			</div>
 			<div css="margin: 1.6rem 0">
-				<div css="text-align: center">Moyenne du groupe : {humanMean}</div>
-				<div css="text-align: center">
-					Moyenne française : <DefaultFootprint />
+				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
+					<div>
+						Moyenne : {humanMean}{' '}
+						<small>
+							({emoji('🇫🇷')} <DefaultFootprint />)
+						</small>
+					</div>
+					<small>
+						<label>
+							Exclure au-dessus de{' '}
+							<input
+								css={`
+									width: 2.5rem;
+									height: 1.2rem;
+									text-align: right;
+									border: none;
+									border-bottom: 1px dashed var(--color);
+									font-size: 100%;
+									color: inherit;
+								`}
+								onChange={(e) => setOutlierValue(e.target.value)}
+								value={outlierValue}
+								type="number"
+							/>{' '}
+							tonnes.
+						</label>
+					</small>
 				</div>
+
 				<div
 					css={`
 						width: 100%;
