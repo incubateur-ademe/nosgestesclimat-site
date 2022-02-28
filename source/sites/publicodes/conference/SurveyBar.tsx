@@ -35,6 +35,7 @@ export default () => {
 
 	const survey = useSelector((state) => state.survey)
 	const dispatch = useDispatch()
+	const [DBError, setDBError] = useState(null)
 
 	const [surveyIds, setSurveyIds] = usePersistingState('surveyIds', {})
 
@@ -49,13 +50,19 @@ export default () => {
 	useEffect(() => {
 		if (!survey || !survey.room) return null
 		fetch(answersURL + survey.room)
-			.then((res) => res.json())
-			.then((json) =>
-				dispatch({
-					type: 'ADD_SURVEY_ANSWERS',
-					answers: json,
-					room: survey.room,
-				})
+			.catch((e) => {
+				setDBError('🚧 Le serveur ne répond pas 😥')
+				console.log('erreur', e)
+			})
+			.then((res) => res && res.json())
+			.then(
+				(json) =>
+					json &&
+					dispatch({
+						type: 'ADD_SURVEY_ANSWERS',
+						answers: json,
+						room: survey.room,
+					})
 			)
 
 		if (!cachedSurveyId) {
@@ -95,6 +102,8 @@ export default () => {
 		result = null && computeHumanMean(simulationArray.map((el) => el.total))
 
 	const answersCount = Object.values(survey.answers).length
+
+	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 
 	return (
 		<Link to={'/sondage/' + survey.room} css="text-decoration: none;">

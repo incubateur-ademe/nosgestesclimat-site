@@ -27,7 +27,8 @@ export default () => {
 	return (
 		<div>
 			<h1>
-				Sondage <Beta />
+				Sondage
+				<Beta />
 			</h1>
 			<ConferenceTitle>
 				<img src={conferenceImg} />
