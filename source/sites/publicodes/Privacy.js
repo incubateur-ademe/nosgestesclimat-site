@@ -9,7 +9,7 @@ export default () => (
 		/>
 		<h1>Données personnelles</h1>
 		<p>
-			La simulation se fait sur votre navigateur, donc les réponses aux
+			La simulation se fait dans votre navigateur Web, donc les réponses aux
 			questions restent chez vous, nous n'en collectons aucune.
 		</p>
 		<p>
@@ -25,7 +25,7 @@ export default () => (
 		<p>Vous pouvez en savoir plus et désactiver ce suivi ci-dessous.</p>
 
 		<iframe
-			css="border: 0; height: 200px; width: 600px;"
+			css="border: 2px dashed var(--color); max-height: 200px; width: 600px;"
 			src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
 		></iframe>
 	</div>
