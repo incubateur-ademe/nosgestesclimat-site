@@ -23,10 +23,11 @@ export default ({
 	elements: rawElements,
 	users = [],
 	username: currentUser,
+	threshold,
+	setThreshold,
 }) => {
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
-	const [outlierValue, setOutlierValue] = useState(100)
-	const elements = rawElements.filter((el) => el.total < outlierValue * 1000)
+	const elements = rawElements.filter((el) => el.total < threshold)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
 	const values = elements.map((el) => el.total)
@@ -35,7 +36,6 @@ export default ({
 
 	const progressList = elements.map((el) => el.progress),
 		meanProgress = computeMean(progressList)
-	console.log(rawElements, elements, outlierValue, mean)
 
 	if (isNaN(mean)) return null
 
@@ -83,8 +83,8 @@ export default ({
 									font-size: 100%;
 									color: inherit;
 								`}
-								onChange={(e) => setOutlierValue(e.target.value)}
-								value={outlierValue}
+								onChange={(e) => setThreshold(e.target.value * 1000)}
+								value={threshold / 1000}
 								type="number"
 							/>{' '}
 							tonnes.

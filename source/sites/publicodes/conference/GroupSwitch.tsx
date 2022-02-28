@@ -2,14 +2,7 @@ import { useState } from 'react'
 import { useParams } from 'react-router'
 import Beta from './Beta'
 import Instructions from './Instructions'
-import {
-	extremeThreshold,
-	filterExtremes,
-	generateRoomName,
-	getExtremes,
-	getRandomInt,
-	stringToColour,
-} from './utils'
+import { generateRoomName } from './utils'
 
 export default () => {
 	const [newRoom, setNewRoom] = useState(generateRoomName())

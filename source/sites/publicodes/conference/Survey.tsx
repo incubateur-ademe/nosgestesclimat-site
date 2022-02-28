@@ -1,5 +1,5 @@
 import { usePersistingState } from 'Components/utils/persistState'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory, useParams } from 'react-router'
@@ -10,6 +10,7 @@ import DataWarning from './DataWarning'
 import Instructions from './Instructions'
 import Stats from './Stats'
 import { answersURL } from './useDatabase'
+import { defaultThreshold } from './utils'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -72,6 +73,7 @@ export default () => {
 
 const Results = ({ cachedSurveyId }) => {
 	const survey = useSelector((state) => state.survey)
+	const [threshold, setThreshold] = useState(defaultThreshold)
 	const answerMap = survey.answers
 	if (!answerMap || !Object.values(answerMap)) return null
 
@@ -82,6 +84,8 @@ const Results = ({ cachedSurveyId }) => {
 				username: el.id,
 			}))}
 			username={cachedSurveyId}
+			threshold={threshold}
+			setThreshold={setThreshold}
 		/>
 	)
 }

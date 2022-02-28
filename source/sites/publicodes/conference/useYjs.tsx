@@ -1,16 +1,11 @@
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
+import * as Y from 'yjs'
 import { usePersistingState } from '../../../components/utils/persistState'
 import fruits from './fruits.json'
-import {
-	filterExtremes,
-	getExtremes,
-	getRandomInt,
-	stringToColour,
-} from './utils'
-import * as Y from 'yjs'
-import { WebrtcProvider } from 'y-webrtc'
+import { filterExtremes, getRandomInt, stringToColour } from './utils'
 
 export default (room, connectionType: 'p2p' | 'database') => {
 	const conference = useSelector((state) => state.conference)
@@ -74,8 +69,5 @@ export default (room, connectionType: 'p2p' | 'database') => {
 	}, [room, conference])
 	if (!room && !conference) return {}
 
-	const elements = filterExtremes(rawElements),
-		extremes = getExtremes(rawElements)
-
-	return { users, elements, extremes, username, conference }
+	return { users, elements: rawElements, username, conference }
 }

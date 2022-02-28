@@ -1,29 +1,15 @@
-import { usePersistingState } from 'Components/utils/persistState'
-import QRCode from 'qrcode.react'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation, useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useHistory, useParams } from 'react-router'
 import styled from 'styled-components'
-import { WebrtcProvider } from 'y-webrtc'
-import { WebsocketProvider } from 'y-websocket'
 import { conferenceImg } from '../../../components/SessionBar'
-import ShareButton from '../../../components/ShareButton'
-import { ThemeColorsContext } from '../../../components/utils/colors'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import Instructions from './Instructions'
 import Stats from './Stats'
-import { UserList, UserBlock } from './UserList'
+import { UserBlock } from './UserList'
 import useYjs from './useYjs'
-import {
-	extremeThreshold,
-	filterExtremes,
-	generateRoomName,
-	getExtremes,
-	getRandomInt,
-	stringToColour,
-} from './utils'
+import { defaultThreshold, getExtremes } from './utils'
 
 export const ConferenceTitle = styled.h2`
 	margin-top: 0.6rem;
@@ -40,7 +26,10 @@ export const ConferenceTitle = styled.h2`
 
 export default () => {
 	const { room } = useParams()
-	const { elements, extremes, users, username } = useYjs(room, 'p2p')
+	const { elements, users, username } = useYjs(room, 'p2p')
+
+	const [threshold, setThreshold] = useState(defaultThreshold)
+	const extremes = getExtremes(elements, threshold)
 	const dispatch = useDispatch()
 	const history = useHistory()
 
@@ -60,6 +49,8 @@ export default () => {
 					})),
 					users,
 					username,
+					threshold,
+					setThreshold,
 				}}
 			/>
 

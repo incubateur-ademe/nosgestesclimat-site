@@ -42,10 +42,7 @@ export const UserBlock = ({ extremes, users, username, room }) => (
 		</span>
 		<UserList users={users} username={username} extremes={extremes} />
 		{extremes.length > 0 && (
-			<div>
-				{emoji('⚠️')} Certains utilisateurs ont des bilans au-dessus de{' '}
-				{extremeThreshold / 1000} t, nous les avons exclus.
-			</div>
+			<div>{emoji('⚠️')} Certains utilisateurs ont des bilans extrêmes.</div>
 		)}
 	</div>
 )
