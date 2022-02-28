@@ -140,8 +140,11 @@ export default ({
 			<CategoryStats {...{ categories, maxCategory, spotlight }} />
 
 			<div>
-				{spotlight === currentUser && (
-					<span css="background: yellow;">Jaune = toi</span>
+				{spotlight && (
+					<span>
+						En <span css="background: yellow;">jaune</span> :{' '}
+						{spotlight === currentUser ? 'toi' : spotlight}
+					</span>
 				)}
 			</div>
 		</div>
