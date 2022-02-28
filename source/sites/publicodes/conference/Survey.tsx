@@ -9,6 +9,7 @@ import { ConferenceTitle } from './Conference'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
 import Stats from './Stats'
+import { answersURL } from './useDatabase'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -41,18 +42,30 @@ export default () => {
 				<Results room={survey.room} cachedSurveyId={cachedSurveyId} />
 			)}
 			{survey && (
-				<button
-					className="ui__ link-button"
-					onClick={() => {
-						history.push('/')
+				<>
+					<Instructions {...{ room, mode: 'sondage', started: true }} />
+					<div>
+						<button
+							className="ui__ link-button"
+							onClick={() => {
+								history.push('/')
 
-						dispatch({ type: 'UNSET_SURVEY' })
-					}}
-				>
-					{emoji('🚪')} Quitter le sondage
-				</button>
+								dispatch({ type: 'UNSET_SURVEY' })
+							}}
+						>
+							{emoji('🚪')} Quitter le sondage
+						</button>
+					</div>
+					<div>
+						<a
+							href={answersURL + survey.room + '?format=csv'}
+							className="ui__ link-button"
+						>
+							{emoji('💾')} Télécharger les données
+						</a>
+					</div>
+				</>
 			)}
-			{survey && <Instructions {...{ room, mode: 'sondage', started: true }} />}
 		</div>
 	)
 }
