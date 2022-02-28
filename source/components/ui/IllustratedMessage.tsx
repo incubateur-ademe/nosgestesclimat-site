@@ -1,6 +1,7 @@
 import emoji from 'react-easy-emoji'
 export default ({ emoji: e, message, inline }) => (
 	<div
+		className="ui__ card"
 		css={`
 			max-width: 26rem;
 			margin: 0 auto;
@@ -21,6 +22,13 @@ export default ({ emoji: e, message, inline }) => (
 		>
 			{emoji(e)}
 		</span>
-		{message}
+
+		<div
+			css={`
+				margin: 1rem 0;
+			`}
+		>
+			{message}
+		</div>
 	</div>
 )

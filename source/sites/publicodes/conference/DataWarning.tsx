@@ -26,9 +26,15 @@ export default ({ room }) => {
 							serveur : l'empreinte climat totale et les catégories (transport,
 							logement, etc.). <Link to="/vie-privée">En savoir plus</Link>
 						</p>
-						<div>
+						<div
+							css={`
+								display: flex;
+								justify-content: space-evenly;
+								margin: 1rem 0 0;
+							`}
+						>
 							<button
-								className="ui__ button simple"
+								className="ui__ button plain  "
 								onClick={() => {
 									dispatch({ type: 'SET_SURVEY', room })
 								}}
