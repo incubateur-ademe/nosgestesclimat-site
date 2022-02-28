@@ -8,7 +8,6 @@ export default ({ categories, maxCategory, spotlight }) => {
 		max = Math.max(...values),
 		humanMax = humanWeight(max, true)
 
-	console.log(categories)
 	return (
 		<div>
 			<ul
@@ -61,7 +60,7 @@ export default ({ categories, maxCategory, spotlight }) => {
 					</li>
 				))}
 			</ul>
-			<div css="width: 70%; margin-left: 32%;  display: flex; justify-content: space-between">
+			<div css="width: 70%; margin-left: 30%;  display: flex; justify-content: space-between">
 				<small>{Math.round(0)}</small>
 				<small>
 					{humanMax[0]} {humanMax[1]}
