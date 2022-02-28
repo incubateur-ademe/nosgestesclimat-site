@@ -1,13 +1,11 @@
+import QRCode from 'qrcode.react'
 import { useContext, useState } from 'react'
 import { Link } from 'react-router-dom'
 import emoji from '../../../components/emoji'
-import { ThemeColorsContext } from '../../../components/utils/colors'
-import NamingBlock from './NamingBlock'
-import QRCode from 'qrcode.react'
 import ShareButton from '../../../components/ShareButton'
-import { Redirect, useHistory } from 'react-router'
-import { motion } from 'framer-motion'
+import { ThemeColorsContext } from '../../../components/utils/colors'
 import LoadingButton from './LoadingButton'
+import NamingBlock from './NamingBlock'
 
 /* The conference mode can be used with two type of communication between users : P2P or database. The P2P mode was implemented first, then we decided that we needed a survey mode, with permanent data. But YJS is not yet designed plug and play for persistence, hence our survey mode will be implemented using Supabase/Postgre.
  *
@@ -20,6 +18,7 @@ export default ({
 	newRoom,
 	setNewRoom,
 	mode: defaultMode = 'conférence',
+	started = false,
 }) => {
 	const [mode, setMode] = useState(defaultMode)
 	const { color } = useContext(ThemeColorsContext)
@@ -42,14 +41,16 @@ export default ({
 				</>
 			)}
 			<h2>{emoji('📘')} Comment ça marche ?</h2>
-			<InstructionBlock
-				index="1"
-				title={<span>{emoji('💡 ')} Choisissez un nom de salle</span>}
-			>
-				{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
-				{room && <p>{emoji('✅')} C'est fait</p>}
-			</InstructionBlock>
-			{newRoom !== '' && !room && (
+			{!started && (
+				<InstructionBlock
+					index="1"
+					title={<span>{emoji('💡 ')} Choisissez un nom de salle</span>}
+				>
+					{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
+					{room && <p>{emoji('✅')} C'est fait</p>}
+				</InstructionBlock>
+			)}
+			{!started && newRoom !== '' && !room && (
 				<InstructionBlock
 					index="2"
 					title={
@@ -63,6 +64,7 @@ export default ({
 							label {
 								flex: auto !important;
 								max-width: 16rem !important;
+								cursor: pointer;
 							}
 						`}
 					>
@@ -114,46 +116,49 @@ export default ({
 					</p>
 				</InstructionBlock>
 			)}
-			<InstructionBlock
-				index="3"
-				title={
-					<span>
-						{emoji('🔗 ')} Partagez le lien à vos amis, collègues, etc.
-					</span>
-				}
-			>
-				{!newRoom && !room ? (
-					<p>Choississez d'abord un nom</p>
-				) : (
-					<div
-						css={`
-							display: flex;
-							flex-wrap: wrap;
-							justify-content: center;
-							align-items: center;
-						`}
-					>
-						<QRCode
-							value={shareURL}
-							size={200}
-							bgColor={'#ffffff'}
-							fgColor={color}
-							level={'L'}
-							includeMargin={false}
-							renderAs={'canvas'}
-						/>
-						<ShareButton
-							text="Faites un test d'empreinte climat avec moi"
-							url={shareURL}
-							title={'Nos Gestes Climat Conférence'}
-						/>
-					</div>
-				)}
-			</InstructionBlock>
+			{!started && (
+				<InstructionBlock
+					index="3"
+					title={
+						<span>
+							{emoji('🔗 ')} Partagez le lien à vos amis, collègues, etc.
+						</span>
+					}
+				>
+					{!newRoom && !room ? (
+						<p>Choississez d'abord un nom</p>
+					) : (
+						<div
+							css={`
+								display: flex;
+								flex-wrap: wrap;
+								justify-content: center;
+								align-items: center;
+							`}
+						>
+							<QRCode
+								value={shareURL}
+								size={200}
+								bgColor={'#ffffff'}
+								fgColor={color}
+								level={'L'}
+								includeMargin={false}
+								renderAs={'canvas'}
+							/>
+							<ShareButton
+								text="Faites un test d'empreinte climat avec moi"
+								url={shareURL}
+								title={'Nos Gestes Climat Conférence'}
+							/>
+						</div>
+					)}
+				</InstructionBlock>
+			)}
 			<InstructionBlock
 				index="4"
+				noIndex={started}
 				title={
-					<span>{emoji('👆 ')} Faites toutes et tous votre simulation</span>
+					<span>{emoji('🎰 ')} Faites toutes et tous votre simulation</span>
 				}
 			>
 				{room ? (
@@ -174,15 +179,17 @@ export default ({
 			</InstructionBlock>
 			<InstructionBlock
 				index="5"
+				noIndex={started}
 				title={
 					<span>
-						{emoji('🧮 ')} Visualisez ensemble les résultats de votre groupe
+						{emoji('🧮 ')} Visualisez à tout moment les résultats de votre
+						groupe
 					</span>
 				}
 			>
 				Les résultats pour chaque catégorie (alimentation, transport, logement
 				...) s'affichent progressivement et en temps réel pour l'ensemble du
-				groupe.
+				groupe en revenant sur la page <Link to={URLPath}>{URLPath}</Link>.
 			</InstructionBlock>
 			{newRoom !== '' && !room && (
 				<InstructionBlock index="6" title="Prêt à démarrer ?">
@@ -193,7 +200,7 @@ export default ({
 	)
 }
 
-const InstructionBlock = ({ title, index, children }) => (
+const InstructionBlock = ({ title, index, children, noIndex }) => (
 	<div
 		className="ui__ card"
 		css={`
@@ -207,17 +214,19 @@ const InstructionBlock = ({ title, index, children }) => (
 			}
 		`}
 	>
-		<div
-			css={`
-				font-size: 300%;
-				padding: 1rem;
-				background: var(--lightercolor);
-				border-radius: 5rem;
-				margin: 0 1rem;
-			`}
-		>
-			{index}
-		</div>
+		{!noIndex && (
+			<div
+				css={`
+					font-size: 300%;
+					padding: 1rem;
+					background: var(--lightercolor);
+					border-radius: 5rem;
+					margin: 0 1rem;
+				`}
+			>
+				{index}
+			</div>
+		)}
 		<div>
 			<h3>{title}</h3>
 			{children}

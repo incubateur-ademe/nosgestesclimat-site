@@ -31,7 +31,7 @@ export default () => {
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
 
-			{!survey ? (
+			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
 				<Results room={survey.room} cachedSurveyId={cachedSurveyId} />
@@ -48,7 +48,7 @@ export default () => {
 					{emoji('🚪')} Quitter le sondage
 				</button>
 			)}
-			<Instructions {...{ room, mode: 'sondage' }} />
+			{survey && <Instructions {...{ room, mode: 'sondage', started: true }} />}
 		</div>
 	)
 }

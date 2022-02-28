@@ -44,8 +44,6 @@ export default () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 
-	console.log('ELEMENTS', elements)
-
 	return (
 		<div>
 			{room && <ScrollToTop />}
@@ -80,7 +78,7 @@ export default () => {
 			>
 				{emoji('🚪')} Quitter la conférence
 			</button>
-			<Instructions {...{ room }} />
+			<Instructions {...{ room, started: true }} />
 			<h2>Et mes données ?</h2>
 			<p>
 				{emoji('🕵 ')}En participant, vous acceptez de partager vos résultats
