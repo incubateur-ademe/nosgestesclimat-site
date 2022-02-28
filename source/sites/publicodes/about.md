@@ -32,7 +32,11 @@ contact@nosgestesclimat.fr
 
 ## Accessibilité
 
-Le site n'est actuellement pas conforme aux normes d'accessibilité numérique, mais nous avons réalisé [un premier audit](https://github.com/datagir/nosgestesclimat-site/issues/350) et commencé à résoudre les problèmes.
+Le site est partiellement conforme aux normes d'accessibilité numérique.
+
+Nous avons réalisé [un premier audit](https://github.com/datagir/nosgestesclimat-site/issues/350), intégralement corrigé. Nous menons au printemps 2022 un deuxième audit plus rigoureux.
+
+Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, merci de nous en faire part [en bas de cette page](http://localhost:8080/contribuer). Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au [Défenseur des droits](https://www.defenseurdesdroits.fr).
 
 ## Mentions légales
 
