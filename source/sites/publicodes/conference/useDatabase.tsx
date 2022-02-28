@@ -9,7 +9,13 @@ export const answersURL = protocol + SERVER_URL + '/answers/'
 export const surveysURL = protocol + SERVER_URL + '/surveys/'
 
 export default () => {
-	const database = useMemo(() => io(`ws${secure}://` + SERVER_URL), [])
+	const database = useMemo(
+		() =>
+			io(`ws${secure}://` + SERVER_URL).on('error', (err) =>
+				console.log('ERROR', err)
+			),
+		[]
+	)
 
 	return database
 }

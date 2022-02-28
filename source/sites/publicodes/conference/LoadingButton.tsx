@@ -36,7 +36,12 @@ export default ({ mode, URLPath, room }) => {
 							Accept: 'application/json',
 							'Content-Type': 'application/json',
 						},
+					}).catch((e) => {
+						console.log('erreur', e)
+						setText('Notre serveur semble indisponible 😥')
+						setClicked(false)
 					})
+					if (!request) return null
 					if (!request.ok) {
 						if (request.status === 409) {
 							setText('Ce sondage existe déjà')
@@ -44,7 +49,9 @@ export default ({ mode, URLPath, room }) => {
 								history.push(URLPath)
 							}, 3000)
 						} else {
-							throw Error('Erreur inconue.')
+							setText('Erreur inconnue côté serveur 😥')
+							setClicked(false)
+							console.log('Erreur', request)
 						}
 					}
 

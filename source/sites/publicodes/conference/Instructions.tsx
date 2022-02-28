@@ -186,9 +186,7 @@ export default ({
 			</InstructionBlock>
 			{newRoom !== '' && !room && (
 				<InstructionBlock index="6" title="Prêt à démarrer ?">
-					<p>
-						<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
-					</p>
+					<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
 				</InstructionBlock>
 			)}
 		</div>
