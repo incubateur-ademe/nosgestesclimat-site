@@ -42,6 +42,7 @@ export default ({
 			abbreviation: rules[category.dottedName].abbréviation,
 		})
 	)
+
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
 		.filter(
@@ -123,7 +124,7 @@ export default ({
 									<Link
 										to={
 											'/documentation/' +
-											utils.encodeRuleName(category.dottedName)
+											utils.encodeRuleName(category.documentationDottedName)
 										}
 									>
 										{bar}
