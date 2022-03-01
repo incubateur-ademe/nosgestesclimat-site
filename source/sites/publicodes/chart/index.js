@@ -43,7 +43,6 @@ export default ({
 		})
 	)
 
-	console.log(categories)
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
 		.filter(
