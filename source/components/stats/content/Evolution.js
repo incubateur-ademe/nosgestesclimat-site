@@ -46,6 +46,7 @@ const Number = styled.span`
 	font-size: 2.5rem;
 	font-weight: 800;
 	line-height: 1;
+	color: var(--color);
 	transition: color 500ms ease-out;
 `
 const BigNumber = styled(Number)`
