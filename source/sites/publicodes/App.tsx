@@ -34,6 +34,8 @@ const StatsLazy = React.lazy(() => import('./pages/Stats'))
 
 const SurveyLazy = React.lazy(() => import('./conference/Survey'))
 
+const CGULazy = React.lazy(() => import('./CGU.tsx'))
+
 let tracker = devTracker
 if (NODE_ENV === 'production') {
 	tracker = new Tracker()
@@ -166,6 +168,11 @@ const Routes = ({}) => {
 			<Route path="/actions" component={Actions} />
 			<Route path="/contribuer/:input?" component={Contribution} />
 			<Route path="/à-propos" component={About} />
+			<Route path="/cgu">
+				<Suspense fallback="Chargement">
+					<CGULazy />
+				</Suspense>
+			</Route>
 			<Route path="/partenaires" component={Diffuser} />
 			<Route path="/diffuser" component={Diffuser} />
 			<Route path="/vie-privée" component={Privacy} />
