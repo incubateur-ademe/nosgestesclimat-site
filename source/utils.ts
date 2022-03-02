@@ -93,6 +93,13 @@ export const last = (array) => {
 	const [lastItem] = array.slice(-1)
 	return lastItem
 }
+
 export function useQuery() {
 	return new URLSearchParams(useLocation().search)
+}
+
+export function range(start, end) {
+	return Array(end - start + 1)
+		.fill()
+		.map((_, idx) => start + idx)
 }
