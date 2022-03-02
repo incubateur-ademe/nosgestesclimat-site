@@ -46,169 +46,132 @@ export const useSimulationsTerminees = () =>
 		}
 	)
 
-export const useVisitsDuration = () =>
-	useQuery(['VisitsDuration'], () =>
+export const useX = (queryName, urlQuery, transformResult) =>
+	useQuery(queryName, () =>
 		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON`
-			)
-			.then((res) => res.data)
+			.get('https://stats.data.gouv.fr/?' + urlQuery)
+			.then((res) => transformResult(res))
+	)
+
+export const useVisitsDuration = () =>
+	useX(
+		'VisitsDuration',
+		`module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON`,
+		(res) => res.data
 	)
 
 export const useVisitsAvgDuration = () =>
-	useQuery(['VisitsAvgDuration'], () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
-			)
-			.then((res) => res.data.avg_time_on_site_new / 60)
+	useX(
+		'VisitsAvgDuration',
+		`module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`,
+		(res) => res.data.avg_time_on_site_new / 60
 	)
 
 export const useSimulationAvgDuration = () =>
-	useQuery(['SimulationAvgDuration'], () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60`
-			)
-			// .then((res) => res.data.find((page) => page.label === 'simulateur'))
-			.then((res) => res.data[0].sum_time_spent / res.data[0].nb_visits / 60)
+	useX(
+		'SimulationAvgDuration',
+		`module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60`,
+		(res) => res.data[0].sum_time_spent / res.data[0].nb_visits / 60
 	)
 
 export const useTotal = () =>
-	useQuery('total', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`
-			)
-			.then((res) => res.data)
+	useX(
+		'total',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+		(res) => res.data
 	)
 
 export const useWebsites = () =>
-	useQuery('websites', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getWebsites&filter_limit=1000`
-			)
-			.then((res) => res.data)
+	useX(
+		'websites',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getWebsites&filter_limit=1000`,
+		(res) => res.data
 	)
+
 export const useOldWebsites = () =>
-	useQuery('oldwebsites', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=lastYear,lastMonth&period=range&format=json&idSite=${idSite}&method=Referrers.getWebsites&filter_limit=1000`
-			)
-			.then((res) => res.data)
+	useX(
+		'oldwebsites',
+		`module=API&date=lastYear,lastMonth&period=range&format=json&idSite=${idSite}&method=Referrers.getWebsites&filter_limit=1000`,
+		(res) => res.data
 	)
+
 export const useSocials = () =>
-	useQuery('socials', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getSocials`
-			)
-			.then((res) => res.data)
+	useX(
+		'socials',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getSocials`,
+
+		(res) => res.data
 	)
 
 export const useKeywords = () =>
-	useQuery('keywords', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getKeywords`
-			)
-			.then((res) => res.data)
+	useX(
+		'keywords',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Referrers.getKeywords`,
+		(res) => res.data
 	)
 
 export const usePeriod = () =>
-	useQuery('period', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`
-			)
-			.then((res) => res.data)
+	useX(
+		'period',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+		(res) => res.data
 	)
+
 export const useReference = () =>
-	useQuery('reference', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last60&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`
-			)
-			.then((res) => res.data)
+	useX(
+		'reference',
+		`module=API&date=last60&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+		(res) => res.data
 	)
+
 export const usePages = () =>
-	useQuery('pages', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000`
-			)
-			.then((res) => res.data)
+	useX(
+		'pages',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000`,
+		(res) => res.data
 	)
+
 export const useAllTime = () =>
-	useQuery('allTime', () =>
-		axios
-			.get(
-				`https://stats.data.gouv.fr/?module=API&date=last6000&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`
-			)
-			.then((res) => res.data)
-			.then((data) => {
-				const base = 109689 //base NGC
-				data.value += base
-				return data
-			})
+	useX(
+		'allTime',
+		`module=API&date=last6000&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+		(res) => {
+			const base = 109689 //base NGC
+			res.data.value += base
+			return res.data
+		}
 	)
 
 const kmDate = '2022-02-24,today'
 
 export const useKmHelp = () =>
-	useQuery(
-		['KmHelp'],
-
-		() =>
-			axios
-				.get(
-					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`
-				)
-				.then((res) => {
-					const open = res.data.find(
-						(action) => action.label === 'Ouvre aide à la saisie km voiture'
-					).nb_visits
-					const close = res.data.find(
-						(action) => action.label === 'Ferme aide à la saisie km voiture'
-					).nb_visits
-					const realUse = open - close
-					return realUse
-				}),
-		{
-			keepPreviousData: true,
+	useX(
+		'KmHelp',
+		`module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`,
+		(res) => {
+			const open = res.data.find(
+				(action) => action.label === 'Ouvre aide à la saisie km voiture'
+			).nb_visits
+			const close = res.data.find(
+				(action) => action.label === 'Ferme aide à la saisie km voiture'
+			).nb_visits
+			const realUse = open - close
+			return realUse
 		}
 	)
 
 export const useSimulationsfromKmHelp = () =>
-	useQuery(
-		['SimulationsTermineesfromKmHelp'],
-		() =>
-			axios
-				.get(
-					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`
-				)
-				.then((res) =>
-					res.data.find((action) => action.label === 'A terminé la simulation')
-				),
-		{
-			keepPreviousData: true,
-		}
+	useX(
+		'SimulationsTermineesfromKmHelp',
+		`module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`,
+		(res) =>
+			res.data.find((action) => action.label === 'A terminé la simulation')
 	)
 
 export const useRidesNumber = () =>
-	useQuery(
+	useX(
 		'ridesNumber',
-		() =>
-			axios
-				.get(
-					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`
-				)
-				.then((res) =>
-					res.data.find((action) => action.label === 'Ajout trajet km voiture')
-				),
-		{
-			keepPreviousData: true,
-		}
+		`module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`,
+		(res) =>
+			res.data.find((action) => action.label === 'Ajout trajet km voiture')
 	)
