@@ -5,8 +5,7 @@ import Tile from '../utils/Tile'
 const FigureWrapper = styled.div`
 	width: 40%;
 	text-align: center;
-	padding-top: 2rem;
-	margin-bottom: 2rem;
+	padding-top: 1rem;
 	display: flex;
 	flex-direction: column;
 	@media screen and (max-width: ${1200}px) {

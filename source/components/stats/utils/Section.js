@@ -19,6 +19,17 @@ Section.Title = styled.h2`
 	font-family: 'Marianne', sans-serif;
 	margin-top: 1rem;
 `
+
+Section.Intro = styled.details`
+	font-size: 1rem;
+	line-height: 1.3rem;
+	margin: 1rem 0 0.5rem 0;
+	> summary {
+		font-size: 1.3rem;
+		margin-bottom: 0.5rem;
+	}
+`
+
 Section.Sector = styled.span`
 	color: red;
 `

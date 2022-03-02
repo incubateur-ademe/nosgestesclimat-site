@@ -106,6 +106,15 @@ export default function Data(props) {
 					</Section>
 					<Section>
 						<Section.Title>Durée des visites</Section.Title>
+						<Section.Intro>
+							<summary>En savoir plus</summary>
+							Cette section est générée à partir des visites des 60 derniers
+							jours. Les visites dont le temps passé sur le site est inférieur à
+							1 minute ont été écartées. Pour éviter le biais de l'iframe qui
+							peut générer des visiteurs inactifs dans les statistiques, le
+							temps moyen sur le site a été calculé à partir des visites actives
+							(l'utilisateur a cliqué sur "Faire le test").
+						</Section.Intro>
 						<Wrapper>
 							<DurationFigures
 								avgduration={avgduration}
