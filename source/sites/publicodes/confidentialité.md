@@ -26,10 +26,6 @@ Les modes de simulation en groupe, conférence et sondage, font eux appel à nos
 
 La présente plateforme Nos Gestes Climat est à l’initiative de l’Agence de la transition écologique, l'ADEME, qui est responsable de traitement des données à caractère personnel collectées par la plateforme.
 
-## Finalités
-
-Voir notre page [CGU](/cgu).
-
 ## Données à caractère personnel traitées
 
 ### a) Données relatives à la simulation

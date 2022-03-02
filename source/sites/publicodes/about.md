@@ -10,6 +10,8 @@ Basé sur une [analyse des calculateurs existants début 2020](https://www.assoc
 
 Ce calculateur carbone est développé par l'équipe [Datagir](https://datagir.ademe.fr/) de l’[Agence de la transition écologique](https://www.ademe.fr/) (ADEME) et [beta.gouv.fr](https://beta.gouv.fr/), en partenariat avec l’[Association Bilan Carbone](https://www.associationbilancarbone.fr/) (ABC).
 
+Le code de ce site [est libre](https://github.com/betagouv/ecolab-data). Plongez-vous dans nos modèles carbone en explorant la [documentation](/documentation).
+
 ## Nouveautés
 
 Le simulateur est amélioré en continu.
@@ -20,7 +22,7 @@ Le simulateur est amélioré en continu.
 
 Nous collectons des données anonymisées uniquement pour améliorer ce simulateur.
 
-[🍪 En savoir plus](/vie-privée)
+[🍪 Notre politique de confidentialité](/vie-privée)
 
 ## Comment intégrer ce simulateur dans votre site ?
 
@@ -36,7 +38,7 @@ Le site est partiellement conforme aux normes d'accessibilité numérique.
 
 Nous avons réalisé [un premier audit](https://github.com/datagir/nosgestesclimat-site/issues/350), intégralement corrigé. Nous menons au printemps 2022 un deuxième audit plus rigoureux.
 
-Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, merci de nous en faire part [en bas de cette page](http://localhost:8080/contribuer). Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au [Défenseur des droits](https://www.defenseurdesdroits.fr).
+Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, merci de nous en faire part [en bas de la page FAQ](http://localhost:8080/contribuer). Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au [Défenseur des droits](https://www.defenseurdesdroits.fr).
 
 ## Mentions légales
 
@@ -61,3 +63,7 @@ Netlify, Inc
 San Francisco, California 94107
 
 Le site est hébergé sur Netlify. C'est un site statique servi via un CDN : malgré la domiciliation en Californie, le site vous sera servi [depuis l'Europe](https://answers.netlify.com/t/is-there-a-list-of-where-netlifys-cdn-pops-are-located/855/2).
+
+## Conditions générales d'utilisation
+
+Elles sont disponibles sur [cette page](/cgu).

@@ -13,12 +13,7 @@ Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuel
 
 		`}
 		/>
-		<p>
-			<Markdown source={about} />
-			Le code de ce site{' '}
-			<a href="https://github.com/betagouv/ecolab-data"> est libre</a>.
-			Plongez-vous dans nos modèles carbone en explorant la{' '}
-			<Link to="/documentation">documentation</Link>.
-		</p>
+
+		<Markdown source={about} />
 	</section>
 )
