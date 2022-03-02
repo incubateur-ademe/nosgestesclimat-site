@@ -68,28 +68,10 @@ export const useSimulationAvgDuration = () =>
 	useQuery(['SimulationAvgDuration'], () =>
 		axios
 			.get(
-				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=Actions.getPageUrls&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
+				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60`
 			)
-			.then((res) => res.data.find((page) => page.label === 'simulateur/bilan'))
-			.then((res) => res.avg_time_on_page)
-	)
-
-export const useActionAvgDuration = () =>
-	useQuery(
-		['ActionAvgDuration'],
-		() =>
-			axios.get(
-				`https://stats.data.gouv.fr/?module=API&idSite=${idSite}&method=Actions.getPageUrls&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
-			)
-		// .then((res) => res.data.find((page) => page.label === 'actions'))
-		// .then((res) => res.sum_time_spent)
-	)
-
-export const useVisitsLast60 = () =>
-	useQuery(['useVisitsLast60'], () =>
-		axios.get(
-			`https://stats.data.gouv.fr/?module=API&method=VisitsSummary.getVisits&idSite=${idSite}&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`
-		)
+			// .then((res) => res.data.find((page) => page.label === 'simulateur'))
+			.then((res) => res.data[0].sum_time_spent / res.data[0].nb_visits / 60)
 	)
 
 export const useTotal = () =>

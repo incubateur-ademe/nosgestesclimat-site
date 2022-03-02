@@ -8,8 +8,6 @@ import {
 	useVisitsDuration,
 	useVisitsAvgDuration,
 	useSimulationAvgDuration,
-	useActionAvgDuration,
-	useVisitsLast60,
 	useWebsites,
 	useOldWebsites,
 	useSocials,
@@ -53,8 +51,6 @@ export default function Data(props) {
 	const { data: duration } = useVisitsDuration()
 	const { data: avgduration } = useVisitsAvgDuration()
 	const { data: avgsimulation } = useSimulationAvgDuration()
-	const { data: avgaction } = useActionAvgDuration()
-	const { data: visitslast60 } = useVisitsLast60()
 	const { data: websites } = useWebsites()
 	const { data: oldWebsites } = useOldWebsites()
 	const { data: socials } = useSocials()
@@ -66,9 +62,6 @@ export default function Data(props) {
 	const { data: kmhelp } = useKmHelp()
 	const { data: simulationsfromhelp } = useSimulationsfromKmHelp()
 	const { data: ridesnumber } = useRidesNumber()
-
-	console.log(visitslast60)
-	console.log(avgaction)
 
 	return (
 		<div>
@@ -114,7 +107,10 @@ export default function Data(props) {
 					<Section>
 						<Section.Title>Durée des visites</Section.Title>
 						<Wrapper>
-							<DurationFigures avgduration={avgduration} />
+							<DurationFigures
+								avgduration={avgduration}
+								avgsimulation={avgsimulation}
+							/>
 							{duration && <DurationChart duration={duration} />}
 						</Wrapper>
 					</Section>
