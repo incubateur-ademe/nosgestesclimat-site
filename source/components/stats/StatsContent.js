@@ -133,7 +133,7 @@ export default function Data(props) {
 					</Section>
 				</>
 			) : (
-				<div>Loading</div>
+				<div>Chargement</div>
 				// <Loader />
 			)}
 		</div>
