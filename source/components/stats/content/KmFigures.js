@@ -34,7 +34,7 @@ export default function KmFigures(props) {
 			<Tile.Tile>
 				<Tile.Content>
 					<Number> {Math.round(userPercent).toLocaleString('fr-FR')}%</Number>
-					<Label>ont utilisé l'aide à la saisie</Label>
+					<Label>ont utilisé l'aide à la saisi des km</Label>
 				</Tile.Content>
 			</Tile.Tile>
 			<Tile.Tile>
