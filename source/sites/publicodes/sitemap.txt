@@ -1,6 +1,7 @@
 https://nosgestesclimat.fr/simulateur/bilan
 https://nosgestesclimat.fr/vie-privée
 https://nosgestesclimat.fr/documentation
+https://nosgestesclimat.fr/stats
 https://nosgestesclimat.fr/à-propos
 https://nosgestesclimat.fr/documentation/alimentation/réduire-viande
 https://nosgestesclimat.fr/documentation/alimentation/réduire-viande/par-deux

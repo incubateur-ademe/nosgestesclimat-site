@@ -6,7 +6,8 @@ export default ({ setInput, input }) => (
 		css={`
 			display: flex;
 			align-items: flex-end;
-		`}>
+		`}
+	>
 		<input
 			css={`
 				display: inline-block;
@@ -18,7 +19,7 @@ export default ({ setInput, input }) => (
 			`}
 			type="search"
 			value={input}
-			onChange={event => {
+			onChange={(event) => {
 				setInput(event.target.value)
 			}}
 		/>
@@ -29,7 +30,8 @@ export default ({ setInput, input }) => (
 					width: 1.6em !important;
 					height: 1.6em !important;
 				}
-			`}>
+			`}
+		>
 			{emoji('🔍')}
 		</span>
 	</div>
