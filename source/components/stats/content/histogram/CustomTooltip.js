@@ -18,15 +18,15 @@ const Number = styled.span`
 	font-weight: 700;
 `
 export default function CustomTooltip(props) {
+	const label = props.label && props.label.replace(/\s/g, ' ')
 	return props.active && props.payload && props.payload.length ? (
 		<Wrapper>
-			{props.label === '30+\u00A0min' ? (
+			{label === '30+ min' ? (
 				<Label>Plus de 30 minutes</Label>
 			) : (
 				<Label>
-					Entre {props.label.split('-')[0].toLocaleString('fr-fr')} et{' '}
-					{props.label.split('-')[1].split('\u00A0')[0].toLocaleString('fr-fr')}{' '}
-					minutes
+					Entre {label.split('-')[0].toLocaleString('fr-fr')} et{' '}
+					{label.split('-')[1].split(' ')[0].toLocaleString('fr-fr')} minutes
 				</Label>
 			)}
 			<Number>
