@@ -189,7 +189,15 @@ export default ({
 			>
 				Les résultats pour chaque catégorie (alimentation, transport, logement
 				...) s'affichent progressivement et en temps réel pour l'ensemble du
-				groupe en revenant sur la page <Link to={URLPath}>{URLPath}</Link>.
+				groupe sur{' '}
+				{!started ? (
+					"la page à partager à l'étape 3"
+				) : (
+					<span>
+						cette page <Link to={URLPath}>{URLPath}</Link>
+					</span>
+				)}
+				.
 			</InstructionBlock>
 			{newRoom !== '' && !room && (
 				<InstructionBlock index="6" title="Prêt à démarrer ?">
