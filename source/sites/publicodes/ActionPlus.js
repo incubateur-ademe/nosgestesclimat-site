@@ -19,7 +19,7 @@ export default () => {
 			<Meta title={title(rule)} />
 			<ScrollToTop />
 			<div>
-				<Link to={'/actions/' + encodedName}>
+				<Link to={'/actions/plus'}>
 					<button className="ui__ button simple small ">
 						{emoji('◀')} Retour à la liste des fiches
 					</button>
