@@ -34,7 +34,6 @@ export default function IframeOptionsProvider({ children, tracker }) {
 		])
 	)
 	const finalValue = { ...iframeIntegratorOptions, isIframe }
-	console.log(finalValue)
 	return (
 		<IframeOptionsContext.Provider value={finalValue}>
 			{children}

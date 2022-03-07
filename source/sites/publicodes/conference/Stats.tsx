@@ -8,6 +8,7 @@ import { extremeThreshold } from './utils'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
+	simulationArray.length > 0 &&
 	simulationArray
 		.filter((el) => el !== null)
 		.reduce((memo, next) => memo + next || 0, 0) / simulationArray.length
@@ -18,25 +19,29 @@ export const computeHumanMean = (simulationArray) => {
 	return result ? meanFormatter(result) : 'résultats en attente'
 }
 
-export default ({ elements, users, username }) => {
-	const [spotlight, setSpotlightRaw] = useState(null)
+export default ({
+	elements: rawElements,
+	users = [],
+	username: currentUser,
+	threshold,
+	setThreshold,
+}) => {
+	const [spotlight, setSpotlightRaw] = useState(currentUser)
+	const elements = rawElements.filter((el) => el.total < threshold)
+	console.log('EL', elements)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	if (!users) return null
-	const values = Object.values(elements).map((el) => el.bilan)
+	const values = elements.map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean(values)
 
-	const progressList = Object.values(elements).map((el) => el.progress),
+	const progressList = elements.map((el) => el.progress),
 		meanProgress = computeMean(progressList)
 
 	if (isNaN(mean)) return null
 
 	const categories = reduceCategories(
-			Object.entries(elements).map(([username, data]) => [
-				username,
-				data.byCategory,
-			])
+			elements.map(({ byCategory, username }) => [username, byCategory])
 		),
 		yo = console.log('CAT', categories),
 		maxCategory = Object.values(categories).reduce(
@@ -49,19 +54,53 @@ export default ({ elements, users, username }) => {
 		max = humanWeight(maxValue, true).join(' '),
 		min = humanWeight(minValue, true).join(' ')
 
-	console.log('ALL', elements, users, username)
+	const spotlightElement = elements.find((el) => el.username === spotlight),
+		spotlightValue =
+			spotlightElement &&
+			(spotlightElement.total / 1000).toLocaleString('fr-FR', {
+				maximumSignificantDigits: 2,
+			})
+	console.log(spotlightValue)
 
 	return (
 		<div>
 			<div css=" text-align: center">
-				<p>Avancement du groupe</p>
+				<p>
+					Avancement du groupe ({rawElements.length} participant
+					{rawElements.length > 1 ? 's' : ''})
+				</p>
 				<Progress progress={meanProgress} />
 			</div>
 			<div css="margin: 1.6rem 0">
-				<div css="text-align: center">Moyenne du groupe : {humanMean}</div>
-				<div css="text-align: center">
-					Moyenne française : <DefaultFootprint />
+				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
+					<div>
+						Moyenne : {humanMean}{' '}
+						<small>
+							({emoji('🇫🇷')} <DefaultFootprint />)
+						</small>
+					</div>
+					<small>
+						<label>
+							Exclure au-dessus de{' '}
+							<input
+								css={`
+									width: 2.5rem;
+									height: 1.2rem;
+									text-align: right;
+									border: none;
+									border-bottom: 1px dashed var(--color);
+									font-size: 100%;
+									color: inherit;
+								`}
+								onChange={(e) => setThreshold(e.target.value * 1000)}
+								value={threshold / 1000}
+								type="number"
+							/>{' '}
+							tonnes.
+						</label>
+					</small>
 				</div>
+
 				<div
 					css={`
 						width: 100%;
@@ -75,24 +114,26 @@ export default ({ elements, users, username }) => {
 						}
 					`}
 				>
-					{Object.entries(elements).map(([usernameI, { bilan: value }]) => (
+					{elements.map(({ total: value, username }) => (
 						<li
-							key={usernameI}
+							key={username}
 							css={`
 								height: 100%;
 								width: 10px;
 								margin-left: -10px;
 								left: ${((value - minValue) / (maxValue - minValue)) * 100}%;
-								background: ${users.find((u) => u.name === usernameI)?.color ||
-								'black'};
+								background: ${users.find((u) => u.name === username)?.color ||
+								'var(--color)'};
 								opacity: 0.5;
 
 								cursor: pointer;
-								${spotlight === usernameI
-									? `background: yellow; opacity: 1`
+								${spotlight === username
+									? `background: yellow; opacity: 1; 
+										border-right: 2px dashed black;
+										border-left: 2px dashed black`
 									: ''}
 							`}
-							onClick={() => setSpotlight(usernameI)}
+							onClick={() => setSpotlight(username)}
 						></li>
 					))}
 				</div>
@@ -106,13 +147,26 @@ export default ({ elements, users, username }) => {
 				</div>
 			</div>
 			<CategoryStats {...{ categories, maxCategory, spotlight }} />
+
+			<div>
+				{spotlight && (
+					<span>
+						En <span css="background: yellow;">jaune</span> :{' '}
+						{spotlight === currentUser ? 'toi' : spotlight} à {spotlightValue}{' '}
+						t.
+					</span>
+				)}
+			</div>
 		</div>
 	)
 }
 
 const reduceCategories = (list) =>
 	list.reduce(
-		(memo, [username, categories]) => {
+		(memo, [username, categoriesValueSet]) => {
+			const categories = Object.entries(categoriesValueSet).map(
+				([name, nodeValue]) => ({ name, nodeValue })
+			)
 			return categories.reduce(
 				(countByCategory, nextCategory) => ({
 					...countByCategory,

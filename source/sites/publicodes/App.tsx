@@ -22,13 +22,19 @@ import Logo from './Logo'
 import Navigation from './Navigation'
 import Documentation from './pages/Documentation'
 import Personas from './Personas.tsx'
-import Privacy from './Privacy'
 import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import GroupSwitch from './conference/GroupSwitch'
+
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
+
+const SurveyLazy = React.lazy(() => import('./conference/Survey'))
+
+const CGULazy = React.lazy(() => import('./CGU.tsx'))
+const PrivacyLazy = React.lazy(() => import('./Privacy.js'))
 
 let tracker = devTracker
 if (NODE_ENV === 'production') {
@@ -162,14 +168,32 @@ const Routes = ({}) => {
 			<Route path="/actions" component={Actions} />
 			<Route path="/contribuer/:input?" component={Contribution} />
 			<Route path="/à-propos" component={About} />
+			<Route path="/cgu">
+				<Suspense fallback="Chargement">
+					<CGULazy />
+				</Suspense>
+			</Route>
 			<Route path="/partenaires" component={Diffuser} />
 			<Route path="/diffuser" component={Diffuser} />
-			<Route path="/vie-privée" component={Privacy} />
+			<Route path="/vie-privée">
+				<Suspense fallback="Chargement">
+					<PrivacyLazy />
+				</Suspense>
+			</Route>
 			<Route path="/nouveautés" component={News} />
 			<Route path="/profil" component={Profil} />
 			<Route path="/conférence/:room?">
 				<Suspense fallback="Chargement">
 					<ConferenceLazy />
+				</Suspense>
+			</Route>
+
+			<Route path="/groupe/:room?">
+				<GroupSwitch />
+			</Route>
+			<Route path="/sondage/:room?">
+				<Suspense fallback="Chargement">
+					<SurveyLazy />
 				</Suspense>
 			</Route>
 			<Redirect from="/conference/:room" to="/conférence/:room" />

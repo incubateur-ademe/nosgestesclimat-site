@@ -37,6 +37,7 @@ module.exports = {
 		}),
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('production'),
+			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
 		}),
 	],
 }

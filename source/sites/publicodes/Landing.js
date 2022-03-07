@@ -67,7 +67,7 @@ export default () => {
 					</Link>
 				</div>
 				<div>
-					<Link to="/conférence" className="ui__ button small">
+					<Link to="/groupe" className="ui__ button small">
 						{emoji('👥')} Faire le test à plusieurs
 					</Link>
 				</div>

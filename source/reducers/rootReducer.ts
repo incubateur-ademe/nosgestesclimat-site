@@ -159,8 +159,28 @@ function actionChoices(state = {}, { type, action, choice }) {
 		return {}
 	} else return state
 }
+function survey(state = null, { type, room, answers }) {
+	if (type === 'UNSET_SURVEY') return {}
+	if (type === 'SET_SURVEY') {
+		if (state?.room === room) return state
+		return {
+			room,
+			answers: {},
+		}
+	}
+	if (type === 'ADD_SURVEY_ANSWERS') {
+		return {
+			room,
+			answers: answers.reduce(
+				(memo, next) => ({ ...memo, [next.id]: next }),
+				state.answers
+			),
+		}
+	} else return state
+}
 
 function conference(state = null, { type, room, ydoc, provider }) {
+	if (type === 'UNSET_CONFERENCE') return null
 	if (type === 'SET_CONFERENCE') {
 		if (state?.room === room) return state
 		return {
@@ -208,6 +228,7 @@ const mainReducer = (state: any, action: Action) =>
 		rules,
 		actionChoices,
 		conference,
+		survey,
 		iframeOptions: defaultTo(null),
 		tutorials,
 		storedTrajets,

@@ -4,22 +4,22 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { last } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	objectifsSelector,
 } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import CarbonImpact from '../sites/publicodes/CarbonImpact'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
-import { Link } from 'react-router-dom'
+import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 
 const openmojis = {
 	test: '25B6',
 	action: 'E10C',
 	conference: '1F3DF',
+	sondage: '1F4CA',
 	profile: '1F464',
 	personas: '1F465',
 }
@@ -107,10 +107,10 @@ export default function SessionBar({
 
 	const objectifs = useSelector(objectifsSelector)
 	const conference = useSelector((state) => state.conference)
+	const survey = useSelector((state) => state.survey)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
 
-	const history = useHistory()
 	const location = useLocation(),
 		path = location.pathname
 
@@ -165,46 +165,24 @@ export default function SessionBar({
 			</Button>
 		),
 		conference?.room && (
-			<div
-				css={`
-					${backgroundConferenceAnimation}
-					color: white;
-					border-radius: 0.4rem;
-					margin-right: 0.6rem;
-				`}
+			<GroupModeMenuEntry
+				title="Conférence"
+				icon={conferenceImg}
+				url={'/conférence/' + conference.room}
+				buttonStyle={buttonStyle}
 			>
-				<Button
-					className="simple small"
-					url={'/conférence/' + conference.room}
-					css={`
-						${buttonStyle('conf')}
-						padding: 0.4rem;
-						color: white;
-						img {
-							filter: invert(1);
-							background: none;
-							margin: 0 0.6rem 0 0 !important;
-						}
-						@media (max-width: 800px) {
-							img {
-								margin: 0 !important;
-							}
-						}
-					`}
-				>
-					<img src={conferenceImg} css="width: 2rem" aria-hidden="true" />
-					Conférence
-				</Button>
-				<div
-					css={`
-						@media (max-width: 800px) {
-							display: none;
-						}
-					`}
-				>
-					<ConferenceBarLazy />
-				</div>
-			</div>
+				<ConferenceBarLazy />
+			</GroupModeMenuEntry>
+		),
+		survey?.room && (
+			<GroupModeMenuEntry
+				title="Sondage"
+				icon={openmojiURL('sondage')}
+				url={'/sondage/' + survey.room}
+				buttonStyle={buttonStyle}
+			>
+				<SurveyBarLazy />
+			</GroupModeMenuEntry>
 		),
 	]
 
@@ -262,3 +240,48 @@ const NavBar = styled.ul`
 		}
 	}
 `
+
+const GroupModeMenuEntry = ({ title, icon, url, children, buttonStyle }) => {
+	return (
+		<div
+			css={`
+				${backgroundConferenceAnimation}
+				color: white;
+				border-radius: 0.4rem;
+				margin-right: 0.6rem;
+			`}
+		>
+			<Button
+				className="simple small"
+				url={url}
+				css={`
+					${buttonStyle('conf')}
+					padding: 0.4rem;
+					color: white;
+					img {
+						filter: invert(1);
+						background: none;
+						margin: 0 0.6rem 0 0 !important;
+					}
+					@media (max-width: 800px) {
+						img {
+							margin: 0 !important;
+						}
+					}
+				`}
+			>
+				<img src={icon} css="width: 2rem" aria-hidden="true" />
+				{title}
+			</Button>
+			<div
+				css={`
+					@media (max-width: 800px) {
+						display: none;
+					}
+				`}
+			>
+				{children}
+			</div>
+		</div>
+	)
+}

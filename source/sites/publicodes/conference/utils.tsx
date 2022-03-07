@@ -37,14 +37,12 @@ export const generateRoomName = () => {
 		.toLowerCase()
 }
 
-export const extremeThreshold = 100 * 1000
+export const defaultThreshold = 100 * 1000
 
-export const filterExtremes = (elements) =>
+export const filterExtremes = (elements, threshold) =>
 	Object.fromEntries(
-		Object.entries(elements).filter(
-			([_, { bilan }]) => bilan < extremeThreshold
-		)
+		Object.entries(elements).filter(([_, { total }]) => total < threshold)
 	)
 
-export const getExtremes = (elements) =>
-	Object.entries(elements).filter(([_, { bilan }]) => bilan >= extremeThreshold)
+export const getExtremes = (elements, threshold) =>
+	Object.entries(elements).filter(([_, { total }]) => total >= threshold)

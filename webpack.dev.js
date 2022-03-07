@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const path = require('path')
+require('dotenv').config()
 
 const {
 	commonLoaders,
@@ -25,6 +26,7 @@ module.exports = {
 		...HTMLPlugins({ injectTrackingScript: true }),
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('development'),
+			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
 		}),
 		new webpack.HotModuleReplacementPlugin(),
 		new ReactRefreshWebpackPlugin(),
