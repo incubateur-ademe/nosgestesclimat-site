@@ -2,7 +2,7 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useParams } from 'react-router'
+import { Redirect, useHistory, useParams } from 'react-router'
 import { conferenceImg } from '../../../components/SessionBar'
 import Beta from './Beta'
 import { ConferenceTitle } from './Conference'
@@ -26,6 +26,9 @@ export default () => {
 	const survey = useSelector((state) => state.survey)
 	const history = useHistory()
 
+	if (!room || room === '') {
+		return <Redirect to="/groupe?mode=sondage" />
+	}
 	return (
 		<div>
 			<h1>

@@ -1,9 +1,11 @@
 import QRCode from 'qrcode.react'
 import { useContext, useState } from 'react'
+import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import emoji from '../../../components/emoji'
 import ShareButton from '../../../components/ShareButton'
 import { ThemeColorsContext } from '../../../components/utils/colors'
+import { useQuery } from '../../../utils'
 import LoadingButton from './LoadingButton'
 import NamingBlock from './NamingBlock'
 
@@ -20,11 +22,19 @@ export default ({
 	mode: defaultMode = 'conférence',
 	started = false,
 }) => {
-	const [mode, setMode] = useState(defaultMode)
+	const URLMode = useQuery().get('mode')
+	const history = useHistory()
+	const [mode, setModeState] = useState(URLMode || defaultMode)
+	const setMode = (mode) => {
+		setModeState(mode)
+
+		history.push({ pathname: '/groupe', search: '?mode=' + mode })
+	}
 	const { color } = useContext(ThemeColorsContext)
 	const URLbase = `https://${window.location.hostname}`
 	const URLPath = `/${mode}/${room || newRoom}`,
 		shareURL = URLbase + URLPath
+
 	return (
 		<div>
 			{!room && (

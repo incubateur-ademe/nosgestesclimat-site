@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
-import { useHistory, useParams } from 'react-router'
+import { Redirect, useHistory, useParams } from 'react-router'
 import styled from 'styled-components'
 import { conferenceImg } from '../../../components/SessionBar'
 import { ScrollToTop } from '../../../components/utils/Scroll'
@@ -29,9 +29,13 @@ export default () => {
 	const { elements, users, username } = useYjs(room, 'p2p')
 
 	const [threshold, setThreshold] = useState(defaultThreshold)
-	const extremes = getExtremes(elements, threshold)
 	const dispatch = useDispatch()
 	const history = useHistory()
+
+	if (!room || room === '') {
+		return <Redirect to="/groupe" />
+	}
+	const extremes = getExtremes(elements, threshold)
 
 	return (
 		<div>
