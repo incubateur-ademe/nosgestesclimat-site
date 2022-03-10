@@ -65,7 +65,7 @@ export default () => {
 							href={answersURL + survey.room + '?format=csv'}
 							className="ui__ link-button"
 						>
-							{emoji('💾')} Télécharger les données
+							{emoji('💾')} Télécharger les résultats
 						</a>
 					</div>
 				</>
