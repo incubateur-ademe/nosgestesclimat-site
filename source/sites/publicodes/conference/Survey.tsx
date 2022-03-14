@@ -82,11 +82,11 @@ const DownloadInteractiveButton = ({ url }) => {
 						e.preventDefault()
 					}}
 				>
-					{emoji('💾')} Télécharger les données
+					{emoji('💾')} Télécharger les résultats
 				</a>
 			) : (
 				<p className="ui__ card content">
-					Le fichier télécharger a l'extension .csv.
+					Vous pouvez récupérer les résultats du sondage dans le format .csv.
 					<ul>
 						<li>
 							Pour l'ouvrir avec{' '}
