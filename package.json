@@ -44,7 +44,7 @@
 		"babel-loader": "^8.2.2",
 		"babel-plugin-styled-components": "^2.0.6",
 		"copy-webpack-plugin": "^4.5.2",
-		"css-loader": "^5.2.4",
+		"css-loader": "^6.7.1",
 		"csv-loader": "^3.0.3",
 		"cypress-plugin-tab": "^1.0.5",
 		"enzyme-adapter-react-16": "^1.1.1",
