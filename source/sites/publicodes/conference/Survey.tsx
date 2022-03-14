@@ -60,15 +60,51 @@ export default () => {
 							{emoji('🚪')} Quitter le sondage
 						</button>
 					</div>
-					<div>
-						<a
-							href={answersURL + survey.room + '?format=csv'}
-							className="ui__ link-button"
-						>
-							{emoji('💾')} Télécharger les données
-						</a>
-					</div>
+					<DownloadInteractiveButton
+						url={answersURL + survey.room + '?format=csv'}
+					/>
 				</>
+			)}
+		</div>
+	)
+}
+
+const DownloadInteractiveButton = ({ url }) => {
+	const [clicked, click] = useState(false)
+
+	return (
+		<div>
+			{!clicked ? (
+				<a
+					href="#"
+					onClick={(e) => {
+						click(true)
+						e.preventDefault()
+					}}
+				>
+					{emoji('💾')} Télécharger les données
+				</a>
+			) : (
+				<p className="ui__ card content">
+					Le fichier télécharger a l'extension .csv.
+					<ul>
+						<li>
+							Pour l'ouvrir avec{' '}
+							<a href="https://fr.libreoffice.org" target="_blank">
+								LibreOffice
+							</a>
+							, c'est automatique.
+						</li>
+						<li>
+							Pour l'ouvrir avec Microsoft Excel, ouvrez un tableur vide, puis
+							Données {'>'} À partir d'un fichier texte / CSV. Sélectionnez
+							"Origine : Unicode UTF-8" et "Délimiteur : virgule".
+						</li>
+					</ul>
+					<a href={url} className="ui__ link-button">
+						{emoji('💾')} Lancer le téléchargement.
+					</a>
+				</p>
 			)}
 		</div>
 	)
