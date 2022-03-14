@@ -7,6 +7,8 @@ import { usePersistingState } from '../../../components/utils/persistState'
 import fruits from './fruits.json'
 import { filterExtremes, getRandomInt, stringToColour } from './utils'
 
+localStorage.log = 'y-webrtc'
+
 export default (room, connectionType: 'p2p' | 'database') => {
 	const conference = useSelector((state) => state.conference)
 
