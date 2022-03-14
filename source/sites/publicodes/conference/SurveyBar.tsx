@@ -17,6 +17,7 @@ import { WebsocketProvider } from 'y-websocket'
 import useYjs from './useYjs'
 import useDatabase, { answersURL } from './useDatabase'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
+import { v4 as uuidv4 } from 'uuid'
 
 export default () => {
 	const situation = useSelector(situationSelector),
@@ -66,7 +67,7 @@ export default () => {
 			)
 
 		if (!cachedSurveyId) {
-			setSurveyIds({ ...setSurveyIds, [survey.room]: crypto.randomUUID() })
+			setSurveyIds({ ...setSurveyIds, [survey.room]: uuidv4() })
 		}
 	}, [survey.room])
 
