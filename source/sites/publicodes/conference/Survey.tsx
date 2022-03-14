@@ -85,8 +85,10 @@ const DownloadInteractiveButton = ({ url }) => {
 					{emoji('💾')} Télécharger les résultats
 				</a>
 			) : (
-				<p className="ui__ card content">
-					Vous pouvez récupérer les résultats du sondage dans le format .csv.
+				<div className="ui__ card content">
+					<p>
+						Vous pouvez récupérer les résultats du sondage dans le format .csv.
+					</p>
 					<ul>
 						<li>
 							Pour l'ouvrir avec{' '}
@@ -104,7 +106,7 @@ const DownloadInteractiveButton = ({ url }) => {
 					<a href={url} className="ui__ link-button">
 						{emoji('💾')} Lancer le téléchargement.
 					</a>
-				</p>
+				</div>
 			)}
 		</div>
 	)

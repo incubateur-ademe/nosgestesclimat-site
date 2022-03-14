@@ -27,12 +27,13 @@ export default (room, connectionType: 'p2p' | 'database') => {
 				connectionType === 'p2p'
 					? new WebrtcProvider(room, ydoc, {})
 					: new WebsocketProvider(
-							'wss://nosgestesclimat-serveur.osc-fr1.scalingo.io',
+							'wss://nosgestesclimat-serveur.osc-fr1.scalingo.io', // Not used, was a test, replace by Survey.tsx mode
 							room,
 							ydoc
 					  )
+
 			provider.on('status', (event) => {
-				console.log(event.status) // logs "connected" or "disconnected"
+				console.log('YJS log status', event.status) // logs "connected" or "disconnected"
 			})
 
 			dispatch({ type: 'SET_CONFERENCE', room, ydoc, provider })

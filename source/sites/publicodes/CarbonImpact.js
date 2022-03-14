@@ -174,8 +174,6 @@ const DiffHumanWeight = ({ nodeValue, engine, rules, actionChoices }) => {
 			} else return memo
 		}, 0)
 
-	console.log(actions, actionTotal)
-
 	return (
 		<HumanWeight
 			nodeValue={nodeValue}
