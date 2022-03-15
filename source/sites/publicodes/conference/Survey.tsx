@@ -43,7 +43,7 @@ export default () => {
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
-				<Results room={survey.room} cachedSurveyId={cachedSurveyId} />
+				<Results room={survey.room} />
 			)}
 			{survey && (
 				<>
@@ -60,25 +60,65 @@ export default () => {
 							{emoji('🚪')} Quitter le sondage
 						</button>
 					</div>
-					<div>
-						<a
-							href={answersURL + survey.room + '?format=csv'}
-							className="ui__ link-button"
-						>
-							{emoji('💾')} Télécharger les données
-						</a>
-					</div>
+					<DownloadInteractiveButton
+						url={answersURL + survey.room + '?format=csv'}
+					/>
 				</>
 			)}
 		</div>
 	)
 }
 
-const Results = ({ cachedSurveyId }) => {
+const DownloadInteractiveButton = ({ url }) => {
+	const [clicked, click] = useState(false)
+
+	return (
+		<div>
+			{!clicked ? (
+				<a
+					href="#"
+					onClick={(e) => {
+						click(true)
+						e.preventDefault()
+					}}
+				>
+					{emoji('💾')} Télécharger les résultats
+				</a>
+			) : (
+				<div className="ui__ card content">
+					<p>
+						Vous pouvez récupérer les résultats du sondage dans le format .csv.
+					</p>
+					<ul>
+						<li>
+							Pour l'ouvrir avec{' '}
+							<a href="https://fr.libreoffice.org" target="_blank">
+								LibreOffice
+							</a>
+							, c'est automatique.
+						</li>
+						<li>
+							Pour l'ouvrir avec Microsoft Excel, ouvrez un tableur vide, puis
+							Données {'>'} À partir d'un fichier texte / CSV. Sélectionnez
+							"Origine : Unicode UTF-8" et "Délimiteur : virgule".
+						</li>
+					</ul>
+					<a href={url} className="ui__ link-button">
+						{emoji('💾')} Lancer le téléchargement.
+					</a>
+				</div>
+			)}
+		</div>
+	)
+}
+
+const Results = ({}) => {
+	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
 	const answerMap = survey.answers
-	if (!answerMap || !Object.values(answerMap)) return null
+	const username = cachedSurveyIds[survey.room]
+	if (!answerMap || !Object.values(answerMap) || !username) return null
 
 	return (
 		<Stats
@@ -86,7 +126,7 @@ const Results = ({ cachedSurveyId }) => {
 				...el.data,
 				username: el.id,
 			}))}
-			username={cachedSurveyId}
+			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
 		/>

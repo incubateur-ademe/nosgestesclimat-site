@@ -4,8 +4,9 @@ import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
 import * as Y from 'yjs'
 import { usePersistingState } from '../../../components/utils/persistState'
-import fruits from './fruits.json'
-import { filterExtremes, getRandomInt, stringToColour } from './utils'
+import { filterExtremes, generateFruitName, stringToColour } from './utils'
+
+localStorage.log = 'y-webrtc'
 
 export default (room, connectionType: 'p2p' | 'database') => {
 	const conference = useSelector((state) => state.conference)
@@ -14,10 +15,8 @@ export default (room, connectionType: 'p2p' | 'database') => {
 	const [rawElements, setElements] = useState([])
 	const [users, setUsers] = useState([])
 
-	const [username, setUsername] = usePersistingState(
-		'conferenceId',
-		fruits[getRandomInt(fruits.length)]
-	)
+	const [username, setUsername] = usePersistingState('conferenceId', null)
+	useEffect(() => !username && setUsername(generateFruitName()), [username])
 
 	useEffect(() => {
 		if (!room && !conference) return null
@@ -27,12 +26,13 @@ export default (room, connectionType: 'p2p' | 'database') => {
 				connectionType === 'p2p'
 					? new WebrtcProvider(room, ydoc, {})
 					: new WebsocketProvider(
-							'wss://nosgestesclimat-serveur.osc-fr1.scalingo.io',
+							'wss://nosgestesclimat-serveur.osc-fr1.scalingo.io', // Not used, was a test, replace by Survey.tsx mode
 							room,
 							ydoc
 					  )
+
 			provider.on('status', (event) => {
-				console.log(event.status) // logs "connected" or "disconnected"
+				console.log('YJS log status', event.status) // logs "connected" or "disconnected"
 			})
 
 			dispatch({ type: 'SET_CONFERENCE', room, ydoc, provider })
