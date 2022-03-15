@@ -127,7 +127,9 @@ export default ({
 								${spotlight === username
 									? `background: yellow; opacity: 1; 
 										border-right: 2px dashed black;
-										border-left: 2px dashed black`
+										border-left: 2px dashed black;
+										z-index: 1;
+										`
 									: ''}
 							`}
 							onClick={() => setSpotlight(username)}

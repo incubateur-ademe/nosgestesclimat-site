@@ -43,7 +43,7 @@ export default () => {
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
-				<Results room={survey.room} cachedSurveyId={cachedSurveyId} />
+				<Results room={survey.room} />
 			)}
 			{survey && (
 				<>
@@ -112,7 +112,8 @@ const DownloadInteractiveButton = ({ url }) => {
 	)
 }
 
-const Results = ({ cachedSurveyId }) => {
+const Results = ({}) => {
+	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
 	const answerMap = survey.answers
@@ -124,7 +125,7 @@ const Results = ({ cachedSurveyId }) => {
 				...el.data,
 				username: el.id,
 			}))}
-			username={cachedSurveyId}
+			username={cachedSurveyIds[survey.room]}
 			threshold={threshold}
 			setThreshold={setThreshold}
 		/>
