@@ -117,7 +117,8 @@ const Results = ({}) => {
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
 	const answerMap = survey.answers
-	if (!answerMap || !Object.values(answerMap)) return null
+	const username = cachedSurveyIds[survey.room]
+	if (!answerMap || !Object.values(answerMap) || !username) return null
 
 	return (
 		<Stats
@@ -125,7 +126,7 @@ const Results = ({}) => {
 				...el.data,
 				username: el.id,
 			}))}
-			username={cachedSurveyIds[survey.room]}
+			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
 		/>

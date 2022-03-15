@@ -87,7 +87,6 @@ export default () => {
 			answers: [answer],
 			room: survey.room,
 		})
-		console.log('did emit A')
 	}, [situation, survey.room, cachedSurveyId])
 
 	useEffect(async () => {
