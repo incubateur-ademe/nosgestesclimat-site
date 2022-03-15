@@ -1,5 +1,5 @@
 import { Action } from 'Actions/actions'
-import { defaultTo, omit, without } from 'ramda'
+import { defaultTo, omit } from 'ramda'
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { SavedSimulation } from 'Selectors/storageSelectors'
