@@ -25,14 +25,7 @@ export default () => {
 			<Meta title={titre} />
 			<ScrollToTop />
 			<div>
-				{encodedName === 'guide' ? (
-					<button
-						className="ui__ button simple small "
-						onClick={goToPreviousPath}
-					>
-						{emoji('◀')} Retour
-					</button>
-				) : (
+				{encodedName != 'guide' && (
 					<Link to={'/groupe/guide'}>
 						<button className="ui__ button simple small ">
 							{emoji('◀')} Retour
