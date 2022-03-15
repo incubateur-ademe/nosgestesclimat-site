@@ -4,8 +4,7 @@ import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
 import * as Y from 'yjs'
 import { usePersistingState } from '../../../components/utils/persistState'
-import fruits from './fruits.json'
-import { filterExtremes, getRandomInt, stringToColour } from './utils'
+import { filterExtremes, generateFruitName, stringToColour } from './utils'
 
 localStorage.log = 'y-webrtc'
 
@@ -17,10 +16,7 @@ export default (room, connectionType: 'p2p' | 'database') => {
 	const [users, setUsers] = useState([])
 
 	const [username, setUsername] = usePersistingState('conferenceId', null)
-	useEffect(
-		() => !username && setUsername(fruits[getRandomInt(fruits.length)]),
-		[username]
-	)
+	useEffect(() => !username && setUsername(generateFruitName()), [username])
 
 	useEffect(() => {
 		if (!room && !conference) return null
