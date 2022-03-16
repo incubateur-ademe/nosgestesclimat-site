@@ -16,6 +16,7 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import ProgressCircle from './ProgressCircle'
 import CardGameIcon from './CardGameIcon'
+import useLocalisation from 'Components/useLocalisation'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -133,6 +134,7 @@ export default function SessionBar({
 	const survey = useSelector((state) => state.survey)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
+	const localisation = useLocalisation()
 
 	const location = useLocation(),
 		path = location.pathname
@@ -192,6 +194,18 @@ export default function SessionBar({
 				</span>
 			)}
 		</Button>,
+		<Button
+			className="simple small"
+			url="/localisation"
+			css={buttonStyle('/localisation')}
+		>
+			<img
+				src={'https://openmoji.org/data/color/svg/1F1EB-1F1F7.svg'}
+				css="width: 2rem"
+				aria-hidden="true"
+			/>
+		</Button>,
+
 		NODE_ENV === 'development' && (
 			<Button
 				key="personas"
