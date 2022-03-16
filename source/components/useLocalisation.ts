@@ -2,6 +2,12 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../actions/actions'
 
+export const sampleIps = {
+	guadeloupe: '104.250.27.0',
+	france: '92.184.106.103',
+	'polynésie française': '203.185.161.106',
+}
+
 const API =
 	'https://api.ipgeolocation.io/ipgeo?apiKey=a012a48f6d0244ed967df27ce20415ab'
 
@@ -9,21 +15,22 @@ const API =
 // https://positionstack.com/product
 // https://www.abstractapi.com/ip-geolocation-api?fpr=geekflare#pricing
 
-export default () => {
+export default (ip) => {
 	const localisation = useSelector((state) => state.localisation),
 		dispatch = useDispatch()
 
 	useEffect(() => {
 		return async () => {
-			if (localisation) return null
+			console.log('in ue', ip, localisation?.ip)
+			if (localisation && localisation.ip == ip) return null
 
-			const req = await fetch(API),
+			const req = await fetch(API + (ip == null ? '' : `&ip=${ip}`)),
 				data = await req.json()
 
-			console.log(data)
+			console.log(data.ip, data.country_name)
 
-			dispatch(setLocalisation(data))
+			dispatch(setLocalisation({ ...data, ip }))
 		}
-	}, [])
+	}, [ip])
 	return localisation
 }
