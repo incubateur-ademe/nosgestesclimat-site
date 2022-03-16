@@ -11,6 +11,9 @@ import {
 import Engine from 'publicodes'
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import useLocalisation, {
+	correspondancePullRequests,
+} from './components/useLocalisation'
 
 const removeLoader = () => {
 	// Remove loader
@@ -28,7 +31,25 @@ const removeLoader = () => {
 	document.body.appendChild(css)
 }
 
-export default ({ children, rulesURL, dataBranch }) => {
+export default ({ children }) => {
+	const urlParams = new URLSearchParams(window.location.search)
+	/* This enables loading the rules of a branch,
+	 * to showcase the app as it would be once this branch of -data  has been merged*/
+	const branch = urlParams.get('branch')
+	const localisation = useLocalisation()
+	const pullRequestNumber =
+		urlParams.get('PR') ||
+		correspondancePullRequests[localisation?.country_name.toLowerCase()]
+	const dataBranch = branch || pullRequestNumber
+	const rulesURL = `https://${
+		branch
+			? `${branch}--`
+			: pullRequestNumber
+			? `deploy-preview-${pullRequestNumber}--`
+			: ''
+	}ecolab-data.netlify.app/co2.json`
+	console.log('PR', pullRequestNumber, rulesURL)
+
 	const rules = useSelector((state) => state.rules)
 
 	const dispatch = useDispatch()
@@ -99,7 +120,7 @@ export default ({ children, rulesURL, dataBranch }) => {
 					removeLoader()
 				})
 		}
-	}, [])
+	}, [rulesURL])
 
 	if (!rules) return null
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>

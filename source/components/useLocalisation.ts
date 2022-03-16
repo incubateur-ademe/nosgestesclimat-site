@@ -8,6 +8,11 @@ export const sampleIps = {
 	'polynésie française': '203.185.161.106',
 }
 
+export const correspondancePullRequests = {
+	guadeloupe: '1339',
+	'polynésie française': '1339',
+}
+
 const API =
 	'https://api.ipgeolocation.io/ipgeo?apiKey=a012a48f6d0244ed967df27ce20415ab'
 

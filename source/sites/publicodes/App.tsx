@@ -51,12 +51,6 @@ export default function Root({}) {
 	const { language } = useTranslation().i18n
 	const paths = sitePaths()
 
-	const urlParams = new URLSearchParams(window.location.search)
-	/* This enables loading the rules of a branch,
-	 * to showcase the app as it would be once this branch of -data  has been merged*/
-	const branch = urlParams.get('branch')
-	const pullRequestNumber = urlParams.get('PR')
-
 	const iframeShareData = new URLSearchParams(
 		document?.location.search.substring(1)
 	).get('shareData')
@@ -79,14 +73,6 @@ export default function Root({}) {
 				tutorials: persistedSimulation?.tutorials || {},
 				storedTrajets: persistedSimulation?.storedTrajets || {},
 			}}
-			rulesURL={`https://${
-				branch
-					? `${branch}--`
-					: pullRequestNumber
-					? `deploy-preview-${pullRequestNumber}--`
-					: ''
-			}ecolab-data.netlify.app/co2.json`}
-			dataBranch={branch || pullRequestNumber}
 		>
 			<Main />
 		</Provider>

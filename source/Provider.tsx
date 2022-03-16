@@ -53,8 +53,6 @@ export default function Provider({
 	onStoreCreated,
 	children,
 	sitePaths = {} as SitePaths,
-	dataBranch,
-	rulesURL,
 }: ProviderProps) {
 	const storeEnhancer = composeEnhancers(
 		applyMiddleware(
@@ -80,7 +78,7 @@ export default function Provider({
 	return (
 		// If IE < 11 display nothing
 		<ReduxProvider store={store}>
-			<RulesProvider dataBranch={dataBranch} rulesURL={rulesURL}>
+			<RulesProvider>
 				<ThemeColorsProvider
 					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 				>
