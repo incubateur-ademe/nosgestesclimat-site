@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import useLocalisation, { sampleIps } from '../../components/useLocalisation'
+import emoji from 'react-easy-emoji'
 
 export default () => {
 	const [chosenIp, chooseIp] = useState()
@@ -7,7 +8,7 @@ export default () => {
 
 	return (
 		<div>
-			<h2>Pays de simulation</h2>
+			<h2>{emoji('📍')} Pays de simulation</h2>
 			{localisation != null ? (
 				<p>
 					Nous avons détecté que vous faites cette simulation depuis la{' '}
