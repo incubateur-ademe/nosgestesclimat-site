@@ -235,6 +235,11 @@ function thenRedirectTo(state = null, { type, to }) {
 }
 
 const defaultToNull = (arg) => arg ?? null
+function localisation(state = null, { type, localisationData }) {
+	if (type === 'SET_LOCALISATION') {
+		return localisationData
+	} else return state
+}
 
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
@@ -253,6 +258,7 @@ const mainReducer = (state: any, action: Action) =>
 		storedTrajets,
 		thenRedirectTo,
 		tracking,
+		localisation,
 	})(state, action)
 
 export default reduceReducers<RootState>(
