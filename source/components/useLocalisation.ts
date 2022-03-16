@@ -34,6 +34,7 @@ export default (ip) => {
 					...data,
 					ip,
 					country_flag:
+						//https://fr.wikipedia.org/wiki/Drapeau_de_la_Guadeloupe
 						data.country_name.toLowerCase() === 'guadeloupe'
 							? 'https://openmoji.org/data/color/svg/1F1EC-1F1F5.svg'
 							: data.country_flag,
