@@ -7,7 +7,7 @@ export default () => {
 
 	return (
 		<div>
-			<h1>Pays de simulation</h1>
+			<h2>Pays de simulation</h2>
 			{localisation != null ? (
 				<p>
 					Nous avons détecté que vous faites cette simulation depuis la{' '}
@@ -25,14 +25,16 @@ export default () => {
 			) : (
 				<p>Nous n'avons pas pu détecter votre pays de simulation. </p>
 			)}
-			<p>Choisir un autre pays</p>
-			<ul>
-				{Object.entries(sampleIps).map(([country, ip]) => (
-					<li key={country} onClick={() => chooseIp(ip)}>
-						{country}
-					</li>
-				))}
-			</ul>
+			<details>
+				<summary>Choisir un autre pays</summary>
+				<ul>
+					{Object.entries(sampleIps).map(([country, ip]) => (
+						<li key={country} onClick={() => chooseIp(ip)}>
+							<button>{country}</button>
+						</li>
+					))}
+				</ul>
+			</details>
 		</div>
 	)
 }

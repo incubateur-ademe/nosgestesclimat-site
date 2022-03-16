@@ -1,6 +1,54 @@
-<svg id="emoji" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
-  <g id="line">
-    <path fill="none" stroke="#000000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M58,60c0,0,0-2-1-6 c-1.2109-4.8457-4-8-10-8c-5,0-15,0-22,0c-6,0-8.7891,3.1543-10,8c-1,4-1,6-1,6"/>
-    <path fill="none" stroke="#000000" stroke-linejoin="round" stroke-width="2" d="M26,26c0,3.7246,0.5391,7.8086,2,10 c1.8613,2.793,5.0176,4,8,4c3.0957,0,6.1367-1.207,8-4c1.46-2.1914,2-6.2754,2-10c0-2.7935-1-12-10-12S26,21.3442,26,26z"/>
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="emoji"
+   viewBox="0 0 72 72"
+   version="1.1"
+   sodipodi:docname="1F464.svg"
+   inkscape:version="1.1.1 (1:1.1+202109281954+c3084ef5ed)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs10" />
+  <sodipodi:namedview
+     id="namedview8"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     showgrid="false"
+     inkscape:zoom="4.9598872"
+     inkscape:cx="25.504613"
+     inkscape:cy="60.28363"
+     inkscape:window-width="1920"
+     inkscape:window-height="1176"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="g1308" />
+  <g
+     id="line"
+     transform="matrix(0.85878687,0,0,0.85878687,-7.2960409,9.0424325)">
+    <path
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-width="2"
+       d="m 58,60 c 0,0 0,-2 -1,-6 -1.2109,-4.8457 -4,-8 -10,-8 -5,0 -15,0 -22,0 -6,0 -8.7891,3.1543 -10,8 -1,4 -1,6 -1,6"
+       id="path2" />
+    <path
+       fill="none"
+       stroke="#000000"
+       stroke-linejoin="round"
+       stroke-width="2"
+       d="m 26,26 c 0,3.7246 0.5391,7.8086 2,10 1.8613,2.793 5.0176,4 8,4 3.0957,0 6.1367,-1.207 8,-4 1.46,-2.1914 2,-6.2754 2,-10 0,-2.7935 -1,-12 -10,-12 -9,0 -10,7.3442 -10,12 z"
+       id="path4" />
   </g>
+  <g
+     id="g1308"
+     transform="matrix(0.50210994,0,0,0.50210994,11.081972,15.052113)" />
 </svg>

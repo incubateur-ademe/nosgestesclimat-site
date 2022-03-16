@@ -51,8 +51,7 @@ const MenuButton = styled.div`
 		padding: 0;
 		font-size: 100%;
 	}
-	> img,
-	> svg {
+	img {
 		display: block;
 		font-size: 200%;
 		margin: 0.6rem !important;
@@ -178,41 +177,38 @@ export default function SessionBar({
 			Agir
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
-			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />
-			{!persona ? (
-				'Mon profil'
-			) : (
-				<span
-					css={`
-						background: var(--color);
-						color: var(--textColor);
-						padding: 0 0.4rem;
-						border-radius: 0.3rem;
-					`}
-				>
-					{persona}
-				</span>
-			)}
-		</Button>,
-		<Button
-			className="simple small"
-			url="/localisation"
-			css={buttonStyle('/localisation')}
-		>
-			<img
-				src={
-					localisation?.country_flag ||
-					'https://openmoji.org/data/color/svg/1F1EB-1F1F7.svg'
-				}
+			<div
 				css={`
-					width: ${localisation?.country_flag.includes('openmoji')
-						? '3rem'
-						: '2rem'};
+					position: relative;
 				`}
-				aria-hidden="true"
-			/>
+			>
+				<img
+					src={openmojiURL('profile')}
+					css="width: 2rem"
+					aria-hidden="true"
+				/>
+				<img
+					src={
+						localisation?.country_flag ||
+						'https://ipgeolocation.io/static/flags/fr_64.png'
+					}
+					css={`
+						position: absolute;
+						left: 1.15rem;
+						top: 0.5rem;
+						${!localisation?.country_flag.includes('openmoji')
+							? 'width: 1rem;'
+							: `
+							width: 1.2rem;
+						top: 0.25rem;
+							`};
+						border-radius: 0.3rem !important;
+					`}
+					aria-hidden="true"
+				/>
+			</div>
+			Mon profil
 		</Button>,
-
 		NODE_ENV === 'development' && (
 			<Button
 				key="personas"

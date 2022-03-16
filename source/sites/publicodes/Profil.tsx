@@ -16,6 +16,7 @@ import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { skipTutorial } from '../../actions/actions'
 import { useNavigate } from 'react-router-dom'
+import Localisation from './Localisation'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
@@ -100,6 +101,7 @@ export default ({}) => {
 						message={<p>Vous n'avez pas encore fait le test.</p>}
 					></IllustratedMessage>
 				)}
+				<Localisation />
 				<AnswerList />
 			</div>
 		</div>

@@ -23,11 +23,13 @@ import Navigation from './Navigation'
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
-import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import Tutorial from './Tutorial.tsx'
+
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
+
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
 
