@@ -200,7 +200,10 @@ export default function SessionBar({
 			css={buttonStyle('/localisation')}
 		>
 			<img
-				src={'https://openmoji.org/data/color/svg/1F1EB-1F1F7.svg'}
+				src={
+					localisation?.country_flag ||
+					'https://openmoji.org/data/color/svg/1F1EB-1F1F7.svg'
+				}
 				css="width: 2rem"
 				aria-hidden="true"
 			/>
