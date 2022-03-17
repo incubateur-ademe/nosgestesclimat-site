@@ -215,8 +215,8 @@ export default ({
 					}
 				>
 					Les résultats sont là, que faire ? Notre guide vous accompagne dans
-					vos réflexions et vos discussions !{' '}
-					<Link to={URLGuide}>{URLGuide}</Link>
+					vos réflexions et vos discussions sur cette page &nbsp;
+					<Link to={URLGuide}>{URLGuide}</Link> !
 				</InstructionBlock>
 			)}
 		</div>
