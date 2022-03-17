@@ -17,6 +17,7 @@ import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import ProgressCircle from './ProgressCircle'
 import CardGameIcon from './CardGameIcon'
 import useLocalisation from 'Components/useLocalisation'
+import { usePersistingState } from './utils/persistState'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -31,6 +32,7 @@ const openmojis = {
 	sondage: '1F4CA',
 	profile: '1F464',
 	personas: '1F465',
+	github: 'E045',
 }
 export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
@@ -128,6 +130,11 @@ export default function SessionBar({
 	useSafePreviousSimulation()
 	const [showAnswerModal, setShowAnswerModal] = useState(false)
 
+	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
+		'PR',
+		null
+	)
+
 	const objectifs = useSelector(objectifsSelector)
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
@@ -222,6 +229,23 @@ export default function SessionBar({
 					aria-hidden="true"
 				/>
 				Personas
+			</Button>
+		),
+		pullRequestNumber && (
+			<Button
+				key="pullRequest"
+				className="simple small"
+				css={buttonStyle('github')}
+				onClick={() => {
+					window.open(
+						'https://github.com/datagir/nosgestesclimat/pull/' +
+							pullRequestNumber,
+						'_blank'
+					)
+				}}
+			>
+				<img src={openmojiURL('github')} css="width: 2rem" aria-hidden="true" />
+				PR={pullRequestNumber}
 			</Button>
 		),
 		conference?.room && (

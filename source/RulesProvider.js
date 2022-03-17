@@ -15,6 +15,8 @@ import useLocalisation, {
 	correspondancePullRequests,
 } from './components/useLocalisation'
 
+import { usePersistingState } from './components/utils/persistState'
+
 const removeLoader = () => {
 	// Remove loader
 	var css = document.createElement('style')
@@ -37,9 +39,18 @@ export default ({ children }) => {
 	 * to showcase the app as it would be once this branch of -data  has been merged*/
 	const branch = urlParams.get('branch')
 	const localisation = useLocalisation()
-	const pullRequestNumber =
+
+	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
+		'PR',
+		null
+	)
+
+	const searchPR =
 		urlParams.get('PR') ||
 		correspondancePullRequests[localisation?.country_name.toLowerCase()]
+
+	useEffect(() => setPullRequestNumber(searchPR), [searchPR])
+
 	const dataBranch = branch || pullRequestNumber
 	const rulesURL = `https://${
 		branch
