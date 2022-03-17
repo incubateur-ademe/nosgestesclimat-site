@@ -28,7 +28,6 @@ export default ({
 }) => {
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 	const elements = rawElements.filter((el) => el.total < threshold)
-	console.log('EL', elements)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
 	const values = elements.map((el) => el.total)
@@ -43,7 +42,6 @@ export default ({
 	const categories = reduceCategories(
 			elements.map(({ byCategory, username }) => [username, byCategory])
 		),
-		yo = console.log('CAT', categories),
 		maxCategory = Object.values(categories).reduce(
 			(memo, next) => Math.max(memo, ...next.map((el) => el.value)),
 			0
@@ -60,7 +58,6 @@ export default ({
 			(spotlightElement.total / 1000).toLocaleString('fr-FR', {
 				maximumSignificantDigits: 2,
 			})
-	console.log(spotlightValue)
 
 	return (
 		<div>
@@ -130,7 +127,9 @@ export default ({
 								${spotlight === username
 									? `background: yellow; opacity: 1; 
 										border-right: 2px dashed black;
-										border-left: 2px dashed black`
+										border-left: 2px dashed black;
+										z-index: 1;
+										`
 									: ''}
 							`}
 							onClick={() => setSpotlight(username)}
