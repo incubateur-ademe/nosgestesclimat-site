@@ -15,6 +15,7 @@ import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { buildEndURL } from '../../components/SessionBar'
 import { disabledAction, supersededAction } from './ActionVignette'
+import PetrolScore from './PetrolScore'
 
 export default ({ actionMode = false, demoMode = false }) => {
 	const objectif =
@@ -66,10 +67,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 				}
 				text-align: center;
 				box-shadow: 2px 2px 10px #bbb;
-
-				.unitSuffix {
-					font-size: 90%;
-				}
 			`}
 		>
 			<div
@@ -93,11 +90,12 @@ export default ({ actionMode = false, demoMode = false }) => {
 						:hover {
 							opacity: 1 !important;
 						}
+
 						text-decoration: none;
 						display: flex;
 						justify-content: space-evenly;
-						flex-direction: column;
-						width: 80%;
+						flex-direction: row;
+						width: 100%;
 					`}
 				>
 					{persona && (
@@ -107,20 +105,32 @@ export default ({ actionMode = false, demoMode = false }) => {
 					)}
 					<div>
 						{!actionMode ? (
-							<HumanWeight
-								nodeValue={nodeValue}
-								overrideValue={actionMode && actionTotal !== 0 && actionTotal}
-							/>
+							<div css="display:flex; align-items:center">
+								<img
+									src={'/images/climate-change-small.svg'}
+									css="width:3rem;margin-right: .4rem;"
+								/>
+								<HumanWeight
+									nodeValue={nodeValue}
+									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+								/>
+							</div>
 						) : (
 							<DiffHumanWeight
 								{...{ nodeValue, engine, rules, actionChoices }}
 							/>
 						)}
 					</div>
+					<PetrolScore />
 				</Link>
+				{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement 
+				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo 
+				de la page fin.
+
 				{!demoMode && !actionMode && (
 					<DocumentationLink dottedName={dottedName} />
 				)}
+				*/}
 				{actionMode && <ActionCount count={actionsChosen} />}
 			</div>
 			{!demoMode && progress < 1 && (

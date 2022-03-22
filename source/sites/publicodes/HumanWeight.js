@@ -29,8 +29,9 @@ export default ({ nodeValue, overrideValue }) => {
 			css={`
 				display: flex;
 				flex-wrap: wrap;
+				flex-direction: column;
 				justify-content: center;
-				align-items: baseline;
+				align-items: center;
 			`}
 		>
 			<strong
@@ -69,7 +70,5 @@ const OverrideBlock = ({ value: rawValue }) => {
 }
 
 export const UnitSuffix = () => (
-	<span className="unitSuffix">
-		de <strong>CO₂</strong>e / an
-	</span>
+	<span className="unitSuffix">de CO₂-e / an</span>
 )
