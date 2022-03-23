@@ -13,6 +13,7 @@
 - alimentation . de saison . consommation
 - alimentation . local . consommation
 - transport . voiture . km
+- transport . voiture . aide km
 - transport . voiture . gabarit
 - transport . voiture . propriétaire
 - transport . voiture . âge
@@ -31,7 +32,10 @@
 - transport . train . km
 - transport . métro ou tram . heures par semaine
 - transport . vélo . km
-- transport . vacances
+- transport . vacances . camping car . propriétaire
+- transport . vacances . caravane . propriétaire
+- transport . vacances . maison secondaire . propriétaire
+- transport . vacances . van . propriétaire
 - logement . âge
 - logement . éco-construit
 - logement . appartement
