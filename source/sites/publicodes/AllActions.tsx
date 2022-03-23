@@ -115,7 +115,7 @@ export default ({
 				<h4>
 					<img
 						src="/images/26D4.svg"
-						css=" height: 2rem; vertical-align: middle"
+						css="filter:invert(1); height: 2rem; vertical-align: middle; margin-right: .3rem"
 					/>
 					Actions négatives &#9660;
 				</h4>
