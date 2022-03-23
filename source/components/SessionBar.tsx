@@ -1,10 +1,11 @@
 import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
+import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { last } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, Redirect } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -100,6 +101,7 @@ export default function SessionBar({
 	noResults = false,
 }) {
 	const dispatch = useDispatch()
+	const nextQuestions = useNextQuestions()
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const arePreviousAnswers = !!answeredQuestions.length
 	useSafePreviousSimulation()
@@ -130,7 +132,11 @@ export default function SessionBar({
 			className="simple small"
 			url={'/simulateur/bilan'}
 			onClick={() => {
-				dispatch(goToQuestion(last(answeredQuestions)))
+				nextQuestions.length ? (
+					dispatch(goToQuestion(last(answeredQuestions)))
+				) : (
+					<Redirect to={buildEndURL(rules, engine)} />
+				)
 			}}
 			css={buttonStyle('simulateur')}
 		>
