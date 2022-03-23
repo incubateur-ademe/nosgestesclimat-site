@@ -22,6 +22,7 @@ import { TrackerContext } from 'Components/utils/withTracker'
 import { useSearchParams } from '../../../components/utils/useSearchParams'
 import HorizontalSwipe from '../HorizontalSwipe'
 import SlidesLayout from '../../../components/SlidesLayout'
+import Petrogaz from './Petrogaz'
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -55,13 +56,15 @@ const sumFromDetails = (details) =>
 export default ({}) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const encodedDetails = searchParams.get('details')
-	const slideName = searchParams.get('diapo') || 'budget'
+	const slideName = searchParams.get('diapo') || 'bilan'
 
 	const rehydratedDetails = rehydrateDetails(encodedDetails)
 
 	const score = sumFromDetails(rehydratedDetails)
 	const headlessMode =
-		!window || window.navigator.userAgent.includes('HeadlessChrome')
+		true || // TODO temporary, since the slider breaks the animation of the slide
+		!window ||
+		window.navigator.userAgent.includes('HeadlessChrome')
 
 	//	Configuration is try and test, feeling, really
 	const valueSpring = useSpring(0, {
@@ -82,7 +85,7 @@ export default ({}) => {
 		headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
-	}, [])
+	})
 
 	const dispatch = useDispatch(),
 		answeredQuestions = useSelector(answeredQuestionsSelector)
@@ -95,20 +98,15 @@ export default ({}) => {
 	}
 
 	const Component = {
-		budget: Budget,
-		catégories: Categories,
+		bilan: Budget,
 		pétrogaz: Petrogaz,
 	}[slideName]
 
 	const next = () => {
-			const nextSlide = {
-				budget: 'pétrogaz',
-				pétrogaz: 'catégories',
-				catégories: 'budget',
-			}[slideName]
+			const nextSlide = slideName === 'bilan' ? 'pétrogaz' : 'bilan'
 			setSearchParams({ diapo: nextSlide, details: encodedDetails })
 		},
-		previous = () => null
+		previous = next
 
 	return (
 		<div>
@@ -134,9 +132,6 @@ export default ({}) => {
 		</div>
 	)
 }
-const Petrogaz = () => <div>Pétrole et gaz</div>
-const Categories = () => <div>Catégories</div>
-
 const Budget = ({ score, value, details, headlessMode }) => {
 	const backgroundColor = getBackgroundColor(value).toHexString(),
 		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
@@ -156,13 +151,7 @@ const Budget = ({ score, value, details, headlessMode }) => {
 		useContext(IframeOptionsContext)
 
 	return (
-		<div
-			css={`
-				padding: 0 0.3rem 1rem;
-				margin: 0 auto;
-				width: auto;
-			`}
-		>
+		<div>
 			<Meta
 				title="Mon empreinte climat"
 				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO2e. Mesure la tienne !`}

@@ -53,6 +53,7 @@ export default ({ children, next, previous }) => {
 						position: absolute;
 						width: 35rem;
 						max-width: 100%;
+						top: 2rem;
 					`}
 					key={page}
 					custom={direction}
