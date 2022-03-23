@@ -110,6 +110,25 @@ export default ({
 					focusedAction,
 				}}
 			/>
+			<ThresholdSeparator>
+				<h4>
+					<img
+						src="/images/26D4.svg"
+						css=" height: 2rem; vertical-align: middle"
+					/>
+					Actions négatives &#9660;
+				</h4>
+			</ThresholdSeparator>
+			<List
+				{...{
+					actions: notRejected.filter((a) => a.value < 0),
+					rules,
+					bilans,
+					actionChoices,
+					focusAction,
+					focusedAction,
+				}}
+			/>
 			{rejected.length > 0 && (
 				<div>
 					<h2>Actions écartées</h2>
