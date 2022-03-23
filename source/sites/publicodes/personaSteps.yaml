@@ -1,4 +1,5 @@
 - alimentation . déchets . niveau d'engagement
+- alimentation . gaspillage alimentaire . fréquence
 - alimentation . petit déjeuner . type
 - alimentation . boisson . sucrées . litres
 - alimentation . boisson . alcool . litres
@@ -18,6 +19,7 @@
 - transport . voiture . motorisation
 - transport . voiture . voyageurs
 - transport . voiture . thermique . consommation aux 100
+- transport . voiture . thermique . carburant
 - transport . deux roues thermique . usager
 - transport . deux roues thermique . type
 - transport . deux roues thermique . km
@@ -29,6 +31,7 @@
 - transport . train . km
 - transport . métro ou tram . heures par semaine
 - transport . vélo . km
+- transport . vacances
 - logement . âge
 - logement . éco-construit
 - logement . appartement
