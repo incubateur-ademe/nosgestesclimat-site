@@ -8,6 +8,7 @@ import emoji from 'react-easy-emoji'
 import Chart from '../chart'
 import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
+import { ActionButton } from './Buttons'
 
 export default ({ headlessMode }) => {
 	const shareImage =
@@ -99,6 +100,11 @@ export default ({ headlessMode }) => {
 						</p>
 					</div>
 				</div>
+				<ActionButton
+					text="Réduire ma conso"
+					imgSrc="/images/1F1FA-1F1E6.svg"
+					invertImage="false"
+				/>
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
 					<ShareButton
 						text="Voilà mon empreinte pétrole. Mesure la tienne !"

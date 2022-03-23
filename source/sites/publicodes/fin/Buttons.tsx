@@ -5,7 +5,12 @@ import { Link } from 'react-router-dom'
 import { actionImg } from 'Components/SessionBar'
 import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 
-export const ActionButton = ({ text, score }) => {
+export const ActionButton = ({
+	text,
+	score,
+	imgSrc = actionImg,
+	invertImage = true,
+}) => {
 	const tracker = useContext(TrackerContext)
 
 	return (
@@ -53,7 +58,7 @@ export const ActionButton = ({ text, score }) => {
 					}}
 					transition={{ duration: 2, delay: 4 }}
 				>
-					<img src={actionImg} />
+					<img src={imgSrc} />
 				</motion.div>
 				{text}
 			</div>
