@@ -32,7 +32,7 @@ export const ActionButton = ({
 
 				img {
 					height: 2.6rem;
-					filter: invert(100%);
+					filter: ${invertImage ? 'invert(100%)' : 'none'};
 					margin: 0 0.6rem;
 					display: inline-block;
 				}

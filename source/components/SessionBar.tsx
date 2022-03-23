@@ -64,7 +64,7 @@ export const sessionBarMargin = `
 		}
 `
 
-export const buildEndURL = (rules, engine) => {
+export const buildEndURL = (rules, engine, slide) => {
 	const categories = extractCategories(rules, engine),
 		detailsString =
 			categories &&
@@ -78,7 +78,7 @@ export const buildEndURL = (rules, engine) => {
 
 	if (detailsString == null) return null
 
-	return `/fin?details=${detailsString}`
+	return `/fin?details=${detailsString}${slide ? `&diapo=${slide}` : ''}`
 }
 
 export const useSafePreviousSimulation = () => {
