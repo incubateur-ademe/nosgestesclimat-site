@@ -5,6 +5,8 @@ import Meta from 'Components/utils/Meta'
 import { AnimatePresence, motion } from 'framer-motion'
 import { default as React, useContext } from 'react'
 import emoji from 'react-easy-emoji'
+import { correctValue } from '../../../components/publicodesUtils'
+import { useEngine } from '../../../components/utils/EngineContext'
 import Chart from '../chart'
 import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
@@ -80,13 +82,13 @@ export default ({ headlessMode }) => {
 						>
 							<div css="font-weight: bold; font-size: 280%;">
 								<span css="width: 4rem; text-align: right; display: inline-block">
-									{formattedValue}
+									{roundedValue}
 								</span>{' '}
 								pleins
 							</div>
 							de pétrole brut par an.
 							<small css="color: var(--lightColor)">
-								Soit {roundedValue} litres.
+								Soit {formattedValue} litres.
 							</small>
 						</div>
 					</div>
