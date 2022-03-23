@@ -49,7 +49,11 @@ export default ({ children, next, previous }) => {
 			<AnimatePresence initial={false} custom={direction}>
 				<motion.div
 					className="slides"
-					css="position: absolute"
+					css={`
+						position: absolute;
+						width: 35rem;
+						max-width: 100%;
+					`}
 					key={page}
 					custom={direction}
 					variants={variants}
