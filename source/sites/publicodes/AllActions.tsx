@@ -67,30 +67,31 @@ export default ({
 				</animate.fromTop>
 			)}
 
-			{thresholds.map(
-				([threshold, label], index) =>
-					notRejected.find(({ value }) => value >= threshold) && (
-						<div>
-							<List
-								{...{
-									actions: notRejected.filter(
-										(a) =>
-											a.value >= threshold &&
-											(index === 0 || a.value < thresholds[index - 1][0])
-									),
-									rules,
-									bilans,
-									actionChoices,
-									focusAction,
-									focusedAction,
-								}}
-							/>
-							<ThresholdSeparator>
-								<h4>{label} &#9650;</h4>
-							</ThresholdSeparator>
-						</div>
-					)
-			)}
+			{thresholds.map(([threshold, label], index) => {
+				const thresholdActions = notRejected.filter(
+					(a) =>
+						a.value >= threshold &&
+						(index === 0 || a.value < thresholds[index - 1][0])
+				)
+				if (!thresholdActions.length) return null
+				return (
+					<div>
+						<List
+							{...{
+								actions: thresholdActions,
+								rules,
+								bilans,
+								actionChoices,
+								focusAction,
+								focusedAction,
+							}}
+						/>
+						<ThresholdSeparator>
+							<h4>{label} &#9650;</h4>
+						</ThresholdSeparator>
+					</div>
+				)
+			})}
 			<ThresholdSeparator>
 				<h4>
 					<img
