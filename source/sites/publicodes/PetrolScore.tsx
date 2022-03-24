@@ -3,7 +3,7 @@ import { correctValue } from 'Components/publicodesUtils'
 
 export default () => {
 	const engine = useEngine()
-	const evaluation = engine.evaluate('pétrole')
+	const evaluation = engine.evaluate('pétrole . pleins')
 	const nbrePleins = Math.round(correctValue(evaluation))
 	return (
 		<div css="display: flex; align-items: center">

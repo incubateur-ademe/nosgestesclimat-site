@@ -9,6 +9,8 @@ import Chart from '../chart'
 import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
 import { ActionButton } from './Buttons'
+import { useEngine } from 'Components/utils/EngineContext'
+import { correctValue } from 'Components/publicodesUtils'
 
 export default ({ headlessMode }) => {
 	const shareImage =
@@ -17,9 +19,12 @@ export default ({ headlessMode }) => {
 		'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
 		window.location
 
-	const value = Math.random() * 800 + 250,
+	const engine = useEngine()
+	const petroleBrut = correctValue(engine.evaluate('pétrole . pétrole brut'))
+	const pleinVolume = correctValue(engine.evaluate('pétrole . volume plein'))
+
+	const value = petroleBrut,
 		roundedValue = Math.round(value),
-		pleinVolume = 50,
 		formattedValue = (value / pleinVolume).toLocaleString('fr-FR', {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
