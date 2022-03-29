@@ -92,8 +92,8 @@ export default ({ headlessMode }) => {
 					</div>
 					<div css="padding: 1rem; max-width: 30rem; margin: 0 auto; font-size: 90%">
 						<p>
-							C'est une estimation <em>a minima</em> de votre consommation
-							d'essence à l'année.
+							C'est une estimation <em>a minima</em> de votre consommation de
+							pétrole brut à l'année.
 						</p>
 
 						<p>
