@@ -20,7 +20,9 @@ export default ({ headlessMode }) => {
 		window.location
 
 	const engine = useEngine()
-	const petroleBrut = correctValue(engine.evaluate('pétrole . pétrole brut'))
+	const petroleBrut = correctValue(
+		engine.evaluate('pétrole . pétrole brut EROI')
+	)
 	const pleinVolume = correctValue(engine.evaluate('pétrole . volume plein'))
 
 	const value = petroleBrut,
