@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
-export default ({ categories, selected, countByCategory }) => {
+export default ({ categories, metric, selected, countByCategory }) => {
 	const location = useLocation()
 	return (
 		<ul
@@ -46,7 +46,14 @@ export default ({ categories, selected, countByCategory }) => {
 					<Link
 						to={
 							selected === category.dottedName
-								? location.pathname
+								? metric
+									? location.pathname + '?métrique=pétrole'
+									: location.pathname
+								: metric
+								? location.pathname +
+								  '?métrique=pétrole' +
+								  '&catégorie=' +
+								  category.dottedName
 								: location.pathname + '?catégorie=' + category.dottedName
 						}
 					>

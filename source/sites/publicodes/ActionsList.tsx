@@ -21,12 +21,25 @@ import ActionTutorial from './ActionTutorial'
 import { disabledAction, supersededAction } from './ActionVignette'
 import AllActions from './AllActions'
 import CategoryFilters from './CategoryFilters'
+import MetricFilters from './MetricFilters'
 import { humanWeight } from './HumanWeight'
 import SimulationMissing from './SimulationMissing'
 
 const { encodeRuleName, decodeRuleName } = utils
 
+const actionsPétrole = [
+	"transport . arrêter l'avion",
+	"transport . arrêter l'avion court",
+	'logement . remplacer fioul par bois',
+	// 'transport . boulot . covoiturage',
+	// 'transport . boulot . commun',
+	// 'transport . boulot . télétravail',
+	// 'transport . voiture 5km',
+	// 'transport . voiture électrique',
+]
+
 export default ({ display }) => {
+	let metric = useQuery().get('métrique')
 	let category = useQuery().get('catégorie')
 
 	const rules = useSelector((state) => state.rules)
@@ -34,12 +47,22 @@ export default ({ display }) => {
 		answeredQuestions = useSelector(answeredQuestionsSelector)
 	const flatActions = rules['actions']
 
+	const filterByMetric = (actions, actionsByMetric) =>
+		actions.filter((action) =>
+			metric ? actionsByMetric.includes(action) : true
+		)
+
+	const flatActionsByMetric = filterByMetric(
+		flatActions.formule.somme,
+		actionsPétrole
+	)
+
 	const [radical, setRadical] = useState(true)
 
 	const simulation = useSelector((state) => state.simulation)
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const objectifs = ['bilan', ...flatActions.formule.somme]
+	const objectifs = ['bilan', ...flatActionsByMetric]
 
 	const engine = useContext(EngineContext)
 
@@ -100,8 +123,10 @@ export default ({ display }) => {
 				margin: 1rem auto;
 			`}
 		>
+			<MetricFilters selected={metric} />
 			<CategoryFilters
 				categories={categories}
+				metric={metric}
 				selected={category}
 				countByCategory={countByCategory}
 			/>
