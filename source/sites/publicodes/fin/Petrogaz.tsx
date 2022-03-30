@@ -1,18 +1,10 @@
 import ShareButton from 'Components/ShareButton'
-import { findContrastedTextColor } from 'Components/utils/colors'
-import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
-import Meta from 'Components/utils/Meta'
-import { AnimatePresence, motion } from 'framer-motion'
-import { default as React, useContext } from 'react'
-import emoji from 'react-easy-emoji'
-import { correctValue } from '../../../components/publicodesUtils'
-import { useEngine } from '../../../components/utils/EngineContext'
-import Chart from '../chart'
-import DefaultFootprint from '../DefaultFootprint'
-import BallonGES from './ballonGES.svg'
-import { ActionButton } from './Buttons'
 import { useEngine } from 'Components/utils/EngineContext'
-import { correctValue } from 'Components/publicodesUtils'
+import Meta from 'Components/utils/Meta'
+import { motion } from 'framer-motion'
+import { default as React } from 'react'
+import { correctValue } from '../../../components/publicodesUtils'
+import { ActionButton } from './Buttons'
 
 export default ({ headlessMode }) => {
 	const shareImage =
