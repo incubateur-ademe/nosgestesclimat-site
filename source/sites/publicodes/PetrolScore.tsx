@@ -7,6 +7,9 @@ export default () => {
 	const nbrePleins_EROI = Math.round(correctValue(evaluation_EROI))
 	const evaluation_energ = engine.evaluate('pétrole . pleins énergie')
 	const nbrePleins_energ = Math.round(correctValue(evaluation_energ))
+
+	const roundedValue = nbrePleins_EROI // TODO difference to be investigated
+
 	return (
 		<div css="display: flex; align-items: center">
 			<img
@@ -16,13 +19,10 @@ export default () => {
 			/>
 			<div
 				css="display: flex; flex-direction: column"
-				title="200 litres de pétrole"
+				title={`${roundedValue} pleins de pétrole`}
 			>
 				<div css="font-size: 120%; font-weight: bold">
-					{nbrePleins_EROI} pleins (EROI)
-				</div>
-				<div css="font-size: 120%; font-weight: bold">
-					{nbrePleins_energ} pleins (Energie)
+					{roundedValue} pleins
 				</div>
 
 				<div css="@media (max-width: 800px){display: none}">de pétrole</div>
