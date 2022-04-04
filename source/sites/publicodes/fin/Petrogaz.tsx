@@ -80,7 +80,7 @@ export default ({ headlessMode }) => {
 							</div>
 							de pétrole brut par an.
 							<small css="color: var(--lightColor2)">
-								Soit {roundedValue} litres.
+								Soit {roundedValue} litres (plein de {pleinVolume} litres).
 							</small>
 						</div>
 					</div>
