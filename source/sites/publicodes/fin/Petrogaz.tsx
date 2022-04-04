@@ -30,7 +30,7 @@ export default ({ headlessMode }) => {
 		<div>
 			<Meta
 				title="Mon empreinte climat"
-				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO2e. Mesure la tienne !`}
+				description={`Mon empreinte pétrole est de ${formattedValue} pleins de pétrole. Mesure la tienne !`}
 				image={shareImage}
 				url={window.location}
 			/>
@@ -74,13 +74,13 @@ export default ({ headlessMode }) => {
 						>
 							<div css="font-weight: bold; font-size: 280%;">
 								<span css="width: 4rem; text-align: right; display: inline-block">
-									{roundedValue}
+									{formattedValue}
 								</span>{' '}
 								pleins
 							</div>
 							de pétrole brut par an.
-							<small css="color: var(--lightColor)">
-								Soit {formattedValue} litres.
+							<small css="color: var(--lightColor2)">
+								Soit {roundedValue} litres.
 							</small>
 						</div>
 					</div>
