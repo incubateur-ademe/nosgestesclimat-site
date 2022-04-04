@@ -118,7 +118,7 @@ export default ({ display }) => {
 					text-align: center;
 				`}
 			>
-				<small>{actions.length} actions disponibles.</small>{' '}
+				<small>{finalActions.length} actions disponibles.</small>{' '}
 				<small>Triées par :</small>{' '}
 				<button
 					onClick={() => setRadical(!radical)}
