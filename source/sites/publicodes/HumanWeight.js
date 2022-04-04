@@ -34,6 +34,25 @@ const HumanWeight = ({ nodeValue, overrideValue }) => {
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
+				del {
+					color: var(--lightColor2);
+					font-weight: normal;
+					text-decoration: none;
+					position: relative;
+				}
+				del::after {
+					content: '';
+					position: absolute;
+					top: 50%;
+					left: 0;
+					width: 100%;
+					height: 1px;
+					background: var(--lightColor2);
+					transform: rotate(-7deg);
+				}
+				ins {
+					text-decoration: none;
+				}
 			`}
 		>
 			<strong
@@ -43,7 +62,15 @@ const HumanWeight = ({ nodeValue, overrideValue }) => {
 					font-weight: 600;
 				`}
 			>
-				<span>{value}</span>&nbsp;{unit}
+				{overrideValue ? (
+					<>
+						<del css="">{value}</del>
+						&nbsp;<ins>{humanWeight(nodeValue - overrideValue)[0]}</ins>
+					</>
+				) : (
+					value
+				)}
+				&nbsp;{unit}
 			</strong>{' '}
 			{
 				// overrideValue && <OverrideBlock value={nodeValue - overrideValue} />}
@@ -51,24 +78,6 @@ const HumanWeight = ({ nodeValue, overrideValue }) => {
 			<span css="margin: 0 .6rem">
 				<UnitSuffix />
 			</span>
-		</span>
-	)
-}
-
-const OverrideBlock = ({ value: rawValue }) => {
-	const [value, unit] = humanWeight(rawValue)
-	return (
-		<span>
-			<span css="font-size: 180%; margin: 0 1rem">{emoji('➡️ ')}</span>
-			<strong
-				classname="humanvalue"
-				css={`
-					font-size: 160%;
-					font-weight: 600;
-				`}
-			>
-				{value}&nbsp;{unit}
-			</strong>
 		</span>
 	)
 }
