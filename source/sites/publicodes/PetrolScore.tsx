@@ -14,18 +14,20 @@ export default () => {
 		<div css="display: flex; align-items: center">
 			<img
 				src="/images/pompe-essence.svg"
-				css="width: 3rem; margin-right: .4rem"
-				alt="Icône représentant une pompe à pétrole"
+				css="width: 3rem; "
+				alt="Une pompe à pétrole"
 			/>
 			<div
-				css="display: flex; flex-direction: column"
+				css="display: flex; flex-direction: column; padding: 0 .4rem"
 				title={`${roundedValue} pleins de pétrole`}
 			>
-				<div css="font-size: 120%; font-weight: bold">
-					{roundedValue} pleins
-				</div>
+				<div css="font-size: 140%; font-weight: bold">{roundedValue}</div>
 
-				<div css="@media (max-width: 800px){display: none}">de pétrole</div>
+				<div>
+					{' '}
+					pleins{' '}
+					<span css="@media (max-width: 800px){display: none}">de pétrole</span>
+				</div>
 			</div>
 		</div>
 	)
