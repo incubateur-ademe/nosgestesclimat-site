@@ -26,7 +26,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 		rules = useSelector((state) => state.rules),
 		evaluation = engine.evaluate(objectif),
 		{ nodeValue: rawNodeValue, dottedName, unit, rawNode } = evaluation
-	const persona = useSelector((state) => state.simulation?.persona)
 	const actionChoices = useSelector((state) => state.actionChoices),
 		actionsChosen = Object.values(actionChoices).filter(
 			(a) => a === true
@@ -75,56 +74,36 @@ export default ({ actionMode = false, demoMode = false }) => {
 					align-items: center;
 					padding: 0.4rem;
 					min-height: 4rem;
+					a {
+						text-decoration: none;
+					}
 				`}
 			>
-				<div
-					css={`
-						:hover {
-							opacity: 1 !important;
-						}
-
-						a {
-							text-decoration: none;
-						}
-						display: flex;
-						justify-content: space-evenly;
-						flex-direction: row;
-						width: 100%;
-					`}
+				<Link
+					to={demoMode ? '#' : buildEndURL(rules, engine)}
+					title="Page de fin de simulation"
 				>
-					{persona && (
-						<em>
-							{emoji('👤')} {persona}
-						</em>
-					)}
-					<Link
-						to={demoMode ? '#' : buildEndURL(rules, engine)}
-						title="Page de fin de simulation"
-					>
-						{!actionMode ? (
-							<div css="display:flex; align-items:center">
-								<img
-									src={'/images/climate-change-small.svg'}
-									css="width:3rem;margin-right: .4rem;"
-								/>
-								<HumanWeight
-									nodeValue={nodeValue}
-									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
-								/>
-							</div>
-						) : (
-							<DiffHumanWeight
-								{...{ nodeValue, engine, rules, actionChoices }}
+					{!actionMode ? (
+						<div css="display:flex; align-items:center">
+							<img
+								src={'/images/climate-change-small.svg'}
+								css="width:3rem;margin-right: .4rem;"
 							/>
-						)}
-					</Link>
-					<Link
-						to={demoMode ? '#' : buildEndURL(rules, engine, 'pétrogaz')}
-						title="Page de fin de simulation"
-					>
-						<PetrolScore />
-					</Link>
-				</div>
+							<HumanWeight
+								nodeValue={nodeValue}
+								overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+							/>
+						</div>
+					) : (
+						<DiffHumanWeight {...{ nodeValue, engine, rules, actionChoices }} />
+					)}
+				</Link>
+				<Link
+					to={demoMode ? '#' : buildEndURL(rules, engine, 'pétrogaz')}
+					title="Page de fin de simulation"
+				>
+					<PetrolScore />
+				</Link>
 				{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement 
 				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo 
 				de la page fin.

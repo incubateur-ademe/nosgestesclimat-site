@@ -126,6 +126,7 @@ export default function SessionBar({
 		}
 		`
 			: ''
+	const persona = useSelector((state) => state.simulation?.persona)
 
 	let elements = [
 		<Button
@@ -153,7 +154,20 @@ export default function SessionBar({
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
 			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />
-			Mon profil
+			{!persona ? (
+				'Mon profil'
+			) : (
+				<span
+					css={`
+						background: var(--color);
+						color: var(--textColor);
+						padding: 0 0.4rem;
+						border-radius: 0.3rem;
+					`}
+				>
+					{persona}
+				</span>
+			)}
 		</Button>,
 		NODE_ENV === 'development' && (
 			<Button
