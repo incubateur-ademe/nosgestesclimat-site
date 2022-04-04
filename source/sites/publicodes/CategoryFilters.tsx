@@ -57,7 +57,7 @@ export default ({ categories, metric, selected, countByCategory }) => {
 								: location.pathname + '?catégorie=' + category.dottedName
 						}
 					>
-						<button tabindex="-1">
+						<button tabindex="-1" css="text-transform: capitalize">
 							{category.dottedName}{' '}
 							<span
 								css={`
