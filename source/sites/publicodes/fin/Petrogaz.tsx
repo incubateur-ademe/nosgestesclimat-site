@@ -91,13 +91,10 @@ export default ({ headlessMode }) => {
 						</p>
 
 						<p>
-							Elle est estimée via vos éventuels trajets en voiture, en avion,
-							en bus, et consommation de fioul pour chauffage.
-						</p>
-						<p>
-							Elle ne prend pas (encore) en compte le pétrole utilisé pour
-							acheminer vos achats, et l'énergie grise de vos diverses
-							possessions.
+							Estimée via vos trajets en voiture, en avion, en bus, consommation
+							de fioul pour chauffage, elle ne prend pas (encore) en compte le
+							pétrole utilisé pour acheminer vos achats, et l'énergie grise de
+							vos diverses possessions.
 						</p>
 					</div>
 				</div>
