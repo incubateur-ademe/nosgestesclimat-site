@@ -1,5 +1,6 @@
 import { useEngine } from 'Components/utils/EngineContext'
 import { correctValue } from 'Components/publicodesUtils'
+import HumanWeight from './HumanWeight'
 
 export default () => {
 	const engine = useEngine()
@@ -21,10 +22,24 @@ export default () => {
 				css="display: flex; flex-direction: column; padding: 0 .4rem"
 				title={`${roundedValue} pleins de pétrole`}
 			>
-				<div css="font-size: 140%; font-weight: bold">{roundedValue}</div>
+				<div
+					css={`
+						.humanValue {
+							font-size: 140%;
+							font-weight: bold;
+						}
+					`}
+				>
+					<HumanWeight
+						{...{
+							nodeValue: roundedValue,
+							metric: 'pétrole',
+							unitSuffix: 'pleins',
+						}}
+					/>
+				</div>
 
 				<div>
-					{' '}
 					pleins{' '}
 					<span css="@media (max-width: 800px){display: none}">de pétrole</span>
 				</div>

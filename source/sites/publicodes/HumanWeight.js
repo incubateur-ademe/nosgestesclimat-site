@@ -24,8 +24,20 @@ export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 	return [value, unit]
 }
 
-const HumanWeight = ({ nodeValue, overrideValue }) => {
-	const [value, unit] = humanWeight(nodeValue)
+const HumanWeight = ({
+	nodeValue,
+	overrideValue,
+	metric = 'climat',
+	unitSuffix = 'de CO₂-e / an',
+}) => {
+	const [value, unit] =
+		metric === 'climat'
+			? humanWeight(nodeValue)
+			: metric === 'pétrole'
+			? [nodeValue, '']
+			: [null]
+
+	if (value == null) return null
 	return (
 		<span
 			css={`
@@ -76,20 +88,19 @@ const HumanWeight = ({ nodeValue, overrideValue }) => {
 				// overrideValue && <OverrideBlock value={nodeValue - overrideValue} />}
 			}
 			<span css="margin: 0 .6rem">
-				<UnitSuffix />
+				<span className="unitSuffix">{unitSuffix}</span>
 			</span>
 		</span>
 	)
 }
 
-export const UnitSuffix = () => (
-	<span className="unitSuffix">de CO₂-e / an</span>
-)
 export const DiffHumanWeight = ({
 	nodeValue,
 	engine,
 	rules,
 	actionChoices,
+	metric,
+	unitSuffix,
 }) => {
 	// Here we compute the sum of all the actions the user has chosen
 	// we could also use publicode's 'actions' variable sum,
@@ -117,6 +128,8 @@ export const DiffHumanWeight = ({
 		<HumanWeight
 			nodeValue={nodeValue}
 			overrideValue={actionTotal !== 0 && actionTotal}
+			metric={metric}
+			unitSuffix={unitSuffix}
 		/>
 	)
 }
