@@ -27,17 +27,6 @@ import SimulationMissing from './SimulationMissing'
 
 const { encodeRuleName, decodeRuleName } = utils
 
-const actionsPétrole = [
-	"transport . arrêter l'avion",
-	"transport . arrêter l'avion court",
-	'logement . remplacer fioul par bois',
-	// 'transport . boulot . covoiturage',
-	// 'transport . boulot . commun',
-	// 'transport . boulot . télétravail',
-	// 'transport . voiture 5km',
-	// 'transport . voiture électrique',
-]
-
 export default ({ display }) => {
 	let metric = useQuery().get('métrique')
 	let category = useQuery().get('catégorie')
@@ -45,24 +34,15 @@ export default ({ display }) => {
 	const rules = useSelector((state) => state.rules)
 	const situation = useSelector(situationSelector),
 		answeredQuestions = useSelector(answeredQuestionsSelector)
-	const flatActions = rules['actions']
 
-	const filterByMetric = (actions, actionsByMetric) =>
-		actions.filter((action) =>
-			metric ? actionsByMetric.includes(action) : true
-		)
-
-	const flatActionsByMetric = filterByMetric(
-		flatActions.formule.somme,
-		actionsPétrole
-	)
+	const flatActions = metric ? rules[`actions ${metric}`] : rules['actions']
 
 	const [radical, setRadical] = useState(true)
 
 	const simulation = useSelector((state) => state.simulation)
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const objectifs = ['bilan', ...flatActionsByMetric]
+	const objectifs = ['bilan', ...flatActions.formule.somme]
 
 	const engine = useContext(EngineContext)
 
