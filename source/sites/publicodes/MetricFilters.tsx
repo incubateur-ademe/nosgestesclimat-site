@@ -24,8 +24,7 @@ export default ({ selected }) => {
 					border-radius: 0.2rem;
 					line-height: 1.6rem;
 					height: 1.8rem;
-					background: black;
-					margin-bottom: 1rem;
+					background: var(--darkestColor);
 				}
 				button {
 					color: white;
@@ -41,9 +40,7 @@ export default ({ selected }) => {
 							: location.pathname + '?métrique=pétrole'
 					}
 				>
-					<button tabindex="-1">
-						AFFICHER SEULEMENT LES ACTIONS LIEES AU PETROLE{' '}
-					</button>
+					<button>Pétrole</button>
 				</Link>
 			</div>
 		</div>

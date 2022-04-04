@@ -7,14 +7,13 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
-import HumanWeight from './HumanWeight'
+import HumanWeight, { DiffHumanWeight } from './HumanWeight'
 import { useEngine } from 'Components/utils/EngineContext'
 import { correctValue, splitName } from '../../components/publicodesUtils'
 import { lightenColor } from '../../components/utils/colors'
 import Progress from 'Components/ui/Progress'
 import { useSimulationProgress } from 'Components/utils/useNextQuestion'
 import { buildEndURL } from '../../components/SessionBar'
-import { disabledAction, supersededAction } from './ActionVignette'
 import PetrolScore from './PetrolScore'
 
 export default ({ actionMode = false, demoMode = false }) => {
@@ -26,10 +25,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 		rules = useSelector((state) => state.rules),
 		evaluation = engine.evaluate(objectif),
 		{ nodeValue: rawNodeValue, dottedName, unit, rawNode } = evaluation
-	const actionChoices = useSelector((state) => state.actionChoices),
-		actionsChosen = Object.values(actionChoices).filter(
-			(a) => a === true
-		).length
+	const actionChoices = useSelector((state) => state.actionChoices)
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
@@ -87,20 +83,22 @@ export default ({ actionMode = false, demoMode = false }) => {
 					to={demoMode ? '#' : buildEndURL(rules, engine)}
 					title="Page de fin de simulation"
 				>
-					{!actionMode ? (
-						<div css="display:flex; align-items:center; justify-content: center">
-							<img
-								src={'/images/climate-change-small.svg'}
-								css="width:3rem;margin-right: .8rem;"
-							/>
+					<div css="display:flex; align-items:center; justify-content: center">
+						<img
+							src={'/images/climate-change-small.svg'}
+							css="width:3rem;margin-right: .8rem;"
+						/>
+						{!actionMode ? (
 							<HumanWeight
 								nodeValue={nodeValue}
 								overrideValue={actionMode && actionTotal !== 0 && actionTotal}
 							/>
-						</div>
-					) : (
-						<DiffHumanWeight {...{ nodeValue, engine, rules, actionChoices }} />
-					)}
+						) : (
+							<DiffHumanWeight
+								{...{ nodeValue, engine, rules, actionChoices }}
+							/>
+						)}
+					</div>
 				</Link>
 				<Link
 					css={`
@@ -126,64 +124,11 @@ export default ({ actionMode = false, demoMode = false }) => {
 					<DocumentationLink dottedName={dottedName} />
 				)}
 				*/}
-				{actionMode && <ActionCount count={actionsChosen} />}
 			</div>
 			{!demoMode && progress < 1 && (
 				<Progress progress={progress} style={!progress ? 'height: 0' : ''} />
 			)}
 		</div>
-	)
-}
-
-const ActionCount = ({ count }) => (
-	<Link to="/actions/liste" css="text-decoration: none">
-		<div
-			css={`
-				border-radius: 0.3rem;
-				background: #77b255;
-				width: 2rem;
-				height: 3rem;
-				font-weight: bold;
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				line-height: 1.1rem;
-			`}
-		>
-			<div>{count}</div>
-			<div>&#10004;</div>
-		</div>
-	</Link>
-)
-
-const DiffHumanWeight = ({ nodeValue, engine, rules, actionChoices }) => {
-	// Here we compute the sum of all the actions the user has chosen
-	// we could also use publicode's 'actions' variable sum,
-	// but each action would need to have a "chosen" question,
-	// and disactivation rules
-
-	const actions = rules['actions'].formule.somme.map((dottedName) =>
-			engine.evaluate(dottedName)
-		),
-		actionTotal = actions.reduce((memo, action) => {
-			const correctedValue = correctValue({
-				nodeValue: action.nodeValue,
-				unit: action.unit,
-			})
-			if (
-				actionChoices[action.dottedName] &&
-				!supersededAction(action.dottedName, rules, actionChoices) &&
-				!disabledAction(rules[action.dottedName], action.nodeValue)
-			) {
-				return memo + correctedValue || 0
-			} else return memo
-		}, 0)
-
-	return (
-		<HumanWeight
-			nodeValue={nodeValue}
-			overrideValue={actionTotal !== 0 && actionTotal}
-		/>
 	)
 }
 

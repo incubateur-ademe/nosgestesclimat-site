@@ -1,6 +1,7 @@
 import React from 'react'
 import emoji from 'react-easy-emoji'
-import { useSelector } from 'react-redux'
+import { correctValue } from '../../components/publicodesUtils'
+import { disabledAction, supersededAction } from './ActionVignette'
 
 export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 	const v = Math.abs(possiblyNegativeValue)
@@ -22,7 +23,8 @@ export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 
 	return [value, unit]
 }
-export default ({ nodeValue, overrideValue }) => {
+
+const HumanWeight = ({ nodeValue, overrideValue }) => {
 	const [value, unit] = humanWeight(nodeValue)
 	return (
 		<span
@@ -41,9 +43,11 @@ export default ({ nodeValue, overrideValue }) => {
 					font-weight: 600;
 				`}
 			>
-				{value}&nbsp;{unit}
+				<span>{value}</span>&nbsp;{unit}
 			</strong>{' '}
-			{overrideValue && <OverrideBlock value={nodeValue - overrideValue} />}
+			{
+				// overrideValue && <OverrideBlock value={nodeValue - overrideValue} />}
+			}
 			<span css="margin: 0 .6rem">
 				<UnitSuffix />
 			</span>
@@ -72,3 +76,40 @@ const OverrideBlock = ({ value: rawValue }) => {
 export const UnitSuffix = () => (
 	<span className="unitSuffix">de CO₂-e / an</span>
 )
+export const DiffHumanWeight = ({
+	nodeValue,
+	engine,
+	rules,
+	actionChoices,
+}) => {
+	// Here we compute the sum of all the actions the user has chosen
+	// we could also use publicode's 'actions' variable sum,
+	// but each action would need to have a "chosen" question,
+	// and disactivation rules
+
+	const actions = rules['actions'].formule.somme.map((dottedName) =>
+			engine.evaluate(dottedName)
+		),
+		actionTotal = actions.reduce((memo, action) => {
+			const correctedValue = correctValue({
+				nodeValue: action.nodeValue,
+				unit: action.unit,
+			})
+			if (
+				actionChoices[action.dottedName] &&
+				!supersededAction(action.dottedName, rules, actionChoices) &&
+				!disabledAction(rules[action.dottedName], action.nodeValue)
+			) {
+				return memo + correctedValue || 0
+			} else return memo
+		}, 0)
+
+	return (
+		<HumanWeight
+			nodeValue={nodeValue}
+			overrideValue={actionTotal !== 0 && actionTotal}
+		/>
+	)
+}
+
+export default HumanWeight

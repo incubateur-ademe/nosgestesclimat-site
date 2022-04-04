@@ -24,6 +24,7 @@ import CategoryFilters from './CategoryFilters'
 import MetricFilters from './MetricFilters'
 import { humanWeight } from './HumanWeight'
 import SimulationMissing from './SimulationMissing'
+import ActionsChosenIndicator from './ActionsChosenIndicator'
 
 const { encodeRuleName, decodeRuleName } = utils
 
@@ -104,13 +105,22 @@ export default ({ display }) => {
 				margin: 1rem auto;
 			`}
 		>
-			<MetricFilters selected={metric} />
-			<CategoryFilters
-				categories={categories}
-				metric={metric}
-				selected={category}
-				countByCategory={countByCategory}
-			/>
+			<div
+				css={`
+					display: flex;
+					align-items: start;
+				`}
+			>
+				{
+					//				<MetricFilters selected={metric} />
+				}
+				<CategoryFilters
+					categories={categories}
+					metric={metric}
+					selected={category}
+					countByCategory={countByCategory}
+				/>
+			</div>
 
 			<div
 				css={`
@@ -118,15 +128,21 @@ export default ({ display }) => {
 					text-align: center;
 				`}
 			>
-				<small>{finalActions.length} actions disponibles.</small>{' '}
-				<small>Triées par :</small>{' '}
+				<small>
+					{finalActions.length} actions disponibles, <ActionsChosenIndicator />
+					sélectionnées.
+				</small>{' '}
+				<small css="@media(max-width: 800px){display: none}">
+					Triées par :
+				</small>{' '}
+				<small css="@media(min-width: 800px){display: none}">Tri :</small>{' '}
 				<button
 					onClick={() => setRadical(!radical)}
 					className="ui__ dashed-button"
 					css="color: var(--lighterTextColor); font-size: 85% !important"
 				>
 					{radical ? (
-						<span>le plus d'impact </span>
+						<span>le plus d'impact climat</span>
 					) : (
 						<span>le moins d'impact</span>
 					)}
