@@ -88,7 +88,7 @@ const HumanWeight = ({
 			{
 				// overrideValue && <OverrideBlock value={nodeValue - overrideValue} />}
 			}
-			<span css="margin: 0 .6rem">
+			<span>
 				<span
 					className="unitSuffix"
 					css={
