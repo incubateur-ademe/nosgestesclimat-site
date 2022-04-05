@@ -157,6 +157,7 @@ export default ({ display }) => {
 						rules,
 						focusedAction,
 						focusAction,
+						radical,
 					}}
 				/>
 			) : finalActions.length ? (
