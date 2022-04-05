@@ -15,6 +15,7 @@ import styled from 'styled-components'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
+import ProgressCircle from './ProgressCircle'
 
 const openmojis = {
 	test: '25B6',
@@ -43,7 +44,8 @@ const MenuButton = styled.div`
 		padding: 0;
 		font-size: 100%;
 	}
-	> img {
+	> img,
+	> svg {
 		display: block;
 		font-size: 200%;
 		margin: 0.6rem !important;
@@ -122,7 +124,7 @@ export default function SessionBar({
 		font-weight: bold;
 		img {
 		  background: var(--lighterColor);
-		  border-radius: .6rem;
+		  border-radius: 2rem;
 		}
 		`
 			: ''
@@ -139,9 +141,11 @@ export default function SessionBar({
 					<Redirect to={buildEndURL(rules, engine)} />
 				)
 			}}
-			css={buttonStyle('simulateur')}
+			css={`
+				${buttonStyle('simulateur')};
+			`}
 		>
-			<img src={openmojiURL('test')} css="width: 2rem" aria-hidden="true" />
+			<ProgressCircle />
 			Le test
 		</Button>,
 		<Button

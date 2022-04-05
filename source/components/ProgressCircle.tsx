@@ -1,3 +1,5 @@
+import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { useEffect } from 'react'
 import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default ({}) => {
@@ -12,8 +14,10 @@ export default ({}) => {
 	return (
 		<svg
 			className="progress-icon"
-			viewBox="0 0 60 60"
-			css="width: 3rem; position: absolute; right: 0; top: .4rem"
+			viewBox="0 0 50 50"
+			css={`
+				width: 2rem;
+			`}
 		>
 			<motion.path
 				fill="none"
@@ -28,6 +32,13 @@ export default ({}) => {
 					translateY: 5,
 					scaleX: -1, // Reverse direction of line animation
 				}}
+			/>
+			<motion.path
+				fill="var(--color)"
+				d="M15 15 L40 30 L15 40 L15 15"
+				strokeDasharray="0 1"
+				transform="translate(-0 -3)"
+				animate={{ display: progress === 1 ? 'none' : 'block' }}
 			/>
 			<motion.path
 				fill="none"
