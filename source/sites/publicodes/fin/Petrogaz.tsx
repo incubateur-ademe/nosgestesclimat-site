@@ -1,8 +1,8 @@
 import ShareButton from 'Components/ShareButton'
 import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
-import { motion } from 'framer-motion'
-import { default as React, useEffect } from 'react'
+import { motion, useSpring } from 'framer-motion'
+import { default as React, useEffect, useState } from 'react'
 import { correctValue } from '../../../components/publicodesUtils'
 import { ActionButton } from './Buttons'
 import { generateImageLink } from './index'
@@ -13,8 +13,8 @@ export default ({ headlessMode }) => {
 	//	Configuration is try and test, feeling, really
 	const valueSpring = useSpring(0, {
 		mass: 10,
-		tension: 10,
-		stiffness: 50,
+		tension: 30,
+		stiffness: 80,
 		friction: 500,
 		damping: 60,
 	})
@@ -28,8 +28,8 @@ export default ({ headlessMode }) => {
 	const pleinVolume = correctValue(engine.evaluate('pétrole . volume plein'))
 
 	const score = petroleBrut,
-		roundedValue = Math.round(score),
-		formattedValue = (score / pleinVolume).toLocaleString('fr-FR', {
+		secondaryValue = Math.round(value),
+		primaryValue = (value / pleinVolume).toLocaleString('fr-FR', {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
 		})
@@ -48,7 +48,7 @@ export default ({ headlessMode }) => {
 		<div>
 			<Meta
 				title="Mon empreinte climat"
-				description={`Mon empreinte pétrole est de ${formattedValue} pleins de pétrole. Mesure la tienne !`}
+				description={`Mon empreinte pétrole est de ${primaryValue} pleins de pétrole. Mesure la tienne !`}
 				image={shareImage}
 				url={window.location}
 			/>
