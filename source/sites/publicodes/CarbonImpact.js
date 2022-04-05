@@ -100,22 +100,9 @@ export default ({ actionMode = false, demoMode = false }) => {
 						)}
 					</div>
 				</Link>
-				<Link
-					css={`
-						background: rgba(0, 0, 0, 0)
-							linear-gradient(
-								60deg,
-								var(--darkColor) 0%,
-								var(--darkestColor) 100%
-							)
-							repeat scroll 0% 0%;
-						border-left-style: solid;
-					`}
-					to={demoMode ? '#' : buildEndURL(rules, engine, 'pétrogaz')}
-					title="Page de fin de simulation"
-				>
-					<PetrolScore />
-				</Link>
+				<PetrolScore
+					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'pétrogaz')}
+				/>
 				{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement 
 				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo 
 				de la page fin.

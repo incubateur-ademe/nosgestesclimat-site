@@ -29,6 +29,7 @@ const HumanWeight = ({
 	overrideValue,
 	metric = 'climat',
 	unitSuffix = 'de CO₂-e / an',
+	longUnitSuffix,
 }) => {
 	const [value, unit] =
 		metric === 'climat'
@@ -88,7 +89,31 @@ const HumanWeight = ({
 				// overrideValue && <OverrideBlock value={nodeValue - overrideValue} />}
 			}
 			<span css="margin: 0 .6rem">
-				<span className="unitSuffix">{unitSuffix}</span>
+				<span
+					className="unitSuffix"
+					css={
+						longUnitSuffix &&
+						`
+						@media (min-width: 800px) {
+							display: none;
+						}
+					`
+					}
+				>
+					{unitSuffix}
+				</span>
+				{longUnitSuffix && (
+					<span
+						className="unitSuffix"
+						css={`
+							@media (max-width: 800px) {
+								display: none;
+							}
+						`}
+					>
+						{longUnitSuffix}
+					</span>
+				)}
 			</span>
 		</span>
 	)
