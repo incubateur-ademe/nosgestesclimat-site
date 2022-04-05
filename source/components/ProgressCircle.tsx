@@ -3,8 +3,9 @@ import { useEffect } from 'react'
 import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default ({}) => {
-	const progress = useSimulationProgress()
+	const progress = 0.3 || useSimulationProgress()
 	const motionProgress = useMotionValue(0)
+
 	const pathLength = useSpring(motionProgress, { stiffness: 400, damping: 90 })
 
 	useEffect(() => {
@@ -19,6 +20,18 @@ export default ({}) => {
 				width: 2rem;
 			`}
 		>
+			<path
+				fill="none"
+				strokeWidth="5"
+				stroke="var(--lighterColor)"
+				stroke-dasharray="0.3px 1px"
+				d="M 0, 20 a 20, 20 0 1,0 40,0 a 20, 20 0 1,0 -40,0"
+				pathLength="1"
+				stroke-dashoffset="0px"
+				data-projection-id="1"
+				css="transform: translateX(5px) translateY(5px) scaleX(-1) rotate(90deg); transform-origin: 20px 20px 0px;"
+				transform-origin="20px 20px"
+			></path>
 			<motion.path
 				fill="none"
 				strokeWidth="5"

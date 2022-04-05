@@ -122,7 +122,7 @@ export default function SessionBar({
 		path.includes(pathTarget)
 			? `
 		font-weight: bold;
-		img {
+		img, svg {
 		  background: var(--lighterColor);
 		  border-radius: 2rem;
 		}
