@@ -63,6 +63,7 @@ const generateTheme = (themeColor?: string) => {
 		lightColor2 = lightenColor(color, 20),
 		lighterColor = lightenColor(color, 39),
 		lightestColor = lightenColor(color, 42),
+		darkerColor = lightenColor(color, -40),
 		darkestColor = lightenColor(color, -100),
 		grayColor = '#00000099',
 		textColor = findContrastedTextColor(color, true), // the 'simple' version feels better...
@@ -90,6 +91,7 @@ const generateTheme = (themeColor?: string) => {
 		lighterColor,
 		lightestColor,
 		darkestColor,
+		darkerColor,
 		palettes,
 	}
 }

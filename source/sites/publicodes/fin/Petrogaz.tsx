@@ -62,7 +62,7 @@ export default ({ headlessMode }) => {
 					background: linear-gradient(
 						180deg,
 						var(--darkColor) 0%,
-						var(--darkestColor) 100%
+						var(--darkerColor) ${(1 - value / score) * 400 + 100}%
 					);
 					color: white;
 					margin: 0 auto;
