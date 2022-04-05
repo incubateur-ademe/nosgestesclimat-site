@@ -17,7 +17,7 @@ import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
-import CarbonImpact from './CarbonImpact'
+import ScoreBar from './ScoreBar'
 import Chart from './chart/index.js'
 import { questionConfig } from './questionConfig'
 
@@ -56,7 +56,7 @@ const Simulateur = (props) => {
 		<div>
 			<Meta title={evaluation.title} />
 			<Title>Le test</Title>
-			{introPassed && <CarbonImpact />}
+			{introPassed && <ScoreBar />}
 			{!isMainSimulation && (
 				<h1>
 					{evaluation.rawNode.title || (

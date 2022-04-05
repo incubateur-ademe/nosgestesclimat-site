@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
-import CarbonImpact from './CarbonImpact'
+import ScoreBar from './ScoreBar'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
@@ -198,7 +198,7 @@ const slides = [
 				donnerez va personnaliser ce résultat dans la barre de résultat.
 			</p>
 			<div css="margin: 1rem 0">
-				<CarbonImpact demoMode />
+				<ScoreBar demoMode />
 			</div>
 		</>
 	),

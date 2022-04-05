@@ -39,6 +39,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 			css={`
 				${!demoMode &&
 				`
+				margin-bottom: 1.2rem;
 				@media (max-width: 800px) {
 					margin: 0;
 					
@@ -48,6 +49,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 					z-index: 10;
 					width: 100%;
 				}`}
+
 				color: var(--textColor);
 				a {
 					color: inherit;
