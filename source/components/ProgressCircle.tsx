@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default ({}) => {
-	const progress = 0.3 || useSimulationProgress()
+	const progress = useSimulationProgress()
 	const motionProgress = useMotionValue(0)
 
 	const pathLength = useSpring(motionProgress, { stiffness: 400, damping: 90 })

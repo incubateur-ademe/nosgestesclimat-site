@@ -142,9 +142,9 @@ export default ({ display }) => {
 					css="color: var(--lighterTextColor); font-size: 85% !important"
 				>
 					{radical ? (
-						<span>le plus d'impact climat</span>
+						<span>le + d'impact climat</span>
 					) : (
-						<span>le moins d'impact</span>
+						<span>le - d'impact climat</span>
 					)}
 					.
 				</button>
