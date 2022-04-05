@@ -73,7 +73,7 @@ export default ({ headlessMode }) => {
 							`}
 						>
 							<div css="font-weight: bold; font-size: 280%;">
-								<span css="width: 4rem; text-align: right; display: inline-block">
+								<span css="width: auto; text-align: right; display: inline-block">
 									{formattedValue}
 								</span>{' '}
 								pleins
