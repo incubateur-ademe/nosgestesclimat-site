@@ -2,16 +2,24 @@ import ShareButton from 'Components/ShareButton'
 import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { motion } from 'framer-motion'
-import { default as React } from 'react'
+import { default as React, useEffect } from 'react'
 import { correctValue } from '../../../components/publicodesUtils'
 import { ActionButton } from './Buttons'
+import { generateImageLink } from './index'
 
 export default ({ headlessMode }) => {
-	const shareImage =
-		'https://aejkrqosjq.cloudimg.io/v7/' +
-		window.location.origin +
-		'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
-		window.location
+	const shareImage = generateImageLink(window.location)
+	//
+	//	Configuration is try and test, feeling, really
+	const valueSpring = useSpring(0, {
+		mass: 10,
+		tension: 10,
+		stiffness: 50,
+		friction: 500,
+		damping: 60,
+	})
+
+	const [value, setValue] = useState(0)
 
 	const engine = useEngine()
 	const petroleBrut = correctValue(
@@ -19,12 +27,22 @@ export default ({ headlessMode }) => {
 	)
 	const pleinVolume = correctValue(engine.evaluate('pétrole . volume plein'))
 
-	const value = petroleBrut,
-		roundedValue = Math.round(value),
-		formattedValue = (value / pleinVolume).toLocaleString('fr-FR', {
+	const score = petroleBrut,
+		roundedValue = Math.round(score),
+		formattedValue = (score / pleinVolume).toLocaleString('fr-FR', {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
 		})
+
+	useEffect(() => {
+		const unsubscribe = valueSpring.onChange((v) => {
+			setValue(v)
+		})
+
+		headlessMode ? setValue(score) : valueSpring.set(score)
+
+		return () => unsubscribe()
+	})
 
 	return (
 		<div>
@@ -74,13 +92,13 @@ export default ({ headlessMode }) => {
 						>
 							<div css="font-weight: bold; font-size: 280%;">
 								<span css="width: auto; text-align: right; display: inline-block">
-									{formattedValue}
+									{primaryValue}
 								</span>{' '}
 								pleins
 							</div>
 							de pétrole brut par an.
 							<small css="color: var(--lightColor2)">
-								Soit {roundedValue} litres (plein de {pleinVolume} litres).
+								Soit {secondaryValue} litres (plein de {pleinVolume} litres).
 							</small>
 						</div>
 					</div>

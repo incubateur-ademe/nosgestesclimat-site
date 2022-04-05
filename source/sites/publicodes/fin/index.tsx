@@ -139,11 +139,8 @@ const Budget = ({ score, details, headlessMode }) => {
 		}),
 		integerValue = roundedValue.split(',')[0],
 		decimalValue = roundedValue.split(',')[1],
-		shareImage =
-			'https://aejkrqosjq.cloudimg.io/v7/' +
-			window.location.origin +
-			'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
-			window.location
+		shareImage = generateImageLink(window.location)
+
 	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
 		useContext(IframeOptionsContext)
 
@@ -416,3 +413,9 @@ const IntegratorActionButton = () => {
 		</a>
 	)
 }
+
+export const generateImageLink = (location) =>
+	'https://aejkrqosjq.cloudimg.io/v7/' +
+	location.origin +
+	'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
+	location
