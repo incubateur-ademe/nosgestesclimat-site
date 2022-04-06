@@ -1,105 +1,63 @@
 import React, { useRef, useState } from 'react'
+import styled from 'styled-components'
+import emoji from './emoji'
 
-export default (props) =>
+export default ({ text, url, title, color, label }) =>
 	navigator.share ? (
-		<button
-			css={`
-				margin: 0 auto;
-				display: flex;
-				align-items: center;
-			`}
+		<Button
 			title="Cliquez pour partager le lien"
 			onClick={() =>
 				navigator
-					.share(props)
+					.share({ text, url, title, color, label })
 					.then(() => console.log('Successful share'))
 					.catch((error) => console.log('Error sharing', error))
 			}
 		>
 			<Icon />
-			{props.label && <span>{props.label}</span>}
+			{label && <span>{label}</span>}
 			{/* Created by Barracuda from the Noun Project */}
-		</button>
+		</Button>
 	) : (
-		<DesktopShareButton {...props} />
+		<DesktopShareButton {...{ label, text }} />
 	)
 
-export const DesktopShareButton = (props) => {
-	const [copySuccess, setCopySuccess] = useState(false)
-	const textAreaRef = useRef(null)
+const copyToClipboardAsync = (str) => {
+	if (navigator && navigator.clipboard && navigator.clipboard.writeText)
+		return navigator.clipboard.writeText(str)
+	return Promise.reject('The Clipboard API is not available.')
+}
 
-	function copyToClipboard(e) {
-		textAreaRef.current.select()
-		document.execCommand('copy')
-		// This is just personal preference.
-		// I prefer to not show the the whole text area selected.
-		e.target.focus()
-		setCopySuccess(true)
-		e.preventDefault()
-		return null
-	}
+export const DesktopShareButton = ({ label, text }) => {
+	const [copySuccess, setCopySuccess] = useState(false)
 
 	return (
-		<div>
-			<div
-				css={`
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					color: ${props.color || 'black'};
-				`}
-			>
-				<Icon />
-				{props.label && <span>{props.label}</span>}
-			</div>
-			<form css="text-align: center">
-				<input
-					id="urlInput"
-					css={`
-						box-shadow: inset 0 1px 2px rgba(27, 31, 35, 0.075);
-						border-radius: 0.3rem;
-						border-top-right-radius: 0;
-						border-bottom-right-radius: 0;
-    border: 1px solid var(--color);
-    padding: 0.2rem 0.4rem;
-    width: 60%;
-    margin: 0 0 0.4rem;
-    background: #fffffff2;
-	height: 1.6rem;
-	
-}
-					`}
-					readOnly
-					ref={textAreaRef}
-					value={props.url}
-				/>
-
-				<label htmlFor="urlInput">
-					{
-						/* Logical shortcut for only displaying the 
-          button if the copy command exists */
-						document.queryCommandSupported('copy') && (
-							<button
-								css={`
-									border-radius: 0.3rem;
-									border-bottom-left-radius: 0;
-									border-top-left-radius: 0;
-									border: 1px solid var(--color);
-									margin-left: -1px;
-									height: 1.6rem;
-									background: #ffffffb3;
-									box-shadow: 0 1px 0 rgba(27, 31, 35, 0.04),
-										inset 0 1px 0 hsla(0, 0%, 100%, 0.25);
-								`}
-								onClick={copyToClipboard}
-							>
-								{!copySuccess ? 'Copier le lien' : 'Copié'}
-							</button>
-						)
+		<Button
+			title="Cliquez pour partager le lien"
+			onClick={() => {
+				copyToClipboardAsync(text).then(
+					function () {
+						/* clipboard successfully set */
+						setCopySuccess(true)
+					},
+					function () {
+						/* clipboard write failed */
+						setCopySuccess(false)
 					}
-				</label>
-			</form>
-		</div>
+				)
+			}}
+		>
+			<Icon />
+			{!copySuccess ? (
+				label ? (
+					<span>{label}</span>
+				) : (
+					'Copier le lien'
+				)
+			) : (
+				<span>Lien copié {emoji('✅')}</span>
+			)}
+			{/* Created by Barracuda from the Noun Project */}
+		</Button>
 	)
 }
 
@@ -149,3 +107,10 @@ const Icon = ({}) => (
 		</svg>
 	</div>
 )
+
+const Button = styled.button`
+	margin: 0 auto;
+	display: flex;
+	align-items: center;
+	font-size: 100%;
+`
