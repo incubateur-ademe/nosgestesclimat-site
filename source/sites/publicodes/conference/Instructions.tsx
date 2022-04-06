@@ -115,7 +115,7 @@ export default ({
 							<p>
 								Mode persistant : l'interface est presque la même, mais les
 								données sont stockées sur notre serveur et ainsi restent
-								accessibles <strong>pendant deux semaines</strong>.
+								accessibles <strong>pendant deux mois</strong>.
 							</p>
 						</label>
 					</div>
