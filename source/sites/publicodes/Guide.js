@@ -48,7 +48,7 @@ export default () => {
 				/>
 				{encodedName !== 'guide' && relatedActions.length > 0 && (
 					<>
-						<p>Pour aller plus loin:</p>
+						<h2>Pour aller plus loin:</h2>
 						<div>
 							{relatedActions.map((action) => (
 								<Link
