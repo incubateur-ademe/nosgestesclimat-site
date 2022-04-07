@@ -12,11 +12,9 @@ export default ({ headlessMode }) => {
 	//
 	//	Configuration is try and test, feeling, really
 	const valueSpring = useSpring(0, {
-		mass: 10,
-		tension: 30,
-		stiffness: 80,
-		friction: 500,
-		damping: 60,
+		mass: 1,
+		stiffness: 10,
+		damping: 10,
 	})
 
 	const [value, setValue] = useState(0)
@@ -29,10 +27,7 @@ export default ({ headlessMode }) => {
 
 	const score = petroleBrut,
 		secondaryValue = Math.round(value),
-		primaryValue = (value / pleinVolume).toLocaleString('fr-FR', {
-			maximumSignificantDigits: 2,
-			minimumSignificantDigits: 2,
-		})
+		primaryValue = Math.round(value / pleinVolume)
 
 	useEffect(() => {
 		const unsubscribe = valueSpring.onChange((v) => {
@@ -62,7 +57,7 @@ export default ({ headlessMode }) => {
 					background: linear-gradient(
 						180deg,
 						var(--darkColor) 0%,
-						var(--darkerColor) ${(1 - value / score) * 400 + 100}%
+						var(--darkerColor) ${(1 - value / score) * 400 + 50}%
 					);
 					color: white;
 					margin: 0 auto;
@@ -88,6 +83,7 @@ export default ({ headlessMode }) => {
 								display: flex;
 								justify-content: space-evenly;
 								height: 10rem;
+								width: 16rem;
 							`}
 						>
 							<div css="font-weight: bold; font-size: 280%;">
