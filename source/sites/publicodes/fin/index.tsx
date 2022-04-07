@@ -62,7 +62,7 @@ export default ({}) => {
 
 	const score = sumFromDetails(rehydratedDetails)
 	const headlessMode =
-		true || !window || window.navigator.userAgent.includes('HeadlessChrome')
+		!window || window.navigator.userAgent.includes('HeadlessChrome')
 
 	const dispatch = useDispatch(),
 		answeredQuestions = useSelector(answeredQuestionsSelector)
