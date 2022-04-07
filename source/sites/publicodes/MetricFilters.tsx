@@ -1,35 +1,38 @@
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
+import emoji from '../../components/emoji'
 export default ({ selected }) => {
 	const location = useLocation()
 	return (
 		<div
 			css={`
-				display: flex;
-				flex-wrap: wrap;
-				list-style-type: none;
-				justify-content: center;
-				padding-left: 0;
-				@media (max-width: 800px) {
-					flex-wrap: nowrap;
-					overflow-x: auto;
-					white-space: nowrap;
-					justify-content: normal;
-					height: 3rem;
-					scrollbar-width: none;
-				}
-				div {
+				margin-bottom: 0.2rem;
+				> div {
+					margin: 0 auto;
+					width: 7rem;
+					text-align: center;
 					padding: 0.1rem 0rem;
-					margin: 0.15rem 0.2rem;
 					border-radius: 0.2rem;
 					line-height: 1.6rem;
 					height: 1.8rem;
-					background: var(--darkestColor);
+					background: var(--darkerColor);
 				}
 				button {
 					color: white;
 					font-weight: 500;
 				}
+				${!selected &&
+				`
+
+> div {
+				background: white;
+				border: 1px solid var(--darkerColor);
+
+				button {color: var(--darkerColor);}
+				}
+
+
+				`}
 			`}
 		>
 			<div>
@@ -40,7 +43,7 @@ export default ({ selected }) => {
 							: location.pathname + '?métrique=pétrole'
 					}
 				>
-					<button>Pétrole</button>
+					<button>{emoji('🎯')} Pétrole</button>
 				</Link>
 			</div>
 		</div>

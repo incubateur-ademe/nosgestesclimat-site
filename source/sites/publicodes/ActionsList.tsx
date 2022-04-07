@@ -19,6 +19,7 @@ import { disabledAction, supersededAction } from './ActionVignette'
 import AllActions from './AllActions'
 import CategoryFilters from './CategoryFilters'
 import { humanWeight } from './HumanWeight'
+import MetricFilters from './MetricFilters'
 import SimulationMissing from './SimulationMissing'
 
 const { encodeRuleName, decodeRuleName } = utils
@@ -79,7 +80,7 @@ export default ({ display }) => {
 	}, {})
 
 	//TODO this is quite a bad design
-	// we're better check if the test is finished
+	// we'd better check if the test is finished
 	// but is it too restrictive ?
 	const simulationWellStarted = answeredQuestions.length > 50
 
@@ -100,22 +101,13 @@ export default ({ display }) => {
 				margin: 1rem auto;
 			`}
 		>
-			<div
-				css={`
-					display: flex;
-					align-items: start;
-				`}
-			>
-				{
-					//				<MetricFilters selected={metric} />
-				}
-				<CategoryFilters
-					categories={categories}
-					metric={metric}
-					selected={category}
-					countByCategory={countByCategory}
-				/>
-			</div>
+			<MetricFilters selected={metric} />
+			<CategoryFilters
+				categories={categories}
+				metric={metric}
+				selected={category}
+				countByCategory={countByCategory}
+			/>
 
 			<div
 				css={`

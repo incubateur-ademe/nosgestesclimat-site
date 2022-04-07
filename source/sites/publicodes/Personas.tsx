@@ -125,15 +125,18 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 									: ``}
 							`}
 						>
-							<Link
-								to={'#'}
+							<button
+								className="ui__ button simple small"
+								css={`
+									width: 100% !important;
+								`}
 								onClick={() =>
 									hasSituation ? setWarning(persona) : setPersona(persona)
 								}
 							>
 								<div>{emoji(icônes || '👥')}</div>
 								<div>{nom}</div>
-							</Link>
+							</button>
 							<p css=" overflow-x: scroll">
 								<small>{résumé || description}</small>
 							</p>
