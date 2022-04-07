@@ -19,7 +19,7 @@ export default ({ text, url, title, color, label }) =>
 			{/* Created by Barracuda from the Noun Project */}
 		</Button>
 	) : (
-		<DesktopShareButton {...{ label, color, text }} />
+		<DesktopShareButton {...{ label, color, text, url }} />
 	)
 
 const copyToClipboardAsync = (str) => {
@@ -28,8 +28,12 @@ const copyToClipboardAsync = (str) => {
 	return Promise.reject('The Clipboard API is not available.')
 }
 
-export const DesktopShareButton = ({ label, text, color }) => {
+export const DesktopShareButton = ({ label, text, color, url }) => {
 	const [copySuccess, setCopySuccess] = useState(false)
+
+	const clipboardText = `${text}
+
+${decodeURIComponent(url)}`
 
 	return (
 		<Button
@@ -38,7 +42,7 @@ export const DesktopShareButton = ({ label, text, color }) => {
 				color: ${color};
 			`}
 			onClick={() => {
-				copyToClipboardAsync(text).then(
+				copyToClipboardAsync(clipboardText).then(
 					function () {
 						/* clipboard successfully set */
 						setCopySuccess(true)
