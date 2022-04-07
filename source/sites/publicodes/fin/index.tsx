@@ -23,6 +23,8 @@ import { useSearchParams } from '../../../components/utils/useSearchParams'
 import HorizontalSwipe from '../HorizontalSwipe'
 import SlidesLayout from '../../../components/SlidesLayout'
 import Petrogaz from './Petrogaz'
+import { utils } from 'publicodes'
+const { encodeRuleName } = utils
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -112,9 +114,7 @@ const Budget = ({ score, details, headlessMode }) => {
 	//	Configuration is try and test, feeling, really
 	const valueSpring = useSpring(0, {
 		mass: 10,
-		tension: 10,
 		stiffness: 50,
-		friction: 500,
 		damping: 60,
 	})
 
@@ -309,6 +309,7 @@ const Budget = ({ score, details, headlessMode }) => {
 				)}
 
 				{integratorActionText && <ActionButton text="Réduire mon empreinte" />}
+				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>
 		</div>
 	)
@@ -419,3 +420,18 @@ export const generateImageLink = (location) =>
 	location.origin +
 	'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
 	location
+
+export const DocumentationEndButton = ({ ruleName, color }) => (
+	<div
+		css={`
+			margin-bottom: 0.6rem;
+			${color && `a {color: ${color}}`}
+		`}
+	>
+		<small>
+			<Link to={'/documentation/' + encodeRuleName(ruleName)}>
+				Comprendre le calcul{' '}
+			</Link>
+		</small>
+	</div>
+)

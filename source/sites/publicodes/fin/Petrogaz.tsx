@@ -3,9 +3,13 @@ import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { motion, useSpring } from 'framer-motion'
 import { default as React, useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
+import emoji from '../../../components/emoji'
 import { correctValue } from '../../../components/publicodesUtils'
 import { ActionButton } from './Buttons'
-import { generateImageLink } from './index'
+import { DocumentationEndButton, generateImageLink } from './index'
+
+const petrolRuleName = 'pétrole . pétrole brut EROI'
 
 export default ({ headlessMode }) => {
 	const shareImage = generateImageLink(window.location)
@@ -20,9 +24,7 @@ export default ({ headlessMode }) => {
 	const [value, setValue] = useState(0)
 
 	const engine = useEngine()
-	const petroleBrut = correctValue(
-		engine.evaluate('pétrole . pétrole brut EROI')
-	)
+	const petroleBrut = correctValue(engine.evaluate(petrolRuleName))
 	const pleinVolume = correctValue(engine.evaluate('pétrole . volume plein'))
 
 	const score = petroleBrut,
@@ -68,6 +70,10 @@ export default ({ headlessMode }) => {
 
 					text-align: center;
 					font-size: 110%;
+					small,
+					small a {
+						color: var(--lightColor2);
+					}
 				`}
 			>
 				<div id="shareImage" css="padding: 2rem 0 0">
@@ -93,7 +99,7 @@ export default ({ headlessMode }) => {
 								pleins
 							</div>
 							de pétrole brut par an.
-							<small css="color: var(--lightColor2)">
+							<small>
 								Soit {secondaryValue} litres (plein de {pleinVolume} litres).
 							</small>
 						</div>
@@ -126,6 +132,7 @@ export default ({ headlessMode }) => {
 						label="Partager mes résultats"
 					/>
 				</div>
+				<DocumentationEndButton ruleName={petrolRuleName} />
 			</motion.div>
 		</div>
 	)
