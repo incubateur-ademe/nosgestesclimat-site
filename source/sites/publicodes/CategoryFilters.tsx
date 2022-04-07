@@ -1,5 +1,4 @@
 import { useLocation } from 'react-router'
-import { Link } from 'react-router-dom'
 import { useSearchParams } from '../../components/utils/useSearchParams'
 export default ({ categories, metric, selected, countByCategory }) => {
 	const location = useLocation()
