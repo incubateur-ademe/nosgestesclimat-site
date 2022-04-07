@@ -64,7 +64,7 @@ export default ({}) => {
 
 	const score = sumFromDetails(rehydratedDetails)
 	const headlessMode =
-		!window || window.navigator.userAgent.includes('HeadlessChrome')
+		true || !window || window.navigator.userAgent.includes('HeadlessChrome')
 
 	const dispatch = useDispatch(),
 		answeredQuestions = useSelector(answeredQuestionsSelector)
@@ -419,7 +419,7 @@ export const generateImageLink = (location) =>
 	'https://aejkrqosjq.cloudimg.io/v7/' +
 	location.origin +
 	'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
-	location
+	encodeURIComponent(location)
 
 export const DocumentationEndButton = ({ ruleName, color }) => (
 	<div
