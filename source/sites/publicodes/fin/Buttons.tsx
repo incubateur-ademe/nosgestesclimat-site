@@ -10,12 +10,13 @@ export const ActionButton = ({
 	score,
 	imgSrc = actionImg,
 	invertImage = true,
+	url = '/actions',
 }) => {
 	const tracker = useContext(TrackerContext)
 
 	return (
 		<Link
-			to="/actions"
+			to={url}
 			className="ui__ button plain"
 			onClick={() =>
 				tracker.push([
