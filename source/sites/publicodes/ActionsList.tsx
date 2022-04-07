@@ -3,28 +3,23 @@ import { EngineContext } from 'Components/utils/EngineContext'
 import { utils } from 'publicodes'
 import { partition } from 'ramda'
 import React, { useContext, useState } from 'react'
-import emoji from 'react-easy-emoji'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { useSelector } from 'react-redux'
 import {
 	correctValue,
 	extractCategoriesNamespaces,
 } from '../../components/publicodesUtils'
-import { actionImg } from '../../components/SessionBar'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
-import ActionStack from './ActionStack'
+import ActionsChosenIndicator from './ActionsChosenIndicator'
 import ActionTutorial from './ActionTutorial'
 import { disabledAction, supersededAction } from './ActionVignette'
 import AllActions from './AllActions'
 import CategoryFilters from './CategoryFilters'
-import MetricFilters from './MetricFilters'
 import { humanWeight } from './HumanWeight'
 import SimulationMissing from './SimulationMissing'
-import ActionsChosenIndicator from './ActionsChosenIndicator'
 
 const { encodeRuleName, decodeRuleName } = utils
 
@@ -149,18 +144,18 @@ export default ({ display }) => {
 					.
 				</button>
 			</div>
-			{display === 'list' ? (
-				<AllActions
-					{...{
-						actions: finalActions.reverse(),
-						bilans,
-						rules,
-						focusedAction,
-						focusAction,
-						radical,
-					}}
-				/>
-			) : finalActions.length ? (
+			<AllActions
+				{...{
+					actions: finalActions.reverse(),
+					bilans,
+					rules,
+					focusedAction,
+					focusAction,
+					radical,
+				}}
+			/>
+			{/* Désactivation de cette fonctionnalité pas terminée 
+			 finalActions.length ? (
 				<ActionStack
 					key={category}
 					actions={finalActions}
@@ -170,7 +165,6 @@ export default ({ display }) => {
 			) : (
 				<p>{emoji('🤷')} Plus d'actions dans cette catégorie</p>
 			)}
-			{false /* Désactivation de cette fonctionnalité pas terminée */ && (
 				<Link
 					to={display === 'list' ? '/actions' : '/actions/liste'}
 					css=" text-align: center; display: block; margin: 1rem"
@@ -179,7 +173,8 @@ export default ({ display }) => {
 						{display === 'list' ? 'Vue jeu de cartes (en dev)' : 'Vue liste'}
 					</button>
 				</Link>
-			)}
+			
+			*/}
 		</div>
 	)
 }
