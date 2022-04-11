@@ -1,6 +1,15 @@
+import { useState } from 'react'
+import emoji from '../../components/emoji'
 import ActionsChosenIndicator from './ActionsChosenIndicator'
 
 export default ({ finalActions, setRadical, radical }) => {
+	const [visible, setVisible] = useState(false)
+	if (!visible)
+		return (
+			<div css="text-align: right; position: absolute;right: 0; button {font-size: 100%}">
+				<button onClick={() => setVisible(true)}>{emoji('⚙️')}</button>
+			</div>
+		)
 	return (
 		<div
 			css={`
@@ -28,6 +37,7 @@ export default ({ finalActions, setRadical, radical }) => {
 				)}
 				.
 			</button>
+			<button onClick={() => setVisible(false)}>{emoji('❌')}</button>
 		</div>
 	)
 }
