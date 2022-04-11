@@ -40,6 +40,7 @@ export default ({ headlessMode }) => {
 
 		return () => unsubscribe()
 	})
+	const gradientPosition = Math.round((1 - value / score) * 400 + 50)
 
 	return (
 		<div>
@@ -59,7 +60,7 @@ export default ({ headlessMode }) => {
 					background: linear-gradient(
 						180deg,
 						var(--darkColor) 0%,
-						var(--darkerColor) ${(1 - value / score) * 400 + 50}%
+						var(--darkerColor) ${gradientPosition}%
 					);
 					color: white;
 					margin: 0 auto;
