@@ -21,6 +21,7 @@ import CategoryFilters from './CategoryFilters'
 import { humanWeight } from './HumanWeight'
 import MetricFilters from './MetricFilters'
 import SimulationMissing from './SimulationMissing'
+import ActionsOptionsBar from './ActionsOptionsBar'
 
 const { encodeRuleName, decodeRuleName } = utils
 
@@ -109,33 +110,7 @@ export default ({ display }) => {
 				countByCategory={countByCategory}
 			/>
 
-			<div
-				css={`
-					display: block;
-					text-align: center;
-				`}
-			>
-				<small>
-					{finalActions.length} actions disponibles, <ActionsChosenIndicator />
-					sélectionnées.
-				</small>{' '}
-				<small css="@media(max-width: 800px){display: none}">
-					Triées par :
-				</small>{' '}
-				<small css="@media(min-width: 800px){display: none}">Tri :</small>{' '}
-				<button
-					onClick={() => setRadical(!radical)}
-					className="ui__ dashed-button"
-					css="color: var(--lighterTextColor); font-size: 85% !important"
-				>
-					{radical ? (
-						<span>le + d'impact climat</span>
-					) : (
-						<span>le - d'impact climat</span>
-					)}
-					.
-				</button>
-			</div>
+			<ActionsOptionsBar {...{ setRadical, radical, finalActions }} />
 			<AllActions
 				{...{
 					actions: finalActions.reverse(),
