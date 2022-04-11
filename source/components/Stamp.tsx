@@ -8,9 +8,12 @@ const Stamp = styled.div`
 	background: var(--color);
 	color: white;
 	border-radius: 1rem;
-	top: -1.8rem;
-	left: 1em;
+	right: -0.8rem;
+	top: -1.4em;
 	line-height: 1rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 
 	${({ clickable }) => clickable && `cursor: pointer`}
 `

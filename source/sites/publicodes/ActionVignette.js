@@ -76,9 +76,6 @@ export const ActionListCard = ({
 
 	return (
 		<div
-			className={`ui__ interactive card light-border ${
-				actionChoices[evaluation.dottedName] ? 'selected' : ''
-			}`}
 			css={`
 				${disabled ? disabledStyle : ''}
 				${focused && `border: 4px solid var(--color) !important;`}
@@ -88,47 +85,62 @@ export const ActionListCard = ({
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				height: 100%;
+				height: 14.5rem;
 				${hasRemainingQuestions && `background: #eee !important; `}
 				position: relative;
-				padding: 0.4rem !important;
+				> div {
+					padding: 0.4rem !important;
+				}
 				color: white;
-				background: ${categoryColor} !important;
+				border: 4px solid ${categoryColor};
+				border-radius: 0.6rem;
 			`}
 		>
-			<Link
+			<div
 				css={`
-					h2 {
-						margin-top: 0.6rem;
-						text-align: center;
-						display: inline;
-						font-size: 110%;
-						font-weight: 500;
-						line-height: 1.3rem;
-						display: inline-block;
-						color: white;
-					}
-					text-decoration: none;
+					background: ${categoryColor} !important;
+					height: 6rem;
+					width: 100%;
+					display: flex;
+					align-items: center;
 				`}
-				to={'/actions/' + encodeRuleName(dottedName)}
 			>
-				<h2>{title}</h2>
-			</Link>
-			{icons && (
-				<span
+				<Link
 					css={`
-						position: absolute;
-						top: 10%;
-						transform: translateX(-50%);
-						left: 50%;
-						font-size: 250%;
-						filter: grayscale(1);
-						opacity: 0.2;
+						h2 {
+							margin-top: 0rem;
+							text-align: center;
+							display: inline;
+							font-size: 120%;
+							font-weight: 600;
+							line-height: 1.3rem;
+							display: inline-block;
+							color: white;
+						}
+						text-decoration: none;
 					`}
+					to={'/actions/' + encodeRuleName(dottedName)}
 				>
-					{emoji(icons)}
-				</span>
-			)}
+					<h2>{title}</h2>
+				</Link>
+				{icons && (
+					<span
+						css={`
+							position: absolute;
+							top: 10%;
+							transform: translateX(-50%);
+							left: 50%;
+							font-size: 400%;
+							white-space: nowrap;
+							mix-blend-mode: lighten;
+							filter: grayscale(1);
+							opacity: 0.3;
+						`}
+					>
+						{emoji(icons)}
+					</span>
+				)}
+			</div>
 
 			<div css="					margin-top: auto;">
 				<div
@@ -146,7 +158,10 @@ export const ActionListCard = ({
 					</div>
 					{hasRemainingQuestions && (
 						<Stamp onClick={() => focusAction(dottedName)} clickable>
-							{remainingQuestions.length} {emoji('💬')}
+							{emoji('💬')}&nbsp;
+							<span css="font-size: 80%; font-weight: bold">
+								{remainingQuestions.length}
+							</span>
 						</Stamp>
 					)}
 				</div>
@@ -268,12 +283,12 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 					{sign}&nbsp;
 					<span
 						css={`
-							background: var(--lightColor);
+							background: var(--color);
 							border-radius: 0.3rem;
 							color: var(--textColor);
 							padding: 0rem 0.4rem;
 							padding-right: 0;
-							border: 1px solid var(--lightColor);
+							border: 1px solid var(--color);
 							border-radius: 0.3rem;
 							${correctedValue < 0 && `background: #e33e3e`};
 						`}
