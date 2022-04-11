@@ -4,7 +4,11 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
-import { correctValue } from '../../components/publicodesUtils'
+import {
+	correctValue,
+	extractCategoriesNamespaces,
+	splitName,
+} from '../../components/publicodesUtils'
 import Stamp from '../../components/Stamp'
 import { useEngine } from '../../components/utils/EngineContext'
 import { getNextQuestions } from '../../components/utils/useNextQuestion'
@@ -65,6 +69,10 @@ export const ActionListCard = ({
 			engine
 		),
 		hasRemainingQuestions = remainingQuestions.length > 0
+	const categories = extractCategoriesNamespaces(rules, engine)
+	const categoryColor = categories.find(
+		(cat) => cat.dottedName === splitName(dottedName)[0]
+	).color
 
 	return (
 		<div
@@ -82,18 +90,12 @@ export const ActionListCard = ({
 				align-items: center;
 				height: 100%;
 				${hasRemainingQuestions && `background: #eee !important; `}
+				position: relative;
+				padding: 0.4rem !important;
+				color: white;
+				background: ${categoryColor} !important;
 			`}
 		>
-			{icons && (
-				<div
-					css={`
-						margin: 0.4rem 0;
-						font-size: 200%;
-					`}
-				>
-					{emoji(icons)}
-				</div>
-			)}
 			<Link
 				css={`
 					h2 {
@@ -104,6 +106,7 @@ export const ActionListCard = ({
 						font-weight: 500;
 						line-height: 1.3rem;
 						display: inline-block;
+						color: white;
 					}
 					text-decoration: none;
 				`}
@@ -111,6 +114,21 @@ export const ActionListCard = ({
 			>
 				<h2>{title}</h2>
 			</Link>
+			{icons && (
+				<span
+					css={`
+						position: absolute;
+						top: 10%;
+						transform: translateX(-50%);
+						left: 50%;
+						font-size: 250%;
+						filter: grayscale(1);
+						opacity: 0.2;
+					`}
+				>
+					{emoji(icons)}
+				</span>
+			)}
 
 			<div css="					margin-top: auto;">
 				<div
