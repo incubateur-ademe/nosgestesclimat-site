@@ -11,7 +11,7 @@ export default ({ selected }) => {
 			css={`
 				margin-bottom: 0.2rem;
 				margin: 0 auto;
-				width: 7rem;
+				width: 14rem;
 				text-align: center;
 				padding: 0.1rem 0rem;
 				border-radius: 0.2rem;
@@ -44,7 +44,7 @@ export default ({ selected }) => {
 					})
 				}
 			>
-				{emoji('🎯')} Pétrole
+				{emoji('🎯')} Réduire ma conso de pétrole
 			</button>
 		</div>
 	)
