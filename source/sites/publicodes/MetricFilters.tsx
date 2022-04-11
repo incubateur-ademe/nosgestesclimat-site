@@ -11,7 +11,7 @@ export default ({ selected }) => {
 			css={`
 				margin: 0 auto;
 				margin-bottom: 0.4rem;
-				width: 15rem;
+				width: 16rem;
 				text-align: center;
 				padding: 0.1rem 0rem;
 				border-radius: 0.2rem;
@@ -24,9 +24,9 @@ export default ({ selected }) => {
 				}
 
 				background: linear-gradient(
-					180deg,
-					var(--darkColor) 0%,
-					var(--darkerColor) 50%
+					100deg,
+					var(--darkerColor) 0%,
+					var(--color) 100%
 				);
 				border: 1px solid var(--darkerColor);
 
