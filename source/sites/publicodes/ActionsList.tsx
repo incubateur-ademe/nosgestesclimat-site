@@ -72,7 +72,7 @@ export default ({ display }) => {
 	const finalActions = filterByCategory(interestingActions)
 
 	const categories = extractCategoriesNamespaces(rules, engine)
-	console.log(finalActions)
+
 	const countByCategory = finalActions.reduce((memo, next) => {
 		const category = splitName(next.dottedName)[0]
 

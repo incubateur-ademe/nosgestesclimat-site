@@ -16,6 +16,13 @@ import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import ProgressCircle from './ProgressCircle'
+import CardGameIcon from './CardGameIcon'
+
+const ActionsInteractiveIcon = () => {
+	const actionChoices = useSelector((state) => state.actionChoices),
+		count = Object.values(actionChoices).filter((a) => a === true).length
+	return <CardGameIcon number={count} />
+}
 
 const openmojis = {
 	test: '25B6',
@@ -153,7 +160,7 @@ export default function SessionBar({
 			url="/actions/liste"
 			css={buttonStyle('/actions')}
 		>
-			<img src={actionImg} css="width: 2rem" aria-hidden="true" />
+			<ActionsInteractiveIcon />
 			Agir
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
