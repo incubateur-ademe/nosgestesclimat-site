@@ -94,6 +94,7 @@ export const ActionListCard = ({
 				color: white;
 				border: 4px solid ${categoryColor};
 				border-radius: 0.6rem;
+				box-shadow: 2px 2px 10px #bbb;
 			`}
 		>
 			<div
