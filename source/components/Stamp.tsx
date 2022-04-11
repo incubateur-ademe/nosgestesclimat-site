@@ -5,11 +5,10 @@ const Stamp = styled.div`
 	font-size: 100%;
 	display: inline-block;
 	padding: 0.2rem 0.4rem;
-	background: var(--color);
 	color: white;
 	border-radius: 1rem;
-	right: -0.8rem;
-	top: -1.4em;
+	right: 1.5rem;
+	top: -2em;
 	line-height: 1rem;
 	display: flex;
 	align-items: center;
