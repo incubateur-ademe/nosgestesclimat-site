@@ -162,45 +162,8 @@ export const ActionListCard = ({
 							onClick={() => focusAction(dottedName)}
 							clickable
 							title={remainingQuestions.length + ' questions restantes'}
-						>
-							<svg
-								css="width:2.5rem"
-								id="emoji"
-								viewBox="0 0 72 72"
-								xmlns="http://www.w3.org/2000/svg"
-							>
-								<g id="color">
-									<path
-										fill="var(--color)"
-										stroke="none"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-miterlimit="10"
-										stroke-width="2"
-										d="M54.8808,49.1283C57.4746,45.405,59,40.8818,59,36c0-12.7026-10.2974-23-23-23S13,23.2974,13,36c0,12.7025,10.2974,23,23,23 c3.7581,0,7.3021-0.9071,10.4348-2.5054l4.8138,2.0528l5.7283,2.4428l-1.0836-6.1324L54.8808,49.1283z"
-									/>
-								</g>
-								<text
-									x="30"
-									y="44"
-									fill="white"
-									css="color: white;font-size: 150%; font-weight: bold"
-								>
-									{remainingQuestions.length}
-								</text>
-								<g id="line">
-									<path
-										fill="none"
-										stroke="#ffffff"
-										stroke-linecap="round"
-										stroke-linejoin="round"
-										stroke-miterlimit="10"
-										stroke-width="2"
-										d="M54.8808,49.1283C57.4746,45.405,59,40.8818,59,36c0-12.7026-10.2974-23-23-23S13,23.2974,13,36c0,12.7025,10.2974,23,23,23 c3.7581,0,7.3021-0.9071,10.4348-2.5054l4.8138,2.0528l5.7283,2.4428l-1.0836-6.1324L54.8808,49.1283z"
-									/>
-								</g>
-							</svg>
-						</Stamp>
+							number={remainingQuestions.length}
+						></Stamp>
 					)}
 				</div>
 				<div
