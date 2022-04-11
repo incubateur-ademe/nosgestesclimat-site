@@ -7,11 +7,11 @@ export default ({ selected }) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const { métrique, ...otherSearchParams } = searchParams
 	return (
-		<div
+		<button
 			css={`
-				margin-bottom: 0.2rem;
 				margin: 0 auto;
-				width: 14rem;
+				margin-bottom: 0.4rem;
+				width: 15rem;
 				text-align: center;
 				padding: 0.1rem 0rem;
 				border-radius: 0.2rem;
@@ -22,30 +22,35 @@ export default ({ selected }) => {
 					color: white;
 					font-weight: 500;
 				}
-				${!selected &&
-				`
 
-
-				background: white;
+				background: linear-gradient(
+					180deg,
+					var(--darkColor) 0%,
+					var(--darkerColor) 50%
+				);
 				border: 1px solid var(--darkerColor);
 
-				button {color: var(--darkerColor);}
-				
+				color: white;
 
+				display: flex;
+				align-items: center;
+				justify-content: space-evenly;
 
-				`}
-			`}
-		>
-			<button
-				onClick={() =>
-					setSearchParams({
-						otherSearchParams,
-						...(selected ? {} : { métrique: 'pétrole' }),
-					})
+				img {
+					font-size: 160%;
+					vertical-align: middle;
 				}
-			>
-				{emoji('🎯')} Réduire ma conso de pétrole
-			</button>
-		</div>
+
+				${selected && `border: 2px solid var(--lightColor)`}
+			`}
+			onClick={() =>
+				setSearchParams({
+					otherSearchParams,
+					...(selected ? {} : { métrique: 'pétrole' }),
+				})
+			}
+		>
+			{emoji('🇺🇦')} <span>Réduire ma conso de pétrole</span>
+		</button>
 	)
 }
