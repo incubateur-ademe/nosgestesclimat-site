@@ -86,6 +86,7 @@ export const ActionListCard = ({
 				justify-content: center;
 				align-items: center;
 				height: 14.5rem;
+				${noFormula && 'height: 13rem;'}
 				${hasRemainingQuestions && `background: #eee !important; `}
 				position: relative;
 				> div {
@@ -275,9 +276,7 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 				text-align: center;
 			`}
 		>
-			{noFormula ? (
-				<small>Non chiffré</small>
-			) : disabled ? (
+			{noFormula ? null : disabled ? (
 				'Non applicable'
 			) : (
 				<div>

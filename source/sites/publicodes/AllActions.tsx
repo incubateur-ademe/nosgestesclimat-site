@@ -97,7 +97,7 @@ export default ({
 						src="/images/270A.svg"
 						css="filter: invert(1); height: 2rem; vertical-align: middle"
 					/>
-					Actions non chiffrées &#9660;
+					Actions d'engagement &#9660;
 				</h4>
 			</ThresholdSeparator>
 			<List
