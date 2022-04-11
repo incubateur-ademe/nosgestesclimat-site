@@ -4,7 +4,7 @@ const Stamp = styled.div`
 	position: absolute;
 	font-size: 100%;
 	display: inline-block;
-	padding: 0.1rem 0.4rem;
+	padding: 0.2rem 0.4rem;
 	background: var(--color);
 	color: white;
 	border-radius: 1rem;
