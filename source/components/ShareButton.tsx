@@ -6,6 +6,7 @@ import ShareButtonIcon from './ShareButtonIcon'
 export default ({ text, url, title, color, label }) =>
 	navigator.share ? (
 		<Button
+			color={color}
 			title="Cliquez pour partager le lien"
 			onClick={() =>
 				navigator
@@ -38,9 +39,7 @@ ${decodeURIComponent(url)}`
 	return (
 		<Button
 			title="Cliquez pour partager le lien"
-			css={`
-				color: ${color};
-			`}
+			color={color}
 			onClick={() => {
 				copyToClipboardAsync(clipboardText).then(
 					function () {
@@ -74,4 +73,5 @@ const Button = styled.button`
 	display: flex;
 	align-items: center;
 	font-size: 100%;
+	${(props) => `color: ${props.color}`}
 `
