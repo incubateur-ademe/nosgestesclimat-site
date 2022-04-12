@@ -58,7 +58,18 @@ export default ({ data }) => {
 
 	if (!isOpen) return null
 	return (
-		<div>
+		<div
+			css={`
+				position: absolute;
+				z-index: 10;
+				border-radius: 15px;
+				margin-top: 10%;
+				filter: drop-shadow(0 0 20px #000);
+				padding: 15px;
+				text-align: center;
+				background: #fff;
+			`}
+			>
 			<h2>Partage de vos résultats à {parent} ?</h2>
 			<p>{text}</p>
 			<div
