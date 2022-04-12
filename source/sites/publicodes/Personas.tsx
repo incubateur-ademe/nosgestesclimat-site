@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import emoji from 'react-easy-emoji'
 import { title } from '../../components/publicodesUtils'
 import { CardGrid } from './ListeActionPlus'
-import personas from './personas.yaml'
 import { utils } from 'publicodes'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { useDispatch, useSelector } from 'react-redux'
@@ -11,7 +10,7 @@ import CarbonImpact from './CarbonImpact'
 import { useEngine } from '../../components/utils/EngineContext'
 import SessionBar from '../../components/SessionBar'
 import personaSteps from './personaSteps.yaml'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { situationSelector } from '../../selectors/simulationSelectors'
 
@@ -68,6 +67,14 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 	const persona = useSelector((state) => state.simulation?.persona)
 	const situation = useSelector(situationSelector)
 
+	const rules = useSelector((state) => state.rules)
+
+	const personasRules = Object.entries(rules)
+		.filter(([dottedName]) => dottedName.includes('personas'))
+		.map((arr) => {
+			return arr[1]
+		})
+
 	const [warning, setWarning] = useState(false)
 
 	const setPersona = (persona) => {
@@ -116,7 +123,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 
 	return (
 		<CardGrid css="padding: 0; justify-content: center">
-			{personas.map((persona) => {
+			{personasRules.map((persona) => {
 				const { nom, icônes, data, description, résumé } = persona
 				return (
 					<li key={nom}>
