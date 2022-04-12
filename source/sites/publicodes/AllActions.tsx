@@ -27,6 +27,7 @@ export default ({
 	rules,
 	focusedAction,
 	focusAction,
+	radical,
 }) => {
 	const engine = useContext(EngineContext)
 
@@ -46,6 +47,31 @@ export default ({
 		},
 		{ value: 0 }
 	)
+	const numberedActions = thresholds.map(([threshold, label], index) => {
+		const thresholdActions = notRejected.filter(
+			(a) =>
+				a.value >= threshold &&
+				(index === 0 || a.value < thresholds[index - 1][0])
+		)
+		if (!thresholdActions.length) return null
+		return (
+			<div>
+				<List
+					{...{
+						actions: thresholdActions,
+						rules,
+						bilans,
+						actionChoices,
+						focusAction,
+						focusedAction,
+					}}
+				/>
+				<ThresholdSeparator>
+					<h4>{label} &#9650;</h4>
+				</ThresholdSeparator>
+			</div>
+		)
+	})
 
 	return (
 		<div>
@@ -67,31 +93,9 @@ export default ({
 				</animate.fromTop>
 			)}
 
-			{thresholds.map(([threshold, label], index) => {
-				const thresholdActions = notRejected.filter(
-					(a) =>
-						a.value >= threshold &&
-						(index === 0 || a.value < thresholds[index - 1][0])
-				)
-				if (!thresholdActions.length) return null
-				return (
-					<div>
-						<List
-							{...{
-								actions: thresholdActions,
-								rules,
-								bilans,
-								actionChoices,
-								focusAction,
-								focusedAction,
-							}}
-						/>
-						<ThresholdSeparator>
-							<h4>{label} &#9650;</h4>
-						</ThresholdSeparator>
-					</div>
-				)
-			})}
+
+			{radical ? numberedActions : numberedActions.slice().reverse()}
+
 			<ThresholdSeparator>
 				<h4>
 					<img

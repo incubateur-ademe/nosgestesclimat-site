@@ -1,19 +1,14 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { title } from '../../components/publicodesUtils'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
+import { setDifferentSituation } from '../../actions/actions'
+import IllustratedMessage from '../../components/ui/IllustratedMessage'
+import { ScrollToTop } from '../../components/utils/Scroll'
+import { situationSelector } from '../../selectors/simulationSelectors'
 import { CardGrid } from './ListeActionPlus'
 import personas from './personas.yaml'
-import { utils } from 'publicodes'
-import { ScrollToTop } from '../../components/utils/Scroll'
-import { useDispatch, useSelector } from 'react-redux'
-import { setDifferentSituation } from '../../actions/actions'
-import CarbonImpact from './CarbonImpact'
-import { useEngine } from '../../components/utils/EngineContext'
-import SessionBar from '../../components/SessionBar'
 import personaSteps from './personaSteps.yaml'
-import { useState } from 'react'
-import IllustratedMessage from '../../components/ui/IllustratedMessage'
-import { situationSelector } from '../../selectors/simulationSelectors'
 
 export default ({}) => {
 	const persona = useSelector((state) => state.simulation?.persona)
@@ -130,15 +125,18 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 									: ``}
 							`}
 						>
-							<Link
-								to={'#'}
+							<button
+								className="ui__ button simple small"
+								css={`
+									width: 100% !important;
+								`}
 								onClick={() =>
 									hasSituation ? setWarning(persona) : setPersona(persona)
 								}
 							>
 								<div>{emoji(icônes || '👥')}</div>
 								<div>{nom}</div>
-							</Link>
+							</button>
 							<p css=" overflow-x: scroll">
 								<small>{résumé || description}</small>
 							</p>

@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
-import CarbonImpact from './CarbonImpact'
+import ScoreBar from './ScoreBar'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
@@ -15,6 +15,7 @@ import { useContext, useEffect } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useKeypress from '../../components/utils/useKeyPress'
+import SlidesLayout from '../../components/SlidesLayout'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -46,8 +47,6 @@ export default ({}) => {
 	const dispatch = useDispatch()
 	const tracker = useContext(TrackerContext)
 
-	const { isIframe } = useContext(IframeOptionsContext)
-
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache
 	useEffect(() => {
@@ -63,22 +62,7 @@ export default ({}) => {
 	if (slides[index] == null) return null
 
 	return (
-		<div
-			css={`
-				height: 70vh;
-				@media (max-width: 800px) {
-					height: 95vh;
-				}
-				@media (min-aspect-ratio: 1280/700) {
-					height: 95vh;
-				}
-				${isIframe && `height: 45rem !important;`}
-				position: relative;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			`}
-		>
+		<SlidesLayout>
 			<HorizontalSwipe {...{ next, previous }}>
 				<Slide
 					{...{
@@ -89,7 +73,7 @@ export default ({}) => {
 					<Component />
 				</Slide>
 			</HorizontalSwipe>
-		</div>
+		</SlidesLayout>
 	)
 }
 
@@ -210,12 +194,17 @@ const slides = [
 			</p>
 			<AbacusFrance css="width:10rem; height: 100%" />
 			<p>
-				C'est votre point de départ dans ce test : chaque réponse que vous
-				donnerez va personnaliser ce résultat dans la barre de résultat.
+				C'est votre point de départ dans ce test : chacune de vos réponses
+				personnalisera ce résultat dans la barre de score.
 			</p>
 			<div css="margin: 1rem 0">
-				<CarbonImpact demoMode />
+				<ScoreBar demoMode />
 			</div>
+			<blockquote>
+				{emoji('✨')} Nouveau ! Visualisez également votre consommation de{' '}
+				{emoji('⛽️')}&nbsp;pétrole, un indicateur complémentaire au sujet
+				climat.
+			</blockquote>
 		</>
 	),
 	() => (

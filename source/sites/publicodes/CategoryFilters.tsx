@@ -1,7 +1,9 @@
 import { useLocation } from 'react-router'
-import { Link } from 'react-router-dom'
-export default ({ categories, selected, countByCategory }) => {
+import { useSearchParams } from '../../components/utils/useSearchParams'
+export default ({ categories, metric, selected, countByCategory }) => {
 	const location = useLocation()
+	const [searchParams, setSearchParams] = useSearchParams()
+
 	return (
 		<ul
 			css={`
@@ -43,29 +45,34 @@ export default ({ categories, selected, countByCategory }) => {
 						${!countByCategory[category.dottedName] ? 'background: #ccc' : ''}
 					`}
 				>
-					<Link
-						to={
-							selected === category.dottedName
-								? location.pathname
-								: location.pathname + '?catégorie=' + category.dottedName
+					<button
+						tabindex="-1"
+						css="text-transform: capitalize"
+						onClick={() =>
+							setSearchParams(
+								new URLSearchParams({
+									...(metric ? { métrique: metric } : {}),
+									...(selected === category.dottedName
+										? {}
+										: { catégorie: category.dottedName }),
+								})
+							)
 						}
 					>
-						<button tabindex="-1">
-							{category.dottedName}{' '}
-							<span
-								css={`
-									background: white;
-									color: var(--color);
-									border-radius: 1rem;
-									width: 1rem;
-									margin-left: 0.2rem;
-									display: inline-block;
-								`}
-							>
-								{countByCategory[category.dottedName] || 0}
-							</span>
-						</button>
-					</Link>
+						{category.dottedName}{' '}
+						<span
+							css={`
+								background: white;
+								color: var(--color);
+								border-radius: 1rem;
+								width: 1rem;
+								margin-left: 0.2rem;
+								display: inline-block;
+							`}
+						>
+							{countByCategory[category.dottedName] || 0}
+						</span>
+					</button>
 				</li>
 			))}
 		</ul>

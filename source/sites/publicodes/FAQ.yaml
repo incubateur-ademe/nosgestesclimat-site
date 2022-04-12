@@ -1,3 +1,11 @@
+- question: Comment utiliser ce calculateur ?
+  catégorie: général
+  id: tuto
+  réponse: |
+    Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de 2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur. 
+
+    Si vous l'avez déjà consulté, vous pouvez visiter votre [page profil](/profil) pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
+
 - question: Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
   catégorie: général
   id: ges
@@ -98,7 +106,6 @@
     Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une condition nécessaire mais non suffisante d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.).
 
     C’est d’ailleurs tout l’objet de Nos Gestes Climat ! œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
-
 
 - question: J’achète souvent des biens durables et écologiques mais l’outil ne semble pas faire la différence. Comment cela se fait-il ?
   catégorie: consommation
@@ -203,7 +210,6 @@
 
     A ce sujet, n’hésitez pas à consulter ce [simulateur](https://ecolab.ademe.fr/transport) pour comparer l’impact sur le climat de différents modes de transport pour un même trajet.
 
-
 - question: J’utilise un combustible qui n’est pas renseigné dans l’outil. Comment faire ?
   catégorie: logement
   id: autre-combustible
@@ -248,7 +254,7 @@
 
     Nous vous demandons donc l’âge du produit afin de connaître la durée restant à amortir. Consultez la question spécifique de l’amortissement pour comprendre de quoi il s’agit.
 
-- question:  J'ai entendu dire que le numérique avait un gros impact sur le climat, le simulateur semble me dire le contraire…
+- question: J'ai entendu dire que le numérique avait un gros impact sur le climat, le simulateur semble me dire le contraire…
   catégorie: numérique
   id: impact-numérique
   réponse: |

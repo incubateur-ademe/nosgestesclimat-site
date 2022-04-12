@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
-import Overlay from '../../components/Overlay'
-import { inIframe } from '../../utils'
+import { inIframe } from 'Source/utils'
 
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
 const shareDataPopupTimeout = 3500
@@ -22,13 +21,16 @@ export default ({ data }) => {
 	}, [])
 	function onReject() {
 		window.parent.postMessage(
-			{ messageType: 'ngc-iframe-share', error: 'The user refused to share his result.' },
+			{
+				messageType: 'ngc-iframe-share',
+				error: 'The user refused to share his result.',
+			},
 			'*'
 		)
 		setIsOpen(false)
 	}
 	function onAccept() {
-		window.parent.postMessage({ messageType: 'ngc-iframe-share', data} , '*')
+		window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
 		setIsOpen(false)
 	}
 	function onClose() {

@@ -13,15 +13,6 @@ import styled from 'styled-components'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import Bar from './Bar'
 
-const showBudget = false
-const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
-	climateBudgetPerYear = 2000,
-	climateBudgetPerDay = climateBudgetPerYear / 365,
-	// Based on current share of the annual mean of 12 ton per french
-	// Source : http://ravijen.fr/?p=440
-	transportShare = 1 / 4,
-	transportClimateBudget = climateBudgetPerDay * transportShare
-
 export default ({
 	details,
 	noText,
@@ -74,22 +65,6 @@ export default ({
 					position: relative;
 				`}
 			>
-				<span
-					css={`
-				${!showBudget ? 'display: none' : ''}
-				height: 100%;
-				left: 0;
-				z-index: -1;
-				left: ${((transportClimateBudget * 1000) / empreinteMaximum) * 100 * 0.9}%;
-
-				width: 0px;
-				border-right: 8px dotted yellow;
-		        position: absolute;
-				margin-top: 2rem;
-				}
-					`}
-					key="budget"
-				></span>
 				<ul
 					css={`
 						margin-left: 2rem;
@@ -137,11 +112,6 @@ export default ({
 					})}
 				</ul>
 			</div>
-			{showBudget && (
-				<span css=" background: yellow ;">
-					Budget climat 1 journée {transportClimateBudget.toFixed(1)} kg
-				</span>
-			)}
 		</section>
 	)
 }
