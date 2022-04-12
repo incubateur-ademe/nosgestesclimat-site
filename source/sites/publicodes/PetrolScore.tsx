@@ -5,12 +5,10 @@ import { Link } from 'react-router-dom'
 
 export default ({ endURL }) => {
 	const engine = useEngine()
-	const evaluation_EROI = engine.evaluate('pétrole . pleins EROI')
-	const nbrePleins_EROI = Math.round(correctValue(evaluation_EROI))
-	const evaluation_energ = engine.evaluate('pétrole . pleins énergie')
-	const nbrePleins_energ = Math.round(correctValue(evaluation_energ))
+	const evaluation = engine.evaluate('pétrole . pleins')
+	const nbrePleins = Math.round(correctValue(evaluation))
 
-	const roundedValue = nbrePleins_EROI // TODO difference to be investigated
+	const roundedValue = nbrePleins
 
 	return (
 		<Link
