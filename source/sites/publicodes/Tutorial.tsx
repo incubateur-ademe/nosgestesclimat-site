@@ -200,6 +200,11 @@ const slides = [
 			<div css="margin: 1rem 0">
 				<ScoreBar demoMode />
 			</div>
+			<blockquote>
+				{emoji('✨')} Nouveau ! Visualisez également votre consommation de{' '}
+				{emoji('⛽️')}&nbsp;pétrole, un indicateur complémentaire au sujet
+				climat.
+			</blockquote>
 		</>
 	),
 	() => (
