@@ -32,7 +32,9 @@ export default ({
 	const [hasDataState, setHasDataState] = useState(hasData)
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 	const elements = rawElements.filter(
-		(el) => el.total < threshold && el.progress > 0.1 //Simulations with less than 10% progress are excluded
+		/* Simulations with less than 10% progress are excluded, in order to avoid a perturbation of the mean group value by
+		 * people that did connect to the conference, but did not seriously start the test, hence resulting in multiple default value simulations  */
+		(el) => el.total < threshold && el.progress > 0.1
 	)
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
