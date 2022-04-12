@@ -83,7 +83,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 	const engine = useEngine()
 
 	const setPersona = (persona) => {
-		engine.setSituation({}) // Engine should be updated on simulation reset nbut not working here, useEngine to be investigated
+		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
 		const { nom, icônes, data, description } = persona
 		const missingVariables = engine.evaluate(objectif).missingVariables ?? {}
 		const defaultMissingVariables = Object.entries(missingVariables).map(
