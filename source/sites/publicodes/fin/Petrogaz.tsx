@@ -9,7 +9,7 @@ import { correctValue } from '../../../components/publicodesUtils'
 import { ActionButton } from './Buttons'
 import { DocumentationEndButton, generateImageLink } from './index'
 
-const petrolRuleName = 'pétrole . pétrole brut EROI'
+const petrolRuleName = 'pétrole . pétrole brut'
 
 export default ({ headlessMode }) => {
 	const shareImage = generateImageLink(window.location)
