@@ -33,7 +33,7 @@ export default ({ setHasDataState }) => (
 							setHasDataState(true)
 						}}
 					>
-						Accéder directement aux résultats du groupe{' '}
+						{emoji('🧮')} Voir les réponses
 					</button>
 				</div>
 			</div>
