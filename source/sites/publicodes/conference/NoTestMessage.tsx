@@ -29,7 +29,7 @@ export default ({ setHasDataState }) => (
 		>
 			<p>
 				Bienvenue dans le mode "A plusieurs" de Nos Gestes Climat ! Vous n'avez
-				pas encore débuter votre test, lancez-vous !
+				pas encore débuté votre test, lancez-vous !
 			</p>{' '}
 		</div>
 		<div
