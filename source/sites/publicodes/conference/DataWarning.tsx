@@ -29,6 +29,7 @@ export default ({ room }) => {
 						<div
 							css={`
 								display: flex;
+								flex-wrap: wrap;
 								justify-content: space-evenly;
 								margin: 1rem 0 0;
 							`}

@@ -93,7 +93,9 @@ export default ({
 				</animate.fromTop>
 			)}
 
+
 			{radical ? numberedActions : numberedActions.slice().reverse()}
+
 			<ThresholdSeparator>
 				<h4>
 					<img
