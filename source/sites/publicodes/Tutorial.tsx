@@ -194,8 +194,8 @@ const slides = [
 			</p>
 			<AbacusFrance css="width:10rem; height: 100%" />
 			<p>
-				C'est votre point de départ dans ce test : chaque réponse que vous
-				donnerez va personnaliser ce résultat dans la barre de résultat.
+				C'est votre point de départ dans ce test : chacune de vos réponses
+				personnalisera ce résultat dans la barre de score.
 			</p>
 			<div css="margin: 1rem 0">
 				<ScoreBar demoMode />
