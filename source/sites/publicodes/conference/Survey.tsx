@@ -50,7 +50,11 @@ export default () => {
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
 			{existContext && (
-				<ContextConversation rules={rules} surveyRule={surveyRule} />
+				<ContextConversation
+					survey={survey}
+					rules={rules}
+					surveyRule={surveyRule}
+				/>
 			)}
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />

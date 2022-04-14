@@ -4,47 +4,50 @@ import { useSelector, useDispatch } from 'react-redux'
 import RuleInput from 'Components/conversation/RuleInput'
 import { setSimulationConfig } from 'Actions/actions'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
+import { situationSelector } from 'Selectors/simulationSelectors'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
+import { updateSituation } from 'Actions/actions'
 
-export default ({ rules, surveyRule }) => {
+const SituationContext = createContext({})
+
+export default ({ survey, rules, surveyRule }) => {
 	const engine = new Engine(rules)
-	const SituationContext = createContext({})
 	const [situation, setSituation] = useState({})
-
 	const nextQuestions = useNextQuestions([surveyRule], engine)
-
+	const situationParent = useSelector(situationSelector)
+	console.log(situationParent)
+	const dispatch = useDispatch()
+	console.log(survey)
 	return (
 		<div className="ui__ container" css={``}>
 			<SituationContext.Provider value={[situation, setSituation]}>
-				<Main
-					nextQuestions={nextQuestions}
-					engine={engine}
-					SituationContext={SituationContext}
-				/>
+				<Main nextQuestions={nextQuestions} engine={engine} />
+				<button
+					className="ui__ plain small button"
+					disabled={!nextQuestions.every((names) => situation[names])}
+					onClick={() =>
+						Object.entries(situation).map((e) => {
+							dispatch({
+								type: 'ADD_SURVEY_CONTEXT',
+								answers: survey.answers,
+								room: survey.room,
+								context: situation,
+							})
+							dispatch(updateSituation(e[0], e[1]))
+						})
+					}
+				>
+					<span className="text">
+						<Trans>Suivant</Trans> →
+					</span>
+				</button>
 			</SituationContext.Provider>
-			{/* <TopBar />
-			<SituationContext.Provider value={[situation, setSituation]}>
-				<Meta
-					title="Comprendre le prix à la pompe"
-					description="Comprendre comment le prix de l'essence et du gazole à la pompe est calculé."
-				/>
-				<Main />
-
-				<div css=" text-align: center; margin-top: 3rem">
-					Comprendre le calcul <Emoji e="⬇️" />
-				</div>
-				<h2>Explications</h2>
-				<Documentation
-					documentationPath="/carburants"
-					engine={engine}
-					embedded
-				/>
-			</SituationContext.Provider> */}
 		</div>
 	)
 }
 
-const Main = ({ nextQuestions, engine, SituationContext }) => (
+const Main = ({ nextQuestions, engine }) => (
 	<main>
 		<p
 			css={`
@@ -64,18 +67,15 @@ const Main = ({ nextQuestions, engine, SituationContext }) => (
 			<h1 css="">Contexte Sondage</h1>
 		</p>
 
-		<Questions
-			nextQuestions={nextQuestions}
-			engine={engine}
-			SituationContext={SituationContext}
-		/>
+		<Questions nextQuestions={nextQuestions} engine={engine} />
 	</main>
 )
 
-const Questions = ({ nextQuestions, engine, SituationContext }) => {
+const Questions = ({ nextQuestions, engine }) => {
 	const questions = nextQuestions
 	const [situation, setSituation] = useContext(SituationContext)
-	engine.setSituation(situation) // I don't understand why putting this in a useeffect produces a loop when the input components, due to Input's debounce function I guess.
+	engine.setSituation(situation)
+
 	const onChange = (dottedName) => (value) => {
 			console.log(value, situation, dottedName)
 			const newSituation = (situation) => ({
@@ -111,7 +111,6 @@ const Questions = ({ nextQuestions, engine, SituationContext }) => {
 			>
 				{questions.map((dottedName) => {
 					const { question, icônes } = engine.getRule(dottedName).rawNode
-					console.log(engine.evaluate(dottedName))
 					return (
 						<div
 							css={`
