@@ -1,0 +1,43 @@
+test en local:
+  titre: Universités 2022
+  icônes: 📝
+  couleur: '#87E5F4'
+  abbréviation: test
+  non applicable si:
+    une de ces conditions:
+      - université = '"non"'
+      - statut = '"non"'
+  description: |
+    A compléter
+  formule: 0
+
+test en local . université:
+  titre: Université
+  question: Quelle université ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - nantes
+        - rennes
+        - lyon
+  par défaut: nantes
+
+test en local . université . nantes:
+test en local . université . rennes:
+test en local . université . lyon:
+test en local . statut:
+  titre: Statut
+  question: Quel statut ?
+  formule:
+    une possibilité:
+      choix obligatoire: oui
+      possibilités:
+        - étudiant
+        - enseignant chercheur
+        - personnel de l'université
+  par défaut: étudiant
+
+test en local . statut . étudiant:
+test en local . statut . enseignant chercheur:
+test en local . statut . personnel de l'université:

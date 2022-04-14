@@ -11,6 +11,7 @@ import Instructions from './Instructions'
 import Stats from './Stats'
 import { answersURL } from './useDatabase'
 import { defaultThreshold } from './utils'
+import ContextConversation from './ContextConversation'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -18,6 +19,15 @@ export default () => {
 
 	const { room } = useParams()
 	const cachedSurveyId = surveyIds[room]
+
+	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
+	const files = req.keys()
+	const surveyRule = room.replace(/-/g, ' ')
+	const contextFile = `./${surveyRule}.yaml`
+	const existContext = files.includes(contextFile) //here we check if a context file exist for the survey
+	const rules = existContext && req(contextFile)
+
+	console.log(rules)
 
 	useEffect(() => {
 		if (cachedSurveyId) dispatch({ type: 'SET_SURVEY', room })
@@ -39,7 +49,9 @@ export default () => {
 				<img src={conferenceImg} />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
-
+			{existContext && (
+				<ContextConversation rules={rules} surveyRule={surveyRule} />
+			)}
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
