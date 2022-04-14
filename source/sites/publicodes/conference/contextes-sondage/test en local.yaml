@@ -21,11 +21,11 @@ test en local . université:
         - nantes
         - rennes
         - lyon
-  par défaut: nantes
 
 test en local . université . nantes:
 test en local . université . rennes:
 test en local . université . lyon:
+
 test en local . statut:
   titre: Statut
   question: Quel statut ?
@@ -36,7 +36,6 @@ test en local . statut:
         - étudiant
         - enseignant chercheur
         - personnel de l'université
-  par défaut: étudiant
 
 test en local . statut . étudiant:
 test en local . statut . enseignant chercheur:
