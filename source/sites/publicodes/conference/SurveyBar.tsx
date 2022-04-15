@@ -42,15 +42,10 @@ export default () => {
 
 	const cachedSurveyId = surveyIds[survey.room]
 
-	const context = survey.context
-
-	console.log(survey.context)
-
 	const data = {
 		total: Math.round(nodeValue),
 		progress: +progress.toFixed(4),
 		byCategory,
-		context,
 	}
 	console.log(data)
 
@@ -69,7 +64,6 @@ export default () => {
 						type: 'ADD_SURVEY_ANSWERS',
 						answers: json,
 						room: survey.room,
-						context: survey.context,
 					})
 			)
 
@@ -93,7 +87,6 @@ export default () => {
 			type: 'ADD_SURVEY_ANSWERS',
 			answers: [answer],
 			room: survey.room,
-			context: survey.context,
 		})
 	}, [situation, survey.room, cachedSurveyId])
 
@@ -103,7 +96,6 @@ export default () => {
 				type: 'ADD_SURVEY_ANSWERS',
 				answers: [data.answer],
 				room: survey.room,
-				context: survey.context,
 			})
 		})
 	}, [])

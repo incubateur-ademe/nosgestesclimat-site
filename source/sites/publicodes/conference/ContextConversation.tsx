@@ -3,51 +3,61 @@ import { createContext, useState, useEffect, useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import RuleInput from 'Components/conversation/RuleInput'
 import { setSimulationConfig } from 'Actions/actions'
-import { useNextQuestions } from '../../../components/utils/useNextQuestion'
+import { getNextQuestions } from 'Components/utils/useNextQuestion'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { updateSituation } from 'Actions/actions'
+import { usePersistingState } from 'Components/utils/persistState'
 
 const SituationContext = createContext({})
 
-export default ({ survey, rules, surveyRule }) => {
+export default ({
+	survey,
+	rules,
+	surveyRule,
+	surveyContext,
+	setSurveyContext,
+}) => {
 	const engine = new Engine(rules)
-	const [situation, setSituation] = useState({})
-	const nextQuestions = useNextQuestions([surveyRule], engine)
+	const [situation, setSituation] = useState(surveyContext)
+	const missingVariables = engine.evaluate(surveyRule).missingVariables
+
+	const nextQuestions = getNextQuestions(
+		[missingVariables],
+		{},
+		[],
+		situation,
+		engine
+	)
+
 	const situationParent = useSelector(situationSelector)
-	console.log(situationParent)
 	const dispatch = useDispatch()
-	console.log(survey)
+
 	return (
 		<div className="ui__ container" css={``}>
 			<SituationContext.Provider value={[situation, setSituation]}>
-				<Main nextQuestions={nextQuestions} engine={engine} />
-				<button
-					className="ui__ plain small button"
-					disabled={!nextQuestions.every((names) => situation[names])}
-					onClick={() =>
-						Object.entries(situation).map((e) => {
-							dispatch({
-								type: 'ADD_SURVEY_CONTEXT',
-								answers: survey.answers,
-								room: survey.room,
-								context: situation,
-							})
-							dispatch(updateSituation(e[0], e[1]))
-						})
-					}
-				>
-					<span className="text">
-						<Trans>Suivant</Trans> →
-					</span>
-				</button>
+				<Main
+					nextQuestions={nextQuestions}
+					engine={engine}
+					situation={situation}
+					setSituation={setSituation}
+					surveyContext={surveyContext}
+					setSurveyContext={setSurveyContext}
+				/>
 			</SituationContext.Provider>
 		</div>
 	)
 }
 
-const Main = ({ nextQuestions, engine }) => (
+const Main = ({
+	nextQuestions,
+	engine,
+	situation,
+	setSituation,
+	surveyContext,
+	setSurveyContext,
+}) => (
 	<main>
 		<p
 			css={`
@@ -66,15 +76,61 @@ const Main = ({ nextQuestions, engine }) => (
 			{emoji('📝')}
 			<h1 css="">Contexte Sondage</h1>
 		</p>
-
-		<Questions nextQuestions={nextQuestions} engine={engine} />
+		{Object.keys(surveyContext).length !== 0 ? (
+			<details css="text-align: center">
+				<summary>Ma situation</summary>
+				<ul>
+					{Object.entries(situation).map(([k, v]) => (
+						<li>{`${k} : ${v?.nodeValue || v}`}</li>
+					))}
+				</ul>
+				<button
+					className="ui__ plain small button"
+					onClick={() => {
+						setSituation({})
+						setSurveyContext({})
+					}}
+				>
+					<span className="text">
+						<Trans>Modifier</Trans> →
+					</span>
+				</button>
+			</details>
+		) : (
+			<div>
+				<Questions
+					nextQuestions={nextQuestions}
+					engine={engine}
+					situation={situation}
+					setSituation={setSituation}
+				/>
+				<button
+					className="ui__ plain small button"
+					disabled={!nextQuestions.every((names) => situation[names])}
+					onClick={() => {
+						setSurveyContext(situation)
+						// Object.entries(situation).map((e) => {
+						// 	// dispatch({
+						// 	// 	type: 'ADD_SURVEY_CONTEXT',
+						// 	// 	answers: survey.answers,
+						// 	// 	room: survey.room,
+						// 	// 	context: situation,
+						// 	// })
+						// 	dispatch(updateSituation(e[0], e[1]))
+						// })
+					}}
+				>
+					<span className="text">
+						<Trans>Suivant</Trans> →
+					</span>
+				</button>
+			</div>
+		)}
 	</main>
 )
 
-const Questions = ({ nextQuestions, engine }) => {
+const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 	const questions = nextQuestions
-	const [situation, setSituation] = useContext(SituationContext)
-	engine.setSituation(situation)
 
 	const onChange = (dottedName) => (value) => {
 			console.log(value, situation, dottedName)

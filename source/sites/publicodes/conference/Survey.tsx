@@ -15,6 +15,10 @@ import ContextConversation from './ContextConversation'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
+	const [surveyContext, setSurveyContext] = usePersistingState(
+		'surveyContext',
+		{}
+	)
 	const dispatch = useDispatch()
 
 	const { room } = useParams()
@@ -25,13 +29,18 @@ export default () => {
 	const surveyRule = room.replace(/-/g, ' ')
 	const contextFile = `./${surveyRule}.yaml`
 	const existContext = files.includes(contextFile) //here we check if a context file exist for the survey
-	const rules = existContext && req(contextFile)
 
-	console.log(rules)
+	const rules = existContext && req(contextFile)
 
 	useEffect(() => {
 		if (cachedSurveyId) dispatch({ type: 'SET_SURVEY', room })
 	}, [cachedSurveyId])
+
+	useEffect(() => {
+		if (!existContext) {
+			return setSurveyContext({}) //Context empty if no context exists
+		}
+	}, [existContext])
 
 	const survey = useSelector((state) => state.survey)
 	const history = useHistory()
@@ -54,6 +63,8 @@ export default () => {
 					survey={survey}
 					rules={rules}
 					surveyRule={surveyRule}
+					surveyContext={surveyContext}
+					setSurveyContext={setSurveyContext}
 				/>
 			)}
 			{!survey || survey.room !== room ? (

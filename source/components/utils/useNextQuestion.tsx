@@ -105,7 +105,6 @@ export function getNextQuestions(
 		const rule = engine.getRule(name)
 		return rule.rawNode.question != null
 	})
-
 	const lastStep = last(answeredQuestions)
 	// L'ajout de la réponse permet de traiter les questions dont la réponse est
 	// "une possibilité", exemple "contrat salarié . cdd"
@@ -116,7 +115,6 @@ export function getNextQuestions(
 					.replace(/'/g, '')
 					.trim() as DottedName)
 			: lastStep
-
 	return sortBy((question) => {
 		const indexList =
 			whitelist.findIndex((name) => question.startsWith(name)) + 1
@@ -127,16 +125,13 @@ export function getNextQuestions(
 	}, nextQuestions)
 }
 
-export const useNextQuestions = function (
-	givenObjectfifs: Array<DottedName>,
-	givenEngine: Engine
-): Array<DottedName> {
-	const objectifs = givenObjectfifs || useSelector(objectifsSelector)
+export const useNextQuestions = function (): Array<DottedName> {
+	const objectifs = useSelector(objectifsSelector)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const questionsConfig = useSelector(configSelector).questions ?? {}
 	const situation = useSelector(situationSelector)
-	const engine = givenEngine || useContext(EngineContext)
+	const engine = useContext(EngineContext)
 	const missingVariables = objectifs.map(
 		(node) => engine.evaluate(node).missingVariables ?? {}
 	)

@@ -166,14 +166,6 @@ function survey(state = null, { type, room, answers, context }) {
 		return {
 			room,
 			answers: {},
-			context: null,
-		}
-	}
-	if (type === 'ADD_SURVEY_CONTEXT') {
-		return {
-			room,
-			answers,
-			context,
 		}
 	}
 	if (type === 'ADD_SURVEY_ANSWERS') {
@@ -183,7 +175,6 @@ function survey(state = null, { type, room, answers, context }) {
 				(memo, next) => ({ ...memo, [next.id]: next }),
 				state.answers
 			),
-			context,
 		}
 	} else return state
 }
