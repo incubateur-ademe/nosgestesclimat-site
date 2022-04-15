@@ -40,12 +40,15 @@ export default () => {
 
 	const [surveyIds, setSurveyIds] = usePersistingState('surveyIds', {})
 
+	const [surveyContext] = usePersistingState('surveyContext', {})
+
 	const cachedSurveyId = surveyIds[survey.room]
 
 	const data = {
 		total: Math.round(nodeValue),
 		progress: +progress.toFixed(4),
 		byCategory,
+		surveyContext,
 	}
 	console.log(data)
 
