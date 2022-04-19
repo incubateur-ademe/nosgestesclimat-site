@@ -12,6 +12,7 @@ import Chart from '../chart'
 import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
 import { ActionButton, IntegratorActionButton } from './Buttons'
+import ClimateTargetChart from './ClimateTargetChart'
 const { encodeRuleName } = utils
 const gradient = tinygradient([
 		'#78e08f',
@@ -93,102 +94,13 @@ export default ({ score, details, headlessMode }) => {
 				`}
 			>
 				<div id="shareImage" css="padding: 2rem 0 0">
-					<div css="display: flex; align-items: center; justify-content: center">
-						<BallonGES css="height: 10rem; width: auto" />
-						<div
-							css={`
-								flex-direction: ${headlessMode ? 'column-reverse' : 'column'};
-								display: flex;
-								justify-content: space-evenly;
-								height: 10rem;
-							`}
-						>
-							<div css="font-weight: bold; font-size: 280%;">
-								<span css="width: 4rem; text-align: right; display: inline-block">
-									{integerValue}
-									{score < 10000 && (
-										<AnimatePresence>
-											{(score - value) / score < 0.01 && (
-												<motion.small
-													initial={{ opacity: 0, width: 0 }}
-													animate={{ opacity: 1, width: 'auto' }}
-													css={`
-														color: inherit;
-														font-size: 60%;
-													`}
-												>
-													,{decimalValue}
-												</motion.small>
-											)}
-										</AnimatePresence>
-									)}
-								</span>{' '}
-								tonnes
-							</div>
-							<div
-								css={`
-									background: #ffffff3d;
-									border-radius: 0.6rem;
-									padding: 0.4rem 1rem;
-
-									> div {
-										display: flex;
-										justify-content: space-between;
-										flex-wrap: wrap;
-									}
-									strong {
-										font-weight: bold;
-									}
-									> img {
-										margin: 0 0.6rem !important;
-									}
-								`}
-							>
-								<div>
-									<span>
-										{emoji('🇫🇷 ')}
-										moyenne{' '}
-									</span>{' '}
-									<strong>
-										{' '}
-										<DefaultFootprint />{' '}
-									</strong>
-								</div>
-								<div>
-									<span>
-										{emoji('🎯 ')}
-										objectif{' '}
-									</span>
-									<strong>2 tonnes</strong>
-								</div>
-								{!headlessMode && (
-									<div css="margin-top: .2rem;justify-content: flex-end !important">
-										<a
-											css="color: inherit"
-											href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/"
-											target="_blank"
-										>
-											Comment ça ?
-										</a>
-									</div>
-								)}
-							</div>
-						</div>
-					</div>
-					{!integratorActionText && (
-						<ActionButton text="Passer à l'action" score={score} />
-					)}
-					<div css="padding: 1rem">
-						<Chart
-							noAnimation
-							details={details}
-							links
-							color={textColor}
-							noText
-							noCompletion
-							valueColor={textColor}
-						/>
-					</div>
+					<ClimateTargetChart
+						value={value}
+						details={details}
+						color={textColor}
+						noAnimation
+						noText
+					/>
 				</div>
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
 					<ShareButton
