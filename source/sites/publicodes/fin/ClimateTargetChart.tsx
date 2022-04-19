@@ -91,7 +91,7 @@ export default ({ details, color, noText, value, score }) => {
 							mon empreinte annuelle
 						</div>
 					</div>
-					<div css="margin-bottom: 1rem">
+					<div css="margin-bottom: .6rem">
 						<div
 							css={`
 								width: 4rem;
@@ -123,7 +123,7 @@ export default ({ details, color, noText, value, score }) => {
 					</div>
 					<CategoriesBar {...{ categories, color, empreinteTotale }} />
 				</div>
-				<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%">
+				<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
 					<a
 						css="color: inherit"
 						href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
@@ -138,9 +138,24 @@ export default ({ details, color, noText, value, score }) => {
 								margin-bottom: 1rem;
 							`}
 						>
-							<div>{emoji('🎯')} Mon objectif</div>
+							<div>Mon objectif</div>
 						</div>
 					</a>
+					<div
+						css={`
+							margin-bottom: 0.6rem;
+							strong {
+								font-size: 280%;
+								margin-right: 0.3rem;
+							}
+							span {
+								font-size: 160%;
+							}
+						`}
+					>
+						<strong>{sustainableLifeGoal / 1000}</strong>
+						<span>tonnes</span>
+					</div>
 					<div
 						css={`
 							border-radius: 0.3rem;
@@ -148,18 +163,14 @@ export default ({ details, color, noText, value, score }) => {
 							background: #78e08f;
 							height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
 							width: ${barWidth};
-							strong {
-								font-size: 200%;
-							}
 
 							display: flex;
 							flex-direction: column;
 							justify-content: center;
+							font-size: 200%;
 						`}
 					>
-						<strong>{sustainableLifeGoal / 1000}</strong>
-						<br />
-						tonnes
+						{emoji('🎯')}
 					</div>
 				</div>
 			</div>
