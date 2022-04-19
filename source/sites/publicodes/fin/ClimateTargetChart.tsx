@@ -59,62 +59,16 @@ export default ({ details, color, noText, value }) => {
 					height: 40vh;
 				`}
 			>
-				<div css="height: 100%">
+				<div css="height: 100%; width: 50%; display: flex; flex-direction: column; align-items: center ">
 					<div css="line-height: 1.2rem">
 						<strong>
 							{Math.round(value / 1000)} <br />
 						</strong>
 						tonnes
 					</div>
-					<ul
-						css={`
-							margin: 0;
-							width: ${barWidth};
-							height: calc(100% - 2.4rem);
-							border-radius: 0.3rem;
-							border: 3px solid ${color};
-							padding: 0;
-						`}
-					>
-						{categories.map((category) => (
-							<li
-								key={category.title}
-								css={`
-									margin: 0;
-									list-style-type: none;
-									> a {
-										display: block;
-										text-decoration: none;
-										line-height: inherit;
-									}
-									background: ${category.color};
-									height: ${(category.nodeValue / empreinteTotale) * 100}%;
-									display: flex;
-									align-items: center;
-									justify-content: center;
-								`}
-							>
-								<Link
-									to={'/documentation/' + encodeRuleName(category.dottedName)}
-								>
-									<div
-										css={`
-											height: 100%;
-											img {
-												font-size: 120%;
-											}
-										`}
-									>
-										{category.nodeValue / empreinteTotale > 0.1
-											? emoji(category.icons)
-											: ''}
-									</div>
-								</Link>
-							</li>
-						))}
-					</ul>
+					<CategoriesBar {...{ categories, color, empreinteTotale }} />
 				</div>
-				<div css="display: flex; justify-content: center; flex-wrap: wrap; max-width: 10rem">
+				<div css="display: flex; justify-content: center; flex-wrap: wrap; width: 50%">
 					<div
 						css={`
 							border-radius: 0.3rem;
@@ -143,9 +97,10 @@ export default ({ details, color, noText, value }) => {
 						border-radius: 0.6rem;
 						margin: 0 0.6rem;
 						padding: 0.4rem 1rem;
+						width: 50%;
 					`}
 				>
-					{emoji('☝️')} Votre empreinte climat
+					{emoji('☝️')} Mon empreinte climat annuelle
 				</div>
 				<div
 					css={`
@@ -153,9 +108,10 @@ export default ({ details, color, noText, value }) => {
 						border-radius: 0.6rem;
 						margin: 0 0.6rem;
 						padding: 0.4rem 1rem;
+						width: 50%;
 					`}
 				>
-					<div>{emoji('🎯')} L'objectif pour être écolo.</div>
+					<div>{emoji('🎯')} L'objectif</div>
 					<div>
 						<a
 							css="color: inherit"
@@ -169,3 +125,51 @@ export default ({ details, color, noText, value }) => {
 		</section>
 	)
 }
+
+const CategoriesBar = ({ categories, empreinteTotale, color }) => (
+	<ul
+		css={`
+			margin: 0;
+			width: ${barWidth};
+			height: calc(100% - 2.4rem);
+			border-radius: 0.3rem;
+			border: 3px solid ${color};
+			padding: 0;
+		`}
+	>
+		{categories.map((category) => (
+			<li
+				key={category.title}
+				css={`
+					margin: 0;
+					list-style-type: none;
+					> a {
+						display: block;
+						text-decoration: none;
+						line-height: inherit;
+					}
+					background: ${category.color};
+					height: ${(category.nodeValue / empreinteTotale) * 100}%;
+					display: flex;
+					align-items: center;
+					justify-content: center;
+				`}
+			>
+				<Link to={'/documentation/' + encodeRuleName(category.dottedName)}>
+					<div
+						css={`
+							height: 100%;
+							img {
+								font-size: 120%;
+							}
+						`}
+					>
+						{category.nodeValue / empreinteTotale > 0.1
+							? emoji(category.icons)
+							: ''}
+					</div>
+				</Link>
+			</li>
+		))}
+	</ul>
+)
