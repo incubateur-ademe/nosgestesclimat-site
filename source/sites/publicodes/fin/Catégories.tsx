@@ -154,7 +154,7 @@ export default ({ score, details, headlessMode }) => {
 						</div>
 					</div>
 					{!integratorActionText && (
-						<ActionButton text="Passer à l'action" score={score} />
+						<ActionButton text="Passer à l'action" score={score} large />
 					)}
 					<div css="padding: 1rem">
 						<Chart

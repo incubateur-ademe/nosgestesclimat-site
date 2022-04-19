@@ -103,8 +103,7 @@ export default ({ score, details, headlessMode }) => {
 						score={score}
 					/>
 				</div>
-				<ActionButton text="Passer à l'action" score={score} />
-				<div css="display: flex; flex-direction: column; margin: 1rem 0">
+				<div css="display: flex; flex-direction: column; margin: .2rem 0">
 					<ShareButton
 						text="Voilà mon empreinte 🌍️climat. Mesure la tienne !"
 						url={window.location}
@@ -113,6 +112,7 @@ export default ({ score, details, headlessMode }) => {
 						label="Partager mes résultats"
 					/>
 				</div>
+				<ActionButton text="Passer à l'action" score={score} />
 
 				{integratorActionText && integratorActionUrl && (
 					<IntegratorActionButton />

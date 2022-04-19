@@ -11,6 +11,7 @@ export const ActionButton = ({
 	imgSrc = actionImg,
 	invertImage = true,
 	url = '/actions',
+	large,
 }) => {
 	const tracker = useContext(TrackerContext)
 
@@ -29,8 +30,7 @@ export const ActionButton = ({
 			}
 			css={`
 				margin: 0.6rem auto;
-				width: 90%;
-
+				${large && 'width: 90%;'}
 				img {
 					height: 2.6rem;
 					filter: ${invertImage ? 'invert(100%)' : 'none'};

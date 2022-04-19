@@ -79,15 +79,19 @@ export default ({ details, color, noText, value, score }) => {
 						css={`
 							position: absolute;
 							right: 1rem;
-							top: 1rem;
+							top: 0rem;
 							margin-bottom: 1.4rem;
 							background: #ffffff70;
 							border-radius: 0.6rem;
 							margin: 0 0.6rem;
-							padding: 0.4rem 1rem;
+							padding: 0.4rem 0.6rem;
 						`}
 					>
-						<div>mon empreinte annuelle</div>
+						<div css="margin: .4rem 0; font-style: italic">
+							mon empreinte annuelle
+						</div>
+					</div>
+					<div css="margin-bottom: 1rem">
 						<div
 							css={`
 								width: 4rem;
@@ -115,30 +119,28 @@ export default ({ details, color, noText, value, score }) => {
 								</AnimatePresence>
 							)}
 						</div>{' '}
-						<span css="font-size: 200%; font-weight: bold">tonnes</span>
+						<span css="font-size: 160%; ">tonnes</span>
 					</div>
 					<CategoriesBar {...{ categories, color, empreinteTotale }} />
 				</div>
-				<div css="display: flex; justify-content: center; flex-wrap: wrap; width: 50%">
-					<div
-						css={`
-							background: #ffffff70;
-							border-radius: 0.6rem;
-							margin: 0 0.6rem;
-							padding: 0.4rem 1rem;
-							margin-bottom: 1rem;
-						`}
+				<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%">
+					<a
+						css="color: inherit"
+						href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+						target="_blank"
 					>
-						<div>{emoji('🎯')} Mon objectif</div>
-						<div>
-							<a
-								css="color: inherit"
-								href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
-							>
-								Comment ça ?
-							</a>
+						<div
+							css={`
+								background: #ffffff70;
+								border-radius: 0.6rem;
+								margin: 0 0.6rem;
+								padding: 0.4rem 1rem;
+								margin-bottom: 1rem;
+							`}
+						>
+							<div>{emoji('🎯')} Mon objectif</div>
 						</div>
-					</div>
+					</a>
 					<div
 						css={`
 							border-radius: 0.3rem;
