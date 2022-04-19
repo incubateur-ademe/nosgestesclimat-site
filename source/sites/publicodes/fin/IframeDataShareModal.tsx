@@ -44,15 +44,15 @@ export default ({ data }) => {
 	const text = (
 		<div>
 			<p>
-				En cliquant sur le bouton Accepter, vous nous autoriser à communiquer le
+				En cliquant sur le bouton Accepter, vous nous autorisez à communiquer le
 				résumé de votre test d'empreinte climat au site {parent}.
 			</p>
 			<p>
-				Il s'agit donc de vos résultats sur les grandes catégories (transport,
+				Il s'agit de vos résultats sur les grandes catégories (transport,
 				alimentation...), mais <em>pas</em> le détail question par question (vos
 				km en voiture, les m² de votre logement...).
 			</p>
-			<p>Nosgestesclimat.fr n'est pas affilié à {parent}.</p>
+			<p>Nosgestesclimat.fr n'est pas affilié au site {parent}.</p>
 		</div>
 	)
 
@@ -69,7 +69,7 @@ export default ({ data }) => {
 				text-align: center;
 				background: #fff;
 			`}
-			>
+		>
 			<h2>Partage de vos résultats à {parent} ?</h2>
 			<p>{text}</p>
 			<div
