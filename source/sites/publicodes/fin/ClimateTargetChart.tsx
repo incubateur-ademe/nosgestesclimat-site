@@ -78,17 +78,22 @@ export default ({ details, color, noText, value, score }) => {
 					<div
 						css={`
 							position: absolute;
-							right: 1rem;
+							right: 5vw;
 							top: 0rem;
 							margin-bottom: 1.4rem;
 							background: #ffffff70;
 							border-radius: 0.6rem;
 							margin: 0 0.6rem;
-							padding: 0.4rem 0.6rem;
+							padding: 0rem 0.6rem;
+							width: 10rem;
 						`}
 					>
-						<div css="margin: .4rem 0; font-style: italic">
+						<div css="margin: .4rem 0; font-style: italic; ">
 							mon empreinte annuelle
+							<img
+								src="/images/thin-arrow-left.svg"
+								css="height: 3rem; position: absolute;  left: -2rem; bottom: -3.4rem"
+							/>
 						</div>
 					</div>
 					<div css="margin-bottom: .6rem">
