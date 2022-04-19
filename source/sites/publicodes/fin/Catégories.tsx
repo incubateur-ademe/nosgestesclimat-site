@@ -103,28 +103,6 @@ export default ({ score, details, headlessMode }) => {
 								height: 10rem;
 							`}
 						>
-							<div css="font-weight: bold; font-size: 280%;">
-								<span css="width: 4rem; text-align: right; display: inline-block">
-									{integerValue}
-									{score < 10000 && (
-										<AnimatePresence>
-											{(score - value) / score < 0.01 && (
-												<motion.small
-													initial={{ opacity: 0, width: 0 }}
-													animate={{ opacity: 1, width: 'auto' }}
-													css={`
-														color: inherit;
-														font-size: 60%;
-													`}
-												>
-													,{decimalValue}
-												</motion.small>
-											)}
-										</AnimatePresence>
-									)}
-								</span>{' '}
-								tonnes
-							</div>
 							<div
 								css={`
 									background: #ffffff3d;

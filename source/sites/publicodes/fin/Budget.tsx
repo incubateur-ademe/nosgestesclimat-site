@@ -100,6 +100,7 @@ export default ({ score, details, headlessMode }) => {
 						color={textColor}
 						noAnimation
 						noText
+						score={score}
 					/>
 				</div>
 				<ActionButton text="Passer à l'action" score={score} />

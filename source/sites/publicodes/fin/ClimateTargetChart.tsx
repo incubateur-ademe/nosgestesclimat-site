@@ -10,6 +10,7 @@ const { encodeRuleName } = utils
 import emoji from 'react-easy-emoji'
 import { useEngine } from '../../../components/utils/EngineContext'
 import { extractCategories } from '../../../components/publicodesUtils'
+import { AnimatePresence, motion } from 'framer-motion'
 
 const sustainableLifeGoal = 2000 // kgCO2e
 const barWidth = '6rem'
@@ -20,7 +21,7 @@ const computeEmpreinteMaximum = (categories) =>
 		-1
 	).nodeValue
 
-export default ({ details, color, noText, value }) => {
+export default ({ details, color, noText, value, score }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const categories = extractCategories(rules, engine, details).map(
@@ -37,6 +38,12 @@ export default ({ details, color, noText, value }) => {
 		(memo, next) => next.nodeValue + memo,
 		0
 	)
+	const roundedValue = (value / 1000).toLocaleString('fr-FR', {
+			maximumSignificantDigits: 2,
+			minimumSignificantDigits: 2,
+		}),
+		integerValue = roundedValue.split(',')[0],
+		decimalValue = roundedValue.split(',')[1]
 	return (
 		<section
 			css={`
@@ -60,10 +67,27 @@ export default ({ details, color, noText, value }) => {
 				`}
 			>
 				<div css="height: 100%; width: 50%; display: flex; flex-direction: column; align-items: center ">
-					<div css="line-height: 1.2rem">
-						<strong>
-							{Math.round(value / 1000)} <br />
-						</strong>
+					<div css="font-weight: bold; font-size: 280%; margin-bottom: 1.4rem">
+						<span css="width: 4rem; text-align: right; display: inline-block">
+							{integerValue}
+							{console.log(score, value)}
+							{score < 10000 && (
+								<AnimatePresence>
+									{(score - value) / score < 0.01 && (
+										<motion.small
+											initial={{ opacity: 0, width: 0 }}
+											animate={{ opacity: 1, width: 'auto' }}
+											css={`
+												color: inherit;
+												font-size: 60%;
+											`}
+										>
+											,{decimalValue}
+										</motion.small>
+									)}
+								</AnimatePresence>
+							)}
+						</span>{' '}
 						tonnes
 					</div>
 					<CategoriesBar {...{ categories, color, empreinteTotale }} />
@@ -76,6 +100,13 @@ export default ({ details, color, noText, value }) => {
 							background: #78e08f;
 							height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
 							width: ${barWidth};
+							strong {
+								font-size: 200%;
+							}
+
+							display: flex;
+							flex-direction: column;
+							justify-content: center;
 						`}
 					>
 						<strong>{sustainableLifeGoal / 1000}</strong>
