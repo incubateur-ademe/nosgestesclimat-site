@@ -8,7 +8,6 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { updateSituation } from 'Actions/actions'
-import { usePersistingState } from 'Components/utils/persistState'
 
 const SituationContext = createContext({})
 
@@ -31,8 +30,8 @@ export default ({
 		engine
 	)
 
-	const situationParent = useSelector(situationSelector)
-	const dispatch = useDispatch()
+	// const situationParent = useSelector(situationSelector)
+	// const dispatch = useDispatch()
 
 	return (
 		<div className="ui__ container" css={``}>
