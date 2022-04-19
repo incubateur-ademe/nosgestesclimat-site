@@ -62,10 +62,15 @@ export default ({ data }) => {
 			css={`
 				position: absolute;
 				z-index: 10;
-				border-radius: 15px;
+				border-radius: 1rem;
 				margin-top: 10%;
 				filter: drop-shadow(0 0 20px #000);
-				padding: 15px;
+				box-shadow: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+					0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+					1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
+				--shadow-color: 0deg 0% 63%;
+
+				padding: 1rem;
 				text-align: center;
 				background: #fff;
 			`}
