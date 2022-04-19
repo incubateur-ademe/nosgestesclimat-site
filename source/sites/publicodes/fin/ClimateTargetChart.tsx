@@ -66,11 +66,38 @@ export default ({ details, color, noText, value, score }) => {
 					height: 40vh;
 				`}
 			>
-				<div css="height: 100%; width: 50%; display: flex; flex-direction: column; align-items: center ">
-					<div css="font-weight: bold; font-size: 280%; margin-bottom: 1.4rem">
-						<span css="width: 4rem; text-align: right; display: inline-block">
+				<div
+					css={`
+						height: 100%;
+						width: 50%;
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+					`}
+				>
+					<div
+						css={`
+							position: absolute;
+							right: 1rem;
+							top: 1rem;
+							margin-bottom: 1.4rem;
+							background: #ffffff70;
+							border-radius: 0.6rem;
+							margin: 0 0.6rem;
+							padding: 0.4rem 1rem;
+						`}
+					>
+						<div>mon empreinte annuelle</div>
+						<div
+							css={`
+								width: 4rem;
+								text-align: right;
+								display: inline-block;
+								font-weight: bold;
+								font-size: 280%;
+							`}
+						>
 							{integerValue}
-							{console.log(score, value)}
 							{score < 10000 && (
 								<AnimatePresence>
 									{(score - value) / score < 0.01 && (
@@ -87,12 +114,31 @@ export default ({ details, color, noText, value, score }) => {
 									)}
 								</AnimatePresence>
 							)}
-						</span>{' '}
-						tonnes
+						</div>{' '}
+						<span css="font-size: 200%; font-weight: bold">tonnes</span>
 					</div>
 					<CategoriesBar {...{ categories, color, empreinteTotale }} />
 				</div>
 				<div css="display: flex; justify-content: center; flex-wrap: wrap; width: 50%">
+					<div
+						css={`
+							background: #ffffff70;
+							border-radius: 0.6rem;
+							margin: 0 0.6rem;
+							padding: 0.4rem 1rem;
+							margin-bottom: 1rem;
+						`}
+					>
+						<div>{emoji('🎯')} Mon objectif</div>
+						<div>
+							<a
+								css="color: inherit"
+								href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+							>
+								Comment ça ?
+							</a>
+						</div>
+					</div>
 					<div
 						css={`
 							border-radius: 0.3rem;
@@ -115,44 +161,6 @@ export default ({ details, color, noText, value, score }) => {
 					</div>
 				</div>
 			</div>
-			<div
-				css={`
-					display: flex;
-					justify-content: space-between;
-					margin-top: 1rem;
-				`}
-			>
-				<div
-					css={`
-						background: #ffffff3d;
-						border-radius: 0.6rem;
-						margin: 0 0.6rem;
-						padding: 0.4rem 1rem;
-						width: 50%;
-					`}
-				>
-					{emoji('☝️')} Mon empreinte climat annuelle
-				</div>
-				<div
-					css={`
-						background: #ffffff3d;
-						border-radius: 0.6rem;
-						margin: 0 0.6rem;
-						padding: 0.4rem 1rem;
-						width: 50%;
-					`}
-				>
-					<div>{emoji('🎯')} Mon objectif</div>
-					<div>
-						<a
-							css="color: inherit"
-							href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
-						>
-							Comment ça ?
-						</a>
-					</div>
-				</div>
-			</div>
 		</section>
 	)
 }
@@ -162,7 +170,7 @@ const CategoriesBar = ({ categories, empreinteTotale, color }) => (
 		css={`
 			margin: 0;
 			width: ${barWidth};
-			height: calc(100% - 2.4rem);
+			height: 100%;
 			border-radius: 0.3rem;
 			border: 3px solid ${color};
 			padding: 0;
