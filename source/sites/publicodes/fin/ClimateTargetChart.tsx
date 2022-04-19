@@ -68,6 +68,19 @@ export default ({ details, color, noText, value, score }) => {
 			>
 				<div
 					css={`
+						bottom: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
+
+						left: 50%;
+						position: absolute;
+						border-bottom: 2px dashed white;
+						height: 0.1rem;
+						width: 80%;
+						transform: translateX(-50%);
+					`}
+				/>
+				<div
+					css={`
+						z-index: 1;
 						height: 100%;
 						width: 50%;
 						display: flex;
@@ -92,6 +105,7 @@ export default ({ details, color, noText, value, score }) => {
 							mon empreinte annuelle
 							<img
 								src="/images/thin-arrow-left.svg"
+								title="Comprendre l'objectif à atteindre"
 								css="height: 3rem; position: absolute;  left: -2rem; bottom: -3.4rem"
 							/>
 						</div>
@@ -129,23 +143,29 @@ export default ({ details, color, noText, value, score }) => {
 					<CategoriesBar {...{ categories, color, empreinteTotale }} />
 				</div>
 				<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
-					<a
-						css="color: inherit"
-						href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
-						target="_blank"
+					<div
+						css={`
+							background: #ffffff70;
+							border-radius: 0.6rem;
+							margin: 0 0.6rem;
+							padding: 0.4rem 1rem;
+							margin-bottom: 1rem;
+						`}
 					>
-						<div
-							css={`
-								background: #ffffff70;
-								border-radius: 0.6rem;
-								margin: 0 0.6rem;
-								padding: 0.4rem 1rem;
-								margin-bottom: 1rem;
-							`}
-						>
-							<div>Mon objectif</div>
+						<div>
+							mon objectif
+							<a
+								css="color: inherit"
+								href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+								target="_blank"
+							>
+								<img
+									src="/images/info.svg"
+									css="width: 1.5rem; vertical-align: middle; margin-left: .2rem"
+								/>
+							</a>
 						</div>
-					</a>
+					</div>
 					<div
 						css={`
 							margin-bottom: 0.6rem;
