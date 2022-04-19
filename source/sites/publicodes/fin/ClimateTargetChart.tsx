@@ -158,8 +158,8 @@ export default ({ details, color, noText, value, score }) => {
 					</div>
 					<div
 						css={`
-							border-radius: 0.3rem;
-							border: 3px solid ${color};
+							${barBorderStyle}
+
 							background: #78e08f;
 							height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
 							width: ${barWidth};
@@ -178,21 +178,33 @@ export default ({ details, color, noText, value, score }) => {
 	)
 }
 
+const borderRadius = '.3rem'
+const barBorderStyle = `
+	border-radius: ${borderRadius};
+	border: 4px solid #000;
+	border-bottom-right-radius: 0;
+	border-bottom-left-radius: 0;
+`
+
 const CategoriesBar = ({ categories, empreinteTotale, color }) => (
 	<ul
 		css={`
 			margin: 0;
 			width: ${barWidth};
 			height: 100%;
-			border-radius: 0.3rem;
-			border: 3px solid ${color};
 			padding: 0;
+			${barBorderStyle}
 		`}
 	>
-		{categories.map((category) => (
+		{categories.map((category, index) => (
 			<li
 				key={category.title}
 				css={`
+					${index === 0 &&
+					`
+					border-top-right-radius: ${borderRadius}; 
+					border-top-left-radius: ${borderRadius}; 
+					`};
 					margin: 0;
 					list-style-type: none;
 					> a {
