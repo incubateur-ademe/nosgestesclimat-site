@@ -32,7 +32,7 @@ export const ActionButton = ({
 				margin: 0.6rem auto;
 				${large && 'width: 90%;'}
 				img {
-					height: 2.6rem;
+					height: ${large ? '2.6rem' : '1.6rem'};
 					filter: ${invertImage ? 'invert(100%)' : 'none'};
 					margin: 0 0.6rem;
 					display: inline-block;
