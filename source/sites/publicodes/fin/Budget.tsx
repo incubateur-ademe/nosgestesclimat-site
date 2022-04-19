@@ -93,7 +93,7 @@ export default ({ score, details, headlessMode }) => {
 					font-size: 110%;
 				`}
 			>
-				<div id="shareImage" css="padding: 2rem 0 0">
+				<div id="shareImage" css="padding: 2rem 0 ">
 					<ClimateTargetChart
 						value={value}
 						details={details}
@@ -102,6 +102,7 @@ export default ({ score, details, headlessMode }) => {
 						noText
 					/>
 				</div>
+				<ActionButton text="Passer à l'action" score={score} />
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
 					<ShareButton
 						text="Voilà mon empreinte 🌍️climat. Mesure la tienne !"

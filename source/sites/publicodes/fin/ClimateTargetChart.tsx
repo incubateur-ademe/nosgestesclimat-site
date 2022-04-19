@@ -111,7 +111,7 @@ export default ({ details, color, noText, value }) => {
 						width: 50%;
 					`}
 				>
-					<div>{emoji('🎯')} L'objectif</div>
+					<div>{emoji('🎯')} Mon objectif</div>
 					<div>
 						<a
 							css="color: inherit"
