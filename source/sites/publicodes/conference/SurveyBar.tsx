@@ -1,4 +1,4 @@
-import { correctValue } from 'Components/publicodesUtils'
+import { correctValue, splitName } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useRef, useState } from 'react'
@@ -40,16 +40,25 @@ export default () => {
 
 	const [surveyIds, setSurveyIds] = usePersistingState('surveyIds', {})
 
-	const [surveyContext] = usePersistingState('surveyContext', {})
-
 	const cachedSurveyId = surveyIds[survey.room]
+
+	const [surveyContext] = usePersistingState('surveyContext')
+
+	const context = Object.keys(surveyContext).reduce(
+		(acc, key) => ({
+			...acc,
+			...{ [splitName(key)[1]]: surveyContext[key] },
+		}),
+		{}
+	)
 
 	const data = {
 		total: Math.round(nodeValue),
 		progress: +progress.toFixed(4),
 		byCategory,
-		surveyContext,
+		context,
 	}
+
 	console.log(data)
 
 	useEffect(() => {
@@ -91,7 +100,7 @@ export default () => {
 			answers: [answer],
 			room: survey.room,
 		})
-	}, [situation, survey.room, cachedSurveyId])
+	}, [situation, surveyContext, survey.room, cachedSurveyId])
 
 	useEffect(async () => {
 		socket.on('received', (data) => {
