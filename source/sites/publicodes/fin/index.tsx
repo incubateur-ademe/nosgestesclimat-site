@@ -66,7 +66,7 @@ export default ({}) => {
 			petrogaz: Petrogaz,
 		},
 		componentKeys = Object.keys(componentCorrespondence),
-		Component = componentCorrespondence[slideName]
+		Component = componentCorrespondence[slideName] || Budget
 
 	const next = () => {
 		setSearchParams({
