@@ -182,9 +182,7 @@ const SituationDetails = ({ setSurveyContext, situation, setSituation }) => {
 			<summary>Mon profil</summary>
 			<ul css="text-transform: capitalize">
 				{Object.entries(situation).map(([k, v]) => (
-					<li>{`${splitName(k)[1]} : ${
-						v?.nodeValue || v?.replaceAll("'", '')
-					}`}</li>
+					<li>{`${splitName(k)[1]} : ${v?.nodeValue || v}`}</li>
 				))}
 			</ul>
 			<div css="text-align: center">
