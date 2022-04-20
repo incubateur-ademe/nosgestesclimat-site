@@ -8,6 +8,9 @@ import { Link, NavLink } from 'react-router-dom'
 import styled from 'styled-components'
 import { determinant, hideNewsBanner } from 'Components/NewsBanner'
 import Meta from '../components/utils/Meta'
+import { usePersistingState } from '../components/utils/persistState'
+import { localStorageKey } from '../components/NewsBanner'
+import lastRelease from '../data/last-release.json'
 
 const dateCool = (date) =>
 	date.toLocaleString(undefined, {
@@ -25,10 +28,11 @@ type ReleasesData = Array<{
 
 export default function News() {
 	const [data, setData] = useState()
+	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
 	const history = useHistory()
 	const slug = useRouteMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
 		?.slug
-	useEffect(hideNewsBanner, [])
+	useEffect(() => setLastViewedRelease(lastRelease.name), [])
 	useEffect(
 		() =>
 			fetch('/data/releases.json')

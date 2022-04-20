@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import lastRelease from '../data/last-release.json'
 import { usePersistingState } from './utils/persistState'
 
-const localStorageKey = 'last-viewed-release'
+export const localStorageKey = 'last-viewed-release'
 
 export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
