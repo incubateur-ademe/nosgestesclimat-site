@@ -12,7 +12,8 @@ import { useEngine } from '../../../components/utils/EngineContext'
 import { extractCategories } from '../../../components/publicodesUtils'
 import { AnimatePresence, motion } from 'framer-motion'
 
-const sustainableLifeGoal = 2000 // kgCO2e
+const sustainableLifeGoal = 2000, // kgCO2e
+	sustainableBackground = '#78e08f'
 const barWidth = '6rem'
 
 const computeEmpreinteMaximum = (categories) =>
@@ -68,7 +69,7 @@ export default ({ details, color, noText, value, score }) => {
 
 					left: 50%;
 					position: absolute;
-					border-bottom: 2px dashed white;
+					border-bottom: 6px dashed white;
 					height: 0.1rem;
 					width: 80%;
 					transform: translateX(-50%);
@@ -181,7 +182,7 @@ export default ({ details, color, noText, value, score }) => {
 					css={`
 						${barBorderStyle}
 
-						background: #78e08f;
+						background: ${sustainableBackground};
 						height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
 						width: ${barWidth};
 
