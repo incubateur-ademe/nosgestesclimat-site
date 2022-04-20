@@ -7,13 +7,11 @@ test en local:
     une de ces conditions:
       - université = '"non"'
       - statut = '"non"'
-  description: |
-    A compléter
   formule: 0
 
 test en local . université:
   titre: Université
-  question: Quelle université ?
+  question: De quelle université faites-vous partie ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -28,7 +26,7 @@ test en local . université . lyon:
 
 test en local . statut:
   titre: Statut
-  question: Quel statut ?
+  question: Quel est votre statut ?
   formule:
     une possibilité:
       choix obligatoire: oui
