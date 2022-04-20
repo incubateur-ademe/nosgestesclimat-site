@@ -54,6 +54,9 @@ export default ({ children, next, previous }) => {
 						width: 35rem;
 						max-width: 100%;
 						top: 2rem;
+						@media (max-height: 800px) {
+							top: 0.4rem;
+						}
 					`}
 					key={page}
 					custom={direction}

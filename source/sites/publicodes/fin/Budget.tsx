@@ -93,7 +93,7 @@ export default ({ score, details, headlessMode }) => {
 					font-size: 110%;
 				`}
 			>
-				<div id="shareImage" css="padding: 2rem 0 ">
+				<div id="shareImage" css="padding: 2rem 0 .6rem ">
 					<ClimateTargetChart
 						value={value}
 						details={details}

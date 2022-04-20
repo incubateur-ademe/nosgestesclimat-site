@@ -47,6 +47,11 @@ export default ({ details, color, noText, value, score }) => {
 	return (
 		<section
 			css={`
+				position: relative;
+				display: flex;
+				justify-content: space-evenly;
+				align-items: flex-end;
+				height: 50vh;
 				h2 {
 					margin: 0.6rem 0 0.1rem;
 					font-size: 140%;
@@ -59,146 +64,137 @@ export default ({ details, color, noText, value, score }) => {
 		>
 			<div
 				css={`
-					position: relative;
+					bottom: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
+
+					left: 50%;
+					position: absolute;
+					border-bottom: 2px dashed white;
+					height: 0.1rem;
+					width: 80%;
+					transform: translateX(-50%);
+				`}
+			/>
+			<div
+				css={`
+					z-index: 1;
+					height: 100%;
+					width: 50%;
 					display: flex;
-					justify-content: space-evenly;
-					align-items: flex-end;
-					height: 40vh;
+					flex-direction: column;
+					align-items: center;
 				`}
 			>
 				<div
 					css={`
-						bottom: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
-
-						left: 50%;
 						position: absolute;
-						border-bottom: 2px dashed white;
-						height: 0.1rem;
-						width: 80%;
-						transform: translateX(-50%);
-					`}
-				/>
-				<div
-					css={`
-						z-index: 1;
-						height: 100%;
-						width: 50%;
-						display: flex;
-						flex-direction: column;
-						align-items: center;
+						right: 5vw;
+						top: 0rem;
+						margin-bottom: 1.4rem;
+						background: #ffffff70;
+						border-radius: 0.6rem;
+						margin: 0 0.6rem;
+						padding: 0rem 0.6rem;
+						width: 10rem;
 					`}
 				>
-					<div
-						css={`
-							position: absolute;
-							right: 5vw;
-							top: 0rem;
-							margin-bottom: 1.4rem;
-							background: #ffffff70;
-							border-radius: 0.6rem;
-							margin: 0 0.6rem;
-							padding: 0rem 0.6rem;
-							width: 10rem;
-						`}
-					>
-						<div css="margin: .4rem 0; font-style: italic; ">
-							mon empreinte annuelle
-							<img
-								src="/images/thin-arrow-left.svg"
-								title="Comprendre l'objectif à atteindre"
-								css="height: 3rem; position: absolute;  left: -2rem; bottom: -3.4rem"
-							/>
-						</div>
+					<div css="margin: .4rem 0; font-style: italic; ">
+						mon empreinte annuelle
+						<img
+							src="/images/thin-arrow-left.svg"
+							title="Comprendre l'objectif à atteindre"
+							css="height: 3rem; position: absolute;  left: -2rem; bottom: -3.4rem"
+						/>
 					</div>
-					<div css="margin-bottom: .6rem">
-						<div
-							css={`
-								width: 4rem;
-								text-align: right;
-								display: inline-block;
-								font-weight: bold;
-								font-size: 280%;
-							`}
-						>
-							{integerValue}
-							{score < 10000 && (
-								<AnimatePresence>
-									{(score - value) / score < 0.01 && (
-										<motion.small
-											initial={{ opacity: 0, width: 0 }}
-											animate={{ opacity: 1, width: 'auto' }}
-											css={`
-												color: inherit;
-												font-size: 60%;
-											`}
-										>
-											,{decimalValue}
-										</motion.small>
-									)}
-								</AnimatePresence>
-							)}
-						</div>{' '}
-						<span css="font-size: 160%; ">tonnes</span>
-					</div>
-					<CategoriesBar {...{ categories, color, empreinteTotale }} />
 				</div>
-				<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
+				<div css="margin-bottom: .6rem">
 					<div
 						css={`
-							background: #ffffff70;
-							border-radius: 0.6rem;
-							margin: 0 0.6rem;
-							padding: 0.4rem 1rem;
-							margin-bottom: 1rem;
+							width: 4rem;
+							text-align: right;
+							display: inline-block;
+							font-weight: bold;
+							font-size: 280%;
 						`}
 					>
-						<div>
-							mon objectif
-							<a
-								css="color: inherit"
-								href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
-								target="_blank"
-							>
-								<img
-									src="/images/info.svg"
-									css="width: 1.5rem; vertical-align: middle; margin-left: .2rem"
-								/>
-							</a>
-						</div>
+						{integerValue}
+						{score < 10000 && (
+							<AnimatePresence>
+								{(score - value) / score < 0.01 && (
+									<motion.small
+										initial={{ opacity: 0, width: 0 }}
+										animate={{ opacity: 1, width: 'auto' }}
+										css={`
+											color: inherit;
+											font-size: 60%;
+										`}
+									>
+										,{decimalValue}
+									</motion.small>
+								)}
+							</AnimatePresence>
+						)}
+					</div>{' '}
+					<span css="font-size: 160%; ">tonnes</span>
+				</div>
+				<CategoriesBar {...{ categories, color, empreinteTotale }} />
+			</div>
+			<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
+				<div
+					css={`
+						background: #ffffff70;
+						border-radius: 0.6rem;
+						margin: 0 0.6rem;
+						padding: 0.4rem 1rem;
+						margin-bottom: 1rem;
+					`}
+				>
+					<div>
+						mon objectif
+						<a
+							css="color: inherit"
+							href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+							target="_blank"
+						>
+							<img
+								src="/images/info.svg"
+								css="width: 1.5rem; vertical-align: middle; margin-left: .2rem"
+							/>
+						</a>
 					</div>
-					<div
-						css={`
-							margin-bottom: 0.6rem;
-							strong {
-								font-size: 280%;
-								margin-right: 0.3rem;
-							}
-							span {
-								font-size: 160%;
-							}
-						`}
-					>
-						<strong>{sustainableLifeGoal / 1000}</strong>
-						<span>tonnes</span>
-					</div>
-					<div
-						css={`
-							${barBorderStyle}
+				</div>
+				<div
+					css={`
+						margin-bottom: 0.6rem;
+						strong {
+							font-size: 280%;
+							margin-right: 0.3rem;
+						}
+						span {
+							font-size: 160%;
+						}
+					`}
+				>
+					<strong>{sustainableLifeGoal / 1000}</strong>
+					<span>tonnes</span>
+				</div>
+				<div
+					css={`
+						${barBorderStyle}
 
-							background: #78e08f;
-							height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
-							width: ${barWidth};
+						background: #78e08f;
+						height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
+						width: ${barWidth};
 
-							display: flex;
-							flex-direction: column;
-							justify-content: center;
-							font-size: 200%;
-						`}
-					>
-						{emoji('🎯')}
-					</div>
+						display: flex;
+						flex-direction: column;
+						justify-content: center;
+						font-size: 200%;
+					`}
+				>
+					{emoji('🎯')}
 				</div>
 			</div>
+			<div css="height: .3rem; background: black; width: 80%; position: absolute; bottom: 0" />
 		</section>
 	)
 }
