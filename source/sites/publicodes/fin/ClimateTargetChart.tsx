@@ -248,6 +248,11 @@ const CategoriesBar = ({ categories, empreinteTotale, color }) => (
 							img {
 								font-size: 120%;
 							}
+							@media (min-height: 800px) {
+								img {
+									font-size: 180%;
+								}
+							}
 						`}
 					>
 						{category.nodeValue / empreinteTotale > 0.1
