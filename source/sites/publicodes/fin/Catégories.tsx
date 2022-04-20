@@ -13,19 +13,6 @@ import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
 import { ActionButton, IntegratorActionButton } from './Buttons'
 const { encodeRuleName } = utils
-const gradient = tinygradient([
-		'#78e08f',
-		'#e1d738',
-		'#f6b93b',
-		'#b71540',
-		'#000000',
-	]),
-	colors = gradient.rgb(20)
-
-const getBackgroundColor = (score) =>
-	colors[
-		Math.round((score < 2000 ? 0 : score > 20000 ? 19000 : score - 2000) / 1000)
-	]
 
 export default ({ score, details, headlessMode }) => {
 	//	Configuration is try and test, feeling, really
@@ -47,9 +34,9 @@ export default ({ score, details, headlessMode }) => {
 		return () => unsubscribe()
 	})
 
-	const backgroundColor = getBackgroundColor(value).toHexString(),
-		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
-		textColor = findContrastedTextColor(backgroundColor, true),
+	const backgroundColor = 'var(--lightColor)',
+		backgroundColor2 = 'var(--lighterColor)',
+		textColor = 'var(--darkerColor)',
 		roundedValue = (value / 1000).toLocaleString('fr-FR', {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
@@ -57,9 +44,6 @@ export default ({ score, details, headlessMode }) => {
 		integerValue = roundedValue.split(',')[0],
 		decimalValue = roundedValue.split(',')[1],
 		shareImage = generateImageLink(window.location)
-
-	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
-		useContext(IframeOptionsContext)
 
 	return (
 		<div>
@@ -78,8 +62,8 @@ export default ({ score, details, headlessMode }) => {
 					background: ${backgroundColor};
 					background: linear-gradient(
 						180deg,
-						${backgroundColor} 0%,
-						${backgroundColor2} 100%
+						${backgroundColor} -50%,
+						${backgroundColor2} 60%
 					);
 					color: ${textColor};
 					margin: 0 auto;
@@ -93,69 +77,6 @@ export default ({ score, details, headlessMode }) => {
 				`}
 			>
 				<div id="shareImage" css="padding: 2rem 0 0">
-					<div css="display: flex; align-items: center; justify-content: center">
-						<BallonGES css="height: 10rem; width: auto" />
-						<div
-							css={`
-								flex-direction: ${headlessMode ? 'column-reverse' : 'column'};
-								display: flex;
-								justify-content: space-evenly;
-								height: 10rem;
-							`}
-						>
-							<div
-								css={`
-									background: #ffffff3d;
-									border-radius: 0.6rem;
-									padding: 0.4rem 1rem;
-
-									> div {
-										display: flex;
-										justify-content: space-between;
-										flex-wrap: wrap;
-									}
-									strong {
-										font-weight: bold;
-									}
-									> img {
-										margin: 0 0.6rem !important;
-									}
-								`}
-							>
-								<div>
-									<span>
-										{emoji('🇫🇷 ')}
-										moyenne{' '}
-									</span>{' '}
-									<strong>
-										{' '}
-										<DefaultFootprint />{' '}
-									</strong>
-								</div>
-								<div>
-									<span>
-										{emoji('🎯 ')}
-										objectif{' '}
-									</span>
-									<strong>2 tonnes</strong>
-								</div>
-								{!headlessMode && (
-									<div css="margin-top: .2rem;justify-content: flex-end !important">
-										<a
-											css="color: inherit"
-											href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/"
-											target="_blank"
-										>
-											Comment ça ?
-										</a>
-									</div>
-								)}
-							</div>
-						</div>
-					</div>
-					{!integratorActionText && (
-						<ActionButton text="Passer à l'action" score={score} large />
-					)}
 					<div css="padding: 1rem">
 						<Chart
 							noAnimation
@@ -178,32 +99,6 @@ export default ({ score, details, headlessMode }) => {
 					/>
 				</div>
 
-				{integratorActionText && integratorActionUrl && (
-					<IntegratorActionButton />
-				)}
-
-				{integratorYoutubeVideo && (
-					<div
-						class="videoWrapper"
-						css={`
-							iframe {
-								width: 100%;
-							}
-						`}
-					>
-						<iframe
-							width="560"
-							height="315"
-							src={integratorYoutubeVideo}
-							title="YouTube video player"
-							frameborder="0"
-							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-							allowfullscreen
-						></iframe>
-					</div>
-				)}
-
-				{integratorActionText && <ActionButton text="Réduire mon empreinte" />}
 				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>
 		</div>
