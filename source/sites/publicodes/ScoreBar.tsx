@@ -101,7 +101,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 					</div>
 				</Link>
 				<PetrolScore
-					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'pétrogaz')}
+					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'petrogaz')}
 				/>
 				{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement 
 				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo 

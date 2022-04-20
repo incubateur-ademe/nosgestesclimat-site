@@ -62,8 +62,8 @@ export default ({}) => {
 
 	const componentCorrespondence = {
 			bilan: Budget,
-			catégories: Catégories,
-			pétrogaz: Petrogaz,
+			categories: Catégories,
+			petrogaz: Petrogaz,
 		},
 		componentKeys = Object.keys(componentCorrespondence),
 		Component = componentCorrespondence[slideName]
