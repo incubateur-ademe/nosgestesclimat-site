@@ -12,6 +12,8 @@ import Stats from './Stats'
 import { answersURL } from './useDatabase'
 import { defaultThreshold } from './utils'
 import ContextConversation from './ContextConversation'
+import { useProfileData } from '../Profil'
+import NoTestMessage from './NoTestMessage'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -23,6 +25,9 @@ export default () => {
 
 	const { room } = useParams()
 	const cachedSurveyId = surveyIds[room]
+
+	const { hasData } = useProfileData()
+	const [hasDataState, setHasDataState] = useState(hasData)
 
 	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
 	const files = req.keys()
@@ -58,19 +63,25 @@ export default () => {
 				<img src={conferenceImg} />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
-			{existContext && (
-				<ContextConversation
-					survey={survey}
-					rules={rules}
-					surveyRule={surveyRule}
-					surveyContext={surveyContext}
-					setSurveyContext={setSurveyContext}
-				/>
-			)}
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
-				<Results room={survey.room} />
+				<div>
+					{existContext && (
+						<ContextConversation
+							survey={survey}
+							rules={rules}
+							surveyRule={surveyRule}
+							surveyContext={surveyContext}
+							setSurveyContext={setSurveyContext}
+						/>
+					)}
+					{!hasDataState ? (
+						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
+					) : (
+						<Results room={survey.room} />
+					)}
+				</div>
 			)}
 			{survey && (
 				<>
