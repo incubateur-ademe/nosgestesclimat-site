@@ -19,10 +19,16 @@ test en local . université:
         - nantes
         - rennes
         - lyon
+        - paris
+        - marseille
+        - bordeaux
 
 test en local . université . nantes:
 test en local . université . rennes:
 test en local . université . lyon:
+test en local . université . paris:
+test en local . université . marseille:
+test en local . université . bordeaux:
 
 test en local . statut:
   titre: Statut
