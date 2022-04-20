@@ -66,7 +66,12 @@ export default () => {
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
-				<div>
+				<div
+					css={`
+						display: flex;
+						flex-direction: column;
+					`}
+				>
 					{existContext && (
 						<ContextConversation
 							survey={survey}

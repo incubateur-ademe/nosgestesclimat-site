@@ -2,12 +2,10 @@ import Engine from 'publicodes'
 import { createContext, useState, useEffect, useContext } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import RuleInput from 'Components/conversation/RuleInput'
-import { setSimulationConfig } from 'Actions/actions'
 import { getNextQuestions } from 'Components/utils/useNextQuestion'
-import { situationSelector } from 'Selectors/simulationSelectors'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { updateSituation } from 'Actions/actions'
+import { splitName } from 'Components/publicodesUtils'
 
 const SituationContext = createContext({})
 
@@ -29,10 +27,6 @@ export default ({
 		situation,
 		engine
 	)
-
-	// const situationParent = useSelector(situationSelector)
-	// const dispatch = useDispatch()
-
 	return (
 		<div className="ui__ container" css={``}>
 			<SituationContext.Provider value={[situation, setSituation]}>
@@ -58,43 +52,19 @@ const Main = ({
 	setSurveyContext,
 }) => (
 	<main>
-		<p
+		<h2
 			css={`
-				display: flex;
-				align-items: center;
-				justify-content: space-evenly;
-				img {
-					font-size: 400%;
-				}
-				h1 {
-					margin-top: 1rem;
-					max-width: 80%;
-				}
+				margin-top: 1rem;
 			`}
 		>
-			{emoji('📝')}
-			<h1 css="">Contexte Sondage</h1>
-		</p>
+			{emoji('📝')}Contexte sondage
+		</h2>
 		{Object.keys(surveyContext).length !== 0 ? (
-			<details css="text-align: center">
-				<summary>Ma situation</summary>
-				<ul>
-					{Object.entries(situation).map(([k, v]) => (
-						<li>{`${k} : ${v?.nodeValue || v}`}</li>
-					))}
-				</ul>
-				<button
-					className="ui__ plain small button"
-					onClick={() => {
-						setSituation({})
-						setSurveyContext({})
-					}}
-				>
-					<span className="text">
-						<Trans>Modifier</Trans> →
-					</span>
-				</button>
-			</details>
+			<SituationDetails
+				setSurveyContext={setSurveyContext}
+				situation={situation}
+				setSituation={setSituation}
+			/>
 		) : (
 			<div>
 				<Questions
@@ -104,23 +74,18 @@ const Main = ({
 					setSituation={setSituation}
 				/>
 				<button
-					className="ui__ plain small button"
+					className="ui__ plain button"
 					disabled={!nextQuestions.every((names) => situation[names])}
 					onClick={() => {
 						setSurveyContext(situation)
-						// Object.entries(situation).map((e) => {
-						// 	// dispatch({
-						// 	// 	type: 'ADD_SURVEY_CONTEXT',
-						// 	// 	answers: survey.answers,
-						// 	// 	room: survey.room,
-						// 	// 	context: situation,
-						// 	// })
-						// 	dispatch(updateSituation(e[0], e[1]))
-						// })
 					}}
+					css={`
+						margin-bottom: 2rem;
+						float: right;
+					`}
 				>
 					<span className="text">
-						<Trans>Suivant</Trans> →
+						<Trans>Confirmer</Trans> ✔
 					</span>
 				</button>
 			</div>
@@ -145,64 +110,101 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 		<div
 			css={`
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
 				align-items: center;
 				flex-wrap: wrap;
-				> div {
-					margin-top: 1rem;
+				justify-content: space-evenly;
+				@media (max-width: 800px) {
+					flex-direction: column;
+					align-items: start;
+				}
+				margin: 1rem 0;
+				.step.input {
+					max-width: 12rem;
+				}
+				.step label {
+					padding: 0.2rem 0.6rem 0.2rem 0.4rem;
 				}
 			`}
 		>
-			<div
-				css={`
-					margin: 1rem 0;
-					.step.input {
-						max-width: 12rem;
-					}
-					.step label {
-						padding: 0.2rem 0.6rem 0.2rem 0.4rem;
-					}
-				`}
-			>
-				{questions.map((dottedName) => {
-					const { question, icônes } = engine.getRule(dottedName).rawNode
-					return (
-						<div
-							css={`
-								display: flex;
-								justify-content: start;
-								align-items: center;
+			{questions.map((dottedName) => {
+				const { question, icônes } = engine.getRule(dottedName).rawNode
+				return (
+					<div
+						css={`
+							display: flex;
+							justify-content: start;
+							align-items: center;
+							img {
+								font-size: 300%;
+								margin-right: 1rem;
+							}
+							@media (max-width: 800px) {
 								img {
-									font-size: 300%;
-									margin-right: 1rem;
+									font-size: 200%;
+									margin-right: 0.4rem;
 								}
-								@media (max-width: 800px) {
-									img {
-										font-size: 200%;
-										margin-right: 0.4rem;
-									}
-								}
-								p {
-									max-width: 20rem;
-								}
-							`}
-						>
-							<label>
-								<p>{question}</p>
-								<RuleInput
-									{...{
-										engine,
-										dottedName,
-										onChange: onChange(dottedName),
-										onSubmit,
-										noSuggestions: false,
-									}}
-								/>
-							</label>
-						</div>
-					)
-				})}
-			</div>
+							}
+							p {
+								max-width: 20rem;
+							}
+						`}
+					>
+						<label>
+							<p>{question}</p>
+							<RuleInput
+								{...{
+									engine,
+									dottedName,
+									onChange: onChange(dottedName),
+									onSubmit,
+									noSuggestions: false,
+								}}
+							/>
+						</label>
+					</div>
+				)
+			})}
 		</div>
+	)
+}
+
+const SituationDetails = ({ setSurveyContext, situation, setSituation }) => {
+	return (
+		<details
+			className="ui__ card plain"
+			css={`
+				margin-bottom: 2rem;
+				width: 100%;
+				opacity: 0.9;
+			`}
+		>
+			<summary>Mon profil</summary>
+			<ul css="text-transform: capitalize">
+				{Object.entries(situation).map(([k, v]) => (
+					<li>{`${splitName(k)[1]} : ${
+						v?.nodeValue || v?.replaceAll("'", '')
+					}`}</li>
+				))}
+			</ul>
+			<div css="text-align: center">
+				<button
+					className="ui__ simple small button"
+					css={`
+						margin-bottom: 1rem;
+						background: white !important;
+						padding: 0.5rem !important;
+					`}
+					onClick={() => {
+						setSituation({})
+						setSurveyContext({})
+					}}
+				>
+					<span className="text">
+						<Trans>Modifier</Trans> →
+					</span>
+				</button>
+			</div>
+		</details>
 	)
 }
