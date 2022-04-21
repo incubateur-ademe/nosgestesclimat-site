@@ -7,13 +7,11 @@ universités 2022:
     une de ces conditions:
       - université = '"non"'
       - statut = '"non"'
-  description: |
-    A compléter
   formule: 0
 
 universités 2022 . université:
   titre: Université
-  question: Quelle université ?
+  question: De quelle université faites-vous partie ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -21,14 +19,20 @@ universités 2022 . université:
         - nantes
         - rennes
         - lyon
-  par défaut: nantes
+        - paris
+        - marseille
+        - bordeaux
 
 universités 2022 . université . nantes:
 universités 2022 . université . rennes:
 universités 2022 . université . lyon:
+universités 2022 . université . paris:
+universités 2022 . université . marseille:
+universités 2022 . université . bordeaux:
+
 universités 2022 . statut:
   titre: Statut
-  question: Quel statut ?
+  question: Quel est votre statut ?
   formule:
     une possibilité:
       choix obligatoire: oui
@@ -36,7 +40,6 @@ universités 2022 . statut:
         - étudiant
         - enseignant chercheur
         - personnel de l'université
-  par défaut: étudiant
 
 universités 2022 . statut . étudiant:
 universités 2022 . statut . enseignant chercheur:
