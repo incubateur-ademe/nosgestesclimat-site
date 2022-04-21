@@ -52,8 +52,8 @@ export default ({ newRoom, setNewRoom }) => {
 			)}
 			{newRoom && showInvalidMessage && (
 				<p>
-					⚠️ Votre nom de salle ne peut pas contenir les caractères suivants :{' '}
-					{specialCharaters.toString()}
+					💡 Votre nom de salle ne peut que contenir des lettres, des chifffres
+					et des tirets
 				</p>
 			)}
 		</>
