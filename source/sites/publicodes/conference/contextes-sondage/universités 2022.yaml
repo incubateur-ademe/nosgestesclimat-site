@@ -1,4 +1,4 @@
-sondage universités 2022:
+universités 2022:
   titre: Universités 2022
   icônes: 📝
   couleur: '#87E5F4'
@@ -11,7 +11,7 @@ sondage universités 2022:
     A compléter
   formule: 0
 
-sondage universités 2022 . université:
+universités 2022 . université:
   titre: Université
   question: Quelle université ?
   formule:
@@ -23,10 +23,10 @@ sondage universités 2022 . université:
         - lyon
   par défaut: nantes
 
-sondage universités 2022 . université . nantes:
-sondage universités 2022 . université . rennes:
-sondage universités 2022 . université . lyon:
-sondage universités 2022 . statut:
+universités 2022 . université . nantes:
+universités 2022 . université . rennes:
+universités 2022 . université . lyon:
+universités 2022 . statut:
   titre: Statut
   question: Quel statut ?
   formule:
@@ -38,6 +38,6 @@ sondage universités 2022 . statut:
         - personnel de l'université
   par défaut: étudiant
 
-sondage universités 2022 . statut . étudiant:
-sondage universités 2022 . statut . enseignant chercheur:
-sondage universités 2022 . statut . personnel de l'université:
+universités 2022 . statut . étudiant:
+universités 2022 . statut . enseignant chercheur:
+universités 2022 . statut . personnel de l'université:
