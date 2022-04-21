@@ -42,7 +42,7 @@ export default () => {
 
 	const cachedSurveyId = surveyIds[survey.room]
 
-	const [surveyContext] = usePersistingState('surveyContext')
+	const [surveyContext] = usePersistingState('surveyContext', {})
 
 	const context = Object.keys(surveyContext).reduce(
 		(acc, key) => ({
@@ -58,8 +58,6 @@ export default () => {
 		byCategory,
 		context,
 	}
-
-	console.log(data)
 
 	useEffect(() => {
 		if (!survey || !survey.room) return null
