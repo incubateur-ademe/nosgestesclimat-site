@@ -1,14 +1,13 @@
+import { resetSimulation } from 'Actions/actions'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { setDifferentSituation } from '../../actions/actions'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
+import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import { CardGrid } from './ListeActionPlus'
-import personas from './personas.yaml'
-import personaSteps from './personaSteps.yaml'
 
 export default ({}) => {
 	const persona = useSelector((state) => state.simulation?.persona)
@@ -63,10 +62,27 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 	const persona = useSelector((state) => state.simulation?.persona)
 	const situation = useSelector(situationSelector)
 
+	const rules = useSelector((state) => state.rules)
+
+	const personasRules = Object.entries(rules)
+		.filter(([dottedName]) => dottedName.includes('personas'))
+		.map((arr) => {
+			return arr[1]
+		})
+
 	const [warning, setWarning] = useState(false)
 
+	const engine = useEngine()
+
 	const setPersona = (persona) => {
+		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
 		const { nom, icônes, data, description } = persona
+		const missingVariables = engine.evaluate(objectif).missingVariables ?? {}
+		const defaultMissingVariables = Object.entries(missingVariables).map(
+			(arr) => {
+				return arr[0]
+			}
+		)
 		dispatch(
 			setDifferentSituation({
 				config: { objectifs: [objectif] },
@@ -74,7 +90,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 				// the schema of peronas is not fixed yet
 				situation: data.situation || data,
 				persona: nom,
-				foldedSteps: data.foldedSteps || personaSteps, // If not specified, act as if all questions were answered : all that is not in the situation object is a validated default value
+				foldedSteps: data.foldedSteps || defaultMissingVariables, // If not specified, act as if all questions were answered : all that is not in the situation object is a validated default value
 			})
 		)
 	}
@@ -92,6 +108,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 						<button
 							className="ui__ button simple"
 							onClick={() => {
+								dispatch(resetSimulation())
 								setPersona(warning)
 								setWarning(false)
 							}}
@@ -111,7 +128,7 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 
 	return (
 		<CardGrid css="padding: 0; justify-content: center">
-			{personas.map((persona) => {
+			{personasRules.map((persona) => {
 				const { nom, icônes, data, description, résumé } = persona
 				return (
 					<li key={nom}>
