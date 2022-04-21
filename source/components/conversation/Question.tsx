@@ -102,6 +102,7 @@ export default function Question({
 		// [parent object path]: dotted fieldName relative to parent
 		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
+
 		return (
 			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
 				{choices.canGiveUp && (
@@ -159,6 +160,10 @@ export default function Question({
 								name="toDefine"
 								className="ui__"
 								onChange={(e) => handleChange(e.target.value)}
+								css={`
+									font-size: 110% !important;
+									padding: 0.6rem 1.2rem !important;
+								`}
 							>
 								<option value="">Choisissez une option</option>
 								{choices.children.map((node) => (

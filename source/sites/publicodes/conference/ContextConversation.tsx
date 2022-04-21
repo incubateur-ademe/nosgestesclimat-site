@@ -81,6 +81,7 @@ const Main = ({
 					}}
 					css={`
 						margin-bottom: 2rem;
+						margin-right: 1rem;
 						float: right;
 					`}
 				>
@@ -111,19 +112,15 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 			css={`
 				display: flex;
 				flex-direction: row;
-				align-items: center;
+				align-items: flex-start
 				flex-wrap: wrap;
 				justify-content: space-evenly;
 				@media (max-width: 800px) {
 					flex-direction: column;
-					align-items: start;
 				}
 				margin: 1rem 0;
 				.step.input {
 					max-width: 12rem;
-				}
-				.step label {
-					padding: 0.2rem 0.6rem 0.2rem 0.4rem;
 				}
 			`}
 		>
@@ -134,7 +131,8 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 						css={`
 							display: flex;
 							justify-content: start;
-							align-items: center;
+							align-items: flex-start;
+							margin: 0 0.25rem 0rem 0.25rem;
 							img {
 								font-size: 300%;
 								margin-right: 1rem;
