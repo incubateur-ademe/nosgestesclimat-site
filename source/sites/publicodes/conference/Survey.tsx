@@ -32,7 +32,7 @@ export default () => {
 	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
 	const files = req.keys()
 	const surveyRule = room
-	const contextFile = `./${surveyRule}.yaml`
+	const contextFile = `./${surveyRule}.yaml` //context file and rule parent have to be the same
 	const existContext = files.includes(contextFile) //here we check if a context file exist for the survey
 
 	const rules = existContext && req(contextFile)
