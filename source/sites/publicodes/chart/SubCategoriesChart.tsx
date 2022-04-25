@@ -28,6 +28,7 @@ export default ({ color: uniqueColor, categories }) => {
 					{categories.map(({ nodeValue, title, icons, color }) => (
 						<SubCategoryBar
 							{...{
+								key: title,
 								nodeValue,
 								title,
 								icons,
@@ -39,6 +40,7 @@ export default ({ color: uniqueColor, categories }) => {
 					))}
 					<li
 						title={'Le reste : ' + rest.labels.join(', ')}
+						key="rest"
 						css={`
 							width: ${restWidth}%;
 							${uniqueColor ? `background: ${uniqueColor}` : 'background:grey'};

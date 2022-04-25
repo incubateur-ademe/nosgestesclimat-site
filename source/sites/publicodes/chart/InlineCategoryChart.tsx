@@ -33,6 +33,7 @@ export default ({}) => {
 			)
 
 	const nextQuestions = useNextQuestions()
+
 	const completedCategories = categories
 		.filter(
 			({ dottedName }) =>
@@ -42,11 +43,6 @@ export default ({}) => {
 
 	if (!categories) return null
 
-	const empreinteMaximum = categories.reduce(
-		(memo, next) => (memo.nodeValue > next.nodeValue ? memo : next),
-		-1
-	).nodeValue
-
 	return (
 		<div
 			css={`
@@ -55,9 +51,6 @@ export default ({}) => {
 		>
 			<SubCategoriesChart
 				{...{
-					rules,
-					engine,
-
 					categories: categories,
 				}}
 			/>

@@ -10,6 +10,7 @@ export default ({
 	color,
 	title,
 	hideSmallerThanPercentage,
+	key,
 }) => {
 	const [clicked, click] = useState(false)
 	const percent = (nodeValue / total) * 100
@@ -22,7 +23,7 @@ export default ({
 			animate={{ opacity: 1, width: `calc(${percent}% - 0px)` }}
 			exit={{ width: 0, opacity: 0 }}
 			transition={{ duration: 0.5 }}
-			key={title}
+			key={key}
 			css={`
 				border-right: 2px solid var(--lighterColor);
 				background: ${color};
