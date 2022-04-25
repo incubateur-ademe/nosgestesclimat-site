@@ -14,6 +14,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import SubCategoriesChart, { InlineBarChart } from './SubCategoriesChart'
 import { AnimatePresence } from 'framer-motion'
 import SubCategoryBar from './SubCategoryBar'
+import CategoryVisualisation from '../CategoryVisualisation'
 
 export default ({}) => {
 	// needed for this component to refresh on situation change :
@@ -49,6 +50,15 @@ export default ({}) => {
 				margin: 1rem 0;
 			`}
 		>
+			<div
+				css={`
+					margin-bottom: 1rem;
+				`}
+			>
+				{questionCategory && (
+					<CategoryVisualisation questionCategory={questionCategory} />
+				)}
+			</div>
 			<SubCategoriesChart
 				{...{
 					categories: categories,
