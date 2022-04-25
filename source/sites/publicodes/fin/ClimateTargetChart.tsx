@@ -195,7 +195,7 @@ export default ({ details, color, noText, value, score }) => {
 					{emoji('🎯')}
 				</div>
 			</div>
-			<div css="height: .3rem; background: black; width: 80%; position: absolute; bottom: 0" />
+			<div css="height: .3rem; background: black; width: 80%; position: absolute; bottom: 0; z-index: 10" />
 		</section>
 	)
 }
