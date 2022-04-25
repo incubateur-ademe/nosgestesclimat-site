@@ -13,6 +13,7 @@ import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
 import { ActionButton, IntegratorActionButton } from './Buttons'
 import ClimateTargetChart from './ClimateTargetChart'
+import FinShareButton from './FinShareButton'
 const { encodeRuleName } = utils
 const gradient = tinygradient([
 		'#78e08f',
@@ -103,15 +104,8 @@ export default ({ score, details, headlessMode }) => {
 						score={score}
 					/>
 				</div>
-				<div css="display: flex; flex-direction: column; margin: .2rem 0">
-					<ShareButton
-						text="Voilà mon empreinte 🌍️climat. Mesure la tienne !"
-						url={window.location}
-						title={'Nos Gestes Climat'}
-						color={textColor}
-						label="Partager mes résultats"
-					/>
-				</div>
+
+				<FinShareButton textColor={textColor} />
 				<ActionButton text="Passer à l'action" score={score} />
 
 				{integratorActionText && integratorActionUrl && (
