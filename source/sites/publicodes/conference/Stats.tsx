@@ -149,7 +149,9 @@ export default ({
 					<small key="legendRight">{max}</small>
 				</div>
 			</div>
-			<CategoryStats {...{ categories, maxCategory, spotlight }} />
+			<CategoryStats
+				{...{ categories, maxCategory, spotlight, setSpotlight }}
+			/>
 
 			<div>
 				{spotlight === currentUser ? (
