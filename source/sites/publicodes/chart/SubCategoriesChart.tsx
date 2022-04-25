@@ -10,12 +10,16 @@ export default ({ color: uniqueColor, categories }) => {
 	const rest = categories
 			.filter((el) => el.nodeValue)
 			.reduce(
-				(memo, { nodeValue, title, icons }) =>
-					nodeValue < 0.1 * total ? memo + nodeValue : memo,
-				0
+				(memo, { nodeValue, title, icons }) => {
+					const tooSmall = nodeValue < 0.1 * total
+					return {
+						value: tooSmall ? memo.value + nodeValue : memo.value,
+						labels: tooSmall ? [...memo.labels, title] : memo.labels,
+					}
+				},
+				{ value: 0, labels: [] }
 			),
-		restWidth = (rest / total) * 100
-	console.log(total, categories, rest)
+		restWidth = (rest.value / total) * 100
 
 	return (
 		<div>
@@ -34,7 +38,7 @@ export default ({ color: uniqueColor, categories }) => {
 						/>
 					))}
 					<li
-						title={'Le reste'}
+						title={'Le reste : ' + rest.labels.join(', ')}
 						css={`
 							width: ${restWidth}%;
 							${uniqueColor ? `background: ${uniqueColor}` : 'background:grey'};
