@@ -1,4 +1,3 @@
-import { extractCategories } from 'Components/publicodesUtils'
 import { AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 import SubCategoryBar from './SubCategoryBar'
@@ -6,16 +5,8 @@ import SubCategoryBar from './SubCategoryBar'
 const shadowStyle =
 	'box-shadow: 0px 2px 4px -1px var(--lighterColor), 0px 4px 5px 0px var(--lighterColor), 0px 1px 10px 0px var(--lighterColor)'
 
-export default ({ rules, engine, sumToDisplay, color, total }) => {
-	const subCategories = extractCategories(
-		rules,
-		engine,
-		null,
-		sumToDisplay,
-		false
-	)
-
-	const rest = subCategories.reduce(
+export default ({ color: uniqueColor, total, categories }) => {
+	const rest = categories.reduce(
 			(memo, { nodeValue, title, icons }) =>
 				nodeValue < 0.1 * total ? memo + nodeValue : memo,
 			0
@@ -26,13 +17,22 @@ export default ({ rules, engine, sumToDisplay, color, total }) => {
 		<div>
 			<InlineBarChart>
 				<AnimatePresence>
-					{subCategories.map(({ nodeValue, title, icons }) => (
-						<SubCategoryBar {...{ nodeValue, title, icons, total, color }} />
+					{categories.map(({ nodeValue, title, icons, color }) => (
+						<SubCategoryBar
+							{...{
+								nodeValue,
+								title,
+								icons,
+								total,
+								color: uniqueColor || color,
+								hideSmallerThanPercentage: 10,
+							}}
+						/>
 					))}
 					<li
 						css={`
 							width: ${restWidth}%;
-							background: ${color};
+							${uniqueColor ? `background: ${uniqueColor}` : 'background:grey'};
 							font-size: 200%;
 							color: white;
 							line-height: 0.3rem !important;

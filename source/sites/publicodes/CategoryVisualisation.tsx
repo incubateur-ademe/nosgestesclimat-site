@@ -1,7 +1,10 @@
 import emoji from 'react-easy-emoji'
 import SubCategoriesChart from './chart/SubCategoriesChart'
 import { CategoryLabel } from 'Components/conversation/UI'
-import { ruleFormula } from '../../components/publicodesUtils'
+import {
+	extractCategories,
+	ruleFormula,
+} from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
 import { useSelector } from 'react-redux'
 
@@ -24,6 +27,14 @@ export default ({ questionCategory }) => {
 			: null
 
 	if (!sumToDisplay) return null
+
+	const subCategories = extractCategories(
+		rules,
+		engine,
+		null,
+		sumToDisplay,
+		false
+	)
 
 	return (
 		<div
@@ -55,6 +66,7 @@ export default ({ questionCategory }) => {
 							engine,
 							sumToDisplay,
 							total,
+							categories: subCategories,
 						}}
 					/>
 				</div>

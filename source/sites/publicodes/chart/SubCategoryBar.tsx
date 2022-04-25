@@ -3,15 +3,23 @@ import { useState } from 'react'
 import CircledEmojis from 'Components/CircledEmojis'
 import { findContrastedTextColor } from 'Components/utils/colors'
 
-export default ({ nodeValue, total, icons, color, title }) => {
+export default ({
+	nodeValue,
+	total,
+	icons,
+	color,
+	title,
+	hideSmallerThanPercentage,
+}) => {
 	const [clicked, click] = useState(false)
 	const percent = (nodeValue / total) * 100
-	if (percent < 10) return null // will be unreadable
+	if (hideSmallerThanPercentage && percent < hideSmallerThanPercentage)
+		return null // will be unreadable
 
 	return (
 		<motion.li
 			initial={{ opacity: 0 }}
-			animate={{ opacity: 1, width: `calc(${percent}% - 2px)` }}
+			animate={{ opacity: 1, width: `calc(${percent}% - 0px)` }}
 			exit={{ width: 0, opacity: 0 }}
 			transition={{ duration: 0.5 }}
 			key={title}

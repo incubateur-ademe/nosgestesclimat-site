@@ -52,28 +52,17 @@ export default ({}) => {
 	return (
 		<div
 			css={`
-				display: flex;
-				align-items: center;
-				justify-content: flex-start;
-				flex-wrap: wrap;
+				margin: 1rem 0;
 			`}
 		>
-			<div
-				css={`
-					width: 75%;
-					@media (max-width: 800px) {
-						width: 100%;
-					}
-				`}
-			>
-				<InlineBarChart>
-					<AnimatePresence>
-						{categories.map(({ nodeValue, title, icons, color }) => (
-							<SubCategoryBar {...{ nodeValue, title, icons, total, color }} />
-						))}
-					</AnimatePresence>
-				</InlineBarChart>
-			</div>
+			<SubCategoriesChart
+				{...{
+					rules,
+					engine,
+					total,
+					categories: categories,
+				}}
+			/>
 		</div>
 	)
 }
