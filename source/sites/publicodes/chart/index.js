@@ -80,6 +80,7 @@ export default ({
 			)}
 			<div
 				css={`
+					margin-top: 1rem;
 					position: relative;
 				`}
 			>
