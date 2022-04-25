@@ -65,6 +65,7 @@ export default ({}) => {
 					delay: 0.6,
 					indicator: true,
 					questionCategory,
+					filterSimulationOnClick: true,
 				}}
 			/>
 		</div>

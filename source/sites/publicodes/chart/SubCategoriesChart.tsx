@@ -11,6 +11,7 @@ export default ({
 	delay,
 	indicator,
 	questionCategory,
+	filterSimulationOnClick,
 }) => {
 	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
 	const rest = categories
@@ -27,8 +28,6 @@ export default ({
 			),
 		restWidth = (rest.value / total) * 100
 
-	console.log(indicator, questionCategory)
-
 	return (
 		<div>
 			<InlineBarChart>
@@ -38,12 +37,14 @@ export default ({
 							{...{
 								key: title,
 								nodeValue,
+								dottedName,
 								title,
 								icons,
 								total,
 								color: uniqueColor || color,
 								hideSmallerThanPercentage: 10,
 								delay,
+								filterSimulationOnClick,
 								indicator:
 									indicator &&
 									questionCategory &&

@@ -3,6 +3,7 @@ import { useState } from 'react'
 import CircledEmojis from 'Components/CircledEmojis'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import TriangleShape from './TriangleShape'
+import { useHistory, useLocation } from 'react-router'
 
 export default ({
 	nodeValue,
@@ -14,7 +15,11 @@ export default ({
 	key,
 	delay = 0,
 	indicator,
+	filterSimulationOnClick,
+	dottedName,
 }) => {
+	const { pathname } = useLocation(),
+		history = useHistory()
 	const [clicked, click] = useState(false)
 	const percent = (nodeValue / total) * 100
 	if (hideSmallerThanPercentage && percent < hideSmallerThanPercentage)
@@ -34,7 +39,14 @@ export default ({
 				position: relative;
 			`}
 			title={title}
-			onClick={() => click(!clicked)}
+			onClick={() =>
+				filterSimulationOnClick
+					? history.push({
+							pathname,
+							search: '?catégorie=' + dottedName,
+					  })
+					: click(!clicked)
+			}
 		>
 			{indicator && (
 				<div
