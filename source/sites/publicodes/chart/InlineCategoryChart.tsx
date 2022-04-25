@@ -63,6 +63,8 @@ export default ({}) => {
 				{...{
 					categories: categories,
 					delay: 0.6,
+					indicator: true,
+					questionCategory,
 				}}
 			/>
 		</div>

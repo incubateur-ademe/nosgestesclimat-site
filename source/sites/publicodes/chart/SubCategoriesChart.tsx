@@ -5,7 +5,13 @@ import SubCategoryBar from './SubCategoryBar'
 const shadowStyle =
 	'box-shadow: 0px 2px 4px -1px var(--lighterColor), 0px 4px 5px 0px var(--lighterColor), 0px 1px 10px 0px var(--lighterColor)'
 
-export default ({ color: uniqueColor, categories, delay }) => {
+export default ({
+	color: uniqueColor,
+	categories,
+	delay,
+	indicator,
+	questionCategory,
+}) => {
 	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
 	const rest = categories
 			.filter((el) => el.nodeValue)
@@ -21,11 +27,13 @@ export default ({ color: uniqueColor, categories, delay }) => {
 			),
 		restWidth = (rest.value / total) * 100
 
+	console.log(indicator, questionCategory)
+
 	return (
 		<div>
 			<InlineBarChart>
 				<AnimatePresence>
-					{categories.map(({ nodeValue, title, icons, color }) => (
+					{categories.map(({ nodeValue, title, icons, color, dottedName }) => (
 						<SubCategoryBar
 							{...{
 								key: title,
@@ -36,10 +44,13 @@ export default ({ color: uniqueColor, categories, delay }) => {
 								color: uniqueColor || color,
 								hideSmallerThanPercentage: 10,
 								delay,
+								indicator:
+									indicator &&
+									questionCategory &&
+									questionCategory.dottedName === dottedName,
 							}}
 						/>
 					))}
-
 					<motion.li
 						initial={{ opacity: 0 }}
 						animate={{ opacity: 1, width: `${restWidth}%` }}
@@ -48,9 +59,10 @@ export default ({ color: uniqueColor, categories, delay }) => {
 						title={'Le reste : ' + rest.labels.join(', ')}
 						key="rest"
 						css={`
-							${uniqueColor ? `background: ${uniqueColor}` : 'background:grey'};
+							${uniqueColor
+								? `background: ${uniqueColor}; color: white`
+								: `background:white; color: #666`};
 							font-size: 200%;
-							color: white;
 							div {
 								height: 100%;
 								line-height: 0.2rem;
