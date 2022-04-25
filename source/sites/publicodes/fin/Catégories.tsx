@@ -81,7 +81,7 @@ export default ({ score, details, headlessMode }) => {
 						<Chart
 							noAnimation
 							details={details}
-							links
+							linkTo="documentation"
 							color={textColor}
 							noText
 							noCompletion

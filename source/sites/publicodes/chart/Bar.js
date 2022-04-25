@@ -15,24 +15,7 @@ export default ({
 	noText,
 	valueColor,
 	demoMode,
-	dottedName,
 }) => {
-	const { pathname } = useLocation(),
-		history = useHistory(),
-		query = useQuery()
-
-	const emojiComponent = (
-		<span
-			css={`
-				font-size: 140%;
-				width: 2.3rem;
-				margin-left: -2.3rem;
-			`}
-		>
-			{emoji(icons)}
-		</span>
-	)
-
 	return (
 		<>
 			<div
@@ -44,23 +27,15 @@ export default ({
 				`}
 				title={title}
 			>
-				{pathname.includes('simulateur/bilan') ? (
-					<div
-						title={dottedName}
-						css={`
-							margin: 0;
-							padding: 0;
-							font-size: 100%;
-						`}
-						onClick={() =>
-							history.push({ pathname, search: '?catégorie=' + dottedName })
-						}
-					>
-						{emojiComponent}
-					</div>
-				) : (
-					emojiComponent
-				)}
+				<span
+					css={`
+						font-size: 140%;
+						width: 2.3rem;
+						margin-left: -2.3rem;
+					`}
+				>
+					{emoji(icons)}
+				</span>
 				<span class="visually-hidden">{title}</span>
 				<BarContent
 					noText={noText}

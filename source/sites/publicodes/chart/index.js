@@ -4,6 +4,7 @@ import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import {
 	objectifsSelector,
@@ -24,7 +25,7 @@ export default ({
 	noText,
 	noCompletion,
 	valueColor,
-	links,
+	linkTo,
 	demoMode,
 	noAnimation,
 }) => {
@@ -39,6 +40,8 @@ export default ({
 			abbreviation: rules[category.dottedName].abbréviation,
 		})
 	)
+	const { pathname } = useLocation(),
+		history = useHistory()
 	const currentQuestion = useSelector(currentQuestionSelector),
 		questionCategory =
 			currentQuestion &&
@@ -110,15 +113,35 @@ export default ({
 								layout
 								key={category.title}
 							>
-								{links ? (
-									<Link
-										to={
-											'/documentation/' +
-											utils.encodeRuleName(category.documentationDottedName)
-										}
-									>
-										{bar}
-									</Link>
+								{!demoMode ? (
+									linkTo === 'documentation' ? (
+										<Link
+											to={
+												'/documentation/' +
+												utils.encodeRuleName(category.documentationDottedName)
+											}
+										>
+											{bar}
+										</Link>
+									) : (
+										<div
+											type="button"
+											css={`
+												cursor: pointer;
+											`}
+											title={
+												`N'afficher que les questions ` + category.dottedName
+											}
+											onClick={() =>
+												history.push({
+													pathname,
+													search: '?catégorie=' + category.dottedName,
+												})
+											}
+										>
+											{bar}
+										</div>
+									)
 								) : (
 									bar
 								)}
