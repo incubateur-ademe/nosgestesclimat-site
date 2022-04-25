@@ -127,3 +127,5 @@ export const safeGetRule = (engine, dottedName) => {
 		console.log(e)
 	}
 }
+
+export const questionCategoryName = (dottedName) => splitName(dottedName)[0]

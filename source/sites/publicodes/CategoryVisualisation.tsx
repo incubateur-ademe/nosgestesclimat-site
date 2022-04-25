@@ -1,5 +1,5 @@
 import emoji from 'react-easy-emoji'
-import SubCategoriesChart from './SubCategoriesChart'
+import SubCategoriesChart from './chart/SubCategoriesChart'
 import { CategoryLabel } from 'Components/conversation/UI'
 import { ruleFormula } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'

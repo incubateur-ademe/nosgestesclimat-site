@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import CircledEmojis from '../../components/CircledEmojis'
-import { findContrastedTextColor } from '../../components/utils/colors'
+import CircledEmojis from 'Components/CircledEmojis'
+import { findContrastedTextColor } from 'Components/utils/colors'
 
 export default ({ nodeValue, total, icons, color, title }) => {
 	const [clicked, click] = useState(false)

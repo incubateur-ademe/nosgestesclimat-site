@@ -1,8 +1,10 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
-import { shadowStyle } from './styles'
 import SubCategoryBar from './SubCategoryBar'
+
+const shadowStyle =
+	'box-shadow: 0px 2px 4px -1px var(--lighterColor), 0px 4px 5px 0px var(--lighterColor), 0px 1px 10px 0px var(--lighterColor)'
 
 export default ({ rules, engine, sumToDisplay, color, total }) => {
 	const subCategories = extractCategories(
@@ -44,7 +46,7 @@ export default ({ rules, engine, sumToDisplay, color, total }) => {
 	)
 }
 
-const InlineBarChart = styled.ul`
+export const InlineBarChart = styled.ul`
 	width: 100%;
 	border-radius: 0.4rem;
 	padding-left: 0;

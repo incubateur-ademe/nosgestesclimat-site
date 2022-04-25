@@ -10,7 +10,13 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import {
+	questionCategoryName,
+	splitName,
+} from '../../../components/publicodesUtils'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
+import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
+import CategoryVisualisation from '../CategoryVisualisation'
 import Bar from './Bar'
 
 export default ({
@@ -33,6 +39,12 @@ export default ({
 			abbreviation: rules[category.dottedName].abbréviation,
 		})
 	)
+	const currentQuestion = useSelector(currentQuestionSelector),
+		questionCategory =
+			currentQuestion &&
+			categories.find(
+				({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
+			)
 
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
@@ -60,6 +72,9 @@ export default ({
 				margin: 1rem 0;
 			`}
 		>
+			{questionCategory && (
+				<CategoryVisualisation questionCategory={questionCategory} />
+			)}
 			<div
 				css={`
 					position: relative;
