@@ -62,6 +62,7 @@ export default ({}) => {
 			<SubCategoriesChart
 				{...{
 					categories: categories,
+					delay: 0.6,
 				}}
 			/>
 		</div>
