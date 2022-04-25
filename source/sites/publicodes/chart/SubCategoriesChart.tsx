@@ -1,4 +1,4 @@
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import styled from 'styled-components'
 import SubCategoryBar from './SubCategoryBar'
 
@@ -39,11 +39,15 @@ export default ({ color: uniqueColor, categories, delay }) => {
 							}}
 						/>
 					))}
-					<li
+
+					<motion.li
+						initial={{ opacity: 0 }}
+						animate={{ opacity: 1, width: `${restWidth}%` }}
+						exit={{ width: 0, opacity: 0 }}
+						transition={{ duration: 0.5, delay }}
 						title={'Le reste : ' + rest.labels.join(', ')}
 						key="rest"
 						css={`
-							width: ${restWidth}%;
 							${uniqueColor ? `background: ${uniqueColor}` : 'background:grey'};
 							font-size: 200%;
 							color: white;
@@ -54,7 +58,7 @@ export default ({ color: uniqueColor, categories, delay }) => {
 						`}
 					>
 						<div>...</div>
-					</li>
+					</motion.li>
 				</AnimatePresence>
 			</InlineBarChart>
 		</div>
