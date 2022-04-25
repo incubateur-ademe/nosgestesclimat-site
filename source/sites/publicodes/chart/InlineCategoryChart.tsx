@@ -47,8 +47,6 @@ export default ({}) => {
 		-1
 	).nodeValue
 
-	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
-
 	return (
 		<div
 			css={`
@@ -59,7 +57,7 @@ export default ({}) => {
 				{...{
 					rules,
 					engine,
-					total,
+
 					categories: categories,
 				}}
 			/>

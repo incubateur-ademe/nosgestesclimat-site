@@ -5,13 +5,17 @@ import SubCategoryBar from './SubCategoryBar'
 const shadowStyle =
 	'box-shadow: 0px 2px 4px -1px var(--lighterColor), 0px 4px 5px 0px var(--lighterColor), 0px 1px 10px 0px var(--lighterColor)'
 
-export default ({ color: uniqueColor, total, categories }) => {
-	const rest = categories.reduce(
-			(memo, { nodeValue, title, icons }) =>
-				nodeValue < 0.1 * total ? memo + nodeValue : memo,
-			0
-		),
+export default ({ color: uniqueColor, categories }) => {
+	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
+	const rest = categories
+			.filter((el) => el.nodeValue)
+			.reduce(
+				(memo, { nodeValue, title, icons }) =>
+					nodeValue < 0.1 * total ? memo + nodeValue : memo,
+				0
+			),
 		restWidth = (rest / total) * 100
+	console.log(total, categories, rest)
 
 	return (
 		<div>
@@ -30,15 +34,19 @@ export default ({ color: uniqueColor, total, categories }) => {
 						/>
 					))}
 					<li
+						title={'Le reste'}
 						css={`
 							width: ${restWidth}%;
 							${uniqueColor ? `background: ${uniqueColor}` : 'background:grey'};
 							font-size: 200%;
 							color: white;
-							line-height: 0.3rem !important;
+							div {
+								height: 100%;
+								line-height: 0.2rem;
+							}
 						`}
 					>
-						{restWidth > 7 ? '...' : ''}
+						<div>...</div>
 					</li>
 				</AnimatePresence>
 			</InlineBarChart>
