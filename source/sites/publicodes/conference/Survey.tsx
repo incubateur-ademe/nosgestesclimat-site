@@ -9,7 +9,7 @@ import { ConferenceTitle } from './Conference'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
 import Stats from './Stats'
-import { answersURL } from './useDatabase'
+import { answersURL, surveysURL } from './useDatabase'
 import { defaultThreshold } from './utils'
 import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
@@ -29,25 +29,39 @@ export default () => {
 	const { hasData } = useProfileData()
 	const [hasDataState, setHasDataState] = useState(hasData)
 
-	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
-	const files = req.keys()
-	const surveyRule = room
-	const contextFile = `./${surveyRule}.yaml` //context file and rule parent have to be the same
-	const existContext = files.includes(contextFile) //here we check if a context file exist for the survey
-
-	const rules = existContext && req(contextFile)
-
 	useEffect(() => {
 		if (cachedSurveyId) dispatch({ type: 'SET_SURVEY', room })
 	}, [cachedSurveyId])
+
+	useEffect(() => {
+		fetch(surveysURL + room)
+			.then((response) => response.json())
+			.then((json) => json ?? json[0].contextFile)
+			.then((contextFile) =>
+				dispatch({ type: 'ADD_SURVEY_CONTEXT', contextFile })
+			)
+			.catch((error) => console.log('error:', error))
+	}, [surveysURL])
+
+	const survey = useSelector((state) => state.survey)
+
+	console.log(survey)
+
+	// const existContext = !(survey['contextFile'] == null)
+	const existContext = false
+	// console.log(existContext)
+
+	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
+	// const surveyRule = survey['contextFile']
+	const contextFileURL = `./test-en-local.yaml` //context file and rule parent have to be the same
+
+	const rules = existContext && req(contextFileURL)
 
 	useEffect(() => {
 		if (!existContext) {
 			return setSurveyContext({}) //Context empty if no context exists
 		}
 	}, [existContext])
-
-	const survey = useSelector((state) => state.survey)
 	const history = useHistory()
 
 	if (!room || room === '') {
