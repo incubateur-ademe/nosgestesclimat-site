@@ -8,7 +8,7 @@ import {
 import { useEngine } from '../../components/utils/EngineContext'
 import { useSelector } from 'react-redux'
 
-export default ({ questionCategory }) => {
+export default ({ questionCategory, hideMeta = false }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const category = questionCategory.name
@@ -43,11 +43,15 @@ export default ({ questionCategory }) => {
 				flex-wrap: wrap;
 			`}
 		>
-			<CategoryLabel>
-				{emoji(questionCategory.icons || '🌍')}
-				{questionCategory.title}
-			</CategoryLabel>
-			<Inhabitants {...{ formula, engine }} />
+			{!hideMeta && (
+				<>
+					<CategoryLabel>
+						{emoji(questionCategory.icons || '🌍')}
+						{questionCategory.title}
+					</CategoryLabel>
+					<Inhabitants {...{ formula, engine }} />
+				</>
+			)}
 			{sumToDisplay && (
 				<div
 					css={`

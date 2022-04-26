@@ -34,7 +34,7 @@ const generateShareText = (categories) => {
 				gameOver = goodCount > 7
 
 			return (
-				`${icons}${space(icons) ? '' : ' '}` +
+				`${icons} ` +
 				range(1, badCount)
 					.map(() => '⬛️')
 					.join('') +

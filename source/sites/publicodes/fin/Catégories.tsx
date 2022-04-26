@@ -8,7 +8,7 @@ import { default as React, useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import tinygradient from 'tinygradient'
 import { DocumentationEndButton, generateImageLink } from '.'
-import Chart from '../chart'
+import RavijenChart from '../chart/RavijenChart'
 import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
 import { ActionButton, IntegratorActionButton } from './Buttons'
@@ -78,7 +78,7 @@ export default ({ score, details, headlessMode }) => {
 			>
 				<div id="shareImage" css="padding: 2rem 0 0">
 					<div css="padding: 1rem">
-						<Chart
+						<RavijenChart
 							noAnimation
 							details={details}
 							linkTo="documentation"
