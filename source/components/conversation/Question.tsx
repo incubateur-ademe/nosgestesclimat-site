@@ -163,6 +163,7 @@ export default function Question({
 								css={`
 									font-size: 110% !important;
 									padding: 0.6rem 1.2rem !important;
+									width: 100% !important;
 								`}
 							>
 								<option value="">Choisissez une option</option>
