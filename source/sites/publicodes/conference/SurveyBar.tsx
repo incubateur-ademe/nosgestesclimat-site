@@ -47,7 +47,7 @@ export default () => {
 	const context = Object.keys(surveyContext).reduce(
 		(acc, key) => ({
 			...acc,
-			...{ [splitName(key)[1]]: surveyContext[key].replaceAll("'", '') },
+			...{ [splitName(key)[1]]: surveyContext[key] },
 		}),
 		{}
 	)
