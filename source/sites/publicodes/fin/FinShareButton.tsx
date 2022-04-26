@@ -26,11 +26,6 @@ export default ({ textColor }) => {
 	)
 }
 
-// TODO
-// On twitter, these take 2 space slots, on telegram only one.
-// We may need to change them...
-const space = (icon) => ({ '🍽': true, '🏘': true }[icon])
-
 const generateShareText = (categories) => {
 	const graph = categories
 		.map(({ icons, nodeValue }) => {
