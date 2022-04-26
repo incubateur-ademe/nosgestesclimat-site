@@ -155,9 +155,9 @@ export default function Question({
 					)}
 				{choices.children && choices.children.length > 5 && (
 					<div>
-						<label title="toDefine">
+						<label title={choices.title}>
 							<select
-								name="toDefine"
+								name={choices.title}
 								className="ui__"
 								onChange={(e) => handleChange(e.target.value)}
 								css={`
@@ -167,9 +167,9 @@ export default function Question({
 								`}
 							>
 								<option value="">Choisissez une option</option>
-								{choices.children.map((node) => (
+								{choices.children.map((node, index) => (
 									<option
-										key={node.dottedName}
+										key={node.dottedName + '-' + index}
 										value={relativeDottedName(node.dottedName)}
 									>
 										{node.title}
