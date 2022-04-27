@@ -133,7 +133,7 @@ module.exports.commonLoaders = (mode = 'production') => {
 		},
 		{
 			test: /\.yaml$/,
-			use: ['json-loader', 'yaml-loader'],
+			use: ['yaml-loader'],
 		},
 		{
 			test: /\.toml$/,
