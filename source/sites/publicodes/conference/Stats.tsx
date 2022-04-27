@@ -153,21 +153,23 @@ export default ({
 				{...{ categories, maxCategory, spotlight, setSpotlight }}
 			/>
 
-			<div>
-				{spotlight === currentUser ? (
-					<span>
-						<span css="background: #fff45f;">En jaune</span> : ma simulation à{' '}
-						{spotlightValue} t.
-					</span>
-				) : (
-					<button
-						className="ui__ link-button"
-						onClick={() => setSpotlight(currentUser)}
-					>
-						<span css="background: #fff45f;">Afficher ma simulation</span>
-					</button>
-				)}
-			</div>
+			{spotlightValue && (
+				<div>
+					{spotlight === currentUser ? (
+						<span>
+							<span css="background: #fff45f;">En jaune</span> : ma simulation à{' '}
+							{spotlightValue} t.
+						</span>
+					) : (
+						<button
+							className="ui__ link-button"
+							onClick={() => setSpotlight(currentUser)}
+						>
+							<span css="background: #fff45f;">Afficher ma simulation</span>
+						</button>
+					)}
+				</div>
+			)}
 		</div>
 	)
 }
