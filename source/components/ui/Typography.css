@@ -1,6 +1,7 @@
 html {
 	transition: none !important;
 	line-height: 1.7rem;
+	font-family: 'Marianne', Arial, sans-serif;
 }
 @media (max-width: 500px) {
 	html {
@@ -71,7 +72,6 @@ h4,
 h5,
 h6 {
 	color: var(--darkColor);
-	font-family: Arial, Helvetica, sans-serif;
 	font-weight: 600;
 	scroll-margin-top: 1rem; /* Add a margin for anchor links */
 }
