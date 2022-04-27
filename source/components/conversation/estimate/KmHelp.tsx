@@ -289,7 +289,6 @@ const MouvingArrow = () => (
 )
 
 const TableTrajets = styled.table`
-	font-family: 'Roboto', sans-serif;
 	border-spacing: 0 0.5rem;
 	border-collapse: separate;
 	background: white;

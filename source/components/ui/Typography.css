@@ -25,10 +25,10 @@ html {
 }
 
 body {
+	font-family: 'Marianne', Arial, sans-serif;
 	font-weight: 400;
 	color: #040e19;
 	color: var(--darkColor);
-	font-family: Arial, Helvetica, sans-serif;
 }
 
 h1 {
