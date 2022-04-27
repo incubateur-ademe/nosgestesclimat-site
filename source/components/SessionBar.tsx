@@ -1,10 +1,11 @@
 import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
+import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { last } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, Redirect } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -14,6 +15,14 @@ import styled from 'styled-components'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
+import ProgressCircle from './ProgressCircle'
+import CardGameIcon from './CardGameIcon'
+
+const ActionsInteractiveIcon = () => {
+	const actionChoices = useSelector((state) => state.actionChoices),
+		count = Object.values(actionChoices).filter((a) => a === true).length
+	return <CardGameIcon number={count} />
+}
 
 const openmojis = {
 	test: '25B6',
@@ -42,7 +51,8 @@ const MenuButton = styled.div`
 		padding: 0;
 		font-size: 100%;
 	}
-	> img {
+	> img,
+	> svg {
 		display: block;
 		font-size: 200%;
 		margin: 0.6rem !important;
@@ -64,7 +74,7 @@ export const sessionBarMargin = `
 		}
 `
 
-export const buildEndURL = (rules, engine) => {
+export const buildEndURL = (rules, engine, slide) => {
 	const categories = extractCategories(rules, engine),
 		detailsString =
 			categories &&
@@ -78,7 +88,7 @@ export const buildEndURL = (rules, engine) => {
 
 	if (detailsString == null) return null
 
-	return `/fin?details=${detailsString}`
+	return `/fin?details=${detailsString}${slide ? `&diapo=${slide}` : ''}`
 }
 
 export const useSafePreviousSimulation = () => {
@@ -100,6 +110,7 @@ export default function SessionBar({
 	noResults = false,
 }) {
 	const dispatch = useDispatch()
+	const nextQuestions = useNextQuestions()
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const arePreviousAnswers = !!answeredQuestions.length
 	useSafePreviousSimulation()
@@ -118,23 +129,30 @@ export default function SessionBar({
 		path.includes(pathTarget)
 			? `
 		font-weight: bold;
-		img {
+		img, svg {
 		  background: var(--lighterColor);
-		  border-radius: .6rem;
+		  border-radius: 2rem;
 		}
 		`
 			: ''
+	const persona = useSelector((state) => state.simulation?.persona)
 
 	let elements = [
 		<Button
 			className="simple small"
 			url={'/simulateur/bilan'}
 			onClick={() => {
-				dispatch(goToQuestion(last(answeredQuestions)))
+				nextQuestions.length ? (
+					dispatch(goToQuestion(last(answeredQuestions)))
+				) : (
+					<Redirect to={buildEndURL(rules, engine)} />
+				)
 			}}
-			css={buttonStyle('simulateur')}
+			css={`
+				${buttonStyle('simulateur')};
+			`}
 		>
-			<img src={openmojiURL('test')} css="width: 2rem" aria-hidden="true" />
+			<ProgressCircle />
 			Le test
 		</Button>,
 		<Button
@@ -142,12 +160,25 @@ export default function SessionBar({
 			url="/actions/liste"
 			css={buttonStyle('/actions')}
 		>
-			<img src={actionImg} css="width: 2rem" aria-hidden="true" />
+			<ActionsInteractiveIcon />
 			Agir
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
 			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />
-			Mon profil
+			{!persona ? (
+				'Mon profil'
+			) : (
+				<span
+					css={`
+						background: var(--color);
+						color: var(--textColor);
+						padding: 0 0.4rem;
+						border-radius: 0.3rem;
+					`}
+				>
+					{persona}
+				</span>
+			)}
 		</Button>,
 		NODE_ENV === 'development' && (
 			<Button

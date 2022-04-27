@@ -1,24 +1,28 @@
+import { goToQuestion } from 'Actions/actions'
 import ShareButton from 'Components/ShareButton'
+import animate from 'Components/ui/animate'
 import { findContrastedTextColor } from 'Components/utils/colors'
+import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
+import Meta from 'Components/utils/Meta'
 import { AnimatePresence, motion, useSpring } from 'framer-motion'
+import { utils } from 'publicodes'
 import { default as React, useContext, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
+import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
+import { last } from 'Source/utils'
 import tinygradient from 'tinygradient'
-import { goToQuestion } from '../../actions/actions'
-import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
-import Meta from '../../components/utils/Meta'
-import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { last } from '../../utils'
-import Chart from './chart'
-import DefaultFootprint from './DefaultFootprint'
+import SlidesLayout from '../../../components/SlidesLayout'
+import { useSearchParams } from '../../../components/utils/useSearchParams'
+import Chart from '../chart'
+import DefaultFootprint from '../DefaultFootprint'
+import HorizontalSwipe from '../HorizontalSwipe'
+import BallonGES from './ballonGES.svg'
+import { ActionButton, IntegratorActionButton } from './Buttons'
 import IframeDataShareModal from './IframeDataShareModal'
-import BallonGES from './images/ballonGES.svg'
-import animate from 'Components/ui/animate'
-import { actionImg } from '../../components/SessionBar'
-import { TrackerContext } from 'Components/utils/withTracker'
+import Petrogaz from './Petrogaz'
+const { encodeRuleName } = utils
 
 const gradient = tinygradient([
 		'#78e08f',
@@ -34,53 +38,51 @@ const getBackgroundColor = (score) =>
 		Math.round((score < 2000 ? 0 : score > 20000 ? 19000 : score - 2000) / 1000)
 	]
 
+// details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
+const rehydrateDetails = (encodedDetails) =>
+	encodedDetails &&
+	encodedDetails
+		.match(/[a-z][0-9]+\.[0-9][0-9]/g)
+		.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
+		// Here we convert categories with an old name to the new one
+		// 'biens divers' was renamed to 'divers'
+		.map(([category, ...rest]) =>
+			category === 'b' ? ['d', ...rest] : [category, ...rest]
+		)
+
 const sumFromDetails = (details) =>
 	details.reduce((memo, [name, value]) => memo + value, 0)
 
 export default ({}) => {
-	const query = new URLSearchParams(useLocation().search)
-	const details = query.get('details')
+	const [searchParams, setSearchParams] = useSearchParams()
+	const encodedDetails = searchParams.get('details')
+	const slideName = searchParams.get('diapo') || 'bilan'
 
-	// details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
-	const encodedDetails = details,
-		rehydratedDetails =
-			encodedDetails &&
-			encodedDetails
-				.match(/[a-z][0-9]+\.[0-9][0-9]/g)
-				.map(([category, ...rest]) => [category, 1000 * +rest.join('')])
-				// Here we convert categories with an old name to the new one
-				// 'biens divers' was renamed to 'divers'
-				.map(([category, ...rest]) =>
-					category === 'b' ? ['d', ...rest] : [category, ...rest]
-				)
+	const rehydratedDetails = rehydrateDetails(encodedDetails)
 
 	const score = sumFromDetails(rehydratedDetails)
 	const headlessMode =
 		!window || window.navigator.userAgent.includes('HeadlessChrome')
 
-	//	Configuration is try and test, feeling, really
-	const valueSpring = useSpring(0, {
-		mass: 10,
-		tension: 10,
-		stiffness: 50,
-		friction: 500,
-		damping: 60,
-	})
-
-	const [value, setValue] = useState(0)
-
-	useEffect(() => {
-		const unsubscribe = valueSpring.onChange((v) => {
-			setValue(v)
-		})
-
-		headlessMode ? setValue(score) : valueSpring.set(score)
-
-		return () => unsubscribe()
-	})
-
 	const dispatch = useDispatch(),
 		answeredQuestions = useSelector(answeredQuestionsSelector)
+
+	const slideProps = {
+		score,
+		details: Object.fromEntries(rehydratedDetails),
+		headlessMode,
+	}
+
+	const Component = {
+		bilan: Budget,
+		pétrogaz: Petrogaz,
+	}[slideName]
+
+	const next = () => {
+			const nextSlide = slideName === 'bilan' ? 'pétrogaz' : 'bilan'
+			setSearchParams({ diapo: nextSlide, details: encodedDetails })
+		},
+		previous = next
 
 	return (
 		<div>
@@ -97,18 +99,35 @@ export default ({}) => {
 				</button>
 			</Link>
 			<animate.appear>
-				<AnimatedDiv
-					value={value}
-					score={score}
-					details={Object.fromEntries(rehydratedDetails)}
-					headlessMode={headlessMode}
-				/>
+				<SlidesLayout>
+					<HorizontalSwipe {...{ next, previous }}>
+						<Component {...slideProps} />
+					</HorizontalSwipe>
+				</SlidesLayout>
 			</animate.appear>
 		</div>
 	)
 }
+const Budget = ({ score, details, headlessMode }) => {
+	//	Configuration is try and test, feeling, really
+	const valueSpring = useSpring(0, {
+		mass: 10,
+		stiffness: 50,
+		damping: 60,
+	})
 
-const AnimatedDiv = ({ score, value, details, headlessMode }) => {
+	const [value, setValue] = useState(0)
+
+	useEffect(() => {
+		const unsubscribe = valueSpring.onChange((v) => {
+			setValue(v)
+		})
+
+		headlessMode ? setValue(score) : valueSpring.set(score)
+
+		return () => unsubscribe()
+	})
+
 	const backgroundColor = getBackgroundColor(value).toHexString(),
 		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),
 		textColor = findContrastedTextColor(backgroundColor, true),
@@ -118,22 +137,13 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 		}),
 		integerValue = roundedValue.split(',')[0],
 		decimalValue = roundedValue.split(',')[1],
-		shareImage =
-			'https://aejkrqosjq.cloudimg.io/v7/' +
-			window.location.origin +
-			'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
-			window.location
+		shareImage = generateImageLink(window.location)
+
 	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
 		useContext(IframeOptionsContext)
 
 	return (
-		<div
-			css={`
-				padding: 0 0.3rem 1rem;
-				max-width: 600px;
-				margin: 0 auto;
-			`}
-		>
+		<div>
 			<Meta
 				title="Mon empreinte climat"
 				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO2e. Mesure la tienne !`}
@@ -263,7 +273,7 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 				</div>
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
 					<ShareButton
-						text="Voilà mon empreinte climat. Mesure la tienne !"
+						text="Voilà mon empreinte 🌍️climat. Mesure la tienne !"
 						url={window.location}
 						title={'Nos Gestes Climat'}
 						color={textColor}
@@ -297,107 +307,29 @@ const AnimatedDiv = ({ score, value, details, headlessMode }) => {
 				)}
 
 				{integratorActionText && <ActionButton text="Réduire mon empreinte" />}
+				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>
 		</div>
 	)
 }
 
-const ActionButton = ({ text, score }) => {
-	const tracker = useContext(TrackerContext)
+export const generateImageLink = (location) =>
+	'https://aejkrqosjq.cloudimg.io/v7/' +
+	location.origin +
+	'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
+	encodeURIComponent(location)
 
-	return (
-		<Link
-			to="/actions"
-			className="ui__ button plain"
-			onClick={() =>
-				tracker.push([
-					'trackEvent',
-					'NGC',
-					'Clic bouton action page /fin',
-					null,
-					score,
-				])
-			}
-			css={`
-				margin: 0.6rem auto;
-				width: 90%;
-
-				img {
-					height: 2.6rem;
-					filter: invert(100%);
-					margin: 0 0.6rem;
-					display: inline-block;
-				}
-				a {
-					color: var(--textColor);
-					text-decoration: none;
-				}
-			`}
-		>
-			<div
-				css={`
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					width: 100%;
-				`}
-			>
-				<motion.div
-					aria-hidden="true"
-					animate={{
-						rotate: [0, 15, -15, 0],
-						y: [0, 0, 0, -3, 8, 3],
-					}}
-					transition={{ duration: 2, delay: 4 }}
-				>
-					<img src={actionImg} />
-				</motion.div>
-				{text}
-			</div>
-		</Link>
-	)
-}
-
-const IntegratorActionButton = () => {
-	const { integratorLogo, integratorActionUrl, integratorActionText } =
-		useContext(IframeOptionsContext)
-
-	return (
-		<a
-			href={integratorActionUrl}
-			className="ui__ button plain"
-			target="_blank"
-			css={`
-				margin: 0.6rem auto 1rem;
-				width: 90%;
-				img {
-					transform: scaleX(-1);
-					height: 2rem;
-					margin: 0 0.6rem;
-					display: inline-block;
-				}
-				a {
-					color: var(--textColor);
-					text-decoration: none;
-				}
-			`}
-		>
-			<div
-				css={`
-					display: flex;
-					justify-content: center;
-					align-items: center;
-					@media (max-width: 800px) {
-						flex-direction: column-reverse;
-						img {
-							display: none;
-						}
-					}
-				`}
-			>
-				{integratorActionText}
-				<img src={integratorLogo} />
-			</div>
-		</a>
-	)
-}
+export const DocumentationEndButton = ({ ruleName, color }) => (
+	<div
+		css={`
+			margin-bottom: 0.6rem;
+			${color && `a {color: ${color}}`}
+		`}
+	>
+		<small>
+			<Link to={'/documentation/' + encodeRuleName(ruleName)}>
+				Comprendre le calcul{' '}
+			</Link>
+		</small>
+	</div>
+)

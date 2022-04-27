@@ -4,22 +4,23 @@ import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import lastRelease from '../data/last-release.json'
+import { usePersistingState } from './utils/persistState'
 
-const localStorageKey = 'last-viewed-release'
-
-export const hideNewsBanner = () =>
-	writeStorage(localStorageKey, lastRelease.name)
+export const localStorageKey = 'last-viewed-release'
 
 export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 export default function NewsBanner() {
-	const [lastViewedRelease] = useLocalStorage(localStorageKey)
+	const [lastViewedRelease, setLastViewedRelease] = usePersistingState(
+		localStorageKey,
+		null
+	)
 
 	// We only want to show the banner to returning visitors, so we initiate the
 	// local storage value with the last release.
 	if (lastViewedRelease === undefined) {
-		hideNewsBanner()
+		setLastViewedRelease(lastRelease.name)
 		return null
 	}
 
@@ -31,7 +32,10 @@ export default function NewsBanner() {
 				{emoji('✨')} Découvrez les nouveautés de la version{' '}
 				<Link to={'/nouveautés'}>{lastRelease.name.toLowerCase()}</Link>
 			</span>
-			<span onClick={hideNewsBanner} className="ui__ close-button">
+			<span
+				onClick={() => setLastViewedRelease(lastRelease.name)}
+				className="ui__ close-button"
+			>
 				{' '}
 				&times;
 			</span>

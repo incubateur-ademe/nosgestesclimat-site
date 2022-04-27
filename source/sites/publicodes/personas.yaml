@@ -22,6 +22,8 @@
         valeur: 1
         unité: l / semaine
       alimentation . boisson . eau en bouteille . affirmatif: non
+      alimentation . local . consommation: "'oui toujours'"
+      alimentation . de saison . consommation: "'oui toujours'"
       alimentation . plats . végétalien . nombre: 10
       alimentation . plats . viande 2 . nombre: 0
       alimentation . plats . viande 1 . nombre: 0
@@ -104,6 +106,8 @@
         valeur: 2
         unité: l / semaine
       alimentation . boisson . eau en bouteille . affirmatif: non
+      alimentation . local . consommation: "'souvent'"
+      alimentation . de saison . consommation: "'souvent'"
       alimentation . plats . poisson 1 . nombre: 0
       alimentation . plats . poisson 2 . nombre: 0
       alimentation . plats . viande 1 . nombre: 1
@@ -391,7 +395,7 @@
     numérique . internet . durée journalière:
       valeur: 4
       unité: heure
-      
+
 - nom: Ximun d'Arcangues
   résumé: |
     Bus pour le travail. À 2 dans ferme mal isolée, chauffée au fioul. Plutôt viande.
@@ -532,17 +536,19 @@
     alimentation . plats . poisson 1 . nombre: 0
     alimentation . plats . poisson 2 . nombre: 0
 
-
 - nom: Jessica de Lyon
   résumé: |
-    Végétarienne. Pas de voiture mais s'envole pour des weekends en Europe et d'autres continents pour les vacances.
-  description: Pas exactement végétarienne, mais sushis seulement une fois par semaitn
+    Végétarienne. Peu de voiture mais s'envole pour des weekends en Europe et autres continents pour les vacances.
+  description: |
+    Pas exactement végétarienne, mais sushis seulement une fois par semaine.
+    Posède une vielle voiture qu'elle utilise peu, essentiellement pour quelques sorties le weekend et en vacances.
   icônes: ✈️🌍
   data:
     transport . voiture . km:
-      valeur: 500
+      valeur: 3000
       unité: km / an
-    transport . voiture . propriétaire: non
+    transport . voiture . propriétaire: oui
+    transport . voiture . âge: 10
     transport . deux roues thermique . usager: non
     transport . avion . usager: oui
     transport . avion . court courrier . heures de vol:
@@ -665,7 +671,7 @@
     numérique . internet . durée journalière:
       valeur: 4
       unité: heure
-      
+
 - nom: Serge de Libourne
   résumé: Voiture pour travail (30km) et weekends fréquents. Maison récente, chauffage gaz. Branché viande et tech.
   description: |

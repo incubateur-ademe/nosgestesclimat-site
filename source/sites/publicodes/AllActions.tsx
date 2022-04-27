@@ -27,6 +27,7 @@ export default ({
 	rules,
 	focusedAction,
 	focusAction,
+	radical,
 }) => {
 	const engine = useContext(EngineContext)
 
@@ -46,6 +47,31 @@ export default ({
 		},
 		{ value: 0 }
 	)
+	const numberedActions = thresholds.map(([threshold, label], index) => {
+		const thresholdActions = notRejected.filter(
+			(a) =>
+				a.value >= threshold &&
+				(index === 0 || a.value < thresholds[index - 1][0])
+		)
+		if (!thresholdActions.length) return null
+		return (
+			<div>
+				<List
+					{...{
+						actions: thresholdActions,
+						rules,
+						bilans,
+						actionChoices,
+						focusAction,
+						focusedAction,
+					}}
+				/>
+				<ThresholdSeparator>
+					<h4>{label} &#9650;</h4>
+				</ThresholdSeparator>
+			</div>
+		)
+	})
 
 	return (
 		<div>
@@ -67,30 +93,9 @@ export default ({
 				</animate.fromTop>
 			)}
 
-			{thresholds.map(
-				([threshold, label], index) =>
-					notRejected.find(({ value }) => value >= threshold) && (
-						<div>
-							<List
-								{...{
-									actions: notRejected.filter(
-										(a) =>
-											a.value >= threshold &&
-											(index === 0 || a.value < thresholds[index - 1][0])
-									),
-									rules,
-									bilans,
-									actionChoices,
-									focusAction,
-									focusedAction,
-								}}
-							/>
-							<ThresholdSeparator>
-								<h4>{label} &#9650;</h4>
-							</ThresholdSeparator>
-						</div>
-					)
-			)}
+
+			{radical ? numberedActions : numberedActions.slice().reverse()}
+
 			<ThresholdSeparator>
 				<h4>
 					<img
@@ -103,6 +108,25 @@ export default ({
 			<List
 				{...{
 					actions: notRejected.filter((a) => a.value == null),
+					rules,
+					bilans,
+					actionChoices,
+					focusAction,
+					focusedAction,
+				}}
+			/>
+			<ThresholdSeparator>
+				<h4>
+					<img
+						src="/images/26D4.svg"
+						css="filter:invert(1); height: 2rem; vertical-align: middle; margin-right: .3rem"
+					/>
+					Actions négatives &#9660;
+				</h4>
+			</ThresholdSeparator>
+			<List
+				{...{
+					actions: notRejected.filter((a) => a.value < 0),
 					rules,
 					bilans,
 					actionChoices,

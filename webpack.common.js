@@ -16,6 +16,7 @@ module.exports.default = {
 			buffer: 'buffer',
 		},
 		alias: {
+			Source: path.resolve('source/'),
 			Actions: path.resolve('source/actions/'),
 			Components: path.resolve('source/components/'),
 			Pages: path.resolve('source/pages/'),

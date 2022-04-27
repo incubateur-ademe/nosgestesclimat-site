@@ -16,7 +16,7 @@ import About from './About'
 import Actions from './Actions'
 import Contribution from './Contribution'
 import Diffuser from './Diffuser'
-import Fin from './Fin'
+import Fin from './fin'
 import Landing from './Landing'
 import Logo from './Logo'
 import Navigation from './Navigation'
@@ -27,6 +27,7 @@ import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import GroupSwitch from './conference/GroupSwitch'
+import Guide from './Guide'
 
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
@@ -114,6 +115,7 @@ const Main = ({}) => {
 				tabIndex="0"
 				id="mainContent"
 				css={`
+					outline: none !important;
 					@media (min-width: 800px) {
 						flex-grow: 1;
 						padding: 1rem;
@@ -182,6 +184,9 @@ const Routes = ({}) => {
 			</Route>
 			<Route path="/nouveautés" component={News} />
 			<Route path="/profil" component={Profil} />
+
+			<Route path="/groupe/:encodedName+" component={Guide} />
+
 			<Route path="/conférence/:room?">
 				<Suspense fallback="Chargement">
 					<ConferenceLazy />

@@ -1,8 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
-import Overlay from '../../components/Overlay'
-import { inIframe } from '../../utils'
+import { inIframe } from 'Source/utils'
 
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
 const shareDataPopupTimeout = 3500
@@ -22,13 +21,16 @@ export default ({ data }) => {
 	}, [])
 	function onReject() {
 		window.parent.postMessage(
-			{ messageType: 'ngc-iframe-share', error: 'The user refused to share his result.' },
+			{
+				messageType: 'ngc-iframe-share',
+				error: 'The user refused to share his result.',
+			},
 			'*'
 		)
 		setIsOpen(false)
 	}
 	function onAccept() {
-		window.parent.postMessage({ messageType: 'ngc-iframe-share', data} , '*')
+		window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
 		setIsOpen(false)
 	}
 	function onClose() {
@@ -42,21 +44,37 @@ export default ({ data }) => {
 	const text = (
 		<div>
 			<p>
-				En cliquant sur le bouton Accepter, vous nous autoriser à communiquer le
-				résumé de votre test d'empreinte climat au site {parent}.
+				En cliquant sur le bouton Accepter, vous autorisez {parent} à récupérer le 
+	      bilan de votre empreinte climat.
 			</p>
 			<p>
-				Il s'agit donc de vos résultats sur les grandes catégories (transport,
+				Il s'agit de vos résultats sur les grandes catégories (transport,
 				alimentation...), mais <em>pas</em> le détail question par question (vos
 				km en voiture, les m² de votre logement...).
 			</p>
-			<p>Nosgestesclimat.fr n'est pas affilié à {parent}.</p>
+			<p>Nosgestesclimat.fr n'est pas affilié au site {parent}.</p>
 		</div>
 	)
 
 	if (!isOpen) return null
 	return (
-		<div>
+		<div
+			css={`
+				position: absolute;
+				z-index: 10;
+				border-radius: 1rem;
+				margin-top: 10%;
+				filter: drop-shadow(0 0 20px #000);
+				box-shadow: 0.3px 0.5px 0.7px hsl(var(--shadow-color) / 0.34),
+					0.4px 0.8px 1px -1.2px hsl(var(--shadow-color) / 0.34),
+					1px 2px 2.5px -2.5px hsl(var(--shadow-color) / 0.34);
+				--shadow-color: 0deg 0% 63%;
+
+				padding: 1rem;
+				text-align: center;
+				background: #fff;
+			`}
+		>
 			<h2>Partage de vos résultats à {parent} ?</h2>
 			<p>{text}</p>
 			<div

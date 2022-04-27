@@ -21,6 +21,8 @@ export default ({ isHomePage }) => {
 					justify-content: center;
 					margin: 0.6rem auto;
 
+					outline: none !important;
+
 					@media (min-width: 800px) {
 						flex-shrink: 0;
 						width: 12rem;

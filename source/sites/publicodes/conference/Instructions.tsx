@@ -34,6 +34,7 @@ export default ({
 	const URLbase = `https://${window.location.hostname}`
 	const URLPath = `/${mode}/${room || newRoom}`,
 		shareURL = URLbase + URLPath
+	const URLGuide = `/groupe/guide`
 
 	return (
 		<div>
@@ -114,7 +115,7 @@ export default ({
 							<p>
 								Mode persistant : l'interface est presque la même, mais les
 								données sont stockées sur notre serveur et ainsi restent
-								accessibles <strong>pendant deux semaines</strong>.
+								accessibles <strong>pendant deux mois</strong>.
 							</p>
 						</label>
 					</div>
@@ -212,6 +213,20 @@ export default ({
 			{newRoom !== '' && !room && (
 				<InstructionBlock index="6" title="Prêt à démarrer ?">
 					<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
+				</InstructionBlock>
+			)}
+			{room && (
+				<InstructionBlock
+					noIndex={started}
+					title={
+						<span>
+							{emoji('📊')} Analysez les résultats et animez les discussions !
+						</span>
+					}
+				>
+					Les résultats sont là, que faire ? Notre guide vous accompagne dans
+					vos réflexions et vos discussions sur cette page &nbsp;
+					<Link to={URLGuide}>{URLGuide}</Link> !
 				</InstructionBlock>
 			)}
 		</div>

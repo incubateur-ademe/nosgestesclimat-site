@@ -1,13 +1,20 @@
+import { determinant } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
-import { Link, NavLink } from 'react-router-dom'
+import {
+	Link,
+	NavLink,
+	Redirect,
+	useHistory,
+	useRouteMatch,
+} from 'react-router-dom'
 import styled from 'styled-components'
-import { determinant, hideNewsBanner } from 'Components/NewsBanner'
+import { localStorageKey } from '../components/NewsBanner'
 import Meta from '../components/utils/Meta'
+import { usePersistingState } from '../components/utils/persistState'
+import lastRelease from '../data/last-release.json'
 
 const dateCool = (date) =>
 	date.toLocaleString(undefined, {
@@ -25,10 +32,11 @@ type ReleasesData = Array<{
 
 export default function News() {
 	const [data, setData] = useState()
+	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
 	const history = useHistory()
 	const slug = useRouteMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
 		?.slug
-	useEffect(hideNewsBanner, [])
+	useEffect(() => setLastViewedRelease(lastRelease.name), [])
 	useEffect(
 		() =>
 			fetch('/data/releases.json')

@@ -101,6 +101,7 @@ export const Markdown = ({
 	source,
 	className = '',
 	renderers = {},
+	noRouter = false,
 	...otherProps
 }: MarkdownProps) => (
 	<ReactMarkdown
@@ -111,7 +112,7 @@ export const Markdown = ({
 		allowDangerousHtml
 		renderers={{
 			...renderers,
-			link: LinkRenderer,
+			...(noRouter ? {} : { link: LinkRenderer }),
 			text: TextRenderer,
 			code: CodeBlock,
 			footnoteReference: ({ identifier, label }) => (

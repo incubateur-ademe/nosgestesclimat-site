@@ -7,7 +7,7 @@ import Meta from '../../components/utils/Meta'
 import Action from './Action'
 import ActionPlus from './ActionPlus'
 import ActionsList from './ActionsList'
-import CarbonImpact from './CarbonImpact'
+import ScoreBar from './ScoreBar'
 import ListeActionPlus from './ListeActionPlus'
 
 const { encodeRuleName, decodeRuleName } = utils
@@ -23,7 +23,7 @@ export default ({}) => {
 				description="Découvrez les gestes qui vous permettent de réduire votre empreinte climat"
 			/>
 			<Title>Agir</Title>
-			<CarbonImpact actionMode />
+			<ScoreBar actionMode />
 			<Switch>
 				<Route exact path="/actions/plus">
 					<ListeActionPlus />
