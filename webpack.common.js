@@ -39,6 +39,7 @@ module.exports.default = {
 		new CopyPlugin([
 			'./manifest.webmanifest',
 			'./source/sites/publicodes/sitemap.txt',
+			'./source/sites/publicodes/robots.txt',
 			'./iframeResizer.contentWindow.min.js',
 			{
 				from: './source/images',
