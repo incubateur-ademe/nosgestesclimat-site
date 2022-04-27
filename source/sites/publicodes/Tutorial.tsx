@@ -189,7 +189,7 @@ const slides = [
 		<>
 			<h1>Et concrètement ?</h1>
 			<p>
-				Chaque année, un français émet en moyenne{' '}
+				Chaque année, un Français émet en moyenne{' '}
 				<strong> à peu près 10 tonnes</strong> de CO₂e.
 			</p>
 			<AbacusFrance css="width:10rem; height: 100%" />
