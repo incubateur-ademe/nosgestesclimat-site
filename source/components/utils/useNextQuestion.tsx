@@ -19,6 +19,7 @@ import {
 	sortBy,
 	sortWith,
 	takeWhile,
+	toPairs,
 	zipWith,
 } from 'ramda'
 import { useContext, useMemo } from 'react'
@@ -42,10 +43,9 @@ export function getNextSteps(
 	const byCount = ([, [count]]: [unknown, [number]]) => count
 	const byScore = ([, [, score]]: [unknown, [unknown, number]]) => score
 
-	const missingByTotalScore = reduce<MissingVariables, MissingVariables>(
-		mergeWith(add),
-		{},
-		missingVariables
+	const missingByTotalScore = missingVariables.reduce(
+		mergeWith((a, b) => a + b),
+		{}
 	)
 
 	const innerKeys = flatten(map(keys, missingVariables)),
@@ -64,7 +64,7 @@ export function getNextSteps(
 			missingByTargetsAdvanced,
 			missingByTotalScore
 		),
-		pairs = Object.entries<number>(missingByCompound),
+		pairs = Object.entries(missingByCompound),
 		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
 	return map(head, sortedPairs) as any
 }

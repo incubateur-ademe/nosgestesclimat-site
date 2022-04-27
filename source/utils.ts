@@ -109,3 +109,8 @@ export function omit(keys, obj) {
 	const { [keys.pop()]: omitted, ...rest } = obj
 	return omit(keys, rest)
 }
+
+export const pipe =
+	(...fns) =>
+	(x) =>
+		fns.reduce((v, f) => f(v), x)
