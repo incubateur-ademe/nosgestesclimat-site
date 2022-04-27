@@ -117,12 +117,7 @@ module.exports.commonLoaders = (mode = 'production') => {
 		},
 		{
 			test: /\.(jpe?g|png)$/,
-			use: {
-				loader: 'file-loader',
-				options: {
-					name: 'images/[name].[ext]',
-				},
-			},
+			type: 'asset/resource',
 		},
 		{
 			test: /\.svg$/,
@@ -160,16 +155,7 @@ module.exports.commonLoaders = (mode = 'production') => {
 		},
 		{
 			test: /\.(ttf|woff2?)$/,
-			use: [
-				{
-					loader: 'file-loader',
-					options: {
-						name: '[name].[ext]',
-						outputPath: 'fonts',
-						publicPath: '/fonts',
-					},
-				},
-			],
+			type: 'asset/resource',
 		},
 	]
 }
