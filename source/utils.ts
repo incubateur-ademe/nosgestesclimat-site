@@ -103,3 +103,9 @@ export function range(start, end) {
 		.fill()
 		.map((_, idx) => start + idx)
 }
+
+export function omit(keys, obj) {
+	if (!keys.length) return obj
+	const { [keys.pop()]: omitted, ...rest } = obj
+	return omit(keys, rest)
+}
