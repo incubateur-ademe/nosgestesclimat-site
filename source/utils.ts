@@ -104,8 +104,8 @@ export function range(start, end) {
 		.map((_, idx) => start + idx)
 }
 
-export function arrayLoopIteration(array, key) {
-	const index = array.indexOf(key)
-
-	return index === array.length - 1 ? array[0] : array[index + 1]
+export function omit(keys, obj) {
+	if (!keys.length) return obj
+	const { [keys.pop()]: omitted, ...rest } = obj
+	return omit(keys, rest)
 }

@@ -2,7 +2,6 @@ import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { last } from 'ramda'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, Redirect } from 'react-router-dom'
@@ -156,7 +155,7 @@ export default function SessionBar({
 			url={'/simulateur/bilan'}
 			onClick={() => {
 				nextQuestions.length ? (
-					dispatch(goToQuestion(last(answeredQuestions)))
+					dispatch(goToQuestion(answeredQuestions.at(-1)))
 				) : (
 					<Redirect to={buildEndURL(rules, engine)} />
 				)

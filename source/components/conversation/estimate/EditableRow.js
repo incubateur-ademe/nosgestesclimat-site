@@ -1,4 +1,4 @@
-import { range } from 'ramda'
+import { range } from '../../../utils'
 import { freqList, motifList } from './dataHelp'
 
 export default function EditableRow({

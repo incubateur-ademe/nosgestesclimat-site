@@ -11,7 +11,6 @@ import Notifications from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
-import { sortBy } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,19 +18,20 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { setTrackingVariable, skipTutorial } from '../../actions/actions'
-import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
-import { useQuery } from '../../utils'
-import { questionCategoryName, splitName, title } from '../publicodesUtils'
+import CategoryVisualisation from '../../sites/publicodes/CategoryVisualisation'
+import { splitName } from '../publicodesUtils'
 import useKeypress from '../utils/useKeyPress'
-import { useSimulationProgress } from '../utils/useNextQuestion'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
-import QuestionFinder from './QuestionFinder'
 import SimulationEnding from './SimulationEnding'
+import QuestionFinder from './QuestionFinder'
+import emoji from '../emoji'
+import { sortBy, useQuery } from '../../utils'
+
+import Meta from '../../components/utils/Meta'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -42,7 +42,6 @@ export default function Conversation({
 	customEndMessages,
 	customEnd,
 	orderByCategories,
-	questionHeadingLevel,
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext),
@@ -57,15 +56,12 @@ export default function Conversation({
 
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = orderByCategories
-		? sortBy((question) => {
-				const category = orderByCategories.find(
-					(c) => question.indexOf(c.dottedName) === 0
-				)
-				// We artificially put this category (since it has no actionable question) at the end
-				if (category.name === 'services publics') return 1000000
-				const value = -category?.nodeValue
-				return value
-		  }, nextQuestions)
+		? sortBy(
+				(question) =>
+					-orderByCategories.find((c) => question.indexOf(c.dottedName) === 0)
+						?.nodeValue,
+				nextQuestions
+		  )
 		: nextQuestions
 
 	const focusedCategory = useQuery().get('catégorie')
@@ -92,32 +88,14 @@ export default function Conversation({
 			? true
 			: situation[currentQuestion] != null
 
+	const [dismissedRespirations, dismissRespiration] = useState([])
 	const [finder, setFinder] = useState(false)
-	const tutorials = useSelector((state) => state.tutorials)
-
-	const tracking = useSelector((state) => state.tracking)
 
 	useEffect(() => {
-		if (!tracking.firstQuestionEventFired && previousAnswers.length === 1) {
+		if (previousAnswers.length === 1) {
 			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
-			dispatch(setTrackingVariable('firstQuestionEventFired', true))
 		}
-	}, [tracker, previousAnswers])
-
-	const progress = useSimulationProgress()
-
-	useEffect(() => {
-		// This will help you judge if the "A terminé la simulation" event has good numbers
-		if (!tracking.progress90EventFired && progress > 0.9) {
-			tracker.push(['trackEvent', 'NGC', 'Progress > 90%'])
-			dispatch(setTrackingVariable('progress90EventFired', true))
-		}
-
-		if (!tracking.progress50EventFired && progress > 0.5) {
-			tracker.push(['trackEvent', 'NGC', 'Progress > 50%'])
-			dispatch(setTrackingVariable('progress50EventFired', true))
-		}
-	}, [tracker, progress])
+	}, [previousAnswers, tracker])
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
@@ -132,14 +110,6 @@ export default function Conversation({
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
-	useEffect(() => {
-		// This hook enables top set the focus on the question span and not on the "Suivant" button when going to next question
-		const questionElement =
-			rules[currentQuestion] &&
-			document.getElementById('id-question-' + title(rules[currentQuestion]))
-		questionElement?.focus()
-	}, [currentQuestion])
-
 	const goToPrevious = () => {
 		return dispatch(goToQuestion(previousQuestion))
 	}
@@ -151,7 +121,6 @@ export default function Conversation({
 	const questionText = mosaicQuestion
 		? mosaicQuestion.question
 		: rules[currentQuestion]?.rawNode?.question
-
 	const questionsToSubmit = mosaicQuestion
 		? Object.entries(rules)
 				.filter(([dottedName, value]) =>
@@ -214,33 +183,16 @@ export default function Conversation({
 		'keydown',
 		[]
 	)
-	const endEventFired = tracking.endEventFired
-	const noQuestionsLeft = !nextQuestions.length
 
-	const bilan = Math.round(engine.evaluate('bilan').nodeValue)
-
-	useEffect(() => {
-		if (!endEventFired && noQuestionsLeft) {
-			tracker.push([
-				'trackEvent',
-				'NGC',
-				'A terminé la simulation',
-				'bilan',
-				bilan,
-			])
-			dispatch(setTrackingVariable('endEventFired', true))
-		}
-	}, [endEventFired, noQuestionsLeft])
-
-	if (noQuestionsLeft) {
+	if (!nextQuestions.length)
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
-	}
 
-	const questionCategory =
-		orderByCategories &&
-		orderByCategories.find(
-			({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
-		)
+	const questionCategoryName = splitName(currentQuestion)[0],
+		questionCategory =
+			orderByCategories &&
+			orderByCategories.find(
+				({ dottedName }) => dottedName === questionCategoryName
+			)
 
 	const isCategoryFirstQuestion =
 		questionCategory &&
@@ -256,10 +208,15 @@ export default function Conversation({
 
 	return orderByCategories &&
 		isCategoryFirstQuestion &&
-		!tutorials[questionCategory.dottedName] ? (
+		!dismissedRespirations.includes(questionCategory.dottedName) ? (
 		<CategoryRespiration
 			questionCategory={questionCategory}
-			dismiss={() => dispatch(skipTutorial(questionCategory.dottedName))}
+			dismiss={() =>
+				dismissRespiration([
+					...dismissedRespirations,
+					questionCategory.dottedName,
+				])
+			}
 		/>
 	) : (
 		<section
@@ -271,9 +228,6 @@ export default function Conversation({
 				position: relative;
 				padding-top: 1.2rem;
 			`}
-
-			// This is a design idea, not really useful now
-			//border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 		>
 			{finder ? (
 				<QuestionFinder close={() => setFinder(false)} />
@@ -289,6 +243,7 @@ export default function Conversation({
 							display: flex;
 							align-items: center;
 							color: var(--color);
+							opacity: 0.4;
 						}
 						img {
 							width: 1.2rem;
@@ -311,7 +266,7 @@ export default function Conversation({
 						onClick={() => setFinder(!finder)}
 						title="Recherche rapide de questions dans le formulaire"
 					>
-						<img src={`/images/1F50D.svg`} aria-hidden="true" />
+						<img src={`/images/1F50D.svg`} />
 						<span>Ctrl-K</span>
 					</button>
 				</div>
@@ -328,21 +283,17 @@ export default function Conversation({
 					e.preventDefault()
 				}}
 			>
+				{orderByCategories && questionCategory && (
+					<CategoryVisualisation questionCategory={questionCategory} />
+				)}
 				<div className="step">
 					<h2
-						role="heading"
-						aria-level={questionHeadingLevel ?? 2}
 						css={`
 							margin: 0.4rem 0;
 							font-size: 120%;
 						`}
 					>
-						<span
-							tabindex="0"
-							id={'id-question-' + title(rules[currentQuestion])}
-						>
-							{questionText}{' '}
-						</span>
+						{questionText}{' '}
 						{hasDescription && (
 							<ExplicableRule
 								dottedName={

@@ -19,7 +19,6 @@ import {
 	sortBy,
 	sortWith,
 	takeWhile,
-	toPairs,
 	zipWith,
 } from 'ramda'
 import { useContext, useMemo } from 'react'
@@ -65,7 +64,7 @@ export function getNextSteps(
 			missingByTargetsAdvanced,
 			missingByTotalScore
 		),
-		pairs = toPairs<number>(missingByCompound),
+		pairs = Object.entries<number>(missingByCompound),
 		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
 	return map(head, sortedPairs) as any
 }

@@ -1,5 +1,4 @@
-import { sortBy } from 'ramda'
-import { capitalise0 } from '../utils'
+import { capitalise0, sortBy } from '../utils'
 
 export const parentName = (dottedName, outputSeparator = ' . ', shift = 0) =>
 	splitName(dottedName).slice(shift, -1).join(outputSeparator)

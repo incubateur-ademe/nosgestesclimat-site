@@ -1,5 +1,4 @@
 import { Markdown } from 'Components/utils/markdown'
-import { toPairs } from 'ramda'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
 import emoji from 'Components/emoji'
@@ -34,7 +33,7 @@ const createIssue = (title, body, setURL, disableButton) => {
 
 	fetch(
 		'https://publicodes.netlify.app/.netlify/functions/createIssue?' +
-			toPairs({
+			Object.entries({
 				repo: 'datagir/nosgestesclimat',
 				title,
 				body,

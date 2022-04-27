@@ -23,7 +23,7 @@ const thresholds = [
 
 export default ({
 	actions: rawActions,
-	bilans,
+	bilan,
 	rules,
 	focusedAction,
 	focusAction,
@@ -60,7 +60,7 @@ export default ({
 					{...{
 						actions: thresholdActions,
 						rules,
-						bilans,
+						bilan,
 						actionChoices,
 						focusAction,
 						focusedAction,
@@ -108,7 +108,7 @@ export default ({
 				{...{
 					actions: notRejected.filter((a) => a.value == null),
 					rules,
-					bilans,
+					bilan,
 					actionChoices,
 					focusAction,
 					focusedAction,
@@ -127,7 +127,7 @@ export default ({
 				{...{
 					actions: notRejected.filter((a) => a.value < 0),
 					rules,
-					bilans,
+					bilan,
 					actionChoices,
 					focusAction,
 					focusedAction,
@@ -140,7 +140,7 @@ export default ({
 						{...{
 							actions: rejected,
 							rules,
-							bilans,
+							bilan,
 							actionChoices,
 							focusAction,
 							focusedAction,
@@ -166,7 +166,7 @@ export default ({
 const List = ({
 	actions,
 	rules,
-	bilans,
+	bilan,
 	actionChoices,
 	focusedAction,
 	focusAction,
@@ -207,7 +207,7 @@ const List = ({
 							key={evaluation.dottedName}
 							rule={rules[evaluation.dottedName]}
 							evaluation={evaluation}
-							total={bilans.length ? bilans[0].nodeValue : null}
+							total={bilan?.nodeValue}
 						/>
 					</motion.li>
 				)

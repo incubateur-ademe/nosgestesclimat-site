@@ -1,5 +1,4 @@
 import { ASTNode } from 'publicodes'
-import { toPairs } from 'ramda'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
@@ -41,7 +40,7 @@ export default function InputSuggestions({
 				}
 			`}
 		>
-			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
+			{Object.entries(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
 					<button
 						className="ui__ suggestion plain button"

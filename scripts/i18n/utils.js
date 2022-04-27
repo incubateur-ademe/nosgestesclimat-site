@@ -17,7 +17,7 @@ let attributesToTranslate = [
 	'question',
 	'résumé',
 	'suggestions',
-	'note'
+	'note',
 ]
 
 function getRulesMissingTranslations() {
@@ -33,11 +33,11 @@ function getRulesMissingTranslations() {
 			dottedName,
 			!rule || !rule.titre // && utils.ruleWithDedicatedDocumentationPage(rule))
 				? { ...rule, titre: dottedName.split(' . ').slice(-1)[0] }
-				: rule
+				: rule,
 		])
 		.map(([dottedName, rule]) => ({
 			[dottedName]: R.mergeAll(
-				R.toPairs(rule)
+				Object.entries(rule)
 					.filter(([, v]) => !!v)
 					.map(([k, v]) => {
 						let attrToTranslate = attributesToTranslate.find(R.equals(k))
@@ -59,13 +59,13 @@ function getRulesMissingTranslations() {
 									return {
 										...acc,
 										[frTrad]: currentTranslation[frTrad],
-										[enTrad]: currentTranslation[enTrad]
+										[enTrad]: currentTranslation[enTrad],
 									}
 								}
 								missingTranslations.push([dottedName, enTrad, suggestion])
 								return {
 									...acc,
-									[frTrad]: suggestion
+									[frTrad]: suggestion,
 								}
 							}, {})
 						}
@@ -79,15 +79,15 @@ function getRulesMissingTranslations() {
 						)
 							return {
 								[enTrad]: currentTranslation[enTrad],
-								[frTrad]: v
+								[frTrad]: v,
 							}
 
 						missingTranslations.push([dottedName, enTrad, v])
 						return {
-							[frTrad]: v
+							[frTrad]: v,
 						}
 					})
-			)
+			),
 		}))
 	resolved = R.mergeAll(resolved)
 	return [missingTranslations, resolved]
@@ -99,7 +99,7 @@ const getUiMissingTranslations = () => {
 	))
 	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
 
-	const missingTranslations = Object.keys(staticKeys).filter(key => {
+	const missingTranslations = Object.keys(staticKeys).filter((key) => {
 		if (key.match(/^\{.*\}$/)) {
 			return false
 		}
@@ -109,7 +109,7 @@ const getUiMissingTranslations = () => {
 	return R.pick(missingTranslations, staticKeys)
 }
 
-const fetchTranslation = async text => {
+const fetchTranslation = async (text) => {
 	console.log(`Fetch translation for:\n\t${text}`)
 	const response = await fetch(
 		`https://api.deepl.com/v2/translate?${querystring.stringify({
@@ -117,7 +117,7 @@ const fetchTranslation = async text => {
 			auth_key: process.env.DEEPL_API_SECRET,
 			tag_handling: 'xml',
 			source_lang: 'FR',
-			target_lang: 'EN'
+			target_lang: 'EN',
 		})}`
 	)
 	const { translations } = await response.json()
@@ -128,5 +128,5 @@ module.exports = {
 	getRulesMissingTranslations,
 	getUiMissingTranslations,
 	rulesTranslationPath,
-	UiTranslationPath
+	UiTranslationPath,
 }
