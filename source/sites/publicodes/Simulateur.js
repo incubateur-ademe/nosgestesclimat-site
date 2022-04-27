@@ -40,13 +40,10 @@ const Simulateur = (props) => {
 		categories = decoded === 'bilan' && extractCategories(rules, engine)
 	const tutorials = useSelector((state) => state.tutorials)
 
-	useEffect(
-		() =>
-			equivalentTargetArrays(config.objectifs, configSet?.objectifs || [])
-				? dispatch(setSimulationConfig(config))
-				: () => null,
-		[]
-	)
+	useEffect(() => {
+		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
+			dispatch(setSimulationConfig(config))
+	}, [])
 
 	const isMainSimulation = decoded === 'bilan'
 	if (!configSet) return null
