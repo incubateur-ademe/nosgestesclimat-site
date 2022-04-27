@@ -8,7 +8,7 @@
 		"url": "https://github.com/datagir/nosgestesclimat-site.git"
 	},
 	"engines": {
-		"node": ">=15"
+		"node": ">=16"
 	},
 	"browserslist": [
 		"> 1% in FR",
