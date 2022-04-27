@@ -125,7 +125,8 @@
 		"yjs": "^13.5.35"
 	},
 	"resolutions": {
-		"publicodes/yaml": "1.10.2"
+		"publicodes-react/react": "^18.1.0",
+		"publicodes-react/react-dom": "^18.1.0"
 	},
 	"scripts": {
 		"prepare": "node scripts/prepare.js",

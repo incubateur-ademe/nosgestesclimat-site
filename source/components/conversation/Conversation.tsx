@@ -59,9 +59,8 @@ export default function Conversation({
 		? sortBy(
 				(question) =>
 					-orderByCategories.find((c) => question.indexOf(c.dottedName) === 0)
-						?.nodeValue,
-				nextQuestions
-		  )
+						?.nodeValue
+		  )(nextQuestions)
 		: nextQuestions
 
 	const focusedCategory = useQuery().get('catégorie')
