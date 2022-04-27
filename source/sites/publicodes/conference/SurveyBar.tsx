@@ -18,6 +18,7 @@ import useYjs from './useYjs'
 import useDatabase, { answersURL } from './useDatabase'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { v4 as uuidv4 } from 'uuid'
+import { surveysURL } from './useDatabase'
 
 export default () => {
 	const situation = useSelector(situationSelector),

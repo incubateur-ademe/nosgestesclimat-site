@@ -9,13 +9,12 @@ import { splitName } from 'Components/publicodesUtils'
 
 const SituationContext = createContext({})
 
-export default ({
-	survey,
-	rules,
-	surveyRule,
-	surveyContext,
-	setSurveyContext,
-}) => {
+export default ({ survey, surveyContext, setSurveyContext }) => {
+	const surveyRule = survey['contextFile']
+	const contextFileURL = `./${surveyRule}.yaml`
+	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
+	const rules = req(contextFileURL)
+
 	const engine = new Engine(rules)
 	const [situation, setSituation] = useState(surveyContext)
 	const missingVariables = engine.evaluate(surveyRule).missingVariables

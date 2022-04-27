@@ -36,26 +36,15 @@ export default () => {
 	useEffect(() => {
 		fetch(surveysURL + room)
 			.then((response) => response.json())
-			.then((json) => json ?? json[0].contextFile)
+			.then((json) => (json ? json[0]?.contextFile : null))
 			.then((contextFile) =>
 				dispatch({ type: 'ADD_SURVEY_CONTEXT', contextFile })
 			)
 			.catch((error) => console.log('error:', error))
-	}, [surveysURL])
+	}, [])
 
 	const survey = useSelector((state) => state.survey)
-
-	console.log(survey)
-
-	// const existContext = !(survey['contextFile'] == null)
-	const existContext = false
-	// console.log(existContext)
-
-	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
-	// const surveyRule = survey['contextFile']
-	const contextFileURL = `./test-en-local.yaml` //context file and rule parent have to be the same
-
-	const rules = existContext && req(contextFileURL)
+	const existContext = survey ? !(survey['contextFile'] == null) : false
 
 	useEffect(() => {
 		if (!existContext) {
@@ -89,8 +78,6 @@ export default () => {
 					{existContext && (
 						<ContextConversation
 							survey={survey}
-							rules={rules}
-							surveyRule={surveyRule}
 							surveyContext={surveyContext}
 							setSurveyContext={setSurveyContext}
 						/>
