@@ -44,8 +44,8 @@ export default ({ data }) => {
 	const text = (
 		<div>
 			<p>
-				En cliquant sur le bouton Accepter, vous autorisez {parent} à récupérer le
-				résumé de votre test d'empreinte climat.
+				En cliquant sur le bouton Accepter, vous autorisez {parent} à récupérer le 
+	      bilan de votre empreinte climat.
 			</p>
 			<p>
 				Il s'agit de vos résultats sur les grandes catégories (transport,
