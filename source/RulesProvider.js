@@ -76,7 +76,7 @@ export default ({ children, rulesURL, dataBranch }) => {
 			)
 
 			const rules = req.keys().reduce((memo, key) => {
-				const jsonRuleSet = req(key) || {}
+				const jsonRuleSet = req(key).default || {}
 				const ruleSetPlus = Object.fromEntries(
 					Object.entries(jsonRuleSet).map(([k, v]) =>
 						plusDottedNames[k]
