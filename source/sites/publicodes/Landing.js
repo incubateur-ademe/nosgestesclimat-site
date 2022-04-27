@@ -1,16 +1,16 @@
+import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/LogoADEME'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
 import { openmojiURL } from '../../components/SessionBar'
+import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
 import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
 import { useProfileData } from './Profil'
-import animate from 'Components/ui/animate'
-import Meta from '../../components/utils/Meta'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
@@ -93,7 +93,7 @@ export default () => {
 					<a href="https://www.associationbilancarbone.fr/">
 						<img
 							css="height: 2.5rem"
-							src="https://www.associationbilancarbone.fr/wp-content/themes/abc/assets/images/brand/abc_main_logo.svg"
+							src="/images/ABC.svg"
 							alt="Logo de l'Association Bilan Carbone"
 						/>
 					</a>
