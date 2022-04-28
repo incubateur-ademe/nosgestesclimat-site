@@ -166,7 +166,7 @@ function survey(state = null, { type, room, answers, contextFile }) {
 		return {
 			room,
 			answers: {},
-			contextFile: null,
+			contextFile: state?.contextFile,
 		}
 	}
 	if (type === 'ADD_SURVEY_CONTEXT') {
