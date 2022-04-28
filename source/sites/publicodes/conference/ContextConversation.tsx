@@ -6,18 +6,29 @@ import { getNextQuestions } from 'Components/utils/useNextQuestion'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { splitName } from 'Components/publicodesUtils'
+import { contextURL } from './useDatabase'
 
 const SituationContext = createContext({})
 
 export default ({ survey, surveyContext, setSurveyContext }) => {
 	const surveyRule = survey['contextFile']
-	const contextFileURL = `./${surveyRule}.yaml`
-	const req = require.context('./contextes-sondage/', true, /\.(yaml)$/)
-	const rules = req(contextFileURL)
 
-	const engine = new Engine(rules)
+	const [contextRules, setContextRules] = useState(null)
+
+	const contextFileURL = `${contextURL}/${surveyRule}.yaml`
+	const yaml = require('yaml')
+
+	useEffect(() => {
+		fetch(contextFileURL)
+			.then((response) => response.text())
+			.then((text) => setContextRules(yaml.parse(text)))
+			.catch((error) => console.log('error:', error))
+	}, [contextFileURL])
+
+	const engine = new Engine(contextRules)
 	const [situation, setSituation] = useState(surveyContext)
-	const missingVariables = engine.evaluate(surveyRule).missingVariables
+	const missingVariables =
+		contextRules && engine.evaluate(surveyRule).missingVariables
 
 	const nextQuestions = getNextQuestions(
 		[missingVariables],
