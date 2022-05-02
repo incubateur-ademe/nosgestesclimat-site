@@ -23,7 +23,7 @@ Nous utilisons :
 -   [Webpack](https://webpack.js.org) pour le “bundling”
 -   [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
 -   [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore), mais nous voulons nous en débarasser.
--   [Mocha](https://mochajs.org), [Jest](https://jestjs.io) et [Cypress](https://www.cypress.io) pour les l'execution des tests. Plus d'informations dans la section consacrée aux tests.
+-   Nous ne testons pour l'instant pas l'application Web (la librairie de calcul publicodes l'est), c'est une amélioration possible de nosgestesclimat-site
 
 ### Démarrage
 
