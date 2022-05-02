@@ -7,7 +7,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import Meta from 'Components/utils/Meta'
 import { useContext } from 'react'
-import { EngineContext } from '../../components/utils/EngineContext'
+import { EngineContext } from '../../../components/utils/EngineContext'
 
 import { splitName, title } from 'Components/publicodesUtils'
 

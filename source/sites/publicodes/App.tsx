@@ -27,7 +27,6 @@ import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import GroupSwitch from './conference/GroupSwitch'
-import Guide from './Guide'
 
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
@@ -37,6 +36,7 @@ const SurveyLazy = React.lazy(() => import('./conference/Survey'))
 const CGULazy = React.lazy(() => import('./CGU.tsx'))
 const PrivacyLazy = React.lazy(() => import('./Privacy.js'))
 
+const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
 let tracker = devTracker
 if (NODE_ENV === 'production') {
 	tracker = new Tracker()
@@ -155,7 +155,6 @@ const Routes = ({}) => {
 					<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
 				)}
 			/>
-
 			<Route path="/documentation" component={Documentation} />
 			<Route path="/simulateur/:name+" component={Simulateur} />
 			<Route path="/stats">
@@ -184,15 +183,16 @@ const Routes = ({}) => {
 			</Route>
 			<Route path="/nouveautés" component={News} />
 			<Route path="/profil" component={Profil} />
-
-			<Route path="/groupe/:encodedName+" component={Guide} />
-
+			<Route path="/groupe/:encodedName+">
+				<Suspense fallback="Chargement">
+					<GuideGroupeLazy />
+				</Suspense>
+			</Route>
 			<Route path="/conférence/:room?">
 				<Suspense fallback="Chargement">
 					<ConferenceLazy />
 				</Suspense>
 			</Route>
-
 			<Route path="/groupe/:room?">
 				<GroupSwitch />
 			</Route>
