@@ -112,13 +112,12 @@ export const setDifferentSituation = ({
 })
 
 export const setSimulationConfig =
-	(config: Object): ThunkResult<void> =>
-	(dispatch, getState, { history }): void => {
+	(config: Object, url): ThunkResult<void> =>
+	(dispatch, getState, {}): void => {
 		const pastSimulationConfig = getState().simulation?.config
 		if (pastSimulationConfig === config) {
 			return
 		}
-		const url = history.location.pathname
 		dispatch({
 			type: 'SET_SIMULATION',
 			url,

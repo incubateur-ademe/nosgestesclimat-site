@@ -1,4 +1,5 @@
 import { setSimulationConfig } from 'Actions/actions'
+import { useParams, useLocation } from 'react-router-dom'
 import { extractCategories } from 'Components/publicodesUtils'
 import { buildEndURL } from 'Components/SessionBar'
 import Simulation from 'Components/Simulation'
@@ -10,7 +11,7 @@ import { utils } from 'publicodes'
 import React, { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useLocation } from 'react-router'
+import { Navigate } from 'react-router'
 import { setTrackingVariable } from '../../actions/actions'
 import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
@@ -26,7 +27,8 @@ const equivalentTargetArrays = (array1, array2) =>
 	array1.every((value, index) => value === array2[index])
 
 const Simulateur = (props) => {
-	const objectif = props.match.params.name,
+	const urlParams = useParams()
+	const objectif = urlParams['*'],
 		decoded = utils.decodeRuleName(objectif),
 		rules = useSelector((state) => state.rules),
 		rule = rules[decoded],
@@ -40,10 +42,11 @@ const Simulateur = (props) => {
 		configSet = useSelector((state) => state.simulation?.config),
 		categories = decoded === 'bilan' && extractCategories(rules, engine)
 	const tutorials = useSelector((state) => state.tutorials)
+	const url = useLocation().pathname
 
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
-			dispatch(setSimulationConfig(config))
+			dispatch(setSimulationConfig(config, url))
 	}, [])
 
 	const isMainSimulation = decoded === 'bilan'
@@ -96,14 +99,14 @@ const TutorialRedirection = () => {
 	useEffect(() => {
 		dispatch({ type: 'SET_THEN_REDIRECT_TO', to })
 	}, [to])
-	return <Redirect to="/tutoriel" />
+	return <Navigate to="/tutoriel" />
 }
 
 const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 	const situation = useSelector(situationSelector)
 
-	return <Redirect to={buildEndURL(rules, engine)} />
+	return <Navigate to={buildEndURL(rules, engine)} />
 }
 
 export default Simulateur
