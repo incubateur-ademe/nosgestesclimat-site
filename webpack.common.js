@@ -36,20 +36,22 @@ module.exports.default = {
 		globalObject: 'self',
 	},
 	plugins: [
-		new CopyPlugin([
-			'./manifest.webmanifest',
-			'./source/sites/publicodes/sitemap.txt',
-			'./source/sites/publicodes/robots.txt',
-			'./iframeResizer.contentWindow.min.js',
-			{
-				from: './source/images',
-				to: 'images',
-			},
-			{
-				from: './source/data',
-				to: 'data',
-			},
-		]),
+		new CopyPlugin({
+			patterns: [
+				'./manifest.webmanifest',
+				'./source/sites/publicodes/sitemap.txt',
+				'./source/sites/publicodes/robots.txt',
+				'./iframeResizer.contentWindow.min.js',
+				{
+					from: './source/images',
+					to: 'images',
+				},
+				{
+					from: './source/data',
+					to: 'data',
+				},
+			],
+		}),
 		new NormalModuleReplacementPlugin(
 			/react-easy-emoji/,
 			'Components/emoji.js'
