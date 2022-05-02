@@ -37,6 +37,11 @@ const CGULazy = React.lazy(() => import('./CGU.tsx'))
 const PrivacyLazy = React.lazy(() => import('./Privacy.js'))
 
 const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
+
+const DocumentationContexteLazy = React.lazy(
+	() => import('./pages/DocumentationContexte')
+)
+
 let tracker = devTracker
 if (NODE_ENV === 'production') {
 	tracker = new Tracker()
@@ -183,6 +188,12 @@ const Routes = ({}) => {
 			</Route>
 			<Route path="/nouveautés" component={News} />
 			<Route path="/profil" component={Profil} />
+			{/* Here we define this specific route for the context documentation before generic groupe routes */}
+			<Route path="/groupe/documentation-contexte">
+				<Suspense fallback="Chargement">
+					<DocumentationContexteLazy />
+				</Suspense>
+			</Route>
 			<Route path="/groupe/:encodedName+">
 				<Suspense fallback="Chargement">
 					<GuideGroupeLazy />

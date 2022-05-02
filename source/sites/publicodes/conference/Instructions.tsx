@@ -119,12 +119,24 @@ export default ({
 							</p>
 						</label>
 					</div>
-
-					<p>
-						{emoji('🔒️')} Votre organisation peut bloquer l'utilisation du mode
-						conférence. Faites le test au préalable en duo : en cas de problème,
-						vous pouvez utiliser le mode sondage.
-					</p>
+					{mode == 'conférence' && (
+						<p>
+							{emoji('🔒️')} Votre organisation peut bloquer l'utilisation du
+							mode conférence. Faites le test au préalable en duo : en cas de
+							problème, vous pouvez utiliser le mode sondage.
+						</p>
+					)}
+					{mode == 'sondage' && (
+						<p>
+							{emoji('💡')} Vous souhaitez ajouter des questions pour obtenir
+							des informations supplémentaires sur les répondants ? Découvrez la
+							fonctionnalité "contextualisation de sondage" grâce à notre{' '}
+							<Link to={'/groupe/documentation-contexte'}>
+								notre page guide{' '}
+							</Link>
+							.
+						</p>
+					)}
 				</InstructionBlock>
 			)}
 			{!started && (
