@@ -153,6 +153,7 @@ export default function Question({
 								</li>
 							)
 					)}
+				{/* If there are more than 5 possibilities in a question with "Plusieurs possibilités" a Select is displayed*/}
 				{choices.children && choices.children.length > 5 && (
 					<div>
 						<label title={choices.title}>

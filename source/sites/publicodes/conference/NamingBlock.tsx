@@ -13,6 +13,7 @@ export default ({ newRoom, setNewRoom }) => {
 					<input
 						value={newRoom}
 						className="ui__"
+						// With the next function, we make sure there is no special characters in the room name to avoid problems with getParams() function.
 						onChange={(e) => {
 							if (specialCharaters.test(e.target.value)) {
 								setShowInvalidMessage(true)

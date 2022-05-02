@@ -25,11 +25,11 @@ export default ({ survey, surveyContext, setSurveyContext }) => {
 			.catch((error) => console.log('error:', error))
 	}, [contextFileURL])
 
+	// we evaluate missing variable related to context parent rule and we pass it to getNextQuestion with a specific engine.
 	const engine = new Engine(contextRules)
 	const [situation, setSituation] = useState(surveyContext)
 	const missingVariables =
 		contextRules && engine.evaluate(surveyRule).missingVariables
-
 	const nextQuestions = getNextQuestions(
 		[missingVariables],
 		{},
