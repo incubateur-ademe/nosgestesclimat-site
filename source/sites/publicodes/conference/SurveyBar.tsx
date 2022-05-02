@@ -78,7 +78,7 @@ export default () => {
 			)
 
 		if (!cachedSurveyId) {
-			setSurveyIds({ ...setSurveyIds, [survey.room]: uuidv4() })
+			setSurveyIds({ ...surveyIds, [survey.room]: uuidv4() })
 		}
 	}, [survey.room])
 
