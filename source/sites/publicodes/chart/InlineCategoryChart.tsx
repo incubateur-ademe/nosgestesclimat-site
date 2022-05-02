@@ -1,6 +1,6 @@
 import { CategoryLabel } from 'Components/conversation/UI'
 import { extractCategories } from 'Components/publicodesUtils'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import {
@@ -15,6 +15,7 @@ import SubCategoriesChart, { InlineBarChart } from './SubCategoriesChart'
 import { AnimatePresence } from 'framer-motion'
 import SubCategoryBar from './SubCategoryBar'
 import CategoryVisualisation from '../CategoryVisualisation'
+import useContinuousCategory from './useContinuousCategory'
 
 export default ({}) => {
 	// needed for this component to refresh on situation change :
@@ -26,12 +27,8 @@ export default ({}) => {
 		...category,
 		abbreviation: rules[category.dottedName].abbréviation,
 	}))
-	const currentQuestion = useSelector(currentQuestionSelector),
-		questionCategory =
-			currentQuestion &&
-			categories.find(
-				({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
-			)
+
+	const displayedCategory = useContinuousCategory(categories)
 
 	const nextQuestions = useNextQuestions()
 
@@ -55,16 +52,17 @@ export default ({}) => {
 					margin-bottom: 1rem;
 				`}
 			>
-				{questionCategory && (
-					<CategoryVisualisation questionCategory={questionCategory} />
+				{displayedCategory && (
+					<CategoryVisualisation questionCategory={displayedCategory} />
 				)}
 			</div>
 			<SubCategoriesChart
 				{...{
+					key: 'categoriesChart',
 					categories: categories,
 					delay: 0.6,
 					indicator: true,
-					questionCategory,
+					questionCategory: displayedCategory,
 					filterSimulationOnClick: true,
 				}}
 			/>

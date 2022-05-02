@@ -19,6 +19,7 @@ import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
 import CategoryVisualisation from '../CategoryVisualisation'
 import Bar from './Bar'
+import useContinuousCategory from './useContinuousCategory'
 
 export default ({
 	details,
@@ -42,13 +43,8 @@ export default ({
 	)
 	const { pathname } = useLocation(),
 		history = useHistory()
-	const currentQuestion = useSelector(currentQuestionSelector),
-		questionCategory =
-			currentQuestion &&
-			categories.find(
-				({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
-			)
 
+	const questionCategory = useContinuousCategory(categories)
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
 		.filter(

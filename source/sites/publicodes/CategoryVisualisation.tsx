@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 export default ({ questionCategory, hideMeta = false }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
+
 	const category = questionCategory.name
 	const rule = engine.getRule(category),
 		formula = ruleFormula(rule)
@@ -63,6 +64,7 @@ export default ({ questionCategory, hideMeta = false }) => {
 				>
 					<SubCategoriesChart
 						{...{
+							key: 'subCategoriesChart',
 							color: questionCategory.color,
 							rules,
 							engine,

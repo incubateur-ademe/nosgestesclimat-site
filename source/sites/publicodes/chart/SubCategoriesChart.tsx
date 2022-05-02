@@ -29,52 +29,50 @@ export default ({
 		restWidth = (rest.value / total) * 100
 
 	return (
-		<div>
-			<InlineBarChart>
-				<AnimatePresence>
-					{categories.map(({ nodeValue, title, icons, color, dottedName }) => (
-						<SubCategoryBar
-							{...{
-								key: title,
-								nodeValue,
-								dottedName,
-								title,
-								icons,
-								total,
-								color: uniqueColor || color,
-								hideSmallerThanPercentage: 10,
-								delay,
-								filterSimulationOnClick,
-								indicator:
-									indicator &&
-									questionCategory &&
-									questionCategory.dottedName === dottedName,
-							}}
-						/>
-					))}
-					<motion.li
-						initial={{ opacity: 0 }}
-						animate={{ opacity: 1, width: `${restWidth}%` }}
-						exit={{ width: 0, opacity: 0 }}
-						transition={{ duration: 0.5, delay }}
-						title={'Le reste : ' + rest.labels.join(', ')}
-						key="rest"
-						css={`
-							${uniqueColor
-								? `background: ${uniqueColor}; color: white`
-								: `background:white; color: #666`};
-							font-size: 200%;
-							div {
-								height: 100%;
-								line-height: 0.2rem;
-							}
-						`}
-					>
-						<div>...</div>
-					</motion.li>
-				</AnimatePresence>
-			</InlineBarChart>
-		</div>
+		<InlineBarChart>
+			<AnimatePresence>
+				{categories.map(({ nodeValue, title, icons, color, dottedName }) => (
+					<SubCategoryBar
+						{...{
+							key: title,
+							nodeValue,
+							dottedName,
+							title,
+							icons,
+							total,
+							color: uniqueColor || color,
+							hideSmallerThanPercentage: 10,
+							delay,
+							filterSimulationOnClick,
+							indicator:
+								indicator &&
+								questionCategory &&
+								questionCategory.dottedName === dottedName,
+						}}
+					/>
+				))}
+				<motion.li
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1, width: `${restWidth}%` }}
+					exit={{ width: 0, opacity: 0 }}
+					transition={{ duration: 0.5, delay }}
+					title={'Le reste : ' + rest.labels.join(', ')}
+					key="rest"
+					css={`
+						${uniqueColor
+							? `background: ${uniqueColor}; color: white`
+							: `background:white; color: #666`};
+						font-size: 200%;
+						div {
+							height: 100%;
+							line-height: 0.2rem;
+						}
+					`}
+				>
+					<div>...</div>
+				</motion.li>
+			</AnimatePresence>
+		</InlineBarChart>
 	)
 }
 
