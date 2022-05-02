@@ -5,7 +5,7 @@ import News from 'Pages/News'
 import React, { Suspense } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Redirect, useLocation } from 'react-router'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Provider from '../../Provider'
 import {
 	persistSimulation,
@@ -20,7 +20,7 @@ import Fin from './fin'
 import Landing from './Landing'
 import Logo from './Logo'
 import Navigation from './Navigation'
-import Documentation from './pages/Documentation'
+const Documentation = React.lazy(() => import('./pages/Documentation'))
 import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
@@ -149,19 +149,17 @@ const Main = ({}) => {
 
 const Routes = ({}) => {
 	return (
-		<Switch>
-			<Route exact path="/" component={Landing} />
-			{/* Removes trailing slashes */}
+		<Routes>
+			<Route path="/" element={<Landing />} />
 			<Route
-				path={'/:url*(/+)'}
-				exact
-				strict
-				render={({ location }) => (
-					<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
-				)}
+				path="documentation/*"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<Documentation />
+					</Suspense>
+				}
 			/>
-			<Route path="/documentation" component={Documentation} />
-			<Route path="/simulateur/:name+" component={Simulateur} />
+			<Route path="simulateur/*" element={<Simulateur />} />
 			<Route path="/stats">
 				<Suspense fallback="Chargement">
 					<StatsLazy />
@@ -215,6 +213,6 @@ const Routes = ({}) => {
 			<Redirect from="/conference/:room" to="/conférence/:room" />
 			<Route path="/tutoriel" component={Tutorial} />
 			<Route component={Route404} />
-		</Switch>
+		</Routes>
 	)
 }
