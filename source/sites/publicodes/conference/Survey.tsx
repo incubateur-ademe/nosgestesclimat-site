@@ -17,10 +17,7 @@ import NoTestMessage from './NoTestMessage'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
-	const [surveyContext, setSurveyContext] = usePersistingState(
-		'surveyContext',
-		{}
-	)
+	const [surveyContext, setSurveyContext] = useState({})
 	const dispatch = useDispatch()
 
 	const { room } = useParams()
@@ -46,11 +43,6 @@ export default () => {
 	const survey = useSelector((state) => state.survey)
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
-	useEffect(() => {
-		if (!existContext) {
-			return setSurveyContext({}) //Context empty if no context exists
-		}
-	}, [existContext])
 	const history = useHistory()
 
 	if (!room || room === '') {
