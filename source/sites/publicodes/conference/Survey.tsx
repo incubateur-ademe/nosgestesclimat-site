@@ -17,10 +17,15 @@ import NoTestMessage from './NoTestMessage'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
-	const [surveyContext, setSurveyContext] = useState({})
+	const [surveyContext, setSurveyContext] = usePersistingState(
+		'surveyContext',
+		{}
+	)
+
 	const dispatch = useDispatch()
 
 	const { room } = useParams()
+
 	const cachedSurveyId = surveyIds[room]
 
 	const { hasData } = useProfileData()
@@ -34,9 +39,11 @@ export default () => {
 		fetch(surveysURL + room)
 			.then((response) => response.json())
 			.then((json) => (json ? json[0]?.contextFile : null))
-			.then((contextFile) =>
+			.then((contextFile) => {
+				if (!surveyContext[room])
+					setSurveyContext({ ...surveyContext, [room]: {} })
 				dispatch({ type: 'ADD_SURVEY_CONTEXT', contextFile })
-			)
+			})
 			.catch((error) => console.log('error:', error))
 	}, [])
 

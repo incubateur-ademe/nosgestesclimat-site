@@ -27,7 +27,7 @@ export default ({ survey, surveyContext, setSurveyContext }) => {
 
 	// we evaluate missing variable related to context parent rule and we pass it to getNextQuestion with a specific engine.
 	const engine = new Engine(contextRules)
-	const [situation, setSituation] = useState(surveyContext)
+	const [situation, setSituation] = useState(surveyContext[survey.room])
 	const missingVariables =
 		contextRules && engine.evaluate(surveyRule).missingVariables
 	const nextQuestions = getNextQuestions(
@@ -47,6 +47,7 @@ export default ({ survey, surveyContext, setSurveyContext }) => {
 					setSituation={setSituation}
 					surveyContext={surveyContext}
 					setSurveyContext={setSurveyContext}
+					room={survey.room}
 				/>
 			</SituationContext.Provider>
 		</div>
@@ -60,6 +61,7 @@ const Main = ({
 	setSituation,
 	surveyContext,
 	setSurveyContext,
+	room,
 }) => (
 	<main>
 		<h2
@@ -69,9 +71,11 @@ const Main = ({
 		>
 			{emoji('📝')}Contexte sondage
 		</h2>
-		{Object.keys(surveyContext).length !== 0 ? (
+		{Object.keys(surveyContext[room]).length !== 0 ? (
 			<SituationDetails
+				surveyContext={surveyContext}
 				setSurveyContext={setSurveyContext}
+				room={room}
 				situation={situation}
 				setSituation={setSituation}
 			/>
@@ -87,7 +91,7 @@ const Main = ({
 					className="ui__ plain button"
 					disabled={!nextQuestions.every((names) => situation[names])}
 					onClick={() => {
-						setSurveyContext(situation)
+						setSurveyContext({ ...surveyContext, [room]: situation })
 					}}
 					css={`
 						margin-bottom: 2rem;
@@ -177,7 +181,13 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 	)
 }
 
-const SituationDetails = ({ setSurveyContext, situation, setSituation }) => {
+const SituationDetails = ({
+	surveyContext,
+	setSurveyContext,
+	room,
+	situation,
+	setSituation,
+}) => {
 	return (
 		<details
 			className="ui__ card plain"
@@ -203,7 +213,7 @@ const SituationDetails = ({ setSurveyContext, situation, setSituation }) => {
 					`}
 					onClick={() => {
 						setSituation({})
-						setSurveyContext({})
+						setSurveyContext({ ...surveyContext, [room]: {} })
 					}}
 				>
 					<span className="text">

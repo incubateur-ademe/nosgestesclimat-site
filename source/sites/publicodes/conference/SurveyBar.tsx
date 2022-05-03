@@ -44,10 +44,10 @@ export default () => {
 
 	const [surveyContext] = usePersistingState('surveyContext', {})
 
-	const context = Object.keys(surveyContext).reduce(
+	const context = Object.keys(surveyContext[survey.room]).reduce(
 		(acc, key) => ({
 			...acc,
-			...{ [splitName(key)[1]]: surveyContext[key] },
+			...{ [splitName(key)[1]]: surveyContext[survey.room][key] },
 		}),
 		{}
 	)
