@@ -1,6 +1,5 @@
 import Engine from 'publicodes'
 import { createContext, useState, useEffect, useContext } from 'react'
-import { useSelector, useDispatch } from 'react-redux'
 import RuleInput from 'Components/conversation/RuleInput'
 import { getNextQuestions } from 'Components/utils/useNextQuestion'
 import emoji from 'react-easy-emoji'
