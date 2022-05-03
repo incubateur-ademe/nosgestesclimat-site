@@ -9,21 +9,47 @@ import { ConferenceTitle } from './Conference'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
 import Stats from './Stats'
-import { answersURL } from './useDatabase'
+import { answersURL, surveysURL } from './useDatabase'
 import { defaultThreshold } from './utils'
+import ContextConversation from './ContextConversation'
+import { useProfileData } from '../Profil'
+import NoTestMessage from './NoTestMessage'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
+	const [surveyContext, setSurveyContext] = usePersistingState(
+		'surveyContext',
+		{}
+	)
+
 	const dispatch = useDispatch()
 
 	const { room } = useParams()
+
 	const cachedSurveyId = surveyIds[room]
+
+	const { hasData } = useProfileData()
+	const [hasDataState, setHasDataState] = useState(hasData)
 
 	useEffect(() => {
 		if (cachedSurveyId) dispatch({ type: 'SET_SURVEY', room })
 	}, [cachedSurveyId])
 
+	useEffect(() => {
+		fetch(surveysURL + room)
+			.then((response) => response.json())
+			.then((json) => (json ? json[0]?.contextFile : null))
+			.then((contextFile) => {
+				if (!surveyContext[room])
+					setSurveyContext({ ...surveyContext, [room]: {} })
+				dispatch({ type: 'ADD_SURVEY_CONTEXT', contextFile })
+			})
+			.catch((error) => console.log('error:', error))
+	}, [])
+
 	const survey = useSelector((state) => state.survey)
+	const existContext = survey ? !(survey['contextFile'] == null) : false
+
 	const history = useHistory()
 
 	if (!room || room === '') {
@@ -39,11 +65,28 @@ export default () => {
 				<img src={conferenceImg} />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
-
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
-				<Results room={survey.room} />
+				<div
+					css={`
+						display: flex;
+						flex-direction: column;
+					`}
+				>
+					{existContext && (
+						<ContextConversation
+							survey={survey}
+							surveyContext={surveyContext}
+							setSurveyContext={setSurveyContext}
+						/>
+					)}
+					{!hasDataState ? (
+						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
+					) : (
+						<Results room={survey.room} />
+					)}
+				</div>
 			)}
 			{survey && (
 				<>

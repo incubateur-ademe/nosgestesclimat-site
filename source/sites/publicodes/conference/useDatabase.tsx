@@ -8,6 +8,8 @@ export const answersURL = protocol + SERVER_URL + '/answers/'
 
 export const surveysURL = protocol + SERVER_URL + '/surveys/'
 
+export const contextURL = protocol + SERVER_URL
+
 export default () => {
 	const database = useMemo(
 		() =>

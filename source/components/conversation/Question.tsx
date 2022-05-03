@@ -102,6 +102,7 @@ export default function Question({
 		// [parent object path]: dotted fieldName relative to parent
 		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
+
 		return (
 			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
 				{choices.canGiveUp && (
@@ -120,6 +121,7 @@ export default function Question({
 					</li>
 				)}
 				{choices.children &&
+					choices.children.length <= 5 &&
 					choices.children.map(
 						({
 							title,
@@ -151,6 +153,33 @@ export default function Question({
 								</li>
 							)
 					)}
+				{/* If there are more than 5 possibilities in a question with "Plusieurs possibilités" a Select is displayed*/}
+				{choices.children && choices.children.length > 5 && (
+					<div>
+						<label title={choices.title}>
+							<select
+								name={choices.title}
+								className="ui__"
+								onChange={(e) => handleChange(e.target.value)}
+								css={`
+									font-size: 110% !important;
+									padding: 0.6rem 1.2rem !important;
+									width: 100% !important;
+								`}
+							>
+								<option value="">Choisissez une option</option>
+								{choices.children.map((node, index) => (
+									<option
+										key={node.dottedName + '-' + index}
+										value={relativeDottedName(node.dottedName)}
+									>
+										{node.title}
+									</option>
+								))}
+							</select>
+						</label>
+					</div>
+				)}
 			</ul>
 		)
 	}

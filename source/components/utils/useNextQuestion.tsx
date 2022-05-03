@@ -105,7 +105,6 @@ export function getNextQuestions(
 		const rule = engine.getRule(name)
 		return rule.rawNode.question != null
 	})
-
 	const lastStep = last(answeredQuestions)
 	// L'ajout de la réponse permet de traiter les questions dont la réponse est
 	// "une possibilité", exemple "contrat salarié . cdd"
@@ -116,7 +115,6 @@ export function getNextQuestions(
 					.replace(/'/g, '')
 					.trim() as DottedName)
 			: lastStep
-
 	return sortBy((question) => {
 		const indexList =
 			whitelist.findIndex((name) => question.startsWith(name)) + 1

@@ -1,6 +1,6 @@
 import { humanWeight } from '../HumanWeight'
 
-export default ({ categories, maxCategory, spotlight }) => {
+export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 	const values = Object.values(categories)
 			.flat()
 			.map(({ username, value }) => value),
@@ -50,10 +50,12 @@ export default ({ categories, maxCategory, spotlight }) => {
 									key={value}
 									css={`
 										left: ${(value / maxCategory) * 100}%;
+										cursor: pointer;
 										${spotlight === username
 											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
 											: ''}
 									`}
+									onClick={() => setSpotlight(username)}
 								></li>
 							))}
 						</ul>
