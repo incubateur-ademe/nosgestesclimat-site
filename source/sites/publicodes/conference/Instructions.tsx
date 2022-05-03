@@ -129,7 +129,7 @@ export default ({
 					{mode == 'sondage' && (
 						<p>
 							{emoji('💡')} Vous souhaitez ajouter des questions pour obtenir
-							des informations supplémentaires sur les répondants ?
+							des informations supplémentaires sur les répondants ? 
 							<Link to={'/groupe/documentation-contexte'}>
 								Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
 							</Link>
