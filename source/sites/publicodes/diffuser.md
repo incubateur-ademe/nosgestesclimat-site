@@ -32,9 +32,9 @@ Nous réfléchissons à cette fonctionnalité.
 
 Venez exprimer votre besoin [ici](https://github.com/datagir/nosgestesclimat-site/issues/231).
 
-## 🇬🇧 You want the same calculator tailored to your country
+<h2 lang="en"> 🇬🇧 You want the same calculator tailored to your country </h2>
 
-We are looking for native partners to translate and adapt the GHG emissions model for the specificities of other countries.
+<p lang="en">We are looking for native partners to translate and adapt the GHG emissions model for the specificities of other countries.</p>
 
 > Nous recherchons activement des partenaires étrangers pour décliner Nos Gestes Climat dans d'autres pays.
 
