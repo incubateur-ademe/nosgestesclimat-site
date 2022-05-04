@@ -173,13 +173,14 @@ export default ({}) => {
 										</small>
 									</p>
 									<textarea
+										aria-describedby="messageAttention"
 										value={comment}
 										onChange={(e) => setComment(e.target.value)}
 										name="comment"
 										required
 									/>
 								</label>
-								<p>
+								<p id="messageAttention">
 									<em>
 										Cette contribution sera publique : n'y mettez pas
 										d'informations sensibles
