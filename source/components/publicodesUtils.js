@@ -72,12 +72,12 @@ export const minimalCategoryData = (categories) =>
 	)
 
 const testsCouleurs = {
-	alimentation: '#f8c291',
-	transport: '#ffa294',
-	logement: '#b8e994',
-	divers: '#82ccdd',
-	'services publics': '#a7b9c8',
-	numérique: '#f7a4d6',
+	alimentation: '#9B350A',
+	transport: '#E31C5D',
+	logement: '#068389',
+	divers: '#0978CE',
+	'services publics': '#464646',
+	numérique: '#B534AD',
 }
 
 export const extractCategories = (
