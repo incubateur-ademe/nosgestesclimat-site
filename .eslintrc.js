@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-		 parser: "@babel/eslint-parser",
+  parser: "@babel/eslint-parser",
   parserOptions: {
     "ecmaFeatures": {
       "jsx": true
@@ -97,6 +97,6 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "prettier"
-		  , "plugin:jsx-a11y/recommended"
+		  , "plugin:jsx-a11y/strict"
   ]
 }
