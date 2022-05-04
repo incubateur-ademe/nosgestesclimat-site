@@ -103,7 +103,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 				padding-left: 0.1rem;
 				border-radius: 1rem;
 				width: ${widthPercentage}%;
-				color: white;
+				color: black;
 				transition: width 0.3s ease-in;
 			`}
 		>
@@ -115,7 +115,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 						margin-left: 0.6rem;
 						opacity: 0.9;
 						font-weight: bold;
-						color: white;
+						color: black;
 						font-size: 90%;
 						line-height: 1.3rem;
 						${!show && `display: none`}

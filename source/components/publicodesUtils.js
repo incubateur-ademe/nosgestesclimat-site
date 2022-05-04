@@ -71,6 +71,15 @@ export const minimalCategoryData = (categories) =>
 		])
 	)
 
+const testsCouleurs = {
+	alimentation: '#f8c291',
+	transport: '#ffa294',
+	logement: '#b8e994',
+	divers: '#82ccdd',
+	'services publics': '#a7b9c8',
+	numérique: '#f7a4d6',
+}
+
 export const extractCategories = (
 	rules,
 	engine,
@@ -86,10 +95,16 @@ export const extractCategories = (
 		const { icônes, couleur } = rules[dottedName]
 		const split = splitName(dottedName),
 			parent = split.length > 1 && split[0]
+
+		console.log(testsCouleurs)
 		return {
 			...node,
 			icons: icônes || rules[parent].icônes,
-			color: couleur || rules[parent].couleur,
+			color:
+				testsCouleurs[dottedName] ||
+				testsCouleurs[parent] ||
+				couleur ||
+				rules[parent].couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,
 			dottedName: (parentRule === 'bilan' && parent) || node.dottedName,
 			documentationDottedName: node.dottedName,
