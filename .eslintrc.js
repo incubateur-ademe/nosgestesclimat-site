@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  parser: "babel-eslint",
+		 parser: "@babel/eslint-parser",
   parserOptions: {
     "ecmaFeatures": {
       "jsx": true
@@ -17,7 +17,6 @@ module.exports = {
   plugins: [
     "react",
     "react-hooks",
-    "mocha",
 		  "jsx-a11y"
   ],
   rules: {
@@ -38,13 +37,11 @@ module.exports = {
     "react/prop-types": 0,
     "react/jsx-no-target-blank": 0,
     "react/no-unescaped-entities": 0,
-    "react/display-name": 1,
+    "react/display-name": 0,
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "mocha/no-skipped-tests": "warn",
-    "mocha/no-exclusive-tests": "error"
   },
   settings: {
     "react": {
@@ -94,20 +91,12 @@ module.exports = {
         "plugin:@typescript-eslint/recommended",
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ]
-    },
-    {
-      files: ["**/*.test.js"],
-      env: {
-        mocha: true
-      }
     }
   ],
   extends: [
     "eslint:recommended",
     "plugin:react/recommended",
-    "prettier",
-    "prettier/react",
-    "prettier/@typescript-eslint"
+    "prettier"
 		  , "plugin:jsx-a11y/recommended"
   ]
 }

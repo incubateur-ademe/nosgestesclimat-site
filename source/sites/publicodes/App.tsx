@@ -33,7 +33,7 @@ const StatsLazy = React.lazy(() => import('./pages/Stats'))
 
 const SurveyLazy = React.lazy(() => import('./conference/Survey'))
 
-const CGULazy = React.lazy(() => import('./CGU.tsx'))
+const CGULazy = React.lazy(() => import('./CGU'))
 const PrivacyLazy = React.lazy(() => import('./Privacy.js'))
 
 const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
