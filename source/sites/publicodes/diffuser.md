@@ -18,19 +18,13 @@ Pour en savoir plus sur l'intégration, rendez-vous sur [notre guide](https://gi
 
 ## Vous animez des conférences climat
 
-Pour pimenter une conférence et rendre vos auditeurs actifs sur leur 🤳, quoi de mieux que de les laisser faire une simulation en direct ?
-
-Cela tombe bien, nous venons de lancer en version beta le [🏟️ mode conférence](/conférence).
-
-Choissiez un nom de salle, partagez le lien, et lancez le match de simulation !
-
-## Vous voulez faire un sondage
+Pour pimenter une conférence et rendre vos auditeurs actifs sur leur téléphone, quoi de mieux que de les laisser faire une simulation en direct ?
 
 Vous voulez estimer l'empreinte climat d'un groupe de personnes, ou simplement intégrer le simulateur et récupérer le résultat de simulation dans le compte de l'utilisateur ?
 
-Nous réfléchissons à cette fonctionnalité.
+Les fonctionnaliés "conférence" et "sondage" sont désormais disponibles !
 
-Venez exprimer votre besoin [ici](https://github.com/datagir/nosgestesclimat-site/issues/231).
+Rendez-vous [🏟️ mode groupe](/groupe) sur choissiez un nom de salle, partagez le lien, et lancez le match de simulation !
 
 <h2 lang="en"> 🇬🇧 You want the same calculator tailored to your country </h2>
 
