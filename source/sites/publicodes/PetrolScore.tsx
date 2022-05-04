@@ -24,7 +24,7 @@ export default ({ endURL }) => {
 				<img
 					src="/images/pompe-essence.svg"
 					css="width: 3rem; "
-					alt="Une pompe à pétrole"
+					alt="Pompe à pétrole"
 				/>
 				<div
 					css="display: flex; flex-direction: column; padding: 0 .4rem"

@@ -14,6 +14,7 @@ export default ({ nodeValue, color, completed, demoMode }) => {
 			{value}&nbsp;{unit}
 			<img
 				src="/images/2714.svg"
+				alt="catégorie complétée"
 				css={`
 					visibility: ${completed ? 'visible' : 'hidden'};
 					display: inline;
