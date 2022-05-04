@@ -55,7 +55,20 @@ export default ({
 		)
 		if (!thresholdActions.length) return null
 		return (
-			<div>
+			<div
+				css={`
+					position: relative;
+					margin-bottom: 2.5rem;
+				`}
+			>
+				<ThresholdSeparator
+					css={`
+						position: absolute;
+						bottom: -2.5rem;
+					`}
+				>
+					<h4>{label} &#9650;</h4>
+				</ThresholdSeparator>
 				<List
 					{...{
 						actions: thresholdActions,
@@ -66,9 +79,6 @@ export default ({
 						focusedAction,
 					}}
 				/>
-				<ThresholdSeparator>
-					<h4>{label} &#9650;</h4>
-				</ThresholdSeparator>
 			</div>
 		)
 	})
@@ -92,7 +102,6 @@ export default ({
 					</div>
 				</animate.fromTop>
 			)}
-
 
 			{radical ? numberedActions : numberedActions.slice().reverse()}
 
