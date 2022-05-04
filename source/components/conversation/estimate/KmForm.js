@@ -101,9 +101,10 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 							required
 							placeholder="Distance"
 							onChange={handleAddFormChange}
+							aria-describedby="unitéDistance"
 						/>
 					</label>
-					<InputSuffix>km (A/R)</InputSuffix>
+					<InputSuffix id="unitéDistance">km (A/R)</InputSuffix>
 				</InputWrapper>
 				<label title="fréquence">
 					<SelectWrapper>
