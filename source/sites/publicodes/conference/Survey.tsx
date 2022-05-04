@@ -14,6 +14,7 @@ import { defaultThreshold } from './utils'
 import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
+import Meta from '../../../components/utils/Meta'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -57,6 +58,14 @@ export default () => {
 	}
 	return (
 		<div>
+			<Meta
+				title={'Sondage ' + room}
+				description={
+					'Participez au sondage ' +
+					room +
+					' et visualisez les résultats du groupe'
+				}
+			/>
 			<h1>
 				Sondage
 				<Beta />

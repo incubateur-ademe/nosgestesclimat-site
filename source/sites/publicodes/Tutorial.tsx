@@ -16,6 +16,7 @@ import { TrackerContext } from '../../components/utils/withTracker'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
+import Meta from '../../components/utils/Meta'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -62,18 +63,24 @@ export default ({}) => {
 	if (slides[index] == null) return null
 
 	return (
-		<SlidesLayout>
-			<HorizontalSwipe {...{ next, previous }}>
-				<Slide
-					{...{
-						last,
-						skip,
-					}}
-				>
-					<Component />
-				</Slide>
-			</HorizontalSwipe>
-		</SlidesLayout>
+		<div>
+			<Meta
+				title="Tutorial"
+				description="Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation."
+			/>
+			<SlidesLayout>
+				<HorizontalSwipe {...{ next, previous }}>
+					<Slide
+						{...{
+							last,
+							skip,
+						}}
+					>
+						<Component />
+					</Slide>
+				</HorizontalSwipe>
+			</SlidesLayout>
+		</div>
 	)
 }
 
