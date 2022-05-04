@@ -17,7 +17,8 @@ module.exports = {
   plugins: [
     "react",
     "react-hooks",
-    "mocha"
+    "mocha",
+		  "jsx-a11y"
   ],
   rules: {
     "quotes": [
@@ -107,5 +108,6 @@ module.exports = {
     "prettier",
     "prettier/react",
     "prettier/@typescript-eslint"
+		  , "plugin:jsx-a11y/recommended"
   ]
 }
