@@ -206,7 +206,7 @@ ${fromLocation ? `Depuis la page : \`${fromLocation}\`` : ''}
 										createIssue(sujet, augmentedComment, setURL, disableButton)
 									}}
 								>
-									Valider
+									Envoyer
 								</button>
 							</form>
 						) : (
