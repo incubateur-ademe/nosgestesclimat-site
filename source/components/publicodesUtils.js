@@ -56,7 +56,7 @@ export const extractCategoriesNamespaces = (
 		return {
 			...node,
 			icons: icônes,
-			color: couleur,
+			color: categoryColorOverride[dottedName] || couleur,
 		}
 	})
 
@@ -71,12 +71,12 @@ export const minimalCategoryData = (categories) =>
 		])
 	)
 
-const testsCouleurs = {
-	alimentation: '#9B350A',
-	transport: '#E31C5D',
-	logement: '#068389',
-	divers: '#0978CE',
-	'services publics': '#464646',
+const categoryColorOverride = {
+	alimentation: '#46842A',
+	transport: '#b71540',
+	logement: '#007DA3',
+	divers: '#1966F5',
+	'services publics': '#483C46',
 	numérique: '#B534AD',
 }
 
@@ -96,13 +96,12 @@ export const extractCategories = (
 		const split = splitName(dottedName),
 			parent = split.length > 1 && split[0]
 
-		console.log(testsCouleurs)
 		return {
 			...node,
 			icons: icônes || rules[parent].icônes,
 			color:
-				testsCouleurs[dottedName] ||
-				testsCouleurs[parent] ||
+				categoryColorOverride[dottedName] ||
+				categoryColorOverride[parent] ||
 				couleur ||
 				rules[parent].couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,

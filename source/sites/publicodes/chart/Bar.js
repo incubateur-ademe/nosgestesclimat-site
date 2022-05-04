@@ -39,7 +39,7 @@ export default ({
 				css={`
 					display: flex;
 					align-items: center;
-					height: 1.3rem;
+					height: 2rem;
 					position: relative;
 				`}
 				title={title}
@@ -99,7 +99,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 				background: ${color};
 				margin-top: 0rem;
 				margin-right: 0.8rem;
-				height: 1.3rem;
+				height: 2rem;
 				padding-left: 0.1rem;
 				border-radius: 1rem;
 				width: ${widthPercentage}%;
@@ -116,8 +116,8 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 						opacity: 0.9;
 						font-weight: bold;
 						color: white;
-						font-size: 90%;
-						line-height: 1.3rem;
+						font-size: 110%;
+						line-height: 2rem;
 						${!show && `display: none`}
 					`}
 				>
