@@ -131,6 +131,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 					`}
 				>
 					<div
+						id="explicationResultatAideKm"
 						css={`
 							font-size: 80%;
 							font-style: italic;
