@@ -39,8 +39,11 @@ export default function InputEstimation({ inputEstimation, setFinalValue }) {
 			<span>{emoji('🧮')} </span>
 			<span>
 				<div>
-					{inputEstimation.rawNode.question}
+					<span id="explicationEstimation">
+						{inputEstimation.rawNode.question}
+					</span>
 					<input
+						aria-describedby="explicationEstimation"
 						type="number"
 						min="0"
 						max="1000000"
