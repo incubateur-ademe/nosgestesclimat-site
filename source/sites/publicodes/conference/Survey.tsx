@@ -10,10 +10,11 @@ import DataWarning from './DataWarning'
 import Instructions from './Instructions'
 import Stats from './Stats'
 import { answersURL, surveysURL } from './useDatabase'
-import { defaultThreshold } from './utils'
+import { defaultThreshold, defaultProgressMin } from './utils'
 import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
+import { configSelector } from '../../../selectors/simulationSelectors'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -84,7 +85,7 @@ export default () => {
 					{!hasDataState ? (
 						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
 					) : (
-						<Results room={survey.room} />
+						<Results room={survey.room} existContext={existContext} />
 					)}
 				</div>
 			)}
@@ -155,7 +156,7 @@ const DownloadInteractiveButton = ({ url }) => {
 	)
 }
 
-const Results = ({}) => {
+const Results = ({ room, existContext }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
@@ -165,13 +166,42 @@ const Results = ({}) => {
 
 	return (
 		<Stats
-			elements={Object.values(answerMap).map((el) => ({
-				...el.data,
-				username: el.id,
-			}))}
+			elements={getElements(
+				answerMap,
+				threshold,
+				existContext,
+				defaultProgressMin
+			)}
 			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
 		/>
 	)
+}
+
+// Simulations with less than 10% progress are excluded, in order to avoid a perturbation of the mean group value by people
+// that did connect to the conference, but did not seriously start the test, hence resulting in multiple default value simulations.
+// In case of survey with context, we only display result with context filled in.
+
+export const getElements = (
+	answerMap,
+	threshold,
+	existContext,
+	progressMin
+) => {
+	const rawElements = Object.values(answerMap).map((el) => ({
+		...el.data,
+		username: el.id,
+	}))
+	const elements = existContext
+		? rawElements.filter(
+				(el) =>
+					el.total < threshold &&
+					el.progress > progressMin &&
+					Object.keys(el.context).length !== 0
+		  )
+		: rawElements.filter(
+				(el) => el.total < threshold && el.progress > progressMin
+		  )
+	return elements
 }

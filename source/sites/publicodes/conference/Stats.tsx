@@ -20,18 +20,14 @@ export const computeHumanMean = (simulationArray) => {
 }
 
 export default ({
-	elements: rawElements,
+	elements,
 	users = [],
 	username: currentUser,
 	threshold,
 	setThreshold,
 }) => {
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
-	const elements = rawElements.filter(
-		/* Simulations with less than 10% progress are excluded, in order to avoid a perturbation of the mean group value by
-		 * people that did connect to the conference, but did not seriously start the test, hence resulting in multiple default value simulations  */
-		(el) => el.total < threshold && el.progress > 0.1
-	)
+
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
 	const values = elements.map((el) => el.total)
@@ -67,8 +63,8 @@ export default ({
 		<div>
 			<div css=" text-align: center">
 				<p>
-					Avancement du groupe ({rawElements.length} participant
-					{rawElements.length > 1 ? 's' : ''})
+					Avancement du groupe ({elements.length} participant
+					{elements.length > 1 ? 's' : ''})
 				</p>
 				<Progress progress={meanProgress} />
 			</div>
