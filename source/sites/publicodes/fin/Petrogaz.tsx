@@ -39,7 +39,7 @@ export default ({ headlessMode }) => {
 		headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
-	})
+	}, [])
 	const gradientPosition = Math.round((1 - value / score) * 400 + 50)
 
 	return (

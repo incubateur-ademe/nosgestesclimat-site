@@ -32,7 +32,7 @@ export default ({ score, details, headlessMode }) => {
 		headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
-	})
+	}, [])
 
 	const backgroundColor = 'var(--lightColor)',
 		backgroundColor2 = 'var(--lighterColor)',
