@@ -7,7 +7,12 @@ export default ({ finalActions, setRadical, radical }) => {
 	if (!visible)
 		return (
 			<div css="text-align: right; position: absolute;right: 0; button {font-size: 100%}">
-				<button onClick={() => setVisible(true)}>{emoji('⚙️')}</button>
+				<button
+					title="Ouvrir les options de tri"
+					onClick={() => setVisible(true)}
+				>
+					{emoji('⚙️')}
+				</button>
 			</div>
 		)
 	return (
@@ -29,6 +34,7 @@ export default ({ finalActions, setRadical, radical }) => {
 				onClick={() => setRadical(!radical)}
 				className="ui__ dashed-button"
 				css="color: var(--lighterTextColor); font-size: 85% !important"
+				title="Choisir le type de tri des actions"
 			>
 				{radical ? (
 					<span>le + d'impact climat</span>
@@ -37,7 +43,12 @@ export default ({ finalActions, setRadical, radical }) => {
 				)}
 				.
 			</button>
-			<button onClick={() => setVisible(false)}>{emoji('❌')}</button>
+			<button
+				title="Fermer les options de tri"
+				onClick={() => setVisible(false)}
+			>
+				{emoji('❌')}
+			</button>
 		</div>
 	)
 }
