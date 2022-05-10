@@ -62,11 +62,24 @@ const MenuButton = styled.div`
 	}
 `
 
-const Button = (props) => (
-	<Link to={props.url} css="text-decoration: none">
-		<MenuButton {...props} />{' '}
-	</Link>
-)
+const Button = (props) => {
+	const location = useLocation(),
+		path = location.pathname
+	const isCurrent = path.includes(props.url)
+	return (
+		<Link
+			to={props.url}
+			css="text-decoration: none"
+			{...(isCurrent
+				? {
+						'aria-current': 'page',
+				  }
+				: {})}
+		>
+			<MenuButton {...props} />{' '}
+		</Link>
+	)
+}
 
 export const sessionBarMargin = `
 		@media (max-width: 800px) {
