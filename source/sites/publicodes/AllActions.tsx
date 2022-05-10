@@ -55,20 +55,7 @@ export default ({
 		)
 		if (!thresholdActions.length) return null
 		return (
-			<div
-				css={`
-					position: relative;
-					margin-bottom: 2.5rem;
-				`}
-			>
-				<ThresholdSeparator
-					css={`
-						position: absolute;
-						bottom: -2.5rem;
-					`}
-				>
-					<h4>{label} &#9650;</h4>
-				</ThresholdSeparator>
+			<div>
 				<List
 					{...{
 						actions: thresholdActions,
@@ -79,6 +66,9 @@ export default ({
 						focusedAction,
 					}}
 				/>
+				<ThresholdSeparator>
+					<span>{label} &#9650;</span>
+				</ThresholdSeparator>
 			</div>
 		)
 	})
@@ -260,7 +250,7 @@ const ThresholdSeparator = styled.div`
 	text-align: center;
 	margin-bottom: 1rem;
 
-	h4 {
+	span {
 		display: inline-block;
 		font-weight: 400;
 		padding: 0 0.8rem;
