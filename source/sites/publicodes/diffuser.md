@@ -34,7 +34,7 @@ Rendez-vous [🏟️ mode groupe](/groupe) sur choissiez un nom de salle, partag
 
 ## Vous souhaitez personnaliser l'outil pour vos propres besoins
 
-Pour en savoir plus sur l'intégration personnalisée (iframe configuré, fork du code), rendez-vous sur [notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md).
+Pour en savoir plus sur l'intégration personnalisée (<span lang="en">iframe</span> configuré, fork du code), rendez-vous sur [notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md).
 
 ## Vous voulez simplement nous aider
 
