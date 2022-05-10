@@ -156,6 +156,13 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 							Données {'>'} À partir d'un fichier texte / CSV. Sélectionnez
 							"Origine : Unicode UTF-8" et "Délimiteur : virgule".
 						</li>
+						<li>
+							Les résultats de la page de visualisation ne prennent en compte
+							que les participants ayant rempli <b>au moins 10% du test</b>. En
+							revanche le CSV contient les simulations de toutes les personnes
+							ayant participé au sondage en cliquant sur le lien. La colonne
+							"Progress" vous permet de filtrer a votre tout les simulations.
+						</li>
 					</ul>
 					<a href={url} className="ui__ link-button">
 						{emoji('💾')} Lancer le téléchargement.
