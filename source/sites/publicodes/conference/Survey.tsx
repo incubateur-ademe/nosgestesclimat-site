@@ -22,7 +22,7 @@ export default () => {
 		'surveyContext',
 		{}
 	)
-
+	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(false)
 	const dispatch = useDispatch()
 
 	const { room } = useParams()
@@ -44,6 +44,15 @@ export default () => {
 				if (!surveyContext[room])
 					setSurveyContext({ ...surveyContext, [room]: {} })
 				dispatch({ type: 'ADD_SURVEY_CONTEXT', contextFile })
+			})
+			.catch((error) => console.log('error:', error))
+	}, [])
+
+	useEffect(() => {
+		fetch(surveysURL + room)
+			.then((response) => response.json())
+			.then((json) => {
+				setIsRegisteredSurvey(json?.length != 0)
 			})
 			.catch((error) => console.log('error:', error))
 	}, [])
@@ -106,6 +115,7 @@ export default () => {
 					</div>
 					<DownloadInteractiveButton
 						url={answersURL + survey.room + '?format=csv'}
+						isRegisteredSurvey={isRegisteredSurvey}
 					/>
 				</>
 			)}
@@ -113,7 +123,7 @@ export default () => {
 	)
 }
 
-const DownloadInteractiveButton = ({ url }) => {
+const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 	const [clicked, click] = useState(false)
 
 	return (
@@ -128,7 +138,7 @@ const DownloadInteractiveButton = ({ url }) => {
 				>
 					{emoji('💾')} Télécharger les résultats
 				</a>
-			) : (
+			) : isRegisteredSurvey ? (
 				<div className="ui__ card content">
 					<p>
 						Vous pouvez récupérer les résultats du sondage dans le format .csv.
@@ -150,6 +160,22 @@ const DownloadInteractiveButton = ({ url }) => {
 					<a href={url} className="ui__ link-button">
 						{emoji('💾')} Lancer le téléchargement.
 					</a>
+				</div>
+			) : (
+				<div>
+					{' '}
+					Le téléchargement pour ce sondage est indisponible. Ce problème vient
+					sans doute du fait que le sondage n'a pas été créé via la page dédiée
+					. N'hésitez pas à créer une salle au nom du sondage via{' '}
+					<a href="https://nosgestesclimat.fr/groupe" target="_blank">
+						ce formulaire d'instruction
+					</a>{' '}
+					(les données ne seront pas supprimées). Si le problème
+					persiste,n'hésitez pas à{' '}
+					<a href="https://datagir.ademe.fr/#contact" target="_blank">
+						nous contacter
+					</a>
+					.
 				</div>
 			)}
 		</div>
