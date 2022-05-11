@@ -87,6 +87,7 @@ export default () => {
 							border-radius: 2rem;
 							display: inline-block;
 							line-height: 1.5rem;
+							color: var(--darkerColor);
 							text-align: center;
 						`}
 					>
