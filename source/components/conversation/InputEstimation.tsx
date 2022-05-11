@@ -39,11 +39,13 @@ export default function InputEstimation({ inputEstimation, setFinalValue }) {
 			<span>{emoji('🧮')} </span>
 			<span>
 				<div>
-					<span id="explicationEstimation">
+					<span id={'explicationEstimation - ' + inputEstimation.dottedName}>
 						{inputEstimation.rawNode.question}
 					</span>
 					<input
-						aria-describedby="explicationEstimation"
+						aria-describedby={
+							'explicationEstimation - ' + inputEstimation.dottedName
+						}
 						type="number"
 						min="0"
 						max="1000000"
