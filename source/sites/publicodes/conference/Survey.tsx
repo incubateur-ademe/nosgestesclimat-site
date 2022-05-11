@@ -161,7 +161,7 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 							que les participants ayant rempli <b>au moins 10% du test</b>. En
 							revanche le CSV contient les simulations de toutes les personnes
 							ayant participé au sondage en cliquant sur le lien. La colonne
-							"Progress" vous permet de filtrer a votre tout les simulations.
+							"Progress" vous permet de filtrer a votre tour les simulations.
 						</li>
 					</ul>
 					<a href={url} className="ui__ link-button">
