@@ -45,9 +45,8 @@ export default ({
 				title={title}
 			>
 				{pathname.includes('simulateur/bilan') ? (
-					<button
-						type="button"
-						title={`N'afficher que les questions ` + dottedName}
+					<div
+						title={dottedName}
 						css={`
 							margin: 0;
 							padding: 0;
@@ -58,7 +57,7 @@ export default ({
 						}
 					>
 						{emojiComponent}
-					</button>
+					</div>
 				) : (
 					emojiComponent
 				)}
