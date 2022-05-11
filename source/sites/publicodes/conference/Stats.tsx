@@ -66,7 +66,7 @@ export default ({
 	return (
 		<div>
 			<div css=" text-align: center">
-				<p>
+				<p role="heading" aria-level="2">
 					Avancement du groupe ({rawElements.length} participant
 					{rawElements.length > 1 ? 's' : ''})
 				</p>

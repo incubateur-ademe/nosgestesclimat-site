@@ -184,7 +184,11 @@ const Budget = ({ score, details, headlessMode }) => {
 								height: 10rem;
 							`}
 						>
-							<div css="font-weight: bold; font-size: 280%;">
+							<div
+								role="heading"
+								aria-level="1"
+								css="font-weight: bold; font-size: 280%;"
+							>
 								<span css="width: 4rem; text-align: right; display: inline-block">
 									{integerValue}
 									{score < 10000 && (

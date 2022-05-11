@@ -96,13 +96,13 @@ export default ({
 			{radical ? numberedActions : numberedActions.slice().reverse()}
 
 			<ThresholdSeparator>
-				<h4>
+				<span>
 					<img
 						src="/images/270A.svg"
 						css="filter: invert(1); height: 2rem; vertical-align: middle"
 					/>
 					Actions non chiffrées &#9660;
-				</h4>
+				</span>
 			</ThresholdSeparator>
 			<List
 				{...{
@@ -115,13 +115,13 @@ export default ({
 				}}
 			/>
 			<ThresholdSeparator>
-				<h4>
+				<span>
 					<img
 						src="/images/26D4.svg"
 						css="filter:invert(1); height: 2rem; vertical-align: middle; margin-right: .3rem"
 					/>
 					Actions négatives &#9660;
-				</h4>
+				</span>
 			</ThresholdSeparator>
 			<List
 				{...{

@@ -43,6 +43,7 @@ export default function Conversation({
 	customEndMessages,
 	customEnd,
 	orderByCategories,
+	questionHeadingLevel,
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext),
@@ -290,6 +291,8 @@ export default function Conversation({
 				)}
 				<div className="step">
 					<h2
+						role="heading"
+						aria-level={questionHeadingLevel ?? 2}
 						css={`
 							margin: 0.4rem 0;
 							font-size: 120%;
