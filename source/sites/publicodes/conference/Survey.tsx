@@ -172,13 +172,13 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 				<div>
 					{' '}
 					Le téléchargement pour ce sondage est indisponible. Ce problème vient
-					sans doute du fait que le sondage n'a pas été créé via la page dédiée
-					. N'hésitez pas à créer une salle au nom du sondage via{' '}
+					sans doute du fait que le sondage n'a pas été créé via la page dédiée. 
+					N'hésitez pas à créer une salle au nom du sondage via{' '}
 					<a href="https://nosgestesclimat.fr/groupe" target="_blank">
 						ce formulaire d'instruction
 					</a>{' '}
 					(les données ne seront pas supprimées). Si le problème
-					persiste,n'hésitez pas à{' '}
+					persiste, n'hésitez pas à{' '}
 					<a href="https://datagir.ademe.fr/#contact" target="_blank">
 						nous contacter
 					</a>
