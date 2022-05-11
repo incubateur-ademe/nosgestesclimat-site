@@ -4,5 +4,3 @@ additionalRepositories:
 tasks:
   - init: yarn install && yarn run compile
     command: yarn run start
-
-workspaceLocation: nosgestesclimat-site/workspace
