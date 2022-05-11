@@ -142,6 +142,7 @@ export const ActionListCard = ({
 				css={`
 					display: flex;
 					justify-content: space-evenly;
+					align-items: center;
 					button img {
 						font-size: 200%;
 					}
@@ -178,7 +179,7 @@ export const ActionListCard = ({
 						e.preventDefault()
 					}}
 				>
-					{emoji('✅')}
+					<img src="/images/2714.svg" css="width: 3rem" />
 				</button>
 				<button
 					title="Rejeter l'action"
@@ -201,7 +202,7 @@ export const ActionListCard = ({
 						e.preventDefault()
 					}}
 				>
-					{emoji('❌')}
+					<img src="/images/274C.svg" css="width: 1.8rem" />
 				</button>
 			</div>
 		</div>
