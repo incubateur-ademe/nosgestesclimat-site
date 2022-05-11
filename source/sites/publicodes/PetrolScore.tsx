@@ -16,6 +16,7 @@ export default ({ endURL }) => {
 				background: rgba(0, 0, 0, 0)
 					linear-gradient(60deg, var(--darkColor) 0%, var(--darkestColor) 100%)
 					repeat scroll 0% 0%;
+				color: white !important;
 			`}
 			to={endURL}
 			title="Page de fin de simulation"

@@ -177,7 +177,7 @@ const Sidebar = styled.ul`
 
 			&.active {
 				background: var(--darkColor);
-				color: var(--textColor);
+				color: var(--textColor) !important;
 			}
 			:hover:not(.active) {
 				color: var(--darkerColor);
