@@ -56,12 +56,12 @@ export default ({
 		max = humanWeight(maxValue, true).join(' '),
 		min = humanWeight(minValue, true).join(' ')
 
+	const formatTotal = (total) =>
+		(total / 1000).toLocaleString('fr-FR', {
+			maximumSignificantDigits: 2,
+		})
 	const spotlightElement = elements.find((el) => el.username === spotlight),
-		spotlightValue =
-			spotlightElement &&
-			(spotlightElement.total / 1000).toLocaleString('fr-FR', {
-				maximumSignificantDigits: 2,
-			})
+		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
 	return (
 		<div>
@@ -76,7 +76,7 @@ export default ({
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
 						Moyenne : {humanMean}{' '}
-						<small>
+						<small title="Moyenne française">
 							({emoji('🇫🇷')} <DefaultFootprint />)
 						</small>
 					</div>
@@ -136,6 +136,8 @@ export default ({
 										`
 									: ''}
 							`}
+							title={formatTotal(value) + ' t'}
+							{...(spotlight === username ? { role: 'mark' } : {})}
 							onClick={() => setSpotlight(username)}
 						></li>
 					))}

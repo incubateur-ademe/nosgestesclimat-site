@@ -55,6 +55,8 @@ export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
 											: ''}
 									`}
+									title={value + ' kg'}
+									{...(spotlight === username ? { role: 'mark' } : {})}
 									onClick={() => setSpotlight(username)}
 								></li>
 							))}
