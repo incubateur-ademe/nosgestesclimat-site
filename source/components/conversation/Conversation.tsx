@@ -246,7 +246,6 @@ export default function Conversation({
 							display: flex;
 							align-items: center;
 							color: var(--color);
-							opacity: 0.4;
 						}
 						img {
 							width: 1.2rem;
