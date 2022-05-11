@@ -1,5 +1,7 @@
 ## Le site Web nosgestesclimat.fr
 
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/datagir/nosgestesclimat-site/edit/essai-gitpod/README.md)
+
 ## C'est quoi ?
 
 Un simulateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/datagir/nosgestesclimat).
