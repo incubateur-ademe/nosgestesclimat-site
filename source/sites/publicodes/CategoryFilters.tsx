@@ -65,7 +65,7 @@ export default ({ categories, metric, selected, countByCategory }) => {
 						<span
 							css={`
 								background: white;
-								color: var(--color);
+								color: var(--darkColor);
 								border-radius: 1rem;
 								width: 1rem;
 								margin-left: 0.2rem;

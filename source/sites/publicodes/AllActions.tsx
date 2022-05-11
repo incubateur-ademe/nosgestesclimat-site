@@ -254,7 +254,7 @@ const ThresholdSeparator = styled.div`
 		font-weight: 400;
 		font-size: 1em;
 		padding: 0 0.8rem;
-		background: var(--color);
+		background: var(--darkColor);
 		color: white;
 		border-radius: 1rem;
 		margin-top: 0.5em;

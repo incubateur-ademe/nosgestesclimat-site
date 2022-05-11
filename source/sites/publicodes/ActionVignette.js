@@ -263,7 +263,7 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 				margin-top: 1.6rem;
 				font-size: 100%;
 				strong {
-					background: var(--lightColor);
+					background: var(--color);
 					border-radius: 0.3rem;
 					color: var(--textColor);
 					padding: 0.1rem 0.4rem;
