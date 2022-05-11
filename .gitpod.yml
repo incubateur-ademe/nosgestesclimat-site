@@ -1,0 +1,6 @@
+additionalRepositories:
+  - url: https://github.com/xxxxxxxxx
+
+tasks:
+  - init: yarn install && yarn run compile
+    command: yarn run start
