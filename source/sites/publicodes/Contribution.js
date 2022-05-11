@@ -155,6 +155,7 @@ export default ({}) => {
 								<label css="color: var(--color)">
 									Le titre bref de votre problème
 									<input
+										aria-describedby="messageAttention"
 										value={sujet}
 										onChange={(e) => setSujet(e.target.value)}
 										type="text"
