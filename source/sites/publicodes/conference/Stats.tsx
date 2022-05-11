@@ -70,7 +70,7 @@ export default ({
 					Avancement du groupe ({rawElements.length} participant
 					{rawElements.length > 1 ? 's' : ''})
 				</p>
-				<Progress progress={meanProgress} />
+				<Progress progress={meanProgress} label="Avancement du groupe" />
 			</div>
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
