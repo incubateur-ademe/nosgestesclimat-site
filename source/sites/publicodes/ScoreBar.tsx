@@ -80,7 +80,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 						color: white !important;
 					`}
 					to={demoMode ? '#' : buildEndURL(rules, engine)}
-					title="Page de fin de simulation"
+					title="Page de fin de simulation principale"
 				>
 					<div css="display:flex; align-items:center; justify-content: center">
 						<img

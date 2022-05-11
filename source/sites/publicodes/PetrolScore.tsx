@@ -19,7 +19,7 @@ export default ({ endURL }) => {
 				color: white !important;
 			`}
 			to={endURL}
-			title="Page de fin de simulation"
+			title="Page de fin de simulation pétrole"
 		>
 			<div css="display: flex; align-items: center">
 				<img
