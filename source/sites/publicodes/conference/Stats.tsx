@@ -136,7 +136,7 @@ export default ({
 										`
 									: ''}
 							`}
-							title={formatTotal(value) + ' t'}
+							title={`${username} : ${formatTotal(value)} t`}
 							{...(spotlight === username ? { role: 'mark' } : {})}
 							onClick={() => setSpotlight(username)}
 						></li>
