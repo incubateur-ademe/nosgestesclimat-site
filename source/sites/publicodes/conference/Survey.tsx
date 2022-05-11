@@ -161,7 +161,7 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 							que les participants ayant rempli <b>au moins 10% du test</b>. En
 							revanche le CSV contient les simulations de toutes les personnes
 							ayant participé au sondage en cliquant sur le lien. La colonne
-							"Progress" vous permet de filtrer a votre tout les simulations.
+							"progress" vous permet de filtrer les simulations à votre tour.
 						</li>
 					</ul>
 					<a href={url} className="ui__ link-button">
@@ -172,17 +172,19 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 				<div>
 					{' '}
 					Le téléchargement pour ce sondage est indisponible. Ce problème vient
-					sans doute du fait que le sondage n'a pas été créé via la page dédiée. 
+					sans doute du fait que le sondage n'a pas été créé via la page dédiée.
 					N'hésitez pas à créer une salle au nom du sondage via{' '}
 					<a href="https://nosgestesclimat.fr/groupe" target="_blank">
 						ce formulaire d'instruction
 					</a>{' '}
-					(les données ne seront pas supprimées). Si le problème
-					persiste, n'hésitez pas à{' '}
-					<a href="https://datagir.ademe.fr/#contact" target="_blank">
-						nous contacter
+					(les réponses ne seront pas supprimées). Si le problème persiste,{' '}
+					<a
+						href="mailto:contact@nosgestesclimat.fr?subject=Problème téléchargement sondage"
+						target="_blank"
+					>
+						contactez-nous
 					</a>
-					.
+					!
 				</div>
 			)}
 		</div>
