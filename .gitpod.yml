@@ -1,5 +1,5 @@
 additionalRepositories:
-  - url: https://github.com/datagir/nosgestesclimat
+  - url: https://github.com/datagir/nosgestesclimat/tree/essai-gitpod
 
 tasks:
   - init: yarn install && yarn run compile
