@@ -175,10 +175,13 @@ const Sidebar = styled.ul`
 			padding: 4px 10px;
 			margin: 0;
 
-			&:hover,
 			&.active {
-				background: var(--color);
+				background: var(--darkColor);
 				color: var(--textColor);
+			}
+			:hover:not(.active) {
+				color: var(--darkerColor);
+				background: var(--lightestColor);
 			}
 			&.active small {
 				color: var(--textColor);
