@@ -96,7 +96,7 @@ export const ActionListCard = ({
 				css={`
 					display: block;
 					margin-top: 0.6rem;
-					h2 {
+					h3 {
 						margin-left: 0.6rem;
 						display: inline;
 						font-size: 110%;
@@ -116,7 +116,7 @@ export const ActionListCard = ({
 						{emoji(icons)}
 					</span>
 				)}
-				<h2>{title}</h2>
+				<h3>{title}</h3>
 			</Link>
 
 			<div
