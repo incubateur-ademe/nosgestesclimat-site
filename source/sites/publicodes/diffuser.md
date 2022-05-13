@@ -26,7 +26,7 @@ Les fonctionnaliés "conférence" et "sondage" sont désormais disponibles !
 
 Rendez-vous [🏟️ mode groupe](/groupe) sur choissiez un nom de salle, partagez le lien, et lancez le match de simulation !
 
-<h2 lang="en"> 🇬🇧 You want the same calculator tailored to your country </h2>
+<h2 lang="en"> <span role="img" aria-label="" aria-hidden="true">🇬🇧</span> You want the same calculator tailored to your country </h2>
 
 <p lang="en">We are looking for native partners to translate and adapt the GHG emissions model for the specificities of other countries.</p>
 

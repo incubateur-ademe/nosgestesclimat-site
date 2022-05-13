@@ -7,7 +7,7 @@ import Meta from 'Components/utils/Meta'
 import { AnimatePresence, motion, useSpring } from 'framer-motion'
 import { utils } from 'publicodes'
 import { default as React, useContext, useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import SpanEmoji from 'Components/SpanEmoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
@@ -231,8 +231,7 @@ const Budget = ({ score, details, headlessMode }) => {
 							>
 								<div>
 									<span>
-										{emoji('🇫🇷 ')}
-										moyenne{' '}
+										<SpanEmoji symbol="🇫🇷" label="France" /> moyenne{' '}
 									</span>{' '}
 									<strong>
 										{' '}
@@ -241,8 +240,7 @@ const Budget = ({ score, details, headlessMode }) => {
 								</div>
 								<div>
 									<span>
-										{emoji('🎯 ')}
-										objectif{' '}
+										<SpanEmoji symbol="🎯" /> objectif{' '}
 									</span>
 									<strong>2 tonnes</strong>
 								</div>

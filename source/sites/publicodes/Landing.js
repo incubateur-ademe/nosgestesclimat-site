@@ -45,6 +45,7 @@ export default () => {
 			/>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
 			<Illustration
+				aira-hidden="true"
 				css={`
 					width: 60%;
 					height: auto;
