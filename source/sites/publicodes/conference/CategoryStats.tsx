@@ -56,6 +56,7 @@ export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 											: ''}
 									`}
 									title={value + ' kg'}
+									aria-label={`${username} : ${value} t`}
 									{...(spotlight === username ? { role: 'mark' } : {})}
 									onClick={() => setSpotlight(username)}
 								></li>

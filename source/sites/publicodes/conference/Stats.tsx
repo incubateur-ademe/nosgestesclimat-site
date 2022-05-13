@@ -102,7 +102,7 @@ export default ({
 					</small>
 				</div>
 
-				<div
+				<ul
 					css={`
 						width: 100%;
 						position: relative;
@@ -141,7 +141,7 @@ export default ({
 							onClick={() => setSpotlight(username)}
 						></li>
 					))}
-				</div>
+				</ul>
 
 				<div css="display: flex; justify-content: space-between; width: 100%">
 					<small key="legendLeft">
