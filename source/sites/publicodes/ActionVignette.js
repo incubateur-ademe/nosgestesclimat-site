@@ -151,6 +151,7 @@ export const ActionListCard = ({
 			>
 				<button
 					title="Choisir l'action"
+					aria-pressed={actionChoices[dottedName]}
 					css={`
 						${hasRemainingQuestions && 'filter: grayscale(1)'}
 					`}
