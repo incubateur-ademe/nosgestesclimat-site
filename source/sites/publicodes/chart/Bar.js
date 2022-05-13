@@ -61,6 +61,7 @@ export default ({
 				) : (
 					emojiComponent
 				)}
+				<span class="visually-hidden">{title}</span>
 				<BarContent
 					noText={noText}
 					color={color}
@@ -120,7 +121,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 						${!show && `display: none`}
 					`}
 				>
-					<span>{usedText}</span>
+					<span aria-hidden="true">{usedText}</span>
 				</span>
 			)}
 		</span>
