@@ -182,7 +182,7 @@ export default ({
 					<span>{emoji('🎰 ')} Faites toutes et tous votre simulation</span>
 				}
 			>
-				{room ? (
+				{!room ? (
 					<Link to={'/simulateur/bilan'}>
 						<button className="ui__ button plain">Faites votre test </button>
 					</Link>
