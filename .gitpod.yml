@@ -1,5 +1,5 @@
 additionalRepositories:
-  - url: https://github.com/datagir/nosgestesclimat/
+  - url: https://github.com/datagir/nosgestesclimat
 tasks:
   - init: yarn
     command: yarn start
