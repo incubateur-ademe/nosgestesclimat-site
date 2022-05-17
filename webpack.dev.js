@@ -19,6 +19,8 @@ module.exports = {
 		historyApiFallback: true,
 		static: path.join(__dirname, 'dist'),
 		hot: true,
+		host: '0.0.0.0',
+		allowedHosts: ['localhost', '.gitpod.io'],
 	},
 	mode: 'development',
 	plugins: [
