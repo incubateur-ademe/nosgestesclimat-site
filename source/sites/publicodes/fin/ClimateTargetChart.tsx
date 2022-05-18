@@ -155,6 +155,7 @@ export default ({ details, color, noText, value, score }) => {
 							css="color: inherit"
 							href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
 							target="_blank"
+							title="Comprendre l'ojectif de 2 tonnes"
 						>
 							<img
 								src="/images/info.svg"
