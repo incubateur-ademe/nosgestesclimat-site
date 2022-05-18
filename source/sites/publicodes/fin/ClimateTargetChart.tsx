@@ -11,6 +11,7 @@ import emoji from 'react-easy-emoji'
 import { useEngine } from '../../../components/utils/EngineContext'
 import { extractCategories } from '../../../components/publicodesUtils'
 import { AnimatePresence, motion } from 'framer-motion'
+import NeutralH1 from 'Components/ui/NeutralH1'
 
 const sustainableLifeGoal = 2000, // kgCO2e
 	sustainableBackground = '#78e08f'
@@ -91,15 +92,15 @@ export default ({ details, color, noText, value, score }) => {
 						right: 5vw;
 						top: 0rem;
 						margin-bottom: 1.4rem;
-						background: #ffffff70;
+						background: #ffffff26;
 						border-radius: 0.6rem;
 						margin: 0 0.6rem;
 						padding: 0rem 0.6rem;
 						width: 10rem;
 					`}
 				>
-					<div css="margin: .4rem 0; font-style: italic; ">
-						mon empreinte annuelle
+					<div css="margin: .4rem 0; font-style: italic;">
+						<NeutralH1>mon empreinte annuelle</NeutralH1>
 						<img
 							src="/images/thin-arrow-left.svg"
 							title="Comprendre l'objectif à atteindre"
@@ -142,7 +143,7 @@ export default ({ details, color, noText, value, score }) => {
 			<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
 				<div
 					css={`
-						background: #ffffff70;
+						background: #ffffff26;
 						border-radius: 0.6rem;
 						margin: 0 0.6rem;
 						padding: 0.4rem 1rem;
