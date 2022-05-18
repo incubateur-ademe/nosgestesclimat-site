@@ -12,7 +12,6 @@ export default ({ textColor }) => {
 		abbreviation: rules[category.dottedName].abbréviation,
 	}))
 	const shareText = generateShareText(categories)
-	console.log(shareText)
 	return (
 		<div css="display: flex; flex-direction: column; margin: .2rem 0">
 			<ShareButton
@@ -26,22 +25,25 @@ export default ({ textColor }) => {
 	)
 }
 
+const gridWidth = 7,
+	pixelFactor = 500
+const nEmojis = (n, emoji) =>
+	range(1, n)
+		.map(() => emoji)
+		.join('')
 const generateShareText = (categories) => {
 	const graph = categories
 		.map(({ icons, nodeValue }) => {
-			const badCount = Math.round(nodeValue / 500),
-				goodCount = 7 - badCount,
-				gameOver = goodCount > 7
+			const badCountRaw = Math.round(nodeValue / pixelFactor),
+				badCount = Math.min(gridWidth, badCountRaw),
+				goodCount = Math.max(gridWidth - badCount, 0),
+				gameOver = badCountRaw > gridWidth
 
 			return (
 				`${icons} ` +
-				range(1, badCount)
-					.map(() => '⬛️')
-					.join('') +
-				range(1, goodCount)
-					.map(() => '🟩')
-					.join('') +
-				(gameOver ? '🧨' : '')
+				(gameOver
+					? nEmojis(gridWidth - 1, '⬛️') + '💣️'
+					: nEmojis(badCount, '⬛️') + nEmojis(goodCount, '🟩'))
 			)
 		})
 		.join('\n')
