@@ -11,12 +11,13 @@ export default ({ textColor }) => {
 		...category,
 		abbreviation: rules[category.dottedName].abbréviation,
 	}))
-	const shareText = generateShareText(categories)
+	const total = Math.round(engine.evaluate('bilan').nodeValue / 1000)
+	const shareText = generateShareText(categories, total)
 	return (
 		<div css="display: flex; flex-direction: column; margin: .2rem 0">
 			<ShareButton
 				text={shareText}
-				url={window.location}
+				url={'https://nosgestesclimat.fr'}
 				title={'Nos Gestes Climat'}
 				color={textColor}
 				label="Partager mes résultats"
@@ -31,7 +32,7 @@ const nEmojis = (n, emoji) =>
 	range(1, n)
 		.map(() => emoji)
 		.join('')
-const generateShareText = (categories) => {
+const generateShareText = (categories, total) => {
 	const graph = categories
 		.map(({ icons, nodeValue }) => {
 			const badCountRaw = Math.round(nodeValue / pixelFactor),
@@ -48,11 +49,10 @@ const generateShareText = (categories) => {
 		})
 		.join('\n')
 
-	return `
+	return `#nosgestesclimat 🌍️  
 
-Voilà mon empreinte 🌍️ climat. 
+${total} tonnes CO2e / an ⬇️
 
 ${graph}
-
-Mesure la tienne sur nosgestesclimat.fr !`
+`
 }
