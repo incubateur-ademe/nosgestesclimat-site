@@ -48,6 +48,7 @@ export default ({
 			getSubcategories(rules, category, engine).map((el) => ({
 				...el,
 				topCategoryColor: category.color,
+				topCategoryTitle: category.title,
 			}))
 		)
 		.flat()
@@ -78,6 +79,7 @@ export default ({
 					const length = Math.round(element.nodeValue / pixel)
 					return range(1, length).map((i) => (
 						<li
+							title={`${element.title} (${element.topCategoryTitle})`}
 							css={`
 								background: ${element.topCategoryColor};
 							`}
