@@ -21,7 +21,11 @@ export default ({ emojiBackground = '#ffffffa6', emojis, emojiTitle }) => {
 				key="emoji"
 				css={`
 					img {
+						height: 1.15rem;
 						vertical-align: -0.2em !important;
+						/* Not convinced this is better. Better for the car emoji, not for the rest
+						 * filter: drop-shadow(0 0 0.25rem #0b000080);
+						 */
 					}
 				`}
 			>
