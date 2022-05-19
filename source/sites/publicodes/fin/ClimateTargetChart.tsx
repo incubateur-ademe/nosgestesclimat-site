@@ -70,7 +70,7 @@ export default ({ details, color, noText, value, score }) => {
 
 					left: 50%;
 					position: absolute;
-					border-bottom: 6px dashed white;
+					border-bottom: 6px dashed ${color};
 					height: 0.1rem;
 					width: 80%;
 					transform: translateX(-50%);
