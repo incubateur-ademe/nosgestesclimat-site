@@ -215,11 +215,18 @@ const Budget = ({ score, details, headlessMode }) => {
 									background: #ffffff3d;
 									border-radius: 0.6rem;
 									padding: 0.4rem 1rem;
-
-									> div {
+									> ul {
+										padding: 0;
+										margin: 0;
+									}
+									> div,
+									li {
 										display: flex;
 										justify-content: space-between;
 										flex-wrap: wrap;
+									}
+									li {
+										padding: 0;
 									}
 									strong {
 										font-weight: bold;
@@ -229,17 +236,19 @@ const Budget = ({ score, details, headlessMode }) => {
 									}
 								`}
 							>
-								<div>
-									<span>{emoji('🇫🇷', 'France')} moyenne </span>{' '}
-									<strong>
-										{' '}
-										<DefaultFootprint />{' '}
-									</strong>
-								</div>
-								<div>
-									<span>{emoji('🎯')} objectif </span>
-									<strong>2 tonnes</strong>
-								</div>
+								<ul>
+									<li>
+										<span>{emoji('🇫🇷', 'France')} moyenne </span>{' '}
+										<strong>
+											{' '}
+											<DefaultFootprint />{' '}
+										</strong>
+									</li>
+									<li>
+										<span>{emoji('🎯')} objectif </span>
+										<strong>2 tonnes</strong>
+									</li>
+								</ul>
 								{!headlessMode && (
 									<div css="margin-top: .2rem;justify-content: flex-end !important">
 										<a
