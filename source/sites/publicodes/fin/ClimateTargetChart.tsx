@@ -23,6 +23,12 @@ const computeEmpreinteMaximum = (categories) =>
 		-1
 	).nodeValue
 
+const formatValue = (value) =>
+	(value / 1000).toLocaleString('fr-FR', {
+		maximumSignificantDigits: 2,
+		minimumSignificantDigits: 2,
+	})
+
 export default ({ details, color, noText, value, score }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
@@ -40,10 +46,7 @@ export default ({ details, color, noText, value, score }) => {
 		(memo, next) => next.nodeValue + memo,
 		0
 	)
-	const roundedValue = (value / 1000).toLocaleString('fr-FR', {
-			maximumSignificantDigits: 2,
-			minimumSignificantDigits: 2,
-		}),
+	const roundedValue = formatValue(value),
 		integerValue = roundedValue.split(',')[0],
 		decimalValue = roundedValue.split(',')[1]
 	return (
@@ -109,7 +112,11 @@ export default ({ details, color, noText, value, score }) => {
 						/>
 					</div>
 				</div>
-				<div css="margin-bottom: .6rem">
+				<div
+					css="margin-bottom: .6rem"
+					title={`${formatValue(score)} tonnes de CO₂e`}
+					aria-describedby="myFootprint"
+				>
 					<div
 						css={`
 							width: 4rem;
@@ -118,7 +125,6 @@ export default ({ details, color, noText, value, score }) => {
 							font-weight: bold;
 							font-size: 280%;
 						`}
-						aria-describedby="myFootprint"
 					>
 						{integerValue}
 						{score < 10000 && (
