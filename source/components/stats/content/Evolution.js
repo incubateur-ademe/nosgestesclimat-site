@@ -72,7 +72,7 @@ export default function Evolution(props) {
 				<BigNumber>
 					{props.allTime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
 				</BigNumber>{' '}
-				&nbsp;visiteurs depuis le lancement
+				&nbsp;visites depuis le lancement
 			</TopBlock>
 			<BlockWrapper>
 				<Block>
@@ -80,7 +80,7 @@ export default function Evolution(props) {
 						{percent > 0 && '+'}
 						{Math.round(percent * 10) / 10}%
 					</Number>
-					de visiteurs ce mois ci
+					de visites ce mois ci
 					<Small>&nbsp;(par rapport au mois d'avant)</Small>
 				</Block>
 				<Block>
