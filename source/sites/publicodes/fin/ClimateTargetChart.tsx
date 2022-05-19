@@ -103,6 +103,7 @@ export default ({ details, color, noText, value, score }) => {
 						<NeutralH1 id="myFootprint">mon empreinte annuelle</NeutralH1>
 						<img
 							src="/images/thin-arrow-left.svg"
+							aria-hidden
 							title="Comprendre l'objectif à atteindre"
 							css="height: 3rem; position: absolute;  left: -2rem; bottom: -3.4rem"
 						/>
@@ -149,6 +150,7 @@ export default ({ details, color, noText, value, score }) => {
 						margin: 0 0.6rem;
 						padding: 0.4rem 1rem;
 						margin-bottom: 1rem;
+						position: relative;
 					`}
 				>
 					<div id="objective">
@@ -162,10 +164,27 @@ export default ({ details, color, noText, value, score }) => {
 							<img
 								src="/images/info.svg"
 								aira-hidden
-								css="width: 1.5rem; vertical-align: middle; margin-left: .2rem"
+								css={`
+									width: 1.5rem;
+									vertical-align: middle;
+									margin-left: 0.2rem;
+								`}
 							/>
 						</a>
 					</div>
+					<img
+						src="/images/thin-arrow-left.svg"
+						title="Comprendre l'objectif à atteindre"
+						aria-hidden
+						css={`
+							height: 3rem;
+							position: absolute;
+							right: -1rem;
+							bottom: -3.4rem;
+
+							transform: rotate(-30deg) scale(0.8);
+						`}
+					/>
 				</div>
 				<div
 					css={`

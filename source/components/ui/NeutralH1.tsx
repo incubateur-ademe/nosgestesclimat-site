@@ -6,6 +6,7 @@ const NeutralH1 = styled.h1`
 	font-weight: normal;
 	margin: 0;
 	display: inline;
+	line-height: 1rem;
 `
 
 export default NeutralH1
