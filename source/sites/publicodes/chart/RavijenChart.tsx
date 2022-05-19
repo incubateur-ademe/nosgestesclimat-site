@@ -3,6 +3,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { range } from 'ramda'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import emoji from 'react-easy-emoji'
 import { useHistory, useLocation } from 'react-router'
 import {
 	objectifsSelector,
@@ -34,6 +35,15 @@ export default ({
 		pixelRemSize = 3,
 		gridLength = width * height,
 		pixel = total / gridLength
+
+	/*  If total = 15 t, pixel = 150 kg
+	 *  if total = 4 t, pixel = 40 kg
+	 *  In any case, there is 10 * 10 * pixel, pixel being fixed visual width
+	 *
+	 * */
+
+	console.log(total, pixel)
+
 	const categories = extractCategories(rules, engine, details).map(
 		(category) => ({
 			...category,
@@ -95,6 +105,13 @@ export default ({
 					))
 				})}
 			</ul>
+			<p
+				css={`
+					margin-top: 2rem;
+				`}
+			>
+				Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
+			</p>
 		</section>
 	)
 }
