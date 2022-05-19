@@ -13,8 +13,8 @@ import { extractCategories } from '../../../components/publicodesUtils'
 import { AnimatePresence, motion } from 'framer-motion'
 import NeutralH1 from 'Components/ui/NeutralH1'
 
-const sustainableLifeGoal = 2000, // kgCO2e
-	sustainableBackground = '#78e08f'
+export const sustainableLifeGoal = 2000 // kgCO2e
+const sustainableBackground = '#78e08f'
 const barWidth = '6rem'
 
 const computeEmpreinteMaximum = (categories) =>
