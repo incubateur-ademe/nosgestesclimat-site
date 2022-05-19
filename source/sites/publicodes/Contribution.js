@@ -2,7 +2,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { toPairs } from 'ramda'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
-import SpanEmoji from '../../components/SpanEmoji'
+import emoji from 'Components/emoji'
 import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
 import FAQ from './FAQ.yaml'
@@ -134,9 +134,7 @@ export default ({}) => {
 					</li>
 				))}
 			</div>
-			<h2 css="font-size: 180%">
-				<SpanEmoji symbol="🙋‍♀️" /> J'ai une autre question
-			</h2>
+			<h2 css="font-size: 180%">{emoji('🙋‍♀️')} J'ai une autre question</h2>
 			<div className="ui__ card" css="padding: 1rem 0">
 				<p>
 					Pour toute remarque ou question, nous vous invitons à{' '}
@@ -147,8 +145,8 @@ export default ({}) => {
 				</p>
 				<details>
 					<summary>
-						<SpanEmoji symbol="🐛" /> Vous avez un bug qui vous empêche
-						d'utiliser Nos Gestes Climat ?{' '}
+						{emoji('🐛')} Vous avez un bug qui vous empêche d'utiliser Nos
+						Gestes Climat ?{' '}
 					</summary>
 
 					<div className="ui__ card" css="padding: 1rem 0">
@@ -215,8 +213,8 @@ ${fromLocation ? `Depuis la page : \`${fromLocation}\`` : ''}
 							</form>
 						) : (
 							<p>
-								Merci <SpanEmoji symbol="😍" /> ! Suivez l'avancement de votre
-								suggestion en cliquant sur <a href={URL}>ce lien</a>.
+								Merci {emoji('😍')}! Suivez l'avancement de votre suggestion en
+								cliquant sur <a href={URL}>ce lien</a>.
 							</p>
 						)}
 					</div>

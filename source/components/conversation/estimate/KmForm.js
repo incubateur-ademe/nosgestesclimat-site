@@ -155,7 +155,11 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 							</label>
 						</span>
 						<SelectSuffix>
-							<img src={openmojiURL('calendrier')} css="width: 1.5rem;" />
+							<img
+								src={openmojiURL('calendrier')}
+								alt=""
+								css="width: 1.5rem;"
+							/>
 						</SelectSuffix>
 					</SelectWrapper>
 				</label>
@@ -175,7 +179,11 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 						/>
 						<InputSuffix>
 							{' '}
-							<img src={openmojiURL('silhouette')} css="width: 1.5rem;" />
+							<img
+								src={openmojiURL('silhouette')}
+								alt=""
+								css="width: 1.5rem;"
+							/>
 						</InputSuffix>
 					</InputWrapper>
 				</label>

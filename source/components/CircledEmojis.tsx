@@ -1,8 +1,8 @@
 import { Twemoji } from 'Components/emoji'
 import { getEmojiComponents } from './emoji'
 
-export default ({ emojiBackground = '#ffffffa6', emojis }) => {
-	const emojiComponents = getEmojiComponents(emojis || '')
+export default ({ emojiBackground = '#ffffffa6', emojis, emojiTitle }) => {
+	const emojiComponents = getEmojiComponents(emojis || '', emojiTitle || '')
 
 	return (
 		<span
