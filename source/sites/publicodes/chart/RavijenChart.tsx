@@ -13,6 +13,7 @@ import CategoryVisualisation from '../CategoryVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import { sustainableLifeGoal } from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
+import styled from 'styled-components'
 
 export default ({
 	details,
@@ -63,23 +64,44 @@ export default ({
 		)
 		.flat()
 
-	const { lower, higher } = allSubCategories.reduce(
-		(memo, next) => {
-			const count = memo.count + next.nodeValue,
-				lower =
-					count > sustainableLifeGoal ? memo.lower : [...memo.lower, next],
-				higher =
-					count <= sustainableLifeGoal ? memo.higher : [...memo.higher, next]
-			return { lower, higher, count }
-		},
-		{ lower: [], higher: [], count: 0 }
-	)
+	const { lower, higher } = allSubCategories
+		.slice()
+		.reverse()
+		.reduce(
+			(memo, next) => {
+				const count = memo.count + next.nodeValue,
+					lower =
+						count > sustainableLifeGoal ? memo.lower : [...memo.lower, next],
+					higher =
+						count <= sustainableLifeGoal ? memo.higher : [...memo.higher, next]
+				return { lower, higher, count }
+			},
+			{ lower: [], higher: [], count: 0 }
+		)
 
 	return (
 		<section css={``}>
 			<SquaresGrid
 				pixelRemSize={pixelRemSize}
-				elements={allSubCategories}
+				elements={higher.slice().reverse()}
+				pixel={pixel}
+			/>
+			<p
+				css={`
+					display: flex;
+					align-items: center;
+					justify-content: center;
+
+					margin: 0.6rem 0;
+				`}
+			>
+				<DashedHalfLine />
+				<span css="width: 12rem">2 tonnes</span>
+				<DashedHalfLine />
+			</p>
+			<SquaresGrid
+				pixelRemSize={pixelRemSize}
+				elements={lower.slice().reverse()}
 				pixel={pixel}
 			/>
 			<p
@@ -92,3 +114,7 @@ export default ({
 		</section>
 	)
 }
+const DashedHalfLine = styled.span`
+	border-bottom: 6px dashed black;
+	width: calc(40% - 12rem / 2);
+`

@@ -30,7 +30,7 @@ export default ({ pixelRemSize, elements, pixel }) => (
 const Grid = styled.ul`
 	padding: 0;
 	display: flex;
-	justify-content: start;
+	justify-content: center;
 	flex-wrap: wrap;
 	width: 100%;
 	@media (min-width: 800px) {
