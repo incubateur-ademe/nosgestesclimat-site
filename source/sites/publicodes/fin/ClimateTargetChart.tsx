@@ -100,7 +100,7 @@ export default ({ details, color, noText, value, score }) => {
 					`}
 				>
 					<div css="margin: .4rem 0; font-style: italic;">
-						<NeutralH1>mon empreinte annuelle</NeutralH1>
+						<NeutralH1 id="myFootprint">mon empreinte annuelle</NeutralH1>
 						<img
 							src="/images/thin-arrow-left.svg"
 							title="Comprendre l'objectif à atteindre"
@@ -117,6 +117,7 @@ export default ({ details, color, noText, value, score }) => {
 							font-weight: bold;
 							font-size: 280%;
 						`}
+						aria-describedby="myFootprint"
 					>
 						{integerValue}
 						{score < 10000 && (
@@ -150,7 +151,7 @@ export default ({ details, color, noText, value, score }) => {
 						margin-bottom: 1rem;
 					`}
 				>
-					<div>
+					<div id="objective">
 						mon objectif
 						<a
 							css="color: inherit"
@@ -160,6 +161,7 @@ export default ({ details, color, noText, value, score }) => {
 						>
 							<img
 								src="/images/info.svg"
+								aira-hidden
 								css="width: 1.5rem; vertical-align: middle; margin-left: .2rem"
 							/>
 						</a>
@@ -176,6 +178,7 @@ export default ({ details, color, noText, value, score }) => {
 							font-size: 160%;
 						}
 					`}
+					aria-describedby="objective"
 				>
 					<strong>{sustainableLifeGoal / 1000}</strong>
 					<span>tonnes</span>

@@ -57,6 +57,7 @@ export default ({
 		<section css={``}>
 			<ul
 				css={`
+					padding: 0;
 					display: flex;
 					justify-content: start;
 					flex-wrap: wrap;
