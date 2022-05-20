@@ -7,6 +7,7 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { situationSelector } from '../../selectors/simulationSelectors'
+import RavijenChart from './chart/RavijenChart'
 import { CardGrid } from './ListeActionPlus'
 
 export default ({}) => {
@@ -19,6 +20,11 @@ export default ({}) => {
 			<p>
 				<em>Sélectionnez un persona.</em>
 			</p>
+			{persona && (
+				<div>
+					<RavijenChart />
+				</div>
+			)}
 			<PersonaGrid />
 			<p>
 				Les personas nous permettront de prendre le parti d'une diversité
@@ -49,7 +55,10 @@ export default ({}) => {
 	)
 }
 
-export const PersonaGrid = ({ additionnalOnClick }) => {
+export const PersonaGrid = ({
+	additionnalOnClick,
+	warningIfSituationExists,
+}) => {
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
 	const selectedPersona = useSelector((state) => state.simulation?.persona)
@@ -144,7 +153,9 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 									width: 100% !important;
 								`}
 								onClick={() =>
-									hasSituation ? setWarning(persona) : setPersona(persona)
+									warningIfSituationExists && hasSituation
+										? setWarning(persona)
+										: setPersona(persona)
 								}
 							>
 								<div>{emoji(icônes || '👥')}</div>
