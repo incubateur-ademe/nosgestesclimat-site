@@ -4,7 +4,7 @@ import ShareButton from '../../../components/ShareButton'
 import { useEngine } from '../../../components/utils/EngineContext'
 import { range } from '../../../utils'
 
-export default ({ textColor }) => {
+export default ({ textColor, showResult }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const categories = extractCategories(rules, engine).map((category) => ({
@@ -13,6 +13,8 @@ export default ({ textColor }) => {
 	}))
 	const total = Math.round(engine.evaluate('bilan').nodeValue / 1000)
 	const shareText = generateShareText(categories, total)
+	if (showResult)
+		return <textarea value={shareText} css="height: 12rem; width: 16rem" />
 	return (
 		<div css="display: flex; flex-direction: column; margin: .2rem 0">
 			<ShareButton

@@ -38,6 +38,7 @@ export default ({ score, details, headlessMode }) => {
 	})
 
 	const [value, setValue] = useState(0)
+	console.log('value', value)
 
 	useEffect(() => {
 		const unsubscribe = valueSpring.onChange((v) => {
@@ -47,7 +48,7 @@ export default ({ score, details, headlessMode }) => {
 		headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
-	}, [])
+	}, [score])
 
 	const backgroundColor = getBackgroundColor(value).toHexString(),
 		backgroundColor2 = getBackgroundColor(value + 2000).toHexString(),

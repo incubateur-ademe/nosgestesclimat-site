@@ -108,6 +108,7 @@ export default ({
 			<p
 				css={`
 					margin-top: 2rem;
+					text-align: center;
 				`}
 			>
 				Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.

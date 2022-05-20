@@ -8,21 +8,55 @@ import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import RavijenChart from './chart/RavijenChart'
+import Budget from './fin/Budget'
+import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
+
+const Nothing = () => null
+const visualisationChoices = {
+	budget: Budget,
+	'sous-catégories': RavijenChart,
+	emojis: () => <FinShareButton showResult />,
+	aucun: Nothing,
+}
 
 export default ({}) => {
 	const persona = useSelector((state) => state.simulation?.persona)
+	const [selectedVisualisation, selectVisualisation] = useState('aucun')
+
+	const Visualisation = visualisationChoices[selectedVisualisation]
+	const engine = useEngine()
+
+	const slideProps = {
+		score: engine.evaluate('bilan').nodeValue,
+		headlessMode: true,
+	}
 
 	return (
 		<div>
 			<ScrollToTop />
 			<h1>Personas</h1>
 			<p>
-				<em>Sélectionnez un persona.</em>
+				<em>
+					Sélectionnez un persona et éventuellement un graphique à afficher.
+				</em>
 			</p>
+			<form>
+				{Object.keys(visualisationChoices).map((name) => (
+					<label>
+						<input
+							onClick={() => selectVisualisation(name)}
+							type="radio"
+							value={name}
+							checked={selectedVisualisation === name}
+						/>
+						{name}
+					</label>
+				))}
+			</form>
 			{persona && (
-				<div>
-					<RavijenChart />
+				<div css="max-width: 35rem; margin: 0 auto">
+					<Visualisation {...slideProps} />
 				</div>
 			)}
 			<PersonaGrid />
@@ -46,7 +80,6 @@ export default ({}) => {
 				le coller dans <a href="https://www.json2yaml.com">cet outil</a> pour
 				générer un YAML, puis l'insérer dans personas.yaml.
 			</p>
-
 			<p>
 				Pour les prénoms, on peut utiliser{' '}
 				<a href="https://lorraine-hipseau.me">ce générateur</a>.
