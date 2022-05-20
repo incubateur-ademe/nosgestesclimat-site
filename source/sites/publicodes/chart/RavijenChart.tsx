@@ -96,7 +96,7 @@ export default ({
 				`}
 			>
 				<DashedHalfLine />
-				<span css="width: 12rem">2 tonnes</span>
+				<span css="width: 12rem; text-align: center">2 tonnes</span>
 				<DashedHalfLine />
 			</p>
 			<SquaresGrid

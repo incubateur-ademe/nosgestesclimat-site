@@ -36,6 +36,7 @@ const Grid = styled.ul`
 	@media (min-width: 800px) {
 		width: 95%;
 	}
+	max-width: ${(props) => 10 * props.pixelRemSize}rem;
 	margin: 0 auto;
 	/* The grid will not be centered horizontally. This may be achieved via CSS grids, but it took me more than 15 minutes to not figure out how to do it 
 					 * Another interesting layout would be a snake layout, but it's not simple either : 
