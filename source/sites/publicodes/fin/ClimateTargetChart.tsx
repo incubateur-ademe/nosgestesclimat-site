@@ -32,12 +32,12 @@ const formatValue = (value) =>
 export default ({ details, color, noText, value, score }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
-	const categories = extractCategories(rules, engine, details).map(
-		(category) => ({
+	const categories = extractCategories(rules, engine, details)
+		.map((category) => ({
 			...category,
 			abbreviation: rules[category.dottedName].abbréviation,
-		})
-	)
+		}))
+		.sort((a, b) => (a.dottedName === 'services publics' ? 1 : -1))
 
 	if (!categories) return null
 

@@ -55,6 +55,7 @@ export default ({
 	if (!categories) return null
 
 	const allSubCategories = categories
+		.sort((a, b) => (a.dottedName === 'services publics' ? 1 : -1))
 		.map((category) =>
 			getSubcategories(rules, category, engine).map((el) => ({
 				...el,
