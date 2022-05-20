@@ -8,7 +8,7 @@ export default ({ pixelRemSize, elements, pixel }) => (
 			const length = Math.round(element.nodeValue / pixel)
 			/* This math.round creates the override of the grid by a few items,
 			 * making it not 10x10 but e.g. 10x10 + 3 */
-			return range(1, length).map((i) => (
+			return range(0, length).map((i) => (
 				<li
 					title={`${element.title} (${element.topCategoryTitle})`}
 					css={`

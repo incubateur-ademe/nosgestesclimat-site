@@ -39,7 +39,7 @@ export default ({
 
 	/*  If total = 15 t, pixel = 150 kg
 	 *  if total = 4 t, pixel = 40 kg
-	 *  In any case, there is 10 * 10 * pixel, pixel being fixed visual width
+	 *  In any case, there should be 10 * 10 * pixel, pixel being fixed visual width
 	 *
 	 * */
 
