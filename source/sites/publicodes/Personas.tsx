@@ -17,15 +17,8 @@ export default ({}) => {
 			<ScrollToTop />
 			<h1>Personas</h1>
 			<p>
-				<em>Cliquez pour charger un dans le simulateur.</em>
+				<em>Sélectionnez un persona.</em>
 			</p>
-			{persona && (
-				<IllustratedMessage
-					emoji="✅"
-					message={<p>Persona sélectionné : {persona}</p>}
-				/>
-			)}
-
 			<PersonaGrid />
 			<p>
 				Les personas nous permettront de prendre le parti d'une diversité
@@ -59,7 +52,8 @@ export default ({}) => {
 export const PersonaGrid = ({ additionnalOnClick }) => {
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
-	const persona = useSelector((state) => state.simulation?.persona)
+	const selectedPersona = useSelector((state) => state.simulation?.persona)
+
 	const situation = useSelector(situationSelector)
 
 	const rules = useSelector((state) => state.rules)
@@ -133,7 +127,9 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 				return (
 					<li key={nom}>
 						<div
-							className="ui__ card interactive light-border"
+							className={`ui__ card interactive light-border ${
+								selectedPersona === persona.nom ? 'selected' : ''
+							}`}
 							css={`
 								width: 11rem !important;
 								height: 15rem !important;
