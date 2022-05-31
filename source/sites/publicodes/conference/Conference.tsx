@@ -51,7 +51,7 @@ export default () => {
 			{room && <ScrollToTop />}
 			<h1>Conférence</h1>
 			<ConferenceTitle>
-				<img src={conferenceImg} />
+				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
 			<Stats
