@@ -55,20 +55,7 @@ export default ({
 		)
 		if (!thresholdActions.length) return null
 		return (
-			<div
-				css={`
-					position: relative;
-					margin-bottom: 2.5rem;
-				`}
-			>
-				<ThresholdSeparator
-					css={`
-						position: absolute;
-						bottom: -2.5rem;
-					`}
-				>
-					<h2>{label} &#9650;</h2>
-				</ThresholdSeparator>
+			<div>
 				<List
 					{...{
 						actions: thresholdActions,
@@ -79,6 +66,9 @@ export default ({
 						focusedAction,
 					}}
 				/>
+				<ThresholdSeparator>
+					<p>{label} &#9650;</p>
+				</ThresholdSeparator>
 			</div>
 		)
 	})
@@ -106,13 +96,13 @@ export default ({
 			{radical ? numberedActions : numberedActions.slice().reverse()}
 
 			<ThresholdSeparator>
-				<h2>
+				<p>
 					<img
 						src="/images/270A.svg"
 						css="filter: invert(1); height: 2rem; vertical-align: middle"
 					/>
 					Actions non chiffrées &#9660;
-				</h2>
+				</p>
 			</ThresholdSeparator>
 			<List
 				{...{
@@ -125,13 +115,13 @@ export default ({
 				}}
 			/>
 			<ThresholdSeparator>
-				<h2>
+				<p>
 					<img
 						src="/images/26D4.svg"
 						css="filter:invert(1); height: 2rem; vertical-align: middle; margin-right: .3rem"
 					/>
 					Actions négatives &#9660;
-				</h2>
+				</p>
 			</ThresholdSeparator>
 			<List
 				{...{
@@ -258,8 +248,8 @@ const ThresholdSeparator = styled.div`
 	width: 100%;
 	height: 2rem;
 	text-align: center;
-	margin-bottom: 1.5rem;
-	h2 {
+	margin-bottom: 1em;
+	p {
 		display: inline-block;
 		font-weight: 400;
 		font-size: 1em;
@@ -267,6 +257,6 @@ const ThresholdSeparator = styled.div`
 		background: var(--color);
 		color: white;
 		border-radius: 1rem;
-		margin-top: 1.33em;
+		margin-top: 0.5em;
 	}
 `
