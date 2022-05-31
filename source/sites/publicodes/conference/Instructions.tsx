@@ -137,44 +137,45 @@ export default ({
 					)}
 				</InstructionBlock>
 			)}
-			{!started && (
-				<InstructionBlock
-					index="3"
-					title={
-						<span>
-							{emoji('🔗 ')} Partagez le lien à vos amis, collègues, etc.
-						</span>
-					}
-				>
-					{!newRoom && !room ? (
-						<p>Choississez d'abord un nom</p>
-					) : (
-						<div
-							css={`
-								display: flex;
-								flex-wrap: wrap;
-								justify-content: center;
-								align-items: center;
-							`}
-						>
-							<QRCode
-								value={shareURL}
-								size={200}
-								bgColor={'#ffffff'}
-								fgColor={color}
-								level={'L'}
-								includeMargin={false}
-								renderAs={'canvas'}
-							/>
-							<ShareButton
-								text="Faites un test d'empreinte climat avec moi"
-								url={shareURL}
-								title={'Nos Gestes Climat Conférence'}
-							/>
-						</div>
-					)}
-				</InstructionBlock>
-			)}
+			<InstructionBlock
+				index="3"
+				noIndex={started}
+				title={
+					<span>
+						{emoji('🔗 ')} Partagez le lien à vos amis, collègues, etc.
+					</span>
+				}
+			>
+				{!newRoom && !room ? (
+					<p>Choississez d'abord un nom</p>
+				) : (
+					<div
+						css={`
+							display: flex;
+							flex-wrap: wrap;
+							justify-content: center;
+							align-items: center;
+						`}
+					>
+						<QRCode
+							value={shareURL}
+							size={200}
+							bgColor={'#ffffff'}
+							fgColor={color}
+							level={'L'}
+							includeMargin={false}
+							renderAs={'svg'}
+							role={'img'}
+							aria-label={'QR code'}
+						/>
+						<ShareButton
+							text="Faites un test d'empreinte climat avec moi"
+							url={shareURL}
+							title={'Nos Gestes Climat Conférence'}
+						/>
+					</div>
+				)}
+			</InstructionBlock>
 			<InstructionBlock
 				index="4"
 				noIndex={started}
