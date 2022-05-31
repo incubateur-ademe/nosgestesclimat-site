@@ -47,14 +47,14 @@ export default ({ newRoom, setNewRoom }) => {
 			</button>
 			{newRoom && newRoom.length < 12 && (
 				<p>
-					⚠️ Votre nom de salle est court, il y a un petit risque que des
-					inconnus puissent le deviner
+					{emoji('⚠️')} Votre nom de salle est court, il y a un petit risque que
+					des inconnus puissent le deviner
 				</p>
 			)}
 			{newRoom && showInvalidMessage && (
 				<p>
-					💡 Votre nom de salle ne peut que contenir des lettres, des chifffres
-					et des tirets
+					{emoji('💡')} Votre nom de salle ne peut que contenir des lettres, des
+					chifffres et des tirets
 				</p>
 			)}
 		</>
