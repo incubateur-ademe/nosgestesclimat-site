@@ -12,7 +12,9 @@ export default ({ categories, metric, selected, countByCategory }) => {
 				list-style-type: none;
 				justify-content: center;
 				padding-left: 0;
-				@media (max-width: 800px) {
+				// Here is a trick to detect device and apply css only on mobile devices.
+				// It allows to avoid scrollbar for categories on computer screens when zooming.
+				@media only screen and (hover: none) and (pointer: coarse) and (max-width: 800px) {
 					flex-wrap: nowrap;
 					overflow-x: auto;
 					white-space: nowrap;
