@@ -31,6 +31,11 @@ export const getEmojiComponents = (text, title) => {
 }
 
 // Here text can include emojis and text
+// For markdown, according to changes in commit 4463b011c9f33db73b8922898355330cc5726bf3
+// emojis in files are decorative by default
+// on way to change emojis in md file to attribute an alternative is the following code :
+// <span role="img" aria-label="micro" aria-hidden="false">🎤 </span>
+
 export const Twemoji = ({ text, label }) => {
 	const attributesCallback = () => {
 		return {
