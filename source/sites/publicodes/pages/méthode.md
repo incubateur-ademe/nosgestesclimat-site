@@ -4,11 +4,11 @@ Notre modèle de calcul est entièrement transparent.
 
 ![](/images/transparent.png)
 
-<p>À tout moment pendant la simulation, cliquez sur "<span role="img" aria-label="" aria-hidden="true">🔬</span> comprendre le calcul" et suivez les liens.</p>
+À tout moment pendant la simulation, cliquez sur "🔬 comprendre le calcul" et suivez les liens.
 
 Le code est non seulement transparent, mais aussi contributif : chancun peut l'explorer, donner son avis, l'améliorer.
 
-<p><span role="img" aria-label="" aria-hidden="true">🎤 </span>&nbsp<a href="/contribuer">Venez contribuer</a> !</p>
+[🎤 Venez contribuer](/contribuer) !
 
 ## Approfondissez votre connaissance des actions
 
