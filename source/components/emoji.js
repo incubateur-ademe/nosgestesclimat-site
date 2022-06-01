@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import twemoji from 'twemoji'
-import emojiRegex from 'emoji-regex'
 
 // This file looks like a gaz factory, as we say in french. Feel free to rewrite it
 
@@ -39,22 +38,22 @@ export const Twemoji = ({ text, label }) => {
 			'aria-hidden': label ? 'false' : 'true',
 		}
 	}
-	if (containEmoji(text)) {
-		const parsed = twemoji.parse(text, {
-			attributes: attributesCallback,
-			folder: 'svg',
-			ext: '.svg',
-		})
-		return (
-			<EmojiStyle
-				dangerouslySetInnerHTML={{
-					__html: parsed,
-				}}
-			/>
-		)
-	} else {
-		return text
-	}
+
+	const parsed = twemoji.parse(text, {
+		attributes: attributesCallback,
+		folder: 'svg',
+		ext: '.svg',
+	})
+
+	return parsed.includes('<img class="emoji"') ? (
+		<EmojiStyle
+			dangerouslySetInnerHTML={{
+				__html: parsed,
+			}}
+		/>
+	) : (
+		text
+	)
 }
 
 export default (text, label) => {
@@ -69,8 +68,3 @@ const EmojiStyle = styled.span`
 		vertical-align: -0.125em;
 	}
 `
-
-export const containEmoji = (text) => {
-	const regex = emojiRegex()
-	return regex.test(text)
-}
