@@ -11,6 +11,7 @@ export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 	return (
 		<div>
 			<ul
+				title="Empreinte par catégorie"
 				css={`
 					padding-left: 0;
 					> li:nth-child(2n + 1) {
@@ -55,10 +56,11 @@ export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
 											: ''}
 									`}
-									title={value + ' kg'}
+									title={`${username} : ${value} t`}
 									aria-label={`${username} : ${value} t`}
-									{...(spotlight === username ? { role: 'mark' } : {})}
 									onClick={() => setSpotlight(username)}
+									role="button"
+									aria-pressed={spotlight === username}
 								></li>
 							))}
 						</ul>

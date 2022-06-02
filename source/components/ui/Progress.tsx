@@ -23,6 +23,7 @@ export default function Progress({
 				role="progressbar"
 				aria-valuenow={Math.round(progress * 100)}
 			/>
+			<span className="visually-hidden">{progress * 100}%</span>
 		</div>
 	)
 }

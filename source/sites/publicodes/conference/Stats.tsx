@@ -103,6 +103,7 @@ export default ({
 				</div>
 
 				<ul
+					title="Empreinte totale"
 					css={`
 						width: 100%;
 						position: relative;
@@ -137,8 +138,10 @@ export default ({
 									: ''}
 							`}
 							title={`${username} : ${formatTotal(value)} t`}
-							{...(spotlight === username ? { role: 'mark' } : {})}
+							aria-label={`${username} : ${formatTotal(value)} t`}
+							role="button"
 							onClick={() => setSpotlight(username)}
+							aria-pressed={spotlight === username}
 						></li>
 					))}
 				</ul>
