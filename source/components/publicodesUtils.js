@@ -74,12 +74,12 @@ export const minimalCategoryData = (categories) =>
 // This is for accessibility purposes : we need to try and test, easier to be done here than in the (necessary) colors in the data files
 // this kind of tool can help https://accessiblepalette.com/?lightness=98.2,93.9,85,76.2,67.4,57.8,48,40.2,31.8,24.9&fe6f5c=0,0&f8d147=0,-10&56d25b=0,0&0088cb=0,0&B534AD=1,15&808080=0,0&69788f=0,0
 const categoryColorOverride = {
-	alimentation: '#358138',
-	transport: '#BA5143',
-	logement: '#007DA3',
-	divers: '#1966F5',
-	'services publics': '#424C5A',
-	numérique: '#B534AD',
+	// alimentation: '#358138',
+	// transport: '#BA5143',
+	// logement: '#007DA3',
+	// divers: '#1966F5',
+	// 'services publics': '#424C5A',
+	// numérique: '#B534AD',
 }
 
 export const extractCategories = (
