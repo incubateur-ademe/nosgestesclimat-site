@@ -65,17 +65,19 @@ export default function SearchBar({
 
 	return (
 		<>
-			<input
-				type="search"
-				className="ui__"
-				value={input}
-				placeholder={i18n.t('Entrez des mots clefs ici')}
-				onChange={(e) => {
-					const input = e.target.value
-					if (input.length > 0) worker.postMessage({ input })
-					setInput(input)
-				}}
-			/>
+			<label title="Entrez des mots clefs">
+				<input
+					type="search"
+					className="ui__"
+					value={input}
+					placeholder={i18n.t('Entrez des mots clefs ici')}
+					onChange={(e) => {
+						const input = e.target.value
+						if (input.length > 0) worker.postMessage({ input })
+						setInput(input)
+					}}
+				/>
+			</label>
 			{!!input.length && !results.length ? (
 				<p
 					className="ui__ notice light-bg"

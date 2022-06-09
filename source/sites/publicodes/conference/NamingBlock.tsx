@@ -8,8 +8,8 @@ export default ({ newRoom, setNewRoom }) => {
 	const specialCharaters = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/
 	return (
 		<>
-			<label>
-				<form>
+			<form>
+				<label title="Nom de la salle">
 					<input
 						value={newRoom}
 						className="ui__"
@@ -26,18 +26,18 @@ export default ({ newRoom, setNewRoom }) => {
 						css="width: 80% !important"
 						ref={inputRef}
 					/>
-					<button
-						onClick={(e) => {
-							setNewRoom('')
-							inputRef.current.focus()
-							e.preventDefault()
-						}}
-						title="Effacer le nom actuel"
-					>
-						{emoji('❌')}
-					</button>
-				</form>
-			</label>
+				</label>
+				<button
+					onClick={(e) => {
+						setNewRoom('')
+						inputRef.current.focus()
+						e.preventDefault()
+					}}
+					title="Effacer le nom actuel"
+				>
+					{emoji('❌')}
+				</button>
+			</form>
 
 			<button
 				onClick={() => setNewRoom(generateRoomName())}

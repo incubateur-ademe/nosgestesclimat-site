@@ -79,18 +79,20 @@ export default function News() {
 					: `nouveautés ${determinant(releaseName)}${releaseName}`}
 				&nbsp;.
 			</p>
-			<SmallScreenSelect
-				value={selectedRelease}
-				onChange={(evt) => {
-					history.push(getPath(Number(evt.target.value)))
-				}}
-			>
-				{data.map(({ name }, index) => (
-					<option key={index} value={index}>
-						{name}
-					</option>
-				))}
-			</SmallScreenSelect>
+			<label title="titre de la version">
+				<SmallScreenSelect
+					value={selectedRelease}
+					onChange={(evt) => {
+						history.push(getPath(Number(evt.target.value)))
+					}}
+				>
+					{data.map(({ name }, index) => (
+						<option key={index} value={index}>
+							{name}
+						</option>
+					))}
+				</SmallScreenSelect>
+			</label>
 			<NewsSection>
 				<Sidebar>
 					{data.map(({ name, published_at: date }, index) => (
