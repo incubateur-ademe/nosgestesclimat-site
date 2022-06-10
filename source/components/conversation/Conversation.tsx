@@ -113,8 +113,7 @@ export default function Conversation({
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
 	useEffect(() => {
-		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
-		// It introduces a state
+		// This hook enables top set the focus on the question span and not on the "Suivant" button when going to next question
 		const questionElement =
 			rules[currentQuestion] &&
 			document.getElementById('id-question-' + title(rules[currentQuestion]))
