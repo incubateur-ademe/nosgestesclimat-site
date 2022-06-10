@@ -112,6 +112,15 @@ export default function Conversation({
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
+	useEffect(() => {
+		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
+		// It introduces a state
+		const questionElement =
+			rules[currentQuestion] &&
+			document.getElementById('id-question-' + title(rules[currentQuestion]))
+		questionElement?.focus()
+	}, [currentQuestion])
+
 	const goToPrevious = () => {
 		return dispatch(goToQuestion(previousQuestion))
 	}
@@ -297,7 +306,10 @@ export default function Conversation({
 							font-size: 120%;
 						`}
 					>
-						<span id={'id-question-' + title(rules[currentQuestion])}>
+						<span
+							tabindex="0"
+							id={'id-question-' + title(rules[currentQuestion])}
+						>
 							{questionText}{' '}
 						</span>
 						{hasDescription && (
