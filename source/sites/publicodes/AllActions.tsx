@@ -67,7 +67,7 @@ export default ({
 					}}
 				/>
 				<ThresholdSeparator>
-					<h4>{label} &#9650;</h4>
+					<p>{label} &#9650;</p>
 				</ThresholdSeparator>
 			</div>
 		)
@@ -93,17 +93,16 @@ export default ({
 				</animate.fromTop>
 			)}
 
-
 			{radical ? numberedActions : numberedActions.slice().reverse()}
 
 			<ThresholdSeparator>
-				<h4>
+				<p>
 					<img
 						src="/images/270A.svg"
 						css="filter: invert(1); height: 2rem; vertical-align: middle"
 					/>
 					Actions non chiffrées &#9660;
-				</h4>
+				</p>
 			</ThresholdSeparator>
 			<List
 				{...{
@@ -116,13 +115,13 @@ export default ({
 				}}
 			/>
 			<ThresholdSeparator>
-				<h4>
+				<p>
 					<img
 						src="/images/26D4.svg"
 						css="filter:invert(1); height: 2rem; vertical-align: middle; margin-right: .3rem"
 					/>
 					Actions négatives &#9660;
-				</h4>
+				</p>
 			</ThresholdSeparator>
 			<List
 				{...{
@@ -136,7 +135,7 @@ export default ({
 			/>
 			{rejected.length > 0 && (
 				<div>
-					<h2>Actions écartées</h2>
+					<h2>Actions écartées:</h2>
 					<List
 						{...{
 							actions: rejected,
@@ -151,7 +150,7 @@ export default ({
 			)}
 			<IllustratedButton icon="📚" to="/actions/plus">
 				<div>
-					<h3>Aller plus loin</h3>
+					<h2>Aller plus loin</h2>
 					<p>
 						<small>
 							Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent
@@ -249,14 +248,15 @@ const ThresholdSeparator = styled.div`
 	width: 100%;
 	height: 2rem;
 	text-align: center;
-	margin-bottom: 1rem;
-
-	h4 {
+	margin-bottom: 1em;
+	p {
 		display: inline-block;
 		font-weight: 400;
+		font-size: 1em;
 		padding: 0 0.8rem;
-		background: var(--color);
+		background: var(--darkColor);
 		color: white;
 		border-radius: 1rem;
+		margin-top: 0.5em;
 	}
 `

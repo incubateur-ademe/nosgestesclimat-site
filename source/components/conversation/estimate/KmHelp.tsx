@@ -10,6 +10,7 @@ import KmHelpButton from './KmHelpButton'
 import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { TrackerContext } from '../../utils/withTracker'
+import emoji from 'Components/emoji'
 
 const openmojis = {
 	calendrier: '1F4C5',
@@ -131,6 +132,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 					`}
 				>
 					<div
+						id="explicationResultatAideKm"
 						css={`
 							font-size: 80%;
 							font-style: italic;
@@ -204,7 +206,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 										scope="col"
 										css="width: 10%; color: transparent; text-shadow: 0 0 0 white;"
 									>
-										👥
+										{emoji('👥', 'Nombre de personnes')}
 									</th>
 									<th scope="col" css="width: 5.5rem">
 										Modifier

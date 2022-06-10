@@ -2,7 +2,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { toPairs } from 'ramda'
 import React, { useState } from 'react'
 import { renderToString } from 'react-dom/server'
-import emoji from 'react-easy-emoji'
+import emoji from 'Components/emoji'
 import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
 import FAQ from './FAQ.yaml'
@@ -134,7 +134,7 @@ export default ({}) => {
 					</li>
 				))}
 			</div>
-			<h2 css="font-size: 180%">{emoji('🙋‍♀️')}J'ai une autre question</h2>
+			<h2 css="font-size: 180%">{emoji('🙋‍♀️')} J'ai une autre question</h2>
 			<div className="ui__ card" css="padding: 1rem 0">
 				<p>
 					Pour toute remarque ou question, nous vous invitons à{' '}
@@ -155,6 +155,7 @@ export default ({}) => {
 								<label css="color: var(--color)">
 									Le titre bref de votre problème
 									<input
+										aria-describedby="messageAttention"
 										value={sujet}
 										onChange={(e) => setSujet(e.target.value)}
 										type="text"
@@ -173,13 +174,14 @@ export default ({}) => {
 										</small>
 									</p>
 									<textarea
+										aria-describedby="messageAttention"
 										value={comment}
 										onChange={(e) => setComment(e.target.value)}
 										name="comment"
 										required
 									/>
 								</label>
-								<p>
+								<p id="messageAttention">
 									<em>
 										Cette contribution sera publique : n'y mettez pas
 										d'informations sensibles
@@ -206,12 +208,12 @@ ${fromLocation ? `Depuis la page : \`${fromLocation}\`` : ''}
 										createIssue(sujet, augmentedComment, setURL, disableButton)
 									}}
 								>
-									Valider
+									Envoyer
 								</button>
 							</form>
 						) : (
-							<p>
-								Merci {emoji('😍')} ! Suivez l'avancement de votre suggestion en
+							<p role="status">
+								Merci {emoji('😍')}! Suivez l'avancement de votre suggestion en
 								cliquant sur <a href={URL}>ce lien</a>.
 							</p>
 						)}

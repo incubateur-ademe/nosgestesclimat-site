@@ -16,15 +16,16 @@ export default ({ endURL }) => {
 				background: rgba(0, 0, 0, 0)
 					linear-gradient(60deg, var(--darkColor) 0%, var(--darkestColor) 100%)
 					repeat scroll 0% 0%;
+				color: white !important;
 			`}
 			to={endURL}
-			title="Page de fin de simulation"
+			title="Page de fin de simulation pétrole"
 		>
 			<div css="display: flex; align-items: center">
 				<img
 					src="/images/pompe-essence.svg"
 					css="width: 3rem; "
-					alt="Une pompe à pétrole"
+					alt="Pompe à pétrole"
 				/>
 				<div
 					css="display: flex; flex-direction: column; padding: 0 .4rem"

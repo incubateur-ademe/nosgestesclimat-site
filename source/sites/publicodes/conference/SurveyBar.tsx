@@ -168,6 +168,7 @@ export default () => {
 								display: inline-block;
 								line-height: 1.5rem;
 								text-align: center;
+								color: var(--darkerColor);
 							`}
 						>
 							{answersCount}

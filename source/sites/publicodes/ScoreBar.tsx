@@ -77,14 +77,16 @@ export default ({ actionMode = false, demoMode = false }) => {
 								${color ? color : 'var(--color)'} 100%
 							)
 							repeat scroll 0% 0%;
+						color: white !important;
 					`}
 					to={demoMode ? '#' : buildEndURL(rules, engine)}
-					title="Page de fin de simulation"
+					title="Page de fin de simulation principale"
 				>
 					<div css="display:flex; align-items:center; justify-content: center">
 						<img
 							src={'/images/climate-change-small.svg'}
 							css="width:3rem;margin-right: .8rem;"
+							alt="Planète représentant le changement climatique"
 						/>
 						{!actionMode ? (
 							<HumanWeight

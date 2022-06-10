@@ -79,18 +79,20 @@ export default function News() {
 					: `nouveautés ${determinant(releaseName)}${releaseName}`}
 				&nbsp;.
 			</p>
-			<SmallScreenSelect
-				value={selectedRelease}
-				onChange={(evt) => {
-					history.push(getPath(Number(evt.target.value)))
-				}}
-			>
-				{data.map(({ name }, index) => (
-					<option key={index} value={index}>
-						{name}
-					</option>
-				))}
-			</SmallScreenSelect>
+			<label title="titre de la version">
+				<SmallScreenSelect
+					value={selectedRelease}
+					onChange={(evt) => {
+						history.push(getPath(Number(evt.target.value)))
+					}}
+				>
+					{data.map(({ name }, index) => (
+						<option key={index} value={index}>
+							{name}
+						</option>
+					))}
+				</SmallScreenSelect>
+			</label>
 			<NewsSection>
 				<Sidebar>
 					{data.map(({ name, published_at: date }, index) => (
@@ -175,10 +177,13 @@ const Sidebar = styled.ul`
 			padding: 4px 10px;
 			margin: 0;
 
-			&:hover,
 			&.active {
-				background: var(--color);
-				color: var(--textColor);
+				background: var(--darkColor);
+				color: var(--textColor) !important;
+			}
+			:hover:not(.active) {
+				color: var(--darkerColor);
+				background: var(--lightestColor);
 			}
 			&.active small {
 				color: var(--textColor);

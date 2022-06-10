@@ -8,8 +8,8 @@ export default ({ newRoom, setNewRoom }) => {
 	const specialCharaters = /[!@#$%&*()+\=\[\]{};':"\\|,.<>\/?]+/
 	return (
 		<>
-			<label>
-				<form>
+			<form>
+				<label title="Nom de la salle">
 					<input
 						value={newRoom}
 						className="ui__"
@@ -26,18 +26,18 @@ export default ({ newRoom, setNewRoom }) => {
 						css="width: 80% !important"
 						ref={inputRef}
 					/>
-					<button
-						onClick={(e) => {
-							setNewRoom('')
-							inputRef.current.focus()
-							e.preventDefault()
-						}}
-						title="Effacer le nom actuel"
-					>
-						{emoji('❌')}
-					</button>
-				</form>
-			</label>
+				</label>
+				<button
+					onClick={(e) => {
+						setNewRoom('')
+						inputRef.current.focus()
+						e.preventDefault()
+					}}
+					title="Effacer le nom actuel"
+				>
+					{emoji('❌')}
+				</button>
+			</form>
 
 			<button
 				onClick={() => setNewRoom(generateRoomName())}
@@ -47,14 +47,14 @@ export default ({ newRoom, setNewRoom }) => {
 			</button>
 			{newRoom && newRoom.length < 12 && (
 				<p>
-					⚠️ Votre nom de salle est court, il y a un petit risque que des
-					inconnus puissent le deviner
+					{emoji('⚠️')} Votre nom de salle est court, il y a un petit risque que
+					des inconnus puissent le deviner
 				</p>
 			)}
 			{newRoom && showInvalidMessage && (
 				<p>
-					💡 Votre nom de salle ne peut que contenir des lettres, des chifffres
-					et des tirets
+					{emoji('💡')} Votre nom de salle ne peut que contenir des lettres, des
+					chifffres et des tirets
 				</p>
 			)}
 		</>

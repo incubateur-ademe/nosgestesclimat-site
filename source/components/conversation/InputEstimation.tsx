@@ -39,18 +39,25 @@ export default function InputEstimation({ inputEstimation, setFinalValue }) {
 			<span>{emoji('🧮')} </span>
 			<span>
 				<div>
-					{inputEstimation.rawNode.question}
-					<input
-						type="number"
-						min="0"
-						max="1000000"
-						step="1"
-						value={value}
-						onChange={(e) => {
-							setValue(e.target.value)
-							setFinalValue(Math.round(12 * (+e.target.value / nodeValue)))
-						}}
-					/>
+					<span id={'explicationEstimation - ' + inputEstimation.dottedName}>
+						{inputEstimation.rawNode.question}
+					</span>
+					<label title="estimation">
+						<input
+							aria-describedby={
+								'explicationEstimation - ' + inputEstimation.dottedName
+							}
+							type="number"
+							min="0"
+							max="1000000"
+							step="1"
+							value={value}
+							onChange={(e) => {
+								setValue(e.target.value)
+								setFinalValue(Math.round(12 * (+e.target.value / nodeValue)))
+							}}
+						/>
+					</label>
 					<span>{inputEstimation.rawNode['unité'].split('/')[0]}</span>
 				</div>
 			</span>

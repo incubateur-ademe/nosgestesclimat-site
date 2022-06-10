@@ -20,6 +20,7 @@ export default function Input({
 	unit,
 	autoFocus,
 	inputEstimation,
+	idDescription,
 	showAnimation,
 }: InputCommonProps & {
 	onSubmit: (source: string) => void
@@ -49,6 +50,7 @@ export default function Input({
 							autoFocus={autoFocus}
 							className="suffixed ui__"
 							id={id}
+							aria-describedby={idDescription}
 							thousandSeparator={thousandSeparator}
 							decimalSeparator={decimalSeparator}
 							allowEmptyFormatting={true}

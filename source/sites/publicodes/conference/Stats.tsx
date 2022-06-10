@@ -52,27 +52,30 @@ export default ({
 		max = humanWeight(maxValue, true).join(' '),
 		min = humanWeight(minValue, true).join(' ')
 
+	const formatTotal = (total) =>
+		(total / 1000).toLocaleString('fr-FR', {
+			maximumSignificantDigits: 2,
+		})
 	const spotlightElement = elements.find((el) => el.username === spotlight),
-		spotlightValue =
-			spotlightElement &&
-			(spotlightElement.total / 1000).toLocaleString('fr-FR', {
-				maximumSignificantDigits: 2,
-			})
+		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
 	return (
 		<div>
 			<div css=" text-align: center">
-				<p>
-					Avancement du groupe ({elements.length} participant
-					{elements.length > 1 ? 's' : ''})
+				<p role="heading" aria-level="2">
+					Avancement du groupe{' '}
+					<span role="status">
+						({rawElements.length} participant
+						{rawElements.length > 1 ? 's' : ''})
+					</span>
 				</p>
-				<Progress progress={meanProgress} />
+				<Progress progress={meanProgress} label="Avancement du groupe" />
 			</div>
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
-						Moyenne : {humanMean}{' '}
-						<small>
+						<span role="status">Moyenne : {humanMean} </span>
+						<small title="Moyenne française">
 							({emoji('🇫🇷')} <DefaultFootprint />)
 						</small>
 					</div>
@@ -98,7 +101,8 @@ export default ({
 					</small>
 				</div>
 
-				<div
+				<ul
+					title="Empreinte totale"
 					css={`
 						width: 100%;
 						position: relative;
@@ -132,10 +136,14 @@ export default ({
 										`
 									: ''}
 							`}
+							title={`${username} : ${formatTotal(value)} t`}
+							aria-label={`${username} : ${formatTotal(value)} t`}
+							role="button"
 							onClick={() => setSpotlight(username)}
+							aria-pressed={spotlight === username}
 						></li>
 					))}
-				</div>
+				</ul>
 
 				<div css="display: flex; justify-content: space-between; width: 100%">
 					<small key="legendLeft">
@@ -153,8 +161,10 @@ export default ({
 				<div>
 					{spotlight === currentUser ? (
 						<span>
-							<span css="background: #fff45f;">En jaune</span> : ma simulation à{' '}
-							{spotlightValue} t.
+							<span role="status" css="background: #fff45f;">
+								En jaune
+							</span>{' '}
+							: ma simulation à {spotlightValue} t.
 						</span>
 					) : (
 						<button

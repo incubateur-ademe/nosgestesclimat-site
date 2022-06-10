@@ -14,6 +14,9 @@ export default ({}) => {
 
 	return (
 		<svg
+			aria-label="Avancement du test"
+			role="progressbar"
+			aria-valuenow={Math.round(progress * 100)}
 			className="progress-icon"
 			viewBox="0 0 50 50"
 			css={`

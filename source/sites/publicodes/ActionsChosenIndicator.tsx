@@ -28,7 +28,7 @@ export default ({}) => {
 		>
 			<animate.appear>
 				<div>{count}</div>
-				<div>&#10004;</div>
+				<div title="actions choisies">&#10004;</div>
 			</animate.appear>
 		</div>
 	)

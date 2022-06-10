@@ -45,6 +45,7 @@ export default () => {
 			/>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
 			<Illustration
+				aira-hidden="true"
 				css={`
 					width: 60%;
 					height: auto;
@@ -86,7 +87,11 @@ export default () => {
 						}
 					`}
 				>
-					<Marianne css="height: 6rem; margin-right: .6rem" />
+					<Marianne
+						role="img"
+						aria-label="République Française"
+						css="height: 6rem; margin-right: .6rem"
+					/>
 					<a href="https://ademe.fr">
 						<LogoADEME />
 					</a>
@@ -94,7 +99,7 @@ export default () => {
 						<img
 							css="height: 2.5rem"
 							src="/images/ABC.svg"
-							alt="Logo de l'Association Bilan Carbone"
+							alt="Association Bilan Carbone"
 						/>
 					</a>
 				</div>
@@ -135,14 +140,17 @@ const ProfileLink = () => {
 					}
 				`}
 			>
-				<Link to="/profil" title="Page profil">
-					<button className="ui__ button plain small" type="button">
-						<img
-							aria-hidden="true"
-							src={openmojiURL('profile')}
-							css="width: 2rem; filter: invert(1)"
-						/>
-					</button>
+				<Link
+					to="/profil"
+					title="Page profil"
+					className="ui__ button plain small"
+					css="border-radius: 2rem !important"
+				>
+					<img
+						aria-hidden="true"
+						src={openmojiURL('profile')}
+						css="width: 2rem; filter: invert(1)"
+					/>
 				</Link>
 			</div>
 		</animate.fromTop>

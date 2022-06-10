@@ -90,12 +90,12 @@ export default ({ children, next, previous }) => {
 }
 
 const NextButton = styled.button`
-	opacity: 0.6;
+	opacity: 0.75;
 	top: calc(50% - 20px);
 	position: absolute;
 	background: white;
-	border: 1px solid var(--color);
-	color: var(--color);
+	border: 1px solid var(--darkColor);
+	color: var(--darkColor);
 	border-radius: 30px;
 	width: 40px;
 	height: 40px;

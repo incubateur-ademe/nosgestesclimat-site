@@ -33,7 +33,7 @@ export default ({ nodeValue, total, icons, color, title }) => {
 					{title}
 				</span>
 			) : (
-				<CircledEmojis emojis={icons} />
+				<CircledEmojis emojis={icons} emojiTitle={title} />
 			)}
 		</motion.li>
 	)

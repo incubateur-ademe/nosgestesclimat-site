@@ -39,15 +39,14 @@ export default ({
 				css={`
 					display: flex;
 					align-items: center;
-					height: 1.3rem;
+					height: 2rem;
 					position: relative;
 				`}
 				title={title}
 			>
 				{pathname.includes('simulateur/bilan') ? (
-					<button
-						type="button"
-						title={`N'afficher que les questions ` + dottedName}
+					<div
+						title={dottedName}
 						css={`
 							margin: 0;
 							padding: 0;
@@ -58,10 +57,11 @@ export default ({
 						}
 					>
 						{emojiComponent}
-					</button>
+					</div>
 				) : (
 					emojiComponent
 				)}
+				<span class="visually-hidden">{title}</span>
 				<BarContent
 					noText={noText}
 					color={color}
@@ -99,7 +99,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 				background: ${color};
 				margin-top: 0rem;
 				margin-right: 0.8rem;
-				height: 1.3rem;
+				height: 2rem;
 				padding-left: 0.1rem;
 				border-radius: 1rem;
 				width: ${widthPercentage}%;
@@ -116,12 +116,12 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 						opacity: 0.9;
 						font-weight: bold;
 						color: white;
-						font-size: 90%;
-						line-height: 1.3rem;
+						font-size: 110%;
+						line-height: 2rem;
 						${!show && `display: none`}
 					`}
 				>
-					<span>{usedText}</span>
+					<span aria-hidden="true">{usedText}</span>
 				</span>
 			)}
 		</span>

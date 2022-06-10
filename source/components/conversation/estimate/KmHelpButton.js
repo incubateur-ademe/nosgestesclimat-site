@@ -20,7 +20,11 @@ export default function KmHelpButton({ text, openmojiURL, onHandleClick }) {
 					width: 100%;
 				`}
 			>
-				<LogoMIT hover={hover} />
+				<LogoMIT
+					aria-label="logo aide à la saisie MIT"
+					aria-hidden="true"
+					hover={hover}
+				/>
 				{text}
 			</div>
 		</button>

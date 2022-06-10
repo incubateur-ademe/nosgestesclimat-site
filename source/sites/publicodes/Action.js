@@ -84,10 +84,10 @@ export default ({}) => {
 						}
 					`}
 				>
-					<h1>
+					<h2>
 						{icons && <span>{emoji(icons)}</span>}
 						{title}
-					</h1>
+					</h2>
 				</header>
 				<div css="margin: 1.6rem 0">
 					<Markdown source={description} />
@@ -109,19 +109,20 @@ export default ({}) => {
 			</div>
 			{nextQuestions.length > 0 && (
 				<>
-					<p>Personnalisez cette estimation</p>
+					<h3>Personnalisez cette estimation</h3>
 					<Simulation
 						noFeedback
 						showConversation
 						customEnd={<div />}
 						targets={<div />}
 						explanations={null}
+						questionHeadingLevel="4"
 					/>
 				</>
 			)}
 			{relatedActions && (
 				<>
-					<p>Sur le même sujet</p>
+					<h3>Sur le même sujet</h3>
 					<div>
 						{relatedActions.map((action) => (
 							<Link

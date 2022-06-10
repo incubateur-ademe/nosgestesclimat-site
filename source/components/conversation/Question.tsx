@@ -42,6 +42,7 @@ export default function Question({
 	missing,
 	onChange,
 	value: currentValue,
+	title: ruleTitle,
 }: QuestionProps) {
 	const [currentSelection, setCurrentSelection] = useState(
 		missing ? null : `'${currentValue}'`
@@ -66,10 +67,9 @@ export default function Question({
 			return () => clearTimeout(timeoutId)
 		}
 	}, [currentSelection])
-
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
 		return (
-			<div className="ui__ radio">
+			<div className="ui__ radio" aria-labelledby={'id-question-' + ruleTitle}>
 				{choices.map(({ value, label }) => (
 					<span
 						key={value}
@@ -102,9 +102,12 @@ export default function Question({
 		// [parent object path]: dotted fieldName relative to parent
 		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
-
 		return (
-			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
+			<ul
+				css="width: 100%; padding: 0; margin:0"
+				className="ui__ radio"
+				aria-labelledby={'id-question-' + ruleTitle}
+			>
 				{choices.canGiveUp && (
 					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
@@ -155,7 +158,7 @@ export default function Question({
 					)}
 				{/* If there are more than 5 possibilities in a question with "Plusieurs possibilités" a Select is displayed*/}
 				{choices.children && choices.children.length > 5 && (
-					<div>
+					<div aria-labelledby={'id-question-' + ruleTitle}>
 						<label title={choices.title}>
 							<select
 								name={choices.title}

@@ -21,7 +21,7 @@ import {
 } from 'Selectors/simulationSelectors'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
 import CategoryVisualisation from '../../sites/publicodes/CategoryVisualisation'
-import { splitName } from '../publicodesUtils'
+import { splitName, title } from '../publicodesUtils'
 import useKeypress from '../utils/useKeyPress'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
@@ -43,6 +43,7 @@ export default function Conversation({
 	customEndMessages,
 	customEnd,
 	orderByCategories,
+	questionHeadingLevel,
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext),
@@ -111,6 +112,14 @@ export default function Conversation({
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
+	useEffect(() => {
+		// This hook enables top set the focus on the question span and not on the "Suivant" button when going to next question
+		const questionElement =
+			rules[currentQuestion] &&
+			document.getElementById('id-question-' + title(rules[currentQuestion]))
+		questionElement?.focus()
+	}, [currentQuestion])
+
 	const goToPrevious = () => {
 		return dispatch(goToQuestion(previousQuestion))
 	}
@@ -122,6 +131,7 @@ export default function Conversation({
 	const questionText = mosaicQuestion
 		? mosaicQuestion.question
 		: rules[currentQuestion]?.rawNode?.question
+
 	const questionsToSubmit = mosaicQuestion
 		? Object.entries(rules)
 				.filter(([dottedName, value]) =>
@@ -244,7 +254,6 @@ export default function Conversation({
 							display: flex;
 							align-items: center;
 							color: var(--color);
-							opacity: 0.4;
 						}
 						img {
 							width: 1.2rem;
@@ -267,7 +276,7 @@ export default function Conversation({
 						onClick={() => setFinder(!finder)}
 						title="Recherche rapide de questions dans le formulaire"
 					>
-						<img src={`/images/1F50D.svg`} />
+						<img src={`/images/1F50D.svg`} aria-hidden="true" />
 						<span>Ctrl-K</span>
 					</button>
 				</div>
@@ -289,12 +298,19 @@ export default function Conversation({
 				)}
 				<div className="step">
 					<h2
+						role="heading"
+						aria-level={questionHeadingLevel ?? 2}
 						css={`
 							margin: 0.4rem 0;
 							font-size: 120%;
 						`}
 					>
-						{questionText}{' '}
+						<span
+							tabindex="0"
+							id={'id-question-' + title(rules[currentQuestion])}
+						>
+							{questionText}{' '}
+						</span>
 						{hasDescription && (
 							<ExplicableRule
 								dottedName={

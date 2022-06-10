@@ -7,7 +7,7 @@ import Meta from 'Components/utils/Meta'
 import { AnimatePresence, motion, useSpring } from 'framer-motion'
 import { utils } from 'publicodes'
 import { default as React, useContext, useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import emoji from 'Components/emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
@@ -184,7 +184,11 @@ const Budget = ({ score, details, headlessMode }) => {
 								height: 10rem;
 							`}
 						>
-							<div css="font-weight: bold; font-size: 280%;">
+							<div
+								role="heading"
+								aria-level="1"
+								css="font-weight: bold; font-size: 280%;"
+							>
 								<span css="width: 4rem; text-align: right; display: inline-block">
 									{integerValue}
 									{score < 10000 && (
@@ -211,11 +215,18 @@ const Budget = ({ score, details, headlessMode }) => {
 									background: #ffffff3d;
 									border-radius: 0.6rem;
 									padding: 0.4rem 1rem;
-
-									> div {
+									> ul {
+										padding: 0;
+										margin: 0;
+									}
+									> div,
+									li {
 										display: flex;
 										justify-content: space-between;
 										flex-wrap: wrap;
+									}
+									li {
+										padding: 0;
 									}
 									strong {
 										font-weight: bold;
@@ -225,23 +236,19 @@ const Budget = ({ score, details, headlessMode }) => {
 									}
 								`}
 							>
-								<div>
-									<span>
-										{emoji('🇫🇷 ')}
-										moyenne{' '}
-									</span>{' '}
-									<strong>
-										{' '}
-										<DefaultFootprint />{' '}
-									</strong>
-								</div>
-								<div>
-									<span>
-										{emoji('🎯 ')}
-										objectif{' '}
-									</span>
-									<strong>2 tonnes</strong>
-								</div>
+								<ul>
+									<li>
+										<span>{emoji('🇫🇷', 'France')} moyenne </span>{' '}
+										<strong>
+											{' '}
+											<DefaultFootprint />{' '}
+										</strong>
+									</li>
+									<li>
+										<span>{emoji('🎯')} objectif </span>
+										<strong>2 tonnes</strong>
+									</li>
+								</ul>
 								{!headlessMode && (
 									<div css="margin-top: .2rem;justify-content: flex-end !important">
 										<a

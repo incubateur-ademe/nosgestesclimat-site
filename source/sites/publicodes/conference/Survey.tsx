@@ -14,6 +14,7 @@ import { defaultThreshold, defaultProgressMin } from './utils'
 import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
+import Meta from '../../../components/utils/Meta'
 import { configSelector } from '../../../selectors/simulationSelectors'
 
 export default () => {
@@ -67,12 +68,20 @@ export default () => {
 	}
 	return (
 		<div>
+			<Meta
+				title={'Sondage ' + room}
+				description={
+					'Participez au sondage ' +
+					room +
+					' et visualisez les résultats du groupe'
+				}
+			/>
 			<h1>
 				Sondage
 				<Beta />
 			</h1>
 			<ConferenceTitle>
-				<img src={conferenceImg} />
+				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
 			{!survey || survey.room !== room ? (

@@ -55,8 +55,8 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 					}
 				`}
 			>
-				<label title="motif">
-					<SelectWrapper>
+				<SelectWrapper>
+					<label title="motif">
 						<WrappedSelect
 							className="ui__"
 							css={`
@@ -73,10 +73,10 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 								</option>
 							))}
 						</WrappedSelect>
-					</SelectWrapper>
-				</label>
-				<label title="label">
-					<InputWrapper>
+					</label>
+				</SelectWrapper>
+				<InputWrapper>
+					<label title="label (facultatif)">
 						<input
 							className="ui__"
 							css={`
@@ -87,10 +87,10 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 							placeholder="Label (facultatif)"
 							onChange={handleAddFormChange}
 						/>
-					</InputWrapper>
-				</label>
-				<label title="distance">
-					<InputWrapper>
+					</label>
+				</InputWrapper>
+				<InputWrapper>
+					<label title="distance">
 						<WrappedInput
 							className="ui__"
 							css={`
@@ -101,23 +101,32 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 							required
 							placeholder="Distance"
 							onChange={handleAddFormChange}
+							aria-describedby="unitéDistance"
 						/>
-						<InputSuffix>km (A/R)</InputSuffix>
-					</InputWrapper>
-				</label>
-				<label title="frequence">
+					</label>
+					<InputSuffix id="unitéDistance">km (A/R)</InputSuffix>
+				</InputWrapper>
+				<label title="fréquence">
 					<SelectWrapper>
-						<input
-							className="ui__"
+						<span
 							css={`
-								max-width: 2rem !important;
+								:focus-within {
+									outline: 1px solid var(--color);
+								}
 							`}
-							name="xfois"
-							onChange={handleAddFormChange}
-							type="number"
-							required
-							placeholder="x"
-						></input>
+						>
+							<input
+								className="ui__"
+								css={`
+									max-width: 2rem !important;
+								`}
+								name="xfois"
+								onChange={handleAddFormChange}
+								type="number"
+								required
+								placeholder="x"
+							/>
+						</span>
 						<span css="padding-top: 0.25rem"> fois par </span>
 						<span
 							css={`
@@ -126,29 +135,35 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 								}
 							`}
 						>
-							<WrappedSelect
-								className="ui__"
-								css={`
-									max-width: 10rem !important;
-								`}
-								name="periode"
-								onChange={handleAddFormChange}
-								required
-							>
-								<option value="">période</option>
-								{freqList.map((f) => (
-									<option key={f.id} value={f.name}>
-										{f.name}
-									</option>
-								))}
-							</WrappedSelect>
+							<label title="période">
+								<WrappedSelect
+									className="ui__"
+									css={`
+										max-width: 10rem !important;
+									`}
+									name="periode"
+									onChange={handleAddFormChange}
+									required
+								>
+									<option value="">période</option>
+									{freqList.map((f) => (
+										<option key={f.id} value={f.name}>
+											{f.name}
+										</option>
+									))}
+								</WrappedSelect>
+							</label>
 						</span>
 						<SelectSuffix>
-							<img src={openmojiURL('calendrier')} css="width: 1.5rem;" />
+							<img
+								src={openmojiURL('calendrier')}
+								alt=""
+								css="width: 1.5rem;"
+							/>
 						</SelectSuffix>
 					</SelectWrapper>
 				</label>
-				<label title="personnes">
+				<label title="nombre de personnes">
 					<InputWrapper>
 						<WrappedInput
 							className="ui__"
@@ -164,7 +179,11 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 						/>
 						<InputSuffix>
 							{' '}
-							<img src={openmojiURL('silhouette')} css="width: 1.5rem;" />
+							<img
+								src={openmojiURL('silhouette')}
+								alt=""
+								css="width: 1.5rem;"
+							/>
 						</InputSuffix>
 					</InputWrapper>
 				</label>

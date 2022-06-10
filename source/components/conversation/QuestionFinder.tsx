@@ -92,21 +92,24 @@ export default function QuestionFinder({
 			>
 				<img src={`/images/274C.svg`} />
 			</button>
-			<input
-				type="search"
-				autoFocus
-				className="ui__"
-				value={input}
-				css="margin: 0 !important"
-				placeholder={i18n.t('Naviguez vers une question précise')}
-				onChange={(e) => {
-					const input = e.target.value
-					if (input.length > 0) worker.postMessage({ input })
-					setInput(input)
-				}}
-			/>
+			<label title="Naviguez vers une question précise">
+				<input
+					type="search"
+					autoFocus
+					className="ui__"
+					value={input}
+					css="margin: 0 !important"
+					placeholder={i18n.t('Naviguez vers une question précise')}
+					onChange={(e) => {
+						const input = e.target.value
+						if (input.length > 0) worker.postMessage({ input })
+						setInput(input)
+					}}
+				/>
+			</label>
 			{!!input.length && !results.length ? (
 				<p
+					role="status"
 					className="ui__ notice light-bg"
 					css={`
 						padding: 0.4rem;
