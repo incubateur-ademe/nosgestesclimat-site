@@ -10,11 +10,12 @@ import DataWarning from './DataWarning'
 import Instructions from './Instructions'
 import Stats from './Stats'
 import { answersURL, surveysURL } from './useDatabase'
-import { defaultThreshold } from './utils'
+import { defaultThreshold, defaultProgressMin } from './utils'
 import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
 import Meta from '../../../components/utils/Meta'
+import { configSelector } from '../../../selectors/simulationSelectors'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -22,7 +23,7 @@ export default () => {
 		'surveyContext',
 		{}
 	)
-
+	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(false)
 	const dispatch = useDispatch()
 
 	const { room } = useParams()
@@ -44,6 +45,15 @@ export default () => {
 				if (!surveyContext[room])
 					setSurveyContext({ ...surveyContext, [room]: {} })
 				dispatch({ type: 'ADD_SURVEY_CONTEXT', contextFile })
+			})
+			.catch((error) => console.log('error:', error))
+	}, [])
+
+	useEffect(() => {
+		fetch(surveysURL + room)
+			.then((response) => response.json())
+			.then((json) => {
+				setIsRegisteredSurvey(json?.length != 0)
 			})
 			.catch((error) => console.log('error:', error))
 	}, [])
@@ -93,7 +103,7 @@ export default () => {
 					{!hasDataState ? (
 						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
 					) : (
-						<Results room={survey.room} />
+						<Results room={survey.room} existContext={existContext} />
 					)}
 				</div>
 			)}
@@ -113,7 +123,8 @@ export default () => {
 						</button>
 					</div>
 					<DownloadInteractiveButton
-						url={answersURL + survey.room + '?format=csv'}
+						url={answersURL + room + '?format=csv'}
+						isRegisteredSurvey={isRegisteredSurvey}
 					/>
 				</>
 			)}
@@ -121,7 +132,7 @@ export default () => {
 	)
 }
 
-const DownloadInteractiveButton = ({ url }) => {
+const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 	const [clicked, click] = useState(false)
 
 	return (
@@ -136,7 +147,7 @@ const DownloadInteractiveButton = ({ url }) => {
 				>
 					{emoji('💾')} Télécharger les résultats
 				</a>
-			) : (
+			) : isRegisteredSurvey ? (
 				<div className="ui__ card content">
 					<p>
 						Vous pouvez récupérer les résultats du sondage dans le format .csv.
@@ -154,17 +165,42 @@ const DownloadInteractiveButton = ({ url }) => {
 							Données {'>'} À partir d'un fichier texte / CSV. Sélectionnez
 							"Origine : Unicode UTF-8" et "Délimiteur : virgule".
 						</li>
+						<li>
+							Les résultats de la page de visualisation ne prennent en compte
+							que les participants ayant rempli <b>au moins 10% du test</b>. En
+							revanche le CSV contient les simulations de toutes les personnes
+							ayant participé au sondage en cliquant sur le lien. La colonne
+							"progress" vous permet de filtrer les simulations à votre tour.
+						</li>
 					</ul>
 					<a href={url} className="ui__ link-button">
 						{emoji('💾')} Lancer le téléchargement.
 					</a>
+				</div>
+			) : (
+				<div>
+					{' '}
+					Le téléchargement pour ce sondage est indisponible. Ce problème vient
+					sans doute du fait que le sondage n'a pas été créé via la page dédiée.
+					N'hésitez pas à créer une salle au nom du sondage via{' '}
+					<a href="https://nosgestesclimat.fr/groupe" target="_blank">
+						ce formulaire d'instruction
+					</a>{' '}
+					(les réponses ne seront pas supprimées). Si le problème persiste,{' '}
+					<a
+						href="mailto:contact@nosgestesclimat.fr?subject=Problème téléchargement sondage"
+						target="_blank"
+					>
+						contactez-nous
+					</a>
+					!
 				</div>
 			)}
 		</div>
 	)
 }
 
-const Results = ({}) => {
+const Results = ({ room, existContext }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
@@ -174,13 +210,42 @@ const Results = ({}) => {
 
 	return (
 		<Stats
-			elements={Object.values(answerMap).map((el) => ({
-				...el.data,
-				username: el.id,
-			}))}
+			elements={getElements(
+				answerMap,
+				threshold,
+				existContext,
+				defaultProgressMin
+			)}
 			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
 		/>
 	)
+}
+
+// Simulations with less than 10% progress are excluded, in order to avoid a perturbation of the mean group value by people
+// that did connect to the conference, but did not seriously start the test, hence resulting in multiple default value simulations.
+// In case of survey with context, we only display result with context filled in.
+
+export const getElements = (
+	answerMap,
+	threshold,
+	existContext,
+	progressMin
+) => {
+	const rawElements = Object.values(answerMap).map((el) => ({
+		...el.data,
+		username: el.id,
+	}))
+	const elements = existContext
+		? rawElements.filter(
+				(el) =>
+					el.total < threshold &&
+					el.progress > progressMin &&
+					Object.keys(el.context).length !== 0
+		  )
+		: rawElements.filter(
+				(el) => el.total < threshold && el.progress > progressMin
+		  )
+	return elements
 }

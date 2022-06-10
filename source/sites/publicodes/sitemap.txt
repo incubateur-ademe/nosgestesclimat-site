@@ -2,6 +2,13 @@ https://nosgestesclimat.fr/simulateur/bilan
 https://nosgestesclimat.fr/vie-privée
 https://nosgestesclimat.fr/documentation
 https://nosgestesclimat.fr/à-propos
+https://nosgestesclimat.fr/nouveautés
+https://nosgestesclimat.fr/groupe
+https://nosgestesclimat.fr/profil
+https://nosgestesclimat.fr/partenaires
+https://nosgestesclimat.fr/contribuer
+https://nosgestesclimat.fr/personas
+https://nosgestesclimat.fr/stats
 https://nosgestesclimat.fr/documentation/actions
 https://nosgestesclimat.fr/documentation/actions-pétrole
 https://nosgestesclimat.fr/documentation/alimentation/réduire-viande
@@ -623,5 +630,4 @@ https://nosgestesclimat.fr/documentation/transport/deux-roues-thermique/type/mot
 https://nosgestesclimat.fr/documentation/transport/deux-roues-thermique/type/moto-sup-250
 https://nosgestesclimat.fr/documentation/transport/deux-roues-thermique/empreinte
 https://nosgestesclimat.fr/documentation/transport/deux-roues-thermique/conso
-https://nosgestesclimat.fr/documentation/logement/baisse-1-degré
 https://nosgestesclimat.fr/documentation/guide‑mode‑groupe

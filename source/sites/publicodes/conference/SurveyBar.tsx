@@ -13,6 +13,8 @@ import { backgroundConferenceAnimation } from './conferenceStyle'
 import useDatabase, { answersURL } from './useDatabase'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { v4 as uuidv4 } from 'uuid'
+import { getElements } from './Survey'
+import { defaultThreshold, defaultProgressMin } from './utils'
 
 export default () => {
 	const situation = useSelector(situationSelector),
@@ -108,7 +110,16 @@ export default () => {
 	const simulationArray = [],
 		result = null && computeHumanMean(simulationArray.map((el) => el.total))
 
-	const answersCount = Object.values(survey.answers).length
+	const existContext = survey ? !(survey['contextFile'] == null) : false
+
+	const elements = getElements(
+		survey.answers,
+		defaultThreshold,
+		existContext,
+		defaultProgressMin
+	)
+
+	const answersCount = elements.length
 
 	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 

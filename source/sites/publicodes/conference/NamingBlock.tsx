@@ -5,7 +5,7 @@ import { generateRoomName } from './utils'
 export default ({ newRoom, setNewRoom }) => {
 	const inputRef = useRef(null)
 	const [showInvalidMessage, setShowInvalidMessage] = useState(true)
-	const specialCharaters = /[!@#$%^&*()_+\=\[\]{};':"\\|,.<>\/?]+/
+	const specialCharaters = /[!@#$%&*()+\=\[\]{};':"\\|,.<>\/?]+/
 	return (
 		<>
 			<form>
