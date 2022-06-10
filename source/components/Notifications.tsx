@@ -71,7 +71,7 @@ export default function Notifications({ currentQuestion }) {
 					hiddenNotifications?.includes(dottedName) ? null : (
 						<animate.fromTop key={dottedName}>
 							<li>
-								<div className="notification">
+								<div role="alert" className="notification">
 									{emoji(sévérité == 'avertissement' ? '⚠️' : '💁🏻')}
 									<div className="notificationText ui__ card">
 										<Markdown source={description} />

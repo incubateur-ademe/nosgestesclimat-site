@@ -69,6 +69,7 @@ const HumanWeight = ({
 			`}
 		>
 			<strong
+				role="status"
 				classname="humanvalue"
 				css={`
 					font-size: 160%;

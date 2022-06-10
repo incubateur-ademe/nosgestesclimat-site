@@ -22,7 +22,7 @@ export default ({ finalActions, setRadical, radical }) => {
 				text-align: center;
 			`}
 		>
-			<small>
+			<small role="status">
 				{finalActions.length} actions disponibles, <ActionsChosenIndicator />
 				sélectionnées.
 			</small>{' '}

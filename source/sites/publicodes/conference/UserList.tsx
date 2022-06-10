@@ -39,7 +39,7 @@ export const UserBlock = ({ extremes, users, username, room }) => {
 				{emoji('👤 ')}
 				Qui est connecté ?
 			</h2>
-			<span css="color: #397540; font-weight: bold">
+			<span role="status" css="color: #397540; font-weight: bold">
 				{emoji('🟢')} {uniqueUsers.length} participant{plural(uniqueUsers)}
 			</span>
 			<UserList users={uniqueUsers} username={username} extremes={extremes} />

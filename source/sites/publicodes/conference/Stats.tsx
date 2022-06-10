@@ -67,15 +67,18 @@ export default ({
 		<div>
 			<div css=" text-align: center">
 				<p role="heading" aria-level="2">
-					Avancement du groupe ({rawElements.length} participant
-					{rawElements.length > 1 ? 's' : ''})
+					Avancement du groupe{' '}
+					<span role="status">
+						({rawElements.length} participant
+						{rawElements.length > 1 ? 's' : ''})
+					</span>
 				</p>
 				<Progress progress={meanProgress} label="Avancement du groupe" />
 			</div>
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
-						Moyenne : {humanMean}{' '}
+						<span role="status">Moyenne : {humanMean} </span>
 						<small title="Moyenne française">
 							({emoji('🇫🇷')} <DefaultFootprint />)
 						</small>
@@ -162,8 +165,10 @@ export default ({
 				<div>
 					{spotlight === currentUser ? (
 						<span>
-							<span css="background: #fff45f;">En jaune</span> : ma simulation à{' '}
-							{spotlightValue} t.
+							<span role="status" css="background: #fff45f;">
+								En jaune
+							</span>{' '}
+							: ma simulation à {spotlightValue} t.
 						</span>
 					) : (
 						<button

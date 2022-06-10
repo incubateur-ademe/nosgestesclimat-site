@@ -109,6 +109,7 @@ export default function QuestionFinder({
 			</label>
 			{!!input.length && !results.length ? (
 				<p
+					role="status"
 					className="ui__ notice light-bg"
 					css={`
 						padding: 0.4rem;

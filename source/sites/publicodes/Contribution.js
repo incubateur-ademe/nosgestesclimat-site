@@ -212,7 +212,7 @@ ${fromLocation ? `Depuis la page : \`${fromLocation}\`` : ''}
 								</button>
 							</form>
 						) : (
-							<p>
+							<p role="status">
 								Merci {emoji('😍')}! Suivez l'avancement de votre suggestion en
 								cliquant sur <a href={URL}>ce lien</a>.
 							</p>
