@@ -65,8 +65,8 @@ export default ({
 				<p role="heading" aria-level="2">
 					Avancement du groupe{' '}
 					<span role="status">
-						({rawElements.length} participant
-						{rawElements.length > 1 ? 's' : ''})
+						({elements.length} participant
+						{elements.length > 1 ? 's' : ''})
 					</span>
 				</p>
 				<Progress progress={meanProgress} label="Avancement du groupe" />
