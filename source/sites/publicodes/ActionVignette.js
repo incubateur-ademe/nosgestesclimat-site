@@ -171,9 +171,9 @@ export const ActionListCard = ({
 						tracker.push([
 							'trackEvent',
 							'/actions',
-							'Vote carte action',
-							'oui',
-							1,
+							'Action sélectionnée',
+							dottedName,
+							nodeValue,
 						])
 						e.stopPropagation()
 						e.preventDefault()
@@ -194,9 +194,9 @@ export const ActionListCard = ({
 						tracker.push([
 							'trackEvent',
 							'/actions',
-							'Vote carte action',
-							'non',
-							-1,
+							'Action rejetée',
+							dottedName,
+							nodeValue,
 						])
 						e.stopPropagation()
 						e.preventDefault()
