@@ -61,14 +61,30 @@ export default () => {
 						to="/simulateur/bilan"
 						className="ui__ plain button cta"
 						onClick={() =>
-							tracker.push(['trackEvent', 'NGC', 'Clic CTA accueil'])
+							tracker.push([
+								'trackEvent',
+								'NGC',
+								'Clic CTA accueil',
+								'Faire le test',
+							])
 						}
 					>
 						Faire le test
 					</Link>
 				</div>
 				<div>
-					<Link to="/groupe" className="ui__ button small">
+					<Link
+						to="/groupe"
+						className="ui__ button small"
+						onClick={() =>
+							tracker.push([
+								'trackEvent',
+								'NGC',
+								'Clic CTA accueil',
+								'Faire le test à plusieurs',
+							])
+						}
+					>
 						{emoji('👥')} Faire le test à plusieurs
 					</Link>
 				</div>
