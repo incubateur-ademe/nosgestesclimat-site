@@ -98,13 +98,6 @@ export default function Conversation({
 	const tracking = useSelector((state) => state.tracking)
 
 	useEffect(() => {
-		!tracking.firstQuestionEventFired &&
-			dispatch(setTrackingVariable('firstQuestionEventFired', false))
-		!tracking.firstQuestionEventFired &&
-			dispatch(setTrackingVariable('progressEventFired', false))
-	}, [])
-
-	useEffect(() => {
 		if (!tracking.firstQuestionEventFired && previousAnswers.length === 1) {
 			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
 			dispatch(setTrackingVariable('firstQuestionEventFired', true))
@@ -114,6 +107,7 @@ export default function Conversation({
 	const progress = useSimulationProgress()
 
 	useEffect(() => {
+		// This will help you judge if the "A terminé la simulation" event has good numbers
 		if (!tracking.progressEventFired && progress > 0.9) {
 			tracker.push(['trackEvent', 'NGC', 'Progress > 90%'])
 			dispatch(setTrackingVariable('progressEventFired', true))
