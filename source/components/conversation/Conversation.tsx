@@ -215,9 +215,25 @@ export default function Conversation({
 		'keydown',
 		[]
 	)
+	const endEventFired = tracking.endEventFired
+	const noQuestionsLeft = !nextQuestions.length
 
-	if (!nextQuestions.length)
+	useEffect(() => {
+		if (!endEventFired && noQuestionsLeft) {
+			tracker.push([
+				'trackEvent',
+				'NGC',
+				'A terminé la simulation',
+				'bilan',
+				rules['bilan'].nodeValue,
+			])
+			dispatch(setTrackingVariable('endEventFired', true))
+		}
+	}, [])
+
+	if (noQuestionsLeft) {
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
+	}
 
 	const questionCategoryName = splitName(currentQuestion)[0],
 		questionCategory =

@@ -101,26 +101,6 @@ const TutorialRedirection = () => {
 const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 	const situation = useSelector(situationSelector)
-	const dispatch = useDispatch()
-	const tracker = useContext(TrackerContext)
-	const endEventFired = useSelector((state) => state.tracking.endEventFired)
-
-	useEffect(() => {
-		!endEventFired && dispatch(setTrackingVariable('endEventFired', false))
-	}, [])
-
-	useEffect(() => {
-		if (!endEventFired) {
-			tracker.push([
-				'trackEvent',
-				'NGC',
-				'A terminé la simulation',
-				null,
-				rules['bilan'].nodeValue,
-			])
-			dispatch(setTrackingVariable('endEventFired', true))
-		}
-	}, [])
 
 	return <Redirect to={buildEndURL(rules, engine)} />
 }
