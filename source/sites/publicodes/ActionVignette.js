@@ -168,13 +168,16 @@ export const ActionListCard = ({
 								actionChoices[dottedName] === true ? null : true
 							)
 						)
-						tracker.push([
-							'trackEvent',
-							'/actions',
-							'Action sélectionnée',
-							dottedName,
-							nodeValue,
-						])
+						if (!actionChoices[dottedName]) {
+							const eventData = [
+								'trackEvent',
+								'/actions',
+								'Action sélectionnée',
+								dottedName,
+								nodeValue,
+							]
+							tracker.push(eventData)
+						}
 						e.stopPropagation()
 						e.preventDefault()
 					}}
