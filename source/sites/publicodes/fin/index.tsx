@@ -4,6 +4,7 @@ import animate from 'Components/ui/animate'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 import Meta from 'Components/utils/Meta'
+import { TrackerContext } from 'Components/utils/withTracker'
 import { AnimatePresence, motion, useSpring } from 'framer-motion'
 import { utils } from 'publicodes'
 import { default as React, useContext, useEffect, useState } from 'react'
@@ -83,6 +84,12 @@ export default ({}) => {
 			setSearchParams({ diapo: nextSlide, details: encodedDetails })
 		},
 		previous = next
+
+	const tracker = useContext(TrackerContext)
+	useEffect(() => {
+		console.log('+1')
+		tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
+	}, [Component])
 
 	return (
 		<div>
