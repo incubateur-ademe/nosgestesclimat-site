@@ -20,6 +20,7 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
+import { setTrackingVariable } from '../../actions/actions'
 import CategoryVisualisation from '../../sites/publicodes/CategoryVisualisation'
 import { splitName, title } from '../publicodesUtils'
 import useKeypress from '../utils/useKeyPress'
@@ -31,6 +32,7 @@ import SimulationEnding from './SimulationEnding'
 import QuestionFinder from './QuestionFinder'
 import emoji from '../emoji'
 import { useQuery } from '../../utils'
+import { useSimulationProgress } from '../utils/useNextQuestion'
 
 import Meta from '../../components/utils/Meta'
 
@@ -93,11 +95,30 @@ export default function Conversation({
 	const [dismissedRespirations, dismissRespiration] = useState([])
 	const [finder, setFinder] = useState(false)
 
+	const tracking = useSelector((state) => state.tracking)
+
 	useEffect(() => {
-		if (previousAnswers.length === 1) {
+		!tracking.firstQuestionEventFired &&
+			dispatch(setTrackingVariable('firstQuestionEventFired', false))
+		!tracking.firstQuestionEventFired &&
+			dispatch(setTrackingVariable('progressEventFired', false))
+	}, [])
+
+	useEffect(() => {
+		if (!tracking.firstQuestionEventFired && previousAnswers.length === 1) {
 			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
+			dispatch(setTrackingVariable('firstQuestionEventFired', true))
 		}
-	}, [previousAnswers, tracker])
+	}, [tracker, previousAnswers])
+
+	const progress = useSimulationProgress()
+
+	useEffect(() => {
+		if (!tracking.progressEventFired && progress > 0.9) {
+			tracker.push(['trackEvent', 'NGC', 'Progress > 90%'])
+			dispatch(setTrackingVariable('progressEventFired', true))
+		}
+	}, [tracker, progress])
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.

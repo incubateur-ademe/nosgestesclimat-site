@@ -103,10 +103,14 @@ const RedirectionToEndPage = ({ rules, engine }) => {
 	const situation = useSelector(situationSelector)
 	const dispatch = useDispatch()
 	const tracker = useContext(TrackerContext)
-	const { endEventFired } = useSelector((state) => state.tracking)
+	const endEventFired = useSelector((state) => state.tracking.endEventFired)
 
 	useEffect(() => {
-		!endEventFired &&
+		!endEventFired && dispatch(setTrackingVariable('endEventFired', false))
+	}, [])
+
+	useEffect(() => {
+		if (!endEventFired) {
 			tracker.push([
 				'trackEvent',
 				'NGC',
@@ -114,9 +118,9 @@ const RedirectionToEndPage = ({ rules, engine }) => {
 				null,
 				rules['bilan'].nodeValue,
 			])
-
-		dispatch(setTrackingVariable('endEventFired', true))
-	}, [tracker])
+			dispatch(setTrackingVariable('endEventFired', true))
+		}
+	}, [])
 
 	return <Redirect to={buildEndURL(rules, engine)} />
 }
