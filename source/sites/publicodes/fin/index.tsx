@@ -79,17 +79,14 @@ export default ({}) => {
 		pétrogaz: Petrogaz,
 	}[slideName]
 
+	const tracker = useContext(TrackerContext)
+
 	const next = () => {
 			const nextSlide = slideName === 'bilan' ? 'pétrogaz' : 'bilan'
 			setSearchParams({ diapo: nextSlide, details: encodedDetails })
+			tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
 		},
 		previous = next
-
-	const tracker = useContext(TrackerContext)
-	useEffect(() => {
-		console.log('+1')
-		tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
-	}, [Component])
 
 	return (
 		<div>
