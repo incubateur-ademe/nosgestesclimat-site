@@ -217,6 +217,8 @@ export default function Conversation({
 	const endEventFired = tracking.endEventFired
 	const noQuestionsLeft = !nextQuestions.length
 
+	const bilan = rules['bilan'].nodeValue
+
 	useEffect(() => {
 		if (!endEventFired && noQuestionsLeft) {
 			tracker.push([
@@ -224,11 +226,11 @@ export default function Conversation({
 				'NGC',
 				'A terminé la simulation',
 				'bilan',
-				rules['bilan'].nodeValue,
+				bilan,
 			])
 			dispatch(setTrackingVariable('endEventFired', true))
 		}
-	}, [])
+	}, [endEventFired, noQuestionsLeft])
 
 	if (noQuestionsLeft) {
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
