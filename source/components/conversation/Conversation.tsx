@@ -272,6 +272,7 @@ export default function Conversation({
 				}
 				position: relative;
 				padding-top: 1.2rem;
+				border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 			`}
 		>
 			{finder ? (
