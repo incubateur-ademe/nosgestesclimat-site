@@ -27,6 +27,7 @@ export default ({}) => {
 		...category,
 		abbreviation: rules[category.dottedName].abbréviation,
 	}))
+	const tutorials = useSelector((state) => state.tutorials)
 
 	const displayedCategory = useContinuousCategory(categories)
 
@@ -41,6 +42,9 @@ export default ({}) => {
 
 	if (!categories) return null
 
+	const inRespiration =
+		displayedCategory && !tutorials[displayedCategory.dottedName]
+
 	return (
 		<div
 			css={`
@@ -52,7 +56,7 @@ export default ({}) => {
 					margin-bottom: 1rem;
 				`}
 			>
-				{displayedCategory && (
+				{!inRespiration && displayedCategory && (
 					<CategoryVisualisation questionCategory={displayedCategory} />
 				)}
 			</div>
