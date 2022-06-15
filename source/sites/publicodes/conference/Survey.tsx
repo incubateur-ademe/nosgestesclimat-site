@@ -240,6 +240,7 @@ export const getElements = (
 	const elements = existContext
 		? rawElements.filter(
 				(el) =>
+					el.total > 0 &&
 					el.total < threshold &&
 					el.progress > progressMin &&
 					Object.keys(el.context).length !== 0
