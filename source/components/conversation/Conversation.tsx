@@ -217,7 +217,7 @@ export default function Conversation({
 	const endEventFired = tracking.endEventFired
 	const noQuestionsLeft = !nextQuestions.length
 
-	const bilan = rules['bilan'].nodeValue
+	const bilan = Math.round(engine.evaluate('bilan').nodeValue)
 
 	useEffect(() => {
 		if (!endEventFired && noQuestionsLeft) {
