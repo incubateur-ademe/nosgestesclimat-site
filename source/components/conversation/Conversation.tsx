@@ -20,6 +20,7 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
+import { setTrackingVariable } from '../../actions/actions'
 import CategoryVisualisation from '../../sites/publicodes/CategoryVisualisation'
 import { splitName, title } from '../publicodesUtils'
 import useKeypress from '../utils/useKeyPress'
@@ -31,6 +32,7 @@ import SimulationEnding from './SimulationEnding'
 import QuestionFinder from './QuestionFinder'
 import emoji from '../emoji'
 import { useQuery } from '../../utils'
+import { useSimulationProgress } from '../utils/useNextQuestion'
 
 import Meta from '../../components/utils/Meta'
 
@@ -93,11 +95,29 @@ export default function Conversation({
 	const [dismissedRespirations, dismissRespiration] = useState([])
 	const [finder, setFinder] = useState(false)
 
+	const tracking = useSelector((state) => state.tracking)
+
 	useEffect(() => {
-		if (previousAnswers.length === 1) {
+		if (!tracking.firstQuestionEventFired && previousAnswers.length === 1) {
 			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
+			dispatch(setTrackingVariable('firstQuestionEventFired', true))
 		}
-	}, [previousAnswers, tracker])
+	}, [tracker, previousAnswers])
+
+	const progress = useSimulationProgress()
+
+	useEffect(() => {
+		// This will help you judge if the "A terminé la simulation" event has good numbers
+		if (!tracking.progress90EventFired && progress > 0.9) {
+			tracker.push(['trackEvent', 'NGC', 'Progress > 90%'])
+			dispatch(setTrackingVariable('progress90EventFired', true))
+		}
+
+		if (!tracking.progress50EventFired && progress > 0.5) {
+			tracker.push(['trackEvent', 'NGC', 'Progress > 50%'])
+			dispatch(setTrackingVariable('progress50EventFired', true))
+		}
+	}, [tracker, progress])
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
@@ -194,9 +214,27 @@ export default function Conversation({
 		'keydown',
 		[]
 	)
+	const endEventFired = tracking.endEventFired
+	const noQuestionsLeft = !nextQuestions.length
 
-	if (!nextQuestions.length)
+	const bilan = rules['bilan'].nodeValue
+
+	useEffect(() => {
+		if (!endEventFired && noQuestionsLeft) {
+			tracker.push([
+				'trackEvent',
+				'NGC',
+				'A terminé la simulation',
+				'bilan',
+				bilan,
+			])
+			dispatch(setTrackingVariable('endEventFired', true))
+		}
+	}, [endEventFired, noQuestionsLeft])
+
+	if (noQuestionsLeft) {
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
+	}
 
 	const questionCategoryName = splitName(currentQuestion)[0],
 		questionCategory =

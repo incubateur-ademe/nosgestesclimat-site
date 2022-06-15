@@ -206,7 +206,15 @@ function tutorials(state = {}, { type, id, unskip }) {
 		return {}
 	} else return state
 }
-function tracking(state = {}, { type, name, value }) {
+function tracking(
+	state = {
+		endEventFired: false,
+		firstQuestionEventFired: false,
+		progress50EventFired: false,
+		progress90EventFired: false,
+	},
+	{ type, name, value }
+) {
 	if (type === 'SET_TRACKING_VARIABLE') {
 		return { ...state, [name]: value }
 	} else return state
