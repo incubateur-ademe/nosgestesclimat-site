@@ -19,7 +19,7 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { setTrackingVariable } from '../../actions/actions'
+import { setTrackingVariable, skipTutorial } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
 import { useQuery } from '../../utils'
@@ -89,8 +89,8 @@ export default function Conversation({
 			? true
 			: situation[currentQuestion] != null
 
-	const [dismissedRespirations, dismissRespiration] = useState([])
 	const [finder, setFinder] = useState(false)
+	const tutorials = useSelector((state) => state.tutorials)
 
 	const tracking = useSelector((state) => state.tracking)
 
@@ -253,15 +253,10 @@ export default function Conversation({
 
 	return orderByCategories &&
 		isCategoryFirstQuestion &&
-		!dismissedRespirations.includes(questionCategory.dottedName) ? (
+		!tutorials[questionCategory.dottedName] ? (
 		<CategoryRespiration
 			questionCategory={questionCategory}
-			dismiss={() =>
-				dismissRespiration([
-					...dismissedRespirations,
-					questionCategory.dottedName,
-				])
-			}
+			dismiss={() => dispatch(skipTutorial(questionCategory.dottedName))}
 		/>
 	) : (
 		<section
