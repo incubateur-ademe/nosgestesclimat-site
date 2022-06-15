@@ -220,7 +220,7 @@ export default function Conversation({
 	const bilan = Math.round(engine.evaluate('bilan').nodeValue)
 
 	useEffect(() => {
-		if (!endEventFired && noQuestionsLeft) {
+		if (!endEventFired && noQuestionsLeft && bilan > 1 && bilan < 100) {
 			tracker.push([
 				'trackEvent',
 				'NGC',
