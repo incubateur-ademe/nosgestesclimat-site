@@ -267,8 +267,10 @@ export default function Conversation({
 				}
 				position: relative;
 				padding-top: 1.2rem;
-				border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 			`}
+
+			// This is a design idea, not really useful now
+			//border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 		>
 			{finder ? (
 				<QuestionFinder close={() => setFinder(false)} />
