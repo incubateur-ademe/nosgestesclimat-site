@@ -52,7 +52,7 @@ export default ({
 					/>
 				))}
 				<motion.li
-					initial={{ opacity: 0 }}
+					initial={{ width: 0, opacity: 0 }}
 					animate={{ opacity: 1, width: `${restWidth}%` }}
 					exit={{ width: 0, opacity: 0 }}
 					transition={{ duration: 0.5, delay }}

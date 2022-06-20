@@ -27,7 +27,7 @@ export default ({
 
 	return (
 		<motion.li
-			initial={{ opacity: 0 }}
+			initial={{ opacity: 0, width: 0 }}
 			animate={{ opacity: 1, width: `calc(${percent}% - 0px)` }}
 			exit={{ width: 0, opacity: 0 }}
 			transition={{ duration: 0.5, delay }}
