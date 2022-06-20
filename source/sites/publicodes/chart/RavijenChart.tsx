@@ -64,7 +64,6 @@ export default ({
 		.flat()
 
 	const constraintsRef = useRef(null)
-	const [drag, setDrag] = useState(false)
 
 	return (
 		<motion.section
@@ -81,26 +80,27 @@ export default ({
 			/>
 			<motion.div
 				drag="y"
+				initial={{ opacity: 0 }}
+				animate={{ opacity: 1 }}
+				transition={{ ease: 'easeIn', duration: 1.6, delay: 3 }}
 				dragConstraints={constraintsRef}
-				onDragEnd={() => setDrag(false)}
-				onDragStart={() => setDrag(true)}
+				whileDrag={{ scale: 1.05, opacity: 0.7 }}
 				css={`
 					cursor: grab;
 					height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
 					width: 95%;
 					border: 6px dashed black;
 					background: #78e08f;
-					${drag && `opacity: .7;`}
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
 					margin: 0 auto;
 					position: absolute;
-					bottom: 0;
 					left: 2%;
 					z-index: 100;
 					color: black;
+					bottom: 0;
 				`}
 			>
 				<p css="font-size: 180%">2 tonnes</p>
