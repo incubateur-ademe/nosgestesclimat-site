@@ -1,6 +1,7 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
-import React from 'react'
+import { motion } from 'framer-motion'
+import React, { useRef } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import {
@@ -62,26 +63,44 @@ export default ({
 		)
 		.flat()
 
+	const constraintsRef = useRef(null)
+
 	return (
-		<section
+		<motion.section
 			css={`
 				padding: 0;
 			`}
+			ref={constraintsRef}
 		>
 			<SquaresGrid
 				pixelRemSize={pixelRemSize}
 				elements={allSubCategories}
 				pixel={pixel}
 			/>
-			<p
+			<motion.div
+				drag="y"
+				dragConstraints={constraintsRef}
 				css={`
-					margin-top: 2rem;
-					text-align: center;
+					height: ${((2000 / pixel) * pixelRemSize) / 10}rem;
+					width: 95%;
+					border: 6px dashed black;
+					background: #78e08fa3;
+					display: flex;
+					flex-direction: column;
+					align-items: center;
+					justify-content: center;
+					margin: 0 auto;
+					position: relative;
+					z-index: 100;
+					color: black;
 				`}
 			>
-				Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
-			</p>
-		</section>
+				<p css="font-size: 180%">2 tonnes</p>
+				<p css={``}>
+					Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
+				</p>
+			</motion.div>
+		</motion.section>
 	)
 }
 const DashedHalfLine = styled.span`
