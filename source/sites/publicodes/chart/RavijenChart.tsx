@@ -85,14 +85,14 @@ export default ({
 				animate={{ opacity: 1 }}
 				transition={{ ease: 'easeIn', duration: 1.6, delay: 3 }}
 				dragConstraints={constraintsRef}
-				whileDrag={{ scale: 1.05, opacity: 0.7 }}
+				whileDrag={{ scale: 1.05, opacity: 0.7 }} // does not work with the animation :/
 				css={`
 					cursor: grab;
 					height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
 					min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
 					width: 95%;
 					border: 6px dashed black;
-					background: #78e08f;
+					background: linear-gradient(#78e08f 50%, #78e08fcf 100%);
 					display: flex;
 					flex-direction: column;
 					align-items: center;
