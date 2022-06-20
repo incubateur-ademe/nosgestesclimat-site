@@ -1,20 +1,14 @@
-import { CategoryLabel } from 'Components/conversation/UI'
 import { extractCategories } from 'Components/publicodesUtils'
-import React, { useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import { useEngine } from 'Components/utils/EngineContext'
+import { useNextQuestions } from 'Components/utils/useNextQuestion'
+import React from 'react'
 import { useSelector } from 'react-redux'
 import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { questionCategoryName } from 'Components/publicodesUtils'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { currentQuestionSelector } from 'Selectors/simulationSelectors'
-import { useEngine } from 'Components/utils/EngineContext'
-import SubCategoriesChart, { InlineBarChart } from './SubCategoriesChart'
-import { AnimatePresence } from 'framer-motion'
-import SubCategoryBar from './SubCategoryBar'
 import CategoryVisualisation from '../CategoryVisualisation'
+import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
 
 export default ({}) => {

@@ -7,6 +7,7 @@ import {
 } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
 import { useSelector } from 'react-redux'
+import AnimatedTargetValue from '../../components/ui/AnimatedTargetValue'
 
 export default ({ questionCategory, hideMeta = false }) => {
 	const rules = useSelector((state) => state.rules)
@@ -34,6 +35,7 @@ export default ({ questionCategory, hideMeta = false }) => {
 		sumToDisplay,
 		false
 	)
+	const categoryValue = Math.round(engine.evaluate(rule.dottedName).nodeValue)
 
 	return (
 		<div
@@ -45,13 +47,19 @@ export default ({ questionCategory, hideMeta = false }) => {
 			`}
 		>
 			{!hideMeta && (
-				<>
+				<div
+					css={`
+						display: flex;
+						align-items: center;
+					`}
+				>
 					<CategoryLabel>
 						{emoji(questionCategory.icons || '🌍')}
 						{questionCategory.title}
 					</CategoryLabel>
+					<AnimatedTargetValue value={categoryValue} unit="kg" leftToRight />
 					<Inhabitants {...{ formula, engine }} />
-				</>
+				</div>
 			)}
 			{sumToDisplay && (
 				<div

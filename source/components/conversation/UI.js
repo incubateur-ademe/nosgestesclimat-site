@@ -1,4 +1,5 @@
 import styled, { css } from 'styled-components'
+
 export const CategoryLabel = styled.span`
 	background: 'darkblue';
 	color: var(--darkColor);
@@ -12,16 +13,12 @@ export const CategoryLabel = styled.span`
 		margin: 0 0.6rem 0 0 !important;
 	}
 
-	line-height: 1rem;
 	font-size: 140%;
 	font-weight: 600;
 	opacity: 0.6;
 	img {
 		font-size: 100%;
 		display: none;
-	}
-	@media (max-width: 800px) {
-		margin-bottom: 0.6rem;
 	}
 
 	${(props) =>

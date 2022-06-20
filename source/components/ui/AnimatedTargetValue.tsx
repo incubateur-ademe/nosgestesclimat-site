@@ -4,6 +4,7 @@ import styled, { keyframes } from 'styled-components'
 type AnimatedTargetValueProps = {
 	value?: number
 	unit?: string
+	leftToRight?: boolean
 }
 
 const formatDifference = (difference: number, unit: string) => {
@@ -14,6 +15,7 @@ const formatDifference = (difference: number, unit: string) => {
 export default function AnimatedTargetValue({
 	value,
 	unit,
+	leftToRight,
 }: AnimatedTargetValueProps) {
 	const previousValue = useRef<number>()
 	const previousDifference = useRef<number>()
@@ -47,24 +49,24 @@ export default function AnimatedTargetValue({
 				text-align: right;
 			`}
 		>
-			<StyledEvaporate>
+			<StyledEvaporate sign={leftToRight ? '' : '-'}>
 				{formatDifference(difference ?? 0, unit ?? '')}
 			</StyledEvaporate>
 		</div>
 	)
 }
 
-const evaporateAnimation = keyframes`
+const evaporateAnimation = (sign) => keyframes`
 	5% {
 		opacity: 1;
-		transform: translateX(-10px) scaleY(1);
+		transform: translateX(${sign}10px) scaleY(1);
 	}
 	95% {
 		opacity: 1;
-		transform: translateX(-20px) scaleY(1);
+		transform: translateX(${sign}20px) scaleY(1);
 	}
 	to {
-		transform: translateX(-35px) scaleY(0.1);
+		transform: translateX(${sign}35px) scaleY(0.1);
 		opacity: 0;
 	}
 `
@@ -72,6 +74,6 @@ const evaporateAnimation = keyframes`
 const StyledEvaporate = styled.div`
 	opacity: 0;
 	color: var(--color);
-	animation: ${evaporateAnimation} 2.5s linear;
+	animation: ${(props) => evaporateAnimation(props.sign)} 2.5s linear;
 	transform: scaleY(0.1);
 `
