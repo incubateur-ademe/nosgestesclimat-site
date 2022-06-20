@@ -110,16 +110,7 @@ export default ({
 						bottom: 0;
 					`}
 				>
-					<button
-						css={`
-							top: 0.6rem;
-							right: 0rem;
-							position: absolute;
-						`}
-						onClick={() => hideTarget(true)}
-					>
-						Cacher
-					</button>
+					<HideTargetButton onClick={() => hideTarget(true)} />
 					<p css="font-size: 180%; a img {margin-left: -0.4rem; width: 1.3rem; vertical-align: super}">
 						{emoji('🎯')} 2 tonnes <ObjectiveExplanation />
 					</p>
@@ -144,6 +135,28 @@ export default ({
 				</button>
 			)}
 		</motion.section>
+	)
+}
+const HideTargetButton = ({ onClick }) => {
+	const matches = useMediaQuery('(min-width: 800px)')
+	return (
+		<button
+			css={`
+				top: 0.6rem;
+				right: 0rem;
+				position: absolute;
+				img {
+					width: 1.3rem;
+				}
+			`}
+			onClick={onClick}
+		>
+			{matches ? (
+				'Cacher'
+			) : (
+				<img title="Cacher l'objectif" src="/images/close-plain.svg" />
+			)}
+		</button>
 	)
 }
 const DashedHalfLine = styled.span`
