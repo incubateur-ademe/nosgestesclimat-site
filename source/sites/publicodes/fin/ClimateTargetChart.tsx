@@ -49,6 +49,8 @@ export default ({ details, color, noText, value, score }) => {
 	const roundedValue = formatValue(value),
 		integerValue = roundedValue.split(',')[0],
 		decimalValue = roundedValue.split(',')[1]
+
+	const invertWhiteArrows = color.includes('#000000') ? 'filter: invert(1)' : ''
 	return (
 		<section
 			css={`
@@ -108,7 +110,13 @@ export default ({ details, color, noText, value, score }) => {
 							src="/images/thin-arrow-left.svg"
 							aria-hidden
 							title="Comprendre l'objectif à atteindre"
-							css="height: 3rem; position: absolute;  left: -2rem; bottom: -3.4rem"
+							css={`
+								height: 3rem;
+								position: absolute;
+								left: -2rem;
+								bottom: -3.4rem;
+								${invertWhiteArrows}
+							`}
 						/>
 					</div>
 				</div>
@@ -189,6 +197,7 @@ export default ({ details, color, noText, value, score }) => {
 							bottom: -3.4rem;
 
 							transform: rotate(-30deg) scale(0.8);
+							${invertWhiteArrows}
 						`}
 					/>
 				</div>
