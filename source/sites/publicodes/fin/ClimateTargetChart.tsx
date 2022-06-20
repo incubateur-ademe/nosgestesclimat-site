@@ -169,22 +169,7 @@ export default ({ details, color, noText, value, score }) => {
 				>
 					<div id="objective">
 						mon objectif
-						<a
-							css="color: inherit"
-							href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
-							target="_blank"
-							title="Comprendre l'ojectif de 2 tonnes"
-						>
-							<img
-								src="/images/info.svg"
-								aira-hidden
-								css={`
-									width: 1.5rem;
-									vertical-align: middle;
-									margin-left: 0.2rem;
-								`}
-							/>
-						</a>
+						<ObjectiveExplanation />
 					</div>
 					<img
 						src="/images/thin-arrow-left.svg"
@@ -302,4 +287,23 @@ const CategoriesBar = ({ categories, empreinteTotale, color }) => (
 			</li>
 		))}
 	</ul>
+)
+
+export const ObjectiveExplanation = () => (
+	<a
+		css="color: inherit"
+		href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+		target="_blank"
+		title="Comprendre l'ojectif de 2 tonnes"
+	>
+		<img
+			src="/images/info.svg"
+			aira-hidden
+			css={`
+				width: 1.5rem;
+				vertical-align: middle;
+				margin-left: 0.2rem;
+			`}
+		/>
+	</a>
 )

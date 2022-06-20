@@ -11,7 +11,10 @@ import {
 import styled from 'styled-components'
 import { getSubcategories } from '../../../components/publicodesUtils'
 import useMediaQuery from '../../../components/utils/useMediaQuery'
-import { sustainableLifeGoal } from '../fin/ClimateTargetChart'
+import {
+	ObjectiveExplanation,
+	sustainableLifeGoal,
+} from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
 
 export default ({
@@ -110,14 +113,16 @@ export default ({
 					<button
 						css={`
 							top: 0.6rem;
-							right: 0.6rem;
+							right: 0rem;
 							position: absolute;
 						`}
 						onClick={() => hideTarget(true)}
 					>
 						Cacher
 					</button>
-					<p css="font-size: 180%">{emoji('🎯')} 2 tonnes</p>
+					<p css="font-size: 180%; a img {margin-left: -0.4rem; width: 1.3rem; vertical-align: super}">
+						{emoji('🎯')} 2 tonnes <ObjectiveExplanation />
+					</p>
 					<p>
 						Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
 					</p>
