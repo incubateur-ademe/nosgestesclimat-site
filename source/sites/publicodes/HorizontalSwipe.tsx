@@ -53,9 +53,9 @@ export default ({ children, next, previous }) => {
 						position: absolute;
 						width: 35rem;
 						max-width: 100%;
-						top: 2rem;
-						@media (max-height: 800px) {
-							top: 0.4rem;
+						top: 0.4rem;
+						@media (min-height: 800px) {
+							top: 1.7rem;
 						}
 					`}
 					key={page}

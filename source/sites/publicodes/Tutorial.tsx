@@ -63,12 +63,12 @@ export default ({}) => {
 	if (slides[index] == null) return null
 
 	return (
-		<div>
+		<>
 			<Meta
 				title="Tutorial"
 				description="Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation."
 			/>
-			<SlidesLayout>
+			<SlidesLayout length={slides.length} active={index}>
 				<HorizontalSwipe {...{ next, previous }}>
 					<Slide
 						{...{
@@ -80,7 +80,7 @@ export default ({}) => {
 					</Slide>
 				</HorizontalSwipe>
 			</SlidesLayout>
-		</div>
+		</>
 	)
 }
 

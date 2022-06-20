@@ -100,7 +100,10 @@ export default ({}) => {
 				</button>
 			</Link>
 			<animate.appear>
-				<SlidesLayout>
+				<SlidesLayout
+					length={componentKeys.length}
+					active={componentKeys.indexOf(slideName)}
+				>
 					<HorizontalSwipe {...{ next, previous }}>
 						<Component {...slideProps} />
 					</HorizontalSwipe>
