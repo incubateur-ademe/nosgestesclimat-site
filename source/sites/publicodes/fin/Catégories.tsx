@@ -29,7 +29,7 @@ export default ({ score, details, headlessMode }) => {
 			setValue(v)
 		})
 
-		headlessMode ? setValue(score) : valueSpring.set(score)
+		true || headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
 	}, [])

@@ -1,31 +1,122 @@
 import styled from 'styled-components'
 import { range } from 'ramda'
 import CircledEmojis from '../../../components/CircledEmojis'
+import { motion } from 'framer-motion'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
-export default ({ pixelRemSize, elements, pixel }) => (
-	<Grid pixelRemSize={pixelRemSize}>
-		{elements.map((element) => {
+const delayPerPixel = 0.0025
+export default ({ pixelRemSize, elements, pixel }) => {
+	const originOffset = useRef({ top: 0, left: 0 })
+
+	const [isVisible, setVisibility] = useState(false)
+
+	useEffect(() => setTimeout(() => setVisibility(true), 400), [])
+
+	const ponderedElements = elements
+		.map((element) => {
 			const length = Math.round(element.nodeValue / pixel)
-			/* This math.round creates the override of the grid by a few items,
-			 * making it not 10x10 but e.g. 10x10 + 3 */
-			return range(0, length).map((i) => (
-				<li
-					title={`${element.title} (${element.topCategoryTitle})`}
-					css={`
-						background: ${element.topCategoryColor};
-					`}
-				>
-					{true && (
-						<CircledEmojis
-							emojis={element.icons}
-							emojiBackground={'transparent'}
-						/>
-					)}
-				</li>
-			))
-		})}
-	</Grid>
-)
+			return range(0, length).map((i) => ({ ...element, i }))
+		})
+		.flat()
+
+	console.log('pondered', elements, ponderedElements)
+
+	/*
+		<motion.li
+		</motion.li>
+	))
+	*/
+
+	return (
+		<Grid pixelRemSize={pixelRemSize}>
+			<motion.div initial={false} animate={isVisible ? 'visible' : 'hidden'}>
+				{ponderedElements.map((element, i) => (
+					<GridItem
+						key={i}
+						i={i}
+						originIndex={5}
+						delayPerPixel={delayPerPixel}
+						originOffset={originOffset}
+						{...{ element, pixel }}
+					/>
+				))}
+			</motion.div>
+		</Grid>
+	)
+}
+
+const GridItem = ({
+	delayPerPixel,
+	i,
+	originIndex,
+	originOffset,
+	element,
+	pixel,
+}) => {
+	/* This math.round creates the override of the grid by a few items,
+	 * making it not 10x10 but e.g. 10x10 + 3 */
+
+	const delayRef = useRef(0)
+	const offset = useRef({ top: 0, left: 0 })
+	const ref = useRef()
+
+	useLayoutEffect(() => {
+		const element = ref.current
+		if (!element) return
+
+		offset.current = {
+			top: element.offsetTop,
+			left: element.offsetLeft,
+		}
+
+		if (i === originIndex) {
+			originOffset.current = offset.current
+		}
+	}, [delayPerPixel])
+
+	useEffect(() => {
+		const dx = Math.abs(offset.current.left - originOffset.current.left)
+		const dy = Math.abs(offset.current.top - originOffset.current.top)
+		const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
+		delayRef.current = d * delayPerPixel
+	})
+
+	return (
+		<motion.li
+			key={element.dottedName}
+			title={`${element.title} (${element.topCategoryTitle})`}
+			css={`
+				background: ${element.topCategoryColor};
+			`}
+			ref={ref}
+			variants={itemVariants}
+			custom={delayRef}
+		>
+			<CircledEmojis emojis={element.icons} emojiBackground={'transparent'} />
+		</motion.li>
+	)
+}
+
+const itemVariants = {
+	hidden: {
+		opacity: 0,
+		scale: 0.5,
+	},
+	visible: (delayRef) => ({
+		opacity: 1,
+		scale: 1,
+		transition: { delay: delayRef.current },
+	}),
+}
+
+const Box = styled(motion.div)`
+	margin: 10px;
+	display: inline-block;
+	height: 65px;
+	width: 65px;
+	background-color: white;
+	border-radius: 10px;
+`
 
 const Grid = styled.ul`
 	padding: 0;
@@ -48,10 +139,14 @@ const Grid = styled.ul`
 		width: ${(props) => props.pixelRemSize}rem;
 		height: ${(props) => props.pixelRemSize}rem;
 		box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px 0px;
-		display: flex;
+		display: inline-flex;
 		justify-content: center;
 		align-items: center;
 		line-height: 1.4rem;
 		font-size: 90%;
+		/* Interesting too, more spaced, but more room and less graph-like
+		border-radius: 0.6rem;
+		margin: 0.2rem;
+		*/
 	}
 `
