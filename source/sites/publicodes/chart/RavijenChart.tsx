@@ -105,7 +105,7 @@ export default ({
 					bottom: 0;
 				`}
 			>
-				<p css="font-size: 180%">2 tonnes</p>
+				<p css="font-size: 180%">{emoji('🎯')} 2 tonnes</p>
 				<p>
 					Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
 				</p>
