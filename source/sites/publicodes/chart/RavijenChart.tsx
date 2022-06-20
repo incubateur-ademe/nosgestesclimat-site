@@ -62,21 +62,6 @@ export default ({
 		)
 		.flat()
 
-	const { lower, higher } = allSubCategories
-		.slice()
-		.reverse()
-		.reduce(
-			(memo, next) => {
-				const count = memo.count + next.nodeValue,
-					lower =
-						count > sustainableLifeGoal ? memo.lower : [...memo.lower, next],
-					higher =
-						count <= sustainableLifeGoal ? memo.higher : [...memo.higher, next]
-				return { lower, higher, count }
-			},
-			{ lower: [], higher: [], count: 0 }
-		)
-
 	return (
 		<section
 			css={`
@@ -85,25 +70,7 @@ export default ({
 		>
 			<SquaresGrid
 				pixelRemSize={pixelRemSize}
-				elements={higher.slice().reverse()}
-				pixel={pixel}
-			/>
-			<p
-				css={`
-					display: flex;
-					align-items: center;
-					justify-content: center;
-
-					margin: 0.6rem 0;
-				`}
-			>
-				<DashedHalfLine />
-				<span css="width: 12rem; text-align: center">2 tonnes</span>
-				<DashedHalfLine />
-			</p>
-			<SquaresGrid
-				pixelRemSize={pixelRemSize}
-				elements={lower.slice().reverse()}
+				elements={allSubCategories}
 				pixel={pixel}
 			/>
 			<p
