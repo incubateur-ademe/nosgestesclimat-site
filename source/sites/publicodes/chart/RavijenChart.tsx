@@ -10,6 +10,7 @@ import {
 } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { getSubcategories } from '../../../components/publicodesUtils'
+import useMediaQuery from '../../../components/utils/useMediaQuery'
 import { sustainableLifeGoal } from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
 
@@ -27,12 +28,12 @@ export default ({
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
+	const tall = useMediaQuery('(min-height: 900px)'),
+		medium = useMediaQuery('(min-height: 700px)')
 
 	const total = engine.evaluate('bilan').nodeValue,
-		width = 10,
-		height = 10,
+		gridLength = tall ? 100 : medium ? 70 : 50,
 		pixelRemSize = 3,
-		gridLength = width * height,
 		pixel = total / gridLength
 
 	/*  If total = 15 t, pixel = 150 kg
@@ -88,6 +89,7 @@ export default ({
 				css={`
 					cursor: grab;
 					height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
+					min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
 					width: 95%;
 					border: 6px dashed black;
 					background: #78e08f;
