@@ -74,11 +74,15 @@ export default ({ score, details, headlessMode }) => {
 
 					text-align: center;
 					font-size: 110%;
+					h1 {
+						font-size: 120%;
+						margin: 0.6rem;
+					}
 				`}
 			>
 				<h1>De quoi est faite mon empreinte ?</h1>
 				<div id="shareImage" css="padding: 0">
-					<div css="padding: 1rem">
+					<div css="padding: 0 1rem">
 						<RavijenChart
 							noAnimation
 							details={details}

@@ -78,7 +78,11 @@ export default ({
 		)
 
 	return (
-		<section css={``}>
+		<section
+			css={`
+				padding: 0;
+			`}
+		>
 			<SquaresGrid
 				pixelRemSize={pixelRemSize}
 				elements={higher.slice().reverse()}
