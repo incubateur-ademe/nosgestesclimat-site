@@ -89,10 +89,12 @@ export default ({ actionMode = false, demoMode = false }) => {
 							alt="Planète représentant le changement climatique"
 						/>
 						{!actionMode ? (
-							<HumanWeight
-								nodeValue={nodeValue}
-								overrideValue={actionMode && actionTotal !== 0 && actionTotal}
-							/>
+							<div css="width: 8rem">
+								<HumanWeight
+									nodeValue={nodeValue}
+									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+								/>
+							</div>
 						) : (
 							<DiffHumanWeight
 								{...{ nodeValue, engine, rules, actionChoices }}
