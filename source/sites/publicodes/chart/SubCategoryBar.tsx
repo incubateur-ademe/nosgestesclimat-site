@@ -11,8 +11,6 @@ export default ({
 	icons,
 	color,
 	title,
-	hideSmallerThanPercentage,
-	key,
 	delay = 0,
 	indicator,
 	filterSimulationOnClick,
@@ -22,8 +20,6 @@ export default ({
 		history = useHistory()
 	const [clicked, click] = useState(false)
 	const percent = (nodeValue / total) * 100
-	if (hideSmallerThanPercentage && percent < hideSmallerThanPercentage)
-		return null // will be unreadable
 
 	return (
 		<motion.li
@@ -31,7 +27,6 @@ export default ({
 			animate={{ opacity: 1, width: `calc(${percent}% - 0px)` }}
 			exit={{ width: 0, opacity: 0 }}
 			transition={{ duration: 0.5, delay }}
-			key={key}
 			css={`
 				border-right: 2px solid var(--lighterColor);
 				background: ${color};

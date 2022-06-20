@@ -6437,10 +6437,10 @@ forwarded@~0.1.2:
   resolved "https://registry.npmjs.org/forwarded/-/forwarded-0.1.2.tgz"
   integrity sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ=
 
-framer-motion@^6.2.9:
-  version "6.2.9"
-  resolved "https://registry.npmjs.org/framer-motion/-/framer-motion-6.2.9.tgz"
-  integrity sha512-XMP4Z5j9KlGw8aeo7n8BXTJFbt1Vv5XRzHVOKiAna1yBG4SPwTdk/8bJRfztYb0Jmw90hzBTC/3Q2dhfdtXisQ==
+framer-motion@^6.3.11:
+  version "6.3.11"
+  resolved "https://registry.yarnpkg.com/framer-motion/-/framer-motion-6.3.11.tgz#c304ce9728601ad9377d47d5d9264e43d741d470"
+  integrity sha512-xQLk+ZSklNs5QNCUmdWPpKMOuWiB8ZETsvcIOWw8xvri9K3TamuifgCI/B6XpaEDR0/V2ZQF2Wm+gUAZrXo+rw==
   dependencies:
     framesync "6.0.1"
     hey-listen "^1.0.8"

@@ -14,11 +14,15 @@ export default ({
 	filterSimulationOnClick,
 }) => {
 	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
+	const hideSmallerThanRatio = 0.1
 	const rest = categories
 			.filter((el) => el.nodeValue)
 			.reduce(
 				(memo, { nodeValue, title, icons }) => {
-					const tooSmall = nodeValue < 0.1 * total
+					const tooSmall = nodeValue < hideSmallerThanRatio * total
+					if (tooSmall) {
+						console.log(title, nodeValue)
+					}
 					return {
 						value: tooSmall ? memo.value + nodeValue : memo.value,
 						labels: tooSmall ? [...memo.labels, title] : memo.labels,
@@ -28,20 +32,22 @@ export default ({
 			),
 		restWidth = (rest.value / total) * 100
 
+	const bigEnough = categories.filter(
+		(el) => el.nodeValue / total > hideSmallerThanRatio
+	)
 	return (
 		<InlineBarChart>
 			<AnimatePresence>
-				{categories.map(({ nodeValue, title, icons, color, dottedName }) => (
+				{bigEnough.map(({ nodeValue, title, icons, color, dottedName }) => (
 					<SubCategoryBar
 						{...{
-							key: title,
+							key: dottedName,
 							nodeValue,
 							dottedName,
 							title,
 							icons,
 							total,
 							color: uniqueColor || color,
-							hideSmallerThanPercentage: 10,
 							delay,
 							filterSimulationOnClick,
 							indicator:

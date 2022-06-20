@@ -1,19 +1,16 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import React from 'react'
-import { useSelector } from 'react-redux'
 import emoji from 'react-easy-emoji'
-import { useHistory, useLocation } from 'react-router'
+import { useSelector } from 'react-redux'
 import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import { getSubcategories } from '../../../components/publicodesUtils'
-import CategoryVisualisation from '../CategoryVisualisation'
-import SubCategoriesChart from './SubCategoriesChart'
 import { sustainableLifeGoal } from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
-import styled from 'styled-components'
 
 export default ({
 	details,
