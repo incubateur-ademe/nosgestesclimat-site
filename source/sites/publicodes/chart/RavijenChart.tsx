@@ -65,6 +65,7 @@ export default ({
 		.flat()
 
 	const constraintsRef = useRef(null)
+	const [hiddenTarget, hideTarget] = useState(false)
 
 	return (
 		<motion.section
@@ -79,37 +80,64 @@ export default ({
 				elements={allSubCategories}
 				pixel={pixel}
 			/>
-			<motion.div
-				drag="y"
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				transition={{ ease: 'easeIn', duration: 1.6, delay: 3 }}
-				dragConstraints={constraintsRef}
-				whileDrag={{ scale: 1.05, opacity: 0.7 }} // does not work with the animation :/
-				css={`
-					cursor: grab;
-					height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
-					min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
-					width: 95%;
-					border: 6px dashed black;
-					background: linear-gradient(#78e08f 50%, #78e08fcf 100%);
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-					margin: 0 auto;
-					position: absolute;
-					left: 2%;
-					z-index: 100;
-					color: black;
-					bottom: 0;
-				`}
-			>
-				<p css="font-size: 180%">{emoji('🎯')} 2 tonnes</p>
-				<p>
-					Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
-				</p>
-			</motion.div>
+			{!hiddenTarget && (
+				<motion.div
+					drag="y"
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					transition={{ ease: 'easeIn', duration: 1.6, delay: 3 }}
+					dragConstraints={constraintsRef}
+					whileDrag={{ scale: 1.05, opacity: 0.7 }} // does not work with the animation :/
+					css={`
+						cursor: grab;
+						height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
+						min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
+						width: 95%;
+						border: 6px dashed black;
+						background: linear-gradient(#78e08f 50%, #78e08fcf 100%);
+						display: flex;
+						flex-direction: column;
+						align-items: center;
+						justify-content: center;
+						margin: 0 auto;
+						position: absolute;
+						left: 2%;
+						z-index: 100;
+						color: black;
+						bottom: 0;
+					`}
+				>
+					<button
+						css={`
+							top: 0.6rem;
+							right: 0.6rem;
+							position: absolute;
+						`}
+						onClick={() => hideTarget(true)}
+					>
+						Cacher
+					</button>
+					<p css="font-size: 180%">{emoji('🎯')} 2 tonnes</p>
+					<p>
+						Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
+					</p>
+				</motion.div>
+			)}
+			{hiddenTarget && (
+				<button
+					css={`
+						background: #78e08f;
+						padding: 0.2rem 0.6rem;
+						width: 12rem;
+
+						margin-top: 0.6rem;
+						margin: 0 auto;
+					`}
+					onClick={() => hideTarget(false)}
+				>
+					{emoji('🎯')} Montrer l'objectif
+				</button>
+			)}
 		</motion.section>
 	)
 }
