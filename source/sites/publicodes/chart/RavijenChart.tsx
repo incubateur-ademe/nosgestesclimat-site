@@ -1,7 +1,7 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { motion } from 'framer-motion'
-import React, { useRef } from 'react'
+import React, { useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import {
@@ -64,11 +64,13 @@ export default ({
 		.flat()
 
 	const constraintsRef = useRef(null)
+	const [drag, setDrag] = useState(false)
 
 	return (
 		<motion.section
 			css={`
 				padding: 0;
+				position: relative;
 			`}
 			ref={constraintsRef}
 		>
@@ -80,23 +82,29 @@ export default ({
 			<motion.div
 				drag="y"
 				dragConstraints={constraintsRef}
+				onDragEnd={() => setDrag(false)}
+				onDragStart={() => setDrag(true)}
 				css={`
-					height: ${((2000 / pixel) * pixelRemSize) / 10}rem;
+					cursor: grab;
+					height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
 					width: 95%;
 					border: 6px dashed black;
-					background: #78e08fa3;
+					background: #78e08f;
+					${drag && `opacity: .7;`}
 					display: flex;
 					flex-direction: column;
 					align-items: center;
 					justify-content: center;
 					margin: 0 auto;
-					position: relative;
+					position: absolute;
+					bottom: 0;
+					left: 2%;
 					z-index: 100;
 					color: black;
 				`}
 			>
 				<p css="font-size: 180%">2 tonnes</p>
-				<p css={``}>
+				<p>
 					Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
 				</p>
 			</motion.div>
