@@ -8,6 +8,7 @@ import { useEngine } from '../../../components/utils/EngineContext'
 const { encodeRuleName } = utils
 
 import { relegate } from 'Components/publicodesUtils'
+import { useLayoutEffect, useRef, useState } from 'react'
 
 export const sustainableLifeGoal = 2000 // kgCO2e
 const sustainableBackground = '#78e08f'
@@ -54,6 +55,16 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 	const lowTotal = empreinteTotale < 3000,
 		targetAchieved = empreinteTotale < 2000
 
+	// We need to compute the real size of the personal bar, to display the correct size for the relative sustainable bar
+	const ref = useRef(null)
+
+	const [height, setHeight] = useState(0)
+
+	useLayoutEffect(() => {
+		setHeight(ref.current.offsetHeight)
+	}, [])
+	const sustainableBarHeight = (sustainableLifeGoal / empreinteTotale) * height
+
 	return (
 		<section
 			css={`
@@ -74,8 +85,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 		>
 			<div
 				css={`
-					bottom: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
-
+					bottom: ${sustainableBarHeight}px;
 					left: 50%;
 					position: absolute;
 					border-bottom: 6px dashed ${color};
@@ -157,14 +167,16 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 					</div>{' '}
 					<span css="font-size: 160%; ">tonnes</span>
 				</div>
-				<CategoriesBar
-					{...{
-						categories,
-						color,
-						empreinteTotale,
-						onCategoryClick: nextSlide,
-					}}
-				/>
+				<div ref={ref} css="height: 100%">
+					<CategoriesBar
+						{...{
+							categories,
+							color,
+							empreinteTotale,
+							onCategoryClick: nextSlide,
+						}}
+					/>
+				</div>
 			</div>
 			<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
 				{!lowTotal && (
@@ -221,7 +233,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 						${barBorderStyle}
 
 						background: ${sustainableBackground};
-						height: ${(sustainableLifeGoal / empreinteTotale) * 100}%;
+						height: ${sustainableBarHeight}px;
 						width: ${barWidth};
 
 						display: flex;
