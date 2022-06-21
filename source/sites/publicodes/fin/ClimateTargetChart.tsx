@@ -49,6 +49,11 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 
 	const invertWhiteArrows = color.includes('#000000') ? 'filter: invert(1)' : ''
 
+	// This could be tweaked, I've set it to 3 tonnes by default
+	// When the green bar is relatively high, we don't have enough room for the labels
+	const lowTotal = empreinteTotale < 3000,
+		targetAchieved = empreinteTotale < 2000
+
 	return (
 		<section
 			css={`
@@ -162,51 +167,55 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 				/>
 			</div>
 			<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
-				<div
-					css={`
-						background: #ffffff26;
-						border-radius: 0.6rem;
-						margin: 0 0.6rem;
-						padding: 0.4rem 1rem;
-						margin-bottom: 1rem;
-						position: relative;
-					`}
-				>
-					<div id="objective">
-						mon objectif
-						<ObjectiveExplanation />
-					</div>
-					<img
-						src="/images/thin-arrow-left.svg"
-						title="Comprendre l'objectif à atteindre"
-						aria-hidden
-						css={`
-							height: 3rem;
-							position: absolute;
-							right: -1rem;
-							bottom: -3.4rem;
+				{!lowTotal && (
+					<>
+						<div
+							css={`
+								background: #ffffff26;
+								border-radius: 0.6rem;
+								margin: 0 0.6rem;
+								padding: 0.4rem 1rem;
+								margin-bottom: 1rem;
+								position: relative;
+							`}
+						>
+							<div id="objective">
+								mon objectif
+								<ObjectiveExplanation />
+							</div>
+							<img
+								src="/images/thin-arrow-left.svg"
+								title="Comprendre l'objectif à atteindre"
+								aria-hidden
+								css={`
+									height: 3rem;
+									position: absolute;
+									right: -1rem;
+									bottom: -3.4rem;
 
-							transform: rotate(-30deg) scale(0.8);
-							${invertWhiteArrows}
-						`}
-					/>
-				</div>
-				<div
-					css={`
-						margin-bottom: 0.6rem;
-						strong {
-							font-size: 280%;
-							margin-right: 0.3rem;
-						}
-						span {
-							font-size: 160%;
-						}
-					`}
-					aria-describedby="objective"
-				>
-					<strong>{sustainableLifeGoal / 1000}</strong>
-					<span>tonnes</span>
-				</div>
+									transform: rotate(-30deg) scale(0.8);
+									${invertWhiteArrows}
+								`}
+							/>
+						</div>
+						<div
+							css={`
+								margin-bottom: 0.6rem;
+								strong {
+									font-size: 280%;
+									margin-right: 0.3rem;
+								}
+								span {
+									font-size: 160%;
+								}
+							`}
+							aria-describedby="objective"
+						>
+							<strong>{sustainableLifeGoal / 1000}</strong>
+							<span>tonnes</span>
+						</div>
+					</>
+				)}
 				<div
 					css={`
 						${barBorderStyle}
@@ -220,11 +229,15 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 						justify-content: center;
 						font-size: 200%;
 					`}
+					title="L'objectif à atteindre, 2 tonnes de CO₂e"
 				>
 					{emoji('🎯')}
 				</div>
 			</div>
-			<div css="height: .3rem; background: black; width: 80%; position: absolute; bottom: 0; z-index: 10" />
+
+			{!targetAchieved && (
+				<div css="height: .3rem; background: black; width: 80%; position: absolute; bottom: 0; z-index: 10" />
+			)}
 		</section>
 	)
 }
