@@ -35,7 +35,10 @@ export default ({}) => {
 	const categories = extractCategoriesNamespaces(rules, engine)
 
 	const [bilans, actions] = partition((t) => t.dottedName === 'bilan', targets),
-		total = bilans[0].nodeValue
+		total = bilans[0].nodeValue,
+		displayedTotal = (total / 1000).toLocaleString('FR-fr', {
+			maximumSignificantDigits: 2,
+		})
 
 	// This is arbitrary. The chances that most actions are harder at this stages are high
 	// it could also be set to 3000
@@ -75,14 +78,15 @@ export default ({}) => {
 							font-size: 200%;
 							width: 4rem;
 						}
+						margin-bottom: 0.6rem;
 					`}
 				>
 					<div>{emoji('👏')}</div>
 					<p>
-						À {Math.round(total / 1000)} tonnes,
+						{displayedTotal} tonnes !
 						<strong>
 							{' '}
-							vous êtes très nettement en-dessous de la moyenne française.
+							Vous êtes très nettement en-dessous de la moyenne française.
 						</strong>{' '}
 					</p>
 				</div>
