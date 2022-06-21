@@ -7,6 +7,8 @@ import { extractCategories } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 const { encodeRuleName } = utils
 
+import { relegate } from 'Components/publicodesUtils'
+
 export const sustainableLifeGoal = 2000 // kgCO2e
 const sustainableBackground = '#78e08f'
 const barWidth = '6rem'
@@ -26,12 +28,13 @@ const formatValue = (value) =>
 export default ({ details, color, noText, value, score, nextSlide }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
-	const categories = extractCategories(rules, engine, details)
-		.map((category) => ({
+	const sortedCategories = extractCategories(rules, engine, details).map(
+		(category) => ({
 			...category,
 			abbreviation: rules[category.dottedName].abbréviation,
-		}))
-		.sort((a, b) => (a.dottedName === 'services publics' ? 1 : -1))
+		})
+	)
+	const categories = relegate('services publics', sortedCategories)
 
 	if (!categories) return null
 

@@ -165,3 +165,8 @@ export const safeGetRule = (engine, dottedName) => {
 }
 
 export const questionCategoryName = (dottedName) => splitName(dottedName)[0]
+export function relegate(key, array) {
+	const isKey = (a) => a.dottedName === key
+	const categories = [...array.filter((a) => !isKey(a)), array.find(isKey)]
+	return categories
+}

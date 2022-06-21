@@ -9,7 +9,7 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import { getSubcategories } from '../../../components/publicodesUtils'
+import { getSubcategories, relegate } from '../../../components/publicodesUtils'
 import useMediaQuery from '../../../components/utils/useMediaQuery'
 import {
 	ObjectiveExplanation,
@@ -56,8 +56,7 @@ export default ({
 
 	if (!categories) return null
 
-	const allSubCategories = categories
-		.sort((a, b) => (a.dottedName === 'services publics' ? 1 : -1))
+	const allSubCategories = relegate('services publics', categories)
 		.map((category) =>
 			getSubcategories(rules, category, engine).map((el) => ({
 				...el,
