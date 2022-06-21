@@ -12,6 +12,7 @@ import RavijenChart from '../chart/RavijenChart'
 import DefaultFootprint from '../DefaultFootprint'
 import BallonGES from './ballonGES.svg'
 import { ActionButton, IntegratorActionButton } from './Buttons'
+import FinShareButton from './FinShareButton'
 const { encodeRuleName } = utils
 
 export default ({ score, details, headlessMode }) => {
@@ -94,15 +95,7 @@ export default ({ score, details, headlessMode }) => {
 						/>
 					</div>
 				</div>
-				<div css="display: flex; flex-direction: column; margin: 1rem 0">
-					<ShareButton
-						text="Voilà mon empreinte 🌍️climat. Mesure la tienne !"
-						url={window.location}
-						title={'Nos Gestes Climat'}
-						color={textColor}
-						label="Partager mes résultats"
-					/>
-				</div>
+				<FinShareButton textColor={textColor} />
 
 				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>
