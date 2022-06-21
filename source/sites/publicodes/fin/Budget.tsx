@@ -38,11 +38,10 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 	})
 
 	const [value, setValue] = useState(0)
-	console.log('value', value)
 
 	useEffect(() => {
 		const unsubscribe = valueSpring.onChange((v) => {
-			setValue(v)
+			setValue(Math.round(v))
 		})
 
 		headlessMode ? setValue(score) : valueSpring.set(score)
