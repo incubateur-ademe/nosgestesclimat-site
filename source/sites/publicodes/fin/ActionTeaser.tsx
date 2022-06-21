@@ -57,7 +57,11 @@ export default ({}) => {
 			css={`
 				list-style-type: none;
 				padding-left: 0;
-				width: 90%;
+				width: 100%;
+				@media (min-width: 800px) {
+					width: 90%;
+				}
+
 				margin: 0 auto;
 			`}
 		>
@@ -70,8 +74,9 @@ export default ({}) => {
 						color: white;
 						h2 {
 							color: inherit;
-							font-size: 120%;
+							font-size: 110%;
 							text-align: left;
+							margin: 0.8rem;
 						}
 						margin: 0.6rem;
 						border-radius: 0.4rem;
@@ -89,8 +94,11 @@ export default ({}) => {
 					>
 						<div
 							css={`
-								margin-right: 2rem;
-								transform: scale(2);
+								margin-right: 2.5rem;
+								transform: scale(1.5);
+								@media (min-width: 800px) {
+									transform: scale(2);
+								}
 								width: 4rem;
 							`}
 						>
@@ -98,7 +106,7 @@ export default ({}) => {
 						</div>
 						<h2>{action.title}</h2>
 					</div>
-					<div css="margin: .6rem">
+					<div css="margin: .6rem ; text-align: right">
 						<ActionValue
 							{...{ dottedName: action.dottedName, total: 20000, engine }}
 						/>
