@@ -84,7 +84,9 @@ export default ({ children, next, previous }) => {
 					{children}
 				</motion.div>
 			</AnimatePresence>
-			<NextButton onClick={() => paginate(1)}>{'‣'}</NextButton>
+			<NextButton onClick={() => paginate(1)} attention={page === 0}>
+				{'‣'}
+			</NextButton>
 			<NextButton reverse onClick={() => paginate(-1)}>
 				{'‣'}
 			</NextButton>
@@ -115,8 +117,23 @@ const NextButton = styled.button`
 	${(props) =>
 		props.reverse &&
 		`
- left: 10px;
-  transform: scale(-1);
-
+    left: 10px;
+    transform: scale(-1);
+	`}
+	${(props) =>
+		props.attention &&
+		`
+	animation: leaves 1s ease-in-out infinite alternate;
+	animation-delay: 6s;
+	@keyframes leaves {
+		0% {
+			transform: scale(1);
+			opacity: 0.6;
+		}
+		100% {
+			transform: scale(1.2);
+			opacity: 1
+		}
+	}
 	`}
 `
