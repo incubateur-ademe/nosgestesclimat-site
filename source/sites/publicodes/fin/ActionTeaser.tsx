@@ -13,6 +13,7 @@ import { sortBy } from '../../../utils'
 import { ActionValue, disabledAction } from '../ActionVignette'
 import emoji from 'react-easy-emoji'
 import CircledEmojis from '../../../components/CircledEmojis'
+import { motion } from 'framer-motion'
 
 const { encodeRuleName, decodeRuleName } = utils
 
@@ -50,10 +51,34 @@ export default ({}) => {
 			return [...memo, [category, next]]
 		}, [])
 
-	console.log(topActions)
+	const variants = {
+		open: {
+			transition: { staggerChildren: 0.4, delayChildren: 0.1 },
+		},
+	}
+
+	const itemVariants = {
+		open: {
+			y: 0,
+			opacity: 1,
+			transition: {
+				y: { stiffness: 1000, velocity: -100 },
+			},
+		},
+		closed: {
+			y: 50,
+			opacity: 0,
+			transition: {
+				y: { stiffness: 1000 },
+			},
+		},
+	}
 
 	return (
-		<ul
+		<motion.ul
+			variants={variants}
+			initial="closed"
+			animate="open"
 			css={`
 				list-style-type: none;
 				padding-left: 0;
@@ -66,7 +91,8 @@ export default ({}) => {
 			`}
 		>
 			{topActions.map(([category, action]) => (
-				<li
+				<motion.li
+					variants={itemVariants}
 					css={`
 						padding: 0.4rem 1rem;
 						background: ${categories.find((cat) => cat.dottedName === category)
@@ -111,8 +137,8 @@ export default ({}) => {
 							{...{ dottedName: action.dottedName, total: 20000, engine }}
 						/>
 					</div>
-				</li>
+				</motion.li>
 			))}
-		</ul>
+		</motion.ul>
 	)
 }
