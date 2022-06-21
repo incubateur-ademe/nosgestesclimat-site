@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import { last } from 'Source/utils'
 import SlidesLayout from '../../../components/SlidesLayout'
+import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import { useSearchParams } from '../../../components/utils/useSearchParams'
 import { arrayLoopIteration } from '../../../utils'
 import HorizontalSwipe from '../HorizontalSwipe'
@@ -85,6 +86,9 @@ export default ({}) => {
 		nextSlide: next,
 	}
 
+	const nextQuestions = useNextQuestions()
+	console.log(nextQuestions)
+
 	return (
 		<div>
 			<IframeDataShareModal data={rehydratedDetails} />
@@ -95,9 +99,16 @@ export default ({}) => {
 					dispatch(goToQuestion(last(answeredQuestions)))
 				}}
 			>
-				<button class="ui__ simple small push-left button">
-					← Revenir à la simulation
-				</button>
+				{!answeredQuestions.length ? (
+					<button class="ui__ button plain cta"> Faire mon test</button>
+				) : nextQuestions.length > 1 ? (
+					<button class="ui__ button plain"> ← Terminer ma simulation</button>
+				) : (
+					<button className="ui__ simple small push-left button">
+						{' '}
+						← Revenir à ma simulation
+					</button>
+				)}
 			</Link>
 			<animate.appear>
 				<SlidesLayout
