@@ -52,12 +52,6 @@ export default ({}) => {
 	const dispatch = useDispatch(),
 		answeredQuestions = useSelector(answeredQuestionsSelector)
 
-	const slideProps = {
-		score,
-		details: Object.fromEntries(rehydratedDetails),
-		headlessMode,
-	}
-
 	const tracker = useContext(TrackerContext)
 
 	const componentCorrespondence = {
@@ -72,8 +66,8 @@ export default ({}) => {
 		setSearchParams({
 			diapo: arrayLoopIteration(componentKeys, slideName),
 			details: encodedDetails,
-		})
-		tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
+		}),
+			tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
 	}
 
 	const previous = () => {
@@ -83,6 +77,12 @@ export default ({}) => {
 		})
 
 		tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
+	}
+	const slideProps = {
+		score,
+		details: Object.fromEntries(rehydratedDetails),
+		headlessMode,
+		nextSlide: next,
 	}
 
 	return (

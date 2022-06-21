@@ -29,7 +29,7 @@ const getBackgroundColor = (score) =>
 		Math.round((score < 2000 ? 0 : score > 20000 ? 19000 : score - 2000) / 1000)
 	]
 
-export default ({ score, details, headlessMode }) => {
+export default ({ score, details, headlessMode, nextSlide }) => {
 	//	Configuration is try and test, feeling, really
 	const valueSpring = useSpring(0, {
 		mass: 10,
@@ -103,6 +103,7 @@ export default ({ score, details, headlessMode }) => {
 						noAnimation
 						noText
 						score={score}
+						nextSlide={nextSlide}
 					/>
 				</div>
 

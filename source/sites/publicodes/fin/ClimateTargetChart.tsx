@@ -1,17 +1,11 @@
-import { useSelector } from 'react-redux'
-import {
-	analysisWithDefaultsSelector,
-	parsedRulesSelector,
-} from 'Selectors/analyseSelectors'
-import { Link } from 'react-router-dom'
-import Bar from './Bar'
-import { utils } from 'publicodes'
-const { encodeRuleName } = utils
-import emoji from 'react-easy-emoji'
-import { useEngine } from '../../../components/utils/EngineContext'
-import { extractCategories } from '../../../components/publicodesUtils'
-import { AnimatePresence, motion } from 'framer-motion'
 import NeutralH1 from 'Components/ui/NeutralH1'
+import { AnimatePresence, motion } from 'framer-motion'
+import { utils } from 'publicodes'
+import emoji from 'react-easy-emoji'
+import { useSelector } from 'react-redux'
+import { extractCategories } from '../../../components/publicodesUtils'
+import { useEngine } from '../../../components/utils/EngineContext'
+const { encodeRuleName } = utils
 
 export const sustainableLifeGoal = 2000 // kgCO2e
 const sustainableBackground = '#78e08f'
@@ -29,7 +23,7 @@ const formatValue = (value) =>
 		minimumSignificantDigits: 2,
 	})
 
-export default ({ details, color, noText, value, score }) => {
+export default ({ details, color, noText, value, score, nextSlide }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const categories = extractCategories(rules, engine, details)
@@ -51,6 +45,7 @@ export default ({ details, color, noText, value, score }) => {
 		decimalValue = roundedValue.split(',')[1]
 
 	const invertWhiteArrows = color.includes('#000000') ? 'filter: invert(1)' : ''
+
 	return (
 		<section
 			css={`
@@ -154,7 +149,14 @@ export default ({ details, color, noText, value, score }) => {
 					</div>{' '}
 					<span css="font-size: 160%; ">tonnes</span>
 				</div>
-				<CategoriesBar {...{ categories, color, empreinteTotale }} />
+				<CategoriesBar
+					{...{
+						categories,
+						color,
+						empreinteTotale,
+						onCategoryClick: nextSlide,
+					}}
+				/>
 			</div>
 			<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
 				<div
@@ -232,7 +234,12 @@ const barBorderStyle = `
 	border-bottom-left-radius: 0;
 `
 
-const CategoriesBar = ({ categories, empreinteTotale, color }) => (
+const CategoriesBar = ({
+	categories,
+	empreinteTotale,
+	color,
+	onCategoryClick,
+}) => (
 	<ul
 		css={`
 			margin: 0;
@@ -240,7 +247,10 @@ const CategoriesBar = ({ categories, empreinteTotale, color }) => (
 			height: 100%;
 			padding: 0;
 			${barBorderStyle}
+			cursor: pointer;
 		`}
+		onClick={onCategoryClick}
+		title="Explorer les catégories"
 	>
 		{categories.map((category, index) => (
 			<li
@@ -253,37 +263,24 @@ const CategoriesBar = ({ categories, empreinteTotale, color }) => (
 					`};
 					margin: 0;
 					list-style-type: none;
-					> a {
-						display: block;
-						text-decoration: none;
-						line-height: inherit;
-					}
 					background: ${category.color};
 					height: ${(category.nodeValue / empreinteTotale) * 100}%;
 					display: flex;
 					align-items: center;
 					justify-content: center;
+					img {
+						font-size: 120%;
+					}
+					@media (min-height: 800px) {
+						img {
+							font-size: 180%;
+						}
+					}
 				`}
 			>
-				<Link to={'/documentation/' + encodeRuleName(category.dottedName)}>
-					<div
-						css={`
-							height: 100%;
-							img {
-								font-size: 120%;
-							}
-							@media (min-height: 800px) {
-								img {
-									font-size: 180%;
-								}
-							}
-						`}
-					>
-						{category.nodeValue / empreinteTotale > 0.1
-							? emoji(category.icons)
-							: ''}
-					</div>
-				</Link>
+				{category.nodeValue / empreinteTotale > 0.1
+					? emoji(category.icons)
+					: ''}
 			</li>
 		))}
 	</ul>
