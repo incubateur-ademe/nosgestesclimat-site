@@ -18,7 +18,7 @@ export const ActionButton = ({
 	return (
 		<Link
 			to={url}
-			className="ui__ button plain"
+			className="ui__ button plain cta"
 			onClick={() =>
 				tracker.push([
 					'trackEvent',

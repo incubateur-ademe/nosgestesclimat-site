@@ -242,13 +242,21 @@ export const ActionGameCard = ({ evaluation, total, rule, effort }) => {
 							{emoji(icons)}
 						</div>
 					)}
-					<ActionValue {...{ dottedName, total, disabled, noFormula }} />
+					<div css="margin-top: 1.6rem;">
+						<ActionValue {...{ dottedName, total, disabled, noFormula }} />
+					</div>
 				</div>
 			</div>
 		</Link>
 	)
 }
-const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
+export const ActionValue = ({
+	total,
+	disabled,
+	noFormula,
+	dottedName,
+	engine,
+}) => {
 	const situation = useSelector(situationSelector),
 		evaluation = engine.evaluate(dottedName),
 		rawValue = evaluation.nodeValue
@@ -264,7 +272,6 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 	return (
 		<div
 			css={`
-				margin-top: 1.6rem;
 				font-size: 100%;
 				strong {
 					background: var(--color);

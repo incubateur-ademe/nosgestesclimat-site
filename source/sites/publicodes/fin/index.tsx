@@ -20,6 +20,7 @@ import { arrayLoopIteration } from '../../../utils'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Budget from './Budget'
 import Catégories from './Catégories'
+import ActionSlide from './ActionSlide'
 import IframeDataShareModal from './IframeDataShareModal'
 import Petrogaz from './Petrogaz'
 const { encodeRuleName } = utils
@@ -58,6 +59,7 @@ export default ({}) => {
 	const componentCorrespondence = {
 			bilan: Budget,
 			categories: Catégories,
+			action: ActionSlide,
 			petrogaz: Petrogaz,
 		},
 		componentKeys = Object.keys(componentCorrespondence),

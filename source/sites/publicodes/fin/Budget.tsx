@@ -107,7 +107,6 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 				</div>
 
 				<FinShareButton textColor={textColor} />
-				<ActionButton text="Passer à l'action" score={score} />
 
 				{integratorActionText && integratorActionUrl && (
 					<IntegratorActionButton />

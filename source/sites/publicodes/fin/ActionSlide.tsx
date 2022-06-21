@@ -1,17 +1,11 @@
-import ShareButton from 'Components/ShareButton'
-import { findContrastedTextColor } from 'Components/utils/colors'
-import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 import Meta from 'Components/utils/Meta'
-import { AnimatePresence, motion, useSpring } from 'framer-motion'
+import { motion, useSpring } from 'framer-motion'
 import { utils } from 'publicodes'
-import { default as React, useContext, useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
-import tinygradient from 'tinygradient'
+import { default as React, useEffect, useState } from 'react'
 import { DocumentationEndButton, generateImageLink } from '.'
 import RavijenChart from '../chart/RavijenChart'
-import DefaultFootprint from '../DefaultFootprint'
-import BallonGES from './ballonGES.svg'
-import { ActionButton, IntegratorActionButton } from './Buttons'
+import ActionTeaser from './ActionTeaser'
+import { ActionButton } from './Buttons'
 import FinShareButton from './FinShareButton'
 const { encodeRuleName } = utils
 
@@ -49,8 +43,8 @@ export default ({ score, details, headlessMode }) => {
 	return (
 		<div>
 			<Meta
-				title="Mon empreinte climat"
-				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO₂ₑ. Mesure la tienne !`}
+				title="Réduire mon empreinte climat"
+				description={`Réduire mon empreinte climat de ${roundedValue} tonnes de CO₂ₑ.`}
 				image={shareImage}
 				url={window.location}
 			/>
@@ -81,23 +75,14 @@ export default ({ score, details, headlessMode }) => {
 					}
 				`}
 			>
-				<h1>De quoi est faite mon empreinte ?</h1>
+				<h1>Comment réduire mon empreinte ?</h1>
 				<div id="shareImage" css="padding: 0">
 					<div css="padding: 0 1rem">
-						<RavijenChart
-							noAnimation
-							details={details}
-							linkTo="documentation"
-							color={textColor}
-							noText
-							noCompletion
-							valueColor={textColor}
-						/>
+						<ActionTeaser />
 					</div>
 				</div>
-				<FinShareButton textColor={textColor} />
 
-				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
+				<ActionButton text="Voir toutes les actions" score={score} />
 			</motion.div>
 		</div>
 	)
