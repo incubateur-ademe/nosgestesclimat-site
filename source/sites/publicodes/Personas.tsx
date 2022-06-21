@@ -8,6 +8,7 @@ import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import RavijenChart from './chart/RavijenChart'
+import ActionSlide from './fin/ActionSlide'
 import Budget from './fin/Budget'
 import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
@@ -17,6 +18,9 @@ const visualisationChoices = {
 	budget: Budget,
 	'sous-catégories': RavijenChart,
 	emojis: () => <FinShareButton showResult />,
+
+	action: ActionSlide,
+
 	aucun: Nothing,
 }
 

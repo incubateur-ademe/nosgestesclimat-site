@@ -34,7 +34,65 @@ export default ({}) => {
 
 	const categories = extractCategoriesNamespaces(rules, engine)
 
-	const [bilans, actions] = partition((t) => t.dottedName === 'bilan', targets)
+	const [bilans, actions] = partition((t) => t.dottedName === 'bilan', targets),
+		total = bilans[0].nodeValue
+
+	// This is arbitrary. The chances that most actions are harder at this stages are high
+	// it could also be set to 3000
+	const lowScore = 4000
+
+	if (total < lowScore)
+		return (
+			<div
+				css={`
+					background: radial-gradient(
+						circle,
+						rgb(87, 88, 187) 55%,
+						rgb(48, 144, 218) 100%
+					);
+					padding: 1rem;
+					color: white;
+					margin: 2rem auto;
+					width: 85%;
+					border-radius: 0.6rem;
+				`}
+			>
+				<div
+					css={`
+						display: flex;
+						text-align: left;
+						justify-content: start;
+						@media (max-width: 800px) {
+							flex-direction: column;
+							justify-content: center;
+							align-items: center;
+
+							p {
+								text-align: center;
+							}
+						}
+						img {
+							font-size: 200%;
+							width: 4rem;
+						}
+					`}
+				>
+					<div>{emoji('👏')}</div>
+					<p>
+						À {Math.round(total / 1000)} tonnes,
+						<strong>
+							{' '}
+							vous êtes très nettement en-dessous de la moyenne française.
+						</strong>{' '}
+					</p>
+				</div>
+				<p>
+					Il y a de grandes chances que votre temps soit plus efficace à
+					convaincre et aider les autres qu'à chercher à gagner vos "tonnes en
+					trop" (même s'il faudra le faire un jour).
+				</p>
+			</div>
+		)
 
 	const sortedActionsByImpact = sortBy((a) => -correctValue(a))(actions),
 		interestingActions = sortedActionsByImpact.filter((action) => {
