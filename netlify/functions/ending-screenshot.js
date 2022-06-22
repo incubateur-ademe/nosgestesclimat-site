@@ -1,4 +1,10 @@
-const chromium = require('chrome-aws-lambda')
+const {
+	puppeteer,
+	executablePath,
+	args,
+	defaultViewport,
+	headless,
+} = require('chrome-aws-lambda')
 
 function timeout(ms) {
 	return new Promise((resolve) => setTimeout(resolve, ms))
@@ -6,11 +12,11 @@ function timeout(ms) {
 exports.handler = async (event, context) => {
 	const pageToScreenshot = event.queryStringParameters.pageToScreenshot
 
-	const browser = await chromium.puppeteer.launch({
-		executablePath: await chromium.executablePath,
-		args: chromium.args,
-		defaultViewport: chromium.defaultViewport,
-		headless: chromium.headless,
+	const browser = await puppeteer.launch({
+		executablePath: await executablePath,
+		args: args,
+		defaultViewport: defaultViewport,
+		headless: headless,
 	})
 
 	const page = await browser.newPage()
