@@ -233,7 +233,15 @@ export const RadioLabel = (props: RadioLabelProps) => {
 					</button>
 					{isOpen && (
 						<animate.appear>
-							<div className="ui__ card box">
+							<div
+								className="ui__ card box"
+								css={`
+									text-align: left !important;
+									> h2 {
+										margin: 0.5rem;
+									}
+								`}
+							>
 								<h2>{props.label}</h2>
 								<Markdown source={props.description} />
 								{props.références && (
