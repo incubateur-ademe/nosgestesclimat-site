@@ -7,7 +7,9 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
 import CategoryVisualisation from '../CategoryVisualisation'
+import SpecializedVisualisation from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
 
@@ -27,6 +29,8 @@ export default ({}) => {
 
 	const nextQuestions = useNextQuestions()
 
+	const currentQuestion = useSelector(currentQuestionSelector)
+
 	const completedCategories = categories
 		.filter(
 			({ dottedName }) =>
@@ -38,6 +42,10 @@ export default ({}) => {
 
 	const inRespiration =
 		displayedCategory && !tutorials[displayedCategory.dottedName]
+
+	const categoryColor = displayedCategory && displayedCategory.color
+
+	const value = currentQuestion && engine.evaluate(currentQuestion).nodeValue
 
 	return (
 		<div
@@ -63,6 +71,9 @@ export default ({}) => {
 					questionCategory: displayedCategory,
 					filterSimulationOnClick: true,
 				}}
+			/>
+			<SpecializedVisualisation
+				{...{ currentQuestion, categoryColor, value }}
 			/>
 		</div>
 	)

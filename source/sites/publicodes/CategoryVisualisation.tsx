@@ -19,6 +19,8 @@ export default ({ questionCategory, hideMeta = false }) => {
 
 	if (!formula) return null
 
+	// The aim of this component is to visualize sums. Sometimes, relevant sums are hidden behind a division
+	// it should be visualized elsewhere
 	const sumToDisplay =
 		formula.nodeKind === 'somme'
 			? category
