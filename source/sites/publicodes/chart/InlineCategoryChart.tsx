@@ -68,7 +68,7 @@ export default ({}) => {
 				{...{
 					key: 'categoriesChart',
 					categories: categories,
-					delay: 1,
+					delay: 0,
 					indicator: true,
 					questionCategory: displayedCategory,
 					filterSimulationOnClick: true,
