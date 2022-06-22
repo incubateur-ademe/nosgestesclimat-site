@@ -65,10 +65,7 @@ export default ({ questionCategory, hideMeta = false }) => {
 			{sumToDisplay && (
 				<div
 					css={`
-						width: 75%;
-						@media (max-width: 800px) {
-							width: 100%;
-						}
+						width: 100%;
 					`}
 				>
 					<SubCategoriesChart

@@ -12,6 +12,7 @@ export default ({
 	indicator,
 	questionCategory,
 	filterSimulationOnClick,
+	onRestClick,
 }) => {
 	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
 	const hideSmallerThanRatio = 0.1
@@ -62,9 +63,13 @@ export default ({
 					animate={{ opacity: 1, width: `${restWidth}%` }}
 					exit={{ width: 0, opacity: 0 }}
 					transition={{ duration: 0.5, delay }}
-					title={'Le reste : ' + rest.labels.join(', ')}
+					title={'Voir le reste : ' + rest.labels.join(', ')}
 					key="rest"
+					onClick={onRestClick}
 					css={`
+						${onRestClick &&
+						`
+						cursor: pointer;`}
 						${uniqueColor
 							? `background: ${uniqueColor}; color: white`
 							: `background:white; color: #666`};

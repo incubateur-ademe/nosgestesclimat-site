@@ -1,7 +1,7 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import React from 'react'
+import React, { useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
 	objectifsSelector,
@@ -12,6 +12,7 @@ import CategoryVisualisation from '../CategoryVisualisation'
 import SpecializedVisualisation from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
+import Chart from './index.js'
 
 export default ({}) => {
 	// needed for this component to refresh on situation change :
@@ -46,6 +47,7 @@ export default ({}) => {
 	const categoryColor = displayedCategory && displayedCategory.color
 
 	const value = currentQuestion && engine.evaluate(currentQuestion).nodeValue
+	const [traditionalChartShown, showTraditionalChart] = useState(false)
 
 	return (
 		<div
@@ -70,8 +72,10 @@ export default ({}) => {
 					indicator: true,
 					questionCategory: displayedCategory,
 					filterSimulationOnClick: true,
+					onRestClick: () => showTraditionalChart(!traditionalChartShown),
 				}}
 			/>
+			{traditionalChartShown && <Chart />}
 			{!inRespiration && (
 				<SpecializedVisualisation
 					{...{ currentQuestion, categoryColor, value }}

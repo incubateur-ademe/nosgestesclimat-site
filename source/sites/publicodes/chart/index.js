@@ -71,9 +71,6 @@ export default ({
 				margin: 1rem 0;
 			`}
 		>
-			{questionCategory && (
-				<CategoryVisualisation questionCategory={questionCategory} />
-			)}
 			<div
 				css={`
 					margin-top: 1rem;
