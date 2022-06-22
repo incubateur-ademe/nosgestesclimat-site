@@ -76,7 +76,7 @@ export default ({ score, details, headlessMode }) => {
 					text-align: center;
 					font-size: 110%;
 					h1 {
-						font-size: 120%;
+						font-size: 130%;
 						margin: 0.6rem;
 					}
 				`}

@@ -70,12 +70,20 @@ export default ({ score, details, headlessMode }) => {
 					text-align: center;
 					font-size: 110%;
 					h1 {
-						font-size: 120%;
+						font-size: 130%;
 						margin: 0.6rem;
 					}
 				`}
 			>
 				<h1>Comment réduire mon empreinte ?</h1>
+				<p
+					css={`
+						font-style: italic;
+					`}
+				>
+					{' '}
+					Les 3 actions au plus fort impact pour vous :
+				</p>
 				<div id="shareImage" css="padding: 0">
 					<div css="padding: 0 1rem">
 						<ActionTeaser />
