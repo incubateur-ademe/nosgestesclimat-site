@@ -60,7 +60,7 @@ export default function ({ backgroundColor, activeColor, value }) {
 				<motion.rect
 					initial={{ height: 140 }}
 					animate={{ height: 140 * value }}
-					transition={{ ease: 'easeOut', duration: 2 }}
+					transition={{ ease: 'easeOut', duration: 1 }}
 					width={140.293}
 					height={101.689}
 					x={35.692}
@@ -71,7 +71,7 @@ export default function ({ backgroundColor, activeColor, value }) {
 					clip-path="url(#maison)"
 				/>
 				<motion.text
-					transition={{ ease: 'easeOut', duration: 2 }}
+					transition={{ ease: 'easeOut', duration: 1, delay: 0.25 }}
 					initial={false}
 					x="110"
 					animate={{ y: 70 + 120 * value }}

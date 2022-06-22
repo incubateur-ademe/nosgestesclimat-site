@@ -4,7 +4,7 @@ import Inhabitants from './Inhabitants'
 export default ({ currentQuestion, categoryColor, value }) => {
 	if (currentQuestion === 'logement . habitants')
 		return (
-			<motion.div css={``}>
+			<motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
 				<Inhabitants
 					{...{
 						activeColor: 'var(--color)',

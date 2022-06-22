@@ -72,9 +72,11 @@ export default ({}) => {
 					filterSimulationOnClick: true,
 				}}
 			/>
-			<SpecializedVisualisation
-				{...{ currentQuestion, categoryColor, value }}
-			/>
+			{!inRespiration && (
+				<SpecializedVisualisation
+					{...{ currentQuestion, categoryColor, value }}
+				/>
+			)}
 		</div>
 	)
 }
