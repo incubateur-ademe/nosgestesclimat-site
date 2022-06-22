@@ -178,7 +178,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 					/>
 				</div>
 			</div>
-			<div css="display: flex; flex-direction: column; align-items: center; justify-content: end; flex-wrap: wrap; width: 50%; height: 100%">
+			<div css="display: flex; flex-direction: column; align-items: center; justify-content: flex-end; flex-wrap: wrap; width: 50%; height: 100%">
 				{!lowTotal && (
 					<>
 						<div

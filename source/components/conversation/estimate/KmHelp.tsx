@@ -128,7 +128,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 				<div
 					css={`
 						display: flex;
-						justify-content: end;
+						justify-content: flex-end;
 					`}
 				>
 					<div
