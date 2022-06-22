@@ -33,6 +33,15 @@ export default function ({ backgroundColor, activeColor, value }) {
 				fillRule="evenodd"
 				clip-path="url(#maison)"
 			/>
+			<text
+				x={110}
+				y={70 + 140 * value}
+				dominant-baseline="middle"
+				text-anchor="middle"
+				fill="white"
+			>
+				{Math.round(value * 100)} %
+			</text>
 		</svg>
 	)
 }
