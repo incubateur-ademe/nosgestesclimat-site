@@ -60,7 +60,6 @@ export default ({ questionCategory, hideMeta = false }) => {
 						{questionCategory.title}
 					</CategoryLabel>
 					<AnimatedTargetValue value={categoryValue} unit="kg" leftToRight />
-					<Inhabitants {...{ formula, engine }} />
 				</div>
 			)}
 			{sumToDisplay && (
@@ -85,22 +84,5 @@ export default ({ questionCategory, hideMeta = false }) => {
 				</div>
 			)}
 		</div>
-	)
-}
-
-const Inhabitants = ({ formula, engine }) => {
-	const denominator = formula.operationKind === '/' && formula.explanation[1],
-		// This is custom code for the "logement" sub-category that divides a sum by the number of inhabitants of the home
-		inhabitants =
-			denominator.name === 'habitants' &&
-			engine.evaluate(denominator.dottedName).nodeValue
-	if (!denominator) return null
-	return (
-		<span
-			title={inhabitants <= 1 ? 'habitant' : 'habitants'}
-			css="margin: 0 .4rem"
-		>
-			{emoji(inhabitants > 1 ? '👥' : '👤')}x{inhabitants}
-		</span>
 	)
 }

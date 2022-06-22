@@ -4,14 +4,7 @@ import Inhabitants from './Inhabitants'
 export default ({ currentQuestion, categoryColor, value }) => {
 	if (currentQuestion === 'logement . habitants')
 		return (
-			<motion.div
-				css={`
-					svg {
-						width: 100%;
-						height: 100%;
-					}
-				`}
-			>
+			<motion.div css={``}>
 				<Inhabitants
 					{...{
 						activeColor: 'var(--color)',
