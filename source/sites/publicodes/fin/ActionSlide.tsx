@@ -43,8 +43,8 @@ export default ({ score, details, headlessMode }) => {
 	return (
 		<div>
 			<Meta
-				title="Réduire mon empreinte climat"
-				description={`Réduire mon empreinte climat de ${roundedValue} tonnes de CO₂ₑ.`}
+				title="Nosgestesclimat - le top 3 de mes actions"
+				description={`Le top 3 des actions pour réduire mon empreinte climat de ${roundedValue} tonnes de CO₂ₑ.`}
 				image={shareImage}
 				url={window.location}
 			/>
