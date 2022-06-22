@@ -134,7 +134,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 					</div>
 				</div>
 				<div
-					css="margin-bottom: .6rem"
+					css=" height: 3rem"
 					title={`${formatValue(score)} tonnes de CO₂e`}
 					aria-describedby="myFootprint"
 				>
@@ -167,7 +167,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 					</div>{' '}
 					<span css="font-size: 160%; ">tonnes</span>
 				</div>
-				<div ref={ref} css="height: 100%">
+				<div ref={ref} css="height: calc(100% - 3rem)">
 					<CategoriesBar
 						{...{
 							categories,
