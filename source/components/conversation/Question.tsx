@@ -238,7 +238,7 @@ export const RadioLabel = (props: RadioLabelProps) => {
 								css={`
 									text-align: left !important;
 									> h2 {
-										margin: 0.5rem;
+										margin-top: 0.5rem;
 									}
 								`}
 							>
