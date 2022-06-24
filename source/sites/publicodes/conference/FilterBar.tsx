@@ -1,0 +1,139 @@
+import { useState } from 'react'
+import emoji from 'Components/emoji'
+import Engine from 'publicodes'
+import { splitName } from 'Components/publicodesUtils'
+
+import { useSelector } from 'react-redux'
+import { buildVariantTree } from 'Components/conversation/RuleInput'
+import { node } from 'webpack'
+
+export default ({
+	threshold,
+	setThreshold,
+	contextFilter,
+	setContextFilter,
+	contextRules,
+}) => {
+	const [visible, setVisible] = useState(false)
+	const survey = useSelector((state) => state.survey)
+
+	if (!visible)
+		return (
+			<div css="text-align: right; position: absolute;right: 0; button {font-size: 100%}">
+				<button
+					title="Ouvrir les options de tri"
+					onClick={() => setVisible(true)}
+				>
+					{emoji('⚙️')}
+				</button>
+			</div>
+		)
+
+	const surveyRule = survey['contextFile']
+	const engine = contextRules && new Engine(contextRules)
+	const rulesToFilter =
+		contextRules && engine.evaluate(surveyRule).missingVariables
+
+	return (
+		<div
+			css={`
+				display: block;
+				text-align: center;
+				justify-content: center;
+			`}
+		>
+			<div
+				css={`
+					margin-top: 1rem;
+				`}
+			>
+				<small>
+					<label>
+						Exclure au-dessus de{' '}
+						<input
+							css={`
+								width: 2.5rem;
+								height: 1.2rem;
+								text-align: right;
+								border: none;
+								border-bottom: 1px dashed var(--color);
+								font-size: 100%;
+								color: inherit;
+							`}
+							onChange={(e) => setThreshold(e.target.value * 1000)}
+							value={threshold / 1000}
+							type="number"
+						/>{' '}
+						tonnes.
+					</label>
+				</small>
+				<button
+					title="Fermer les options de tri"
+					onClick={() => setVisible(false)}
+				>
+					{emoji('❌')}
+				</button>
+			</div>
+			{rulesToFilter && (
+				<div
+					css={`
+						display: flex;
+						justify-content: space-evenly;
+						align-items: center;
+						width: 100%;
+						margin: auto;
+						margin-top: 0.5rem;
+						@media (min-width: 800px) {
+							width: 80%;
+						}
+					`}
+				>
+					<small css="@media(max-width: 800px){display: none}">
+						Filtrer par :
+					</small>{' '}
+					<small css="@media(min-width: 800px){display: none}">Par :</small>{' '}
+					{Object.keys(rulesToFilter).map((rule) => {
+						const choices = buildVariantTree(engine, rule)
+						return (
+							<div
+								aria-labelledby={'id-filtre-' + choices.title}
+								css={`
+									max-width: 10rem;
+								`}
+							>
+								<label title={choices.title}>
+									<select
+										name={choices.title}
+										className="ui__"
+										onChange={(e) => {
+											setContextFilter((prevState) => ({
+												...prevState,
+												[splitName(rule)[1]]: e.target.value,
+											}))
+										}}
+										css={`
+											font-size: 80% !important;
+											padding: 0.6rem 1.2rem !important;
+										`}
+									>
+										<option value="">{choices.title}</option>
+										{choices.children.map((node, index) => (
+											<option
+												key={node.dottedName + '-' + index}
+												value={
+													node.dottedName.split(node.dottedName + ' . ')[1]
+												}
+											>
+												{node.title}
+											</option>
+										))}
+									</select>
+								</label>
+							</div>
+						)
+					})}
+				</div>
+			)}
+		</div>
+	)
+}

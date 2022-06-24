@@ -1,10 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import Progress from '../../../components/ui/Progress'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
+import FilterBar from './FilterBar'
 import { extremeThreshold } from './utils'
+import { elementDragControls } from 'framer-motion/types/gestures/drag/VisualElementDragControls'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -20,12 +22,29 @@ export const computeHumanMean = (simulationArray) => {
 }
 
 export default ({
-	elements,
+	elements: rawElements,
 	users = [],
 	username: currentUser,
 	threshold,
 	setThreshold,
+	contextRules,
 }) => {
+	const [elements, setElements] = useState(rawElements)
+	const [contextFilter, setContextFilter] = useState({})
+
+	// rawElements is not defined on the first render
+	useEffect(() => {
+		if (rawElements) {
+			setElements(rawElements)
+		}
+	}, [rawElements])
+
+	useEffect(() => {
+		if (Object.keys(contextFilter).length !== 0) {
+			setElements(filterElements(rawElements, contextFilter))
+		}
+	}, [contextFilter])
+
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 
 	const setSpotlight = (username) =>
@@ -71,6 +90,13 @@ export default ({
 				</p>
 				<Progress progress={meanProgress} label="Avancement du groupe" />
 			</div>
+			<FilterBar
+				threshold={threshold}
+				setThreshold={setThreshold}
+				contextFilter={contextFilter}
+				setContextFilter={setContextFilter}
+				contextRules={contextRules}
+			/>
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
@@ -79,103 +105,90 @@ export default ({
 							({emoji('🇫🇷')} <DefaultFootprint />)
 						</small>
 					</div>
-					<small>
-						<label>
-							Exclure au-dessus de{' '}
-							<input
-								css={`
-									width: 2.5rem;
-									height: 1.2rem;
-									text-align: right;
-									border: none;
-									border-bottom: 1px dashed var(--color);
-									font-size: 100%;
-									color: inherit;
-								`}
-								onChange={(e) => setThreshold(e.target.value * 1000)}
-								value={threshold / 1000}
-								type="number"
-							/>{' '}
-							tonnes.
-						</label>
-					</small>
 				</div>
-
-				<ul
-					title="Empreinte totale"
-					css={`
-						width: 100%;
-						position: relative;
-						margin: 0 auto;
-						border: 2px solid black;
-						height: 2rem;
-						list-style-type: none;
-						li {
-							position: absolute;
-						}
-					`}
-				>
-					{elements.map(({ total: value, username }) => (
-						<li
-							key={username}
+				{elements.length > 0 && (
+					<div>
+						<ul
+							title="Empreinte totale"
 							css={`
-								height: 100%;
-								width: 10px;
-								margin-left: -10px;
-								left: ${((value - minValue) / (maxValue - minValue)) * 100}%;
-								background: ${users.find((u) => u.name === username)?.color ||
-								'var(--color)'};
-								opacity: 0.5;
+								width: 100%;
+								position: relative;
+								margin: 0 auto;
+								border: 2px solid black;
+								height: 2rem;
+								list-style-type: none;
+								li {
+									position: absolute;
+								}
+							`}
+						>
+							{elements.map(({ total: value, username }) => (
+								<li
+									key={username}
+									css={`
+										height: 100%;
+										width: 10px;
+										margin-left: -10px;
+										left: ${((value - minValue) / (maxValue - minValue)) *
+										100}%;
+										background: ${users.find((u) => u.name === username)
+											?.color || 'var(--color)'};
+										opacity: 0.5;
 
-								cursor: pointer;
-								${spotlight === username
-									? `background: yellow; opacity: 1; 
+										cursor: pointer;
+										${spotlight === username
+											? `background: yellow; opacity: 1; 
 										border-right: 2px dashed black;
 										border-left: 2px dashed black;
 										z-index: 1;
 										`
-									: ''}
-							`}
-							title={`${username} : ${formatTotal(value)} t`}
-							aria-label={`${username} : ${formatTotal(value)} t`}
-							role="button"
-							onClick={() => setSpotlight(username)}
-							aria-pressed={spotlight === username}
-						></li>
-					))}
-				</ul>
+											: ''}
+									`}
+									title={`${username} : ${formatTotal(value)} t`}
+									aria-label={`${username} : ${formatTotal(value)} t`}
+									role="button"
+									onClick={() => setSpotlight(username)}
+									aria-pressed={spotlight === username}
+								></li>
+							))}
+						</ul>
 
-				<div css="display: flex; justify-content: space-between; width: 100%">
-					<small key="legendLeft">
-						{emoji('🎯 ')}
-						{min}
-					</small>
-					<small key="legendRight">{max}</small>
-				</div>
+						<div css="display: flex; justify-content: space-between; width: 100%">
+							<small key="legendLeft">
+								{emoji('🎯 ')}
+								{min}
+							</small>
+							<small key="legendRight">{max}</small>
+						</div>
+
+						<CategoryStats
+							{...{ categories, maxCategory, spotlight, setSpotlight }}
+						/>
+
+						{spotlightValue && (
+							<div>
+								{spotlight === currentUser ? (
+									<span>
+										<span role="status" css="background: #fff45f;">
+											En jaune
+										</span>{' '}
+										: ma simulation à {spotlightValue} t.
+									</span>
+								) : (
+									<button
+										className="ui__ link-button"
+										onClick={() => setSpotlight(currentUser)}
+									>
+										<span css="background: #fff45f;">
+											Afficher ma simulation
+										</span>
+									</button>
+								)}
+							</div>
+						)}
+					</div>
+				)}
 			</div>
-			<CategoryStats
-				{...{ categories, maxCategory, spotlight, setSpotlight }}
-			/>
-
-			{spotlightValue && (
-				<div>
-					{spotlight === currentUser ? (
-						<span>
-							<span role="status" css="background: #fff45f;">
-								En jaune
-							</span>{' '}
-							: ma simulation à {spotlightValue} t.
-						</span>
-					) : (
-						<button
-							className="ui__ link-button"
-							onClick={() => setSpotlight(currentUser)}
-						>
-							<span css="background: #fff45f;">Afficher ma simulation</span>
-						</button>
-					)}
-				</div>
-			)}
 		</div>
 	)
 }
@@ -200,3 +213,24 @@ const reduceCategories = (list) =>
 
 		{}
 	)
+
+const filterElements = (rawElements, contextFilter) => {
+	const elements = rawElements.filter((el) => {
+		if (
+			Object.keys(contextFilter)
+				.map((key) => {
+					if (contextFilter[key] || contextFilter[key] !== '') {
+						//We do not use "===" as variables in the situation contain are embrassed with ''.
+						const eltOfContext = el.context[key].toLowerCase()
+						return eltOfContext.includes(contextFilter[key].toLowerCase())
+					} else {
+						true
+					}
+				})
+				.every((bool) => bool === true)
+		) {
+			return el
+		}
+	})
+	return elements
+}

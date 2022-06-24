@@ -15,6 +15,8 @@ import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
 import Meta from '../../../components/utils/Meta'
+import { useEngine } from 'Components/utils/EngineContext'
+
 import { configSelector } from '../../../selectors/simulationSelectors'
 
 export default () => {
@@ -23,6 +25,7 @@ export default () => {
 		'surveyContext',
 		{}
 	)
+	const [contextRules, setContextRules] = useState()
 	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(false)
 	const dispatch = useDispatch()
 
@@ -60,7 +63,6 @@ export default () => {
 
 	const survey = useSelector((state) => state.survey)
 	const existContext = survey ? !(survey['contextFile'] == null) : false
-
 	const history = useHistory()
 
 	if (!room || room === '') {
@@ -95,15 +97,20 @@ export default () => {
 				>
 					{existContext && (
 						<ContextConversation
-							survey={survey}
 							surveyContext={surveyContext}
 							setSurveyContext={setSurveyContext}
+							contextRules={contextRules}
+							setContextRules={setContextRules}
 						/>
 					)}
 					{!hasDataState ? (
 						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
 					) : (
-						<Results room={survey.room} existContext={existContext} />
+						<Results
+							room={survey.room}
+							existContext={existContext}
+							contextRules={contextRules}
+						/>
 					)}
 				</div>
 			)}
@@ -200,14 +207,13 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 	)
 }
 
-const Results = ({ room, existContext }) => {
+const Results = ({ room, existContext, contextRules }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
 	const answerMap = survey.answers
 	const username = cachedSurveyIds[survey.room]
 	if (!answerMap || !Object.values(answerMap) || !username) return null
-
 	return (
 		<Stats
 			elements={getElements(
@@ -219,6 +225,7 @@ const Results = ({ room, existContext }) => {
 			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
+			contextRules={contextRules}
 		/>
 	)
 }
