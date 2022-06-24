@@ -237,16 +237,14 @@ export const getElements = (
 		...el.data,
 		username: el.id,
 	}))
+	const elementsWithinThreshold = rawElements.filter(
+		(el) => el.total > 0 && el.total < threshold && el.progress > progressMin
+	)
 	const elements = existContext
-		? rawElements.filter(
-				(el) =>
-					el.total > 0 &&
-					el.total < threshold &&
-					el.progress > progressMin &&
-					Object.keys(el.context).length !== 0
+		? elementsWithinThreshold.filter(
+				(el) => Object.keys(el.context).length !== 0
 		  )
-		: rawElements.filter(
-				(el) => el.total < threshold && el.progress > progressMin
-		  )
+		: elementsWithinThreshold
+
 	return elements
 }
