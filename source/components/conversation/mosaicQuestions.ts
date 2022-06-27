@@ -91,7 +91,7 @@ Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners.
 		options: { chipsTotal: 14 },
 	},
 	{
-		dottedName: 'alimentation . boissons chaudes',
+		dottedName: 'alimentation . boisson . chaude',
 		question:
 			'Quelle est votre consommation de boissons chaudes pour une semaine type (nombre de tasses par semaine)?',
 		description: `
@@ -100,6 +100,23 @@ Vos consommations de boissons chaudes pour une semaine type. Un café par jour ?
 
 > Les boissons chaudes que vous consommez au petit déjeuner sont à prendre en compte ici !
 			`,
+		suggestions: {
+			'Pas de boisson chaude': {
+				'café . nombre': 0,
+				'thé . nombre': 0,
+				'chocolat chaud . nombre': 0,
+			},
+			'un café par jour': {
+				'café . nombre': 7,
+			},
+			'deux café par jour': {
+				'café . nombre': 14,
+			},
+			'un café et un thé par jour': {
+				'café . nombre': 7,
+				'thé . nombre': 7,
+			},
+		},
 		isApplicable: (dottedName: DottedName) =>
 			dottedName.includes('alimentation . boisson . chaude') &&
 			dottedName.includes(' . nombre'),
