@@ -112,11 +112,11 @@ export default () => {
 					<a href="https://ademe.fr">
 						<LogoADEME />
 					</a>
-					<a href="https://www.associationbilancarbone.fr/">
+					<a href="https://abc-transitionbascarbone.fr">
 						<img
-							css="height: 2.5rem"
-							src="/images/ABC.svg"
-							alt="Association Bilan Carbone"
+							css="height: 2rem; margin-left: 1rem !important"
+							src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+							alt="Logo de l'Association pour la transition Bas Carbone"
 						/>
 					</a>
 				</div>
