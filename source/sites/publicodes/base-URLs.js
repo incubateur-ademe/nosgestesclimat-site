@@ -9,4 +9,6 @@ https://nosgestesclimat.fr/partenaires
 https://nosgestesclimat.fr/contribuer
 https://nosgestesclimat.fr/personas
 https://nosgestesclimat.fr/stats
+https://nosgestesclimat.fr/actions
+https://nosgestesclimat.fr/actions/plus
 `
