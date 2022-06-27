@@ -123,9 +123,15 @@ const NextButton = styled.button`
 	${(props) =>
 		props.attention &&
 		`
-	animation: leaves 1s ease-in-out infinite alternate;
-	animation-delay: 6s;
-	@keyframes leaves {
+
+animation-name: light, strong;
+animation-duration: 1s;
+animation-delay: 8s, 14s; 
+animation-timing-function: ease-in-out;
+animation-iteration-count: 6, infinite;
+animation-direction: alternate;
+	 
+@keyframes light{
 		0% {
 			transform: scale(1);
 			opacity: 0.6;
@@ -133,6 +139,19 @@ const NextButton = styled.button`
 		100% {
 			transform: scale(1.2);
 			opacity: 1
+		}
+	}
+	@keyframes strong {
+		0% {
+			transform: scale(1);
+			opacity: 0.6;
+			background: white;
+			color: var(--color)
+		}
+		100% {
+			transform: scale(1.2);
+			opacity: 1
+			; background: var(--color); color: white
 		}
 	}
 	`}
