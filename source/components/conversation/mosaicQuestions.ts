@@ -91,6 +91,21 @@ Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners.
 		options: { chipsTotal: 14 },
 	},
 	{
+		dottedName: 'alimentation . boissons chaudes',
+		question:
+			'Quelle est votre consommation de boissons chaudes pour une semaine type (nombre de tasses par semaine)?',
+		description: `
+
+Vos consommations de boissons chaudes pour une semaine type. Un café par jour ? Un thé tous les soirs ? Un chocolat chaud au petit déjeuner ? 
+
+> Les boissons chaudes que vous consommez au petit déjeuner sont à prendre en compte ici !
+			`,
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('alimentation . boisson . chaude') &&
+			dottedName.includes(' . nombre'),
+		component: NumberedMosaic,
+	},
+	{
 		dottedName: 'divers . textile',
 		question: 'Quels vêtements achetez-vous neufs en général dans une année ?',
 		isApplicable: (dottedName: DottedName) =>
