@@ -2,7 +2,9 @@ import { motion } from 'framer-motion'
 import Inhabitants from './Inhabitants'
 
 export default ({ currentQuestion, categoryColor, value }) => {
-	if (currentQuestion === 'logement . habitants')
+	// Not ready yet. Animation should start from the bottom
+	// Should be iterated
+	if (false && currentQuestion === 'logement . habitants')
 		return (
 			<motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
 				<Inhabitants
