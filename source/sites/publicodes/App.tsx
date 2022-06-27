@@ -2,7 +2,7 @@ import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
 import News from 'Pages/News'
-import React, { Suspense } from 'react'
+import React, { Suspense, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Redirect, useLocation } from 'react-router'
 import { Route, Switch } from 'react-router-dom'
@@ -19,6 +19,7 @@ import Diffuser from './Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
 import Logo from './LogoComponent'
+import LogoBlue from './LogoComponentBlue'
 import Navigation from './Navigation'
 import Documentation from './pages/Documentation'
 import Personas from './Personas.tsx'
@@ -136,14 +137,42 @@ const Main = ({}) => {
 							text-decoration: none;
 							font-size: 170%;
 							margin: 1rem auto;
+							svg {
+								width: 4.5rem;
+								height: auto;
+							}
 						`}
 					>
-						<Logo />
+						<LogoSwitch />
+						<div
+							css={`
+								font-weight: bold;
+								line-height: 1.4rem;
+								color: var(--darkColor);
+								text-transform: uppercase;
+								font-size: 90%;
+								padding-bottom: 0.5rem;
+							`}
+						>
+							Nos
+							<br />
+							Gestes
+							<br />
+							Climat
+						</div>
 					</nav>
 				)}
 				<Routes />
 			</main>
 		</div>
+	)
+}
+
+const LogoSwitch = () => {
+	const [blue, setBlue] = useState(true)
+
+	return (
+		<div onClick={() => setBlue(!blue)}>{blue ? <LogoBlue /> : <Logo />}</div>
 	)
 }
 

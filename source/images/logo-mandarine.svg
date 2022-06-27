@@ -25,13 +25,13 @@
      inkscape:deskcolor="#d1d1d1"
      inkscape:document-units="mm"
      showgrid="false"
-     inkscape:zoom="0.29927763"
-     inkscape:cx="526.26719"
-     inkscape:cy="372.56376"
-     inkscape:window-width="950"
-     inkscape:window-height="1163"
-     inkscape:window-x="962"
-     inkscape:window-y="4"
+     inkscape:zoom="0.89583986"
+     inkscape:cx="416.9272"
+     inkscape:cy="421.39228"
+     inkscape:window-width="1920"
+     inkscape:window-height="1175"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="1"
      inkscape:current-layer="layer1" />
   <defs
@@ -93,7 +93,7 @@
        xlink:href="#linearGradient24204"
        id="linearGradient1122"
        gradientUnits="userSpaceOnUse"
-       gradientTransform="matrix(1.0534813,1.4606253e-8,-1.4606253e-8,1.0534813,-254.11227,347.29214)"
+       gradientTransform="matrix(1.0534813,1.4606253e-8,-1.4606253e-8,1.0534813,-256.41822,347.35113)"
        x1="215.07861"
        y1="-184.75743"
        x2="300.81689"
@@ -135,8 +135,8 @@
     <circle
        style="fill:url(#linearGradient1122);fill-opacity:1;fill-rule:evenodd;stroke-width:0.79011"
        id="path24123-8"
-       cx="17.630951"
-       cy="152.65373"
+       cx="15.324972"
+       cy="152.71275"
        transform="rotate(-38.340306)"
        r="45.161831" />
     <path

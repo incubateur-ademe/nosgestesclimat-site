@@ -72,7 +72,7 @@ export default ({ isHomePage }) => {
 					`}
 					`}
 				>
-					<Logo />
+					Logo
 				</Link>
 				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
 			</nav>
