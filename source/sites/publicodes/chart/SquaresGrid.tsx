@@ -109,12 +109,17 @@ const GridItem = ({
 			title={`${element.title} (${element.topCategoryTitle})`}
 			css={`
 				background: ${element.topCategoryColor};
+				img {
+					filter: invert(1);
+					width: 2.3rem;
+					height: auto;
+				}
 			`}
 			ref={ref}
 			variants={itemVariants}
 			custom={delayRef}
 		>
-			<CircledEmojis emojis={element.icons} emojiBackground={'transparent'} />
+			<img src={`/images/model/${element.dottedName}.svg`} />
 		</motion.li>
 	)
 }
