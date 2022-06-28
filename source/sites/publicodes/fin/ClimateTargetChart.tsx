@@ -276,6 +276,10 @@ const CategoriesBar = ({
 			padding: 0;
 			${barBorderStyle}
 			cursor: pointer;
+			:hover {
+				border-color: var(--color);
+				border-width: 6px;
+			}
 		`}
 		onClick={onCategoryClick}
 		title="Explorer les catégories"
@@ -284,11 +288,6 @@ const CategoriesBar = ({
 			<li
 				key={category.title}
 				css={`
-					${index === 0 &&
-					`
-					border-top-right-radius: ${borderRadius}; 
-					border-top-left-radius: ${borderRadius}; 
-					`};
 					margin: 0;
 					list-style-type: none;
 					background: ${category.color};
@@ -304,6 +303,12 @@ const CategoriesBar = ({
 							font-size: 180%;
 						}
 					}
+					${index < categories.length - 1 &&
+					`
+					border-bottom: 4px solid ${color};
+
+					padding: 0;
+					`}
 				`}
 			>
 				{category.nodeValue / empreinteTotale > 0.1
