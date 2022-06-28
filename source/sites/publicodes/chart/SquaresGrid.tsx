@@ -5,21 +5,36 @@ import { motion } from 'framer-motion'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 const delayPerPixel = 0.0025
-export default ({ pixelRemSize, elements, pixel }) => {
+export default ({ pixelRemSize, elements, pixel, gridLength }) => {
 	const originOffset = useRef({ top: 0, left: 0 })
 
 	const [isVisible, setVisibility] = useState(false)
 
 	useEffect(() => setTimeout(() => setVisibility(true), 400), [])
 
-	const ponderedElements = elements
+	const ponderedElementsRaw = elements
 		.map((element) => {
-			const length = Math.round(element.nodeValue / pixel)
+			const decimalLength = element.nodeValue / pixel
+			const length = Math.round(decimalLength)
+			console.log(decimalLength, length)
 			return range(0, length).map((i) => ({ ...element, i }))
 		})
 		.flat()
 
-	console.log('pondered', elements, ponderedElements)
+	// The rounding makes the grid longer or shorter by 0, 1, 2 elements
+	// Instead of doing things perfectly, we trim or extend the grid artificially by the end
+	// considering that the error in our case is not a serious problem
+	// If you want to minimize the visual error, feel free ;)
+	const squareSurplus = ponderedElementsRaw.length - gridLength,
+		removeLast = (array, n) => array.slice(0, -n),
+		duplicateLast = (array, n) => [
+			...array,
+			...range(0, n).map(() => array.splice(-1)[0]),
+		],
+		ponderedElements =
+			squareSurplus <= 0
+				? duplicateLast(ponderedElementsRaw, -squareSurplus)
+				: removeLast(ponderedElementsRaw, squareSurplus)
 
 	/*
 		<motion.li

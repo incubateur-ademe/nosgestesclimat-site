@@ -67,6 +67,7 @@ export default ({ details }) => {
 				pixelRemSize={pixelRemSize}
 				elements={allSubCategories}
 				pixel={pixel}
+				gridLength={gridLength}
 			/>
 			{!hiddenTarget && (
 				<motion.div
