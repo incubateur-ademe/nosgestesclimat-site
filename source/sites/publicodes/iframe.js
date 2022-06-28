@@ -11,7 +11,7 @@ const srcURL = new URL(script.src)
 const hostname = srcURL.hostname || 'nosgestesclimat.fr'
 
 const possibleOptions = [
-	{ key: 'shareData', legacy: 'partagedatafinsimulation' }
+	{ key: 'shareData', legacy: 'partagedatafinsimulation' },
 ]
 
 const optionFragments = possibleOptions.map(({ key, legacy }) => {
@@ -38,5 +38,13 @@ for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])
 }
 iframeResize({}, iframe)
+
+const link = document.createElement('a')
+
+link.setAttribute('src', 'https://nosgestesclimat.fr')
+link.setAttribute('target', '_blank')
+link.textContent = 'Visiter nosgestesclimat.fr'
+
+script.parentNode.insertBefore(link, script)
 
 script.parentNode.insertBefore(iframe, script)
