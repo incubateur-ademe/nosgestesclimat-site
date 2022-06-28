@@ -230,7 +230,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 				)}
 				<div
 					css={`
-						${barBorderStyle}
+						${barBorderStyle(color)}
 
 						background: ${sustainableBackground};
 						height: ${sustainableBarHeight}px;
@@ -248,16 +248,25 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 			</div>
 
 			{!targetAchieved && (
-				<div css="height: .3rem; background: black; width: 80%; position: absolute; bottom: 0; z-index: 10" />
+				<div
+					css={`
+						height: 0.3rem;
+						background: ${color};
+						width: 80%;
+						position: absolute;
+						bottom: 0;
+						z-index: 10;
+					`}
+				/>
 			)}
 		</section>
 	)
 }
 
 const borderRadius = '.3rem'
-const barBorderStyle = `
+const barBorderStyle = (color) => `
 	border-radius: ${borderRadius};
-	border: 4px solid #000;
+	border: 4px solid ${color};
 	border-bottom-right-radius: 0;
 	border-bottom-left-radius: 0;
 `
@@ -274,11 +283,10 @@ const CategoriesBar = ({
 			width: ${barWidth};
 			height: 100%;
 			padding: 0;
-			${barBorderStyle}
+			${barBorderStyle(color)}
 			cursor: pointer;
 			:hover {
-				border-color: var(--color);
-				border-width: 6px;
+				border-color: var(--lightColor);
 			}
 		`}
 		onClick={onCategoryClick}
