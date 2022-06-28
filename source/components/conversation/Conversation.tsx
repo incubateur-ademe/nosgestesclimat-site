@@ -57,12 +57,15 @@ export default function Conversation({
 
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = orderByCategories
-		? sortBy(
-				(question) =>
-					-orderByCategories.find((c) => question.indexOf(c.dottedName) === 0)
-						?.nodeValue,
-				nextQuestions
-		  )
+		? sortBy((question) => {
+				const category = orderByCategories.find(
+					(c) => question.indexOf(c.dottedName) === 0
+				)
+				// We artificially put this category (since it has no actionable question) at the end
+				if (category.name === 'services publics') return 1000000
+				const value = -category?.nodeValue
+				return value
+		  }, nextQuestions)
 		: nextQuestions
 
 	const focusedCategory = useQuery().get('catégorie')
