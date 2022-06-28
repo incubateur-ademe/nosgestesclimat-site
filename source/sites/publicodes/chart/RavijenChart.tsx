@@ -8,24 +8,13 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import styled from 'styled-components'
 import { getSubcategories, relegate } from '../../../components/publicodesUtils'
 import useMediaQuery from '../../../components/utils/useMediaQuery'
-import {
-	ObjectiveExplanation,
-	sustainableLifeGoal,
-} from '../fin/ClimateTargetChart'
+import { ObjectiveExplanation } from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
 
-export default ({
-	details,
-	noText,
-	noCompletion,
-	valueColor,
-	linkTo,
-	demoMode,
-	noAnimation,
-}) => {
+// This is a relative grid : the kgCO2e value of each square will vary in order to fill the whole screen
+export default ({ details }) => {
 	// needed for this component to refresh on situation change :
 	const situation = useSelector(situationSelector)
 	const objectifs = useSelector(objectifsSelector)
@@ -42,10 +31,7 @@ export default ({
 	/*  If total = 15 t, pixel = 150 kg
 	 *  if total = 4 t, pixel = 40 kg
 	 *  In any case, there should be 10 * 10 * pixel, pixel being fixed visual width
-	 *
 	 * */
-
-	console.log(total, pixel)
 
 	const categories = extractCategories(rules, engine, details).map(
 		(category) => ({
@@ -158,7 +144,3 @@ const HideTargetButton = ({ onClick }) => {
 		</button>
 	)
 }
-const DashedHalfLine = styled.span`
-	border-bottom: 6px dashed black;
-	width: calc(40% - 12rem / 2);
-`
