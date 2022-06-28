@@ -110,8 +110,8 @@ const GridItem = ({
 			css={`
 				background: ${element.topCategoryColor};
 				img {
-					filter: invert(1);
-					width: 2.3rem;
+					filter: grayscale(1) invert(1) brightness(1.8);
+					width: 2rem;
 					height: auto;
 				}
 			`}

@@ -10,9 +10,9 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs28075" />
+     id="defs214" />
   <sodipodi:namedview
-     id="namedview28073"
+     id="namedview212"
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
@@ -21,44 +21,74 @@
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
-     inkscape:zoom="10.235261"
-     inkscape:cx="34.732872"
-     inkscape:cy="39.569095"
+     inkscape:zoom="11.18747"
+     inkscape:cx="30.078293"
+     inkscape:cy="45.229172"
      inkscape:window-width="1920"
      inkscape:window-height="1200"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="line" />
+     inkscape:current-layer="emoji" />
   <g
-     id="line">
+     id="color"
+     transform="matrix(1.0427672,0,0,1.0427672,-1.406069,-2.4120688)">
+    <path
+       fill="#ea5a47"
+       stroke="none"
+       d="m 64.8,44 -1.1,-0.6 c -0.4,-0.2 -0.6,-0.6 -0.5,-1 0.3,-1.9 0.5,-8.5 -9.7,-11.5 -0.2,-0.1 -0.4,-0.1 -0.6,-0.1 l -19.6,0.1 c -0.4,0 -0.8,0.1 -1.1,0.3 l -10.3,6.9 c -0.2,0.1 -0.4,0.2 -0.6,0.2 -1.9,-0.1 -3.7,0.1 -5.6,0.4 -5.4,1.1 -7.6,4 -8.4,5.5 -0.2,0.3 -0.2,0.7 -0.2,1 0.1,2.4 -1.5,5.1 0.9,7.3 l 4.355681,0.06118 1.391374,-4.965418 6.588772,-2.281362 1.794814,7.003212 L 27.4,52.4 l 20.4,-0.5 4.633677,0.06741 1.296334,-5.880756 6.386686,0.101159 2.732357,5.955338 C 63.749054,52.043054 66.3,50.3 66.7,49.4999 68.4,46.8 65,44.1 64.8,44 Z"
+       id="path182"
+       sodipodi:nodetypes="ccccccccccccccccccccccccc" />
+    <path
+       fill="#92d3f5"
+       stroke="none"
+       d="M 56.1,39.3 V 35 c 0,-0.9 -0.8,-1.7 -1.7,-1.7 v 0 H 33.2 c -0.1,0 -0.2,0 -0.2,0.1 l -8,5.7 c -0.2,0.1 -0.2,0.4 -0.1,0.6 0.1,0.1 0.2,0.2 0.3,0.2 5.6,0 27.2,-0.2 30.4,-0.1 0.3,0 0.5,-0.2 0.5,-0.5 0,0.1 0,0.1 0,0 z"
+       id="path188" />
+    <polygon
+       fill="#fcea2b"
+       stroke="none"
+       points="10.8,45 5.8,45.1 8.9,40.5 12.9,42.1 "
+       id="polygon190" />
+  </g>
+  <g
+     id="hair"
+     transform="matrix(1.0427672,0,0,1.0427672,-1.406069,-2.4120688)" />
+  <g
+     id="skin"
+     transform="matrix(1.0427672,0,0,1.0427672,-1.406069,-2.4120688)" />
+  <g
+     id="skin-shadow"
+     transform="matrix(1.0427672,0,0,1.0427672,-1.406069,-2.4120688)" />
+  <g
+     id="line"
+     transform="matrix(1.0427672,0,0,1.0427672,-1.406069,-2.4120688)">
     <path
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
        stroke-width="2"
-       d="M8.1,51.4"
-       id="path28057" />
+       d="M 8.1,51.4"
+       id="path196" />
     <line
-       x1="47.6"
+       x1="47.599998"
        x2="27"
        y1="51"
-       y2="51.4"
+       y2="51.400002"
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
        stroke-width="2"
-       id="line28059" />
+       id="line198" />
     <path
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
        stroke-width="2"
-       d="M8.1,51.4 c-0.9-0.2-1.7-0.5-1.8-1c-0.1-1-0.3-3.8-0.3-5.1c0-0.5,0.1-1.1,0.4-1.5c1.1-2,4.8-6.8,14.9-6.4l10.3-6.9c0.5-0.3,1.1-0.5,1.6-0.5 l19.6-0.1c0.3,0,0.6,0,0.9,0.1c2.2,0.6,11.7,4,10.4,12.6l1.1,0.6c0.5,0.2,0.9,0.7,1,1.2c0.4,1.4,0.3,2.9-0.2,4.3"
-       id="path28061" />
+       d="M 8.1,51.4 C 7.2,51.2 6.4,50.9 6.3,50.4 6.2,49.4 6,46.6 6,45.3 6,44.8 6.1,44.2 6.4,43.8 7.5,41.8 11.2,37 21.3,37.4 L 31.6,30.5 C 32.1,30.2 32.7,30 33.2,30 l 19.6,-0.1 c 0.3,0 0.6,0 0.9,0.1 2.2,0.6 11.7,4 10.4,12.6 l 1.1,0.6 c 0.5,0.2 0.9,0.7 1,1.2 0.4,1.4 0.3,2.9 -0.2,4.3"
+       id="path200" />
     <polyline
        fill="none"
        stroke="#000000"
@@ -66,30 +96,27 @@
        stroke-linejoin="round"
        stroke-width="2"
        points="24.9,39.9 55.1,39.7 55.1,35.2"
-       id="polyline28063"
-       style="fill:#000000;fill-opacity:1" />
+       id="polyline202" />
     <circle
-       cx="17.3"
-       cy="50.4"
+       cx="17.299999"
+       cy="50.400002"
        r="5"
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
        stroke-width="2"
-       id="circle28065"
-       style="fill:#000000;fill-opacity:1" />
+       id="circle204" />
     <circle
-       cx="57.1"
-       cy="50.4"
+       cx="57.099998"
+       cy="50.400002"
        r="5"
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
        stroke-width="2"
-       id="circle28067"
-       style="fill:#000000;fill-opacity:1" />
+       id="circle206" />
     <polyline
        fill="none"
        stroke="#000000"
@@ -97,7 +124,6 @@
        stroke-linejoin="round"
        stroke-width="2"
        points="12.3,42.9 10.5,45.1 6.8,45"
-       id="polyline28069"
-       style="fill:#000000;fill-opacity:1" />
+       id="polyline208" />
   </g>
 </svg>
