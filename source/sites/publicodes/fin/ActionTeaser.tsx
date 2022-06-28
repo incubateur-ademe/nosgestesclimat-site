@@ -105,12 +105,17 @@ export default ({}) => {
 			return !disabled
 		}),
 		topActions = interestingActions.reduce((memo, next) => {
+			const dépasse = rules[next.dottedName].action?.dépasse
 			const category = splitName(next.dottedName)[0]
 
 			if (memo.length === 3) return memo
-			if (memo.find(([foundCategory, action]) => category === foundCategory))
+			if (
+				memo.find(([_, action, foundDépasse]) =>
+					foundDépasse.includes(next.dottedName)
+				)
+			)
 				return memo
-			return [...memo, [category, next]]
+			return [...memo, [category, next, dépasse || []]]
 		}, [])
 
 	const variants = {
