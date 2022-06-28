@@ -36,7 +36,7 @@ const openmojis = {
 	action: 'E10C',
 	conference: '1F3DF',
 	sondage: '1F4CA',
-	profile: '1F464',
+	profile: 'silhouette',
 	personas: '1F465',
 	github: 'E045',
 }
