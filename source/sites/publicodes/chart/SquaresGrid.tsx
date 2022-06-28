@@ -114,6 +114,12 @@ const GridItem = ({
 					width: 2rem;
 					height: auto;
 				}
+				:hover {
+					background: white;
+					img {
+						filter: none;
+					}
+				}
 			`}
 			ref={ref}
 			variants={itemVariants}

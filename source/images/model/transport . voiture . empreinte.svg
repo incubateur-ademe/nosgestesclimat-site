@@ -10,7 +10,32 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:svg="http://www.w3.org/2000/svg">
   <defs
-     id="defs214" />
+     id="defs214">
+    <inkscape:path-effect
+       effect="powerclip"
+       id="path-effect12478"
+       is_visible="true"
+       lpeversion="1"
+       inverse="true"
+       flatten="false"
+       hide_clip="false"
+       message="Utilise la règle de remplissage « fill-rule: evenodd » de la boîte de dialogue &lt;b&gt;Fond et contour&lt;/b&gt; en l'absence de résultat de mise à plat après une conversion en chemin." />
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath12474">
+      <path
+         fill="#92d3f5"
+         stroke="none"
+         d="M 56.1,39.3 V 35 c 0,-0.9 -0.8,-1.7 -1.7,-1.7 v 0 H 33.2 c -0.1,0 -0.2,0 -0.2,0.1 l -8,5.7 c -0.2,0.1 -0.2,0.4 -0.1,0.6 0.1,0.1 0.2,0.2 0.3,0.2 5.6,0 27.2,-0.2 30.4,-0.1 0.3,0 0.5,-0.2 0.5,-0.5 0,0.1 0,0.1 0,0 z"
+         id="path12476"
+         style="display:none;stroke-width:1" />
+      <path
+         id="lpe_path-effect12478"
+         style="stroke-width:1"
+         class="powerclip"
+         d="M 1.6695156,25.8 H 72.174414 V 57.56118 H 1.6695156 Z M 56.1,39.3 V 35 c 0,-0.9 -0.8,-1.7 -1.7,-1.7 v 0 H 33.2 c -0.1,0 -0.2,0 -0.2,0.1 l -8,5.7 c -0.2,0.1 -0.2,0.4 -0.1,0.6 0.1,0.1 0.2,0.2 0.3,0.2 5.6,0 27.2,-0.2 30.4,-0.1 0.3,0 0.5,-0.2 0.5,-0.5 0,0.1 0,0.1 0,0 z" />
+    </clipPath>
+  </defs>
   <sodipodi:namedview
      id="namedview212"
      pagecolor="#ffffff"
@@ -23,27 +48,25 @@
      showgrid="false"
      inkscape:zoom="11.18747"
      inkscape:cx="30.078293"
-     inkscape:cy="45.229172"
+     inkscape:cy="45.36325"
      inkscape:window-width="1920"
-     inkscape:window-height="1200"
+     inkscape:window-height="1175"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="emoji" />
+     inkscape:current-layer="line" />
   <g
      id="color"
      transform="matrix(1.0427672,0,0,1.0427672,-1.406069,-2.4120688)">
     <path
        fill="#ea5a47"
        stroke="none"
-       d="m 64.8,44 -1.1,-0.6 c -0.4,-0.2 -0.6,-0.6 -0.5,-1 0.3,-1.9 0.5,-8.5 -9.7,-11.5 -0.2,-0.1 -0.4,-0.1 -0.6,-0.1 l -19.6,0.1 c -0.4,0 -0.8,0.1 -1.1,0.3 l -10.3,6.9 c -0.2,0.1 -0.4,0.2 -0.6,0.2 -1.9,-0.1 -3.7,0.1 -5.6,0.4 -5.4,1.1 -7.6,4 -8.4,5.5 -0.2,0.3 -0.2,0.7 -0.2,1 0.1,2.4 -1.5,5.1 0.9,7.3 l 4.355681,0.06118 1.391374,-4.965418 6.588772,-2.281362 1.794814,7.003212 L 27.4,52.4 l 20.4,-0.5 4.633677,0.06741 1.296334,-5.880756 6.386686,0.101159 2.732357,5.955338 C 63.749054,52.043054 66.3,50.3 66.7,49.4999 68.4,46.8 65,44.1 64.8,44 Z"
+       d="m 64.8,44 -1.1,-0.6 c -0.4,-0.2 -0.6,-0.6 -0.5,-1 0.3,-1.9 0.5,-8.5 -9.7,-11.5 -0.2,-0.1 -0.4,-0.1 -0.6,-0.1 l -19.6,0.1 c -0.4,0 -0.8,0.1 -1.1,0.3 l -10.3,6.9 c -0.2,0.1 -0.4,0.2 -0.6,0.2 -1.9,-0.1 -3.7,0.1 -5.6,0.4 -5.4,1.1 -7.6,4 -8.4,5.5 -0.2,0.3 -0.2,0.7 -0.2,1 0.1,2.4 -1.5,5.1 0.9,7.3 l 4.355681,0.06118 1.391374,-4.965418 8.785879,-1.781745 C 23.809732,48.980834 24.261552,51.264184 27.4,52.4 l 20.4,-0.5 c 5.412641,0.679933 3.378852,-3.560474 5.930011,-5.813346 l 6.386686,0.101159 2.732357,5.955338 C 63.749054,52.043054 66.3,50.3 66.7,49.4999 68.4,46.8 65,44.1 64.8,44 Z"
        id="path182"
-       sodipodi:nodetypes="ccccccccccccccccccccccccc" />
-    <path
-       fill="#92d3f5"
-       stroke="none"
-       d="M 56.1,39.3 V 35 c 0,-0.9 -0.8,-1.7 -1.7,-1.7 v 0 H 33.2 c -0.1,0 -0.2,0 -0.2,0.1 l -8,5.7 c -0.2,0.1 -0.2,0.4 -0.1,0.6 0.1,0.1 0.2,0.2 0.3,0.2 5.6,0 27.2,-0.2 30.4,-0.1 0.3,0 0.5,-0.2 0.5,-0.5 0,0.1 0,0.1 0,0 z"
-       id="path188" />
+       sodipodi:nodetypes="ccccccccccccccccccccccc"
+       clip-path="url(#clipPath12474)"
+       inkscape:path-effect="#path-effect12478"
+       inkscape:original-d="m 64.8,44 -1.1,-0.6 c -0.4,-0.2 -0.6,-0.6 -0.5,-1 0.3,-1.9 0.5,-8.5 -9.7,-11.5 -0.2,-0.1 -0.4,-0.1 -0.6,-0.1 l -19.6,0.1 c -0.4,0 -0.8,0.1 -1.1,0.3 l -10.3,6.9 c -0.2,0.1 -0.4,0.2 -0.6,0.2 -1.9,-0.1 -3.7,0.1 -5.6,0.4 -5.4,1.1 -7.6,4 -8.4,5.5 -0.2,0.3 -0.2,0.7 -0.2,1 0.1,2.4 -1.5,5.1 0.9,7.3 l 4.355681,0.06118 1.391374,-4.965418 8.785879,-1.781745 C 23.809732,48.980834 24.261552,51.264184 27.4,52.4 l 20.4,-0.5 c 5.412641,0.679933 3.378852,-3.560474 5.930011,-5.813346 l 6.386686,0.101159 2.732357,5.955338 C 63.749054,52.043054 66.3,50.3 66.7,49.4999 68.4,46.8 65,44.1 64.8,44 Z" />
     <polygon
        fill="#fcea2b"
        stroke="none"
@@ -71,10 +94,10 @@
        d="M 8.1,51.4"
        id="path196" />
     <line
-       x1="47.599998"
-       x2="27"
-       y1="51"
-       y2="51.400002"
+       x1="48.7472"
+       x2="28.147203"
+       y1="51.300453"
+       y2="51.700455"
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
@@ -98,25 +121,25 @@
        points="24.9,39.9 55.1,39.7 55.1,35.2"
        id="polyline202" />
     <circle
-       cx="17.299999"
-       cy="50.400002"
-       r="5"
+       cx="19.124081"
+       cy="51.554386"
+       r="6.0248103"
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
-       stroke-width="2"
+       stroke-width="2.40992"
        id="circle204" />
     <circle
-       cx="57.099998"
-       cy="50.400002"
-       r="5"
+       cx="56.602695"
+       cy="51.177189"
+       r="6.0248103"
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
-       stroke-width="2"
-       id="circle206" />
+       stroke-width="2.40992"
+       id="circle204-3" />
     <polyline
        fill="none"
        stroke="#000000"
