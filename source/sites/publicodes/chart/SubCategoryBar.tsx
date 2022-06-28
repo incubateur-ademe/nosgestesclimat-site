@@ -15,10 +15,11 @@ export default ({
 	indicator,
 	filterSimulationOnClick,
 	dottedName,
+	click,
+	clicked,
 }) => {
 	const { pathname } = useLocation(),
 		history = useHistory()
-	const [clicked, click] = useState(false)
 	const percent = (nodeValue / total) * 100
 
 	return (
@@ -40,7 +41,7 @@ export default ({
 							pathname,
 							search: '?catégorie=' + dottedName,
 					  })
-					: click(!clicked)
+					: click(dottedName)
 			}
 		>
 			{indicator && (
@@ -64,9 +65,14 @@ export default ({
 					key={title}
 					css={`
 						color: ${findContrastedTextColor(color, true)};
+						display: flex;
+						flex-direction: column;
+						align-items: center;
 					`}
 				>
-					{title}
+					<CircledEmojis emojis={icons} />
+					<div>{title}</div>
+					<div>{Math.round((nodeValue / total) * 100)}&nbsp;%</div>
 				</span>
 			) : (
 				<CircledEmojis emojis={icons} emojiTitle={title} />

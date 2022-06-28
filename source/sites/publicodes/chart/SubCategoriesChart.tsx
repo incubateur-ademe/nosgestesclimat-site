@@ -1,4 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion'
+import { useState } from 'react'
 import styled from 'styled-components'
 import SubCategoryBar from './SubCategoryBar'
 
@@ -36,8 +37,10 @@ export default ({
 	const bigEnough = categories.filter(
 		(el) => el.nodeValue / total > hideSmallerThanRatio
 	)
+	const [clicked, setClick] = useState(false),
+		click = (dottedName) => (clicked ? setClick(null) : setClick(dottedName))
 	return (
-		<InlineBarChart>
+		<InlineBarChart clicked={clicked}>
 			<AnimatePresence>
 				{bigEnough.map(({ nodeValue, title, icons, color, dottedName }) => (
 					<SubCategoryBar
@@ -50,6 +53,8 @@ export default ({
 							total,
 							color: uniqueColor || color,
 							delay,
+							click,
+							clicked,
 							filterSimulationOnClick,
 							indicator:
 								indicator &&
@@ -63,7 +68,10 @@ export default ({
 					animate={{ opacity: 1, width: `${restWidth}%` }}
 					exit={{ width: 0, opacity: 0 }}
 					transition={{ duration: 0.5, delay }}
-					title={'Voir le reste : ' + rest.labels.join(', ')}
+					title={
+						(onRestClick ? 'Voir le reste : ' : 'Le reste : ') +
+						rest.labels.join(', ')
+					}
 					key="rest"
 					onClick={onRestClick}
 					css={`
@@ -98,7 +106,7 @@ export const InlineBarChart = styled.ul`
 		display: inline-block;
 		text-align: center;
 		list-style-type: none;
-		height: 1.9rem;
+		height: ${(props) => (props.clicked ? `5rem` : `1.9rem`)};
 		line-height: 1.4rem;
 	}
 
