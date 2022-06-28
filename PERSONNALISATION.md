@@ -32,24 +32,6 @@ L'énorme avantage de cette solution est de recevoir automatiquement les mises �
 
 L'inconvénient, c'est que vous ne pourrez pas facilement personnaliser le contenu de l'iframe.
 
-Cela dit, si vous désirez afficher votre marque aux côtés du logo NGC, vous pouvez le faire en ajoutant quelques paramètres au script d'intégration.
-
-Exemple ici avec une intégration "ADEME".
-
-```html
-<script
-    id="nosgestesclimat"
-    src="/iframe.js"
-    data-integrator-action-url="https://ademe.fr"
-    data-integrator-logo="https://www.ademe.fr/sites/default/files/logoademe2020_rvb.png"
-    data-integrator-name="ADEME"
-    data-integrator-action-text="Passer à l'action avec l'ADEME"
-    data-integrator-youtube-video="https://www.youtube.com/watch?v=NfaeoCORuzk"
-></script>
-```
-
-Le logo et le nom sont affichés en en-tête du simulateur aux côtés de NGC. Le reste est utilisé pour personnaliser la page de fin de simulation.
-
 > Si vous désirez une amélioration de l'intégration, vous pouvez naturellement nous en faire une proposition ici (une Pull Request), ou [motiver votre demande](https://github.com/datagir/nosgestesclimat-site/issues/new) si vous n'êtes pas familier techniquement avec notre plateforme.
 
 Voici une page HTML complète de démo :
