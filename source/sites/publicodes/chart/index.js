@@ -4,21 +4,29 @@ import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useHistory, useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import {
+	questionCategoryName,
+	splitName,
+} from '../../../components/publicodesUtils'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
+import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
+import CategoryVisualisation from '../CategoryVisualisation'
 import Bar from './Bar'
+import useContinuousCategory from './useContinuousCategory'
 
 export default ({
 	details,
 	noText,
 	noCompletion,
 	valueColor,
-	links,
+	linkTo,
 	demoMode,
 	noAnimation,
 }) => {
@@ -33,7 +41,10 @@ export default ({
 			abbreviation: rules[category.dottedName].abbréviation,
 		})
 	)
+	const { pathname } = useLocation(),
+		history = useHistory()
 
+	const questionCategory = useContinuousCategory(categories)
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
 		.filter(
@@ -62,6 +73,7 @@ export default ({
 		>
 			<div
 				css={`
+					margin-top: 1rem;
 					position: relative;
 				`}
 			>
@@ -95,15 +107,35 @@ export default ({
 								layout
 								key={category.title}
 							>
-								{links ? (
-									<Link
-										to={
-											'/documentation/' +
-											utils.encodeRuleName(category.documentationDottedName)
-										}
-									>
-										{bar}
-									</Link>
+								{!demoMode ? (
+									linkTo === 'documentation' ? (
+										<Link
+											to={
+												'/documentation/' +
+												utils.encodeRuleName(category.documentationDottedName)
+											}
+										>
+											{bar}
+										</Link>
+									) : (
+										<div
+											type="button"
+											css={`
+												cursor: pointer;
+											`}
+											title={
+												`N'afficher que les questions ` + category.dottedName
+											}
+											onClick={() =>
+												history.push({
+													pathname,
+													search: '?catégorie=' + category.dottedName,
+												})
+											}
+										>
+											{bar}
+										</div>
+									)
 								) : (
 									bar
 								)}

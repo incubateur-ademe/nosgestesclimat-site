@@ -19,22 +19,19 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import { setTrackingVariable, skipTutorial } from '../../actions/actions'
+import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
-import { setTrackingVariable } from '../../actions/actions'
-import CategoryVisualisation from '../../sites/publicodes/CategoryVisualisation'
-import { splitName, title } from '../publicodesUtils'
+import { useQuery } from '../../utils'
+import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import useKeypress from '../utils/useKeyPress'
+import { useSimulationProgress } from '../utils/useNextQuestion'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
-import SimulationEnding from './SimulationEnding'
 import QuestionFinder from './QuestionFinder'
-import emoji from '../emoji'
-import { useQuery } from '../../utils'
-import { useSimulationProgress } from '../utils/useNextQuestion'
-
-import Meta from '../../components/utils/Meta'
+import SimulationEnding from './SimulationEnding'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -60,12 +57,15 @@ export default function Conversation({
 
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = orderByCategories
-		? sortBy(
-				(question) =>
-					-orderByCategories.find((c) => question.indexOf(c.dottedName) === 0)
-						?.nodeValue,
-				nextQuestions
-		  )
+		? sortBy((question) => {
+				const category = orderByCategories.find(
+					(c) => question.indexOf(c.dottedName) === 0
+				)
+				// We artificially put this category (since it has no actionable question) at the end
+				if (category.name === 'services publics') return 1000000
+				const value = -category?.nodeValue
+				return value
+		  }, nextQuestions)
 		: nextQuestions
 
 	const focusedCategory = useQuery().get('catégorie')
@@ -92,8 +92,8 @@ export default function Conversation({
 			? true
 			: situation[currentQuestion] != null
 
-	const [dismissedRespirations, dismissRespiration] = useState([])
 	const [finder, setFinder] = useState(false)
+	const tutorials = useSelector((state) => state.tutorials)
 
 	const tracking = useSelector((state) => state.tracking)
 
@@ -236,12 +236,11 @@ export default function Conversation({
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
 	}
 
-	const questionCategoryName = splitName(currentQuestion)[0],
-		questionCategory =
-			orderByCategories &&
-			orderByCategories.find(
-				({ dottedName }) => dottedName === questionCategoryName
-			)
+	const questionCategory =
+		orderByCategories &&
+		orderByCategories.find(
+			({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
+		)
 
 	const isCategoryFirstQuestion =
 		questionCategory &&
@@ -257,15 +256,10 @@ export default function Conversation({
 
 	return orderByCategories &&
 		isCategoryFirstQuestion &&
-		!dismissedRespirations.includes(questionCategory.dottedName) ? (
+		!tutorials[questionCategory.dottedName] ? (
 		<CategoryRespiration
 			questionCategory={questionCategory}
-			dismiss={() =>
-				dismissRespiration([
-					...dismissedRespirations,
-					questionCategory.dottedName,
-				])
-			}
+			dismiss={() => dispatch(skipTutorial(questionCategory.dottedName))}
 		/>
 	) : (
 		<section
@@ -277,6 +271,9 @@ export default function Conversation({
 				position: relative;
 				padding-top: 1.2rem;
 			`}
+
+			// This is a design idea, not really useful now
+			//border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 		>
 			{finder ? (
 				<QuestionFinder close={() => setFinder(false)} />
@@ -331,9 +328,6 @@ export default function Conversation({
 					e.preventDefault()
 				}}
 			>
-				{orderByCategories && questionCategory && (
-					<CategoryVisualisation questionCategory={questionCategory} />
-				)}
 				<div className="step">
 					<h2
 						role="heading"

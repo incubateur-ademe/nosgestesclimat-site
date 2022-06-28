@@ -89,10 +89,12 @@ export default ({ actionMode = false, demoMode = false }) => {
 							alt="Planète représentant le changement climatique"
 						/>
 						{!actionMode ? (
-							<HumanWeight
-								nodeValue={nodeValue}
-								overrideValue={actionMode && actionTotal !== 0 && actionTotal}
-							/>
+							<div css="width: 8rem">
+								<HumanWeight
+									nodeValue={nodeValue}
+									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+								/>
+							</div>
 						) : (
 							<DiffHumanWeight
 								{...{ nodeValue, engine, rules, actionChoices }}
@@ -101,7 +103,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 					</div>
 				</Link>
 				<PetrolScore
-					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'pétrogaz')}
+					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'petrogaz')}
 				/>
 				{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement 
 				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo 

@@ -117,6 +117,42 @@ export const extractCategories = (
 	return sort ? sortCategories(categories) : categories
 }
 
+export const getSubcategories = (rules, category, engine) => {
+	const rule = engine.getRule(category.name),
+		formula = ruleFormula(rule)
+
+	if (!formula) return [category]
+
+	const sumToDisplay =
+		formula.nodeKind === 'somme'
+			? category.name
+			: formula.operationKind === '/'
+			? formula.explanation[0].dottedName
+			: null
+
+	console.log('sum', sumToDisplay)
+	if (!sumToDisplay) return [category]
+
+	const subCategories = extractCategories(
+		rules,
+		engine,
+		null,
+		sumToDisplay,
+		false
+	)
+	category.name.includes('logement') &&
+		console.log('LOG', subCategories, formula.explanation[1])
+
+	return formula.operationKind === '/'
+		? subCategories.map((el) => ({
+				...el,
+				nodeValue:
+					el.nodeValue /
+					engine.evaluate(formula.explanation[1].dottedName).nodeValue,
+		  }))
+		: subCategories
+}
+
 export const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
 
 export const safeGetRule = (engine, dottedName) => {
@@ -126,4 +162,11 @@ export const safeGetRule = (engine, dottedName) => {
 	} catch (e) {
 		console.log(e)
 	}
+}
+
+export const questionCategoryName = (dottedName) => splitName(dottedName)[0]
+export function relegate(key, array) {
+	const isKey = (a) => a.dottedName === key
+	const categories = [...array.filter((a) => !isKey(a)), array.find(isKey)]
+	return categories
 }

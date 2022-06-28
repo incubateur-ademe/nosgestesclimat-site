@@ -44,7 +44,7 @@ export default function Input({
 						}}
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
-					<div css="display: flex; justify-content: end; align-items: center">
+					<div css="display: flex; justify-content: flex-end; align-items: center">
 						{showAnimation && <AnimatedTargetValue value={value} unit="km" />}
 						<NumberFormat
 							autoFocus={autoFocus}

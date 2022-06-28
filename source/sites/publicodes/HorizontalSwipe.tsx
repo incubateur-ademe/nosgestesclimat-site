@@ -53,7 +53,10 @@ export default ({ children, next, previous }) => {
 						position: absolute;
 						width: 35rem;
 						max-width: 100%;
-						top: 2rem;
+						top: 0.4rem;
+						@media (min-height: 800px) {
+							top: 1.7rem;
+						}
 					`}
 					key={page}
 					custom={direction}
@@ -81,7 +84,9 @@ export default ({ children, next, previous }) => {
 					{children}
 				</motion.div>
 			</AnimatePresence>
-			<NextButton onClick={() => paginate(1)}>{'‣'}</NextButton>
+			<NextButton onClick={() => paginate(1)} attention={page === 0}>
+				{'‣'}
+			</NextButton>
 			<NextButton reverse onClick={() => paginate(-1)}>
 				{'‣'}
 			</NextButton>
@@ -112,8 +117,42 @@ const NextButton = styled.button`
 	${(props) =>
 		props.reverse &&
 		`
- left: 10px;
-  transform: scale(-1);
+    left: 10px;
+    transform: scale(-1);
+	`}
+	${(props) =>
+		props.attention &&
+		`
 
+animation-name: light, strong;
+animation-duration: 1s;
+animation-delay: 8s, 14s; 
+animation-timing-function: ease-in-out;
+animation-iteration-count: 6, infinite;
+animation-direction: alternate;
+	 
+@keyframes light{
+		0% {
+			transform: scale(1);
+			opacity: 0.6;
+		}
+		100% {
+			transform: scale(1.2);
+			opacity: 1
+		}
+	}
+	@keyframes strong {
+		0% {
+			transform: scale(1);
+			opacity: 0.6;
+			background: white;
+			color: var(--color)
+		}
+		100% {
+			transform: scale(1.2);
+			opacity: 1
+			; background: var(--color); color: white
+		}
+	}
 	`}
 `

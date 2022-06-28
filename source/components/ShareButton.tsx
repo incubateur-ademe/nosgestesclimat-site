@@ -75,7 +75,7 @@ ${decodeURIComponent(url)}`
 					'Copier le lien'
 				)
 			) : (
-				<span>Lien copié {emoji('✅')}</span>
+				<span>Copié {emoji('✅')}</span>
 			)}
 			{/* Created by Barracuda from the Noun Project */}
 		</Button>

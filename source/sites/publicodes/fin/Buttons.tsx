@@ -11,13 +11,14 @@ export const ActionButton = ({
 	imgSrc = actionImg,
 	invertImage = true,
 	url = '/actions',
+	large,
 }) => {
 	const tracker = useContext(TrackerContext)
 
 	return (
 		<Link
 			to={url}
-			className="ui__ button plain"
+			className="ui__ button plain cta"
 			onClick={() =>
 				tracker.push([
 					'trackEvent',
@@ -29,10 +30,9 @@ export const ActionButton = ({
 			}
 			css={`
 				margin: 0.6rem auto;
-				width: 90%;
-
+				${large && 'width: 90%;'}
 				img {
-					height: 2.6rem;
+					height: ${large ? '2.6rem' : '1.6rem'};
 					filter: ${invertImage ? 'invert(100%)' : 'none'};
 					margin: 0 0.6rem;
 					display: inline-block;

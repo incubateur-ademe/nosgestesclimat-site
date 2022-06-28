@@ -7,25 +7,62 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { situationSelector } from '../../selectors/simulationSelectors'
+import RavijenChart from './chart/RavijenChart'
+import ActionSlide from './fin/ActionSlide'
+import Budget from './fin/Budget'
+import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
+
+const Nothing = () => null
+const visualisationChoices = {
+	budget: Budget,
+	'sous-catégories': RavijenChart,
+	emojis: () => <FinShareButton showResult />,
+
+	action: ActionSlide,
+
+	aucun: Nothing,
+}
 
 export default ({}) => {
 	const persona = useSelector((state) => state.simulation?.persona)
+	const [selectedVisualisation, selectVisualisation] = useState('aucun')
+
+	const Visualisation = visualisationChoices[selectedVisualisation]
+	const engine = useEngine()
+
+	const slideProps = {
+		score: engine.evaluate('bilan').nodeValue,
+		headlessMode: true,
+	}
 
 	return (
 		<div>
 			<ScrollToTop />
 			<h1>Personas</h1>
 			<p>
-				<em>Cliquez pour charger un dans le simulateur.</em>
+				<em>
+					Sélectionnez un persona et éventuellement un graphique à afficher.
+				</em>
 			</p>
+			<form>
+				{Object.keys(visualisationChoices).map((name) => (
+					<label>
+						<input
+							onClick={() => selectVisualisation(name)}
+							type="radio"
+							value={name}
+							checked={selectedVisualisation === name}
+						/>
+						{name}
+					</label>
+				))}
+			</form>
 			{persona && (
-				<IllustratedMessage
-					emoji="✅"
-					message={<p>Persona sélectionné : {persona}</p>}
-				/>
+				<div css="max-width: 35rem; margin: 0 auto">
+					<Visualisation {...slideProps} />
+				</div>
 			)}
-
 			<PersonaGrid />
 			<p>
 				Les personas nous permettront de prendre le parti d'une diversité
@@ -47,7 +84,6 @@ export default ({}) => {
 				le coller dans <a href="https://www.json2yaml.com">cet outil</a> pour
 				générer un YAML, puis l'insérer dans personas.yaml.
 			</p>
-
 			<p>
 				Pour les prénoms, on peut utiliser{' '}
 				<a href="https://lorraine-hipseau.me">ce générateur</a>.
@@ -56,10 +92,14 @@ export default ({}) => {
 	)
 }
 
-export const PersonaGrid = ({ additionnalOnClick }) => {
+export const PersonaGrid = ({
+	additionnalOnClick,
+	warningIfSituationExists,
+}) => {
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
-	const persona = useSelector((state) => state.simulation?.persona)
+	const selectedPersona = useSelector((state) => state.simulation?.persona)
+
 	const situation = useSelector(situationSelector)
 
 	const rules = useSelector((state) => state.rules)
@@ -133,7 +173,9 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 				return (
 					<li key={nom}>
 						<div
-							className="ui__ card interactive light-border"
+							className={`ui__ card interactive light-border ${
+								selectedPersona === persona.nom ? 'selected' : ''
+							}`}
 							css={`
 								width: 11rem !important;
 								height: 15rem !important;
@@ -148,7 +190,9 @@ export const PersonaGrid = ({ additionnalOnClick }) => {
 									width: 100% !important;
 								`}
 								onClick={() =>
-									hasSituation ? setWarning(persona) : setPersona(persona)
+									warningIfSituationExists && hasSituation
+										? setWarning(persona)
+										: setPersona(persona)
 								}
 							>
 								<div>{emoji(icônes || '👥')}</div>

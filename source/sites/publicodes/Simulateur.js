@@ -17,9 +17,9 @@ import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
-import ScoreBar from './ScoreBar'
-import Chart from './chart/index.js'
 import { questionConfig } from './questionConfig'
+import ScoreBar from './ScoreBar'
+import SimulateurChart from './SimulateurChart'
 
 const eqValues = compose(isEmpty, symmetricDifference)
 
@@ -79,7 +79,7 @@ const Simulateur = (props) => {
 					}
 					explanations={
 						<>
-							<Chart />
+							<SimulateurChart />
 						</>
 					}
 				/>

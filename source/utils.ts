@@ -103,3 +103,9 @@ export function range(start, end) {
 		.fill()
 		.map((_, idx) => start + idx)
 }
+
+export function arrayLoopIteration(array, key) {
+	const index = array.indexOf(key)
+
+	return index === array.length - 1 ? array[0] : array[index + 1]
+}

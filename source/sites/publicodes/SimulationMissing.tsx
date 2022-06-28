@@ -29,7 +29,10 @@ export default ({}) => {
 				Vous pouvez aussi voir le parcours action comme si vous étiez l'un de
 				ces profils types.
 			</p>
-			<PersonaGrid additionnalOnClick={() => null} />
+			<PersonaGrid
+				additionnalOnClick={() => null}
+				warningIfSituationExists={true}
+			/>
 		</div>
 	)
 }
