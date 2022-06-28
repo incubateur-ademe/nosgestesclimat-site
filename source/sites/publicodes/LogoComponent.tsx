@@ -14,7 +14,7 @@ const SvgComponent = (props) => (
 				xlinkHref="#a"
 				id="d"
 				gradientUnits="userSpaceOnUse"
-				gradientTransform="scale(1.00299 -1.00299) rotate(38.34 608.852 -189.54)"
+				gradientTransform="matrix(.82906 -.6557 -.6557 -.82906 7.543 438.274)"
 				x1={182.818}
 				y1={184.334}
 				x2={346.067}
@@ -23,8 +23,8 @@ const SvgComponent = (props) => (
 			<linearGradient id="a">
 				<stop
 					style={{
-						stopColor: '#3843ff',
-						stopOpacity: 0.80784315,
+						stopColor: '#5f47e2',
+						stopOpacity: 0.85490197,
 					}}
 					offset={0}
 				/>
@@ -33,7 +33,7 @@ const SvgComponent = (props) => (
 						stopColor: '#d65585',
 						stopOpacity: 1,
 					}}
-					offset={0.487}
+					offset={0.524}
 				/>
 				<stop
 					style={{
@@ -47,7 +47,7 @@ const SvgComponent = (props) => (
 				xlinkHref="#b"
 				id="e"
 				gradientUnits="userSpaceOnUse"
-				gradientTransform="scale(1.00299 -1.00299) rotate(38.34 608.852 -189.54)"
+				gradientTransform="matrix(.82906 -.6557 -.6557 -.82906 7.543 438.274)"
 				x1={182.548}
 				y1={225.812}
 				x2={304.496}
@@ -56,8 +56,8 @@ const SvgComponent = (props) => (
 			<linearGradient id="b">
 				<stop
 					style={{
-						stopColor: '#4046f5',
-						stopOpacity: 0.81568629,
+						stopColor: '#6b48d9',
+						stopOpacity: 0.87058824,
 					}}
 					offset={0}
 				/>
@@ -66,21 +66,21 @@ const SvgComponent = (props) => (
 						stopColor: '#5987ff',
 						stopOpacity: 1,
 					}}
-					offset={0.537}
+					offset={0.643}
 				/>
 				<stop
 					style={{
 						stopColor: '#2daa66',
 						stopOpacity: 1,
 					}}
-					offset={1}
+					offset={0.916}
 				/>
 			</linearGradient>
 			<linearGradient
 				xlinkHref="#c"
 				id="f"
 				gradientUnits="userSpaceOnUse"
-				gradientTransform="translate(-256.418 347.351) scale(1.05348)"
+				gradientTransform="matrix(1.11023 0 0 1.11023 -270.686 358.418)"
 				x1={215.079}
 				y1={-184.757}
 				x2={300.817}
@@ -89,7 +89,7 @@ const SvgComponent = (props) => (
 			<linearGradient id="c">
 				<stop
 					style={{
-						stopColor: '#ff4e25',
+						stopColor: '#ff3927',
 						stopOpacity: 1,
 					}}
 					offset={0}
@@ -103,64 +103,66 @@ const SvgComponent = (props) => (
 				/>
 			</linearGradient>
 		</defs>
-		<path
-			style={{
-				fill: 'none',
-				fillRule: 'evenodd',
-				stroke: 'url(#d)',
-				strokeWidth: 22.5672,
-				strokeLinecap: 'butt',
-				strokeDasharray: 'none',
-			}}
-			d="M164.633 64.778c25.126 31.769 19.741 77.89-12.028 103.017-31.769 25.126-78.529 19.38-103.655-12.388"
-		/>
-		<path
-			style={{
-				fill: 'none',
-				fillRule: 'evenodd',
-				stroke: 'url(#e)',
-				strokeWidth: 22.5672,
-				strokeLinecap: 'butt',
-				strokeDasharray: 'none',
-			}}
-			d="M48.962 155.411C23.836 123.642 29.222 77.52 60.99 52.394c10.334-8.173 22.187-13.118 34.341-14.976"
-		/>
-		<circle
-			style={{
-				fill: '#2daa66',
-				fillOpacity: 1,
-				fillRule: 'evenodd',
-				strokeWidth: 0.994319,
-			}}
-			cx={68.278}
-			cy={96.595}
-			r={22.077}
-			transform="rotate(-38.34)"
-		/>
-		<circle
-			style={{
-				fill: 'url(#f)',
-				fillOpacity: 1,
-				fillRule: 'evenodd',
-				strokeWidth: 0.79011,
-			}}
-			cx={15.325}
-			cy={152.713}
-			transform="rotate(-38.34)"
-			r={45.162}
-		/>
-		<path
-			style={{
-				fill: '#fc9001',
-				fillOpacity: 0.996078,
-				stroke: 'none',
-				strokeWidth: '.752239px',
-				strokeLinecap: 'butt',
-				strokeLinejoin: 'miter',
-				strokeOpacity: 1,
-			}}
-			d="m171.606 55.555-32.255 25.51 9.515 19.775 33.042-26.232z"
-		/>
+		<g transform="matrix(.96406 0 0 .96406 5.204 3.883)">
+			<path
+				style={{
+					fill: 'none',
+					fillRule: 'evenodd',
+					stroke: 'url(#d)',
+					strokeWidth: 23.7829,
+					strokeLinecap: 'butt',
+					strokeDasharray: 'none',
+				}}
+				d="M166.536 64.11c26.479 33.48 20.804 82.087-12.677 108.566-33.48 26.48-82.759 20.425-109.238-13.055"
+			/>
+			<path
+				style={{
+					fill: 'none',
+					fillRule: 'evenodd',
+					stroke: 'url(#e)',
+					strokeWidth: 23.7829,
+					strokeLinecap: 'butt',
+					strokeDasharray: 'none',
+				}}
+				d="M44.633 159.625c-26.48-33.48-20.804-82.087 12.676-108.566 10.89-8.614 23.382-13.825 36.191-15.783"
+			/>
+			<circle
+				style={{
+					fill: '#2daa66',
+					fillOpacity: 1,
+					fillRule: 'evenodd',
+					strokeWidth: 1.04788,
+				}}
+				cx={68.616}
+				cy={93.856}
+				r={23.267}
+				transform="rotate(-38.34)"
+			/>
+			<circle
+				style={{
+					fill: 'url(#f)',
+					fillOpacity: 1,
+					fillRule: 'evenodd',
+					strokeWidth: 0.832673,
+				}}
+				cx={15.696}
+				cy={153.294}
+				transform="rotate(-38.34)"
+				r={47.595}
+			/>
+			<path
+				style={{
+					fill: '#fc9001',
+					fillOpacity: 0.996078,
+					stroke: 'none',
+					strokeWidth: '.792763px',
+					strokeLinecap: 'butt',
+					strokeLinejoin: 'miter',
+					strokeOpacity: 1,
+				}}
+				d="M167.523 48.087 134.71 72.292l11.28 22.018 36.526-26.654-6.642-10.904c-4.142-5.05-8.35-8.665-8.35-8.665z"
+			/>
+		</g>
 	</svg>
 )
 
