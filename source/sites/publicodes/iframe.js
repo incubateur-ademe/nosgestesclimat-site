@@ -10,17 +10,8 @@ const couleur = script.dataset.couleur // not used yet
 const srcURL = new URL(script.src)
 const hostname = srcURL.hostname || 'nosgestesclimat.fr'
 
-const possibleOptionStrings = [
-	'integratorLogo',
-	'integratorName',
-	'integratorActionUrl',
-	'integratorYoutubeVideo',
-	'integratorActionText',
-]
 const possibleOptions = [
-	{ key: 'shareData', legacy: 'partagedatafinsimulation' },
-	,
-	...possibleOptionStrings.map((s) => ({ key: s })),
+	{ key: 'shareData', legacy: 'partagedatafinsimulation' }
 ]
 
 const optionFragments = possibleOptions.map(({ key, legacy }) => {
