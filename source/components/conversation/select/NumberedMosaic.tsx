@@ -159,9 +159,7 @@ export default function NumberedMosaic({
 					suggestions={suggestions}
 				/>
 			)}
-			<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
-				{choiceElements}
-			</div>
+			{choiceElements}
 		</div>
 	)
 }
