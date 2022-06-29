@@ -85,11 +85,32 @@ Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners.
 
 			`,
 		suggestions: {
-			'Je suis végétalien': {
+			végétalien: {
 				'végétalien . nombre': 14,
 			},
-			'Je suis végétarien': {
-				'végétarien . nombre': 14,
+			végétarien: {
+				'végétalien . nombre': 3,
+				'végétarien . nombre': 11,
+			},
+			'peu de viande': {
+				'végétalien . nombre': 1,
+				'végétarien . nombre': 7,
+				'viande 1 . nombre': 4,
+				'poisson 1 . nombre': 1,
+				'poisson 2 . nombre': 1,
+			},
+			'viande régulièrement': {
+				'végétarien . nombre': 4,
+				'viande 1 . nombre': 6,
+				'viande 2 . nombre': 2,
+				'poisson 1 . nombre': 1,
+				'poisson 2 . nombre': 1,
+			},
+			'beaucoup de viande': {
+				'viande 1 . nombre': 6,
+				'viande 2 . nombre': 6,
+				'poisson 1 . nombre': 1,
+				'poisson 2 . nombre': 1,
 			},
 		},
 		isApplicable: (dottedName: DottedName) =>
