@@ -138,12 +138,15 @@ Vos consommations de boissons chaudes pour une semaine type. Un café par jour ?
 			'un café par jour': {
 				'café . nombre': 7,
 			},
-			'deux café par jour': {
-				'café . nombre': 14,
+			'beaucoup de café': {
+				'café . nombre': 28,
 			},
 			'un café et un thé par jour': {
 				'café . nombre': 7,
 				'thé . nombre': 7,
+			},
+			'un chocolat chaud le matin': {
+				'chocolat chaud . nombre': 7,
 			},
 		},
 		isApplicable: (dottedName: DottedName) =>
