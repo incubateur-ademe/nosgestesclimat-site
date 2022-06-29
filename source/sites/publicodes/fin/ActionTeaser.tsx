@@ -201,7 +201,7 @@ export default ({}) => {
 					</div>
 					<div css="margin: .6rem ; text-align: right">
 						<ActionValue
-							{...{ dottedName: action.dottedName, total: 20000, engine }}
+							{...{ dottedName: action.dottedName, total, engine }}
 						/>
 					</div>
 				</motion.li>
