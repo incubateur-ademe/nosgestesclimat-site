@@ -9,10 +9,6 @@ import highlightMatches from 'Components/highlightMatches'
 
 const worker = new Worker()
 
-type SearchBarProps = {
-	showListByDefault?: boolean
-}
-
 type SearchItem = {
 	title: string
 	dottedName: Object
@@ -25,9 +21,7 @@ type Matches = Array<{
 	indices: Array<[number, number]>
 }>
 
-export default function SearchBar({
-	showListByDefault = false,
-}: SearchBarProps) {
+export default function SearchBar({}: SearchBarProps) {
 	const rules = useEngine().getParsedRules()
 	const [input, setInput] = useState('')
 	const [results, setResults] = useState<
@@ -51,7 +45,6 @@ export default function SearchBar({
 				})),
 		[rules]
 	)
-
 	useEffect(() => {
 		worker.postMessage({
 			rules: searchIndex,
@@ -65,19 +58,22 @@ export default function SearchBar({
 
 	return (
 		<>
-			<input
-				type="search"
-				className="ui__"
-				value={input}
-				placeholder={i18n.t('Entrez des mots clefs ici')}
-				onChange={(e) => {
-					const input = e.target.value
-					if (input.length > 0) worker.postMessage({ input })
-					setInput(input)
-				}}
-			/>
+			<label title="Entrez des mots clefs">
+				<input
+					type="search"
+					className="ui__"
+					value={input}
+					placeholder={i18n.t('Entrez des mots clefs ici')}
+					onChange={(e) => {
+						const input = e.target.value
+						if (input.length > 0) worker.postMessage({ input })
+						setInput(input)
+					}}
+				/>
+			</label>
 			{!!input.length && !results.length ? (
 				<p
+					role="status"
 					className="ui__ notice light-bg"
 					css={`
 						padding: 0.4rem;
@@ -97,47 +93,43 @@ export default function SearchBar({
 						list-style: none;
 					`}
 				>
-					{(showListByDefault && !results.length && !input.length
-						? searchIndex
-								.filter((item) => item.espace.length === 2)
-								.map((item) => ({ item, matches: [] }))
+					{(!results.length && !input.length
+						? searchIndex.map((item) => ({ item, matches: [] }))
 						: results
-					)
-						.slice(0, showListByDefault ? 100 : 6)
-						.map(({ item, matches }) => (
-							<li key={item.dottedName}>
-								<RuleLink
-									dottedName={item.dottedName}
-									style={{
-										width: '100%',
-										textDecoration: 'none',
-										lineHeight: '1.5rem',
-									}}
-								>
-									<small>
-										{item.espace
-											.slice(1)
-											.reverse()
-											.map((name) => (
-												<span key={name}>
-													{highlightMatches(
-														name,
-														matches.filter(
-															(m) => m.key === 'espace' && m.value === name
-														)
-													)}{' '}
-													›{' '}
-												</span>
-											))}
-										<br />
-									</small>
-									{highlightMatches(
-										item.title,
-										matches.filter((m) => m.key === 'title')
-									)}
-								</RuleLink>
-							</li>
-						))}
+					).map(({ item, matches }) => (
+						<li key={item.dottedName}>
+							<RuleLink
+								dottedName={item.dottedName}
+								style={{
+									width: '100%',
+									textDecoration: 'none',
+									lineHeight: '1.5rem',
+								}}
+							>
+								<small>
+									{item.espace
+										.slice(1)
+										.reverse()
+										.map((name) => (
+											<span key={name}>
+												{highlightMatches(
+													name,
+													matches.filter(
+														(m) => m.key === 'espace' && m.value === name
+													)
+												)}{' '}
+												›{' '}
+											</span>
+										))}
+									<br />
+								</small>
+								{highlightMatches(
+									item.title,
+									matches.filter((m) => m.key === 'title')
+								)}
+							</RuleLink>
+						</li>
+					))}
 				</ul>
 			)}
 		</>

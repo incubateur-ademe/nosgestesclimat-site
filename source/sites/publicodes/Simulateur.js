@@ -16,9 +16,10 @@ import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
-import Chart from './chart/index.js'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
+import SimulateurChart from './SimulateurChart'
+
 
 const equivalentTargetArrays = (array1, array2) =>
 	array1.length === array2.length &&
@@ -77,7 +78,7 @@ const Simulateur = (props) => {
 					}
 					explanations={
 						<>
-							<Chart />
+							<SimulateurChart />
 						</>
 					}
 				/>
@@ -101,21 +102,6 @@ const TutorialRedirection = () => {
 const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 	const situation = useSelector(situationSelector)
-	const tracker = useContext(TrackerContext)
-	const { endEventFired } = useSelector((state) => state.tracking)
-
-	useEffect(() => {
-		!endEventFired &&
-			tracker.push([
-				'trackEvent',
-				'NGC',
-				'A terminé la simulation',
-				null,
-				rules['bilan'].nodeValue,
-			])
-
-		setTrackingVariable('endEventFired', true)
-	}, [tracker])
 
 	return <Redirect to={buildEndURL(rules, engine)} />
 }

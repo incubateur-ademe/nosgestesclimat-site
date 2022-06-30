@@ -71,8 +71,10 @@ export default function RuleInput<Name extends string = DottedName>({
 	autoFocus = false,
 	className,
 	onSubmit = () => null,
+	engine: givenEngine,
+	noSuggestions = false,
 }: RuleInputProps<Name>) {
-	const engine = useContext(EngineContext)
+	const engine = givenEngine || useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
 	const rules = engine.getParsedRules()
@@ -227,6 +229,7 @@ export default function RuleInput<Name extends string = DottedName>({
 			onSubmit={onSubmit}
 			unit={evaluation.unit}
 			value={value as Evaluation<number>}
+			noSuggestions={noSuggestions}
 			inputEstimation={
 				rule.rawNode.aide &&
 				rules[

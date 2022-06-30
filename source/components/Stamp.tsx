@@ -1,6 +1,6 @@
 import styled from 'styled-components'
 
-const Stamp = styled.div`
+const Stamp = styled.button`
 	position: absolute;
 	font-size: 100%;
 	font-weight: bold;

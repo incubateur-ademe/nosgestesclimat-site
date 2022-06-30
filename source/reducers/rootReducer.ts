@@ -160,13 +160,21 @@ function actionChoices(state = {}, { type, action, choice }) {
 		return {}
 	} else return state
 }
-function survey(state = null, { type, room, answers }) {
+function survey(state = null, { type, room, answers, contextFile }) {
 	if (type === 'UNSET_SURVEY') return {}
 	if (type === 'SET_SURVEY') {
 		if (state?.room === room) return state
 		return {
 			room,
 			answers: {},
+			contextFile: state?.contextFile,
+		}
+	}
+	if (type === 'ADD_SURVEY_CONTEXT') {
+		return {
+			room: state?.room,
+			answers: state?.answers,
+			contextFile,
 		}
 	}
 	if (type === 'ADD_SURVEY_ANSWERS') {
@@ -176,6 +184,7 @@ function survey(state = null, { type, room, answers }) {
 				(memo, next) => ({ ...memo, [next.id]: next }),
 				state.answers
 			),
+			contextFile: state?.contextFile,
 		}
 	} else return state
 }
@@ -198,7 +207,15 @@ function tutorials(state = {}, { type, id, unskip }) {
 		return {}
 	} else return state
 }
-function tracking(state = {}, { type, name, value }) {
+function tracking(
+	state = {
+		endEventFired: false,
+		firstQuestionEventFired: false,
+		progress50EventFired: false,
+		progress90EventFired: false,
+	},
+	{ type, name, value }
+) {
 	if (type === 'SET_TRACKING_VARIABLE') {
 		return { ...state, [name]: value }
 	} else return state

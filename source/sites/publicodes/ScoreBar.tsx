@@ -77,20 +77,24 @@ export default ({ actionMode = false, demoMode = false }) => {
 								${color ? color : 'var(--color)'} 100%
 							)
 							repeat scroll 0% 0%;
+						color: white !important;
 					`}
 					to={demoMode ? '#' : buildEndURL(rules, engine)}
-					title="Page de fin de simulation"
+					title="Page de fin de simulation principale"
 				>
 					<div css="display:flex; align-items:center; justify-content: center">
 						<img
 							src={'/images/climate-change-small.svg'}
 							css="width:3rem;margin-right: .8rem;"
+							alt="Planète représentant le changement climatique"
 						/>
 						{!actionMode ? (
-							<HumanWeight
-								nodeValue={nodeValue}
-								overrideValue={actionMode && actionTotal !== 0 && actionTotal}
-							/>
+							<div css="width: 8rem">
+								<HumanWeight
+									nodeValue={nodeValue}
+									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+								/>
+							</div>
 						) : (
 							<DiffHumanWeight
 								{...{ nodeValue, engine, rules, actionChoices }}
@@ -99,7 +103,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 					</div>
 				</Link>
 				<PetrolScore
-					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'pétrogaz')}
+					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'petrogaz')}
 				/>
 				{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement 
 				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo 

@@ -17,6 +17,7 @@ export default function KmEstimation({
 				unit={evaluation.unit}
 				value={value}
 				showAnimation
+				idDescription={'explicationResultatAideKm'}
 			/>
 			<div>
 				<KmHelp

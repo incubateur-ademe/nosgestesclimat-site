@@ -8,8 +8,14 @@ const Wrapper = styled.svg`
 
 export default function Ademe() {
 	return (
-		<Wrapper width="181" height="213" viewBox="0 0 181 213" alt="ADEME">
-			<title>Logo de l'ADEME</title>
+		<Wrapper
+			width="181"
+			height="213"
+			viewBox="0 0 181 213"
+			alt="ADEME"
+			role="img"
+		>
+			<title>ADEME</title>
 			<g clip-path="url(#clip0_506:394)">
 				<path d="M180.35 212.6H0V0H180.35V212.6Z" fill="#004899" />
 				<path d="M176.33 4.01001H4.01001V208.59H176.33V4.01001Z" fill="white" />

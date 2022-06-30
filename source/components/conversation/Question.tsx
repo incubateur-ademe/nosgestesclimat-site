@@ -42,6 +42,7 @@ export default function Question({
 	missing,
 	onChange,
 	value: currentValue,
+	title: ruleTitle,
 }: QuestionProps) {
 	const [currentSelection, setCurrentSelection] = useState(
 		missing ? null : `'${currentValue}'`
@@ -66,10 +67,9 @@ export default function Question({
 			return () => clearTimeout(timeoutId)
 		}
 	}, [currentSelection])
-
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
 		return (
-			<div className="ui__ radio">
+			<div className="ui__ radio" aria-labelledby={'id-question-' + ruleTitle}>
 				{choices.map(({ value, label }) => (
 					<span
 						key={value}
@@ -103,7 +103,11 @@ export default function Question({
 		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
 		return (
-			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
+			<ul
+				css="width: 100%; padding: 0; margin:0"
+				className="ui__ radio"
+				aria-labelledby={'id-question-' + ruleTitle}
+			>
 				{choices.canGiveUp && (
 					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
@@ -120,6 +124,7 @@ export default function Question({
 					</li>
 				)}
 				{choices.children &&
+					choices.children.length <= 5 &&
 					choices.children.map(
 						({
 							title,
@@ -151,6 +156,33 @@ export default function Question({
 								</li>
 							)
 					)}
+				{/* If there are more than 5 possibilities in a question with "Plusieurs possibilités" a Select is displayed*/}
+				{choices.children && choices.children.length > 5 && (
+					<div aria-labelledby={'id-question-' + ruleTitle}>
+						<label title={choices.title}>
+							<select
+								name={choices.title}
+								className="ui__"
+								onChange={(e) => handleChange(e.target.value)}
+								css={`
+									font-size: 110% !important;
+									padding: 0.6rem 1.2rem !important;
+									width: 100% !important;
+								`}
+							>
+								<option value="">Choisissez une option</option>
+								{choices.children.map((node, index) => (
+									<option
+										key={node.dottedName + '-' + index}
+										value={relativeDottedName(node.dottedName)}
+									>
+										{node.title}
+									</option>
+								))}
+							</select>
+						</label>
+					</div>
+				)}
 			</ul>
 		)
 	}
@@ -201,7 +233,15 @@ export const RadioLabel = (props: RadioLabelProps) => {
 					</button>
 					{isOpen && (
 						<animate.appear>
-							<div className="ui__ card box">
+							<div
+								className="ui__ card box"
+								css={`
+									text-align: left !important;
+									> h2 {
+										margin-top: 0.5rem;
+									}
+								`}
+							>
 								<h2>{props.label}</h2>
 								<Markdown source={props.description} />
 								{props.références && (

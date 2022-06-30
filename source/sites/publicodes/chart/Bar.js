@@ -15,53 +15,28 @@ export default ({
 	noText,
 	valueColor,
 	demoMode,
-	dottedName,
 }) => {
-	const { pathname } = useLocation(),
-		history = useHistory(),
-		query = useQuery()
-
-	const emojiComponent = (
-		<span
-			css={`
-				font-size: 140%;
-				width: 2.3rem;
-				margin-left: -2.3rem;
-			`}
-		>
-			{emoji(icons)}
-		</span>
-	)
-
 	return (
 		<>
 			<div
 				css={`
 					display: flex;
 					align-items: center;
-					height: 1.3rem;
+					height: 2rem;
 					position: relative;
 				`}
 				title={title}
 			>
-				{pathname.includes('simulateur/bilan') ? (
-					<button
-						type="button"
-						title={`N'afficher que les questions ` + dottedName}
-						css={`
-							margin: 0;
-							padding: 0;
-							font-size: 100%;
-						`}
-						onClick={() =>
-							history.push({ pathname, search: '?catégorie=' + dottedName })
-						}
-					>
-						{emojiComponent}
-					</button>
-				) : (
-					emojiComponent
-				)}
+				<span
+					css={`
+						font-size: 140%;
+						width: 2.3rem;
+						margin-left: -2.3rem;
+					`}
+				>
+					{emoji(icons)}
+				</span>
+				<span class="visually-hidden">{title}</span>
 				<BarContent
 					noText={noText}
 					color={color}
@@ -99,7 +74,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 				background: ${color};
 				margin-top: 0rem;
 				margin-right: 0.8rem;
-				height: 1.3rem;
+				height: 2rem;
 				padding-left: 0.1rem;
 				border-radius: 1rem;
 				width: ${widthPercentage}%;
@@ -116,12 +91,12 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 						opacity: 0.9;
 						font-weight: bold;
 						color: white;
-						font-size: 90%;
-						line-height: 1.3rem;
+						font-size: 110%;
+						line-height: 2rem;
 						${!show && `display: none`}
 					`}
 				>
-					<span>{usedText}</span>
+					<span aria-hidden="true">{usedText}</span>
 				</span>
 			)}
 		</span>

@@ -6,6 +6,7 @@ import { default as React, useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import emoji from '../../../components/emoji'
 import { correctValue } from '../../../components/publicodesUtils'
+import NeutralH1 from '../../../components/ui/NeutralH1'
 import { ActionButton } from './Buttons'
 import { DocumentationEndButton, generateImageLink } from './index'
 
@@ -39,7 +40,7 @@ export default ({ headlessMode }) => {
 		headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
-	})
+	}, [])
 	const gradientPosition = Math.round((1 - value / score) * 400 + 50)
 
 	return (
@@ -99,7 +100,9 @@ export default ({ headlessMode }) => {
 								</span>{' '}
 								pleins
 							</div>
-							de pétrole brut par an.
+							<span>
+								de <NeutralH1>pétrole brut par an</NeutralH1>.
+							</span>
 							<small>
 								Soit {secondaryValue} litres (plein de {pleinVolume} litres).
 							</small>

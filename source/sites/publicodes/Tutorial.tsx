@@ -16,6 +16,7 @@ import { TrackerContext } from '../../components/utils/withTracker'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
+import Meta from '../../components/utils/Meta'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -62,25 +63,31 @@ export default ({}) => {
 	if (slides[index] == null) return null
 
 	return (
-		<SlidesLayout>
-			<HorizontalSwipe {...{ next, previous }}>
-				<Slide
-					{...{
-						last,
-						skip,
-					}}
-				>
-					<Component />
-				</Slide>
-			</HorizontalSwipe>
-		</SlidesLayout>
+		<>
+			<Meta
+				title="Tutorial"
+				description="Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation."
+			/>
+			<SlidesLayout length={slides.length} active={index}>
+				<HorizontalSwipe {...{ next, previous }}>
+					<Slide
+						{...{
+							last,
+							skip,
+						}}
+					>
+						<Component />
+					</Slide>
+				</HorizontalSwipe>
+			</SlidesLayout>
+		</>
 	)
 }
 
 const slides = [
 	() => (
 		<>
-			<h1>Mon empreinte climat {emoji('😶‍🌫️')} ?</h1>
+			<h1>Mon empreinte climat {emoji('😶‍🌫️')}?</h1>
 			<p>Pas de panique, on vous explique ce que c'est.</p>
 			<p>
 				La planète <strong>se réchauffe dangereusement</strong>, au fur et à
@@ -99,6 +106,7 @@ const slides = [
 			<p>
 				Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone
 				<img
+					alt=""
 					src="/images/co2.svg"
 					css={`
 						object-fit: cover;
@@ -111,6 +119,7 @@ const slides = [
 				sur le climat.
 			</p>
 			<div
+				aria-hidden="true"
 				css={`
 					svg {
 						height: 7rem;
@@ -171,11 +180,13 @@ const slides = [
 					</summary>{' '}
 					D'autres gaz, surtout le méthane&nbsp;
 					<img
+						alt=""
 						src="/images/methane.svg"
 						css="width: 1.8rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
 					/>{' '}
 					et le protoxyde d'azote{' '}
 					<img
+						alt=""
 						src="/images/n2o.svg"
 						css="width: 3rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
 					/>{' '}
@@ -192,7 +203,7 @@ const slides = [
 				Chaque année, un Français émet en moyenne{' '}
 				<strong> à peu près 10 tonnes</strong> de CO₂e.
 			</p>
-			<AbacusFrance css="width:10rem; height: 100%" />
+			<AbacusFrance aria-hidden="true" css="width:10rem; height: 100%" />
 			<p>
 				C'est votre point de départ dans ce test : chacune de vos réponses
 				personnalisera ce résultat dans la barre de score.
@@ -217,6 +228,7 @@ const slides = [
 			</p>
 
 			<ObjectifClimat
+				aria-hidden="true"
 				css={`
 					width: 16rem;
 					g path:first-child {

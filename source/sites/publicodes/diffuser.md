@@ -18,29 +18,23 @@ Pour en savoir plus sur l'intégration, rendez-vous sur [notre guide](https://gi
 
 ## Vous animez des conférences climat
 
-Pour pimenter une conférence et rendre vos auditeurs actifs sur leur 🤳, quoi de mieux que de les laisser faire une simulation en direct ?
-
-Cela tombe bien, nous venons de lancer en version beta le [🏟️ mode conférence](/conférence).
-
-Choissiez un nom de salle, partagez le lien, et lancez le match de simulation !
-
-## Vous voulez faire un sondage
+Pour pimenter une conférence et rendre vos auditeurs actifs sur leur téléphone, quoi de mieux que de les laisser faire une simulation en direct ?
 
 Vous voulez estimer l'empreinte climat d'un groupe de personnes, ou simplement intégrer le simulateur et récupérer le résultat de simulation dans le compte de l'utilisateur ?
 
-Nous réfléchissons à cette fonctionnalité.
+Les fonctionnaliés "conférence" et "sondage" sont désormais disponibles !
 
-Venez exprimer votre besoin [ici](https://github.com/datagir/nosgestesclimat-site/issues/231).
+Rendez-vous [🏟️ mode groupe](/groupe) sur choissiez un nom de salle, partagez le lien, et lancez le match de simulation !
 
-## 🇬🇧 You want the same calculator tailored to your country
+<h2 lang="en"> <span role="img" aria-label="" aria-hidden="true">🇬🇧</span> You want the same calculator tailored to your country </h2>
 
-We are looking for native partners to translate and adapt the GHG emissions model for the specificities of other countries.
+<p lang="en">We are looking for native partners to translate and adapt the GHG emissions model for the specificities of other countries.</p>
 
 > Nous recherchons activement des partenaires étrangers pour décliner Nos Gestes Climat dans d'autres pays.
 
 ## Vous souhaitez personnaliser l'outil pour vos propres besoins
 
-Pour en savoir plus sur l'intégration personnalisée (iframe configuré, fork du code), rendez-vous sur [notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md).
+Pour en savoir plus sur l'intégration personnalisée (<span lang="en">iframe</span> configuré, fork du code), rendez-vous sur [notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md).
 
 ## Vous voulez simplement nous aider
 

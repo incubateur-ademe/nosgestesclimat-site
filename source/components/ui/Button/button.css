@@ -80,7 +80,7 @@
 }
 .ui__.button.simple:hover,
 .ui__.button.simple.selected {
-	opacity: 0.8;
+	color: var(--darkColor);
 }
 .ui__.button.simple:not(:last-of-type) {
 	margin-right: 0.6em;
@@ -144,20 +144,20 @@
 .ui__.link-button:not(:disabled):not(.disabled).selected,
 .ui__.text-button:not(:disabled):not(.disabled).selected,
 .ui__.dashed-button:not(:disabled):not(.disabled).selected {
-	opacity: 0.8;
+	color: var(--darkColor);
 }
 
 .ui__.push-right.button:not(:disabled):not(.disabled):hover {
-	opacity: 0.8;
+	color: var(--darkColor);
 	transform: translateX(3px);
 }
 .ui__.button.push-left:not(:disabled):not(.disabled):hover {
-	opacity: 0.8;
+	color: var(--darkColor);
 	transform: translateX(-3px);
 }
 
 .answer-list button.answer:hover {
-	opacity: 0.8;
+	color: var(--darkColor);
 }
 
 .ui__.push-right.button:active {

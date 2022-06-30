@@ -114,3 +114,10 @@ export const pipe =
 	(...fns) =>
 	(x) =>
 		fns.reduce((v, f) => f(v), x)
+
+export function arrayLoopIteration(array, key) {
+	const index = array.indexOf(key)
+
+	return index === array.length - 1 ? array[0] : array[index + 1]
+}
+

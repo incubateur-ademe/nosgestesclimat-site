@@ -1,23 +1,20 @@
-import { correctValue } from 'Components/publicodesUtils'
+import { correctValue, splitName } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import { WebrtcProvider } from 'y-webrtc'
-import * as Y from 'yjs'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { extractCategories } from 'Components/publicodesUtils'
 import { computeHumanMean } from './Stats'
-import { filterExtremes } from './utils'
 import { backgroundConferenceAnimation } from './conferenceStyle'
-import { WebsocketProvider } from 'y-websocket'
-import useYjs from './useYjs'
 import useDatabase, { answersURL } from './useDatabase'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { v4 as uuidv4 } from 'uuid'
+import { getElements } from './Survey'
+import { defaultThreshold, defaultProgressMin } from './utils'
 
 export default () => {
 	const situation = useSelector(situationSelector),
@@ -42,10 +39,21 @@ export default () => {
 
 	const cachedSurveyId = surveyIds[survey.room]
 
+	const [surveyContext] = usePersistingState('surveyContext', {})
+
+	const context = Object.keys(surveyContext[survey.room]).reduce(
+		(acc, key) => ({
+			...acc,
+			...{ [splitName(key)[1]]: surveyContext[survey.room][key] },
+		}),
+		{}
+	)
+
 	const data = {
 		total: Math.round(nodeValue),
 		progress: +progress.toFixed(4),
 		byCategory,
+		context,
 	}
 
 	useEffect(() => {
@@ -67,7 +75,7 @@ export default () => {
 			)
 
 		if (!cachedSurveyId) {
-			setSurveyIds({ ...setSurveyIds, [survey.room]: uuidv4() })
+			setSurveyIds({ ...surveyIds, [survey.room]: uuidv4() })
 		}
 	}, [survey.room])
 
@@ -87,7 +95,7 @@ export default () => {
 			answers: [answer],
 			room: survey.room,
 		})
-	}, [situation, survey.room, cachedSurveyId])
+	}, [situation, surveyContext, survey.room, cachedSurveyId])
 
 	useEffect(async () => {
 		socket.on('received', (data) => {
@@ -102,7 +110,16 @@ export default () => {
 	const simulationArray = [],
 		result = null && computeHumanMean(simulationArray.map((el) => el.total))
 
-	const answersCount = Object.values(survey.answers).length
+	const existContext = survey ? !(survey['contextFile'] == null) : false
+
+	const elements = getElements(
+		survey.answers,
+		defaultThreshold,
+		existContext,
+		defaultProgressMin
+	)
+
+	const answersCount = elements.length
 
 	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 
@@ -151,6 +168,7 @@ export default () => {
 								display: inline-block;
 								line-height: 1.5rem;
 								text-align: center;
+								color: var(--darkerColor);
 							`}
 						>
 							{answersCount}

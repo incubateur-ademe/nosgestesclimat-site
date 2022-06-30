@@ -13,7 +13,9 @@
    version="1.1"
    viewBox="0 0 210 297"
    height="297mm"
-   width="210mm">
+   width="210mm"
+   role="img"
+   aria-label="CO2 CH4 N2O">
 
    <title>Un ballon de baudruche sur lequel sont écris en taille décroissante les princiapux gaz à effet de serre : CO2, CH4, N2O</title>
   <defs

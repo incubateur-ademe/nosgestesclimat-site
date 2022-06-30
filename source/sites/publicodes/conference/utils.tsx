@@ -50,6 +50,8 @@ export const generateRoomName = () => {
 
 export const defaultThreshold = 100 * 1000
 
+export const defaultProgressMin = 0.1
+
 export const filterExtremes = (elements, threshold) =>
 	Object.fromEntries(
 		Object.entries(elements).filter(([_, { total }]) => total < threshold)

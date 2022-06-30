@@ -10,6 +10,7 @@ import Stats from './Stats'
 import { UserBlock } from './UserList'
 import useYjs from './useYjs'
 import { defaultThreshold, getExtremes } from './utils'
+import Meta from '../../../components/utils/Meta'
 
 export const ConferenceTitle = styled.h2`
 	margin-top: 0.6rem;
@@ -39,10 +40,18 @@ export default () => {
 
 	return (
 		<div>
+			<Meta
+				title={'Conférence ' + room}
+				description={
+					'Participez à la conférence ' +
+					room +
+					' et visualisez les résultats du groupe'
+				}
+			/>
 			{room && <ScrollToTop />}
 			<h1>Conférence</h1>
 			<ConferenceTitle>
-				<img src={conferenceImg} />
+				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
 			<Stats

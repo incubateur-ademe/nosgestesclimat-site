@@ -119,52 +119,63 @@ export default ({
 							</p>
 						</label>
 					</div>
-
-					<p>
-						{emoji('🔒️')} Votre organisation peut bloquer l'utilisation du mode
-						conférence. Faites le test au préalable en duo : en cas de problème,
-						vous pouvez utiliser le mode sondage.
-					</p>
-				</InstructionBlock>
-			)}
-			{!started && (
-				<InstructionBlock
-					index="3"
-					title={
-						<span>
-							{emoji('🔗 ')} Partagez le lien à vos amis, collègues, etc.
-						</span>
-					}
-				>
-					{!newRoom && !room ? (
-						<p>Choississez d'abord un nom</p>
-					) : (
-						<div
-							css={`
-								display: flex;
-								flex-wrap: wrap;
-								justify-content: center;
-								align-items: center;
-							`}
-						>
-							<QRCode
-								value={shareURL}
-								size={200}
-								bgColor={'#ffffff'}
-								fgColor={color}
-								level={'L'}
-								includeMargin={false}
-								renderAs={'canvas'}
-							/>
-							<ShareButton
-								text="Faites un test d'empreinte climat avec moi"
-								url={shareURL}
-								title={'Nos Gestes Climat Conférence'}
-							/>
-						</div>
+					{mode == 'conférence' && (
+						<p>
+							{emoji('🔒️')} Votre organisation peut bloquer l'utilisation du
+							mode conférence. Faites le test au préalable en duo : en cas de
+							problème, vous pouvez utiliser le mode sondage.
+						</p>
+					)}
+					{mode == 'sondage' && (
+						<p>
+							{emoji('💡')} Vous souhaitez ajouter des questions pour obtenir
+							des informations supplémentaires sur les répondants ?{' '}
+							<Link to={'/groupe/documentation-contexte'}>
+								Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
+							</Link>
+						</p>
 					)}
 				</InstructionBlock>
 			)}
+			<InstructionBlock
+				index="3"
+				noIndex={started}
+				title={
+					<span>
+						{emoji('🔗 ')} Partagez le lien à vos amis, collègues, etc.
+					</span>
+				}
+			>
+				{!newRoom && !room ? (
+					<p>Choississez d'abord un nom</p>
+				) : (
+					<div
+						css={`
+							display: flex;
+							flex-wrap: wrap;
+							justify-content: center;
+							align-items: center;
+						`}
+					>
+						<QRCode
+							value={shareURL}
+							size={200}
+							bgColor={'#ffffff'}
+							fgColor={color}
+							level={'L'}
+							includeMargin={false}
+							renderAs={'svg'}
+							role={'img'}
+							aria-label={'QR code'}
+						/>
+						<ShareButton
+							text="Faites un test d'empreinte climat avec moi"
+							url={shareURL}
+							title={'Nos Gestes Climat Conférence'}
+						/>
+					</div>
+				)}
+			</InstructionBlock>
 			<InstructionBlock
 				index="4"
 				noIndex={started}
@@ -172,7 +183,7 @@ export default ({
 					<span>{emoji('🎰 ')} Faites toutes et tous votre simulation</span>
 				}
 			>
-				{room ? (
+				{!room ? (
 					<Link to={'/simulateur/bilan'}>
 						<button className="ui__ button plain">Faites votre test </button>
 					</Link>

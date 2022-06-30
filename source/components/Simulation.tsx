@@ -26,6 +26,7 @@ export default function Simulation({
 	showPeriodSwitch,
 	noFeedback,
 	animation = 'appear',
+	questionHeadingLevel,
 }: SimulationProps) {
 	const Animation = animate[animation]
 	return (
@@ -36,6 +37,7 @@ export default function Simulation({
 					customEnd={customEnd}
 					orderByCategories={orderByCategories}
 					customEndMessages={customEndMessages}
+					questionHeadingLevel={questionHeadingLevel}
 				/>
 				{!noFeedback && (
 					<>
@@ -62,6 +64,7 @@ function Questions({
 	customEndMessages,
 	customEnd,
 	orderByCategories,
+	questionHeadingLevel,
 }: {
 	customEndMessages?: ConversationProps['customEndMessages']
 	orderByCategories: Array<Object>
@@ -81,6 +84,7 @@ function Questions({
 					orderByCategories={orderByCategories}
 					customEnd={customEnd}
 					customEndMessages={customEndMessages}
+					questionHeadingLevel={questionHeadingLevel}
 				/>
 			</div>
 		</>

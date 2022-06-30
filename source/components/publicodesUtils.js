@@ -55,7 +55,7 @@ export const extractCategoriesNamespaces = (
 		return {
 			...node,
 			icons: icônes,
-			color: couleur,
+			color: categoryColorOverride[dottedName] || couleur,
 		}
 	})
 
@@ -69,6 +69,17 @@ export const minimalCategoryData = (categories) =>
 			Math.round(nodeValue),
 		])
 	)
+
+// This is for accessibility purposes : we need to try and test, easier to be done here than in the (necessary) colors in the data files
+// this kind of tool can help https://accessiblepalette.com/?lightness=98.2,93.9,85,76.2,67.4,57.8,48,40.2,31.8,24.9&fe6f5c=0,0&f8d147=0,-10&56d25b=0,0&0088cb=0,0&B534AD=1,15&808080=0,0&69788f=0,0
+const categoryColorOverride = {
+	// alimentation: '#358138',
+	// transport: '#BA5143',
+	// logement: '#007DA3',
+	// divers: '#1966F5',
+	// 'services publics': '#424C5A',
+	// numérique: '#B534AD',
+}
 
 export const extractCategories = (
 	rules,
@@ -85,10 +96,15 @@ export const extractCategories = (
 		const { icônes, couleur } = rules[dottedName]
 		const split = splitName(dottedName),
 			parent = split.length > 1 && split[0]
+
 		return {
 			...node,
 			icons: icônes || rules[parent].icônes,
-			color: couleur || rules[parent].couleur,
+			color:
+				categoryColorOverride[dottedName] ||
+				categoryColorOverride[parent] ||
+				couleur ||
+				rules[parent].couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,
 			dottedName: (parentRule === 'bilan' && parent) || node.dottedName,
 			documentationDottedName: node.dottedName,
@@ -100,6 +116,42 @@ export const extractCategories = (
 	return sort ? sortCategories(categories) : categories
 }
 
+export const getSubcategories = (rules, category, engine) => {
+	const rule = engine.getRule(category.name),
+		formula = ruleFormula(rule)
+
+	if (!formula) return [category]
+
+	const sumToDisplay =
+		formula.nodeKind === 'somme'
+			? category.name
+			: formula.operationKind === '/'
+			? formula.explanation[0].dottedName
+			: null
+
+	console.log('sum', sumToDisplay)
+	if (!sumToDisplay) return [category]
+
+	const subCategories = extractCategories(
+		rules,
+		engine,
+		null,
+		sumToDisplay,
+		false
+	)
+	category.name.includes('logement') &&
+		console.log('LOG', subCategories, formula.explanation[1])
+
+	return formula.operationKind === '/'
+		? subCategories.map((el) => ({
+				...el,
+				nodeValue:
+					el.nodeValue /
+					engine.evaluate(formula.explanation[1].dottedName).nodeValue,
+		  }))
+		: subCategories
+}
+
 export const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
 
 export const safeGetRule = (engine, dottedName) => {
@@ -109,4 +161,11 @@ export const safeGetRule = (engine, dottedName) => {
 	} catch (e) {
 		console.log(e)
 	}
+}
+
+export const questionCategoryName = (dottedName) => splitName(dottedName)[0]
+export function relegate(key, array) {
+	const isKey = (a) => a.dottedName === key
+	const categories = [...array.filter((a) => !isKey(a)), array.find(isKey)]
+	return categories
 }

@@ -10,17 +10,8 @@ const couleur = script.dataset.couleur // not used yet
 const srcURL = new URL(script.src)
 const hostname = srcURL.hostname || 'nosgestesclimat.fr'
 
-const possibleOptionStrings = [
-	'integratorLogo',
-	'integratorName',
-	'integratorActionUrl',
-	'integratorYoutubeVideo',
-	'integratorActionText',
-]
 const possibleOptions = [
 	{ key: 'shareData', legacy: 'partagedatafinsimulation' },
-	,
-	...possibleOptionStrings.map((s) => ({ key: s })),
 ]
 
 const optionFragments = possibleOptions.map(({ key, legacy }) => {
@@ -47,5 +38,18 @@ for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])
 }
 iframeResize({}, iframe)
+
+const link = document.createElement('div')
+link.innerHTML = `
+<a href="https://nosgestesclimat.fr" target="_blank">Calculer mon empreinte carbone ⬇️</a>
+
+`
+link.style.cssText = `
+margin: 1rem auto .6rem;
+text-align: center
+
+`
+
+script.parentNode.insertBefore(link, script)
 
 script.parentNode.insertBefore(iframe, script)

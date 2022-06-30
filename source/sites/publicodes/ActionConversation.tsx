@@ -56,6 +56,7 @@ export default ({ dottedName }) => {
 			targets={<div />}
 			explanations={null}
 			animation="fromBottom"
+			questionHeadingLevel="3"
 		/>
 	) : null
 }

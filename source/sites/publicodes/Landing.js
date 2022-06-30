@@ -1,16 +1,16 @@
+import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/LogoADEME'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
 import { openmojiURL } from '../../components/SessionBar'
+import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
 import Illustration from './images/ecolab-climat-dessin.svg'
 import Marianne from './images/Marianne.svg'
 import { useProfileData } from './Profil'
-import animate from 'Components/ui/animate'
-import Meta from '../../components/utils/Meta'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
@@ -41,10 +41,12 @@ export default () => {
 		>
 			<Meta
 				title="Connaissez-vous votre empreinte climat ?"
-				description="Faites le test, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire."
+				description="Testez votre empreinte carbone, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire."
+				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
 			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
 			<Illustration
+				aira-hidden="true"
 				css={`
 					width: 60%;
 					height: auto;
@@ -60,14 +62,30 @@ export default () => {
 						to="/simulateur/bilan"
 						className="ui__ plain button cta"
 						onClick={() =>
-							tracker.push(['trackEvent', 'NGC', 'Clic CTA accueil'])
+							tracker.push([
+								'trackEvent',
+								'NGC',
+								'Clic CTA accueil',
+								'Faire le test',
+							])
 						}
 					>
 						Faire le test
 					</Link>
 				</div>
 				<div>
-					<Link to="/groupe" className="ui__ button small">
+					<Link
+						to="/groupe"
+						className="ui__ button small"
+						onClick={() =>
+							tracker.push([
+								'trackEvent',
+								'NGC',
+								'Clic CTA accueil',
+								'Faire le test à plusieurs',
+							])
+						}
+					>
 						{emoji('👥')} Faire le test à plusieurs
 					</Link>
 				</div>
@@ -86,15 +104,19 @@ export default () => {
 						}
 					`}
 				>
-					<Marianne css="height: 6rem; margin-right: .6rem" />
+					<Marianne
+						role="img"
+						aria-label="République Française"
+						css="height: 6rem; margin-right: .6rem"
+					/>
 					<a href="https://ademe.fr">
 						<LogoADEME />
 					</a>
-					<a href="https://www.associationbilancarbone.fr/">
+					<a href="https://abc-transitionbascarbone.fr">
 						<img
-							css="height: 2.5rem"
-							src="https://www.associationbilancarbone.fr/wp-content/themes/abc/assets/images/brand/abc_main_logo.svg"
-							alt="Logo de l'Association Bilan Carbone"
+							css="height: 2rem; margin-left: 1rem !important"
+							src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+							alt="Logo de l'Association pour la transition Bas Carbone"
 						/>
 					</a>
 				</div>
@@ -135,14 +157,17 @@ const ProfileLink = () => {
 					}
 				`}
 			>
-				<Link to="/profil" title="Page profil">
-					<button className="ui__ button plain small" type="button">
-						<img
-							aria-hidden="true"
-							src={openmojiURL('profile')}
-							css="width: 2rem; filter: invert(1)"
-						/>
-					</button>
+				<Link
+					to="/profil"
+					title="Page profil"
+					className="ui__ button plain small"
+					css="border-radius: 2rem !important"
+				>
+					<img
+						aria-hidden="true"
+						src={openmojiURL('profile')}
+						css="width: 2rem; filter: invert(1)"
+					/>
 				</Link>
 			</div>
 		</animate.fromTop>

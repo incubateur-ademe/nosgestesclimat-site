@@ -142,6 +142,7 @@ export const ActionListCard = ({
 				css={`
 					display: flex;
 					justify-content: space-evenly;
+					align-items: center;
 					button img {
 						font-size: 200%;
 					}
@@ -151,6 +152,7 @@ export const ActionListCard = ({
 			>
 				<button
 					title="Choisir l'action"
+					aria-pressed={actionChoices[dottedName]}
 					css={`
 						${hasRemainingQuestions && 'filter: grayscale(1)'}
 					`}
@@ -166,18 +168,21 @@ export const ActionListCard = ({
 								actionChoices[dottedName] === true ? null : true
 							)
 						)
-						tracker.push([
-							'trackEvent',
-							'/actions',
-							'Vote carte action',
-							'oui',
-							1,
-						])
+						if (!actionChoices[dottedName]) {
+							const eventData = [
+								'trackEvent',
+								'/actions',
+								'Action sélectionnée',
+								dottedName,
+								nodeValue,
+							]
+							tracker.push(eventData)
+						}
 						e.stopPropagation()
 						e.preventDefault()
 					}}
 				>
-					{emoji('✅')}
+					<img src="/images/2714.svg" css="width: 3rem" />
 				</button>
 				<button
 					title="Rejeter l'action"
@@ -192,15 +197,15 @@ export const ActionListCard = ({
 						tracker.push([
 							'trackEvent',
 							'/actions',
-							'Vote carte action',
-							'non',
-							-1,
+							'Action rejetée',
+							dottedName,
+							nodeValue,
 						])
 						e.stopPropagation()
 						e.preventDefault()
 					}}
 				>
-					{emoji('❌')}
+					<img src="/images/274C.svg" css="width: 1.8rem" />
 				</button>
 			</div>
 		</div>
@@ -237,13 +242,21 @@ export const ActionGameCard = ({ evaluation, total, rule, effort }) => {
 							{emoji(icons)}
 						</div>
 					)}
-					<ActionValue {...{ dottedName, total, disabled, noFormula }} />
+					<div css="margin-top: 1.6rem;">
+						<ActionValue {...{ dottedName, total, disabled, noFormula }} />
+					</div>
 				</div>
 			</div>
 		</Link>
 	)
 }
-const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
+export const ActionValue = ({
+	total,
+	disabled,
+	noFormula,
+	dottedName,
+	engine,
+}) => {
 	const situation = useSelector(situationSelector),
 		evaluation = engine.evaluate(dottedName),
 		rawValue = evaluation.nodeValue
@@ -259,10 +272,9 @@ const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
 	return (
 		<div
 			css={`
-				margin-top: 1.6rem;
 				font-size: 100%;
 				strong {
-					background: var(--lightColor);
+					background: var(--color);
 					border-radius: 0.3rem;
 					color: var(--textColor);
 					padding: 0.1rem 0.4rem;
