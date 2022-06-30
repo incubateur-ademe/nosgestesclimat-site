@@ -21,7 +21,7 @@ import {
 import { setTrackingVariable, skipTutorial } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
-import { useQuery } from '../../utils'
+import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import useKeypress from '../utils/useKeyPress'
 import { useSimulationProgress } from '../utils/useNextQuestion'
@@ -30,10 +30,7 @@ import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
 import QuestionFinder from './QuestionFinder'
-import { sortBy, useQuery } from '../../utils'
-import Meta from '../../components/utils/Meta'
 import SimulationEnding from './SimulationEnding'
-
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -59,7 +56,6 @@ export default function Conversation({
 
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = orderByCategories
-
 		? sortBy((question) => {
 				const category = orderByCategories.find(
 					(c) => question.indexOf(c.dottedName) === 0

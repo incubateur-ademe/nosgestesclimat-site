@@ -16,6 +16,7 @@ import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
 import Meta from '../../../components/utils/Meta'
 import { configSelector } from '../../../selectors/simulationSelectors'
+import Navigation from '../Navigation'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -64,7 +65,7 @@ export default () => {
 	const history = useHistory()
 
 	if (!room || room === '') {
-		return <Redirect to="/groupe?mode=sondage" />
+		return <Navigation to="/groupe?mode=sondage" replace />
 	}
 	return (
 		<div>

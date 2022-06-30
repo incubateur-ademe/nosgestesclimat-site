@@ -10,7 +10,7 @@ import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import { Redirect } from 'react-router'
+import { Navigate, Redirect } from 'react-router'
 import { useContext, useEffect } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
@@ -56,7 +56,7 @@ export default ({}) => {
 	}, [tutorials])
 
 	if (tutorials['testIntro'])
-		return <Redirect to={thenRedirectTo || '/simulateur/bilan'} />
+		return <Navigate to={thenRedirectTo || '/simulateur/bilan'} replace />
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we avoid an error

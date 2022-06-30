@@ -34,7 +34,7 @@ export default ({
 	const URLbase = `https://${window.location.hostname}`
 	const URLPath = `/${mode}/${room || newRoom}`,
 		shareURL = URLbase + URLPath
-	const URLGuide = `/groupe/guide`
+	const URLGuide = `/guide/général`
 
 	return (
 		<div>
@@ -130,7 +130,7 @@ export default ({
 						<p>
 							{emoji('💡')} Vous souhaitez ajouter des questions pour obtenir
 							des informations supplémentaires sur les répondants ?{' '}
-							<Link to={'/groupe/documentation-contexte'}>
+							<Link to={'/guide/documentation-contexte'}>
 								Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
 							</Link>
 						</p>

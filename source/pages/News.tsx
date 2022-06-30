@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import {
 	Link,
+	Navigate,
 	NavLink,
 	Redirect,
 	useHistory,
@@ -55,7 +56,7 @@ export default function News() {
 		`${'/nouveautés'}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
-		return <Redirect to={getPath(0)} />
+		return <Navigate to={getPath(0)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
