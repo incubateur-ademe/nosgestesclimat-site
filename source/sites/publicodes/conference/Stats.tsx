@@ -202,23 +202,15 @@ const reduceCategories = (list) =>
 		{}
 	)
 
-const filterElements = (rawElements, contextFilter) => {
-	const elements = rawElements.filter((el) => {
-		if (
-			Object.keys(contextFilter)
-				.map((key) => {
-					if (contextFilter[key] || contextFilter[key] !== '') {
-						//We do not use "===" as variables in the situation contain are embrassed with ''.
-						const eltOfContext = el.context[key].toLowerCase()
-						return eltOfContext.includes(contextFilter[key].toLowerCase())
-					} else {
-						true
-					}
-				})
+const filterElements = (rawElements, contextFilter) => 
+	rawElements.filter((el) => {
+		const matches = Object.entries(contextFilter)
+				.map(([key, value]) => !value || value === '' || el.context[key].toLowerCase().includes(value.toLowerCase())
+			)
+
+		return
+			matches
 				.every((bool) => bool === true)
-		) {
-			return el
-		}
+		
 	})
-	return elements
-}
+
