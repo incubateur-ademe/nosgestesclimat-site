@@ -166,39 +166,38 @@ const Routes = ({}) => {
 				</Suspense>
 			</Route>
 			{/* Lien de compatibilité, à retirer par exemple mi-juillet 2020*/}
-			<Route path="/fin/:score" component={Fin} />
-			<Route path="/fin" component={Fin} />
-			<Route path="/personas" component={Personas} />
-			<Route path="/actions" component={Actions} />
-			<Route path="/contribuer/:input?" component={Contribution} />
-			<Route path="/à-propos" component={About} />
+			<Route path="/fin/*" element={<Fin />} />
+			<Route path="/personas" element={<Personas />} />
+			<Route path="/actions" element={<Actions />} />
+			<Route path="/contribuer/*" element={<Contribution />} />
+			<Route path="/à-propos" element={<About />} />
 			<Route path="/cgu">
-				<Suspense fallback="Chargement">
+				<Suspense fallback={<div>Chargement</div>}>
 					<CGULazy />
 				</Suspense>
 			</Route>
-			<Route path="/partenaires" component={Diffuser} />
-			<Route path="/diffuser" component={Diffuser} />
+			<Route path="/partenaires" element={<Diffuser />} />
+			<Route path="/diffuser" element={<Diffuser />} />
 			<Route path="/vie-privée">
-				<Suspense fallback="Chargement">
+				<Suspense fallback={<div>Chargement</div>}>
 					<PrivacyLazy />
 				</Suspense>
 			</Route>
-			<Route path="/nouveautés" component={News} />
-			<Route path="/profil" component={Profil} />
+			<Route path="/nouveautés" element={<News />} />
+			<Route path="/profil" element={<Profil />} />
 			{/* Here we define this specific route for the context documentation before generic groupe routes */}
 			<Route path="/groupe/documentation-contexte">
-				<Suspense fallback="Chargement">
+				<Suspense fallback={<div>Chargement</div>}>
 					<DocumentationContexteLazy />
 				</Suspense>
 			</Route>
 			<Route path="/groupe/:encodedName+">
-				<Suspense fallback="Chargement">
+				<Suspense fallback={<Loading />}>
 					<GuideGroupeLazy />
 				</Suspense>
 			</Route>
 			<Route path="/conférence/:room?">
-				<Suspense fallback="Chargement">
+				<Suspense fallback={<Loading />}>
 					<ConferenceLazy />
 				</Suspense>
 			</Route>
@@ -206,13 +205,12 @@ const Routes = ({}) => {
 				<GroupSwitch />
 			</Route>
 			<Route path="/sondage/:room?">
-				<Suspense fallback="Chargement">
+				<Suspense fallback={<Loading />}>
 					<SurveyLazy />
 				</Suspense>
 			</Route>
-			<Redirect from="/conference/:room" to="/conférence/:room" />
-			<Route path="/tutoriel" component={Tutorial} />
-			<Route component={Route404} />
+			<Route path="/tutoriel" element={<Tutorial />} />
+			<Route element={Route404} />
 		</Routes>
 	)
 }
