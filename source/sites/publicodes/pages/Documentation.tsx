@@ -7,7 +7,7 @@ import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
 import { useCallback, useContext, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useLocation } from 'react-router-dom'
+import { Navigate, useLocation } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import Meta from '../../../components/utils/Meta'
 import BandeauContribuer from '../BandeauContribuer'
@@ -31,7 +31,7 @@ export default function RulePage() {
 		return <DocumentationLanding />
 	}
 	if (!documentationSitePaths[pathname]) {
-		return <Redirect to="/404" />
+		return <Navigate to="/404" />
 	}
 	return (
 		<div>

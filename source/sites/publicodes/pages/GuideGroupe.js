@@ -32,7 +32,7 @@ export default () => {
 			<ScrollToTop />
 			<div>
 				{encodedName !== 'guide' && (
-					<Link to={'/groupe/guide'}>
+					<Link to={'/guide/general'}>
 						<button className="ui__ button simple small ">
 							{emoji('◀')} Retour
 						</button>

@@ -4,7 +4,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, Redirect } from 'react-router-dom'
+import { Link, useLocation, Redirect, Navigate } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -157,7 +157,7 @@ export default function SessionBar({
 				nextQuestions.length ? (
 					dispatch(goToQuestion(answeredQuestions.at(-1)))
 				) : (
-					<Redirect to={buildEndURL(rules, engine)} />
+					<Navigate to={buildEndURL(rules, engine)} replace />
 				)
 			}}
 			css={`

@@ -141,13 +141,15 @@ const Main = ({}) => {
 						<Logo />
 					</nav>
 				)}
-				<Routes />
+				<Router />
 			</main>
 		</div>
 	)
 }
 
-const Routes = ({}) => {
+const Loading = () => <div>Chargement</div>
+
+const Router = ({}) => {
 	return (
 		<Routes>
 			<Route path="/" element={<Landing />} />
@@ -178,12 +180,12 @@ const Routes = ({}) => {
 			</Route>
 			<Route path="/partenaires" element={<Diffuser />} />
 			<Route path="/diffuser" element={<Diffuser />} />
-			<Route path="/vie-privée">
+			<Route path={encodeURIComponent('/vie-privée')}>
 				<Suspense fallback={<div>Chargement</div>}>
 					<PrivacyLazy />
 				</Suspense>
 			</Route>
-			<Route path="/nouveautés" element={<News />} />
+			<Route path={encodeURIComponent('/nouveautés')} element={<News />} />
 			<Route path="/profil" element={<Profil />} />
 			{/* Here we define this specific route for the context documentation before generic groupe routes */}
 			<Route path="/groupe/documentation-contexte">
@@ -191,20 +193,20 @@ const Routes = ({}) => {
 					<DocumentationContexteLazy />
 				</Suspense>
 			</Route>
-			<Route path="/groupe/:encodedName+">
+			<Route path="/guide/*">
 				<Suspense fallback={<Loading />}>
 					<GuideGroupeLazy />
 				</Suspense>
 			</Route>
-			<Route path="/conférence/:room?">
+			<Route path="/conférence/:room">
 				<Suspense fallback={<Loading />}>
 					<ConferenceLazy />
 				</Suspense>
 			</Route>
-			<Route path="/groupe/:room?">
+			<Route path="/groupe/:room">
 				<GroupSwitch />
 			</Route>
-			<Route path="/sondage/:room?">
+			<Route path="/sondage/:room">
 				<Suspense fallback={<Loading />}>
 					<SurveyLazy />
 				</Suspense>

@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
-import { Redirect, useHistory, useParams } from 'react-router'
+import { Navigate, Redirect, useHistory, useParams } from 'react-router'
 import styled from 'styled-components'
 import { conferenceImg } from '../../../components/SessionBar'
 import { ScrollToTop } from '../../../components/utils/Scroll'
@@ -34,7 +34,7 @@ export default () => {
 	const history = useHistory()
 
 	if (!room || room === '') {
-		return <Redirect to="/groupe" />
+		return <Navigate to="/groupe" replace />
 	}
 	const extremes = getExtremes(elements, threshold)
 
