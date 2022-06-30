@@ -59,6 +59,14 @@ export default function MosaicInputSuggestions({
 							relatedRuleNames.map((elt) => dispatch(updateSituation(elt, 0)))
 							toPairs(values).map(([ruleName, value]: [string, ASTNode]) => {
 								const fullDottedName = `${dottedName} . ${ruleName}`
+								const card = document.getElementById(`card - ${fullDottedName}`)
+								card?.animate(
+									{ opacity: [1, 0.5, 1] },
+									{
+										duration: 1000,
+										easing: 'ease-out',
+									}
+								)
 								dispatch(updateSituation(fullDottedName, value))
 							})
 						}}
