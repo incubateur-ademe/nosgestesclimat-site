@@ -38,7 +38,7 @@ export default ({
 		<div
 			css={`
 				display: block;
-				text-align: center;
+				text-align: right;
 				justify-content: center;
 			`}
 		>
@@ -78,14 +78,11 @@ export default ({
 				<div
 					css={`
 						display: flex;
-						justify-content: space-evenly;
+						justify-content: flex-end;
 						align-items: center;
 						width: 100%;
 						margin: auto;
 						margin-top: 0.5rem;
-						@media (min-width: 800px) {
-							width: 80%;
-						}
 					`}
 				>
 					<small css="@media(max-width: 800px){display: none}">
@@ -99,6 +96,7 @@ export default ({
 								aria-labelledby={'id-filtre-' + choices.title}
 								css={`
 									max-width: 10rem;
+									margin: 0 0.5rem 0 0.5rem;
 								`}
 							>
 								<label title={choices.title}>
@@ -113,7 +111,7 @@ export default ({
 										}}
 										css={`
 											font-size: 80% !important;
-											padding: 0.6rem 1.2rem !important;
+											padding: 0.3rem 0.6rem !important;
 										`}
 									>
 										<option value="">{choices.title}</option>
