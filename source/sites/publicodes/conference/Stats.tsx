@@ -29,21 +29,9 @@ export default ({
 	setThreshold,
 	contextRules,
 }) => {
-	const [elements, setElements] = useState(rawElements)
 	const [contextFilter, setContextFilter] = useState({})
 
-	// rawElements is not defined on the first render
-	useEffect(() => {
-		if (rawElements) {
-			setElements(rawElements)
-		}
-	}, [rawElements])
-
-	useEffect(() => {
-		if (Object.keys(contextFilter).length !== 0) {
-			setElements(filterElements(rawElements, contextFilter))
-		}
-	}, [contextFilter])
+	const elements = filterElements(rawElements, contextFilter)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 
