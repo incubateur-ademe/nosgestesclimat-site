@@ -1,5 +1,6 @@
 import Engine from 'publicodes'
 import { createContext, useState, useEffect, useContext } from 'react'
+import { useSelector } from 'react-redux'
 import RuleInput from 'Components/conversation/RuleInput'
 import { getNextQuestions } from 'Components/utils/useNextQuestion'
 import emoji from 'react-easy-emoji'
@@ -9,10 +10,14 @@ import { contextURL } from './useDatabase'
 
 const SituationContext = createContext({})
 
-export default ({ survey, surveyContext, setSurveyContext }) => {
+export default ({
+	surveyContext,
+	setSurveyContext,
+	contextRules,
+	setContextRules,
+}) => {
+	const survey = useSelector((state) => state.survey)
 	const surveyRule = survey['contextFile']
-
-	const [contextRules, setContextRules] = useState(null)
 
 	const contextFileURL = `${contextURL}/${surveyRule}.yaml`
 	const yaml = require('yaml')
