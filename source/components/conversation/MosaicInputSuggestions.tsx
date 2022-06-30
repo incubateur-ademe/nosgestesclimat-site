@@ -28,7 +28,7 @@ export default function MosaicInputSuggestions({
 				align-items: baseline;
 				justify-content: flex-end;
 				margin-bottom: 0.4rem;
-				flew-wrap: wrap;
+				flex-wrap: wrap;
 
 				@media (max-width: 800px) {
 					flex-wrap: nowrap;
@@ -46,7 +46,7 @@ export default function MosaicInputSuggestions({
 			{toPairs(suggestions).map(([text, values]: [string, ASTNode]) => {
 				return (
 					<button
-						className="ui__ link-button"
+						className="ui__ suggestion plain button"
 						type="button"
 						key={text}
 						css={`
