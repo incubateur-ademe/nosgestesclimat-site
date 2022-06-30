@@ -185,6 +185,7 @@
 	line-height: 0.8rem;
 	padding: 0.2rem 0.4rem;
 	text-transform: lowerCase;
+	opacity: 0.75;
 }
 
 .ui__.button.suggestion:first-letter {
