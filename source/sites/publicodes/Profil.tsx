@@ -15,7 +15,7 @@ import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { skipTutorial } from '../../actions/actions'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
@@ -32,7 +32,7 @@ export default ({}) => {
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
 	const { hasData, answeredQuestionsLength, tutorials } = useProfileData()
-	const history = useHistory()
+	const navigate = useNavigate()
 	const actionChoicesLength = Object.keys(
 		useSelector((state) => state.actionChoices)
 	).length
@@ -61,7 +61,7 @@ export default ({}) => {
 									className="ui__ dashed-button"
 									onClick={() => {
 										dispatch(skipTutorial('testIntro', true))
-										history.push('/tutoriel')
+										navigate('/tutoriel')
 									}}
 								>
 									{emoji('🧑‍🏫')} Revoir le tutoriel

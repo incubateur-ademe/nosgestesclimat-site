@@ -2,7 +2,9 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useHistory, useParams } from 'react-router'
+import { Redirect, useParams } from 'react-router'
+import { useNavigate } from 'react-router-dom'
+
 import { conferenceImg } from '../../../components/SessionBar'
 import Beta from './Beta'
 import { ConferenceTitle } from './Conference'
@@ -15,8 +17,6 @@ import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
 import Meta from '../../../components/utils/Meta'
-import { useEngine } from 'Components/utils/EngineContext'
-
 import { configSelector } from '../../../selectors/simulationSelectors'
 import Navigation from '../Navigation'
 
@@ -26,7 +26,6 @@ export default () => {
 		'surveyContext',
 		{}
 	)
-	const [contextRules, setContextRules] = useState()
 	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(false)
 	const dispatch = useDispatch()
 
@@ -64,7 +63,8 @@ export default () => {
 
 	const survey = useSelector((state) => state.survey)
 	const existContext = survey ? !(survey['contextFile'] == null) : false
-	const history = useHistory()
+
+	const navigate = useNavigate()
 
 	if (!room || room === '') {
 		return <Navigation to="/groupe?mode=sondage" replace />
@@ -98,20 +98,15 @@ export default () => {
 				>
 					{existContext && (
 						<ContextConversation
+							survey={survey}
 							surveyContext={surveyContext}
 							setSurveyContext={setSurveyContext}
-							contextRules={contextRules}
-							setContextRules={setContextRules}
 						/>
 					)}
 					{!hasDataState ? (
 						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
 					) : (
-						<Results
-							room={survey.room}
-							existContext={existContext}
-							contextRules={contextRules}
-						/>
+						<Results room={survey.room} existContext={existContext} />
 					)}
 				</div>
 			)}
@@ -122,7 +117,7 @@ export default () => {
 						<button
 							className="ui__ link-button"
 							onClick={() => {
-								history.push('/')
+								navigate('/')
 
 								dispatch({ type: 'UNSET_SURVEY' })
 							}}
@@ -208,13 +203,14 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 	)
 }
 
-const Results = ({ room, existContext, contextRules }) => {
+const Results = ({ room, existContext }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
 	const answerMap = survey.answers
 	const username = cachedSurveyIds[survey.room]
 	if (!answerMap || !Object.values(answerMap) || !username) return null
+
 	return (
 		<Stats
 			elements={getElements(
@@ -226,7 +222,6 @@ const Results = ({ room, existContext, contextRules }) => {
 			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
-			contextRules={contextRules}
 		/>
 	)
 }
@@ -245,14 +240,15 @@ export const getElements = (
 		...el.data,
 		username: el.id,
 	}))
-	const elementsWithinThreshold = rawElements.filter(
-		(el) => el.total > 0 && el.total < threshold && el.progress > progressMin
-	)
 	const elements = existContext
-		? elementsWithinThreshold.filter(
-				(el) => Object.keys(el.context).length !== 0
+		? rawElements.filter(
+				(el) =>
+					el.total < threshold &&
+					el.progress > progressMin &&
+					Object.keys(el.context).length !== 0
 		  )
-		: elementsWithinThreshold
-
+		: rawElements.filter(
+				(el) => el.total < threshold && el.progress > progressMin
+		  )
 	return elements
 }

@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
 import CircledEmojis from 'Components/CircledEmojis'
 import { findContrastedTextColor } from 'Components/utils/colors'
+import { motion } from 'framer-motion'
+import { useLocation } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import TriangleShape from './TriangleShape'
-import { useHistory, useLocation } from 'react-router'
 
 export default ({
 	nodeValue,
@@ -19,7 +19,7 @@ export default ({
 	clicked,
 }) => {
 	const { pathname } = useLocation(),
-		history = useHistory()
+		navigate = useNavigate()
 	const percent = (nodeValue / total) * 100
 
 	return (
@@ -37,10 +37,7 @@ export default ({
 			title={title}
 			onClick={() =>
 				filterSimulationOnClick
-					? history.push({
-							pathname,
-							search: '?catégorie=' + dottedName,
-					  })
+					? navigate(`${pathname}?catégorie=${dottedName}`)
 					: click(dottedName)
 			}
 		>

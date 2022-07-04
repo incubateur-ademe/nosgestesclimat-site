@@ -1,11 +1,11 @@
-import Emoji from 'Components/Emoji'
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { isIterable } from '../../utils'
+import emoji from 'react-easy-emoji'
 
 const internalURLs = {
-	'futur.eco': 'futureco',
+	'nosgestesclimat.fr': 'nosgestesclimat',
 } as const
 
 export function LinkRenderer({
@@ -16,7 +16,7 @@ export function LinkRenderer({
 	href?: string
 	children: React.ReactNode
 }) {
-	const siteName = 'futureco'
+	const siteName = 'nosgestesclimat'
 
 	if (href && !href.startsWith('http')) {
 		return (
@@ -48,8 +48,9 @@ export function LinkRenderer({
 		</a>
 	)
 }
+
 const TextRenderer = ({ children }: { children: string }) => (
-	<Emoji e={children} hasText />
+	<>{emoji(children)}</>
 )
 
 type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
@@ -80,7 +81,7 @@ const CodeBlock = ({
 				rel="noreferrer"
 				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
 			>
-				<Emoji emoji="⚡" /> Lancer le calcul
+				{emoji('⚡')} Lancer le calcul
 			</a>
 		)}
 	</div>

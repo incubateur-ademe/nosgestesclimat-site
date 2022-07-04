@@ -12,13 +12,12 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { StoreProvider } from '../../sites/publicodes/StoreContext'
-import { splitName, safeGetRule } from '../publicodesUtils'
-import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
+import { safeGetRule, splitName } from '../publicodesUtils'
 import './AnswerList.css'
+import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
 export default function AnswerList() {
 	const dispatch = useDispatch()
@@ -248,7 +247,7 @@ function StepsTable({
 }
 
 const Answer = ({ rule, dispatch, language, level }) => {
-	const history = useHistory()
+	const navigate = useNavigate()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
 	const path = parentName(rule.dottedName, ' · ', level)
 	return (
@@ -287,7 +286,7 @@ const Answer = ({ rule, dispatch, language, level }) => {
 					`}
 					onClick={() => {
 						dispatch(goToQuestion(rule.dottedName))
-						history.push('/simulateur/bilan')
+						navigate('/simulateur/bilan')
 					}}
 				>
 					<span

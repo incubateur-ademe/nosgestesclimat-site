@@ -8,7 +8,7 @@ import {
 	Navigate,
 	NavLink,
 	Redirect,
-	useHistory,
+	useNavigate,
 	useRouteMatch,
 } from 'react-router-dom'
 import styled from 'styled-components'
@@ -34,7 +34,7 @@ type ReleasesData = Array<{
 export default function News() {
 	const [data, setData] = useState()
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
-	const history = useHistory()
+	const navigate = useNavigate()
 	const slug = useRouteMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
 		?.slug
 	useEffect(() => setLastViewedRelease(lastRelease.name), [])
@@ -84,7 +84,7 @@ export default function News() {
 				<SmallScreenSelect
 					value={selectedRelease}
 					onChange={(evt) => {
-						history.push(getPath(Number(evt.target.value)))
+						navigate(getPath(Number(evt.target.value)))
 					}}
 				>
 					{data.map(({ name }, index) => (

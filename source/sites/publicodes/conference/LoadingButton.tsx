@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import useDatabase, { surveysURL } from './useDatabase'
 
 const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
@@ -10,7 +10,7 @@ export default ({ mode, URLPath, room }) => {
 	const [clicked, setClicked] = useState(false)
 	const [text, setText] = useState(null)
 
-	const history = useHistory()
+	const navigate = useNavigate()
 
 	const actionImg = '/images/2714.svg'
 
@@ -27,7 +27,7 @@ export default ({ mode, URLPath, room }) => {
 					setClicked(true)
 
 					if (mode === 'conférence') {
-						return setTimeout(() => history.push(URLPath), 3000)
+						return setTimeout(() => navigate(URLPath), 3000)
 					}
 					const request = await fetch(surveysURL, {
 						method: 'POST',
@@ -46,7 +46,7 @@ export default ({ mode, URLPath, room }) => {
 						if (request.status === 409) {
 							setText('Ce sondage existe déjà')
 							return setTimeout(() => {
-								history.push(URLPath)
+								navigate(URLPath)
 							}, 3000)
 						} else {
 							setText('Erreur inconnue côté serveur 😥')
@@ -59,7 +59,7 @@ export default ({ mode, URLPath, room }) => {
 					setText('Sondage créé')
 
 					return setTimeout(() => {
-						history.push(URLPath)
+						navigate(URLPath)
 					}, 3000)
 
 					/*
