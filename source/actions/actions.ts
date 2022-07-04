@@ -164,9 +164,9 @@ export const updateUnit = (targetUnit: string) =>
 
 export const goBackToSimulation =
 	(): ThunkResult<void> =>
-	(_, getState, { history }) => {
+	(_, getState, { navigate }) => {
 		const url = getState().simulation?.url
-		url && history.push(url)
+		url && navigate(url)
 	}
 
 export function loadPreviousSimulation() {
