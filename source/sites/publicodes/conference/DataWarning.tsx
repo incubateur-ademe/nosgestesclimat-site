@@ -1,11 +1,11 @@
 import { useDispatch } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import emoji from '../../../components/emoji'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 import { Link } from 'react-router-dom'
 
 export default ({ room }) => {
-	const history = useHistory()
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	return (
 		<div>
@@ -44,7 +44,7 @@ export default ({ room }) => {
 							</button>
 							<button
 								className="ui__ button simple"
-								onClick={() => history.push('/')}
+								onClick={() => navigate('/')}
 							>
 								Quitter
 							</button>

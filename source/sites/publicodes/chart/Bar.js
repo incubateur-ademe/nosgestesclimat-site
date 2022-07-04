@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { useHistory, useLocation } from 'react-router'
+import { useLocation } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { useQuery } from '../../../utils'
 import Value from './Value'
 

@@ -1,6 +1,6 @@
 import QRCode from 'qrcode.react'
 import { useContext, useState } from 'react'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import emoji from '../../../components/emoji'
 import ShareButton from '../../../components/ShareButton'
@@ -23,12 +23,12 @@ export default ({
 	started = false,
 }) => {
 	const URLMode = useQuery().get('mode')
-	const history = useHistory()
+	const navigate = useNavigate()
 	const [mode, setModeState] = useState(URLMode || defaultMode)
 	const setMode = (mode) => {
 		setModeState(mode)
 
-		history.push({ pathname: '/groupe', search: '?mode=' + mode })
+		navigate(`/groupe?mode=${mode}`, { replace: true })
 	}
 	const { color } = useContext(ThemeColorsContext)
 	const URLbase = `https://${window.location.hostname}`
