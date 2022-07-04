@@ -61,22 +61,6 @@ export default ({ mode, URLPath, room }) => {
 					return setTimeout(() => {
 						navigate(URLPath)
 					}, 3000)
-
-					/*
-					creation.then(({ data, error }) => {
-						if (!error)
-							return setTimeout(() => {
-								history.push(URLPath)
-							}, 2000)
-
-						if (error && error.code === existsCode) {
-							setText('Sondage éxistant')
-							setTimeout(() => {
-								history.push(URLPath)
-							}, 3000)
-						}
-					})
-					*/
 				}}
 				css={`
 					display: flex !important;

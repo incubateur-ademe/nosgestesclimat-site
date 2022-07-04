@@ -139,14 +139,6 @@ module.exports.commonLoaders = (mode = 'production') => {
 			use: ['yaml-loader'],
 		},
 		{
-			test: /\.toml$/,
-			use: ['toml-loader'],
-		},
-		{
-			test: /\.ne$/,
-			use: [babelLoader, 'nearley-loader'],
-		},
-		{
 			test: /\.csv$/,
 			loader: 'csv-loader',
 			options: {
