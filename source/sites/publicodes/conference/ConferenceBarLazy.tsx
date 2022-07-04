@@ -8,7 +8,7 @@ export default () => {
 	if (!conference) return null
 
 	return (
-		<Suspense fallback="Chargement">
+		<Suspense fallback={<div>Chargement</div>}>
 			<ConferenceBar />
 		</Suspense>
 	)
