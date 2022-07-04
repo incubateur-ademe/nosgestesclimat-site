@@ -1,6 +1,6 @@
 import { utils } from 'publicodes'
 import React from 'react'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import tinygradient from 'tinygradient'
 import Title from '../../components/Title'
 import Meta from '../../components/utils/Meta'
@@ -24,24 +24,14 @@ export default ({}) => {
 			/>
 			<Title>Agir</Title>
 			<ScoreBar actionMode />
-			<Switch>
-				<Route exact path="/actions/plus">
-					<ListeActionPlus />
-				</Route>
-				<Route path="/actions/plus/:encodedName+">
-					<ActionPlus />
-				</Route>
-				<Route path="/actions/liste">
-					<ActionsList display="list" />
-				</Route>
-				<Route path="/actions/:encodedName+">
-					<Action />
-				</Route>
+			<Routes>
+				<Route path="/actions/plus" element={<ListeActionPlus />} />
+				<Route path="/actions/plus/:encodedName" element={<ActionPlus />} />
+				<Route path="/actions/liste" element={<ActionsList display="list" />} />
+				<Route path="/actions/:encodedName" element={<Action />} />
 
-				<Route path="/actions">
-					<ActionsList display="list" />
-				</Route>
-			</Switch>
+				<Route path="/actions" element={<ActionsList display="list" />} />
+			</Routes>
 		</>
 	)
 }
