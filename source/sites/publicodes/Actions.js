@@ -25,12 +25,12 @@ export default ({}) => {
 			<Title>Agir</Title>
 			<ScoreBar actionMode />
 			<Routes>
-				<Route path="/actions/plus" element={<ListeActionPlus />} />
-				<Route path="/actions/plus/:encodedName" element={<ActionPlus />} />
-				<Route path="/actions/liste" element={<ActionsList display="list" />} />
-				<Route path="/actions/:encodedName" element={<Action />} />
+				<Route path="plus" element={<ListeActionPlus />} />
+				<Route path="plus/:encodedName" element={<ActionPlus />} />
+				<Route path="liste" element={<ActionsList display="list" />} />
+				<Route path=":encodedName" element={<Action />} />
 
-				<Route path="/actions" element={<ActionsList display="list" />} />
+				<Route path="/" element={<ActionsList display="list" />} />
 			</Routes>
 		</>
 	)
