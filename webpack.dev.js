@@ -32,7 +32,6 @@ module.exports = {
 			NODE_ENV: JSON.stringify('development'),
 			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
 		}),
-		new webpack.HotModuleReplacementPlugin(),
 		new ReactRefreshWebpackPlugin(),
 		/*
 			 * See eslintrc.required.js for why this is commented
