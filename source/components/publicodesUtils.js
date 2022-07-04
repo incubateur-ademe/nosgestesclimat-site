@@ -35,7 +35,7 @@ export const ruleFormula = (rule) =>
 export const ruleSumNode = (rule) => {
 	const formula = ruleFormula(rule)
 
-	if (formula.nodeKind !== 'somme') return null
+	if (formula.operationKind !== '+') return null
 	return formula.explanation.map((node) => node.dottedName)
 }
 
