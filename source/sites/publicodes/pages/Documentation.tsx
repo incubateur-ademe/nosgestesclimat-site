@@ -30,12 +30,12 @@ export default function () {
 	)
 	const engine = useContext(EngineContext)
 	const documentationPath = '/documentation'
-	const { pathname } = useLocation()
+	const { pathname: pathnameRaw } = useLocation(),
+		pathname = decodeURIComponent(pathnameRaw)
 	const documentationSitePaths = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
 	)
-	console.log(documentationSitePaths)
 	const { i18n } = useTranslation()
 
 	if (pathname === '/documentation') {
