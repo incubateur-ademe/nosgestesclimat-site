@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import LogoMIT from '../../../images/LogoMIT'
+import LogoMIT from 'Components/images/LogoMIT'
 import { useState } from 'react'
 
 export default function KmHelpButton({ text, openmojiURL, onHandleClick }) {
