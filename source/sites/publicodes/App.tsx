@@ -2,7 +2,7 @@ import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
 import News from 'Pages/News'
-import React, { Suspense } from 'react'
+import React, { Suspense, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Redirect, useLocation } from 'react-router'
 import { Route, Routes } from 'react-router-dom'
@@ -12,6 +12,7 @@ import {
 	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
+import { TrackerContext } from '../../components/utils/withTracker'
 import About from './About'
 import Actions from './Actions'
 import Diffuser from './Diffuser'
@@ -96,6 +97,11 @@ const Main = ({}) => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
+	const tracker = useContext(TrackerContext)
+
+	useEffect(() => {
+		tracker.track(location)
+	}, [location])
 
 	return (
 		<div

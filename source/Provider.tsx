@@ -56,16 +56,10 @@ export default function Provider({
 	dataBranch,
 	rulesURL,
 }: ProviderProps) {
-	const location = useLocation()
-	useEffect(() => {
-		tracker.track(location)
-	}, [location])
-
 	const storeEnhancer = composeEnhancers(
 		applyMiddleware(
 			// Allows us to painlessly do route transition in action creators
 			thunk.withExtraArgument({
-				navigate,
 				sitePaths,
 			}),
 			...(reduxMiddlewares ?? [])
