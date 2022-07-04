@@ -6,6 +6,7 @@ import './SearchBar.css'
 import { EngineContext, useEngine } from './utils/EngineContext'
 import { utils } from 'publicodes'
 import highlightMatches from 'Components/highlightMatches'
+import { Link } from 'react-router-dom'
 
 const worker = new Worker()
 

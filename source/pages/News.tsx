@@ -109,7 +109,7 @@ export default function News() {
 				</Sidebar>
 				<MainBlock>
 					<MarkdownWithAnchorLinks
-						source={body}
+						children={body}
 						escapeHtml={false}
 						renderers={{ text: TextRenderer }}
 					/>

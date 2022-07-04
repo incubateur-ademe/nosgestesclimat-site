@@ -14,6 +14,6 @@ Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuel
 		`}
 		/>
 
-		<Markdown source={about} />
+		<Markdown>{about} </Markdown>
 	</section>
 )
