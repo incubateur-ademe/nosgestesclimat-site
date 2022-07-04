@@ -247,7 +247,7 @@ export const RadioLabel = (props: RadioLabelProps) => {
 								`}
 							>
 								<h2>{props.label}</h2>
-								<Markdown source={props.description} />
+								<Markdown>{props.description}</Markdown>
 								{props.références && (
 									<>
 										<h3>

@@ -33,10 +33,10 @@ export const ruleFormula = (rule) =>
 	rule?.explanation?.valeur?.explanation?.valeur
 
 export const ruleSumNode = (rule) => {
-	const formula = ruleFormula(rule)
+	const formula = rule.rawNode.formule
 
-	if (formula.operationKind !== '+') return null
-	return formula.explanation.map((node) => node.dottedName)
+	if (!formula.somme) return null
+	return formula.somme
 }
 
 export const extractCategoriesNamespaces = (
@@ -91,6 +91,7 @@ export const extractCategories = (
 	const rule = engine.getRule(parentRule),
 		sumNodes = ruleSumNode(rule)
 
+	console.log('sn', sumNodes)
 	const categories = sumNodes.map((dottedName) => {
 		const node = engine.evaluate(dottedName)
 		const { icônes, couleur } = rules[dottedName]

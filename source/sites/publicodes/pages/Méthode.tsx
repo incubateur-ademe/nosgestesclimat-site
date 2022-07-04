@@ -6,7 +6,7 @@ import content from 'raw-loader!./méthode.md'
 export default function Méthode() {
 	return (
 		<p css="img:not(.emoji){max-width: 10rem; margin: 1.6rem auto; display: block; }">
-			<Markdown source={content} />
+			<Markdown children={content} />
 		</p>
 	)
 }
