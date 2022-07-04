@@ -14,7 +14,6 @@ import {
 import Tracker, { devTracker } from '../../Tracker'
 import About from './About'
 import Actions from './Actions'
-import Contribution from './Contribution'
 import Diffuser from './Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
@@ -28,6 +27,7 @@ import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import GroupSwitch from './conference/GroupSwitch'
 
+const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
 
@@ -171,7 +171,11 @@ const Router = ({}) => {
 			<Route path="/fin/*" element={<Fin />} />
 			<Route path="/personas" element={<Personas />} />
 			<Route path="/actions" element={<Actions />} />
-			<Route path="/contribuer/*" element={<Contribution />} />
+			<Route path="/contribuer/*">
+				<Suspense fallback={<Loading />}>
+					<ContributionLazy />
+				</Suspense>
+			</Route>
 			<Route path="/à-propos" element={<About />} />
 			<Route path="/cgu">
 				<Suspense fallback={<div>Chargement</div>}>
