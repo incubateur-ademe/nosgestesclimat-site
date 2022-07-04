@@ -8,8 +8,8 @@ import {
 	Navigate,
 	NavLink,
 	Redirect,
+	useMatch,
 	useNavigate,
-	useRouteMatch,
 } from 'react-router-dom'
 import styled from 'styled-components'
 import { localStorageKey } from '../components/NewsBanner'
@@ -35,7 +35,7 @@ export default function News() {
 	const [data, setData] = useState()
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
 	const navigate = useNavigate()
-	const slug = useRouteMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
+	const slug = useMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
 		?.slug
 	useEffect(() => setLastViewedRelease(lastRelease.name), [])
 	useEffect(
