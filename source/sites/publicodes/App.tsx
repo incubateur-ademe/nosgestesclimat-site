@@ -147,7 +147,7 @@ const Main = ({}) => {
 	)
 }
 
-const Loading = () => <div>Chargement</div>
+export const Loading = () => <div>Chargement</div>
 
 const Router = ({}) => {
 	return (
