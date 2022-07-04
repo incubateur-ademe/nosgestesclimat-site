@@ -8,7 +8,7 @@ export default () => {
 	if (!survey) return null
 
 	return (
-		<Suspense fallback="Chargement">
+		<Suspense fallback={<div>Chargement</div>}>
 			<SurveyBar />
 		</Suspense>
 	)
