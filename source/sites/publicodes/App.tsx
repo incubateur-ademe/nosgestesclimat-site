@@ -168,61 +168,51 @@ const Router = ({}) => {
 				}
 			/>
 			<Route path="simulateur/*" element={<Simulateur />} />
-			<Route path="/stats">
-				<Suspense fallback="Chargement">
+			<Route path="/stats" element={
+				<Suspense fallback={<Loading />}>
 					<StatsLazy />
-				</Suspense>
-			</Route>
-			{/* Lien de compatibilité, à retirer par exemple mi-juillet 2020*/}
+				</Suspense>}/>
 			<Route path="/fin/*" element={<Fin />} />
 			<Route path="/personas" element={<Personas />} />
 			<Route path="/actions" element={<Actions />} />
-			<Route path="/contribuer/*">
+			<Route path="/contribuer/*" element={
 				<Suspense fallback={<Loading />}>
 					<ContributionLazy />
-				</Suspense>
-			</Route>
+				</Suspense>}/>
 			<Route path="/à-propos" element={<About />} />
-			<Route path="/cgu">
+			<Route path="/cgu" element={
 				<Suspense fallback={<div>Chargement</div>}>
 					<CGULazy />
-				</Suspense>
-			</Route>
+				</Suspense>}/>
 			<Route path="/partenaires" element={<Diffuser />} />
 			<Route path="/diffuser" element={<Diffuser />} />
-			<Route path={encodeURIComponent('/vie-privée')}>
+			<Route path={encodeURIComponent('/vie-privée')} element={
 				<Suspense fallback={<div>Chargement</div>}>
 					<PrivacyLazy />
-				</Suspense>
-			</Route>
+				</Suspense>}/>
 			<Route path={encodeURIComponent('/nouveautés')} element={<News />} />
 			<Route path="/profil" element={<Profil />} />
-			{/* Here we define this specific route for the context documentation before generic groupe routes */}
-			<Route path="/groupe/documentation-contexte">
+			<Route path="/groupe/documentation-contexte" element={
 				<Suspense fallback={<div>Chargement</div>}>
 					<DocumentationContexteLazy />
-				</Suspense>
-			</Route>
-			<Route path="/guide/*">
+				</Suspense>}/>
+			<Route path="/guide/*" element={
 				<Suspense fallback={<Loading />}>
 					<GuideGroupeLazy />
-				</Suspense>
-			</Route>
-			<Route path="/conférence/:room">
+				</Suspense>}/>
+			<Route path="/conférence/:room" element={
 				<Suspense fallback={<Loading />}>
 					<ConferenceLazy />
-				</Suspense>
-			</Route>
-			<Route path="/groupe/:room">
-				<GroupSwitch />
-			</Route>
-			<Route path="/sondage/:room">
+				</Suspense>}/>
+			<Route path="/groupe/:room" element={
+				<GroupSwitch />}/>
+			<Route path="/sondage/:room" element={
 				<Suspense fallback={<Loading />}>
 					<SurveyLazy />
-				</Suspense>
-			</Route>
+				</Suspense>}/>
 			<Route path="/tutoriel" element={<Tutorial />} />
-			<Route element={Route404} />
+			<Route element={<Route404 />} />
+			*/}
 		</Routes>
 	)
 }
