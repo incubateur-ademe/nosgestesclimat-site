@@ -126,13 +126,17 @@ export const DocumentationStyle = styled.div`
 	padding: 0 0.6rem;
 	#documentationRuleRoot > p:first-of-type {
 		display: inline-block;
-		background: var(--darkerColor);
+		background: var(--lighterColor);
 		padding: 0.4rem 0.6rem 0.2rem;
 	}
 	header {
 		color: var(--textColor);
 		a {
 			color: var(--textColor);
+		}
+		a:hover {
+			background: var(--darkerColor) !important;
+			color: white !important;
 		}
 		h1 {
 			margin-top: 0.6rem;
@@ -155,14 +159,5 @@ export const DocumentationStyle = styled.div`
 	}
 	small {
 		background: none !important;
-	}
-	div[name='somme'] > div > div:nth-child(2n) {
-		background: var(--darkerColor);
-	}
-	.tranche:nth-child(2n) {
-		background: var(--darkerColor) !important;
-	}
-	.bHoORO .tranche.activated {
-		background: var(--color) !important;
 	}
 `
