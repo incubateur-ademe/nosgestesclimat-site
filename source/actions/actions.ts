@@ -21,12 +21,7 @@ export type Action =
 	| SetActiveTargetAction
 	| CompanyStatusAction
 
-export type ThunkResult<R = void> = ThunkAction<
-	R,
-	RootState,
-	{ history: History; sitePaths: SitePaths },
-	Action
->
+export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
 
 type StepAction = {
 	type: 'STEP_ACTION'
@@ -161,13 +156,6 @@ export const updateUnit = (targetUnit: string) =>
 		type: 'UPDATE_TARGET_UNIT',
 		targetUnit,
 	} as const)
-
-export const goBackToSimulation =
-	(): ThunkResult<void> =>
-	(_, getState, { navigate }) => {
-		const url = getState().simulation?.url
-		url && navigate(url)
-	}
 
 export function loadPreviousSimulation() {
 	return {

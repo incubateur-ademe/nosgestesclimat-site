@@ -1,21 +1,28 @@
-import {goBackToSimulation} from 'Actions/actions'
 import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
-import {EngineContext} from 'Components/utils/EngineContext'
-import {ScrollToTop} from 'Components/utils/Scroll'
-import {getDocumentationSiteMap, RulePage} from 'publicodes-react'
-import {useCallback, useContext, useMemo} from 'react'
-import {Helmet} from 'react-helmet'
-import {Trans, useTranslation} from 'react-i18next'
-import {useDispatch, useSelector} from 'react-redux'
-import {Link, Navigate, Route, useLocation} from 'react-router-dom'
-import {RootState} from 'Reducers/rootReducer'
+import { EngineContext } from 'Components/utils/EngineContext'
+import { Markdown } from 'Components/utils/markdown'
+import { ScrollToTop } from 'Components/utils/Scroll'
+import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
+import { useContext, useMemo } from 'react'
+import { Helmet } from 'react-helmet'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import {
+	Link,
+	Navigate,
+	Route,
+	Routes,
+	useLocation,
+	useParams,
+} from 'react-router-dom'
+import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
 import Meta from '../../../components/utils/Meta'
+import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
-import References from './DocumentationReferences'
+import References from '../DocumentationReferences'
 import Méthode from './Méthode'
-import {Markdown} from 'Components/utils/markdown'
 
 export default function () {
 	const currentSimulation = useSelector(
@@ -50,44 +57,49 @@ export default function () {
 				{currentSimulation ? <BackToSimulation /> : <span />}
 				<SearchButton key={pathname} />
 			</div>
+			<Routes>
+				<Route
+					path="*"
+					element={<DocPage {...{ documentationPath, engine }} />}
+				/>
+			</Routes>
 
-			<Route
-				language={i18n.language as 'fr' | 'en'}
-				path={documentationPath + '/:name+'}
-				engine={engine}
-				render={({ match }) =>
-				documentationPath={documentationPath}
-					match.params.name && (
-						<DocumentationStyle>
-							<RulePage
-								language={i18n.language as 'fr' | 'en'}
-								rulePath={match.params.name}
-								engine={engine}
-								documentationPath={documentationPath}
-								renderers={{
-									Head: Helmet,
-									Link: Link,
-									Text: Markdown,
-									References,
-								}}
-							/>
-						</DocumentationStyle>
-					)
-				}
-			/>
 			<BandeauContribuer />
 		</div>
 	)
 }
+
+const DocPage = ({ documentationPath, engine }) => {
+	const url = useParams()['*']
+	const { i18n } = useTranslation()
+	return (
+		<DocumentationStyle>
+			<RulePage
+				language={i18n.language as 'fr' | 'en'}
+				rulePath={url}
+				engine={engine}
+				documentationPath={documentationPath}
+				renderers={{
+					Head: Helmet,
+					Link: Link,
+					Text: Markdown,
+					References: References,
+				}}
+			/>
+		</DocumentationStyle>
+	)
+}
+
 function BackToSimulation() {
-	const dispatch = useDispatch()
-	const handleClick = useCallback(() => {
-		dispatch(goBackToSimulation())
-	}, [])
+	const url = useSelector(currentSimulationSelector)?.url
+	const navigate = useNavigate()
+
 	return (
 		<button
 			className="ui__ simple small push-left button"
-			onClick={handleClick}
+			onClick={() => {
+				navigate(url)
+			}}
 		>
 			← <Trans i18nKey="back">Reprendre la simulation</Trans>
 		</button>
@@ -107,7 +119,6 @@ function DocumentationLanding() {
 		</>
 	)
 }
-
 
 export const DocumentationStyle = styled.div`
 	max-width: 850px;

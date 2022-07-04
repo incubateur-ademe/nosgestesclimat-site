@@ -121,3 +121,6 @@ export function arrayLoopIteration(array, key) {
 	return index === array.length - 1 ? array[0] : array[index + 1]
 }
 
+export function isIterable<T>(obj: unknown): obj is Iterable<T> {
+	return Symbol.iterator in Object(obj)
+}
