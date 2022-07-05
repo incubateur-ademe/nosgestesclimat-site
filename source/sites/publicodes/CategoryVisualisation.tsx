@@ -14,21 +14,10 @@ export default ({ questionCategory, hideMeta = false }) => {
 	const engine = useEngine()
 
 	const category = questionCategory.name
-	const rule = engine.getRule(category),
-		formula = ruleFormula(rule)
-
-	if (!formula) return null
 
 	// The aim of this component is to visualize sums. Sometimes, relevant sums are hidden behind a division
 	// it should be visualized elsewhere
-	const sumToDisplay =
-		formula.nodeKind === 'somme'
-			? category
-			: formula.operationKind === '/'
-			? formula.explanation[0].dottedName
-			: null
-
-	if (!sumToDisplay) return null
+	const sumToDisplay = category === 'logement' ? 'logement . impact' : category
 
 	const subCategories = extractCategories(
 		rules,
@@ -37,7 +26,7 @@ export default ({ questionCategory, hideMeta = false }) => {
 		sumToDisplay,
 		false
 	)
-	const categoryValue = Math.round(engine.evaluate(rule.dottedName).nodeValue)
+	const categoryValue = Math.round(engine.evaluate(category).nodeValue)
 
 	return (
 		<div
