@@ -1,4 +1,5 @@
 import { capitalise0, sortBy } from '../utils'
+import { utils as coreUtils } from 'publicodes'
 
 export const parentName = (dottedName, outputSeparator = ' . ', shift = 0) =>
 	splitName(dottedName).slice(shift, -1).join(outputSeparator)
@@ -29,14 +30,13 @@ export const correctValue = (evaluated) => {
 	return result
 }
 
-export const ruleFormula = (rule) =>
-	rule?.explanation?.valeur?.explanation?.valeur
-
-export const ruleSumNode = (rule) => {
+const ruleSumNode = (rules, rule) => {
 	const formula = rule.rawNode.formule
 
 	if (!formula.somme) return null
-	return formula.somme
+	return formula.somme.map((name) =>
+		coreUtils.disambiguateRuleReference(rules, rule.dottedName, name)
+	)
 }
 
 export const extractCategoriesNamespaces = (
@@ -45,7 +45,7 @@ export const extractCategoriesNamespaces = (
 	parentRule = 'bilan'
 ) => {
 	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(rule)
+		sumNodes = ruleSumNode(rules, rule)
 
 	const categories = sumNodes.map((dottedName) => {
 		const categoryName = splitName(dottedName)[0]
@@ -88,8 +88,9 @@ export const extractCategories = (
 	parentRule = 'bilan',
 	sort = true
 ) => {
+	console.log(parentRule)
 	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(rule)
+		sumNodes = ruleSumNode(rules, rule)
 
 	console.log('sn', sumNodes)
 	const categories = sumNodes.map((dottedName) => {
