@@ -1,5 +1,5 @@
 import animate from 'Components/ui/animate'
-import LogoADEME from 'Components/images/LogoADEME'
+import LogoADEME from 'Images/logoADEME.svg'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
