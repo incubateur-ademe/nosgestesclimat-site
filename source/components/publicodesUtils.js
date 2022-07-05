@@ -88,11 +88,9 @@ export const extractCategories = (
 	parentRule = 'bilan',
 	sort = true
 ) => {
-	console.log(parentRule)
 	const rule = engine.getRule(parentRule),
 		sumNodes = ruleSumNode(rules, rule)
 
-	console.log('sn', sumNodes)
 	const categories = sumNodes.map((dottedName) => {
 		const node = engine.evaluate(dottedName)
 		const { icônes, couleur } = rules[dottedName]
@@ -119,19 +117,13 @@ export const extractCategories = (
 }
 
 export const getSubcategories = (rules, category, engine) => {
-	const rule = engine.getRule(category.name),
-		formula = ruleFormula(rule)
-
-	if (!formula) return [category]
-
 	const sumToDisplay =
-		formula.nodeKind === 'somme'
-			? category.name
-			: formula.operationKind === '/'
-			? formula.explanation[0].dottedName
-			: null
+		category.name === 'services publics'
+			? null
+			: category.name === 'logement'
+			? 'logement . impact'
+			: category.name
 
-	console.log('sum', sumToDisplay)
 	if (!sumToDisplay) return [category]
 
 	const subCategories = extractCategories(
@@ -141,15 +133,12 @@ export const getSubcategories = (rules, category, engine) => {
 		sumToDisplay,
 		false
 	)
-	category.name.includes('logement') &&
-		console.log('LOG', subCategories, formula.explanation[1])
 
-	return formula.operationKind === '/'
+	return category.name === 'logement'
 		? subCategories.map((el) => ({
 				...el,
 				nodeValue:
-					el.nodeValue /
-					engine.evaluate(formula.explanation[1].dottedName).nodeValue,
+					el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
 		  }))
 		: subCategories
 }

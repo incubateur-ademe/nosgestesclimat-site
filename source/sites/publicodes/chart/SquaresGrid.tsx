@@ -16,7 +16,6 @@ export default ({ pixelRemSize, elements, pixel, gridLength }) => {
 		.map((element) => {
 			const decimalLength = element.nodeValue / pixel
 			const length = Math.round(decimalLength)
-			console.log(decimalLength, length)
 			return range(0, length).map((i) => ({ ...element, i }))
 		})
 		.flat()

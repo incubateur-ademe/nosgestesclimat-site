@@ -17,7 +17,14 @@ export default ({ questionCategory, hideMeta = false }) => {
 
 	// The aim of this component is to visualize sums. Sometimes, relevant sums are hidden behind a division
 	// it should be visualized elsewhere
-	const sumToDisplay = category === 'logement' ? 'logement . impact' : category
+	const sumToDisplay =
+		category === 'services publics'
+			? null
+			: 'logement'
+			? 'logement . impact'
+			: category
+
+	if (!sumToDisplay) return null
 
 	const subCategories = extractCategories(
 		rules,
