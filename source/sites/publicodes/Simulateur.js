@@ -19,8 +19,7 @@ import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
-import SimulateurChart from './SimulateurChart'
-
+import InlineCategoryChart from './chart/InlineCategoryChart'
 
 const equivalentTargetArrays = (array1, array2) =>
 	array1.length === array2.length &&
@@ -79,11 +78,7 @@ const Simulateur = (props) => {
 							<EndingCongratulations />
 						)
 					}
-					explanations={
-						<>
-							<SimulateurChart />
-						</>
-					}
+					explanations={<InlineCategoryChart />}
 				/>
 			) : (
 				<TutorialRedirection />
