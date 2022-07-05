@@ -10,7 +10,12 @@ export default ({ pixelRemSize, elements, pixel, gridLength }) => {
 
 	const [isVisible, setVisibility] = useState(false)
 
-	useEffect(() => setTimeout(() => setVisibility(true), 400), [])
+	useEffect(() => {
+		let timer = setTimeout(() => setVisibility(true), 400)
+		return () => {
+			clearTimeout(timer)
+		}
+	}, [])
 
 	const ponderedElementsRaw = elements
 		.map((element) => {
@@ -89,10 +94,13 @@ const GridItem = ({
 	}, [delayPerPixel])
 
 	useEffect(() => {
-		const dx = Math.abs(offset.current.left - originOffset.current.left)
-		const dy = Math.abs(offset.current.top - originOffset.current.top)
-		const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
-		delayRef.current = d * delayPerPixel
+		const updateDelay = () => {
+			const dx = Math.abs(offset.current.left - originOffset.current.left)
+			const dy = Math.abs(offset.current.top - originOffset.current.top)
+			const d = Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
+			delayRef.current = d * delayPerPixel
+		}
+		updateDelay()
 	})
 
 	return (
