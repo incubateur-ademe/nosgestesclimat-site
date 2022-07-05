@@ -122,19 +122,6 @@ module.exports.commonLoaders = (mode = 'production') => {
 			type: 'asset/resource',
 		},
 		{
-			test: /\.svg$/,
-			issuer: /\.[jt]sx?$/,
-			use: [
-				{
-					loader: '@svgr/webpack',
-					options: {
-						throwIfNamespace: false,
-						replaceAttrValues: { '#4143d6': 'var(--color)' },
-					},
-				},
-			],
-		},
-		{
 			test: /\.yaml$/,
 			use: ['yaml-loader'],
 		},

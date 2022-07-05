@@ -8,8 +8,8 @@ import { openmojiURL } from '../../components/SessionBar'
 import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
-import Illustration from './images/ecolab-climat-dessin.svg'
-import Marianne from './images/Marianne.svg'
+import Illustration from 'Images/ecolab-climat-dessin.svg'
+import Marianne from 'Images/Marianne.svg'
 import { useProfileData } from './Profil'
 
 export default () => {
