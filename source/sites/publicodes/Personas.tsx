@@ -172,8 +172,8 @@ export const PersonaGrid = ({
 				const { nom, icônes, data, description, résumé } = persona
 				return (
 					<li key={nom}>
-						<div
-							className={`ui__ card interactive light-border ${
+						<button
+							className={`ui__ card box interactive light-border ${
 								selectedPersona === persona.nom ? 'selected' : ''
 							}`}
 							css={`
@@ -183,25 +183,26 @@ export const PersonaGrid = ({
 									? `border: 2px solid var(--color) !important`
 									: ``}
 							`}
+							onClick={() =>
+								warningIfSituationExists && hasSituation
+									? setWarning(persona)
+									: setPersona(persona)
+							}
 						>
-							<button
-								className="ui__ button simple small"
+							<div
 								css={`
-									width: 100% !important;
+									text-transform: uppercase;
+									color: var(--color);
+									font-size: 90%;
 								`}
-								onClick={() =>
-									warningIfSituationExists && hasSituation
-										? setWarning(persona)
-										: setPersona(persona)
-								}
 							>
 								<div>{emoji(icônes || '👥')}</div>
 								<div>{nom}</div>
-							</button>
-							<p css=" overflow-x: scroll">
+							</div>
+							<p css="overflow-x: scroll;">
 								<small>{résumé || description}</small>
 							</p>
-						</div>
+						</button>
 					</li>
 				)
 			})}
