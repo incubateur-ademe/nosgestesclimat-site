@@ -77,13 +77,6 @@ A compléter
 		dottedName: 'alimentation . plats',
 		question:
 			'Choisissez les plats de vos midis et dîners pour une semaine type',
-		description: `
-
-Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners. 
-
-> Aujourd'hui nous travaillons pour que les menus associés à vos repas soient les plus représentatifs de vos habitudes, n'hésitez pas à aller plus loin en parcourant [la documentation](https://nosgestesclimat.fr/documentation/alimentation/plats).
-
-			`,
 		suggestions: {
 			'je suis végétalien': {
 				'végétalien . nombre': 14,
