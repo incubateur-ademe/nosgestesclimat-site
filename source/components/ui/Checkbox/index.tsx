@@ -33,9 +33,7 @@ export default function Checkbox(
 						<polyline points="3 11 8 14 14 5" />
 					</svg>
 				</div>
-				{'label' in props && (
-					<span style={{ marginLeft: '0.6rem' }}>{props.label}</span>
-				)}
+				{props.label && <span className="visually-hidden">{props.label}</span>}
 			</label>
 		</>
 	)

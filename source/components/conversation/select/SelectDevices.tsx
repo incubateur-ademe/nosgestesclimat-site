@@ -62,13 +62,24 @@ export default function SelectDevices({
 								key={name}
 							>
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-								<MosaicLabel htmlFor={name}>{title}</MosaicLabel>
+								<div
+									css={`
+										text-align: center;
+										line-height: 1.2rem;
+										margin-top: 0.6rem;
+										margin-bottom: 0.4rem;
+										font-weight: bold;
+									`}
+								>
+									{title}
+								</div>
 								{false && description && <p>{description.split('\n')[0]}</p>}
 								{!isNotActive && (
 									<div css={'font-size: 1.8rem'}>
 										<Checkbox
 											name={name}
 											id={name}
+											label={title}
 											checked={value === 'oui'}
 											onChange={() =>
 												dispatch(
