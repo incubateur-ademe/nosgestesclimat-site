@@ -55,11 +55,6 @@ export default function Conversation({
 	const rawRules = useSelector((state) => state.rules)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
 
-	const priorityQuestions = {
-		'alimentation . boisson . chaude . chocolat chaud . nombre': 1,
-		'alimentation . boisson . chaude . café . nombre': 1,
-		'alimentation . boisson . chaude . thé . nombre': 1,
-	}
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = orderByCategories
 		? sortBy((question) => {
@@ -68,10 +63,8 @@ export default function Conversation({
 				)
 				// We artificially put this category (since it has no actionable question) at the end
 				if (category.name === 'services publics') return 1000000
-				const cheatValue =
-					question in priorityQuestions ? priorityQuestions[question] : 0
 				const value = -category?.nodeValue
-				return value - cheatValue
+				return value
 		  }, nextQuestions)
 		: nextQuestions
 
