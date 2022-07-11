@@ -138,6 +138,13 @@ module.exports.commonLoaders = (mode = 'production') => {
 			test: /\.(ttf|woff2?)$/,
 			type: 'asset/resource',
 		},
+		{
+			test: /\.svg$/,
+			loader: '@svgr/webpack',
+			options: {
+				replaceAttrValues: { '#4143d6': 'var(--color)' },
+			},
+		},
 	]
 }
 
