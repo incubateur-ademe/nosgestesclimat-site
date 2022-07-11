@@ -60,6 +60,7 @@ export default function Conversation({
 				const category = orderByCategories.find(
 					(c) => question.indexOf(c.dottedName) === 0
 				)
+				if (!category) return -1000000
 				// We artificially put this category (since it has no actionable question) at the end
 				if (category.name === 'services publics') return 1000000
 				const value = -category?.nodeValue
@@ -317,7 +318,7 @@ export default function Conversation({
 			)}
 			{orderByCategories && (
 				<Meta
-					title={rules[objectifs[0]].title + ' - ' + questionCategory.title}
+					title={rules[objectifs[0]].title + ' - ' + questionCategory?.title}
 				/>
 			)}
 			<form
