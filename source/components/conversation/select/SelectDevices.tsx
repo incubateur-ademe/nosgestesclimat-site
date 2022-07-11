@@ -19,7 +19,7 @@ export default function SelectDevices({
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
 
-	const choiceElements = (
+	return (
 		<div>
 			<Mosaic>
 				{selectedRules.map(
@@ -46,11 +46,8 @@ export default function SelectDevices({
 							<li
 								css={`
 									padding: 2rem;
-
-									:focus-within {
-										outline: 3px solid var(--lightColor);
-									}
 									position: relative;
+									pointer-events: none;
 								`}
 								className={
 									isNotActive
@@ -65,7 +62,12 @@ export default function SelectDevices({
 								<MosaicLabel htmlFor={name}>{title}</MosaicLabel>
 								{false && description && <p>{description.split('\n')[0]}</p>}
 								{!isNotActive && (
-									<div css={'font-size: 1.8rem'}>
+									<div
+										css={`
+											font-size: 1.8rem;
+											pointer-events: auto;
+										`}
+									>
 										<Checkbox
 											name={name}
 											id={name}
@@ -104,12 +106,6 @@ export default function SelectDevices({
 					}
 				)}
 			</Mosaic>
-		</div>
-	)
-
-	return (
-		<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
-			{choiceElements}
 		</div>
 	)
 }

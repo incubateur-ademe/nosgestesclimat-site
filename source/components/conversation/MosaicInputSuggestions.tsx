@@ -3,20 +3,22 @@ import { toPairs } from 'ramda'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { updateSituation } from 'Actions/actions'
 
 type InputSuggestionsProps = {
+	dottedName: string
+	relatedRuleNames: Array<string>
 	suggestions?: Record<string, ASTNode>
-	onFirstClick: (val: ASTNode) => void
-	onSecondClick?: (val: ASTNode) => void
 }
 
-export default function InputSuggestions({
+export default function MosaicInputSuggestions({
+	dottedName,
+	relatedRuleNames,
 	suggestions = {},
-	onSecondClick = (x) => x,
-	onFirstClick,
 }: InputSuggestionsProps) {
-	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t, i18n } = useTranslation()
+	const dispatch = useDispatch()
 
 	return (
 		<div
@@ -41,7 +43,7 @@ export default function InputSuggestions({
 				}
 			`}
 		>
-			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
+			{toPairs(suggestions).map(([text, values]: [string, ASTNode]) => {
 				return (
 					<button
 						className="ui__ suggestion plain button"
@@ -54,9 +56,19 @@ export default function InputSuggestions({
 							}
 						`}
 						onClick={() => {
-							onFirstClick(value)
-							if (suggestion !== value) setSuggestion(value)
-							else onSecondClick && onSecondClick(value)
+							relatedRuleNames.map((elt) => dispatch(updateSituation(elt, 0)))
+							toPairs(values).map(([ruleName, value]: [string, ASTNode]) => {
+								const fullDottedName = `${dottedName} . ${ruleName}`
+								const card = document.getElementById(`card - ${fullDottedName}`)
+								card?.animate(
+									{ opacity: [1, 0.5, 1] },
+									{
+										duration: 1000,
+										easing: 'ease-out',
+									}
+								)
+								dispatch(updateSituation(fullDottedName, value))
+							})
 						}}
 						title={t('Insérer cette suggestion')}
 					>
