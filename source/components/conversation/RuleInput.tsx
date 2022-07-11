@@ -11,15 +11,15 @@ import {
 	EvaluatedRule,
 	formatValue,
 	reduceAST,
+	serializeUnit,
 	utils,
 } from 'publicodes'
-const { serializeUnit } = require('publicodes')
 import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
-import mosaicQuestions from './mosaicQuestions'
 import estimationQuestions from './estimationQuestions'
+import mosaicQuestions from './mosaicQuestions'
 import ParagrapheInput from './ParagrapheInput'
 import TextInput from './TextInput'
 
