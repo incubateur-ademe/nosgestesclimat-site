@@ -177,7 +177,7 @@ const Router = ({}) => {
 			/>
 			<Route path="/fin/*" element={<Fin />} />
 			<Route path="/personas" element={<Personas />} />
-			<Route path="/actions" element={<Actions />} />
+			<Route path="/actions/*" element={<Actions />} />
 			<Route
 				path="/contribuer/*"
 				element={
