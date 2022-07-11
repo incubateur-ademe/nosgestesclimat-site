@@ -26,8 +26,7 @@ import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
-import GroupSwitch from './conference/GroupSwitch'
-
+const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
@@ -168,51 +167,88 @@ const Router = ({}) => {
 				}
 			/>
 			<Route path="simulateur/*" element={<Simulateur />} />
-			<Route path="/stats" element={
-				<Suspense fallback={<Loading />}>
-					<StatsLazy />
-				</Suspense>}/>
+			<Route
+				path="/stats"
+				element={
+					<Suspense fallback={<Loading />}>
+						<StatsLazy />
+					</Suspense>
+				}
+			/>
 			<Route path="/fin/*" element={<Fin />} />
 			<Route path="/personas" element={<Personas />} />
 			<Route path="/actions" element={<Actions />} />
-			<Route path="/contribuer/*" element={
-				<Suspense fallback={<Loading />}>
-					<ContributionLazy />
-				</Suspense>}/>
+			<Route
+				path="/contribuer/*"
+				element={
+					<Suspense fallback={<Loading />}>
+						<ContributionLazy />
+					</Suspense>
+				}
+			/>
 			<Route path="/à-propos" element={<About />} />
-			<Route path="/cgu" element={
-				<Suspense fallback={<div>Chargement</div>}>
-					<CGULazy />
-				</Suspense>}/>
+			<Route
+				path="/cgu"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<CGULazy />
+					</Suspense>
+				}
+			/>
 			<Route path="/partenaires" element={<Diffuser />} />
 			<Route path="/diffuser" element={<Diffuser />} />
-			<Route path={encodeURIComponent('/vie-privée')} element={
-				<Suspense fallback={<div>Chargement</div>}>
-					<PrivacyLazy />
-				</Suspense>}/>
+			<Route
+				path={encodeURIComponent('/vie-privée')}
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<PrivacyLazy />
+					</Suspense>
+				}
+			/>
 			<Route path={encodeURIComponent('/nouveautés')} element={<News />} />
 			<Route path="/profil" element={<Profil />} />
-			<Route path="/groupe/documentation-contexte" element={
-				<Suspense fallback={<div>Chargement</div>}>
-					<DocumentationContexteLazy />
-				</Suspense>}/>
-			<Route path="/guide/*" element={
-				<Suspense fallback={<Loading />}>
-					<GuideGroupeLazy />
-				</Suspense>}/>
-			<Route path="/conférence/:room" element={
-				<Suspense fallback={<Loading />}>
-					<ConferenceLazy />
-				</Suspense>}/>
-			<Route path="/groupe/:room" element={
-				<GroupSwitch />}/>
-			<Route path="/sondage/:room" element={
-				<Suspense fallback={<Loading />}>
-					<SurveyLazy />
-				</Suspense>}/>
+			<Route
+				path="/groupe/documentation-contexte"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<DocumentationContexteLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/guide/*"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GuideGroupeLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/conférence/:room"
+				element={
+					<Suspense fallback={<Loading />}>
+						<ConferenceLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/groupe/:room"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GroupSwitchLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/sondage/:room"
+				element={
+					<Suspense fallback={<Loading />}>
+						<SurveyLazy />
+					</Suspense>
+				}
+			/>
 			<Route path="/tutoriel" element={<Tutorial />} />
 			<Route element={<Route404 />} />
-			*/}
 		</Routes>
 	)
 }
