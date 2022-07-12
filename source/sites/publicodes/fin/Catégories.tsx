@@ -82,7 +82,11 @@ export default ({ score, details, headlessMode }) => {
 				`}
 			>
 				<h1>De quoi est faite mon empreinte ?</h1>
-				<div id="shareImage" css="padding: 0">
+				<div
+					id="shareImage"
+					css="padding: 0"
+					title="Représentation visuelle en mosaïque de cubes. Chaque cube représente une part fixe de l'empreinte, et une sous-catégories (par exemple, voiture, moto, ou boisson. Sur cette mosaïque vient se placer une zone verte représentant le budget climat de 2 tonnes. "
+				>
 					<div css="padding: 0 1rem">
 						<RavijenChart
 							noAnimation
