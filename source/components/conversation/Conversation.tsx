@@ -85,7 +85,11 @@ export default function Conversation({
 
 	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
-		currentQuestion = !isMainSimulation ? nextQuestions[0] : sortedQuestions[0]
+		currentQuestion = !isMainSimulation
+			? nextQuestions[0]
+			: focusedCategory
+			? sortedQuestions[0]
+			: unfoldedStep || sortedQuestions[0]
 
 	const currentQuestionIsAnswered =
 		currentQuestion && isMosaic(currentQuestion)
