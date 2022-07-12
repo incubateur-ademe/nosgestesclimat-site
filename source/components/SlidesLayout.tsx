@@ -9,9 +9,16 @@ export default ({ children, length, active }) => {
 	return (
 		<Container isIframe={isIframe}>
 			{length && (
-				<ul>
+				<ol
+					title="Progression dans les diapo"
+					role="progressbar"
+					aria-valuenow={active + 1}
+					aria-valuemin="1"
+					aria-valuemax={slides.length}
+				>
 					{slides.map((_, i) => (
 						<li
+							aria-current={i === active ? 'step' : null}
 							css={`
 								height: 1rem;
 								width: 1rem;
@@ -22,7 +29,7 @@ export default ({ children, length, active }) => {
 							`}
 						></li>
 					))}
-				</ul>
+				</ol>
 			)}
 			<MainContent>{children}</MainContent>
 		</Container>
@@ -45,7 +52,7 @@ const Container = styled.div`
 	}
 	${(props) => props.isIframe && `height: 45rem !important;`}
 	position: relative;
-	> ul {
+	> ol {
 		@media (min-height: 800px) {
 			display: flex;
 		}
