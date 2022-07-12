@@ -95,6 +95,8 @@ function BackToSimulation() {
 	const url = useSelector(currentSimulationSelector)?.url
 	const navigate = useNavigate()
 
+	console.log('url', url)
+
 	return (
 		<button
 			className="ui__ simple small push-left button"
