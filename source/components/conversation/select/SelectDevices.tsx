@@ -7,6 +7,11 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import { Mosaic } from './UI'
 import Stamp from '../../Stamp'
 import { mosaicLabelStyle } from './NumberedMosaic'
+import styled from 'styled-components'
+
+const MosaicLabelDiv = styled.div`
+	${mosaicLabelStyle}
+`
 
 export default function SelectDevices({
 	name,
@@ -59,7 +64,7 @@ export default function SelectDevices({
 								key={name}
 							>
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-								<div css={mosaicLabelStyle}>{title}</div>
+								<MosaicLabelDiv>{title}</MosaicLabelDiv>
 								{false && description && <p>{description.split('\n')[0]}</p>}
 								{!isNotActive && (
 									<div
