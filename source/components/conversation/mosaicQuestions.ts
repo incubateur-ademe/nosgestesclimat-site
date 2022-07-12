@@ -74,21 +74,78 @@ A compléter
 		component: SelectDevices,
 	},
 	{
-		dottedName: 'alimentation . régime',
+		dottedName: 'alimentation . plats',
 		question:
 			'Choisissez les plats de vos midis et dîners pour une semaine type',
-		description: `
-
-Choisissez 14 plats qui représentent votre semaine type : 7 midi et 7 dîners. 
-
-> Aujourd'hui nous travaillons pour que les menus associés à vos repas soient les plus représentatifs de vos habitudes, n'hésitez pas à aller plus loin en parcourant [la documentation](https://nosgestesclimat.fr/documentation/alimentation/plats).
-
-			`,
+		suggestions: {
+			'je suis végétalien': {
+				'végétalien . nombre': 14,
+			},
+			'je suis végétarien': {
+				'végétalien . nombre': 3,
+				'végétarien . nombre': 11,
+			},
+			'je mange peu de viande': {
+				'végétalien . nombre': 1,
+				'végétarien . nombre': 7,
+				'viande 1 . nombre': 4,
+				'poisson 1 . nombre': 1,
+				'poisson 2 . nombre': 1,
+			},
+			'je mange de la viande régulièrement': {
+				'végétarien . nombre': 4,
+				'viande 1 . nombre': 6,
+				'viande 2 . nombre': 2,
+				'poisson 1 . nombre': 1,
+				'poisson 2 . nombre': 1,
+			},
+			'je mange beaucoup de viande': {
+				'viande 1 . nombre': 6,
+				'viande 2 . nombre': 6,
+				'poisson 1 . nombre': 1,
+				'poisson 2 . nombre': 1,
+			},
+		},
 		isApplicable: (dottedName: DottedName) =>
 			dottedName.includes('alimentation . plats') &&
 			dottedName.includes(' . nombre'),
 		component: NumberedMosaic,
 		options: { chipsTotal: 14 },
+	},
+	{
+		dottedName: 'alimentation . boisson . chaude',
+		question:
+			'Quelle est votre consommation de boissons chaudes pour une semaine type (nombre de tasses par semaine)?',
+		description: `
+
+Vos consommations de boissons chaudes pour une semaine type. Un café par jour ? Un thé tous les soirs ? Un chocolat chaud au petit déjeuner ? 
+
+> Les boissons chaudes que vous consommez au petit déjeuner sont à prendre en compte ici !
+			`,
+		suggestions: {
+			'Pas de boisson chaude': {
+				'café . nombre': 0,
+				'thé . nombre': 0,
+				'chocolat chaud . nombre': 0,
+			},
+			'un café par jour': {
+				'café . nombre': 7,
+			},
+			'beaucoup de café': {
+				'café . nombre': 28,
+			},
+			'un café et un thé par jour': {
+				'café . nombre': 7,
+				'thé . nombre': 7,
+			},
+			'un chocolat chaud le matin': {
+				'chocolat chaud . nombre': 7,
+			},
+		},
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('alimentation . boisson . chaude') &&
+			dottedName.includes(' . nombre'),
+		component: NumberedMosaic,
 	},
 	{
 		dottedName: 'divers . textile',
