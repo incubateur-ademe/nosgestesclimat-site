@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { Mosaic } from './UI'
 import Stamp from '../../Stamp'
-import { MosaicLabel } from './NumberedMosaic'
+import { mosaicLabelStyle } from './NumberedMosaic'
 
 export default function SelectDevices({
 	name,
@@ -62,17 +62,7 @@ export default function SelectDevices({
 								key={name}
 							>
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-								<div
-									css={`
-										text-align: center;
-										line-height: 1.2rem;
-										margin-top: 0.6rem;
-										margin-bottom: 0.4rem;
-										font-weight: bold;
-									`}
-								>
-									{title}
-								</div>
+								<div css={mosaicLabelStyle}>{title}</div>
 								{false && description && <p>{description.split('\n')[0]}</p>}
 								{!isNotActive && (
 									<div css={'font-size: 1.8rem'}>
