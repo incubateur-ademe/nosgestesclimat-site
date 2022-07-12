@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { Mosaic } from './UI'
 import Stamp from '../../Stamp'
-import { MosaicLabel } from './NumberedMosaic'
+import { mosaicLabelStyle } from './NumberedMosaic'
 
 export default function SelectDevices({
 	name,
@@ -59,7 +59,7 @@ export default function SelectDevices({
 								key={name}
 							>
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-								<MosaicLabel htmlFor={name}>{title}</MosaicLabel>
+								<div css={mosaicLabelStyle}>{title}</div>
 								{false && description && <p>{description.split('\n')[0]}</p>}
 								{!isNotActive && (
 									<div
@@ -71,6 +71,7 @@ export default function SelectDevices({
 										<Checkbox
 											name={name}
 											id={name}
+											label={title}
 											checked={value === 'oui'}
 											onChange={() =>
 												dispatch(

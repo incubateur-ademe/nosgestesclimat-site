@@ -48,11 +48,11 @@ export default function NumberedMosaic({
 									: Math.round(Math.random() * 10) |
 									  question.rawNode['par défaut']
 						return (
-							<li
-								className="ui__ card interactive"
-								id={`card - ${question.dottedName}`}
-							>
-								<MosaicLabel htmlFor={question.dottedName}>{title}</MosaicLabel>
+							<li className="ui__ card interactive" key={question.dottedName} id={`card - ${question.dottedName}`}>
+								<label css={mosaicLabelStyle} htmlFor={question.dottedName}>
+									{title}
+								</label>
+
 								<div
 									css={`
 										${!description ? 'font-size: 200%' : ''}
@@ -167,7 +167,7 @@ export default function NumberedMosaic({
 	)
 }
 
-export const MosaicLabel = styled.label`
+export const mosaicLabelStyle = `
 	text-align: center;
 	line-height: 1.2rem;
 	margin-top: 0.6rem;
