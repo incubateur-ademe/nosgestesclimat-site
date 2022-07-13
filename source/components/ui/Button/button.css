@@ -176,6 +176,21 @@
 	border-radius: 0.3rem;
 }
 
+.ui__.button.suggestion {
+	width: inherit;
+	transition: all 0.08s;
+	border-radius: 0.3rem;
+	font-size: 90%;
+	line-height: 0.8rem;
+	padding: 0.2rem 0.4rem;
+	text-transform: lowerCase;
+	opacity: 0.75;
+}
+
+.ui__.button.suggestion:first-letter {
+	text-transform: uppercase !important;
+}
+
 .ui__.button-choice {
 	padding-top: 1rem;
 	color: inherit;

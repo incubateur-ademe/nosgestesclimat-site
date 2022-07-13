@@ -89,7 +89,8 @@ export function getNextQuestions(
 ): Array<DottedName> {
 	const {
 		'non prioritaires': notPriority = [],
-		liste: whitelist = [],
+		'liste prioritaire': priority = [],
+		'liste blanche': whitelist = [],
 		'liste noire': blacklist = [],
 	} = questionConfig
 
@@ -119,8 +120,10 @@ export function getNextQuestions(
 			whitelist.findIndex((name) => question.startsWith(name)) + 1
 		const indexNotPriority =
 			notPriority.findIndex((name) => question.startsWith(name)) + 1
+		const indexPriority =
+			priority.findIndex((name) => question.startsWith(name)) === -1 ? 0 : -1
 		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
-		return indexList + indexNotPriority + differenceCoeff
+		return indexList + indexNotPriority + indexPriority + differenceCoeff
 	}, nextQuestions)
 }
 

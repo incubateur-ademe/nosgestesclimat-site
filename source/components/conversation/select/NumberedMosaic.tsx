@@ -6,14 +6,17 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { useEngine } from '../../utils/EngineContext'
 import { Mosaic } from './UI'
+import MosaicInputSuggestions from '../MosaicInputSuggestions'
 
 export default function NumberedMosaic({
 	name,
 	setFormValue,
+	dottedName,
 	selectedRules,
 	value: currentValue,
 	question,
 	options: { chipsTotal },
+	suggestions,
 }) {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
@@ -45,8 +48,13 @@ export default function NumberedMosaic({
 									: Math.round(Math.random() * 10) |
 									  question.rawNode['par défaut']
 						return (
-							<li className="ui__ card interactive" key={question.dottedName}>
+							<li
+								className="ui__ card interactive"
+								key={question.dottedName}
+								id={`card - ${question.dottedName}`}
+							>
 								<MosaicLabel htmlFor={question.dottedName}>{title}</MosaicLabel>
+
 								<div
 									css={`
 										${!description ? 'font-size: 200%' : ''}
@@ -142,17 +150,32 @@ export default function NumberedMosaic({
 		</div>
 	)
 
+	const relatedRuleNames = selectedRules.reduce(
+		(memo, arr) => [...memo, arr[1].dottedName],
+		[]
+	)
+
 	return (
-		<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
+		<div>
+			{Object.keys(suggestions).length > 0 && (
+				<MosaicInputSuggestions
+					dottedName={dottedName}
+					relatedRuleNames={relatedRuleNames}
+					suggestions={suggestions}
+				/>
+			)}
 			{choiceElements}
 		</div>
 	)
 }
 
-export const MosaicLabel = styled.label`
+export const mosaicLabelStyle = `
 	text-align: center;
 	line-height: 1.2rem;
 	margin-top: 0.6rem;
 	margin-bottom: 0.4rem;
 	font-weight: bold;
+`
+const MosaicLabel = styled.label`
+	${mosaicLabelStyle}
 `

@@ -6,7 +6,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { Mosaic } from './UI'
 import Stamp from '../../Stamp'
-import { MosaicLabel } from './NumberedMosaic'
+import { mosaicLabelStyle } from './NumberedMosaic'
+import styled from 'styled-components'
+
+const MosaicLabelDiv = styled.div`
+	${mosaicLabelStyle}
+`
 
 export default function SelectDevices({
 	name,
@@ -19,7 +24,7 @@ export default function SelectDevices({
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
 
-	const choiceElements = (
+	return (
 		<div>
 			<Mosaic>
 				{selectedRules.map(
@@ -46,11 +51,8 @@ export default function SelectDevices({
 							<li
 								css={`
 									padding: 2rem;
-
-									:focus-within {
-										outline: 3px solid var(--lightColor);
-									}
 									position: relative;
+									pointer-events: none;
 								`}
 								className={
 									isNotActive
@@ -62,13 +64,19 @@ export default function SelectDevices({
 								key={name}
 							>
 								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-								<MosaicLabel htmlFor={name}>{title}</MosaicLabel>
+								<MosaicLabelDiv>{title}</MosaicLabelDiv>
 								{false && description && <p>{description.split('\n')[0]}</p>}
 								{!isNotActive && (
-									<div css={'font-size: 1.8rem'}>
+									<div
+										css={`
+											font-size: 1.8rem;
+											pointer-events: auto;
+										`}
+									>
 										<Checkbox
 											name={name}
 											id={name}
+											label={title}
 											checked={value === 'oui'}
 											onChange={() =>
 												dispatch(
@@ -104,12 +112,6 @@ export default function SelectDevices({
 					}
 				)}
 			</Mosaic>
-		</div>
-	)
-
-	return (
-		<div css="margin-top: 0.6rem; display: flex; align-items: center; flex-wrap: wrap; justify-content: flex-end">
-			{choiceElements}
 		</div>
 	)
 }

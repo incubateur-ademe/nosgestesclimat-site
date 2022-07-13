@@ -111,8 +111,10 @@ export default function RuleInput<Name extends string = DottedName>({
 			<question.component
 				{...{
 					...commonProps,
+					dottedName: question.dottedName,
 					selectedRules,
 					options: question.options || {},
+					suggestions: question.suggestions || {},
 				}}
 			/>
 		)
