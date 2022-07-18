@@ -208,15 +208,15 @@ const Router = ({}) => {
 			<Route path={encodeURIComponent('/nouveautés')} element={<News />} />
 			<Route path="/profil" element={<Profil />} />
 			<Route
-				path="/groupe/documentation-contexte"
+				path="/guide"
 				element={
-					<Suspense fallback={<div>Chargement</div>}>
-						<DocumentationContexteLazy />
+					<Suspense fallback={<Loading />}>
+						<GuideGroupeLazy />
 					</Suspense>
 				}
 			/>
 			<Route
-				path="/guide/*"
+				path="/guide/:encodedName"
 				element={
 					<Suspense fallback={<Loading />}>
 						<GuideGroupeLazy />
@@ -232,10 +232,18 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path="/groupe/:room"
+				path="/groupe"
 				element={
 					<Suspense fallback={<Loading />}>
 						<GroupSwitchLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/groupe/documentation-contexte"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<DocumentationContexteLazy />
 					</Suspense>
 				}
 			/>
