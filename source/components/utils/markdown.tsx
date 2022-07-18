@@ -61,31 +61,15 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	renderers?: Record<string, unknown>
 }
 
-const CodeBlock = ({
-	value,
-	language,
-}: {
-	value: string
-	language: string
-}) => (
+const CodeBlock = ({ children }: { children: string }) => (
 	<div
 		css={`
 			position: relative;
 		`}
 	>
 		<pre className="ui__ code">
-			<code>{value}</code>
+			<code>{children}</code>
 		</pre>
-		{language === 'yaml' && (
-			<a
-				href={`https://publi.codes/studio?code=${encodeURIComponent(value)}`}
-				target="_blank"
-				rel="noreferrer"
-				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
-			>
-				{emoji('⚡')} Lancer le calcul
-			</a>
-		)}
 	</div>
 )
 
