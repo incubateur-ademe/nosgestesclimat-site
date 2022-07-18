@@ -49,9 +49,11 @@ export function LinkRenderer({
 	)
 }
 
-const TextRenderer = ({ children }: { children: string }) => (
-	<>{emoji(children)}</>
-)
+const TextRenderer = ({ children }: { children: string }) => {
+	// I do not understand why children is an array of strings in the case of Diffuser.md for exemple
+	const textChild = Array.isArray(children) ? children[0] : children
+	return <>{emoji(textChild)}</>
+}
 
 type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	className?: string

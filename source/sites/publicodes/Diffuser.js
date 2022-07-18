@@ -1,11 +1,9 @@
 import { Markdown } from 'Components/utils/markdown'
-import about from 'raw-loader!./diffuser.md'
-import React from 'react'
-import { Link } from 'react-router-dom'
+import content from 'raw-loader!./diffuser.md'
 import Meta from '../../components/utils/Meta'
 
 export default () => (
-	<section className="ui__ container" id="about">
+	<section className="ui__ container" id="diffuser">
 		<Meta
 			title="Diffuser Nos Gestes Climat"
 			description={`
@@ -13,8 +11,6 @@ Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuel
 
 		`}
 		/>
-		<p>
-			<Markdown source={about} />
-		</p>
+		<Markdown children={content} />
 	</section>
 )

@@ -186,7 +186,7 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path="/à-propos" element={<About />} />
+			<Route path={encodeURIComponent('à-propos')} element={<About />} />
 			<Route
 				path="/cgu"
 				element={
@@ -198,14 +198,17 @@ const Router = ({}) => {
 			<Route path="/partenaires" element={<Diffuser />} />
 			<Route path="/diffuser" element={<Diffuser />} />
 			<Route
-				path={encodeURIComponent('/vie-privée')}
+				path={encodeURIComponent('vie-privée')}
 				element={
 					<Suspense fallback={<div>Chargement</div>}>
 						<PrivacyLazy />
 					</Suspense>
 				}
 			/>
-			<Route path={encodeURIComponent('/nouveautés')} element={<News />} />
+			<Route
+				path={encodeURIComponent('nouveautés/:version')}
+				element={<News />}
+			/>
 			<Route path="/profil" element={<Profil />} />
 			<Route
 				path="/guide"
@@ -224,7 +227,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path="/conférence/:room"
+				path={encodeURIComponent('conférence/:room')}
 				element={
 					<Suspense fallback={<Loading />}>
 						<ConferenceLazy />

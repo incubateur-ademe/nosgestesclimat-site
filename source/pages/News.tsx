@@ -37,14 +37,16 @@ export default function News() {
 	const navigate = useNavigate()
 	const slug = useMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
 		?.slug
-	useEffect(() => setLastViewedRelease(lastRelease.name), [])
-	useEffect(
-		() =>
-			fetch('/data/releases.json')
-				.then((r) => r.json())
-				.then((json) => setData(json)),
-		[]
-	)
+	const fetchSetData = () =>
+		fetch('/data/releases.json')
+			.then((r) => r.json())
+			.then((json) => setData(json))
+	useEffect(() => {
+		setLastViewedRelease(lastRelease.name)
+	}, [])
+	useEffect(() => {
+		fetchSetData()
+	}, [])
 
 	if (!data) {
 		return null
