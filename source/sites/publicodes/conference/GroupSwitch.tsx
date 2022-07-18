@@ -7,7 +7,6 @@ import Meta from '../../../components/utils/Meta'
 
 export default () => {
 	const [newRoom, setNewRoom] = useState(generateRoomName())
-	const { room } = useParams()
 	return (
 		<div>
 			<Meta
@@ -18,7 +17,7 @@ export default () => {
 				Mode groupe <Beta />
 			</h1>
 
-			<Instructions {...{ room, newRoom, setNewRoom }} />
+			<Instructions {...{ newRoom, setNewRoom }} />
 		</div>
 	)
 }
