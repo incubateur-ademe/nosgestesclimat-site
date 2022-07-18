@@ -227,7 +227,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={encodeURIComponent('conférence/:room')}
+				path={`${encodeURIComponent('conférence')}/:room`}
 				element={
 					<Suspense fallback={<Loading />}>
 						<ConferenceLazy />
