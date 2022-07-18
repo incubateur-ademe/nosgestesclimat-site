@@ -58,7 +58,7 @@ export default function News() {
 		`${'/nouveautés'}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
-		return <Navigate to={getPath(0)} />
+		return <Navigate to={getPath(0)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()

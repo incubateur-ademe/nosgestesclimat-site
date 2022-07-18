@@ -94,7 +94,7 @@ const TutorialRedirection = () => {
 	useEffect(() => {
 		dispatch({ type: 'SET_THEN_REDIRECT_TO', to })
 	}, [to])
-	return <Navigate to="/tutoriel" />
+	return <Navigate to="/tutoriel" replace />
 }
 
 const RedirectionToEndPage = ({ rules, engine }) => {
