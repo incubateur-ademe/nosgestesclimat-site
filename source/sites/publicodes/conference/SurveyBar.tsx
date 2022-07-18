@@ -79,32 +79,36 @@ export default () => {
 		}
 	}, [survey.room])
 
-	useEffect(async () => {
-		if (!survey || !survey.room || !cachedSurveyId) return null
+	useEffect(() => {
+		return async () => {
+			if (!survey || !survey.room || !cachedSurveyId) return null
 
-		const answer = {
-			survey: survey.room,
-			data,
-			id: cachedSurveyId,
-		}
-		socket.emit('answer', { room: survey.room, answer })
+			const answer = {
+				survey: survey.room,
+				data,
+				id: cachedSurveyId,
+			}
+			socket.emit('answer', { room: survey.room, answer })
 
-		// This should not be necessary, but for a reason I don't understand the server doesn't emit to A A's response
-		dispatch({
-			type: 'ADD_SURVEY_ANSWERS',
-			answers: [answer],
-			room: survey.room,
-		})
-	}, [situation, surveyContext, survey.room, cachedSurveyId])
-
-	useEffect(async () => {
-		socket.on('received', (data) => {
+			// This should not be necessary, but for a reason I don't understand the server doesn't emit to A A's response
 			dispatch({
 				type: 'ADD_SURVEY_ANSWERS',
-				answers: [data.answer],
+				answers: [answer],
 				room: survey.room,
 			})
-		})
+		}
+	}, [situation, surveyContext, survey.room, cachedSurveyId])
+
+	useEffect(() => {
+		return async () => {
+			socket.on('received', (data) => {
+				dispatch({
+					type: 'ADD_SURVEY_ANSWERS',
+					answers: [data.answer],
+					room: survey.room,
+				})
+			})
+		}
 	}, [])
 
 	const simulationArray = [],
