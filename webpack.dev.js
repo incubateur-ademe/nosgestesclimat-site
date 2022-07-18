@@ -2,7 +2,6 @@ const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const path = require('path')
 require('dotenv').config()
-const ESLintPlugin = require('eslint-webpack-plugin')
 
 const {
 	commonLoaders,
@@ -10,7 +9,6 @@ const {
 	HTMLPlugins,
 	default: common,
 } = require('./webpack.common')
-const { default: ESLintWebpackPlugin } = require('eslint-webpack-plugin')
 
 module.exports = {
 	...common,

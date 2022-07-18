@@ -5,10 +5,8 @@ const {
 	default: common,
 } = require('./webpack.common.js')
 const webpack = require('webpack')
-const ESLintPlugin = require('eslint-webpack-plugin')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const TerserPlugin = require('terser-webpack-plugin')
 
 // Server-side prerendering is not activated here. If you want to work on this, go see this fork's parent, github.com/betagouv/mon-entreprise
 
