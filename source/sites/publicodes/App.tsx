@@ -256,7 +256,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route path="/tutoriel" element={<Tutorial />} />
-			<Route element={<Route404 />} />
+			<Route path="*" element={<Route404 />} />
 		</Routes>
 	)
 }
