@@ -18,7 +18,11 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { setTrackingVariable, skipTutorial } from '../../actions/actions'
+import {
+	setTrackingVariable,
+	skipTutorial,
+	validateWithDefaultValue,
+} from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
@@ -200,7 +204,7 @@ export default function Conversation({
 		// default value (for instance the question shouldn't appear in the
 		// answered questions).
 		questionsToSubmit.map((question) =>
-			dispatch(validateStepWithValue(question, undefined))
+			dispatch(validateWithDefaultValue(question))
 		)
 
 	const onChange: RuleInputProps['onChange'] = (value) => {

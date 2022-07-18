@@ -55,7 +55,6 @@ export type Simulation = {
 	url: string
 	hiddenNotifications: Array<string>
 	situation: Situation
-	initialSituation: Situation
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
@@ -95,7 +94,7 @@ function simulation(
 			return {
 				...state,
 				hiddenNotifications: [],
-				situation: state.initialSituation,
+				situation: {},
 				foldedSteps: [],
 				unfoldedStep: null,
 				persona: null,

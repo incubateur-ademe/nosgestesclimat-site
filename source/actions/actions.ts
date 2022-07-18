@@ -74,9 +74,10 @@ export const goToQuestion = (question: DottedName) =>
 		step: question,
 	} as const)
 
-export const validateStepWithValue =
-	(dottedName: DottedName, value: unknown): ThunkResult<void> =>
+export const validateWithDefaultValue =
+	(dottedName: DottedName): ThunkResult<void> =>
 	(dispatch) => {
+		dispatch(updateSituation(dottedName, undefined))
 		dispatch({
 			type: 'STEP_ACTION',
 			name: 'fold',
