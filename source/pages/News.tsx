@@ -35,7 +35,7 @@ export default function News() {
 	const [data, setData] = useState()
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
 	const navigate = useNavigate()
-	const slug = useMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
+	const slug = useMatch(`${encodeURIComponent('nouveautés')}/:slug`)?.params
 		?.slug
 	const fetchSetData = () =>
 		fetch('/data/releases.json')
@@ -58,7 +58,7 @@ export default function News() {
 		`${'/nouveautés'}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
-		return <Navigate to={getPath(0)} replace />
+		return <Navigate to={getPath(0)} />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()

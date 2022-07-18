@@ -206,7 +206,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={encodeURIComponent('nouveautés/:version')}
+				path={`${encodeURIComponent('nouveautés')}/*`}
 				element={<News />}
 			/>
 			<Route path="/profil" element={<Profil />} />
