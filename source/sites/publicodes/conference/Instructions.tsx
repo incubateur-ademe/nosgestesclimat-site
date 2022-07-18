@@ -194,8 +194,7 @@ export default ({
 					</p>
 				) : (
 					<p>
-						Pendant 2 semaines, les participants doivent venir faire leur
-						simulation sur ce lien.
+						Les participants doivent venir faire leur simulation sur ce lien.
 					</p>
 				)}
 			</InstructionBlock>
