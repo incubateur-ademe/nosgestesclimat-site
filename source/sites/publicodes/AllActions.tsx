@@ -192,13 +192,9 @@ const List = ({
 						exit={{ scale: 0.2 }}
 						transition={{ duration: 1 }}
 						css={`
-							width: 11rem;
+							width: 12rem;
 							height: 16rem;
 							margin: 0.4rem;
-
-							@media (min-width: 800px) {
-								width: 12rem;
-							}
 						`}
 					>
 						<ActionListCard
