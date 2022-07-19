@@ -1,13 +1,12 @@
-import { formatValue, Evaluation, Unit } from 'publicodes'
-const { serializeUnit } = require('publicodes')
+import { Evaluation, serializeUnit, Unit, formatValue } from 'publicodes'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { currencyFormat, debounce } from '../../utils'
-import InputSuggestions from './InputSuggestions'
-import InputEstimation from './InputEstimation'
-import { InputCommonProps } from './RuleInput'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
+import InputEstimation from './InputEstimation'
+import InputSuggestions from './InputSuggestions'
+import { InputCommonProps } from './RuleInput'
 
 // TODO: fusionner Input.js et CurrencyInput.js
 export default function Input({
@@ -51,6 +50,7 @@ export default function Input({
 							className="suffixed ui__"
 							id={id}
 							aria-describedby={idDescription}
+							inputMode="decimal"
 							thousandSeparator={thousandSeparator}
 							decimalSeparator={decimalSeparator}
 							allowEmptyFormatting={true}

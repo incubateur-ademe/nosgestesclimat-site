@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import React from 'react'
 import { useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
 	objectifsSelector,
@@ -42,7 +42,7 @@ export default ({
 		})
 	)
 	const { pathname } = useLocation(),
-		history = useHistory()
+		navigate = useNavigate()
 
 	const questionCategory = useContinuousCategory(categories)
 	const nextQuestions = useNextQuestions()
@@ -127,10 +127,7 @@ export default ({
 												`N'afficher que les questions ` + category.dottedName
 											}
 											onClick={() =>
-												history.push({
-													pathname,
-													search: '?catégorie=' + category.dottedName,
-												})
+												navigate(`${pathname}?catégorie=${category.dottedName}`)
 											}
 										>
 											{bar}

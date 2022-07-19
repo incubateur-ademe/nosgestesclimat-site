@@ -11,7 +11,6 @@ import Notifications from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
-import { sortBy } from 'ramda'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -19,10 +18,14 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { setTrackingVariable, skipTutorial } from '../../actions/actions'
+import {
+	setTrackingVariable,
+	skipTutorial,
+	validateWithDefaultValue,
+} from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
-import { useQuery } from '../../utils'
+import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import useKeypress from '../utils/useKeyPress'
 import { useSimulationProgress } from '../utils/useNextQuestion'
@@ -61,11 +64,12 @@ export default function Conversation({
 				const category = orderByCategories.find(
 					(c) => question.indexOf(c.dottedName) === 0
 				)
+				if (!category) return -1000000
 				// We artificially put this category (since it has no actionable question) at the end
 				if (category.name === 'services publics') return 1000000
 				const value = -category?.nodeValue
 				return value
-		  }, nextQuestions)
+		  })(nextQuestions)
 		: nextQuestions
 
 	const focusedCategory = useQuery().get('catégorie')
@@ -85,7 +89,11 @@ export default function Conversation({
 
 	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
-		currentQuestion = !isMainSimulation ? nextQuestions[0] : sortedQuestions[0]
+		currentQuestion = !isMainSimulation
+			? nextQuestions[0]
+			: focusedCategory
+			? sortedQuestions[0]
+			: unfoldedStep || sortedQuestions[0]
 
 	const currentQuestionIsAnswered =
 		currentQuestion && isMosaic(currentQuestion)
@@ -196,7 +204,7 @@ export default function Conversation({
 		// default value (for instance the question shouldn't appear in the
 		// answered questions).
 		questionsToSubmit.map((question) =>
-			dispatch(validateStepWithValue(question, undefined))
+			dispatch(validateWithDefaultValue(question))
 		)
 
 	const onChange: RuleInputProps['onChange'] = (value) => {
@@ -318,7 +326,7 @@ export default function Conversation({
 			)}
 			{orderByCategories && (
 				<Meta
-					title={rules[objectifs[0]].title + ' - ' + questionCategory.title}
+					title={rules[objectifs[0]].title + ' - ' + questionCategory?.title}
 				/>
 			)}
 			<form

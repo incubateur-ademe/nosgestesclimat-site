@@ -1,7 +1,6 @@
 import { splitName } from 'Components/publicodesUtils'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { utils } from 'publicodes'
-import { partition } from 'ramda'
 import React, { useContext, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
@@ -13,7 +12,7 @@ import {
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
-import ActionsChosenIndicator from './ActionsChosenIndicator'
+import ActionsOptionsBar from './ActionsOptionsBar'
 import ActionTutorial from './ActionTutorial'
 import { disabledAction, supersededAction } from './ActionVignette'
 import AllActions from './AllActions'
@@ -21,7 +20,6 @@ import CategoryFilters from './CategoryFilters'
 import { humanWeight } from './HumanWeight'
 import MetricFilters from './MetricFilters'
 import SimulationMissing from './SimulationMissing'
-import ActionsOptionsBar from './ActionsOptionsBar'
 
 const { encodeRuleName, decodeRuleName } = utils
 
@@ -46,7 +44,8 @@ export default ({ display }) => {
 
 	const targets = objectifs.map((o) => engine.evaluate(o))
 
-	const [bilans, actions] = partition((t) => t.dottedName === 'bilan', targets)
+	const bilan = targets.find((t) => t.dottedName === 'bilan'),
+		actions = targets.filter((t) => t.dottedName !== 'bilan')
 
 	const filterByCategory = (actions) =>
 		actions.filter((action) =>
@@ -90,7 +89,7 @@ export default ({ display }) => {
 	}
 
 	if (tutorials.actions !== 'skip') {
-		const [value, unit] = humanWeight(bilans[0].nodeValue)
+		const [value, unit] = humanWeight(bilan.nodeValue)
 		return <ActionTutorial {...{ value, unit }} />
 	}
 
@@ -114,7 +113,7 @@ export default ({ display }) => {
 			<AllActions
 				{...{
 					actions: finalActions.reverse(),
-					bilans,
+					bilan,
 					rules,
 					focusedAction,
 					focusAction,
@@ -127,8 +126,7 @@ export default ({ display }) => {
 					key={category}
 					actions={finalActions}
 					onVote={(item, vote) => console.log(item.props, vote)}
-					total={bilans.length ? bilans[0].nodeValue : null}
-				></ActionStack>
+					total={bilans.length ? bilans[0].nodeValue : null} ></ActionStack>
 			) : (
 				<p>{emoji('🤷')} Plus d'actions dans cette catégorie</p>
 			)}

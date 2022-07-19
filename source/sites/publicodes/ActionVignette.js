@@ -96,11 +96,15 @@ export const ActionListCard = ({
 				css={`
 					display: block;
 					margin-top: 0.6rem;
+					margin-bottom: 1rem;
 					h2 {
 						margin-left: 0.6rem;
 						display: inline;
-						font-size: 110%;
 						font-weight: 500;
+						font-size: 100%;
+						@media (min-width: 800px) {
+							font-size: 110%;
+						}
 					}
 					text-decoration: none;
 					height: 5.5rem;

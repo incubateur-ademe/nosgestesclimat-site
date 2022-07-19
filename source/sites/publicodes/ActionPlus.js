@@ -9,7 +9,7 @@ import Meta from 'Components/utils/Meta'
 import { title } from 'Components/publicodesUtils'
 
 export default () => {
-	const { encodedName } = useParams()
+	const encodedName = useParams()['*']
 	const rules = useSelector((state) => state.rules)
 	const dottedName = utils.decodeRuleName(encodedName)
 	const rule = { ...rules[dottedName], dottedName }
@@ -32,7 +32,7 @@ export default () => {
 			</Link>
 			<div css="margin: 1.6rem 0">
 				<Markdown
-					source={rule.plus || "Cette fiche détaillée n'existe pas encore"}
+					children={rule.plus || "Cette fiche détaillée n'existe pas encore"}
 				/>
 			</div>
 		</div>

@@ -1,5 +1,6 @@
 import { Action } from 'Actions/actions'
-import { defaultTo, omit, without } from 'ramda'
+import { omit } from 'Source/utils'
+
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { SavedSimulation } from 'Selectors/storageSelectors'
@@ -54,7 +55,6 @@ export type Simulation = {
 	url: string
 	hiddenNotifications: Array<string>
 	situation: Situation
-	initialSituation: Situation
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
@@ -94,7 +94,7 @@ function simulation(
 			return {
 				...state,
 				hiddenNotifications: [],
-				situation: state.initialSituation,
+				situation: {},
 				foldedSteps: [],
 				unfoldedStep: null,
 				persona: null,
@@ -234,19 +234,21 @@ function thenRedirectTo(state = null, { type, to }) {
 	} else return state
 }
 
+const defaultToNull = (arg) => arg ?? null
+
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
 			simulation(a, b),
-		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
+		previousSimulation: defaultToNull,
 		situationBranch,
 		rules,
 		actionChoices,
 		conference,
 		survey,
-		iframeOptions: defaultTo(null),
+		iframeOptions: defaultToNull,
 		tutorials,
 		storedTrajets,
 		thenRedirectTo,

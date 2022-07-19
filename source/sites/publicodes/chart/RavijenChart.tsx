@@ -13,6 +13,9 @@ import useMediaQuery from '../../../components/utils/useMediaQuery'
 import { ObjectiveExplanation } from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
 
+// This component is named in the honor of http://ravijen.fr/?p=440
+// But it's complicated to display this chart on mobile phones. Also its visual complexity is more adapted to engineers.
+
 // This is a relative grid : the kgCO2e value of each square will vary in order to fill the whole screen
 export default ({ details }) => {
 	// needed for this component to refresh on situation change :

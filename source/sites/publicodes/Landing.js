@@ -1,5 +1,5 @@
 import animate from 'Components/ui/animate'
-import LogoADEME from 'Images/LogoADEME'
+import LogoADEME from 'Images/logoADEME.svg'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
@@ -8,8 +8,7 @@ import { openmojiURL } from '../../components/SessionBar'
 import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
-import Illustration from './images/ecolab-climat-dessin.svg'
-import Marianne from './images/Marianne.svg'
+import Illustration from 'Images/ecolab-climat-dessin.svg'
 import { useProfileData } from './Profil'
 
 export default () => {
@@ -104,9 +103,9 @@ export default () => {
 						}
 					`}
 				>
-					<Marianne
-						role="img"
-						aria-label="République Française"
+					<img
+						src="/images/marianne.svg"
+						alt="République Française"
 						css="height: 6rem; margin-right: .6rem"
 					/>
 					<a href="https://ademe.fr">

@@ -7,6 +7,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import Meta from 'Components/utils/Meta'
 import { splitName, title } from 'Components/publicodesUtils'
+import styled from 'styled-components'
 
 export default () => {
 	const rules = useSelector((state) => state.rules)
@@ -14,8 +15,18 @@ export default () => {
 	const rule = rules[guideRule]
 
 	const { encodedName } = useParams()
-	const titre = utils.decodeRuleName(encodedName)
 
+	if (!encodedName) {
+		return (
+			<GuideWrapper>
+				<Meta title={'Guide'} />
+				<ScrollToTop />
+				<Markdown children={rule['guide'] || "Ce guide n'existe pas encore"} />
+			</GuideWrapper>
+		)
+	}
+
+	const titre = utils.decodeRuleName(encodedName)
 	const category = encodedName.split('-')[1]
 
 	const actionsPlus = Object.entries(rules)
@@ -27,21 +38,17 @@ export default () => {
 	)
 
 	return (
-		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">
+		<GuideWrapper>
 			<Meta title={titre} />
 			<ScrollToTop />
-			<div>
-				{encodedName !== 'guide' && (
-					<Link to={'/groupe/guide'}>
-						<button className="ui__ button simple small ">
-							{emoji('◀')} Retour
-						</button>
-					</Link>
-				)}
-			</div>
+			<Link to={'/guide/general'}>
+				<button className="ui__ button simple small ">
+					{emoji('◀')} Retour
+				</button>
+			</Link>
 			<div css="margin: 1.6rem 0">
 				<Markdown
-					source={rule[encodedName] || "Ce guide n'existe pas encore"}
+					children={rule[encodedName] || "Ce guide n'existe pas encore"}
 				/>
 				{encodedName !== 'guide' && relatedActions.length > 0 && (
 					<>
@@ -61,6 +68,12 @@ export default () => {
 					</>
 				)}
 			</div>
-		</div>
+		</GuideWrapper>
 	)
 }
+
+const GuideWrapper = styled.div`
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`

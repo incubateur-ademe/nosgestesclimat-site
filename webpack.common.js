@@ -2,7 +2,7 @@
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const path = require('path')
-const { EnvironmentPlugin, NormalModuleReplacementPlugin } = require('webpack')
+const { NormalModuleReplacementPlugin } = require('webpack')
 
 module.exports.default = {
 	watchOptions: {
@@ -36,20 +36,22 @@ module.exports.default = {
 		globalObject: 'self',
 	},
 	plugins: [
-		new CopyPlugin([
-			'./manifest.webmanifest',
-			'./source/sites/publicodes/sitemap.txt',
-			'./source/sites/publicodes/robots.txt',
-			'./iframeResizer.contentWindow.min.js',
-			{
-				from: './source/images',
-				to: 'images',
-			},
-			{
-				from: './source/data',
-				to: 'data',
-			},
-		]),
+		new CopyPlugin({
+			patterns: [
+				'./manifest.webmanifest',
+				'./source/sites/publicodes/sitemap.txt',
+				'./source/sites/publicodes/robots.txt',
+				'./iframeResizer.contentWindow.min.js',
+				{
+					from: './source/images',
+					to: 'images',
+				},
+				{
+					from: './source/data',
+					to: 'data',
+				},
+			],
+		}),
 		new NormalModuleReplacementPlugin(
 			/react-easy-emoji/,
 			'Components/emoji.js'
@@ -117,37 +119,11 @@ module.exports.commonLoaders = (mode = 'production') => {
 		},
 		{
 			test: /\.(jpe?g|png)$/,
-			use: {
-				loader: 'file-loader',
-				options: {
-					name: 'images/[name].[ext]',
-				},
-			},
-		},
-		{
-			test: /\.svg$/,
-			issuer: /\.[jt]sx?$/,
-			use: [
-				{
-					loader: '@svgr/webpack',
-					options: {
-						throwIfNamespace: false,
-						replaceAttrValues: { '#4143d6': 'var(--color)' },
-					},
-				},
-			],
+			type: 'asset/resource',
 		},
 		{
 			test: /\.yaml$/,
-			use: ['json-loader', 'yaml-loader'],
-		},
-		{
-			test: /\.toml$/,
-			use: ['toml-loader'],
-		},
-		{
-			test: /\.ne$/,
-			use: [babelLoader, 'nearley-loader'],
+			use: ['yaml-loader'],
 		},
 		{
 			test: /\.csv$/,
@@ -160,16 +136,14 @@ module.exports.commonLoaders = (mode = 'production') => {
 		},
 		{
 			test: /\.(ttf|woff2?)$/,
-			use: [
-				{
-					loader: 'file-loader',
-					options: {
-						name: '[name].[ext]',
-						outputPath: 'fonts',
-						publicPath: '/fonts',
-					},
-				},
-			],
+			type: 'asset/resource',
+		},
+		{
+			test: /\.svg$/,
+			loader: '@svgr/webpack',
+			options: {
+				replaceAttrValues: { '#4143d6': 'var(--color)' },
+			},
 		},
 	]
 }

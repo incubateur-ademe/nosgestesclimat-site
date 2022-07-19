@@ -2,7 +2,9 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useHistory, useParams } from 'react-router'
+import { Redirect, useParams } from 'react-router'
+import { useNavigate } from 'react-router-dom'
+
 import { conferenceImg } from '../../../components/SessionBar'
 import Beta from './Beta'
 import { ConferenceTitle } from './Conference'
@@ -18,6 +20,7 @@ import Meta from '../../../components/utils/Meta'
 import { useEngine } from 'Components/utils/EngineContext'
 
 import { configSelector } from '../../../selectors/simulationSelectors'
+import Navigation from '../Navigation'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -63,10 +66,11 @@ export default () => {
 
 	const survey = useSelector((state) => state.survey)
 	const existContext = survey ? !(survey['contextFile'] == null) : false
-	const history = useHistory()
+	const navigate = useNavigate()
+
 
 	if (!room || room === '') {
-		return <Redirect to="/groupe?mode=sondage" />
+		return <Navigation to="/groupe?mode=sondage" replace />
 	}
 	return (
 		<div>
@@ -121,7 +125,7 @@ export default () => {
 						<button
 							className="ui__ link-button"
 							onClick={() => {
-								history.push('/')
+								navigate('/')
 
 								dispatch({ type: 'UNSET_SURVEY' })
 							}}

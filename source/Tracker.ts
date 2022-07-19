@@ -26,7 +26,6 @@ const iOSSafari =
 export default class Tracker {
 	push: PushType
 	debouncedPush: PushType
-	unlistenFromHistory: (() => void) | undefined
 	previousPath: string | undefined
 
 	constructor(
@@ -43,23 +42,6 @@ export default class Tracker {
 		if (typeof window !== 'undefined') window._paq = window._paq || []
 		this.push = pushFunction
 		this.debouncedPush = debounce(200, pushFunction)
-	}
-
-	connectToHistory(history: History) {
-		this.unlistenFromHistory = history.listen((loc) => {
-			this.track(loc)
-		})
-
-		return history
-	}
-
-	disconnectFromHistory() {
-		if (this.unlistenFromHistory) {
-			this.unlistenFromHistory()
-
-			return true
-		}
-		return false
 	}
 
 	track(loc: Location) {

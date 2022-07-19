@@ -1,37 +1,49 @@
-import { goBackToSimulation } from 'Actions/actions'
 import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
 import { EngineContext } from 'Components/utils/EngineContext'
+import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { Documentation, getDocumentationSiteMap } from 'publicodes-react'
-import { useCallback, useContext, useMemo } from 'react'
+import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
+import { useContext, useMemo } from 'react'
+import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useLocation } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import {
+	Link,
+	Navigate,
+	Route,
+	Routes,
+	useLocation,
+	useNavigate,
+	useParams,
+} from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
+import styled from 'styled-components'
 import Meta from '../../../components/utils/Meta'
+import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
+import References from '../DocumentationReferences'
 import Méthode from './Méthode'
 
-export default function RulePage() {
+export default function () {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
 	const engine = useContext(EngineContext)
 	const documentationPath = '/documentation'
-	const { pathname } = useLocation()
+	const { pathname: pathnameRaw } = useLocation(),
+		pathname = decodeURIComponent(pathnameRaw)
 	const documentationSitePaths = useMemo(
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
 	)
-	console.log(documentationSitePaths)
 	const { i18n } = useTranslation()
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
 	}
 	if (!documentationSitePaths[pathname]) {
-		return <Redirect to="/404" />
+		return <Navigate to="/404" replace />
 	}
 	return (
 		<div>
@@ -46,25 +58,51 @@ export default function RulePage() {
 				{currentSimulation ? <BackToSimulation /> : <span />}
 				<SearchButton key={pathname} />
 			</div>
-			<Documentation
-				language={i18n.language as 'fr' | 'en'}
-				engine={engine}
-				documentationPath={documentationPath}
-			/>
-			{/* <button>Voir l</button> */}
+			<Routes>
+				<Route
+					path="*"
+					element={<DocPage {...{ documentationPath, engine }} />}
+				/>
+			</Routes>
+
 			<BandeauContribuer />
 		</div>
 	)
 }
+
+const DocPage = ({ documentationPath, engine }) => {
+	const url = useParams()['*']
+	const { i18n } = useTranslation()
+	return (
+		<DocumentationStyle>
+			<RulePage
+				language={i18n.language as 'fr' | 'en'}
+				rulePath={url}
+				engine={engine}
+				documentationPath={documentationPath}
+				renderers={{
+					Head: Helmet,
+					Link: Link,
+					Text: Markdown,
+					References: References,
+				}}
+			/>
+		</DocumentationStyle>
+	)
+}
+
 function BackToSimulation() {
-	const dispatch = useDispatch()
-	const handleClick = useCallback(() => {
-		dispatch(goBackToSimulation())
-	}, [])
+	const url = useSelector(currentSimulationSelector)?.url
+	const navigate = useNavigate()
+
+	console.log('url', url)
+
 	return (
 		<button
 			className="ui__ simple small push-left button"
-			onClick={handleClick}
+			onClick={() => {
+				navigate(url)
+			}}
 		>
 			← <Trans i18nKey="back">Reprendre la simulation</Trans>
 		</button>
@@ -84,3 +122,45 @@ function DocumentationLanding() {
 		</>
 	)
 }
+
+export const DocumentationStyle = styled.div`
+	max-width: 850px;
+	margin: 0 auto;
+	padding: 0 0.6rem;
+	#documentationRuleRoot > p:first-of-type {
+		display: inline-block;
+		background: var(--lighterColor);
+		padding: 0.4rem 0.6rem 0.2rem;
+	}
+	header {
+		color: var(--textColor);
+		a {
+			color: var(--textColor);
+		}
+		a:hover {
+			background: var(--darkerColor) !important;
+			color: white !important;
+		}
+		h1 {
+			margin-top: 0.6rem;
+			margin-bottom: 0.6rem;
+			a {
+				text-decoration: none;
+			}
+		}
+		background: linear-gradient(60deg, var(--darkColor) 0%, var(--color) 100%);
+		padding: 0.6rem 1rem;
+		box-shadow: 0 1px 3px rgba(var(--rgbColor), 0.12),
+			0 1px 2px rgba(var(--rgbColor), 0.24);
+		border-radius: 0.4rem;
+	}
+	button {
+		color: inherit;
+	}
+	span {
+		background: inherit;
+	}
+	small {
+		background: none !important;
+	}
+`

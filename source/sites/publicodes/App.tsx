@@ -2,32 +2,32 @@ import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
 import News from 'Pages/News'
-import React, { Suspense } from 'react'
+import React, { Suspense, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Redirect, useLocation } from 'react-router'
-import { Route, Switch } from 'react-router-dom'
+import { Route, Routes } from 'react-router-dom'
 import Provider from '../../Provider'
 import {
 	persistSimulation,
 	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
+import { TrackerContext } from '../../components/utils/withTracker'
 import About from './About'
 import Actions from './Actions'
-import Contribution from './Contribution'
 import Diffuser from './Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
 import Logo from './Logo'
 import Navigation from './Navigation'
-import Documentation from './pages/Documentation'
+const Documentation = React.lazy(() => import('./pages/Documentation'))
 import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
-import GroupSwitch from './conference/GroupSwitch'
-
+const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
+const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
 
@@ -96,6 +96,11 @@ const Main = ({}) => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
+	const tracker = useContext(TrackerContext)
+
+	useEffect(() => {
+		tracker.track(location)
+	}, [location])
 
 	return (
 		<div
@@ -141,80 +146,120 @@ const Main = ({}) => {
 						<Logo />
 					</nav>
 				)}
-				<Routes />
+				<Router />
 			</main>
 		</div>
 	)
 }
 
-const Routes = ({}) => {
+export const Loading = () => <div>Chargement</div>
+
+const Router = ({}) => {
 	return (
-		<Switch>
-			<Route exact path="/" component={Landing} />
-			{/* Removes trailing slashes */}
+		<Routes>
+			<Route path="/" element={<Landing />} />
 			<Route
-				path={'/:url*(/+)'}
-				exact
-				strict
-				render={({ location }) => (
-					<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
-				)}
+				path="documentation/*"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<Documentation />
+					</Suspense>
+				}
 			/>
-			<Route path="/documentation" component={Documentation} />
-			<Route path="/simulateur/:name+" component={Simulateur} />
-			<Route path="/stats">
-				<Suspense fallback="Chargement">
-					<StatsLazy />
-				</Suspense>
-			</Route>
-			{/* Lien de compatibilité, à retirer par exemple mi-juillet 2020*/}
-			<Route path="/fin/:score" component={Fin} />
-			<Route path="/fin" component={Fin} />
-			<Route path="/personas" component={Personas} />
-			<Route path="/actions" component={Actions} />
-			<Route path="/contribuer/:input?" component={Contribution} />
-			<Route path="/à-propos" component={About} />
-			<Route path="/cgu">
-				<Suspense fallback="Chargement">
-					<CGULazy />
-				</Suspense>
-			</Route>
-			<Route path="/partenaires" component={Diffuser} />
-			<Route path="/diffuser" component={Diffuser} />
-			<Route path="/vie-privée">
-				<Suspense fallback="Chargement">
-					<PrivacyLazy />
-				</Suspense>
-			</Route>
-			<Route path="/nouveautés" component={News} />
-			<Route path="/profil" component={Profil} />
-			{/* Here we define this specific route for the context documentation before generic groupe routes */}
-			<Route path="/groupe/documentation-contexte">
-				<Suspense fallback="Chargement">
-					<DocumentationContexteLazy />
-				</Suspense>
-			</Route>
-			<Route path="/groupe/:encodedName+">
-				<Suspense fallback="Chargement">
-					<GuideGroupeLazy />
-				</Suspense>
-			</Route>
-			<Route path="/conférence/:room?">
-				<Suspense fallback="Chargement">
-					<ConferenceLazy />
-				</Suspense>
-			</Route>
-			<Route path="/groupe/:room?">
-				<GroupSwitch />
-			</Route>
-			<Route path="/sondage/:room?">
-				<Suspense fallback="Chargement">
-					<SurveyLazy />
-				</Suspense>
-			</Route>
-			<Redirect from="/conference/:room" to="/conférence/:room" />
-			<Route path="/tutoriel" component={Tutorial} />
-			<Route component={Route404} />
-		</Switch>
+			<Route path="simulateur/*" element={<Simulateur />} />
+			<Route
+				path="/stats"
+				element={
+					<Suspense fallback={<Loading />}>
+						<StatsLazy />
+					</Suspense>
+				}
+			/>
+			<Route path="/fin/*" element={<Fin />} />
+			<Route path="/personas" element={<Personas />} />
+			<Route path="/actions/*" element={<Actions />} />
+			<Route
+				path="/contribuer/*"
+				element={
+					<Suspense fallback={<Loading />}>
+						<ContributionLazy />
+					</Suspense>
+				}
+			/>
+			<Route path={encodeURIComponent('à-propos')} element={<About />} />
+			<Route
+				path="/cgu"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<CGULazy />
+					</Suspense>
+				}
+			/>
+			<Route path="/partenaires" element={<Diffuser />} />
+			<Route path="/diffuser" element={<Diffuser />} />
+			<Route
+				path={encodeURIComponent('vie-privée')}
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<PrivacyLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={`${encodeURIComponent('nouveautés')}/*`}
+				element={<News />}
+			/>
+			<Route path="/profil" element={<Profil />} />
+			<Route
+				path="/guide"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GuideGroupeLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/guide/:encodedName"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GuideGroupeLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={`${encodeURIComponent('conférence')}/:room`}
+				element={
+					<Suspense fallback={<Loading />}>
+						<ConferenceLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/groupe"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GroupSwitchLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/groupe/documentation-contexte"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<DocumentationContexteLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/sondage/:room"
+				element={
+					<Suspense fallback={<Loading />}>
+						<SurveyLazy />
+					</Suspense>
+				}
+			/>
+			<Route path="/tutoriel" element={<Tutorial />} />
+			<Route path="*" element={<Route404 />} />
+		</Routes>
 	)
 }

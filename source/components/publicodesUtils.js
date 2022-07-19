@@ -1,5 +1,5 @@
-import { sortBy } from 'ramda'
-import { capitalise0 } from '../utils'
+import { capitalise0, sortBy } from '../utils'
+import { utils as coreUtils } from 'publicodes'
 
 export const parentName = (dottedName, outputSeparator = ' . ', shift = 0) =>
 	splitName(dottedName).slice(shift, -1).join(outputSeparator)
@@ -30,14 +30,13 @@ export const correctValue = (evaluated) => {
 	return result
 }
 
-export const ruleFormula = (rule) =>
-	rule?.explanation?.valeur?.explanation?.valeur
+const ruleSumNode = (rules, rule) => {
+	const formula = rule.rawNode.formule
 
-export const ruleSumNode = (rule) => {
-	const formula = ruleFormula(rule)
-
-	if (formula.nodeKind !== 'somme') return null
-	return formula.explanation.map((node) => node.dottedName)
+	if (!formula.somme) return null
+	return formula.somme.map((name) =>
+		coreUtils.disambiguateRuleReference(rules, rule.dottedName, name)
+	)
 }
 
 export const extractCategoriesNamespaces = (
@@ -46,7 +45,7 @@ export const extractCategoriesNamespaces = (
 	parentRule = 'bilan'
 ) => {
 	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(rule)
+		sumNodes = ruleSumNode(rules, rule)
 
 	const categories = sumNodes.map((dottedName) => {
 		const categoryName = splitName(dottedName)[0]
@@ -90,7 +89,7 @@ export const extractCategories = (
 	sort = true
 ) => {
 	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(rule)
+		sumNodes = ruleSumNode(rules, rule)
 
 	const categories = sumNodes.map((dottedName) => {
 		const node = engine.evaluate(dottedName)
@@ -118,19 +117,13 @@ export const extractCategories = (
 }
 
 export const getSubcategories = (rules, category, engine) => {
-	const rule = engine.getRule(category.name),
-		formula = ruleFormula(rule)
-
-	if (!formula) return [category]
-
 	const sumToDisplay =
-		formula.nodeKind === 'somme'
-			? category.name
-			: formula.operationKind === '/'
-			? formula.explanation[0].dottedName
-			: null
+		category.name === 'services publics'
+			? null
+			: category.name === 'logement'
+			? 'logement . impact'
+			: category.name
 
-	console.log('sum', sumToDisplay)
 	if (!sumToDisplay) return [category]
 
 	const subCategories = extractCategories(
@@ -140,15 +133,12 @@ export const getSubcategories = (rules, category, engine) => {
 		sumToDisplay,
 		false
 	)
-	category.name.includes('logement') &&
-		console.log('LOG', subCategories, formula.explanation[1])
 
-	return formula.operationKind === '/'
+	return category.name === 'logement'
 		? subCategories.map((el) => ({
 				...el,
 				nodeValue:
-					el.nodeValue /
-					engine.evaluate(formula.explanation[1].dottedName).nodeValue,
+					el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
 		  }))
 		: subCategories
 }

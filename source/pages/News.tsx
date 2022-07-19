@@ -5,10 +5,11 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import {
 	Link,
+	Navigate,
 	NavLink,
 	Redirect,
-	useHistory,
-	useRouteMatch,
+	useMatch,
+	useNavigate,
 } from 'react-router-dom'
 import styled from 'styled-components'
 import { localStorageKey } from '../components/NewsBanner'
@@ -33,17 +34,19 @@ type ReleasesData = Array<{
 export default function News() {
 	const [data, setData] = useState()
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
-	const history = useHistory()
-	const slug = useRouteMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
+	const navigate = useNavigate()
+	const slug = useMatch(`${encodeURIComponent('nouveautés')}/:slug`)?.params
 		?.slug
-	useEffect(() => setLastViewedRelease(lastRelease.name), [])
-	useEffect(
-		() =>
-			fetch('/data/releases.json')
-				.then((r) => r.json())
-				.then((json) => setData(json)),
-		[]
-	)
+	const fetchSetData = () =>
+		fetch('/data/releases.json')
+			.then((r) => r.json())
+			.then((json) => setData(json))
+	useEffect(() => {
+		setLastViewedRelease(lastRelease.name)
+	}, [])
+	useEffect(() => {
+		fetchSetData()
+	}, [])
 
 	if (!data) {
 		return null
@@ -55,7 +58,7 @@ export default function News() {
 		`${'/nouveautés'}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
-		return <Redirect to={getPath(0)} />
+		return <Navigate to={getPath(0)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
@@ -83,7 +86,7 @@ export default function News() {
 				<SmallScreenSelect
 					value={selectedRelease}
 					onChange={(evt) => {
-						history.push(getPath(Number(evt.target.value)))
+						navigate(getPath(Number(evt.target.value)))
 					}}
 				>
 					{data.map(({ name }, index) => (
@@ -108,7 +111,7 @@ export default function News() {
 				</Sidebar>
 				<MainBlock>
 					<MarkdownWithAnchorLinks
-						source={body}
+						children={body}
 						escapeHtml={false}
 						renderers={{ text: TextRenderer }}
 					/>

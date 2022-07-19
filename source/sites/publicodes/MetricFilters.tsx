@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router'
 import { Link } from 'react-router-dom'
 import emoji from '../../components/emoji'
-import { useSearchParams } from '../../components/utils/useSearchParams'
+import { useSearchParams } from 'react-router-dom'
 export default ({ selected }) => {
 	const location = useLocation()
 	const [searchParams, setSearchParams] = useSearchParams()

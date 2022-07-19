@@ -21,12 +21,7 @@ export type Action =
 	| SetActiveTargetAction
 	| CompanyStatusAction
 
-export type ThunkResult<R = void> = ThunkAction<
-	R,
-	RootState,
-	{ history: History; sitePaths: SitePaths },
-	Action
->
+export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
 
 type StepAction = {
 	type: 'STEP_ACTION'
@@ -79,10 +74,10 @@ export const goToQuestion = (question: DottedName) =>
 		step: question,
 	} as const)
 
-export const validateStepWithValue =
-	(dottedName: DottedName, value: unknown): ThunkResult<void> =>
+export const validateWithDefaultValue =
+	(dottedName: DottedName): ThunkResult<void> =>
 	(dispatch) => {
-		dispatch(updateSituation(dottedName, value))
+		dispatch(updateSituation(dottedName, undefined))
 		dispatch({
 			type: 'STEP_ACTION',
 			name: 'fold',
@@ -112,13 +107,12 @@ export const setDifferentSituation = ({
 })
 
 export const setSimulationConfig =
-	(config: Object): ThunkResult<void> =>
-	(dispatch, getState, { history }): void => {
+	(config: Object, url): ThunkResult<void> =>
+	(dispatch, getState, {}): void => {
 		const pastSimulationConfig = getState().simulation?.config
 		if (pastSimulationConfig === config) {
 			return
 		}
-		const url = history.location.pathname
 		dispatch({
 			type: 'SET_SIMULATION',
 			url,
@@ -162,13 +156,6 @@ export const updateUnit = (targetUnit: string) =>
 		type: 'UPDATE_TARGET_UNIT',
 		targetUnit,
 	} as const)
-
-export const goBackToSimulation =
-	(): ThunkResult<void> =>
-	(_, getState, { history }) => {
-		const url = getState().simulation?.url
-		url && history.push(url)
-	}
 
 export function loadPreviousSimulation() {
 	return {

@@ -31,11 +31,12 @@ export default () => {
 			</div>
 			<div css="margin: 1.6rem 0">
 				<Markdown
-					source={documentationContent || 'En cours de chargement'}
 					transformImageUri={(uri) =>
 						uri.startsWith('http') ? uri : `${contextURL}${uri}`
 					}
-				/>
+				>
+					{documentationContent || 'En cours de chargement'}
+				</Markdown>
 			</div>
 		</div>
 	)

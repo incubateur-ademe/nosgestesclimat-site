@@ -67,8 +67,8 @@ export function CheckItem({
 				<Animate.appear>
 					{typeof explanations === 'string' ? (
 						<Markdown
-							className="ui__ checklist-explanation"
-							source={explanations}
+							className="ui__ checklist-explanation">
+							{explanations}</Markdown>
 						/>
 					) : (
 						explanations

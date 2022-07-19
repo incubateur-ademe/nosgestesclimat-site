@@ -2,12 +2,16 @@ import classnames from 'classnames'
 import animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ASTNode } from 'publicodes'
-import { References } from 'publicodes-react'
 import { Rule } from 'publicodes/dist/types/rule'
+import React, { Suspense } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
+import { Loading } from '../../sites/publicodes/App'
 import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
+const ReferencesLazy = React.lazy(
+	() => import('../../sites/publicodes/DocumentationReferences')
+)
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -243,13 +247,15 @@ export const RadioLabel = (props: RadioLabelProps) => {
 								`}
 							>
 								<h2>{props.label}</h2>
-								<Markdown source={props.description} />
+								<Markdown>{props.description}</Markdown>
 								{props.références && (
 									<>
 										<h3>
 											<Trans>En savoir plus</Trans>
 										</h3>
-										<References refs={props.références} />
+										<Suspense fallback={<Loading />}>
+											<ReferencesLazy refs={props.références} />
+										</Suspense>
 									</>
 								)}
 							</div>

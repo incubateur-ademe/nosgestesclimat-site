@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
-import { Redirect, useHistory, useParams } from 'react-router'
+import { Navigate, useParams } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 import { conferenceImg } from '../../../components/SessionBar'
+import Meta from '../../../components/utils/Meta'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import Instructions from './Instructions'
 import Stats from './Stats'
 import { UserBlock } from './UserList'
 import useYjs from './useYjs'
 import { defaultThreshold, getExtremes } from './utils'
-import Meta from '../../../components/utils/Meta'
 
 export const ConferenceTitle = styled.h2`
 	margin-top: 0.6rem;
@@ -31,10 +32,10 @@ export default () => {
 
 	const [threshold, setThreshold] = useState(defaultThreshold)
 	const dispatch = useDispatch()
-	const history = useHistory()
+	const navigate = useNavigate()
 
 	if (!room || room === '') {
-		return <Redirect to="/groupe" />
+		return <Navigate to="/groupe" replace />
 	}
 	const extremes = getExtremes(elements, threshold)
 
@@ -75,7 +76,7 @@ export default () => {
 			<button
 				className="ui__ link-button"
 				onClick={() => {
-					history.push('/')
+					navigate('/')
 
 					dispatch({ type: 'UNSET_CONFERENCE' })
 				}}

@@ -1,28 +1,22 @@
-import React, { Suspense, useEffect } from 'react'
+import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
+import React, { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
+import { isIterable } from '../../utils'
 import emoji from 'react-easy-emoji'
-import ReactMarkdown, { ReactMarkdownProps } from 'react-markdown'
-import remarkFootnotes from 'remark-footnotes'
-import { HashLink as Link } from 'react-router-hash-link'
-import { useLocation } from 'react-router-dom'
 
 const internalURLs = {
-	'mon-entreprise.fr': 'mon-entreprise',
-	'mycompanyinfrance.fr': 'infrance',
-	'publi.codes': 'publicodes',
+	'nosgestesclimat.fr': 'nosgestesclimat',
 } as const
 
 export function LinkRenderer({
 	href,
 	children,
 	...otherProps
-}: Omit<React.ComponentProps<'a'>, 'ref'>) {
-	if (href && !href.startsWith('http')) {
-		return (
-			<Link to={href} {...otherProps}>
-				{children}
-			</Link>
-		)
-	}
+}: {
+	href?: string
+	children: React.ReactNode
+}) {
+	const siteName = 'nosgestesclimat'
 
 	if (href && !href.startsWith('http')) {
 		return (
@@ -38,7 +32,7 @@ export function LinkRenderer({
 		if (
 			href &&
 			href.startsWith(`https://${domain}`) &&
-			internalURLs[domain] === 'nosgestesclimat.fr'
+			internalURLs[domain as keyof typeof internalURLs] === siteName
 		) {
 			return (
 				<Link to={href.replace(`https://${domain}`, '')} {...otherProps}>
@@ -49,102 +43,58 @@ export function LinkRenderer({
 	}
 
 	return (
-		<a target="_blank" href={href} {...otherProps}>
+		<a target="_blank" rel="noreferrer" href={href} {...otherProps}>
 			{children}
 		</a>
 	)
 }
-const TextRenderer = ({ children }: { children: string }) => (
-	<>{emoji(children)}</>
-)
 
-type MarkdownProps = ReactMarkdownProps & {
-	source: string | undefined
-	className?: string
+const TextRenderer = ({ children }: { children: string }) => {
+	// I do not understand why children is an array of strings in the case of Diffuser.md for exemple
+	const textChild = Array.isArray(children) ? children[0] : children
+	return <>{emoji(textChild)}</>
 }
 
-const LazySyntaxHighlighter = React.lazy(() => import('../SyntaxHighlighter'))
-const CodeBlock = ({
-	value,
-	language,
-}: {
-	value: string
-	language: string
-}) => (
+type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
+	className?: string
+	components?: MarkdownToJSX.Overrides
+	renderers?: Record<string, unknown>
+	noRouter: boolean
+}
+
+const CodeBlock = ({ children }: { children: string }) => (
 	<div
 		css={`
 			position: relative;
 		`}
 	>
-		<Suspense
-			fallback={
-				<pre className="ui__ code">
-					<code>{value}</code>
-				</pre>
-			}
-		>
-			<LazySyntaxHighlighter language={language} source={value} />
-		</Suspense>
-		{language === 'yaml' && (
-			<a
-				href={`https://publi.codes/studio?code=${encodeURIComponent(value)}`}
-				target="_blank"
-				css="position: absolute; bottom: 5px; right: 10px; color: white !important;"
-			>
-				{emoji('⚡')} Lancer le calcul
-			</a>
-		)}
+		<pre className="ui__ code">
+			<code>{children}</code>
+		</pre>
 	</div>
 )
 
 export const Markdown = ({
-	source,
-	className = '',
-	renderers = {},
-	noRouter = false,
+	children,
+	components = {},
+	noRouter,
 	...otherProps
 }: MarkdownProps) => (
-	<ReactMarkdown
-		transformLinkUri={(src) => src}
-		children={source}
-		plugins={[remarkFootnotes]}
-		className={`markdown ${className}`}
-		allowDangerousHtml
-		renderers={{
-			...renderers,
-			...(noRouter ? {} : { link: LinkRenderer }),
-			text: TextRenderer,
-			code: CodeBlock,
-			footnoteReference: ({ identifier, label }) => (
-				<sup id={'ref' + identifier}>
-					<a href={window.location.pathname + '#def' + identifier}>{label}</a>
-				</sup>
-			),
-			footnoteDefinition: ({ identifier, label, children }) => (
-				<div
-					id={'def' + identifier}
-					css={`
-						${window.location.hash === '#def' + identifier
-							? `{
-								background: var(--color); 
-								color: var(--textColor); 
-								a {color: inherit}; 
-								border-radius: .3rem; 
-								padding: 0.1rem 0.3rem;
-						    }`
-							: ''};
-						> p {
-							display: inline;
-						}
-					`}
-				>
-					<a href={window.location.pathname + '#ref' + identifier}>{label}</a> :{' '}
-					{children}
-				</div>
-			),
-		}}
+	<MarkdownToJsx
 		{...otherProps}
-	/>
+		options={{
+			...otherProps.options,
+			forceBlock: true,
+			overrides: {
+				a: noRouter ? undefined : LinkRenderer,
+				code: CodeBlock,
+				span: TextRenderer,
+				...components,
+			},
+		}}
+	>
+		{children}
+	</MarkdownToJsx>
 )
 
 export const MarkdownWithAnchorLinks = ({
@@ -160,16 +110,24 @@ export const MarkdownWithAnchorLinks = ({
 	/>
 )
 
-const flatMapChildren = (children: React.ReactNode): Array<string> => {
+const flatMapChildren = (children: React.ReactNode): Array<string | number> => {
 	return React.Children.toArray(children).flatMap((child) =>
-		typeof child !== 'object' || !('props' in child)
+		typeof child === 'string' || typeof child === 'number'
 			? child
-			: child.props?.value ?? flatMapChildren(child.props?.children)
+			: isIterable(child)
+			? flatMapChildren(Array.from(child))
+			: typeof child == 'object' && 'props' in child
+			? // eslint-disable-next-line
+			  (child.props?.value as string) ?? flatMapChildren(child.props?.children)
+			: ''
 	)
 }
-function useScrollToHash() {
+
+export function useScrollToHash() {
+	const location = useLocation()
+
 	useEffect(() => {
-		const { hash } = window.location
+		const { hash } = location
 		if (hash) {
 			const id = hash.replace('#', '')
 			const element = document.getElementById(id)
@@ -178,7 +136,7 @@ function useScrollToHash() {
 			}
 			element.scrollIntoView()
 		}
-	}, [window.location.hash])
+	}, [location])
 }
 
 export function HeadingWithAnchorLink({
@@ -209,9 +167,8 @@ export function HeadingWithAnchorLink({
 		children
 	)
 	return (
-		<Heading
+		<h1
 			id={headingId}
-			level={level}
 			css={`
 				position: relative;
 				.anchor-link {
@@ -231,17 +188,8 @@ export function HeadingWithAnchorLink({
 			`}
 		>
 			{childrenWithAnchor}
-		</Heading>
+		</h1>
 	)
-}
-
-type HeadingProps = {
-	level: number
-	children: React.ReactNode
-} & React.ComponentProps<'h1'>
-
-function Heading({ level, children, ...otherProps }: HeadingProps) {
-	return React.createElement(`h${level}`, otherProps, children)
 }
 
 // https://stackoverflow.com/a/41164587/1652064

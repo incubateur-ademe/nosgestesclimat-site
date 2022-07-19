@@ -18,7 +18,8 @@ import { questionConfig } from './questionConfig'
 const { decodeRuleName, encodeRuleName } = utils
 
 export default ({}) => {
-	const { encodedName } = useParams()
+	const encodedName = useParams()['*']
+
 	const rules = useSelector((state) => state.rules)
 	const nextQuestions = useNextQuestions()
 	const dottedName = decodeRuleName(encodedName)
@@ -90,7 +91,7 @@ export default ({}) => {
 					</h2>
 				</header>
 				<div css="margin: 1.6rem 0">
-					<Markdown source={description} />
+					<Markdown children={description} />
 					<div css="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem">
 						<Link to={'/documentation/' + encodedName}>
 							<button className="ui__ button small">

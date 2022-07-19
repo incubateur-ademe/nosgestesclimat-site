@@ -277,7 +277,7 @@ const CategoriesBar = ({
 	color,
 	onCategoryClick,
 }) => (
-	<ul
+	<ol
 		css={`
 			margin: 0;
 			width: ${barWidth};
@@ -295,6 +295,9 @@ const CategoriesBar = ({
 		{categories.map((category, index) => (
 			<li
 				key={category.title}
+				title={`${category.title} : ${Math.round(
+					(category.nodeValue / empreinteTotale) * 100
+				)}%`}
 				css={`
 					margin: 0;
 					list-style-type: none;
@@ -324,7 +327,7 @@ const CategoriesBar = ({
 					: ''}
 			</li>
 		))}
-	</ul>
+	</ol>
 )
 
 export const ObjectiveExplanation = () => (
