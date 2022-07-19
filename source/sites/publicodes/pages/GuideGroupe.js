@@ -21,7 +21,7 @@ export default () => {
 			<GuideWrapper>
 				<Meta title={'Guide'} />
 				<ScrollToTop />
-				<Markdown children={rule['guide-général']} />
+				<Markdown children={rule['guide'] || "Ce guide n'existe pas encore"} />
 			</GuideWrapper>
 		)
 	}
