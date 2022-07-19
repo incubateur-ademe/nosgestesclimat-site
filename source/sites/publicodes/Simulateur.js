@@ -101,7 +101,7 @@ const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 	const situation = useSelector(situationSelector)
 
-	return <Navigate to={buildEndURL(rules, engine)} />
+	return <Navigate to={buildEndURL(rules, engine)} replace />
 }
 
 export default Simulateur
