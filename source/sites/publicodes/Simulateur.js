@@ -73,7 +73,7 @@ const Simulateur = (props) => {
 						isMainSimulation ? (
 							<RedirectionToEndPage {...{ rules, engine }} />
 						) : rule.description ? (
-							<Markdown source={rule.description} />
+							<Markdown children={rule.description} />
 						) : (
 							<EndingCongratulations />
 						)
