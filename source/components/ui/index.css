@@ -238,7 +238,7 @@ textarea.ui__ {
 	width: 100%;
 }
 
-input.ui__[inputmode='numeric'] {
+input.ui__[inputmode='decimal'] {
 	width: 10rem;
 }
 input.ui__[type='date'] {

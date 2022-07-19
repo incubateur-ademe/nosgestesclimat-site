@@ -50,6 +50,7 @@ export default function Input({
 							className="suffixed ui__"
 							id={id}
 							aria-describedby={idDescription}
+							inputMode="decimal"
 							thousandSeparator={thousandSeparator}
 							decimalSeparator={decimalSeparator}
 							allowEmptyFormatting={true}
