@@ -43,7 +43,7 @@ export default function () {
 		return <DocumentationLanding />
 	}
 	if (!documentationSitePaths[pathname]) {
-		return <Navigate to="/404" />
+		return <Navigate to="/404" replace />
 	}
 	return (
 		<div>
