@@ -1,7 +1,7 @@
-import { Markdown } from 'Components/utils/markdown'
-import React, { useState } from 'react'
-import { renderToString } from 'react-dom/server'
 import emoji from 'Components/emoji'
+import { Markdown } from 'Components/utils/markdown'
+import { useState } from 'react'
+import { renderToString } from 'react-dom/server'
 import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
 import FAQ from './FAQ.yaml'
@@ -52,6 +52,7 @@ const createIssue = (title, body, setURL, disableButton) => {
 
 export default ({}) => {
 	const fromLocation = useQuery().get('fromLocation')
+
 	const [sujet, setSujet] = useState('')
 	const [comment, setComment] = useState('')
 	const [URL, setURL] = useState(null)
@@ -65,9 +66,7 @@ export default ({}) => {
 			name: element.question,
 			acceptedAnswer: {
 				'@type': 'Answer',
-				text: renderToString(
-					<Markdown escapeHtml={false} children={element.réponse} noRouter />
-				),
+				text: renderToString(<Markdown children={element.réponse} noRouter />),
 			},
 		})),
 	}
@@ -123,7 +122,7 @@ export default ({}) => {
 												<h3>{question}</h3>
 											</summary>
 											<div className="ui__ card">
-												<Markdown escapeHtml={false} source={réponse} />
+												<Markdown escapeHtml={false} children={réponse} />
 											</div>
 										</details>
 									</li>

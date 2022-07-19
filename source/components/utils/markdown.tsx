@@ -59,6 +59,7 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	className?: string
 	components?: MarkdownToJSX.Overrides
 	renderers?: Record<string, unknown>
+	noRouter: boolean
 }
 
 const CodeBlock = ({ children }: { children: string }) => (
@@ -76,6 +77,7 @@ const CodeBlock = ({ children }: { children: string }) => (
 export const Markdown = ({
 	children,
 	components = {},
+	noRouter,
 	...otherProps
 }: MarkdownProps) => (
 	<MarkdownToJsx
@@ -84,7 +86,7 @@ export const Markdown = ({
 			...otherProps.options,
 			forceBlock: true,
 			overrides: {
-				a: LinkRenderer,
+				a: noRouter ? undefined : LinkRenderer,
 				code: CodeBlock,
 				span: TextRenderer,
 				...components,
