@@ -62,18 +62,6 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	noRouter: boolean
 }
 
-const CodeBlock = ({ children }: { children: string }) => (
-	<div
-		css={`
-			position: relative;
-		`}
-	>
-		<pre className="ui__ code">
-			<code>{children}</code>
-		</pre>
-	</div>
-)
-
 export const Markdown = ({
 	children,
 	components = {},
@@ -87,7 +75,6 @@ export const Markdown = ({
 			forceBlock: true,
 			overrides: {
 				a: noRouter ? undefined : LinkRenderer,
-				code: CodeBlock,
 				span: TextRenderer,
 				...components,
 			},
