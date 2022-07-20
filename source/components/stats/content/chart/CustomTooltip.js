@@ -56,7 +56,7 @@ export default function CustomTooltip(props) {
 					.toString()
 					.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
 			</Number>
-			{props.naming || 'visiteurs'}
+			{props.naming || 'visites'}
 		</Wrapper>
 	) : null
 }
