@@ -23,14 +23,15 @@ type ReferencesProps = {
 }
 
 export default function References({ references }: ReferencesProps) {
+	if (!references) return null
 	const cleanDomain = (link: string) =>
 		(link.includes('://') ? link.split('/')[2] : link.split('/')[0]).replace(
 			'www.',
 			''
 		)
 
-	const noKeys = Array.isArray(references)
-	console.log(noKeys, references)
+	// Can be an object with labels as keys or just a list of URLs
+	const referencesWithoutKeys = Array.isArray(references)
 
 	return (
 		<StyledReferences>
@@ -39,7 +40,7 @@ export default function References({ references }: ReferencesProps) {
 				const path = link.split(domain)[1]
 				return (
 					<li key={name}>
-						{!noKeys && (
+						{!referencesWithoutKeys && (
 							<span className="imageWrapper">
 								{Object.keys(referencesImages).includes(domain) && (
 									<img
@@ -62,7 +63,7 @@ export default function References({ references }: ReferencesProps) {
 						>
 							<span className="ui__ label">{domain}</span>
 							<span css="margin-left: .4rem">
-								{noKeys ? path : capitalise0(name)}
+								{referencesWithoutKeys ? path : capitalise0(name)}
 							</span>
 						</a>
 					</li>
