@@ -18,7 +18,7 @@ import Contribution from './Contribution'
 import Diffuser from './Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
-import Logo from './LogoComponent'
+import Logo from 'Images/logo-vert-plein.svg'
 import LogoBlue from './LogoComponentBlue'
 import Navigation from './Navigation'
 import Documentation from './pages/Documentation'
@@ -169,7 +169,7 @@ const Main = ({}) => {
 }
 
 const LogoSwitch = () => {
-	const [blue, setBlue] = useState(true)
+	const [blue, setBlue] = useState(false)
 
 	return (
 		<div onClick={() => setBlue(!blue)}>{blue ? <LogoBlue /> : <Logo />}</div>
