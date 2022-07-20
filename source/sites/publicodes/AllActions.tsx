@@ -106,7 +106,7 @@ export default ({
 			</ThresholdSeparator>
 			<List
 				{...{
-					actions: notRejected.filter((a) => a.value == null),
+					actions: notRejected.filter((a) => a.value === undefined),
 					rules,
 					bilan,
 					actionChoices,
