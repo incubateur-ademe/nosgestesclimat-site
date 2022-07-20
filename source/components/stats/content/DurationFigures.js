@@ -50,7 +50,7 @@ export default function DurationFigures(props) {
 				<Tile.Content>
 					<Number>
 						{' '}
-						{Math.round(props.avgduration).toLocaleString('fr-FR')}{' '}
+						{Math.round(props.avgduration).toLocaleString('fr-FR') || '-'}
 						<Small>&nbsp;min</Small>
 					</Number>
 					<Label>en moyenne sur le site</Label>
@@ -60,7 +60,7 @@ export default function DurationFigures(props) {
 				<Tile.Content>
 					<Number>
 						{' '}
-						{Math.round(props.avgsimulation).toLocaleString('fr-FR')}
+						{Math.round(props.avgsimulation).toLocaleString('fr-FR') || '-'}
 						<Small>&nbsp;min</Small>
 					</Number>
 					<Label>en moyenne pour le test</Label>
