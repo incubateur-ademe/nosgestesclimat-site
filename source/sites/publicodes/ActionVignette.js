@@ -23,7 +23,9 @@ import { questionConfig } from './questionConfig'
 const { encodeRuleName, decodeRuleName } = utils
 
 export const disabledAction = (flatRule, nodeValue) =>
-	flatRule.formule == null ? false : nodeValue === 0 || nodeValue === false
+	flatRule.formule == null
+		? false
+		: nodeValue === 0 || nodeValue === false || nodeValue === null
 
 export const supersededAction = (dottedName, rules, actionChoices) => {
 	return (
