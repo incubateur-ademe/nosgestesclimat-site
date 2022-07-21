@@ -156,7 +156,7 @@ Vos consommations de boissons chaudes pour une semaine type. Un café par jour ?
 		component: NumberedMosaic,
 	},
 	{
-		dottedName: 'alimentation . déchets . niveau base . bonus',
+		dottedName: 'alimentation . déchets . gestes',
 		question:
 			'Quels éco-gestes mettez-vous en place pour réduire vos déchets ?',
 		isApplicable: (dottedName: DottedName) =>
