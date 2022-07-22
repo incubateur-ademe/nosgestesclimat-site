@@ -8,6 +8,7 @@ const FigureWrapper = styled.div`
 	padding-top: 1rem;
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;
 		padding-top: 0rem;
@@ -17,9 +18,6 @@ const FigureWrapper = styled.div`
 
 const TileWrapper = styled(Tile.Tile)`
 	width: 100%;
-	@media screen and (max-width: ${1200}px) {
-		width: 50%;
-	}
 `
 
 const Number = styled.span`
@@ -50,22 +48,16 @@ export default function DurationFigures(props) {
 				<Tile.Content>
 					<Number>
 						{' '}
-						{Math.round(props.avgduration).toLocaleString('fr-FR')}{' '}
+						{!isNaN(props.avgduration)
+							? Math.round(props.avgduration).toLocaleString('fr-FR')
+							: '-'}
 						<Small>&nbsp;min</Small>
 					</Number>
 					<Label>en moyenne sur le site</Label>
 				</Tile.Content>
 			</TileWrapper>
-			<TileWrapper>
-				<Tile.Content>
-					<Number>
-						{' '}
-						{Math.round(props.avgsimulation).toLocaleString('fr-FR')}
-						<Small>&nbsp;min</Small>
-					</Number>
-					<Label>en moyenne pour le test</Label>
-				</Tile.Content>
-			</TileWrapper>
+			{/* Firsly, we used to display average time spent on the /simulation/bilan test but figures seemed to be uncorrect. 
+			We decided to delete it until we find a better way to estimate the average time of simulation */}
 		</FigureWrapper>
 	)
 }

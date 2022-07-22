@@ -392,7 +392,10 @@ export default function Conversation({
 						</button>
 					) : (
 						<button
-							onClick={setDefault}
+							onClick={() => {
+								tracker.push(['trackEvent', 'je ne sais pas', currentQuestion])
+								setDefault
+							}}
 							type="button"
 							className="ui__ simple small push-right button"
 						>

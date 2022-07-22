@@ -50,7 +50,7 @@ export default function Data(props) {
 	const { data: simulations } = useSimulationsTerminees()
 	const { data: duration } = useVisitsDuration()
 	const { data: avgduration } = useVisitsAvgDuration()
-	const { data: avgsimulation } = useSimulationAvgDuration()
+	// const { data: avgsimulation } = useSimulationAvgDuration() -> not used anymore
 	const { data: websites } = useWebsites()
 	const { data: oldWebsites } = useOldWebsites()
 	const { data: socials } = useSocials()
@@ -116,10 +116,7 @@ export default function Data(props) {
 							(l'utilisateur a cliqué sur "Faire le test").
 						</Section.Intro>
 						<Wrapper>
-							<DurationFigures
-								avgduration={avgduration}
-								avgsimulation={avgsimulation}
-							/>
+							<DurationFigures avgduration={avgduration} />
 							{duration && <DurationChart duration={duration} />}
 						</Wrapper>
 					</Section>
