@@ -53,6 +53,7 @@ const MenuButton = styled.div`
 		padding: 0;
 		font-size: 100%;
 	}
+	svg,
 	img {
 		display: block;
 		font-size: 200%;

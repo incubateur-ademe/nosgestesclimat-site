@@ -99,7 +99,7 @@ export default ({}) => {
 										className="ui__ dashed-button"
 										onClick={() => {
 											dispatch(skipTutorial('testIntro', true))
-											history.push('/tutoriel')
+											navigate('/tutoriel')
 										}}
 									>
 										{emoji('🧑‍🏫')} Revoir le tutoriel
