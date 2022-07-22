@@ -155,6 +155,15 @@ Vos consommations de boissons chaudes pour une semaine type. Un café par jour ?
 			dottedName.includes(' . nombre'),
 		component: NumberedMosaic,
 	},
+	{
+		dottedName: 'alimentation . déchets . gestes',
+		question:
+			'Quels éco-gestes mettez-vous en place pour réduire vos déchets ?',
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('alimentation . déchets') &&
+			dottedName.includes(' . présent'),
+		component: SelectDevices,
+	},
 ]
 
 export default mosaicQuestions
