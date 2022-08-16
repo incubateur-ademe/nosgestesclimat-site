@@ -2,6 +2,7 @@ import styled from 'styled-components'
 import { useState } from 'react'
 import { motifList, freqList } from './dataHelp'
 import { nanoid } from 'nanoid'
+import NumberFormat from 'react-number-format'
 
 export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 	const [addFormData, setAddFormData] = useState({
@@ -18,7 +19,6 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 
 		const fieldName = event.target.getAttribute('name')
 		const fieldValue = event.target.value
-
 		const newFormData = { ...addFormData }
 		newFormData[fieldName] = fieldValue
 
@@ -96,11 +96,12 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 						<label title="distance">
 							<WrappedInput
 								className="ui__"
+								inputMode="decimal"
+								allowNegative={false}
 								css={`
 									width: 5rem !important;
 								`}
 								name="distance"
-								type="number"
 								placeholder="Distance"
 								onChange={handleAddFormChange}
 								aria-describedby="unitéDistance"
@@ -118,14 +119,15 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 									}
 								`}
 							>
-								<input
+								<NumberFormat
 									className="ui__"
+									inputMode="decimal"
+									allowNegative={false}
 									css={`
 										max-width: 2rem !important;
 									`}
 									name="xfois"
 									onChange={handleAddFormChange}
-									type="number"
 									placeholder="x"
 									required
 								/>
@@ -170,12 +172,12 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 						<InputWrapper>
 							<WrappedInput
 								className="ui__"
+								inputMode="decimal"
+								allowNegative={false}
 								css={`
 									width: 10rem !important;
 								`}
 								name="personnes"
-								type="number"
-								min="1"
 								placeholder="Nbre de personnes"
 								onChange={handleAddFormChange}
 								required
@@ -234,7 +236,7 @@ const InputWrapper = styled.span`
 	}
 `
 
-const WrappedInput = styled.input`
+const WrappedInput = styled(NumberFormat)`
 	position: relative;
 	padding: 0.3rem !important;
 	margin-bottom: 0rem !important;
