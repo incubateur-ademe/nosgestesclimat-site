@@ -27,7 +27,10 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 
 	const handleAddFormSubmit = (event) => {
 		event.preventDefault()
-
+		if (addFormData.personnes == 0) {
+			alert('Une personne au moins est présente dans la voiture (vous !)')
+			return null
+		}
 		const newTrajet = { ...addFormData, id: nanoid() }
 		const newTrajets = [...trajets, newTrajet]
 		setTrajets(newTrajets)

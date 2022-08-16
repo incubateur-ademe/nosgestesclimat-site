@@ -82,6 +82,11 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 	const handleEditFormSubmit = (event) => {
 		event.preventDefault()
 
+		if (editFormData.personnes == 0) {
+			alert('Une personne au moins est présente dans la voiture (vous !)')
+			return null
+		}
+
 		const editedTrajet = {
 			id: editTrajetId,
 			motif: editFormData.motif,
