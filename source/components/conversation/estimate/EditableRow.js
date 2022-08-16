@@ -1,5 +1,6 @@
 import { range } from '../../../utils'
 import { freqList, motifList } from './dataHelp'
+import NumberFormat from 'react-number-format'
 
 export default function EditableRow({
 	editFormData,
@@ -53,29 +54,29 @@ export default function EditableRow({
 				/>
 			</td>
 			<td>
-				<input
+				<NumberFormat
 					name="distance"
 					className="ui__"
-					type="number"
+					inputMode="decimal"
+					allowNegative={false}
 					required
 					value={editFormData.distance}
 					onChange={handleEditFormChange}
 				/>
 			</td>
 			<td>
-				<select
+				<NumberFormat
 					className="ui__"
 					name="xfois"
+					inputMode="decimal"
+					allowNegative={false}
 					value={editFormData.xfois}
+					css={`
+						max-width: 2rem !important;
+					`}
 					onChange={handleEditFormChange}
 					required
-				>
-					{range(1, 10).map((v) => (
-						<option key={v} value={v}>
-							{v}
-						</option>
-					))}
-				</select>
+				/>
 				<strong> &nbsp; x / </strong>
 				<select
 					className="ui__"
@@ -92,10 +93,11 @@ export default function EditableRow({
 				</select>
 			</td>
 			<td>
-				<input
+				<NumberFormat
 					name="personnes"
 					className="ui__"
-					type="number"
+					inputMode="decimal"
+					allowNegative={false}
 					required
 					placeholder="Nombre de personnes"
 					value={editFormData.personnes}
