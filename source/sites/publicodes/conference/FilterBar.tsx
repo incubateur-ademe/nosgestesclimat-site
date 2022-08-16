@@ -2,7 +2,7 @@ import { useState } from 'react'
 import emoji from 'Components/emoji'
 import Engine from 'publicodes'
 import { splitName } from 'Components/publicodesUtils'
-
+import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
 import { buildVariantTree } from 'Components/conversation/RuleInput'
 import { node } from 'webpack'
@@ -50,7 +50,7 @@ export default ({
 				<small>
 					<label>
 						Exclure au-dessus de{' '}
-						<input
+						<NumberFormat
 							css={`
 								width: 2.5rem;
 								height: 1.2rem;
@@ -62,7 +62,8 @@ export default ({
 							`}
 							onChange={(e) => setThreshold(e.target.value * 1000)}
 							value={threshold / 1000}
-							type="number"
+							inputMode="decimal"
+							allowNegative={false}
 						/>{' '}
 						tonnes.
 					</label>
