@@ -142,6 +142,7 @@ export const DiffHumanWeight = ({
 				unit: action.unit,
 			})
 			if (
+				correctedValue &&
 				actionChoices[action.dottedName] &&
 				!supersededAction(action.dottedName, rules, actionChoices) &&
 				!disabledAction(rules[action.dottedName], action.nodeValue)
