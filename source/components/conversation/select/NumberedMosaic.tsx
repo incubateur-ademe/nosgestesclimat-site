@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { useEngine } from '../../utils/EngineContext'
 import { Mosaic } from './UI'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
+import NumberFormat from 'react-number-format'
 
 export default function NumberedMosaic({
 	name,
@@ -80,8 +81,10 @@ export default function NumberedMosaic({
 									>
 										-
 									</button>
-									<input
-										type="number"
+									<NumberFormat
+										inputMode="decimal"
+										allowNegative={false}
+										decimalScale={0}
 										aria-describedby={'description ' + title}
 										id={question.dottedName}
 										css={`
@@ -106,7 +109,7 @@ export default function NumberedMosaic({
 												updateSituation(question.dottedName, +e.target.value)
 											)
 										}
-									></input>
+									/>
 									<button
 										className="ui__ button small plain"
 										onClick={() =>
