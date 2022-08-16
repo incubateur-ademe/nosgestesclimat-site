@@ -6,7 +6,6 @@ import { Redirect, useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
 import { conferenceImg } from '../../../components/SessionBar'
-import Beta from './Beta'
 import { ConferenceTitle } from './Conference'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
@@ -68,7 +67,6 @@ export default () => {
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 	const navigate = useNavigate()
 
-
 	if (!room || room === '') {
 		return <Navigation to="/groupe?mode=sondage" replace />
 	}
@@ -82,10 +80,7 @@ export default () => {
 					' et visualisez les résultats du groupe'
 				}
 			/>
-			<h1>
-				Sondage
-				<Beta />
-			</h1>
+			<h1>Sondage</h1>
 			<ConferenceTitle>
 				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
