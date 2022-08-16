@@ -198,13 +198,13 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 							<thead>
 								<tr>
 									<th scope="col">Motif</th>
-									<th scope="col" css="width: 22%">
+									<th scope="col" css="width: 20%">
 										Label
 									</th>
 									<th scope="col" css="width: 3rem">
 										"KM"
 									</th>
-									<th scope="col" css="width: 20%">
+									<th scope="col" css="width: 25%">
 										Fréquence
 									</th>
 									<th

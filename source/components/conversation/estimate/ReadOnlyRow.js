@@ -47,10 +47,10 @@ export default function ReadOnlyRow({
 					type="button"
 					onClick={(event) => handleEditClick(event, trajet)}
 				>
-					<img src={openmojiURL('modifier')} css="width: 1.7rem" />
+					<img src={openmojiURL('modifier')} css="width: 1.5rem" />
 				</button>
 				<button type="button" onClick={() => handleDeleteClick(trajet.id)}>
-					<img src={openmojiURL('supprimer')} css="width: 1.7rem" />
+					<img src={openmojiURL('supprimer')} css="width: 1.5rem" />
 				</button>
 			</td>
 		</tr>

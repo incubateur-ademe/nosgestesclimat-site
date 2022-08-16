@@ -39,7 +39,6 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 	return (
 		<form
 			id="kmForm"
-			onSubmit={handleAddFormSubmit}
 			css={`
 				padding: 0rem 0.5rem 0rem 0.5rem;
 			`}
@@ -66,7 +65,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 							<WrappedSelect
 								className="ui__"
 								css={`
-									max-width: 9rem !important;
+									max-width: 10rem !important;
 								`}
 								name="motif"
 								onChange={handleAddFormChange}
@@ -207,7 +206,8 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 					type="submit"
 					className="ui__ plain small button"
 					css="max-height: 2rem"
-					onClick={() => {
+					onClick={(e) => {
+						handleAddFormSubmit(e)
 						tracker.push([
 							'trackEvent',
 							'Aide saisie km',
