@@ -35,7 +35,7 @@ const ruleSumNode = (rules, rule) => {
 
 	if (!formula.somme) return null
 	return formula.somme.map((name) =>
-		coreUtils.disambiguateRuleReference(rules, rule.dottedName, name)
+		coreUtils.disambiguateReference(rules, rule.dottedName, name)
 	)
 }
 
@@ -45,7 +45,7 @@ export const extractCategoriesNamespaces = (
 	parentRule = 'bilan'
 ) => {
 	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(rules, rule)
+		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
 
 	const categories = sumNodes.map((dottedName) => {
 		const categoryName = splitName(dottedName)[0]
@@ -89,7 +89,7 @@ export const extractCategories = (
 	sort = true
 ) => {
 	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(rules, rule)
+		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
 
 	const categories = sumNodes.map((dottedName) => {
 		const node = engine.evaluate(dottedName)
