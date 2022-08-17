@@ -87,7 +87,7 @@
 		"mini-css-extract-plugin": "^2.6.1",
 		"path-browserify": "^1.0.1",
 		"process": "^0.11.10",
-		"publicodes": "^1.0.0-beta.43",
+		"publicodes": "../publicodes/packages/core/",
 		"publicodes-react": "^1.0.0-beta.43",
 		"puppeteer-core": "^15.3.0",
 		"qrcode.react": "^3.1.0",
