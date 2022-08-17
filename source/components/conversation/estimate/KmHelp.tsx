@@ -79,6 +79,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			)
 	}, [sum])
 
+	const formRef = useRef()
 	const handleEditFormSubmit = (event) => {
 		event.preventDefault()
 
@@ -87,24 +88,30 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			return null
 		}
 
-		const editedTrajet = {
-			id: editTrajetId,
-			motif: editFormData.motif,
-			label: editFormData.label,
-			distance: editFormData.distance,
-			xfois: editFormData.xfois,
-			periode: editFormData.periode,
-			personnes: editFormData.personnes,
+		const formToCheck = formRef.current
+		const isValidForm = formToCheck.checkValidity()
+		if (!isValidForm) {
+			formToCheck.reportValidity()
+		} else {
+			const editedTrajet = {
+				id: editTrajetId,
+				motif: editFormData.motif,
+				label: editFormData.label,
+				distance: editFormData.distance,
+				xfois: editFormData.xfois,
+				periode: editFormData.periode,
+				personnes: editFormData.personnes,
+			}
+
+			const newTrajets = [...trajets]
+
+			const index = trajets.findIndex((trajet) => trajet.id === editTrajetId)
+
+			newTrajets[index] = editedTrajet
+
+			setTrajets(newTrajets)
+			setEditTrajetId(null)
 		}
-
-		const newTrajets = [...trajets]
-
-		const index = trajets.findIndex((trajet) => trajet.id === editTrajetId)
-
-		newTrajets[index] = editedTrajet
-
-		setTrajets(newTrajets)
-		setEditTrajetId(null)
 	}
 
 	return !isOpen ? (
@@ -193,7 +200,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 						padding: 0.5rem 0.5rem 0rem 0.5rem;
 					`}
 				>
-					<form id="tableTrajets" onSubmit={handleEditFormSubmit}>
+					<form id="tableTrajets" onSubmit={handleEditFormSubmit} ref={formRef}>
 						<TableTrajets>
 							<thead>
 								<tr>
