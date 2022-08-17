@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { motifList, freqList } from './dataHelp'
 import { nanoid } from 'nanoid'
 import NumberFormat from 'react-number-format'
@@ -25,15 +25,23 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 		setAddFormData(newFormData)
 	}
 
+	const formRef = useRef()
 	const handleAddFormSubmit = (event) => {
 		event.preventDefault()
 		if (addFormData.personnes == 0) {
 			alert('Une personne au moins est présente dans la voiture (vous !)')
 			return null
 		}
-		const newTrajet = { ...addFormData, id: nanoid() }
-		const newTrajets = [...trajets, newTrajet]
-		setTrajets(newTrajets)
+		// we have to check the form validity if we want 'required' attribute to be taken into account with preventDefault function
+		const formToCheck = formRef.current
+		const isValidForm = formToCheck.checkValidity()
+		if (!isValidForm) {
+			formToCheck.reportValidity()
+		} else {
+			const newTrajet = { ...addFormData, id: nanoid() }
+			const newTrajets = [...trajets, newTrajet]
+			setTrajets(newTrajets)
+		}
 	}
 
 	return (
@@ -42,6 +50,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 			css={`
 				padding: 0rem 0.5rem 0rem 0.5rem;
 			`}
+			ref={formRef}
 		>
 			<fieldset>
 				<div
@@ -206,8 +215,8 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 					type="submit"
 					className="ui__ plain small button"
 					css="max-height: 2rem"
-					onClick={(e) => {
-						handleAddFormSubmit(e)
+					onClick={(event) => {
+						handleAddFormSubmit(event)
 						tracker.push([
 							'trackEvent',
 							'Aide saisie km',
