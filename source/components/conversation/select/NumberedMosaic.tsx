@@ -46,8 +46,8 @@ export default function NumberedMosaic({
 							value =
 								situationValue != null
 									? situationValue
-									: Math.round(Math.random() * 10) |
-									  question.rawNode['par défaut']
+									: question.rawNode['par défaut']
+
 						return (
 							<li
 								className="ui__ card interactive"
