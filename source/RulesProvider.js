@@ -106,6 +106,10 @@ export default ({ children, rulesURL, dataBranch }) => {
 }
 
 const EngineWrapper = ({ rules, children }) => {
+	//TEMP code until #1451 is merged
+	Object.keys(rules).map(
+		(rule) => rule.includes('personas . ') && delete rules[rule]
+	)
 	const engine = useMemo(
 			() => new Engine(rules, engineOptions),
 			[rules, engineOptions]
