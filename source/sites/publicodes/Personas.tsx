@@ -1,5 +1,5 @@
 import { resetSimulation } from 'Actions/actions'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDifferentSituation } from '../../actions/actions'
@@ -101,14 +101,17 @@ export const PersonaGrid = ({
 	const selectedPersona = useSelector((state) => state.simulation?.persona)
 
 	const situation = useSelector(situationSelector)
+	const [data, setData] = useState()
 
-	const rules = useSelector((state) => state.rules)
+	useEffect(() => {
+		fetch('ecolab-data.netlify.app/personas.json', { mode: 'cors' })
+			.then((response) => response.json())
+			.then((json) => {
+				setData(json)
+			})
+	}, [])
 
-	const personasRules = Object.entries(rules)
-		.filter(([dottedName]) => dottedName.includes('personas'))
-		.map((arr) => {
-			return arr[1]
-		})
+	const personasRules = Object.values(data)
 
 	const [warning, setWarning] = useState(false)
 
