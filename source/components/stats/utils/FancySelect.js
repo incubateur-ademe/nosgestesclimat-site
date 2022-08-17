@@ -17,6 +17,9 @@ const Input = styled.select`
 	font-size: inherit;
 	font-weight: inherit;
 	color: transparent;
+	> option {
+		color: var(--darkColor);
+	}
 	background-color: transparent;
 	border: none;
 	box-shadow: 0px 0.1em 0px 0px var(--darkColor);
