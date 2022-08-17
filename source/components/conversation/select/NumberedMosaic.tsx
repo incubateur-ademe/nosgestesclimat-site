@@ -99,8 +99,10 @@ export default function NumberedMosaic({
 											border-bottom: 2px dotted var(--color);
 										`}
 										value={
-											situation[question.dottedName] == null
+											situationValue == null
 												? undefined
+												: value === 0
+												? ''
 												: nodeValue
 										}
 										placeholder={nodeValue}
