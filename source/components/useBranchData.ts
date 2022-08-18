@@ -27,7 +27,5 @@ export default () => {
 	const shouldUseLocalFiles =
 		NODE_ENV === 'development' && !(branch || pullRequestNumber)
 
-	console.log('PR', pullRequestNumber, deployURL)
-
 	return { deployURL, branch, pullRequestNumber, shouldUseLocalFiles }
 }

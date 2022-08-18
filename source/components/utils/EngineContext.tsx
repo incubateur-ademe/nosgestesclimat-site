@@ -35,7 +35,14 @@ export function SituationProvider({
 	situation,
 }: SituationProviderProps) {
 	const engine = useContext(EngineContext)
-	engine.setSituation(situation)
+	try {
+		engine.setSituation(situation)
+	} catch (e) {
+		console.log(
+			`Il est probable qu'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l'utilisateur ou du persona chargé ↙️`
+		)
+		console.log(e)
+	}
 	return (
 		<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
 	)
