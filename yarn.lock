@@ -6114,8 +6114,10 @@ publicodes-react@^1.0.0-beta.43:
   dependencies:
     styled-components "^5.1.0"
 
-publicodes@../publicodes/packages/core/:
-  version "1.0.0-beta.47"
+"publicodes@npm:publicodes-test-47":
+  version "0.0.1"
+  resolved "https://registry.yarnpkg.com/publicodes-test-47/-/publicodes-test-47-0.0.1.tgz#494e8c5dd30e6cb9fe03d2e8482d1df29a3ff823"
+  integrity sha512-8qTpde9VktRTZRw21B36m4GwrJkYq168sYkTVqqXpnyW++M+VW+A2z1vRCmyWB4Ck5I7y28fO4p3rGA1/GrqRg==
   dependencies:
     moo "^0.5.1"
     nearley "^2.19.2"
