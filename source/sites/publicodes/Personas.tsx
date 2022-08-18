@@ -102,20 +102,25 @@ export const PersonaGrid = ({
 
 	const situation = useSelector(situationSelector)
 	const [data, setData] = useState()
+	const [warning, setWarning] = useState(false)
+	const engine = useEngine()
 
 	useEffect(() => {
-		fetch('ecolab-data.netlify.app/personas.json', { mode: 'cors' })
+		fetch(
+			'https://deploy-preview-1451--ecolab-data.netlify.app/personas.json',
+			{
+				mode: 'cors',
+			}
+		)
 			.then((response) => response.json())
 			.then((json) => {
 				setData(json)
 			})
 	}, [])
 
+	if (!data) return null
+
 	const personasRules = Object.values(data)
-
-	const [warning, setWarning] = useState(false)
-
-	const engine = useEngine()
 
 	const setPersona = (persona) => {
 		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated

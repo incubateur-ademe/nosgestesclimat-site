@@ -11,6 +11,7 @@ import {
 import Engine from 'publicodes'
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import useBranchData from 'Components/useBranchData'
 
 const removeLoader = () => {
 	// Remove loader
@@ -28,7 +29,8 @@ const removeLoader = () => {
 	document.body.appendChild(css)
 }
 
-export default ({ children, rulesURL, dataBranch }) => {
+export default ({ children }) => {
+	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
 
 	const dispatch = useDispatch()
@@ -36,7 +38,10 @@ export default ({ children, rulesURL, dataBranch }) => {
 	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
-		if (NODE_ENV === 'development' && !dataBranch) {
+		if (
+			NODE_ENV === 'development' &&
+			!(branchData.branch || branchData.pullRequestNumber)
+		) {
 			// Rules are stored in nested yaml files
 			const req = require.context(
 				'../../nosgestesclimat/data/',
@@ -92,7 +97,7 @@ export default ({ children, rulesURL, dataBranch }) => {
 			setRules(rules)
 			removeLoader()
 		} else {
-			fetch(rulesURL, { mode: 'cors' })
+			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
 					setRules(json)
@@ -106,10 +111,6 @@ export default ({ children, rulesURL, dataBranch }) => {
 }
 
 const EngineWrapper = ({ rules, children }) => {
-	//TEMP code until #1451 is merged
-	Object.keys(rules).map(
-		(rule) => rule.includes('personas . ') && delete rules[rule]
-	)
 	const engine = useMemo(
 			() => new Engine(rules, engineOptions),
 			[rules, engineOptions]
