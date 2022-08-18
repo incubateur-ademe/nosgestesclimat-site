@@ -109,7 +109,7 @@ export const PersonaGrid = ({
 	const branchData = useBranchData()
 
 	useEffect(() => {
-		if (branchData.shouldUseLocalFiles) {
+		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			const personas =
 				require('../../../../nosgestesclimat/personas.yaml').default
 

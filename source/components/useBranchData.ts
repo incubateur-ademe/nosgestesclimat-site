@@ -24,8 +24,7 @@ export default () => {
 			: ''
 	}ecolab-data.netlify.app`
 
-	const shouldUseLocalFiles =
-		NODE_ENV === 'development' && !(branch || pullRequestNumber)
+	const shouldUseLocalFiles = !(branch || pullRequestNumber)
 
 	return { deployURL, branch, pullRequestNumber, shouldUseLocalFiles }
 }
