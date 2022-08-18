@@ -7,11 +7,21 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { title } from '../../components/publicodesUtils'
+import useFetchDocumentation from '../../components/useFetchDocumentation'
 
 export default () => {
 	const rules = useSelector((state) => state.rules)
+	const documentation = useFetchDocumentation()
+
+	if (!documentation) return null
+
 	const plusListe = Object.entries(rules)
 		.map(([dottedName, rule]) => ({ ...rule, dottedName }))
+		.map((rule) => {
+			const plus = documentation['actions-plus/' + rule.dottedName]
+			return { ...rule, plus }
+		})
+
 		.filter((r) => r.plus)
 
 	return (

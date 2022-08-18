@@ -46,32 +46,9 @@ export default ({ children }) => {
 				/\.(yaml)$/
 			)
 
-			// Bigger rule explanations are stored in nested .md files
-			const reqPlus = require.context(
-				'raw-loader!../../nosgestesclimat/data/actions-plus/',
-				true,
-				/\.(md)$/
-			)
-
-			const plusDottedNames = Object.fromEntries(
-				reqPlus
-					.keys()
-					.map((path) => [
-						path.replace(/(\.\/|\.md)/g, ''),
-						reqPlus(path).default,
-					])
-			)
-
 			const rules = req.keys().reduce((memo, key) => {
 				const jsonRuleSet = req(key).default || {}
-				const ruleSetPlus = Object.fromEntries(
-					Object.entries(jsonRuleSet).map(([k, v]) =>
-						plusDottedNames[k]
-							? [k, { ...v, plus: plusDottedNames[k] }]
-							: [k, v]
-					)
-				)
-				return { ...memo, ...ruleSetPlus }
+				return { ...memo, ...jsonRuleSet }
 			}, {})
 
 			setRules(rules)

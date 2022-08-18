@@ -8,7 +8,7 @@ export default () => {
 	useEffect(() => {
 		if (branchData.shouldUseLocalFiles) {
 			const req = require.context(
-				'raw-loader!../../../nosgestesclimat/documentation/*/',
+				'raw-loader!../../../nosgestesclimat/documentation/',
 				true,
 				/\.(md)$/
 			)
