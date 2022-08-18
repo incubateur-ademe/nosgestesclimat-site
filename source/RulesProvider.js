@@ -38,10 +38,7 @@ export default ({ children }) => {
 	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
-		if (
-			NODE_ENV === 'development' &&
-			!(branchData.branch || branchData.pullRequestNumber)
-		) {
+		if (branchData.shouldUseLocalFiles) {
 			// Rules are stored in nested yaml files
 			const req = require.context(
 				'../../nosgestesclimat/data/',
