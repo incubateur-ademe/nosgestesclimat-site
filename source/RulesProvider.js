@@ -62,21 +62,6 @@ export default ({ children }) => {
 					])
 			)
 
-			const reqGuide = require.context(
-				'raw-loader!../../nosgestesclimat/data/guide-mode-groupe/',
-				true,
-				/\.(md)$/
-			)
-
-			const guideMdFiles = Object.fromEntries(
-				reqGuide
-					.keys()
-					.map((path) => [
-						path.replace(/(\.\/|\.md)/g, ''),
-						reqGuide(path).default,
-					])
-			)
-
 			const rules = req.keys().reduce((memo, key) => {
 				const jsonRuleSet = req(key).default || {}
 				const ruleSetPlus = Object.fromEntries(
@@ -86,8 +71,6 @@ export default ({ children }) => {
 							: [k, v]
 					)
 				)
-				// we add guide files in rules
-				ruleSetPlus['guide-mode-groupe'] = guideMdFiles
 				return { ...memo, ...ruleSetPlus }
 			}, {})
 
