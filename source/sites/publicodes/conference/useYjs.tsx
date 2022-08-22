@@ -15,9 +15,12 @@ export default (room, connectionType: 'p2p' | 'database') => {
 	const [rawElements, setElements] = useState([])
 	const [users, setUsers] = useState([])
 
-	const [username, setUsername] = usePersistingState('conferenceId', null)
+	const [username, setUsername] = usePersistingState('conferenceId', '')
+
 	useEffect(() => {
-		if (!username) setUsername(generateFruitName())
+		if (username.length == 0) {
+			setUsername(generateFruitName())
+		}
 	}, [username])
 
 	useEffect(() => {
