@@ -8,11 +8,13 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import useFetchDocumentation from 'Components/useFetchDocumentation'
 
 export default () => {
 	const rules = useSelector((state) => state.rules)
 
 	const documentation = useFetchDocumentation()
+	if (!documentation) return null
 
 	const { encodedName } = useParams()
 
