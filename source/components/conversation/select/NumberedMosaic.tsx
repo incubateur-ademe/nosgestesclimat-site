@@ -101,7 +101,7 @@ export default function NumberedMosaic({
 										value={
 											situationValue == null
 												? undefined
-												: value === 0
+												: situationValue === 0 // if situation value is 0 (2 options : input is filled in with a 0 or inout is empty), value become an empty string and placeholder (0) is visible..
 												? ''
 												: nodeValue
 										}
