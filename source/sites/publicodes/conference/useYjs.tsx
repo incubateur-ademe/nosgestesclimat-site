@@ -15,16 +15,14 @@ export default (room, connectionType: 'p2p' | 'database') => {
 	const [rawElements, setElements] = useState([])
 	const [users, setUsers] = useState([])
 
-	const [username, setUsername] = usePersistingState('conferenceId', '')
+	const [username, setUsername] = usePersistingState('conferenceId', null)
 
 	useEffect(() => {
-		if (username.length == 0) {
-			setUsername(generateFruitName())
-		}
+		if (!username) setUsername(generateFruitName())
 	}, [username])
 
 	useEffect(() => {
-		if (!room && !conference) return null
+		if (!username || (!room && !conference)) return null
 		if (!conference) {
 			const ydoc = new Y.Doc()
 			const provider =
