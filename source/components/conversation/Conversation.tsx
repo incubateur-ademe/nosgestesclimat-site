@@ -136,7 +136,7 @@ export default function Conversation({
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
 	useEffect(() => {
-		// This hook enables top set the focus on the question span and not on the "Suivant" button when going to next question
+		// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question
 		const questionElement =
 			rules[currentQuestion] &&
 			document.getElementById('id-question-' + title(rules[currentQuestion]))
