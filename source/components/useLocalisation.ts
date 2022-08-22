@@ -14,38 +14,39 @@ export const correspondancePullRequests = {
 }
 
 const API =
-	'https://api.ipgeolocation.io/ipgeo?apiKey=a012a48f6d0244ed967df27ce20415ab'
+	'https://api.ipgeolocation.io/ipgeo?apiKey=a6346b522995413a8f4578e025a3eae6'
 
 // Other alternatives :
 // https://positionstack.com/product
 // https://www.abstractapi.com/ip-geolocation-api?fpr=geekflare#pricing
 
 export default (ip) => {
-	const localisation = useSelector((state) => state.localisation),
-		dispatch = useDispatch()
+	const dispatch = useDispatch()
+
+	const localisation = useSelector((state) => state.localisation)
 
 	useEffect(() => {
-		return async () => {
-			console.log('in ue', ip, localisation?.ip)
-			if (localisation && localisation.ip == ip) return null
+		if (localisation != null && localisation.ip == ip) return null
 
-			const req = await fetch(API + (ip == null ? '' : `&ip=${ip}`)),
-				data = await req.json()
-
-			console.log(data.ip, data.country_name)
-
-			dispatch(
-				setLocalisation({
-					...data,
-					ip,
-					country_flag:
-						//https://fr.wikipedia.org/wiki/Drapeau_de_la_Guadeloupe
-						data.country_name.toLowerCase() === 'guadeloupe'
-							? 'https://openmoji.org/data/color/svg/1F1EC-1F1F5.svg'
-							: data.country_flag,
-				})
-			)
-		}
+		fetch(API + (ip == null ? '' : `&ip=${ip}`))
+			.catch((e) => {
+				console.log('erreur', e)
+			})
+			.then((res) => res && res.json())
+			.then((data) => {
+				dispatch(
+					setLocalisation({
+						...data,
+						ip,
+						country_flag:
+							//https://fr.wikipedia.org/wiki/Drapeau_de_la_Guadeloupe
+							data.country_name.toLowerCase() === 'guadeloupe'
+								? 'https://openmoji.org/data/color/svg/1F1EC-1F1F5.svg'
+								: data.country_flag,
+					})
+				)
+			})
 	}, [ip])
+
 	return localisation
 }
