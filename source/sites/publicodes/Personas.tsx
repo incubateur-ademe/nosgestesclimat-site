@@ -123,7 +123,7 @@ export const PersonaGrid = ({
 					setData(json)
 				})
 		}
-	}, [])
+	}, [branchData.deployURL])
 
 	if (!data) return null
 

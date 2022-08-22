@@ -31,6 +31,7 @@ const removeLoader = () => {
 
 export default ({ children }) => {
 	const branchData = useBranchData()
+	console.log('BD', branchData)
 	const rules = useSelector((state) => state.rules)
 
 	const dispatch = useDispatch()
@@ -61,7 +62,7 @@ export default ({ children }) => {
 					removeLoader()
 				})
 		}
-	}, [])
+	}, [branchData.deployURL])
 
 	if (!rules) return null
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>

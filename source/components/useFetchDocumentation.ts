@@ -29,7 +29,7 @@ export default () => {
 					setData(json)
 				})
 		}
-	}, [])
+	}, [branchData.deployURL])
 
 	return data
 }
