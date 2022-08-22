@@ -9,12 +9,16 @@ export default () => {
 
 	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
 		'PR',
-		null
+		undefined
 	)
 
 	const searchPR = urlParams.get('PR')
 
-	useEffect(() => setPullRequestNumber(searchPR), [searchPR])
+	useEffect(() => {
+		if (searchPR != null)
+			// setting should be triggered by an explicit ?PR=, not the absence of it when navigating
+			setPullRequestNumber(searchPR)
+	}, [searchPR])
 
 	const deployURL = `https://${
 		branch
@@ -26,5 +30,10 @@ export default () => {
 
 	const shouldUseLocalFiles = !(branch || pullRequestNumber)
 
-	return { deployURL, branch, pullRequestNumber, shouldUseLocalFiles }
+	return {
+		deployURL,
+		pullRequestNumber,
+		shouldUseLocalFiles,
+		loaded: pullRequestNumber !== undefined,
+	}
 }

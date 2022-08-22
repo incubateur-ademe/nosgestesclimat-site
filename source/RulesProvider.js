@@ -31,7 +31,6 @@ const removeLoader = () => {
 
 export default ({ children }) => {
 	const branchData = useBranchData()
-	console.log('BD', branchData)
 	const rules = useSelector((state) => state.rules)
 
 	const dispatch = useDispatch()
@@ -39,6 +38,7 @@ export default ({ children }) => {
 	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
+		if (!branchData.loaded) return
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			// Rules are stored in nested yaml files
 			const req = require.context(
