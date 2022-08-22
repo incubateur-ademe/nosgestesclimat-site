@@ -51,12 +51,10 @@ export default () => {
 		<GuideWrapper>
 			<Meta title={titre} />
 			<ScrollToTop />
-			<Link to={'/guide/general'}>
-				<button className="ui__ button simple small ">
-					{emoji('◀')} Retour
-				</button>
+			<Link to={'/guide'}>
+				<button className="ui__ button simple">{emoji('◀')} Retour</button>
 			</Link>
-			<div css="margin: 1.6rem 0">
+			<div>
 				<Markdown
 					children={
 						documentation['guide-mode-groupe/' + encodedName] ||
@@ -86,7 +84,10 @@ export default () => {
 }
 
 const GuideWrapper = styled.div`
+	padding: 0 0.3rem 1rem;
+	margin: 1rem auto;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 `
