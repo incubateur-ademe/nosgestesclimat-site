@@ -62,7 +62,7 @@ export default ({ children }) => {
 					removeLoader()
 				})
 		}
-	}, [branchData.deployURL])
+	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
 
 	if (!rules) return null
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>

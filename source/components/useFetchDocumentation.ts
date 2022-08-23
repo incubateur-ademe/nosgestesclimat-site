@@ -30,7 +30,7 @@ export default () => {
 					setData(json)
 				})
 		}
-	}, [branchData.deployURL])
+	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
 
 	return data
 }

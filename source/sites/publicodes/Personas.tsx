@@ -124,7 +124,7 @@ export const PersonaGrid = ({
 					setData(json)
 				})
 		}
-	}, [branchData.deployURL])
+	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
 
 	if (!data) return null
 
