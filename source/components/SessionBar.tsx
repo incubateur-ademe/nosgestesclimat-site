@@ -4,7 +4,13 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, Redirect, Navigate } from 'react-router-dom'
+import {
+	Link,
+	useLocation,
+	Redirect,
+	Navigate,
+	useSearchParams,
+} from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -16,6 +22,8 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import ProgressCircle from './ProgressCircle'
 import CardGameIcon from './CardGameIcon'
+import { usePersistingState } from './utils/persistState'
+import { omit } from '../utils'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -30,6 +38,7 @@ const openmojis = {
 	sondage: '1F4CA',
 	profile: '1F464',
 	personas: '1F465',
+	github: 'E045',
 }
 export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
@@ -50,8 +59,8 @@ const MenuButton = styled.div`
 		padding: 0;
 		font-size: 100%;
 	}
-	> img,
-	> svg {
+	img,
+	svg {
 		display: block;
 		font-size: 200%;
 		margin: 0.6rem !important;
@@ -149,6 +158,12 @@ export default function SessionBar({
 			: ''
 	const persona = useSelector((state) => state.simulation?.persona)
 
+	const [searchParams, setSearchParams] = useSearchParams()
+	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
+		'PR',
+		undefined
+	)
+
 	let elements = [
 		<Button
 			className="simple small"
@@ -206,6 +221,39 @@ export default function SessionBar({
 				/>
 				Personas
 			</Button>
+		),
+		pullRequestNumber && (
+			<MenuButton
+				key="pullRequest"
+				className="simple small"
+				css={buttonStyle('github')}
+			>
+				<a
+					href={
+						'https://github.com/datagir/nosgestesclimat/pull/' +
+						pullRequestNumber
+					}
+					css={`
+						display: flex;
+						align-items: center;
+					`}
+				>
+					<img
+						src={openmojiURL('github')}
+						css="width: 2rem"
+						aria-hidden="true"
+					/>
+					#{pullRequestNumber}
+				</a>
+				<button
+					onClick={() => {
+						setSearchParams(omit(['PR'], searchParams))
+						setPullRequestNumber(null)
+					}}
+				>
+					<img css="width: 1.2rem" src="/images/close-plain.svg" />
+				</button>
+			</MenuButton>
 		),
 		conference?.room && (
 			<GroupModeMenuEntry

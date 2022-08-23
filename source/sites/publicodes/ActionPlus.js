@@ -7,12 +7,20 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import Meta from 'Components/utils/Meta'
 import { title } from 'Components/publicodesUtils'
+import useFetchDocumentation from '../../components/useFetchDocumentation'
 
 export default () => {
 	const encodedName = useParams()['*']
-	const rules = useSelector((state) => state.rules)
 	const dottedName = utils.decodeRuleName(encodedName)
-	const rule = { ...rules[dottedName], dottedName }
+	const rules = useSelector((state) => state.rules)
+	const documentation = useFetchDocumentation()
+	if (!documentation) return null
+
+	const rule = {
+		...rules[dottedName],
+		dottedName,
+		plus: documentation['actions-plus/' + dottedName],
+	}
 
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">

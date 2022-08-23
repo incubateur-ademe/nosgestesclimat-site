@@ -11,6 +11,7 @@ import {
 import Engine from 'publicodes'
 import React, { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import useBranchData from 'Components/useBranchData'
 
 const removeLoader = () => {
 	// Remove loader
@@ -28,7 +29,8 @@ const removeLoader = () => {
 	document.body.appendChild(css)
 }
 
-export default ({ children, rulesURL, dataBranch }) => {
+export default ({ children }) => {
+	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
 
 	const dispatch = useDispatch()
@@ -36,7 +38,8 @@ export default ({ children, rulesURL, dataBranch }) => {
 	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
-		if (NODE_ENV === 'development' && !dataBranch) {
+		if (!branchData.loaded) return
+		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			// Rules are stored in nested yaml files
 			const req = require.context(
 				'../../nosgestesclimat/data/',
@@ -44,62 +47,22 @@ export default ({ children, rulesURL, dataBranch }) => {
 				/\.(yaml)$/
 			)
 
-			// Bigger rule explanations are stored in nested .md files
-			const reqPlus = require.context(
-				'raw-loader!../../nosgestesclimat/data/actions-plus/',
-				true,
-				/\.(md)$/
-			)
-
-			const plusDottedNames = Object.fromEntries(
-				reqPlus
-					.keys()
-					.map((path) => [
-						path.replace(/(\.\/|\.md)/g, ''),
-						reqPlus(path).default,
-					])
-			)
-
-			const reqGuide = require.context(
-				'raw-loader!../../nosgestesclimat/data/guide-mode-groupe/',
-				true,
-				/\.(md)$/
-			)
-
-			const guideMdFiles = Object.fromEntries(
-				reqGuide
-					.keys()
-					.map((path) => [
-						path.replace(/(\.\/|\.md)/g, ''),
-						reqGuide(path).default,
-					])
-			)
-
 			const rules = req.keys().reduce((memo, key) => {
 				const jsonRuleSet = req(key).default || {}
-				const ruleSetPlus = Object.fromEntries(
-					Object.entries(jsonRuleSet).map(([k, v]) =>
-						plusDottedNames[k]
-							? [k, { ...v, plus: plusDottedNames[k] }]
-							: [k, v]
-					)
-				)
-				// we add guide files in rules
-				ruleSetPlus['guide-mode-groupe'] = guideMdFiles
-				return { ...memo, ...ruleSetPlus }
+				return { ...memo, ...jsonRuleSet }
 			}, {})
 
 			setRules(rules)
 			removeLoader()
 		} else {
-			fetch(rulesURL, { mode: 'cors' })
+			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
 					setRules(json)
 					removeLoader()
 				})
 		}
-	}, [])
+	}, [branchData.deployURL])
 
 	if (!rules) return null
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>

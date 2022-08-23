@@ -1,9 +1,10 @@
 import { resetSimulation } from 'Actions/actions'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { setDifferentSituation } from '../../actions/actions'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
+import useBranchData from '../../components/useBranchData'
 import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { situationSelector } from '../../selectors/simulationSelectors'
@@ -101,18 +102,33 @@ export const PersonaGrid = ({
 	const selectedPersona = useSelector((state) => state.simulation?.persona)
 
 	const situation = useSelector(situationSelector)
-
-	const rules = useSelector((state) => state.rules)
-
-	const personasRules = Object.entries(rules)
-		.filter(([dottedName]) => dottedName.includes('personas'))
-		.map((arr) => {
-			return arr[1]
-		})
-
+	const [data, setData] = useState()
 	const [warning, setWarning] = useState(false)
-
 	const engine = useEngine()
+
+	const branchData = useBranchData()
+
+	useEffect(() => {
+		if (!branchData.loaded) return
+		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+			const personas =
+				require('../../../../nosgestesclimat/personas.yaml').default
+
+			setData(personas)
+		} else {
+			fetch(branchData.deployURL + '/personas.json', {
+				mode: 'cors',
+			})
+				.then((response) => response.json())
+				.then((json) => {
+					setData(json)
+				})
+		}
+	}, [branchData.deployURL])
+
+	if (!data) return null
+
+	const personasRules = Object.values(data)
 
 	const setPersona = (persona) => {
 		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated

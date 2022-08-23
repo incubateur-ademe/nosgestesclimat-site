@@ -1,18 +1,20 @@
+import { splitName, title } from 'Components/publicodesUtils'
 import { Markdown } from 'Components/utils/markdown'
+import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import Meta from 'Components/utils/Meta'
-import { splitName, title } from 'Components/publicodesUtils'
 import styled from 'styled-components'
+import useFetchDocumentation from 'Components/useFetchDocumentation'
 
 export default () => {
 	const rules = useSelector((state) => state.rules)
-	const guideRule = 'guide-mode-groupe'
-	const rule = rules[guideRule]
+
+	const documentation = useFetchDocumentation()
+	if (!documentation) return null
 
 	const { encodedName } = useParams()
 
@@ -21,7 +23,12 @@ export default () => {
 			<GuideWrapper>
 				<Meta title={'Guide'} />
 				<ScrollToTop />
-				<Markdown children={rule['guide'] || "Ce guide n'existe pas encore"} />
+				<Markdown
+					children={
+						documentation['guide-mode-groupe/guide'] ||
+						"Ce guide n'existe pas encore"
+					}
+				/>
 			</GuideWrapper>
 		)
 	}
@@ -29,9 +36,12 @@ export default () => {
 	const titre = utils.decodeRuleName(encodedName)
 	const category = encodedName.split('-')[1]
 
-	const actionsPlus = Object.entries(rules)
-		.map(([dottedName, rule]) => ({ ...rule, dottedName }))
-		.filter((r) => r.plus)
+	const actionsPlus = Object.entries(documentation)
+		.filter(([key, value]) => key.startsWith('actions-plus/'))
+		.map(([key, value]) => ({
+			plus: value,
+			dottedName: key.replace('actions-plus/', ''),
+		}))
 
 	const relatedActions = actionsPlus.filter(
 		(action) => category === splitName(action.dottedName)[0]
@@ -41,14 +51,15 @@ export default () => {
 		<GuideWrapper>
 			<Meta title={titre} />
 			<ScrollToTop />
-			<Link to={'/guide/general'}>
-				<button className="ui__ button simple small ">
-					{emoji('◀')} Retour
-				</button>
+			<Link to={'/guide'}>
+				<button className="ui__ button simple">{emoji('◀')} Retour</button>
 			</Link>
-			<div css="margin: 1.6rem 0">
+			<div>
 				<Markdown
-					children={rule[encodedName] || "Ce guide n'existe pas encore"}
+					children={
+						documentation['guide-mode-groupe/' + encodedName] ||
+						"Ce guide n'existe pas encore"
+					}
 				/>
 				{encodedName !== 'guide' && relatedActions.length > 0 && (
 					<>
@@ -73,7 +84,10 @@ export default () => {
 }
 
 const GuideWrapper = styled.div`
+	padding: 0 0.3rem 1rem;
+	margin: 1rem auto;
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	align-items: center;
+	align-items: flex-start;
 `
