@@ -15,10 +15,16 @@ export default () => {
 	const searchPR = urlParams.get('PR')
 
 	useEffect(() => {
-		if (searchPR != null)
+		// if pullRequestNumber is undefined, then this hook hasn't been triggered yet
+		if (searchPR != null) {
 			// setting should be triggered by an explicit ?PR=, not the absence of it when navigating
 			setPullRequestNumber(searchPR)
-	}, [searchPR])
+		} else {
+			if (!pullRequestNumber)
+				// No PR should be loaded, we know that now
+				setPullRequestNumber(null)
+		}
+	}, [searchPR, pullRequestNumber])
 
 	const deployURL = `https://${
 		branch
