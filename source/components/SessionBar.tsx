@@ -4,7 +4,13 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, Redirect, Navigate } from 'react-router-dom'
+import {
+	Link,
+	useLocation,
+	Redirect,
+	Navigate,
+	useSearchParams,
+} from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -17,6 +23,7 @@ import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import ProgressCircle from './ProgressCircle'
 import CardGameIcon from './CardGameIcon'
 import { usePersistingState } from './utils/persistState'
+import { omit } from '../utils'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -150,6 +157,8 @@ export default function SessionBar({
 		`
 			: ''
 	const persona = useSelector((state) => state.simulation?.persona)
+
+	const [searchParams, setSearchParams] = useSearchParams()
 	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
 		'PR',
 		undefined
@@ -236,7 +245,12 @@ export default function SessionBar({
 					/>
 					#{pullRequestNumber}
 				</a>
-				<button onClick={() => setPullRequestNumber(null)}>
+				<button
+					onClick={() => {
+						setSearchParams(omit(['PR'], searchParams))
+						setPullRequestNumber(null)
+					}}
+				>
 					<img css="width: 1.2rem" src="/images/close-plain.svg" />
 				</button>
 			</MenuButton>
