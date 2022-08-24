@@ -1,11 +1,15 @@
 import { useEffect } from 'react'
 import { usePersistingState } from './utils/persistState'
+import useLocalisation, {
+	correspondancePullRequests,
+} from 'Components/useLocalisation'
 
 export default () => {
 	const urlParams = new URLSearchParams(window.location.search)
 	/* This enables loading the rules of a branch,
 	 * to showcase the app as it would be once this branch of -data  has been merged*/
 	const branch = urlParams.get('branch')
+	const localisation = useLocalisation()
 
 	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
 		'PR',
@@ -14,17 +18,22 @@ export default () => {
 
 	const searchPR = urlParams.get('PR')
 
+	const localisationPR =
+		correspondancePullRequests[localisation?.country_name.toLowerCase()]
+
 	useEffect(() => {
 		// if pullRequestNumber is undefined, then this hook hasn't been triggered yet
-		if (searchPR != null) {
+		if (localisationPR != null) {
+			setPullRequestNumber(localisationPR)
+		} else if (searchPR != null) {
 			// setting should be triggered by an explicit ?PR=, not the absence of it when navigating
 			setPullRequestNumber(searchPR)
 		} else {
-			if (!pullRequestNumber)
+			if (!pullRequestNumber || !localisationPR)
 				// No PR should be loaded, we know that now
 				setPullRequestNumber(null)
 		}
-	}, [searchPR, pullRequestNumber])
+	}, [searchPR, localisationPR, pullRequestNumber])
 
 	const deployURL = `https://${
 		branch

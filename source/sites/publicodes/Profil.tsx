@@ -16,6 +16,7 @@ import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { skipTutorial } from '../../actions/actions'
 import { useNavigate } from 'react-router-dom'
+import Localisation from './Localisation'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
@@ -54,45 +55,58 @@ export default ({}) => {
 					</p>
 				)}
 				{hasData ? (
-					<div>
-						{tutorials.testIntro && (
-							<div>
-								<button
-									className="ui__ dashed-button"
-									onClick={() => {
-										dispatch(skipTutorial('testIntro', true))
-										navigate('/tutoriel')
-									}}
-								>
-									{emoji('🧑‍🏫')} Revoir le tutoriel
-								</button>
-							</div>
-						)}
-						{answeredQuestionsLength > 0 && (
-							<p>
-								Vous avez répondu à {answeredQuestionsLength} questions et
-								choisi {actionChoicesLength} actions.{' '}
-							</p>
-						)}
-						<details>
-							<summary>Où sont mes données ? </summary>
-							Vos données sont stockées dans votre navigateur, vous avez donc le
-							contrôle total sur elles. <br />
-							<Link to="/vie-privée">En savoir plus</Link>
-						</details>
-						<button
-							className="ui__ button plain"
-							css="margin: 1rem 0"
-							onClick={() => {
-								dispatch(resetSimulation())
-								dispatch(resetActionChoices())
-								dispatch(deletePreviousSimulation())
-								dispatch(resetTutorials())
-								dispatch(resetStoredTrajets())
-							}}
+					<div
+						css={`
+							display: flex;
+							align-items: center;
+							flex-wrap: wrap;
+						`}
+					>
+						<div
+							className="ui__ card content"
+							css="width: 20rem; margin-right: 2rem"
 						>
-							{emoji('♻️ ')} Recommencer
-						</button>
+							{answeredQuestionsLength > 0 && (
+								<p>
+									Vous avez répondu à {answeredQuestionsLength} questions et
+									choisi {actionChoicesLength} actions.{' '}
+								</p>
+							)}
+							<details>
+								<summary>Où sont mes données ? </summary>
+								Vos données sont stockées dans votre navigateur, vous avez donc
+								le contrôle total sur elles. <br />
+								<Link to="/vie-privée">En savoir plus</Link>
+							</details>
+						</div>
+						<div>
+							<button
+								className="ui__ button plain"
+								css="margin: 1rem 0"
+								onClick={() => {
+									dispatch(resetSimulation())
+									dispatch(resetActionChoices())
+									dispatch(deletePreviousSimulation())
+									dispatch(resetTutorials())
+									dispatch(resetStoredTrajets())
+								}}
+							>
+								{emoji('♻️ ')} Recommencer
+							</button>
+							{tutorials.testIntro && (
+								<div>
+									<button
+										className="ui__ dashed-button"
+										onClick={() => {
+											dispatch(skipTutorial('testIntro', true))
+											navigate('/tutoriel')
+										}}
+									>
+										{emoji('🧑‍🏫')} Revoir le tutoriel
+									</button>
+								</div>
+							)}
+						</div>
 					</div>
 				) : (
 					<IllustratedMessage
@@ -100,6 +114,7 @@ export default ({}) => {
 						message={<p>Vous n'avez pas encore fait le test.</p>}
 					></IllustratedMessage>
 				)}
+				<Localisation />
 				<AnswerList />
 			</div>
 		</div>

@@ -186,3 +186,10 @@ export const setStoredTrajets = (vehicule: string, trajets: object) =>
 		vehicule,
 		trajets,
 	} as const)
+
+export const setLocalisation = (localisationData: Object) =>
+	({
+		type: 'SET_LOCALISATION',
+		localisationData,
+	} as const)
+
