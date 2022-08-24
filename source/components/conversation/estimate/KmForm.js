@@ -26,22 +26,36 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 	}
 
 	const formRef = useRef()
+
 	const handleAddFormSubmit = (event) => {
 		event.preventDefault()
-		if (addFormData.personnes == 0) {
-			alert('Une personne au moins est présente dans la voiture (vous !)')
+
+		// can't use "useRef" here because input tag is not recognize as an <Input> and
+		// native function "checkValidity" for instance doesn't work on "NumberFormat" component
+		const peopleFieldToCheck = document.getElementById('peopleFieldinForm')
+
+		if (peopleFieldToCheck.value == 0) {
+			peopleFieldToCheck.setCustomValidity(
+				'Vous êtes au moins présent dans la voiture'
+			)
+			peopleFieldToCheck.reportValidity()
 			return null
+		} else {
+			peopleFieldToCheck.setCustomValidity('')
 		}
+
 		// we have to check the form validity if we want 'required' attribute to be taken into account with preventDefault function
 		const formToCheck = formRef.current
+
 		const isValidForm = formToCheck.checkValidity()
 		if (!isValidForm) {
 			formToCheck.reportValidity()
-		} else {
-			const newTrajet = { ...addFormData, id: nanoid() }
-			const newTrajets = [...trajets, newTrajet]
-			setTrajets(newTrajets)
+			return null
 		}
+
+		const newTrajet = { ...addFormData, id: nanoid() }
+		const newTrajets = [...trajets, newTrajet]
+		setTrajets(newTrajets)
 	}
 
 	return (
@@ -191,6 +205,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 								name="personnes"
 								placeholder="Nbre de personnes"
 								onChange={handleAddFormChange}
+								id="peopleFieldinForm"
 								required
 							/>
 							<InputSuffix>

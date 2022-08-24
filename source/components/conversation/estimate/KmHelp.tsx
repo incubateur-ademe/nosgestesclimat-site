@@ -83,6 +83,22 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 	const handleEditFormSubmit = (event) => {
 		event.preventDefault()
 
+		// can't use "useRef" here because input tag is not recognize as an <Input> and
+		// native function "checkValidity" for instance doesn't work on "NumberFormat" component
+		const peopleFieldToCheck = document.getElementById(
+			'peopleFieldinEditableRow'
+		)
+
+		if (peopleFieldToCheck.value == 0) {
+			peopleFieldToCheck.setCustomValidity(
+				'Vous êtes au moins présent dans la voiture'
+			)
+			peopleFieldToCheck.reportValidity()
+			return null
+		} else {
+			peopleFieldToCheck.setCustomValidity('')
+		}
+
 		if (editFormData.personnes == 0) {
 			alert('Une personne au moins est présente dans la voiture (vous !)')
 			return null

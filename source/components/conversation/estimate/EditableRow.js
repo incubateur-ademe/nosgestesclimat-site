@@ -94,6 +94,7 @@ export default function EditableRow({
 			</td>
 			<td>
 				<NumberFormat
+					id="peopleFieldinEditableRow"
 					name="personnes"
 					className="ui__"
 					inputMode="decimal"
