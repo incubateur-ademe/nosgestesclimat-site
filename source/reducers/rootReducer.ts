@@ -239,6 +239,8 @@ const defaultToNull = (arg) => arg ?? null
 function localisation(state = null, { type, localisationData }) {
 	if (type === 'SET_LOCALISATION') {
 		return localisationData
+	} else if (type === 'RESET_LOCALISATION') {
+		return null
 	} else return state
 }
 

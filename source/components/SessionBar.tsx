@@ -24,6 +24,7 @@ import ProgressCircle from './ProgressCircle'
 import CardGameIcon from './CardGameIcon'
 import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
+import { resetLocalisation } from '../actions/actions'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -248,6 +249,7 @@ export default function SessionBar({
 				<button
 					onClick={() => {
 						setSearchParams(omit(['PR'], searchParams))
+						dispatch(resetLocalisation())
 						setPullRequestNumber(null)
 					}}
 				>

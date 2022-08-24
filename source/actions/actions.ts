@@ -193,3 +193,7 @@ export const setLocalisation = (localisationData: Object) =>
 		localisationData,
 	} as const)
 
+export const resetLocalisation = () =>
+	({
+		type: 'RESET_LOCALISATION',
+	} as const)
