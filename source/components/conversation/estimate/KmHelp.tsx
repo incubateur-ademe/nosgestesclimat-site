@@ -93,15 +93,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		if (!isValidForm) {
 			formToCheck.reportValidity()
 		} else {
-			const editedTrajet = {
-				id: editTrajetId,
-				motif: editFormData.motif,
-				label: editFormData.label,
-				distance: editFormData.distance,
-				xfois: editFormData.xfois,
-				periode: editFormData.periode,
-				personnes: editFormData.personnes,
-			}
+			const editedTrajet = { ...editFormData, id: editTrajetId }
 
 			const newTrajets = [...trajets]
 
