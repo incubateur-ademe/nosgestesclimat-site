@@ -161,9 +161,6 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 									margin-right: 0.4rem;
 								}
 							}
-							p {
-								max-width: 20rem;
-							}
 						`}
 					>
 						<label>
