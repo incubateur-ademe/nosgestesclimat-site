@@ -95,11 +95,6 @@ export default function Conversation({
 			? sortedQuestions[0]
 			: unfoldedStep || sortedQuestions[0]
 
-	const currentQuestionIsAnswered =
-		currentQuestion && isMosaic(currentQuestion)
-			? true
-			: situation[currentQuestion] != null
-
 	const [finder, setFinder] = useState(false)
 	const tutorials = useSelector((state) => state.tutorials)
 
@@ -141,7 +136,7 @@ export default function Conversation({
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
 	useEffect(() => {
-		// This hook enables top set the focus on the question span and not on the "Suivant" button when going to next question
+		// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question
 		const questionElement =
 			rules[currentQuestion] &&
 			document.getElementById('id-question-' + title(rules[currentQuestion]))
@@ -168,6 +163,26 @@ export default function Conversation({
 				.map(([dottedName]) => dottedName)
 		: [currentQuestion]
 
+	const isAnsweredMosaic =
+		currentQuestion &&
+		isMosaic(currentQuestion) &&
+		questionsToSubmit
+			.map((question) => situation[question] != null)
+			.some((bool) => bool === true)
+
+	const currentQuestionIsAnswered = isAnsweredMosaic
+		? true
+		: situation[currentQuestion] != null
+
+	useEffect(() => {
+		// This hook enables to set all the checkbox of a mosaic to false when once one is checked
+		if (isAnsweredMosaic && mosaicQuestion?.options?.defaultsToFalse) {
+			questionsToSubmit.map((question) =>
+				dispatch(updateSituation(question, situation[question] || 'non'))
+			)
+		}
+	}, [currentQuestion, isAnsweredMosaic])
+
 	const currentQuestionIndex = previousAnswers.findIndex(
 			(a) => a === unfoldedStep
 		),
@@ -184,6 +199,8 @@ export default function Conversation({
 				: previousAnswers[currentQuestionIndex - 1]
 
 	const submit = (source: string) => {
+		// This piece of code enables to set all the checkbox of a mosaic to false when "Next" button is pressed (chen the question is submitted)
+		// It's important in case of someone arrives at the mosaic question, does not select anything and wants to submit "nothing".
 		if (mosaicQuestion?.options?.defaultsToFalse) {
 			questionsToSubmit.map((question) =>
 				dispatch(updateSituation(question, situation[question] || 'non'))
@@ -390,6 +407,31 @@ export default function Conversation({
 								<Trans>Suivant</Trans> →
 							</span>
 						</button>
+					) : isMosaic(currentQuestion) ? (
+						<div>
+							<button
+								onClick={() => {
+									tracker.push([
+										'trackEvent',
+										'je ne sais pas',
+										currentQuestion,
+									])
+									setDefault()
+								}}
+								type="button"
+								className="ui__ simple small push-right button"
+							>
+								<Trans>Je ne sais pas</Trans> →
+							</button>
+							<button
+								className="ui__ plain small button"
+								onClick={() => submit('accept')}
+							>
+								<span className="text">
+									<Trans>Suivant</Trans> →
+								</span>
+							</button>
+						</div>
 					) : (
 						<button
 							onClick={() => {
