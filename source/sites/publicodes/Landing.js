@@ -138,6 +138,21 @@ export default () => {
 					<Link to="/diffuser">Diffuser</Link>
 					<ProfileLink />
 				</div>
+				<div
+					css={`
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						> * {
+							margin: 0 0.6rem;
+							font-size: 80%;
+						}
+					`}
+				>
+					<Link to="/accessibilite" style={{ textDecoration: 'none' }}>
+						Accessibilité : partiellement conforme
+					</Link>
+				</div>
 			</footer>
 		</div>
 	)
