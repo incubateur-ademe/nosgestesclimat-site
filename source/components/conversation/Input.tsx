@@ -53,7 +53,6 @@ export default function Input({
 							inputMode="decimal"
 							thousandSeparator={thousandSeparator}
 							decimalSeparator={decimalSeparator}
-							allowEmptyFormatting={true}
 							allowNegative={false}
 							// We don't want to call `onValueChange` in case this component is
 							// re-render with a new "value" prop from the outside.
