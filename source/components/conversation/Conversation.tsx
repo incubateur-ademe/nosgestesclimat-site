@@ -190,21 +190,6 @@ export default function Conversation({
 			)
 		}
 
-		// Here we check if a minimum is specified for the current question (ex : number of people in the accommodation)
-		// we chose to display an alert but we can think about disbaling the "Next" button if the answer is not allowed
-		if (
-			rules[currentQuestion]?.rawNode.minimum != null &&
-			!(
-				situation[currentQuestion]?.valeur >
-				rules[currentQuestion]?.rawNode.minimum
-			)
-		) {
-			alert(
-				`Pour cette question, votre réponse doit être supérieure à ${rules[currentQuestion]?.rawNode.minimum}`
-			)
-			return null
-		}
-
 		questionsToSubmit.map((question) =>
 			dispatch({
 				type: 'STEP_ACTION',
