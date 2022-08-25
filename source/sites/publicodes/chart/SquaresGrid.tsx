@@ -109,6 +109,8 @@ const GridItem = ({
 			title={`${element.title} (${element.topCategoryTitle})`}
 			css={`
 				background: ${element.topCategoryColor};
+				border-radius: 0.7rem;
+				margin: 0.15rem;
 				img {
 					filter: grayscale(1) invert(1) brightness(1.8);
 					width: 2rem;
