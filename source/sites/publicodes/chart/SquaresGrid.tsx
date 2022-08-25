@@ -173,7 +173,7 @@ const Grid = styled.ul`
 		list-style-type: none;
 		width: ${(props) => props.pixelRemSize}rem;
 		height: ${(props) => props.pixelRemSize}rem;
-		box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px 0px;
+		box-shadow: #5758bb63 0px 0px 6px 0px;
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
