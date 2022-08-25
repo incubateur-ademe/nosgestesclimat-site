@@ -79,27 +79,47 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			)
 	}, [sum])
 
+	const formRef = useRef()
 	const handleEditFormSubmit = (event) => {
 		event.preventDefault()
 
-		const editedTrajet = {
-			id: editTrajetId,
-			motif: editFormData.motif,
-			label: editFormData.label,
-			distance: editFormData.distance,
-			xfois: editFormData.xfois,
-			periode: editFormData.periode,
-			personnes: editFormData.personnes,
+		// can't use "useRef" here because input tag is not recognize as an <Input> and
+		// native function "checkValidity" for instance doesn't work on "NumberFormat" component
+		const peopleFieldToCheck = document.getElementById(
+			'peopleFieldinEditableRow'
+		)
+
+		if (peopleFieldToCheck.value == 0) {
+			peopleFieldToCheck.setCustomValidity(
+				'Vous êtes au moins présent dans la voiture'
+			)
+			peopleFieldToCheck.reportValidity()
+			return null
+		} else {
+			peopleFieldToCheck.setCustomValidity('')
 		}
 
-		const newTrajets = [...trajets]
+		if (editFormData.personnes == 0) {
+			alert('Une personne au moins est présente dans la voiture (vous !)')
+			return null
+		}
 
-		const index = trajets.findIndex((trajet) => trajet.id === editTrajetId)
+		const formToCheck = formRef.current
+		const isValidForm = formToCheck.checkValidity()
+		if (!isValidForm) {
+			formToCheck.reportValidity()
+		} else {
+			const editedTrajet = { ...editFormData, id: editTrajetId }
 
-		newTrajets[index] = editedTrajet
+			const newTrajets = [...trajets]
 
-		setTrajets(newTrajets)
-		setEditTrajetId(null)
+			const index = trajets.findIndex((trajet) => trajet.id === editTrajetId)
+
+			newTrajets[index] = editedTrajet
+
+			setTrajets(newTrajets)
+			setEditTrajetId(null)
+		}
 	}
 
 	return !isOpen ? (
@@ -188,18 +208,18 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 						padding: 0.5rem 0.5rem 0rem 0.5rem;
 					`}
 				>
-					<form id="tableTrajets" onSubmit={handleEditFormSubmit}>
+					<form id="tableTrajets" onSubmit={handleEditFormSubmit} ref={formRef}>
 						<TableTrajets>
 							<thead>
 								<tr>
 									<th scope="col">Motif</th>
-									<th scope="col" css="width: 22%">
+									<th scope="col" css="width: 20%">
 										Label
 									</th>
 									<th scope="col" css="width: 3rem">
 										"KM"
 									</th>
-									<th scope="col" css="width: 20%">
+									<th scope="col" css="width: 25%">
 										Fréquence
 									</th>
 									<th

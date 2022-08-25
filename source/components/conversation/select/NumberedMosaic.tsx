@@ -7,6 +7,7 @@ import styled from 'styled-components'
 import { useEngine } from '../../utils/EngineContext'
 import { Mosaic } from './UI'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
+import NumberFormat from 'react-number-format'
 
 export default function NumberedMosaic({
 	name,
@@ -45,8 +46,8 @@ export default function NumberedMosaic({
 							value =
 								situationValue != null
 									? situationValue
-									: Math.round(Math.random() * 10) |
-									  question.rawNode['par défaut']
+									: question.rawNode['par défaut']
+
 						return (
 							<li
 								className="ui__ card interactive"
@@ -80,8 +81,10 @@ export default function NumberedMosaic({
 									>
 										-
 									</button>
-									<input
-										type="number"
+									<NumberFormat
+										inputMode="decimal"
+										allowNegative={false}
+										decimalScale={0}
 										aria-describedby={'description ' + title}
 										id={question.dottedName}
 										css={`
@@ -96,8 +99,10 @@ export default function NumberedMosaic({
 											border-bottom: 2px dotted var(--color);
 										`}
 										value={
-											situation[question.dottedName] == null
+											situationValue == null
 												? undefined
+												: situationValue === 0 // if situation value is 0 (2 options : input is filled in with a 0 or inout is empty), value become an empty string and placeholder (0) is visible..
+												? ''
 												: nodeValue
 										}
 										placeholder={nodeValue}
@@ -106,7 +111,7 @@ export default function NumberedMosaic({
 												updateSituation(question.dottedName, +e.target.value)
 											)
 										}
-									></input>
+									/>
 									<button
 										className="ui__ button small plain"
 										onClick={() =>
