@@ -2,6 +2,7 @@ import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
 import { DottedName } from 'modele-social'
 import i18n from '../../locales/i18n'
+import { intersect, pick } from '../../utils'
 
 export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider
@@ -35,8 +36,19 @@ export function SituationProvider({
 	situation,
 }: SituationProviderProps) {
 	const engine = useContext(EngineContext)
+
+	//TODO
+	// Before setting the situation, the existence of the situation's rules must be checked, since publicodes breaks on unexisting <keygen/>
+	// This implementation is highly inefficient, since it could be done once when deserialising the stored user situation,
+	// (don't forget personas)
+	// But I'm waiting for an answer since the publicodes implementation should I believe be less strict
+	// https://github.com/betagouv/publicodes/issues/257
+
+	const rules = engine.getParsedRules()
+	const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
+		validSituation = pick(situation, validKeys)
 	try {
-		engine.setSituation(situation)
+		engine.setSituation(validSituation)
 	} catch (e) {
 		console.log(
 			`Il est probable qu'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l'utilisateur ou du persona chargé ↙️`
