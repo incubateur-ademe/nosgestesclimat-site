@@ -1,6 +1,6 @@
 import { Markdown } from 'Components/utils/markdown'
 import content from 'raw-loader!./CGU.md'
-import Meta from '../../components/utils/Meta'
+import Meta from '../../../components/utils/Meta'
 
 export default () => (
 	<section className="ui__ container">
