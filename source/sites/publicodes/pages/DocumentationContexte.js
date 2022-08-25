@@ -3,21 +3,9 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import Meta from 'Components/utils/Meta'
-import { useState, useEffect } from 'react'
-import { contextURL } from '../conference/useDatabase'
+import content from 'raw-loader!./documentation.md'
 
 export default () => {
-	const [documentationContent, setDocumentationContent] = useState('')
-
-	const contextFileURL = `${contextURL}/documentation.md`
-
-	useEffect(() => {
-		fetch(contextFileURL)
-			.then((response) => response.text())
-			.then((text) => setDocumentationContent(text))
-			.catch((error) => console.log('error:', error))
-	}, [])
-
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">
 			<Meta title="Documentation Contexte Sondage" />
@@ -30,13 +18,7 @@ export default () => {
 				</Link>
 			</div>
 			<div css="margin: 1.6rem 0">
-				<Markdown
-					transformImageUri={(uri) =>
-						uri.startsWith('http') ? uri : `${contextURL}${uri}`
-					}
-				>
-					{documentationContent || 'En cours de chargement'}
-				</Markdown>
+				<Markdown>{content || 'En cours de chargement'}</Markdown>
 			</div>
 		</div>
 	)
