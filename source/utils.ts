@@ -124,3 +124,14 @@ export function arrayLoopIteration(array, key) {
 export function isIterable<T>(obj: unknown): obj is Iterable<T> {
 	return Symbol.iterator in Object(obj)
 }
+
+//https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
+export function intersect(a, b) {
+	var setB = new Set(b)
+	return [...new Set(a)].filter((x) => setB.has(x))
+}
+
+export const pick = (obj, keys) =>
+	Object.fromEntries(
+		keys.filter((key) => key in obj).map((key) => [key, obj[key]])
+	)
