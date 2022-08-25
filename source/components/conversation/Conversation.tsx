@@ -199,6 +199,8 @@ export default function Conversation({
 				: previousAnswers[currentQuestionIndex - 1]
 
 	const submit = (source: string) => {
+		// This piece of code enables to set all the checkbox of a mosaic to false when "Next" button is pressed (chen the question is submitted)
+		// It's important in case of someone arrives at the mosaic question, does not select anything and wants to submit "nothing".
 		if (mosaicQuestion?.options?.defaultsToFalse) {
 			questionsToSubmit.map((question) =>
 				dispatch(updateSituation(question, situation[question] || 'non'))
