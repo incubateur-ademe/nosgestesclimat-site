@@ -35,6 +35,7 @@ const SurveyLazy = React.lazy(() => import('./conference/Survey'))
 
 const CGULazy = React.lazy(() => import('./CGU'))
 const PrivacyLazy = React.lazy(() => import('./Privacy.js'))
+const AccessibilityLazy = React.lazy(() => import('./Accessibility'))
 
 const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
 
@@ -241,6 +242,14 @@ const Router = ({}) => {
 				element={
 					<Suspense fallback={<Loading />}>
 						<SurveyLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/accessibilite"
+				element={
+					<Suspense fallback={<Loading />}>
+						<AccessibilityLazy />
 					</Suspense>
 				}
 			/>
