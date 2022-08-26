@@ -83,13 +83,15 @@ export default function Notifications({ currentQuestion }) {
 									)}
 									<div className="notificationText ui__ card">
 										<Markdown>{description}</Markdown>
-										<button
-											className="hide"
-											aria-label="close"
-											onClick={() => dispatch(hideNotification(dottedName))}
-										>
-											×
-										</button>
+										{sévérité !== 'invalide' && (
+											<button
+												className="hide"
+												aria-label="close"
+												onClick={() => dispatch(hideNotification(dottedName))}
+											>
+												×
+											</button>
+										)}
 									</div>
 								</div>
 							</li>
