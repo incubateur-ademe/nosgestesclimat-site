@@ -1,4 +1,4 @@
-## Le site Web nosgestesclimat.fr - v2.1.0
+## Le site Web nosgestesclimat.fr
 
 ## C'est quoi ?
 
