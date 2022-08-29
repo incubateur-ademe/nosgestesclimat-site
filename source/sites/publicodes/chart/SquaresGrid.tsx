@@ -3,6 +3,7 @@ import { range } from 'ramda'
 import CircledEmojis from '../../../components/CircledEmojis'
 import { motion } from 'framer-motion'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import SafeCategoryImage from '../../../components/SafeCategoryImage'
 
 const delayPerPixel = 0.0025
 export default ({ pixelRemSize, elements, pixel, gridLength }) => {
@@ -127,7 +128,7 @@ const GridItem = ({
 			variants={itemVariants}
 			custom={delayRef}
 		>
-			<img src={`/images/model/${element.dottedName}.svg`} />
+			<SafeCategoryImage element={element} />
 		</motion.li>
 	)
 }
