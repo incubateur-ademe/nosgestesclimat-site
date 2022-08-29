@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import { usePersistingState } from './utils/persistState'
 import useLocalisation, {
 	correspondancePullRequests,
@@ -9,7 +10,7 @@ export default () => {
 	/* This enables loading the rules of a branch,
 	 * to showcase the app as it would be once this branch of -data  has been merged*/
 	const branch = urlParams.get('branch')
-	const localisation = useLocalisation()
+	const localisation = useSelector((state) => state.localisation)
 
 	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
 		'PR',
