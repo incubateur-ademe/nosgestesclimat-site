@@ -7,9 +7,6 @@ import useLocalisation, {
 
 export default () => {
 	const urlParams = new URLSearchParams(window.location.search)
-	/* This enables loading the rules of a branch,
-	 * to showcase the app as it would be once this branch of -data  has been merged*/
-	const branch = urlParams.get('branch')
 	const localisation = useSelector((state) => state.localisation)
 
 	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
@@ -24,27 +21,24 @@ export default () => {
 
 	useEffect(() => {
 		// if pullRequestNumber is undefined, then this hook hasn't been triggered yet
-		if (localisationPR != null) {
-			setPullRequestNumber(localisationPR)
-		} else if (searchPR != null) {
+		if (searchPR != null) {
 			// setting should be triggered by an explicit ?PR=, not the absence of it when navigating
 			setPullRequestNumber(searchPR)
+		} else if (localisationPR !== undefined) {
+			setPullRequestNumber(localisationPR)
 		} else {
-			if (!pullRequestNumber || !localisationPR)
+			if (!pullRequestNumber || localisationPR === null) {
 				// No PR should be loaded, we know that now
 				setPullRequestNumber(null)
+			}
 		}
 	}, [searchPR, localisationPR, pullRequestNumber])
 
 	const deployURL = `https://${
-		branch
-			? `${branch}--`
-			: pullRequestNumber
-			? `deploy-preview-${pullRequestNumber}--`
-			: ''
+		pullRequestNumber ? `deploy-preview-${pullRequestNumber}--` : ''
 	}ecolab-data.netlify.app`
 
-	const shouldUseLocalFiles = !(branch || pullRequestNumber)
+	const shouldUseLocalFiles = !pullRequestNumber
 
 	return {
 		deployURL,
