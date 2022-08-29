@@ -22,6 +22,7 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import ProgressCircle from './ProgressCircle'
 import CardGameIcon from './CardGameIcon'
+import useLocalisation from 'Components/useLocalisation'
 import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
 import { resetLocalisation } from '../actions/actions'
@@ -143,6 +144,7 @@ export default function SessionBar({
 	const survey = useSelector((state) => state.survey)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
+	const localisation = useLocalisation()
 
 	const location = useLocation(),
 		path = location.pathname
@@ -194,21 +196,37 @@ export default function SessionBar({
 			Agir
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
-			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />
-			{!persona ? (
-				'Mon profil'
-			) : (
-				<span
+			<div
+				css={`
+					position: relative;
+				`}
+			>
+				<img
+					src={openmojiURL('profile')}
+					css="width: 2rem"
+					aria-hidden="true"
+				/>
+				<img
+					src={
+						localisation?.country_flag ||
+						'https://ipgeolocation.io/static/flags/fr_64.png'
+					}
 					css={`
-						background: var(--color);
-						color: var(--textColor);
-						padding: 0 0.4rem;
-						border-radius: 0.3rem;
+						position: absolute;
+						left: 1.15rem;
+						top: 0.5rem;
+						${!localisation?.country_flag.includes('openmoji')
+							? 'width: 1rem;'
+							: `
+							width: 1.2rem;
+						top: 0.25rem;
+							`};
+						border-radius: 0.3rem !important;
 					`}
-				>
-					{persona}
-				</span>
-			)}
+					aria-hidden="true"
+				/>
+			</div>
+			Mon profil
 		</Button>,
 		NODE_ENV === 'development' && (
 			<Button
