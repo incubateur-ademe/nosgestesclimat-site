@@ -9,6 +9,7 @@ const { encodeRuleName } = utils
 
 import { relegate } from 'Components/publicodesUtils'
 import { useLayoutEffect, useRef, useState } from 'react'
+import SafeCategoryImage from '../../../components/SafeCategoryImage'
 
 export const sustainableLifeGoal = 2000 // kgCO2e
 const sustainableBackground = '#78e08f'
@@ -322,9 +323,11 @@ const CategoriesBar = ({
 					`}
 				`}
 			>
-				{category.nodeValue / empreinteTotale > 0.1
-					? emoji(category.icons)
-					: ''}
+				{category.nodeValue / empreinteTotale > 0.1 ? (
+					<SafeCategoryImage element={category} />
+				) : (
+					''
+				)}
 			</li>
 		))}
 	</ol>

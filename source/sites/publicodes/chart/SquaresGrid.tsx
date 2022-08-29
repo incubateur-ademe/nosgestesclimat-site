@@ -112,11 +112,7 @@ const GridItem = ({
 				background: ${element.topCategoryColor};
 				border-radius: 0.6rem;
 				margin: 0.12rem;
-				img {
-					filter: grayscale(1) invert(1) brightness(1.8);
-					width: 2rem;
-					height: auto;
-				}
+
 				:hover {
 					background: white;
 					img {
