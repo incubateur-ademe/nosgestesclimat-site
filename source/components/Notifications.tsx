@@ -77,7 +77,7 @@ export default function Notifications({ currentQuestion }) {
 									{emoji(
 										sévérité == 'avertissement'
 											? '⚠️'
-											: 'invalide'
+											: sévérité == 'invalide'
 											? '🚫'
 											: '💁🏻'
 									)}
