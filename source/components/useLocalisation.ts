@@ -10,7 +10,8 @@ export const sampleIps = {
 
 export const correspondancePullRequests = {
 	guadeloupe: '1339',
-	'french polynesia': '1339',
+	france: null,
+	'polynésie française': '1339',
 }
 
 const API =
@@ -26,7 +27,7 @@ export default (ip) => {
 	const localisation = useSelector((state) => state.localisation)
 
 	useEffect(() => {
-		if (localisation != null && localisation.ip == ip) return null
+		if (localisation != null && localisation.ip == ip) return undefined
 
 		const asyncFecthAPI = async (ip) => {
 			await fetch(API + (ip == null ? '' : `&ip=${ip}`))
@@ -40,7 +41,7 @@ export default (ip) => {
 							...data,
 							ip,
 							country_flag:
-								//https://fr.wikipedia.org/wiki/Drapeau_de_la_Guadeloupe
+								// https://fr.wikipedia.org/wiki/Drapeau_de_la_Guadeloupe
 								data.country_name.toLowerCase() === 'guadeloupe'
 									? 'https://openmoji.org/data/color/svg/1F1EC-1F1F5.svg'
 									: data.country_flag,
@@ -50,6 +51,7 @@ export default (ip) => {
 		}
 
 		asyncFecthAPI(ip)
+		return undefined
 	}, [ip])
 
 	return localisation
