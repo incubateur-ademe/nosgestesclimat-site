@@ -2,9 +2,10 @@ import { useState } from 'react'
 import useLocalisation, { sampleIps } from '../../components/useLocalisation'
 import emoji from 'react-easy-emoji'
 import { capitalise0 } from '../../utils'
+import { usePersistingState } from '../../components/utils/persistState'
 
 export default () => {
-	const [chosenIp, chooseIp] = useState()
+	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 
 	return (
