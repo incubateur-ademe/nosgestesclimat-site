@@ -165,6 +165,8 @@ export default function SessionBar({
 		undefined
 	)
 
+	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
+
 	let elements = [
 		<Button
 			className="simple small"
@@ -250,6 +252,7 @@ export default function SessionBar({
 					onClick={() => {
 						setSearchParams(omit(['PR'], searchParams))
 						dispatch(resetLocalisation())
+						chooseIp(undefined)
 						setPullRequestNumber(null)
 					}}
 				>
