@@ -25,10 +25,10 @@ export default () => {
 
 		const asyncFecthAPI = async () => {
 			await fetch(API)
-				.catch((e) => {
-					console.log('erreur', e)
+				.then((res) => {
+					const json = res.json()
+					return json
 				})
-				.then((res) => res && res.json())
 				.then(
 					({
 						geo: {
@@ -45,6 +45,13 @@ export default () => {
 						)
 					}
 				)
+				.catch((e) => {
+					console.log(
+						'erreur dans la récupération des infos de localisation\n\n',
+						'La fonction Edge de localisation ne semble pas activée. Vous êtes en développement ? Essayez `netlify dev` plutôt que `yarn start`',
+						e
+					)
+				})
 		}
 
 		asyncFecthAPI()
