@@ -26,7 +26,7 @@ export default () => {
 						css={`
 							height: 1rem;
 							margin: 0 0.3rem;
-							vertical-align: middle;
+							vertical-align: sub;
 						`}
 					/>
 					{localisation.country_name}.

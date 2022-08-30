@@ -212,10 +212,9 @@ export default function SessionBar({
 						src={getFlagImgSrc(localisation?.country.code)}
 						css={`
 							position: absolute;
-							left: 1.15rem;
-							top: 0.5rem;
+							left: 1.45rem;
+							top: -0.15rem;
 							width: 1.2rem;
-							top: 0.25rem;
 							border-radius: 0.3rem !important;
 						`}
 						aria-hidden="true"
