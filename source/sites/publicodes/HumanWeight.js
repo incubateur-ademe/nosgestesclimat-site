@@ -1,5 +1,3 @@
-import React from 'react'
-import emoji from 'react-easy-emoji'
 import { correctValue } from '../../components/publicodesUtils'
 import { disabledAction, supersededAction } from './ActionVignette'
 
@@ -16,10 +14,7 @@ export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
 		resultValue = noSign ? raw : signedValue,
-		value =
-			raw < 10
-				? resultValue.toLocaleString('fr-FR', { maximumSignificantDigits: 2 })
-				: Math.round(resultValue).toLocaleString('fr-FR')
+		value = resultValue.toFixed(1).toLocaleString('fr-FR')
 
 	return [value, unit]
 }
@@ -86,9 +81,6 @@ const HumanWeight = ({
 				)}
 				&nbsp;{unit}
 			</strong>{' '}
-			{
-				// overrideValue && <OverrideBlock value={nodeValue - overrideValue} />}
-			}
 			<span>
 				<span
 					className="unitSuffix"
