@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { usePersistingState } from './utils/persistState'
-import useLocalisation, { supportedCountries } from 'Components/useLocalisation'
+import useLocalisation from 'Components/localisation/useLocalisation'
+import supportedCountries from 'Components/localisation/supportedCountries.yaml'
 
 export default () => {
 	const urlParams = new URLSearchParams(window.location.search)

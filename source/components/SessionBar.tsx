@@ -1,32 +1,27 @@
 import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
+import useLocalisation, {
+	getFlagImgSrc,
+} from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	Link,
-	useLocation,
-	Redirect,
-	Navigate,
-	useSearchParams,
-} from 'react-router-dom'
+import { Link, Navigate, useLocation, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	objectifsSelector,
 } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import { resetLocalisation } from '../actions/actions'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
-import ProgressCircle from './ProgressCircle'
-import CardGameIcon from './CardGameIcon'
-import useLocalisation from 'Components/useLocalisation'
-import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
-import { resetLocalisation } from '../actions/actions'
-import { getFlagImgSrc } from './useLocalisation'
+import CardGameIcon from './CardGameIcon'
+import ProgressCircle from './ProgressCircle'
+import { usePersistingState } from './utils/persistState'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),

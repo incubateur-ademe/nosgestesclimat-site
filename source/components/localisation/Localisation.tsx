@@ -1,13 +1,12 @@
-import { useState } from 'react'
+import supportedCountries from 'Components/localisation/supportedCountries.yaml'
 import useLocalisation, {
 	getFlagImgSrc,
-	supportedCountries,
-} from '../../components/useLocalisation'
+} from 'Components/localisation/useLocalisation'
 import emoji from 'react-easy-emoji'
-import { capitalise0 } from '../../utils'
-import { usePersistingState } from '../../components/utils/persistState'
-import { setLocalisation } from '../../actions/actions'
 import { useDispatch } from 'react-redux'
+import { setLocalisation } from '../../actions/actions'
+import { usePersistingState } from '../../components/utils/persistState'
+import { capitalise0 } from '../../utils'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)

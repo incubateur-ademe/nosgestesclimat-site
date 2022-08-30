@@ -1,0 +1,9 @@
+- PR: '1339'
+  name: Guadeloupe
+  code: GP
+- PR: null
+  name: France
+  code: FR
+- name: Polynésie française
+  PR: '1339'
+  code: PF

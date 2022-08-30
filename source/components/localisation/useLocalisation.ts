@@ -1,12 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLocalisation } from '../actions/actions'
-
-export const supportedCountries = [
-	{ PR: '1339', name: 'Guadeloupe', code: 'GP' },
-	{ PR: null, name: 'France', code: 'FR' },
-	{ name: 'Polynésie française', PR: '1339', code: 'PF' },
-]
+import { setLocalisation } from '../../actions/actions'
+import supportedCountries from './supportedCountries.yaml'
 
 const API = '/geolocation'
 

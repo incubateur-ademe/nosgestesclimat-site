@@ -16,7 +16,7 @@ import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { skipTutorial } from '../../actions/actions'
 import { useNavigate } from 'react-router-dom'
-import Localisation from './Localisation'
+import Localisation from 'Components/localisation/Localisation'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
