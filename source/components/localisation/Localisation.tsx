@@ -54,7 +54,7 @@ export default () => {
 						<div>
 							<p>
 								Envie de contribuer à une version pour votre région ?{' '}
-								<a href="https://demo.hedgedoc.org/Tna9VKnnTGqdqW7wOhBu0A?view">
+								<a href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
 									Suivez le guide !
 								</a>
 								.
