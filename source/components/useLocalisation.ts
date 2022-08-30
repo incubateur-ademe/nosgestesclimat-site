@@ -2,57 +2,57 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../actions/actions'
 
-export const sampleIps = {
-	guadeloupe: '104.250.27.0',
-	france: '92.184.106.103',
-	'polynésie française': '203.185.161.106',
-}
+export const supportedCountries = [
+	{ PR: '1339', name: 'Guadeloupe', code: 'GP' },
+	{ PR: null, name: 'France', code: 'FR' },
+	{ name: 'Polynésie française', PR: '1339', code: 'PF' },
+]
 
-export const correspondancePullRequests = {
-	guadeloupe: '1339',
-	france: null,
-	'polynésie française': '1339',
-}
-
-const API =
-	'https://api.ipgeolocation.io/ipgeo?apiKey=a6346b522995413a8f4578e025a3eae6'
+const API = '/geolocation'
 
 // Other alternatives :
 // https://positionstack.com/product
 // https://www.abstractapi.com/ip-geolocation-api?fpr=geekflare#pricing
 
-export default (ip) => {
+export default () => {
 	const dispatch = useDispatch()
 
 	const localisation = useSelector((state) => state.localisation)
+	console.log(localisation)
 
 	useEffect(() => {
-		if (localisation != null && localisation.ip == ip) return undefined
+		if (localisation != null) return undefined
 
-		const asyncFecthAPI = async (ip) => {
-			await fetch(API + (ip == null ? '' : `&ip=${ip}`))
+		const asyncFecthAPI = async () => {
+			await fetch(API)
 				.catch((e) => {
 					console.log('erreur', e)
 				})
 				.then((res) => res && res.json())
-				.then((data) => {
-					dispatch(
-						setLocalisation({
-							...data,
-							ip,
-							country_flag:
-								// https://fr.wikipedia.org/wiki/Drapeau_de_la_Guadeloupe
-								data.country_name.toLowerCase() === 'guadeloupe'
-									? 'https://openmoji.org/data/color/svg/1F1EC-1F1F5.svg'
-									: data.country_flag,
-						})
-					)
-				})
+				.then(
+					({
+						geo: {
+							country: { code, name },
+						},
+					}) => {
+						dispatch(
+							setLocalisation({
+								country: {
+									code,
+									name,
+								},
+							})
+						)
+					}
+				)
 		}
 
-		asyncFecthAPI(ip)
+		asyncFecthAPI()
 		return undefined
-	}, [ip])
+	}, [])
 
 	return localisation
 }
+
+export const getFlagImgSrc = (code) =>
+	`https://flagcdn.com/96x72/${code.toLowerCase()}.png`

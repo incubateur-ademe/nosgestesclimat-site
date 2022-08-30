@@ -1,9 +1,7 @@
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { usePersistingState } from './utils/persistState'
-import useLocalisation, {
-	correspondancePullRequests,
-} from 'Components/useLocalisation'
+import useLocalisation, { supportedCountries } from 'Components/useLocalisation'
 
 export default () => {
 	const urlParams = new URLSearchParams(window.location.search)
@@ -16,8 +14,11 @@ export default () => {
 
 	const searchPR = urlParams.get('PR')
 
-	const localisationPR =
-		correspondancePullRequests[localisation?.country_name.toLowerCase()]
+	const localisationPR = supportedCountries.find(
+		(country) => country.code === localisation?.country.code
+	)?.PR
+
+	console.log('PR', localisationPR, supportedCountries, localisation)
 
 	useEffect(() => {
 		// if pullRequestNumber is undefined, then this hook hasn't been triggered yet

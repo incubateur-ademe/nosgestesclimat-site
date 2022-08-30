@@ -1,12 +1,18 @@
 import { useState } from 'react'
-import useLocalisation, { sampleIps } from '../../components/useLocalisation'
+import useLocalisation, {
+	getFlagImgSrc,
+	supportedCountries,
+} from '../../components/useLocalisation'
 import emoji from 'react-easy-emoji'
 import { capitalise0 } from '../../utils'
 import { usePersistingState } from '../../components/utils/persistState'
+import { setLocalisation } from '../../actions/actions'
+import { useDispatch } from 'react-redux'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
+	const dispatch = useDispatch()
 
 	return (
 		<div>
@@ -15,7 +21,7 @@ export default () => {
 				<p>
 					Nous avons détecté que vous faites cette simulation depuis la{' '}
 					<img
-						src={localisation.country_flag}
+						src={getFlagImgSrc(localisation?.country.code)}
 						aria-hidden="true"
 						css={`
 							height: 1rem;
@@ -31,9 +37,14 @@ export default () => {
 			<details>
 				<summary>Choisir un autre pays</summary>
 				<ul>
-					{Object.entries(sampleIps).map(([country, ip]) => (
-						<li key={country} onClick={() => chooseIp(ip)}>
-							<button>{capitalise0(country)}</button>
+					{supportedCountries.map(({ name, code, PR }) => (
+						<li
+							key={code}
+							onClick={() =>
+								dispatch(setLocalisation({ country: { name, code } }))
+							}
+						>
+							<button>{capitalise0(name)}</button>
 						</li>
 					))}
 				</ul>

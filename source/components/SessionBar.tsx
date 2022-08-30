@@ -26,6 +26,7 @@ import useLocalisation from 'Components/useLocalisation'
 import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
 import { resetLocalisation } from '../actions/actions'
+import { getFlagImgSrc } from './useLocalisation'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -206,25 +207,20 @@ export default function SessionBar({
 					css="width: 2rem"
 					aria-hidden="true"
 				/>
-				<img
-					src={
-						localisation?.country_flag ||
-						'https://ipgeolocation.io/static/flags/fr_64.png'
-					}
-					css={`
-						position: absolute;
-						left: 1.15rem;
-						top: 0.5rem;
-						${!localisation?.country_flag.includes('openmoji')
-							? 'width: 1rem;'
-							: `
+				{localisation && (
+					<img
+						src={getFlagImgSrc(localisation?.country.code)}
+						css={`
+							position: absolute;
+							left: 1.15rem;
+							top: 0.5rem;
 							width: 1.2rem;
-						top: 0.25rem;
-							`};
-						border-radius: 0.3rem !important;
-					`}
-					aria-hidden="true"
-				/>
+							top: 0.25rem;
+							border-radius: 0.3rem !important;
+						`}
+						aria-hidden="true"
+					/>
+				)}
 			</div>
 			Mon profil
 		</Button>,
