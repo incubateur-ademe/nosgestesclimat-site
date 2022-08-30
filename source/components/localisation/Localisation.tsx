@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
+import IllustratedMessage from '../ui/IllustratedMessage'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
@@ -47,6 +48,20 @@ export default () => {
 						</li>
 					))}
 				</ul>
+				<IllustratedMessage
+					emoji="🌐"
+					message={
+						<div>
+							<p>
+								Envie de contribuer à une version pour votre région ?{' '}
+								<a href="https://demo.hedgedoc.org/Tna9VKnnTGqdqW7wOhBu0A?view">
+									Suivez le guide !
+								</a>
+								.
+							</p>
+						</div>
+					}
+				/>
 			</details>
 		</div>
 	)

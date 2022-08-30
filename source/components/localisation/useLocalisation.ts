@@ -57,4 +57,4 @@ export default () => {
 }
 
 export const getFlagImgSrc = (code) =>
-	`https://flagcdn.com/96x72/${code.toLowerCase()}.png`
+	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
