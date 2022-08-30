@@ -40,7 +40,7 @@ Nous avons réalisé [un premier audit](https://github.com/datagir/nosgestesclim
 
 La déclaration d'accessibilité est visible via [la page dédiée](/accessibilite).
 
-Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, merci de nous en faire part [en bas de la page FAQ](/contribuer). Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au [Défenseur des droits](https://www.defenseurdesdroits.fr).
+Si vous rencontrez un défaut d’accessibilité vous empêchant d’accéder à un contenu ou une fonctionnalité du site, merci de nous en faire part [en bas de la page FAQ](/contribuer) ou bien via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) afin qu’une assistance puisse être apportée (alternative accessible, information et contenu donnés sous une autre forme). Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit de faire parvenir vos doléances ou une demande de saisine au [Défenseur des droits](https://www.defenseurdesdroits.fr).
 
 ## Mentions légales
 
