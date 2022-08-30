@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom'
+import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { useQuery } from '../../../utils'
 import Value from './Value'
 
@@ -16,6 +17,7 @@ export default ({
 	noText,
 	valueColor,
 	demoMode,
+	dottedName,
 }) => {
 	return (
 		<>
@@ -33,9 +35,17 @@ export default ({
 						font-size: 140%;
 						width: 2.3rem;
 						margin-left: -2.3rem;
+						background: ${color};
+						border-radius: 3rem;
+						height: 2.3rem;
+						padding: 0.2rem;
+						margin-right: 0.6rem;
+						img {
+							width: 1.8rem;
+						}
 					`}
 				>
-					{emoji(icons)}
+					<SafeCategoryImage element={{ dottedName, icons }} />
 				</span>
 				<span class="visually-hidden">{title}</span>
 				<BarContent
