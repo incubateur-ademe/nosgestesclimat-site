@@ -13,9 +13,9 @@ import {
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
 import { TrackerContext } from '../../components/utils/withTracker'
-import About from './About'
+import About from './pages/About'
 import Actions from './Actions'
-import Diffuser from './Diffuser'
+import Diffuser from './pages/Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
 import Logo from './Logo'
@@ -33,8 +33,9 @@ const StatsLazy = React.lazy(() => import('./pages/Stats'))
 
 const SurveyLazy = React.lazy(() => import('./conference/Survey'))
 
-const CGULazy = React.lazy(() => import('./CGU'))
-const PrivacyLazy = React.lazy(() => import('./Privacy.js'))
+const CGULazy = React.lazy(() => import('./pages/CGU'))
+const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
+const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
 
 const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
 
@@ -241,6 +242,14 @@ const Router = ({}) => {
 				element={
 					<Suspense fallback={<Loading />}>
 						<SurveyLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/accessibilite"
+				element={
+					<Suspense fallback={<Loading />}>
+						<AccessibilityLazy />
 					</Suspense>
 				}
 			/>
