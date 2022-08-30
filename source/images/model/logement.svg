@@ -22,46 +22,28 @@
      inkscape:deskcolor="#d1d1d1"
      showgrid="false"
      inkscape:zoom="10.564584"
-     inkscape:cx="49.315711"
-     inkscape:cy="34.502067"
+     inkscape:cx="26.408991"
+     inkscape:cy="34.596724"
      inkscape:window-width="1920"
-     inkscape:window-height="1175"
+     inkscape:window-height="1055"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="line" />
+     inkscape:current-layer="emoji" />
   <g
      id="hair" />
   <g
      id="skin" />
   <g
      id="skin-shadow" />
+  <path
+     id="path11097"
+     style="fill:#181313;fill-opacity:1;stroke:#000000;stroke-width:2.4874;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 36.081021,13.060179 -21.275749,19.25303 c -0.144858,7.256408 -0.111491,16.574903 -0.0279,26.074476 l 44.095276,0.241796 c 0.05758,-9.667124 0.172742,-16.958468 0.130198,-26.625492 z M 23.182119,35.079917 H 33.886255 V 58.463668 H 23.182119 Z m 19.469253,2.548161 H 53.18811 V 47.778873 H 42.651372 Z"
+     sodipodi:nodetypes="cccccccccccccccc" />
   <g
-     id="line">
-    <rect
-       x="25"
-       y="40"
-       width="9"
-       height="16"
-       fill="none"
-       stroke="#000000"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       stroke-width="2"
-       id="rect2814" />
-    <rect
-       x="40"
-       y="40"
-       width="8"
-       height="7"
-       fill="none"
-       stroke="#000000"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       stroke-width="2"
-       id="rect2816" />
+     id="g9726"
+     transform="matrix(1.1903818,0,0,1.1903818,-7.1197158,-5.6756313)">
     <polygon
        fill="none"
        stroke="#000000"
@@ -69,48 +51,17 @@
        stroke-linejoin="round"
        stroke-miterlimit="10"
        stroke-width="2"
-       points="29,21 24,26 24,17 29,17"
+       points="24,17 29,17 29,21 24,26 "
        id="polygon2822" />
-    <path
-       style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
-       d="M 18.995386,32.000524 35.330734,15.788643 52.931181,31.739955 m 0,0 -0.101673,24.420998 -33.854827,-0.205106 0.0207,-23.955323"
-       id="path11097"
-       sodipodi:nodetypes="ccccccc" />
-  </g>
-  <g
-     id="color">
-    <rect
-       x="25"
-       y="40"
-       width="9"
-       height="16"
-       fill="#A57939"
-       stroke="none"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       stroke-width="2"
-       id="rect2802" />
-    <rect
-       x="40"
-       y="40"
-       width="8"
-       height="7"
-       fill="#92D3F5"
-       stroke="none"
-       stroke-linecap="round"
-       stroke-linejoin="round"
-       stroke-miterlimit="10"
-       stroke-width="2"
-       id="rect2804" />
     <polygon
-       fill="#EA5A47"
+       fill="#ea5a47"
        stroke="none"
        stroke-linecap="round"
        stroke-linejoin="round"
        stroke-miterlimit="10"
        stroke-width="2"
-       points="29,21 24,26 24,17 29,17"
-       id="polygon2808" />
+       points="29,21 24,26 24,17 29,17 "
+       id="polygon2808"
+       transform="translate(-0.03443866,-0.20574828)" />
   </g>
 </svg>
