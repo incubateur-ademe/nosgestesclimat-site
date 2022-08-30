@@ -1,5 +1,5 @@
 import emoji from 'react-easy-emoji'
-export default ({ emoji: e, message, inline }) => (
+export default ({ emoji: e, message, inline, image }) => (
 	<div
 		className="ui__ card"
 		css={`
@@ -12,16 +12,25 @@ export default ({ emoji: e, message, inline }) => (
 			`flex-direction: row; justify-content: start; max-width: 100%; p {margin: 0}`}
 		`}
 	>
-		<span
-			css={`
-				img {
-					font-size: 300%;
-					margin: 0.6rem !important;
-				}
-			`}
-		>
-			{emoji(e)}
-		</span>
+		{e ? (
+			<span
+				css={`
+					img {
+						font-size: 300%;
+						margin: 0.6rem !important;
+					}
+				`}
+			>
+				{emoji(e)}
+			</span>
+		) : (
+			<img
+				css={`
+					width: 4rem;
+				`}
+				src={image}
+			/>
+		)}
 
 		<div
 			css={`

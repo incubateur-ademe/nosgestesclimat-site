@@ -26,6 +26,7 @@ import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
@@ -133,6 +134,7 @@ const Main = ({}) => {
 						<Logo />
 					</nav>
 				)}
+				<LocalisationMessage />
 				<Router />
 			</main>
 		</div>

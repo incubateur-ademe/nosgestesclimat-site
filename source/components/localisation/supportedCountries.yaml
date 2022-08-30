@@ -1,9 +1,12 @@
 - PR: '1339'
   name: Guadeloupe
   code: GP
+  gentilé: guadeloupéenne
 - PR: null
   name: France
+  gentilé: française
   code: FR
 - name: Polynésie française
   PR: '1339'
   code: PF
+  gentilé: polynésienne
