@@ -203,13 +203,9 @@ export default function Conversation({
 		// we also want it work for questions with multiple notifications
 		const questionMatches = questionsToSubmit.map((question) => {
 			const notifications = getCurrentNotification(engine, question)
-			const notifMatches = notifications.map(({ sévérité }) => {
-				if (sévérité === 'invalide') return false
-				else return true
-			})
-			return notifMatches.every((bool) => bool === true)
+			return !notifications.some(({ sévérité }) => sévérité === 'invalide')
 		})
-		return questionMatches.every((bool) => bool === true)
+		return questionMatches.every(Boolean)
 	}
 
 	const submit = (source: string) => {
