@@ -57,7 +57,6 @@ export default () => {
 								<a href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
 									Suivez le guide !
 								</a>
-								.
 							</p>
 						</div>
 					}
