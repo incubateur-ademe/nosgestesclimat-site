@@ -8,6 +8,7 @@ import { setLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
+import NewTabSvg from '../utils/NewTabSvg'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
@@ -54,8 +55,12 @@ export default () => {
 						<div>
 							<p>
 								Envie de contribuer à une version pour votre région ?{' '}
-								<a href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md">
+								<a
+									target="_blank"
+									href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
+								>
 									Suivez le guide !
+									<NewTabSvg />
 								</a>
 							</p>
 						</div>
