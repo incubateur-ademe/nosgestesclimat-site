@@ -59,6 +59,3 @@ export function SituationProvider({
 		<EngineContext.Provider value={engine}>{children}</EngineContext.Provider>
 	)
 }
-export function useInversionFail() {
-	return useContext(EngineContext).inversionFail()
-}

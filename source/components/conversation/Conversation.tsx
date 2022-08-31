@@ -7,7 +7,7 @@ import RuleInput, {
 	isMosaic,
 	RuleInputProps,
 } from 'Components/conversation/RuleInput'
-import Notifications from 'Components/Notifications'
+import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
@@ -198,6 +198,16 @@ export default function Conversation({
 						)
 				: previousAnswers[currentQuestionIndex - 1]
 
+	const isValidInput = (questionsToSubmit) => {
+		// we want this validation function to work for mosaic questions (we check that all the questions anwsers of a mosaic are valid)
+		// we also want it work for questions with multiple notifications
+		const questionMatches = questionsToSubmit.map((question) => {
+			const notifications = getCurrentNotification(engine, question)
+			return !notifications.some(({ sévérité }) => sévérité === 'invalide')
+		})
+		return questionMatches.every(Boolean)
+	}
+
 	const submit = (source: string) => {
 		// This piece of code enables to set all the checkbox of a mosaic to false when "Next" button is pressed (chen the question is submitted)
 		// It's important in case of someone arrives at the mosaic question, does not select anything and wants to submit "nothing".
@@ -207,14 +217,18 @@ export default function Conversation({
 			)
 		}
 
-		questionsToSubmit.map((question) =>
+		// we don't check question validation status in the same map as the dispatch because we want all answers in mosaic question
+		// to be valid before any dispatch
+		if (!isValidInput(questionsToSubmit)) return null
+
+		questionsToSubmit.map((question) => {
 			dispatch({
 				type: 'STEP_ACTION',
 				name: 'fold',
 				step: question,
 				source,
 			})
-		)
+		})
 	}
 	const setDefault = () =>
 		// TODO: Skiping a question shouldn't be equivalent to answering the
