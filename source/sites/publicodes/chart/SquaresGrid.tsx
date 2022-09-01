@@ -167,10 +167,7 @@ const Grid = styled.ul`
 		align-items: center;
 		line-height: 1.4rem;
 		font-size: 90%;
-		/* Interesting too, more spaced, but more room and less graph-like
-		border-radius: 0.6rem;
-		margin: 0.2rem;
-		*/
+		border-radius: 0;
 	}
 	li img {
 		width: 2rem;
