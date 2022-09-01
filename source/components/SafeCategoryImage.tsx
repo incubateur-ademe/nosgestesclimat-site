@@ -14,6 +14,9 @@ export default ({ element, whiteBackground = false }) => {
 
 				`}
 
+				display: flex;
+				align-items: center;
+				justify-content: center;
 				img {
 					width: 2.5rem;
 					height: auto;
