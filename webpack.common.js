@@ -151,7 +151,6 @@ module.exports.commonLoaders = (mode = 'production') => {
 module.exports.HTMLPlugins = ({ injectTrackingScript = false } = {}) => [
 	new HTMLPlugin({
 		template: 'index.html',
-		favicon: 'https://nosgestesclimat.fr/images/favicon.png',
 		logo: 'https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png',
 		chunks: ['publicodes'],
 		title: 'Nos Gestes Climat',
