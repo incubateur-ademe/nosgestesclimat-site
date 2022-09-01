@@ -6,7 +6,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 
 const delayPerPixel = 0.0025
-export default ({ pixelRemSize, elements, pixel, gridLength }) => {
+export default ({ pixelRemSize, elements, pixel, gridLength, pixelMargin }) => {
 	const originOffset = useRef({ top: 0, left: 0 })
 
 	const [isVisible, setVisibility] = useState(false)
@@ -58,6 +58,7 @@ export default ({ pixelRemSize, elements, pixel, gridLength }) => {
 						delayPerPixel={delayPerPixel}
 						originOffset={originOffset}
 						{...{ element, pixel }}
+						pixelMargin={pixelMargin}
 					/>
 				))}
 			</motion.div>
@@ -72,6 +73,7 @@ const GridItem = ({
 	originOffset,
 	element,
 	pixel,
+	pixelMargin,
 }) => {
 	/* This math.round creates the override of the grid by a few items,
 	 * making it not 10x10 but e.g. 10x10 + 3 */
@@ -111,7 +113,7 @@ const GridItem = ({
 			css={`
 				background: ${element.topCategoryColor};
 				border-radius: 0.6rem;
-				margin: 0.12rem;
+				margin: ${pixelMargin}rem;
 
 				:hover {
 					background: white;
@@ -150,7 +152,7 @@ const Grid = styled.ul`
 	@media (min-width: 800px) {
 		width: 95%;
 	}
-	max-width: ${(props) => 10 * props.pixelRemSize}rem;
+	width: ${(props) => 10 * (props.pixelRemSize + props.pixelMargin * 2)}rem;
 	margin: 0 auto;
 	/* The grid will not be centered horizontally. This may be achieved via CSS grids, but it took me more than 15 minutes to not figure out how to do it 
 					 * Another interesting layout would be a snake layout, but it's not simple either : 
