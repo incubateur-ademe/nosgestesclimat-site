@@ -30,7 +30,8 @@ export default ({ details }) => {
 
 	const total = engine.evaluate('bilan').nodeValue,
 		gridLength = tall ? 100 : medium ? 70 : 50,
-		pixelRemSize = 3,
+		pixelMargin = 0.12,
+		pixelRemSize = 3 - 2 * pixelMargin,
 		pixel = total / gridLength
 
 	/*  If total = 15 t, pixel = 150 kg
@@ -70,6 +71,7 @@ export default ({ details }) => {
 		>
 			<SquaresGrid
 				pixelRemSize={pixelRemSize}
+				pixelMargin={pixelMargin}
 				elements={allSubCategories}
 				pixel={pixel}
 				gridLength={gridLength}
