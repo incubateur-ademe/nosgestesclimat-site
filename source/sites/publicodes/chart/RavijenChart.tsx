@@ -87,8 +87,9 @@ export default ({ details }) => {
 						height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
 						min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
 						width: 95%;
-						border: 6px dashed black;
 						background: linear-gradient(#78e08f 50%, #78e08fcf 100%);
+						border-radius: 0.4rem;
+						box-shadow: #5758bb 0px 0px 6px 0px;
 						display: flex;
 						flex-direction: column;
 						align-items: center;
