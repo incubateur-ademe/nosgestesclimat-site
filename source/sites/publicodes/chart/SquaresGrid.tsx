@@ -141,15 +141,6 @@ const itemVariants = {
 	}),
 }
 
-const Box = styled(motion.div)`
-	margin: 10px;
-	display: inline-block;
-	height: 65px;
-	width: 65px;
-	background-color: white;
-	border-radius: 10px;
-`
-
 const Grid = styled.ul`
 	padding: 0;
 	display: flex;
@@ -180,5 +171,8 @@ const Grid = styled.ul`
 		border-radius: 0.6rem;
 		margin: 0.2rem;
 		*/
+	}
+	li img {
+		width: 2rem;
 	}
 `
