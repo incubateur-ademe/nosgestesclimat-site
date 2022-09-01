@@ -24,7 +24,9 @@ export default ({ details }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
 	const tall = useMediaQuery('(min-height: 900px)'),
-		medium = useMediaQuery('(min-height: 700px)')
+		medium =
+			useMediaQuery('(min-height: 700px)') &&
+			useMediaQuery('(min-width: 410px)')
 
 	const total = engine.evaluate('bilan').nodeValue,
 		gridLength = tall ? 100 : medium ? 70 : 50,

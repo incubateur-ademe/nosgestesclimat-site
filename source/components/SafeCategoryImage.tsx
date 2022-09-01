@@ -9,7 +9,7 @@ export default ({ element, whiteBackground = false }) => {
 				${!whiteBackground &&
 				`
 				img {
-				  filter: grayscale(1) invert(1) brightness(1.8);
+				  filter: grayscale(1) invert(1) brightness(${fail ? '7' : '1.8'});
 				}
 
 				`}
@@ -25,7 +25,6 @@ export default ({ element, whiteBackground = false }) => {
 		>
 			{!fail ? (
 				<img
-					css={``}
 					src={`/images/model/${element.dottedName}.svg`}
 					onError={({ currentTarget }) => {
 						currentTarget.onerror = null
