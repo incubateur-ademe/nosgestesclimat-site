@@ -2,6 +2,7 @@ import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
+import RulesProvider from '../../RulesProvider'
 import Logo from './Logo'
 import SkipLinks from './SkipLinks'
 
@@ -74,7 +75,11 @@ export default ({ isHomePage }) => {
 				>
 					<Logo />
 				</Link>
-				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
+				{pathname !== '/' && !pathname.includes('nouveautés') && (
+					<RulesProvider>
+						<SessionBar />
+					</RulesProvider>
+				)}
 			</nav>
 		</>
 	)

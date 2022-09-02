@@ -44,10 +44,10 @@ export function SituationProvider({
 	// But I'm waiting for an answer since the publicodes implementation should I believe be less strict
 	// https://github.com/betagouv/publicodes/issues/257
 
-	const rules = engine.getParsedRules()
-	const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
-		validSituation = pick(situation, validKeys)
 	try {
+		const rules = engine.getParsedRules()
+		const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
+			validSituation = pick(situation, validKeys)
 		engine.setSituation(validSituation)
 	} catch (e) {
 		console.log(

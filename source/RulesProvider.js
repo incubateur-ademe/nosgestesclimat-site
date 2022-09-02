@@ -1,33 +1,17 @@
 import {
+	engineOptions,
 	EngineProvider,
 	SituationProvider,
-	engineOptions,
 } from 'Components/utils/EngineContext'
 import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 
-import Engine from 'publicodes'
-import React, { useEffect, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import useBranchData from 'Components/useBranchData'
-
-const removeLoader = () => {
-	// Remove loader
-	var css = document.createElement('style')
-	css.type = 'text/css'
-	css.innerHTML = `
-		#js {
-				animation: appear 0.5s;
-				opacity: 1;
-		}
-		#loading {
-				display: none !important;
-		}
-    `
-	document.body.appendChild(css)
-}
+import Engine from 'publicodes'
+import { useEffect, useMemo } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default ({ children }) => {
 	const branchData = useBranchData()
@@ -53,16 +37,16 @@ export default ({ children }) => {
 			}, {})
 
 			setRules(rules)
-			removeLoader()
 		} else {
 			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
 					setRules(json)
-					removeLoader()
 				})
 		}
 	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
+
+	if (!rules) return null
 
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>
 }

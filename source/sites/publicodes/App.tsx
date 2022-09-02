@@ -26,6 +26,7 @@ import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import RulesProvider from '../../RulesProvider'
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
@@ -149,11 +150,20 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<div>Chargement</div>}>
-						<Documentation />
+						<RulesProvider>
+							<Documentation />
+						</RulesProvider>
 					</Suspense>
 				}
 			/>
-			<Route path="simulateur/*" element={<Simulateur />} />
+			<Route
+				path="simulateur/*"
+				element={
+					<RulesProvider>
+						<Simulateur />
+					</RulesProvider>
+				}
+			/>
 			<Route
 				path="/stats"
 				element={
@@ -162,9 +172,38 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path="/fin/*" element={<Fin />} />
-			<Route path="/personas" element={<Personas />} />
-			<Route path="/actions/*" element={<Actions />} />
+			<Route
+				path="/fin/*"
+				element={
+					<RulesProvider>
+						<Fin />
+					</RulesProvider>
+				}
+			/>
+			<Route
+				path="/personas"
+				element={
+					<RulesProvider>
+						<Personas />
+					</RulesProvider>
+				}
+			/>
+			<Route
+				path="/actions/*"
+				element={
+					<RulesProvider>
+						<Actions />
+					</RulesProvider>
+				}
+			/>
+			<Route
+				path="/profil"
+				element={
+					<RulesProvider>
+						<Profil />
+					</RulesProvider>
+				}
+			/>
 			<Route
 				path="/contribuer/*"
 				element={
@@ -196,7 +235,6 @@ const Router = ({}) => {
 				path={`${encodeURIComponent('nouveautés')}/*`}
 				element={<News />}
 			/>
-			<Route path="/profil" element={<Profil />} />
 			<Route
 				path="/guide"
 				element={

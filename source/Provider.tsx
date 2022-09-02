@@ -78,23 +78,21 @@ export default function Provider({
 	return (
 		// If IE < 11 display nothing
 		<ReduxProvider store={store}>
-			<RulesProvider>
-				<ThemeColorsProvider
-					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
-				>
-					<IframeOptionsProvider tracker={tracker}>
-						<TrackerProvider value={tracker}>
-							<SitePathProvider value={sitePaths}>
-								<I18nextProvider i18n={i18next}>
-									<BrowserRouter>
-										<>{children}</>
-									</BrowserRouter>
-								</I18nextProvider>
-							</SitePathProvider>
-						</TrackerProvider>
-					</IframeOptionsProvider>
-				</ThemeColorsProvider>
-			</RulesProvider>
+			<ThemeColorsProvider
+				color={iframeCouleur && decodeURIComponent(iframeCouleur)}
+			>
+				<IframeOptionsProvider tracker={tracker}>
+					<TrackerProvider value={tracker}>
+						<SitePathProvider value={sitePaths}>
+							<I18nextProvider i18n={i18next}>
+								<BrowserRouter>
+									<>{children}</>
+								</BrowserRouter>
+							</I18nextProvider>
+						</SitePathProvider>
+					</TrackerProvider>
+				</IframeOptionsProvider>
+			</ThemeColorsProvider>
 		</ReduxProvider>
 	)
 }
