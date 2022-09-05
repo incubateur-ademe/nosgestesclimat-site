@@ -67,13 +67,14 @@ export default () => {
 				>
 					Participez à notre enquête utilisateurs !
 				</button>
-				<Suspense fallback={''}>
-					<SurveyModal
-						showSurveyModal={showSurveyModal}
-						setShowSurveyModal={setShowSurveyModal}
-					/>
-				</Suspense>
-
+				{showSurveyModal && (
+					<Suspense fallback={''}>
+						<SurveyModal
+							showSurveyModal={showSurveyModal}
+							setShowSurveyModal={setShowSurveyModal}
+						/>
+					</Suspense>
+				)}
 				<div>
 					<Link
 						to="/simulateur/bilan"
