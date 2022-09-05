@@ -57,8 +57,8 @@ export default () => {
 					}
 				`}
 			/>
-			<SurveyModal />
-			<div>
+			<div css="margin: 1rem 0">
+				<SurveyModal />
 				<div>
 					<Link
 						to="/simulateur/bilan"
