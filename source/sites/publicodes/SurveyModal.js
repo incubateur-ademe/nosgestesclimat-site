@@ -10,9 +10,6 @@ export default function SurveyModal() {
 			<button
 				className="ui__ link-button"
 				onClick={() => setShowSurveyModal(true)}
-				css={`
-					margin-top: 1rem;
-				`}
 			>
 				Participez à notre enquête utilisateurs !
 			</button>
