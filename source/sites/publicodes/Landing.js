@@ -10,9 +10,11 @@ import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
 import Illustration from 'Images/ecolab-climat-dessin.svg'
 import { useProfileData } from './Profil'
+import SurveyModal from './SurveyModal'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
+
 	return (
 		<div
 			css={`
@@ -55,7 +57,8 @@ export default () => {
 					}
 				`}
 			/>
-			<div css="margin: 1rem 0">
+			<SurveyModal />
+			<div>
 				<div>
 					<Link
 						to="/simulateur/bilan"
