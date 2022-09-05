@@ -14,21 +14,23 @@ import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { usePersistingState } from './components/utils/persistState'
 
+const trimPublicodesString = (s) => s.replaceAll(`'`, '')
+
 export default ({ children }) => {
 	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
 
 	const dispatch = useDispatch()
 
-	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
+	const setRules = (rules, url) =>
+		dispatch({ type: 'SET_RULES', rules: { ...rules, url: `'${url}'` } })
 	// This component is not initialized just once. Hence we need
 	// to share the understanding of the version of the rules stored
-	const [rulesURL, setRulesURL] = usePersistingState('rulesURL', undefined)
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		console.log('rulesURL', rulesURL)
-		if (rules && branchData.deployURL === rulesURL) return
+		if (rules && trimPublicodesString(rules['url']) === branchData.deployURL)
+			return
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			// Rules are stored in nested yaml files
 			const req = require.context(
@@ -42,14 +44,12 @@ export default ({ children }) => {
 				return { ...memo, ...jsonRuleSet }
 			}, {})
 
-			setRules(rules)
-			setRulesURL(branchData.deployURL)
+			setRules(rules, branchData.deployURL)
 		} else {
 			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
-					setRules(json)
-					setRulesURL(branchData.deployURL)
+					setRules(json, branchData.deployURL)
 				})
 		}
 	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
