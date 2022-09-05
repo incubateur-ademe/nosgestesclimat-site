@@ -75,11 +75,7 @@ export default ({ isHomePage }) => {
 				>
 					<Logo />
 				</Link>
-				{pathname !== '/' && !pathname.includes('nouveautés') && (
-					<RulesProvider>
-						<SessionBar />
-					</RulesProvider>
-				)}
+				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
 			</nav>
 		</>
 	)
