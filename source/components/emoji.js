@@ -41,6 +41,8 @@ export const Twemoji = ({ text, label }) => {
 		return {
 			'aria-label': label ? label : '',
 			'aria-hidden': label ? 'false' : 'true',
+			width: '1',
+			height: '1',
 		}
 	}
 

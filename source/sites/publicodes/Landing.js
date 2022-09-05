@@ -107,6 +107,8 @@ export default () => {
 						src="/images/marianne.svg"
 						alt="République Française"
 						css="height: 6rem; margin-right: .6rem"
+						width="96"
+						height="86"
 					/>
 					<a href="https://ademe.fr">
 						<LogoADEME />
@@ -116,6 +118,8 @@ export default () => {
 							css="height: 2rem; margin-left: 1rem !important"
 							src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
 							alt="Logo de l'Association pour la transition Bas Carbone"
+							width="86"
+							height="29"
 						/>
 					</a>
 				</div>
