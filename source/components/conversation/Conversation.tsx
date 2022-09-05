@@ -11,7 +11,7 @@ import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import {
@@ -33,8 +33,8 @@ import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
-import QuestionFinder from './QuestionFinder'
 import SimulationEnding from './SimulationEnding'
+const QuestionFinder = React.lazy(() => import('./QuestionFinder'))
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -317,7 +317,9 @@ export default function Conversation({
 			//border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 		>
 			{finder ? (
-				<QuestionFinder close={() => setFinder(false)} />
+				<Suspense fallback={<div>Chargement</div>}>
+					<QuestionFinder close={() => setFinder(false)} />
+				</Suspense>
 			) : (
 				<div
 					css={`
