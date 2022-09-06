@@ -18,7 +18,6 @@ import Actions from './Actions'
 import Diffuser from './pages/Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
-import Logo from './Logo'
 import Navigation from './Navigation'
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 import Personas from './Personas.tsx'
@@ -42,6 +41,7 @@ const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
+import Logo from 'Components/Logo'
 
 let tracker = devTracker
 if (NODE_ENV === 'production') {
@@ -119,36 +119,7 @@ const Main = ({}) => {
 					}
 				`}
 			>
-				{isHomePage && (
-					<nav
-						css={`
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							text-decoration: none;
-							font-size: 170%;
-							margin: 1rem auto;
-						`}
-					>
-						<img src="/images/petit-logo.png" />
-						<div
-							css={`
-								font-weight: bold;
-								line-height: 1.4rem;
-								color: var(--darkColor);
-								text-transform: uppercase;
-								font-size: 90%;
-								margin-left: 0.4rem;
-							`}
-						>
-							Nos
-							<br />
-							Gestes
-							<br />
-							Climat
-						</div>
-					</nav>
-				)}
+				{isHomePage && <Logo showText />}
 				<Router />
 			</main>
 		</div>

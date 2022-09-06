@@ -1,13 +1,17 @@
 import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import Logo from '../../components/Logo'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
+import useMediaQuery from '../../components/utils/useMediaQuery'
 import SkipLinks from './SkipLinks'
 
 export default ({ isHomePage }) => {
 	const pathname = decodeURIComponent(location.pathname)
 
 	const { isIframe } = useContext(IframeOptionsContext)
+
+	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	return (
 		<>
@@ -37,42 +41,7 @@ export default ({ isHomePage }) => {
 					${isHomePage && `display: none`}
 				`}
 			>
-				<Link
-					to="/"
-					css={`
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						text-decoration: none;
-						font-size: 170%;
-						margin-bottom: 0;
-						#blockLogo {
-							display: none;
-						}
-						@media (min-width: 800px) {
-							margin-bottom: 0.4rem;
-							#inlineLogo {
-								display: none;
-							}
-							justify-content: start;
-							#blockLogo {
-								margin: 1rem;
-								display: block;
-							}
-						}
-						${(pathname.includes('simulateur/') ||
-							pathname.includes('actions/')) &&
-						`
-							@media (max-width: 800px){
-					svg {width: 2.6rem !important}
-					span {display:none}
-					}
-
-					`}
-					`}
-				>
-					<img src="/images/petit-logo.png" />
-				</Link>
+				<Logo showText={largeScreen} size={largeScreen ? 'medium' : 'small'} />
 				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
 			</nav>
 		</>
