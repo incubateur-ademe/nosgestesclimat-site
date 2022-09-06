@@ -130,7 +130,23 @@ const Main = ({}) => {
 							margin: 1rem auto;
 						`}
 					>
-						<Logo />
+						<img src="/images/petit-logo.png" />
+						<div
+							css={`
+								font-weight: bold;
+								line-height: 1.4rem;
+								color: var(--darkColor);
+								text-transform: uppercase;
+								font-size: 90%;
+								margin-left: 0.4rem;
+							`}
+						>
+							Nos
+							<br />
+							Gestes
+							<br />
+							Climat
+						</div>
 					</nav>
 				)}
 				<Router />

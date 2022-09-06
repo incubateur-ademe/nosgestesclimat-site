@@ -2,7 +2,6 @@ import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
-import Logo from './Logo'
 import SkipLinks from './SkipLinks'
 
 export default ({ isHomePage }) => {
@@ -72,7 +71,7 @@ export default ({ isHomePage }) => {
 					`}
 					`}
 				>
-					<Logo />
+					<img src="/images/petit-logo.png" />
 				</Link>
 				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
 			</nav>
