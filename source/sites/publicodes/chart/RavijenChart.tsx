@@ -88,7 +88,7 @@ export default ({ details }) => {
 						cursor: grab;
 						height: ${((2000 / pixel) * pixelRemSize) / (gridLength / 10) +
 						1}rem;
-						min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
+						min-height: 2rem; /*We focus on orders of magnitude, not perfect pixels*/
 						width: 95%;
 						background: linear-gradient(#78e08f 50%, #78e08fcf 100%);
 						border-radius: 0.4rem;
@@ -109,9 +109,11 @@ export default ({ details }) => {
 					<p css="font-size: 180%; a img {margin-left: -0.4rem; width: 1.3rem; vertical-align: super}">
 						{emoji('🎯')} 2 tonnes <ObjectiveExplanation />
 					</p>
-					<p>
-						Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
-					</p>
+					{total < 16000 && (
+						<p>
+							Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
+						</p>
+					)}
 				</motion.div>
 			)}
 			{hiddenTarget && (
