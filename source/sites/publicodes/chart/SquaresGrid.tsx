@@ -48,7 +48,11 @@ export default ({ pixelRemSize, elements, pixel, gridLength, pixelMargin }) => {
 	*/
 
 	return (
-		<Grid pixelRemSize={pixelRemSize}>
+		<Grid
+			pixelRemSize={pixelRemSize}
+			pixelMargin={pixelMargin}
+			gridLength={gridLength}
+		>
 			<motion.div initial={false} animate={isVisible ? 'visible' : 'hidden'}>
 				{ponderedElements.map((element, i) => (
 					<GridItem
@@ -148,11 +152,10 @@ const Grid = styled.ul`
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	width: 100%;
-	@media (min-width: 800px) {
-		width: 95%;
-	}
-	width: ${(props) => 10 * (props.pixelRemSize + props.pixelMargin * 2)}rem;
+	/* Black magic. This width needs .1 to accomodate for I don't know what*/
+	width: ${(props) =>
+		(props.gridLength / 10) * (props.pixelRemSize + props.pixelMargin * 2) +
+		0.1}rem;
 	margin: 0 auto;
 	/* The grid will not be centered horizontally. This may be achieved via CSS grids, but it took me more than 15 minutes to not figure out how to do it 
 					 * Another interesting layout would be a snake layout, but it's not simple either : 
