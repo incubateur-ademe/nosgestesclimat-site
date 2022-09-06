@@ -27,6 +27,8 @@ import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import RulesProvider from '../../RulesProvider'
+
+const TutorialLazy = React.lazy(() => import('./Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
@@ -294,9 +296,11 @@ const Router = ({}) => {
 			<Route
 				path="/tutoriel"
 				element={
-					<RulesProvider>
-						<Tutorial />
-					</RulesProvider>
+					<Suspense fallback={<Loading />}>
+						<RulesProvider>
+							<Tutorial />
+						</RulesProvider>
+					</Suspense>
 				}
 			/>
 			<Route path="*" element={<Route404 />} />
