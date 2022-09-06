@@ -86,7 +86,8 @@ export default ({ details }) => {
 					whileDrag={{ scale: 1.05, opacity: 0.7 }} // does not work with the animation :/
 					css={`
 						cursor: grab;
-						height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
+						height: ${((2000 / pixel) * pixelRemSize) / (gridLength / 10) +
+						1}rem;
 						min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
 						width: 95%;
 						background: linear-gradient(#78e08f 50%, #78e08fcf 100%);
