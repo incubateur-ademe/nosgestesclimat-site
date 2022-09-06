@@ -26,7 +26,6 @@ import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
-
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
@@ -43,8 +42,6 @@ const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
-
-const EnqueteLazy = React.lazy(() => import('./pages/Enquete'))
 
 let tracker = devTracker
 if (NODE_ENV === 'production') {
@@ -257,14 +254,6 @@ const Router = ({}) => {
 				}
 			/>
 			<Route path="/tutoriel" element={<Tutorial />} />
-			<Route
-				path="/enquete"
-				element={
-					<Suspense fallback={<Loading />}>
-						<EnqueteLazy />
-					</Suspense>
-				}
-			/>
 			<Route path="*" element={<Route404 />} />
 		</Routes>
 	)

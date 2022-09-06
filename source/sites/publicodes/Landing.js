@@ -56,9 +56,6 @@ export default () => {
 				`}
 			/>
 			<div css="margin: 1rem 0">
-				<Link className="ui__" to="/enquete">
-					Participez à notre enquête utilisateurs !
-				</Link>
 				<div>
 					<Link
 						to="/simulateur/bilan"
