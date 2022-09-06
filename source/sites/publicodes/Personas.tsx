@@ -2,6 +2,7 @@ import { resetSimulation } from 'Actions/actions'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import { setDifferentSituation } from '../../actions/actions'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import useBranchData from '../../components/useBranchData'
@@ -27,9 +28,11 @@ const visualisationChoices = {
 
 export default ({}) => {
 	const persona = useSelector((state) => state.simulation?.persona)
-	const [selectedVisualisation, selectVisualisation] = useState('aucun')
+	const [searchParams, setSearchParams] = useSearchParams({
+		visualisation: 'aucun',
+	})
 
-	const Visualisation = visualisationChoices[selectedVisualisation]
+	const Visualisation = visualisationChoices[searchParams.get('visualisation')]
 	const engine = useEngine()
 
 	const slideProps = {
@@ -50,10 +53,10 @@ export default ({}) => {
 				{Object.keys(visualisationChoices).map((name) => (
 					<label>
 						<input
-							onClick={() => selectVisualisation(name)}
+							onClick={() => setSearchParams({ visualisation: name })}
 							type="radio"
 							value={name}
-							checked={selectedVisualisation === name}
+							checked={searchParams.get('visualisation') === name}
 						/>
 						{name}
 					</label>

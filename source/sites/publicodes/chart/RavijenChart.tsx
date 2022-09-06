@@ -24,11 +24,14 @@ export default ({ details }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
 	const tall = useMediaQuery('(min-height: 900px)'),
-		medium = useMediaQuery('(min-height: 700px)')
+		mediumTall = useMediaQuery('(min-height: 700px)'),
+		mediumLarge = useMediaQuery('(min-width: 410px)'),
+		medium = mediumTall && mediumLarge
 
 	const total = engine.evaluate('bilan').nodeValue,
 		gridLength = tall ? 100 : medium ? 70 : 50,
-		pixelRemSize = 3,
+		pixelMargin = 0.12,
+		pixelRemSize = 3 - 2 * pixelMargin,
 		pixel = total / gridLength
 
 	/*  If total = 15 t, pixel = 150 kg
@@ -68,6 +71,7 @@ export default ({ details }) => {
 		>
 			<SquaresGrid
 				pixelRemSize={pixelRemSize}
+				pixelMargin={pixelMargin}
 				elements={allSubCategories}
 				pixel={pixel}
 				gridLength={gridLength}
@@ -82,11 +86,13 @@ export default ({ details }) => {
 					whileDrag={{ scale: 1.05, opacity: 0.7 }} // does not work with the animation :/
 					css={`
 						cursor: grab;
-						height: ${((2000 / pixel) * pixelRemSize) / 10 + 0.5}rem;
-						min-height: 5.5rem; /*We focus on orders of magnitude, not perfect pixels*/
+						height: ${((2000 / pixel) * pixelRemSize) / (gridLength / 10) +
+						1}rem;
+						min-height: 2rem; /*We focus on orders of magnitude, not perfect pixels*/
 						width: 95%;
-						border: 6px dashed black;
 						background: linear-gradient(#78e08f 50%, #78e08fcf 100%);
+						border-radius: 0.4rem;
+						box-shadow: #5758bb 0px 0px 6px 0px;
 						display: flex;
 						flex-direction: column;
 						align-items: center;
@@ -103,9 +109,11 @@ export default ({ details }) => {
 					<p css="font-size: 180%; a img {margin-left: -0.4rem; width: 1.3rem; vertical-align: super}">
 						{emoji('🎯')} 2 tonnes <ObjectiveExplanation />
 					</p>
-					<p>
-						Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
-					</p>
+					{total < 16000 && (
+						<p>
+							Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
+						</p>
+					)}
 				</motion.div>
 			)}
 			{hiddenTarget && (

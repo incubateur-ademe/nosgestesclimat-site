@@ -16,6 +16,7 @@ import { useNavigate } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { safeGetRule, splitName } from '../publicodesUtils'
+import SafeCategoryImage from '../SafeCategoryImage'
 import './AnswerList.css'
 import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
@@ -199,7 +200,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 						`}
 				`}
 			>
-				{emoji(rule.rawNode.icônes || '')}
+				<SafeCategoryImage element={rule} whiteBackground={level > 1} />
 				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
 				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
 					<small>

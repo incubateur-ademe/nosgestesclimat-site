@@ -3,6 +3,7 @@ import { findContrastedTextColor } from 'Components/utils/colors'
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom'
+import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import TriangleShape from './TriangleShape'
 
 export default ({
@@ -57,23 +58,33 @@ export default ({
 					<TriangleShape color={color} />
 				</div>
 			)}
-			{clicked ? (
-				<span
-					key={title}
-					css={`
-						color: ${findContrastedTextColor(color, true)};
-						display: flex;
-						flex-direction: column;
-						align-items: center;
-					`}
-				>
-					<CircledEmojis emojis={icons} />
-					<div>{title}</div>
-					<div>{Math.round((nodeValue / total) * 100)}&nbsp;%</div>
-				</span>
-			) : (
-				<CircledEmojis emojis={icons} emojiTitle={title} />
-			)}
+			<span
+				css={`
+					img {
+						height: 1.7rem;
+						margin-top: -0.1rem;
+						width: auto;
+					}
+				`}
+			>
+				{clicked ? (
+					<span
+						key={title}
+						css={`
+							color: ${findContrastedTextColor(color, true)};
+							display: flex;
+							flex-direction: column;
+							align-items: center;
+						`}
+					>
+						<SafeCategoryImage element={{ dottedName, icons }} />
+						<div>{title}</div>
+						<div>{Math.round((nodeValue / total) * 100)}&nbsp;%</div>
+					</span>
+				) : (
+					<SafeCategoryImage element={{ dottedName, icons }} />
+				)}
+			</span>
 		</motion.li>
 	)
 }

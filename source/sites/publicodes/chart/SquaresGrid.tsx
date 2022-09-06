@@ -3,9 +3,10 @@ import { range } from 'ramda'
 import CircledEmojis from '../../../components/CircledEmojis'
 import { motion } from 'framer-motion'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import SafeCategoryImage from '../../../components/SafeCategoryImage'
 
 const delayPerPixel = 0.0025
-export default ({ pixelRemSize, elements, pixel, gridLength }) => {
+export default ({ pixelRemSize, elements, pixel, gridLength, pixelMargin }) => {
 	const originOffset = useRef({ top: 0, left: 0 })
 
 	const [isVisible, setVisibility] = useState(false)
@@ -47,7 +48,11 @@ export default ({ pixelRemSize, elements, pixel, gridLength }) => {
 	*/
 
 	return (
-		<Grid pixelRemSize={pixelRemSize}>
+		<Grid
+			pixelRemSize={pixelRemSize}
+			pixelMargin={pixelMargin}
+			gridLength={gridLength}
+		>
 			<motion.div initial={false} animate={isVisible ? 'visible' : 'hidden'}>
 				{ponderedElements.map((element, i) => (
 					<GridItem
@@ -57,6 +62,7 @@ export default ({ pixelRemSize, elements, pixel, gridLength }) => {
 						delayPerPixel={delayPerPixel}
 						originOffset={originOffset}
 						{...{ element, pixel }}
+						pixelMargin={pixelMargin}
 					/>
 				))}
 			</motion.div>
@@ -71,6 +77,7 @@ const GridItem = ({
 	originOffset,
 	element,
 	pixel,
+	pixelMargin,
 }) => {
 	/* This math.round creates the override of the grid by a few items,
 	 * making it not 10x10 but e.g. 10x10 + 3 */
@@ -109,12 +116,21 @@ const GridItem = ({
 			title={`${element.title} (${element.topCategoryTitle})`}
 			css={`
 				background: ${element.topCategoryColor};
+				border-radius: 0.6rem;
+				margin: ${pixelMargin}rem;
+
+				:hover {
+					background: white;
+					img {
+						filter: none;
+					}
+				}
 			`}
 			ref={ref}
 			variants={itemVariants}
 			custom={delayRef}
 		>
-			<CircledEmojis emojis={element.icons} emojiBackground={'transparent'} />
+			<SafeCategoryImage element={element} />
 		</motion.li>
 	)
 }
@@ -131,25 +147,15 @@ const itemVariants = {
 	}),
 }
 
-const Box = styled(motion.div)`
-	margin: 10px;
-	display: inline-block;
-	height: 65px;
-	width: 65px;
-	background-color: white;
-	border-radius: 10px;
-`
-
 const Grid = styled.ul`
 	padding: 0;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
-	width: 100%;
-	@media (min-width: 800px) {
-		width: 95%;
-	}
-	max-width: ${(props) => 10 * props.pixelRemSize}rem;
+	/* Black magic. This width needs .1 to accomodate for I don't know what*/
+	width: ${(props) =>
+		(props.gridLength / 10) * (props.pixelRemSize + props.pixelMargin * 2) +
+		0.1}rem;
 	margin: 0 auto;
 	/* The grid will not be centered horizontally. This may be achieved via CSS grids, but it took me more than 15 minutes to not figure out how to do it 
 					 * Another interesting layout would be a snake layout, but it's not simple either : 
@@ -160,15 +166,15 @@ const Grid = styled.ul`
 		list-style-type: none;
 		width: ${(props) => props.pixelRemSize}rem;
 		height: ${(props) => props.pixelRemSize}rem;
-		box-shadow: rgba(0, 0, 0, 0.3) 0px 0px 8px 0px;
+		box-shadow: #5758bb63 0px 0px 6px 0px;
 		display: inline-flex;
 		justify-content: center;
 		align-items: center;
 		line-height: 1.4rem;
 		font-size: 90%;
-		/* Interesting too, more spaced, but more room and less graph-like
-		border-radius: 0.6rem;
-		margin: 0.2rem;
-		*/
+		border-radius: 0;
+	}
+	li img {
+		width: 2rem;
 	}
 `

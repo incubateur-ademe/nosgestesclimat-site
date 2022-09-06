@@ -79,6 +79,11 @@ export default ({ score, details, headlessMode }) => {
 						font-size: 130%;
 						margin: 0.6rem;
 					}
+					@media (max-width: 800px) {
+						h1 {
+							font-size: 110%;
+						}
+					}
 				`}
 			>
 				<h1>De quoi est faite mon empreinte ?</h1>
