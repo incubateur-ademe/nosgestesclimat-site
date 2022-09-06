@@ -56,6 +56,13 @@ export default () => {
 				`}
 			/>
 			<div css="margin: 1rem 0">
+				<a
+					className="ui__"
+					href="https://airtable.com/embed/shrC3ZoGYUCmwLpnf?backgroundColor=teal"
+					target="_blank"
+				>
+					Participez à notre enquête utilisateurs !{' '}
+				</a>
 				<div>
 					<Link
 						to="/simulateur/bilan"
