@@ -63,7 +63,11 @@ export default function Input({
 							}}
 							autoComplete="off"
 							{...(missing
-								? { placeholder: value ? formatValue(value) : '' }
+								? {
+										placeholder: value
+											? formatValue(value, { precision: 1 })
+											: '',
+								  }
 								: { value: value ?? '' })}
 						/>
 						<label htmlFor={id}>
