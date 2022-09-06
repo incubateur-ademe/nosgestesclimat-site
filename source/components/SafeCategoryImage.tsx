@@ -32,7 +32,7 @@ export default ({ element, whiteBackground = false }) => {
 					}}
 				/>
 			) : (
-				emoji(element.rawNode?.icônes || element.icons || '')
+				<img src={'/images/three-dots.svg'} />
 			)}
 		</span>
 	)
