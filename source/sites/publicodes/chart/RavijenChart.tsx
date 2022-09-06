@@ -56,7 +56,8 @@ export default ({ details }) => {
 		.flat()
 
 	const constraintsRef = useRef(null)
-	const [hiddenTarget, hideTarget] = useState(false)
+	const [hiddenTarget, hideTarget]: [boolean | undefined, any] =
+		useState(undefined)
 
 	return (
 		<motion.section
@@ -77,7 +78,11 @@ export default ({ details }) => {
 					drag="y"
 					initial={{ opacity: 0 }}
 					animate={{ opacity: 1 }}
-					transition={{ ease: 'easeIn', duration: 1.6, delay: 3 }}
+					transition={{
+						ease: 'easeIn',
+						duration: undefined === hiddenTarget ? 1.6 : 0,
+						delay: undefined === hiddenTarget ? 1.5 : 0,
+					}}
 					dragConstraints={constraintsRef}
 					whileDrag={{ scale: 1.05, opacity: 0.7 }} // does not work with the animation :/
 					css={`
