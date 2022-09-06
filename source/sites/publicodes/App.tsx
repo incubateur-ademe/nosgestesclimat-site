@@ -291,7 +291,14 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path="/tutoriel" element={<Tutorial />} />
+			<Route
+				path="/tutoriel"
+				element={
+					<RulesProvider>
+						<Tutorial />
+					</RulesProvider>
+				}
+			/>
 			<Route path="*" element={<Route404 />} />
 		</Routes>
 	)
