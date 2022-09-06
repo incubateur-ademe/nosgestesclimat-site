@@ -28,8 +28,10 @@ const Content = styled.div`
 	position: relative;
 	display: flex;
 	flex-direction: column;
-	width: 40%;
-	max-width: 90vw;
+	width: 40vw;
+	@media (max-width: 800px) {
+		width: 90vw;
+	}
 	max-height: 90vh;
 	margin: 1rem;
 	background-color: white;
