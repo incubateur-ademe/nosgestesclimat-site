@@ -14,7 +14,7 @@ export default ({ showText, size = 'large' }) => (
 				small: '.1rem auto',
 			}[size]};
 			img {
-				width: ${{ large: '75px', medium: '50px', small: '30px' }[size]};
+				width: ${{ large: '75px', medium: '55px', small: '30px' }[size]};
 				height: auto;
 			}
 		`}
@@ -23,14 +23,14 @@ export default ({ showText, size = 'large' }) => (
 		{showText && (
 			<div
 				css={`
-					font-weight: bold;
-					line-height: ${{ large: '1.4rem', medium: '1rem', small: '1rem' }[
+					font-weight: 900;
+					line-height: ${{ large: '1.2rem', medium: '.95rem', small: '1rem' }[
 						size
 					]};
 					color: var(--darkColor);
 					text-transform: uppercase;
-					font-size: ${{ large: '150%', medium: '100%', small: '60%' }[size]};
-					margin-left: 0.4rem;
+					font-size: ${{ large: '130%', medium: '105%', small: '60%' }[size]};
+					margin-left: 0.2rem;
 				`}
 			>
 				Nos
