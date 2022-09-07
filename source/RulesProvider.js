@@ -70,7 +70,7 @@ const EngineWrapper = ({ rules, children }) => {
 	const [engine, setEngine] = useState(null)
 
 	useEffect(() => {
-		if (engineState === 'requested') {
+		if (rules && engineState === 'requested') {
 			const engine =
 				console.log('parsing..') || new Engine(rules, engineOptions)
 			setEngine(engine)
