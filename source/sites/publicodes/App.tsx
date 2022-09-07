@@ -297,9 +297,7 @@ const Router = ({}) => {
 				path="/tutoriel"
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithRules>
 							<TutorialLazy />
-						</WithRules>
 					</Suspense>
 				}
 			/>
