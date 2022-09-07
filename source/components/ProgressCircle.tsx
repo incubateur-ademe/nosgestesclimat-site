@@ -4,11 +4,11 @@ import { useSelector } from 'react-redux'
 import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default () => {
-	const rules = useSelector((state) => state.rules)
-	if (rules) return <WithRules />
+	const engineState = useSelector((state) => state.engineState)
+	if (engineState === 'ready') return <WithEngine />
 	else return <CircleSVG />
 }
-const WithRules = ({}) => {
+const WithEngine = ({}) => {
 	const progress = useSimulationProgress()
 	const motionProgress = useMotionValue(0)
 

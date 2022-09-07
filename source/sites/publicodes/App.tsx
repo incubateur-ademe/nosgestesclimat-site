@@ -26,7 +26,7 @@ import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
-import { WithRules } from '../../RulesProvider'
+import { WithEngine } from '../../RulesProvider'
 
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
@@ -152,18 +152,18 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<div>Chargement</div>}>
-						<WithRules>
+						<WithEngine>
 							<Documentation />
-						</WithRules>
+						</WithEngine>
 					</Suspense>
 				}
 			/>
 			<Route
 				path="simulateur/*"
 				element={
-					<WithRules>
+					<WithEngine>
 						<Simulateur />
-					</WithRules>
+					</WithEngine>
 				}
 			/>
 			<Route
@@ -177,33 +177,33 @@ const Router = ({}) => {
 			<Route
 				path="/fin/*"
 				element={
-					<WithRules>
+					<WithEngine>
 						<Fin />
-					</WithRules>
+					</WithEngine>
 				}
 			/>
 			<Route
 				path="/personas"
 				element={
-					<WithRules>
+					<WithEngine>
 						<Personas />
-					</WithRules>
+					</WithEngine>
 				}
 			/>
 			<Route
 				path="/actions/*"
 				element={
-					<WithRules>
+					<WithEngine>
 						<Actions />
-					</WithRules>
+					</WithEngine>
 				}
 			/>
 			<Route
 				path="/profil"
 				element={
-					<WithRules>
+					<WithEngine>
 						<Profil />
-					</WithRules>
+					</WithEngine>
 				}
 			/>
 			<Route
