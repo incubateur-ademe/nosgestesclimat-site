@@ -5,7 +5,11 @@ export default ({ showText, size = 'large' }) => (
 			align-items: center;
 			justify-content: center;
 			text-decoration: none;
-			margin: 1rem auto;
+			margin: ${{
+				large: '1rem auto',
+				medium: '1rem 3rem 0rem 0rem',
+				small: '.1rem auto',
+			}[size]};
 			img {
 				width: ${{ large: '75px', medium: '50px', small: '30px' }[size]};
 				height: auto;
