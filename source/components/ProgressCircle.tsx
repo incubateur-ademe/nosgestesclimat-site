@@ -5,7 +5,7 @@ import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default () => {
 	const rules = useSelector((state) => state.rules)
-	if (rules && Object(rules) > 0) return <WithRules />
+	if (rules) return <WithRules />
 	else return <CircleSVG />
 }
 const WithRules = ({}) => {
