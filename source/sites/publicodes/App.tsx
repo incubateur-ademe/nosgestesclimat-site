@@ -26,9 +26,9 @@ import Profil from './Profil.tsx'
 import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
-import RulesProvider from '../../RulesProvider'
-
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
+import { WithRules } from '../../RulesProvider'
+
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
@@ -152,18 +152,18 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<div>Chargement</div>}>
-						<RulesProvider>
+						<WithRules>
 							<Documentation />
-						</RulesProvider>
+						</WithRules>
 					</Suspense>
 				}
 			/>
 			<Route
 				path="simulateur/*"
 				element={
-					<RulesProvider>
+					<WithRules>
 						<Simulateur />
-					</RulesProvider>
+					</WithRules>
 				}
 			/>
 			<Route
@@ -177,33 +177,33 @@ const Router = ({}) => {
 			<Route
 				path="/fin/*"
 				element={
-					<RulesProvider>
+					<WithRules>
 						<Fin />
-					</RulesProvider>
+					</WithRules>
 				}
 			/>
 			<Route
 				path="/personas"
 				element={
-					<RulesProvider>
+					<WithRules>
 						<Personas />
-					</RulesProvider>
+					</WithRules>
 				}
 			/>
 			<Route
 				path="/actions/*"
 				element={
-					<RulesProvider>
+					<WithRules>
 						<Actions />
-					</RulesProvider>
+					</WithRules>
 				}
 			/>
 			<Route
 				path="/profil"
 				element={
-					<RulesProvider>
+					<WithRules>
 						<Profil />
-					</RulesProvider>
+					</WithRules>
 				}
 			/>
 			<Route
@@ -297,9 +297,9 @@ const Router = ({}) => {
 				path="/tutoriel"
 				element={
 					<Suspense fallback={<Loading />}>
-						<RulesProvider>
-							<Tutorial />
-						</RulesProvider>
+						<WithRules>
+							<TutorialLazy />
+						</WithRules>
 					</Suspense>
 				}
 			/>

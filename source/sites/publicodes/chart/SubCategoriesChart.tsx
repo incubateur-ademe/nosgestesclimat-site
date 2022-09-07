@@ -23,7 +23,7 @@ export default ({
 				(memo, { nodeValue, title, icons }) => {
 					const tooSmall = nodeValue < hideSmallerThanRatio * total
 					if (tooSmall) {
-						console.log(title, nodeValue)
+						//console.log(title, nodeValue)
 					}
 					return {
 						value: tooSmall ? memo.value + nodeValue : memo.value,
