@@ -10,8 +10,9 @@ import {
 
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
-import { useEffect, useMemo } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useEngine } from './components/utils/EngineContext'
 
 /* This component gets the publicode rules from the good URL,
  * then gives them
@@ -64,13 +65,24 @@ export default ({ children }) => {
 }
 
 const EngineWrapper = ({ rules, children }) => {
-	const engine = useMemo(
-			() =>
-				console.log('PERF TEST initialize engine') ||
-				new Engine(rules, engineOptions),
-			[rules, engineOptions]
-		),
-		userSituation = useSelector(situationSelector),
+	const engineState = useSelector((state) => state.engineState)
+	const dispatch = useDispatch()
+	const [engine, setEngine] = useState(null)
+
+	useEffect(() => {
+		if (engineState === 'requested') {
+			const engine =
+				console.log('parsing..') || new Engine(rules, engineOptions)
+			setEngine(engine)
+		}
+	}, [rules, engineOptions, engineState])
+
+	useEffect(() => {
+		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
+		return
+	}, [engine])
+
+	const userSituation = useSelector(situationSelector),
 		configSituation = useSelector(configSituationSelector),
 		situation = useMemo(
 			() => ({
@@ -88,8 +100,14 @@ const EngineWrapper = ({ rules, children }) => {
 }
 
 export const WithRules = ({ children }) => {
-	const rules = useSelector((state) => state.rules)
+	const dispatch = useDispatch()
+	const engineState = useSelector((state) => state.engineState)
 
-	if (!rules) return null
+	useEffect(() => {
+		if (!engineState) dispatch({ type: 'SET_ENGINE', to: 'requested' })
+		return
+	}, [])
+
+	if (engineState !== 'ready') return null
 	return children
 }

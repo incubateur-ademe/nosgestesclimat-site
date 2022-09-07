@@ -45,10 +45,12 @@ export function SituationProvider({
 	// https://github.com/betagouv/publicodes/issues/257
 
 	try {
-		const rules = engine.getParsedRules()
-		const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
-			validSituation = pick(situation, validKeys)
-		engine.setSituation(validSituation)
+		if (engine) {
+			const rules = engine.getParsedRules()
+			const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
+				validSituation = pick(situation, validKeys)
+			engine.setSituation(validSituation)
+		}
 	} catch (e) {
 		console.log(
 			`Il est probable qu'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l'utilisateur ou du persona chargé ↙️`
