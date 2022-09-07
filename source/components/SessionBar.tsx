@@ -2,15 +2,9 @@ import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import React, { useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	Link,
-	useLocation,
-	Redirect,
-	Navigate,
-	useSearchParams,
-} from 'react-router-dom'
+import { Link, useLocation, Navigate, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -24,6 +18,8 @@ import ProgressCircle from './ProgressCircle'
 import CardGameIcon from './CardGameIcon'
 import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
+import { Trans, useTranslation } from 'react-i18next'
+import { getLangInfos, Lang, LangInfos } from '../locales/translation'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -135,7 +131,6 @@ export default function SessionBar({
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const arePreviousAnswers = !!answeredQuestions.length
 	useSafePreviousSimulation()
-	const [showAnswerModal, setShowAnswerModal] = useState(false)
 
 	const objectifs = useSelector(objectifsSelector)
 	const conference = useSelector((state) => state.conference)
@@ -164,7 +159,18 @@ export default function SessionBar({
 		undefined
 	)
 
+	const { _, i18n } = useTranslation()
+
 	let elements = [
+		<div>
+			{Object.keys(Lang)
+				.map((l) => getLangInfos(Lang[l]))
+				.map((info: LangInfos) => (
+					<Button url={location} onClick={() => i18n.changeLanguage(info.abrv)}>
+						{info.name}
+					</Button>
+				))}
+		</div>,
 		<Button
 			className="simple small"
 			url={'/simulateur/bilan'}
@@ -180,7 +186,7 @@ export default function SessionBar({
 			`}
 		>
 			<ProgressCircle />
-			Le test
+			<Trans>Le test</Trans>
 		</Button>,
 		<Button
 			className="simple small"
