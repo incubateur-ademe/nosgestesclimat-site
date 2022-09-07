@@ -12,7 +12,7 @@ export default ({ showText, size = 'large' }) => (
 			}
 		`}
 	>
-		<img src="/images/petit-logo.png" width="75" height="77" />
+		<img src="/images/petit-logo.png" width="117" height="117" />
 		{showText && (
 			<div
 				css={`
