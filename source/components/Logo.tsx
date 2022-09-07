@@ -1,5 +1,8 @@
+import { Link } from 'react-router-dom'
+
 export default ({ showText, size = 'large' }) => (
-	<nav
+	<Link
+		to="/"
 		css={`
 			display: flex;
 			align-items: center;
@@ -37,5 +40,5 @@ export default ({ showText, size = 'large' }) => (
 				Climat
 			</div>
 		)}
-	</nav>
+	</Link>
 )
