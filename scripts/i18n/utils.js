@@ -1,14 +1,22 @@
 require('dotenv').config()
 require('isomorphic-fetch')
-var fs = require('fs')
-var path = require('path')
-let R = require('ramda')
-var querystring = require('querystring')
-let { readRules } = require('../rules')
+const fs = require('fs')
+const path = require('path')
+const R = require('ramda')
+const querystring = require('querystring')
+const { readRules } = require('../rules')
+const yaml = require('yaml')
 
-let { parse } = require('yaml')
-let rulesTranslationPath = path.resolve('source/locales/rules-en.yaml')
-let UiTranslationPath = path.resolve('source/locales/ui-en.yaml')
+const paths = {
+	localesDir: path.resolve('source/locales'),
+	rulesTranslation: path.resolve('source/locales/rules-en.yaml'),
+	i18nextParserConfig: path.resolve('scripts/i18n/parser.config.js'),
+	staticAnalysisFrRes: path.resolve('source/locales/static-analysis-fr.json'),
+	uiTranslationResource: {
+		fr: path.resolve('source/locales/ui-fr.yaml'),
+		en: path.resolve('source/locales/ui-en.yaml'),
+	},
+}
 
 let attributesToTranslate = [
 	'titre',
@@ -22,7 +30,7 @@ let attributesToTranslate = [
 function getRulesMissingTranslations() {
 	let rules = readRules()
 
-	let currentExternalization = parse(
+	let currentExternalization = yaml.parse(
 		fs.readFileSync(rulesTranslationPath, 'utf-8')
 	)
 
@@ -92,11 +100,11 @@ function getRulesMissingTranslations() {
 	return [missingTranslations, resolved]
 }
 
-const getUiMissingTranslations = () => {
+const getUiMissingTranslations = (pathToCompareWith) => {
 	const staticKeys = require(path.resolve(
 		'source/locales/static-analysis-fr.json'
 	))
-	const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
+	const translatedKeys = yaml.parse(fs.readFileSync(pathToCompareWith, 'utf-8'))
 
 	const missingTranslations = Object.keys(staticKeys).filter((key) => {
 		if (key.match(/^\{.*\}$/)) {
@@ -110,22 +118,42 @@ const getUiMissingTranslations = () => {
 
 const fetchTranslation = async (text) => {
 	console.log(`Fetch translation for:\n\t${text}`)
-	const response = await fetch(
-		`https://api.deepl.com/v2/translate?${querystring.stringify({
-			text,
-			auth_key: process.env.DEEPL_API_SECRET,
-			tag_handling: 'xml',
-			source_lang: 'FR',
-			target_lang: 'EN',
-		})}`
-	)
+	const req = `https://api-free.deepl.com/v2/translate?${querystring.stringify({
+		text,
+		auth_key: `ed64c4b2-ff0c-9c45-a304-8086f0c2baf2:fx`,
+		tag_handling: 'xml',
+		source_lang: 'FR',
+		target_lang: 'EN',
+	})}`
+	console.log(`Fetching: ${req}`)
+	const response = await fetch(req)
 	const { translations } = await response.json()
 	return translations[0].text
 }
+
+// Source: https://www.thiscodeworks.com/convert-javascript-dot-notation-object-to-nested-object-javascript/60e47841a2dbdc00144e9446
+const dotNotationToNestedObject = (obj) => {
+	const result = {}
+
+	for (const objectPath in obj) {
+		const parts = objectPath.split('.')
+
+		let target = result
+		while (parts.length > 1) {
+			const part = parts.shift()
+			target = target[part] = target[part] || {}
+		}
+
+		target[parts[0]] = obj[objectPath]
+	}
+
+	return result
+}
+
 module.exports = {
 	fetchTranslation,
 	getRulesMissingTranslations,
 	getUiMissingTranslations,
-	rulesTranslationPath,
-	UiTranslationPath,
+	dotNotationToNestedObject,
+	paths,
 }

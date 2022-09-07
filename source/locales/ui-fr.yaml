@@ -1,0 +1,52 @@
+"404":
+  action: Revenir en lieu sûr
+  message: Cette page n'existe pas ou n'existe plus
+Agir: Agir
+Cette commune n'existe pas: Cette commune n'existe pas
+Commune ou code postal: Commune ou code postal
+Confirmer: Confirmer
+En savoir plus: En savoir plus
+Entrez des mots clefs ici: Entrez des mots clefs ici
+Explorez notre documentation: Explorez notre documentation
+Insérer cette suggestion: Insérer cette suggestion
+J'ai compris: J'ai compris
+Je ne sais pas: Je ne sais pas
+Le test: Le test
+Les nouveautés: Les nouveautés
+Mes réponses: Mes réponses
+Modifier: Modifier
+Naviguez vers une question précise: Naviguez vers une question précise
+Non: Non
+Oui: Oui
+Précédent: Précédent
+Rechercher: Rechercher
+Saisissez votre domaine d'activité: Saisissez votre domaine d'activité
+Suivant: Suivant
+Voir ma situation: Voir ma situation
+back: Reprendre la simulation
+feedback:
+  bad:
+    form:
+      headline: Votre retour nous est précieux afin d'améliorer ce site en continu.
+        Sur quoi devrions nous travailler afin de mieux répondre à vos attentes
+        ?
+  question: Cette page vous est utile ?
+  reportError: Faire une suggestion
+  simulator: Êtes-vous satisfait de ce simulateur ?
+  thanks: Merci pour votre retour ! Vous pouvez nous contacter directement à
+    <2>contact@mon-entreprise.beta.gouv.fr</2>
+meta:
+  pages:
+    about:
+      description: NO_TRANSLATION
+noresults: Aucun résultat ne correspond à cette recherche
+simulateurs:
+  warning:
+    plus: Lire les précisions
+    titre: Avant de commencer...
+simulation-end:
+  text: Vous avez maintenant accès à l'estimation la plus précise possible.
+  title: Vous avez complété cette simulation
+"{label}": "{label}"
+"{unit}": "{unit}"
+À propos: À propos
