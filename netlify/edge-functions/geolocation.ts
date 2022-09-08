@@ -21,4 +21,23 @@ export default async (request: Request, context: Context) => {
 		geo: context.geo,
 		header: request.headers.get('x-nf-geo'),
 	})
+
+	// util for tests
+
+	// return context.json({
+	// 	geo: { country: { code: 'NL', name: 'Netherlands' } },
+	// 	header: '{"country":{"code":"NL","name":"Netherlands"}',
+	// })
+	// return context.json({
+	// 	geo: { country: { code: 'US', name: 'United States' } },
+	// 	header: '{"country":{"code":"US","name":"United States"}}',
+	// })
+	// return context.json({
+	// 	geo: { country: { code: 'GP', name: 'Guadeloupe' } },
+	// 	header: '{"country":{"code":"GP","name":"Guadeloupe"}',
+	// })
+	// return context.json({
+	// 	geo: { country: { code: 'BE', name: 'Belgium' } },
+	// 	header: '{"country":{"code":"BE","name":"Belgium"}',
+	// })
 }
