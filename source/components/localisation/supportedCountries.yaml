@@ -10,3 +10,15 @@
   PR: '1339'
   code: PF
   gentilé: polynésienne
+- name: Martinique
+  PR: '1339'
+  code: MQ
+- name: Guyane
+  PR: '1339'
+  code: GF
+- name: Mayotte
+  PR: '1339'
+  code: YT
+- name: La Réunion
+  PR: '1339'
+  code: RE
