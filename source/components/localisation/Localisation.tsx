@@ -16,6 +16,11 @@ export default () => {
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
 
+	const [messagesRead, setRead] = usePersistingState(
+		'localisationMessagesRead',
+		[]
+	)
+
 	return (
 		<div>
 			<h2>{emoji('📍')} Pays de simulation</h2>
@@ -48,9 +53,10 @@ export default () => {
 					{supportedCountries.map(({ name, code, PR }) => (
 						<li
 							key={code}
-							onClick={() =>
+							onClick={() => {
 								dispatch(setLocalisation({ country: { name, code } }))
-							}
+								setRead([])
+							}}
 						>
 							<button>{capitalise0(name)}</button>
 						</li>
