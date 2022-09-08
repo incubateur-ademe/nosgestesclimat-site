@@ -64,6 +64,6 @@ export const getCountryNameInFrench = (code) => {
 	if (!code) return
 	const regionNamesInFrench = new Intl.DisplayNames(['fr'], { type: 'region' }),
 		countryName = regionNamesInFrench.of(code),
-		preposition = countryName && frenchCountryPrepositions[countryName]
+		preposition = (countryName && frenchCountryPrepositions[countryName]) || ''
 	return `${preposition} ${countryName}`
 }
