@@ -21,30 +21,58 @@ export default () => {
 		[]
 	)
 
+	const supported =
+		localisation &&
+		supportedCountries.find((c) => c.code === localisation.country.code)
+
 	return (
 		<div>
-			<h2>{emoji('📍')} Pays de simulation</h2>
+			<h2
+				css={`
+					border-bottom: 1px solid #eee;
+					padding-bottom: 1rem;
+				`}
+			>
+				{emoji('📍')} Pays de simulation
+			</h2>
 			{localisation != null ? (
-				<p>
-					Nous avons détecté que vous faites cette simulation depuis{' '}
-					{getCountryNameInFrench(localisation?.country.code)}
-					<img
-						src={getFlagImgSrc(localisation?.country.code)}
-						aria-hidden="true"
-						css={`
-							height: 1rem;
-							margin: 0 0.3rem;
-							vertical-align: sub;
-						`}
-					/>
-					. Pour le moment, il n'existe pas de modèle de calcul pour{' '}
-					{getCountryNameInFrench(localisation?.country.code)}, nous vous
-					servons le modèle Français par défault.
-				</p>
+				supported ? (
+					<p>
+						Nous avons détecté que vous faites cette simulation depuis{' '}
+						{getCountryNameInFrench(localisation?.country.code)}
+						<img
+							src={getFlagImgSrc(localisation?.country.code)}
+							aria-hidden="true"
+							css={`
+								height: 1rem;
+								margin: 0 0.3rem;
+								vertical-align: sub;
+							`}
+						/>
+						.
+					</p>
+				) : (
+					<p>
+						Nous avons détecté que vous faites cette simulation depuis{' '}
+						{getCountryNameInFrench(localisation?.country.code)}
+						<img
+							src={getFlagImgSrc(localisation?.country.code)}
+							aria-hidden="true"
+							css={`
+								height: 1rem;
+								margin: 0 0.3rem;
+								vertical-align: sub;
+							`}
+						/>
+						. Pour le moment, il n'existe pas de modèle de calcul pour{' '}
+						{getCountryNameInFrench(localisation?.country.code)}, vous utilisez
+						le modèle Français par défault.
+					</p>
+				)
 			) : (
 				<p>
-					Nous n'avons pas pu détecter votre pays de simulation. Nous vous
-					servons le modèle Français par défault.{' '}
+					Nous n'avons pas pu détecter votre pays de simulation. Vous utilisez
+					le modèle Français par défault.{' '}
 				</p>
 			)}
 			<details>
