@@ -18,8 +18,12 @@ export default () => {
 	const { code, gentilé } = supported
 	if (code === 'FR') return null
 	if (messagesRead.includes(code)) return null
+
 	return (
 		<IllustratedMessage
+			width="90%"
+			direction="row"
+			backgroundcolor="#fff8d3"
 			image={getFlagImgSrc(code)}
 			message={
 				<div>
@@ -27,14 +31,16 @@ export default () => {
 						Vous utilisez la version {gentilé} du test.
 						{code !== 'FR' && (
 							<span> Elle est actuellement en version beta.</span>
-						)}
-					</p>
-					<p>
+						)}{' '}
 						Pas votre région ? <Link to="/profil">Choisissez la votre</Link>.
 					</p>
 					<button
 						className="ui__ button plain small "
-						css={'margin: 0 auto'}
+						css={`
+							margin-left: auto;
+							margin-right: 0rem;
+							display: block !important;
+						`}
 						onClick={() => setRead([...messagesRead, code])}
 					>
 						J'ai compris
