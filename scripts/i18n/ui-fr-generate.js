@@ -1,7 +1,12 @@
+/*
+	Analyses the source code and extracts the corresponding i18next resource file.
+
+	Command: npm run translate:ui:fr:gen
+*/
+
+const stringify = require('json-stable-stringify')
 const fs = require('fs')
-const path = require('path')
 const ramda = require('ramda')
-const yaml = require('yaml')
 const child_process = require('child_process')
 const utils = require('./utils')
 
@@ -16,24 +21,29 @@ try {
 	console.error(err.message)
 	return
 }
-console.log(`OK`)
 
-const analysedFrResources = utils.dotNotationToNestedObject(
-	require(utils.paths.staticAnalysisFrRes)
-)
+const analysedFrResourceInDotNotation = require(utils.paths.staticAnalysisFrRes)
+var oldFrResource
+try {
+	oldFrResource = require(utils.paths.uiTranslationResource.fr)
+} catch {
+	oldFrResource = '{}'
+}
 
-Object.entries(analysedFrResources)
-	.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
+console.log('Adding missing entries...')
+Object.entries(analysedFrResourceInDotNotation)
+	.map(([key, value]) => [
+		key,
+		value === 'NO_TRANSLATION' && key.split('.').length === 1 ? key : value,
+	])
+	.filter(([key, _]) => !ramda.hasPath(key.split('.'), oldFrResource))
 	.forEach(([key, value]) => {
 		let keys = key.split('.')
+		console.log(` + new entry: '${key}'`)
 		if (1 === keys.length) {
-			analysedFrResources[keys[0]] = value
-		} else {
-			analysedFrResources = ramda.assocPath(
-				key.split('.'),
-				value,
-				analysedFrResources
-			)
+			oldFrResource[keys[0]] = value
+		} else if (!ramda.hasPath(keys, oldFrResource)) {
+			oldFrResource = ramda.assocPath(keys, value, oldFrResource)
 		}
 	})
 
@@ -41,8 +51,9 @@ console.log(`Writting resources in ${utils.paths.uiTranslationResource.fr}...`)
 try {
 	fs.writeFileSync(
 		utils.paths.uiTranslationResource.fr,
-		yaml.stringify(analysedFrResources, {
-			sortMapEntries: true,
+		stringify(oldFrResource, {
+			cmp: (a, b) => a.key.localeCompare(b.key),
+			space: 2,
 		})
 	)
 } catch (err) {
@@ -50,15 +61,3 @@ try {
 	console.error(err.message)
 	return
 }
-console.log(`OK`)
-
-// const translatedKeys = parse(fs.readFileSync(UiTranslationPath, 'utf-8'))
-//
-// const missingTranslations = Object.keys(staticKeys).filter((key) => {
-// 	if (key.match(/^\{.*\}$/)) {
-// 		return false
-// 	}
-// 	const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
-// 	return !R.path(keys, translatedKeys)
-// }, staticKeys)
-// return R.pick(missingTranslations, staticKeys)

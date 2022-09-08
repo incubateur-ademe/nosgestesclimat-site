@@ -83,6 +83,7 @@
 		"iframe-resizer": "^4.3.2",
 		"imports-loader": "^4.0.0",
 		"isomorphic-fetch": "^3.0.0",
+		"json-stable-stringify": "^1.0.1",
 		"markdown-to-jsx": "^7.1.7",
 		"mini-css-extract-plugin": "^2.6.1",
 		"path-browserify": "^1.0.1",
