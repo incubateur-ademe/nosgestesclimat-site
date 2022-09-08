@@ -1,7 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
-import supportedCountries from './supportedCountries.yaml'
+import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
 
 const API = '/geolocation'
 
@@ -13,7 +13,6 @@ export default () => {
 	const dispatch = useDispatch()
 
 	const localisation = useSelector((state) => state.localisation)
-	console.log(localisation)
 
 	useEffect(() => {
 		if (localisation != null) return undefined
@@ -58,3 +57,13 @@ export default () => {
 
 export const getFlagImgSrc = (code) =>
 	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
+
+export const getCountryNameInFrench = (code) => {
+	// For now, website is only available in French, this function enables to adapt message for French Language according to the country detected.
+	// Including French prepositions subtelties.
+	if (!code) return
+	const regionNamesInFrench = new Intl.DisplayNames(['fr'], { type: 'region' }),
+		countryName = regionNamesInFrench.of(code),
+		preposition = countryName && frenchCountryPrepositions[countryName]
+	return `${preposition} ${countryName}`
+}

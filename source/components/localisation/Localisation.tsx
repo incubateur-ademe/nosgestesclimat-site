@@ -1,6 +1,7 @@
 import supportedCountries from 'Components/localisation/supportedCountries.yaml'
 import useLocalisation, {
 	getFlagImgSrc,
+	getCountryNameInFrench,
 } from 'Components/localisation/useLocalisation'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
@@ -20,7 +21,8 @@ export default () => {
 			<h2>{emoji('📍')} Pays de simulation</h2>
 			{localisation != null ? (
 				<p>
-					Nous avons détecté que vous faites cette simulation depuis la{' '}
+					Nous avons détecté que vous faites cette simulation depuis{' '}
+					{getCountryNameInFrench(localisation?.country.code)}
 					<img
 						src={getFlagImgSrc(localisation?.country.code)}
 						aria-hidden="true"
@@ -30,10 +32,15 @@ export default () => {
 							vertical-align: sub;
 						`}
 					/>
-					{localisation.country_name}.
+					. Pour le moment, il n'existe pas de modèle de calcul pour{' '}
+					{getCountryNameInFrench(localisation?.country.code)}, nous vous
+					servons le modèle Français par défault.
 				</p>
 			) : (
-				<p>Nous n'avons pas pu détecter votre pays de simulation. </p>
+				<p>
+					Nous n'avons pas pu détecter votre pays de simulation. Nous vous
+					servons le modèle Français par défault.{' '}
+				</p>
 			)}
 			<details>
 				<summary>Choisir un autre pays</summary>
