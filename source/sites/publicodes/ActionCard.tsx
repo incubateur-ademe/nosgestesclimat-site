@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect, useState } from 'react'
 import {
 	motion,
 	useMotionValue,
@@ -28,7 +28,7 @@ export const Card = ({ children, style, onVote, id, ...props }) => {
 	const [velocity, setVelocity] = useState()
 
 	const getVote = (childNode, parentNode) => {
-		const childRect = childNode.getBoundingClientRect()
+		const childRect = childNode?.getBoundingClientRect()
 		const parentRect = parentNode.getBoundingClientRect()
 		let result =
 			parentRect.left >= childRect.right
@@ -51,8 +51,8 @@ export const Card = ({ children, style, onVote, id, ...props }) => {
 
 	const flyAway = (min) => {
 		const flyAwayDistance = (direction) => {
-			const parentWidth = cardElem.current.parentNode.getBoundingClientRect()
-				.width
+			const parentWidth =
+				cardElem.current.parentNode.getBoundingClientRect().width
 			const childWidth = cardElem.current.getBoundingClientRect().width
 			return direction === 'left'
 				? -parentWidth / 2 - childWidth / 2

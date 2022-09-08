@@ -1,11 +1,13 @@
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import animate from 'Components/ui/animate'
 
 export default ({}) => {
-	const actionChoices = useSelector((state) => state.actionChoices),
-		count = Object.values(actionChoices).filter((a) => a === true).length
-	if (count == 0) return null
+	const actionChoices = useSelector((state) => state.actionChoices)
+	const count = Object.values(actionChoices).filter((a) => a === true).length
+
+	if (count == 0) {
+		return null
+	}
 	return (
 		<div
 			css={`

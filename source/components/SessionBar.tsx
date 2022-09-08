@@ -20,6 +20,8 @@ import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
+import i18next from 'i18next'
+import { showTranslations } from 'translation-check'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -159,11 +161,12 @@ export default function SessionBar({
 		undefined
 	)
 
-	const { _, i18n } = useTranslation()
+	const { i18n } = useTranslation()
 
 	let elements = [
 		<div>
 			{Object.keys(Lang)
+				.filter((l) => l != Lang.Default)
 				.map((l) => getLangInfos(Lang[l]))
 				.map((info: LangInfos) => (
 					<Button url={location} onClick={() => i18n.changeLanguage(info.abrv)}>
@@ -194,7 +197,7 @@ export default function SessionBar({
 			css={buttonStyle('/actions')}
 		>
 			<ActionsInteractiveIcon />
-			Agir
+			<Trans>Agir</Trans>
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
 			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />

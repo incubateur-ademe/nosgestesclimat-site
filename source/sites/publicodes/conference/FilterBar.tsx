@@ -5,23 +5,23 @@ import { splitName } from 'Components/publicodesUtils'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
 import { buildVariantTree } from 'Components/conversation/RuleInput'
-import { node } from 'webpack'
+import { useTranslation } from 'react-i18next'
 
 export default ({
 	threshold,
 	setThreshold,
-	contextFilter,
 	setContextFilter,
 	contextRules,
 }) => {
 	const [visible, setVisible] = useState(false)
 	const survey = useSelector((state) => state.survey)
+	const { t } = useTranslation()
 
 	if (!visible)
 		return (
 			<div css="text-align: right; position: absolute;right: 0; button {font-size: 100%}">
 				<button
-					title="Ouvrir les options de tri"
+					title={t('Ouvrir les options de tri')}
 					onClick={() => setVisible(true)}
 				>
 					{emoji('⚙️')}
@@ -69,7 +69,7 @@ export default ({
 					</label>
 				</small>
 				<button
-					title="Fermer les options de tri"
+					title={t('Fermer les options de tri')}
 					onClick={() => setVisible(false)}
 				>
 					{emoji('❌')}

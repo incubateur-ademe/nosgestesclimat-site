@@ -3,11 +3,11 @@ import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import {
 	Link,
 	Navigate,
 	NavLink,
-	Redirect,
 	useMatch,
 	useNavigate,
 } from 'react-router-dom'
@@ -17,19 +17,13 @@ import Meta from '../components/utils/Meta'
 import { usePersistingState } from '../components/utils/persistState'
 import lastRelease from '../data/last-release.json'
 
-const dateCool = (date) =>
+const dateCool = (date: Date) =>
 	date.toLocaleString(undefined, {
 		year: 'numeric',
 		month: 'long',
 	})
 
-const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
-
-type ReleasesData = Array<{
-	name: string
-	description: string
-}>
 
 export default function News() {
 	const [data, setData] = useState()
@@ -73,7 +67,10 @@ export default function News() {
 				image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
-			<h1>Les nouveautés {emoji('✨')}</h1>
+			<h1>
+				<Trans>Les nouveautés</Trans>
+				{emoji('✨')}
+			</h1>
 			<p>
 				Nous améliorons le site en continu à partir de vos retours. Découvrez
 				ici les{' '}

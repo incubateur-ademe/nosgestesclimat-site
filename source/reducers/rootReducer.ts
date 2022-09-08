@@ -2,8 +2,7 @@ import { Action } from 'Actions/actions'
 import { omit } from 'Source/utils'
 
 import reduceReducers from 'reduce-reducers'
-import { combineReducers, Reducer } from 'redux'
-import { SavedSimulation } from 'Selectors/storageSelectors'
+import { CombinedState, combineReducers, Reducer } from 'redux'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import storageRootReducer from './storageReducer'
@@ -145,6 +144,7 @@ function simulation(
 	}
 	return state
 }
+
 function rules(state = null, { type, rules }) {
 	if (type === 'SET_RULES') {
 		return rules
@@ -159,6 +159,7 @@ function actionChoices(state = {}, { type, action, choice }) {
 		return {}
 	} else return state
 }
+
 function survey(state = null, { type, room, answers, contextFile }) {
 	if (type === 'UNSET_SURVEY') return {}
 	if (type === 'SET_SURVEY') {
@@ -199,6 +200,7 @@ function conference(state = null, { type, room, ydoc, provider }) {
 		}
 	} else return state
 }
+
 function tutorials(state = {}, { type, id, unskip }) {
 	if (type === 'SKIP_TUTORIAL') {
 		return { ...state, [id]: unskip ? undefined : 'skip' }
@@ -206,6 +208,7 @@ function tutorials(state = {}, { type, id, unskip }) {
 		return {}
 	} else return state
 }
+
 function tracking(
 	state = {
 		endEventFired: false,

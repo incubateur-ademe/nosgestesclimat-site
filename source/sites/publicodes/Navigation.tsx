@@ -15,7 +15,7 @@ export default ({ isHomePage }) => {
 			<SkipLinks />
 			<nav
 				id="mainNavigation"
-				tabIndex="0"
+				tabIndex={0}
 				css={`
 					display: flex;
 					justify-content: center;

@@ -37,7 +37,6 @@ export default function () {
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
 	)
-	const { i18n } = useTranslation()
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
@@ -45,6 +44,7 @@ export default function () {
 	if (!documentationSitePaths[pathname]) {
 		return <Navigate to="/404" replace />
 	}
+
 	return (
 		<div>
 			<ScrollToTop key={pathname} />
@@ -104,20 +104,23 @@ function BackToSimulation() {
 				navigate(url)
 			}}
 		>
-			← <Trans i18nKey="back">Reprendre la simulation</Trans>
+			<Trans>Reprendre la simulation</Trans>
 		</button>
 	)
 }
 
 function DocumentationLanding() {
+	const { t } = useTranslation()
 	return (
 		<>
 			<Meta
-				title="Comprendre nos calculs"
-				description="Notre modèle de calcul est entièrement transparent. Chacun peut l'explorer, donner son avis, l'améliorer."
+				title={t('Comprendre nos calculs')}
+				description={t('meta.publicodes.pages.Documentation.description')}
 			/>
 			<Méthode />
-			<h2>Explorer notre documentation</h2>
+			<h2>
+				<Trans>Explorer notre documentation</Trans>
+			</h2>
 			<SearchBar showListByDefault={true} />
 		</>
 	)

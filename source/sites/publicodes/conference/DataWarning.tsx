@@ -3,10 +3,12 @@ import { useNavigate } from 'react-router-dom'
 import emoji from '../../../components/emoji'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 import { Link } from 'react-router-dom'
+import { Trans } from 'react-i18next'
 
 export default ({ room }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
 	return (
 		<div>
 			<IllustratedMessage
@@ -14,17 +16,22 @@ export default ({ room }) => {
 				message={
 					<div>
 						<p>
-							Vous avez été invités à un sondage Nos Gestes Climat nommé{' '}
+							<Trans>
+								Vous avez été invités à un sondage Nos Gestes Climat nommé
+							</Trans>{' '}
 							<span css="background: var(--color); color: var(--textColor); padding: 0 .2rem">
 								{room}
 							</span>
 							.
 						</p>
 						<p>
-							{emoji('🕵')} En participant, vous acceptez la collecte{' '}
-							<em>anonyme</em> de vos résultats agrégés de simulation sur notre
-							serveur : l'empreinte climat totale et les catégories (transport,
-							logement, etc.). <Link to="/vie-privée">En savoir plus</Link>
+							<Trans i18nKey={'publicodes.conference.DataWarning.viePrivée'}>
+								{emoji('🕵')} En participant, vous acceptez la collecte{' '}
+								<em>anonyme</em> de vos résultats agrégés de simulation sur
+								notre serveur : l'empreinte climat totale et les catégories
+								(transport, logement, etc.).{' '}
+								<Link to="/vie-privée">En savoir plus</Link>
+							</Trans>
 						</p>
 						<div
 							css={`
@@ -40,13 +47,13 @@ export default ({ room }) => {
 									dispatch({ type: 'SET_SURVEY', room })
 								}}
 							>
-								Participer au sondage
+								<Trans>Participer au sondage</Trans>
 							</button>
 							<button
 								className="ui__ button simple"
 								onClick={() => navigate('/')}
 							>
-								Quitter
+								<Trans>Quitter</Trans>
 							</button>
 						</div>
 					</div>

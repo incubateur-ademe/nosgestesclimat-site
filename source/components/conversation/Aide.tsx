@@ -53,7 +53,7 @@ export default function Aide() {
 					</>
 				)}
 				<button onClick={stopExplaining} className="ui__ button simple">
-					Refermer
+					<Trans>Refermer</Trans>
 				</button>
 			</div>
 		</animate.fromTop>

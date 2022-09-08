@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import animate from 'Components/ui/animate'
+import { Trans } from 'react-i18next'
 
 export default () => {
 	const [visible, setVisible] = useState(false)
@@ -26,9 +26,11 @@ export default () => {
 					padding: 0.4rem;
 				`}
 			>
-				<span>Une question, un problème ? </span>
+				<span>
+					<Trans>Une question, un problème ?</Trans>
+				</span>
 				<Link to={'/contribuer?fromLocation=' + window.location}>
-					Découvrez la FAQ !
+					<Trans>Découvrez la FAQ !</Trans>
 				</Link>
 			</div>
 		</animate.appear>

@@ -1,15 +1,14 @@
 import NeutralH1 from 'Components/ui/NeutralH1'
 import { AnimatePresence, motion } from 'framer-motion'
-import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { extractCategories } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
-const { encodeRuleName } = utils
 
 import { relegate } from 'Components/publicodesUtils'
 import { useLayoutEffect, useRef, useState } from 'react'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
+import { Trans, useTranslation } from 'react-i18next'
 
 export const sustainableLifeGoal = 2000 // kgCO2e
 const sustainableBackground = '#78e08f'
@@ -27,7 +26,7 @@ const formatValue = (value) =>
 		minimumSignificantDigits: 2,
 	})
 
-export default ({ details, color, noText, value, score, nextSlide }) => {
+export default ({ details, color, value, score, nextSlide }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const sortedCategories = extractCategories(rules, engine, details).map(
@@ -40,7 +39,6 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 
 	if (!categories) return null
 
-	const empreinteMaximum = computeEmpreinteMaximum(categories)
 	const empreinteTotale = categories.reduce(
 		(memo, next) => next.nodeValue + memo,
 		0
@@ -65,6 +63,8 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 		setHeight(ref.current.offsetHeight)
 	}, [])
 	const sustainableBarHeight = (sustainableLifeGoal / empreinteTotale) * height
+
+	const { t } = useTranslation()
 
 	return (
 		<section
@@ -119,7 +119,9 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 					`}
 				>
 					<div css="margin: .4rem 0; font-style: italic;">
-						<NeutralH1 id="myFootprint">mon empreinte annuelle</NeutralH1>
+						<NeutralH1 id="myFootprint">
+							<Trans>mon empreinte annuelle</Trans>
+						</NeutralH1>
 						<img
 							src="/images/thin-arrow-left.svg"
 							aria-hidden
@@ -136,7 +138,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 				</div>
 				<div
 					css=" height: 3rem"
-					title={`${formatValue(score)} tonnes de CO₂e`}
+					title={t(`{{res}} tonnes de CO₂e`, { res: formatValue(score) })}
 					aria-describedby="myFootprint"
 				>
 					<div
@@ -193,12 +195,12 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 							`}
 						>
 							<div id="objective">
-								mon objectif
+								<Trans>mon objectif</Trans>
 								<ObjectiveExplanation />
 							</div>
 							<img
 								src="/images/thin-arrow-left.svg"
-								title="Comprendre l'objectif à atteindre"
+								title={t("Comprendre l'objectif à atteindre")}
 								aria-hidden
 								css={`
 									height: 3rem;
@@ -225,7 +227,9 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 							aria-describedby="objective"
 						>
 							<strong>{sustainableLifeGoal / 1000}</strong>
-							<span>tonnes</span>
+							<span>
+								<Trans>tonnes</Trans>
+							</span>
 						</div>
 					</>
 				)}
@@ -242,7 +246,7 @@ export default ({ details, color, noText, value, score, nextSlide }) => {
 						justify-content: center;
 						font-size: 200%;
 					`}
-					title="L'objectif à atteindre, 2 tonnes de CO₂e"
+					title={t("L'objectif à atteindre, 2 tonnes de CO₂e")}
 				>
 					{emoji('🎯')}
 				</div>
@@ -277,77 +281,83 @@ const CategoriesBar = ({
 	empreinteTotale,
 	color,
 	onCategoryClick,
-}) => (
-	<ol
-		css={`
-			margin: 0;
-			width: ${barWidth};
-			height: 100%;
-			padding: 0;
-			${barBorderStyle(color)}
-			cursor: pointer;
-			:hover {
-				border-color: var(--lightColor);
-			}
-		`}
-		onClick={onCategoryClick}
-		title="Explorer les catégories"
-	>
-		{categories.map((category, index) => (
-			<li
-				key={category.title}
-				title={`${category.title} : ${Math.round(
-					(category.nodeValue / empreinteTotale) * 100
-				)}%`}
-				css={`
-					margin: 0;
-					list-style-type: none;
-					background: ${category.color};
-					height: ${(category.nodeValue / empreinteTotale) * 100}%;
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					img {
-						font-size: 120%;
-					}
-					@media (min-height: 800px) {
+}) => {
+	const { t } = useTranslation()
+	return (
+		<ol
+			css={`
+				margin: 0;
+				width: ${barWidth};
+				height: 100%;
+				padding: 0;
+				${barBorderStyle(color)}
+				cursor: pointer;
+				:hover {
+					border-color: var(--lightColor);
+				}
+			`}
+			onClick={onCategoryClick}
+			title={t('Explorer les catégories')}
+		>
+			{categories.map((category, index) => (
+				<li
+					key={category.title}
+					title={`${category.title} : ${Math.round(
+						(category.nodeValue / empreinteTotale) * 100
+					)}%`}
+					css={`
+						margin: 0;
+						list-style-type: none;
+						background: ${category.color};
+						height: ${(category.nodeValue / empreinteTotale) * 100}%;
+						display: flex;
+						align-items: center;
+						justify-content: center;
 						img {
-							font-size: 180%;
+							font-size: 120%;
 						}
-					}
-					${index < categories.length - 1 &&
-					`
+						@media (min-height: 800px) {
+							img {
+								font-size: 180%;
+							}
+						}
+						${index < categories.length - 1 &&
+						`
 					border-bottom: 4px solid ${color};
 
 					padding: 0;
 					`}
-				`}
-			>
-				{category.nodeValue / empreinteTotale > 0.1 ? (
-					<SafeCategoryImage element={category} />
-				) : (
-					''
-				)}
-			</li>
-		))}
-	</ol>
-)
+					`}
+				>
+					{category.nodeValue / empreinteTotale > 0.1 ? (
+						<SafeCategoryImage element={category} />
+					) : (
+						''
+					)}
+				</li>
+			))}
+		</ol>
+	)
+}
 
-export const ObjectiveExplanation = () => (
-	<a
-		css="color: inherit"
-		href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
-		target="_blank"
-		title="Comprendre l'ojectif de 2 tonnes"
-	>
-		<img
-			src="/images/info.svg"
-			aira-hidden
-			css={`
-				width: 1.5rem;
-				vertical-align: middle;
-				margin-left: 0.2rem;
-			`}
-		/>
-	</a>
-)
+export const ObjectiveExplanation = () => {
+	const { t } = useTranslation()
+	return (
+		<a
+			css="color: inherit"
+			href="https://ecolab.ademe.fr/blog/général/budget-empreinte-carbone-c-est-quoi.md"
+			target="_blank"
+			title={t("Comprendre l'ojectif de 2 tonnes")}
+		>
+			<img
+				src="/images/info.svg"
+				aira-hidden
+				css={`
+					width: 1.5rem;
+					vertical-align: middle;
+					margin-left: 0.2rem;
+				`}
+			/>
+		</a>
+	)
+}

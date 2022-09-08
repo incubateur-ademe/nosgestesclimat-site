@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { useLocation } from 'react-router'
-import { useNavigate } from 'react-router-dom'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
-import { useQuery } from '../../../utils'
 import Value from './Value'
 
 export default ({

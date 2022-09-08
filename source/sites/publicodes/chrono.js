@@ -1,3 +1,4 @@
+// NOTE: could it be removed?
 export let année = 1
 export let siècle = année * 100
 export let millénaire = année * 1000

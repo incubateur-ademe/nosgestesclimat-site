@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useContext } from 'react'
@@ -8,10 +7,7 @@ import { setActionChoice } from '../../actions/actions'
 import { correctValue } from '../../components/publicodesUtils'
 import Stamp from '../../components/Stamp'
 import { useEngine } from '../../components/utils/EngineContext'
-import {
-	getNextQuestions,
-	useNextQuestions,
-} from '../../components/utils/useNextQuestion'
+import { getNextQuestions } from '../../components/utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -19,8 +15,7 @@ import {
 import { humanWeight } from './HumanWeight'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { questionConfig } from './questionConfig'
-
-const { encodeRuleName, decodeRuleName } = utils
+import { useTranslation } from 'react-i18next'
 
 export const disabledAction = (flatRule, nodeValue) =>
 	flatRule.formule == null
@@ -56,7 +51,7 @@ export const ActionListCard = ({
 
 	const dispatch = useDispatch()
 	const rules = useSelector((state) => state.rules),
-		{ nodeValue, dottedName, title, unit } = evaluation,
+		{ nodeValue, dottedName, title } = evaluation,
 		{ icônes: icons } = rule
 	const actionChoices = useSelector((state) => state.actionChoices),
 		situation = useSelector(situationSelector),
@@ -77,6 +72,8 @@ export const ActionListCard = ({
 		),
 		hasRemainingQuestions = remainingQuestions.length > 0
 
+	const { t } = useTranslation()
+
 	return (
 		<div
 			className={`ui__ interactive card light-border ${
@@ -85,7 +82,7 @@ export const ActionListCard = ({
 			css={`
 				${disabled ? disabledStyle : ''}
 				${focused && `border: 4px solid var(--color) !important;`}
-		
+
 				width: 100%;
 				display: flex;
 				flex-direction: column;
@@ -111,7 +108,7 @@ export const ActionListCard = ({
 					text-decoration: none;
 					height: 5.5rem;
 				`}
-				to={'/actions/' + encodeRuleName(dottedName)}
+				to={'/actions/' + utils.encodeRuleName(dottedName)}
 			>
 				{icons && (
 					<span
@@ -157,7 +154,7 @@ export const ActionListCard = ({
 				`}
 			>
 				<button
-					title="Choisir l'action"
+					title={t("Choisir l'action")}
 					aria-pressed={actionChoices[dottedName]}
 					css={`
 						${hasRemainingQuestions && 'filter: grayscale(1)'}
@@ -191,7 +188,7 @@ export const ActionListCard = ({
 					<img src="/images/2714.svg" css="width: 3rem" />
 				</button>
 				<button
-					title="Rejeter l'action"
+					title={t("Rejeter l'action")}
 					onClick={(e) => {
 						dispatch(
 							setActionChoice(
@@ -218,9 +215,9 @@ export const ActionListCard = ({
 	)
 }
 
-export const ActionGameCard = ({ evaluation, total, rule, effort }) => {
+export const ActionGameCard = ({ evaluation, total, rule }) => {
 	const rules = useSelector((state) => state.rules),
-		{ nodeValue, dottedName, title, unit } = evaluation,
+		{ nodeValue, dottedName, title } = evaluation,
 		{ icônes: icons } = rule
 
 	const flatRule = rules[dottedName],
@@ -234,7 +231,7 @@ export const ActionGameCard = ({ evaluation, total, rule, effort }) => {
 				text-decoration: none;
 				width: 100%;
 			`}
-			to={'/actions/' + encodeRuleName(dottedName)}
+			to={'/actions/' + utils.encodeRuleName(dottedName)}
 		>
 			<div css={``}>
 				<h2>{title}</h2>
@@ -263,8 +260,7 @@ export const ActionValue = ({
 	dottedName,
 	engine,
 }) => {
-	const situation = useSelector(situationSelector),
-		evaluation = engine.evaluate(dottedName),
+	const evaluation = engine.evaluate(dottedName),
 		rawValue = evaluation.nodeValue
 	const correctedValue = correctValue({
 		nodeValue: rawValue,
@@ -274,6 +270,8 @@ export const ActionValue = ({
 		relativeValue = Math.round(100 * (correctedValue / total))
 
 	const sign = correctedValue > 0 ? '-' : '+'
+
+	const { t } = useTranslation()
 
 	return (
 		<div
@@ -290,9 +288,9 @@ export const ActionValue = ({
 			`}
 		>
 			{noFormula ? (
-				'Non chiffré'
+				t('Non chiffré')
 			) : disabled ? (
-				'Non applicable'
+				t('Non applicable')
 			) : (
 				<div>
 					<strong>

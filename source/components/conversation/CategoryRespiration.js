@@ -40,7 +40,7 @@ const sidebar = {
 
 export default ({ dismiss, questionCategory }) => {
 	const containerRef = useRef(null)
-	const { height, width } = useDimensions(containerRef)
+	const { width } = useDimensions(containerRef)
 
 	useKeypress('Enter', false, dismiss, 'keyup', [])
 

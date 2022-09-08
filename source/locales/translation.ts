@@ -2,9 +2,10 @@
 	This module contains all types and functions related to the translation.
 */
 
-export { Lang, LangInfos, getLangInfos }
+export { Lang, LangInfos, getLangInfos, defaultLang }
 
 enum Lang {
+	Default = 'Fr',
 	Fr = 'Fr',
 	En = 'En',
 }
@@ -14,6 +15,8 @@ type LangInfos = {
 	abrv: string
 	icon?: string
 }
+
+const defaultLang = Lang.Fr
 
 function getLangInfos(lang: Lang): LangInfos {
 	switch (lang) {

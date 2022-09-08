@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Trans } from 'react-i18next'
 
 import Tile from '../utils/Tile'
 
@@ -53,10 +54,12 @@ export default function DurationFigures(props) {
 							: '-'}
 						<Small>&nbsp;min</Small>
 					</Number>
-					<Label>en moyenne sur le site</Label>
+					<Label>
+						<Trans>en moyenne sur le site</Trans>
+					</Label>
 				</Tile.Content>
 			</TileWrapper>
-			{/* Firsly, we used to display average time spent on the /simulation/bilan test but figures seemed to be uncorrect. 
+			{/* Firsly, we used to display average time spent on the /simulation/bilan test but figures seemed to be uncorrect.
 			We decided to delete it until we find a better way to estimate the average time of simulation */}
 		</FigureWrapper>
 	)

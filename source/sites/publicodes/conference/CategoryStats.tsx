@@ -3,8 +3,7 @@ import { humanWeight } from '../HumanWeight'
 export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 	const values = Object.values(categories)
 			.flat()
-			.map(({ username, value }) => value),
-		min = Math.min(...values),
+			.map(({ value }) => value),
 		max = Math.max(...values),
 		humanMax = humanWeight(max, true)
 

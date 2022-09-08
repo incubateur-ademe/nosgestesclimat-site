@@ -1,4 +1,5 @@
 import React, { Suspense } from 'react'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 
 const ConferenceBar = React.lazy(() => import('./ConferenceBar'))
@@ -8,7 +9,13 @@ export default () => {
 	if (!conference) return null
 
 	return (
-		<Suspense fallback={<div>Chargement</div>}>
+		<Suspense
+			fallback={
+				<div>
+					<Trans>Chargement</Trans>
+				</div>
+			}
+		>
 			<ConferenceBar />
 		</Suspense>
 	)

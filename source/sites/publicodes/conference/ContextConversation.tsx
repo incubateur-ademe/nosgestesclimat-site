@@ -1,5 +1,5 @@
 import Engine from 'publicodes'
-import { createContext, useState, useEffect, useContext } from 'react'
+import { createContext, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import RuleInput from 'Components/conversation/RuleInput'
 import { getNextQuestions } from 'Components/utils/useNextQuestion'
@@ -143,7 +143,7 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 			`}
 		>
 			{questions.map((dottedName) => {
-				const { question, icônes } = engine.getRule(dottedName).rawNode
+				const { question } = engine.getRule(dottedName).rawNode
 				return (
 					<div
 						css={`

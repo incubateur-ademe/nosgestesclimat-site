@@ -1,11 +1,7 @@
 import emoji from 'react-easy-emoji'
 import SubCategoriesChart from './chart/SubCategoriesChart'
 import { CategoryLabel } from 'Components/conversation/UI'
-import {
-	extractCategories,
-	getSubcategories,
-	ruleFormula,
-} from '../../components/publicodesUtils'
+import { getSubcategories } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
 import { useSelector } from 'react-redux'
 import AnimatedTargetValue from '../../components/ui/AnimatedTargetValue'

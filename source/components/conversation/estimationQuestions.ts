@@ -1,6 +1,5 @@
 import { DottedName } from 'Rules'
 import KmEstimation from './estimate/KmEstimation'
-import { InputCommonProps } from './RuleInput'
 
 const estimationQuestions: Array<{
 	isApplicable: Function

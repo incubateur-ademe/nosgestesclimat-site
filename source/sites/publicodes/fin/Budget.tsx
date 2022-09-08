@@ -1,20 +1,14 @@
-import ShareButton from 'Components/ShareButton'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 import Meta from 'Components/utils/Meta'
-import { AnimatePresence, motion, useSpring } from 'framer-motion'
-import { utils } from 'publicodes'
-import { default as React, useContext, useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import { motion, useSpring } from 'framer-motion'
+import { useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import tinygradient from 'tinygradient'
 import { DocumentationEndButton, generateImageLink } from '.'
-import Chart from '../chart'
-import DefaultFootprint from '../DefaultFootprint'
-import BallonGES from './ballonGES.svg'
 import { ActionButton, IntegratorActionButton } from './Buttons'
 import ClimateTargetChart from './ClimateTargetChart'
 import FinShareButton from './FinShareButton'
-const { encodeRuleName } = utils
 const gradient = tinygradient([
 		'#78e08f',
 		'#e1d738',
@@ -56,12 +50,12 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
 		}),
-		integerValue = roundedValue.split(',')[0],
-		decimalValue = roundedValue.split(',')[1],
 		shareImage = generateImageLink(window.location)
 
 	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
 		useContext(IframeOptionsContext)
+
+	const { t } = useTranslation()
 
 	return (
 		<div>
@@ -133,7 +127,9 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 					</div>
 				)}
 
-				{integratorActionText && <ActionButton text="Réduire mon empreinte" />}
+				{integratorActionText && (
+					<ActionButton text={t('Réduire mon empreinte')} />
+				)}
 				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>
 		</div>

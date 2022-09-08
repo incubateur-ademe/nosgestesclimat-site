@@ -3,8 +3,8 @@ import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
 import News from 'Pages/News'
 import React, { Suspense, useContext, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
-import { Redirect, useLocation } from 'react-router'
+import { Trans, useTranslation } from 'react-i18next'
+import { useLocation } from 'react-router'
 import { Route, Routes } from 'react-router-dom'
 import Provider from '../../Provider'
 import {
@@ -49,7 +49,6 @@ if (NODE_ENV === 'production') {
 }
 
 export default function Root({}) {
-	const { language } = useTranslation().i18n
 	const paths = sitePaths()
 
 	const iframeShareData = new URLSearchParams(
@@ -142,6 +141,7 @@ const Main = ({}) => {
 export const Loading = () => <div>Chargement</div>
 
 const Router = ({}) => {
+	const { t } = useTranslation()
 	return (
 		<Routes>
 			<Route path="/" element={<Landing />} />
@@ -164,7 +164,7 @@ const Router = ({}) => {
 			/>
 			<Route path="/fin/*" element={<Fin />} />
 			<Route path="/personas" element={<Personas />} />
-			<Route path="/actions/*" element={<Actions />} />
+			<Route path="/actions/*" element={<Actions t={t} />} />
 			<Route
 				path="/contribuer/*"
 				element={
@@ -173,21 +173,33 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path={encodeURIComponent('à-propos')} element={<About />} />
+			<Route path={encodeURIComponent('à-propos')} element={<About t={t} />} />
 			<Route
 				path="/cgu"
 				element={
-					<Suspense fallback={<div>Chargement</div>}>
-						<CGULazy />
+					<Suspense
+						fallback={
+							<div>
+								<Trans>Chargement</Trans>
+							</div>
+						}
+					>
+						<CGULazy t={t} />
 					</Suspense>
 				}
 			/>
-			<Route path="/partenaires" element={<Diffuser />} />
-			<Route path="/diffuser" element={<Diffuser />} />
+			<Route path="/partenaires" element={<Diffuser t={t} />} />
+			<Route path="/diffuser" element={<Diffuser t={t} />} />
 			<Route
 				path={encodeURIComponent('vie-privée')}
 				element={
-					<Suspense fallback={<div>Chargement</div>}>
+					<Suspense
+						fallback={
+							<div>
+								<Trans>Chargement</Trans>
+							</div>
+						}
+					>
 						<PrivacyLazy />
 					</Suspense>
 				}
@@ -249,7 +261,7 @@ const Router = ({}) => {
 				path="/accessibilite"
 				element={
 					<Suspense fallback={<Loading />}>
-						<AccessibilityLazy />
+						<AccessibilityLazy t={t} />
 					</Suspense>
 				}
 			/>

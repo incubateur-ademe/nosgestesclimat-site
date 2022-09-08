@@ -31,18 +31,35 @@ try {
 }
 
 console.log('Adding missing entries...')
+
+const splitRegexp = /(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/
+const translationIsTheKey = (key) => 1 === key.split(splitRegexp).length
 Object.entries(analysedFrResourceInDotNotation)
 	.map(([key, value]) => [
 		key,
-		value === 'NO_TRANSLATION' && key.split('.').length === 1 ? key : value,
+		value === 'NO_TRANSLATION' && translationIsTheKey(key) ? key : value,
 	])
-	.filter(([key, _]) => !ramda.hasPath(key.split('.'), oldFrResource))
+	.filter(
+		([key, value]) =>
+			!ramda.pathEq(key.split(splitRegexp), value, oldFrResource)
+	)
 	.forEach(([key, value]) => {
-		let keys = key.split('.')
-		console.log(` + new entry: '${key}'`)
-		if (1 === keys.length) {
-			oldFrResource[keys[0]] = value
-		} else if (!ramda.hasPath(keys, oldFrResource)) {
+		const keys = key.split(splitRegexp)
+		const isMissingTranslation =
+			!ramda.hasPath(keys, oldFrResource) && value === 'NO_TRANSLATION'
+
+		if (!ramda.hasPath(keys, oldFrResource) || value !== 'NO_TRANSLATION') {
+			console.log(
+				`  ${
+					isMissingTranslation
+						? utils.colors.fgYellow + '~'
+						: utils.colors.fgGreen + '+'
+				}${utils.colors.reset} '${key}': ${
+					isMissingTranslation
+						? utils.colors.fgYellow + 'missing translation'
+						: utils.colors.fgGreen + 'translation found'
+				} ${utils.colors.reset}`
+			)
 			oldFrResource = ramda.assocPath(keys, value, oldFrResource)
 		}
 	})

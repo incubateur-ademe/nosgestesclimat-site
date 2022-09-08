@@ -21,7 +21,6 @@ import './AnswerList.css'
 import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
 export default function AnswerList() {
-	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
 	const foldedQuestionNames = useSelector(answeredQuestionsSelector)
@@ -56,16 +55,6 @@ export default function AnswerList() {
 					data: { situation, foldedSteps: foldedQuestionNames },
 				})
 			)
-			/* MARCHE PAS : 
-			console.log(
-				Object.fromEntries(
-					Object.entries(situation).map(([key, value]) => [
-						key,
-						serializeEvaluation(value),
-					])
-				)
-			)
-			*/
 			e.preventDefault()
 			return false
 		}

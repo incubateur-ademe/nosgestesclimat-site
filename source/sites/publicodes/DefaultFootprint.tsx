@@ -1,4 +1,4 @@
-import Engine, { formatValue } from 'publicodes'
+import Engine from 'publicodes'
 import { useMemo } from 'react'
 import { useSelector } from 'react-redux'
 

@@ -2,11 +2,11 @@ import { Markdown } from 'Components/utils/markdown'
 import content from 'raw-loader!./accessibility.md'
 import Meta from '../../../components/utils/Meta'
 
-export default () => (
+export default ({ t }) => (
 	<section className="ui__ container">
 		<Meta
-			title="Accessibilité"
-			description="Le site Nos Gestes Climat est partiellement conforme avec le référentiel général d’amélioration de l’accessibilité, RGAA version 4.1"
+			title={t('Accessibilité')}
+			description={t('meta.pages.accessibility.description')}
 		/>
 		<Markdown children={content} />
 	</section>

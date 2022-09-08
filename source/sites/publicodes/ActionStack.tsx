@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import React, { useState, Children } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'

@@ -1,8 +1,4 @@
-import {
-	goToQuestion,
-	updateSituation,
-	validateStepWithValue,
-} from 'Actions/actions'
+import { goToQuestion, updateSituation } from 'Actions/actions'
 import RuleInput, {
 	isMosaic,
 	RuleInputProps,
@@ -55,7 +51,6 @@ export default function Conversation({
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	const tracker = useContext(TrackerContext)
 	const objectifs = useSelector(objectifsSelector)
-	const rawRules = useSelector((state) => state.rules)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
 
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue

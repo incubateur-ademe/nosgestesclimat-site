@@ -1,16 +1,12 @@
 import { splitName } from 'Components/publicodesUtils'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { utils } from 'publicodes'
-import React, { useContext, useState } from 'react'
+import { useContext, useState } from 'react'
 import { useSelector } from 'react-redux'
 import {
 	correctValue,
 	extractCategoriesNamespaces,
 } from '../../components/publicodesUtils'
-import {
-	answeredQuestionsSelector,
-	situationSelector,
-} from '../../selectors/simulationSelectors'
+import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
 import ActionsOptionsBar from './ActionsOptionsBar'
 import ActionTutorial from './ActionTutorial'
@@ -21,21 +17,17 @@ import { humanWeight } from './HumanWeight'
 import MetricFilters from './MetricFilters'
 import SimulationMissing from './SimulationMissing'
 
-const { encodeRuleName, decodeRuleName } = utils
-
 export default ({ display }) => {
 	let metric = useQuery().get('métrique')
 	let category = useQuery().get('catégorie')
 
 	const rules = useSelector((state) => state.rules)
-	const situation = useSelector(situationSelector),
-		answeredQuestions = useSelector(answeredQuestionsSelector)
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	const flatActions = metric ? rules[`actions ${metric}`] : rules['actions']
 
 	const [radical, setRadical] = useState(true)
 
-	const simulation = useSelector((state) => state.simulation)
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const objectifs = ['bilan', ...flatActions.formule.somme]
@@ -120,7 +112,7 @@ export default ({ display }) => {
 					radical,
 				}}
 			/>
-			{/* Désactivation de cette fonctionnalité pas terminée 
+			{/* Désactivation de cette fonctionnalité pas terminée
 			 finalActions.length ? (
 				<ActionStack
 					key={category}
@@ -138,7 +130,7 @@ export default ({ display }) => {
 						{display === 'list' ? 'Vue jeu de cartes (en dev)' : 'Vue liste'}
 					</button>
 				</Link>
-			
+
 			*/}
 		</div>
 	)

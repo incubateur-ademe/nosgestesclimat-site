@@ -1,6 +1,6 @@
-import { range } from '../../../utils'
 import { freqList, motifList } from './dataHelp'
 import NumberFormat from 'react-number-format'
+import { useTranslation } from 'react-i18next'
 
 export default function EditableRow({
 	editFormData,
@@ -18,6 +18,8 @@ export default function EditableRow({
 
 		setEditFormData(newFormData)
 	}
+
+	const { t } = useTranslation()
 
 	return (
 		<tr
@@ -48,7 +50,7 @@ export default function EditableRow({
 					name="label"
 					type="text"
 					className="ui__"
-					placeholder="Trajet (Optionnel)"
+					placeholder={t('Trajet (Optionnel)')}
 					value={editFormData.label}
 					onChange={handleEditFormChange}
 				/>
@@ -100,7 +102,7 @@ export default function EditableRow({
 					inputMode="decimal"
 					allowNegative={false}
 					required
-					placeholder="Nombre de personnes"
+					placeholder={t('Nombre de personnes')}
 					value={editFormData.personnes}
 					onChange={handleEditFormChange}
 				/>
