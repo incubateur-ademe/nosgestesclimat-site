@@ -134,7 +134,7 @@ const Main = ({}) => {
 						<Logo />
 					</nav>
 				)}
-				<LocalisationMessage />
+				{!isHomePage && !isTuto && <LocalisationMessage />}
 				<Router />
 			</main>
 		</div>
