@@ -81,35 +81,7 @@ Nous privilégions pour l'instant une écoute attentive des retours utilisateurs
 
 ### Traduction 👽
 
-> Le site n'est pas encore traduit, mais nous avons hâte de nous y mettre. Surtout que l'infrastructure de traduction est déjà embarquée depuis le fork de betagouv/mon-entreprise, expliquée ci-dessous :
-
-Le site est disponible en français, et en anglais sur https://mycompanyinfrance.com
-
-Les traductions se trouvent dans le répertoire `source/locales`.
-
-La librairie utilisée pour la traduction de l'UI est
-[react-i18next](https://react.i18next.com/).
-
-Lorsque l'on introduit une nouvelle chaîne de caractère dans l'UI il faut
-systématiquement penser à gérer sa traduction, via un composant `<Trans>`, ou
-via la fonction `t`
-
-Le circle-ci fait une analyse statique du code pour repérer les chaînes non
-traduites, dans le moteur et l'UI :
-
-```sh
-$ yarn run i18n:rules:check
-$ yarn run i18n:ui:check
-```
-
-Pour traduire automatiquement les chaînes manquantes via l'api Deepl :
-
-```sh
-$ yarn run i18n:rules:translate
-$ yarn run i18n:ui:translate
-```
-
-N'oubliez pas de vérifier sur le diff que rien n'est choquant.
+Les informations sur la traductions sont disponible [ici](./docs/translating.md).
 
 ### CI/CD
 
