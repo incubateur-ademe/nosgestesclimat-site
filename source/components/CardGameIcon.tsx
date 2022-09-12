@@ -66,27 +66,29 @@ export default ({ number = 0 }) => (
 			y={26.167}
 			ry={13.575}
 		/>
-		<text
-			xmlSpace="preserve"
-			style={{
-				fontSize: '100',
-				lineHeight: 1.25,
-				letterSpacing: 0,
-				strokeWidth: 0.385599,
-				fill: 'white',
-				fontWeight: 'bold',
-			}}
-		>
-			<tspan
+		{number > 0 && (
+			<text
+				xmlSpace="preserve"
 				style={{
-					fontSize: '102.827px',
+					fontSize: '100',
+					lineHeight: 1.25,
+					letterSpacing: 0,
 					strokeWidth: 0.385599,
+					fill: 'white',
+					fontWeight: 'bold',
 				}}
-				x={100}
-				y={135}
 			>
-				{number}
-			</tspan>
-		</text>
+				<tspan
+					style={{
+						fontSize: '102.827px',
+						strokeWidth: 0.385599,
+					}}
+					x={100}
+					y={135}
+				>
+					{number}
+				</tspan>
+			</text>
+		)}
 	</svg>
 )
