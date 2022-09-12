@@ -40,9 +40,6 @@
 			<%= htmlWebpackPlugin.options.title %>
 		</title>
 
-		<% for (var css in htmlWebpackPlugin.files.css) { %>
-		<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
-		<% } %>
 		<style>
 			html[data-useragent*='MSIE'] #outdated-browser,
 			html[data-useragent*='Safari'][data-useragent*='Version/8']
@@ -74,6 +71,11 @@
 			var b = document.documentElement
 			b.setAttribute('data-useragent', navigator.userAgent)
 		</script>
+		<script>
+				if(typeof navigator != 'undefined' && /prerender/i.test(navigator.userAgent)) {
+
+										SC_DISABLE_SPEEDY = true
+}</script>
 
 		<!-- APP  -->
 		<div id="js"></div>

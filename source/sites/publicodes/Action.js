@@ -112,7 +112,6 @@ export default ({}) => {
 				<>
 					<h3>Personnalisez cette estimation</h3>
 					<Simulation
-						noFeedback
 						showConversation
 						customEnd={<div />}
 						targets={<div />}

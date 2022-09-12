@@ -66,7 +66,6 @@ module.exports.styleLoader = (styleLoader) => ({
 		{
 			loader: 'css-loader',
 			options: {
-				sourceMap: true,
 				importLoaders: 1,
 			},
 		},

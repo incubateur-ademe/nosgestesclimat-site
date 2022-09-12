@@ -67,7 +67,6 @@ const Simulateur = (props) => {
 			)}
 			{tutorials.testIntro ? (
 				<Simulation
-					noFeedback
 					orderByCategories={categories}
 					customEnd={
 						isMainSimulation ? (
