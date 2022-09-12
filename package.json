@@ -126,7 +126,8 @@
 	},
 	"resolutions": {
 		"publicodes-react/react": "^18.1.0",
-		"publicodes-react/react-dom": "^18.1.0"
+		"publicodes-react/react-dom": "^18.1.0",
+		"styled-components": "^5"
 	},
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
