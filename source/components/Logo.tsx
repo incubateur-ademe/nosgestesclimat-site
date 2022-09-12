@@ -19,7 +19,13 @@ export default ({ showText, size = 'large' }) => (
 			}
 		`}
 	>
-		<img src="/images/petit-logo.png" width="117" height="117" />
+		<img
+			src="/images/petit-logo.png"
+			srcSet="/images/petit-logo@2x.png 2x,
+							/images/petit-logo@3x.png 3x"
+			width="75"
+			height="75"
+		/>
 		{showText && (
 			<div
 				css={`
