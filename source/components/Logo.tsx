@@ -30,12 +30,12 @@ export default ({ showText, size = 'large' }) => (
 			<div
 				css={`
 					font-weight: 900;
-					line-height: ${{ large: '1.2rem', medium: '.95rem', small: '1rem' }[
+					line-height: ${{ large: '1.25rem', medium: '1.05rem', small: '1rem' }[
 						size
 					]};
 					color: var(--darkColor);
 					text-transform: uppercase;
-					font-size: ${{ large: '130%', medium: '105%', small: '60%' }[size]};
+					font-size: ${{ large: '140%', medium: '113%', small: '60%' }[size]};
 					margin-left: 0.2rem;
 				`}
 			>
