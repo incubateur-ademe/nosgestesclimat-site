@@ -3,8 +3,6 @@ import Conversation, {
 } from 'Components/conversation/Conversation'
 import * as animate from 'Components/ui/animate'
 import React from 'react'
-import { Trans } from 'react-i18next'
-import LinkToForm from './Feedback/LinkToForm'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
