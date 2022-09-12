@@ -17,6 +17,7 @@ import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvid
 import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
+import { WithEngine } from '../../RulesProvider'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -209,7 +210,9 @@ const slides = [
 				personnalisera ce résultat dans la barre de score.
 			</p>
 			<div css="margin: 1rem 0">
-				<ScoreBar demoMode />
+				<WithEngine>
+					<ScoreBar demoMode />
+				</WithEngine>
 			</div>
 			<blockquote>
 				{emoji('✨')} Nouveau ! Visualisez également votre consommation de{' '}
@@ -287,7 +290,9 @@ const slides = [
 					margin: 0.6rem 0 1rem;
 				`}
 			>
-				<Chart demoMode />
+				<WithEngine>
+					<Chart demoMode />
+				</WithEngine>
 			</div>
 			<p>
 				L'empreinte de notre consommation individuelle, c'est la somme de toutes

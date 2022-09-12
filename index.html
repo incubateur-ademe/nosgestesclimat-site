@@ -53,13 +53,6 @@
 				display: block !important;
 			}
 
-			html[data-useragent*='MSIE'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/8'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/7'] #loading,
-			html[data-useragent*='Trident'] #loading {
-				display: none !important;
-			}
-
 			html[data-useragent*='MSIE'] #js,
 			html[data-useragent*='Safari'][data-useragent*='Version/8'] #js,
 			html[data-useragent*='Safari'][data-useragent*='Version/7'] #js,
@@ -67,34 +60,13 @@
 				display: none !important;
 			}
 
-			/* Prevent FOUC effect */
-			#js {
-				opacity: 0;
-			}
 
-			/* CSS Loader */
-
-			#loading {
-				animation: appear 0.6s;
-				width: 100%;
-			}
-			#loading > img {
-				width: 8rem;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				  transform: translate(-50%, -50%);
-				
-			}
 
 		</style>
 		<meta name="theme-color" content="#5758BB" />
 	</head>
 
 	<body>
-		<div id="loading">
-				<img src="images/nosgestesclimat.png" alt="Chargement de Nos Gestes Climat"/>
-		</div>
 
 		<!-- USER AGENT DATA ATTRIBUTE  -->
 

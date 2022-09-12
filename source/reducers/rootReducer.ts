@@ -233,6 +233,16 @@ function thenRedirectTo(state = null, { type, to }) {
 		return to
 	} else return state
 }
+type EngineState = 'requested' | 'ready'
+type EngineAction = {
+	type: string
+	to: EngineState
+}
+function engineState(state = null, { type, to }: EngineAction) {
+	if (type === 'SET_ENGINE') {
+		return to
+	} else return state
+}
 
 const defaultToNull = (arg) => arg ?? null
 
@@ -253,6 +263,7 @@ const mainReducer = (state: any, action: Action) =>
 		storedTrajets,
 		thenRedirectTo,
 		tracking,
+		engineState,
 	})(state, action)
 
 export default reduceReducers<RootState>(
