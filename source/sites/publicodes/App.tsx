@@ -17,7 +17,6 @@ import Actions from './Actions'
 import Diffuser from './pages/Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
-import Logo from './Logo'
 import Navigation from './Navigation'
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 import Personas from './Personas.tsx'
@@ -45,6 +44,7 @@ const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
 const News = React.lazy(() => import('Pages/News'))
+import Logo from 'Components/Logo'
 
 let tracker = devTracker
 if (NODE_ENV === 'production') {
@@ -122,20 +122,7 @@ const Main = ({}) => {
 					}
 				`}
 			>
-				{isHomePage && (
-					<nav
-						css={`
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							text-decoration: none;
-							font-size: 170%;
-							margin: 1rem auto;
-						`}
-					>
-						<Logo />
-					</nav>
-				)}
+				{isHomePage && <Logo showText />}
 				<Router />
 			</main>
 		</div>

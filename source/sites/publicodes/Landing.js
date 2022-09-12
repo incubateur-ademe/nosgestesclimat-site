@@ -1,6 +1,7 @@
+import React, { useState } from 'react'
 import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
-import { useContext } from 'react'
+import { useContext, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
@@ -11,8 +12,12 @@ import DocumentationButton from './DocumentationButton'
 import Illustration from 'Images/ecolab-climat-dessin.svg'
 import { useProfileData } from './Profil'
 
+const SurveyModal = React.lazy(() => import('./SurveyModal'))
+
 export default () => {
 	const tracker = useContext(TrackerContext)
+	const [showSurveyModal, setShowSurveyModal] = useState(false)
+
 	return (
 		<div
 			css={`
@@ -56,6 +61,20 @@ export default () => {
 				`}
 			/>
 			<div css="margin: 1rem 0">
+				<button
+					className="ui__ link-button"
+					onClick={() => setShowSurveyModal(true)}
+				>
+					Participez à notre enquête utilisateurs !
+				</button>
+				{showSurveyModal && (
+					<Suspense fallback={''}>
+						<SurveyModal
+							showSurveyModal={showSurveyModal}
+							setShowSurveyModal={setShowSurveyModal}
+						/>
+					</Suspense>
+				)}
 				<div>
 					<Link
 						to="/simulateur/bilan"
