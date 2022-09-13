@@ -33,7 +33,7 @@ export default () => {
 					padding-bottom: 1rem;
 				`}
 			>
-				{emoji('📍')} Pays de simulation
+				{emoji('📍')} Région de simulation
 			</h2>
 			{localisation != null ? (
 				supported ? (
