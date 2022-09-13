@@ -10,6 +10,24 @@ const ramda = require('ramda')
 const child_process = require('child_process')
 const utils = require('./utils')
 
+const red = (str) => utils.withStyle(utils.colors.fgRed, str)
+const green = (str) => utils.withStyle(utils.colors.fgGreen, str)
+const yellow = (str) => utils.withStyle(utils.colors.fgYellow, str)
+
+const printResult = (prefix, array, style) => {
+	if (array.length > 0) {
+		const entries = array.length > 10 ? array.slice(0, 10) : array
+
+		console.log(prefix, style(array.length), `translations:`)
+		entries.sort().forEach((key) => {
+			console.log(style(`    ${key}`))
+		})
+		if (array.length > 10) {
+			console.log(style(`    ...`))
+		}
+	}
+}
+
 console.log(`Static analysis of the source code...`)
 try {
 	if (fs.existsSync(utils.paths.staticAnalysisFrRes)) {
@@ -34,6 +52,13 @@ console.log('Adding missing entries...')
 
 const splitRegexp = /(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/
 const translationIsTheKey = (key) => 1 === key.split(splitRegexp).length
+
+let result = {
+	addedTranslations: [],
+	missingTranslations: [],
+	updatedTranslations: [],
+}
+
 Object.entries(analysedFrResourceInDotNotation)
 	.map(([key, value]) => [
 		key,
@@ -45,24 +70,22 @@ Object.entries(analysedFrResourceInDotNotation)
 	)
 	.forEach(([key, value]) => {
 		const keys = key.split(splitRegexp)
-		const isMissingTranslation =
-			!ramda.hasPath(keys, oldFrResource) && value === 'NO_TRANSLATION'
 
 		if (!ramda.hasPath(keys, oldFrResource) || value !== 'NO_TRANSLATION') {
-			console.log(
-				`  ${
-					isMissingTranslation
-						? utils.colors.fgYellow + '~'
-						: utils.colors.fgGreen + '+'
-				}${utils.colors.reset} '${key}': ${
-					isMissingTranslation
-						? utils.colors.fgYellow + 'missing translation'
-						: utils.colors.fgGreen + 'translation found'
-				} ${utils.colors.reset}`
-			)
+			if (value === 'NO_TRANSLATION') {
+				result.missingTranslations.push(key)
+			} else if (ramda.hasPath(keys, oldFrResource)) {
+				result.updatedTranslations.push(key)
+			} else {
+				result.addedTranslations.push(key)
+			}
 			oldFrResource = ramda.assocPath(keys, value, oldFrResource)
 		}
 	})
+
+printResult(green('+') + ' Added', result.addedTranslations, green)
+printResult(yellow('~') + ' Updated', result.updatedTranslations, yellow)
+printResult(red('-') + ' Missing', result.missingTranslations, red)
 
 console.log(`Writting resources in ${utils.paths.uiTranslationResource.fr}...`)
 try {
