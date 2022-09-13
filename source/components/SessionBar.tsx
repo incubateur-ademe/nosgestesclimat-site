@@ -134,6 +134,7 @@ export default function SessionBar({
 
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
+	const dispatch = useDispatch()
 
 	const localisation = useLocalisation()
 	const flag = getSupportedFlag(localisation)

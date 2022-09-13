@@ -1,5 +1,8 @@
 import IllustratedMessage from '../ui/IllustratedMessage'
-import useLocalisation, { getFlagImgSrc } from './useLocalisation'
+import useLocalisation, {
+	getFlagImgSrc,
+	getSupportedFlag,
+} from './useLocalisation'
 import supportedCountries from './supportedCountries.yaml'
 import { Link } from 'react-router-dom'
 import { usePersistingState } from '../utils/persistState'
@@ -15,20 +18,21 @@ export default () => {
 		(c) => c.code === localisation.country.code
 	)
 	if (!supported) return null
-	const { code, gentilé } = supported
+	const { code, gentilé, nom } = supported
 	if (code === 'FR') return null
 	if (messagesRead.includes(code)) return null
+	const flag = getSupportedFlag(localisation)
 
 	return (
 		<IllustratedMessage
 			width="90%"
 			direction="row"
 			backgroundcolor="#fff8d3"
-			image={getFlagImgSrc(code)}
+			image={flag}
 			message={
 				<div>
 					<p>
-						Vous utilisez la version {gentilé} du test.
+						Vous utilisez la version {gentilé || nom} du test.
 						{code !== 'FR' && (
 							<span> Elle est actuellement en version beta.</span>
 						)}{' '}

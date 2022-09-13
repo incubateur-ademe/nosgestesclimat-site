@@ -78,15 +78,15 @@ export default () => {
 			<details>
 				<summary>Choisir un autre pays</summary>
 				<ul>
-					{supportedCountries.map(({ name, code, PR }) => (
+					{supportedCountries.map(({ nom, code, PR }) => (
 						<li
 							key={code}
 							onClick={() => {
-								dispatch(setLocalisation({ country: { name, code } }))
+								dispatch(setLocalisation({ country: { name: nom, code } }))
 								setRead([])
 							}}
 						>
-							<button>{capitalise0(name)}</button>
+							<button>{capitalise0(nom)}</button>
 						</li>
 					))}
 				</ul>
