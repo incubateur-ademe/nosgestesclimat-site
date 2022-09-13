@@ -5,6 +5,7 @@ const {
 	default: common,
 } = require('./webpack.common.js')
 const webpack = require('webpack')
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -22,6 +23,9 @@ module.exports = {
 	devtool: 'source-map',
 	output: {
 		...common.output,
+	},
+	optimization: {
+		minimizer: [`...`, new CssMinimizerPlugin()],
 	},
 	plugins: [
 		...(common.plugins || []),

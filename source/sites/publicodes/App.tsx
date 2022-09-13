@@ -1,7 +1,6 @@
 import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
-import News from 'Pages/News'
 import React, { Suspense, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Redirect, useLocation } from 'react-router'
@@ -18,7 +17,6 @@ import Actions from './Actions'
 import Diffuser from './pages/Diffuser'
 import Fin from './fin'
 import Landing from './Landing'
-import Logo from './Logo'
 import Navigation from './Navigation'
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 import Personas from './Personas.tsx'
@@ -27,6 +25,8 @@ import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
+const TutorialLazy = React.lazy(() => import('./Tutorial'))
+import { WithEngine } from '../../RulesProvider'
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
@@ -43,6 +43,8 @@ const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
+const News = React.lazy(() => import('Pages/News'))
+import Logo from 'Components/Logo'
 
 let tracker = devTracker
 if (NODE_ENV === 'production') {
@@ -120,21 +122,8 @@ const Main = ({}) => {
 					}
 				`}
 			>
-				{isHomePage && (
-					<nav
-						css={`
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							text-decoration: none;
-							font-size: 170%;
-							margin: 1rem auto;
-						`}
-					>
-						<Logo />
-					</nav>
-				)}
 				{!isHomePage && !isTuto && <LocalisationMessage />}
+				{isHomePage && <Logo showText />}
 				<Router />
 			</main>
 		</div>
@@ -151,11 +140,20 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<div>Chargement</div>}>
-						<Documentation />
+						<WithEngine>
+							<Documentation />
+						</WithEngine>
 					</Suspense>
 				}
 			/>
-			<Route path="simulateur/*" element={<Simulateur />} />
+			<Route
+				path="simulateur/*"
+				element={
+					<WithEngine>
+						<Simulateur />
+					</WithEngine>
+				}
+			/>
 			<Route
 				path="/stats"
 				element={
@@ -164,9 +162,38 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path="/fin/*" element={<Fin />} />
-			<Route path="/personas" element={<Personas />} />
-			<Route path="/actions/*" element={<Actions />} />
+			<Route
+				path="/fin/*"
+				element={
+					<WithEngine>
+						<Fin />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/personas"
+				element={
+					<WithEngine>
+						<Personas />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/actions/*"
+				element={
+					<WithEngine>
+						<Actions />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/profil"
+				element={
+					<WithEngine>
+						<Profil />
+					</WithEngine>
+				}
+			/>
 			<Route
 				path="/contribuer/*"
 				element={
@@ -196,9 +223,12 @@ const Router = ({}) => {
 			/>
 			<Route
 				path={`${encodeURIComponent('nouveautés')}/*`}
-				element={<News />}
+				element={
+					<Suspense fallback={<Loading />}>
+						<News />
+					</Suspense>
+				}
 			/>
-			<Route path="/profil" element={<Profil />} />
 			<Route
 				path="/guide"
 				element={
@@ -255,7 +285,14 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path="/tutoriel" element={<Tutorial />} />
+			<Route
+				path="/tutoriel"
+				element={
+					<Suspense fallback={<Loading />}>
+						<TutorialLazy />
+					</Suspense>
+				}
+			/>
 			<Route path="*" element={<Route404 />} />
 		</Routes>
 	)
