@@ -1,40 +1,25 @@
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { usePersistingState } from './utils/persistState'
-import useLocalisation from 'Components/localisation/useLocalisation'
 import supportedCountries from 'Components/localisation/supportedCountries.yaml'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import useLocalStorageState from 'use-local-storage-state'
 
 export default () => {
+	const dispatch = useDispatch()
 	const urlParams = new URLSearchParams(window.location.search)
-	const localisation = useSelector((state) => state.localisation)
-
-	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
-		'PR',
-		undefined
-	)
 
 	const searchPR = urlParams.get('PR')
 
-	const localisationPR = supportedCountries.find(
-		(country) => country.code === localisation?.country.code
-	)?.PR
-
-	console.log('PR', localisationPR, supportedCountries, localisation)
+	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
+	const setPullRequestNumber = (number) =>
+		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })
 
 	useEffect(() => {
-		// if pullRequestNumber is undefined, then this hook hasn't been triggered yet
-		if (searchPR != null) {
-			// setting should be triggered by an explicit ?PR=, not the absence of it when navigating
+		if (pullRequestNumber) return
+		if (searchPR) {
 			setPullRequestNumber(searchPR)
-		} else if (localisationPR !== undefined) {
-			setPullRequestNumber(localisationPR)
-		} else {
-			if (!pullRequestNumber || localisationPR === null) {
-				// No PR should be loaded, we know that now
-				setPullRequestNumber(null)
-			}
+			return
 		}
-	}, [searchPR, localisationPR, pullRequestNumber])
+	}, [searchPR, pullRequestNumber])
 
 	const deployURL = `https://${
 		pullRequestNumber ? `deploy-preview-${pullRequestNumber}--` : ''

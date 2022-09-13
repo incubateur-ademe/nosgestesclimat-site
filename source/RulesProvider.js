@@ -38,6 +38,7 @@ export default ({ children }) => {
 
 	useEffect(() => {
 		if (!branchData.loaded) return
+		console.log(branchData)
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			// Rules are stored in nested yaml files
 			const req = require.context(

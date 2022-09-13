@@ -116,6 +116,7 @@
 		"styled-components": "^5.3.5",
 		"tinygradient": "^1.1.5",
 		"twemoji": "^14.0.2",
+		"use-local-storage-state": "^18.1.1",
 		"uuid": "^8.3.2",
 		"webpack-dev-server": "^4.9.3",
 		"y-webrtc": "^10.2.3",

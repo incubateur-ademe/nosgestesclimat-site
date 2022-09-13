@@ -253,6 +253,11 @@ function localisation(state = null, { type, localisationData }) {
 		return null
 	} else return state
 }
+function pullRequestNumber(state = null, { type, number }) {
+	if (type === 'SET_PULL_REQUEST_NUMBER') {
+		return number
+	} else return state
+}
 
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
@@ -272,6 +277,7 @@ const mainReducer = (state: any, action: Action) =>
 		thenRedirectTo,
 		tracking,
 		localisation,
+		pullRequestNumber,
 		engineState,
 	})(state, action)
 

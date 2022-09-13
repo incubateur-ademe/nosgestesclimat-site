@@ -1,18 +1,11 @@
-import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
-import useLocalisation, {
-	getFlagImgSrc,
-} from 'Components/localisation/useLocalisation'
+import { loadPreviousSimulation } from 'Actions/actions'
+import useLocalisation from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
-import { useEngine } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, Navigate, useLocation, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	answeredQuestionsSelector,
-	objectifsSelector,
-} from 'Selectors/simulationSelectors'
+import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { resetLocalisation } from '../actions/actions'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
@@ -138,7 +131,6 @@ export default function SessionBar({
 
 	const localisation = useLocalisation()
 	const flag = getSupportedFlag(localisation)
-	console.log(flag)
 
 	const location = useLocation(),
 		path = location.pathname
@@ -156,10 +148,8 @@ export default function SessionBar({
 	const persona = useSelector((state) => state.simulation?.persona)
 
 	const [searchParams, setSearchParams] = useSearchParams()
-	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
-		'PR',
-		undefined
-	)
+
+	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
 
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 
@@ -271,7 +261,7 @@ export default function SessionBar({
 						setSearchParams(omit(['PR'], searchParams))
 						dispatch(resetLocalisation())
 						chooseIp(undefined)
-						setPullRequestNumber(null)
+						dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number: null })
 					}}
 				>
 					<img

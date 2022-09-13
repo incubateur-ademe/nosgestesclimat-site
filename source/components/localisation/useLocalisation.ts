@@ -70,7 +70,6 @@ export const getCountryNameInFrench = (code) => {
 }
 
 export const getSupportedFlag = (localisation) => {
-	console.log(localisation)
 	if (!localisation) return
 
 	const supported = supportedCountries.find(

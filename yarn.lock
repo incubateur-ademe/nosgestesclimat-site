@@ -7577,7 +7577,7 @@ style-value-types@5.0.0:
     hey-listen "^1.0.8"
     tslib "^2.1.0"
 
-styled-components@^5.1.0, styled-components@^5.3.5:
+styled-components@^5, styled-components@^5.1.0, styled-components@^5.3.5:
   version "5.3.5"
   resolved "https://registry.yarnpkg.com/styled-components/-/styled-components-5.3.5.tgz#a750a398d01f1ca73af16a241dec3da6deae5ec4"
   integrity sha512-ndETJ9RKaaL6q41B69WudeqLzOpY1A/ET/glXkNZ2T7dPjPqpPCXXQjDFYZWwNnE5co0wX+gTCqx9mfxTmSIPg==
@@ -8051,6 +8051,11 @@ url-loader@^4.1.0:
     loader-utils "^2.0.0"
     mime-types "^2.1.27"
     schema-utils "^3.0.0"
+
+use-local-storage-state@^18.1.1:
+  version "18.1.1"
+  resolved "https://registry.yarnpkg.com/use-local-storage-state/-/use-local-storage-state-18.1.1.tgz#40e535aebed7770258e0a3a7b6923a86d9c0c52f"
+  integrity sha512-09bl6q3mkSlkEt8KeBPCmdPEWEojWYF70Qbz+7wkfQX1feaFITM9m84+h0Jr6Cnf/IvpahkFh7UbX2VNN3ioTQ==
 
 use-sync-external-store@^1.0.0:
   version "1.2.0"

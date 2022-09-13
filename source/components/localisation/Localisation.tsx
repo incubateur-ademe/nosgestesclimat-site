@@ -84,6 +84,13 @@ export default () => {
 							key={code}
 							onClick={() => {
 								dispatch(setLocalisation({ country: { name: nom, code } }))
+								const localisationPR = supportedCountries.find(
+									(country) => country.code === localisation?.country.code
+								)?.PR
+								dispatch({
+									type: 'SET_PULL_REQUEST_NUMBER',
+									number: localisationPR,
+								})
 								setRead([])
 							}}
 						>
