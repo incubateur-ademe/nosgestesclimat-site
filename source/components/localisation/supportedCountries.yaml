@@ -2,6 +2,7 @@
   name: Guadeloupe
   code: GP
   gentilé: guadeloupéenne
+  drapeau: FR
 - PR: null
   name: France
   gentilé: française
@@ -9,16 +10,23 @@
 - name: Polynésie française
   PR: '1339'
   code: PF
+  drapeau: FR
   gentilé: polynésienne
 - name: Martinique
   PR: '1339'
   code: MQ
+  drapeau: FR
 - name: Guyane
   PR: '1339'
   code: GF
+  drapeau: FR
 - name: Mayotte
   PR: '1339'
   code: YT
+  drapeau: FR
 - name: La Réunion
   PR: '1339'
   code: RE
+  drapeau: FR
+- name: Belgique
+  PR: '1486'

@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
+import supportedCountries from './supportedCountries.yaml'
 
 const API = '/geolocation'
 
@@ -66,4 +67,16 @@ export const getCountryNameInFrench = (code) => {
 		countryName = regionNamesInFrench.of(code),
 		preposition = (countryName && frenchCountryPrepositions[countryName]) || ''
 	return `${preposition} ${countryName}`
+}
+
+export const getSupportedFlag = (localisation) => {
+	console.log(localisation)
+	if (!localisation) return
+
+	const supported = supportedCountries.find(
+		(c) => c.code === localisation.country.code
+	)
+	if (supported.PR === undefined) return
+	const code = supported.drapeau || supported.code
+	return getFlagImgSrc(code)
 }
