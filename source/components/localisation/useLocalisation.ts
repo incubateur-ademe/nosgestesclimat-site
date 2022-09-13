@@ -14,9 +14,20 @@ export default () => {
 	const dispatch = useDispatch()
 
 	const localisation = useSelector((state) => state.localisation)
+	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
+	const setPullRequestNumber = (number) =>
+		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })
 
 	useEffect(() => {
-		if (localisation != null) return undefined
+		if (localisation != null) {
+			if (!pullRequestNumber) {
+				const localisationPR = supportedCountries.find(
+					(country) => country.code === localisation.country.code
+				)?.PR
+				setPullRequestNumber(localisationPR)
+			}
+			return
+		}
 
 		const asyncFecthAPI = async () => {
 			await fetch(API)
@@ -51,7 +62,7 @@ export default () => {
 
 		asyncFecthAPI()
 		return undefined
-	}, [])
+	}, [localisation, pullRequestNumber])
 
 	return localisation
 }
