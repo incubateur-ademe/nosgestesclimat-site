@@ -1,5 +1,4 @@
 import {
-	add,
 	countBy,
 	descend,
 	difference,
@@ -12,14 +11,11 @@ import {
 	length,
 	map,
 	mergeWith,
-	negate,
 	pair,
 	pipe,
-	reduce,
 	sortBy,
 	sortWith,
 	takeWhile,
-	toPairs,
 	zipWith,
 } from 'ramda'
 import { useContext, useMemo } from 'react'
@@ -153,7 +149,6 @@ export const useNextQuestions = function (): Array<DottedName> {
 }
 
 export function useSimulationProgress(): number {
-	const objectifs = useSelector(objectifsSelector)
 	const numberQuestionAnswered = useSelector(answeredQuestionsSelector).length
 	const numberQuestionLeft = useNextQuestions().length
 

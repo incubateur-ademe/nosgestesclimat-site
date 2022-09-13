@@ -23,7 +23,6 @@ export default function Simulation({
 	customEnd,
 	orderByCategories,
 	showLinkToForm,
-	showPeriodSwitch,
 	noFeedback,
 	animation = 'appear',
 	questionHeadingLevel,

@@ -1,5 +1,6 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 import Tile from '../utils/Tile'
 import Table from './sources/Table'
@@ -18,13 +19,17 @@ const Title = styled.h3`
 `
 export default function Sources(props) {
 	const [newWebsites, setNewWebsites] = useState(false)
+	const { t } = useTranslation()
+
 	return (
 		<>
-			<Title>Origine des visites</Title>
+			<Title>
+				<Trans>Origine des visites</Trans>
+			</Title>
 			<StyledTile>
 				{newWebsites ? (
 					<Table
-						title="Sites Web"
+						title={t('Sites Web')}
 						data={props.websites.filter(
 							(website) =>
 								!props.oldWebsites.find(
@@ -37,7 +42,7 @@ export default function Sources(props) {
 					/>
 				) : (
 					<Table
-						title="Sites Web"
+						title={t('Sites Web')}
 						data={props.websites}
 						total={props.total}
 						limit={5}
@@ -46,7 +51,7 @@ export default function Sources(props) {
 					/>
 				)}
 				<Table
-					title="Réseaux Sociaux"
+					title={t('Réseaux Sociaux')}
 					data={props.socials}
 					total={props.total}
 					limit={5}

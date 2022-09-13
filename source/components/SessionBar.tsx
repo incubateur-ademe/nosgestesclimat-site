@@ -2,7 +2,7 @@ import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, Navigate, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
@@ -21,7 +21,6 @@ import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
 import i18next from 'i18next'
-import { showTranslations } from 'translation-check'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -131,7 +130,6 @@ export default function SessionBar({
 	const dispatch = useDispatch()
 	const nextQuestions = useNextQuestions()
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
-	const arePreviousAnswers = !!answeredQuestions.length
 	useSafePreviousSimulation()
 
 	const objectifs = useSelector(objectifsSelector)

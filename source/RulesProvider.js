@@ -9,7 +9,7 @@ import {
 } from 'Selectors/simulationSelectors'
 
 import Engine from 'publicodes'
-import React, { useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import useBranchData from 'Components/useBranchData'
 

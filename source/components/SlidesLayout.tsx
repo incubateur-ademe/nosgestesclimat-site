@@ -1,16 +1,19 @@
 import { range } from 'ramda'
 import { useContext } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { IframeOptionsContext } from './utils/IframeOptionsProvider'
 
 export default ({ children, length, active }) => {
 	const { isIframe } = useContext(IframeOptionsContext)
 	const slides = length && range(0, length)
+	const { t } = useTranslation()
+
 	return (
 		<Container isIframe={isIframe}>
 			{length && (
 				<ol
-					title="Progression dans les diapo"
+					title={t('Progression dans les diapo')}
 					role="progressbar"
 					aria-valuenow={active + 1}
 					aria-valuemin="1"

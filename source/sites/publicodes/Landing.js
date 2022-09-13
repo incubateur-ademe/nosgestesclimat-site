@@ -10,9 +10,12 @@ import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
 import Illustration from 'Images/ecolab-climat-dessin.svg'
 import { useProfileData } from './Profil'
+import { useTranslation, Trans } from 'react-i18next'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
+	const { t } = useTranslation()
+
 	return (
 		<div
 			css={`
@@ -39,11 +42,13 @@ export default () => {
 			`}
 		>
 			<Meta
-				title="Connaissez-vous votre empreinte climat ?"
-				description="Testez votre empreinte carbone, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire."
+				title={t('Connaissez-vous votre empreinte climat ?')}
+				description={t('meta.publicodes.Landing.description')}
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
-			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
+			<h1>
+				<Trans>Connaissez-vous votre empreinte sur le climat ?</Trans>
+			</h1>
 			<Illustration
 				aira-hidden="true"
 				css={`
@@ -69,7 +74,7 @@ export default () => {
 							])
 						}
 					>
-						Faire le test
+						<Trans>Faire le test</Trans>
 					</Link>
 				</div>
 				<div>
@@ -85,7 +90,7 @@ export default () => {
 							])
 						}
 					>
-						{emoji('👥')} Faire le test à plusieurs
+						{emoji('👥')} <Trans>Faire le test à plusieurs</Trans>
 					</Link>
 				</div>
 				<NewsBanner />
@@ -105,7 +110,7 @@ export default () => {
 				>
 					<img
 						src="/images/marianne.svg"
-						alt="République Française"
+						alt={t('République Française')}
 						css="height: 6rem; margin-right: .6rem"
 					/>
 					<a href="https://ademe.fr">
@@ -115,7 +120,7 @@ export default () => {
 						<img
 							css="height: 2rem; margin-left: 1rem !important"
 							src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
-							alt="Logo de l'Association pour la transition Bas Carbone"
+							alt={t("Logo de l'Association pour la transition Bas Carbone")}
 						/>
 					</a>
 				</div>
@@ -133,9 +138,13 @@ export default () => {
 						}
 					`}
 				>
-					<Link to="/à-propos">À propos</Link>
+					<Link to="/à-propos">
+						<Trans>À propos</Trans>
+					</Link>
 					<DocumentationButton />
-					<Link to="/diffuser">Diffuser</Link>
+					<Link to="/diffuser">
+						<Trans>Diffuser</Trans>
+					</Link>
 					<ProfileLink />
 				</div>
 				<div
@@ -150,7 +159,7 @@ export default () => {
 					`}
 				>
 					<Link to="/accessibilite" style={{ textDecoration: 'none' }}>
-						Accessibilité : partiellement conforme
+						<Trans>Accessibilité : partiellement conforme</Trans>
 					</Link>
 				</div>
 			</footer>
@@ -160,7 +169,12 @@ export default () => {
 
 const ProfileLink = () => {
 	const { hasData } = useProfileData()
-	if (!hasData) return null
+	const { t } = useTranslation()
+
+	if (!hasData) {
+		return null
+	}
+
 	return (
 		<animate.fromTop delay="1">
 			<div
@@ -173,7 +187,7 @@ const ProfileLink = () => {
 			>
 				<Link
 					to="/profil"
-					title="Page profil"
+					title={t('Page profil')}
 					className="ui__ button plain small"
 					css="border-radius: 2rem !important"
 				>

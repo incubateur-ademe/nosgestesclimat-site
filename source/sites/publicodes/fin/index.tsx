@@ -2,7 +2,7 @@ import { goToQuestion } from 'Actions/actions'
 import animate from 'Components/ui/animate'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
-import { default as React, useContext } from 'react'
+import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
@@ -17,6 +17,7 @@ import Budget from './Budget'
 import Catégories from './Catégories'
 import IframeDataShareModal from './IframeDataShareModal'
 import Petrogaz from './Petrogaz'
+import { Trans } from 'react-i18next'
 const { encodeRuleName } = utils
 
 // details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
@@ -96,13 +97,19 @@ export default ({}) => {
 				}}
 			>
 				{!answeredQuestions.length ? (
-					<button class="ui__ button plain cta"> Faire mon test</button>
+					<button class="ui__ button plain cta">
+						{' '}
+						<Trans>Faire mon test</Trans>
+					</button>
 				) : nextQuestions.length > 1 ? (
-					<button class="ui__ button plain"> ← Terminer ma simulation</button>
+					<button class="ui__ button plain">
+						{' '}
+						← <Trans>Terminer ma simulation</Trans>
+					</button>
 				) : (
 					<button className="ui__ simple small push-left button">
 						{' '}
-						← Revenir à ma simulation
+						← <Trans>Revenir à ma simulation</Trans>
 					</button>
 				)}
 			</Link>
@@ -135,7 +142,7 @@ export const DocumentationEndButton = ({ ruleName, color }) => (
 	>
 		<small>
 			<Link to={'/documentation/' + encodeRuleName(ruleName)}>
-				Comprendre le calcul{' '}
+				<Trans>Comprendre le calcul</Trans>{' '}
 			</Link>
 		</small>
 	</div>

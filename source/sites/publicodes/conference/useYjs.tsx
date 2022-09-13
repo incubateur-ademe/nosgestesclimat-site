@@ -4,7 +4,7 @@ import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
 import * as Y from 'yjs'
 import { usePersistingState } from '../../../components/utils/persistState'
-import { filterExtremes, generateFruitName, stringToColour } from './utils'
+import { generateFruitName, stringToColour } from './utils'
 
 localStorage.log = 'y-webrtc'
 

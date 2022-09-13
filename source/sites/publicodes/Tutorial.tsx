@@ -10,13 +10,13 @@ import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import { Navigate, Redirect } from 'react-router'
+import { Navigate } from 'react-router'
 import { useContext, useEffect } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
-import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -62,11 +62,15 @@ export default ({}) => {
 	// Here we avoid an error
 	if (slides[index] == null) return null
 
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<Meta
-				title="Tutorial"
-				description="Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation."
+				title={t('Tutorial')}
+				description={t(
+					'Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.'
+				)}
 			/>
 			<SlidesLayout length={slides.length} active={index}>
 				<HorizontalSwipe {...{ next, previous }}>
@@ -87,12 +91,16 @@ export default ({}) => {
 const slides = [
 	() => (
 		<>
-			<h1>Mon empreinte climat {emoji('😶‍🌫️')}?</h1>
-			<p>Pas de panique, on vous explique ce que c'est.</p>
-			<p>
-				La planète <strong>se réchauffe dangereusement</strong>, au fur et à
-				mesure des gaz à effet de serre que l'on émet.
-			</p>
+			<h1>
+				<Trans>Mon empreinte climat</Trans> {emoji('😶‍🌫️')}?
+			</h1>
+			<Trans i18nKey={`publicodes.Tutorial.slide1`}>
+				<p>Pas de panique, on vous explique ce que c'est.</p>
+				<p>
+					La planète <strong>se réchauffe dangereusement</strong>, au fur et à
+					mesure des gaz à effet de serre que l'on émet.
+				</p>
+			</Trans>
 			<GreenhouseEffect css="width: 60%; max-height: 20rem" />
 			<p>
 				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
@@ -102,21 +110,26 @@ const slides = [
 	),
 	() => (
 		<>
-			<h1>On la mesure comment ?</h1>
+			<h1>
+				<Trans>On la mesure comment ?</Trans>
+			</h1>
 			<p>
-				Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone
-				<img
-					alt=""
-					src="/images/co2.svg"
-					css={`
-						object-fit: cover;
-						vertical-align: middle;
-						width: 3.5rem;
-						height: 1.7rem;
-					`}
-				/>
-				, vous le connaissez : on l'expire toute la journée, mais sans influence
-				sur le climat.
+				<Trans i18nKey={`publicodes.Tutorial.slide2.p1`}>
+					Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de
+					carbone
+					<img
+						alt=""
+						src="/images/co2.svg"
+						css={`
+							object-fit: cover;
+							vertical-align: middle;
+							width: 3.5rem;
+							height: 1.7rem;
+						`}
+					/>
+					, vous le connaissez : on l'expire toute la journée, mais sans
+					influence sur le climat.
+				</Trans>
 			</p>
 			<div
 				aria-hidden="true"
@@ -169,63 +182,83 @@ const slides = [
 				<CO2e />
 			</div>
 			<p>
-				Ce sont les machines qui font notre confort moderne qui en rejettent
-				massivement, à tel point qu'on le compte en milliers de kilos par an et
-				par personne, donc en <strong>tonnes</strong> de CO₂e !
+				<Trans i18nKey={`publicodes.Tutorial.slide2.p2`}>
+					Ce sont les machines qui font notre confort moderne qui en rejettent
+					massivement, à tel point qu'on le compte en milliers de kilos par an
+					et par personne, donc en <strong>tonnes</strong> de CO₂e !
+				</Trans>
 			</p>
 			<blockquote>
 				<details>
 					<summary>
-						{emoji('💡')}&nbsp; Mais que veut dire ce petit <em>e</em> ?
+						{emoji('💡')}&nbsp;{' '}
+						<Trans>
+							Mais que veut dire ce petit <em>e</em>{' '}
+						</Trans>
+						?
 					</summary>{' '}
-					D'autres gaz, surtout le méthane&nbsp;
-					<img
-						alt=""
-						src="/images/methane.svg"
-						css="width: 1.8rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
-					/>{' '}
-					et le protoxyde d'azote{' '}
-					<img
-						alt=""
-						src="/images/n2o.svg"
-						css="width: 3rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
-					/>{' '}
-					réchauffent aussi la planète : on convertit leur potentiel de
-					réchauffement en équivalent CO₂ pour simplifier la mesure.{' '}
+					<Trans i18nKey={`publicodes.Tutorial.slide2.blockquote`}>
+						D'autres gaz, surtout le méthane&nbsp;
+						<img
+							alt=""
+							src="/images/methane.svg"
+							css="width: 1.8rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
+						/>{' '}
+						et le protoxyde d'azote{' '}
+						<img
+							alt=""
+							src="/images/n2o.svg"
+							css="width: 3rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
+						/>{' '}
+						réchauffent aussi la planète : on convertit leur potentiel de
+						réchauffement en équivalent CO₂ pour simplifier la mesure.{' '}
+					</Trans>
 				</details>
 			</blockquote>
 		</>
 	),
+	() => {
+		const { t } = useTranslation()
+		return (
+			<>
+				<h1>
+					<Trans>Et concrètement ?</Trans>
+				</h1>
+				<p>
+					<Trans i18nKey={`publicodes.Tutorial.slide3.p1`}>
+						Chaque année, un Français émet en moyenne{' '}
+						<strong> à peu près 10 tonnes</strong> de CO₂e.
+					</Trans>
+				</p>
+				<AbacusFrance aria-hidden="true" css="width:10rem; height: 100%" />
+				<p>
+					<Trans i18nKey={`publicodes.Tutorial.slide3.p2`}>
+						C'est votre point de départ dans ce test : chacune de vos réponses
+						personnalisera ce résultat dans la barre de score.
+					</Trans>
+				</p>
+				<div css="margin: 1rem 0">
+					<ScoreBar demoMode />
+				</div>
+				<blockquote>
+					{t(`publicodes.Tutorial.slide4.blockquote`, {
+						emoji1: '✨',
+						emoji2: '⛽️',
+					})}
+				</blockquote>
+			</>
+		)
+	},
 	() => (
 		<>
-			<h1>Et concrètement ?</h1>
-			<p>
-				Chaque année, un Français émet en moyenne{' '}
-				<strong> à peu près 10 tonnes</strong> de CO₂e.
-			</p>
-			<AbacusFrance aria-hidden="true" css="width:10rem; height: 100%" />
-			<p>
-				C'est votre point de départ dans ce test : chacune de vos réponses
-				personnalisera ce résultat dans la barre de score.
-			</p>
-			<div css="margin: 1rem 0">
-				<ScoreBar demoMode />
-			</div>
-			<blockquote>
-				{emoji('✨')} Nouveau ! Visualisez également votre consommation de{' '}
-				{emoji('⛽️')}&nbsp;pétrole, un indicateur complémentaire au sujet
-				climat.
-			</blockquote>
-		</>
-	),
-	() => (
-		<>
-			<h1>Et l'objectif ?</h1>
-			<p>Nous devons diminuer notre empreinte climat au plus vite.</p>
-			<p>
-				En France, ça consiste à passer de ~10 tonnes à{' '}
-				<strong>moins de 2 tonnes</strong> par an.
-			</p>
+			<Trans i18nKey={`publicodes.Tutorial.slide4.p1`}>
+				<h1>Et l'objectif ?</h1>
+				<p>Nous devons diminuer notre empreinte climat au plus vite.</p>
+				<p>
+					En France, ça consiste à passer de ~10 tonnes à{' '}
+					<strong>moins de 2 tonnes</strong> par an.
+				</p>
+			</Trans>
 
 			<ObjectifClimat
 				aria-hidden="true"
@@ -264,12 +297,14 @@ const slides = [
 			/>
 			<p css="text-align: center; line-height: 1.2rem">
 				<em>
-					Pour en savoir plus, tout est expliqué <br />
-					dans{' '}
+					<Trans>
+						Pour en savoir plus, tout est expliqué <br />
+						dans{' '}
+					</Trans>
 					<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
-						cet article
+						<Trans>cet article</Trans>
 					</a>{' '}
-					(15 min de lecture)
+					<Trans>(15 min de lecture)</Trans>
 				</em>
 				.
 			</p>
@@ -277,41 +312,45 @@ const slides = [
 	),
 	() => (
 		<>
-			<h1>D'où vient notre empreinte ?</h1>
-			<p>
-				Prendre la voiture, manger un steak, chauffer sa maison, se faire
-				soigner, acheter une TV...
-			</p>
-			<div
-				css={`
-					margin: 0.6rem 0 1rem;
-				`}
-			>
-				<Chart demoMode />
-			</div>
-			<p>
-				L'empreinte de notre consommation individuelle, c'est la somme de toutes
-				ces activités qui font notre vie moderne.{' '}
-			</p>
+			<Trans i18nKey={`publicodes.Tutorial.slide5`}>
+				<h1>D'où vient notre empreinte ?</h1>
+				<p>
+					Prendre la voiture, manger un steak, chauffer sa maison, se faire
+					soigner, acheter une TV...
+				</p>
+				<div
+					css={`
+						margin: 0.6rem 0 1rem;
+					`}
+				>
+					<Chart demoMode />
+				</div>
+				<p>
+					L'empreinte de notre consommation individuelle, c'est la somme de
+					toutes ces activités qui font notre vie moderne.{' '}
+				</p>
+			</Trans>
 		</>
 	),
 	() => (
 		<>
-			<h1>Alors, c'est parti ?</h1>
-			<p>Quelques astuces pour vous aider à compléter le test.</p>
-			<blockquote>
-				{emoji('👤')}&nbsp; Répondez aux questions en votre nom, pas au nom de
-				votre foyer : c'est un test individuel.
-			</blockquote>
-			<blockquote>
-				{emoji('💼')}&nbsp; Répondez pour votre vie perso, pas pour votre boulot
-				ou études. <em>Une seule exception </em>: votre trajet domicile-travail
-				doit être inclus dans les km parcourus.
-			</blockquote>
-			<blockquote>
-				{emoji('❓️')}&nbsp; D'autres questions ? Consultez notre{' '}
-				<Link to="/contribuer">FAQ</Link> à tout moment.
-			</blockquote>
+			<Trans i18nKey={`publicodes.Tutorial.slide6`}>
+				<h1>Alors, c'est parti ?</h1>
+				<p>Quelques astuces pour vous aider à compléter le test.</p>
+				<blockquote>
+					{'👤'} Répondez aux questions en votre nom, pas au nom de votre foyer
+					: c'est un test individuel.
+				</blockquote>
+				<blockquote>
+					{'💼'} Répondez pour votre vie perso, pas pour votre boulot ou études.{' '}
+					<em>Une seule exception </em>: votre trajet domicile-travail doit être
+					inclus dans les km parcourus.
+				</blockquote>
+				<blockquote>
+					{'❓️'} D'autres questions ? Consultez notre{' '}
+					<Link to="/contribuer">FAQ</Link> à tout moment.
+				</blockquote>
+			</Trans>
 		</>
 	),
 ]

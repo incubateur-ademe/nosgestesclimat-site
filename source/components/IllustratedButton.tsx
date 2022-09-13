@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import emoji from 'react-easy-emoji'
+
 export default ({ children, icon, to, onClick }) => (
 	<Link
 		to={to}

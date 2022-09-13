@@ -1,4 +1,5 @@
 import emoji from 'react-easy-emoji'
+
 export default ({ emoji: e, message, inline }) => (
 	<div
 		className="ui__ card"

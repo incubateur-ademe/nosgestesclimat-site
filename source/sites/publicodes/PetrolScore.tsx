@@ -2,6 +2,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { correctValue } from 'Components/publicodesUtils'
 import HumanWeight from './HumanWeight'
 import { Link } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 export default ({ endURL }) => {
 	const engine = useEngine()
@@ -9,6 +10,8 @@ export default ({ endURL }) => {
 	const nbrePleins = Math.round(correctValue(evaluation))
 
 	const roundedValue = nbrePleins
+
+	const { t } = useTranslation()
 
 	return (
 		<Link
@@ -19,17 +22,17 @@ export default ({ endURL }) => {
 				color: white !important;
 			`}
 			to={endURL}
-			title="Page de fin de simulation pétrole"
+			title={t('Page de fin de simulation pétrole')}
 		>
 			<div css="display: flex; align-items: center">
 				<img
 					src="/images/pompe-essence.svg"
 					css="width: 3rem; "
-					alt="Pompe à pétrole"
+					alt={t('Pompe à pétrole')}
 				/>
 				<div
 					css="display: flex; flex-direction: column; padding: 0 .4rem"
-					title={`${roundedValue} pleins de pétrole`}
+					title={roundedValue + ' ' + t(`pleins de pétrole`)}
 				>
 					<div
 						css={`

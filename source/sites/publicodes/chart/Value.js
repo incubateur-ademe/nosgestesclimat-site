@@ -1,7 +1,10 @@
 import { humanWeight } from '../HumanWeight'
+import { useTranslation } from 'react-i18next'
 
 export default ({ nodeValue, color, completed, demoMode }) => {
 	const [value, unit] = humanWeight(nodeValue, true)
+	const { t } = useTranslation()
+
 	return (
 		<span
 			css={`
@@ -14,7 +17,7 @@ export default ({ nodeValue, color, completed, demoMode }) => {
 			{value}&nbsp;{unit}
 			<img
 				src="/images/2714.svg"
-				alt="catégorie complétée"
+				alt={t('catégorie complétée')}
 				css={`
 					visibility: ${completed ? 'visible' : 'hidden'};
 					display: inline;

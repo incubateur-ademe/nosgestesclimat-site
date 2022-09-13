@@ -2,6 +2,7 @@ import { questionCategoryName } from 'Components/publicodesUtils'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { currentQuestionSelector } from 'Selectors/simulationSelectors'
+
 export default (categories) => {
 	const [displayedCategory, setDisplayedCategory] = useState(null)
 	const currentQuestion = useSelector(currentQuestionSelector)

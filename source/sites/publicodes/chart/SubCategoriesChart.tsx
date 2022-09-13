@@ -1,5 +1,6 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import SubCategoryBar from './SubCategoryBar'
 
@@ -39,6 +40,9 @@ export default ({
 	)
 	const [clicked, setClick] = useState(false),
 		click = (dottedName) => (clicked ? setClick(null) : setClick(dottedName))
+
+	const { t } = useTranslation()
+
 	return (
 		<InlineBarChart clicked={clicked}>
 			<AnimatePresence>
@@ -69,7 +73,7 @@ export default ({
 					exit={{ width: 0, opacity: 0 }}
 					transition={{ duration: 0.5, delay }}
 					title={
-						(onRestClick ? 'Voir le reste : ' : 'Le reste : ') +
+						(onRestClick ? t('Voir le reste : ') : t('Le reste : ')) +
 						rest.labels.join(', ')
 					}
 					key="rest"

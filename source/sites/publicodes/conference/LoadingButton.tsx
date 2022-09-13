@@ -1,11 +1,9 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import useDatabase, { surveysURL } from './useDatabase'
+import { surveysURL } from './useDatabase'
 
-const wait = (delay) => new Promise((resolve) => setTimeout(resolve, delay))
-
-const existsCode = '23505'
 export default ({ mode, URLPath, room }) => {
 	const [clicked, setClicked] = useState(false)
 	const [text, setText] = useState(null)
@@ -14,9 +12,7 @@ export default ({ mode, URLPath, room }) => {
 
 	const actionImg = '/images/2714.svg'
 
-	const database = useDatabase()
-
-	const [survey, setSurvey] = useState(null)
+	const { t } = useTranslation()
 
 	return (
 		<div>
@@ -38,7 +34,7 @@ export default ({ mode, URLPath, room }) => {
 						},
 					}).catch((e) => {
 						console.log('erreur', e)
-						setText('Notre serveur semble indisponible 😥')
+						setText(t('Notre serveur semble indisponible') + ' 😥')
 						setClicked(false)
 					})
 					if (!request) return null
@@ -49,14 +45,13 @@ export default ({ mode, URLPath, room }) => {
 								navigate(URLPath)
 							}, 3000)
 						} else {
-							setText('Erreur inconnue côté serveur 😥')
+							setText(t('Erreur inconnue côté serveur') + ' 😥')
 							setClicked(false)
 							console.log('Erreur', request)
 						}
 					}
 
-					const newSurvey = await request.json()
-					setText('Sondage créé')
+					setText(t('Sondage créé'))
 
 					return setTimeout(() => {
 						navigate(URLPath)
@@ -80,7 +75,7 @@ export default ({ mode, URLPath, room }) => {
 					/>
 				)}
 				<span>
-					{text || (clicked ? 'Initialisation...' : "C'est parti ! ")}
+					{text || (clicked ? t(`Initialisation...`) : t(`C'est parti !`))}
 				</span>
 			</button>
 		</div>

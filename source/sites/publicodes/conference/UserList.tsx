@@ -1,5 +1,7 @@
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { findContrastedTextColor } from '../../../components/utils/colors'
+
 export const UserList = ({ users, username, extremes }) => (
 	<ul
 		css={`
@@ -21,7 +23,7 @@ export const UserList = ({ users, username, extremes }) => (
 					border-radius: 0.6rem;
 				`}
 			>
-				{extremes.find(([key, value]) => key === u.name) && (
+				{extremes.find(([key, _]) => key === u.name) && (
 					<span>{emoji('⚠️ ')}</span>
 				)}
 				{u.name}
@@ -31,7 +33,7 @@ export const UserList = ({ users, username, extremes }) => (
 	</ul>
 )
 
-export const UserBlock = ({ extremes, users, username, room }) => {
+export const UserBlock = ({ extremes, users, username }) => {
 	const uniqueUsers = getUniqueUsers(users)
 	return (
 		<div>
@@ -44,7 +46,10 @@ export const UserBlock = ({ extremes, users, username, room }) => {
 			</span>
 			<UserList users={uniqueUsers} username={username} extremes={extremes} />
 			{extremes.length > 0 && (
-				<div>{emoji('⚠️')} Certains utilisateurs ont des bilans extrêmes.</div>
+				<div>
+					{emoji('⚠️')}
+					<Trans>Certains utilisateurs ont des bilans extrêmes.</Trans>
+				</div>
 			)}
 		</div>
 	)

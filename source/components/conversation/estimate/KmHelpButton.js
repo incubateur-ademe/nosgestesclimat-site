@@ -1,8 +1,7 @@
-import { motion } from 'framer-motion'
 import LogoMIT from 'Components/images/LogoMIT'
 import { useState } from 'react'
 
-export default function KmHelpButton({ text, openmojiURL, onHandleClick }) {
+export default function KmHelpButton({ text, onHandleClick }) {
 	const [hover, setHover] = useState(false)
 	return (
 		<button

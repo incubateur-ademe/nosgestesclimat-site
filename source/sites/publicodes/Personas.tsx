@@ -1,6 +1,7 @@
 import { resetSimulation } from 'Actions/actions'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { setDifferentSituation } from '../../actions/actions'
@@ -69,28 +70,38 @@ export default ({}) => {
 			)}
 			<PersonaGrid />
 			<p>
-				Les personas nous permettront de prendre le parti d'une diversité
-				d'utilisateurs quand ils voient notamment notre écran "passer à
-				l'action".
+				<Trans i18nKey={`publicodes.Personas.description`}>
+					Les personas nous permettront de prendre le parti d'une diversité
+					d'utilisateurs quand ils voient notamment notre écran "passer à
+					l'action".
+				</Trans>
 			</p>
-			<h2>Comment créer un persona ?</h2>
+			<h2>
+				<Trans>Comment créer un persona ?</Trans>
+			</h2>
 			<p>
-				C'est dans le fichier{' '}
+				<Trans>C'est dans le fichier</Trans>{' '}
 				<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/personas.yaml">
 					personas.yaml
 				</a>{' '}
-				que ça se passe. On peut soit copier coller les données d'un autre
-				persona et les modifier, soit en créer un de zéro depuis la simulation.
-				Une fois la simulation satisfaisante, cliquer sur "Modifier mes
-				réponses" puis taper Ctrl-C, ouvrir la console du navigateur (F12),
-				vérifiez bien que vous êtes dans l'onglet "Console", allez tout en bas
-				de la console (elle est un peu chargée...), puis copier le JSON affiché,
-				le coller dans <a href="https://www.json2yaml.com">cet outil</a> pour
-				générer un YAML, puis l'insérer dans personas.yaml.
+				<Trans i18nKey={`publicodes.Personas.tuto`}>
+					que ça se passe. On peut soit copier coller les données d'un autre
+					persona et les modifier, soit en créer un de zéro depuis la
+					simulation. Une fois la simulation satisfaisante, cliquer sur
+					"Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du
+					navigateur (F12), vérifiez bien que vous êtes dans l'onglet "Console",
+					allez tout en bas de la console (elle est un peu chargée...), puis
+					copier le JSON affiché, le coller dans{' '}
+					<a href="https://www.json2yaml.com">cet outil</a> pour générer un
+					YAML, puis l'insérer dans personas.yaml.
+				</Trans>
 			</p>
 			<p>
-				Pour les prénoms, on peut utiliser{' '}
-				<a href="https://lorraine-hipseau.me">ce générateur</a>.
+				<Trans i18nKey={`publicodes.Personas.lienGenerateur`}>
+					Pour les prénoms, on peut utiliser{' '}
+					<a href="https://lorraine-hipseau.me">ce générateur</a>
+				</Trans>
+				.
 			</p>
 		</div>
 	)

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react'
+import { useState } from 'react'
 import styled from 'styled-components'
 
 import {
@@ -7,7 +7,6 @@ import {
 	useSimulationsTerminees,
 	useVisitsDuration,
 	useVisitsAvgDuration,
-	useSimulationAvgDuration,
 	useWebsites,
 	useOldWebsites,
 	useSocials,
@@ -27,6 +26,7 @@ import Chart from './content/Chart'
 import DurationChart from './content/DurationChart'
 import DurationFigures from './content/DurationFigures'
 import KmFigures from './content/KmFigures'
+import { Trans } from 'react-i18next'
 // import Loader from './applications/Loader'
 
 const Wrapper = styled.div`
@@ -38,7 +38,7 @@ const Wrapper = styled.div`
 		flex-direction: column;
 	}
 `
-export default function Data(props) {
+export default function Data() {
 	const [chartDate, setChartDate] = useState('12')
 	const [chartPeriod, setChartPeriod] = useState('week')
 
@@ -65,7 +65,9 @@ export default function Data(props) {
 
 	return (
 		<div>
-			<Section.TopTitle>Statistiques</Section.TopTitle>
+			<Section.TopTitle>
+				<Trans>Statistiques</Trans>
+			</Section.TopTitle>
 			{total &&
 			websites &&
 			oldWebsites &&
@@ -77,7 +79,9 @@ export default function Data(props) {
 			allTime ? (
 				<>
 					<Section>
-						<Section.Title>Stats générales</Section.Title>
+						<Section.Title>
+							<Trans>Stats générales</Trans>
+						</Section.Title>
 						<Wrapper>
 							<Evolution
 								period={period.value}
@@ -105,15 +109,19 @@ export default function Data(props) {
 						/>
 					</Section>
 					<Section>
-						<Section.Title>Durée des visites</Section.Title>
+						<Section.Title>
+							<Trans>Durée des visites</Trans>
+						</Section.Title>
 						<Section.Intro>
-							<summary>En savoir plus</summary>
-							Cette section est générée à partir des visites des 60 derniers
-							jours. Les visites dont le temps passé sur le site est inférieur à
-							1 minute ont été écartées. Pour éviter le biais de l'iframe qui
-							peut générer des visiteurs inactifs dans les statistiques, le
-							temps moyen sur le site a été calculé à partir des visites actives
-							(l'utilisateur a cliqué sur "Faire le test").
+							<Trans i18nKey={`components.stats.StatsContent.enSavoirPlus`}>
+								<summary>En savoir plus</summary>
+								Cette section est générée à partir des visites des 60 derniers
+								jours. Les visites dont le temps passé sur le site est inférieur
+								à 1 minute ont été écartées. Pour éviter le biais de l'iframe
+								qui peut générer des visiteurs inactifs dans les statistiques,
+								le temps moyen sur le site a été calculé à partir des visites
+								actives (l'utilisateur a cliqué sur "Faire le test").
+							</Trans>
 						</Section.Intro>
 						<Wrapper>
 							<DurationFigures avgduration={avgduration} />
@@ -121,7 +129,9 @@ export default function Data(props) {
 						</Wrapper>
 					</Section>
 					<Section>
-						<Section.Title>La voiture en chiffres</Section.Title>
+						<Section.Title>
+							<Trans>La voiture en chiffres</Trans>
+						</Section.Title>
 						<KmFigures
 							kmhelp={kmhelp}
 							simulationsfromhelp={simulationsfromhelp?.nb_visits}
@@ -131,6 +141,7 @@ export default function Data(props) {
 				</>
 			) : (
 				<div>Chargement</div>
+				//TODO: what should we do here?
 				// <Loader />
 			)}
 		</div>

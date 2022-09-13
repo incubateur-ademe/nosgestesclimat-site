@@ -1,12 +1,11 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'
-import { EngineContext, useEngine } from './utils/EngineContext'
+import { useEngine } from './utils/EngineContext'
 import { utils } from 'publicodes'
 import highlightMatches from 'Components/highlightMatches'
-import { Link } from 'react-router-dom'
 
 const worker = new Worker()
 
@@ -31,7 +30,6 @@ export default function SearchBar({}: SearchBarProps) {
 			matches: Matches
 		}>
 	>([])
-	const { i18n } = useTranslation()
 
 	const searchIndex: Array<SearchItem> = useMemo(
 		() =>
@@ -57,14 +55,16 @@ export default function SearchBar({}: SearchBarProps) {
 		}
 	}, [searchIndex, setResults])
 
+	const { t } = useTranslation()
+
 	return (
 		<>
-			<label title="Entrez des mots clefs">
+			<label title={t('Entrez des mots clefs')}>
 				<input
 					type="search"
 					className="ui__"
 					value={input}
-					placeholder={i18n.t('Entrez des mots clefs ici')}
+					placeholder={t('Entrez des mots clefs ici')}
 					onChange={(e) => {
 						const input = e.target.value
 						if (input.length > 0) worker.postMessage({ input })

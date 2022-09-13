@@ -33,6 +33,8 @@ const colors = {
 	bgWhite: '\x1b[47m',
 }
 
+const withStyle = (color, text) => `${color}${text}${colors.reset}`
+
 const paths = {
 	localesDir: path.resolve('source/locales'),
 	rulesTranslation: path.resolve('source/locales/rules-en.yaml'),
@@ -183,4 +185,5 @@ module.exports = {
 	dotNotationToNestedObject,
 	paths,
 	colors,
+	withStyle,
 }

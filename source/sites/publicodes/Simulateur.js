@@ -6,26 +6,24 @@ import Simulation from 'Components/Simulation'
 import Title from 'Components/Title'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
-import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
-import React, { useContext, useEffect } from 'react'
+import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
-import { setTrackingVariable } from '../../actions/actions'
 import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
-import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
 import InlineCategoryChart from './chart/InlineCategoryChart'
+import { Trans } from 'react-i18next'
 
 const equivalentTargetArrays = (array1, array2) =>
 	array1.length === array2.length &&
 	array1.every((value, index) => value === array2[index])
 
-const Simulateur = (props) => {
+const Simulateur = () => {
 	const urlParams = useParams()
 	const objectif = urlParams['*'],
 		decoded = utils.decodeRuleName(objectif),
@@ -99,7 +97,6 @@ const TutorialRedirection = () => {
 
 const RedirectionToEndPage = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
-	const situation = useSelector(situationSelector)
 
 	return <Navigate to={buildEndURL(rules, engine)} replace />
 }
@@ -107,5 +104,7 @@ const RedirectionToEndPage = ({ rules, engine }) => {
 export default Simulateur
 
 const EndingCongratulations = () => (
-	<h3>{emoji('🌟')} Vous avez complété cette simulation</h3>
+	<h3>
+		{emoji('🌟')} <Trans>Vous avez complété cette simulation</Trans>
+	</h3>
 )

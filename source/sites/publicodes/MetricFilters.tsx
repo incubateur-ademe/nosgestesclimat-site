@@ -1,11 +1,11 @@
-import { useLocation } from 'react-router'
-import { Link } from 'react-router-dom'
 import emoji from '../../components/emoji'
 import { useSearchParams } from 'react-router-dom'
+import { Trans } from 'react-i18next'
+
 export default ({ selected }) => {
-	const location = useLocation()
 	const [searchParams, setSearchParams] = useSearchParams()
 	const { métrique, ...otherSearchParams } = searchParams
+
 	return (
 		<button
 			css={`
@@ -50,7 +50,10 @@ export default ({ selected }) => {
 				})
 			}
 		>
-			{emoji('🇺🇦')} <span>Réduire ma conso de pétrole</span>
+			{emoji('🇺🇦')}{' '}
+			<span>
+				<Trans>Réduire ma conso de pétrole</Trans>
+			</span>
 		</button>
 	)
 }

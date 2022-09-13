@@ -73,7 +73,8 @@ const Main = ({
 				margin-top: 1rem;
 			`}
 		>
-			{emoji('📝')}Contexte sondage
+			{emoji('📝')}
+			<Trans>Contexte sondage</Trans>
 		</h2>
 		{Object.keys(surveyContext[room]).length !== 0 ? (
 			<SituationDetails

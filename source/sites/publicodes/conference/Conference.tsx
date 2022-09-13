@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { Navigate, useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
@@ -74,7 +74,6 @@ export default () => {
 					setThreshold,
 				}}
 			/>
-
 			{room && (
 				<div>
 					<UserBlock {...{ users, extremes, username, room }} />
@@ -88,19 +87,19 @@ export default () => {
 					dispatch({ type: 'UNSET_CONFERENCE' })
 				}}
 			>
-				{emoji('🚪') + t('Quitter la conférence')}
+				{emoji('🚪')} {t('Quitter la conférence')}
 			</button>
 			<Instructions {...{ room, started: true }} />
 			<h2>
 				<Trans>Et mes données ?</Trans>
-			</h2>
+			</h2>{' '}
+			{emoji('🕵 ')}
 			<Trans i18nKey={'publicodes.conference.Conference.donnéesExplications'}>
 				<p>
-					{emoji('🕵 ')}En participant, vous acceptez de partager vos résultats
-					agrégés de simulation avec les autres participants de la conférence :
-					le total et les catégories (transport, logement, etc.). En revanche,
-					nos serveurs ne les stockent pas : cela fonctionne en P2P (pair à
-					pair).
+					En participant, vous acceptez de partager vos résultats agrégés de
+					simulation avec les autres participants de la conférence : le total et
+					les catégories (transport, logement, etc.). En revanche, nos serveurs
+					ne les stockent pas : cela fonctionne en P2P (pair à pair).
 				</p>
 				<p>
 					Seul le nom de la salle de conférence sera indexé dans{' '}

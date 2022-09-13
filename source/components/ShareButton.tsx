@@ -1,4 +1,5 @@
-import React, { useContext, useRef, useState } from 'react'
+import { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import emoji from './emoji'
 import ShareButtonIcon from './ShareButtonIcon'
@@ -7,10 +8,12 @@ const eventData = ['trackEvent', 'partage', 'Partage page fin']
 
 export default ({ text, url, title, color, label, score }) => {
 	const tracker = useContext(TrackerContext)
+	const { t } = useTranslation()
+
 	return navigator.share ? (
 		<Button
 			color={color}
-			title="Cliquez pour partager le lien"
+			title={t('Cliquez pour partager le lien')}
 			onClick={() => {
 				tracker.push([...eventData, 'mobile', score])
 				navigator
@@ -44,6 +47,7 @@ const copyToClipboardAsync = (str) => {
 
 export const DesktopShareButton = ({ label, text, color, url, trackEvent }) => {
 	const [copySuccess, setCopySuccess] = useState(false)
+	const { t } = useTranslation()
 
 	const clipboardText = `${text}
 
@@ -51,16 +55,16 @@ ${decodeURIComponent(url)}`
 
 	return (
 		<Button
-			title="Cliquez pour partager le lien"
+			title={t('Cliquez pour partager le lien')}
 			color={color}
 			onClick={() => {
 				trackEvent()
 				copyToClipboardAsync(clipboardText).then(
-					function () {
+					() => {
 						/* clipboard successfully set */
 						setCopySuccess(true)
 					},
-					function () {
+					() => {
 						/* clipboard write failed */
 						setCopySuccess(false)
 					}
@@ -72,10 +76,12 @@ ${decodeURIComponent(url)}`
 				label ? (
 					<span>{label}</span>
 				) : (
-					'Copier le lien'
+					t('Copier le lien')
 				)
 			) : (
-				<span>Copié {emoji('✅')}</span>
+				<span>
+					{t('Copié')} {emoji('✅')}
+				</span>
 			)}
 			{/* Created by Barracuda from the Noun Project */}
 		</Button>

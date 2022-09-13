@@ -3,7 +3,7 @@ import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import {
 	Link,
 	Navigate,
@@ -59,11 +59,13 @@ export default function News() {
 	const body = data[selectedRelease].body,
 		image = body.match(/!\[.*?\]\((.*?)\)/)[1] || null
 
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<Meta
-				description="Découvrez les nouveautés de Nos Gestes Climat"
-				title={`Nouveautés - version ${releaseName}`}
+				description={t('Découvrez les nouveautés de Nos Gestes Climat')}
+				title={t(`Nouveautés - version `) + releaseName}
 				image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
@@ -72,14 +74,16 @@ export default function News() {
 				{emoji('✨')}
 			</h1>
 			<p>
-				Nous améliorons le site en continu à partir de vos retours. Découvrez
-				ici les{' '}
+				<Trans i18nKey={`pages.News.premierParagraphe`}>
+					Nous améliorons le site en continu à partir de vos retours. Découvrez
+					ici les
+				</Trans>{' '}
 				{selectedRelease === 0
-					? 'dernières nouveautés'
-					: `nouveautés ${determinant(releaseName)}${releaseName}`}
+					? t('dernières nouveautés')
+					: t(`nouveautés`) + `${determinant(releaseName)}${releaseName}`}
 				&nbsp;.
 			</p>
-			<label title="titre de la version">
+			<label title={t('titre de la version')}>
 				<SmallScreenSelect
 					value={selectedRelease}
 					onChange={(evt) => {

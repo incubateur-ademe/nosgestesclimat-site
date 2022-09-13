@@ -54,7 +54,6 @@ export function getCurrentNotification(
 }
 
 export default function Notifications({ currentQuestion }) {
-	const { t } = useTranslation()
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
 	)

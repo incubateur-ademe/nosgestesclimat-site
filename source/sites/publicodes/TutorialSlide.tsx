@@ -1,4 +1,7 @@
+import { useTranslation } from 'react-i18next'
+
 export default ({ children, last, skip }) => {
+	const { t } = useTranslation()
 	return (
 		<div
 			className="ui__ card light colored content"
@@ -32,7 +35,7 @@ export default ({ children, last, skip }) => {
 					className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
 					onClick={() => skip('testIntro')}
 				>
-					{!last ? 'Passer le tutoriel' : "C'est parti !"}
+					{!last ? t('Passer le tutoriel') : t("C'est parti !")}
 				</button>
 			</div>
 		</div>

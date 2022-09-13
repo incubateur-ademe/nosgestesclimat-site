@@ -16,6 +16,7 @@ import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { skipTutorial } from '../../actions/actions'
 import { useNavigate } from 'react-router-dom'
+import { Trans, useTranslation } from 'react-i18next'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
@@ -23,7 +24,7 @@ export const useProfileData = () => {
 
 	const hasData =
 		answeredQuestionsLength > 0 ||
-		Object.entries(tutorials).find(([k, v]) => v != null)
+		Object.entries(tutorials).find(([_, v]) => v != null)
 
 	return { hasData, tutorials, answeredQuestionsLength }
 }
@@ -36,6 +37,9 @@ export default ({}) => {
 	const actionChoicesLength = Object.keys(
 		useSelector((state) => state.actionChoices)
 	).length
+
+	const { t } = useTranslation()
+
 	return (
 		<div>
 			<Meta
@@ -48,7 +52,8 @@ export default ({}) => {
 				{persona && (
 					<p>
 						<em>
-							{emoji('👤')}&nbsp; Vous utilisez actuellement le persona{' '}
+							{emoji('👤')}&nbsp;{' '}
+							<Trans>Vous utilisez actuellement le persona</Trans>{' '}
 							<code>{persona}</code>
 						</em>
 					</p>
@@ -64,21 +69,27 @@ export default ({}) => {
 										navigate('/tutoriel')
 									}}
 								>
-									{emoji('🧑‍🏫')} Revoir le tutoriel
+									{emoji('🧑‍🏫')} <Trans>Revoir le tutoriel</Trans>
 								</button>
 							</div>
 						)}
 						{answeredQuestionsLength > 0 && (
 							<p>
-								Vous avez répondu à {answeredQuestionsLength} questions et
-								choisi {actionChoicesLength} actions.{' '}
+								<Trans i18nKey={`publicodes.Profil.recap`}>
+									Vous avez répondu à {{ answeredQuestionsLength }} questions et
+									choisi {{ actionChoicesLength }} actions.
+								</Trans>{' '}
 							</p>
 						)}
 						<details>
-							<summary>Où sont mes données ? </summary>
-							Vos données sont stockées dans votre navigateur, vous avez donc le
-							contrôle total sur elles. <br />
-							<Link to="/vie-privée">En savoir plus</Link>
+							<Trans i18nKey={`publicodes.Profil.locationDonnées`}>
+								<summary>Où sont mes données ? </summary>
+								Vos données sont stockées dans votre navigateur, vous avez donc
+								le contrôle total sur elles. <br />
+							</Trans>
+							<Link to="/vie-privée">
+								<Trans>En savoir plus</Trans>
+							</Link>
 						</details>
 						<button
 							className="ui__ button plain"
@@ -91,13 +102,17 @@ export default ({}) => {
 								dispatch(resetStoredTrajets())
 							}}
 						>
-							{emoji('♻️ ')} Recommencer
+							{emoji('♻️ ')} <Trans>Recommencer</Trans>
 						</button>
 					</div>
 				) : (
 					<IllustratedMessage
 						emoji="🕳️"
-						message={<p>Vous n'avez pas encore fait le test.</p>}
+						message={
+							<p>
+								<Trans>Vous n'avez pas encore fait le test.</Trans>
+							</p>
+						}
 					></IllustratedMessage>
 				)}
 				<AnswerList />

@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Navigate, Redirect } from 'react-router'
+import { Navigate } from 'react-router'
 import useKeypress from './utils/useKeyPress'
 
 type SearchButtonProps = {

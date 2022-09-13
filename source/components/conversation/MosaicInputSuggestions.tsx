@@ -1,6 +1,5 @@
 import { ASTNode } from 'publicodes'
 import { toPairs } from 'ramda'
-import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -17,7 +16,7 @@ export default function MosaicInputSuggestions({
 	relatedRuleNames,
 	suggestions = {},
 }: InputSuggestionsProps) {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 
 	return (

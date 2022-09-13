@@ -2,7 +2,7 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { Redirect, useParams } from 'react-router'
+import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
 import { conferenceImg } from '../../../components/SessionBar'
@@ -16,10 +16,8 @@ import ContextConversation from './ContextConversation'
 import { useProfileData } from '../Profil'
 import NoTestMessage from './NoTestMessage'
 import Meta from '../../../components/utils/Meta'
-import { useEngine } from 'Components/utils/EngineContext'
-
-import { configSelector } from '../../../selectors/simulationSelectors'
 import Navigation from '../Navigation'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -39,7 +37,9 @@ export default () => {
 	const [hasDataState, setHasDataState] = useState(hasData)
 
 	useEffect(() => {
-		if (cachedSurveyId) dispatch({ type: 'SET_SURVEY', room })
+		if (cachedSurveyId) {
+			dispatch({ type: 'SET_SURVEY', room })
+		}
 	}, [cachedSurveyId])
 
 	useEffect(() => {
@@ -47,8 +47,9 @@ export default () => {
 			.then((response) => response.json())
 			.then((json) => (json ? json[0]?.contextFile : null))
 			.then((contextFile) => {
-				if (!surveyContext[room])
+				if (!surveyContext[room]) {
 					setSurveyContext({ ...surveyContext, [room]: {} })
+				}
 				dispatch({ type: 'ADD_SURVEY_CONTEXT', contextFile })
 			})
 			.catch((error) => console.log('error:', error))
@@ -66,6 +67,7 @@ export default () => {
 	const survey = useSelector((state) => state.survey)
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 	const navigate = useNavigate()
+	const { t } = useTranslation()
 
 	if (!room || room === '') {
 		return <Navigation to="/groupe?mode=sondage" replace />
@@ -73,11 +75,11 @@ export default () => {
 	return (
 		<div>
 			<Meta
-				title={'Sondage ' + room}
+				title={t('Sondage ') + room}
 				description={
-					'Participez au sondage ' +
+					t('Participez au sondage ') +
 					room +
-					' et visualisez les résultats du groupe'
+					t(' et visualisez les résultats du groupe')
 				}
 			/>
 			<h1>Sondage</h1>
@@ -151,36 +153,46 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 						e.preventDefault()
 					}}
 				>
-					{emoji('💾')} Télécharger les résultats
+					{emoji('💾')} <Trans>Télécharger les résultats</Trans>
 				</a>
 			) : isRegisteredSurvey ? (
 				<div className="ui__ card content">
 					<p>
-						Vous pouvez récupérer les résultats du sondage dans le format .csv.
+						<Trans i18nKey={`publicodes.conference.Survey.csv`}>
+							Vous pouvez récupérer les résultats du sondage dans le format
+							.csv.
+						</Trans>
 					</p>
 					<ul>
 						<li>
-							Pour l'ouvrir avec{' '}
-							<a href="https://fr.libreoffice.org" target="_blank">
-								LibreOffice
-							</a>
-							, c'est automatique.
+							<Trans i18nKey={`publicodes.conference.Survey.libreOffice`}>
+								Pour l'ouvrir avec{' '}
+								<a href="https://fr.libreoffice.org" target="_blank">
+									LibreOffice
+								</a>
+								, c'est automatique.
+							</Trans>
 						</li>
 						<li>
-							Pour l'ouvrir avec Microsoft Excel, ouvrez un tableur vide, puis
-							Données {'>'} À partir d'un fichier texte / CSV. Sélectionnez
-							"Origine : Unicode UTF-8" et "Délimiteur : virgule".
+							<Trans i18nKey={`publicodes.conference.Survey.excel`}>
+								Pour l'ouvrir avec Microsoft Excel, ouvrez un tableur vide, puis
+								Données {'>'} À partir d'un fichier texte / CSV. Sélectionnez
+								"Origine : Unicode UTF-8" et "Délimiteur : virgule".
+							</Trans>
 						</li>
 						<li>
-							Les résultats de la page de visualisation ne prennent en compte
-							que les participants ayant rempli <b>au moins 10% du test</b>. En
-							revanche le CSV contient les simulations de toutes les personnes
-							ayant participé au sondage en cliquant sur le lien. La colonne
-							"progress" vous permet de filtrer les simulations à votre tour.
+							<Trans i18nKey={`publicodes.conference.Survey.resultat`}>
+								Les résultats de la page de visualisation ne prennent en compte
+								que les participants ayant rempli <b>au moins 10% du test</b>.
+								En revanche le CSV contient les simulations de toutes les
+								personnes ayant participé au sondage en cliquant sur le lien. La
+								colonne "progress" vous permet de filtrer les simulations à
+								votre tour.
+							</Trans>
 						</li>
 					</ul>
 					<a href={url} className="ui__ link-button">
-						{emoji('💾')} Lancer le téléchargement.
+						{emoji('💾')} <Trans>Lancer le téléchargement.</Trans>
 					</a>
 				</div>
 			) : (

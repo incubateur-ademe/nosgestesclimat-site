@@ -1,8 +1,10 @@
+import { useTranslation } from 'react-i18next'
 import { correctValue } from '../../components/publicodesUtils'
 import { disabledAction, supersededAction } from './ActionVignette'
 
 export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 	const v = Math.abs(possiblyNegativeValue)
+	const { t } = useTranslation()
 	const [raw, unit] =
 		v === 0
 			? [v, '']
@@ -10,7 +12,7 @@ export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 			? [v * 1000, 'g']
 			: v < 1000
 			? [v, 'kg']
-			: [v / 1000, concise ? 't' : v > 2000 ? 'tonnes' : 'tonne']
+			: [v / 1000, concise ? 't' : v > 2000 ? t('tonnes') : t('tonne')]
 
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
 		resultValue = noSign ? raw : signedValue,
@@ -26,9 +28,15 @@ const HumanWeight = ({
 	nodeValue,
 	overrideValue,
 	metric = 'climat',
-	unitSuffix = 'de CO₂-e / an',
+	unitSuffix = undefined,
 	longUnitSuffix,
 }) => {
+	const { t } = useTranslation()
+
+	if (!unitSuffix) {
+		unitSuffix = t('de') + ' CO₂-e / ' + t('an')
+	}
+
 	const [value, unit] =
 		metric === 'climat'
 			? humanWeight(nodeValue)

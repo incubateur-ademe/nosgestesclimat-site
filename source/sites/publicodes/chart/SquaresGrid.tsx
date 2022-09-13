@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 import { range } from 'ramda'
-import CircledEmojis from '../../../components/CircledEmojis'
 import { motion } from 'framer-motion'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
@@ -40,12 +39,6 @@ export default ({ pixelRemSize, elements, pixel, gridLength, pixelMargin }) => {
 			squareSurplus <= 0
 				? duplicateLast(ponderedElementsRaw, -squareSurplus)
 				: removeLast(ponderedElementsRaw, squareSurplus)
-
-	/*
-		<motion.li
-		</motion.li>
-	))
-	*/
 
 	return (
 		<Grid
@@ -157,8 +150,8 @@ const Grid = styled.ul`
 		(props.gridLength / 10) * (props.pixelRemSize + props.pixelMargin * 2) +
 		0.1}rem;
 	margin: 0 auto;
-	/* The grid will not be centered horizontally. This may be achieved via CSS grids, but it took me more than 15 minutes to not figure out how to do it 
-					 * Another interesting layout would be a snake layout, but it's not simple either : 
+	/* The grid will not be centered horizontally. This may be achieved via CSS grids, but it took me more than 15 minutes to not figure out how to do it
+					 * Another interesting layout would be a snake layout, but it's not simple either :
 					 * https://stackoverflow.com/questions/59481712/flexbox-reverse-direction-on-wrap-snake-wrap
 					 * */
 

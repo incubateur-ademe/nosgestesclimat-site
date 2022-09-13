@@ -1,8 +1,9 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { motion } from 'framer-motion'
-import React, { useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import {
 	objectifsSelector,
@@ -19,7 +20,6 @@ import SquaresGrid from './SquaresGrid'
 // This is a relative grid : the kgCO2e value of each square will vary in order to fill the whole screen
 export default ({ details }) => {
 	// needed for this component to refresh on situation change :
-	const situation = useSelector(situationSelector)
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
@@ -107,11 +107,14 @@ export default ({ details }) => {
 				>
 					<HideTargetButton onClick={() => hideTarget(true)} />
 					<p css="font-size: 180%; a img {margin-left: -0.4rem; width: 1.3rem; vertical-align: super}">
-						{emoji('🎯')} 2 tonnes <ObjectiveExplanation />
+						{emoji('🎯')} <Trans>2 tonnes</Trans> <ObjectiveExplanation />
 					</p>
 					{total < 16000 && (
 						<p>
-							Une case {emoji('🔲')} = {Math.round(pixel)} kg de CO₂e.
+							{t('publicodes.chart.RavijenChart.equivalenceCase', {
+								emoji: emoji('🔲'),
+								nbKg: Math.round(pixel),
+							})}
 						</p>
 					)}
 				</motion.div>
@@ -128,7 +131,7 @@ export default ({ details }) => {
 					`}
 					onClick={() => hideTarget(false)}
 				>
-					{emoji('🎯')} Montrer l'objectif
+					{emoji('🎯')} <Trans>Montrer l'objectif</Trans>
 				</button>
 			)}
 		</motion.section>
@@ -136,6 +139,8 @@ export default ({ details }) => {
 }
 const HideTargetButton = ({ onClick }) => {
 	const matches = useMediaQuery('(min-width: 800px)')
+	const { t } = useTranslation()
+
 	return (
 		<button
 			css={`
@@ -149,9 +154,9 @@ const HideTargetButton = ({ onClick }) => {
 			onClick={onClick}
 		>
 			{matches ? (
-				'Cacher'
+				t('Cacher')
 			) : (
-				<img title="Cacher l'objectif" src="/images/close-plain.svg" />
+				<img title={t("Cacher l'objectif")} src="/images/close-plain.svg" />
 			)}
 		</button>
 	)

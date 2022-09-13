@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import emoji from '../../../components/emoji'
 import { generateRoomName } from './utils'
 
@@ -6,10 +7,12 @@ export default ({ newRoom, setNewRoom }) => {
 	const inputRef = useRef(null)
 	const [showInvalidMessage, setShowInvalidMessage] = useState(true)
 	const specialCharaters = /[!@#$%&*()+\=\[\]{};':"\\|,.<>\/?]+/
+	const { t } = useTranslation()
+
 	return (
 		<>
 			<form>
-				<label title="Nom de la salle">
+				<label title={t('Nom de la salle')}>
 					<input
 						value={newRoom}
 						className="ui__"
@@ -33,7 +36,7 @@ export default ({ newRoom, setNewRoom }) => {
 						inputRef.current.focus()
 						e.preventDefault()
 					}}
-					title="Effacer le nom actuel"
+					title={t('Effacer le nom actuel')}
 				>
 					{emoji('❌')}
 				</button>
@@ -43,18 +46,26 @@ export default ({ newRoom, setNewRoom }) => {
 				onClick={() => setNewRoom(generateRoomName())}
 				className="ui__ dashed-button"
 			>
-				{emoji('🔃')} Générer un autre nom
+				{emoji('🔃')} {t('Générer un autre nom')}
 			</button>
 			{newRoom && newRoom.length < 12 && (
 				<p>
-					{emoji('⚠️')} Votre nom de salle est court, il y a un petit risque que
-					des inconnus puissent le deviner
+					{emoji('⚠️')}
+					<Trans i18nKey={`publicodes.conference.NamingBlock.nomSalleCourt`}>
+						Votre nom de salle est court, il y a un petit risque que des
+						inconnus puissent le deviner
+					</Trans>
 				</p>
 			)}
 			{newRoom && showInvalidMessage && (
 				<p>
-					{emoji('💡')} Votre nom de salle ne peut que contenir des lettres, des
-					chifffres et des tirets
+					{emoji('💡')}
+					<Trans
+						i18nKey={`publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres`}
+					>
+						Votre nom de salle ne peut que contenir des lettres, des chifffres
+						et des tirets
+					</Trans>
 				</p>
 			)}
 		</>

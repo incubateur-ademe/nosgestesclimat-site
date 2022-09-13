@@ -1,7 +1,5 @@
-import * as React from 'react'
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { wrap } from 'popmotion'
 import styled from 'styled-components'
 
 const variants = {
@@ -126,11 +124,11 @@ const NextButton = styled.button`
 
 animation-name: light, strong;
 animation-duration: 1s;
-animation-delay: 8s, 14s; 
+animation-delay: 8s, 14s;
 animation-timing-function: ease-in-out;
 animation-iteration-count: 6, infinite;
 animation-direction: alternate;
-	 
+
 @keyframes light{
 		0% {
 			transform: scale(1);

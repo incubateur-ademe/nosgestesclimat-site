@@ -1,4 +1,5 @@
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 
@@ -8,8 +9,10 @@ export default ({ setHasDataState }) => (
 		message={
 			<div>
 				<p>
-					Bienvenue dans le mode groupe de Nos Gestes Climat ! Vous n'avez pas
-					encore débuté votre test, lancez-vous !
+					<Trans i18nKey={`publicodes.conference.NoTestMessage.bienvenue`}>
+						Bienvenue dans le mode groupe de Nos Gestes Climat ! Vous n'avez pas
+						encore débuté votre test, lancez-vous !
+					</Trans>
 				</p>
 				<div
 					css={`
@@ -24,7 +27,7 @@ export default ({ setHasDataState }) => (
 				>
 					<button>
 						<Link className="ui__ button plain" to={'/simulateur/bilan'}>
-							Faire mon test
+							<Trans>Faire mon test</Trans>
 						</Link>
 					</button>
 					<button
@@ -33,7 +36,7 @@ export default ({ setHasDataState }) => (
 							setHasDataState(true)
 						}}
 					>
-						{emoji('🧮')} Voir les réponses
+						{emoji('🧮')} <Trans>Voir les réponses</Trans>
 					</button>
 				</div>
 			</div>

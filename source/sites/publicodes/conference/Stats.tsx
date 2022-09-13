@@ -1,12 +1,11 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Progress from '../../../components/ui/Progress'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
 import FilterBar from './FilterBar'
-import { extremeThreshold } from './utils'
-import { elementDragControls } from 'framer-motion/types/gestures/drag/VisualElementDragControls'
+import { useTranslation } from 'react-i18next'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -66,6 +65,8 @@ export default ({
 	const spotlightElement = elements.find((el) => el.username === spotlight),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
+	const { t } = useTranslation()
+
 	return (
 		<div>
 			<div css=" text-align: center">
@@ -76,7 +77,7 @@ export default ({
 						{elements.length > 1 ? 's' : ''})
 					</span>
 				</p>
-				<Progress progress={meanProgress} label="Avancement du groupe" />
+				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
 			</div>
 			<FilterBar
 				threshold={threshold}
@@ -89,7 +90,8 @@ export default ({
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
 						<span role="status">Moyenne : {humanMean} </span>
-						<small title="Moyenne française">
+						// TODO: needs to be translated
+						<small title={t('Moyenne française')}>
 							({emoji('🇫🇷')} <DefaultFootprint />)
 						</small>
 					</div>
@@ -97,7 +99,7 @@ export default ({
 				{elements.length > 0 && (
 					<div>
 						<ul
-							title="Empreinte totale"
+							title={t('Empreinte totale')}
 							css={`
 								width: 100%;
 								position: relative;
@@ -125,7 +127,7 @@ export default ({
 
 										cursor: pointer;
 										${spotlight === username
-											? `background: yellow; opacity: 1; 
+											? `background: yellow; opacity: 1;
 										border-right: 2px dashed black;
 										border-left: 2px dashed black;
 										z-index: 1;

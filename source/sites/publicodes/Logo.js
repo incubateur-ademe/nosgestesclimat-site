@@ -1,7 +1,8 @@
-import React, { useContext } from 'react'
-import emoji from 'react-easy-emoji'
+import { useContext } from 'react'
 import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
-//This component is unfortunately repeated in index.html, where we can't yet use a component :-(
+
+// This component is unfortunately repeated in index.html, where we can't yet
+// use a component :-(
 
 export default () => (
 	<span
