@@ -73,6 +73,7 @@ export default function Root({}) {
 				actionChoices: persistedSimulation?.actionChoices || {},
 				tutorials: persistedSimulation?.tutorials || {},
 				storedTrajets: persistedSimulation?.storedTrajets || {},
+				localisation: persistedSimulation?.localisation,
 			}}
 		>
 			<Main />
