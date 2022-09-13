@@ -10,6 +10,7 @@ import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
+import { getSupportedFlag } from './useLocalisation'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
@@ -41,7 +42,7 @@ export default () => {
 						Nous avons détecté que vous faites cette simulation depuis{' '}
 						{getCountryNameInFrench(localisation?.country.code)}
 						<img
-							src={getFlagImgSrc(localisation?.country.code)}
+							src={getSupportedFlag(localisation)}
 							aria-hidden="true"
 							css={`
 								height: 1rem;
