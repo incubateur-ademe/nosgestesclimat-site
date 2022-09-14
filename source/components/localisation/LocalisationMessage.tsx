@@ -25,18 +25,22 @@ export default () => {
 
 	return (
 		<IllustratedMessage
-			width="90%"
+			width="32rem"
 			direction="row"
 			backgroundcolor="#fff8d3"
 			image={flag}
 			message={
 				<div>
 					<p>
-						Vous utilisez la version {gentilé || nom} du test.
+						Vous utilisez la version <strong>{gentilé || nom}</strong> du test.
 						{code !== 'FR' && (
 							<span> Elle est actuellement en version beta.</span>
 						)}{' '}
-						Pas votre région ? <Link to="/profil">Choisissez la votre</Link>.
+					</p>
+					<p>
+						<small>
+							Pas votre région ? <Link to="/profil">Choisissez la votre</Link>.
+						</small>
 					</p>
 					<button
 						className="ui__ button plain small "
