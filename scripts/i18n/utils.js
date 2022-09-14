@@ -6,6 +6,7 @@ const R = require('ramda')
 const querystring = require('querystring')
 const { readRules } = require('../rules')
 const yaml = require('yaml')
+const diff = require('deep-diff')
 
 const colors = {
 	reset: '\x1b[0m',
@@ -128,12 +129,53 @@ function getRulesMissingTranslations() {
 	return [missingTranslations, resolved]
 }
 
-const getUiMissingTranslations = (pathToCompareWith) => {
-	const staticKeys = require(path.resolve(
-		'source/locales/static-analysis-fr.json'
-	))
-	const translatedKeys = yaml.parse(fs.readFileSync(pathToCompareWith, 'utf-8'))
-
+// TODO:
+// - [ ] Catch missing file error
+const getUiMissingTranslations = (sourcePath, targetPath) => {
+	// const collectMissingTranslations = (src, target, missingTrans) => {
+	// 	// console.log('collectMissingTranslations', src, target, missingTrans)
+	// 	if (!src) {
+	// 		return missingTrans
+	// 	}
+	// 	// const nonNullTarget = target || {}
+	// 	//
+	// 	console.log(`missingTrans`, missingTrans)
+	// 	console.log(`diff ${src} ${target}:`, diff(src, target))
+	//
+	// 	return (
+	// 		diff(src, target)
+	// 			.filter(({ kind }) => 'D' === kind)
+	// 			// .forEach((o) => console.log(o))
+	// 			.map(({ path, lhs }) => {
+	// 				const missKeys = Object.keys(lhs)
+	// 				// console.log(`path:`, path)
+	// 				// console.log(`lhs:`, lhs)
+	// 				// path.concat(missKeys)
+	// 				const pathOrEmpty = path || []
+	//
+	// 				return missKeys
+	// 					.map((key) => {
+	// 						console.log(`${pathOrEmpty}.push(${key}):`)
+	// 						if (typeof lhs[key] === 'object') {
+	// 							return collectMissingTranslations(
+	// 								lhs[key],
+	// 								target[key],
+	// 								pathOrEmpty
+	// 							)
+	// 						}
+	// 						return R.append(key, pathOrEmpty)
+	// 					})
+	// 					.reduce((acc, curr) => {
+	// 						console.log(`reduce(${acc}, ${curr}):`)
+	// 						return R.append(curr, acc)
+	// 					}, missingTrans)
+	// 			})[0]
+	// 	)
+	// }
+	const staticKeys = nestedObjectToDotNotation(
+		require(path.resolve(sourcePath))
+	)
+	const translatedKeys = JSON.parse(fs.readFileSync(targetPath, 'utf-8'))
 	const missingTranslations = Object.keys(staticKeys).filter((key) => {
 		if (key.match(/^\{.*\}$/)) {
 			return false
@@ -142,10 +184,10 @@ const getUiMissingTranslations = (pathToCompareWith) => {
 		return !R.path(keys, translatedKeys)
 	}, staticKeys)
 	return R.pick(missingTranslations, staticKeys)
+	// return collectMissingTranslations(staticKeys, translatedKeys, [])
 }
 
 const fetchTranslation = async (text) => {
-	console.log(`Fetch translation for:\n\t${text}`)
 	const req = `https://api-free.deepl.com/v2/translate?${querystring.stringify({
 		text,
 		auth_key: `ed64c4b2-ff0c-9c45-a304-8086f0c2baf2:fx`,
@@ -153,7 +195,6 @@ const fetchTranslation = async (text) => {
 		source_lang: 'FR',
 		target_lang: 'EN',
 	})}`
-	console.log(`Fetching: ${req}`)
 	const response = await fetch(req)
 	const { translations } = await response.json()
 	return translations[0].text
@@ -178,6 +219,34 @@ const dotNotationToNestedObject = (obj) => {
 	return result
 }
 
+// TODO: could be optimized?
+const nestedObjectToDotNotation = (obj) => {
+	const result = {}
+
+	const flatten = (prefix, obj) => {
+		for (const key in obj) {
+			const value = obj[key]
+			const newKey = prefix ? prefix + '.' + key : key
+
+			if (typeof value === 'object') {
+				flatten(newKey, value)
+			} else {
+				result[newKey] = value
+			}
+		}
+	}
+
+	flatten('', obj)
+
+	return result
+}
+
+const asyncForEach = async (array, callback) => {
+	for (let index = 0; index < array.length; index++) {
+		await callback(array[index], index, array)
+	}
+}
+
 module.exports = {
 	fetchTranslation,
 	getRulesMissingTranslations,
@@ -186,4 +255,5 @@ module.exports = {
 	paths,
 	colors,
 	withStyle,
+	asyncForEach,
 }

@@ -20,7 +20,6 @@ import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
-import i18next from 'i18next'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -159,7 +158,7 @@ export default function SessionBar({
 		undefined
 	)
 
-	const { i18n } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	let elements = [
 		<div>
@@ -200,7 +199,7 @@ export default function SessionBar({
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
 			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />
 			{!persona ? (
-				'Mon profil'
+				t('Mon profil')
 			) : (
 				<span
 					css={`

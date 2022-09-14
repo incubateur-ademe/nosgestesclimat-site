@@ -1,7 +1,7 @@
 /*
 	Analyses the source code and extracts the corresponding i18next resource file.
 
-	Command: npm run translate:ui:fr:gen
+	Command: npm run generate:ui
 */
 
 const stringify = require('json-stable-stringify')

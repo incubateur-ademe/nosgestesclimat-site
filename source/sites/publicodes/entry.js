@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import App from './App'
 import i18next from '../../locales/i18n'
 import { getLangInfos, Lang } from '../../locales/translation'
-import translationsEn from '../../locales/ui-en.yaml'
+import translationsEn from '../../locales/ui-en.json'
 import translationsFr from '../../locales/ui-fr.json'
 
 i18next.addResourceBundle('fr', 'translation', translationsFr)
