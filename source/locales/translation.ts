@@ -1,5 +1,8 @@
 /*
 	This module contains all types and functions related to the translation.
+
+	TODO:
+	- getLangInfos could be factorized in Lang?
 */
 
 export { Lang, LangInfos, getLangInfos, defaultLang }
@@ -8,6 +11,7 @@ enum Lang {
 	Default = 'Fr',
 	Fr = 'Fr',
 	En = 'En',
+	Es = 'Es',
 }
 
 type LangInfos = {
@@ -30,6 +34,12 @@ function getLangInfos(lang: Lang): LangInfos {
 			return {
 				name: 'English',
 				abrv: 'en',
+			}
+		}
+		case Lang.Es: {
+			return {
+				name: 'Español',
+				abrv: 'es',
 			}
 		}
 	}

@@ -6,6 +6,7 @@ import { useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
 import FAQ from './FAQ.yaml'
+import { Trans } from 'react-i18next'
 
 const formStyle = `
 label {

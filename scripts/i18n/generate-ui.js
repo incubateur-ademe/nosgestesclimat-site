@@ -4,11 +4,11 @@
 	Command: npm run generate:ui
 */
 
-const stringify = require('json-stable-stringify')
 const fs = require('fs')
 const ramda = require('ramda')
 const child_process = require('child_process')
 const utils = require('./utils')
+const stringify = require('json-stable-stringify')
 
 const red = (str) => utils.withStyle(utils.colors.fgRed, str)
 const green = (str) => utils.withStyle(utils.colors.fgGreen, str)
@@ -91,6 +91,7 @@ console.log(`Writting resources in ${utils.paths.uiTranslationResource.fr}...`)
 try {
 	fs.writeFileSync(
 		utils.paths.uiTranslationResource.fr,
+
 		stringify(oldFrResource, {
 			cmp: (a, b) => a.key.localeCompare(b.key),
 			space: 2,

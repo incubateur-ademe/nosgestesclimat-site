@@ -44,6 +44,7 @@ const paths = {
 	uiTranslationResource: {
 		fr: path.resolve('source/locales/ui-fr.json'),
 		en: path.resolve('source/locales/ui-en.json'),
+		es: path.resolve('source/locales/ui-es.json'),
 	},
 }
 
@@ -187,13 +188,13 @@ const getUiMissingTranslations = (sourcePath, targetPath) => {
 	// return collectMissingTranslations(staticKeys, translatedKeys, [])
 }
 
-const fetchTranslation = async (text) => {
-	const req = `https://api-free.deepl.com/v2/translate?${querystring.stringify({
+const fetchTranslation = async (text, sourceLang, targetLang) => {
+	const req = `https://api.deepl.com/v2/translate?${querystring.stringify({
 		text,
-		auth_key: `ed64c4b2-ff0c-9c45-a304-8086f0c2baf2:fx`,
+		auth_key: process.env.DEEPL_API_KEY,
 		tag_handling: 'xml',
-		source_lang: 'FR',
-		target_lang: 'EN',
+		source_lang: sourceLang,
+		target_lang: targetLang,
 	})}`
 	const response = await fetch(req)
 	const { translations } = await response.json()
@@ -241,12 +242,6 @@ const nestedObjectToDotNotation = (obj) => {
 	return result
 }
 
-const asyncForEach = async (array, callback) => {
-	for (let index = 0; index < array.length; index++) {
-		await callback(array[index], index, array)
-	}
-}
-
 module.exports = {
 	fetchTranslation,
 	getRulesMissingTranslations,
@@ -255,5 +250,4 @@ module.exports = {
 	paths,
 	colors,
 	withStyle,
-	asyncForEach,
 }
