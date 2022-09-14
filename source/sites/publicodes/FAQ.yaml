@@ -29,7 +29,7 @@
 
     Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO2e/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
 
-    Si vous connaissez bien le sujet dans votre pays, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
+    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 
 - question: Je ne comprends pas si le calcul est fait par foyer ou par individu
   id: foyer

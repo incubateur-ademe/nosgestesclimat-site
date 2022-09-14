@@ -75,7 +75,9 @@ export const getCountryNameInFrench = (code) => {
 	// Including French prepositions subtelties.
 	if (!code) return
 	const regionNamesInFrench = new Intl.DisplayNames(['fr'], { type: 'region' }),
-		countryName = regionNamesInFrench.of(code),
+		countryNameAuto = regionNamesInFrench.of(code),
+		countryName =
+			countryNameAuto === 'France' ? 'France métropolitaine' : countryNameAuto,
 		preposition = (countryName && frenchCountryPrepositions[countryName]) || ''
 	return `${preposition} ${countryName}`
 }

@@ -39,7 +39,13 @@ export default () => {
 			{localisation != null ? (
 				supported ? (
 					<p>
-						Nous avons détecté que vous faites cette simulation depuis{' '}
+						{localisation.userChosen ? (
+							<span>Vous avez choisi </span>
+						) : (
+							<span>
+								Nous avons détecté que vous faites cette simulation depuis{' '}
+							</span>
+						)}
 						{getCountryNameInFrench(localisation?.country.code)}
 						<img
 							src={getSupportedFlag(localisation)}
@@ -77,13 +83,18 @@ export default () => {
 				</p>
 			)}
 			<details>
-				<summary>Choisir un autre pays</summary>
+				<summary>Choisir une autre région</summary>
 				<ul>
 					{supportedCountries.map(({ nom, code, PR }) => (
 						<li
 							key={code}
 							onClick={() => {
-								dispatch(setLocalisation({ country: { name: nom, code } }))
+								dispatch(
+									setLocalisation({
+										country: { name: nom, code },
+										userChosen: true,
+									})
+								)
 								const localisationPR = supportedCountries.find(
 									(country) => country.code === code
 								)?.PR
