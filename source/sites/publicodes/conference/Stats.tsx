@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Progress from '../../../components/ui/Progress'
+import { WithEngine } from '../../../RulesProvider'
 import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
@@ -76,13 +77,15 @@ export default ({
 				</p>
 				<Progress progress={meanProgress} label="Avancement du groupe" />
 			</div>
-			<FilterBar
-				threshold={threshold}
-				setThreshold={setThreshold}
-				contextFilter={contextFilter}
-				setContextFilter={setContextFilter}
-				contextRules={contextRules}
-			/>
+			<WithEngine>
+				<FilterBar
+					threshold={threshold}
+					setThreshold={setThreshold}
+					contextFilter={contextFilter}
+					setContextFilter={setContextFilter}
+					contextRules={contextRules}
+				/>
+			</WithEngine>
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
