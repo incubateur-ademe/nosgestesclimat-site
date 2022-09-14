@@ -1,3 +1,4 @@
+import { loadResources } from 'i18next'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
@@ -21,9 +22,7 @@ export default () => {
 	useEffect(() => {
 		if (localisation != null) {
 			if (!pullRequestNumber) {
-				const localisationPR = supportedCountries.find(
-					(country) => country.code === localisation.country.code
-				)?.PR
+				const localisationPR = getLocalisationPullRequest(localisation)
 				setPullRequestNumber(localisationPR)
 			}
 			return
@@ -91,4 +90,10 @@ export const getSupportedFlag = (localisation) => {
 	if (supported.PR === undefined) return
 	const code = supported.drapeau || supported.code
 	return getFlagImgSrc(code)
+}
+
+export const getLocalisationPullRequest = (localisation) => {
+	return supportedCountries.find(
+		(country) => country.code === localisation.country.code
+	)?.PR
 }
