@@ -1,12 +1,10 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Progress from '../../../components/ui/Progress'
+import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
-import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
 import FilterBar from './FilterBar'
-import { extremeThreshold } from './utils'
-import { elementDragControls } from 'framer-motion/types/gestures/drag/VisualElementDragControls'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
