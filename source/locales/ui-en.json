@@ -41,6 +41,7 @@
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "This contribution will be public: do not put sensitive information in it",
   "Cette fiche détaillée n'existe pas encore": "This detailed sheet does not exist yet",
   "cette page": "this page",
+  "Changer de langue": "Change language",
   "Chargement": "Loading",
   "Choisir l'action": "Choose the action",
   "Choisir le type de tri des actions": "Choose the type of stock sorting",
@@ -151,7 +152,7 @@
   "Icône représentant une pompe à pétrole": "Icon representing an oil pump",
   "Initialisation...": "Initialization...",
   "Insérer cette suggestion": "Insert this suggestion",
-  "J'ai compris": "I understood",
+  "J'ai compris": "I understand",
   "Je ne sais pas": "I do not know",
   "L'objectif à atteindre, 2 tonnes de CO₂e": "The goal to achieve, 2 tons of CO₂e",
   "la page à partager à l'étape 3": "the page to be shared in step 3",
@@ -290,14 +291,14 @@
         "viePrivée": "{emoji('🕵')} By participating, you agree to the <3>anonymous</3> collection of your aggregated simulation results on our server: total climate footprint and categories (transportation, housing, etc.). <6>Read more</6>"
       },
       "Instructions": {
-        "avertissementModeConference": "Your organization may block the use of the conference mode. Test it beforehand with a duet: if there is a problem, you can use the polling mode.",
+        "avertissementModeConference": "Your organization may block the use of the conference mode. Test this beforehand with a duet: if there is a problem, you can use the polling mode.",
         "contextualisationLink": "Want to add questions to get additional information about respondents? <2>Check out the \"survey contextualization!\" feature. </2>",
         "descriptionModeConference": "Ephemeral mode: perfect for a workshop, an interactive presentation or between friends. The data remains between the participants (peer-to-peer), without a server, <2>just for the time of the conference</2>.",
         "descriptionModeSondage": "Persistent mode: the interface is almost the same, but the data is stored on our server and thus remains accessible <1>for two months</1>.",
         "guideLien": "The results are in, what to do? Our guide accompanies you in your thoughts and discussions on this page",
         "intro": "<0>The climate footprint test is an individual test, but here we suggest that you do it with others. Everyone will be behind his or her own screen, but will be able to see the results of the others in real time.</0><1>It is an opportunity to confront others and to think together about the stakes of our own impact.</1>",
         "liensSimulationConference": "At the agreed time, open this link all at the same time and do your own simulation.",
-        "liensSimulationSondage": "Participants must come and do their simulation on this link.",
+        "liensSimulationSondage": "Participants must come to make their simulation on this link.",
         "resultatInfos": "The results for each category (food, transportation, housing, etc.) are displayed progressively and in real time for the entire group on "
       },
       "NamingBlock": {
@@ -311,7 +312,7 @@
         "csv": "You can retrieve the survey results in .csv format.",
         "excel": "To open it with Microsoft Excel, open an empty spreadsheet, then Data &gt; From a text / CSV file. Select \"Origin: Unicode UTF-8\" and \"Delimiter: comma\".",
         "libreOffice": "To open it with <2>LibreOffice</2>, it is automatic.",
-        "resultat": "The results on the view page only include participants who completed <1>at least 10% of the test</1>. In contrast, the CSV contains the simulations of all people who participated in the survey by clicking on the link. The \"progress\" column allows you to filter the simulations in turn."
+        "resultat": "The results on the view page only include participants who completed <1>at least 10% of the test</1>. The CSV, on the other hand, contains the simulations of all the people who participated in the survey by clicking on the link. The \"progress\" column allows you to filter the simulations in turn."
       }
     },
     "Contribution": {
@@ -329,7 +330,7 @@
       },
       "IframeDataShareModal": {
         "partageResultats": "Share your results with {{parent}}?",
-        "text": "<0>By clicking on the Accept button, you authorize {{parent}} to retrieve your climate footprint.</0><1>It is your results on the main categories (transport, food...), but <1>not</1> the detail question by question (your km by car, the m² of your house...).</1><2>Nosgestesclimat.fr is not affiliated with the site {{parent}}.</2>"
+        "text": "<0>By clicking on the Accept button, you authorize {{parent}} to retrieve your climate footprint.</0><1>It is your results on the main categories (transport, food...), but <1>not</1> the detail question by question (your km by car, the m² of your home...).</1><2>Nosgestesclimat.fr is not affiliated with the site {{parent}}.</2>"
       },
       "Petrogaz": {
         "explications": "<0>It is a <1>minimum</1> estimate of your crude oil consumption for the year.</0><1>Estimated via your car, plane, bus and heating oil consumption, it does not (yet) take into account the oil used to transport your purchases, and the grey energy of your various possessions.</1>",
@@ -348,7 +349,7 @@
     "shareText": "#nosgestesclimate 🌍️\n\n{{total}} tons CO2e / year ⬇️\n\n{{graph}}",
     "SimulationMissing": {
       "personnas": "You can also see the action path as if you were one of these typical profiles.",
-      "simulationManquante": "You haven't taken the test yet. To unlock this course, you need to tell us a little more about your lifestyle."
+      "simulationManquante": "You haven't taken the test yet. To unlock this path, you need to tell us a little more about your lifestyle."
     },
     "Tutorial": {
       "slide1": "<0>Don't panic, we explain what it is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and more greenhouse gases.</1>",

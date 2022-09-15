@@ -41,6 +41,7 @@
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Esta contribución será pública: no ponga información sensible en ella",
   "Cette fiche détaillée n'existe pas encore": "Esta ficha detallada aún no existe",
   "cette page": "esta página",
+  "Changer de langue": "Cambiar el idioma",
   "Chargement": "Cargando",
   "Choisir l'action": "Elija la acción",
   "Choisir le type de tri des actions": "Elija el tipo de clasificación de las existencias",
@@ -56,7 +57,7 @@
     "conversation": {
       "estimate": {
         "KmHelp": {
-          "resultatKmParcouruMoyenne": "Conduces {{kilómetroConducido}} km con una media de {{nbPersonas}} en el coche."
+          "resultatKmParcouruMoyenne": "Conduces {{kilometroCargado}} km con una media de {{nbPersonas}} en el coche."
         }
       },
       "select": {
@@ -68,7 +69,7 @@
     },
     "stats": {
       "StatsContent": {
-        "enSavoirPlus": "<0>Esta</0>sección se genera a partir de las visitas de los últimos 60 días. Se han descartado las visitas con un tiempo de permanencia en el sitio inferior a 1 minuto. Para evitar el sesgo del iframe que puede generar visitantes inactivos en las estadísticas, el tiempo medio en el sitio se calculó a partir de las visitas activas (el usuario hizo clic en \"Hacer la prueba\")."
+        "enSavoirPlus": "<0>Esta</0>sección se genera a partir de las visitas de los últimos 60 días. Se han descartado las visitas con un tiempo de permanencia en el sitio inferior a 1 minuto. Para evitar el sesgo del iframe que puede generar visitantes inactivos en las estadísticas, el tiempo medio en el sitio se ha calculado a partir de las visitas activas (el usuario ha hecho clic en \"Hacer la prueba\")."
       }
     }
   },
@@ -89,7 +90,7 @@
   "de <1>pétrole brut par an</1>.": "de <1>petróleo crudo al año</1>.",
   "de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>": "de visitas este mes<1> (en comparación con el mes anterior)</1>",
   "Découvrez la FAQ !": "Consulte las preguntas frecuentes.",
-  "Découvrez les enjeux qui se cachent derrière chaque action.": "Descubra los temas que hay detrás de cada acción.",
+  "Découvrez les enjeux qui se cachent derrière chaque action.": "Descubra los problemas que hay detrás de cada acción.",
   "Découvrez les nouveautés de la version": "Descubra las novedades de esta versión",
   "Découvrez les nouveautés de Nos Gestes Climat": "Descubra las nuevas características de Nuestros Gestos Climáticos",
   "Démarrer": "Inicie",
@@ -147,7 +148,7 @@
   "Guidé": "Guiado",
   "habitant": "residente",
   "habitants": "habitantes",
-  "hoississez votre mode de simulation": "Seleccione el modo de simulación",
+  "hoississez votre mode de simulation": "Seleccione su modo de simulación",
   "Icône représentant une pompe à pétrole": "Icono que representa una bomba de aceite",
   "Initialisation...": "Inicialización...",
   "Insérer cette suggestion": "Inserte esta sugerencia",

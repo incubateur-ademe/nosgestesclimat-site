@@ -20,6 +20,7 @@ import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
+import LangSwitcher from './LangSwitcher'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -158,19 +159,9 @@ export default function SessionBar({
 		undefined
 	)
 
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	let elements = [
-		<div>
-			{Object.keys(Lang)
-				.filter((l) => l != Lang.Default)
-				.map((l) => getLangInfos(Lang[l]))
-				.map((info: LangInfos) => (
-					<Button url={location} onClick={() => i18n.changeLanguage(info.abrv)}>
-						{info.name}
-					</Button>
-				))}
-		</div>,
 		<Button
 			className="simple small"
 			url={'/simulateur/bilan'}
@@ -281,6 +272,7 @@ export default function SessionBar({
 				<SurveyBarLazy />
 			</GroupModeMenuEntry>
 		),
+		<LangSwitcher className="simple small" />,
 	]
 
 	if (path === '/tutoriel') return null
