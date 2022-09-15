@@ -24,8 +24,14 @@ if (!fs.existsSync(paths.uiTranslationResource.fr)) {
 	return -1
 }
 
-const progressBar = new cliProgress.SingleBar(
-	{ format: '{value}/{total} | {bar} | Fetching {key}... ' },
+const progressBars = new cliProgress.MultiBar(
+	{
+		hideCursor: true,
+		stopOnComplete: true,
+		clearOnComplete: true,
+		forceRedraw: true,
+		format: '{lang} | {value}/{total} | {bar} | {msg} ',
+	},
 	cliProgress.Presets.shades_grey
 )
 
@@ -37,14 +43,17 @@ const translateTo = (targetLang, targetPath) => {
 		`Found ${utils.withStyle(
 			utils.colors.fgGreen,
 			missingTranslations.length
-		)} missing translations.`
+		)} missing translations for the language ${utils.withStyle(
+			utils.colors.fgYellow,
+			targetLang
+		)}.`
 	)
 
 	let translatedKeys = JSON.parse(fs.readFileSync(targetPath, 'utf-8'))
 
 	if (missingTranslations.length > 0) {
-		console.log(`Fetching translations:`)
-		progressBar.start(missingTranslations.length, 0)
+		let bar = progressBars.create(missingTranslations.length, 0)
+
 		missingTranslations
 			.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
 			.forEach(async ([key, value]) => {
@@ -67,14 +76,13 @@ const translateTo = (targetLang, targetPath) => {
 							space: 2,
 						})
 					)
-
-					progressBar.update(progressBar.value + 1, { key: key })
-					if (progressBar.value === progressBar.getTotal()) {
-						progressBar.stop()
-						console.log(`Done!`)
-					}
+					bar.increment({
+						msg: `Translating '${key}'...`,
+						lang: targetLang,
+					})
 				} catch (err) {
-					progressBar.stop()
+					bar.stop()
+					progressBars.remove(bar)
 					console.error(
 						`ERROR: an error occured while fetching the '${key}' translations:`
 					)
@@ -87,9 +95,6 @@ const translateTo = (targetLang, targetPath) => {
 
 Object.entries(utils.paths.uiTranslationResource).forEach(([lang, path]) => {
 	if (path !== defaultLangPath) {
-		console.log(
-			`Collecting missing translations for the language: '${lang}'...`
-		)
 		translateTo(lang, path)
 	}
 })

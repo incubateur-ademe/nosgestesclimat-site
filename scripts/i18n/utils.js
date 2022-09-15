@@ -44,6 +44,7 @@ const paths = {
 	uiTranslationResource: {
 		fr: path.resolve('source/locales/ui-fr.json'),
 		en: path.resolve('source/locales/ui-en.json'),
+		it: path.resolve('source/locales/ui-it.json'),
 		es: path.resolve('source/locales/ui-es.json'),
 	},
 }
@@ -133,46 +134,10 @@ function getRulesMissingTranslations() {
 // TODO:
 // - [ ] Catch missing file error
 const getUiMissingTranslations = (sourcePath, targetPath) => {
-	// const collectMissingTranslations = (src, target, missingTrans) => {
-	// 	// console.log('collectMissingTranslations', src, target, missingTrans)
-	// 	if (!src) {
-	// 		return missingTrans
-	// 	}
-	// 	// const nonNullTarget = target || {}
-	// 	//
-	// 	console.log(`missingTrans`, missingTrans)
-	// 	console.log(`diff ${src} ${target}:`, diff(src, target))
-	//
-	// 	return (
-	// 		diff(src, target)
-	// 			.filter(({ kind }) => 'D' === kind)
-	// 			// .forEach((o) => console.log(o))
-	// 			.map(({ path, lhs }) => {
-	// 				const missKeys = Object.keys(lhs)
-	// 				// console.log(`path:`, path)
-	// 				// console.log(`lhs:`, lhs)
-	// 				// path.concat(missKeys)
-	// 				const pathOrEmpty = path || []
-	//
-	// 				return missKeys
-	// 					.map((key) => {
-	// 						console.log(`${pathOrEmpty}.push(${key}):`)
-	// 						if (typeof lhs[key] === 'object') {
-	// 							return collectMissingTranslations(
-	// 								lhs[key],
-	// 								target[key],
-	// 								pathOrEmpty
-	// 							)
-	// 						}
-	// 						return R.append(key, pathOrEmpty)
-	// 					})
-	// 					.reduce((acc, curr) => {
-	// 						console.log(`reduce(${acc}, ${curr}):`)
-	// 						return R.append(curr, acc)
-	// 					}, missingTrans)
-	// 			})[0]
-	// 	)
-	// }
+	if (!fs.existsSync(targetPath)) {
+		console.log(`Creating ${targetPath}`)
+		fs.writeFileSync(targetPath, '{}')
+	}
 	const staticKeys = nestedObjectToDotNotation(
 		require(path.resolve(sourcePath))
 	)
@@ -185,7 +150,6 @@ const getUiMissingTranslations = (sourcePath, targetPath) => {
 		return !R.path(keys, translatedKeys)
 	}, staticKeys)
 	return R.pick(missingTranslations, staticKeys)
-	// return collectMissingTranslations(staticKeys, translatedKeys, [])
 }
 
 const fetchTranslation = async (text, sourceLang, targetLang) => {
