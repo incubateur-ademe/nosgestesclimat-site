@@ -22,10 +22,7 @@ export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const hasData =
-		answeredQuestionsLength > 0 ||
-		Object.entries(tutorials).find(([_, v]) => v != null)
-
+	const hasData = answeredQuestionsLength > 0
 	return { hasData, tutorials, answeredQuestionsLength }
 }
 
@@ -60,21 +57,26 @@ export default ({}) => {
 						</em>
 					</p>
 				)}
+				{tutorials.testIntro && (
+					<div
+						css={`
+							margin-bottom: 2rem;
+						`}
+					>
+						<button
+							className="ui__ dashed-button"
+							onClick={() => {
+								dispatch(skipTutorial('testIntro', true))
+								dispatch(resetTutorials())
+								navigate('/tutoriel')
+							}}
+						>
+							{emoji('🧑‍🏫')} Revoir le tutoriel
+						</button>
+					</div>
+				)}
 				{hasData ? (
 					<div>
-						{tutorials.testIntro && (
-							<div>
-								<button
-									className="ui__ dashed-button"
-									onClick={() => {
-										dispatch(skipTutorial('testIntro', true))
-										navigate('/tutoriel')
-									}}
-								>
-									{emoji('🧑‍🏫')} <Trans>Revoir le tutoriel</Trans>
-								</button>
-							</div>
-						)}
 						{answeredQuestionsLength > 0 && (
 							<p>
 								<Trans i18nKey={`publicodes.Profil.recap`}>
@@ -100,8 +102,8 @@ export default ({}) => {
 								dispatch(resetSimulation())
 								dispatch(resetActionChoices())
 								dispatch(deletePreviousSimulation())
-								dispatch(resetTutorials())
 								dispatch(resetStoredTrajets())
+								navigate('/simulateur/bilan')
 							}}
 						>
 							{emoji('♻️ ')} <Trans>Recommencer</Trans>

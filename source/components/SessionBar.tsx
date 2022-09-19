@@ -64,6 +64,7 @@ const MenuButton = styled.div`
 		@media (max-width: 800px) {
 			margin: 0 !important;
 		}
+		height: auto;
 	}
 `
 
@@ -127,16 +128,10 @@ export default function SessionBar({
 	answerButtonOnly = false,
 	noResults = false,
 }) {
-	const dispatch = useDispatch()
-	const nextQuestions = useNextQuestions()
-	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	useSafePreviousSimulation()
 
-	const objectifs = useSelector(objectifsSelector)
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
-	const rules = useSelector((state) => state.rules)
-	const engine = useEngine(objectifs)
 
 	const location = useLocation(),
 		path = location.pathname
@@ -165,13 +160,6 @@ export default function SessionBar({
 		<Button
 			className="simple small"
 			url={'/simulateur/bilan'}
-			onClick={() => {
-				nextQuestions.length ? (
-					dispatch(goToQuestion(answeredQuestions.at(-1)))
-				) : (
-					<Navigate to={buildEndURL(rules, engine)} replace />
-				)
-			}}
 			css={`
 				${buttonStyle('simulateur')};
 			`}
@@ -188,7 +176,13 @@ export default function SessionBar({
 			<Trans>Agir</Trans>
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
-			<img src={openmojiURL('profile')} css="width: 2rem" aria-hidden="true" />
+			<img
+				src={openmojiURL('profile')}
+				css="width: 2rem"
+				aria-hidden="true"
+				width="1"
+				height="1"
+			/>
 			{!persona ? (
 				t('Mon profil')
 			) : (
@@ -215,6 +209,8 @@ export default function SessionBar({
 					src={openmojiURL('personas')}
 					css="width: 2rem"
 					aria-hidden="true"
+					width="1"
+					height="1"
 				/>
 				Personas
 			</Button>
@@ -239,6 +235,8 @@ export default function SessionBar({
 						src={openmojiURL('github')}
 						css="width: 2rem"
 						aria-hidden="true"
+						width="1"
+						height="1"
 					/>
 					#{pullRequestNumber}
 				</a>
@@ -248,7 +246,12 @@ export default function SessionBar({
 						setPullRequestNumber(null)
 					}}
 				>
-					<img css="width: 1.2rem" src="/images/close-plain.svg" />
+					<img
+						css="width: 1.2rem"
+						src="/images/close-plain.svg"
+						width="1"
+						height="1"
+					/>
 				</button>
 			</MenuButton>
 		),
@@ -359,7 +362,13 @@ const GroupModeMenuEntry = ({ title, icon, url, children, buttonStyle }) => {
 					}
 				`}
 			>
-				<img src={icon} css="width: 2rem" aria-hidden="true" />
+				<img
+					src={icon}
+					css="width: 2rem"
+					aria-hidden="true"
+					width="1"
+					height="1"
+				/>
 				{title}
 			</Button>
 			<div

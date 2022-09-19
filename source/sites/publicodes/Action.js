@@ -117,7 +117,6 @@ export default ({}) => {
 						<Trans>Personnalisez cette estimation</Trans>
 					</h3>
 					<Simulation
-						noFeedback
 						showConversation
 						customEnd={<div />}
 						targets={<div />}

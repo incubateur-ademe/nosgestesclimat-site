@@ -44,11 +44,13 @@ export function SituationProvider({
 	// But I'm waiting for an answer since the publicodes implementation should I believe be less strict
 	// https://github.com/betagouv/publicodes/issues/257
 
-	const rules = engine.getParsedRules()
-	const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
-		validSituation = pick(situation, validKeys)
 	try {
-		engine.setSituation(validSituation)
+		if (engine) {
+			const rules = engine.getParsedRules()
+			const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
+				validSituation = pick(situation, validKeys)
+			engine.setSituation(validSituation)
+		}
 	} catch (e) {
 		console.log(
 			`Il est probable qu'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l'utilisateur ou du persona chargé ↙️`

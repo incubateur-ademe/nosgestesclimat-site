@@ -143,18 +143,6 @@ export default function RuleInput<Name extends string = DottedName>({
 			/>
 		)
 	}
-	/* These input are specific to mon-entreprise, but could be useful for us. Disactivated to prune dependencies
-*
-*
-	if (rule.API && rule.API === 'commune')
-		return <SelectCommune {...commonProps} />
-	if (rule.API && rule.API === 'pays européen')
-		return <SelectEuropeCountry {...commonProps} />
-	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
-	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
-	return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
-*
-*/
 
 	if (rule.rawNode.type === 'date') {
 		return (

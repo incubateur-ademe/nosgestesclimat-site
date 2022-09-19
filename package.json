@@ -41,6 +41,7 @@
 		"cli-progress": "^3.11.2",
 		"copy-webpack-plugin": "^11.0.0",
 		"css-loader": "^6.7.1",
+		"css-minimizer-webpack-plugin": "^4.1.0",
 		"csv-loader": "^3.0.3",
 		"cypress-plugin-tab": "^1.0.5",
 		"deep-diff": "^1.0.2",
@@ -129,7 +130,8 @@
 	},
 	"resolutions": {
 		"publicodes-react/react": "^18.1.0",
-		"publicodes-react/react-dom": "^18.1.0"
+		"publicodes-react/react-dom": "^18.1.0",
+		"styled-components": "^5"
 	},
 	"scripts": {
 		"prepare": "node scripts/prepare.js",

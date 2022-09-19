@@ -19,10 +19,11 @@ export default (room, connectionType: 'p2p' | 'database') => {
 
 	useEffect(() => {
 		if (!username) setUsername(generateFruitName())
+		return
 	}, [username])
 
 	useEffect(() => {
-		if (!username || (!room && !conference)) return null
+		if (!username || (!room && !conference)) return
 		if (!conference) {
 			const ydoc = new Y.Doc()
 			const provider =
@@ -69,6 +70,7 @@ export default (room, connectionType: 'p2p' | 'database') => {
 				setElements(simulations.toJSON())
 			})
 		}
+		return
 	}, [room, conference])
 	if (!room && !conference) return {}
 

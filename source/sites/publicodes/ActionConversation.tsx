@@ -26,7 +26,6 @@ export default ({ dottedName }) => {
 
 	return nextQuestions.length > 0 ? (
 		<Simulation
-			noFeedback
 			showConversation
 			customEnd={<div />}
 			targets={<div />}

@@ -1,6 +1,7 @@
+import React, { useState } from 'react'
 import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
-import { useContext } from 'react'
+import { useContext, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
@@ -12,9 +13,12 @@ import Illustration from 'Images/ecolab-climat-dessin.svg'
 import { useProfileData } from './Profil'
 import { useTranslation, Trans } from 'react-i18next'
 
+const SurveyModal = React.lazy(() => import('./SurveyModal'))
+
 export default () => {
 	const tracker = useContext(TrackerContext)
 	const { t } = useTranslation()
+	const [showSurveyModal, setShowSurveyModal] = useState(false)
 
 	return (
 		<div
@@ -61,6 +65,20 @@ export default () => {
 				`}
 			/>
 			<div css="margin: 1rem 0">
+				<button
+					className="ui__ link-button"
+					onClick={() => setShowSurveyModal(true)}
+				>
+					Participez à notre enquête utilisateurs !
+				</button>
+				{showSurveyModal && (
+					<Suspense fallback={''}>
+						<SurveyModal
+							showSurveyModal={showSurveyModal}
+							setShowSurveyModal={setShowSurveyModal}
+						/>
+					</Suspense>
+				)}
 				<div>
 					<Link
 						to="/simulateur/bilan"
@@ -112,6 +130,8 @@ export default () => {
 						src="/images/marianne.svg"
 						alt={t('République Française')}
 						css="height: 6rem; margin-right: .6rem"
+						width="96"
+						height="86"
 					/>
 					<a href="https://ademe.fr">
 						<LogoADEME />
@@ -121,6 +141,8 @@ export default () => {
 							css="height: 2rem; margin-left: 1rem !important"
 							src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
 							alt={t("Logo de l'Association pour la transition Bas Carbone")}
+							width="86"
+							height="29"
 						/>
 					</a>
 				</div>

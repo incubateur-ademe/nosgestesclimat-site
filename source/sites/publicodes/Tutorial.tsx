@@ -17,6 +17,7 @@ import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
 import { Trans, useTranslation } from 'react-i18next'
+import { WithEngine } from '../../RulesProvider'
 
 export default ({}) => {
 	const tutorials = useSelector((state) => state.tutorials)
@@ -252,6 +253,36 @@ const slides = [
 	() => (
 		<>
 			<Trans i18nKey={`publicodes.Tutorial.slide4.p1`}>
+				<h1>Et concrètement ?</h1>
+				<p>
+					Chaque année, un Français émet en moyenne{' '}
+					<strong> à peu près 10 tonnes</strong> de CO₂e.
+				</p>
+			</Trans>
+			<AbacusFrance aria-hidden="true" css="width:10rem; height: 100%" />
+			<p>
+				<Trans i18nKey={`publicodes.Tutorial.slide4.p2`}>
+					C'est votre point de départ dans ce test : chacune de vos réponses
+					personnalisera ce résultat dans la barre de score.
+				</Trans>
+			</p>
+			<div css="margin: 1rem 0">
+				<WithEngine>
+					<ScoreBar demoMode />
+				</WithEngine>
+			</div>
+			<blockquote>
+				<Trans i18nKey={`publicodes.Tutorial.slide4.blockquote`}>
+					{emoji('✨')} Nouveau ! Visualisez également votre consommation de{' '}
+					{emoji('⛽️')}&nbsp;pétrole, un indicateur complémentaire au sujet
+					climat.
+				</Trans>
+			</blockquote>
+		</>
+	),
+	() => (
+		<>
+			<Trans i18nKey={`publicodes.Tutorial.slide5.p1`}>
 				<h1>Et l'objectif ?</h1>
 				<p>Nous devons diminuer notre empreinte climat au plus vite.</p>
 				<p>
@@ -312,7 +343,7 @@ const slides = [
 	),
 	() => (
 		<>
-			<Trans i18nKey={`publicodes.Tutorial.slide5`}>
+			<Trans i18nKey={`publicodes.Tutorial.slide6`}>
 				<h1>D'où vient notre empreinte ?</h1>
 				<p>
 					Prendre la voiture, manger un steak, chauffer sa maison, se faire
@@ -323,7 +354,9 @@ const slides = [
 						margin: 0.6rem 0 1rem;
 					`}
 				>
-					<Chart demoMode />
+					<WithEngine>
+						<Chart demoMode />
+					</WithEngine>
 				</div>
 				<p>
 					L'empreinte de notre consommation individuelle, c'est la somme de

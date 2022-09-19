@@ -209,9 +209,10 @@ export const PersonaGrid = ({
 							css={`
 								width: 11rem !important;
 								height: 15rem !important;
+								padding: 1rem 0.75rem 1rem 0.75rem !important;
 								${nom === persona
 									? `border: 2px solid var(--color) !important`
-									: ``}
+									: ``};
 							`}
 							onClick={() =>
 								warningIfSituationExists && hasSituation
@@ -229,7 +230,7 @@ export const PersonaGrid = ({
 								<div>{emoji(icônes || '👥')}</div>
 								<div>{nom}</div>
 							</div>
-							<p css="overflow-x: scroll;">
+							<p>
 								<small>{résumé || description}</small>
 							</p>
 						</button>

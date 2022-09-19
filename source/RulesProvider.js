@@ -1,33 +1,32 @@
 import {
+	engineOptions,
 	EngineProvider,
 	SituationProvider,
-	engineOptions,
 } from 'Components/utils/EngineContext'
 import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 
+import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import useBranchData from 'Components/useBranchData'
+import { useEngine } from './components/utils/EngineContext'
 
-const removeLoader = () => {
-	// Remove loader
-	var css = document.createElement('style')
-	css.type = 'text/css'
-	css.innerHTML = `
-		#js {
-				animation: appear 0.5s;
-				opacity: 1;
-		}
-		#loading {
-				display: none !important;
-		}
-    `
-	document.body.appendChild(css)
-}
+/* This component gets the publicode rules from the good URL,
+ * then gives them
+ * to the engine to parse, and hence makes it available to the whole component tree
+ * through the state (state.rules) as unparsed, or through the useEngine hook as parsed.
+ *
+ * This component triggers loading rules as soon as possible, BUT the components that use
+ * the engine should wait for it to be available. Hence the use of the WithRules
+ * component that returns null if rules are not ready in the state.
+ *
+ * This logic is a handmade and basic implementation of react 18's Suspense for data loading
+ * principles. Switching to this experimental feature could be great if we had concurrent
+ * loading problems. Here, we only have one block of data (co2.json) at a time.
+ * */
 
 export default ({ children }) => {
 	const branchData = useBranchData()
@@ -53,27 +52,37 @@ export default ({ children }) => {
 			}, {})
 
 			setRules(rules)
-			removeLoader()
 		} else {
 			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
 					setRules(json)
-					removeLoader()
 				})
 		}
 	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
 
-	if (!rules) return null
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>
 }
 
 const EngineWrapper = ({ rules, children }) => {
-	const engine = useMemo(
-			() => new Engine(rules, engineOptions),
-			[rules, engineOptions]
-		),
-		userSituation = useSelector(situationSelector),
+	const engineState = useSelector((state) => state.engineState)
+	const dispatch = useDispatch()
+	const [engine, setEngine] = useState(null)
+
+	useEffect(() => {
+		if (rules && engineState === 'requested') {
+			const engine =
+				console.log('parsing..') || new Engine(rules, engineOptions)
+			setEngine(engine)
+		}
+	}, [rules, engineOptions, engineState])
+
+	useEffect(() => {
+		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
+		return
+	}, [engine])
+
+	const userSituation = useSelector(situationSelector),
 		configSituation = useSelector(configSituationSelector),
 		situation = useMemo(
 			() => ({
@@ -88,4 +97,17 @@ const EngineWrapper = ({ rules, children }) => {
 			<SituationProvider situation={situation}>{children}</SituationProvider>
 		</EngineProvider>
 	)
+}
+
+export const WithEngine = ({ children }) => {
+	const dispatch = useDispatch()
+	const engineState = useSelector((state) => state.engineState)
+
+	useEffect(() => {
+		if (!engineState) dispatch({ type: 'SET_ENGINE', to: 'requested' })
+		return
+	}, [])
+
+	if (engineState !== 'ready') return null
+	return children
 }
