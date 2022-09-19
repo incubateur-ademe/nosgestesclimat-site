@@ -142,7 +142,7 @@
 		"test:file": "yarn mocha-webpack --webpack-config ./webpack.dev.js --include test/componentTestSetup.js --require mock-local-storage --require test/helpers/browser.js",
 		"test:bundlesize": "bundlesize",
 		"test:dev-e2e:publicode": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
-		"generate:ui": "node scripts/i18n/ui-fr-generate.js",
+		"generate:ui": "node scripts/i18n/generate-ui.js",
 		"translate:ui": "node scripts/i18n/translate-ui.js",
 		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
