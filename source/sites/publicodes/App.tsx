@@ -177,7 +177,7 @@ const Router = ({}) => {
 				path="/actions/*"
 				element={
 					<WithEngine>
-						<Actions />
+						<Actions t={t} />
 					</WithEngine>
 				}
 			/>

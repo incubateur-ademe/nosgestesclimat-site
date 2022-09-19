@@ -153,10 +153,11 @@ export default ({}) => {
 				</p>
 				<details>
 					<summary>
-						<Trans i18nKey={'publicodes.Contribution.bugQuestion'}>
-							{emoji('🐛')} Vous avez un bug qui vous empêche d'utiliser Nos
-							Gestes Climat ?{' '}
-						</Trans>
+						<Trans
+							i18nKey={'publicodes.Contribution.bugQuestion'}
+							values={{ bug: '🐛' }}
+							defaults={`{{bug}} Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?`}
+						/>
 					</summary>
 
 					<div className="ui__ card" css="padding: 1rem 0">

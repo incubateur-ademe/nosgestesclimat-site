@@ -11,10 +11,11 @@ import PetrolScore from './PetrolScore'
 
 export default ({ actionMode = false, demoMode = false }) => {
 	const objectif =
-			actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0],
-		// needed for this component to refresh on situation change :
-		engine = useEngine(),
-		rules = useSelector((state) => state.rules),
+		actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0]
+	// needed for this component to refresh on situation change :
+	const engine = useEngine()
+	console.log('engine:', engine)
+	const rules = useSelector((state) => state.rules),
 		evaluation = engine.evaluate(objectif),
 		{ nodeValue: rawNodeValue, dottedName, unit } = evaluation
 	const actionChoices = useSelector((state) => state.actionChoices)

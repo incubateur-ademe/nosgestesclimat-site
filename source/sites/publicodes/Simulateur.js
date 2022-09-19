@@ -47,14 +47,18 @@ const Simulateur = () => {
 	}, [])
 
 	const isMainSimulation = decoded === 'bilan'
-	if (!configSet) return null
+	if (!configSet) {
+		return null
+	}
 
 	const introPassed = tutorials.testIntro
 
 	return (
 		<div>
 			<Meta title={evaluation.title} />
-			<Title>Le test</Title>
+			<Title>
+				<Trans>Le test</Trans>
+			</Title>
 			{introPassed && <ScoreBar />}
 			{!isMainSimulation && (
 				<h1>

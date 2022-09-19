@@ -61,18 +61,20 @@ export default ({}) => {
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we avoid an error
-	if (slides[index] == null) return null
+	if (null === slides[index]) {
+		return null
+	}
 
-	const { t } = useTranslation()
+	// FIXME: cannot use useTranslation here...
+	// const { t } = useTranslation()
+
+	const title = 'Tutorial'
+	const description =
+		'Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.'
 
 	return (
 		<>
-			<Meta
-				title={t('Tutorial')}
-				description={t(
-					'Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.'
-				)}
-			/>
+			<Meta title={title} description={description} />
 			<SlidesLayout length={slides.length} active={index}>
 				<HorizontalSwipe {...{ next, previous }}>
 					<Slide
@@ -95,7 +97,7 @@ const slides = [
 			<h1>
 				<Trans>Mon empreinte climat</Trans> {emoji('😶‍🌫️')}?
 			</h1>
-			<Trans i18nKey={`publicodes.Tutorial.slide1`}>
+			<Trans i18nKey={`publicodes.Tutorial.slide1.p1`}>
 				<p>Pas de panique, on vous explique ce que c'est.</p>
 				<p>
 					La planète <strong>se réchauffe dangereusement</strong>, au fur et à
@@ -103,10 +105,13 @@ const slides = [
 				</p>
 			</Trans>
 			<GreenhouseEffect css="width: 60%; max-height: 20rem" />
-			<p>
-				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
-				<strong>une mesure de votre part </strong> dans ce réchauffement.
-			</p>
+			<Trans
+				i18nKey={`publicodes.Tutorial.slide1.p2`}
+				values={{
+					chrono: '⏱️',
+				}}
+				defaults={`<p>Ce test vous donne en {{chrono}} 10 minutes chrono <strong>une mesure de votre part </strong> dans ce réchauffement.</p>`}
+			/>
 		</>
 	),
 	() => (
@@ -218,41 +223,9 @@ const slides = [
 			</blockquote>
 		</>
 	),
-	() => {
-		const { t } = useTranslation()
-		return (
-			<>
-				<h1>
-					<Trans>Et concrètement ?</Trans>
-				</h1>
-				<p>
-					<Trans i18nKey={`publicodes.Tutorial.slide3.p1`}>
-						Chaque année, un Français émet en moyenne{' '}
-						<strong> à peu près 10 tonnes</strong> de CO₂e.
-					</Trans>
-				</p>
-				<AbacusFrance aria-hidden="true" css="width:10rem; height: 100%" />
-				<p>
-					<Trans i18nKey={`publicodes.Tutorial.slide3.p2`}>
-						C'est votre point de départ dans ce test : chacune de vos réponses
-						personnalisera ce résultat dans la barre de score.
-					</Trans>
-				</p>
-				<div css="margin: 1rem 0">
-					<ScoreBar demoMode />
-				</div>
-				<blockquote>
-					{t(`publicodes.Tutorial.slide4.blockquote`, {
-						emoji1: '✨',
-						emoji2: '⛽️',
-					})}
-				</blockquote>
-			</>
-		)
-	},
 	() => (
 		<>
-			<Trans i18nKey={`publicodes.Tutorial.slide4.p1`}>
+			<Trans i18nKey={`publicodes.Tutorial.slide3.p1`}>
 				<h1>Et concrètement ?</h1>
 				<p>
 					Chaque année, un Français émet en moyenne{' '}
@@ -261,7 +234,7 @@ const slides = [
 			</Trans>
 			<AbacusFrance aria-hidden="true" css="width:10rem; height: 100%" />
 			<p>
-				<Trans i18nKey={`publicodes.Tutorial.slide4.p2`}>
+				<Trans i18nKey={`publicodes.Tutorial.slide3.p2`}>
 					C'est votre point de départ dans ce test : chacune de vos réponses
 					personnalisera ce résultat dans la barre de score.
 				</Trans>
@@ -272,11 +245,18 @@ const slides = [
 				</WithEngine>
 			</div>
 			<blockquote>
-				<Trans i18nKey={`publicodes.Tutorial.slide4.blockquote`}>
-					{emoji('✨')} Nouveau ! Visualisez également votre consommation de{' '}
-					{emoji('⛽️')}&nbsp;pétrole, un indicateur complémentaire au sujet
-					climat.
-				</Trans>
+				<Trans
+					i18nKey={`publicodes.Tutorial.slide3.blockquote`}
+					values={{
+						// NOTE: this `sparkles: emoji('✨')` doesn't work,
+						sparkles: '✨',
+						fuelPump: '⛽️',
+					}}
+					defaults={`
+					{{sparkles}} Nouveau ! Visualisez également votre consommation de
+					{{fuelPump}} pétrole, un indicateur complémentaire au sujet
+					climat.`}
+				/>
 			</blockquote>
 		</>
 	),
