@@ -152,7 +152,7 @@
   "Icône représentant une pompe à pétrole": "Icon representing an oil pump",
   "Initialisation...": "Initialization...",
   "Insérer cette suggestion": "Insert this suggestion",
-  "J'ai compris": "I understand",
+  "J'ai compris": "I understood",
   "Je ne sais pas": "I do not know",
   "L'objectif à atteindre, 2 tonnes de CO₂e": "The goal to achieve, 2 tons of CO₂e",
   "la page à partager à l'étape 3": "the page to be shared in step 3",
@@ -312,11 +312,11 @@
         "csv": "You can retrieve the survey results in .csv format.",
         "excel": "To open it with Microsoft Excel, open an empty spreadsheet, then Data &gt; From a text / CSV file. Select \"Origin: Unicode UTF-8\" and \"Delimiter: comma\".",
         "libreOffice": "To open it with <2>LibreOffice</2>, it is automatic.",
-        "resultat": "The results on the view page only include participants who completed <1>at least 10% of the test</1>. The CSV, on the other hand, contains the simulations of all the people who participated in the survey by clicking on the link. The \"progress\" column allows you to filter the simulations in turn."
+        "resultat": "The results on the view page only include participants who completed <1>at least 10% of the test</1>. In contrast, the CSV contains the simulations of all people who participated in the survey by clicking on the link. The \"progress\" column allows you to filter the simulations in turn."
       }
     },
     "Contribution": {
-      "bugQuestion": "{emoji('🐛')} You have a bug that prevents you from using Our Climate Gestures? ",
+      "bugQuestion": "{{bug}} You have a bug that prevents you from using Our Climate Gestures?",
       "commentaireAugmenté": "{{fromLocation}} ? ``From the page: `{fromLocation}}``: ''}\n&gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).",
       "description": "Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!",
       "descriptionComplète": "<0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>",
@@ -330,7 +330,7 @@
       },
       "IframeDataShareModal": {
         "partageResultats": "Share your results with {{parent}}?",
-        "text": "<0>By clicking on the Accept button, you authorize {{parent}} to retrieve your climate footprint.</0><1>It is your results on the main categories (transport, food...), but <1>not</1> the detail question by question (your km by car, the m² of your home...).</1><2>Nosgestesclimat.fr is not affiliated with the site {{parent}}.</2>"
+        "text": "<0>By clicking on the Accept button, you authorize {{parent}} to retrieve your climate footprint.</0><1>It is your results on the main categories (transport, food...), but <1>not</1> the detail question by question (your km by car, the m² of your house...).</1><2>Nosgestesclimat.fr is not affiliated with the site {{parent}}.</2>"
       },
       "Petrogaz": {
         "explications": "<0>It is a <1>minimum</1> estimate of your crude oil consumption for the year.</0><1>Estimated via your car, plane, bus and heating oil consumption, it does not (yet) take into account the oil used to transport your purchases, and the grey energy of your various possessions.</1>",
@@ -352,21 +352,28 @@
       "simulationManquante": "You haven't taken the test yet. To unlock this path, you need to tell us a little more about your lifestyle."
     },
     "Tutorial": {
-      "slide1": "<0>Don't panic, we explain what it is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and more greenhouse gases.</1>",
+      "slide1": {
+        "p1": "<0>Don't panic, we explain what it is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and more greenhouse gases.</1>",
+        "p2": "<p>This test gives you in {{chrono}} 10 minutes <strong>a measure of your part </strong> in this warming.</p>"
+      },
       "slide2": {
         "blockquote": "Other gases, especially methane <1></1> and nitrous oxide <5></5> also warm the planet: we convert their warming potential to CO₂ equivalent to simplify the measurement. ",
         "p1": "With a unit with a barbaric name: the CO₂ equivalent. Carbon dioxide<1></1>, you know it: we breathe it out all day, but without influence on the climate.",
         "p2": "It is the machines that make our modern comfort that reject massively, so much so that it is counted in thousands of kilos per year and per person, therefore in <1>tons</1> of CO₂e!"
       },
       "slide3": {
-        "p1": "Each year, a French person emits on average <2> about 10 tons</2> of CO₂e.",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} New! See also your oil consumption\n\t\t\t\t\t{{fuelPump}}, a complementary indicator to the\n\t\t\t\t\tclimate.",
+        "p1": "<0>And concretely?</0><1>Every year, a French person emits on average <2> about 10 tons of</2> CO₂e.</1>",
         "p2": "This is your starting point in this test: each of your answers will personalize this result in the score bar."
       },
       "slide4": {
-        "blockquote": "{{ emoji1 }} New ! See also your oil consumption {{emoji2 }}, a complementary indicator to the climate topic.",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} New! See also your oil consumption\n\t\t\t\t\t{{fuelPump}}, a complementary indicator to the\n\t\t\t\t\tclimate.",
+        "p1": "<0>And concretely?</0><1>Every year, a French person emits on average <2> about 10 tons of</2> CO₂e.</1>",
+        "p2": "This is your starting point in this test: each of your answers will personalize this result in the score bar."
+      },
+      "slide5": {
         "p1": "<0>And the goal?</0><1>We have to decrease our climate footprint as soon as possible.</1><2>In France, this means going from ~10 tons to <2>less than 2 tons</2> per year.</2>"
       },
-      "slide5": "<0>Where does our footprint come from?</0><1>Taking the car, eating a steak, heating your house, getting medical care, buying a TV...</1><2><0></0></2><3>The footprint of our individual consumption is the sum of all these activities that make up our modern life. </3>",
       "slide6": "<0>So, are you ready to go?</0><1>A few tips to help you complete the test.</1><2>👤 Answer the questions on behalf of yourself, not your household: this is an individual test.</2><3>💼 Answer for your personal life, not for your job or studies. <3>One exception: </3> your commute must be included in the miles driven.</3><4>❓️ Any other questions? Check out our <3>FAQs</3> at any time.</4>"
     }
   },

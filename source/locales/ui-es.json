@@ -90,7 +90,7 @@
   "de <1>pétrole brut par an</1>.": "de <1>petróleo crudo al año</1>.",
   "de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>": "de visitas este mes<1> (en comparación con el mes anterior)</1>",
   "Découvrez la FAQ !": "Consulte las preguntas frecuentes.",
-  "Découvrez les enjeux qui se cachent derrière chaque action.": "Descubra los problemas que hay detrás de cada acción.",
+  "Découvrez les enjeux qui se cachent derrière chaque action.": "Descubra los temas que hay detrás de cada acción.",
   "Découvrez les nouveautés de la version": "Descubra las novedades de esta versión",
   "Découvrez les nouveautés de Nos Gestes Climat": "Descubra las nuevas características de Nuestros Gestos Climáticos",
   "Démarrer": "Inicie",
@@ -148,7 +148,7 @@
   "Guidé": "Guiado",
   "habitant": "residente",
   "habitants": "habitantes",
-  "hoississez votre mode de simulation": "Seleccione su modo de simulación",
+  "hoississez votre mode de simulation": "Seleccione el modo de simulación",
   "Icône représentant une pompe à pétrole": "Icono que representa una bomba de aceite",
   "Initialisation...": "Inicialización...",
   "Insérer cette suggestion": "Inserte esta sugerencia",
@@ -306,7 +306,7 @@
         "nomSalleDoitContenirDesLettres": "El nombre de su habitación sólo puede contener letras, números y guiones"
       },
       "NoTestMessage": {
-        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado el examen, ¡adelante!"
+        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado tu prueba, ¡adelante!"
       },
       "Survey": {
         "csv": "Puede recuperar los resultados de la encuesta en formato .csv.",
@@ -316,7 +316,7 @@
       }
     },
     "Contribution": {
-      "bugQuestion": "{emoji('🐛')} ¿Tienes un error que te impide utilizar nuestros gestos climáticos? ",
+      "bugQuestion": "{{bug}} ¿Tienes un error que te impide utilizar Nuestra Acción por el Clima?",
       "commentaireAugmenté": "{{fromLocation}} ? ``De la página: `{fromLocation}}``: ''}\n&gt; Este ticket fue creado automáticamente por nuestro robot desde nuestra [página de contribución](https://nosgestesclimat.fr/contribuer).",
       "description": "Aquí encontrará respuestas a las preguntas más frecuentes. Si todavía tiene preguntas o quiere sugerir mejoras, vaya al final de la página. ¡Disfrute de la lectura!",
       "descriptionComplète": "<0>Una descripción completa de su problema</0><1><0>Indicando el navegador que utiliza (por ejemplo, Firefox versión 93, Chrome versión 95, Safari, etc.), y la plataforma (iPhone, Android, ordenador con Windows, etc.), nos ayudará a resolver el fallo más rápidamente.</0></1>",
@@ -334,7 +334,7 @@
       },
       "Petrogaz": {
         "explications": "<0>Se trata de una estimación <1>mínima</1> de su consumo anual de crudo.</0><1>Estimado a través del consumo de su coche, avión, autobús y aceite de calefacción, no tiene en cuenta (todavía) el aceite utilizado para transportar sus compras, ni la energía gris de sus diversas posesiones.</1>",
-        "litres": "Es decir, {{secondaryValue}} litros (lleno de {{fullVolume}} litros)."
+        "litres": "Esto es {{secondaryValue}} litros (lleno de {{fullVolume}} litros)."
       }
     },
     "Personas": {
@@ -352,21 +352,28 @@
       "simulationManquante": "Todavía no has hecho la prueba. Para desbloquear este curso, tienes que contarnos un poco más sobre tu estilo de vida."
     },
     "Tutorial": {
-      "slide1": "<0>Que no cunda el pánico, le explicaremos lo que es.</0><1>El planeta se está calentando <1>peligrosamente</1>, ya que cada vez emitimos más gases de efecto invernadero.</1>",
+      "slide1": {
+        "p1": "<0>Que no cunda el pánico, le explicaremos lo que es.</0><1>El planeta se está calentando <1>peligrosamente</1>, ya que cada vez emitimos más gases de efecto invernadero.</1>",
+        "p2": "<p>Esta prueba te da en {{cronos}} 10 minutos <strong>una medida de tu parte </strong> en este calentamiento.</p>"
+      },
       "slide2": {
         "blockquote": "Otros gases, especialmente el metano <1></1> y el óxido nitroso <5></5> también calientan el planeta: su potencial de calentamiento se convierte en equivalente de CO₂ para simplificar la medición. ",
         "p1": "Con una unidad de nombre bárbaro: el equivalente al CO₂. Dióxido de carbono<1></1>, usted lo sabe: lo exhalamos todo el día, pero no influye en el clima.",
         "p2": "¡Son las máquinas que hacen nuestro confort moderno las que rechazan masivamente, tanto que lo contamos en miles de kilos por año y por persona, por tanto en <1>toneladas</1> de CO₂e!"
       },
       "slide3": {
-        "p1": "Cada año, un francés emite una media de <2> 10 toneladas de</2> CO₂e.",
+        "blockquote": "\n\t\t\t\t\t{{espárragos}} ¡Nuevo! Vea también su consumo de aceite\n\t\t\t\t\t{{fuelPump}}, un indicador complementario al\n\t\t\t\t\tclima.",
+        "p1": "<0>¿Y en concreto?</0><1>Cada año, un francés emite una media de <2> 10 toneladas de</2> CO₂e.</1>",
         "p2": "Este es su punto de partida en esta prueba: cada una de sus respuestas personalizará este resultado en la barra de puntuación."
       },
       "slide4": {
-        "blockquote": "{{ emoji1 }} ¡Nuevo! Vea también su {{emoji2}} consumo de petróleo, un indicador complementario al tema del clima.",
+        "blockquote": "\n\t\t\t\t\t{{espárragos}} ¡Nuevo! Vea también su consumo de aceite\n\t\t\t\t\t{{fuelPump}}, un indicador complementario al\n\t\t\t\t\tclima.",
+        "p1": "<0>¿Y en términos concretos?</0><1>Cada año, un francés emite una media de <2> 10 toneladas de</2> CO₂e.</1>",
+        "p2": "Este es su punto de partida en esta prueba: cada una de sus respuestas personalizará este resultado en la barra de puntuación."
+      },
+      "slide5": {
         "p1": "<0>¿Y el objetivo?</0><1>Tenemos que reducir nuestra huella climática lo antes posible.</1><2>En Francia, esto significa pasar de unas 10 toneladas a <2>menos de 2 toneladas</2> al año.</2>"
       },
-      "slide5": "<0>¿De dónde viene nuestra huella?</0><1>Conducir un coche, comer un filete, calentar una casa, recibir tratamiento médico, comprar una televisión...</1><2><0></0></2><3>La huella de nuestro consumo individual es la suma de todas estas actividades que conforman nuestra vida moderna. </3>",
       "slide6": "<0>Entonces, ¿estás listo para ir?</0><1>Algunos consejos para ayudarte a completar el test.</1><2>👤 Responde a las preguntas en tu nombre, no en el de tu familia: es una prueba individual.</2><3>💼 Contesta para tu vida personal, no para tu trabajo o estudios. <3>Una excepción: </3> el trayecto del trabajo a casa debe incluirse en los kilómetros recorridos.</3><4>❓️ ¿Alguna otra pregunta? Consulte nuestras <3>preguntas frecuentes</3> en cualquier momento.</4>"
     }
   },

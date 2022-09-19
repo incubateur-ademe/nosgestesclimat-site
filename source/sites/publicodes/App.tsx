@@ -197,7 +197,7 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path={encodeURIComponent('à-propos')} element={<About t={t} />} />
+			<Route path={encodeURIComponent('à-propos')} element={<About />} />
 			<Route
 				path="/cgu"
 				element={

@@ -35,8 +35,8 @@ try {
 	}
 	child_process.execSync(`i18next -c ${utils.paths.i18nextParserConfig}`)
 } catch (err) {
-	console.error('ERROR: an error occured during the analysis!')
-	console.error(err.message)
+	utils.printErr('ERROR: an error occured during the analysis!')
+	utils.printErr(err.message)
 	return
 }
 
@@ -98,7 +98,7 @@ try {
 		})
 	)
 } catch (err) {
-	console.error('ERROR: an error occured while writting!')
-	console.error(err.message)
+	utils.printErr('ERROR: an error occured while writting!')
+	utils.printErr(err.message)
 	return
 }

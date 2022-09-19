@@ -30,7 +30,7 @@
   "back": "Riprendere la simulazione",
   "C'est dans le fichier": "È nel",
   "C'est fait": "E' fatta",
-  "C'est parti !": "Andiamo!",
+  "C'est parti !": "Eccoci qua!",
   "Cacher": "Nascondere",
   "Cacher l'objectif": "Nascondere l'obiettivo",
   "catégorie complétée": "categoria completata",
@@ -159,7 +159,7 @@
   "La voiture en chiffres": "L'auto in cifre",
   "Lancer le téléchargement.": "Avviare il download.",
   "le - d'impact climat": "l'impatto climatico",
-  "le + d'impact climat": "l'impatto climatico +",
+  "le + d'impact climat": "il + impatto climatico",
   "Le reste : ": "Il resto : ",
   "Le test": "Il test",
   "Le titre bref de votre problème": "Il titolo breve del problema",
@@ -293,7 +293,7 @@
       "Instructions": {
         "avertissementModeConference": "La vostra organizzazione potrebbe bloccare l'uso della modalità conferenza. Testatelo prima con un duetto: se ci sono problemi, potete usare la modalità sondaggio.",
         "contextualisationLink": "Volete aggiungere domande per ottenere ulteriori informazioni sui rispondenti? <2>Verificate la funzione \"contestualizzazione dell'indagine! </2>",
-        "descriptionModeConference": "Modalità effimera: perfetta per un workshop, una presentazione interattiva o tra amici. I dati rimangono tra i partecipanti (peer-to-peer), senza server, <2>solo per la durata della conferenza</2>.",
+        "descriptionModeConference": "Modalità effimera: perfetta per un workshop, una presentazione interattiva o tra amici. I dati rimangono tra i partecipanti (peer-to-peer), senza server, <2>solo per il tempo della conferenza</2>.",
         "descriptionModeSondage": "Modalità persistente: l'interfaccia è praticamente la stessa, ma i dati vengono memorizzati sul nostro server e rimangono quindi accessibili <1>per due mesi</1>.",
         "guideLien": "I risultati sono arrivati, cosa fare? La nostra guida vi accompagna nelle vostre riflessioni e discussioni su questa pagina",
         "intro": "<0>Il test dell'impronta climatica è un test individuale, ma qui suggeriamo di farlo con altri. Ogni persona sarà dietro il proprio schermo, ma potrà vedere i risultati degli altri in tempo reale.</0><1>È un'occasione per confrontarsi con gli altri e per riflettere insieme sulle sfide del nostro impatto.</1>",
@@ -316,7 +316,7 @@
       }
     },
     "Contribution": {
-      "bugQuestion": "{emoji('🐛')} Avete un bug che vi impedisce di utilizzare i nostri gesti per il clima? ",
+      "bugQuestion": "{{bug}} Avete un bug che vi impedisce di usare Our Climate Action?",
       "commentaireAugmenté": "{{dallaLocazione}} ? ``Dalla pagina: `{dallaLocazione}}``: ''}\n&gt; Questo ticket è stato creato automaticamente dal nostro robot dalla nostra [pagina dei contributi](https://nosgestesclimat.fr/contribuer).",
       "description": "Qui troverete le risposte alle domande più frequenti. Se avete ancora domande o volete suggerire miglioramenti, andate in fondo alla pagina. Buona lettura!",
       "descriptionComplète": "<0>Una descrizione completa del problema</0><1><0>Indicando il browser utilizzato (ad esempio Firefox versione 93, Chrome versione 95, Safari, ecc.) e la piattaforma (iPhone, Android, computer Windows, ecc.), ci aiuterete a risolvere il problema più rapidamente.</0></1>",
@@ -352,21 +352,28 @@
       "simulationManquante": "Non hai ancora fatto il test. Per sbloccare questo corso, dovete raccontarci qualcosa in più sul vostro stile di vita."
     },
     "Tutorial": {
-      "slide1": "<0>Niente panico, vi spiegheremo di cosa si tratta.</0><1>Il pianeta si sta <1>riscaldando pericolosamente</1>, poiché emettiamo sempre più gas a effetto serra.</1>",
+      "slide1": {
+        "p1": "<0>Niente panico, vi spiegheremo di cosa si tratta.</0><1>Il pianeta si sta <1>riscaldando pericolosamente</1>, poiché emettiamo sempre più gas a effetto serra.</1>",
+        "p2": "<p>Questo test fornisce in 10 minuti <strong>una misura del vostro ruolo </strong> in questo riscaldamento.</p>"
+      },
       "slide2": {
         "blockquote": "Anche altri gas, in particolare il metano <1></1> e il protossido di azoto <5></5> riscaldano il pianeta: il loro potenziale di riscaldamento viene convertito in CO₂ equivalente per semplificare la misurazione. ",
         "p1": "Con un'unità dal nome barbaro: l'equivalente del CO₂. Anidride carbonica<1></1>, lo sapete: la respiriamo tutto il giorno, ma non ha alcuna influenza sul clima.",
         "p2": "Sono le macchine che producono il nostro comfort moderno a rifiutare in modo massiccio, tanto che lo contiamo in migliaia di chili all'anno e per persona, quindi in <1>tonnellate</1> di CO₂e!"
       },
       "slide3": {
-        "p1": "Ogni anno, un francese emette in media <2> circa 10 tonnellate di</2> CO₂e.",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} Nuovo! Vedere anche il consumo di olio\n\t\t\t\t\t{{Pompa di carburante}}, un indicatore complementare all'indicatore\n\t\t\t\t\tclima.",
+        "p1": "<0>E in termini concreti?</0><1>Ogni anno, un francese emette in media <2> circa 10 tonnellate di</2> CO₂e.</1>",
         "p2": "Questo è il punto di partenza del test: ogni risposta personalizzerà il risultato nella barra del punteggio."
       },
       "slide4": {
-        "blockquote": "{{ emoji1 }} Nuovo! Vedi anche il tuo consumo di petrolio {{emoji2}}, un indicatore complementare all'argomento clima.",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} Nuovo! Vedere anche il consumo di olio\n\t\t\t\t\t{{Pompa di carburante}}, un indicatore complementare all'indicatore\n\t\t\t\t\tclima.",
+        "p1": "<0>E in termini concreti?</0><1>Ogni anno, un francese emette in media <2> circa 10 tonnellate di</2> CO₂e.</1>",
+        "p2": "Questo è il punto di partenza del test: ogni risposta personalizzerà il risultato nella barra del punteggio."
+      },
+      "slide5": {
         "p1": "<0>E l'obiettivo?</0><1>Dobbiamo ridurre la nostra impronta climatica il prima possibile.</1><2>In Francia, ciò significa passare da ~10 tonnellate a <2>meno di 2 tonnellate</2> all'anno.</2>"
       },
-      "slide5": "<0>Da dove viene la nostra impronta?</0><1>Guidare un'auto, mangiare una bistecca, riscaldare una casa, ricevere cure mediche, comprare un televisore...</1><2><0></0></2><3>L'impronta dei nostri consumi individuali è la somma di tutte queste attività che compongono la nostra vita moderna. </3>",
       "slide6": "<0>Allora, siete pronti a partire?</0><1>Alcuni suggerimenti per aiutarvi a completare il test.</1><2>👤 Rispondete alle domande a nome vostro, non del vostro nucleo familiare: questo è un test individuale.</2><3>💼 Rispondete per la vostra vita personale, non per il vostro lavoro o i vostri studi. <3>Un'eccezione: </3> il tragitto casa-lavoro deve essere incluso nei km percorsi.</3><4>❓️ Ci sono altre domande? Consultate le nostre <3>FAQ</3> in qualsiasi momento.</4>"
     }
   },
@@ -440,5 +447,5 @@
   "Vous avez complété cette simulation": "Avete completato questa simulazione",
   "Vous avez été invités à un sondage Nos Gestes Climat nommé": "Siete stati invitati a partecipare all'indagine \"La nostra azione per il clima\", denominata",
   "Vous n'avez pas encore fait le test.": "Non avete ancora fatto il test.",
-  "Vous utilisez actuellement le persona": "Si sta utilizzando il personaggio"
+  "Vous utilisez actuellement le persona": "Attualmente si utilizza il personaggio"
 }

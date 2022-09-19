@@ -35,6 +35,10 @@ const colors = {
 }
 
 const withStyle = (color, text) => `${color}${text}${colors.reset}`
+const printErr = (message) => console.error(withStyle(colors.fgRed, message))
+
+const availableLanguages = ['fr', 'en']
+const defaultLang = availableLanguages[0]
 
 const paths = {
 	localesDir: path.resolve('source/locales'),
@@ -131,10 +135,8 @@ function getRulesMissingTranslations() {
 	return [missingTranslations, resolved]
 }
 
-// TODO:
-// - [ ] Catch missing file error
-const getUiMissingTranslations = (sourcePath, targetPath) => {
-	if (!fs.existsSync(targetPath)) {
+const getUiMissingTranslations = (sourcePath, targetPath, override = false) => {
+	if (!fs.existsSync(targetPath) || override) {
 		console.log(`Creating ${targetPath}`)
 		fs.writeFileSync(targetPath, '{}')
 	}
@@ -144,6 +146,7 @@ const getUiMissingTranslations = (sourcePath, targetPath) => {
 	const translatedKeys = JSON.parse(fs.readFileSync(targetPath, 'utf-8'))
 	const missingTranslations = Object.keys(staticKeys).filter((key) => {
 		if (key.match(/^\{.*\}$/)) {
+			// Skip keys of the form '{<str>}' as they are not meant to be translated
 			return false
 		}
 		const keys = key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/)
@@ -153,15 +156,18 @@ const getUiMissingTranslations = (sourcePath, targetPath) => {
 }
 
 const fetchTranslation = async (text, sourceLang, targetLang) => {
-	const req = `https://api.deepl.com/v2/translate?${querystring.stringify({
+	const req = `https://api.deepl.com/v1/translate?${new URLSearchParams({
 		text,
 		auth_key: process.env.DEEPL_API_KEY,
 		tag_handling: 'xml',
 		source_lang: sourceLang,
 		target_lang: targetLang,
 	})}`
+	console.log(req)
 	const response = await fetch(req)
 	const { translations } = await response.json()
+	// console.log('text:', text)
+	console.log('translations:', translations)
 	return translations[0].text
 }
 
@@ -213,5 +219,8 @@ module.exports = {
 	dotNotationToNestedObject,
 	paths,
 	colors,
+	printErr,
 	withStyle,
+	defaultLang,
+	availableLanguages,
 }

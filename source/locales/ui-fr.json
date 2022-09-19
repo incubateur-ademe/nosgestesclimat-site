@@ -318,7 +318,7 @@
       }
     },
     "Contribution": {
-      "bugQuestion": "{emoji('🐛')} Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ? ",
+      "bugQuestion": "{{bug}} Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?",
       "commentaireAugmenté": "{{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}\n> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).",
       "description": "Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !",
       "descriptionComplète": "<0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>",
@@ -354,21 +354,28 @@
       "simulationManquante": "Vous n'avez pas encore fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur votre mode de vie."
     },
     "Tutorial": {
-      "slide1": "<0>Pas de panique, on vous explique ce que c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à mesure des gaz à effet de serre que l'on émet.</1>",
+      "slide1": {
+        "p1": "<0>Pas de panique, on vous explique ce que c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à mesure des gaz à effet de serre que l'on émet.</1>",
+        "p2": "<p>Ce test vous donne en {{chrono}} 10 minutes chrono <strong>une mesure de votre part </strong> dans ce réchauffement.</p>"
+      },
       "slide2": {
         "blockquote": "D'autres gaz, surtout le méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. ",
         "p1": "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat.",
         "p2": "Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <1>tonnes</1> de CO₂e !"
       },
       "slide3": {
-        "p1": "Chaque année, un Français émet en moyenne <2> à peu près 10 tonnes</2> de CO₂e.",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} Nouveau ! Visualisez également votre consommation de\n\t\t\t\t\t{{fuelPump}} pétrole, un indicateur complémentaire au sujet\n\t\t\t\t\tclimat.",
+        "p1": "<0>Et concrètement ?</0><1>Chaque année, un Français émet en moyenne <2> à peu près 10 tonnes</2> de CO₂e.</1>",
         "p2": "C'est votre point de départ dans ce test : chacune de vos réponses personnalisera ce résultat dans la barre de score."
       },
       "slide4": {
-        "blockquote": "{{ emoji1 }} Nouveau ! Visualisez également votre consommation de {{emoji2}} pétrole, un indicateur complémentaire au sujet climat.",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} Nouveau ! Visualisez également votre consommation de\n\t\t\t\t\t{{fuelPump}} pétrole, un indicateur complémentaire au sujet\n\t\t\t\t\tclimat.",
+        "p1": "<0>Et concrètement ?</0><1>Chaque année, un Français émet en moyenne <2> à peu près 10 tonnes</2> de CO₂e.</1>",
+        "p2": "C'est votre point de départ dans ce test : chacune de vos réponses personnalisera ce résultat dans la barre de score."
+      },
+      "slide5": {
         "p1": "<0>Et l'objectif ?</0><1>Nous devons diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>"
       },
-      "slide5": "<0>D'où vient notre empreinte ?</0><1>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</1><2><0></0></2><3>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </3>",
       "slide6": "<0>Alors, c'est parti ?</0><1>Quelques astuces pour vous aider à compléter le test.</1><2>👤 Répondez aux questions en votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼 Répondez pour votre vie perso, pas pour votre boulot ou études. <3>Une seule exception </3>: votre trajet domicile-travail doit être inclus dans les km parcourus.</3><4>❓️ D'autres questions ? Consultez notre <3>FAQ</3> à tout moment.</4>"
     }
   },

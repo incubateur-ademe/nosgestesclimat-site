@@ -19,7 +19,7 @@ export default function LangSwitcher() {
 			</summary>
 			<ColumnFlex>
 				{Object.keys(Lang)
-					.filter((l) => l != Lang.Default)
+					.filter((l) => l !== Lang.Default)
 					.map((l) => getLangInfos(Lang[l]))
 					.map((info: LangInfos) => {
 						return (
