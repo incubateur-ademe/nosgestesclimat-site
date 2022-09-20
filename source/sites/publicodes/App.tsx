@@ -90,7 +90,6 @@ const Main = ({}) => {
 
 	return (
 		<div
-			className="ui__ container"
 			css={`
 				@media (min-width: 800px) {
 					display: flex;
@@ -114,7 +113,6 @@ const Main = ({}) => {
 					outline: none !important;
 					@media (min-width: 800px) {
 						flex-grow: 1;
-						padding: 1rem;
 					}
 				`}
 			>

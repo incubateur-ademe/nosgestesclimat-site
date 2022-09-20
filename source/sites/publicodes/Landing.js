@@ -23,18 +23,10 @@ export default () => {
 	return (
 		<div
 			css={`
-				max-width: 850px;
 				margin: 0 auto;
 				border-radius: 1rem;
-				padding: 0.4rem;
-				h1 {
-					margin-top: 0.3rem;
-					font-size: 140%;
-					line-height: 1.2em;
-				}
 				> div > a {
 				}
-				text-align: center;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-evenly;
@@ -50,68 +42,117 @@ export default () => {
 				description="Testez votre empreinte carbone, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire."
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
-			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
-			<Illustration
-				aira-hidden="true"
+			<div
 				css={`
-					width: 60%;
-					height: auto;
-					border-radius: 0.8rem;
-					@media (max-width: 800px) {
-						width: 95%;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					margin-top: 4rem;
+					h1 {
+						margin-top: 0.3rem;
+						font-size: 220%;
+						line-height: 1.1em;
+						font-weight: bold;
+
+						color: var(--darkColor);
+					}
+					p {
+						font-size: 110%;
 					}
 				`}
-			/>
-			<div css="margin: 1rem 0">
-				<button
-					className="ui__ link-button"
-					onClick={() => setShowSurveyModal(true)}
+			>
+				<div
+					css={`
+						display: flex;
+						flex-direction: column;
+						max-width: 30rem;
+					`}
 				>
-					Participez à notre enquête utilisateurs !
-				</button>
-				{showSurveyModal && (
-					<Suspense fallback={''}>
-						<SurveyModal
-							showSurveyModal={showSurveyModal}
-							setShowSurveyModal={setShowSurveyModal}
-						/>
-					</Suspense>
-				)}
-				<div>
-					<Link
-						to="/simulateur/bilan"
-						className="ui__ plain button cta"
-						onClick={() =>
-							tracker.push([
-								'trackEvent',
-								'NGC',
-								'Clic CTA accueil',
-								'Faire le test',
-							])
-						}
-					>
-						Faire le test
-					</Link>
+					<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
+					<p>
+						En 10 minutes, obtenez une estimation de votre empreinte carbone de
+						consommation.
+					</p>
+					<div css="margin: 1rem 0">
+						<button
+							className="ui__ link-button"
+							onClick={() => setShowSurveyModal(true)}
+						>
+							Participez à notre enquête utilisateurs !
+						</button>
+						{showSurveyModal && (
+							<Suspense fallback={''}>
+								<SurveyModal
+									showSurveyModal={showSurveyModal}
+									setShowSurveyModal={setShowSurveyModal}
+								/>
+							</Suspense>
+						)}
+						<div
+							css={`
+								margin-top: 1rem;
+								> a {
+									margin-right: 1rem !important;
+								}
+							`}
+						>
+							<Link
+								to="/simulateur/bilan"
+								className="ui__ plain button cta"
+								onClick={() =>
+									tracker.push([
+										'trackEvent',
+										'NGC',
+										'Clic CTA accueil',
+										'Faire le test',
+									])
+								}
+							>
+								{emoji('▶️')} Faire le test
+							</Link>
+							<Link
+								to="/groupe"
+								className="ui__ button cta"
+								onClick={() =>
+									tracker.push([
+										'trackEvent',
+										'NGC',
+										'Clic CTA accueil',
+										'Faire le test à plusieurs',
+									])
+								}
+							>
+								{emoji('👥')} En groupe
+							</Link>
+						</div>
+						<NewsBanner />
+					</div>
 				</div>
-				<div>
-					<Link
-						to="/groupe"
-						className="ui__ button small"
-						onClick={() =>
-							tracker.push([
-								'trackEvent',
-								'NGC',
-								'Clic CTA accueil',
-								'Faire le test à plusieurs',
-							])
+				<Illustration
+					aira-hidden="true"
+					css={`
+						max-width: 30rem;
+						height: auto;
+						border-radius: 0.8rem;
+						@media (max-width: 800px) {
+							max-width: 95%;
 						}
-					>
-						{emoji('👥')} Faire le test à plusieurs
-					</Link>
-				</div>
-				<NewsBanner />
+					`}
+				/>
 			</div>
-			<Markdown>{landingMd}</Markdown>
+			<div
+				css={`
+					background: var(--lightestColor);
+					width: 100%;
+					text-align: center;
+					margin: 4rem 0;
+					padding: 2rem 0;
+				`}
+			>
+				<div className="ui__ container">
+					<Markdown>{landingMd}</Markdown>
+				</div>
+			</div>
 
 			<footer>
 				<div
