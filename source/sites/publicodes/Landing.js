@@ -199,9 +199,12 @@ export default () => {
 							align-items: center;
 							flex-wrap: wrap;
 							> div {
-								width: 10rem;
+								width: 14rem;
 								height: 14rem;
 								justify-content: center;
+							}
+							@media (max-width: 800px) {
+								flex-direction: column;
 							}
 						`}
 					>
