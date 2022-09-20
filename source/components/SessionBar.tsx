@@ -16,6 +16,7 @@ import CardGameIcon from './CardGameIcon'
 import {
 	getLocalisationPullRequest,
 	getSupportedFlag,
+	getFlagImgSrc,
 } from './localisation/useLocalisation'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
@@ -133,7 +134,7 @@ export default function SessionBar({
 	const dispatch = useDispatch()
 
 	const localisation = useLocalisation()
-	const flag = getSupportedFlag(localisation)
+	const flag = getSupportedFlag(localisation) || getFlagImgSrc('FR')
 
 	const location = useLocation(),
 		path = location.pathname
