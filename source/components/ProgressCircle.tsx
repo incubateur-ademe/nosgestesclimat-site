@@ -1,24 +1,30 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { WithEngine } from '../RulesProvider'
+import { configSelector } from '../selectors/simulationSelectors'
 import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default () => {
-	const engineState = useSelector((state) => state.engineState)
-	if (engineState === 'ready') return <WithEngine />
-	else return <CircleSVG />
+	return (
+		<WithEngine fallback={<CircleSVG />}>
+			<Circle />
+		</WithEngine>
+	)
 }
-const WithEngine = ({}) => {
+const Circle = ({}) => {
+	const config = useSelector(configSelector)
 	const progress = useSimulationProgress()
+	const realProgress = config.objectifs ? progress : 0
 	const motionProgress = useMotionValue(0)
 
 	const pathLength = useSpring(motionProgress, { stiffness: 400, damping: 90 })
 
 	useEffect(() => {
-		motionProgress.set(progress)
-	}, [progress])
+		motionProgress.set(realProgress)
+	}, [realProgress])
 
-	return <CircleSVG {...{ pathLength, progress }} />
+	return <CircleSVG {...{ pathLength, realProgress }} />
 }
 
 const CircleSVG = ({ progress = 0, pathLength = 0 }) => (
