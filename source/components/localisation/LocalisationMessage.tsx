@@ -34,7 +34,10 @@ export default () => {
 					<p>
 						Vous utilisez la version <strong>{gentilé || nom}</strong> du test.
 						{code !== 'FR' && (
-							<span> Elle est actuellement en version beta.</span>
+							<span>
+								{' '}
+								Elle est actuellement en version <strong>bêta</strong>.
+							</span>
 						)}{' '}
 					</p>
 					<p>

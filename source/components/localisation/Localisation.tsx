@@ -28,14 +28,7 @@ export default () => {
 
 	return (
 		<div>
-			<h2
-				css={`
-					border-bottom: 1px solid #eee;
-					padding-bottom: 1rem;
-				`}
-			>
-				{emoji('📍')} Région de simulation
-			</h2>
+			<h2>{emoji('📍')} Région de simulation</h2>
 			{localisation != null ? (
 				supported ? (
 					<p>
