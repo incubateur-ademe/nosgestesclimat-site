@@ -12,6 +12,7 @@ import DocumentationButton from './DocumentationButton'
 import Illustration from 'Images/ecolab-climat-dessin.svg'
 import { useProfileData } from './Profil'
 import landingMd from 'raw-loader!./landing.md'
+import avantages from './avantages.yaml'
 import Markdown from 'markdown-to-jsx'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 
@@ -64,6 +65,7 @@ export default () => {
 						font-size: 110%;
 					}
 					@media (max-width: 800px) {
+						margin-top: 2rem;
 						text-align: center;
 						h1 {
 							font-size: 180%;
@@ -168,10 +170,58 @@ export default () => {
 					text-align: center;
 					margin: 4rem 0;
 					padding: 2rem 0;
+					h2 {
+						font-size: 170%;
+					}
+
+					@media (max-width: 800px) {
+						margin: 2rem 0;
+						padding: 0.6rem 0;
+					}
+					p {
+						max-width: 45rem;
+						margin: 1rem auto;
+					}
 				`}
 			>
 				<div className="ui__ container">
 					<Markdown>{landingMd}</Markdown>
+					<h2>Ouvert, documenté et contributif</h2>
+					<div
+						css={`
+							img {
+								width: 2.6rem;
+								height: auto;
+								margin: 0.4rem;
+							}
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							flex-wrap: wrap;
+							> div {
+								width: 10rem;
+								height: 14rem;
+								justify-content: center;
+							}
+						`}
+					>
+						{avantages.map((el) => (
+							<div key={el.icon} className="ui__ card box">
+								{emoji(el.illustration)}
+
+								<div>
+									<Markdown>{el.text}</Markdown>
+								</div>
+							</div>
+						))}
+					</div>
+					<Markdown
+						children={`
+## Des questions ?
+
+Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
+					`}
+					/>
 				</div>
 			</div>
 
