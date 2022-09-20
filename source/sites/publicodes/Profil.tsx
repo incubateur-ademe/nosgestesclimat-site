@@ -107,10 +107,30 @@ export default ({}) => {
 						</div>
 					</div>
 				) : (
-					<IllustratedMessage
-						emoji="🕳️"
-						message={<p>Vous n'avez pas encore fait le test.</p>}
-					></IllustratedMessage>
+					<div>
+						{tutorials.testIntro && (
+							<div
+								css={`
+									margin-bottom: 2rem;
+								`}
+							>
+								<button
+									className="ui__ dashed-button"
+									onClick={() => {
+										dispatch(skipTutorial('testIntro', true))
+										dispatch(resetTutorials())
+										navigate('/tutoriel')
+									}}
+								>
+									{emoji('🧑‍🏫')} Revoir le tutoriel
+								</button>
+							</div>
+						)}
+						<IllustratedMessage
+							emoji="🕳️"
+							message={<p>Vous n'avez pas encore fait le test.</p>}
+						></IllustratedMessage>
+					</div>
 				)}
 				<Localisation />
 				<AnswerList />
