@@ -7,7 +7,7 @@ import useLocalisation, {
 } from 'Components/localisation/useLocalisation'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
-import { setLocalisation } from '../../actions/actions'
+import { setLocalisation, resetLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
@@ -49,7 +49,21 @@ export default () => {
 								vertical-align: sub;
 							`}
 						/>
-						.
+						.{' '}
+						{localisation.userChosen && (
+							<button
+								className="ui__ dashed-button"
+								onClick={() => {
+									dispatch(resetLocalisation())
+									dispatch({
+										type: 'SET_PULL_REQUEST_NUMBER',
+										number: null,
+									})
+								}}
+							>
+								Revenir chez moi 🔙{' '}
+							</button>
+						)}
 					</p>
 				) : (
 					<p>
@@ -78,6 +92,7 @@ export default () => {
 					le modèle Français par défault.{' '}
 				</p>
 			)}
+
 			<details>
 				<summary>Choisir une autre région</summary>
 				<ul>
