@@ -69,3 +69,7 @@ Le site est hébergé sur Netlify. C'est un site statique servi via un CDN : mal
 ## Conditions générales d'utilisation
 
 Elles sont disponibles sur [cette page](/cgu).
+
+## Budget
+
+Le budget de Datagir, l'organisation qui développe nosgestesclimat.fr est disponible sur la [page budget](https://datagir.ademe.fr/budget/).
