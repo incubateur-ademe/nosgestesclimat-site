@@ -75,7 +75,7 @@ export default () => {
 	return (
 		<div>
 			<Meta
-				title={t('Sondage ') + room}
+				title={t('Sondage') + ' ' + room}
 				description={
 					t('Participez au sondage ') +
 					room +

@@ -45,6 +45,7 @@
 		"csv-loader": "^3.0.3",
 		"cypress-plugin-tab": "^1.0.5",
 		"deep-diff": "^1.0.2",
+		"deepl": "^1.0.13",
 		"enzyme-adapter-react-16": "^1.1.1",
 		"eslint": "^8.19.0",
 		"eslint-plugin-jsx-a11y": "^6.5.1",

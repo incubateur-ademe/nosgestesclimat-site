@@ -2,7 +2,7 @@
 
 ## What is it?
 
-This simulator allows you to evaluate your total annual individual carbon footprint and by major categories (food, transportation, housing, miscellaneous, utilities, digital), to situate it in relation to the climate objectives and, above all, to take action at your level with personalized actions according to your answers.
+This simulator allows you to evaluate your total annual individual carbon footprint and by major categories (food, transportation, housing, miscellaneous, utilities, digital), to situate it in relation to the climate objectives and, above all, to take action at your level with personalized gestures according to your answers.
 
 Based on an [analysis of existing calculators at the beginning of 2020](https://abc-transitionbascarbone.fr/wp-content/uploads/2022/03/analyse-des-calculateurs-dempreinte-carbone-individuelle-a-lorigine-de-nos-gestes-climat-vf-.pdf), it is based on the MicMac model of the associations [Avenir Climatique](https://avenirclimatique.org/les-outils/) and [TaCa](https://www.taca.asso.fr/).
 

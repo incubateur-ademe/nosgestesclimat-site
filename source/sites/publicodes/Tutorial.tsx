@@ -249,7 +249,8 @@ const slides = [
 					i18nKey={`publicodes.Tutorial.slide3.blockquote`}
 					values={{
 						// NOTE: this `sparkles: emoji('✨')` doesn't work,
-						sparkles: '✨',
+						// sparkles: '✨',
+						sparkles: <p>Test</p>,
 						fuelPump: '⛽️',
 					}}
 					defaults={`

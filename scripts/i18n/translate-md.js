@@ -21,20 +21,22 @@ const argv = yargs
 		alias: 's',
 		type: 'string',
 		default: utils.defaultLang,
-		choices: utils.availableLangs,
+		choices: utils.availableLanguages,
 		description: `The source language to translate from.`,
 	})
 	.option('target', {
-		// TODO: to manage
 		alias: 't',
 		type: 'string',
-		choices: utils.availableLangs,
+		array: true,
+		default: utils.availableLanguages.filter((l) => l !== utils.defaultLang),
+		choices: utils.availableLanguages,
 		description: 'The target language to translate to.',
 	})
 	.help()
 	.alias('help', 'h').argv
 
 const srcLang = argv.source || utils.defaultLang
+const targetLangs = argv.target || utils.availableLanguages
 
 if (!utils.availableLanguages.includes(srcLang)) {
 	utils.printErr(`ERROR: the language '${srcLang}' is not supported.`)
@@ -42,31 +44,31 @@ if (!utils.availableLanguages.includes(srcLang)) {
 }
 
 const progressBar = new cliProgress.SingleBar({
-	hideCursor: true,
 	stopOnComplete: true,
 	clearOnComplete: true,
 	forceRedraw: true,
-	format: '{msg} | {value}/{total} | {bar} | {lang} ',
+	format: '{lang} | {value}/{total} | {bar} | {msg} ',
 })
 cliProgress.Presets.shades_grey
 
 const translateTo = async (src, destPath, destLang) => {
+	progressBar.update(progressBar.value, {
+		msg: `Translating to '${destPath}'...`,
+		lang: destLang,
+	})
 	const translation = await utils.fetchTranslation(
 		src,
 		srcLang.toUpperCase(),
 		destLang.toUpperCase()
 	)
-	progressBar.increment({
-		msg: `Writting translation to '${destPath}'...`,
-		lang: destLang,
-	})
 	fs.writeFileSync(destPath, translation, 'utf8', { flag: 'w' })
+	progressBar.increment()
 }
 
 console.log(
 	`Translating Markdown files from 'source/locales/pages/${srcLang}'...`
 )
-glob(`source/locales/pages/${srcLang}/about.md`, (err, files) => {
+glob(`source/locales/pages/${srcLang}/*.md`, (err, files) => {
 	if (err) {
 		utils.printErr(`ERROR: an error occured while fetching the files:`)
 		utils.printErr(err)
@@ -79,14 +81,14 @@ glob(`source/locales/pages/${srcLang}/about.md`, (err, files) => {
 			files.length
 		)} files to translate.`
 	)
-	progressBar.start(files.length * utils.availableLanguages.length - 1, 0)
+	const destLangs = targetLangs.filter(
+		(l) => utils.availableLanguages.includes(l) && l !== srcLang
+	)
+	progressBar.start(files.length * destLangs.length, 0)
 	files.forEach((file) => {
 		const srcContent = fs.readFileSync(file, 'utf8')
-		utils.availableLanguages
-			.filter((lang) => lang !== srcLang)
-			.forEach((destLang) => {
-				console.log(`Translating '${file}' to '${destLang}'...`)
-				translateTo(srcContent, file.replace(srcLang, destLang), destLang)
-			})
+		destLangs.forEach((destLang) => {
+			translateTo(srcContent, file.replace(srcLang, destLang), destLang)
+		})
 	})
 })

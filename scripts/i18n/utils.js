@@ -3,10 +3,9 @@ require('isomorphic-fetch')
 const fs = require('fs')
 const path = require('path')
 const R = require('ramda')
-const querystring = require('querystring')
 const { readRules } = require('../rules')
 const yaml = require('yaml')
-const diff = require('deep-diff')
+const translate = require('deepl')
 
 const colors = {
 	reset: '\x1b[0m',
@@ -37,7 +36,7 @@ const colors = {
 const withStyle = (color, text) => `${color}${text}${colors.reset}`
 const printErr = (message) => console.error(withStyle(colors.fgRed, message))
 
-const availableLanguages = ['fr', 'en']
+const availableLanguages = ['fr', 'en', 'es', 'it']
 const defaultLang = availableLanguages[0]
 
 const paths = {
@@ -156,19 +155,25 @@ const getUiMissingTranslations = (sourcePath, targetPath, override = false) => {
 }
 
 const fetchTranslation = async (text, sourceLang, targetLang) => {
-	const req = `https://api.deepl.com/v1/translate?${new URLSearchParams({
-		text,
-		auth_key: process.env.DEEPL_API_KEY,
+	const resp = await translate({
+		text: text,
 		tag_handling: 'xml',
-		source_lang: sourceLang,
+		auth_key: process.env.DEEPL_API_KEY,
 		target_lang: targetLang,
-	})}`
-	console.log(req)
-	const response = await fetch(req)
-	const { translations } = await response.json()
-	// console.log('text:', text)
-	console.log('translations:', translations)
-	return translations[0].text
+		source_lang: sourceLang,
+	}).catch((err) => {
+		printErr('Error: while fetching the request:', err)
+		process.exit(-1)
+	})
+	// const data = resp.data
+	// console.log(`\nRequest: ${data}`)
+	// console.log(`data.translation: ${data.translations}`)
+	// if (!data.translations) {
+	// 	// console.log(`\nRequest: ${data}`)
+	// 	printErr('Error: while fetching the request:', data)
+	// 	process.exit(-1)
+	// }
+	return resp.data.translations[0].text
 }
 
 // Source: https://www.thiscodeworks.com/convert-javascript-dot-notation-object-to-nested-object-javascript/60e47841a2dbdc00144e9446

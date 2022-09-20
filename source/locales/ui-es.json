@@ -30,7 +30,7 @@
   "back": "Reanudar la simulación",
   "C'est dans le fichier": "Está en el",
   "C'est fait": "Está hecho",
-  "C'est parti !": "¡Vamos!",
+  "C'est parti !": "¡Aquí vamos!",
   "Cacher": "Ocultar",
   "Cacher l'objectif": "Ocultación de la lente",
   "catégorie complétée": "categoría completada",
@@ -57,7 +57,7 @@
     "conversation": {
       "estimate": {
         "KmHelp": {
-          "resultatKmParcouruMoyenne": "Conduces {{kilometroCargado}} km con una media de {{nbPersonas}} en el coche."
+          "resultatKmParcouruMoyenne": "Conduces {{kilómetroConducido}} km con una media de {{nbPersonas}} en el coche."
         }
       },
       "select": {
@@ -148,7 +148,7 @@
   "Guidé": "Guiado",
   "habitant": "residente",
   "habitants": "habitantes",
-  "hoississez votre mode de simulation": "Seleccione el modo de simulación",
+  "hoississez votre mode de simulation": "Seleccione su modo de simulación",
   "Icône représentant une pompe à pétrole": "Icono que representa una bomba de aceite",
   "Initialisation...": "Inicialización...",
   "Insérer cette suggestion": "Inserte esta sugerencia",
@@ -306,7 +306,7 @@
         "nomSalleDoitContenirDesLettres": "El nombre de su habitación sólo puede contener letras, números y guiones"
       },
       "NoTestMessage": {
-        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado tu prueba, ¡adelante!"
+        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado el examen, ¡adelante!"
       },
       "Survey": {
         "csv": "Puede recuperar los resultados de la encuesta en formato .csv.",
@@ -334,7 +334,7 @@
       },
       "Petrogaz": {
         "explications": "<0>Se trata de una estimación <1>mínima</1> de su consumo anual de crudo.</0><1>Estimado a través del consumo de su coche, avión, autobús y aceite de calefacción, no tiene en cuenta (todavía) el aceite utilizado para transportar sus compras, ni la energía gris de sus diversas posesiones.</1>",
-        "litres": "Esto es {{secondaryValue}} litros (lleno de {{fullVolume}} litros)."
+        "litres": "Es decir, {{secondaryValue}} litros (lleno de {{fullVolume}} litros)."
       }
     },
     "Personas": {
@@ -363,7 +363,7 @@
       },
       "slide3": {
         "blockquote": "\n\t\t\t\t\t{{espárragos}} ¡Nuevo! Vea también su consumo de aceite\n\t\t\t\t\t{{fuelPump}}, un indicador complementario al\n\t\t\t\t\tclima.",
-        "p1": "<0>¿Y en concreto?</0><1>Cada año, un francés emite una media de <2> 10 toneladas de</2> CO₂e.</1>",
+        "p1": "<0>¿Y en términos concretos?</0><1>Cada año, un francés emite una media de <2> 10 toneladas de</2> CO₂e.</1>",
         "p2": "Este es su punto de partida en esta prueba: cada una de sus respuestas personalizará este resultado en la barra de puntuación."
       },
       "slide4": {
@@ -414,7 +414,6 @@
   "simulations terminées depuis le lancement": "simulaciones realizadas desde el lanzamiento",
   "Sites Web": "Páginas web",
   "Sondage": "Encuesta",
-  "Sondage ": "Encuesta ",
   "Sondage créé": "Encuesta creada",
   "Statistiques": "Estadísticas",
   "Stats générales": "Estadísticas generales",

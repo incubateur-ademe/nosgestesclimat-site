@@ -62,6 +62,8 @@ export default ({ details }) => {
 	const [hiddenTarget, hideTarget]: [boolean | undefined, any] =
 		useState(undefined)
 
+	const { t } = useTranslation()
+
 	return (
 		<motion.section
 			css={`

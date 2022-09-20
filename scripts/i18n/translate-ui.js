@@ -91,10 +91,6 @@ const translateTo = (targetLang, targetPath) => {
 			.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
 			.forEach(async ([key, value]) => {
 				try {
-					bar.increment({
-						msg: `Translating '${key}'...`,
-						lang: targetLang,
-					})
 					const translation = await utils.fetchTranslation(
 						value,
 						srcLang,
@@ -105,7 +101,7 @@ const translateTo = (targetLang, targetPath) => {
 						translation,
 						translatedKeys
 					)
-					// TODO: add a way to write all the translations at once
+					//	TODO: add a way to write all the translations at once
 					fs.writeFileSync(
 						targetPath,
 						stringify(translatedKeys, {
@@ -113,6 +109,10 @@ const translateTo = (targetLang, targetPath) => {
 							space: 2,
 						})
 					)
+					bar.increment({
+						msg: `Translating '${value}'...`,
+						lang: targetLang,
+					})
 				} catch (err) {
 					bar.stop()
 					progressBars.remove(bar)
