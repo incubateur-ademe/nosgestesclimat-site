@@ -51,24 +51,6 @@ export default ({}) => {
 						</em>
 					</p>
 				)}
-				{tutorials.testIntro && (
-					<div
-						css={`
-							margin-bottom: 2rem;
-						`}
-					>
-						<button
-							className="ui__ dashed-button"
-							onClick={() => {
-								dispatch(skipTutorial('testIntro', true))
-								dispatch(resetTutorials())
-								navigate('/tutoriel')
-							}}
-						>
-							{emoji('🧑‍🏫')} Revoir le tutoriel
-						</button>
-					</div>
-				)}
 				{hasData ? (
 					<div
 						css={`
@@ -99,12 +81,12 @@ export default ({}) => {
 								className="ui__ button plain"
 								css="margin: 1rem 0"
 								onClick={() => {
-								dispatch(resetSimulation())
-								dispatch(resetActionChoices())
-								dispatch(deletePreviousSimulation())
-								dispatch(resetStoredTrajets())
-								navigate('/simulateur/bilan')
-							}}
+									dispatch(resetSimulation())
+									dispatch(resetActionChoices())
+									dispatch(deletePreviousSimulation())
+									dispatch(resetStoredTrajets())
+									navigate('/simulateur/bilan')
+								}}
 							>
 								{emoji('♻️ ')} Recommencer
 							</button>
@@ -114,6 +96,7 @@ export default ({}) => {
 										className="ui__ dashed-button"
 										onClick={() => {
 											dispatch(skipTutorial('testIntro', true))
+											dispatch(resetTutorials())
 											navigate('/tutoriel')
 										}}
 									>
