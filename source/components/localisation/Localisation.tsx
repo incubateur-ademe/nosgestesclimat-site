@@ -2,6 +2,8 @@ import supportedCountries from 'Components/localisation/supportedCountries.yaml'
 import useLocalisation, {
 	getFlagImgSrc,
 	getCountryNameInFrench,
+	supportedCountry,
+	getLocalisationPullRequest,
 } from 'Components/localisation/useLocalisation'
 import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
@@ -22,9 +24,7 @@ export default () => {
 		[]
 	)
 
-	const supported =
-		localisation &&
-		supportedCountries.find((c) => c.code === localisation.country.code)
+	const supported = supportedCountry(localisation)
 
 	return (
 		<div>
@@ -56,7 +56,10 @@ export default () => {
 						Nous avons détecté que vous faites cette simulation depuis{' '}
 						{getCountryNameInFrench(localisation?.country.code)}
 						<img
-							src={getFlagImgSrc(localisation?.country.code)}
+							src={
+								getSupportedFlag(localisation) ||
+								getFlagImgSrc(localisation?.country.code)
+							}
 							aria-hidden="true"
 							css={`
 								height: 1rem;
@@ -78,29 +81,31 @@ export default () => {
 			<details>
 				<summary>Choisir une autre région</summary>
 				<ul>
-					{supportedCountries.map(({ nom, code, PR }) => (
-						<li
-							key={code}
-							onClick={() => {
-								dispatch(
-									setLocalisation({
-										country: { name: nom, code },
-										userChosen: true,
-									})
-								)
-								const localisationPR = supportedCountries.find(
-									(country) => country.code === code
-								)?.PR
-								dispatch({
-									type: 'SET_PULL_REQUEST_NUMBER',
-									number: localisationPR,
-								})
-								setRead([])
-							}}
-						>
-							<button>{capitalise0(nom)}</button>
-						</li>
-					))}
+					{supportedCountries.map(
+						({ nom, code, inactif }) =>
+							!inactif && (
+								<li
+									key={code}
+									onClick={() => {
+										dispatch(
+											setLocalisation({
+												country: { name: nom, code },
+												userChosen: true,
+											})
+										)
+										const localisationPR =
+											getLocalisationPullRequest(localisation)
+										dispatch({
+											type: 'SET_PULL_REQUEST_NUMBER',
+											number: localisationPR,
+										})
+										setRead([])
+									}}
+								>
+									<button>{capitalise0(nom)}</button>
+								</li>
+							)
+					)}
 				</ul>
 				<IllustratedMessage
 					emoji="🌐"

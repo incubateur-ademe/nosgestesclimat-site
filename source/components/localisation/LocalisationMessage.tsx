@@ -1,6 +1,6 @@
 import IllustratedMessage from '../ui/IllustratedMessage'
 import useLocalisation, {
-	getFlagImgSrc,
+	supportedCountry,
 	getSupportedFlag,
 } from './useLocalisation'
 import supportedCountries from './supportedCountries.yaml'
@@ -14,9 +14,7 @@ export default () => {
 	)
 	const localisation = useLocalisation()
 	if (!localisation) return null
-	const supported = supportedCountries.find(
-		(c) => c.code === localisation.country.code
-	)
+	const supported = supportedCountry(localisation)
 	if (!supported) return null
 	const { code, gentilé, nom } = supported
 	if (code === 'FR') return null

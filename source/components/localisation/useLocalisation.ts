@@ -87,13 +87,23 @@ export const getSupportedFlag = (localisation) => {
 	const supported = supportedCountries.find(
 		(c) => c.code === localisation.country.code
 	)
-	if (supported.PR === undefined) return
-	const code = supported.drapeau || supported.code
+
+	const code = supported?.drapeau || localisation?.country.code
+
 	return getFlagImgSrc(code)
 }
 
 export const getLocalisationPullRequest = (localisation) => {
-	return supportedCountries.find(
-		(country) => country.code === localisation.country.code
-	)?.PR
+	const supported = supportedCountry(localisation)
+	if (!supported) return null
+	return supported.PR
+}
+
+export const supportedCountry = (localisation) => {
+	if (!localisation) return
+	const supported = supportedCountries.find(
+		(c) => c.code === localisation.country.code
+	)
+	if (supported?.inactif === 'oui') return null
+	return supported
 }

@@ -17,6 +17,7 @@ import {
 	getLocalisationPullRequest,
 	getSupportedFlag,
 	getFlagImgSrc,
+	supportedCountry,
 } from './localisation/useLocalisation'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
@@ -134,7 +135,9 @@ export default function SessionBar({
 	const dispatch = useDispatch()
 
 	const localisation = useLocalisation()
-	const flag = getSupportedFlag(localisation) || getFlagImgSrc('FR')
+	const flag = supportedCountry(localisation)
+		? getSupportedFlag(localisation)
+		: getFlagImgSrc('FR')
 
 	const location = useLocation(),
 		path = location.pathname
