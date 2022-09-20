@@ -13,12 +13,14 @@ import Illustration from 'Images/ecolab-climat-dessin.svg'
 import { useProfileData } from './Profil'
 import landingMd from 'raw-loader!./landing.md'
 import Markdown from 'markdown-to-jsx'
+import useMediaQuery from '../../components/utils/useMediaQuery'
 
 const SurveyModal = React.lazy(() => import('./SurveyModal'))
 
 export default () => {
 	const tracker = useContext(TrackerContext)
 	const [showSurveyModal, setShowSurveyModal] = useState(false)
+	const mobile = useMediaQuery('(max-width: 800px)')
 
 	return (
 		<div
@@ -47,7 +49,9 @@ export default () => {
 					display: flex;
 					flex-direction: row;
 					align-items: center;
+					flex-wrap: wrap;
 					margin-top: 4rem;
+					padding: 0.6rem;
 					h1 {
 						margin-top: 0.3rem;
 						font-size: 220%;
@@ -59,6 +63,12 @@ export default () => {
 					p {
 						font-size: 110%;
 					}
+					@media (max-width: 800px) {
+						text-align: center;
+						h1 {
+							font-size: 180%;
+						}
+					}
 				`}
 			>
 				<div
@@ -68,7 +78,18 @@ export default () => {
 						max-width: 30rem;
 					`}
 				>
-					<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
+					<h1>Connaissez-vous votre empreinte sur le climat&nbsp;?</h1>
+					{mobile && (
+						<Illustration
+							aira-hidden="true"
+							css={`
+								height: auto;
+								margin: 1rem auto;
+								border-radius: 0.8rem;
+								max-width: 15rem;
+							`}
+						/>
+					)}
 					<p>
 						En 10 minutes, obtenez une estimation de votre empreinte carbone de
 						consommation.
@@ -92,7 +113,7 @@ export default () => {
 							css={`
 								margin-top: 1rem;
 								> a {
-									margin-right: 1rem !important;
+									margin: 0.6rem 1rem 0.6rem 0 !important;
 								}
 							`}
 						>
@@ -128,17 +149,17 @@ export default () => {
 						<NewsBanner />
 					</div>
 				</div>
-				<Illustration
-					aira-hidden="true"
-					css={`
-						max-width: 30rem;
-						height: auto;
-						border-radius: 0.8rem;
-						@media (max-width: 800px) {
-							max-width: 95%;
-						}
-					`}
-				/>
+				{!mobile && (
+					<Illustration
+						aira-hidden="true"
+						css={`
+							max-width: 30rem;
+							height: auto;
+							margin: 1rem auto;
+							border-radius: 0.8rem;
+						`}
+					/>
+				)}
 			</div>
 			<div
 				css={`
