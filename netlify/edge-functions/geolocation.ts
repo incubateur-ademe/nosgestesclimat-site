@@ -2,7 +2,6 @@ import { Context } from 'https://edge.netlify.com'
 
 export default async (request: Request, context: Context) => {
 	// Here's what's available on context.geo
-
 	// context: {
 	//   geo: {
 	//     city?: string;
@@ -31,6 +30,10 @@ export default async (request: Request, context: Context) => {
 	// return context.json({
 	// 	geo: { country: { code: 'US', name: 'United States' } },
 	// 	header: '{"country":{"code":"US","name":"United States"}}',
+	// })
+	// return context.json({
+	// 	geo: { country: { code: 'MQ', name: 'Martinique' } },
+	// 	header: '{"country":{"code":"MQ","name":"Martinique"}',
 	// })
 	// return context.json({
 	// 	geo: { country: { code: 'GP', name: 'Guadeloupe' } },
