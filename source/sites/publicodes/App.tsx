@@ -104,6 +104,7 @@ const Main = ({}) => {
 				}
 				${!isHomePage && !isTuto && sessionBarMargin}
 			`}
+			className={isHomePage ? '' : 'ui__ container'}
 		>
 			<Navigation isHomePage={isHomePage} />
 			<main
