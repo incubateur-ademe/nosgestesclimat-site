@@ -14,11 +14,11 @@ un sottogruppo).
 Per il momento, gli elementi contestuali sono disponibili nel CSV scaricato
 (non è possibile filtrare sullo schermo di visualizzazione).
 
-&gt; Le domande non devono permettere di identificare gli utenti! Su
-&gt; Non chiederete l'identità delle persone e nemmeno il loro indirizzo e-mail! Va inoltre ricordato che le risposte sono &gt; accessibili a tutti gli utenti.
-&gt; È anche importante ricordare che le risposte sono accessibili a tutte le persone.
-Si deve anche ricordare che le risposte sono accessibili a tutte le persone &gt; che hanno il link al sondaggio, quindi si deve fare attenzione a rispettare il diritto alla privacy.
-&gt; Regole RGPD.
+> Le domande non devono permettere di identificare gli utenti! Su
+> Non chiederete l'identità delle persone e nemmeno il loro indirizzo e-mail! Va inoltre ricordato che le risposte sono
+> accessibili a tutti gli utenti. È anche importante ricordare che le risposte sono accessibili a tutte le persone.
+> Si deve anche ricordare che le risposte sono accessibili a tutte le persone
+> che hanno il link al sondaggio, quindi si deve fare attenzione a rispettare il diritto alla privacy. Regole RGPD.
 
 Contesto di esempio](/images/example-context.png)
 
@@ -33,12 +33,12 @@ in formato "yaml".
 
 **Abbiamo scelto di mantenere il controllo dei contesti del sondaggio pubblicato.
 il team di Datagir svolge il ruolo di amministratore e vi aiuta a creare e pubblicare il contesto dell'indagine.
-per creare il contesto e pubblicarlo per l'indagine.
+per creare il contesto e pubblicarlo per l'indagine.**
 
 A
 [template](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml)
 consente di scrivere il proprio modulo contestuale. È inoltre possibile
-il [publicodes sandbox] (https://vu.fr/szYP). Non esitate a
+il [publicodes sandbox](https://vu.fr/szYP). Non esitate a
 contattateci con una prima bozza per contestualizzare la vostra indagine!
 Attenzione, **il nome del file creato deve essere diverso da quello del nome previsto
 per il sondaggio** (vedi punto successivo).

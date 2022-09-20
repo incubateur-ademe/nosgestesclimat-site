@@ -8,11 +8,11 @@ However, you can take advantage of and distribute our simulator in several ways 
 
 Nothing could be easier! Integrate it in a blog post or a website simply by adding the line below to your web page.
 
-<!-- `<script id="nosgestesclimat" src="https://nosgestesclimat.fr/iframe.js"></script>` -->
+`<script id="nosgestesclimat" src="https://nosgestesclimat.fr/iframe.js"></script>`
 
 Join [the many current reusers](https://datagir.ademe.fr/apps/nos-gestes-climat/).
 
-The module will automatically stay up to date with the [latest developments](/news).
+The module will automatically stay up to date with the [latest developments](/nouveautés).
 
 To learn more about the integration, visit [our guide](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md).
 
@@ -24,13 +24,13 @@ You want to estimate the climate footprint of a group of people, or simply integ
 
 The "conference" and "survey" features are now available!
 
-Go to [🏟️ group mode](/group) on choose a room name, share the link, and launch the simulation game!
+Go to [🏟️ group mode](/groupe) on choose a room name, share the link, and launch the simulation game!
 
-<h2 lang="en"> <span role="img" aria-label="" aria-hidden="true">🇬🇧</span> </h2>You want the same calculator tailored to your country 
+<h2 lang="en"> <span role="img" aria-label="" aria-hidden="true">🇬🇧</span> </h2>You want the same calculator tailored to your country
 
 <p lang="en">We are looking for native partners to translate and adapt the GHG emissions model for the specificities of other countries.</p>
 
-&gt; We are actively looking for foreign partners to declare Our Climate Gestures in other countries.
+> We are actively looking for foreign partners to declare Our Climate Gestures in other countries.
 
 ## You want to customize the tool for your own needs
 

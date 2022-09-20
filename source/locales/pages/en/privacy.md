@@ -30,7 +30,7 @@ The present Nos Gestes Climat platform is an initiative of the French Agency for
 
 ### a) Data related to the simulation
 
-The data that is entered during the simulation is stored locally in the platform user's browser. It is deleted when the user clears the data from the browser, or clicks on the "Start over" button on the [profile page](/profile).
+The data that is entered during the simulation is stored locally in the platform user's browser. It is deleted when the user clears the data from the browser, or clicks on the "Start over" button on the [profile page](/profil).
 
 In the group simulation, each participant is assigned a random pseudonym (conference mode) or a random ID (survey mode) in order to remain anonymous.
 
@@ -93,7 +93,7 @@ Audience measurement cookies, when the data is anonymized, do not require consen
 
 ### Data related to the simulation
 
-The data is kept locally on the browser until the action of the user to delete the data from the browser, from the nosgestesclimat.fr domain in particular, or via the [profile page](/profile).
+The data is kept locally on the browser until the action of the user to delete the data from the browser, from the nosgestesclimat.fr domain in particular, or via the [profile page](/profil).
 
 ### Data relative to the results of the simulation
 
@@ -117,7 +117,7 @@ Certain data are sent to subcontractors to carry out certain tasks. The data con
 
 ### Web site hosting
 
-The website is hosted by Netlify, as indicated in the legal notice on the [about] page.
+The website is hosted by Netlify, as indicated in the legal notice on the [about](/à-propos) page.
 
 The survey data storage server is hosted by [Scalingo](https://scalingo.com) SAS, 15 avenue du Rhin 67100 Strasbourg France.
 

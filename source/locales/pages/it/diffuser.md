@@ -1,6 +1,6 @@
 # Diffondere i nostri gesti per il clima
 
-Il nostro Climate Gestures è un servizio pubblico, il suo codice [è libero](/documentazione) e riutilizzabile da tutti.
+Il nostro Climate Gestures è un servizio pubblico, il suo codice [è libero](/documentation) e riutilizzabile da tutti.
 
 Tuttavia, è possibile sfruttare e diffondere il nostro simulatore in diversi modi, senza dover ricorrere a competenze di sviluppo.
 
@@ -8,11 +8,11 @@ Tuttavia, è possibile sfruttare e diffondere il nostro simulatore in diversi mo
 
 Niente di più facile! Integratelo in un post del blog o in un sito semplicemente aggiungendo la riga sottostante alla vostra pagina web.
 
-<!-- `<script id="nosgestesclimat" src="https://nosgestesclimat.fr/iframe.js"></script>` -->
+`<script id="nosgestesclimat" src="https://nosgestesclimat.fr/iframe.js"></script>`
 
 Unitevi a [i molti riutilizzatori attuali](https://datagir.ademe.fr/apps/nos-gestes-climat/).
 
-Il modulo si aggiornerà automaticamente con gli [ultimi sviluppi](/notizie).
+Il modulo si aggiornerà automaticamente con gli [ultimi sviluppi](/nouveautés).
 
 Per ulteriori informazioni sull'integrazione, visitate [la nostra guida](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md).
 
@@ -24,13 +24,13 @@ Volete stimare l'impronta climatica di un gruppo di persone o semplicemente inte
 
 Le funzioni "conferenza" e "sondaggio" sono ora disponibili!
 
-Andate su [🏟️ modalità gruppo](/gruppo), scegliete il nome di una stanza, condividete il link e lanciate il gioco di simulazione!
+Andate su [🏟️ modalità gruppo](/groupe), scegliete il nome di una stanza, condividete il link e lanciate il gioco di simulazione!
 
-<h2 lang="en"> <span role="img" aria-label="" aria-hidden="true">🇬🇧</span> </h2>Volete la stessa calcolatrice su misura per il vostro paese 
+<h2 lang="en"> <span role="img" aria-label="" aria-hidden="true">🇬🇧</span> </h2>Volete la stessa calcolatrice su misura per il vostro paese
 
 <p lang="en">Stiamo cercando partner locali per tradurre e adattare il modello di emissioni di gas serra alle specificità di altri Paesi.</p>
 
-&gt; Stiamo cercando attivamente partner locali per tradurre e adattare il modello di emissioni di gas serra alle specificità di altri Paesi.
+> Stiamo cercando attivamente partner locali per tradurre e adattare il modello di emissioni di gas serra alle specificità di altri Paesi.
 
 ## Si vuole personalizzare lo strumento per le proprie esigenze
 

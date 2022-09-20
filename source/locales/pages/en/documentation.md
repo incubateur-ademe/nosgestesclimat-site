@@ -1,4 +1,4 @@
-# Contextualize a survey
+# Contextualizing a survey
 
 ## What for?
 
@@ -14,11 +14,11 @@ or a subgroup).
 For the moment, the context elements are available in the downloaded CSV
 (no filtering possible on the visualization screen).
 
-&gt; ⚠️ The questions must not allow users to be identified! We
-&gt; will not ask for the identity of the people or even their email address! You must
-&gt; You should also remember that the answers are accessible to all people
-&gt; The answers are accessible to all the people who have the link to the survey, so it is important to respect the
-&gt; RGPD rules.
+> ⚠️ The questions must not allow users to be identified! We
+> will not ask for the identity of the people or even their email address! You must
+> You should also remember that the answers are accessible to all people
+> The answers are accessible to all the people who have the link to the survey, so it is important to respect the
+> RGPD rules.
 
 ![Example context](/images/example-context.png)
 
@@ -45,7 +45,7 @@ for the survey** (see next point).
 
 ## And from a tech point of view?
 
-The survey rules are loaded from the server when the user accesses a survey
+The survey rules are loaded from the server when the user accesses a
 the user accesses a survey with a context. In order to avoid
 make all poll URLs with context public, the name of the context file is
 context file name is different from the survey name. The file name is assigned via

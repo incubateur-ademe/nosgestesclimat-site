@@ -103,7 +103,7 @@ La verifica dell'accessibilità è il risultato di un test manuale, assistito da
 
 L'ADEME si impegna ad adottare le misure necessarie per fornire l'accesso, entro un periodo di tempo ragionevole, alle informazioni e alle funzionalità richieste dalla persona disabile, indipendentemente dal fatto che il contenuto sia o meno soggetto a esenzione.
 
-L'ADEME invita le persone che incontrano difficoltà a contattarla ([in fondo alla pagina delle FAQ](/contribuire) per contattare il team Nos Gestes Climat direttamente o tramite [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) in modo da poter fornire assistenza (alternativa accessibile, informazioni e contenuti forniti in un'altra forma).
+L'ADEME invita le persone che incontrano difficoltà a contattarla ([in fondo alla pagina delle FAQ](/contribuer) per contattare il team Nos Gestes Climat direttamente o tramite [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) in modo da poter fornire assistenza (alternativa accessibile, informazioni e contenuti forniti in un'altra forma).
 
 ## Rimedi
 

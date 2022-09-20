@@ -103,7 +103,7 @@ Es importante recordar que según el artículo 11 de la ley de febrero de 2005 :
 
 La ADEME se compromete a adoptar las medidas necesarias para facilitar el acceso, en un plazo razonable, a la información y a las funcionalidades solicitadas por la persona discapacitada, independientemente de que el contenido esté sujeto a una exención.
 
-La ADEME invita a las personas que encuentren dificultades a ponerse en contacto con ella ([al final de la página de preguntas frecuentes](/contribuir) para contactar con el equipo de Nos Gestes Climat directamente o a través de [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) para que se les pueda proporcionar asistencia (alternativa accesible, información y contenido dado de otra forma).
+La ADEME invita a las personas que encuentren dificultades a ponerse en contacto con ella ([al final de la página de preguntas frecuentes](/contribuer) para contactar con el equipo de Nos Gestes Climat directamente o a través de [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) para que se les pueda proporcionar asistencia (alternativa accesible, información y contenido dado de otra forma).
 
 ## Remedios
 

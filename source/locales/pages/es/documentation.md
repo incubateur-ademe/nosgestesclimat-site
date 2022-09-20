@@ -14,11 +14,13 @@ un subgrupo).
 Por el momento, los elementos contextuales están disponibles en el CSV descargado
 (no es posible filtrar en la pantalla de visualización).
 
-&gt; ¡Las preguntas no deben permitir la identificación de los usuarios! En
-&gt; ¡No pedirás la identidad de las personas ni siquiera su dirección de correo electrónico! También hay que recordar que las respuestas son &gt; accesibles a todos los usuarios.
-&gt; También es importante recordar que las respuestas son accesibles para todas las personas
-También debe recordar que las respuestas son accesibles a todas las personas &gt; que tengan el enlace a la encuesta, por lo que debe tener cuidado de respetar la
-&gt; Normas del RGPD.
+> ¡Las preguntas no deben permitir la identificación de los usuarios! En ¡No
+> pedirás la identidad de las personas ni siquiera su dirección de correo
+> electrónico! También hay que recordar que las respuestas son accesibles a
+> todos los usuarios. También es importante recordar que las respuestas son
+> accesibles para todas las personas También debe recordar que las respuestas
+> son accesibles a todas las personas que tengan el enlace a la encuesta, por
+> lo que debe tener cuidado de respetar la Normas del RGPD.
 
 Ejemplo de contexto](/images/example-context.png)
 
@@ -33,7 +35,7 @@ en formato 'yaml'.
 
 **Hemos optado por mantener el control de los contextos de las encuestas publicadas.
 el equipo de Datagir desempeña el papel de administrador y le ayuda a crear y publicar su contexto de encuesta.
-para crear su contexto y publicarlo para su encuesta.
+para crear su contexto y publicarlo para su encuesta.**
 
 A
 [plantilla](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml)

@@ -35,6 +35,7 @@ const colors = {
 
 const withStyle = (color, text) => `${color}${text}${colors.reset}`
 const printErr = (message) => console.error(withStyle(colors.fgRed, message))
+const printWarn = (message) => console.warn(withStyle(colors.fgYellow, message))
 
 const availableLanguages = ['fr', 'en', 'es', 'it']
 const defaultLang = availableLanguages[0]
@@ -225,6 +226,7 @@ module.exports = {
 	paths,
 	colors,
 	printErr,
+	printWarn,
 	withStyle,
 	defaultLang,
 	availableLanguages,

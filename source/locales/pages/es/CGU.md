@@ -17,7 +17,7 @@ digital), y situarlo en relación con los objetivos climáticos. En
 Según las respuestas y el resultado, las acciones personalizadas son
 sugerido.
 
-Consulte [la página de apropos](/apropos) para más detalles.
+Consulte [la página de apropos](/à-propos) para más detalles.
 
 ## Artículo 3 - Definiciones
 
@@ -67,7 +67,7 @@ reutilizable por todos bajo la licencia MIT, en este repositorio de código: htt
 Es posible distribuir el simulador de varias maneras
 sin movilizar las capacidades de desarrollo. Más información
 está disponible en la página
-["Difundir"](https://nosgestesclimat.fr/diffuser)
+[« Difundir ».](https://nosgestesclimat.fr/diffuser)
 
 ## Artículo 5 - Responsabilidades
 

@@ -16,17 +16,17 @@ The code for this site [is free](https://github.com/betagouv/ecolab-data). Dive 
 
 The simulator is continuously improved.
 
-[✨️ Check out the latest news and release notes](/news).
+[✨️ Check out the latest news and release notes](/nouveautés).
 
 ## Privacy
 
 We collect anonymized data only to improve this simulator.
 
-[🍪 Our privacy policy](/privacy)
+[🍪 Our privacy policy](/vie-privée)
 
 ## How to integrate this simulator into your site?
 
-We tell you everything on our [broadcast](/broadcast) page.
+We tell you everything on our [broadcast](/diffuser) page.
 
 ## Contact us
 
@@ -38,9 +38,9 @@ The site is partially compliant with digital accessibility standards.
 
 We conducted [a first audit](https://github.com/datagir/nosgestesclimat-site/issues/350), which was fully corrected. We conducted a second, more rigorous audit in the spring of 2022 by Access 42.
 
-The accessibility statement is visible via [the dedicated page](/accessibility).
+The accessibility statement is visible via [the dedicated page](/accessibilite).
 
-If you encounter an accessibility issue that prevents you from accessing a content or a functionality of the site, please let us know [at the bottom of the FAQ page](/contribute) or via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) so that assistance can be provided (accessible alternative, information and content given in another form). If you do not receive a prompt response from us, you are entitled to send your complaints or a request for referral to the [Human Rights Defender](https://www.defenseurdesdroits.fr).
+If you encounter an accessibility issue that prevents you from accessing a content or a functionality of the site, please let us know [at the bottom of the FAQ page](/contribuer) or via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) so that assistance can be provided (accessible alternative, information and content given in another form). If you do not receive a prompt response from us, you are entitled to send your complaints or a request for referral to the [Human Rights Defender](https://www.defenseurdesdroits.fr).
 
 ## Legal notice
 

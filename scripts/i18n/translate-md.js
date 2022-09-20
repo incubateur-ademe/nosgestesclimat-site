@@ -81,6 +81,7 @@ glob(`source/locales/pages/${srcLang}/*.md`, (err, files) => {
 			files.length
 		)} files to translate.`
 	)
+	utils.printWarn(`WARN: internal links should be translated manually.`)
 	const destLangs = targetLangs.filter(
 		(l) => utils.availableLanguages.includes(l) && l !== srcLang
 	)

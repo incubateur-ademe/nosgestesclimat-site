@@ -8,7 +8,7 @@ Cependant, vous pouvez profiter et diffuser notre simulateur de plusieurs façon
 
 Rien de plus simple ! Intégrez le dans un article de blog ou un site simplement en ajoutant la ligne ci-dessous à votre page web.
 
-<!-- `<script id="nosgestesclimat" src="https://nosgestesclimat.fr/iframe.js"></script>` -->
+`<script id="nosgestesclimat" src="https://nosgestesclimat.fr/iframe.js"></script>`
 
 Rejoignez ainsi [les nombreux réutilisateurs actuels](https://datagir.ademe.fr/apps/nos-gestes-climat/).
 

@@ -30,7 +30,7 @@ La presente plataforma Nos Gestes Climat es una iniciativa de la Agencia Frances
 
 ### a) Datos relativos a la simulación
 
-Los datos que se introducen durante la simulación se almacenan localmente en el navegador del usuario de la plataforma. Se elimina cuando el usuario borra los datos del navegador, o hace clic en el botón "Volver a empezar" de la [página de perfil](/perfil).
+Los datos que se introducen durante la simulación se almacenan localmente en el navegador del usuario de la plataforma. Se elimina cuando el usuario borra los datos del navegador, o hace clic en el botón "Volver a empezar" de la [página de perfil](/profil).
 
 En la simulación de grupo, cada participante recibe un seudónimo aleatorio (modo conferencia) o una identificación aleatoria (modo encuesta) para mantener el anonimato.
 
@@ -93,7 +93,7 @@ Las cookies de medición de audiencia, cuando los datos son anónimos, no requie
 
 ### Datos relativos a la simulación
 
-Los datos se conservan localmente en el navegador hasta que el usuario realiza la acción de borrar los datos del navegador, del dominio nosgestesclimat.fr en particular, o a través de la [página de perfil](/perfil).
+Los datos se conservan localmente en el navegador hasta que el usuario realiza la acción de borrar los datos del navegador, del dominio nosgestesclimat.fr en particular, o a través de la [página de perfil](/profil).
 
 ### Datos relativos a los resultados de la simulación
 
@@ -117,7 +117,7 @@ Algunos datos se envían a subcontratistas para que realicen determinadas tareas
 
 ### Alojamiento de sitios web
 
-El sitio web está alojado en Netlify, como se indica en el aviso legal de la página [sobre].
+El sitio web está alojado en Netlify, como se indica en el aviso legal de la página [sobre](/à-propos).
 
 El servidor de almacenamiento de datos de la encuesta está alojado en [Scalingo](https://scalingo.com) SAS, 15 avenue du Rhin 67100 Estrasburgo Francia.
 
