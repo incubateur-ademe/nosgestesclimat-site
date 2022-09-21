@@ -43,13 +43,15 @@ if (!utils.availableLanguages.includes(srcLang)) {
 	process.exit(-1)
 }
 
-const progressBar = new cliProgress.SingleBar({
-	stopOnComplete: true,
-	clearOnComplete: true,
-	forceRedraw: true,
-	format: '{lang} | {value}/{total} | {bar} | {msg} ',
-})
-cliProgress.Presets.shades_grey
+const progressBar = new cliProgress.SingleBar(
+	{
+		stopOnComplete: true,
+		clearOnComplete: true,
+		forceRedraw: true,
+		format: '{lang} | {value}/{total} | {bar} | {msg} ',
+	},
+	cliProgress.Presets.shades_grey
+)
 
 const translateTo = async (src, destPath, destLang) => {
 	progressBar.update(progressBar.value, {
@@ -81,7 +83,7 @@ glob(`source/locales/pages/${srcLang}/*.md`, (err, files) => {
 			files.length
 		)} files to translate.`
 	)
-	utils.printWarn(`WARN: internal links should be translated manually.`)
+	utils.printWarn(`WARN: internal links must be translated manually.`)
 	const destLangs = targetLangs.filter(
 		(l) => utils.availableLanguages.includes(l) && l !== srcLang
 	)

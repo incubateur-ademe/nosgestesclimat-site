@@ -59,7 +59,6 @@ if (!fs.existsSync(defaultLangPath)) {
 
 const progressBars = new cliProgress.MultiBar(
 	{
-		hideCursor: true,
 		stopOnComplete: true,
 		clearOnComplete: true,
 		forceRedraw: true,
@@ -94,7 +93,7 @@ const translateTo = (targetLang, targetPath) => {
 					const translation = await utils.fetchTranslation(
 						value,
 						srcLang,
-						targetLang.toUpperCase()
+						targetLang
 					)
 					translatedKeys = R.assocPath(
 						key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/),
@@ -128,7 +127,13 @@ const translateTo = (targetLang, targetPath) => {
 
 if (argv.target) {
 	if (!utils.availableLanguages.includes(argv.target)) {
-		utils.printErr(`ERROR: '${argv.target}' is not a valid language.`)
+		utils.printErr(
+			`ERROR: '${
+				argv.target
+			}' is not a valid language. Try one of: ${utils.availableLanguages.join(
+				', '
+			)}`
+		)
 		process.exit(-1)
 	}
 	translateTo(argv.target, paths.uiTranslationResource[argv.target])

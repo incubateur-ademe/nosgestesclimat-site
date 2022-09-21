@@ -5,8 +5,9 @@ import { renderToString } from 'react-dom/server'
 import { useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
-import FAQ from './FAQ.yaml'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { getLangInfos } from '../../locales/translation'
 
 const formStyle = `
 label {
@@ -59,6 +60,9 @@ export default ({}) => {
 	const [comment, setComment] = useState('')
 	const [URL, setURL] = useState(null)
 	const [buttonDisabled, disableButton] = useState(false)
+
+	const currentLang = useSelector((state) => state.currentLang)
+	const FAQ = getLangInfos(currentLang.currentLang).faqContent
 
 	const structuredFAQ = {
 		'@context': 'https://schema.org',

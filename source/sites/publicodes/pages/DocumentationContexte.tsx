@@ -8,7 +8,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { getLangInfos, Lang } from '../../../locales/translation'
 
 import contentFr from 'raw-loader!../../../locales/pages/fr/documentation.md'
-import contentEn from 'raw-loader!../../../locales/pages/en/documentation.md'
+import contentEn from 'raw-loader!../../../locales/pages/en-us/documentation.md'
 import contentEs from 'raw-loader!../../../locales/pages/es/documentation.md'
 import contentIt from 'raw-loader!../../../locales/pages/it/documentation.md'
 

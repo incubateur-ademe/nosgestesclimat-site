@@ -2,7 +2,11 @@
 	This module contains all types and functions related to the translation.
 */
 
-import { useTranslation } from 'react-i18next'
+import faqFr from './faq/FAQ-fr.yaml'
+import faqEn from './faq/FAQ-en-us.yaml'
+import faqIt from './faq/FAQ-it.yaml'
+import faqEs from './faq/FAQ-es.yaml'
+import { i18n } from 'i18next'
 
 export enum Lang {
 	Default = 'Fr',
@@ -15,7 +19,7 @@ export enum Lang {
 export type LangInfos = {
 	name: string
 	abrv: string
-	icon?: string
+	faqContent: string // The FAQ content in YAML
 }
 
 export const defaultLang = Lang.Fr
@@ -26,24 +30,28 @@ export function getLangInfos(lang: Lang): LangInfos {
 			return {
 				name: 'Français',
 				abrv: 'fr',
+				faqContent: faqFr,
 			}
 		}
 		case Lang.En: {
 			return {
 				name: 'English',
 				abrv: 'en',
+				faqContent: faqEn,
 			}
 		}
 		case Lang.Es: {
 			return {
 				name: 'Español',
 				abrv: 'es',
+				faqContent: faqEs,
 			}
 		}
 		case Lang.It: {
 			return {
 				name: 'Italiano',
 				abrv: 'it',
+				faqContent: faqIt,
 			}
 		}
 	}
@@ -64,7 +72,7 @@ export function getLangFromAbreviation(abrv: string): Lang {
 	}
 }
 
-export function changeLangTo(i18n, currentLangState) {
+export function changeLangTo(i18n: i18n, currentLangState: Lang) {
 	const langInfos = getLangInfos(currentLangState)
 	if (langInfos) {
 		i18n.changeLanguage(langInfos.abrv)

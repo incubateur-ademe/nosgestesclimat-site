@@ -5,7 +5,7 @@ const path = require('path')
 const R = require('ramda')
 const { readRules } = require('../rules')
 const yaml = require('yaml')
-const translate = require('deepl')
+const deepl = require('deepl-node')
 
 const colors = {
 	reset: '\x1b[0m',
@@ -37,7 +37,7 @@ const withStyle = (color, text) => `${color}${text}${colors.reset}`
 const printErr = (message) => console.error(withStyle(colors.fgRed, message))
 const printWarn = (message) => console.warn(withStyle(colors.fgYellow, message))
 
-const availableLanguages = ['fr', 'en', 'es', 'it']
+const availableLanguages = ['fr', 'en-us', 'es', 'it']
 const defaultLang = availableLanguages[0]
 
 const paths = {
@@ -47,7 +47,7 @@ const paths = {
 	staticAnalysisFrRes: path.resolve('source/locales/static-analysis-fr.json'),
 	uiTranslationResource: {
 		fr: path.resolve('source/locales/ui/ui-fr.json'),
-		en: path.resolve('source/locales/ui/ui-en.json'),
+		'en-us': path.resolve('source/locales/ui/ui-en.json'),
 		it: path.resolve('source/locales/ui/ui-it.json'),
 		es: path.resolve('source/locales/ui/ui-es.json'),
 	},
@@ -155,26 +155,20 @@ const getUiMissingTranslations = (sourcePath, targetPath, override = false) => {
 	return R.pick(missingTranslations, staticKeys)
 }
 
+const translator = new deepl.Translator(process.env.DEEPL_API_KEY)
+
 const fetchTranslation = async (text, sourceLang, targetLang) => {
-	const resp = await translate({
-		text: text,
-		tag_handling: 'xml',
-		auth_key: process.env.DEEPL_API_KEY,
-		target_lang: targetLang,
-		source_lang: sourceLang,
-	}).catch((err) => {
-		printErr('Error: while fetching the request:', err)
-		process.exit(-1)
-	})
-	// const data = resp.data
-	// console.log(`\nRequest: ${data}`)
-	// console.log(`data.translation: ${data.translations}`)
-	// if (!data.translations) {
-	// 	// console.log(`\nRequest: ${data}`)
-	// 	printErr('Error: while fetching the request:', data)
-	// 	process.exit(-1)
-	// }
-	return resp.data.translations[0].text
+	const resp = await translator
+		.translateText(text, sourceLang, targetLang, {
+			tagHandling: 'xml',
+			preserveFormatting: true,
+		})
+		.catch((err) => {
+			printErr(`Error: while fetching the request: ${err}`)
+			process.exit(-1)
+		})
+
+	return resp.map((translation) => translation.text)
 }
 
 // Source: https://www.thiscodeworks.com/convert-javascript-dot-notation-object-to-nested-object-javascript/60e47841a2dbdc00144e9446

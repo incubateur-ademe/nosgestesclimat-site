@@ -309,7 +309,7 @@ function RadioLabelContent({
 			/>
 			<span>
 				{icônes && <>{emoji(icônes)}&nbsp;</>}
-				<span className="radioText">label</span>
+				<span className="radioText">{label}</span>
 			</span>
 		</label>
 	)
