@@ -4,7 +4,6 @@ import './index.css'
 export default function Checkbox(
 	props: React.ComponentProps<'input'> & { label?: string }
 ) {
-	console.log(props)
 	return (
 		<>
 			<input
