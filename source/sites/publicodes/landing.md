@@ -12,6 +12,6 @@ Le principe est simple : à chaque fois consommation (prendre sa voiture pour 10
 
 ## Agir sur mon empreinte, dès maintenant
 
-Après 10 minutes de test, le **parcours action** vous permet de prioriser vos actions pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les gros gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
+Après 10 minutes de test, le **parcours action** vous permet de prioriser les éco-gestes pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les gros gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
 
 Bien entendu, même s'il est incontournable de mesurer l'empreinte d'une consommation et d'en comprendre l'ampleur par rapport au [budget climat](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/), il est tout à fait possible de considérer qu'elle n'est pas de notre ressort personnel : par exemple, si je suis locataire en zone tendue et que mon propriétaire refuse d'isoler mon appartement.
