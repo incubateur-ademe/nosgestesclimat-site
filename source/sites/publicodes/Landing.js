@@ -9,7 +9,7 @@ import { openmojiURL } from '../../components/SessionBar'
 import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
-import Illustration from 'Images/ecolab-climat-dessin.svg'
+import Illustration from 'Components/AnimatedIllustration'
 import { useProfileData } from './Profil'
 import landingMd from 'raw-loader!./landing.md'
 import avantages from './avantages.yaml'
@@ -82,17 +82,7 @@ export default () => {
 					`}
 				>
 					<h1>Connaissez-vous votre empreinte sur le climat&nbsp;?</h1>
-					{mobile && (
-						<Illustration
-							aira-hidden="true"
-							css={`
-								height: auto;
-								margin: 1rem auto;
-								border-radius: 0.8rem;
-								max-width: 15rem;
-							`}
-						/>
-					)}
+					{mobile && <Illustration small aira-hidden="true" />}
 					<p>
 						En 10 minutes, obtenez une estimation de votre empreinte carbone de
 						consommation.
@@ -152,17 +142,7 @@ export default () => {
 						<NewsBanner />
 					</div>
 				</div>
-				{!mobile && (
-					<Illustration
-						aira-hidden="true"
-						css={`
-							max-width: 30rem;
-							height: auto;
-							margin: 1rem auto;
-							border-radius: 0.8rem;
-						`}
-					/>
-				)}
+				{!mobile && <Illustration aira-hidden="true" />}
 			</div>
 			<div
 				css={`

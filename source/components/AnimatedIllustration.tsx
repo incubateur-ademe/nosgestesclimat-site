@@ -1,15 +1,13 @@
-import IllustrationSVG from './Illustration.tsx'
-export default () => (
+import IllustrationSVG from './IllustrationSVG.tsx'
+export default ({ small }) => (
 	<div
 		css={`
 			svg {
-				width: 95%;
-				@media (min-width: 800px) {
-					width: 60%;
-				}
+				max-width: ${small ? '15rem' : '30rem'};
 				height: auto;
-				margin-top: 1rem;
-				border-radius: 0.6rem;
+				margin: 1rem auto;
+				border-radius: 0.8rem;
+				width: 95%;
 			}
 			.prefix__avion {
 				animation: traversée 90s infinite;
