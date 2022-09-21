@@ -1,80 +1,86 @@
+import { useState } from 'react'
 import IllustrationSVG from './IllustrationSVG.tsx'
-export default ({ small }) => (
-	<div
-		css={`
-			svg {
-				max-width: ${small ? '15rem' : '30rem'};
-				height: auto;
-				margin: 1rem auto;
-				border-radius: 0.8rem;
-				width: 95%;
-			}
-			.prefix__avion {
-				animation: traversée 90s infinite;
-				animation-timing-function: linear;
-			}
-			@keyframes traversée {
-				from {
-					transform: translateX(0%);
+export default ({ small }) => {
+	const [cycling, pleaseCycle] = useState(false)
+	return (
+		<div
+			css={`
+				svg {
+					max-width: ${small ? '15rem' : '30rem'};
+					height: auto;
+					margin: 1rem auto;
+					border-radius: 0.8rem;
+					width: 95%;
 				}
-				to {
-					transform: translateX(100%);
+				.prefix__avion {
+					animation: traversée 90s infinite;
+					animation-timing-function: linear;
 				}
-			}
-			.prefix__fenetres rect:nth-child(3) {
-				animation: jour-nuit 60s infinite;
-				animation-timing-function: steps(5, end);
-			}
-			.prefix__fenetres rect:nth-child(5) {
-				animation: jour-nuit 60s infinite;
-				animation-timing-function: steps(5, end);
-			}
-			@keyframes jour-nuit {
-				0% {
-					opacity: 0;
+				@keyframes traversée {
+					from {
+						transform: translateX(0%);
+					}
+					to {
+						transform: translateX(100%);
+					}
 				}
-				20% {
-					opacity: 1;
+				.prefix__fenetres rect:nth-child(3) {
+					animation: jour-nuit 60s infinite;
+					animation-timing-function: steps(5, end);
 				}
-				40% {
-					opacity: 0;
+				.prefix__fenetres rect:nth-child(5) {
+					animation: jour-nuit 60s infinite;
+					animation-timing-function: steps(5, end);
 				}
-				60% {
-					opacity: 1;
+				@keyframes jour-nuit {
+					0% {
+						opacity: 0;
+					}
+					20% {
+						opacity: 1;
+					}
+					40% {
+						opacity: 0;
+					}
+					60% {
+						opacity: 1;
+					}
+					80% {
+						opacity: 0;
+					}
+					100% {
+						opacity: 1;
+					}
 				}
-				80% {
-					opacity: 0;
-				}
-				100% {
-					opacity: 1;
-				}
-			}
+				${cycling &&
+				`
 			.prefix__cycliste {
-				animation: saute 1s infinite;
-				animation-timing-function: linear;
-				animation: traversée-inversée 45s infinite;
+				animation: traversée-inversée 45s infinite; /*, saute linear 1s infinite; Pas possible de combiner les deux, à cause du transform:*/
 			}
-			.prefix__velo {
-				animation: traversée-inversée 45s infinite;
-			}
-			@keyframes saute {
-				from {
-					transform: translateY(0%);
+				.prefix__velo {
+					animation: traversée-inversée 45s infinite;
 				}
-				to {
-					transform: translateY(0.5%);
+				@keyframes saute {
+					from {
+						transform: translateY(0%);
+					}
+					to {
+						transform: translateY(5%);
+					}
 				}
-			}
-			@keyframes traversée-inversée {
-				from {
-					transform: translateX(0%);
+				@keyframes traversée-inversée {
+					from {
+						transform: translateX(0%);
+					}
+					to {
+						transform: translateX(-100%);
+					}
 				}
-				to {
-					transform: translateX(-100%);
-				}
-			}
-		`}
-	>
-		<IllustrationSVG />
-	</div>
-)
+
+			`}
+			`}
+		>
+			<IllustrationSVG />
+		</div>
+	)
+}
