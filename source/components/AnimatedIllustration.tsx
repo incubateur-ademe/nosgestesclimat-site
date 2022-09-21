@@ -1,5 +1,7 @@
 import { useState } from 'react'
 import IllustrationSVG from './IllustrationSVG.tsx'
+
+const windowAnimationDuration = '60s'
 export default ({ small }) => {
 	const [cycling, pleaseCycle] = useState(false)
 	return (
@@ -25,11 +27,18 @@ export default ({ small }) => {
 					}
 				}
 				.prefix__fenetres rect:nth-child(3) {
-					animation: jour-nuit 60s infinite;
+					animation: jour-nuit ${windowAnimationDuration} infinite;
+					animation-delay: 1s;
 					animation-timing-function: steps(5, end);
 				}
 				.prefix__fenetres rect:nth-child(5) {
-					animation: jour-nuit 60s infinite;
+					animation: jour-nuit ${windowAnimationDuration} infinite;
+					animation-delay: 3s;
+					animation-timing-function: steps(5, end);
+				}
+				.prefix__fenetres rect:nth-child(10) {
+					animation: jour-nuit ${windowAnimationDuration} infinite;
+					animation-delay: 5s;
 					animation-timing-function: steps(5, end);
 				}
 				@keyframes jour-nuit {
