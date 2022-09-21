@@ -19,10 +19,12 @@ import LandingContent from './LandingContent'
 
 const SurveyModal = React.lazy(() => import('./SurveyModal'))
 
+const fluidLayoutMinWidth = '1200px'
+
 export default () => {
 	const tracker = useContext(TrackerContext)
 	const [showSurveyModal, setShowSurveyModal] = useState(false)
-	const mobile = useMediaQuery('(max-width: 800px)')
+	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 
 	return (
 		<div
@@ -66,7 +68,7 @@ export default () => {
 					p {
 						font-size: 110%;
 					}
-					@media (max-width: 800px) {
+					@media (max-width: ${fluidLayoutMinWidth}) {
 						margin-top: 2rem;
 						text-align: center;
 						h1 {
@@ -180,7 +182,7 @@ export default () => {
 								height: 14rem;
 								justify-content: center;
 							}
-							@media (max-width: 800px) {
+							@media (max-width: ${fluidLayoutMinWidth}) {
 								flex-direction: column;
 							}
 						`}
