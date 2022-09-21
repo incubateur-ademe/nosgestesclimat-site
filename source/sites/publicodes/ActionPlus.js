@@ -4,7 +4,7 @@ import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import Meta from 'Components/utils/Meta'
 import { title } from 'Components/publicodesUtils'
 import useFetchDocumentation from '../../components/useFetchDocumentation'
@@ -29,19 +29,19 @@ export default () => {
 			<Meta title={title(rule)} />
 			<ScrollToTop />
 			<div>
-				<Link to={'/actions/plus'}>
+				<LinkWithQuery to={'/actions/plus'}>
 					<button className="ui__ button simple small ">
 						{emoji('◀')}
 						<Trans>Retour à la liste des fiches</Trans>
 					</button>
-				</Link>
+				</LinkWithQuery>
 			</div>
-			<Link to={'/actions/' + encodedName}>
+			<LinkWithQuery to={'/actions/' + encodedName}>
 				<button className="ui__ button simple small ">
 					{emoji('🧮')}
 					<Trans>Voir le geste climat correspondant</Trans>
 				</button>
-			</Link>
+			</LinkWithQuery>
 			<div css="margin: 1.6rem 0">
 				<Markdown
 					children={rule.plus || t(`Cette fiche détaillée n'existe pas encore`)}

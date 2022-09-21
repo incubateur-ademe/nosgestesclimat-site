@@ -1,6 +1,6 @@
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { PersonaGrid } from './Personas'
 
@@ -23,9 +23,9 @@ export default ({}) => {
 				}
 			/>
 			<div css="margin: 2rem auto 4rem; text-align: center">
-				<Link to="/simulateur/bilan" className="ui__ plain button">
+				<LinkWithQuery to="/simulateur/bilan" className="ui__ plain button">
 					<Trans>Faire le test</Trans>
-				</Link>
+				</LinkWithQuery>
 			</div>
 			<p css="text-align: center; max-width: 26rem; margin: 0 auto;">
 				{emoji('💡 ')}

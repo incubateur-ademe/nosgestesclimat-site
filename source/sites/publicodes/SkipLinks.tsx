@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { Trans } from 'react-i18next'
 
 export default () => {
@@ -25,22 +25,25 @@ export default () => {
 		>
 			<ul>
 				<li>
-					<Link to="#mainContent" onClick={() => focusTarget('#mainContent')}>
+					<LinkWithQuery
+						to="#mainContent"
+						onClick={() => focusTarget('#mainContent')}
+					>
 						<Trans>Aller au contenu</Trans>
-					</Link>
+					</LinkWithQuery>
 				</li>
 				<li>
-					<Link
+					<LinkWithQuery
 						to="#mainNavigation"
 						onClick={() => focusTarget('#mainNavigation')}
 					>
 						<Trans>Menu</Trans>
-					</Link>
+					</LinkWithQuery>
 				</li>
 				<li>
-					<Link to="/à-propos">
+					<LinkWithQuery to="/à-propos">
 						<Trans>À propos</Trans>
-					</Link>
+					</LinkWithQuery>
 				</li>
 			</ul>
 		</nav>

@@ -2,7 +2,7 @@ import AbacusFrance from 'Images/abacus-france.svg'
 import CO2e from 'Images/co2e.svg'
 import ObjectifClimat from 'Images/objectif-climat.svg'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
 import ScoreBar from './ScoreBar'
@@ -362,7 +362,7 @@ const slides = [
 				</blockquote>
 				<blockquote>
 					{'❓️'} D'autres questions ? Consultez notre{' '}
-					<Link to="/contribuer">FAQ</Link> à tout moment.
+					<LinkWithQuery to="/contribuer">FAQ</LinkWithQuery> à tout moment.
 				</blockquote>
 			</Trans>
 		</>

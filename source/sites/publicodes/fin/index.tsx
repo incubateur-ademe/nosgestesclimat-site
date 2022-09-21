@@ -4,7 +4,7 @@ import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import { last } from 'Source/utils'
 import SlidesLayout from '../../../components/SlidesLayout'
@@ -89,7 +89,7 @@ export default ({}) => {
 	return (
 		<div>
 			<IframeDataShareModal data={rehydratedDetails} />
-			<Link
+			<LinkWithQuery
 				to="/simulateur/bilan"
 				css="display: block; text-align: center"
 				onClick={() => {
@@ -112,7 +112,7 @@ export default ({}) => {
 						← <Trans>Revenir à ma simulation</Trans>
 					</button>
 				)}
-			</Link>
+			</LinkWithQuery>
 			<animate.appear>
 				<SlidesLayout
 					length={componentKeys.length}
@@ -141,9 +141,9 @@ export const DocumentationEndButton = ({ ruleName, color }) => (
 		`}
 	>
 		<small>
-			<Link to={'/documentation/' + encodeRuleName(ruleName)}>
+			<LinkWithQuery to={'/documentation/' + encodeRuleName(ruleName)}>
 				<Trans>Comprendre le calcul</Trans>{' '}
-			</Link>
+			</LinkWithQuery>
 		</small>
 	</div>
 )

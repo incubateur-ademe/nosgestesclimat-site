@@ -1,8 +1,8 @@
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import emoji from 'react-easy-emoji'
 
 export default ({ children, icon, to, onClick }) => (
-	<Link
+	<LinkWithQuery
 		to={to}
 		className="ui__ button plain"
 		css={`
@@ -45,5 +45,5 @@ export default ({ children, icon, to, onClick }) => (
 
 			{children}
 		</div>
-	</Link>
+	</LinkWithQuery>
 )

@@ -2,7 +2,7 @@ import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { setActionChoice } from '../../actions/actions'
 import { correctValue } from '../../components/publicodesUtils'
 import Stamp from '../../components/Stamp'
@@ -91,7 +91,7 @@ export const ActionListCard = ({
 				${hasRemainingQuestions && `background: #eee !important; `}
 			`}
 		>
-			<Link
+			<LinkWithQuery
 				css={`
 					display: block;
 					margin-top: 0.6rem;
@@ -120,7 +120,7 @@ export const ActionListCard = ({
 					</span>
 				)}
 				<h2>{title}</h2>
-			</Link>
+			</LinkWithQuery>
 
 			<div
 				css={`
@@ -225,7 +225,7 @@ export const ActionGameCard = ({ evaluation, total, rule }) => {
 		disabled = disabledAction(flatRule, nodeValue)
 
 	return (
-		<Link
+		<LinkWithQuery
 			css={`
 				${disabled ? disabledStyle : ''}
 				text-decoration: none;
@@ -250,7 +250,7 @@ export const ActionGameCard = ({ evaluation, total, rule }) => {
 					</div>
 				</div>
 			</div>
-		</Link>
+		</LinkWithQuery>
 	)
 }
 export const ActionValue = ({

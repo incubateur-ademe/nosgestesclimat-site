@@ -10,7 +10,7 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { EngineContext } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { questionConfig } from './questionConfig'
@@ -68,11 +68,11 @@ export default ({}) => {
 		>
 			<Meta title={t('Action') + ' : ' + title} description={description} />
 			<ScrollToTop />
-			<Link to="/actions/liste">
+			<LinkWithQuery to="/actions/liste">
 				<button className="ui__ button simple small ">
 					{emoji('◀')} <Trans>Retour à la liste</Trans>
 				</button>
-			</Link>
+			</LinkWithQuery>
 			<div className="ui__ card" css={'padding: .1rem; margin: .8rem 0'}>
 				<header
 					css={`
@@ -94,19 +94,19 @@ export default ({}) => {
 				<div css="margin: 1.6rem 0">
 					<Markdown children={description} />
 					<div css="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem">
-						<Link to={'/documentation/' + encodedName}>
+						<LinkWithQuery to={'/documentation/' + encodedName}>
 							<button className="ui__ button small">
 								{emoji('⚙️')}
 								<Trans>Comprendre le calcul</Trans>
 							</button>
-						</Link>
+						</LinkWithQuery>
 						{plus && (
-							<Link to={'/actions/plus/' + encodedName}>
+							<LinkWithQuery to={'/actions/plus/' + encodedName}>
 								<button className="ui__ button small">
 									{emoji('📘')}
 									<Trans>En savoir plus</Trans>
 								</button>
-							</Link>
+							</LinkWithQuery>
 						)}
 					</div>
 				</div>
@@ -132,12 +132,12 @@ export default ({}) => {
 					</h3>
 					<div>
 						{relatedActions.map((action) => (
-							<Link
+							<LinkWithQuery
 								to={'/actions/' + encodeRuleName(action.dottedName)}
 								css="> button {margin: .3rem .6rem}"
 							>
 								<button className="ui__ small button">{action.title}</button>
-							</Link>
+							</LinkWithQuery>
 						))}
 					</div>
 				</>

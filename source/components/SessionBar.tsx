@@ -4,7 +4,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, Navigate, useSearchParams } from 'react-router-dom'
+import { useLocation, Navigate, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
@@ -21,6 +21,7 @@ import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
 import LangSwitcher from './LangSwitcher'
+import { LinkWithQuery } from './LinkWithQuery'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -73,7 +74,7 @@ const Button = (props) => {
 		path = location.pathname
 	const isCurrent = path.includes(props.url)
 	return (
-		<Link
+		<LinkWithQuery
 			to={props.url}
 			css="text-decoration: none"
 			{...(isCurrent
@@ -83,7 +84,7 @@ const Button = (props) => {
 				: {})}
 		>
 			<MenuButton {...props} />{' '}
-		</Link>
+		</LinkWithQuery>
 	)
 }
 
@@ -159,7 +160,7 @@ export default function SessionBar({
 	let elements = [
 		<Button
 			className="simple small"
-			url={'/simulateur/bilan'}
+			url="/simulateur/bilan"
 			css={`
 				${buttonStyle('simulateur')};
 			`}

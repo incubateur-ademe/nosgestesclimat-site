@@ -1,7 +1,7 @@
 import { TrackerContext } from 'Components/utils/withTracker'
 import { motion } from 'framer-motion'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { actionImg } from 'Components/SessionBar'
 import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 
@@ -16,7 +16,7 @@ export const ActionButton = ({
 	const tracker = useContext(TrackerContext)
 
 	return (
-		<Link
+		<LinkWithQuery
 			to={url}
 			className="ui__ button plain cta"
 			onClick={() =>
@@ -63,7 +63,7 @@ export const ActionButton = ({
 				</motion.div>
 				{text}
 			</div>
-		</Link>
+		</LinkWithQuery>
 	)
 }
 

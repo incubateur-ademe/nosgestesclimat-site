@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import {
 	deletePreviousSimulation,
 	resetActionChoices,
@@ -93,9 +93,9 @@ export default ({}) => {
 								Vos données sont stockées dans votre navigateur, vous avez donc
 								le contrôle total sur elles. <br />
 							</Trans>
-							<Link to="/vie-privée">
+							<LinkWithQuery to="/vie-privée">
 								<Trans>En savoir plus</Trans>
-							</Link>
+							</LinkWithQuery>
 						</details>
 						<button
 							className="ui__ button plain"

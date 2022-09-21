@@ -1,6 +1,6 @@
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import lastRelease from '../data/last-release.json'
 import { usePersistingState } from './utils/persistState'
 
@@ -31,7 +31,9 @@ export default function NewsBanner() {
 		<div css="margin: 1rem">
 			<span>
 				{emoji('✨')} <Trans>Découvrez les nouveautés de la version</Trans>{' '}
-				<Link to={'/nouveautés'}>{lastRelease.name.toLowerCase()}</Link>
+				<LinkWithQuery to={'/nouveautés'}>
+					{lastRelease.name.toLowerCase()}
+				</LinkWithQuery>
 			</span>
 			<button
 				onClick={() => setLastViewedRelease(lastRelease.name)}

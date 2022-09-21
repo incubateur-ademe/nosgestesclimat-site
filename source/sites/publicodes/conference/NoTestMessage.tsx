@@ -1,6 +1,6 @@
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 
 export default ({ setHasDataState }) => (
@@ -26,9 +26,12 @@ export default ({ setHasDataState }) => (
 					`}
 				>
 					<button>
-						<Link className="ui__ button plain" to={'/simulateur/bilan'}>
+						<LinkWithQuery
+							className="ui__ button plain"
+							to={'/simulateur/bilan'}
+						>
 							<Trans>Faire mon test</Trans>
-						</Link>
+						</LinkWithQuery>
 					</button>
 					<button
 						className="ui__ small button"

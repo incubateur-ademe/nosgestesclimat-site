@@ -6,9 +6,10 @@ import ActionPlus from './ActionPlus'
 import ActionsList from './ActionsList'
 import ScoreBar from './ScoreBar'
 import ListeActionPlus from './ListeActionPlus'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
-export default ({ t }) => {
+export default () => {
+	const { t } = useTranslation()
 	return (
 		<>
 			<Meta

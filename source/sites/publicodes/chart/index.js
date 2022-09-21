@@ -5,7 +5,7 @@ import { utils } from 'publicodes'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useNavigate, useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
@@ -99,14 +99,14 @@ export default ({
 							>
 								{!demoMode ? (
 									linkTo === 'documentation' ? (
-										<Link
+										<LinkWithQuery
 											to={
 												'/documentation/' +
 												utils.encodeRuleName(category.documentationDottedName)
 											}
 										>
 											{bar}
-										</Link>
+										</LinkWithQuery>
 									) : (
 										<div
 											type="button"

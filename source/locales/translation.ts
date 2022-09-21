@@ -49,7 +49,24 @@ export function getLangInfos(lang: Lang): LangInfos {
 	}
 }
 
+export function getLangFromAbreviation(abrv: string): Lang {
+	switch (abrv) {
+		case 'fr':
+			return Lang.Fr
+		case 'en':
+			return Lang.En
+		case 'es':
+			return Lang.Es
+		case 'it':
+			return Lang.It
+		default:
+			return Lang.Default
+	}
+}
+
 export function changeLangTo(i18n, currentLangState) {
-	const langInfos = getLangInfos(currentLangState.currentLang)
-	i18n.changeLanguage(langInfos.abrv)
+	const langInfos = getLangInfos(currentLangState)
+	if (langInfos) {
+		i18n.changeLanguage(langInfos.abrv)
+	}
 }

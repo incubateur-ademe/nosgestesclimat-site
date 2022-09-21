@@ -1,7 +1,7 @@
 import { useEngine } from 'Components/utils/EngineContext'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import { correctValue, splitName } from '../../components/publicodesUtils'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
@@ -64,7 +64,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 					}
 				`}
 			>
-				<Link
+				<LinkWithQuery
 					css={`
 						flex-grow: 1;
 						background: rgba(0, 0, 0, 0)
@@ -98,7 +98,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 							/>
 						)}
 					</div>
-				</Link>
+				</LinkWithQuery>
 				<PetrolScore
 					endURL={demoMode ? '#' : buildEndURL(rules, engine, 'petrogaz')}
 				/>

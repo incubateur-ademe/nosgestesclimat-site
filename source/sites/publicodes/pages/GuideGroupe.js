@@ -5,7 +5,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useParams } from 'react-router'
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 import styled from 'styled-components'
 import useFetchDocumentation from 'Components/useFetchDocumentation'
 
@@ -48,9 +48,9 @@ export default () => {
 		<GuideWrapper>
 			<Meta title={titre} />
 			<ScrollToTop />
-			<Link to={'/guide'}>
+			<LinkWithQuery to={'/guide'}>
 				<button className="ui__ button simple">{emoji('◀')} Retour</button>
-			</Link>
+			</LinkWithQuery>
 			<div>
 				<Markdown
 					children={
@@ -63,14 +63,14 @@ export default () => {
 						<h2>Pour aller plus loin:</h2>
 						<div>
 							{relatedActions.map((action) => (
-								<Link
+								<LinkWithQuery
 									to={
 										'/actions/plus/' + utils.encodeRuleName(action.dottedName)
 									}
 									css="> button {margin: .3rem .6rem}"
 								>
 									<button className="ui__ small button">{title(action)}</button>
-								</Link>
+								</LinkWithQuery>
 							))}
 						</div>
 					</>

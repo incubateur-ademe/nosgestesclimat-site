@@ -1,7 +1,7 @@
-import { Link } from 'react-router-dom'
+import { LinkWithQuery } from 'Components/LinkWithQuery'
 
 export default ({ showText, size = 'large' }) => (
-	<Link
+	<LinkWithQuery
 		to="/"
 		css={`
 			display: flex;
@@ -46,5 +46,5 @@ export default ({ showText, size = 'large' }) => (
 				Climat
 			</div>
 		)}
-	</Link>
+	</LinkWithQuery>
 )
