@@ -2,7 +2,7 @@ import Input from 'Components/conversation/Input'
 import Question, { Choice } from 'Components/conversation/Question'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
-import { parentName } from 'Components/publicodesUtils'
+import { parentName, splitName } from 'Components/publicodesUtils'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
@@ -19,8 +19,9 @@ import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
 import estimationQuestions from './estimationQuestions'
-import mosaicQuestions from './mosaicQuestions'
 import ParagrapheInput from './ParagrapheInput'
+import NumberedMosaic from './select/NumberedMosaic'
+import SelectDevices from './select/SelectDevices'
 import TextInput from './TextInput'
 
 type Value = any
@@ -52,8 +53,20 @@ export const binaryQuestion = [
 	{ value: 'non', label: 'Non' },
 ] as const
 
-export const isMosaic = (dottedName) =>
-	mosaicQuestions.find(({ isApplicable }) => isApplicable(dottedName))
+export const isMosaic = (engine, rules, dottedName) => {
+	const potentialMosaicRule = parentName(dottedName, ' . ', 0, 2) // we only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
+	const mosaicParams =
+		potentialMosaicRule &&
+		engine.getRule(potentialMosaicRule).rawNode['mosaique']
+	if (!mosaicParams) return []
+	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
+		return (
+			rule.includes(potentialMosaicRule) &&
+			rule.includes(` . ${mosaicParams['clé']}`)
+		)
+	})
+	return [engine.getRule(potentialMosaicRule), mosaicParams, mosaicDottedNames]
+}
 
 export const isTransportEstimation = (dottedName) =>
 	estimationQuestions.find(({ isApplicable }) => isApplicable(dottedName))
@@ -97,27 +110,43 @@ export default function RuleInput<Name extends string = DottedName>({
 		required: true,
 	}
 
-	if (isMosaic(rule.dottedName)) {
-		// This selects a precise set of questions to bypass their regular components and answer all of them in one big custom UI
-		const question = isMosaic(rule.dottedName)
-		const selectedRules = Object.entries(rules)
-			.filter(([dottedName]) => question.isApplicable(dottedName))
-			.map(([dottedName, questionRule]) => {
+	if (!(isMosaic(engine, rules, rule.dottedName).length === 0)) {
+		const [question, mosaicParams, mosaicDottedNames] = isMosaic(
+			engine,
+			rules,
+			rule.dottedName
+		)
+		const selectedRules = mosaicDottedNames.map(
+			([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
 				return [rules[parentRule], questionRule]
-			})
-
-		return (
-			<question.component
-				{...{
-					...commonProps,
-					dottedName: question.dottedName,
-					selectedRules,
-					options: question.options || {},
-					suggestions: question.suggestions || {},
-				}}
-			/>
+			}
 		)
+		if (mosaicParams['type'] === 'selection')
+			return (
+				<SelectDevices
+					{...{
+						...commonProps,
+						dottedName: question.dottedName,
+						selectedRules,
+						options: question.options || {},
+						suggestions: mosaicParams['suggestions'] || {},
+					}}
+				/>
+			)
+		if (mosaicParams['type'] === 'nombre')
+			return (
+				<NumberedMosaic
+					{...{
+						...commonProps,
+						dottedName: question.dottedName,
+						selectedRules,
+						options: { chipsTotal: mosaicParams['total'] } || {},
+						suggestions: mosaicParams['suggestions'] || {},
+					}}
+				/>
+			)
+		return
 	}
 
 	if (isTransportEstimation(rule.dottedName)) {
