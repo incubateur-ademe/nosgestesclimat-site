@@ -51,6 +51,7 @@ export default () => {
 					display: flex;
 					flex-direction: row;
 					align-items: center;
+					justify-content: center;
 					flex-wrap: wrap;
 					margin-top: 4rem;
 					padding: 0.6rem;
