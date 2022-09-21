@@ -1,6 +1,6 @@
 ## Le simulateur de référence
 
-Avec **bientôt [un million de simulations](/stats)**, nosgestesclimat.fr est le calculateur d'empreinte carbone personnel de référence.
+Avec **bientôt [un million de tests complétés](/stats)**, nosgestesclimat.fr est le calculateur d'empreinte carbone personnel de référence.
 
 ## L'empreinte climat, qu'est-ce que c'est ?
 
