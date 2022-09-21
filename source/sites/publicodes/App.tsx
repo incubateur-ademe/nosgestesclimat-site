@@ -13,6 +13,7 @@ import {
 	persistSimulation,
 	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
+import { changeLangTo, defaultLang } from './../../locales/translation'
 import Tracker, { devTracker } from '../../Tracker'
 import Actions from './Actions'
 import Fin from './fin'
@@ -24,6 +25,8 @@ import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import { useSelector } from 'react-redux'
+
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
@@ -71,6 +74,7 @@ export default function Root({}) {
 				actionChoices: persistedSimulation?.actionChoices || {},
 				tutorials: persistedSimulation?.tutorials || {},
 				storedTrajets: persistedSimulation?.storedTrajets || {},
+				currentLang: persistedSimulation?.currentLang || defaultLang,
 			}}
 		>
 			<Main />
@@ -82,10 +86,13 @@ const Main = ({}) => {
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 	const tracker = useContext(TrackerContext)
+	const { i18n } = useTranslation()
+	const currentLang = useSelector((state) => state.currentLang)
 
 	useEffect(() => {
+		changeLangTo(i18n, currentLang)
 		tracker.track(location)
-	}, [location])
+	}, [location, currentLang])
 
 	return (
 		<div
@@ -127,7 +134,6 @@ const Main = ({}) => {
 export const Loading = () => <div>Chargement</div>
 
 const Router = ({}) => {
-	const { t } = useTranslation()
 	return (
 		<Routes>
 			<Route path="/" element={<Landing />} />
@@ -177,7 +183,7 @@ const Router = ({}) => {
 				path="/actions/*"
 				element={
 					<WithEngine>
-						<Actions t={t} />
+						<Actions />
 					</WithEngine>
 				}
 			/>
@@ -208,12 +214,12 @@ const Router = ({}) => {
 							</div>
 						}
 					>
-						<CGULazy t={t} />
+						<CGULazy />
 					</Suspense>
 				}
 			/>
-			<Route path="/partenaires" element={<Diffuser t={t} />} />
-			<Route path="/diffuser" element={<Diffuser t={t} />} />
+			<Route path="/partenaires" element={<Diffuser />} />
+			<Route path="/diffuser" element={<Diffuser />} />
 			<Route
 				path={encodeURIComponent('vie-privée')}
 				element={
@@ -288,7 +294,7 @@ const Router = ({}) => {
 				path="/accessibilite"
 				element={
 					<Suspense fallback={<Loading />}>
-						<AccessibilityLazy t={t} />
+						<AccessibilityLazy />
 					</Suspense>
 				}
 			/>

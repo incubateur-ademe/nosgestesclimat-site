@@ -15,7 +15,6 @@ Object.keys(Lang).forEach((lang) => {
 		require(`../../locales/ui-${abrv}.json`)
 	)
 })
-i18next.changeLanguage(getLangInfos(Lang.Default).abrv)
 
 let anchor = document.querySelector('#js')
 

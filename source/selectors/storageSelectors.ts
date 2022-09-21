@@ -1,9 +1,7 @@
 import { RootState, Simulation } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
+import { Lang } from '../locales/translation'
 
-// Note: it is currently not possible to define SavedSimulation as the return
-// type of the currentSimulationSelector function because the type would then
-// circulary reference itself.
 export type SavedSimulation = {
 	situation: Simulation['situation']
 	foldedSteps: Array<DottedName> | undefined
@@ -12,6 +10,8 @@ export type SavedSimulation = {
 	tutorials: Object
 	storedTrajets: Object
 	url: string
+	// Current language used for the UI translation -- not the model.
+	currentLang: Lang
 }
 
 export const currentSimulationSelector = (
@@ -25,6 +25,7 @@ export const currentSimulationSelector = (
 		tutorials: state.tutorials,
 		storedTrajets: state.storedTrajets,
 		url: state.simulation?.url,
+		currentLang: state.currentLang,
 	}
 }
 

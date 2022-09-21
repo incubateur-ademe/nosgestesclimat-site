@@ -2,9 +2,9 @@
 	This module contains all types and functions related to the translation.
 */
 
-export { Lang, LangInfos, getLangInfos, defaultLang }
+import { useTranslation } from 'react-i18next'
 
-enum Lang {
+export enum Lang {
 	Default = 'Fr',
 	Fr = 'Fr',
 	En = 'En',
@@ -12,15 +12,15 @@ enum Lang {
 	It = 'It',
 }
 
-type LangInfos = {
+export type LangInfos = {
 	name: string
 	abrv: string
 	icon?: string
 }
 
-const defaultLang = Lang.Fr
+export const defaultLang = Lang.Fr
 
-function getLangInfos(lang: Lang): LangInfos {
+export function getLangInfos(lang: Lang): LangInfos {
 	switch (lang) {
 		case Lang.Fr: {
 			return {
@@ -47,4 +47,9 @@ function getLangInfos(lang: Lang): LangInfos {
 			}
 		}
 	}
+}
+
+export function changeLangTo(i18n, currentLangState) {
+	const langInfos = getLangInfos(currentLangState.currentLang)
+	i18n.changeLanguage(langInfos.abrv)
 }

@@ -2,11 +2,12 @@ import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
+import { useDispatch, useSelector } from 'react-redux'
 
 export default function LangSwitcher() {
-	const { t, i18n } = useTranslation()
-
-	const currentLang = i18n.language
+	const dispatch = useDispatch()
+	const currentLang = useSelector((state) => state.currentLang)
+	const { t } = useTranslation()
 
 	return (
 		<details
@@ -20,19 +21,24 @@ export default function LangSwitcher() {
 			<ColumnFlex>
 				{Object.keys(Lang)
 					.filter((l) => l !== Lang.Default)
-					.map((l) => getLangInfos(Lang[l]))
-					.map((info: LangInfos) => {
+					.map((l) => [Lang[l], getLangInfos(Lang[l])])
+					.map(([lang, langInfos]): [Lang, LangInfos] => {
 						return (
 							<div>
 								<button
 									className={
-										info.abrv === currentLang
+										langInfos.abrv === currentLang
 											? 'ui__ text-button'
 											: 'ui__ dashed-button'
 									}
-									onClick={() => i18n.changeLanguage(info.abrv)}
+									onClick={() => {
+										dispatch({
+											type: 'SET_LANGUAGE',
+											currentLang: lang,
+										})
+									}}
 								>
-									{info.name}
+									{langInfos.name}
 								</button>
 							</div>
 						)
