@@ -6,7 +6,7 @@ export default ({ small }) => {
 		<div
 			css={`
 				svg {
-					max-width: ${small ? '15rem' : '30rem'};
+					max-width: ${small ? '15rem' : '32rem'};
 					height: auto;
 					margin: 1rem auto;
 					border-radius: 0.8rem;
