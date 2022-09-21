@@ -1,9 +1,13 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import IllustrationSVG from './IllustrationSVG.tsx'
 
 const windowAnimationDuration = '60s'
 export default ({ small }) => {
 	const [cycling, pleaseCycle] = useState(false)
+	const svgRef = useRef(null)
+	useEffect(() => {
+		svgRef.current.onclick = () => pleaseCycle(true)
+	}, [svgRef])
 	return (
 		<div
 			css={`
@@ -89,7 +93,7 @@ export default ({ small }) => {
 			`}
 			`}
 		>
-			<IllustrationSVG />
+			<IllustrationSVG ref={svgRef} />
 		</div>
 	)
 }

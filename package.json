@@ -148,6 +148,6 @@
 		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
 		"publish:publicodes": "yarn run lint && yarn run ",
-		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr > source/components/IllustrationSVG.tsx"
+		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr --ref > source/components/IllustrationSVG.tsx"
 	}
 }

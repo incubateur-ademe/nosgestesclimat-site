@@ -1,12 +1,14 @@
 import * as React from 'react'
+import { forwardRef } from 'react'
 
-const SvgComponent = (props) => (
+const SvgComponent = (props, ref) => (
   <svg
     viewBox="0 0 220.071 155"
     height="155mm"
     width={831.763}
     xmlnsXlink="http://www.w3.org/1999/xlink"
     xmlns="http://www.w3.org/2000/svg"
+    ref={ref}
     {...props}
   >
     <defs>
@@ -3648,5 +3650,6 @@ const SvgComponent = (props) => (
   </svg>
 )
 
-export default SvgComponent
+const ForwardRef = forwardRef(SvgComponent)
+export default ForwardRef
 
