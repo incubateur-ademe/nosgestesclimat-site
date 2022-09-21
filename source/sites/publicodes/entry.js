@@ -12,7 +12,7 @@ Object.keys(Lang).forEach((lang) => {
 	i18next.addResourceBundle(
 		abrv,
 		'translation',
-		require(`../../locales/ui-${abrv}.json`)
+		require(`../../locales/ui/ui-${abrv}.json`)
 	)
 })
 

@@ -46,10 +46,10 @@ const paths = {
 	i18nextParserConfig: path.resolve('scripts/i18n/parser.config.js'),
 	staticAnalysisFrRes: path.resolve('source/locales/static-analysis-fr.json'),
 	uiTranslationResource: {
-		fr: path.resolve('source/locales/ui-fr.json'),
-		en: path.resolve('source/locales/ui-en.json'),
-		it: path.resolve('source/locales/ui-it.json'),
-		es: path.resolve('source/locales/ui-es.json'),
+		fr: path.resolve('source/locales/ui/ui-fr.json'),
+		en: path.resolve('source/locales/ui/ui-en.json'),
+		it: path.resolve('source/locales/ui/ui-it.json'),
+		es: path.resolve('source/locales/ui/ui-es.json'),
 	},
 }
 

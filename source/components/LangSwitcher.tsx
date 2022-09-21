@@ -29,7 +29,7 @@ export default function LangSwitcher() {
 							<div>
 								<button
 									className={
-										langInfos.abrv === currentLang
+										lang === currentLang.currentLang
 											? 'ui__ text-button'
 											: 'ui__ dashed-button'
 									}
