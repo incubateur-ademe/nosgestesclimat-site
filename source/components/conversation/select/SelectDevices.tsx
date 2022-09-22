@@ -32,6 +32,9 @@ export default function SelectDevices({
 		[]
 	)
 
+	// for now, if nothing is checked, after having check something, 'suivant' button will have same effect as 'je ne sais pas'
+	// we can imagine a useeffect that set to 0 situation of dottedname every time all card are unchecked (after user checked something at least once)
+
 	return (
 		<div>
 			{Object.keys(suggestions).length > 0 && (
