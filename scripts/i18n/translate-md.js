@@ -10,38 +10,11 @@ const glob = require('glob')
 const yargs = require('yargs')
 
 const utils = require('./utils')
+const cli = require('./cli')
 
-const argv = yargs
-	.usage(
-		`Calls the DeepL API to translate the Markdown files.
-
-		Usage: node $0 [options]`
-	)
-	.option('source', {
-		alias: 's',
-		type: 'string',
-		default: utils.defaultLang,
-		choices: utils.availableLanguages,
-		description: `The source language to translate from.`,
-	})
-	.option('target', {
-		alias: 't',
-		type: 'string',
-		array: true,
-		default: utils.availableLanguages.filter((l) => l !== utils.defaultLang),
-		choices: utils.availableLanguages,
-		description: 'The target language to translate to.',
-	})
-	.help()
-	.alias('help', 'h').argv
-
-const srcLang = argv.source || utils.defaultLang
-const targetLangs = argv.target || utils.availableLanguages
-
-if (!utils.availableLanguages.includes(srcLang)) {
-	utils.printErr(`ERROR: the language '${srcLang}' is not supported.`)
-	process.exit(-1)
-}
+const { srcLang, destLangs } = cli.getArgs(
+	`Calls the DeepL API to translate the Markdown files.`
+)
 
 const progressBar = new cliProgress.SingleBar(
 	{
@@ -72,22 +45,20 @@ console.log(
 )
 glob(`source/locales/pages/${srcLang}/*.md`, (err, files) => {
 	if (err) {
-		utils.printErr(`ERROR: an error occured while fetching the files:`)
-		utils.printErr(err)
+		cli.printErr(`ERROR: an error occured while fetching the files:`)
+		cli.printErr(err)
 		process.exit(-1)
 	}
 
 	console.log(
-		`Found ${utils.withStyle(
-			utils.colors.fgGreen,
+		`Found ${cli.withStyle(
+			cli.colors.fgGreen,
 			files.length
 		)} files to translate.`
 	)
-	utils.printWarn(`WARN: internal links must be translated manually.`)
-	const destLangs = targetLangs.filter(
-		(l) => utils.availableLanguages.includes(l) && l !== srcLang
-	)
+	cli.printWarn(`WARN: internal links must be translated manually.`)
 	progressBar.start(files.length * destLangs.length, 0)
+
 	files.forEach((file) => {
 		const srcContent = fs.readFileSync(file, 'utf8')
 		destLangs.forEach((destLang) => {

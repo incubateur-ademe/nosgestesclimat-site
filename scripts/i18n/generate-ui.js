@@ -7,12 +7,14 @@
 const fs = require('fs')
 const ramda = require('ramda')
 const child_process = require('child_process')
-const utils = require('./utils')
 const stringify = require('json-stable-stringify')
 
-const red = (str) => utils.withStyle(utils.colors.fgRed, str)
-const green = (str) => utils.withStyle(utils.colors.fgGreen, str)
-const yellow = (str) => utils.withStyle(utils.colors.fgYellow, str)
+const utils = require('./utils')
+const cli = require('./cli')
+
+const red = (str) => cli.withStyle(cli.colors.fgRed, str)
+const green = (str) => cli.withStyle(cli.colors.fgGreen, str)
+const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
 
 const printResult = (prefix, array, style) => {
 	if (array.length > 0) {
@@ -35,8 +37,8 @@ try {
 	}
 	child_process.execSync(`i18next -c ${utils.paths.i18nextParserConfig}`)
 } catch (err) {
-	utils.printErr('ERROR: an error occured during the analysis!')
-	utils.printErr(err.message)
+	cli.printErr('ERROR: an error occured during the analysis!')
+	cli.printErr(err.message)
 	return
 }
 
@@ -98,7 +100,7 @@ try {
 		})
 	)
 } catch (err) {
-	utils.printErr('ERROR: an error occured while writting!')
-	utils.printErr(err.message)
+	cli.printErr('ERROR: an error occured while writting!')
+	cli.printErr(err.message)
 	return
 }

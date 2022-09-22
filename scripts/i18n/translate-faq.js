@@ -16,41 +16,13 @@ const prettier = require('prettier')
 const R = require('ramda')
 
 const utils = require('./utils')
+const cli = require('./cli')
 
-// TODO: argv could be factorized in a common file?
-const argv = yargs
-	.usage(
-		`Calls the DeepL API to translate the FAQ Yaml files.
-
-		Usage: node $0 [options]`
-	)
-	.option('source', {
-		alias: 's',
-		type: 'string',
-		default: utils.defaultLang,
-		choices: utils.availableLanguages,
-		description: `The source language to translate from.`,
-	})
-	.option('target', {
-		alias: 't',
-		type: 'string',
-		array: true,
-		default: utils.availableLanguages.filter((l) => l !== utils.defaultLang),
-		choices: utils.availableLanguages,
-		description: 'The target language to translate to.',
-	})
-	.help()
-	.alias('help', 'h').argv
-
-const srcLang = argv.source || utils.defaultLang
-const targetLangs = argv.target || utils.availableLanguages
+const { srcLang, destLangs } = cli.getArgs(
+	`Calls the DeepL API to translate the FAQ Yaml files.`
+)
 
 const srcPath = `source/locales/faq/FAQ-${srcLang}.yaml`
-
-if (!utils.availableLanguages.includes(srcLang)) {
-	utils.printErr(`ERROR: the language '${srcLang}' is not supported.`)
-	process.exit(-1)
-}
 
 const translateTo = async (srcYAML, destPath, destLang) => {
 	const destYAML = []
@@ -58,8 +30,8 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 		srcYAML.map(async (faqEntry) => {
 			const trans = await utils.fetchTranslation(
 				[faqEntry.question, faqEntry['catégorie'], faqEntry['réponse']],
-				srcLang.toUpperCase(),
-				destLang.toUpperCase()
+				srcLang,
+				destLang
 			)
 			faqEntry.question = trans[0]
 			faqEntry['catégorie'] = trans[1]
@@ -78,16 +50,16 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 }
 
 const srcYAML = yaml.parse(fs.readFileSync(srcPath, 'utf8'))
-utils.printWarn(`WARN: internal links must be translated manually.`)
-targetLangs
-	.filter((l) => utils.availableLanguages.includes(l) && l !== srcLang)
-	.forEach(async (targetLang) => {
+
+const run = async () => {
+	for (targetLang of destLangs) {
 		console.log(
 			`Translating the FAQ files from '${srcLang}' to '${targetLang}'...`
 		)
-		translateTo(
-			srcYAML,
-			`source/locales/faq/FAQ-${targetLang}.yaml`,
-			targetLang
-		)
-	})
+		const destPath = `source/locales/faq/FAQ-${targetLang}.yaml`
+		await translateTo(srcYAML, destPath, targetLang)
+	}
+}
+
+cli.printWarn(`WARN: internal links must be translated manually.`)
+run()

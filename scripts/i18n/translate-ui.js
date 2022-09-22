@@ -11,48 +11,18 @@ const stringify = require('json-stable-stringify')
 const yargs = require('yargs')
 
 const utils = require('./utils')
+const cli = require('./cli')
 const paths = utils.paths
 
-const argv = yargs
-	.usage(
-		`Calls the DeepL API to translate the UI from the French one.
+const { srcLang, destLangs, force } = cli.getArgs(
+	`Calls the DeepL API to translate the UI from the French one.`
+)
 
-		Usage: node $0 [options]`
-	)
-	.option('force', {
-		alias: 'f',
-		type: 'boolean',
-		description:
-			'Force translation of all the keys. Its overwrites the existing translations.',
-	})
-	.option('source', {
-		alias: 's',
-		type: 'string',
-		default: utils.defaultLang,
-		choices: utils.availableLangs,
-		description: `The source language to translate from.`,
-	})
-	.option('target', {
-		alias: 't',
-		type: 'string',
-		choices: utils.availableLangs,
-		description: 'The target language to translate to.',
-	})
-	.help()
-	.alias('help', 'h').argv
+const srcPath = paths.uiTranslationResource[srcLang]
 
-const srcLang = argv.source || utils.defaultLang
-
-if (!utils.availableLanguages.includes(srcLang)) {
-	utils.printErr(`ERROR: the language '${srcLang}' is not supported.`)
-	process.exit(-1)
-}
-
-const defaultLangPath = paths.uiTranslationResource[srcLang]
-
-if (!fs.existsSync(defaultLangPath)) {
-	utils.printErr(
-		`ERROR: ${defaultLangPath} does not exist.\nPlease run: 'npm run generate:ui' first.`
+if (!fs.existsSync(srcPath)) {
+	cli.printErr(
+		`ERROR: ${srcPath} does not exist.\nPlease run: 'npm run generate:ui' first.`
 	)
 	return -1
 }
@@ -69,14 +39,14 @@ const progressBars = new cliProgress.MultiBar(
 
 const translateTo = (targetLang, targetPath) => {
 	const missingTranslations = Object.entries(
-		utils.getUiMissingTranslations(defaultLangPath, targetPath, argv.force)
+		utils.getUiMissingTranslations(srcPath, targetPath, force)
 	)
 	console.log(
-		`Found ${utils.withStyle(
-			utils.colors.fgGreen,
+		`Found ${cli.withStyle(
+			cli.colors.fgGreen,
 			missingTranslations.length
-		)} missing translations for the language ${utils.withStyle(
-			utils.colors.fgYellow,
+		)} missing translations for the language ${cli.withStyle(
+			cli.colors.fgYellow,
 			targetLang
 		)}.`
 	)
@@ -115,32 +85,15 @@ const translateTo = (targetLang, targetPath) => {
 				} catch (err) {
 					bar.stop()
 					progressBars.remove(bar)
-					utils.printErr(
+					cli.printErr(
 						`ERROR: an error occured while fetching the '${key}' translations:`
 					)
-					utils.printErr(err)
+					cli.printErr(err)
 					process.exit(-1)
 				}
 			})
 	}
 }
-
-if (argv.target) {
-	if (!utils.availableLanguages.includes(argv.target)) {
-		utils.printErr(
-			`ERROR: '${
-				argv.target
-			}' is not a valid language. Try one of: ${utils.availableLanguages.join(
-				', '
-			)}`
-		)
-		process.exit(-1)
-	}
-	translateTo(argv.target, paths.uiTranslationResource[argv.target])
-} else {
-	Object.entries(paths.uiTranslationResource).forEach(([lang, path]) => {
-		if (path !== defaultLangPath) {
-			translateTo(lang, path)
-		}
-	})
-}
+destLangs.forEach((lang) => {
+	translateTo(lang, paths.uiTranslationResource[lang])
+})

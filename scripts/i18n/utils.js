@@ -7,36 +7,6 @@ const { readRules } = require('../rules')
 const yaml = require('yaml')
 const deepl = require('deepl-node')
 
-const colors = {
-	reset: '\x1b[0m',
-	bright: '\x1b[1m',
-	dim: '\x1b[2m',
-	underscore: '\x1b[4m',
-	blink: '\x1b[5m',
-	reverse: '\x1b[7m',
-	hidden: '\x1b[8m',
-	fgBlack: '\x1b[30m',
-	fgRed: '\x1b[31m',
-	fgGreen: '\x1b[32m',
-	fgYellow: '\x1b[33m',
-	fgBlue: '\x1b[34m',
-	fgMagenta: '\x1b[35m',
-	fgCyan: '\x1b[36m',
-	fgWhite: '\x1b[37m',
-	bgBlack: '\x1b[40m',
-	bgRed: '\x1b[41m',
-	bgGreen: '\x1b[42m',
-	bgYellow: '\x1b[43m',
-	bgBlue: '\x1b[44m',
-	bgMagenta: '\x1b[45m',
-	bgCyan: '\x1b[46m',
-	bgWhite: '\x1b[47m',
-}
-
-const withStyle = (color, text) => `${color}${text}${colors.reset}`
-const printErr = (message) => console.error(withStyle(colors.fgRed, message))
-const printWarn = (message) => console.warn(withStyle(colors.fgYellow, message))
-
 const availableLanguages = ['fr', 'en-us', 'es', 'it']
 const defaultLang = availableLanguages[0]
 
@@ -168,7 +138,9 @@ const fetchTranslation = async (text, sourceLang, targetLang) => {
 			process.exit(-1)
 		})
 
-	return resp.map((translation) => translation.text)
+	return resp instanceof Array
+		? resp.map((translation) => translation.text)
+		: resp.text
 }
 
 // Source: https://www.thiscodeworks.com/convert-javascript-dot-notation-object-to-nested-object-javascript/60e47841a2dbdc00144e9446
@@ -218,10 +190,6 @@ module.exports = {
 	getUiMissingTranslations,
 	dotNotationToNestedObject,
 	paths,
-	colors,
-	printErr,
-	printWarn,
-	withStyle,
 	defaultLang,
 	availableLanguages,
 }
