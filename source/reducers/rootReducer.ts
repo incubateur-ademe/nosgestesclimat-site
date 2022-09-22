@@ -147,7 +147,7 @@ function simulation(
 }
 function rules(state = null, { type, rules, url }) {
 	if (type === 'SET_RULES') {
-		return {...rules, __url: url}
+		return { ...rules, url: `'${url}'` }
 	} else return state
 }
 

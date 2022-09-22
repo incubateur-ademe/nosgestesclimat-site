@@ -70,14 +70,19 @@ const EngineWrapper = ({ rules, children }) => {
 	const engineState = useSelector((state) => state.engineState)
 	const dispatch = useDispatch()
 	const [engine, setEngine] = useState(null)
+	const branchData = useBranchData()
 
 	useEffect(() => {
-		if (rules && engineState === 'requested') {
+		if (
+			rules &&
+			(engineState === 'requested' ||
+				rules['url'] !== `'${branchData.deployURL}'`)
+		) {
 			const engine =
 				console.log('parsing..') || new Engine(rules, engineOptions)
 			setEngine(engine)
 		}
-	}, [rules, engineOptions, engineState])
+	}, [rules, engineOptions, engineState, branchData])
 
 	useEffect(() => {
 		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
