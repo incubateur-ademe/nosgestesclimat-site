@@ -31,7 +31,6 @@ export default function Input({
 	const { language } = useTranslation().i18n
 	const unité = serializeUnit(unit)
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
-
 	return (
 		<>
 			<div className="step input">
@@ -64,9 +63,10 @@ export default function Input({
 							autoComplete="off"
 							{...(missing
 								? {
-										placeholder: value
-											? formatValue(value, { precision: 1 })
-											: '',
+										placeholder:
+											value || value == 0
+												? formatValue(value, { precision: 1 })
+												: '',
 								  }
 								: { value: value ?? '' })}
 						/>
