@@ -34,11 +34,12 @@ export default ({ children }) => {
 
 	const dispatch = useDispatch()
 
-	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
+	const setRules = (rules) =>
+		console.log('dispatch') || dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		console.log(branchData)
+		console.log('bd', branchData)
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			// Rules are stored in nested yaml files
 			const req = require.context(

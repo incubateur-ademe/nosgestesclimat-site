@@ -13,6 +13,8 @@ export default () => {
 	const setPullRequestNumber = (number) =>
 		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })
 
+	console.log('pn', pullRequestNumber)
+
 	useEffect(() => {
 		if (pullRequestNumber) return
 		if (searchPR) {
@@ -27,10 +29,13 @@ export default () => {
 
 	const shouldUseLocalFiles = !pullRequestNumber
 
+	const loaded = pullRequestNumber != undefined
+	console.log('loaded', loaded)
+
 	return {
 		deployURL,
 		pullRequestNumber,
 		shouldUseLocalFiles,
-		loaded: pullRequestNumber !== undefined,
+		loaded,
 	}
 }
