@@ -145,9 +145,9 @@ function simulation(
 	}
 	return state
 }
-function rules(state = null, { type, rules }) {
+function rules(state = null, { type, rules, url }) {
 	if (type === 'SET_RULES') {
-		return rules
+		return {...rules, __url: url}
 	} else return state
 }
 

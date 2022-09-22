@@ -34,8 +34,8 @@ export default ({ children }) => {
 
 	const dispatch = useDispatch()
 
-	const setRules = (rules) =>
-		console.log('dispatch') || dispatch({ type: 'SET_RULES', rules })
+	const setRules = (rules, url) =>
+		console.log('dispatch') || dispatch({ type: 'SET_RULES', rules, url })
 
 	useEffect(() => {
 		if (!branchData.loaded) return
@@ -53,12 +53,12 @@ export default ({ children }) => {
 				return { ...memo, ...jsonRuleSet }
 			}, {})
 
-			setRules(rules)
+			setRules(rules, branchData.deployURL)
 		} else {
 			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
-					setRules(json)
+					setRules(json, branchData.deployURL)
 				})
 		}
 	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
