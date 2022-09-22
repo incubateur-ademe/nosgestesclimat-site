@@ -58,7 +58,8 @@ export const isMosaic = (engine, rules, dottedName) => {
 	const mosaicParams =
 		potentialMosaicRule &&
 		engine.getRule(potentialMosaicRule).rawNode['mosaique']
-	if (!mosaicParams) return []
+	if (!mosaicParams) return [] // if parent of degree 2 doesn't contain mosaic, return empty array
+	if (!dottedName.includes(` . ${mosaicParams['clé']}`)) return [] // if parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
 	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
 		return (
 			rule.includes(potentialMosaicRule) &&
