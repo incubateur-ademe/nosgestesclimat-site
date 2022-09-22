@@ -1,4 +1,4 @@
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import {
 	deletePreviousSimulation,
 	resetActionChoices,
@@ -93,9 +93,9 @@ export default ({}) => {
 								Vos données sont stockées dans votre navigateur, vous avez donc
 								le contrôle total sur elles. <br />
 							</Trans>
-							<LinkWithQuery to="/vie-privée">
+							<Link to="/vie-privée">
 								<Trans>En savoir plus</Trans>
-							</LinkWithQuery>
+							</Link>
 						</details>
 						<button
 							className="ui__ button plain"

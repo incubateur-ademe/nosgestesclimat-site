@@ -3,7 +3,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import * as Y from 'yjs'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
@@ -39,13 +39,13 @@ export default () => {
 	}, [situation])
 
 	if (!conference?.ydoc)
-		return <LinkWithQuery to="/conférence">Lancer une conférence</LinkWithQuery>
+		return <Link to="/conférence">Lancer une conférence</Link>
 
 	const simulationArray = elements && Object.values(elements),
 		result = computeHumanMean(simulationArray.map((el) => el.total))
 
 	return (
-		<LinkWithQuery
+		<Link
 			to={'/conférence/' + conference.room}
 			css="text-decoration: none;"
 		>
@@ -98,6 +98,6 @@ export default () => {
 					</span>
 				</span>
 			</div>
-		</LinkWithQuery>
+		</Link>
 	)
 }

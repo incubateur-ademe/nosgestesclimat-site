@@ -21,7 +21,7 @@ import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
 import LangSwitcher from './LangSwitcher'
-import { LinkWithQuery } from './LinkWithQuery'
+import { Link } from './Link'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -74,7 +74,7 @@ const Button = (props) => {
 		path = location.pathname
 	const isCurrent = path.includes(props.url)
 	return (
-		<LinkWithQuery
+		<Link
 			to={props.url}
 			css="text-decoration: none"
 			{...(isCurrent
@@ -84,7 +84,7 @@ const Button = (props) => {
 				: {})}
 		>
 			<MenuButton {...props} />{' '}
-		</LinkWithQuery>
+		</Link>
 	)
 }
 

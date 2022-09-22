@@ -1,7 +1,7 @@
 import image from 'Images/map-directions.png'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 
 export default () => (
 	<div
@@ -18,12 +18,12 @@ export default () => (
 			</Trans>
 			{emoji(' 🙅')}
 		</p>
-		<LinkWithQuery to="/">
+		<Link to="/">
 			{/* TODO: credits for the image to add: https://thenounproject.com/term/treasure-map/96666/ */}
 			<img style={{ margin: '3%' }} width="100%" src={image} />
 			<em>
 				<Trans i18nKey="404.action">Revenir en lieu sûr</Trans>
 			</em>
-		</LinkWithQuery>
+		</Link>
 	</div>
 )

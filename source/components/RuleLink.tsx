@@ -1,6 +1,6 @@
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React, { useContext } from 'react'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { EngineContext } from './utils/EngineContext'
 import { SitePathsContext } from './utils/SitePathsContext'
 
@@ -8,7 +8,7 @@ export default function RuleLink(
 	props: {
 		dottedName: Object
 		displayIcon?: boolean
-	} & Omit<React.ComponentProps<LinkWithQuery>, 'to'>
+	} & Omit<React.ComponentProps<Link>, 'to'>
 ) {
 	const sitePaths = useContext(SitePathsContext)
 	const engine = useContext(EngineContext)
@@ -16,7 +16,7 @@ export default function RuleLink(
 		<EngineRuleLink
 			{...props}
 			engine={engine}
-			linkComponent={LinkWithQuery}
+			linkComponent={Link}
 			documentationPath={sitePaths.documentation.index}
 		/>
 	)

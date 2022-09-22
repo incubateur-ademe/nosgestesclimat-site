@@ -1,7 +1,7 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import emoji from 'react-easy-emoji'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import Meta from 'Components/utils/Meta'
 import { Trans, useTranslation } from 'react-i18next'
 
@@ -29,11 +29,11 @@ export default () => {
 			<Meta title={t('Documentation Contexte Sondage')} />
 			<ScrollToTop />
 			<div>
-				<LinkWithQuery to={'/groupe'}>
+				<Link to={'/groupe'}>
 					<button className="ui__ button simple small ">
 						{emoji('◀')} <Trans>Retour</Trans>
 					</button>
-				</LinkWithQuery>
+				</Link>
 			</div>
 			<div css="margin: 1.6rem 0">
 				<Markdown>{content || t('En cours de chargement')}</Markdown>

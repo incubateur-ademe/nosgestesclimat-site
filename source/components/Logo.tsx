@@ -1,7 +1,7 @@
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 
 export default ({ showText, size = 'large' }) => (
-	<LinkWithQuery
+	<Link
 		to="/"
 		css={`
 			display: flex;
@@ -46,5 +46,5 @@ export default ({ showText, size = 'large' }) => (
 				Climat
 			</div>
 		)}
-	</LinkWithQuery>
+	</Link>
 )

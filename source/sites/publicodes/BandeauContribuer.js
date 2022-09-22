@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import animate from 'Components/ui/animate'
 import { Trans } from 'react-i18next'
 
@@ -29,9 +29,9 @@ export default () => {
 				<span>
 					<Trans>Une question, un problème ?</Trans>
 				</span>
-				<LinkWithQuery to={'/contribuer?fromLocation=' + window.location}>
+				<Link to={'/contribuer?fromLocation=' + window.location}>
 					<Trans>Découvrez la FAQ !</Trans>
-				</LinkWithQuery>
+				</Link>
 			</div>
 		</animate.appear>
 	)

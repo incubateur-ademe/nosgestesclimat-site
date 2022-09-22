@@ -4,7 +4,7 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { extractCategories } from 'Components/publicodesUtils'
@@ -128,7 +128,7 @@ export default () => {
 	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 
 	return (
-		<LinkWithQuery to={'/sondage/' + survey.room} css="text-decoration: none;">
+		<Link to={'/sondage/' + survey.room} css="text-decoration: none;">
 			<div
 				css={`
 					${backgroundConferenceAnimation}
@@ -180,6 +180,6 @@ export default () => {
 					</span>
 				)}
 			</div>
-		</LinkWithQuery>
+		</Link>
 	)
 }

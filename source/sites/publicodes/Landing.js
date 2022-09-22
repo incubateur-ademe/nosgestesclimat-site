@@ -3,7 +3,7 @@ import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
 import { useContext, Suspense } from 'react'
 import emoji from 'react-easy-emoji'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import NewsBanner from '../../components/NewsBanner'
 import { openmojiURL } from '../../components/SessionBar'
 import Meta from '../../components/utils/Meta'
@@ -80,7 +80,7 @@ export default () => {
 					</Suspense>
 				)}
 				<div>
-					<LinkWithQuery
+					<Link
 						to="/simulateur/bilan"
 						className="ui__ plain button cta"
 						onClick={() =>
@@ -93,10 +93,10 @@ export default () => {
 						}
 					>
 						<Trans>Faire le test</Trans>
-					</LinkWithQuery>
+					</Link>
 				</div>
 				<div>
-					<LinkWithQuery
+					<Link
 						to="/groupe"
 						className="ui__ button small"
 						onClick={() =>
@@ -109,7 +109,7 @@ export default () => {
 						}
 					>
 						{emoji('👥')} <Trans>Faire le test à plusieurs</Trans>
-					</LinkWithQuery>
+					</Link>
 				</div>
 				<NewsBanner />
 			</div>
@@ -160,13 +160,13 @@ export default () => {
 						}
 					`}
 				>
-					<LinkWithQuery to="/à-propos">
+					<Link to="/à-propos">
 						<Trans>À propos</Trans>
-					</LinkWithQuery>
+					</Link>
 					<DocumentationButton />
-					<LinkWithQuery to="/diffuser">
+					<Link to="/diffuser">
 						<Trans>Diffuser</Trans>
-					</LinkWithQuery>
+					</Link>
 					<ProfileLink />
 				</div>
 				<div
@@ -180,9 +180,9 @@ export default () => {
 						}
 					`}
 				>
-					<LinkWithQuery to="/accessibilite" style={{ textDecoration: 'none' }}>
+					<Link to="/accessibilite" style={{ textDecoration: 'none' }}>
 						<Trans>Accessibilité : partiellement conforme</Trans>
-					</LinkWithQuery>
+					</Link>
 				</div>
 			</footer>
 		</div>
@@ -207,7 +207,7 @@ const ProfileLink = () => {
 					}
 				`}
 			>
-				<LinkWithQuery
+				<Link
 					to="/profil"
 					title={t('Page profil')}
 					className="ui__ button plain small"
@@ -218,7 +218,7 @@ const ProfileLink = () => {
 						src={openmojiURL('profile')}
 						css="width: 2rem"
 					/>
-				</LinkWithQuery>
+				</Link>
 			</div>
 		</animate.fromTop>
 	)

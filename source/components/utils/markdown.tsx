@@ -4,7 +4,7 @@ import { useLocation } from 'react-router-dom'
 import { isIterable } from '../../utils'
 import emoji from 'react-easy-emoji'
 
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 
 const internalURLs = {
 	'nosgestesclimat.fr': 'nosgestesclimat',
@@ -22,9 +22,9 @@ export function LinkRenderer({
 
 	if (href && !href.startsWith('http')) {
 		return (
-			<LinkWithQuery to={href} {...otherProps}>
+			<Link to={href} {...otherProps}>
 				{children}
-			</LinkWithQuery>
+			</Link>
 		)
 	}
 
@@ -37,12 +37,12 @@ export function LinkRenderer({
 			internalURLs[domain as keyof typeof internalURLs] === siteName
 		) {
 			return (
-				<LinkWithQuery
+				<Link
 					to={href.replace(`https://${domain}`, '')}
 					{...otherProps}
 				>
 					{children}
-				</LinkWithQuery>
+				</Link>
 			)
 		}
 	}
@@ -150,9 +150,9 @@ export function HeadingWithAnchorLink({
 
 	const childrenWithAnchor = headingId ? (
 		<>
-			<LinkWithQuery className="anchor-link" to={`${pathname}#${headingId}`}>
+			<Link className="anchor-link" to={`${pathname}#${headingId}`}>
 				#
-			</LinkWithQuery>
+			</Link>
 			{children}
 		</>
 	) : (

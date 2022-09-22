@@ -1,4 +1,4 @@
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
 
 const DocumentationButton = (props) => {
@@ -13,9 +13,9 @@ const DocumentationButton = (props) => {
 				}
 			`}
 		>
-			<LinkWithQuery {...props} to={'/documentation'}>
+			<Link {...props} to={'/documentation'}>
 				<Trans>Documentation</Trans>
-			</LinkWithQuery>
+			</Link>
 		</div>
 	)
 }

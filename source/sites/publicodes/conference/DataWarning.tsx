@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import emoji from '../../../components/emoji'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
 
 export default ({ room }) => {
@@ -30,7 +30,7 @@ export default ({ room }) => {
 								<em>anonyme</em> de vos résultats agrégés de simulation sur
 								notre serveur : l'empreinte climat totale et les catégories
 								(transport, logement, etc.).{' '}
-								<LinkWithQuery to="/vie-privée">En savoir plus</LinkWithQuery>
+								<Link to="/vie-privée">En savoir plus</Link>
 							</Trans>
 						</p>
 						<div

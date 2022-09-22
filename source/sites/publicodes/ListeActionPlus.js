@@ -2,7 +2,7 @@ import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import { title } from '../../components/publicodesUtils'
@@ -40,7 +40,7 @@ export default () => {
 			<CardGrid>
 				{plusListe.map((rule) => (
 					<li key={rule.dottedName}>
-						<LinkWithQuery
+						<Link
 							to={'/actions/plus/' + utils.encodeRuleName(rule.dottedName)}
 						>
 							<div
@@ -62,7 +62,7 @@ export default () => {
 								<div>{emoji(rule.icônes || '🎯')}</div>
 								<div>{title(rule)}</div>
 							</div>
-						</LinkWithQuery>
+						</Link>
 					</li>
 				))}
 			</CardGrid>

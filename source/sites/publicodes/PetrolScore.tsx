@@ -1,7 +1,7 @@
 import { useEngine } from 'Components/utils/EngineContext'
 import { correctValue } from 'Components/publicodesUtils'
 import HumanWeight from './HumanWeight'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { useTranslation } from 'react-i18next'
 
 export default ({ endURL }) => {
@@ -14,7 +14,7 @@ export default ({ endURL }) => {
 	const { t } = useTranslation()
 
 	return (
-		<LinkWithQuery
+		<Link
 			css={`
 				background: rgba(0, 0, 0, 0)
 					linear-gradient(60deg, var(--darkColor) 0%, var(--darkestColor) 100%)
@@ -53,6 +53,6 @@ export default ({ endURL }) => {
 					</div>
 				</div>
 			</div>
-		</LinkWithQuery>
+		</Link>
 	)
 }

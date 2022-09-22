@@ -1,4 +1,4 @@
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
 
 export default () => {
@@ -25,25 +25,25 @@ export default () => {
 		>
 			<ul>
 				<li>
-					<LinkWithQuery
+					<Link
 						to="#mainContent"
 						onClick={() => focusTarget('#mainContent')}
 					>
 						<Trans>Aller au contenu</Trans>
-					</LinkWithQuery>
+					</Link>
 				</li>
 				<li>
-					<LinkWithQuery
+					<Link
 						to="#mainNavigation"
 						onClick={() => focusTarget('#mainNavigation')}
 					>
 						<Trans>Menu</Trans>
-					</LinkWithQuery>
+					</Link>
 				</li>
 				<li>
-					<LinkWithQuery to="/à-propos">
+					<Link to="/à-propos">
 						<Trans>À propos</Trans>
-					</LinkWithQuery>
+					</Link>
 				</li>
 			</ul>
 		</nav>

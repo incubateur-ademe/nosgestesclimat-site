@@ -2,7 +2,7 @@ import QRCode from 'qrcode.react'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { LinkWithQuery } from 'Components/LinkWithQuery'
+import { Link } from 'Components/Link'
 import emoji from '../../../components/emoji'
 import ShareButton from '../../../components/ShareButton'
 import { ThemeColorsContext } from '../../../components/utils/colors'
@@ -170,9 +170,9 @@ export default ({
 							>
 								Vous souhaitez ajouter des questions pour obtenir des
 								informations supplémentaires sur les répondants ?{' '}
-								<LinkWithQuery to={'/groupe/documentation-contexte'}>
+								<Link to={'/groupe/documentation-contexte'}>
 									Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
-								</LinkWithQuery>
+								</Link>
 							</Trans>
 						</p>
 					)}
@@ -229,11 +229,11 @@ export default ({
 				}
 			>
 				{!room ? (
-					<LinkWithQuery to={'/simulateur/bilan'}>
+					<Link to={'/simulateur/bilan'}>
 						<button className="ui__ button plain">
 							{t(`Faites votre test`)}
 						</button>
-					</LinkWithQuery>
+					</Link>
 				) : mode === 'conférence' ? (
 					<p>
 						<Trans
@@ -273,7 +273,7 @@ export default ({
 				) : (
 					<span>
 						{t(`cette page`)}{' '}
-						<LinkWithQuery to={URLPath}>{URLPath}</LinkWithQuery>
+						<Link to={URLPath}>{URLPath}</Link>
 					</span>
 				)}
 				.
@@ -298,7 +298,7 @@ export default ({
 						vos réflexions et vos discussions sur cette page
 					</Trans>
 					&nbsp;
-					<LinkWithQuery to={URLGuide}>{URLGuide}</LinkWithQuery> !
+					<Link to={URLGuide}>{URLGuide}</Link> !
 				</InstructionBlock>
 			)}
 		</div>
