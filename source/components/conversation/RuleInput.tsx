@@ -111,12 +111,9 @@ export default function RuleInput<Name extends string = DottedName>({
 		required: true,
 	}
 
-	if (!(isMosaic(engine, rules, rule.dottedName).length === 0)) {
-		const [question, mosaicParams, mosaicDottedNames] = isMosaic(
-			engine,
-			rules,
-			rule.dottedName
-		)
+	const ruleMosaicInfos = isMosaic(engine, rules, rule.dottedName)
+	if (ruleMosaicInfos.length !== 0) {
+		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
 		const selectedRules = mosaicDottedNames.map(
 			([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
