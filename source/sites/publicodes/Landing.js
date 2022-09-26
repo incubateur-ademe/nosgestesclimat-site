@@ -1,7 +1,7 @@
 import Illustration from 'Components/AnimatedIllustration'
 import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
-import React, { Suspense, useContext, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
@@ -15,13 +15,10 @@ import LandingContent from './LandingContent'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 
-const SurveyModal = React.lazy(() => import('./SurveyModal'))
-
 const fluidLayoutMinWidth = '1200px'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
-	const [showSurveyModal, setShowSurveyModal] = useState(false)
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 	const { isIframe } = useContext(IframeOptionsContext)
 
@@ -90,20 +87,6 @@ export default () => {
 						consommation.
 					</p>
 					<div css="margin: 1rem 0">
-						<button
-							className="ui__ link-button"
-							onClick={() => setShowSurveyModal(true)}
-						>
-							Participez à notre enquête utilisateurs !
-						</button>
-						{showSurveyModal && (
-							<Suspense fallback={''}>
-								<SurveyModal
-									showSurveyModal={showSurveyModal}
-									setShowSurveyModal={setShowSurveyModal}
-								/>
-							</Suspense>
-						)}
 						<div
 							css={`
 								margin-top: 1rem;
