@@ -42,11 +42,11 @@ export default function NumberedMosaic({
 					]) => {
 						const situationValue = situation[question.dottedName],
 							evaluation = engine.evaluate(question.dottedName),
-							nodeValue = evaluation.nodeValue,
 							value =
 								situationValue != null
 									? situationValue
-									: question.rawNode['par défaut']
+									: question.rawNode['par défaut'],
+							missing = !!evaluation.missingVariables[question.dottedName]
 
 						return (
 							<li
@@ -72,10 +72,8 @@ export default function NumberedMosaic({
 											!value ? 'disabled' : ''
 										}`}
 										onClick={() =>
-											nodeValue > 0 &&
-											dispatch(
-												updateSituation(question.dottedName, nodeValue - 1)
-											)
+											value > 0 &&
+											dispatch(updateSituation(question.dottedName, value - 1))
 										}
 										title={`Enlever ${title.toLowerCase()}`}
 									>
@@ -98,26 +96,24 @@ export default function NumberedMosaic({
 											border: none;
 											border-bottom: 2px dotted var(--color);
 										`}
-										value={
-											situationValue == null
-												? undefined
-												: situationValue === 0 // if situation value is 0 (2 options : input is filled in with a 0 or inout is empty), value become an empty string and placeholder (0) is visible..
-												? ''
-												: nodeValue
-										}
-										placeholder={nodeValue}
+										{...(missing
+											? {
+													placeholder: value != null ? value : '',
+											  }
+											: { value: value ?? '' })}
 										onChange={(e) =>
 											dispatch(
-												updateSituation(question.dottedName, +e.target.value)
+												updateSituation(
+													question.dottedName,
+													e.target.value || undefined
+												)
 											)
 										}
 									/>
 									<button
 										className="ui__ button small plain"
 										onClick={() =>
-											dispatch(
-												updateSituation(question.dottedName, nodeValue + 1)
-											)
+											dispatch(updateSituation(question.dottedName, value + 1))
 										}
 										title={`Ajouter ${title.toLowerCase()}`}
 									>
