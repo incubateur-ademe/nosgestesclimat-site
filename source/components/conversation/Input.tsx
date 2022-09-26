@@ -64,9 +64,7 @@ export default function Input({
 							{...(missing
 								? {
 										placeholder:
-											value || value == 0
-												? formatValue(value, { precision: 1 })
-												: '',
+											value != null ? formatValue(value, { precision: 1 }) : '',
 								  }
 								: { value: value ?? '' })}
 						/>
