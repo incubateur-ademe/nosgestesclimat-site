@@ -224,7 +224,7 @@ Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer
 						<img
 							src="/images/marianne.svg"
 							alt="République Française"
-							css="height: 6rem; margin-right: .6rem"
+							css="width: 7.5rem; height: auto; margin-right: .6rem"
 							width="96"
 							height="86"
 						/>
@@ -233,7 +233,7 @@ Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer
 						</a>
 						<a href="https://abc-transitionbascarbone.fr">
 							<img
-								css="height: 2rem; margin-left: 1rem !important"
+								css="width: 6rem; height: auto;margin-left: 1rem !important"
 								src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
 								alt="Logo de l'Association pour la transition Bas Carbone"
 								width="86"
