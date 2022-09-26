@@ -151,38 +151,40 @@ export default () => {
 
 			<LandingContent background footer>
 				<footer>
-					<div
-						css={`
-							background: var(--lightestColor);
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							margin-bottom: 1rem;
-							img {
-								margin: 0 0.6rem;
-							}
-						`}
-					>
-						<img
-							src="/images/marianne.svg"
-							alt="République Française"
-							css="width: 7.5rem; height: auto; margin-right: .6rem"
-							width="96"
-							height="86"
-						/>
-						<a href="https://ademe.fr">
-							<LogoADEME />
-						</a>
-						<a href="https://abc-transitionbascarbone.fr">
+					{!isIframe && ( // would be a repetition with header logos
+						<div
+							css={`
+								background: var(--lightestColor);
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								margin-bottom: 1rem;
+								img {
+									margin: 0 0.6rem;
+								}
+							`}
+						>
 							<img
-								css="width: 6rem; height: auto;margin-left: 1rem !important"
-								src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
-								alt="Logo de l'Association pour la transition Bas Carbone"
-								width="86"
-								height="29"
+								src="/images/marianne.svg"
+								alt="République Française"
+								css="width: 7.5rem; height: auto; margin-right: .6rem"
+								width="96"
+								height="86"
 							/>
-						</a>
-					</div>
+							<a href="https://ademe.fr">
+								<LogoADEME />
+							</a>
+							<a href="https://abc-transitionbascarbone.fr">
+								<img
+									css="width: 6rem; height: auto;margin-left: 1rem !important"
+									src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+									alt="Logo de l'Association pour la transition Bas Carbone"
+									width="86"
+									height="29"
+								/>
+							</a>
+						</div>
+					)}
 					<div
 						css={`
 							display: flex;
