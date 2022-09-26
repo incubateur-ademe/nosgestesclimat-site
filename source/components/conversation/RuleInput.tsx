@@ -53,13 +53,18 @@ export const binaryQuestion = [
 	{ value: 'non', label: 'Non' },
 ] as const
 
-export const isMosaic = (engine, rules, dottedName) => {
-	const potentialMosaicRule = parentName(dottedName, ' . ', 0, 2) // we only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
+/* function to detect if the question evaluated should be displayed as a child of a mosaic
+We only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
+If parent of degree 2 doesn't contain mosaic, return empty array
+If parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
+*/
+export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
+	const potentialMosaicRule = parentName(dottedName, ' . ', 0, 2)
 	const mosaicParams =
 		potentialMosaicRule &&
 		engine.getRule(potentialMosaicRule).rawNode['mosaique']
-	if (!mosaicParams) return [] // if parent of degree 2 doesn't contain mosaic, return empty array
-	if (!dottedName.includes(` . ${mosaicParams['clé']}`)) return [] // if parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
+	if (!mosaicParams) return []
+	if (!dottedName.includes(` . ${mosaicParams['clé']}`)) return []
 	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
 		return (
 			rule.includes(potentialMosaicRule) &&
@@ -111,7 +116,11 @@ export default function RuleInput<Name extends string = DottedName>({
 		required: true,
 	}
 
-	const ruleMosaicInfos = isMosaic(engine, rules, rule.dottedName)
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
+		engine,
+		rules,
+		rule.dottedName
+	)
 	if (ruleMosaicInfos.length !== 0) {
 		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
 		const selectedRules = mosaicDottedNames.map(

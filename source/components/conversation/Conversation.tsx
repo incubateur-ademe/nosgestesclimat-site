@@ -4,7 +4,7 @@ import {
 	validateStepWithValue,
 } from 'Actions/actions'
 import RuleInput, {
-	isMosaic,
+	getRelatedMosaicInfosIfExists,
 	RuleInputProps,
 } from 'Components/conversation/RuleInput'
 import Notifications, { getCurrentNotification } from 'Components/Notifications'
@@ -149,11 +149,13 @@ export default function Conversation({
 
 	// Some questions are grouped in an artifical questions, called mosaic questions,  not present in publicodes
 	// here we need to submit all of them when the one that triggered the UI (we don't care which) is submitted, in order to see them in the response list and to avoid repeating the same n times
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
+		engine,
+		rules,
+		currentQuestion
+	)
 	const [mosaicQuestion, mosaicParams, mosaicDottedNames] =
-		(currentQuestion &&
-			!(isMosaic(engine, rules, currentQuestion).length === 0) &&
-			isMosaic(engine, rules, currentQuestion)) ||
-		[]
+		(currentQuestion && ruleMosaicInfos.length === 0 && ruleMosaicInfos) || []
 
 	const questionText = mosaicQuestion
 		? mosaicQuestion.rawNode?.question
