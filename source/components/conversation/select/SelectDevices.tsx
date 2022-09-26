@@ -39,6 +39,7 @@ export default function SelectDevices({
 		<div>
 			{Object.keys(suggestions).length > 0 && (
 				<MosaicInputSuggestions
+					mosaicType="selection"
 					dottedName={dottedName}
 					relatedRuleNames={relatedRuleNames}
 					suggestions={suggestions}

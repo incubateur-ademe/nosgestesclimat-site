@@ -159,6 +159,7 @@ export default function NumberedMosaic({
 		<div>
 			{Object.keys(suggestions).length > 0 && (
 				<MosaicInputSuggestions
+					mosaicType="nombre"
 					dottedName={dottedName}
 					relatedRuleNames={relatedRuleNames}
 					suggestions={suggestions}

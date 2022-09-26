@@ -12,6 +12,7 @@ type InputSuggestionsProps = {
 }
 
 export default function MosaicInputSuggestions({
+	mosaicType,
 	dottedName,
 	relatedRuleNames,
 	suggestions = {},
@@ -56,7 +57,9 @@ export default function MosaicInputSuggestions({
 						`}
 						onClick={() => {
 							relatedRuleNames.map((elt) =>
-								dispatch(updateSituation(elt, 'non'))
+								dispatch(
+									updateSituation(elt, mosaicType === 'selection' ? 'non' : 0)
+								)
 							)
 							if (Object.values(values).every((bool) => bool === 'non'))
 								dispatch(updateSituation(dottedName, 0))
