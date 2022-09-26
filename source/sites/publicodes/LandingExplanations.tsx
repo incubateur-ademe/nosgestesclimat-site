@@ -11,15 +11,6 @@ export default () => (
 		<div
 			css={`
 				width: 100%;
-				text-align: center;
-				h2 {
-					font-size: 170%;
-				}
-
-				p {
-					max-width: 45rem;
-					margin: 1rem auto;
-				}
 			`}
 		>
 			<LandingContent background>

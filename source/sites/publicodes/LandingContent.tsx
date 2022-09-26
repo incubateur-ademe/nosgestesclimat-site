@@ -8,10 +8,23 @@ export default ({ children, background = false, footer = false }) => (
 				padding: 0.6rem 0;
 			}
 			width: 100%;
+			h2 {
+				font-size: 170%;
+				max-width: 40rem;
+				margin: 2rem auto 0;
+			}
+			> div {
+				margin: 0 auto;
+				padding: 0 1rem;
+			}
+			p {
+				max-width: 40rem;
+				margin: 1rem auto;
+			}
 			background: ${background ? `var(--lightestColor)` : `none`};
 			${footer && `margin-bottom: 0`}
 		`}
 	>
-		<div className="ui__ container">{children} </div>
+		<div>{children} </div>
 	</div>
 )
