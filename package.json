@@ -1,7 +1,7 @@
 {
 	"name": "nosgestesclimat-site",
 	"license": "MIT",
-	"version": "2.1.0",
+	"version": "2.2.0",
 	"description": "The leading open source climate footprint calculator",
 	"repository": {
 		"type": "git",
@@ -23,6 +23,7 @@
 		"@babel/preset-env": "^7.18.6",
 		"@babel/preset-react": "^7.18.6",
 		"@babel/preset-typescript": "^7.18.6",
+		"@svgr/cli": "^6.3.1",
 		"@types/cheerio": "^0.22.31",
 		"@types/mini-css-extract-plugin": "^2.5.1",
 		"@types/react": "^18.0.14",
@@ -146,6 +147,7 @@
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
 		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
 		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
-		"publish:publicodes": "yarn run lint && yarn run "
+		"publish:publicodes": "yarn run lint && yarn run ",
+		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr --ref > source/components/IllustrationSVG.tsx"
 	}
 }

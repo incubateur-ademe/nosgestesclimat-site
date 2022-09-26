@@ -90,11 +90,11 @@ const Main = ({}) => {
 
 	return (
 		<div
-			className="ui__ container"
 			css={`
 				@media (min-width: 800px) {
 					display: flex;
 					min-height: 100vh;
+					padding-top: 1rem;
 				}
 
 				@media (min-width: 1200px) {
@@ -105,6 +105,7 @@ const Main = ({}) => {
 				}
 				${!isHomePage && !isTuto && sessionBarMargin}
 			`}
+			className={isHomePage ? '' : 'ui__ container'}
 		>
 			<Navigation isHomePage={isHomePage} />
 			<main
@@ -114,7 +115,6 @@ const Main = ({}) => {
 					outline: none !important;
 					@media (min-width: 800px) {
 						flex-grow: 1;
-						padding: 1rem;
 					}
 				`}
 			>

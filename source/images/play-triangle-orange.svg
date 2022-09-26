@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="emoji"
+   viewBox="0 0 72 72"
+   version="1.1"
+   sodipodi:docname="play-triangle-orange.svg"
+   inkscape:version="1.2.1 (0b8a7e5fb6, 2022-09-14, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs208" />
+  <sodipodi:namedview
+     id="namedview206"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="7.9129666"
+     inkscape:cx="33.805273"
+     inkscape:cy="40.124016"
+     inkscape:window-width="1920"
+     inkscape:window-height="1175"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="emoji" />
+  <g
+     id="color" />
+  <g
+     id="hair" />
+  <g
+     id="skin" />
+  <g
+     id="skin-shadow" />
+  <path
+     id="path451"
+     style="fill:#ff853b;fill-rule:evenodd;fill-opacity:1"
+     d="M 35.052734 3.3632812 A 32.04961 32.04961 0 0 0 3.0019531 35.412109 A 32.04961 32.04961 0 0 0 35.052734 67.460938 A 32.04961 32.04961 0 0 0 67.101562 35.412109 A 32.04961 32.04961 0 0 0 35.052734 3.3632812 z M 20.472656 12.667969 L 61.111328 35.283203 L 20.472656 58.746094 L 20.472656 12.667969 z " />
+</svg>
