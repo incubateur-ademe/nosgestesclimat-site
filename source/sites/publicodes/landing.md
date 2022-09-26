@@ -14,6 +14,6 @@ Au fur et à mesure, le poids de chaque secteur (transport, alimentation, logeme
 
 ## Agir sur mon empreinte, dès maintenant
 
-Après 10 minutes de test, le **parcours action** vous permet de prioriser les éco-gestes pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les gros gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
+Après 10 minutes de test, le [parcours action](https://nosgestesclimat.fr/actions/liste) vous permet de prioriser les éco-gestes pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les grands gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
 
 Bien entendu, même s'il est incontournable de mesurer l'empreinte d'une consommation et d'en comprendre l'ampleur par rapport au [budget climat](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/), il arrive souvent qu'elle ne soit pas complètement de notre ressort personnel : par exemple, je suis locataire en zone tendue et mon propriétaire refuse d'isoler mon appartement.
