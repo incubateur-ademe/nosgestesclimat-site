@@ -86,7 +86,7 @@ export default () => {
 						En 10 minutes, obtenez une estimation de votre empreinte carbone de
 						consommation.
 					</p>
-					<div css="margin: 1rem 0">
+					<div>
 						<div
 							css={`
 								margin-top: 1rem;
