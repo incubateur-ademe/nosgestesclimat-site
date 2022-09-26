@@ -63,8 +63,8 @@ export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
 	const mosaicParams =
 		potentialMosaicRule &&
 		engine.getRule(potentialMosaicRule).rawNode['mosaique']
-	if (!mosaicParams) return []
-	if (!dottedName.includes(` . ${mosaicParams['clé']}`)) return []
+	if (!mosaicParams) return
+	if (!dottedName.includes(` . ${mosaicParams['clé']}`)) return
 	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
 		return (
 			rule.includes(potentialMosaicRule) &&
@@ -121,7 +121,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		rules,
 		rule.dottedName
 	)
-	if (ruleMosaicInfos.length !== 0) {
+	if (ruleMosaicInfos) {
 		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
 		const selectedRules = mosaicDottedNames.map(
 			([dottedName, questionRule]) => {

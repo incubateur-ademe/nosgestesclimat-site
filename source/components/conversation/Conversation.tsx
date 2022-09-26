@@ -155,7 +155,7 @@ export default function Conversation({
 		currentQuestion
 	)
 	const [mosaicQuestion, mosaicParams, mosaicDottedNames] =
-		(currentQuestion && ruleMosaicInfos.length === 0 && ruleMosaicInfos) || []
+		(currentQuestion && ruleMosaicInfos) || []
 
 	const questionText = mosaicQuestion
 		? mosaicQuestion.rawNode?.question
