@@ -1,5 +1,6 @@
 import Illustration from 'Components/AnimatedIllustration'
 import animate from 'Components/ui/animate'
+import LogoADEME from 'Images/logoADEME.svg'
 import React, { Suspense, useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
@@ -9,6 +10,8 @@ import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvid
 import Meta from '../../components/utils/Meta'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
+import DocumentationButton from './DocumentationButton'
+import LandingContent from './LandingContent'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 
@@ -144,7 +147,77 @@ export default () => {
 				{!mobile && <Illustration aira-hidden="true" />}
 			</div>
 			<ProfileLink />
-			<LandingExplanations />
+			{!isIframe && <LandingExplanations />}
+
+			<LandingContent background footer>
+				<footer>
+					<div
+						css={`
+							background: var(--lightestColor);
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							margin-bottom: 1rem;
+							img {
+								margin: 0 0.6rem;
+							}
+						`}
+					>
+						<img
+							src="/images/marianne.svg"
+							alt="République Française"
+							css="width: 7.5rem; height: auto; margin-right: .6rem"
+							width="96"
+							height="86"
+						/>
+						<a href="https://ademe.fr">
+							<LogoADEME />
+						</a>
+						<a href="https://abc-transitionbascarbone.fr">
+							<img
+								css="width: 6rem; height: auto;margin-left: 1rem !important"
+								src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+								alt="Logo de l'Association pour la transition Bas Carbone"
+								width="86"
+								height="29"
+							/>
+						</a>
+					</div>
+					<div
+						css={`
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							flex-wrap: wrap;
+							> * {
+								margin: 0 0.6rem;
+							}
+							img {
+								font-size: 120%;
+							}
+						`}
+					>
+						<Link to="/à-propos">À propos</Link>
+						<DocumentationButton />
+						<Link to="/diffuser">Diffuser</Link>
+					</div>
+					<div
+						css={`
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							> * {
+								margin: 0 0.6rem;
+								font-size: 80%;
+							}
+						`}
+					>
+						<Link to="/accessibilite" style={{ textDecoration: 'none' }}>
+							Accessibilité : partiellement conforme
+						</Link>
+					</div>
+				</footer>
+			</LandingContent>
 		</div>
 	)
 }
