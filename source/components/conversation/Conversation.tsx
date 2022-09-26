@@ -183,6 +183,23 @@ export default function Conversation({
 		}
 	}, [isAnsweredMosaic])
 
+	useEffect(() => {
+		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disapear. However, if the user deselect the button, without this hook,
+		// the default value is set back to the question value, but the user doesn't know as there is no "je ne sais pas" button anymore and nothing is selected
+		// This hook enables to set 0 to mosaic question if the mosaic has been answered and nothing is checked.
+		if (
+			isAnsweredMosaic &&
+			mosaicParams['type'] === 'selection' &&
+			Object.values(mosaicParams['suggestions']).includes('aucun choix') &&
+			situation[mosaicQuestion.dottedName] != 0 &&
+			questionsToSubmit
+				.map((question) => situation[question] === 'oui')
+				.some((bool) => bool === true)
+		) {
+			dispatch(updateSituation(mosaicQuestion.dottedName, 0))
+		}
+	}, [isAnsweredMosaic, questionsToSubmit, situation])
+
 	const currentQuestionIndex = previousAnswers.findIndex(
 			(a) => a === unfoldedStep
 		),
