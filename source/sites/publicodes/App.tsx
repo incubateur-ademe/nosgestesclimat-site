@@ -124,7 +124,7 @@ const Main = ({}) => {
 						css={`
 							display: flex;
 							align-items: center;
-							justify-content: left;
+							justify-content: center;
 							max-width: 30rem;
 							margin: 0 auto;
 							> img,
