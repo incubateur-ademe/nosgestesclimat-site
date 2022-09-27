@@ -52,6 +52,11 @@ const getArgs = (description) => {
 			choices: utils.availableLangs,
 			description: `The source language to translate from.`,
 		})
+		.option('remove', {
+			alias: 'r',
+			type: 'boolean',
+			description: `Remove the unused keys from the translation files.`,
+		})
 		.option('target', {
 			alias: 't',
 			type: 'string',
@@ -78,7 +83,7 @@ const getArgs = (description) => {
 		return l !== srcLang
 	})
 
-	return { srcLang, destLangs, force: argv.force }
+	return { srcLang, destLangs, force: argv.force, remove: argv.remove }
 }
 
 module.exports = {

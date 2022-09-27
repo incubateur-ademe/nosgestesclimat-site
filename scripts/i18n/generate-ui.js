@@ -12,6 +12,10 @@ const stringify = require('json-stable-stringify')
 const utils = require('./utils')
 const cli = require('./cli')
 
+const { remove } = cli.getArgs(
+	'Analyses the source code and extracts the corresponding i18next resource file.'
+)
+
 const red = (str) => cli.withStyle(cli.colors.fgRed, str)
 const green = (str) => cli.withStyle(cli.colors.fgGreen, str)
 const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
@@ -55,39 +59,48 @@ console.log('Adding missing entries...')
 const splitRegexp = /(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/
 const translationIsTheKey = (key) => 1 === key.split(splitRegexp).length
 
-let result = {
-	addedTranslations: [],
-	missingTranslations: [],
-	updatedTranslations: [],
-}
-
-Object.entries(analysedFrResourceInDotNotation)
-	.map(([key, value]) => [
-		key,
-		value === 'NO_TRANSLATION' && translationIsTheKey(key) ? key : value,
-	])
-	.filter(
-		([key, value]) =>
-			!ramda.pathEq(key.split(splitRegexp), value, oldFrResource)
+if (remove) {
+	console.log('Removing unused entries...')
+	const oldKeys = Object.keys(utils.nestedObjectToDotNotation(oldFrResource))
+	const currentKeys = Object.keys(
+		utils.nestedObjectToDotNotation(analysedFrResourceInDotNotation)
 	)
-	.forEach(([key, value]) => {
-		const keys = key.split(splitRegexp)
+	const unusedKeys = ramda.difference(oldKeys, currentKeys)
+	console.log('unused keys:', unusedKeys)
+	oldFrResource = ramda.omit(unusedKeys, oldFrResource)
+} else {
+	let result = {
+		addedTranslations: [],
+		missingTranslations: [],
+		updatedTranslations: [],
+	}
+	Object.entries(analysedFrResourceInDotNotation)
+		.map(([key, value]) => [
+			key,
+			value === 'NO_TRANSLATION' && translationIsTheKey(key) ? key : value,
+		])
+		.filter(
+			([key, value]) =>
+				!ramda.pathEq(key.split(splitRegexp), value, oldFrResource)
+		)
+		.forEach(([key, value]) => {
+			const keys = key.split(splitRegexp)
 
-		if (!ramda.hasPath(keys, oldFrResource) || value !== 'NO_TRANSLATION') {
-			if (value === 'NO_TRANSLATION') {
-				result.missingTranslations.push(key)
-			} else if (ramda.hasPath(keys, oldFrResource)) {
-				result.updatedTranslations.push(key)
-			} else {
-				result.addedTranslations.push(key)
+			if (!ramda.hasPath(keys, oldFrResource) || value !== 'NO_TRANSLATION') {
+				if (value === 'NO_TRANSLATION') {
+					result.missingTranslations.push(key)
+				} else if (ramda.hasPath(keys, oldFrResource)) {
+					result.updatedTranslations.push(key)
+				} else {
+					result.addedTranslations.push(key)
+				}
+				oldFrResource = ramda.assocPath(keys, value, oldFrResource)
 			}
-			oldFrResource = ramda.assocPath(keys, value, oldFrResource)
-		}
-	})
-
-printResult(green('+') + ' Added', result.addedTranslations, green)
-printResult(yellow('~') + ' Updated', result.updatedTranslations, yellow)
-printResult(red('-') + ' Missing', result.missingTranslations, red)
+		})
+	printResult(green('+') + ' Added', result.addedTranslations, green)
+	printResult(yellow('~') + ' Updated', result.updatedTranslations, yellow)
+	printResult(red('-') + ' Missing', result.missingTranslations, red)
+}
 
 console.log(`Writting resources in ${utils.paths.uiTranslationResource.fr}...`)
 try {
