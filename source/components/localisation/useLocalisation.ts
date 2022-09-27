@@ -67,7 +67,10 @@ export default () => {
 }
 
 export const getFlagImgSrc = (code) =>
-	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
+	//	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
+	//	was down 27/09
+	code &&
+	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${code.toLowerCase()}.svg`
 
 export const getCountryNameInFrench = (code) => {
 	// For now, website is only available in French, this function enables to adapt message for French Language according to the country detected.
