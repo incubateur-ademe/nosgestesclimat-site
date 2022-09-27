@@ -102,14 +102,13 @@ export default () => {
 								<li
 									key={code}
 									onClick={() => {
-										dispatch(
-											setLocalisation({
-												country: { name: nom, code },
-												userChosen: true,
-											})
-										)
+										const newLocalisation = {
+											country: { name: nom, code },
+											userChosen: true,
+										}
+										dispatch(setLocalisation(newLocalisation))
 										const localisationPR =
-											getLocalisationPullRequest(localisation)
+											getLocalisationPullRequest(newLocalisation)
 										dispatch({
 											type: 'SET_PULL_REQUEST_NUMBER',
 											number: localisationPR,

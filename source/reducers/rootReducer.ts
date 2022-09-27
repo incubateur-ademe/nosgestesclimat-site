@@ -246,7 +246,15 @@ function engineState(state = null, { type, to }: EngineAction) {
 
 const defaultToNull = (arg) => arg ?? null
 
-function localisation(state = null, { type, localisationData }) {
+type LocalisationAction = {
+	type: string
+	country: object
+	userChosen: boolean
+}
+function localisation(
+	state = null,
+	{ type, localisationData }: LocalisationAction
+) {
 	if (type === 'SET_LOCALISATION') {
 		return localisationData
 	} else if (type === 'RESET_LOCALISATION') {
