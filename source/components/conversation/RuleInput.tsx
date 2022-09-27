@@ -59,6 +59,7 @@ If parent of degree 2 doesn't contain mosaic, return empty array
 If parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
 */
 export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
+	if (!dottedName) return
 	const potentialMosaicRule = parentName(dottedName, ' . ', 0, 2)
 	const mosaicParams =
 		potentialMosaicRule &&
