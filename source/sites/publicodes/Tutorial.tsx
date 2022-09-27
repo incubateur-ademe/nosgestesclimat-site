@@ -201,15 +201,17 @@ const slides = [
 		<>
 			<h1>Et concrètement ?</h1>
 			<p>
-				Chaque année, un Français émet en moyenne{' '}
-				<strong> à peu près 10 tonnes</strong> de CO₂e.
+				Chaque année, un Français émet en moyenne <strong>10 tonnes</strong> de
+				CO₂e.
 			</p>
 			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
 			<p>
-				Cet ordre de grandeur est le point de départ de votre test. Dans un
-				premier temps, ce résultat est calculé à partir de valeurs moyennes
-				Françaises attribuées à chaque question. Vos réponses viendront ensuite
-				affiner cette empreinte dans la barre de score.
+				Le point de départ de votre test Nos Gestes Climat est un résultat
+				calculé à partir de valeurs moyennes Françaises attribuées à chaque
+				question. Ce score initial est à prendre comme un minimum, qui commence
+				par défaut à ~8 tonnes de CO₂e en l'état actuel du périmètre de calcul
+				qui évolue selon les améliorations du modèle. Vos réponses viendront
+				ensuite affiner cette empreinte dans la barre de score.
 			</p>
 			<div css="margin: 1rem 0">
 				<WithEngine>
