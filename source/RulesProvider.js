@@ -69,20 +69,20 @@ export default ({ children }) => {
 const EngineWrapper = ({ rules, children }) => {
 	const engineState = useSelector((state) => state.engineState)
 	const dispatch = useDispatch()
-	const [engine, setEngine] = useState(null)
 	const branchData = useBranchData()
 
-	useEffect(() => {
-		if (
-			rules &&
-			(engineState === 'requested' ||
-				rules['url'] !== `'${branchData.deployURL}'`)
-		) {
-			const engine =
-				console.log('parsing..') || new Engine(rules, engineOptions)
-			setEngine(engine)
+	const engineRequested = engineState !== null
+	const engine = useMemo(() => {
+		console.log('YOYO', engineRequested, branchData.deployURL, rules)
+
+		const shouldParse = engineRequested && rules
+		if (shouldParse) {
+			console.log('⚙️ will parse the rules,  expensive operation')
 		}
-	}, [rules, engineOptions, engineState, branchData])
+		const engine = shouldParse && new Engine(rules, engineOptions)
+
+		return engine
+	}, [engineRequested, branchData.deployURL, rules])
 
 	useEffect(() => {
 		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
@@ -115,6 +115,6 @@ export const WithEngine = ({ children }) => {
 		return
 	}, [])
 
-	if (engineState !== 'ready') return null
+	if (engineState !== 'ready') return <div>Chargement du modèle de calcul</div>
 	return children
 }
