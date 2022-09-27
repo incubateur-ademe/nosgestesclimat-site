@@ -1,4 +1,3 @@
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link } from 'Components/Link'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
@@ -26,10 +25,7 @@ export default ({ setHasDataState }) => (
 					`}
 				>
 					<button>
-						<Link
-							className="ui__ button plain"
-							to={'/simulateur/bilan'}
-						>
+						<Link className="ui__ button plain" to={'/simulateur/bilan'}>
 							<Trans>Faire mon test</Trans>
 						</Link>
 					</button>
@@ -39,7 +35,7 @@ export default ({ setHasDataState }) => (
 							setHasDataState(true)
 						}}
 					>
-						{emoji('🧮')} <Trans>Voir les réponses</Trans>
+						<Trans>🧮 Voir les réponses</Trans>
 					</button>
 				</div>
 			</div>

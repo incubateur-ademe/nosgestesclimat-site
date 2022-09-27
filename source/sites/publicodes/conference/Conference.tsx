@@ -87,7 +87,7 @@ export default () => {
 					dispatch({ type: 'UNSET_CONFERENCE' })
 				}}
 			>
-				{emoji('🚪')} {t('Quitter la conférence')}
+				{t('🚪 Quitter la conférence')}
 			</button>
 			<Instructions {...{ room, started: true }} />
 			<h2>

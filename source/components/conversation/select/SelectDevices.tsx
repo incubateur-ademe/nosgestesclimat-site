@@ -1,6 +1,5 @@
 import { updateSituation } from 'Actions/actions'
 import Checkbox from 'Components/ui/Checkbox'
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -104,7 +103,7 @@ export default function SelectDevices({
 											}
 										`}
 									>
-										Bientôt disponible !
+										<Trans>Bientôt disponible !</Trans>
 									</Stamp>
 								)}
 							</li>

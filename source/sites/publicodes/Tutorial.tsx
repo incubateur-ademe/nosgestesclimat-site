@@ -4,7 +4,6 @@ import ObjectifClimat from 'Images/objectif-climat.svg'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'Components/Link'
 import { skipTutorial } from '../../actions/actions'
-import emoji from '../../components/emoji'
 import ScoreBar from './ScoreBar'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
@@ -95,7 +94,7 @@ const slides = [
 	() => (
 		<>
 			<h1>
-				<Trans>Mon empreinte climat</Trans> {emoji('😶‍🌫️')}?
+				<Trans>Mon empreinte climat 😶‍🌫️</Trans> ?
 			</h1>
 			<Trans i18nKey={`publicodes.Tutorial.slide1.p1`}>
 				<p>Pas de panique, on vous explique ce que c'est.</p>
@@ -105,13 +104,12 @@ const slides = [
 				</p>
 			</Trans>
 			<GreenhouseEffect css="width: 60%; max-height: 20rem" />
-			<Trans
-				i18nKey={`publicodes.Tutorial.slide1.p2`}
-				values={{
-					chrono: '⏱️',
-				}}
-				defaults={`<p>Ce test vous donne en {{chrono}} 10 minutes chrono <strong>une mesure de votre part </strong> dans ce réchauffement.</p>`}
-			/>
+			<Trans i18nKey={`publicodes.Tutorial.slide1.p2`}>
+				<p>
+					Ce test vous donne en ⏱️ 10 minutes chrono{' '}
+					<strong>une mesure de votre part </strong> dans ce réchauffement.
+				</p>
+			</Trans>
 		</>
 	),
 	() => (
@@ -197,11 +195,9 @@ const slides = [
 			<blockquote>
 				<details>
 					<summary>
-						{emoji('💡')}&nbsp;{' '}
-						<Trans>
-							Mais que veut dire ce petit <em>e</em>{' '}
+						<Trans i18nKey={'sites.publicodes.Tutorial.questionE'}>
+							💡 Mais que veut dire ce petit <em>e</em> ?
 						</Trans>
-						?
 					</summary>{' '}
 					<Trans i18nKey={`publicodes.Tutorial.slide2.blockquote`}>
 						D'autres gaz, surtout le méthane&nbsp;
@@ -245,19 +241,10 @@ const slides = [
 				</WithEngine>
 			</div>
 			<blockquote>
-				<Trans
-					i18nKey={`publicodes.Tutorial.slide3.blockquote`}
-					values={{
-						// NOTE: this `sparkles: emoji('✨')` doesn't work,
-						// sparkles: '✨',
-						sparkles: <p>Test</p>,
-						fuelPump: '⛽️',
-					}}
-					defaults={`
-					{{sparkles}} Nouveau ! Visualisez également votre consommation de
-					{{fuelPump}} pétrole, un indicateur complémentaire au sujet
-					climat.`}
-				/>
+				<Trans i18nKey={`publicodes.Tutorial.slide3.blockquote`}>
+					✨ Nouveau ! Visualisez également votre consommation de ⛽️ pétrole,
+					un indicateur complémentaire au sujet climat.
+				</Trans>
 			</blockquote>
 		</>
 	),
@@ -352,16 +339,16 @@ const slides = [
 				<h1>Alors, c'est parti ?</h1>
 				<p>Quelques astuces pour vous aider à compléter le test.</p>
 				<blockquote>
-					{'👤'} Répondez aux questions en votre nom, pas au nom de votre foyer
-					: c'est un test individuel.
+					👤 Répondez aux questions en votre nom, pas au nom de votre foyer :
+					c'est un test individuel.
 				</blockquote>
 				<blockquote>
-					{'💼'} Répondez pour votre vie perso, pas pour votre boulot ou études.{' '}
+					💼 Répondez pour votre vie perso, pas pour votre boulot ou études.{' '}
 					<em>Une seule exception </em>: votre trajet domicile-travail doit être
 					inclus dans les km parcourus.
 				</blockquote>
 				<blockquote>
-					{'❓️'} D'autres questions ? Consultez notre{' '}
+					❓️ D'autres questions ? Consultez notre{' '}
 					<Link to="/contribuer">FAQ</Link> à tout moment.
 				</blockquote>
 			</Trans>

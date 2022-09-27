@@ -46,25 +46,23 @@ export default ({ newRoom, setNewRoom }) => {
 				onClick={() => setNewRoom(generateRoomName())}
 				className="ui__ dashed-button"
 			>
-				{emoji('🔃')} {t('Générer un autre nom')}
+				{t('🔃 Générer un autre nom')}
 			</button>
 			{newRoom && newRoom.length < 12 && (
 				<p>
-					{emoji('⚠️')}
 					<Trans i18nKey={`publicodes.conference.NamingBlock.nomSalleCourt`}>
-						Votre nom de salle est court, il y a un petit risque que des
+						⚠️ Votre nom de salle est court, il y a un petit risque que des
 						inconnus puissent le deviner
 					</Trans>
 				</p>
 			)}
 			{newRoom && showInvalidMessage && (
 				<p>
-					{emoji('💡')}
 					<Trans
 						i18nKey={`publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres`}
 					>
-						Votre nom de salle ne peut que contenir des lettres, des chifffres
-						et des tirets
+						💡 Votre nom de salle ne peut que contenir des lettres, des
+						chifffres et des tirets
 					</Trans>
 				</p>
 			)}

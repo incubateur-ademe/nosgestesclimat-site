@@ -1,4 +1,3 @@
-import emoji from 'Components/emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { useState } from 'react'
 import { renderToString } from 'react-dom/server'
@@ -144,7 +143,7 @@ export default ({}) => {
 					</li>
 				))}
 			</div>
-			<h2 css="font-size: 180%">{emoji('🙋‍♀️')} J'ai une autre question</h2>
+			<h2 css="font-size: 180%">🙋‍♀️' J'ai une autre question</h2>
 			<div className="ui__ card" css="padding: 1rem 0">
 				<p>
 					<Trans i18nKey={'publicodes.Contribution.liensVersGithub'}>
@@ -157,11 +156,10 @@ export default ({}) => {
 				</p>
 				<details>
 					<summary>
-						<Trans
-							i18nKey={'publicodes.Contribution.bugQuestion'}
-							values={{ bug: '🐛' }}
-							defaults={`{{bug}} Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?`}
-						/>
+						<Trans i18nKey={'publicodes.Contribution.bugQuestion'}>
+							🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat
+							?
+						</Trans>
 					</summary>
 
 					<div className="ui__ card" css="padding: 1rem 0">
@@ -232,8 +230,8 @@ export default ({}) => {
 						) : (
 							<p role="status">
 								<Trans i18nKey={'publicodes.Contribution.remerciements'}>
-									Merci {emoji('😍')}! Suivez l'avancement de votre suggestion
-									en cliquant sur <a href={URL}>ce lien</a>.
+									Merci 😍! Suivez l'avancement de votre suggestion en cliquant
+									sur <a href={URL}>ce lien</a>.
 								</Trans>
 							</p>
 						)}

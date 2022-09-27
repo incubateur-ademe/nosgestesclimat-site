@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import Value from './Value'
 
@@ -59,8 +58,6 @@ export default ({
 }
 export const capitalizeFirst = (text) =>
 	text[0].toUpperCase() + text.slice(1, text.length)
-
-const Check = ({}) => <span css="margin-left: .3rem">{emoji(' ✅')}</span>
 
 const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 	const textRef = useRef(null)

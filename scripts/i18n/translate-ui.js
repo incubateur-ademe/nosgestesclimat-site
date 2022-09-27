@@ -37,6 +37,9 @@ const progressBars = new cliProgress.MultiBar(
 	cliProgress.Presets.shades_grey
 )
 
+const consecutiveEmojiRegexp =
+	/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g
+
 const translateTo = (targetLang, targetPath) => {
 	const missingTranslations = Object.entries(
 		utils.getUiMissingTranslations(srcPath, targetPath, force)
@@ -65,9 +68,13 @@ const translateTo = (targetLang, targetPath) => {
 						srcLang,
 						targetLang
 					)
+					const translationWithCombinedEmojis = translation.replace(
+						consecutiveEmojiRegexp,
+						(_, p1, p2) => `${p1}‍${p2}`
+					)
 					translatedKeys = R.assocPath(
 						key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/),
-						translation,
+						translationWithCombinedEmojis,
 						translatedKeys
 					)
 					//	TODO: add a way to write all the translations at once

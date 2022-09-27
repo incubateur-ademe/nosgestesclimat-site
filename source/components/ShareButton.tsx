@@ -1,7 +1,6 @@
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import emoji from './emoji'
 import ShareButtonIcon from './ShareButtonIcon'
 import { TrackerContext } from './utils/withTracker'
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
@@ -79,9 +78,7 @@ ${decodeURIComponent(url)}`
 					t('Copier le lien')
 				)
 			) : (
-				<span>
-					{t('Copié')} {emoji('✅')}
-				</span>
+				<span>{t('Copié ✅')}</span>
 			)}
 			{/* Created by Barracuda from the Noun Project */}
 		</Button>

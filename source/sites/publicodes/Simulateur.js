@@ -8,7 +8,6 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
-import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
 import { FullName } from '../../components/publicodesUtils'
@@ -108,6 +107,6 @@ export default Simulateur
 
 const EndingCongratulations = () => (
 	<h3>
-		{emoji('🌟')} <Trans>Vous avez complété cette simulation</Trans>
+		<Trans>🌟 Vous avez complété cette simulation</Trans>
 	</h3>
 )

@@ -1,4 +1,3 @@
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'Components/Link'
 import lastRelease from '../data/last-release.json'
@@ -30,10 +29,8 @@ export default function NewsBanner() {
 	return showBanner ? (
 		<div css="margin: 1rem">
 			<span>
-				{emoji('✨')} <Trans>Découvrez les nouveautés de la version</Trans>{' '}
-				<Link to={'/nouveautés'}>
-					{lastRelease.name.toLowerCase()}
-				</Link>
+				<Trans>✨ Découvrez les nouveautés de la version</Trans>{' '}
+				<Link to={'/nouveautés'}>{lastRelease.name.toLowerCase()}</Link>
 			</span>
 			<button
 				onClick={() => setLastViewedRelease(lastRelease.name)}

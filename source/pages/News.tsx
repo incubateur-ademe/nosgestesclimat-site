@@ -70,8 +70,7 @@ export default function News() {
 			/>
 			<ScrollToTop key={selectedRelease} />
 			<h1>
-				<Trans>Les nouveautés</Trans>
-				{emoji('✨')}
+				<Trans>Les nouveautés ✨</Trans>
 			</h1>
 			<p>
 				<Trans i18nKey={`pages.News.premierParagraphe`}>

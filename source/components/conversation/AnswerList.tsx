@@ -69,8 +69,7 @@ export default function AnswerList() {
 			{!!foldedStepsToDisplay.length && (
 				<div>
 					<h2>
-						{emoji('📋 ')}
-						<Trans>Mes réponses</Trans>
+						<Trans>📋 Mes réponses</Trans>
 					</h2>
 					<CategoryTable
 						{...{ steps: foldedStepsToDisplay, categories, engine }}

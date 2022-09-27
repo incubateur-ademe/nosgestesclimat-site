@@ -3,7 +3,6 @@ import { createContext, useState, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import RuleInput from 'Components/conversation/RuleInput'
 import { getNextQuestions } from 'Components/utils/useNextQuestion'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { splitName } from 'Components/publicodesUtils'
 import { contextURL } from './useDatabase'
@@ -73,8 +72,7 @@ const Main = ({
 				margin-top: 1rem;
 			`}
 		>
-			{emoji('📝')}
-			<Trans>Contexte sondage</Trans>
+			<Trans>📝 Contexte sondage</Trans>
 		</h2>
 		{Object.keys(surveyContext[room]).length !== 0 ? (
 			<SituationDetails

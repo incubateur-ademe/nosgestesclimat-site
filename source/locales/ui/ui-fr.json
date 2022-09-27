@@ -4,56 +4,82 @@
   "(co-voiturage pris en compte)": "(co-voiturage pris en compte)",
   "{{res}} tonnes de CO₂e": "{{res}} tonnes de CO₂e",
   "{unit}": "{unit}",
-  "2 tonnes": "2 tonnes",
+  "⏲️  Choississez votre mode de simulation": "⏲️  Choississez votre mode de simulation",
+  "◀ Retour": "◀ Retour",
+  "◀ Retour à la liste": "◀ Retour à la liste",
+  "◀ Retour à la liste des fiches": "◀ Retour à la liste des fiches",
+  "♻️ Recommencer": "♻️ Recommencer",
+  "⚙️ Comprendre le calcul": "⚙️ Comprendre le calcul",
+  "⚠️ Certains utilisateurs ont des bilans extrêmes.": "⚠️ Certains utilisateurs ont des bilans extrêmes.",
+  "🇺🇦Réduire ma conso de pétrole": "🇺🇦Réduire ma conso de pétrole",
+  "✅ C'est fait": "✅ C'est fait",
+  "✅ sélectionnez celles qui vous intéressent": "✅ sélectionnez celles qui vous intéressent",
+  "✨ Découvrez les nouveautés de la version": "✨ Découvrez les nouveautés de la version",
+  "❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.": "❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.",
+  "🌟 Vous avez complété cette simulation": "🌟 Vous avez complété cette simulation",
+  "🎯 2 tonnes": "🎯 2 tonnes",
+  "🎯 Montrer l'objectif": "🎯 Montrer l'objectif",
+  "🎰 Faites toutes et tous votre simulation": "🎰 Faites toutes et tous votre simulation",
+  "👍 Accepter": "👍 Accepter",
+  "👎 Refuser": "👎 Refuser",
+  "👤 Qui est connecté ?": "👤 Qui est connecté ?",
+  "👤 Vous utilisez actuellement le persona": "👤 Vous utilisez actuellement le persona",
+  "👥 Faire le test à plusieurs": "👥 Faire le test à plusieurs",
+  "💡 Choisissez un nom de salle": "💡 Choisissez un nom de salle",
+  "💾 Lancer le téléchargement.": "💾 Lancer le téléchargement.",
+  "💾 Télécharger les résultats": "💾 Télécharger les résultats",
+  "📊 Analysez les résultats et animez les discussions !": "📊 Analysez les résultats et animez les discussions !",
+  "📋 Mes réponses": "📋 Mes réponses",
+  "📘 Comment ça marche ?": "📘 Comment ça marche ?",
+  "📘 En savoir plus": "📘 En savoir plus",
+  "📝 Contexte sondage": "📝 Contexte sondage",
+  "🔃 Générer un autre nom": "🔃 Générer un autre nom",
+  "🔍 Rechercher": "🔍 Rechercher",
+  "🔗 Partagez le lien à vos amis, collègues, etc.": "🔗 Partagez le lien à vos amis, collègues, etc.",
+  "🧑‍🏫 Revoir le tutoriel": "🧑‍🏫 Revoir le tutoriel",
+  "🧮 Visualisez à tout moment les résultats de votre groupe": "🧮 Visualisez à tout moment les résultats de votre groupe",
+  "🧮 Voir le geste climat correspondant": "🧮 Voir le geste climat correspondant",
+  "🧮 Voir les réponses": "🧮 Voir les réponses",
+  "🚪 Quitter la conférence": "🚪 Quitter la conférence",
   "404": {
     "action": "Revenir en lieu sûr",
     "message": "Cette page n'existe pas ou n'existe plus"
   },
   "À propos": "À propos",
   "A vous de choisir vos gestes à la carte.": "A vous de choisir vos gestes à la carte.",
-  "Accepter": "Accepter",
-  "Accessibilité": "Accessibilité",
   "Accessibilité : partiellement conforme": "Accessibilité : partiellement conforme",
   "Action": "Action",
-  "actions disponibles": "actions disponibles",
   "Actions écartées :": "Actions écartées :",
   "Actions négatives": "Actions négatives",
   "Actions non chiffrées": "Actions non chiffrées",
+  "Afficher ma simulation": "Afficher ma simulation",
   "Agir": "Agir",
   "Aide à la saisie": "Aide à la saisie",
   "Ajouter ": "Ajouter ",
   "Aller au contenu": "Aller au contenu",
   "an": "an",
-  "Analysez les résultats et animez les discussions !": "Analysez les résultats et animez les discussions !",
-  "Aucun résultat": "Aucun résultat",
   "Autonome": "Autonome",
   "Avancement du groupe": "Avancement du groupe",
-  "back": "Reprendre la simulation",
+  "Bientôt disponible !": "Bientôt disponible !",
   "C'est dans le fichier": "C'est dans le fichier",
-  "C'est fait": "C'est fait",
   "C'est parti !": "C'est parti !",
   "Cacher": "Cacher",
   "Cacher l'objectif": "Cacher l'objectif",
   "catégorie complétée": "catégorie complétée",
   "Ce guide n'existe pas encore": "Ce guide n'existe pas encore",
-  "Certains utilisateurs ont des bilans extrêmes.": "Certains utilisateurs ont des bilans extrêmes.",
   "cet article": "cet article",
-  "Cette commune n'existe pas": "Cette commune n'existe pas",
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles",
   "Cette fiche détaillée n'existe pas encore": "Cette fiche détaillée n'existe pas encore",
   "cette page": "cette page",
-  "Changer de langue": "Changer de langue",
+  "Changer de langue 🌐": "Changer de langue 🌐",
   "Chargement": "Chargement",
   "Choisir l'action": "Choisir l'action",
   "Choisir le type de tri des actions": "Choisir le type de tri des actions",
-  "Choisissez un nom de salle": "Choisissez un nom de salle",
   "Choississez d'abord un nom": "Choississez d'abord un nom",
   "Cliquez pour partager le lien": "Cliquez pour partager le lien",
-  "Comment ça marche ?": "Comment ça marche ?",
   "Comment créer un persona ?": "Comment créer un persona ?",
   "Comment réduire mon empreinte ?": "Comment réduire mon empreinte ?",
   "Comment voulez-vous procéder ?": "Comment voulez-vous procéder ?",
-  "Commune ou code postal": "Commune ou code postal",
   "components": {
     "conversation": {
       "estimate": {
@@ -78,32 +104,26 @@
   "Comprendre l'ojectif de 2 tonnes": "Comprendre l'ojectif de 2 tonnes",
   "Comprendre le calcul": "Comprendre le calcul",
   "Comprendre nos calculs": "Comprendre nos calculs",
-  "Conditions générales d'utilisation": "Conditions générales d'utilisation",
   "Conférence": "Conférence",
   "Confirmer": "Confirmer",
   "Connaissez-vous votre empreinte climat ?": "Connaissez-vous votre empreinte climat ?",
   "Connaissez-vous votre empreinte sur le climat ?": "Connaissez-vous votre empreinte sur le climat ?",
-  "Contexte sondage": "Contexte sondage",
   "Contribuer": "Contribuer",
-  "Copié": "Copié",
+  "Copié ✅": "Copié ✅",
   "Copier le lien": "Copier le lien",
   "de": "de",
   "de <1>pétrole brut par an</1>.": "de <1>pétrole brut par an</1>.",
   "de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>": "de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>",
   "Découvrez la FAQ !": "Découvrez la FAQ !",
   "Découvrez les enjeux qui se cachent derrière chaque action.": "Découvrez les enjeux qui se cachent derrière chaque action.",
-  "Découvrez les nouveautés de la version": "Découvrez les nouveautés de la version",
   "Découvrez les nouveautés de Nos Gestes Climat": "Découvrez les nouveautés de Nos Gestes Climat",
   "Démarrer": "Démarrer",
   "dernières nouveautés": "dernières nouveautés",
   "Diffuser": "Diffuser",
-  "Diffuser Nos Gestes Climat": "Diffuser Nos Gestes Climat",
   "Documentation": "Documentation",
   "Documentation Contexte Sondage": "Documentation Contexte Sondage",
-  "Données personnelles": "Données personnelles",
   "Données valables pour les 30 derniers jours": "Données valables pour les 30 derniers jours",
   "Durée des visites": "Durée des visites",
-  "écartez celles qui vous semblent trop ambitieuses ou déplacées.": "écartez celles qui vous semblent trop ambitieuses ou déplacées.",
   "Effacer le nom actuel": "Effacer le nom actuel",
   "Empreinte totale": "Empreinte totale",
   "En cours de chargement": "En cours de chargement",
@@ -116,7 +136,6 @@
   "Envie de donner un coup de pouce ?": "Envie de donner un coup de pouce ?",
   "Envoyer": "Envoyer",
   "Erreur inconnue côté serveur": "Erreur inconnue côté serveur",
-  "Et concrètement ?": "Et concrètement ?",
   "Et mes données ?": "Et mes données ?",
   "et visualisez les résultats du groupe": "et visualisez les résultats du groupe",
   "Explorer les catégories": "Explorer les catégories",
@@ -124,10 +143,8 @@
   "Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.": "Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.",
   "Explorez notre documentation": "Explorez notre documentation",
   "Faire le test": "Faire le test",
-  "Faire le test à plusieurs": "Faire le test à plusieurs",
   "Faire mon test": "Faire mon test",
   "Faites le test à plusieurs via le mode conférence ou sondage": "Faites le test à plusieurs via le mode conférence ou sondage",
-  "Faites toutes et tous votre simulation": "Faites toutes et tous votre simulation",
   "Faites un test d'empreinte climat avec moi": "Faites un test d'empreinte climat avec moi",
   "Faites votre test": "Faites votre test",
   "feedback": {
@@ -144,12 +161,9 @@
   "Fermer la notification de nouveautés": "Fermer la notification de nouveautés",
   "Fermer les options de tri": "Fermer les options de tri",
   "Fréquence": "Fréquence",
-  "Générer un autre nom": "Générer un autre nom",
-  "Guide": "Guide",
   "Guidé": "Guidé",
   "habitant": "habitant",
   "habitants": "habitants",
-  "hoississez votre mode de simulation": "hoississez votre mode de simulation",
   "Icône représentant une pompe à pétrole": "Icône représentant une pompe à pétrole",
   "Initialisation...": "Initialisation...",
   "Insérer cette suggestion": "Insérer cette suggestion",
@@ -158,18 +172,15 @@
   "L'objectif à atteindre, 2 tonnes de CO₂e": "L'objectif à atteindre, 2 tonnes de CO₂e",
   "la page à partager à l'étape 3": "la page à partager à l'étape 3",
   "La voiture en chiffres": "La voiture en chiffres",
-  "Lancer le téléchargement.": "Lancer le téléchargement.",
   "le - d'impact climat": "le - d'impact climat",
   "le + d'impact climat": "le + d'impact climat",
   "Le reste : ": "Le reste : ",
   "Le test": "Le test",
   "Le titre bref de votre problème": "Le titre bref de votre problème",
   "Les 3 actions au plus fort impact pour vous :": "Les 3 actions au plus fort impact pour vous :",
-  "Les nouveautés": "Les nouveautés",
+  "Les nouveautés ✨": "Les nouveautés ✨",
   "Logo de l'Association pour la transition Bas Carbone": "Logo de l'Association pour la transition Bas Carbone",
-  "Mais que veut dire ce petit <1>e</1> ": "Mais que veut dire ce petit <1>e</1> ",
   "Menu": "Menu",
-  "Mes réponses": "Mes réponses",
   "meta": {
     "pages": {
       "about": {
@@ -214,10 +225,11 @@
   "Modifier": "Modifier",
   "mon empreinte annuelle": "mon empreinte annuelle",
   "Mon empreinte climat": "Mon empreinte climat",
+  "Mon empreinte climat 😶‍🌫️": "Mon empreinte climat 😶‍🌫️",
   "mon objectif": "mon objectif",
   "Mon profil": "Mon profil",
   "Mon total :": "Mon total :",
-  "Montrer l'objectif": "Montrer l'objectif",
+  "Moyenne": "Moyenne",
   "Moyenne française": "Moyenne française",
   "N'afficher que les questions ": "N'afficher que les questions ",
   "Naviguez vers une question précise": "Naviguez vers une question précise",
@@ -247,9 +259,8 @@
       "premierParagraphe": "Nous améliorons le site en continu à partir de vos retours. Découvrez ici les"
     }
   },
-  "Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.": "Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.",
   "Partager mes résultats": "Partager mes résultats",
-  "Partagez le lien à vos amis, collègues, etc.": "Partagez le lien à vos amis, collègues, etc.",
+  "participant": "participant",
   "Participer au sondage": "Participer au sondage",
   "Participez à la conférence": "Participez à la conférence",
   "Participez au sondage ": "Participez au sondage ",
@@ -270,18 +281,18 @@
       "actionsRecap": "{{numberOfAvailableFinalActions}} actions disponibles, <3></3>sélectionnées."
     },
     "ActionTutorial": {
-      "félicitation": "Vous avez terminé votre simulation, {emoji('👏')} bravo !",
+      "félicitation": "Vous avez terminé votre simulation, 👏 bravo !",
       "msgEstimation": "Vous connaissez maintenant votre empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des idées pour la réduire...",
-      "msgPrécision": "Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.",
+      "msgPrécision": "💡 Pour améliorer la précision, certaines actions vous poseront quelques questions en plus.",
       "msgPrésentation": "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
     },
     "AllActions": {
       "allerPlusLoin": "<0>Aller plus loin</0><1><0>Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent derrière chaque action.</0></1>",
-      "msgPlusActions": "<0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer {emoji('🤷')}</0><1>Découvrez plus bas quelques pistes pour agir autrement {emoji('⏬')}</1>"
+      "msgPlusActions": "<0>Nous n'avons plus d'actions chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes pour agir autrement ⏬</1>"
     },
     "chart": {
       "RavijenChart": {
-        "equivalenceCase": "Une case {{emoji}} = {{nbKg}} kg de CO₂e."
+        "equivalenceCase": "Une case 🔲 = {{nbKg}} kg de CO₂e."
       }
     },
     "conference": {
@@ -289,11 +300,11 @@
         "donnéesExplications": "<0>En participant, vous acceptez de partager vos résultats agrégés de simulation avec les autres participants de la conférence : le total et les catégories (transport, logement, etc.). En revanche, nos serveurs ne les stockent pas : cela fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de conférence sera indexé dans <2>les statistiques d'utilisation</2> de Nos Gestes Climat. </1>"
       },
       "DataWarning": {
-        "viePrivée": "{emoji('🕵')} En participant, vous acceptez la collecte <3>anonyme</3> de vos résultats agrégés de simulation sur notre serveur : l'empreinte climat totale et les catégories (transport, logement, etc.). <6>En savoir plus</6>"
+        "viePrivée": "🕵 En participant, vous acceptez la collecte <1>anonyme</1> de vos résultats agrégés de simulation sur notre serveur : l'empreinte climat totale et les catégories (transport, logement, etc.). <3>En savoir plus</3>"
       },
       "Instructions": {
-        "avertissementModeConference": "Votre organisation peut bloquer l'utilisation du mode conférence. Faites le test au préalable en duo : en cas de problème, vous pouvez utiliser le mode sondage.",
-        "contextualisationLink": "Vous souhaitez ajouter des questions pour obtenir des informations supplémentaires sur les répondants ? <2>Découvrez la fonctionnalité \"contextualisation de sondage !\" </2>",
+        "avertissementModeConference": "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence. Faites le test au préalable en duo : en cas de problème, vous pouvez utiliser le mode sondage.",
+        "contextualisationLink": "💡 Vous souhaitez ajouter des questions pour obtenir des informations supplémentaires sur les répondants ? <2>Découvrez la fonctionnalité \"contextualisation de sondage !\" </2>",
         "descriptionModeConference": "Mode éphémère : parfait pour l'animation d'un atelier, une présentation interactive ou entre amis. Les données restent entre les participants (pair-à-pair), sans serveur, <2>juste le temps de la conférence</2>.",
         "descriptionModeSondage": "Mode persistant : l'interface est presque la même, mais les données sont stockées sur notre serveur et ainsi restent accessibles <1>pendant deux mois</1>.",
         "guideLien": "Les résultats sont là, que faire ? Notre guide vous accompagne dans vos réflexions et vos discussions sur cette page",
@@ -303,8 +314,8 @@
         "resultatInfos": "Les résultats pour chaque catégorie (alimentation, transport, logement ...) s'affichent progressivement et en temps réel pour l'ensemble du groupe sur "
       },
       "NamingBlock": {
-        "nomSalleCourt": "Votre nom de salle est court, il y a un petit risque que des inconnus puissent le deviner",
-        "nomSalleDoitContenirDesLettres": "Votre nom de salle ne peut que contenir des lettres, des chifffres et des tirets"
+        "nomSalleCourt": "⚠️ Votre nom de salle est court, il y a un petit risque que des inconnus puissent le deviner",
+        "nomSalleDoitContenirDesLettres": "💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des tirets"
       },
       "NoTestMessage": {
         "bienvenue": "Bienvenue dans le mode groupe de Nos Gestes Climat ! Vous n'avez pas encore débuté votre test, lancez-vous !"
@@ -317,12 +328,12 @@
       }
     },
     "Contribution": {
-      "bugQuestion": "{{bug}} Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?",
+      "bugQuestion": "🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?",
       "commentaireAugmenté": "{{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}\n> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).",
       "description": "Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !",
       "descriptionComplète": "<0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>",
       "liensVersGithub": "Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.",
-      "remerciements": "Merci {emoji('😍')}! Suivez l'avancement de votre suggestion en cliquant sur <3>ce lien</3>."
+      "remerciements": "Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <1>ce lien</1>."
     },
     "fin": {
       "ActionTeaser": {
@@ -349,13 +360,13 @@
     },
     "shareText": "#nosgestesclimat 🌍️\n\n{{total}} tonnes CO2e / an ⬇️\n\n{{graph}}",
     "SimulationMissing": {
-      "personnas": "Vous pouvez aussi voir le parcours action comme si vous étiez l'un de ces profils types.",
+      "personnas": "💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un de ces profils types.",
       "simulationManquante": "Vous n'avez pas encore fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur votre mode de vie."
     },
     "Tutorial": {
       "slide1": {
         "p1": "<0>Pas de panique, on vous explique ce que c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à mesure des gaz à effet de serre que l'on émet.</1>",
-        "p2": "<p>Ce test vous donne en {{chrono}} 10 minutes chrono <strong>une mesure de votre part </strong> dans ce réchauffement.</p>"
+        "p2": "<0>Ce test vous donne en ⏱️ 10 minutes chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>"
       },
       "slide2": {
         "blockquote": "D'autres gaz, surtout le méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. ",
@@ -363,7 +374,7 @@
         "p2": "Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <1>tonnes</1> de CO₂e !"
       },
       "slide3": {
-        "blockquote": "\n\t\t\t\t\t{{sparkles}} Nouveau ! Visualisez également votre consommation de\n\t\t\t\t\t{{fuelPump}} pétrole, un indicateur complémentaire au sujet\n\t\t\t\t\tclimat.",
+        "blockquote": "✨ Nouveau ! Visualisez également votre consommation de ⛽️ pétrole, un indicateur complémentaire au sujet climat.",
         "p1": "<0>Et concrètement ?</0><1>Chaque année, un Français émet en moyenne <2> à peu près 10 tonnes</2> de CO₂e.</1>",
         "p2": "C'est votre point de départ dans ce test : chacune de vos réponses personnalisera ce résultat dans la barre de score."
       },
@@ -375,44 +386,39 @@
       "slide5": {
         "p1": "<0>Et l'objectif ?</0><1>Nous devons diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>"
       },
-      "slide6": "<0>Alors, c'est parti ?</0><1>Quelques astuces pour vous aider à compléter le test.</1><2>👤 Répondez aux questions en votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼 Répondez pour votre vie perso, pas pour votre boulot ou études. <3>Une seule exception </3>: votre trajet domicile-travail doit être inclus dans les km parcourus.</3><4>❓️ D'autres questions ? Consultez notre <3>FAQ</3> à tout moment.</4>"
+      "slide6": "<0>Alors, c'est parti ?</0><1>Quelques astuces pour vous aider à compléter le test.</1><2>👤 Répondez aux questions en votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼 Répondez pour votre vie perso, pas pour votre boulot ou études. <2>Une seule exception </2>: votre trajet domicile-travail doit être inclus dans les km parcourus.</3><4>❓️ D'autres questions ? Consultez notre <2>FAQ</2> à tout moment.</4>"
     }
   },
   "Questions fréquentes": "Questions fréquentes",
   "Quitter": "Quitter",
-  "Quitter la conférence": "Quitter la conférence",
-  "Rechercher": "Rechercher",
-  "Recommencer": "Recommencer",
   "Réduire ma conso": "Réduire ma conso",
-  "Réduire ma conso de pétrole": "Réduire ma conso de pétrole",
   "Réduire mon empreinte": "Réduire mon empreinte",
   "Refermer": "Refermer",
-  "Refuser": "Refuser",
   "Rejeter l'action": "Rejeter l'action",
   "Répondez à notre sondage sur le simulateur.": "Répondez à notre sondage sur le simulateur.",
   "Reprendre la simulation": "Reprendre la simulation",
   "République Française": "République Française",
   "Réseaux Sociaux": "Réseaux Sociaux",
-  "Retour": "Retour",
-  "Retour à la liste": "Retour à la liste",
-  "Retour à la liste des fiches": "Retour à la liste des fiches",
   "Revenir à ma simulation": "Revenir à ma simulation",
-  "Revoir le tutoriel": "Revoir le tutoriel",
-  "Saisissez votre domaine d'activité": "Saisissez votre domaine d'activité",
-  "sélectionnées": "sélectionnées",
-  "sélectionnez celles qui vous intéressent": "sélectionnez celles qui vous intéressent",
   "simulateurs": {
     "warning": {
       "plus": "Lire les précisions",
-      "titre": "Avant de commencer..."
+      "titre": "🚩 Avant de commencer..."
     }
   },
   "Simulation manquante": "Simulation manquante",
   "simulation-end": {
     "text": "Vous avez maintenant accès à l'estimation la plus précise possible.",
-    "title": "Vous avez complété cette simulation"
+    "title": "🌟 Vous avez complété cette simulation"
   },
   "simulations terminées depuis le lancement": "simulations terminées depuis le lancement",
+  "sites": {
+    "publicodes": {
+      "Tutorial": {
+        "questionE": "💡 Mais que veut dire ce petit <1>e</1> ?"
+      }
+    }
+  },
   "Sites Web": "Sites Web",
   "Sondage": "Sondage",
   "Sondage créé": "Sondage créé",
@@ -420,7 +426,6 @@
   "Stats générales": "Stats générales",
   "Suivant": "Suivant",
   "Sur le même sujet": "Sur le même sujet",
-  "Télécharger les résultats": "Télécharger les résultats",
   "Terminer ma simulation": "Terminer ma simulation",
   "titre de la version": "titre de la version",
   "tonne": "tonne",
@@ -429,23 +434,16 @@
   "trajets saisis en moyenne": "trajets saisis en moyenne",
   "Tri :": "Tri :",
   "Triées par :": "Triées par :",
-  "Tutorial": "Tutorial",
   "Une personne au moins est présente dans la voiture (vous !)": "Une personne au moins est présente dans la voiture (vous !)",
   "Une question, un problème ?": "Une question, un problème ?",
   "visites depuis le lancement": "visites depuis le lancement",
-  "Visualisez à tout moment les résultats de votre groupe": "Visualisez à tout moment les résultats de votre groupe",
   "Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !": "Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !",
-  "Voir le geste climat correspondant": "Voir le geste climat correspondant",
   "Voir le reste : ": "Voir le reste : ",
-  "Voir les réponses": "Voir les réponses",
-  "Voir les réponses<1></1>": "Voir les réponses<1></1>",
   "Voir ma situation": "Voir ma situation",
   "Voir toutes les actions": "Voir toutes les actions",
   "Vos trajets apparaîtront dans ce tableau.": "Vos trajets apparaîtront dans ce tableau.",
   "Votre mission : réduire votre empreinte.": "Votre mission : réduire votre empreinte.",
   "Votre part du logement": "Votre part du logement",
-  "Vous avez complété cette simulation": "Vous avez complété cette simulation",
   "Vous avez été invités à un sondage Nos Gestes Climat nommé": "Vous avez été invités à un sondage Nos Gestes Climat nommé",
-  "Vous n'avez pas encore fait le test.": "Vous n'avez pas encore fait le test.",
-  "Vous utilisez actuellement le persona": "Vous utilisez actuellement le persona"
+  "Vous n'avez pas encore fait le test.": "Vous n'avez pas encore fait le test."
 }

@@ -1,5 +1,4 @@
 import { updateSituation } from 'Actions/actions'
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'

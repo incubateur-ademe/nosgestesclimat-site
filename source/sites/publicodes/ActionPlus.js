@@ -1,7 +1,6 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
-import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'Components/Link'
@@ -31,15 +30,13 @@ export default () => {
 			<div>
 				<Link to={'/actions/plus'}>
 					<button className="ui__ button simple small ">
-						{emoji('◀')}
-						<Trans>Retour à la liste des fiches</Trans>
+						<Trans>◀ Retour à la liste des fiches</Trans>
 					</button>
 				</Link>
 			</div>
 			<Link to={'/actions/' + encodedName}>
 				<button className="ui__ button simple small ">
-					{emoji('🧮')}
-					<Trans>Voir le geste climat correspondant</Trans>
+					<Trans>🧮 Voir le geste climat correspondant</Trans>
 				</button>
 			</Link>
 			<div css="margin: 1.6rem 0">

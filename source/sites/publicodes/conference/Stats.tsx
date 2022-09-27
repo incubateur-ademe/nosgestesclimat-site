@@ -6,7 +6,7 @@ import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
-import { useTranslation } from 'react-i18next'
+import { useTranslation, Trans } from 'react-i18next'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -72,7 +72,7 @@ export default ({
 		<div>
 			<div css=" text-align: center">
 				<p role="heading" aria-level="2">
-					Avancement du groupe{' '}
+					<Trans>Avancement du groupe</Trans>{' '}
 					<span role="status">
 						({elements.length} participant
 						{elements.length > 1 ? 's' : ''})
@@ -92,8 +92,9 @@ export default ({
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
-						<span role="status">Moyenne : {humanMean} </span>
-						// TODO: needs to be translated
+						<span role="status">
+							<Trans>Moyenne</Trans> : {humanMean}{' '}
+						</span>
 						<small title={t('Moyenne française')}>
 							({emoji('🇫🇷')} <DefaultFootprint />)
 						</small>
@@ -173,7 +174,7 @@ export default ({
 										onClick={() => setSpotlight(currentUser)}
 									>
 										<span css="background: #fff45f;">
-											Afficher ma simulation
+											<Trans>Afficher ma simulation</Trans>
 										</span>
 									</button>
 								)}

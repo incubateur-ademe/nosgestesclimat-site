@@ -1,4 +1,3 @@
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { getLangInfos, Lang, LangInfos } from '../locales/translation'
@@ -17,9 +16,7 @@ export default function LangSwitcher() {
 				display: flex;
 			`}
 		>
-			<summary>
-				{t('Changer de langue')} {emoji('🌐')}
-			</summary>
+			<summary>{t('Changer de langue 🌐')}</summary>
 			<ColumnFlex>
 				{Object.keys(Lang)
 					.filter((l) => l !== Lang.Default)

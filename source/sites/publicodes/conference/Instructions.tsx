@@ -3,7 +3,6 @@ import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'Components/Link'
-import emoji from '../../../components/emoji'
 import ShareButton from '../../../components/ShareButton'
 import { ThemeColorsContext } from '../../../components/utils/colors'
 import { useQuery } from '../../../utils'
@@ -54,34 +53,20 @@ export default ({
 					</p>
 				</Trans>
 			)}
-			<h2>
-				{emoji('📘')} {t('Comment ça marche ?')}
-			</h2>
+			<h2>{t('📘 Comment ça marche ?')}</h2>
 			{!started && (
 				<InstructionBlock
 					index="1"
-					title={
-						<span>
-							{emoji('💡 ')} {t('Choisissez un nom de salle')}
-						</span>
-					}
+					title={<span>{t('💡 Choisissez un nom de salle')}</span>}
 				>
 					{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
-					{room && (
-						<p>
-							{emoji('✅')} {t(`C'est fait`)}
-						</p>
-					)}
+					{room && <p>{t(`✅ C'est fait`)}</p>}
 				</InstructionBlock>
 			)}
 			{!started && newRoom !== '' && !room && (
 				<InstructionBlock
 					index="2"
-					title={
-						<span>
-							{emoji('⏲️')} C{t(`hoississez votre mode de simulation`)}
-						</span>
-					}
+					title={<span>{t(`⏲️  Choississez votre mode de simulation`)}</span>}
 				>
 					<div
 						css={`
@@ -152,11 +137,10 @@ export default ({
 					</div>
 					{mode == 'conférence' && (
 						<p>
-							{emoji('🔒️')}
 							<Trans
 								i18nKey={`publicodes.conference.Instructions.avertissementModeConference`}
 							>
-								Votre organisation peut bloquer l'utilisation du mode
+								🔒️ Votre organisation peut bloquer l'utilisation du mode
 								conférence. Faites le test au préalable en duo : en cas de
 								problème, vous pouvez utiliser le mode sondage.
 							</Trans>
@@ -164,11 +148,10 @@ export default ({
 					)}
 					{mode == 'sondage' && (
 						<p>
-							{emoji('💡')}
 							<Trans
 								i18nKey={`publicodes.conference.Instructions.contextualisationLink`}
 							>
-								Vous souhaitez ajouter des questions pour obtenir des
+								💡 Vous souhaitez ajouter des questions pour obtenir des
 								informations supplémentaires sur les répondants ?{' '}
 								<Link to={'/groupe/documentation-contexte'}>
 									Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
@@ -182,9 +165,7 @@ export default ({
 				index="3"
 				noIndex={started}
 				title={
-					<span>
-						{emoji('🔗 ')} {t(`Partagez le lien à vos amis, collègues, etc.`)}
-					</span>
+					<span>{t(`🔗 Partagez le lien à vos amis, collègues, etc.`)}</span>
 				}
 			>
 				{!newRoom && !room ? (
@@ -222,11 +203,7 @@ export default ({
 			<InstructionBlock
 				index="4"
 				noIndex={started}
-				title={
-					<span>
-						{emoji('🎰 ')} {t(`Faites toutes et tous votre simulation`)}
-					</span>
-				}
+				title={<span>{t(`🎰 Faites toutes et tous votre simulation`)}</span>}
 			>
 				{!room ? (
 					<Link to={'/simulateur/bilan'}>
@@ -258,8 +235,7 @@ export default ({
 				noIndex={started}
 				title={
 					<span>
-						{emoji('🧮 ')}{' '}
-						{t(`Visualisez à tout moment les résultats de votre groupe`)}
+						{t(`🧮 Visualisez à tout moment les résultats de votre groupe`)}
 					</span>
 				}
 			>
@@ -272,8 +248,7 @@ export default ({
 					t(`la page à partager à l'étape 3`)
 				) : (
 					<span>
-						{t(`cette page`)}{' '}
-						<Link to={URLPath}>{URLPath}</Link>
+						{t(`cette page`)} <Link to={URLPath}>{URLPath}</Link>
 					</span>
 				)}
 				.
@@ -288,8 +263,9 @@ export default ({
 					noIndex={started}
 					title={
 						<span>
-							{emoji('📊')}{' '}
-							<Trans>Analysez les résultats et animez les discussions !</Trans>
+							<Trans>
+								📊 Analysez les résultats et animez les discussions !
+							</Trans>
 						</span>
 					}
 				>

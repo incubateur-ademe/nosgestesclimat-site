@@ -1,4 +1,3 @@
-import emoji from 'react-easy-emoji'
 import { useDispatch } from 'react-redux'
 import { actionImg } from '../../components/SessionBar'
 import { skipTutorial } from '../../actions/actions'
@@ -14,7 +13,7 @@ export default ({ value, unit }) => {
 			</h1>
 			<p>
 				<Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
-					Vous avez terminé votre simulation, {emoji('👏')} bravo !
+					Vous avez terminé votre simulation, 👏 bravo !
 				</Trans>
 			</p>
 			<p>
@@ -32,21 +31,18 @@ export default ({ value, unit }) => {
 
 			<ul css="li {list-style-type: none;}">
 				<li>
-					{emoji('✅')} <Trans>sélectionnez celles qui vous intéressent</Trans>
+					<Trans>✅ sélectionnez celles qui vous intéressent</Trans>
 				</li>
 				<li>
-					{' '}
-					{emoji('❌')}{' '}
 					<Trans>
-						écartez celles qui vous semblent trop ambitieuses ou déplacées.
+						❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.
 					</Trans>
 				</li>
 			</ul>
 			<p>
-				{emoji('💡')}{' '}
 				<Trans i18nKey={'publicodes.ActionTutorial.msgPrécision'}>
-					Pour améliorer la précision, certaines actions vous poseront quelques
-					questions en plus.
+					💡 Pour améliorer la précision, certaines actions vous poseront
+					quelques questions en plus.
 				</Trans>
 			</p>
 			<button

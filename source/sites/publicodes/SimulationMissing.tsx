@@ -1,4 +1,3 @@
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Link } from 'Components/Link'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
@@ -28,10 +27,9 @@ export default ({}) => {
 				</Link>
 			</div>
 			<p css="text-align: center; max-width: 26rem; margin: 0 auto;">
-				{emoji('💡 ')}
 				<Trans i18nKey={`publicodes.SimulationMissing.personnas`}>
-					Vous pouvez aussi voir le parcours action comme si vous étiez l'un de
-					ces profils types.
+					💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un
+					de ces profils types.
 				</Trans>
 			</p>
 			<PersonaGrid

@@ -6,7 +6,6 @@ import {
 	resetTutorials,
 	resetStoredTrajets,
 } from 'Actions/actions'
-import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
@@ -53,8 +52,7 @@ export default ({}) => {
 				{persona && (
 					<p>
 						<em>
-							{emoji('👤')}&nbsp;{' '}
-							<Trans>Vous utilisez actuellement le persona</Trans>{' '}
+							<Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
 							<code>{persona}</code>
 						</em>
 					</p>
@@ -73,7 +71,7 @@ export default ({}) => {
 								navigate('/tutoriel')
 							}}
 						>
-							{emoji('🧑‍🏫')} <Trans>Revoir le tutoriel</Trans>
+							<Trans>🧑‍🏫 Revoir le tutoriel</Trans>
 						</button>
 					</div>
 				)}
@@ -108,7 +106,7 @@ export default ({}) => {
 								navigate('/simulateur/bilan')
 							}}
 						>
-							{emoji('♻️ ')} <Trans>Recommencer</Trans>
+							<Trans>♻️ Recommencer</Trans>
 						</button>
 					</div>
 				) : (

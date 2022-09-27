@@ -1,6 +1,5 @@
 import { usePersistingState } from 'Components/utils/persistState'
 import { ReactNode } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 
 type WarningProps = {
@@ -17,10 +16,9 @@ export default function Warning({ localStorageKey, children }: WarningProps) {
 			`}
 		>
 			<p>
-				{emoji('🚩 ')}
 				<strong>
 					<Trans i18nKey="simulateurs.warning.titre">
-						Avant de commencer...
+						🚩 Avant de commencer...
 					</Trans>
 				</strong>{' '}
 				{folded && (

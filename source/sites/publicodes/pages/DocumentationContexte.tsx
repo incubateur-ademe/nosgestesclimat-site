@@ -1,6 +1,5 @@
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import emoji from 'react-easy-emoji'
 import { Link } from 'Components/Link'
 import Meta from 'Components/utils/Meta'
 import { Trans, useTranslation } from 'react-i18next'
@@ -31,7 +30,7 @@ export default () => {
 			<div>
 				<Link to={'/groupe'}>
 					<button className="ui__ button simple small ">
-						{emoji('◀')} <Trans>Retour</Trans>
+						<Trans>◀ Retour</Trans>
 					</button>
 				</Link>
 			</div>

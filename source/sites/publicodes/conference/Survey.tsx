@@ -153,7 +153,7 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 						e.preventDefault()
 					}}
 				>
-					{emoji('💾')} <Trans>Télécharger les résultats</Trans>
+					<Trans>💾 Télécharger les résultats</Trans>
 				</a>
 			) : isRegisteredSurvey ? (
 				<div className="ui__ card content">
@@ -192,7 +192,7 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 						</li>
 					</ul>
 					<a href={url} className="ui__ link-button">
-						{emoji('💾')} <Trans>Lancer le téléchargement.</Trans>
+						<Trans>💾 Lancer le téléchargement.</Trans>
 					</a>
 				</div>
 			) : (

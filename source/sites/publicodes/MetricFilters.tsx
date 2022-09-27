@@ -50,9 +50,8 @@ export default ({ selected }) => {
 				})
 			}
 		>
-			{emoji('🇺🇦')}{' '}
 			<span>
-				<Trans>Réduire ma conso de pétrole</Trans>
+				<Trans>🇺🇦Réduire ma conso de pétrole</Trans>
 			</span>
 		</button>
 	)

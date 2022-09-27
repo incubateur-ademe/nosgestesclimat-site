@@ -1,6 +1,5 @@
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import emoji from '../../../components/emoji'
 import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
@@ -26,11 +25,10 @@ export default ({ room }) => {
 						</p>
 						<p>
 							<Trans i18nKey={'publicodes.conference.DataWarning.viePrivée'}>
-								{emoji('🕵')} En participant, vous acceptez la collecte{' '}
-								<em>anonyme</em> de vos résultats agrégés de simulation sur
-								notre serveur : l'empreinte climat totale et les catégories
-								(transport, logement, etc.).{' '}
-								<Link to="/vie-privée">En savoir plus</Link>
+								🕵 En participant, vous acceptez la collecte <em>anonyme</em> de
+								vos résultats agrégés de simulation sur notre serveur :
+								l'empreinte climat totale et les catégories (transport,
+								logement, etc.). <Link to="/vie-privée">En savoir plus</Link>
 							</Trans>
 						</p>
 						<div

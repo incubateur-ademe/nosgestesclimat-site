@@ -189,6 +189,7 @@ module.exports = {
 	getRulesMissingTranslations,
 	getUiMissingTranslations,
 	dotNotationToNestedObject,
+	nestedObjectToDotNotation,
 	paths,
 	defaultLang,
 	availableLanguages,

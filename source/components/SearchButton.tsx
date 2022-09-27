@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Navigate } from 'react-router'
 import useKeypress from './utils/useKeyPress'
@@ -32,7 +31,7 @@ export default function SearchButton({ invisibleButton }: SearchButtonProps) {
 			css={invisibleButton ? 'display: none !important' : ''}
 			onClick={() => setVisible(true)}
 		>
-			{emoji('🔍')} <Trans>Rechercher</Trans>
+			<Trans>🔍 Rechercher</Trans>
 		</button>
 	)
 }

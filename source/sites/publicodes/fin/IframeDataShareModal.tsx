@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { inIframe } from 'Source/utils'
@@ -91,10 +90,10 @@ export default ({ data }) => {
 				`}
 			>
 				<button onClick={onAccept} className="ui__ plain button">
-					{emoji('👍')} {t('Accepter')}
+					{t('👍 Accepter')}
 				</button>
 				<button onClick={onReject} className="ui__ button ">
-					{emoji('👎')} {t('Refuser')}
+					{t('👎 Refuser')}
 				</button>
 			</div>
 		</div>

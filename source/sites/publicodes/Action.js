@@ -70,7 +70,7 @@ export default ({}) => {
 			<ScrollToTop />
 			<Link to="/actions/liste">
 				<button className="ui__ button simple small ">
-					{emoji('◀')} <Trans>Retour à la liste</Trans>
+					<Trans>◀ Retour à la liste</Trans>
 				</button>
 			</Link>
 			<div className="ui__ card" css={'padding: .1rem; margin: .8rem 0'}>
@@ -96,15 +96,13 @@ export default ({}) => {
 					<div css="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem">
 						<Link to={'/documentation/' + encodedName}>
 							<button className="ui__ button small">
-								{emoji('⚙️')}
-								<Trans>Comprendre le calcul</Trans>
+								<Trans>⚙️ Comprendre le calcul</Trans>
 							</button>
 						</Link>
 						{plus && (
 							<Link to={'/actions/plus/' + encodedName}>
 								<button className="ui__ button small">
-									{emoji('📘')}
-									<Trans>En savoir plus</Trans>
+									<Trans>📘 En savoir plus</Trans>
 								</button>
 							</Link>
 						)}

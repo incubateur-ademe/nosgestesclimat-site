@@ -2,13 +2,9 @@ import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { motion } from 'framer-motion'
 import { useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import {
-	objectifsSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
+import { objectifsSelector } from 'Selectors/simulationSelectors'
 import { getSubcategories, relegate } from '../../../components/publicodesUtils'
 import useMediaQuery from '../../../components/utils/useMediaQuery'
 import { ObjectiveExplanation } from '../fin/ClimateTargetChart'
@@ -114,14 +110,17 @@ export default ({ details }) => {
 				>
 					<HideTargetButton onClick={() => hideTarget(true)} />
 					<p css="font-size: 180%; a img {margin-left: -0.4rem; width: 1.3rem; vertical-align: super}">
-						{emoji('🎯')} <Trans>2 tonnes</Trans> <ObjectiveExplanation />
+						<Trans>🎯 2 tonnes</Trans> <ObjectiveExplanation />
 					</p>
 					{total < 16000 && (
 						<p>
-							{t('publicodes.chart.RavijenChart.equivalenceCase', {
-								emoji: emoji('🔲'),
-								nbKg: Math.round(pixel),
-							})}
+							<Trans i18nKey={'publicodes.chart.RavijenChart.equivalenceCase'}>
+								Une case 🔲 ={' '}
+								{{
+									nbKg: Math.round(pixel),
+								}}{' '}
+								kg de CO₂e.
+							</Trans>
 						</p>
 					)}
 				</motion.div>
@@ -138,7 +137,7 @@ export default ({ details }) => {
 					`}
 					onClick={() => hideTarget(false)}
 				>
-					{emoji('🎯')} <Trans>Montrer l'objectif</Trans>
+					<Trans>🎯 Montrer l'objectif</Trans>
 				</button>
 			)}
 		</motion.section>

@@ -1,5 +1,4 @@
 import { AnimatePresence, motion } from 'framer-motion'
-import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { correctValue } from '../../components/publicodesUtils'
 import ActionConversation from './ActionConversation'
@@ -79,12 +78,9 @@ export default ({
 						<Trans i18nKey={'publicodes.AllActions.msgPlusActions'}>
 							<p>
 								Nous n'avons plus d'actions chiffrées très impactantes à vous
-								proposer {emoji('🤷')}
+								proposer 🤷
 							</p>
-							<p>
-								Découvrez plus bas quelques pistes pour agir autrement{' '}
-								{emoji('⏬')}
-							</p>
+							<p>Découvrez plus bas quelques pistes pour agir autrement ⏬</p>
 						</Trans>
 					</div>
 				</animate.fromTop>

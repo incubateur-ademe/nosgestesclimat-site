@@ -3,15 +3,17 @@ import { Markdown } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
-import emoji from 'react-easy-emoji'
 import { useParams } from 'react-router'
 import { Link } from 'Components/Link'
 import styled from 'styled-components'
 import useFetchDocumentation from 'Components/useFetchDocumentation'
+import { useTranslation } from 'react-i18next'
 
 export default () => {
 	const documentation = useFetchDocumentation()
 	if (!documentation) return null
+
+	const { t } = useTranslation()
 
 	const { encodedName } = useParams()
 
@@ -49,13 +51,15 @@ export default () => {
 			<Meta title={titre} />
 			<ScrollToTop />
 			<Link to={'/guide'}>
-				<button className="ui__ button simple">{emoji('◀')} Retour</button>
+				<button className="ui__ button simple">
+					<Trans>◀ Retour</Trans>
+				</button>
 			</Link>
 			<div>
 				<Markdown
 					children={
 						documentation['guide-mode-groupe/' + encodedName] ||
-						"Ce guide n'existe pas encore"
+						t("Ce guide n'existe pas encore")
 					}
 				/>
 				{encodedName !== 'guide' && relatedActions.length > 0 && (

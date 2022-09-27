@@ -108,7 +108,7 @@ export default () => {
 							])
 						}
 					>
-						{emoji('👥')} <Trans>Faire le test à plusieurs</Trans>
+						<Trans>👥 Faire le test à plusieurs</Trans>
 					</Link>
 				</div>
 				<NewsBanner />
