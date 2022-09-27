@@ -24,7 +24,12 @@ export default ({ openExplanation, setOpenExplanation }) => {
 					fur et à mesure de vos réponses, vous personnalisez votre score selon
 					votre mode de vie. Si vous répondez "je ne sais pas" à une question,
 					vous remarquerez que le total ne change pas puisqu'une valeur moyenne
-					vous est attribuée dans ce cas.
+					vous est attribuée dans ce cas. Il est fréquent que le score initial
+					change car{' '}
+					<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
+						le modèle Nos Gestes Climat évolue
+					</a>{' '}
+					!
 				</p>
 				<button
 					onClick={() => setOpenExplanation(false)}
