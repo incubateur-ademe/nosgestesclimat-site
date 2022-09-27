@@ -204,10 +204,12 @@ const slides = [
 				Chaque année, un Français émet en moyenne{' '}
 				<strong> à peu près 10 tonnes</strong> de CO₂e.
 			</p>
-			<AbacusFrance aria-hidden="true" css="width:10rem; height: 100%" />
+			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
 			<p>
-				C'est votre point de départ dans ce test : chacune de vos réponses
-				personnalisera ce résultat dans la barre de score.
+				Cet ordre de grandeur est le point de départ de votre test. Dans un
+				premier temps, ce résultat est calculé à partir de valeurs moyennes
+				Françaises attribuées à chaque question. Vos réponses viendront ensuite
+				affiner cette empreinte dans la barre de score.
 			</p>
 			<div css="margin: 1rem 0">
 				<WithEngine>
