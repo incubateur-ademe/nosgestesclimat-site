@@ -177,7 +177,7 @@ export default function Conversation({
 		: situation[currentQuestion] != null
 
 	useEffect(() => {
-		// This hook enables to set all the checkbox of a mosaic to false when once one is checked
+		// This hook enables to set all the checkbox of a mosaic to false once one is checked
 		if (isAnsweredMosaic && mosaicParams['type'] === 'selection') {
 			questionsToSubmit.map((question) =>
 				dispatch(updateSituation(question, situation[question] || 'non'))
@@ -189,15 +189,25 @@ export default function Conversation({
 		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disappear. However, if the user deselect the button, without this hook,
 		// the default value is set back to the question value, but the user doesn't know as there is no "je ne sais pas" button anymore and nothing is selected
 		// This hook enables to set 0 to mosaic question if the mosaic has been answered and nothing is checked.
+		const oneIsChecked = questionsToSubmit
+			.map((question) => situation[question] === 'oui')
+			.some((bool) => bool === true)
+
 		if (
 			isAnsweredMosaic &&
 			mosaicParams['type'] === 'selection' &&
 			situation[mosaicQuestion.dottedName] != 0 &&
-			questionsToSubmit
-				.map((question) => situation[question] === 'oui')
-				.some((bool) => bool === true)
+			!oneIsChecked
 		) {
 			dispatch(updateSituation(mosaicQuestion.dottedName, 0))
+		}
+		if (
+			isAnsweredMosaic &&
+			mosaicParams['type'] === 'selection' &&
+			situation[mosaicQuestion.dottedName] === 0 &&
+			oneIsChecked
+		) {
+			delete situation[mosaicQuestion.dottedName]
 		}
 	}, [isAnsweredMosaic, questionsToSubmit, situation])
 
