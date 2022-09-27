@@ -185,8 +185,6 @@ export default function Conversation({
 		}
 	}, [isAnsweredMosaic])
 
-	console.log(situation)
-
 	useEffect(() => {
 		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disappear. However, if the user deselect the button, without this hook,
 		// the default value is set back to the question value, but the user doesn't know as there is no "je ne sais pas" button anymore and nothing is selected
