@@ -1,8 +1,12 @@
 import { capitalise0, sortBy } from '../utils'
 import { utils as coreUtils } from 'publicodes'
 
-export const parentName = (dottedName, outputSeparator = ' . ', shift = 0) =>
-	splitName(dottedName).slice(shift, -1).join(outputSeparator)
+export const parentName = (
+	dottedName,
+	outputSeparator = ' . ',
+	shift = 0,
+	degree = 1
+) => splitName(dottedName).slice(shift, -degree).join(outputSeparator)
 
 export const splitName = (dottedName) => dottedName.split(' . ')
 

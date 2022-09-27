@@ -98,7 +98,7 @@ export default function NumberedMosaic({
 										value={
 											situationValue == null
 												? undefined
-												: situationValue === 0 // if situation value is 0 (2 options : input is filled in with a 0 or inout is empty), value become an empty string and placeholder (0) is visible..
+												: situationValue === 0 // if situation value is 0 (2 options : input is filled in with a 0 or input is empty), value become an empty string and placeholder (0) is visible..
 												? ''
 												: value
 										}
@@ -159,6 +159,7 @@ export default function NumberedMosaic({
 		<div>
 			{Object.keys(suggestions).length > 0 && (
 				<MosaicInputSuggestions
+					mosaicType="nombre"
 					dottedName={dottedName}
 					relatedRuleNames={relatedRuleNames}
 					suggestions={suggestions}

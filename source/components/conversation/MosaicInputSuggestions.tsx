@@ -1,6 +1,5 @@
 import { ASTNode } from 'publicodes'
 import { toPairs } from 'ramda'
-import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -13,6 +12,7 @@ type InputSuggestionsProps = {
 }
 
 export default function MosaicInputSuggestions({
+	mosaicType,
 	dottedName,
 	relatedRuleNames,
 	suggestions = {},
@@ -56,19 +56,30 @@ export default function MosaicInputSuggestions({
 							}
 						`}
 						onClick={() => {
-							relatedRuleNames.map((elt) => dispatch(updateSituation(elt, 0)))
-							toPairs(values).map(([ruleName, value]: [string, ASTNode]) => {
-								const fullDottedName = `${dottedName} . ${ruleName}`
-								const card = document.getElementById(`card - ${fullDottedName}`)
-								card?.animate(
-									{ opacity: [1, 0.5, 1] },
-									{
-										duration: 1000,
-										easing: 'ease-out',
+							relatedRuleNames.map((elt) =>
+								dispatch(
+									updateSituation(elt, mosaicType === 'selection' ? 'non' : 0)
+								)
+							)
+							if (Object.values(values).every((bool) => bool === 'non'))
+								dispatch(updateSituation(dottedName, 0))
+							else
+								toPairs(values).forEach(
+									([ruleName, value]: [string, ASTNode]) => {
+										const fullDottedName = `${dottedName} . ${ruleName}`
+										const card = document.getElementById(
+											`card - ${fullDottedName}`
+										)
+										card?.animate(
+											{ opacity: [1, 0.5, 1] },
+											{
+												duration: 1000,
+												easing: 'ease-out',
+											}
+										)
+										dispatch(updateSituation(fullDottedName, value))
 									}
 								)
-								dispatch(updateSituation(fullDottedName, value))
-							})
 						}}
 						title={t('Insérer cette suggestion')}
 					>
