@@ -57,15 +57,22 @@ export const binaryQuestion = [
 We only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
 If parent of degree 2 doesn't contain mosaic, return empty array
 If parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
+We take into account if the evaluated rule is already a mosaic 
 */
 export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
 	if (!dottedName) return
-	const potentialMosaicRule = parentName(dottedName, ' . ', 0, 2)
+	const potentialMosaicRule = engine.getRule(dottedName).rawNode['mosaique']
+		? dottedName
+		: parentName(dottedName, ' . ', 0, 2)
 	const mosaicParams =
 		potentialMosaicRule &&
 		engine.getRule(potentialMosaicRule).rawNode['mosaique']
 	if (!mosaicParams) return
-	if (!dottedName.includes(` . ${mosaicParams['clé']}`)) return
+	if (
+		dottedName !== potentialMosaicRule &&
+		!dottedName.includes(` . ${mosaicParams['clé']}`)
+	)
+		return
 	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
 		return (
 			rule.includes(potentialMosaicRule) &&
