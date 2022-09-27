@@ -11,7 +11,6 @@ const ReferencesLazy = React.lazy(
 	() => import('../../sites/publicodes/DocumentationReferences')
 )
 import './Aide.css'
-import mosaicQuestions from './mosaicQuestions'
 
 export default function Aide() {
 	const explained = useSelector((state: RootState) => state.explainedVariable)
@@ -23,9 +22,7 @@ export default function Aide() {
 
 	if (!explained) return null
 
-	const rule =
-			rules[explained] ||
-			mosaicQuestions.find((question) => question.dottedName === explained),
+	const rule = rules[explained],
 		text = rule.description,
 		refs = rule.références
 

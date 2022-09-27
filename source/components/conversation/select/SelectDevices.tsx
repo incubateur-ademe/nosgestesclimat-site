@@ -7,6 +7,7 @@ import { Mosaic } from './UI'
 import Stamp from '../../Stamp'
 import { mosaicLabelStyle } from './NumberedMosaic'
 import styled from 'styled-components'
+import MosaicInputSuggestions from '../MosaicInputSuggestions'
 
 const MosaicLabelDiv = styled.div`
 	${mosaicLabelStyle}
@@ -15,16 +16,34 @@ const MosaicLabelDiv = styled.div`
 export default function SelectDevices({
 	name,
 	setFormValue,
+	dottedName,
 	selectedRules,
 	value: currentValue,
 	question,
 	options: { defaultsToFalse },
+	suggestions,
 }) {
 	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
 
+	const relatedRuleNames = selectedRules.reduce(
+		(memo, arr) => [...memo, arr[1].dottedName],
+		[]
+	)
+
+	// for now, if nothing is checked, after having check something, 'suivant' button will have same effect as 'je ne sais pas'
+	// we can imagine a useeffect that set to 0 situation of dottedname every time all card are unchecked (after user checked something at least once)
+
 	return (
 		<div>
+			{Object.keys(suggestions).length > 0 && (
+				<MosaicInputSuggestions
+					mosaicType="selection"
+					dottedName={dottedName}
+					relatedRuleNames={relatedRuleNames}
+					suggestions={suggestions}
+				/>
+			)}
 			<Mosaic>
 				{selectedRules.map(
 					([
@@ -40,12 +59,9 @@ export default function SelectDevices({
 								situationValue != null
 									? situationValue
 									: // unlike the NumberedMosaic, we don't preselect cards choices here
-									// user tests showed us it is now well received
-									defaultsToFalse
-									? 'non'
-									: question.rawNode['par défaut'],
+									  // user tests showed us it is now well received
+									  'non',
 							isNotActive = question.rawNode['inactif']
-
 						return (
 							<li
 								css={`
