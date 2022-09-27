@@ -1,62 +1,80 @@
 import Markdown from 'markdown-to-jsx'
-import landingMd from 'raw-loader!./landing.md'
 import emoji from 'react-easy-emoji'
+import { useTranslation, Trans } from 'react-i18next'
+
 import avantages from './avantages.yaml'
 import LandingContent from './LandingContent'
+import { Lang } from './../../locales/translation'
+import MarkdownPage from './pages/MarkdownPage'
+
+import contentFr from 'raw-loader!../../locales/pages/fr/landing.md'
+import contentEn from 'raw-loader!../../locales/pages/en-us/landing.md'
+import contentEs from 'raw-loader!../../locales/pages/es/landing.md'
+import contentIt from 'raw-loader!../../locales/pages/it/landing.md'
 
 const fluidLayoutMinWidth = '1200px'
 
-export default () => (
-	<>
-		<div
-			css={`
-				width: 100%;
-			`}
-		>
-			<LandingContent background>
-				<Markdown>{landingMd}</Markdown>
-			</LandingContent>
-			<LandingContent>
-				<h2>Ouvert, documenté et contributif</h2>
-				<div
-					css={`
-						img {
-							width: 2.6rem;
-							height: auto;
-							margin: 0.4rem;
-						}
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						flex-wrap: wrap;
-						> div {
-							width: 14rem;
-							height: 14rem;
+export default () => {
+	const { t } = useTranslation()
+	return (
+		<>
+			<div
+				css={`
+					width: 100%;
+				`}
+			>
+				<LandingContent background>
+					<MarkdownPage
+						markdownFiles={[
+							[Lang.Fr, contentFr],
+							[Lang.En, contentEn],
+							[Lang.Es, contentEs],
+							[Lang.It, contentIt],
+						]}
+						title={`Texte page d'accueil`}
+						descriptionId={`Description page d'accueil`}
+					/>
+				</LandingContent>
+				<LandingContent>
+					<h2>
+						<Trans>Ouvert, documenté et contributif</Trans>
+					</h2>
+					<div
+						css={`
+							img {
+								width: 2.6rem;
+								height: auto;
+								margin: 0.4rem;
+							}
+							display: flex;
 							justify-content: center;
-						}
-						@media (max-width: ${fluidLayoutMinWidth}) {
-							flex-direction: column;
-						}
-					`}
-				>
-					{avantages.map((el) => (
-						<div key={el.icon} className="ui__ card box">
-							{emoji(el.illustration)}
+							align-items: center;
+							flex-wrap: wrap;
+							> div {
+								width: 14rem;
+								height: 14rem;
+								justify-content: center;
+							}
+							@media (max-width: ${fluidLayoutMinWidth}) {
+								flex-direction: column;
+							}
+						`}
+					>
+						{avantages.map((el) => (
+							<div key={el.icon} className="ui__ card box">
+								{emoji(el.illustration)}
 
-							<div>
-								<Markdown>{el.text}</Markdown>
+								<div>
+									<Markdown>{el.text}</Markdown>
+								</div>
 							</div>
-						</div>
-					))}
-				</div>
-				<Markdown
-					children={`
-## Des questions ?
-
-Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
-					`}
-				/>
-			</LandingContent>
-		</div>
-	</>
-)
+						))}
+					</div>
+					<Markdown
+						children={t(`sites.publicodes.LandingExplanations.faqLink`)}
+					/>
+				</LandingContent>
+			</div>
+		</>
+	)
+}

@@ -91,6 +91,6 @@ module.exports = {
 	printErr,
 	withStyle,
 	printWarn,
-	printWarn,
+	printErr,
 	getArgs,
 }

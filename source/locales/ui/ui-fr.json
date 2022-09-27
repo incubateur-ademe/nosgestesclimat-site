@@ -5,6 +5,8 @@
   "{{res}} tonnes de CO₂e": "{{res}} tonnes de CO₂e",
   "{unit}": "{unit}",
   "⏲️  Choississez votre mode de simulation": "⏲️  Choississez votre mode de simulation",
+  "▶️ Faire le test": "▶️ Faire le test",
+  "▶️' Faire le test": "▶️' Faire le test",
   "◀ Retour": "◀ Retour",
   "◀ Retour à la liste": "◀ Retour à la liste",
   "◀ Retour à la liste des fiches": "◀ Retour à la liste des fiches",
@@ -14,7 +16,6 @@
   "🇺🇦Réduire ma conso de pétrole": "🇺🇦Réduire ma conso de pétrole",
   "✅ C'est fait": "✅ C'est fait",
   "✅ sélectionnez celles qui vous intéressent": "✅ sélectionnez celles qui vous intéressent",
-  "✨ Découvrez les nouveautés de la version": "✨ Découvrez les nouveautés de la version",
   "❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.": "❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.",
   "🌟 Vous avez complété cette simulation": "🌟 Vous avez complété cette simulation",
   "🎯 2 tonnes": "🎯 2 tonnes",
@@ -24,7 +25,7 @@
   "👎 Refuser": "👎 Refuser",
   "👤 Qui est connecté ?": "👤 Qui est connecté ?",
   "👤 Vous utilisez actuellement le persona": "👤 Vous utilisez actuellement le persona",
-  "👥 Faire le test à plusieurs": "👥 Faire le test à plusieurs",
+  "👥 En groupe": "👥 En groupe",
   "💡 Choisissez un nom de salle": "💡 Choisissez un nom de salle",
   "💾 Lancer le téléchargement.": "💾 Lancer le téléchargement.",
   "💾 Télécharger les résultats": "💾 Télécharger les résultats",
@@ -52,6 +53,7 @@
   "Actions écartées :": "Actions écartées :",
   "Actions négatives": "Actions négatives",
   "Actions non chiffrées": "Actions non chiffrées",
+  "Afficher l'explication du score": "Afficher l'explication du score",
   "Afficher ma simulation": "Afficher ma simulation",
   "Agir": "Agir",
   "Aide à la saisie": "Aide à la saisie",
@@ -179,7 +181,6 @@
   "Le titre bref de votre problème": "Le titre bref de votre problème",
   "Les 3 actions au plus fort impact pour vous :": "Les 3 actions au plus fort impact pour vous :",
   "Les nouveautés ✨": "Les nouveautés ✨",
-  "Logo de l'Association pour la transition Bas Carbone": "Logo de l'Association pour la transition Bas Carbone",
   "Menu": "Menu",
   "meta": {
     "pages": {
@@ -221,6 +222,7 @@
       }
     }
   },
+  "Mise à jour le {{date}}": "Mise à jour le {{date}}",
   "Mode groupe": "Mode groupe",
   "Modifier": "Modifier",
   "mon empreinte annuelle": "mon empreinte annuelle",
@@ -244,12 +246,14 @@
   "Nosgestesclimat - le top 3 de mes actions": "Nosgestesclimat - le top 3 de mes actions",
   "Notre serveur semble indisponible": "Notre serveur semble indisponible",
   "nouveautés": "nouveautés",
+  "Nouveautés": "Nouveautés",
   "Nouveautés - version ": "Nouveautés - version ",
   "On la mesure comment ?": "On la mesure comment ?",
   "On vous propose une sélection graduelle de gestes.": "On vous propose une sélection graduelle de gestes.",
   "ont utilisé l'aide à la saisie des km": "ont utilisé l'aide à la saisie des km",
   "Origine des visites": "Origine des visites",
   "Oui": "Oui",
+  "Ouvert, documenté et contributif": "Ouvert, documenté et contributif",
   "Ouvrir les options de tri": "Ouvrir les options de tri",
   "Page de fin de simulation pétrole": "Page de fin de simulation pétrole",
   "Page de fin de simulation principale": "Page de fin de simulation principale",
@@ -271,6 +275,7 @@
   "Planète représentant le changement climatique": "Planète représentant le changement climatique",
   "pleins": "pleins",
   "pleins de pétrole": "pleins de pétrole",
+  "Point d'interrogation": "Point d'interrogation",
   "Pompe à pétrole": "Pompe à pétrole",
   "Pour en savoir plus, tout est expliqué <1></1>dans ": "Pour en savoir plus, tout est expliqué <1></1>dans ",
   "Précédent": "Précédent",
@@ -375,8 +380,8 @@
       },
       "slide3": {
         "blockquote": "✨ Nouveau ! Visualisez également votre consommation de ⛽️ pétrole, un indicateur complémentaire au sujet climat.",
-        "p1": "<0>Et concrètement ?</0><1>Chaque année, un Français émet en moyenne <2> à peu près 10 tonnes</2> de CO₂e.</1>",
-        "p2": "C'est votre point de départ dans ce test : chacune de vos réponses personnalisera ce résultat dans la barre de score."
+        "p1": "<0>Et concrètement ?</0><1>Chaque année, un Français émet en moyenne <1>10 tonnes</1> de CO₂e.</1>",
+        "p2": "Le point de départ de votre test Nos Gestes Climat est un résultat calculé à partir de valeurs moyennes Françaises attribuées à chaque question. Ce score initial est à prendre comme un minimum, qui commence par défaut à ~8 tonnes de CO₂e en l'état actuel du périmètre de calcul qui évolue selon les améliorations du modèle. Vos réponses viendront ensuite affiner cette empreinte dans la barre de score."
       },
       "slide4": {
         "blockquote": "\n\t\t\t\t\t{{sparkles}} Nouveau ! Visualisez également votre consommation de\n\t\t\t\t\t{{fuelPump}} pétrole, un indicateur complémentaire au sujet\n\t\t\t\t\tclimat.",
@@ -397,7 +402,6 @@
   "Rejeter l'action": "Rejeter l'action",
   "Répondez à notre sondage sur le simulateur.": "Répondez à notre sondage sur le simulateur.",
   "Reprendre la simulation": "Reprendre la simulation",
-  "République Française": "République Française",
   "Réseaux Sociaux": "Réseaux Sociaux",
   "Revenir à ma simulation": "Revenir à ma simulation",
   "simulateurs": {
@@ -414,6 +418,12 @@
   "simulations terminées depuis le lancement": "simulations terminées depuis le lancement",
   "sites": {
     "publicodes": {
+      "Landing": {
+        "description": "En 10 minutes, obtenez une estimation de votre empreinte carbone de consommation."
+      },
+      "LandingExplanations": {
+        "faqLink": "## Des questions ?\n\n\nRetrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer)."
+      },
       "Tutorial": {
         "questionE": "💡 Mais que veut dire ce petit <1>e</1> ?"
       }
@@ -436,6 +446,7 @@
   "Triées par :": "Triées par :",
   "Une personne au moins est présente dans la voiture (vous !)": "Une personne au moins est présente dans la voiture (vous !)",
   "Une question, un problème ?": "Une question, un problème ?",
+  "Version": "Version",
   "visites depuis le lancement": "visites depuis le lancement",
   "Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !": "Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !",
   "Voir le reste : ": "Voir le reste : ",

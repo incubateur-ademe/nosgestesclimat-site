@@ -2,7 +2,6 @@ import Illustration from 'Components/AnimatedIllustration'
 import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { Link } from 'Components/Link'
 import NewsBanner from '../../components/NewsBanner'
 import { openmojiURL } from '../../components/SessionBar'
@@ -15,6 +14,7 @@ import LandingContent from './LandingContent'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 import { useTranslation, Trans } from 'react-i18next'
+import LangSwitcher from 'Components/LangSwitcher'
 
 const fluidLayoutMinWidth = '1200px'
 
@@ -113,7 +113,7 @@ export default () => {
 									])
 								}
 							>
-								<Trans>▶️' Faire le test</Trans>
+								<Trans>▶️ Faire le test</Trans>
 							</Link>
 							<Link
 								to="/groupe"
@@ -195,6 +195,9 @@ export default () => {
 						<Link to="/diffuser">
 							<Trans>Diffuser</Trans>
 						</Link>
+						<div>
+							<LangSwitcher className="simple small" />
+						</div>
 					</div>
 					<div
 						css={`

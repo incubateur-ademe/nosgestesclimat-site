@@ -4,6 +4,8 @@
   "(co-voiturage pris en compte)": "(carpooling taken into account)",
   "{{res}} tonnes de CO₂e": "{{res}} tons of CO₂e",
   "⏲️  Choississez votre mode de simulation": "⏲️ Choose your simulation mode",
+  "▶️ Faire le test": "▶️ Take the test",
+  "▶️' Faire le test": "▶️' Take the test",
   "◀ Retour": "◀ Back",
   "◀ Retour à la liste": "◀ Back to the list",
   "◀ Retour à la liste des fiches": "◀ Back to the list of cards",
@@ -13,7 +15,6 @@
   "🇺🇦Réduire ma conso de pétrole": "🇺‍🇦Reduce my oil consumption",
   "✅ C'est fait": "✅ Done",
   "✅ sélectionnez celles qui vous intéressent": "✅ select the ones that interest you",
-  "✨ Découvrez les nouveautés de la version": "✨ Find out what's new in the version",
   "❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.": "❌ discard those that seem too ambitious or out of place.",
   "🌟 Vous avez complété cette simulation": "🌟 You have completed this simulation",
   "🎯 2 tonnes": "🎯 2 tons",
@@ -23,7 +24,7 @@
   "👎 Refuser": "👎 Refuse",
   "👤 Qui est connecté ?": "👤 Who is connected?",
   "👤 Vous utilisez actuellement le persona": "👤 You are currently using the persona",
-  "👥 Faire le test à plusieurs": "👥 Take the test with several people",
+  "👥 En groupe": "👥 As a group",
   "💡 Choisissez un nom de salle": "💡 Choose a room name",
   "💾 Lancer le téléchargement.": "💾 Start the download.",
   "💾 Télécharger les résultats": "💾 Download results",
@@ -35,7 +36,7 @@
   "🔃 Générer un autre nom": "🔃 Generate another name",
   "🔍 Rechercher": "🔍 Search",
   "🔗 Partagez le lien à vos amis, collègues, etc.": "🔗 Share the link with your friends, colleagues, etc.",
-  "🧑‍🏫 Revoir le tutoriel": "🧑‍🏫 Review tutorial",
+  "🧑‍🏫 Revoir le tutoriel": "🧑‍🏫 Review the tutorial",
   "🧮 Visualisez à tout moment les résultats de votre groupe": "🧮 View your group's results at any time",
   "🧮 Voir le geste climat correspondant": "🧮 See the corresponding climate action",
   "🧮 Voir les réponses": "🧮 See answers",
@@ -51,6 +52,7 @@
   "Actions écartées :": "Discarded actions:",
   "Actions négatives": "Negative actions",
   "Actions non chiffrées": "Unquantified actions",
+  "Afficher l'explication du score": "Show score explanation",
   "Afficher ma simulation": "Show my simulation",
   "Agir": "Act",
   "Aide à la saisie": "Input help",
@@ -83,7 +85,7 @@
     "conversation": {
       "estimate": {
         "KmHelp": {
-          "resultatKmParcouruMoyenne": "You drive {{kilometerCarriage}} km with an average of {{nbPersons}} in the car."
+          "resultatKmParcouruMoyenne": "You drive {{kilometers}} km with an average of {{number of people}} in the car."
         }
       },
       "select": {
@@ -178,7 +180,6 @@
   "Le titre bref de votre problème": "The short title of your problem",
   "Les 3 actions au plus fort impact pour vous :": "The 3 actions with the highest impact for you:",
   "Les nouveautés ✨": "What's new ✨",
-  "Logo de l'Association pour la transition Bas Carbone": "Logo of the Association for the Low Carbon Transition",
   "Menu": "Menu",
   "meta": {
     "pages": {
@@ -220,6 +221,7 @@
       }
     }
   },
+  "Mise à jour le {{date}}": "Updated on {{date}}",
   "Mode groupe": "Group mode",
   "Modifier": "Edit",
   "mon empreinte annuelle": "my annual footprint",
@@ -243,12 +245,14 @@
   "Nosgestesclimat - le top 3 de mes actions": "Nosgestesclimat - the top 3 of my actions",
   "Notre serveur semble indisponible": "Our server seems to be unavailable",
   "nouveautés": "news",
+  "Nouveautés": "News",
   "Nouveautés - version ": "What's new - version ",
   "On la mesure comment ?": "How is it measured?",
   "On vous propose une sélection graduelle de gestes.": "We propose a gradual selection of gestures.",
   "ont utilisé l'aide à la saisie des km": "used the km entry aid",
   "Origine des visites": "Origin of the visits",
   "Oui": "Yes",
+  "Ouvert, documenté et contributif": "Open, documented and contributory",
   "Ouvrir les options de tri": "Open the sorting options",
   "Page de fin de simulation pétrole": "End of oil simulation page",
   "Page de fin de simulation principale": "Main simulation end page",
@@ -270,6 +274,7 @@
   "Planète représentant le changement climatique": "Planet representing climate change",
   "pleins": "full",
   "pleins de pétrole": "full of oil",
+  "Point d'interrogation": "Question mark",
   "Pompe à pétrole": "Oil pump",
   "Pour en savoir plus, tout est expliqué <1></1>dans ": "To learn more, everything is explained <1></1>in ",
   "Précédent": "Previous",
@@ -329,7 +334,7 @@
     "Contribution": {
       "bugQuestion": "🐛 You have a bug that prevents you from using Our Climate Gestures?",
       "commentaireAugmenté": "{{fromLocation}} ? ``From the page: `{fromLocation}}``: ''}\n&gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).",
-      "description": "Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a nice reading!",
+      "description": "Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!",
       "descriptionComplète": "<0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>",
       "liensVersGithub": "For any comments or questions, we invite you to <2>open a ticket directly on GitHub</2>.",
       "remerciements": "Thank you 😍! Follow the progress of your suggestion by clicking on <1>this link</1>."
@@ -337,11 +342,11 @@
     "fin": {
       "ActionTeaser": {
         "félicitations": "{{displayedTotal}} tons!<2> You are well below the French average</2> ",
-        "messagePourConvaincre": "Chances are, your time will be better spent convincing and helping others than trying to earn your \"extra tons\" (although you will have to do that eventually)."
+        "messagePourConvaincre": "Chances are, your time is better spent convincing and helping others than trying to earn your \"extra tons\" (although you'll have to do that eventually)."
       },
       "IframeDataShareModal": {
         "partageResultats": "Share your results with {{parent}}?",
-        "text": "<0>By clicking on the Accept button, you authorize {{parent}} to retrieve your climate footprint.</0><1>It is your results on the main categories (transport, food...), but <1>not</1> the detail question by question (your km by car, the m² of your home...).</1><2>Nosgestesclimat.fr is not affiliated with the site {{parent}}.</2>"
+        "text": "<0>By clicking on the Accept button, you authorize {{parent}} to retrieve your climate footprint.</0><1>It is your results on the main categories (transport, food...), but <1>not</1> the detail question by question (your km by car, the m² of your house...).</1><2>Nosgestesclimat.fr is not affiliated with the site {{parent}}.</2>"
       },
       "Petrogaz": {
         "explications": "<0>It is a <1>minimum</1> estimate of your crude oil consumption for the year.</0><1>Estimated via your car, plane, bus and heating oil consumption, it does not (yet) take into account the oil used to transport your purchases, and the grey energy of your various possessions.</1>",
@@ -360,7 +365,7 @@
     "shareText": "#nosgestesclimate 🌍️\n\n{{total}} tons CO2e / year ⬇️\n\n{{graph}}",
     "SimulationMissing": {
       "personnas": "💡 You can also see the action course as if you were one of these sample profiles.",
-      "simulationManquante": "You haven't taken the test yet. To unlock this path, you need to tell us a little more about your lifestyle."
+      "simulationManquante": "You haven't taken the test yet. To unlock this course, you need to tell us a little more about your lifestyle."
     },
     "Tutorial": {
       "slide1": {
@@ -374,8 +379,8 @@
       },
       "slide3": {
         "blockquote": "✨ New! Also view your ⛽️ oil consumption, a complementary indicator to the climate topic.",
-        "p1": "<0>And concretely?</0><1>Every year, a French person emits on average <2> about 10 tons of</2> CO₂e.</1>",
-        "p2": "This is your starting point in this test: each of your answers will personalize this result in the score bar."
+        "p1": "<0>And concretely?</0><1>Every year, a French person emits an average of <1>10 tons</1> of CO₂e.</1>",
+        "p2": "The starting point for your Nos Gestes Climat test is a score calculated from average French values assigned to each question. This initial score is to be taken as a minimum, which starts by default at ~8 tons of CO₂e in the current state of the calculation perimeter that evolves according to the improvements of the model. Your answers will then refine this footprint in the score bar."
       },
       "slide4": {
         "blockquote": "\n\t\t\t\t\t{{sparkles}} New! See also your oil consumption\n\t\t\t\t\t{{fuelPump}}, a complementary indicator to the\n\t\t\t\t\tclimate.",
@@ -396,7 +401,6 @@
   "Rejeter l'action": "Reject the action",
   "Répondez à notre sondage sur le simulateur.": "Take our survey on the simulator.",
   "Reprendre la simulation": "Resume the simulation",
-  "République Française": "French Republic",
   "Réseaux Sociaux": "Social Networks",
   "Revenir à ma simulation": "Return to my simulation",
   "simulateurs": {
@@ -413,6 +417,12 @@
   "simulations terminées depuis le lancement": "simulations completed since the launch",
   "sites": {
     "publicodes": {
+      "Landing": {
+        "description": "In 10 minutes, get an estimate of your carbon footprint."
+      },
+      "LandingExplanations": {
+        "faqLink": "## Any questions?\n\n\nFind answers to common questions on our [FAQ](/contribute) page."
+      },
       "Tutorial": {
         "questionE": "💡 But what does that little <1>e</1> mean?"
       }
@@ -435,6 +445,7 @@
   "Triées par :": "Sorted by :",
   "Une personne au moins est présente dans la voiture (vous !)": "At least one person is present in the car (you!)",
   "Une question, un problème ?": "A question, a problem?",
+  "Version": "Version",
   "visites depuis le lancement": "visits since the launch",
   "Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !": "Here's my footprint ⛽️ oil. Measure yours!",
   "Voir le reste : ": "See the rest ",

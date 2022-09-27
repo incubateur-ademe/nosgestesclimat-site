@@ -43,7 +43,7 @@ const translateTo = async (src, destPath, destLang) => {
 console.log(
 	`Translating Markdown files from 'source/locales/pages/${srcLang}'...`
 )
-glob(`source/locales/pages/${srcLang}/*.md`, (err, files) => {
+glob(`source/locales/pages/${srcLang}/landing.md`, (err, files) => {
 	if (err) {
 		cli.printErr(`ERROR: an error occured while fetching the files:`)
 		cli.printErr(err)

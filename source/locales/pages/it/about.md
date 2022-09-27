@@ -26,7 +26,7 @@ Raccogliamo dati anonimi solo per migliorare questo simulatore.
 
 ## Come integrare questo simulatore nel vostro sito web?
 
-Vi raccontiamo tutto sulla nostra pagina [broadcast](/broadcast).
+Vi raccontiamo tutto nella nostra pagina [broadcast](/broadcast).
 
 ## Contattaci
 
@@ -40,7 +40,7 @@ Abbiamo condotto [un primo audit](https://github.com/datagir/nosgestesclimat-sit
 
 La dichiarazione di accessibilità può essere consultata tramite [la pagina dedicata](/accessibilità).
 
-Se riscontrate un problema di accessibilità che vi impedisce di accedere a qualsiasi contenuto o funzionalità del sito, siete pregati di comunicarcelo [in fondo alla pagina delle FAQ](/contributi) o tramite [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) in modo da poter fornire assistenza (alternativa accessibile, informazioni e contenuti forniti in altra forma). Se non ricevete una risposta tempestiva da parte nostra, avete il diritto di inviare i vostri reclami o una richiesta di rinvio al [Difensore dei diritti umani] (https://www.defenseurdesdroits.fr).
+Se riscontrate un problema di accessibilità che vi impedisce di accedere a qualsiasi contenuto o funzionalità del sito, vi preghiamo di comunicarcelo [in fondo alla pagina delle FAQ](/contributi) o tramite [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) in modo da poter fornire assistenza (alternativa accessibile, informazioni e contenuti forniti in altra forma). Se non ricevete una risposta tempestiva da parte nostra, avete il diritto di inviare i vostri reclami o una richiesta di rinvio al [Difensore dei diritti umani] (https://www.defenseurdesdroits.fr).
 
 ## Avviso legale
 
@@ -69,3 +69,7 @@ Il sito è ospitato su Netlify. Si tratta di un sito statico servito tramite un 
 ## Termini e condizioni d'uso
 
 Sono disponibili su [questa pagina](/cgu).
+
+## Bilancio
+
+Il bilancio di Datagir, l'organizzazione che sviluppa nosgestesclimat.fr, è disponibile sulla [pagina del bilancio](https://datagir.ademe.fr/budget/).

@@ -4,6 +4,8 @@
   "(co-voiturage pris en compte)": "(tenendo conto del car pooling)",
   "{{res}} tonnes de CO₂e": "{tonnellate di CO₂e",
   "⏲️  Choississez votre mode de simulation": "⏲️ Scegliete la vostra modalità di simulazione",
+  "▶️ Faire le test": "▶️ Eseguire il test",
+  "▶️' Faire le test": "eseguire il test",
   "◀ Retour": "indietro",
   "◀ Retour à la liste": "torna all'elenco",
   "◀ Retour à la liste des fiches": "◀ Torna all'elenco delle schede",
@@ -12,8 +14,7 @@
   "⚠️ Certains utilisateurs ont des bilans extrêmes.": "⚠️ Alcuni utenti hanno bilanci estremi.",
   "🇺🇦Réduire ma conso de pétrole": "🇺‍🇦 Ridurre il consumo di olio",
   "✅ C'est fait": "fatto",
-  "✅ sélectionnez celles qui vous intéressent": "✅ selezionare quelli che vi interessano",
-  "✨ Découvrez les nouveautés de la version": "✨ Scopri le novità della versione",
+  "✅ sélectionnez celles qui vous intéressent": "✅ selezionare quelli di vostro interesse",
   "❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.": "scartate quelli che vi sembrano troppo ambiziosi o fuori luogo.",
   "🌟 Vous avez complété cette simulation": "🌟 La simulazione è stata completata",
   "🎯 2 tonnes": "🎯 2 tonnellate",
@@ -23,7 +24,7 @@
   "👎 Refuser": "👎 Rifiuto",
   "👤 Qui est connecté ?": "👤 Chi è connesso?",
   "👤 Vous utilisez actuellement le persona": "👤 Al momento stai utilizzando la persona",
-  "👥 Faire le test à plusieurs": "👥 Effettuare il test con più persone",
+  "👥 En groupe": "👥 In gruppo",
   "💡 Choisissez un nom de salle": "💡 Scegliere il nome della stanza",
   "💾 Lancer le téléchargement.": "💾 Avviare il download.",
   "💾 Télécharger les résultats": "💾 Scarica i risultati",
@@ -37,7 +38,7 @@
   "🔗 Partagez le lien à vos amis, collègues, etc.": "🔗 Condividete il link con i vostri amici, colleghi, ecc.",
   "🧑‍🏫 Revoir le tutoriel": "🧑‍🏫 Rivedere il tutorial",
   "🧮 Visualisez à tout moment les résultats de votre groupe": "🧮 Visualizzare i risultati del proprio gruppo in qualsiasi momento",
-  "🧮 Voir le geste climat correspondant": "🧮 Vedere l'azione per il clima corrispondente",
+  "🧮 Voir le geste climat correspondant": "🧮 Vedere la corrispondente azione per il clima",
   "🧮 Voir les réponses": "🧮 Vedi risposte",
   "🚪 Quitter la conférence": "🚪 Lasciare la conferenza",
   "404": {
@@ -51,6 +52,7 @@
   "Actions écartées :": "Azioni scartate :",
   "Actions négatives": "Azioni negative",
   "Actions non chiffrées": "Azioni non quantificate",
+  "Afficher l'explication du score": "Mostra la spiegazione del punteggio",
   "Afficher ma simulation": "Visualizza la mia simulazione",
   "Agir": "Atto",
   "Aide à la saisie": "Guida all'inserimento",
@@ -178,7 +180,6 @@
   "Le titre bref de votre problème": "Il titolo breve del problema",
   "Les 3 actions au plus fort impact pour vous :": "Le 3 azioni di maggiore impatto per voi:",
   "Les nouveautés ✨": "Cosa c'è di nuovo ✨",
-  "Logo de l'Association pour la transition Bas Carbone": "Logo dell'Associazione per la transizione a basse emissioni di carbonio",
   "Menu": "Menu",
   "meta": {
     "pages": {
@@ -220,6 +221,7 @@
       }
     }
   },
+  "Mise à jour le {{date}}": "Aggiornato il {{date}}",
   "Mode groupe": "Modalità gruppo",
   "Modifier": "Modifica",
   "mon empreinte annuelle": "la mia impronta annuale",
@@ -243,12 +245,14 @@
   "Nosgestesclimat - le top 3 de mes actions": "Nosgestesclimat - la top 3 delle mie azioni",
   "Notre serveur semble indisponible": "Il nostro server sembra non essere disponibile",
   "nouveautés": "notizie",
+  "Nouveautés": "Notizie",
   "Nouveautés - version ": "Cosa c'è di nuovo - versione ",
   "On la mesure comment ?": "Come si misura?",
   "On vous propose une sélection graduelle de gestes.": "Viene proposta una selezione graduale dei gesti.",
   "ont utilisé l'aide à la saisie des km": "ha utilizzato l'aiuto per l'inserimento dei km",
   "Origine des visites": "Origine delle visite",
   "Oui": "Sì",
+  "Ouvert, documenté et contributif": "Aperto, documentato e contributivo",
   "Ouvrir les options de tri": "Aprire le opzioni di ordinamento",
   "Page de fin de simulation pétrole": "Fine della pagina di simulazione dell'olio",
   "Page de fin de simulation principale": "Pagina finale della simulazione principale",
@@ -270,6 +274,7 @@
   "Planète représentant le changement climatique": "Pianeta che rappresenta il cambiamento climatico",
   "pleins": "completo",
   "pleins de pétrole": "pieno di olio",
+  "Point d'interrogation": "Punto interrogativo",
   "Pompe à pétrole": "Pompa dell'olio",
   "Pour en savoir plus, tout est expliqué <1></1>dans ": "Per saperne di più, tutto è spiegato in <1></1>",
   "Précédent": "Precedente",
@@ -364,7 +369,7 @@
     },
     "Tutorial": {
       "slide1": {
-        "p1": "<0>Niente panico, vi spiegheremo di cosa si tratta.</0><1>Il pianeta si sta <1>riscaldando pericolosamente</1>, poiché emettiamo sempre più gas a effetto serra.</1>",
+        "p1": "<0>Niente panico, vi spieghiamo di cosa si tratta.</0><1>Il pianeta si sta <1>riscaldando pericolosamente</1>, poiché emettiamo sempre più gas a effetto serra.</1>",
         "p2": "<0>Questo test vi dà in ⏱️ 10 minuti <2>una misura del vostro ruolo </2> in questo riscaldamento.</0>"
       },
       "slide2": {
@@ -374,8 +379,8 @@
       },
       "slide3": {
         "blockquote": "✨ Nuovo! Si veda anche il consumo di petrolio ⛽️, un indicatore complementare al tema del clima.",
-        "p1": "<0>E in termini concreti?</0><1>Ogni anno, un francese emette in media <2> circa 10 tonnellate di</2> CO₂e.</1>",
-        "p2": "Questo è il punto di partenza del test: ogni risposta personalizzerà il risultato nella barra del punteggio."
+        "p1": "<0>E in termini concreti?</0><1>Ogni anno, un francese emette in media <1>10 tonnellate</1> di CO₂e.</1>",
+        "p2": "Il punto di partenza del test Nos Gestes Climat è un punteggio calcolato in base ai valori medi francesi assegnati a ciascuna domanda. Questo punteggio iniziale deve essere preso come minimo, che parte per default da ~8 tonnellate di CO₂e nello stato attuale del perimetro di calcolo, che si evolve in base ai miglioramenti del modello. Le vostre risposte perfezioneranno l'impronta nella barra dei punteggi."
       },
       "slide4": {
         "blockquote": "\n\t\t\t\t\t{{sparkles}} Nuovo! Vedere anche il consumo di olio\n\t\t\t\t\t{{Pompa di carburante}}, un indicatore complementare all'indicatore\n\t\t\t\t\tclima.",
@@ -383,7 +388,7 @@
         "p2": "Questo è il punto di partenza del test: ogni risposta personalizzerà il risultato nella barra del punteggio."
       },
       "slide5": {
-        "p1": "<0>E l'obiettivo?</0><1>Dobbiamo ridurre la nostra impronta climatica il prima possibile.</1><2>In Francia, ciò significa passare da ~10 tonnellate a <2>meno di 2 tonnellate</2> all'anno.</2>"
+        "p1": "<0>E l'obiettivo?</0><1>Dobbiamo ridurre la nostra impronta climatica il più rapidamente possibile.</1><2>In Francia, ciò significa passare da ~10 tonnellate a <2>meno di 2 tonnellate</2> all'anno.</2>"
       },
       "slide6": "<0>Allora, siete pronti a partire?</0><1>Alcuni suggerimenti per aiutarvi a completare il test.</1><2>👤 Rispondete alle domande a nome vostro, non del vostro nucleo familiare: questo è un test individuale.</2><3>💼 Rispondete per la vostra vita personale, non per il vostro lavoro o i vostri studi. <2>Un'eccezione: </2> il tragitto casa-lavoro deve essere incluso nei km percorsi.</3><4>❓️ Ci sono altre domande? Consultate le nostre <2>FAQ</2> in qualsiasi momento.</4>"
     }
@@ -396,7 +401,6 @@
   "Rejeter l'action": "Rifiutare l'azione",
   "Répondez à notre sondage sur le simulateur.": "Partecipate al nostro sondaggio sul simulatore.",
   "Reprendre la simulation": "Riprendere la simulazione",
-  "République Française": "Repubblica francese",
   "Réseaux Sociaux": "Reti sociali",
   "Revenir à ma simulation": "Ritorno alla mia simulazione",
   "simulateurs": {
@@ -413,6 +417,12 @@
   "simulations terminées depuis le lancement": "simulazioni completate dal lancio",
   "sites": {
     "publicodes": {
+      "Landing": {
+        "description": "In 10 minuti, potrete ottenere una stima della vostra impronta di carbonio."
+      },
+      "LandingExplanations": {
+        "faqLink": "## Domande?\n\n\nTrovate le risposte alle domande più comuni nella nostra pagina [FAQ](/contributi)."
+      },
       "Tutorial": {
         "questionE": "💡 Ma cosa significa quella piccola <1>e</1>?"
       }
@@ -435,6 +445,7 @@
   "Triées par :": "Ordinati per :",
   "Une personne au moins est présente dans la voiture (vous !)": "Almeno una persona è presente in macchina (voi!)",
   "Une question, un problème ?": "Una domanda, un problema?",
+  "Version": "Versione",
   "visites depuis le lancement": "visite dal lancio",
   "Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !": "Ecco la mia impronta ⛽️ di olio. Misurate il vostro!",
   "Voir le reste : ": "Vedi il resto ",

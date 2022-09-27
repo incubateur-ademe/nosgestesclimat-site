@@ -19,7 +19,6 @@ import CardGameIcon from './CardGameIcon'
 import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
-import { getLangInfos, Lang, LangInfos } from '../locales/translation'
 import LangSwitcher from './LangSwitcher'
 import { Link } from './Link'
 

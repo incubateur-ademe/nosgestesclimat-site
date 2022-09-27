@@ -4,6 +4,8 @@
   "(co-voiturage pris en compte)": "(teniendo en cuenta el uso compartido del coche)",
   "{{res}} tonnes de CO₂e": "{{res}} toneladas de CO₂e",
   "⏲️  Choississez votre mode de simulation": "⏲️ Elige el modo de simulación",
+  "▶️ Faire le test": "▶️ Haz la prueba",
+  "▶️' Faire le test": "▶️' Haz la prueba",
   "◀ Retour": "◀ Volver",
   "◀ Retour à la liste": "◀ Volver a la lista",
   "◀ Retour à la liste des fiches": "◀ Volver a la lista de tarjetas",
@@ -13,7 +15,6 @@
   "🇺🇦Réduire ma conso de pétrole": "🇺‍🇦Reducir mi consumo de aceite",
   "✅ C'est fait": "✅ Hecho",
   "✅ sélectionnez celles qui vous intéressent": "✅ seleccione los que le interesan",
-  "✨ Découvrez les nouveautés de la version": "✨ Descubre las novedades de la versión",
   "❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.": "❌ Descarta los que parezcan demasiado ambiciosos o fuera de lugar.",
   "🌟 Vous avez complété cette simulation": "🌟 Has completado esta simulación",
   "🎯 2 tonnes": "🎯 2 toneladas",
@@ -23,7 +24,7 @@
   "👎 Refuser": "👎 Rechazo",
   "👤 Qui est connecté ?": "👤 ¿Quién está conectado?",
   "👤 Vous utilisez actuellement le persona": "👤 Actualmente estás usando la persona",
-  "👥 Faire le test à plusieurs": "👥 Hacer la prueba con varias personas",
+  "👥 En groupe": "👥 En un grupo",
   "💡 Choisissez un nom de salle": "💡 Elige un nombre de habitación",
   "💾 Lancer le téléchargement.": "💾 Inicia la descarga.",
   "💾 Télécharger les résultats": "💾 Descargar los resultados",
@@ -51,6 +52,7 @@
   "Actions écartées :": "Acciones descartadas :",
   "Actions négatives": "Acciones negativas",
   "Actions non chiffrées": "Acciones no cuantificadas",
+  "Afficher l'explication du score": "Mostrar explicación de la puntuación",
   "Afficher ma simulation": "Ver mi simulación",
   "Agir": "Actuar",
   "Aide à la saisie": "Ayuda a la entrada",
@@ -61,7 +63,7 @@
   "Avancement du groupe": "Progreso del grupo",
   "Bientôt disponible !": "¡Disponible pronto!",
   "C'est dans le fichier": "Está en el",
-  "C'est parti !": "¡Vamos!",
+  "C'est parti !": "¡Aquí vamos!",
   "Cacher": "Ocultar",
   "Cacher l'objectif": "Ocultación de la lente",
   "catégorie complétée": "categoría completada",
@@ -83,7 +85,7 @@
     "conversation": {
       "estimate": {
         "KmHelp": {
-          "resultatKmParcouruMoyenne": "Conduces {{kilómetroConducido}} km con una media de {{nbPersonas}} en el coche."
+          "resultatKmParcouruMoyenne": "Conduces {{kilometroCargado}} km con una media de {{nbPersonas}} en el coche."
         }
       },
       "select": {
@@ -178,7 +180,6 @@
   "Le titre bref de votre problème": "El título corto de su problema",
   "Les 3 actions au plus fort impact pour vous :": "Las 3 acciones con mayor impacto para ti:",
   "Les nouveautés ✨": "Novedades ✨",
-  "Logo de l'Association pour la transition Bas Carbone": "Logotipo de la Asociación para la Transición a la Baja Emisión de Carbono",
   "Menu": "Menú",
   "meta": {
     "pages": {
@@ -220,6 +221,7 @@
       }
     }
   },
+  "Mise à jour le {{date}}": "Actualizado el {{fecha}}",
   "Mode groupe": "Modo de grupo",
   "Modifier": "Editar",
   "mon empreinte annuelle": "mi huella anual",
@@ -243,12 +245,14 @@
   "Nosgestesclimat - le top 3 de mes actions": "Nosgestesclimat - el top 3 de mis acciones",
   "Notre serveur semble indisponible": "Nuestro servidor parece no estar disponible",
   "nouveautés": "noticias",
+  "Nouveautés": "Noticias",
   "Nouveautés - version ": "Novedades - versión ",
   "On la mesure comment ?": "¿Cómo se mide?",
   "On vous propose une sélection graduelle de gestes.": "Se propone una selección gradual de gestos.",
   "ont utilisé l'aide à la saisie des km": "utilizó la ayuda de entrada de km",
   "Origine des visites": "Origen de las visitas",
   "Oui": "Sí",
+  "Ouvert, documenté et contributif": "Abierto, documentado y contributivo",
   "Ouvrir les options de tri": "Abrir las opciones de clasificación",
   "Page de fin de simulation pétrole": "Fin de la página de simulación de petróleo",
   "Page de fin de simulation principale": "Página final de la simulación principal",
@@ -270,6 +274,7 @@
   "Planète représentant le changement climatique": "Planeta que representa el cambio climático",
   "pleins": "completo",
   "pleins de pétrole": "lleno de aceite",
+  "Point d'interrogation": "Signo de interrogación",
   "Pompe à pétrole": "Bomba de aceite",
   "Pour en savoir plus, tout est expliqué <1></1>dans ": "Para saber más, todo está explicado <1></1>en ",
   "Précédent": "Anteriormente",
@@ -304,7 +309,7 @@
       "Instructions": {
         "avertissementModeConference": "su organización puede bloquear el uso del modo conferencia. Pruébalo antes en el dúo: si hay algún problema, puedes utilizar el modo de sondeo.",
         "contextualisationLink": "💡 ¿Quieres añadir preguntas para obtener información adicional sobre los encuestados? <2>Comprueba la \"función de contextualización de la encuesta\" </2>",
-        "descriptionModeConference": "Modo efímero: perfecto para un taller, una presentación interactiva o entre amigos. Los datos permanecen entre los participantes (peer-to-peer), sin servidor, <2>sólo durante el tiempo de la conferencia</2>.",
+        "descriptionModeConference": "Modo efímero: perfecto para un taller, una presentación interactiva o entre amigos. Los datos permanecen entre los participantes (peer-to-peer), sin servidor, <2>sólo durante la duración de la conferencia</2>.",
         "descriptionModeSondage": "Modo persistente: la interfaz es casi la misma, pero los datos se almacenan en nuestro servidor y, por tanto, siguen siendo accesibles <1>durante dos meses</1>.",
         "guideLien": "Ya están los resultados, ¿qué hacer? Nuestra guía le acompaña en sus reflexiones y debates en esta página",
         "intro": "<0>La prueba de la huella climática es una prueba individual, pero aquí te proponemos que la hagas en conjunto. Cada persona estará detrás de su propia pantalla, pero podrá ver los resultados de los demás en tiempo real.</0><1>Es una oportunidad para confrontar a los demás y reflexionar juntos sobre los retos de nuestro propio impacto.</1>",
@@ -317,7 +322,7 @@
         "nomSalleDoitContenirDesLettres": "💡 El nombre de tu habitación sólo puede contener letras, números y guiones"
       },
       "NoTestMessage": {
-        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado el examen, ¡adelante!"
+        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado tu prueba, ¡adelante!"
       },
       "Survey": {
         "csv": "Puede recuperar los resultados de la encuesta en formato .csv.",
@@ -374,8 +379,8 @@
       },
       "slide3": {
         "blockquote": "✨ ¡Nuevo! Vea también su consumo de ⛽️ aceite, un indicador complementario al tema del clima.",
-        "p1": "<0>¿Y en términos concretos?</0><1>Cada año, un francés emite una media de <2> unas 10 toneladas de</2> CO₂e.</1>",
-        "p2": "Este es su punto de partida en esta prueba: cada una de sus respuestas personalizará este resultado en la barra de puntuación."
+        "p1": "<0>¿Y en términos concretos?</0><1>Cada año, un francés emite una media de <1>10 toneladas</1> de CO₂e.</1>",
+        "p2": "El punto de partida de su test Nos Gestes Climat es una puntuación calculada a partir de los valores medios franceses asignados a cada pregunta. Esta puntuación inicial debe tomarse como un mínimo, que comienza por defecto en ~8 toneladas de CO₂e en el estado actual del perímetro de cálculo, que evoluciona en función de las mejoras del modelo. Sus respuestas afinarán esta huella en la barra de puntuación."
       },
       "slide4": {
         "blockquote": "\n\t\t\t\t\t{{espárragos}} ¡Nuevo! Vea también su consumo de aceite\n\t\t\t\t\t{{fuelPump}}, un indicador complementario al\n\t\t\t\t\tclima.",
@@ -396,7 +401,6 @@
   "Rejeter l'action": "Rechazar la acción",
   "Répondez à notre sondage sur le simulateur.": "Responda a nuestra encuesta sobre el simulador.",
   "Reprendre la simulation": "Reanudar la simulación",
-  "République Française": "República Francesa",
   "Réseaux Sociaux": "Redes sociales",
   "Revenir à ma simulation": "Volver a mi simulación",
   "simulateurs": {
@@ -413,6 +417,12 @@
   "simulations terminées depuis le lancement": "simulaciones realizadas desde el lanzamiento",
   "sites": {
     "publicodes": {
+      "Landing": {
+        "description": "En 10 minutos, obtén una estimación de tu huella de carbono."
+      },
+      "LandingExplanations": {
+        "faqLink": "## ¿Alguna pregunta?\n\n\nEncuentre respuestas a las preguntas más comunes en nuestra página de [FAQ](/contribución)."
+      },
       "Tutorial": {
         "questionE": "💡 ¿Pero qué significa esa pequeña <1>e</1>?"
       }
@@ -435,6 +445,7 @@
   "Triées par :": "Clasificado por :",
   "Une personne au moins est présente dans la voiture (vous !)": "Al menos una persona está presente en el coche (¡tú!)",
   "Une question, un problème ?": "¿Una pregunta, un problema?",
+  "Version": "Versión",
   "visites depuis le lancement": "visitas desde el lanzamiento",
   "Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !": "Aquí está mi huella ⛽️ de aceite. Mida el suyo",
   "Voir le reste : ": "Ver el resto ",
