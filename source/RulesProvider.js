@@ -106,7 +106,7 @@ const EngineWrapper = ({ rules, children }) => {
 	)
 }
 
-export const WithEngine = ({ children }) => {
+export const WithEngine = ({ children, fallback = <div>Chargement du modèle de calcul</div> }) => {
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)
 
@@ -115,6 +115,6 @@ export const WithEngine = ({ children }) => {
 		return
 	}, [])
 
-	if (engineState !== 'ready') return <div>Chargement du modèle de calcul</div>
+	if (engineState !== 'ready') return fallback
 	return children
 }

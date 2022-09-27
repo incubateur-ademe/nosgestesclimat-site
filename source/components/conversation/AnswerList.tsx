@@ -102,6 +102,7 @@ const CategoryTable = ({ steps, categories, engine }) =>
 
 		return (
 			<SubCategory
+				key={category.dottedName}
 				{...{
 					rules: categoryRules,
 					rule: category,

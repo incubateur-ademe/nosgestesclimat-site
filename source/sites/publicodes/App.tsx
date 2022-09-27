@@ -1,4 +1,5 @@
 import Logo from 'Components/Logo'
+import LogoADEME from 'Images/logoADEME.svg'
 import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
@@ -92,11 +93,11 @@ const Main = ({}) => {
 
 	return (
 		<div
-			className="ui__ container"
 			css={`
 				@media (min-width: 800px) {
 					display: flex;
 					min-height: 100vh;
+					padding-top: 1rem;
 				}
 
 				@media (min-width: 1200px) {
@@ -107,6 +108,7 @@ const Main = ({}) => {
 				}
 				${!isHomePage && !isTuto && sessionBarMargin}
 			`}
+			className={isHomePage ? '' : 'ui__ container'}
 		>
 			<Navigation isHomePage={isHomePage} />
 			<main
@@ -116,12 +118,46 @@ const Main = ({}) => {
 					outline: none !important;
 					@media (min-width: 800px) {
 						flex-grow: 1;
-						padding: 1rem;
 					}
 				`}
 			>
+
 				{!isHomePage && !isTuto && <LocalisationMessage />}
-				{isHomePage && <Logo showText />}
+
+				{isHomePage && (
+					<div
+						css={`
+							display: flex;
+							align-items: center;
+							justify-content: left;
+							max-width: 30rem;
+							margin: 0 auto;
+							> img,
+							> a {
+								margin: 0 0.3rem;
+							}
+							a:last-child {
+								margin-left: 1rem;
+							}
+							@media (max-width: 800px) {
+								margin-top: 0.6rem;
+							}
+						`}
+					>
+						<img
+							src="/images/marianne.svg"
+							alt="République Française"
+							css="width: 6rem; height: auto; margin-right: .6rem"
+							width="96"
+							height="86"
+						/>
+						<a href="https://ademe.fr" css="svg {width: 3.6rem !important}">
+							<LogoADEME />
+						</a>
+
+						<Logo showText />
+					</div>
+				)}
 				<Router />
 			</main>
 		</div>
