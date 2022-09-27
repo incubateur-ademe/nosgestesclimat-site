@@ -5,7 +5,7 @@ import twemoji from 'twemoji'
 
 // Here text should be limited to emojis. Nothing else
 
-export const getEmojiComponents = (text, title) => {
+export const getEmojiComponents = (text: string, title: string) => {
 	const attributesCallback = () => {
 		return {
 			'aria-label': title ? title : '',
@@ -36,7 +36,12 @@ export const getEmojiComponents = (text, title) => {
 // on way to change emojis in md file to attribute an alternative is the following code :
 // <span role="img" aria-label="micro" aria-hidden="false">🎤 </span>
 
-export const Twemoji = ({ text, label }) => {
+export type TwemojiProps = {
+	text: string
+	label?: string
+}
+
+export const Twemoji = ({ text, label }: TwemojiProps) => {
 	const attributesCallback = () => {
 		return {
 			'aria-label': label ? label : '',
@@ -59,11 +64,18 @@ export const Twemoji = ({ text, label }) => {
 			}}
 		/>
 	) : (
-		text
+		<>{text}</>
 	)
 }
 
-export default (text, label) => {
+export const Emoji = ({ children, ...props }) => {
+	if (children && 1 === children?.length && 'string' === typeof children[0]) {
+		return <Twemoji text={children[0]} {...props} />
+	}
+	return children
+}
+
+export default (text: string, label: string) => {
 	return <Twemoji text={text} label={label} />
 }
 

@@ -54,7 +54,7 @@ module.exports.default = {
 		}),
 		new NormalModuleReplacementPlugin(
 			/react-easy-emoji/,
-			'Components/emoji.js'
+			'Components/emoji.tsx'
 		),
 	],
 }
