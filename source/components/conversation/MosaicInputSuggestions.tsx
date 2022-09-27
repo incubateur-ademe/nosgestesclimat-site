@@ -64,20 +64,22 @@ export default function MosaicInputSuggestions({
 							if (Object.values(values).every((bool) => bool === 'non'))
 								dispatch(updateSituation(dottedName, 0))
 							else
-								toPairs(values).map(([ruleName, value]: [string, ASTNode]) => {
-									const fullDottedName = `${dottedName} . ${ruleName}`
-									const card = document.getElementById(
-										`card - ${fullDottedName}`
-									)
-									card?.animate(
-										{ opacity: [1, 0.5, 1] },
-										{
-											duration: 1000,
-											easing: 'ease-out',
-										}
-									)
-									dispatch(updateSituation(fullDottedName, value))
-								})
+								toPairs(values).forEach(
+									([ruleName, value]: [string, ASTNode]) => {
+										const fullDottedName = `${dottedName} . ${ruleName}`
+										const card = document.getElementById(
+											`card - ${fullDottedName}`
+										)
+										card?.animate(
+											{ opacity: [1, 0.5, 1] },
+											{
+												duration: 1000,
+												easing: 'ease-out',
+											}
+										)
+										dispatch(updateSituation(fullDottedName, value))
+									}
+								)
 						}}
 						title={t('Insérer cette suggestion')}
 					>
