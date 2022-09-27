@@ -48,7 +48,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 				margin-bottom: 1.2rem;
 				@media (max-width: 800px) {
 					margin: 0;
-					
 					position: fixed;
 					bottom: 4rem;
 					left: 0;
@@ -119,20 +118,22 @@ export default ({ actionMode = false, demoMode = false }) => {
 								/>
 							)}
 						</Link>
-						<button
-							title="Afficher l'explication du score"
-							onClick={() => setOpenExplanation(!openExplanation)}
-							css={`
-								position: relative;
-								right: 0.5rem;
-							`}
-						>
-							<img
-								src={openmojiURL('questionCircle')}
-								css="width:1.5rem;"
-								alt="Point d'interrogation"
-							/>
-						</button>
+						{!demoMode && (
+							<button
+								title="Afficher l'explication du score"
+								onClick={() => setOpenExplanation(!openExplanation)}
+								css={`
+									position: relative;
+									right: 0.5rem;
+								`}
+							>
+								<img
+									src={openmojiURL('questionCircle')}
+									css="width:1.5rem;"
+									alt="Point d'interrogation"
+								/>
+							</button>
+						)}
 					</div>
 					<PetrolScore
 						endURL={demoMode ? '#' : buildEndURL(rules, engine, 'petrogaz')}
