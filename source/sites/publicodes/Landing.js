@@ -123,13 +123,14 @@ export default () => {
 							>
 								{emoji('👥')} En groupe
 							</Link>
+							<ProfileLink />
 						</div>
 						<NewsBanner />
 					</div>
 				</div>
 				{!mobile && <Illustration aira-hidden="true" />}
 			</div>
-			<ProfileLink />
+
 			{!isIframe && <LandingExplanations />}
 
 			<LandingContent background footer>
@@ -211,28 +212,39 @@ const ProfileLink = () => {
 	const { hasData } = useProfileData()
 	if (!hasData) return null
 	return (
-		<animate.fromTop delay="1">
+		<animate.appear delay="1">
 			<div
 				css={`
-					button {
-						padding: 0 0.2rem !important;
-						border-radius: 1rem !important;
-					}
+					display: flex;
+					justify-content: center;
+					margin-top: 1rem;
 				`}
 			>
 				<Link
 					to="/profil"
 					title="Page profil"
 					className="ui__ button plain small"
-					css="border-radius: 2rem !important"
+					css={`
+						width: 18rem !important;
+						border-radius: 2rem !important;
+						display: flex !important;
+						align-items: center !important;
+					`}
 				>
 					<img
 						aria-hidden="true"
 						src={openmojiURL('profile')}
-						css="width: 2rem"
+						css="width: 1.5rem"
 					/>
+					<span
+						css={`
+							margin-left: 0.5rem;
+						`}
+					>
+						Retrouver ma simulation
+					</span>
 				</Link>
 			</div>
-		</animate.fromTop>
+		</animate.appear>
 	)
 }
