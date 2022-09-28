@@ -1,8 +1,15 @@
 import { useTranslation } from 'react-i18next'
+
 import { correctValue } from '../../components/publicodesUtils'
 import { disabledAction, supersededAction } from './ActionVignette'
+import { getLangFromAbreviation, getLangInfos } from '../../locales/translation'
 
-export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
+export const humanWeight = (
+	possiblyNegativeValue,
+	abrvLocale,
+	concise = false,
+	noSign
+) => {
 	const v = Math.abs(possiblyNegativeValue)
 	const { t } = useTranslation()
 	const [raw, unit] =
@@ -14,9 +21,11 @@ export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 			? [v, 'kg']
 			: [v / 1000, concise ? 't' : v > 2000 ? t('tonnes') : t('tonne')]
 
+	console.log('abrvLocale', abrvLocale)
+
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
 		resultValue = noSign ? raw : signedValue,
-		value = resultValue.toLocaleString('fr-FR', {
+		value = resultValue.toLocaleString(abrvLocale, {
 			minimumFractionDigits: 1,
 			maximumFractionDigits: 1,
 		})
@@ -31,7 +40,8 @@ const HumanWeight = ({
 	unitSuffix = undefined,
 	longUnitSuffix,
 }) => {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
 	if (!unitSuffix) {
 		unitSuffix = t('de') + ' CO₂-e / ' + t('an')
@@ -39,7 +49,7 @@ const HumanWeight = ({
 
 	const [value, unit] =
 		metric === 'climat'
-			? humanWeight(nodeValue)
+			? humanWeight(nodeValue, currentLangInfos.abrvLocale)
 			: metric === 'pétrole'
 			? [nodeValue, '']
 			: [null]
@@ -85,7 +95,15 @@ const HumanWeight = ({
 				{overrideValue ? (
 					<>
 						<del css="">{value}</del>
-						&nbsp;<ins>{humanWeight(nodeValue - overrideValue)[0]}</ins>
+						&nbsp;
+						<ins>
+							{
+								humanWeight(
+									nodeValue - overrideValue,
+									currentLangInfos.abrvLocale
+								)[0]
+							}
+						</ins>
 					</>
 				) : (
 					value

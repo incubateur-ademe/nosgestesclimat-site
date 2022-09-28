@@ -1,6 +1,7 @@
 import animate from 'Components/ui/animate'
 import { useState, Fragment, useEffect, useRef, useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { Trans, useTranslation } from 'react-i18next'
 import { setStoredTrajets, updateSituation } from '../../../actions/actions'
 import { freqList } from './dataHelp'
 import ReadOnlyRow from './ReadOnlyRow'
@@ -11,7 +12,10 @@ import { motion } from 'framer-motion'
 import styled from 'styled-components'
 import { TrackerContext } from '../../utils/withTracker'
 import emoji from 'Components/emoji'
-import { Trans, useTranslation } from 'react-i18next'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 
 const openmojis = {
 	calendrier: '1F4C5',
@@ -25,7 +29,7 @@ const openmojis = {
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 export default function KmHelp({ setFinalValue, dottedName }) {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	const tracker = useContext(TrackerContext)
 
@@ -125,6 +129,8 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		}
 	}
 
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	return !isOpen ? (
 		<div
 			css={`
@@ -168,11 +174,14 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 						{t(
 							'components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne',
 							{
-								kmParcouru: rawSum.toLocaleString('fr-FR'),
-								nbPersonnes: covoitAvg.toLocaleString('fr-FR', {
-									minimumFractionDigits: 1,
-									maximumFractionDigits: 1,
-								}),
+								kmParcouru: rawSum.toLocaleString(currentLangInfos.abrvLocale),
+								nbPersonnes: covoitAvg.toLocaleString(
+									currentLangInfos.abrvLocale,
+									{
+										minimumFractionDigits: 1,
+										maximumFractionDigits: 1,
+									}
+								),
 							}
 						)}
 					</div>
@@ -274,7 +283,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 											>
 												<Trans>Mon total :</Trans>{' '}
 												<strong>
-													&nbsp;{sum.toLocaleString('fr-FR')} km&nbsp;
+													&nbsp;{sum.toLocaleString(abrvLocale)} km&nbsp;
 												</strong>{' '}
 												<Trans>(co-voiturage pris en compte)</Trans>
 											</span>

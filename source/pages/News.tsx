@@ -16,9 +16,10 @@ import { localStorageKey } from '../components/NewsBanner'
 import Meta from '../components/utils/Meta'
 import { usePersistingState } from '../components/utils/persistState'
 import lastRelease from '../data/last-release.json'
+import { getLangFromAbreviation, getLangInfos } from '../locales/translation'
 
-const dateCool = (date: Date) =>
-	date.toLocaleString(undefined, {
+const dateCool = (date: Date, abrvLocale: string) =>
+	date.toLocaleString(abrvLocale, {
 		year: 'numeric',
 		month: 'long',
 	})
@@ -26,6 +27,8 @@ const dateCool = (date: Date) =>
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
 export default function News() {
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 	const [data, setData] = useState()
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
 	const navigate = useNavigate()
@@ -58,8 +61,6 @@ export default function News() {
 	const releaseName = data[selectedRelease].name.toLowerCase()
 	const body = data[selectedRelease].body,
 		image = body.match(/!\[.*?\]\((.*?)\)/)[1] || null
-
-	const { t } = useTranslation()
 
 	return (
 		<>
@@ -103,7 +104,9 @@ export default function News() {
 							<NavLink activeClassName="active" to={getPath(index)}>
 								{name}
 								<div>
-									<small>{dateCool(new Date(date))}</small>
+									<small>
+										{dateCool(new Date(date), currentLangInfos.abrvLocale)}
+									</small>
 								</div>
 							</NavLink>
 						</li>

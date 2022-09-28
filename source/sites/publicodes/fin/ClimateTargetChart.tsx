@@ -9,6 +9,10 @@ import { relegate } from 'Components/publicodesUtils'
 import { useLayoutEffect, useRef, useState } from 'react'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { Trans, useTranslation } from 'react-i18next'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 
 export const sustainableLifeGoal = 2000 // kgCO2e
 const sustainableBackground = '#78e08f'
@@ -20,13 +24,16 @@ const computeEmpreinteMaximum = (categories) =>
 		-1
 	).nodeValue
 
-const formatValue = (value) =>
-	(value / 1000).toLocaleString('fr-FR', {
+const formatValue = (value: number, abrvLocale: string) =>
+	(value / 1000).toLocaleString(abrvLocale, {
 		maximumSignificantDigits: 2,
 		minimumSignificantDigits: 2,
 	})
 
 export default ({ details, color, value, score, nextSlide }) => {
+	const { i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const sortedCategories = extractCategories(rules, engine, details).map(
@@ -43,7 +50,7 @@ export default ({ details, color, value, score, nextSlide }) => {
 		(memo, next) => next.nodeValue + memo,
 		0
 	)
-	const roundedValue = formatValue(value),
+	const roundedValue = formatValue(value, currentLangInfos.abrvLocale),
 		integerValue = roundedValue.split(',')[0],
 		decimalValue = roundedValue.split(',')[1]
 
@@ -138,7 +145,9 @@ export default ({ details, color, value, score, nextSlide }) => {
 				</div>
 				<div
 					css=" height: 3rem"
-					title={t(`{{res}} tonnes de CO₂e`, { res: formatValue(score) })}
+					title={t(`{{res}} tonnes de CO₂e`, {
+						res: formatValue(score, currentLangInfos.abrvLocale),
+					})}
 					aria-describedby="myFootprint"
 				>
 					<div

@@ -4,6 +4,7 @@ import lastRelease from '../data/last-release.json'
 import { usePersistingState } from './utils/persistState'
 import styled from 'styled-components'
 import { capitalise0 } from '../utils'
+import { getLangFromAbreviation, getLangInfos } from '../locales/translation'
 
 export const localStorageKey = 'last-viewed-release'
 
@@ -26,14 +27,18 @@ export default function NewsBanner() {
 
 	const showBanner = lastViewedRelease !== lastRelease.name
 
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	const date = new Date(lastRelease.date).toLocaleDateString('fr-FR', {
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	})
+	const date = new Date(lastRelease.date).toLocaleDateString(
+		currentLangInfos.abrvLocale,
+		{
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		}
+	)
 
 	return showBanner ? (
 		<div
@@ -55,7 +60,9 @@ export default function NewsBanner() {
 				</h2>
 				<div>
 					<small>
-						<Trans>Mise à jour le {{ date }}</Trans>
+						<Trans i18nKey={'components.NewsBanner.miseAJourDate'}>
+							Mise à jour le {{ date }}
+						</Trans>
 					</small>
 				</div>
 				<div>

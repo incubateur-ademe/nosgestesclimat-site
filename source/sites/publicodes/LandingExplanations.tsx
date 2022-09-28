@@ -21,8 +21,8 @@ type Avantage = {
 }
 
 export default () => {
-	const { t } = useTranslation()
-	const currentLangAbrv = getCurrentLangAbrv()
+	const { t, i18n } = useTranslation()
+	const currentLangAbrv = getCurrentLangAbrv(i18n)
 
 	return (
 		<>

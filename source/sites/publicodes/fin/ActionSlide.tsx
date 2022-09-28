@@ -3,12 +3,18 @@ import { motion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { generateImageLink } from '.'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 import ActionTeaser from './ActionTeaser'
 import { ActionButton } from './Buttons'
 
 export default ({ score, headlessMode }) => {
 	//	Configuration is try and test, feeling, really
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	const valueSpring = useSpring(0, {
 		mass: 10,
 		stiffness: 50,
@@ -30,7 +36,7 @@ export default ({ score, headlessMode }) => {
 	const backgroundColor = 'var(--lightColor)',
 		backgroundColor2 = 'var(--lighterColor)',
 		textColor = 'var(--darkerColor)',
-		roundedValue = (value / 1000).toLocaleString('fr-FR', {
+		roundedValue = (value / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
 		}),

@@ -9,9 +9,16 @@ import { ActionValue, disabledAction } from '../ActionVignette'
 import emoji from 'react-easy-emoji'
 import CircledEmojis from '../../../components/CircledEmojis'
 import { motion } from 'framer-motion'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 
 export default ({}) => {
+	const { i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	const rules = useSelector((state) => state.rules)
 
 	const flatActions = rules['actions']
@@ -26,9 +33,12 @@ export default ({}) => {
 
 	const [bilans, actions] = partition((t) => t.dottedName === 'bilan', targets),
 		total = bilans[0].nodeValue,
-		displayedTotal = (total / 1000).toLocaleString('FR-fr', {
-			maximumSignificantDigits: 2,
-		})
+		displayedTotal = (total / 1000).toLocaleString(
+			currentLangInfos.abrvLocale,
+			{
+				maximumSignificantDigits: 2,
+			}
+		)
 
 	// This is arbitrary. The chances that most actions are harder at this stages are high
 	// it could also be set to 3000

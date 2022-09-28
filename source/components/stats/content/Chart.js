@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 import {
 	AreaChart,
 	Area,
@@ -9,6 +10,10 @@ import {
 	ResponsiveContainer,
 } from 'recharts'
 
+import {
+	getLangInfos,
+	getLangFromAbreviation,
+} from '../../../locales/translation.ts'
 import Search from './chart/Search'
 import CustomTooltip from './chart/CustomTooltip'
 
@@ -41,6 +46,8 @@ export default function AreaWeekly(props) {
 			})
 		)
 	}, [props.chart, props.sites])
+	const { i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
 	return data ? (
 		<Wrapper>
@@ -59,11 +66,11 @@ export default function AreaWeekly(props) {
 							tickFormatter={(tick) => {
 								const date = new Date(tick.split(',')[0])
 								return props.period === 'month'
-									? date.toLocaleDateString('fr-fr', {
+									? date.toLocaleDateString(currentLangInfos.abrvLocale, {
 											month: 'long',
 											year: 'numeric',
 									  })
-									: date.toLocaleDateString('fr-fr', {
+									: date.toLocaleDateString(currentLangInfos.abrvLocale, {
 											day: '2-digit',
 											month: '2-digit',
 									  })

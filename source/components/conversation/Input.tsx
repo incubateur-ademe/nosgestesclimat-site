@@ -2,6 +2,7 @@ import { Evaluation, serializeUnit, Unit, formatValue } from 'publicodes'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
+import { getCurrentLangInfos } from '../../locales/translation'
 import { currencyFormat, debounce } from '../../utils'
 import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import InputEstimation from './InputEstimation'
@@ -28,9 +29,12 @@ export default function Input({
 	inputEstimation: Object | void
 }) {
 	const debouncedOnChange = useCallback(debounce(550, onChange), [])
-	const { language } = useTranslation().i18n
 	const unité = serializeUnit(unit)
-	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
+
+	const { i18n } = useTranslation()
+	const abrvLocale = getCurrentLangInfos(i18n).abrvLocale
+	const { thousandSeparator, decimalSeparator } = currencyFormat(abrvLocale)
+
 	return (
 		<>
 			<div className="step input">

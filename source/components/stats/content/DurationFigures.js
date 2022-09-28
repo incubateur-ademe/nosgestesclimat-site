@@ -1,6 +1,10 @@
 import styled from 'styled-components'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 import Tile from '../utils/Tile'
 
 const FigureWrapper = styled.div`
@@ -43,6 +47,9 @@ const Label = styled.span`
 `
 
 export default function DurationFigures(props) {
+	const { i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	return (
 		<FigureWrapper>
 			<TileWrapper>
@@ -50,7 +57,9 @@ export default function DurationFigures(props) {
 					<Number>
 						{' '}
 						{!isNaN(props.avgduration)
-							? Math.round(props.avgduration).toLocaleString('fr-FR')
+							? Math.round(props.avgduration).toLocaleString(
+									currentLangInfos.abrvLocale
+							  )
 							: '-'}
 						<Small>&nbsp;min</Small>
 					</Number>

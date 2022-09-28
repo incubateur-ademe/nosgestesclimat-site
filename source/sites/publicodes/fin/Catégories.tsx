@@ -5,7 +5,6 @@ import { useEffect, useState } from 'react'
 import { DocumentationEndButton, generateImageLink } from '.'
 import RavijenChart from '../chart/RavijenChart'
 import FinShareButton from './FinShareButton'
-const { encodeRuleName } = utils
 
 export default ({ score, details, headlessMode }) => {
 	//	Configuration is try and test, feeling, really
@@ -34,8 +33,6 @@ export default ({ score, details, headlessMode }) => {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
 		}),
-		integerValue = roundedValue.split(',')[0],
-		decimalValue = roundedValue.split(',')[1],
 		shareImage = generateImageLink(window.location)
 
 	return (

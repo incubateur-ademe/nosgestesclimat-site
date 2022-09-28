@@ -79,12 +79,12 @@ export function getLangFromAbreviation(abrv: string): Lang {
 	}
 }
 
-export function getCurrentLangInfos(): LangInfos {
-	return getLangInfos(useSelector((state) => state.currentLang))
+export function getCurrentLangInfos(i18n: i18n): LangInfos {
+	return getLangInfos(getLangFromAbreviation(i18n.language))
 }
 
-export function getCurrentLangAbrv(): string {
-	return getCurrentLangInfos().abrv
+export function getCurrentLangAbrv(i18n: i18n): string {
+	return getCurrentLangInfos(i18n).abrv
 }
 
 export function changeLangTo(i18n: i18n, currentLangState: Lang) {

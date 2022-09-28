@@ -7,6 +7,10 @@ import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
 import { useTranslation, Trans } from 'react-i18next'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -29,6 +33,9 @@ export default ({
 	setThreshold,
 	contextRules,
 }) => {
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	const [contextFilter, setContextFilter] = useState({})
 
 	const elements = filterElements(rawElements, contextFilter)
@@ -60,13 +67,11 @@ export default ({
 		min = humanWeight(minValue, true).join(' ')
 
 	const formatTotal = (total) =>
-		(total / 1000).toLocaleString('fr-FR', {
+		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 		})
 	const spotlightElement = elements.find((el) => el.username === spotlight),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
-
-	const { t } = useTranslation()
 
 	return (
 		<div>
