@@ -5,15 +5,15 @@ import i18next from '../../locales/i18n'
 import { getLangInfos, Lang } from '../../locales/translation'
 
 Object.keys(Lang).forEach((lang) => {
-	console.log(`Loading ${lang}...`)
-	console.log(`Loading Lang.${lang}`, Lang[lang])
-	const abrv = getLangInfos(Lang[lang]).abrv
-	console.log(`Loading abrv ${abrv}...`)
-	i18next.addResourceBundle(
-		abrv,
-		'translation',
-		require(`../../locales/ui/ui-${abrv}.json`)
-	)
+	if (lang !== Lang.Default) {
+		const abrv = getLangInfos(Lang[lang]).abrv
+		console.log(`[i18next] Loading '${abrv}'...`)
+		i18next.addResourceBundle(
+			abrv,
+			'translation',
+			require(`../../locales/ui/ui-${abrv}.json`)
+		)
+	}
 })
 
 let anchor = document.querySelector('#js')

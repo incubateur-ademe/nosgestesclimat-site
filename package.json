@@ -56,6 +56,7 @@
 		"i18next-parser": "^6.5.0",
 		"intl-locales-supported": "^1.0.0",
 		"mock-local-storage": "^1.1.23",
+		"node-pandoc": "^0.3.0",
 		"postcss-loader": "^7.0.0",
 		"prettier": "^2.7.1",
 		"raw-loader": "^4.0.2",

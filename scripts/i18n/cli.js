@@ -3,6 +3,7 @@
 */
 
 const yargs = require('yargs')
+const path = require('path')
 
 const utils = require('./utils')
 
@@ -52,6 +53,11 @@ const getArgs = (description) => {
 			choices: utils.availableLangs,
 			description: `The source language to translate from.`,
 		})
+		.option('file', {
+			alias: 'p',
+			type: 'string',
+			description: `The source file to translate from inside the 'locales/pages' directory. If not specified, all the files in 'locales/pages' will be translated.`,
+		})
 		.option('remove', {
 			alias: 'r',
 			type: 'boolean',
@@ -83,7 +89,9 @@ const getArgs = (description) => {
 		return l !== srcLang
 	})
 
-	return { srcLang, destLangs, force: argv.force, remove: argv.remove }
+	const srcFile = argv.file ?? '*.md'
+
+	return { srcLang, destLangs, force: argv.force, remove: argv.remove, srcFile }
 }
 
 module.exports = {

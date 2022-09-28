@@ -15,8 +15,8 @@ export default () => {
 				[Lang.Es, contentEs],
 				[Lang.It, contentIt],
 			]}
-			title={'À propos'}
-			descriptionId="About"
+			title={'Méthode'}
+			descriptionId="Méthode"
 		/>
 	)
 }

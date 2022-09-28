@@ -130,7 +130,8 @@ const translator = new deepl.Translator(process.env.DEEPL_API_KEY)
 const fetchTranslation = async (text, sourceLang, targetLang) => {
 	const resp = await translator
 		.translateText(text, sourceLang, targetLang, {
-			tagHandling: 'xml',
+			tagHandling: 'html',
+			ignoreTags: ['a'],
 			preserveFormatting: true,
 		})
 		.catch((err) => {

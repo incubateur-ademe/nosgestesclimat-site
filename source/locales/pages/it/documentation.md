@@ -1,54 +1,55 @@
 # Contestualizzare un'indagine
 
-## Per cosa?
+## Qual è lo scopo?
 
-La contestualizzazione di un sondaggio consente di salvare informazioni aggiuntive
-alla simulazione classica: ad ogni intervistato vengono poste alcune domande prima di
-domande prima di accedere al test.
+La contestualizzazione di un sondaggio consente di salvare informazioni
+aggiuntive rispetto alla simulazione classica: a ogni rispondente
+vengono poste alcune domande prima di accedere al proprio test.
 
-In questo modo, un'organizzazione può inviare un singolo link di indagine e ricevere
-informazioni che differenziano gli utenti (domande che non sono legate alla
-relativi al test "La nostra azione per il clima": ad esempio, l'età, l'occupazione, ecc
-un sottogruppo).
+In questo modo, un'organizzazione può inviare un unico link al sondaggio
+e ricevere informazioni che differenziano gli utenti (domande che non
+sono legate al test Our Climate Action: ad esempio, la loro età, il loro
+lavoro, ecc. o un sottogruppo).
 
-Per il momento, gli elementi contestuali sono disponibili nel CSV scaricato
-(non è possibile filtrare sullo schermo di visualizzazione).
+Per il momento gli elementi di contesto sono disponibili nel CSV
+scaricato (non è possibile filtrare sulla schermata di visualizzazione).
 
-&gt; Le domande non devono permettere di identificare gli utenti! Su
-&gt; Non chiederete l'identità delle persone e nemmeno il loro indirizzo e-mail! Va inoltre ricordato che le risposte sono &gt; accessibili a tutti gli utenti
-&gt; È anche importante ricordare che le risposte sono accessibili a tutte le persone
-si deve anche ricordare che le risposte sono accessibili a tutte le persone &gt; che hanno il link al sondaggio, quindi si deve fare attenzione a rispettare il diritto alla privacy
-&gt; Regole RGPD.
+> ⚠️ Le domande non devono identificare gli utenti! Non chiederemo
+> l'identità delle persone e nemmeno il loro indirizzo e-mail! È inoltre
+> importante ricordare che le risposte sono accessibili a tutti coloro
+> che hanno il link al sondaggio, quindi assicuratevi di rispettare le
+> regole del RGPD.
 
-contesto di esempio](/images/example-context.png)
+![Exemple contexte](/images/exemple-contexte.png)
 
-## Come faccio ad aggiungere questa funzionalità alla mia indagine?
+## Come faccio ad aggiungere questa funzione alla mia indagine?
 
-I "contesti" dell'indagine sono pubblicati sul server di Our Climate Action, nella sezione "Il nostro clima"
-la cartella
-[/contesti d'indagine](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage).
+I "contesti" del sondaggio sono pubblicati tramite il server Our Climate
+Action, nella cartella
+[/contexts-survey](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage).
 
-Le domande sono scritte nel formato [publicodes](https://publi.codes/)
-in formato "yaml".
+Le domande sono scritte nel linguaggio
+[publicodes](https://publi.codes/) in formato "yaml".
 
-**Abbiamo scelto di mantenere il controllo dei contesti di indagine pubblicati
-il team di Datagir svolge il ruolo di amministratore e vi aiuta a creare e pubblicare il contesto dell'indagine
-per creare il contesto e pubblicarlo per l'indagine
+**Abbiamo scelto di mantenere il controllo dei contesti d'indagine
+pubblicati, quindi il team Datagir svolge il ruolo di amministratore e
+vi aiuta a creare il vostro contesto e a pubblicarlo per la vostra
+indagine.**
 
-A
-[template](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml)
-consente di scrivere il proprio modulo contestuale. È inoltre possibile
-il [publicodes sandbox] (https://vu.fr/szYP). Non esitate a
-contattateci con una prima bozza per contestualizzare la vostra indagine!
-Attenzione, **il nome del file creato deve essere diverso da quello del nome previsto
-per il sondaggio** (vedi punto successivo).
+Un
+[modello](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml)
+consente di scrivere il proprio modulo contestuale. È anche possibile
+utilizzare la [sandbox Publicodes](https://vu.fr/szYP). Non esitate a
+contattarci con una prima bozza per contestualizzare il vostro
+sondaggio! Si noti che il **nome del file creato deve essere diverso dal
+nome dell'indagine** (si veda il punto successivo).
 
 ## E dal punto di vista tecnico?
 
-Le regole del sondaggio vengono caricate dal server nel momento in cui l'utente accede a un sondaggio con un contesto
-l'utente accede a un sondaggio con un contesto. Per evitare
-pubblico, il nome del file di contesto è diverso dal nome del sondaggio
-il file di contesto è diverso dal nome dell'indagine. Il nome del file viene assegnato tramite
-l'amministrazione del database direttamente. Solo le indagini che hanno
-solo i sondaggi che hanno un contesto allegato hanno domande aggiuntive, non cambia nulla per
-non cambia nulla per gli altri sondaggi.
+Le regole del sondaggio vengono caricate dal server quando l'utente
+accede a un sondaggio con un contesto. Per evitare di rendere pubblici
+tutti gli URL delle indagini con il contesto, il nome del file di
+contesto è diverso dal nome dell'indagine. Il nome del file viene
+assegnato direttamente dall'amministrazione del database. Solo le
+indagini con un contesto collegato hanno domande aggiuntive, mentre per
+le altre indagini non cambia nulla.
