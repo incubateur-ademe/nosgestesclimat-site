@@ -12,6 +12,7 @@ export type SavedSimulation = {
 	tutorials: Object
 	storedTrajets: Object
 	url: string
+	localisation: Object | undefined
 }
 
 export const currentSimulationSelector = (
@@ -25,6 +26,7 @@ export const currentSimulationSelector = (
 		tutorials: state.tutorials,
 		storedTrajets: state.storedTrajets,
 		url: state.simulation?.url,
+		localisation: state.localisation,
 	}
 }
 

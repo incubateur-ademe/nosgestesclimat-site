@@ -1,0 +1,40 @@
+- PR: '1339'
+  nom: Guadeloupe
+  code: GP
+  gentilé: guadeloupéenne
+  drapeau: FR
+- PR: false #default model
+  nom: France métropolitaine
+  gentilé: française
+  code: FR
+- nom: Polynésie française
+  PR: '1339'
+  code: PF
+  drapeau: FR
+  gentilé: polynésienne
+  inactif: oui
+- nom: Martinique
+  PR: '1339'
+  code: MQ
+  drapeau: FR
+  inactif: oui
+- nom: Guyane
+  PR: '1339'
+  code: GF
+  drapeau: FR
+  inactif: oui
+- nom: Mayotte
+  PR: '1339'
+  code: YT
+  drapeau: FR
+  inactif: oui
+- nom: La Réunion
+  PR: '1339'
+  code: RE
+  drapeau: FR
+  inactif: oui
+- nom: Belgique
+  code: BE
+  gentilé: belge
+  PR: '1486'
+  inactif: oui

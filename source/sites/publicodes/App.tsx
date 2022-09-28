@@ -7,6 +7,7 @@ import React, { Suspense, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { Route, Routes } from 'react-router-dom'
+import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
@@ -25,8 +26,8 @@ import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
-const Documentation = React.lazy(() => import('./pages/Documentation'))
 
+const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
@@ -73,6 +74,7 @@ export default function Root({}) {
 				actionChoices: persistedSimulation?.actionChoices || {},
 				tutorials: persistedSimulation?.tutorials || {},
 				storedTrajets: persistedSimulation?.storedTrajets || {},
+				localisation: persistedSimulation?.localisation,
 			}}
 		>
 			<Main />
@@ -119,6 +121,9 @@ const Main = ({}) => {
 					}
 				`}
 			>
+
+				{!isHomePage && !isTuto && <LocalisationMessage />}
+
 				{isHomePage && (
 					<div
 						css={`
