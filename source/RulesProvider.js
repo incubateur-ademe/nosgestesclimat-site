@@ -34,8 +34,7 @@ export default ({ children }) => {
 
 	const dispatch = useDispatch()
 
-	const setRules = (rules, url) =>
-		console.log('dispatch') || dispatch({ type: 'SET_RULES', rules, url })
+	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
 		if (!branchData.loaded) return
@@ -73,8 +72,6 @@ const EngineWrapper = ({ rules, children }) => {
 
 	const engineRequested = engineState !== null
 	const engine = useMemo(() => {
-		console.log('YOYO', engineRequested, branchData.deployURL, rules)
-
 		const shouldParse = engineRequested && rules
 		if (shouldParse) {
 			console.log('⚙️ will parse the rules,  expensive operation')
@@ -106,7 +103,10 @@ const EngineWrapper = ({ rules, children }) => {
 	)
 }
 
-export const WithEngine = ({ children, fallback = <div>Chargement du modèle de calcul</div> }) => {
+export const WithEngine = ({
+	children,
+	fallback = <div>Chargement du modèle de calcul</div>,
+}) => {
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)
 
