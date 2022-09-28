@@ -5,7 +5,6 @@
   "{{res}} tonnes de CO₂e": "{{res}} toneladas de CO₂e",
   "⏲️  Choississez votre mode de simulation": "⏲️ Elige el modo de simulación",
   "▶️ Faire le test": "▶️ Haz la prueba",
-  "▶️' Faire le test": "▶️' Haz la prueba",
   "◀ Retour": "◀ Volver",
   "◀ Retour à la liste": "◀ Volver a la lista",
   "◀ Retour à la liste des fiches": "◀ Volver a la lista de tarjetas",
@@ -37,7 +36,7 @@
   "🔍 Rechercher": "🔍 Búsqueda",
   "🔗 Partagez le lien à vos amis, collègues, etc.": "🔗 Comparte el enlace con tus amigos, compañeros, etc.",
   "🧑‍🏫 Revoir le tutoriel": "🧑‍🏫 Revisa el tutorial",
-  "🧮 Visualisez à tout moment les résultats de votre groupe": "🧮 Ver los resultados de tu grupo en cualquier momento",
+  "🧮 Visualisez à tout moment les résultats de votre groupe": "🧮 Consulta los resultados de tu grupo en cualquier momento",
   "🧮 Voir le geste climat correspondant": "🧮 Ver la acción climática correspondiente",
   "🧮 Voir les réponses": "🧮 Ver respuestas",
   "🚪 Quitter la conférence": "🚪 Abandonar la conferencia",
@@ -63,7 +62,7 @@
   "Avancement du groupe": "Progreso del grupo",
   "Bientôt disponible !": "¡Disponible pronto!",
   "C'est dans le fichier": "Está en el",
-  "C'est parti !": "¡Aquí vamos!",
+  "C'est parti !": "¡Vamos!",
   "Cacher": "Ocultar",
   "Cacher l'objectif": "Ocultación de la lente",
   "catégorie complétée": "categoría completada",
@@ -85,19 +84,22 @@
     "conversation": {
       "estimate": {
         "KmHelp": {
-          "resultatKmParcouruMoyenne": "Conduces {{kilometroCargado}} km con una media de {{nbPersonas}} en el coche."
+          "resultatKmParcouruMoyenne": "Viaja {{kmParcouru}} km avec en moyenne {{nbPersonnes}} en el coche."
         }
       },
       "select": {
         "NumberedMosaic": {
-          "choixAFaire": " Te quedan las opciones de {{nbChoice}}.",
-          "choixEnTrop": "¡Has hecho {{nbChoice}} demasiadas elecciones!"
+          "choixAFaire": " Todavía tienes {{nbChoix}} para elegir.",
+          "choixEnTrop": "Has hecho {{nbChoix}} ¡demasiadas elecciones!"
         }
       }
     },
+    "NewsBanner": {
+      "miseAJourDate": "Actualizado el {{date}}"
+    },
     "stats": {
       "StatsContent": {
-        "enSavoirPlus": "<0>Esta</0>sección se genera a partir de las visitas de los últimos 60 días. Se han descartado las visitas con un tiempo de permanencia en el sitio inferior a 1 minuto. Para evitar el sesgo del iframe que puede generar visitantes inactivos en las estadísticas, el tiempo medio en el sitio se calculó a partir de las visitas activas (el usuario hizo clic en \"Hacer la prueba\")."
+        "enSavoirPlus": "<0>Esta</0>sección se genera a partir de las visitas de los últimos 60 días. Se han descartado las visitas con un tiempo de permanencia en el sitio inferior a 1 minuto. Para evitar el sesgo del iframe que puede generar visitantes inactivos en las estadísticas, el tiempo medio en el sitio se ha calculado a partir de las visitas activas (el usuario ha hecho clic en \"Hacer la prueba\")."
       }
     }
   },
@@ -116,7 +118,7 @@
   "de <1>pétrole brut par an</1>.": "de <1>petróleo crudo al año</1>.",
   "de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>": "de visitas este mes<1> (en comparación con el mes anterior)</1>",
   "Découvrez la FAQ !": "Consulte las preguntas frecuentes",
-  "Découvrez les enjeux qui se cachent derrière chaque action.": "Descubra los temas que hay detrás de cada acción.",
+  "Découvrez les enjeux qui se cachent derrière chaque action.": "Descubra los problemas que hay detrás de cada acción.",
   "Découvrez les nouveautés de Nos Gestes Climat": "Descubra las nuevas características de Nuestros Gestos Climáticos",
   "Démarrer": "Inicie",
   "dernières nouveautés": "últimas noticias",
@@ -202,7 +204,7 @@
           "description": "Las 3 principales acciones para reducir mi huella climática en {{roundedValue}} toneladas de CO₂‍ₑ."
         },
         "Petrogaz": {
-          "description": "Mi huella de petróleo está {{footprint}} llena de petróleo. Mida el suyo"
+          "description": "Mi huella de aceite es {{empreinte}} llena de aceite. Mida el suyo"
         }
       },
       "Landing": {
@@ -221,7 +223,6 @@
       }
     }
   },
-  "Mise à jour le {{date}}": "Actualizado el {{fecha}}",
   "Mode groupe": "Modo de grupo",
   "Modifier": "Editar",
   "mon empreinte annuelle": "mi huella anual",
@@ -282,11 +283,11 @@
   "Progression dans les diapo": "Progresión a través de las diapositivas",
   "publicodes": {
     "ActionsOptionsBar": {
-      "actionsRecap": "{{númeroDeAccionesDisponibles}} acciones disponibles, <3></3>seleccionado."
+      "actionsRecap": "{{numberOfAvailableFinalActions}} acciones disponibles, <3></3>seleccionado."
     },
     "ActionTutorial": {
       "félicitation": "Has completado tu simulación, 👏 ¡bien hecho!",
-      "msgEstimation": "Ahora conoces tu huella, estimada en {{valor}} {{unidad}}, y probablemente ya tienes ideas para reducirla...",
+      "msgEstimation": "Ahora conoce su huella, estimada en {{value}} {{unit}}, y probablemente ya tiene ideas para reducirla...",
       "msgPrécision": "💡 Para mejorar la precisión, algunas acciones te harán algunas preguntas más.",
       "msgPrésentation": "Para ayudarle, le presentamos <2>una lista de acciones</2>:"
     },
@@ -312,7 +313,7 @@
         "descriptionModeConference": "Modo efímero: perfecto para un taller, una presentación interactiva o entre amigos. Los datos permanecen entre los participantes (peer-to-peer), sin servidor, <2>sólo durante la duración de la conferencia</2>.",
         "descriptionModeSondage": "Modo persistente: la interfaz es casi la misma, pero los datos se almacenan en nuestro servidor y, por tanto, siguen siendo accesibles <1>durante dos meses</1>.",
         "guideLien": "Ya están los resultados, ¿qué hacer? Nuestra guía le acompaña en sus reflexiones y debates en esta página",
-        "intro": "<0>La prueba de la huella climática es una prueba individual, pero aquí te proponemos que la hagas en conjunto. Cada persona estará detrás de su propia pantalla, pero podrá ver los resultados de los demás en tiempo real.</0><1>Es una oportunidad para confrontar a los demás y reflexionar juntos sobre los retos de nuestro propio impacto.</1>",
+        "intro": "<0>La prueba de la huella climática es una prueba individual, pero aquí te sugerimos que la hagas con otras personas. Cada persona estará detrás de su propia pantalla, pero podrá ver los resultados de los demás en tiempo real.</0><1>Es una oportunidad para confrontar a los demás y reflexionar juntos sobre los retos de nuestro propio impacto.</1>",
         "liensSimulationConference": "A la hora acordada, abre este enlace todos a la vez y haz tu propia simulación.",
         "liensSimulationSondage": "Los participantes deben venir a hacer su simulación en este enlace.",
         "resultatInfos": "Los resultados de cada categoría (alimentación, transporte, vivienda, etc.) se muestran progresivamente y en tiempo real para todo el grupo en "
@@ -322,7 +323,7 @@
         "nomSalleDoitContenirDesLettres": "💡 El nombre de tu habitación sólo puede contener letras, números y guiones"
       },
       "NoTestMessage": {
-        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado tu prueba, ¡adelante!"
+        "bienvenue": "¡Bienvenido al modo de grupo de Nuestra Acción Climática! Todavía no has empezado el examen, ¡adelante!"
       },
       "Survey": {
         "csv": "Puede recuperar los resultados de la encuesta en formato .csv.",
@@ -333,7 +334,7 @@
     },
     "Contribution": {
       "bugQuestion": "🐛 ¿Tienes un fallo que te impide usar Nuestros Gestos Climáticos?",
-      "commentaireAugmenté": "{{fromLocation}} ? ``De la página: `{fromLocation}}``: ''}\n&gt; Este ticket fue creado automáticamente por nuestro robot desde nuestra [página de contribución](https://nosgestesclimat.fr/contribuer).",
+      "commentaireAugmenté": "{{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}\n&gt; Este ticket fue creado automáticamente por nuestro robot desde nuestra [página de contribución](https://nosgestesclimat.fr/contribuer).",
       "description": "Aquí encontrará respuestas a las preguntas más frecuentes. Si todavía tiene preguntas o quiere sugerir mejoras, vaya al final de la página. ¡Disfrute de la lectura!",
       "descriptionComplète": "<0>Una descripción completa de su problema</0><1><0>Indicando el navegador que utiliza (por ejemplo, Firefox versión 93, Chrome versión 95, Safari, etc.), y la plataforma (iPhone, Android, ordenador con Windows, etc.), nos ayudará a resolver el fallo más rápidamente.</0></1>",
       "liensVersGithub": "Si tienes algún comentario o pregunta, <2>abre un ticket directamente en GitHub</2>.",
@@ -341,16 +342,16 @@
     },
     "fin": {
       "ActionTeaser": {
-        "félicitations": "¡{{displayedTotal}} toneladas!<2> Está usted muy por debajo de la media francesa</2> ",
+        "félicitations": "{{displayedTotal}} ¡Toneladas!<2> Está usted muy por debajo de la media francesa</2> ",
         "messagePourConvaincre": "Lo más probable es que tu tiempo se emplee mejor en convencer y ayudar a los demás que en intentar ganar tus \"toneladas extra\" (aunque algún día tendrás que hacerlo)."
       },
       "IframeDataShareModal": {
-        "partageResultats": "¿Comparte sus resultados con {{parent}}?",
-        "text": "<0>Al hacer clic en el botón Aceptar, autorizas a {{parent}} a recuperar tu huella climática.</0><1>Son sus resultados en las categorías principales (transporte, alimentación...), pero <1>no</1> el detalle pregunta por pregunta (sus km en coche, los m² de su vivienda...).</1><2>Nosgestesclimat.fr no está afiliado al sitio {{parent}}.</2>"
+        "partageResultats": "Comparta sus resultados en {{parent}}?",
+        "text": "<0>Al hacer clic en el botón Aceptar, usted autoriza {{parent}} à récupérer le bilan de votre empreinte climat.</0><1>Estos son tus resultados en las categorías principales (transporte, alimentación...), pero <1>no</1> los detalles de cada pregunta (el kilometraje de tu coche, los m² de tu casa...).</1><2>Nosgestesclimat.fr n'est pas affilié au site {{parent}}.</2>"
       },
       "Petrogaz": {
         "explications": "<0>Se trata de una estimación <1>mínima</1> de su consumo anual de crudo.</0><1>Estimado a través del consumo de su coche, avión, autobús y aceite de calefacción, no tiene en cuenta (todavía) el aceite utilizado para transportar sus compras, ni la energía gris de sus diversas posesiones.</1>",
-        "litres": "Esto es {{secondaryValue}} litros (lleno de {{fullVolume}} litros)."
+        "litres": "Es decir, {{secondaryValue}} litres (plein de {{pleinVolume}} litros)."
       }
     },
     "Personas": {
@@ -360,9 +361,9 @@
     },
     "Profil": {
       "locationDonnées": "<0>¿Dónde están mis datos? </0>Tus datos se almacenan en tu navegador, por lo que tienes un control total sobre ellos <2></2>",
-      "recap": "Has respondido a las preguntas de {{answeredQuestionsLength}} y has elegido las acciones de {{actionChoicesLength}}."
+      "recap": "Ha respondido a las acciones de {{answeredQuestionsLength}} questions et choisi {{actionChoicesLength}}."
     },
-    "shareText": "#nosgestesclimat 🌍️\n\n{{total}} toneladas de CO2e / año ⬇️\n\n{{gráfica}}",
+    "shareText": "#nosgestesclimat 🌍️\n\n{{total}} toneladas de CO2e / año ⬇️\n\n{{graph}}",
     "SimulationMissing": {
       "personnas": "💡 También puedes ver el curso de acción como si fueras uno de estos perfiles típicos.",
       "simulationManquante": "Todavía no has hecho la prueba. Para desbloquear este curso, tienes que contarnos un poco más sobre tu estilo de vida."
@@ -383,8 +384,8 @@
         "p2": "El punto de partida de su test Nos Gestes Climat es una puntuación calculada a partir de los valores medios franceses asignados a cada pregunta. Esta puntuación inicial debe tomarse como un mínimo, que comienza por defecto en ~8 toneladas de CO₂e en el estado actual del perímetro de cálculo, que evoluciona en función de las mejoras del modelo. Sus respuestas afinarán esta huella en la barra de puntuación."
       },
       "slide4": {
-        "blockquote": "\n\t\t\t\t\t{{espárragos}} ¡Nuevo! Vea también su consumo de aceite\n\t\t\t\t\t{{fuelPump}}, un indicador complementario al\n\t\t\t\t\tclima.",
-        "p1": "<0>¿Y en términos concretos?</0><1>Cada año, un francés emite una media de <2> 10 toneladas de</2> CO₂e.</1>",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} ¡Nuevo! Vea también su consumo de aceite, un\n\t\t\t\t\t{{fuelPump}} un indicador adicional sobre el tema\n\t\t\t\t\tclima.",
+        "p1": "<0>¿Y en términos concretos?</0><1>Cada año, un francés emite una media de <2> unas 10 toneladas de</2> CO₂e.</1>",
         "p2": "Este es su punto de partida en esta prueba: cada una de sus respuestas personalizará este resultado en la barra de puntuación."
       },
       "slide5": {

@@ -127,11 +127,16 @@ const getUiMissingTranslations = (sourcePath, targetPath, override = false) => {
 
 const translator = new deepl.Translator(process.env.DEEPL_API_KEY)
 
-const fetchTranslation = async (text, sourceLang, targetLang) => {
+const fetchTranslation = async (
+	text,
+	sourceLang,
+	targetLang,
+	tagHandling = 'xml'
+) => {
 	const resp = await translator
 		.translateText(text, sourceLang, targetLang, {
-			tagHandling: 'html',
-			ignoreTags: ['a'],
+			tagHandling,
+			ignoreTags: ['a', 'ignore'],
 			preserveFormatting: true,
 		})
 		.catch((err) => {

@@ -6,7 +6,6 @@
   "{unit}": "{unit}",
   "⏲️  Choississez votre mode de simulation": "⏲️  Choississez votre mode de simulation",
   "▶️ Faire le test": "▶️ Faire le test",
-  "▶️' Faire le test": "▶️' Faire le test",
   "◀ Retour": "◀ Retour",
   "◀ Retour à la liste": "◀ Retour à la liste",
   "◀ Retour à la liste des fiches": "◀ Retour à la liste des fiches",
@@ -95,6 +94,9 @@
           "choixEnTrop": "Vous avez fait {{nbChoix}} choix en trop !"
         }
       }
+    },
+    "NewsBanner": {
+      "miseAJourDate": "Mise à jour le {{date}}"
     },
     "stats": {
       "StatsContent": {
@@ -222,7 +224,6 @@
       }
     }
   },
-  "Mise à jour le {{date}}": "Mise à jour le {{date}}",
   "Mode groupe": "Mode groupe",
   "Modifier": "Modifier",
   "mon empreinte annuelle": "mon empreinte annuelle",

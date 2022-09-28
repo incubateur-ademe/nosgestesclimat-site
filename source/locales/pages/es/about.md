@@ -17,9 +17,8 @@ Climatique](https://avenirclimatique.org/les-outils/) y
 ## ¿Quién lo desarrolla?
 
 Esta calculadora de carbono ha sido desarrollada por el equipo
-[Datagir](https://datagir.ademe.fr/) de
-la[Agencia](https://www.ademe.fr/) Francesa[para la Transición
-Ecológica](https://www.ademe.fr/) (ADEME) y
+[Datagir](https://datagir.ademe.fr/) de la Agencia Francesa[para la
+Transición Ecológica](https://www.ademe.fr/) (ADEME) y
 [beta.gouv.fr](https://beta.gouv.fr/), en colaboración con la[Asociación
 Bilan Carbone](https://www.associationbilancarbone.fr/) (ABC).
 

@@ -40,6 +40,10 @@ const progressBars = new cliProgress.MultiBar(
 const consecutiveEmojiRegexp =
 	/(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])(\u00a9|\u00ae|[\u2000-\u3300]|\ud83c[\ud000-\udfff]|\ud83d[\ud000-\udfff]|\ud83e[\ud000-\udfff])/g
 
+const interpolatedValueRegexp = /\{\{(.*)\}\}/g
+
+const ingoredValueRegexp = /<ignore>(.*)<\/ignore>/g
+
 const translateTo = (targetLang, targetPath) => {
 	const missingTranslations = Object.entries(
 		utils.getUiMissingTranslations(srcPath, targetPath, force)
@@ -63,15 +67,16 @@ const translateTo = (targetLang, targetPath) => {
 			.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
 			.forEach(async ([key, value]) => {
 				try {
+					value = value.replace(interpolatedValueRegexp, '<ignore>$1</ignore>')
 					const translation = await utils.fetchTranslation(
 						value,
 						srcLang,
 						targetLang
 					)
-					const translationWithCombinedEmojis = translation.replace(
-						consecutiveEmojiRegexp,
-						(_, p1, p2) => `${p1}‍${p2}`
-					)
+					const translationWithCombinedEmojis = translation
+						.replace(consecutiveEmojiRegexp, (_, p1, p2) => `${p1}‍${p2}`)
+						.replace(ingoredValueRegexp, '{{$1}}')
+
 					translatedKeys = R.assocPath(
 						key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/),
 						translationWithCombinedEmojis,

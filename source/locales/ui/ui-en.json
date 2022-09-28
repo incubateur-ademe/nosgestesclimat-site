@@ -5,7 +5,6 @@
   "{{res}} tonnes de CO₂e": "{{res}} tons of CO₂e",
   "⏲️  Choississez votre mode de simulation": "⏲️ Choose your simulation mode",
   "▶️ Faire le test": "▶️ Take the test",
-  "▶️' Faire le test": "▶️' Take the test",
   "◀ Retour": "◀ Back",
   "◀ Retour à la liste": "◀ Back to the list",
   "◀ Retour à la liste des fiches": "◀ Back to the list of cards",
@@ -27,7 +26,7 @@
   "👥 En groupe": "👥 As a group",
   "💡 Choisissez un nom de salle": "💡 Choose a room name",
   "💾 Lancer le téléchargement.": "💾 Start the download.",
-  "💾 Télécharger les résultats": "💾 Download results",
+  "💾 Télécharger les résultats": "💾 Download the results",
   "📊 Analysez les résultats et animez les discussions !": "📊 Analyze the results and lead the discussions!",
   "📋 Mes réponses": "📋 My answers",
   "📘 Comment ça marche ?": "📘 How does it work?",
@@ -85,15 +84,18 @@
     "conversation": {
       "estimate": {
         "KmHelp": {
-          "resultatKmParcouruMoyenne": "You drive {{kilometers}} km with an average of {{number of people}} in the car."
+          "resultatKmParcouruMoyenne": "You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the car."
         }
       },
       "select": {
         "NumberedMosaic": {
-          "choixAFaire": " You still have {{nbChoice}} choices to make.",
-          "choixEnTrop": "You have made {{nbChoice}} too many choices!"
+          "choixAFaire": " You still have {{nbChoix}} to choose from.",
+          "choixEnTrop": "You have made {{nbChoix}} too many choices!"
         }
       }
+    },
+    "NewsBanner": {
+      "miseAJourDate": "Updated on {{date}}"
     },
     "stats": {
       "StatsContent": {
@@ -168,7 +170,7 @@
   "Icône représentant une pompe à pétrole": "Icon representing an oil pump",
   "Initialisation...": "Initialization...",
   "Insérer cette suggestion": "Insert this suggestion",
-  "J'ai compris": "I understood",
+  "J'ai compris": "I understand",
   "Je ne sais pas": "I do not know",
   "L'objectif à atteindre, 2 tonnes de CO₂e": "The goal to achieve, 2 tons of CO₂e",
   "la page à partager à l'étape 3": "the page to be shared in step 3",
@@ -202,7 +204,7 @@
           "description": "Top 3 actions to reduce my climate footprint by {{roundedValue}} tons of CO₂‍ₑ."
         },
         "Petrogaz": {
-          "description": "My oil footprint is {{footprint}} full of oil. Measure yours!"
+          "description": "My oil footprint is {{empreinte}} full of oil. Measure yours!"
         }
       },
       "Landing": {
@@ -221,7 +223,6 @@
       }
     }
   },
-  "Mise à jour le {{date}}": "Updated on {{date}}",
   "Mode groupe": "Group mode",
   "Modifier": "Edit",
   "mon empreinte annuelle": "my annual footprint",
@@ -282,11 +283,11 @@
   "Progression dans les diapo": "Progression through the slides",
   "publicodes": {
     "ActionsOptionsBar": {
-      "actionsRecap": "{{numberOfAvailableFinalActions}} actions available, <3></3>selected."
+      "actionsRecap": "{{numberOfAvailableFinalActions}} available actions, <3></3>selected."
     },
     "ActionTutorial": {
       "félicitation": "You have completed your simulation, 👏 well done!",
-      "msgEstimation": "You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas on how to reduce it...",
+      "msgEstimation": "You now know your footprint, estimated at {{value}} {{unit}}, and you probably already have ideas to reduce it...",
       "msgPrécision": "💡 To improve accuracy, some actions will ask you a few more questions.",
       "msgPrésentation": "To help you, we will present you with <2>a list of actions</2>:"
     },
@@ -314,7 +315,7 @@
         "guideLien": "The results are in, what to do? Our guide accompanies you in your thoughts and discussions on this page",
         "intro": "<0>The climate footprint test is an individual test, but here we suggest that you do it with others. Everyone will be behind his or her own screen, but will be able to see the results of the others in real time.</0><1>It is an opportunity to confront others and to think together about the stakes of our own impact.</1>",
         "liensSimulationConference": "At the agreed time, open this link all at the same time and do your own simulation.",
-        "liensSimulationSondage": "Participants must come to make their simulation on this link.",
+        "liensSimulationSondage": "Participants must come and do their simulation on this link.",
         "resultatInfos": "The results for each category (food, transportation, housing, etc.) are displayed progressively and in real time for the entire group on "
       },
       "NamingBlock": {
@@ -333,8 +334,8 @@
     },
     "Contribution": {
       "bugQuestion": "🐛 You have a bug that prevents you from using Our Climate Gestures?",
-      "commentaireAugmenté": "{{fromLocation}} ? ``From the page: `{fromLocation}}``: ''}\n&gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).",
-      "description": "Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!",
+      "commentaireAugmenté": "{{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}\n&gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).",
+      "description": "Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a nice reading!",
       "descriptionComplète": "<0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>",
       "liensVersGithub": "For any comments or questions, we invite you to <2>open a ticket directly on GitHub</2>.",
       "remerciements": "Thank you 😍! Follow the progress of your suggestion by clicking on <1>this link</1>."
@@ -345,12 +346,12 @@
         "messagePourConvaincre": "Chances are, your time is better spent convincing and helping others than trying to earn your \"extra tons\" (although you'll have to do that eventually)."
       },
       "IframeDataShareModal": {
-        "partageResultats": "Share your results with {{parent}}?",
-        "text": "<0>By clicking on the Accept button, you authorize {{parent}} to retrieve your climate footprint.</0><1>It is your results on the main categories (transport, food...), but <1>not</1> the detail question by question (your km by car, the m² of your house...).</1><2>Nosgestesclimat.fr is not affiliated with the site {{parent}}.</2>"
+        "partageResultats": "Share your results at {{parent}}?",
+        "text": "<0>By clicking on the Accept button, you authorize {{parent}} à récupérer le bilan de votre empreinte climat.</0><1>These are your results on the main categories (transport, food...), but <1>not</1> the details of each question (your car kilometers, the m² of your house...).</1><2>Nosgestesclimat.fr n'est pas affilié au site {{parent}}.</2>"
       },
       "Petrogaz": {
         "explications": "<0>It is a <1>minimum</1> estimate of your crude oil consumption for the year.</0><1>Estimated via your car, plane, bus and heating oil consumption, it does not (yet) take into account the oil used to transport your purchases, and the grey energy of your various possessions.</1>",
-        "litres": "That is {{secondaryValue}} liters (full of {{fullVolume}} liters)."
+        "litres": "That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters)."
       }
     },
     "Personas": {
@@ -360,7 +361,7 @@
     },
     "Profil": {
       "locationDonnées": "<0>Where is my data? </0>Your data is stored in your browser, so you have full control over it <2></2>",
-      "recap": "You have answered {{answeredQuestionsLength}} questions and chosen {{actionChoicesLength}} actions."
+      "recap": "You have responded to {{answeredQuestionsLength}} questions et choisi {{actionChoicesLength}} actions."
     },
     "shareText": "#nosgestesclimate 🌍️\n\n{{total}} tons CO2e / year ⬇️\n\n{{graph}}",
     "SimulationMissing": {
@@ -379,11 +380,11 @@
       },
       "slide3": {
         "blockquote": "✨ New! Also view your ⛽️ oil consumption, a complementary indicator to the climate topic.",
-        "p1": "<0>And concretely?</0><1>Every year, a French person emits an average of <1>10 tons</1> of CO₂e.</1>",
+        "p1": "<0>And in concrete terms?</0><1>Every year, a French person emits an average of <1>10 tons</1> of CO₂e.</1>",
         "p2": "The starting point for your Nos Gestes Climat test is a score calculated from average French values assigned to each question. This initial score is to be taken as a minimum, which starts by default at ~8 tons of CO₂e in the current state of the calculation perimeter that evolves according to the improvements of the model. Your answers will then refine this footprint in the score bar."
       },
       "slide4": {
-        "blockquote": "\n\t\t\t\t\t{{sparkles}} New! See also your oil consumption\n\t\t\t\t\t{{fuelPump}}, a complementary indicator to the\n\t\t\t\t\tclimate.",
+        "blockquote": "\n\t\t\t\t\t{{sparkles}} New! See also your oil consumption, a complementary\n\t\t\t\t\t{{fuelPump}} an additional indicator on the subject of\n\t\t\t\t\tclimate.",
         "p1": "<0>And concretely?</0><1>Every year, a French person emits on average <2> about 10 tons of</2> CO₂e.</1>",
         "p2": "This is your starting point in this test: each of your answers will personalize this result in the score bar."
       },

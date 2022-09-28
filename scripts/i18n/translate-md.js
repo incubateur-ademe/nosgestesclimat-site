@@ -40,7 +40,8 @@ const translateTo = async (src, destPath, destLang) => {
 	const translation = await utils.fetchTranslation(
 		src,
 		srcLang.toUpperCase(),
-		destLang.toUpperCase()
+		destLang.toUpperCase(),
+		'html'
 	)
 	pandoc(
 		translation,

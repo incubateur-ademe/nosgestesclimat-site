@@ -1,9 +1,32 @@
 - illustration: 🪟
-  text: |
-    Le code source est ouvert, le site est [amélioré régulièrement](/nouveautés).
+  text:
+    fr: |
+      Le code source est ouvert, le site est [amélioré régulièrement](/nouveautés).
+    en: |
+      The website is open-source and [actively maintained](/nouveautés).
+    es: |
+      El código fuente está abierto, el sitio es [regularmente mejorado](/nouveautés)
+    it: |
+      Il codice sorgente è aperto, il sito è [regolarmente migliorato](/nouveautés).
+
 - illustration: 🔎
-  text: |
-    L'intégralité du calcul est [documenté](/documentation) en ligne pour les curieux et les experts.
+  text:
+    fr: |
+      L'intégralité du calcul est [documenté](/documentation) en ligne pour les curieux et les experts.
+    en: |
+      All the computation is [documented](/documentation) and available for the curious and the experts.
+    es: |
+      Todo el cálculo está [documentado](/documentation) en línea para los curiosos y los expertos.
+    it: |
+      L'intero calcolo è [documentato](/documentation) online per i curiosi e gli esperti.
+
 - illustration: 🖋️
-  text: |
-    Une idée ? Une correction ? Une remarque ? Toute contribution [est la bienvenue](/contribuer).
+  text:
+    fr: |
+      Une idée ? Une correction ? Une remarque ? Toute contribution [est la bienvenue](/contribuer)!
+    en: |
+      An idea? A correction? A suggestion? Any contributions [is welcome](/contribuer)!
+    es: |
+      ¿Una idea? ¿Una corrección? ¿Un comentario? Cualquier contribución [es bienvenida](/contribuer)!
+    it: |
+      Un'idea? Una correzione? Un'osservazione? Ogni contributo [è ben accetto](/contribuer)!

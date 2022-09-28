@@ -4,7 +4,7 @@ import { useTranslation, Trans } from 'react-i18next'
 
 import avantages from './avantages.yaml'
 import LandingContent from './LandingContent'
-import { Lang } from './../../locales/translation'
+import { getCurrentLangAbrv, Lang } from './../../locales/translation'
 import MarkdownPage from './pages/MarkdownPage'
 
 import contentFr from 'raw-loader!../../locales/pages/fr/landing.md'
@@ -14,8 +14,16 @@ import contentIt from 'raw-loader!../../locales/pages/it/landing.md'
 
 const fluidLayoutMinWidth = '1200px'
 
+type Avantage = {
+	illustration: string
+	icon?: string
+	text: { fr: string; en: string; es: string; it: string }
+}
+
 export default () => {
 	const { t } = useTranslation()
+	const currentLangAbrv = getCurrentLangAbrv()
+
 	return (
 		<>
 			<div
@@ -60,15 +68,17 @@ export default () => {
 							}
 						`}
 					>
-						{avantages.map((el) => (
-							<div key={el.icon} className="ui__ card box">
-								{emoji(el.illustration)}
+						{avantages.map((el: Avantage) => {
+							return (
+								<div key={el.icon} className="ui__ card box">
+									{emoji(el.illustration)}
 
-								<div>
-									<Markdown>{el.text}</Markdown>
+									<div>
+										<Markdown>{el.text[currentLangAbrv]}</Markdown>
+									</div>
 								</div>
-							</div>
-						))}
+							)
+						})}
 					</div>
 					<Markdown
 						children={t(`sites.publicodes.LandingExplanations.faqLink`)}
