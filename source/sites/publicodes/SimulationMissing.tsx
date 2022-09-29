@@ -5,7 +5,10 @@ import { PersonaGrid } from './Personas'
 
 export default ({}) => {
 	return (
-		<div className="ui__ card light colored content" css="margin-top: 1.6rem">
+		<div
+			className="ui__ card light colored content"
+			css="margin: 1.6em 0.5rem 1.6rem 0.5rem"
+		>
 			<h1>Simulation manquante</h1>
 			<IllustratedMessage
 				inline
