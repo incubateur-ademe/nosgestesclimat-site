@@ -70,7 +70,7 @@ export default function Evolution(props) {
 		<Wrapper>
 			<TopBlock>
 				<BigNumber>
-					{props.allTime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+					{props.allTime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
 				</BigNumber>{' '}
 				&nbsp;visites depuis le lancement
 			</TopBlock>
@@ -87,7 +87,7 @@ export default function Evolution(props) {
 					<Number>
 						{(simulations?.nb_visits + baseSimulations)
 							.toString()
-							.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+							.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
 					</Number>{' '}
 					simulations terminées depuis le lancement
 				</Block>
