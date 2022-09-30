@@ -24,8 +24,10 @@ const computeEmpreinteMaximum = (categories) =>
 		-1
 	).nodeValue
 
-const formatValue = (value: number, abrvLocale: string) =>
-	(value / 1000).toLocaleString(abrvLocale, {
+const formatValue = (value: number, _abrvLocale: string) =>
+	// NOTE: we use the french locale for the thousands separator because otherwise
+	// the number is not printed correctly.
+	(value / 1000).toLocaleString('fr-FR', {
 		maximumSignificantDigits: 2,
 		minimumSignificantDigits: 2,
 	})

@@ -26,9 +26,9 @@ const getBackgroundColor = (score) =>
 export default ({ score, details, headlessMode, nextSlide }) => {
 	//	Configuration is try and test, feeling, really
 	const valueSpring = useSpring(0, {
-		mass: 10,
+		mass: 15,
 		stiffness: 50,
-		damping: 60,
+		damping: 50,
 	})
 
 	const [value, setValue] = useState(0)
