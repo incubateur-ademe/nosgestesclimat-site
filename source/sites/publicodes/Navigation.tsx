@@ -1,5 +1,6 @@
 import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
+import LangSwitcher from '../../components/LangSwitcher'
 import Logo from '../../components/Logo'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useMediaQuery from '../../components/utils/useMediaQuery'
@@ -28,20 +29,28 @@ export default ({ isHomePage }) => {
 					@media (min-width: 800px) {
 						flex-shrink: 0;
 						width: 12rem;
-						height: 100vh;
+						height: 95vh;
 						${isIframe && `height: 100% !important;`}
 						overflow: auto;
 						position: sticky;
 						top: 0;
 						flex-direction: column;
-						justify-content: start;
+						justify-content: space-between;
 						border-right: 1px solid #eee;
 					}
 					${isHomePage && `display: none`}
 				`}
 			>
-				<Logo showText={largeScreen} size={largeScreen ? 'medium' : 'small'} />
-				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
+				<div>
+					<Logo
+						showText={largeScreen}
+						size={largeScreen ? 'medium' : 'small'}
+					/>
+					{pathname !== '/' && !pathname.includes('nouveautés') && (
+						<SessionBar />
+					)}
+				</div>
+				<LangSwitcher />
 			</nav>
 		</>
 	)
