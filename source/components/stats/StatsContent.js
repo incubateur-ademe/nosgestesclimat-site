@@ -27,6 +27,7 @@ import Chart from './content/Chart'
 import DurationChart from './content/DurationChart'
 import DurationFigures from './content/DurationFigures'
 import KmFigures from './content/KmFigures'
+import ScoreFromURL from './content/ScoreFromURL'
 // import Loader from './applications/Loader'
 
 const Wrapper = styled.div`
@@ -77,12 +78,13 @@ export default function Data(props) {
 			allTime ? (
 				<>
 					<Section>
+						<ScoreFromURL pages={pages} />
 						<Section.Title>Stats générales</Section.Title>
 						<Wrapper>
 							<Evolution
 								period={period.value}
 								reference={reference.value}
-								pages={pages.value}
+								pages={pages}
 								allTime={allTime.value}
 								simulations={simulations}
 							/>
