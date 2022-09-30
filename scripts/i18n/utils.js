@@ -140,7 +140,7 @@ const fetchTranslation = async (
 			preserveFormatting: true,
 		})
 		.catch((err) => {
-			printErr(`Error: while fetching the request: ${err}`)
+			console.error(`Error: while fetching the request: ${err}`)
 			process.exit(-1)
 		})
 

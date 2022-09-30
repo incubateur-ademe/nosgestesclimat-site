@@ -152,6 +152,7 @@
 		"translate:faq": "node scripts/i18n/translate-faq.js",
 		"translate:ui": "node scripts/i18n/translate-ui.js",
 		"translate:md": "node scripts/i18n/translate-md.js",
+		"translate:releases": "node scripts/i18n/translate-release.js",
 		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
 		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
 		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",

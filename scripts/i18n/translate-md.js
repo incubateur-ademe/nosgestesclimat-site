@@ -4,7 +4,7 @@
 	NOTE: In order to avoid to translate internal links, we use pandoc to
 	convert the Markdown to HTML and then back to Markdown.
 
-	Command: yarn run translate:md [options]
+	Command: yarn translate:md [options]
 */
 
 const cliProgress = require('cli-progress')
