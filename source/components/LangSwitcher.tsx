@@ -1,13 +1,13 @@
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { getLangInfos, Lang, LangInfos } from '../locales/translation'
+import { getLangInfos, Lang } from '../locales/translation'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 
 export default function LangSwitcher() {
 	const dispatch = useDispatch()
 	const currentLang = useSelector((state) => state.currentLang)
-	const [_, setSearchParams] = useSearchParams()
+	const [searchParams, setSearchParams] = useSearchParams()
 	const { t } = useTranslation()
 
 	return (
@@ -21,7 +21,7 @@ export default function LangSwitcher() {
 				{Object.keys(Lang)
 					.filter((l) => l !== Lang.Default)
 					.map((l) => [Lang[l], getLangInfos(Lang[l])])
-					.map(([lang, langInfos]): [Lang, LangInfos] => {
+					.map(([lang, langInfos]) => {
 						return (
 							<div>
 								<button
@@ -35,7 +35,8 @@ export default function LangSwitcher() {
 											type: 'SET_LANGUAGE',
 											currentLang: lang,
 										})
-										setSearchParams({ lang: langInfos.abrv })
+										searchParams.set('lang', langInfos.abrv)
+										setSearchParams(searchParams)
 									}}
 								>
 									{langInfos.name}
