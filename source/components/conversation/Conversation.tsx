@@ -86,6 +86,7 @@ export default function Conversation({
 	}
 
 	const sortedQuestions = focusByCategory(questionsSortedByCategory)
+	console.log('FOCUS', focusedCategory, sortedQuestions)
 
 	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',

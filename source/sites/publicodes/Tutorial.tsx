@@ -1,25 +1,25 @@
 import AbacusFrance from 'Images/abacus-france.svg'
 import CO2e from 'Images/co2e.svg'
+import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import ObjectifClimat from 'Images/objectif-climat.svg'
+import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Navigate } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
-import ScoreBar from './ScoreBar'
-import Chart from './chart/index.js'
-import HorizontalSwipe from './HorizontalSwipe'
-import Slide from './TutorialSlide'
-import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import { Navigate, Redirect } from 'react-router'
-import { useContext, useEffect } from 'react'
-import { TrackerContext } from '../../components/utils/withTracker'
-import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
-import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
+import useKeypress from '../../components/utils/useKeyPress'
+import { TrackerContext } from '../../components/utils/withTracker'
 import { WithEngine } from '../../RulesProvider'
+import Chart from './chart/index.js'
+import HorizontalSwipe from './HorizontalSwipe'
+import ScoreBar from './ScoreBar'
+import Slide from './TutorialSlide'
 
 export default ({}) => {
+	const navigate = useNavigate()
 	const tutorials = useSelector((state) => state.tutorials)
 	const thenRedirectTo = useSelector((state) => state.thenRedirectTo)
 
@@ -39,6 +39,9 @@ export default ({}) => {
 			])
 
 			skip(last ? 'testIntro' : 'testIntro' + index)
+			if (last) {
+				navigate('/simulateur/bilan')
+			}
 		},
 		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
@@ -55,9 +58,6 @@ export default ({}) => {
 		if (Object.keys(tutorials).includes('testIntro5'))
 			dispatch(skipTutorial('testIntro'))
 	}, [tutorials])
-
-	if (tutorials['testIntro'])
-		return <Navigate to={thenRedirectTo || '/simulateur/bilan'} replace />
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we avoid an error
