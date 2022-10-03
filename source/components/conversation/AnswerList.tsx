@@ -285,7 +285,7 @@ const Answer = ({ rule, dispatch, language, level }) => {
 							${rule.passedQuestion ? 'opacity: .5' : ''}
 						`}
 					>
-						{formatValue(rule, { language })}
+						{formatValue(rule)}
 						{rule.passedQuestion && emoji(' 🤷🏻')}
 					</span>
 				</button>
