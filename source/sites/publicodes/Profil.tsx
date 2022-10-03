@@ -3,7 +3,7 @@ import {
 	deletePreviousSimulation,
 	resetActionChoices,
 	resetSimulation,
-	resetTutorials,
+	resetIntroTutorial,
 	resetStoredTrajets,
 } from 'Actions/actions'
 import emoji from 'react-easy-emoji'
@@ -14,7 +14,7 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { skipTutorial } from '../../actions/actions'
+import { resetIntroTutorials, skipTutorial } from '../../actions/actions'
 import { useNavigate } from 'react-router-dom'
 import Localisation from 'Components/localisation/Localisation'
 
@@ -92,16 +92,17 @@ export default ({}) => {
 							</button>
 							{tutorials.testIntro && (
 								<div>
-									<button
+									<Link
+										css="text-decoration: none"
+										to="/tutoriel"
 										className="ui__ dashed-button"
 										onClick={() => {
 											dispatch(skipTutorial('testIntro', true))
-											dispatch(resetTutorials())
-											navigate('/tutoriel')
+											dispatch(resetIntroTutorial())
 										}}
 									>
 										{emoji('🧑‍🏫')} Revoir le tutoriel
-									</button>
+									</Link>
 								</div>
 							)}
 						</div>
@@ -118,7 +119,7 @@ export default ({}) => {
 									className="ui__ dashed-button"
 									onClick={() => {
 										dispatch(skipTutorial('testIntro', true))
-										dispatch(resetTutorials())
+										dispatch(resetIntroTutorial())
 										navigate('/tutoriel')
 									}}
 								>
