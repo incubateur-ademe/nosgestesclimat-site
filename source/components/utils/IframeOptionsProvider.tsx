@@ -14,7 +14,7 @@ export default function IframeOptionsProvider({ children, tracker }) {
 		urlParams.set('integratorUrl', document.referrer)
 	}
 
-	const isIframe = urlParams.get('iframe') !== null
+	const isIframe = urlParams.get('iframe') != null
 
 	const integratorUrl = isIframe && urlParams.get('integratorUrl')
 
