@@ -1,5 +1,4 @@
 import { ASTNode } from 'publicodes'
-import { toPairs } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -51,7 +50,7 @@ export default function MosaicInputSuggestions({
 			`}
 		>
 			{Object.keys(suggestions).length > 0 &&
-				toPairs(suggestions).map(([text, values]: [string, ASTNode]) => {
+				Object.entries(suggestions).map(([text, values]: [string, ASTNode]) => {
 					return (
 						<button
 							className="ui__ suggestion plain button"
