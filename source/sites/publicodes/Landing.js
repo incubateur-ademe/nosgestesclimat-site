@@ -195,6 +195,9 @@ export default () => {
 						<Link to="/diffuser">
 							<Trans>Diffuser</Trans>
 						</Link>
+						<Link to="/nouveautés">
+							<Trans>Nouveautés</Trans>
+						</Link>
 						<div>
 							<LangSwitcher className="simple small" />
 						</div>
