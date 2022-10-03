@@ -90,43 +90,12 @@ export default ({}) => {
 							>
 								{emoji('♻️ ')} Recommencer
 							</button>
-							{tutorials.testIntro && (
-								<div>
-									<Link
-										css="text-decoration: none"
-										to="/tutoriel"
-										className="ui__ dashed-button"
-										onClick={() => {
-											dispatch(skipTutorial('testIntro', true))
-											dispatch(resetIntroTutorial())
-										}}
-									>
-										{emoji('🧑‍🏫')} Revoir le tutoriel
-									</Link>
-								</div>
-							)}
+							<TutorialLink {...{ dispatch, tutorials }} />
 						</div>
 					</div>
 				) : (
 					<div>
-						{tutorials.testIntro && (
-							<div
-								css={`
-									margin-bottom: 2rem;
-								`}
-							>
-								<button
-									className="ui__ dashed-button"
-									onClick={() => {
-										dispatch(skipTutorial('testIntro', true))
-										dispatch(resetIntroTutorial())
-										navigate('/tutoriel')
-									}}
-								>
-									{emoji('🧑‍🏫')} Revoir le tutoriel
-								</button>
-							</div>
-						)}
+						<TutorialLink {...{ dispatch, tutorials }} />
 						<IllustratedMessage
 							emoji="🕳️"
 							message={<p>Vous n'avez pas encore fait le test.</p>}
@@ -139,3 +108,19 @@ export default ({}) => {
 		</div>
 	)
 }
+
+const TutorialLink = ({ tutorials, dispatch }) =>
+	tutorials.testIntro && (
+		<div>
+			<Link
+				css="text-decoration: none"
+				to="/tutoriel"
+				className="ui__ dashed-button"
+				onClick={() => {
+					dispatch(resetIntroTutorial())
+				}}
+			>
+				{emoji('🧑‍🏫')} Revoir le tutoriel
+			</Link>
+		</div>
+	)
