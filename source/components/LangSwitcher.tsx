@@ -1,12 +1,18 @@
 import styled from 'styled-components'
-import { getLangInfos, Lang } from '../locales/translation'
-import { useDispatch, useSelector } from 'react-redux'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+	Lang,
+} from '../locales/translation'
+import { useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function LangSwitcher() {
 	const dispatch = useDispatch()
-	const currentLang = useSelector((state) => state.currentLang)
+	const { i18n } = useTranslation()
+	const currentLang = getLangFromAbreviation(i18n.language)
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [isOpen, setIsOpen] = useState(false)
 
@@ -42,7 +48,7 @@ export default function LangSwitcher() {
 								<div>
 									<button
 										className={
-											lang === currentLang.currentLang
+											lang === currentLang
 												? 'ui__ text-button'
 												: 'ui__ dashed-button'
 										}

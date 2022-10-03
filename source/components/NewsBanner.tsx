@@ -4,7 +4,7 @@ import lastRelease from '../data/last-release.json'
 import { usePersistingState } from './utils/persistState'
 import styled from 'styled-components'
 import { capitalise0 } from '../utils'
-import { getLangFromAbreviation, getLangInfos } from '../locales/translation'
+import { getCurrentLangInfos } from '../locales/translation'
 
 export const localStorageKey = 'last-viewed-release'
 
@@ -28,7 +28,7 @@ export default function NewsBanner() {
 	const showBanner = lastViewedRelease !== lastRelease.name
 
 	const { t, i18n } = useTranslation()
-	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+	const currentLangInfos = getCurrentLangInfos(i18n)
 
 	const date = new Date(lastRelease.date).toLocaleDateString(
 		currentLangInfos.abrvLocale,
