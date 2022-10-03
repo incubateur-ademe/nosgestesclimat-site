@@ -131,6 +131,13 @@ export const usePages = () =>
 		(res) => res.data
 	)
 
+export const useActivePages = () =>
+	useX(
+		'activePages',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000&segment=eventAction%3D%3DClic%252520CTA%252520accueil`,
+		(res) => res.data
+	)
+
 export const useAllTime = () =>
 	useX(
 		'allTime',

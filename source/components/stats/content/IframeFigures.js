@@ -89,7 +89,8 @@ const Toggle = styled.button`
 	cursor: pointer;
 `
 export default function IframeFigures(props) {
-	const [iframes, activeIframes] = props.pages && getIframeRate(props.pages)
+	const [iframes, activeIframes] =
+		props.pages && getIframeRate(props.pages, props.activePages)
 	const [iframePages, totalIframe] =
 		props.pages && getIdentifiedIframes(props.pages)
 
@@ -157,7 +158,7 @@ export default function IframeFigures(props) {
 }
 
 // for iframe rate we consider as iframe url pages which include 'iframe' and inactive landing pages
-const getIframeRate = (pages) => {
+const getIframeRate = (pages, activePages) => {
 	const totalPages = pages.reduce((acc, cur) => acc + cur.entry_nb_visits, 0)
 
 	const iframePages = pages.filter((page) => page.label.includes('iframe'))
@@ -167,11 +168,14 @@ const getIframeRate = (pages) => {
 		0
 	)
 
-	const totalExitIframe = iframePages.reduce(
-		(acc, cur) => acc + cur.exit_nb_visits,
+	const activeIframePages = activePages.filter((page) =>
+		page.label.includes('iframe')
+	)
+
+	const totalActiveIframe = activeIframePages.reduce(
+		(acc, cur) => acc + cur.entry_nb_visits,
 		0
 	)
-	const totalActiveIframe = totalIframe - totalExitIframe
 
 	const landingPage = pages.find((obj) => obj.label === '/index')
 
