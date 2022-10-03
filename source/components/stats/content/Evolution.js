@@ -67,10 +67,6 @@ export default function Evolution(props) {
 	const baseSimulations = 32015
 	const simulations = props.simulations
 
-	const [iframes, activeIframes] = props.pages && getIframeRate(props.pages)
-
-	// console.log(iframes, activeIframes)
-
 	return (
 		<Wrapper>
 			<TopBlock>
@@ -99,38 +95,4 @@ export default function Evolution(props) {
 			</BlockWrapper>
 		</Wrapper>
 	)
-}
-
-// for iframe rate we consider as iframe url pages which include 'iframe' and inactive landing pages
-const getIframeRate = (pages) => {
-	const totalPages = pages.reduce((acc, cur) => acc + cur.entry_nb_visits, 0)
-
-	const iframePages = pages.filter((page) => page.label.includes('iframe'))
-
-	const iframeLandingPages = pages.filter(
-		(page) => page.label.includes('iframe') && page.label.includes('index')
-	)
-
-	const totalIframe = iframePages.reduce(
-		(acc, cur) => acc + cur.entry_nb_visits,
-		0
-	)
-
-	const totalExitIframe = iframeLandingPages.reduce(
-		(acc, cur) => acc + cur.exit_nb_visits,
-		0
-	)
-	const totalActiveIframe = totalIframe - totalExitIframe
-
-	const landingPage = pages.find((obj) => obj.label === '/index')
-
-	const exitLandingPage = landingPage.exit_nb_visits
-
-	const approximatedTotalIframes = exitLandingPage + totalIframe
-
-	const iframes = (approximatedTotalIframes / totalPages) * 100
-
-	const activeIframes = (totalActiveIframe / approximatedTotalIframes) * 100
-
-	return [iframes, activeIframes]
 }

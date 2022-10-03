@@ -26,6 +26,7 @@ import Sources from './content/Sources'
 import Chart from './content/Chart'
 import DurationChart from './content/DurationChart'
 import DurationFigures from './content/DurationFigures'
+import IframeFigures from './content/IframeFigures'
 import KmFigures from './content/KmFigures'
 import ScoreFromURL from './content/ScoreFromURL'
 // import Loader from './applications/Loader'
@@ -78,7 +79,6 @@ export default function Data(props) {
 			allTime ? (
 				<>
 					<Section>
-						<ScoreFromURL pages={pages} />
 						<Section.Title>Stats générales</Section.Title>
 						<Wrapper>
 							<Evolution
@@ -105,6 +105,24 @@ export default function Data(props) {
 							socials={socials}
 							keywords={keywords}
 						/>
+					</Section>
+					<Section>
+						<Section.Title>Intégrations et Iframes</Section.Title>
+						<Section.Intro>
+							<summary>En savoir plus</summary>
+							Les intégrations en iframe sont détéctées via le paramètre
+							'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé
+							le&nbsp;<a href="./diffuser">script dédié</a>. Ainsi, les visites
+							via les iframes d'intégrateurs qui n'ont pas utilisé ce script
+							sont dispersées dans les visites générales de Nos Gestes Climat.
+							Afin de tenter d'estimer le taux d'affichage en iframe, nous avons
+							fait l'hypothèse que 60% (valeur arbitraire) des visites achevées
+							dès la page d'acceuil sont des iframes.{' '}
+							<i>(Données valables pour les 30 derniers jours)</i>
+						</Section.Intro>
+						<Wrapper>
+							<IframeFigures pages={pages} />
+						</Wrapper>
 					</Section>
 					<Section>
 						<Section.Title>Durée des visites</Section.Title>

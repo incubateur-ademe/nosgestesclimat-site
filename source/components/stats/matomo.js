@@ -127,7 +127,7 @@ export const useReference = () =>
 export const usePages = () =>
 	useX(
 		'pages',
-		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000`,
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&expanded=1&filter_limit=1000`,
 		(res) => res.data
 	)
 
