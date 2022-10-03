@@ -9,15 +9,15 @@ to translation.ts). This is achieved with
 <!-- vim-markdown-toc GitLab -->
 
 * [Workflows](#workflows)
-    * [Edit the source code](#edit-the-source-code)
-    * [Add a new language](#add-a-new-language)
-    * [Update an existing translation](#update-an-existing-translation)
+    * [Editing the source code](#editing-the-source-code)
+    * [Adding a new language](#adding-a-new-language)
 * [Architecture](#architecture)
 * [Available scripts](#available-scripts)
     * [`generate-ui.js`](#generate-uijs)
     * [`translate-ui.js`](#translate-uijs)
     * [`translate-md.js`](#translate-mdjs)
     * [`translate-faq.js`](#translate-faqjs)
+    * [`translate-releases.js`](#translate-releasesjs)
 
 <!-- vim-markdown-toc -->
 
@@ -25,7 +25,7 @@ to translation.ts). This is achieved with
 
 ## Workflows
 
-### Edit the source code
+### Editing the source code
 
 When adding a new string containing a content which need to be translated,
 you need to wrap it inside a [`Trans`](https://react.i18next.com/latest/trans-component) React component
@@ -77,42 +77,15 @@ to translate it in the remaining languages.
 >   to set the environment variable `DEEPL_API_KEY` before running
 >   `translate-*.js` scripts.
 
-### Add a new language
+### Adding a new language
 
 To support a new language you need to modify the [`./source/locales/translations.ts`]()
 file, by adding:
 
 * a new enum value to `Lang`,
 * complete all related switch statements,
-* TODO:  update FAQ and Markdown files import,
-
-### Update an existing translation
-
-Les traductions se trouvent dans le répertoire `source/locales`.
-
-La librairie utilisée pour la traduction de l'UI est
-[react-i18next](https://react.i18next.com/).
-
-Lorsque l'on introduit une nouvelle chaîne de caractère dans l'UI il faut
-systématiquement penser à gérer sa traduction, via un composant `<Trans>`,
-ou via la fonction `t`
-
-Le circle-ci fait une analyse statique du code pour repérer les chaînes non
-traduites, dans le moteur et l'UI :
-
-```sh
-$ yarn run i18n:rules:check
-$ yarn run i18n:ui:check
-```
-
-Pour traduire automatiquement les chaînes manquantes via l'api Deepl :
-
-```sh
-$ yarn run i18n:rules:translate
-$ yarn run i18n:ui:translate
-```
-
-N'oubliez pas de vérifier sur le diff que rien n'est choquant.
+* add corresponding import statements for [`faq`](#) and [`releases`](#),
+* runs all needed scripts has described [here](#edit-the-source-code).
 
 ## Architecture
 
@@ -126,6 +99,7 @@ In particular:
 - `pages/<lang>/*.md` are the Markdown files used for pages with static contents.
 - `faq/FAQ-<lang>.yaml` contains the FAQ questions.
   > They are stored in the YAML format to be easily exported as metadata for Google.
+- `faq/releases-<lang>.yaml` contains the fetched releases content.
 
 ## Available scripts
 
@@ -144,7 +118,7 @@ resource file -- `source/locales/ui/ui-fr.yaml`.
 >   To run with `npm`:
 >
 >   ```
->   npm run generate:ui -- [options]
+>   yarn generate:ui -- [options]
 >   ```
 
 ### `translate-ui.js`
@@ -155,17 +129,20 @@ targeted languages.
 >   To run with `npm`:
 >
 >   ```
->   npm run translate:ui -- [options]
+>   yarn translate:ui -- [options]
 >   ```
 
 ### `translate-md.js`
 
 This script allows to translate Markdown files into targeted languages.
 
+Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
+machine to be able to run this script.
+
 >   To run with `npm`:
 >
 >   ```
->   npm run translate:md -- [options]
+>   yarn translate:md -- [options]
 >   ```
 
 ### `translate-faq.js`
@@ -175,5 +152,18 @@ This script allows to translate FAQ files into targeted languages.
 >   To run with `npm`:
 >
 >   ```
->   npm run translate:faq -- [options]
+>   yarn translate:faq -- [options]
+>   ```
+
+
+### `translate-releases.js`
+
+This script allows to translate releases files into targeted languages.
+Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
+machine to be able to run this script.
+
+>   To run with `npm`:
+>
+>   ```
+>   yarn translate:releases -- [options]
 >   ```
