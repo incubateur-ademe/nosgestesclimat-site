@@ -34,13 +34,15 @@ export default ({ children }) => {
 
 	const dispatch = useDispatch()
 
-	const setRules = (rules, url) =>
-		console.log('dispatch') || dispatch({ type: 'SET_RULES', rules, url })
+	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		console.log('bd', branchData)
+		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+			console.log(
+				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
+			)
 			// Rules are stored in nested yaml files
 			const req = require.context(
 				'../../nosgestesclimat/data/',
@@ -73,8 +75,6 @@ const EngineWrapper = ({ rules, children }) => {
 
 	const engineRequested = engineState !== null
 	const engine = useMemo(() => {
-		console.log('YOYO', engineRequested, branchData.deployURL, rules)
-
 		const shouldParse = engineRequested && rules
 		if (shouldParse) {
 			console.log('⚙️ will parse the rules,  expensive operation')
@@ -106,7 +106,10 @@ const EngineWrapper = ({ rules, children }) => {
 	)
 }
 
-export const WithEngine = ({ children, fallback = <div>Chargement du modèle de calcul</div> }) => {
+export const WithEngine = ({
+	children,
+	fallback = <div>Chargement du modèle de calcul</div>,
+}) => {
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)
 

@@ -98,7 +98,7 @@ export const getSupportedFlag = (localisation) => {
 
 export const getLocalisationPullRequest = (localisation) => {
 	const supported = supportedCountry(localisation)
-	if (!supported) return null
+	if (!supported) return false // this will load the french model
 	return supported.PR
 }
 
@@ -107,6 +107,6 @@ export const supportedCountry = (localisation) => {
 	const supported = supportedCountries.find(
 		(c) => c.code === localisation.country.code
 	)
-	if (supported?.inactif === 'oui') return null
+	if (supported?.inactif === 'oui') return false
 	return supported
 }

@@ -40,7 +40,7 @@ export default () => (
 					`}
 				>
 					{avantages.map((el) => (
-						<div key={el.icon} className="ui__ card box">
+						<div key={el.icon} className="ui__ card box" key={el.icon}>
 							{emoji(el.illustration)}
 
 							<div>

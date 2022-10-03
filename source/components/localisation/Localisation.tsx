@@ -98,7 +98,7 @@ export default () => {
 				<ul>
 					{supportedCountries.map(
 						({ nom, code, inactif }) =>
-							!inactif && (
+							(NODE_ENV === 'development' || !inactif) && (
 								<li
 									key={code}
 									onClick={() => {
@@ -116,7 +116,7 @@ export default () => {
 										setRead([])
 									}}
 								>
-									<button>{capitalise0(nom)}</button>
+									<button>{capitalise0(nom)}</button> {inactif && '[dev]'}
 								</li>
 							)
 					)}
