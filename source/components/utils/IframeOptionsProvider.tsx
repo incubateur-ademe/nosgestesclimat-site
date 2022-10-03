@@ -7,8 +7,16 @@ const nullDecode = (string) =>
 
 export default function IframeOptionsProvider({ children, tracker }) {
 	const urlParams = new URLSearchParams(window.location.search)
-	const isIframe = urlParams.get('iframe') != null,
-		integratorUrl = isIframe && urlParams.get('integratorUrl')
+	const isIframeWithScript = urlParams.get('iframe') != null
+
+	if (!isIframeWithScript && window.self !== window.top) {
+		urlParams.set('iframe', '')
+		urlParams.set('integratorUrl', document.referrer)
+	}
+
+	const isIframe = urlParams.get('iframe') !== null
+
+	const integratorUrl = isIframe && urlParams.get('integratorUrl')
 
 	tracker &&
 		tracker.push([
