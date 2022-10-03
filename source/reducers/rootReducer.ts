@@ -258,6 +258,7 @@ type LocalisationAction = {
 	country: object
 	userChosen: boolean
 }
+
 function localisation(
 	state = null,
 	{ type, localisationData }: LocalisationAction
@@ -268,6 +269,7 @@ function localisation(
 		return null
 	} else return state
 }
+
 function pullRequestNumber(state = null, { type, number }) {
 	if (type === 'SET_PULL_REQUEST_NUMBER') {
 		return number

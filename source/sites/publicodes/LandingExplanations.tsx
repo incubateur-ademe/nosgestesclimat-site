@@ -1,6 +1,6 @@
 import Markdown from 'markdown-to-jsx'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 import avantages from './avantages.yaml'
 import LandingContent from './LandingContent'
@@ -87,7 +87,4 @@ export default () => {
 			</div>
 		</>
 	)
-}
-function useTranslation(): { t: any; i18n: any } {
-	throw new Error('Function not implemented.')
 }

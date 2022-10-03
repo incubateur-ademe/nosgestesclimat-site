@@ -1,11 +1,12 @@
 import IllustratedMessage from '../ui/IllustratedMessage'
 import useLocalisation, {
-	supportedCountry,
+	supportedRegions,
+	isRegionSupported,
 	getSupportedFlag,
 } from './useLocalisation'
-import supportedCountries from './supportedCountries.yaml'
 import { Link } from 'react-router-dom'
 import { usePersistingState } from '../utils/persistState'
+import { Trans } from 'react-i18next'
 
 export default () => {
 	const [messagesRead, setRead] = usePersistingState(
@@ -14,12 +15,14 @@ export default () => {
 	)
 	const localisation = useLocalisation()
 	if (!localisation) return null
-	const supported = supportedCountry(localisation)
+	const supported = isRegionSupported(localisation)
 	if (!supported) return null
 	const { code, gentilé, nom } = supported
 	if (code === 'FR') return null
 	if (messagesRead.includes(code)) return null
 	const flag = getSupportedFlag(localisation)
+
+	const versionName = gentilé ?? nom
 
 	return (
 		<IllustratedMessage
@@ -30,17 +33,28 @@ export default () => {
 			message={
 				<div>
 					<p>
-						Vous utilisez la version <strong>{gentilé || nom}</strong> du test.
+						<Trans
+							i18nKey={'components.localisation.LocalisationMessage.version'}
+						>
+							Vous utilisez la version <strong>{{ versionName }}</strong> du
+							test.
+						</Trans>
 						{code !== 'FR' && (
 							<span>
 								{' '}
-								Elle est actuellement en version <strong>bêta</strong>.
+								<Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
+									Elle est actuellement en version <strong>bêta</strong>.
+								</Trans>
 							</span>
 						)}{' '}
 					</p>
 					<p>
 						<small>
-							Pas votre région ? <Link to="/profil">Choisissez la votre</Link>.
+							<Trans>Pas votre région ?</Trans>{' '}
+							<Link to="/profil">
+								<Trans>Choisissez la votre</Trans>
+							</Link>
+							.
 						</small>
 					</p>
 					<button
@@ -52,7 +66,7 @@ export default () => {
 						`}
 						onClick={() => setRead([...messagesRead, code])}
 					>
-						J'ai compris
+						<Trans>J'ai compris</Trans>
 					</button>
 				</div>
 			}

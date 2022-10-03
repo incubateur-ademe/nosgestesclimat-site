@@ -30,6 +30,7 @@
   "💾 Télécharger les résultats": "💾 Télécharger les résultats",
   "📊 Analysez les résultats et animez les discussions !": "📊 Analysez les résultats et animez les discussions !",
   "📋 Mes réponses": "📋 Mes réponses",
+  "📍 Région de simulation": "📍 Région de simulation",
   "📘 Comment ça marche ?": "📘 Comment ça marche ?",
   "📘 En savoir plus": "📘 En savoir plus",
   "📝 Contexte sondage": "📝 Contexte sondage",
@@ -76,6 +77,8 @@
   "Chargement": "Chargement",
   "Choisir l'action": "Choisir l'action",
   "Choisir le type de tri des actions": "Choisir le type de tri des actions",
+  "Choisir une autre région": "Choisir une autre région",
+  "Choisissez la votre": "Choisissez la votre",
   "Choississez d'abord un nom": "Choississez d'abord un nom",
   "Cliquez pour partager le lien": "Cliquez pour partager le lien",
   "Comment créer un persona ?": "Comment créer un persona ?",
@@ -93,6 +96,16 @@
           "choixAFaire": " Il vous reste {{nbChoix}} choix à faire.",
           "choixEnTrop": "Vous avez fait {{nbChoix}} choix en trop !"
         }
+      }
+    },
+    "localisation": {
+      "Localisation": {
+        "warnMessage": "Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, vous utilisez le modèle Français par défault.",
+        "warnMessage2": "Nous n'avons pas pu détecter votre pays de simulation. Vous utilisez le modèle Français par défault."
+      },
+      "LocalisationMessage": {
+        "betaMsg": "Elle est actuellement en version <1>bêta</1>.",
+        "version": "Vous utilisez la version <1>{{versionName}}</1> du test."
       }
     },
     "NewsBanner": {
@@ -138,6 +151,7 @@
   "Entre": "Entre",
   "Entrez des mots clefs": "Entrez des mots clefs",
   "Entrez des mots clefs ici": "Entrez des mots clefs ici",
+  "Envie de contribuer à une version pour votre région ?": "Envie de contribuer à une version pour votre région ?",
   "Envie de donner un coup de pouce ?": "Envie de donner un coup de pouce ?",
   "Envoyer": "Envoyer",
   "Erreur inconnue côté serveur": "Erreur inconnue côté serveur",
@@ -249,6 +263,7 @@
   "Nos Gestes Climat Conférence": "Nos Gestes Climat Conférence",
   "Nosgestesclimat - le top 3 de mes actions": "Nosgestesclimat - le top 3 de mes actions",
   "Notre serveur semble indisponible": "Notre serveur semble indisponible",
+  "Nous avons détecté que vous faites cette simulation depuis": "Nous avons détecté que vous faites cette simulation depuis",
   "nouveautés": "nouveautés",
   "Nouveautés": "Nouveautés",
   "Nouveautés - version ": "Nouveautés - version ",
@@ -272,6 +287,7 @@
   "Participer au sondage": "Participer au sondage",
   "Participez à la conférence": "Participez à la conférence",
   "Participez au sondage ": "Participez au sondage ",
+  "Pas votre région ?": "Pas votre région ?",
   "Passer à l'action": "Passer à l'action",
   "Passer à l'action !": "Passer à l'action !",
   "Passer le tutoriel": "Passer le tutoriel",
@@ -409,6 +425,7 @@
   "Reprendre la simulation": "Reprendre la simulation",
   "Réseaux Sociaux": "Réseaux Sociaux",
   "Revenir à ma simulation": "Revenir à ma simulation",
+  "Revenir chez moi 🔙": "Revenir chez moi 🔙",
   "simulateurs": {
     "warning": {
       "plus": "Lire les précisions",
@@ -440,6 +457,7 @@
   "Statistiques": "Statistiques",
   "Stats générales": "Stats générales",
   "Suivant": "Suivant",
+  "Suivez le guide !": "Suivez le guide !",
   "Sur le même sujet": "Sur le même sujet",
   "Terminer ma simulation": "Terminer ma simulation",
   "titre de la version": "titre de la version",
@@ -461,6 +479,7 @@
   "Vos trajets apparaîtront dans ce tableau.": "Vos trajets apparaîtront dans ce tableau.",
   "Votre mission : réduire votre empreinte.": "Votre mission : réduire votre empreinte.",
   "Votre part du logement": "Votre part du logement",
+  "Vous avez choisi": "Vous avez choisi",
   "Vous avez été invités à un sondage Nos Gestes Climat nommé": "Vous avez été invités à un sondage Nos Gestes Climat nommé",
   "Vous n'avez pas encore fait le test.": "Vous n'avez pas encore fait le test."
 }
