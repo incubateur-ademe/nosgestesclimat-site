@@ -4,16 +4,16 @@ Avec **bientôt [un million de tests complétés](/stats)**, nosgestesclimat.fr 
 
 ## L'empreinte climat, qu'est-ce que c'est ?
 
-Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais quel est notre rôle dans tout ça en tant que citoyenne ou citoyen ?
+Le climat se réchauffe à cause des activités humaines. Mais comment connaitre et comprendre son impact à sa propre échelle ?
 
-Pour estimer son propre impact sur le réchauffement de la planète, il est d'usage de calculer _l'empreinte carbone individuelle de consommation_.
+Pour estimer sa propre contribution au réchauffement de la planète, il est d'usage de calculer _l'empreinte carbone individuelle de consommation_.
 
-Le principe est simple : pour chaque consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on décompte les émissions de gaz à effet de serre sur le cycle de vie de celle-ci.
+Le principe est simple : pour chaque acte de consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on attribue une quantité de gaz à effet serre (gaz contribuant au réchauffement climatique) plus au moins importante. 
 
-Au fur et à mesure, le poids de chaque secteur (transport, alimentation, logement...) s'ajoute pour constituer votre bilan carbone personnel, à visualiser sur trois infographies.
+Au fil des questions porttant sur tous les aspects de nos modes vies, découpés en grand secteur comme l’alimentation, le logement, le transport, etc. Nos Gestes Climat reconstitue votre bilan carbone personnel.
 
-## Agir sur mon empreinte, dès maintenant
+## Réduire son empreinte, dès maintenant !
 
-Après 10 minutes de test, le [parcours action](https://nosgestesclimat.fr/actions/liste) vous permet de prioriser les éco-gestes pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les grands gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
+Connaitre son empreinte c’est bien, savoir comment la réduire c’est mieux. Ainsi, le [parcours action](https://nosgestesclimat.fr/actions/liste) vous permet de découvrir les moyens pour réduire votre empreinte carbone. Des écogestes aux grandes actions à l’impact très significatif, très rapidement ou plus progressivement, seul ou en groupe, il existe une multitude de manière de réduire son empreinte carbone.
 
-Bien entendu, même s'il est incontournable de mesurer l'empreinte d'une consommation et d'en comprendre l'ampleur par rapport au [budget climat](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/), il arrive souvent qu'elle ne soit pas complètement de notre ressort personnel : par exemple, je suis locataire en zone tendue et mon propriétaire refuse d'isoler mon appartement.
+Cependant, la tâche est ardue et atteindre le [budget climat](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/) de 2 tonnes n’est vraiment pas chose aisée. Comme vous le découvrirez, certaines actions ne relèvent pas toujours d’un ressort personnel et mettent en avant le besoin de transformation collective : l’état, les entreprises, les collectivités et la société dans son ensemble doit également évoluer vers un mode de vie bas carbone.
