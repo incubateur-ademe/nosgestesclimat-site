@@ -38,7 +38,8 @@ export default ({ children }) => {
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		if (branchData.shouldUseLocalFiles) {
+		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
+		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			console.log(
 				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
 			)
