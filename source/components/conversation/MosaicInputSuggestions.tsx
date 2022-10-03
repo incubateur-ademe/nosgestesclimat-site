@@ -14,17 +14,20 @@ export default function MosaicInputSuggestions({
 	mosaicType,
 	dottedName,
 	relatedRuleNames,
-	suggestions = {},
+	suggestions: rawSuggestions = {},
 }: InputSuggestionsProps) {
 	const { t, i18n } = useTranslation()
 	const dispatch = useDispatch()
 
-	if (
+	const suggestNothing =
 		mosaicType === 'selection' &&
-		!Object.values(suggestions).includes('aucun')
-	) {
-		suggestions['aucun'] = 'aucun'
-	}
+		!Object.values(rawSuggestions).includes('aucun') &&
+		!Object.values(rawSuggestions)
+			.map((elt) => Object.values(elt).every((bool) => bool === 'non'))
+			.some((bool) => bool === true)
+
+	const automaticSuggestions = suggestNothing ? { aucun: 'aucun' } : {}
+	const suggestions = { ...rawSuggestions, ...automaticSuggestions }
 
 	return (
 		<div
