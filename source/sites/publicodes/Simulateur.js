@@ -99,7 +99,33 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 	const situation = useSelector(situationSelector)
 
-	return <Link to={buildEndURL(rules, engine)}>Voir mon résultat</Link>
+	return (
+		<div
+			css={`
+				img {
+					width: 8rem;
+					height: auto;
+				}
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 1rem;
+			`}
+		>
+			<img
+				src="/images/glowing-ngc-star.svg"
+				width="100"
+				height="100"
+				aria-hidden="true"
+			/>
+			<p>Vous avez terminé le test 👏</p>
+
+			<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
+				Voir mon résultat
+			</Link>
+		</div>
+	)
 }
 
 export default Simulateur
