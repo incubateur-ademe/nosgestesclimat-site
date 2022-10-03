@@ -15,8 +15,9 @@ import styled from 'styled-components'
 import { localStorageKey } from '../components/NewsBanner'
 import Meta from '../components/utils/Meta'
 import { usePersistingState } from '../components/utils/persistState'
+import { getCurrentLangInfos } from '../locales/translation'
+
 import lastRelease from '../data/last-release.json'
-import { getLangFromAbreviation, getLangInfos } from '../locales/translation'
 
 const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
@@ -28,21 +29,15 @@ const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
 export default function News() {
 	const { t, i18n } = useTranslation()
-	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
-	const [data, setData] = useState()
+	const currentLangInfos = getCurrentLangInfos(i18n)
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
 	const navigate = useNavigate()
 	const slug = useMatch(`${encodeURIComponent('nouveautés')}/:slug`)?.params
 		?.slug
-	const fetchSetData = () =>
-		fetch('/data/releases.json')
-			.then((r) => r.json())
-			.then((json) => setData(json))
+	const data = currentLangInfos.releases
+
 	useEffect(() => {
 		setLastViewedRelease(lastRelease.name)
-	}, [])
-	useEffect(() => {
-		fetchSetData()
 	}, [])
 
 	if (!data) {
@@ -60,7 +55,7 @@ export default function News() {
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
 	const body = data[selectedRelease].body,
-		image = body.match(/!\[.*?\]\((.*?)\)/)[1] || null
+		image = body.match(/!\[.*?\]\((.*?)\)/)[1] || undefined
 
 	return (
 		<>

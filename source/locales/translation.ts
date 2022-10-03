@@ -3,12 +3,16 @@
 */
 
 import { i18n } from 'i18next'
-import { useSelector } from 'react-redux'
 
 import faqFr from './faq/FAQ-fr.yaml'
 import faqEn from './faq/FAQ-en-us.yaml'
 import faqIt from './faq/FAQ-it.yaml'
 import faqEs from './faq/FAQ-es.yaml'
+
+import releasesFr from './releases/releases-fr.json'
+import releasesEn from './releases/releases-en-us.json'
+import releasesEs from './releases/releases-es.json'
+import releasesIt from './releases/releases-it.json'
 
 export enum Lang {
 	Default = 'Fr',
@@ -18,11 +22,18 @@ export enum Lang {
 	It = 'It',
 }
 
+export type Release = {
+	name: string
+	published_at: string
+	body: string
+}
+
 export type LangInfos = {
 	name: string
 	abrv: string
 	abrvLocale: string
 	faqContent: string // The FAQ content in YAML
+	releases: Release[] // The releases content in JSON
 }
 
 export const defaultLang = Lang.Fr
@@ -35,6 +46,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrv: 'fr',
 				abrvLocale: 'fr-FR',
 				faqContent: faqFr,
+				releases: releasesFr,
 			}
 		}
 		case Lang.En: {
@@ -43,6 +55,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrv: 'en',
 				abrvLocale: 'en-US',
 				faqContent: faqEn,
+				releases: releasesEn,
 			}
 		}
 		case Lang.Es: {
@@ -51,6 +64,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrv: 'es',
 				abrvLocale: 'es-ES',
 				faqContent: faqEs,
+				releases: releasesEs,
 			}
 		}
 		case Lang.It: {
@@ -59,6 +73,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrv: 'it',
 				abrvLocale: 'it-IT',
 				faqContent: faqIt,
+				releases: releasesIt,
 			}
 		}
 	}
@@ -90,6 +105,7 @@ export function getCurrentLangAbrv(i18n: i18n): string {
 export function changeLangTo(i18n: i18n, currentLangState: Lang) {
 	const langInfos = getLangInfos(currentLangState)
 	if (langInfos) {
+		console.log('Changing language to', langInfos.name)
 		i18n.changeLanguage(langInfos.abrv)
 	}
 }

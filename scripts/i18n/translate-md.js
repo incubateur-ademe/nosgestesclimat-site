@@ -47,11 +47,7 @@ const translateTo = async (src, destPath, destLang) => {
 		translation,
 		'-f html -t markdown_strict --atx-headers',
 		(err, result) => {
-			if (err) {
-				utils.printErr(err)
-				progressBar.stop()
-				process.exit(-1)
-			}
+			cli.exitIfError(err, progressBar)
 			fs.writeFileSync(destPath, result, 'utf8', { flag: 'w' })
 			progressBar.increment()
 		}
@@ -62,11 +58,7 @@ console.log(
 	`Translating Markdown files from 'source/locales/pages/${srcLang}'...`
 )
 glob(`source/locales/pages/${srcLang}/${srcFile}`, (err, files) => {
-	if (err) {
-		cli.printErr(`ERROR: an error occured while fetching the files:`)
-		cli.printErr(err)
-		process.exit(-1)
-	}
+	cli.exitIfError(err, `ERROR: an error occured while fetching the files:`)
 
 	console.log(
 		`Found ${cli.withStyle(
@@ -79,14 +71,11 @@ glob(`source/locales/pages/${srcLang}/${srcFile}`, (err, files) => {
 	files.forEach((file) => {
 		const src = fs.readFileSync(file, 'utf8')
 		pandoc(src, ['-f', 'markdown_strict', '-t', 'html'], (err, srcContent) => {
-			if (err) {
-				cli.printErr(
-					`ERROR: an error occured while converting '${file}' to HTML:`
-				)
-				cli.printErr(err)
-				progressBar.stop()
-				process.exit(-1)
-			}
+			cli.exitIfError(
+				err,
+				`ERROR: an error occured while converting '${file}' to HTML:`,
+				progressBar
+			)
 			destLangs.forEach((destLang) => {
 				translateTo(srcContent, file.replace(srcLang, destLang), destLang)
 			})

@@ -24,7 +24,7 @@ if (!fs.existsSync(srcPath)) {
 	cli.printErr(
 		`ERROR: ${srcPath} does not exist.\nPlease run: 'npm run generate:ui' first.`
 	)
-	return -1
+	process.exit(-1)
 }
 
 const progressBars = new cliProgress.MultiBar(

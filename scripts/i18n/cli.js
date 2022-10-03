@@ -94,6 +94,19 @@ const getArgs = (description) => {
 	return { srcLang, destLangs, force: argv.force, remove: argv.remove, srcFile }
 }
 
+const exitIfError = (error, msg = undefined, progressBar = undefined) => {
+	if (error) {
+		if (msg) {
+			printErr(msg)
+		}
+		printErr(error)
+		if (progressBar) {
+			progressBar.stop()
+		}
+		process.exit(-1)
+	}
+}
+
 module.exports = {
 	colors,
 	printErr,
@@ -101,4 +114,5 @@ module.exports = {
 	printWarn,
 	printErr,
 	getArgs,
+	exitIfError,
 }

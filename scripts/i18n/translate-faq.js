@@ -1,10 +1,7 @@
 /*
 	Calls the DeepL API to translate the FAQ Yaml files.
 
-	Command: npm run translate:faq -- [options]
-
-	TODO:
-	- [ ] Add a flag to only translate the missing entries -- currently it translates everything each time
+	Command: yarn translate:faq -- [options]
 */
 
 const cliProgress = require('cli-progress')
