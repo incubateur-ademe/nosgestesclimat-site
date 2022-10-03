@@ -20,11 +20,10 @@ export default function IframeOptionsProvider({ children, tracker }) {
 
 	tracker &&
 		tracker.push([
-			'setCustomVariable',
-			'1',
-			'visite depuis iframe ?',
+			'trackEvent',
+			'iframe',
+			'visites via iframe',
 			!isIframe ? 'non' : integratorUrl,
-			'visit',
 		])
 
 	const iframeIntegratorOptions = Object.fromEntries(
