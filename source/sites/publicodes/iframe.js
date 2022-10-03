@@ -1,4 +1,7 @@
 import { iframeResize } from 'iframe-resizer'
+import { TrackerContext } from 'Components/utils/withTracker'
+
+const tracker = useContext(TrackerContext)
 
 const script =
 		document.getElementById('ecolab-climat') ||
@@ -41,8 +44,7 @@ iframeResize({}, iframe)
 
 const link = document.createElement('div')
 link.innerHTML = `
-<a href="https://nosgestesclimat.fr" target="_blank">Calculer mon empreinte carbone ⬇️</a>
-
+<a href="https://nosgestesclimat.fr" target="_blank" onClick={() => tracker.push(['trackEvent','iframe','Clic redirection nosgestesclimat.fr', ${integratorUrl},])}>Calculer mon empreinte carbone ⬇️</a>
 `
 link.style.cssText = `
 margin: 1rem auto .6rem;
