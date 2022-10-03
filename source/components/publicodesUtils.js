@@ -101,6 +101,7 @@ export const extractCategories = (
 		const split = splitName(dottedName),
 			parent = split.length > 1 && split[0]
 
+		console.log('parent', parent)
 		return {
 			...node,
 			icons: icônes || rules[parent].icônes,

@@ -27,10 +27,12 @@ export default () => {
 		pullRequestNumber ? `deploy-preview-${pullRequestNumber}--` : ''
 	}ecolab-data.netlify.app`
 
-	const shouldUseLocalFiles = !pullRequestNumber
+	// this enables loading files from the side ../nosgestesclimat directory,
+	// BUT with a priority if a PR is being tested locally
+	// it lets us test and use this PR loading functionnality in local mode
+	const shouldUseLocalFiles = NODE_ENV === 'development' && !pullRequestNumber
 
-	const loaded = pullRequestNumber != undefined
-	console.log('loaded', loaded)
+	const loaded = pullRequestNumber != undefined || shouldUseLocalFiles
 
 	return {
 		deployURL,

@@ -38,8 +38,10 @@ export default ({ children }) => {
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		console.log('bd', branchData)
-		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+		if (branchData.shouldUseLocalFiles) {
+			console.log(
+				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
+			)
 			// Rules are stored in nested yaml files
 			const req = require.context(
 				'../../nosgestesclimat/data/',
