@@ -37,7 +37,11 @@ export default ({ children }) => {
 
 	useEffect(() => {
 		if (!branchData.loaded) return
+		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+			console.log(
+				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
+			)
 			// Rules are stored in nested yaml files
 			const req = require.context(
 				'../../nosgestesclimat/data/',
@@ -50,12 +54,12 @@ export default ({ children }) => {
 				return { ...memo, ...jsonRuleSet }
 			}, {})
 
-			setRules(rules)
+			setRules(rules, branchData.deployURL)
 		} else {
 			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
-					setRules(json)
+					setRules(json, branchData.deployURL)
 				})
 		}
 	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
@@ -66,15 +70,18 @@ export default ({ children }) => {
 const EngineWrapper = ({ rules, children }) => {
 	const engineState = useSelector((state) => state.engineState)
 	const dispatch = useDispatch()
-	const [engine, setEngine] = useState(null)
+	const branchData = useBranchData()
 
-	useEffect(() => {
-		if (rules && engineState === 'requested') {
-			const engine =
-				console.log('parsing..') || new Engine(rules, engineOptions)
-			setEngine(engine)
+	const engineRequested = engineState !== null
+	const engine = useMemo(() => {
+		const shouldParse = engineRequested && rules
+		if (shouldParse) {
+			console.log('⚙️ will parse the rules,  expensive operation')
 		}
-	}, [rules, engineOptions, engineState])
+		const engine = shouldParse && new Engine(rules, engineOptions)
+
+		return engine
+	}, [engineRequested, branchData.deployURL, rules])
 
 	useEffect(() => {
 		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
@@ -98,7 +105,10 @@ const EngineWrapper = ({ rules, children }) => {
 	)
 }
 
-export const WithEngine = ({ children, fallback = null }) => {
+export const WithEngine = ({
+	children,
+	fallback = <div>Chargement du modèle de calcul</div>,
+}) => {
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)
 

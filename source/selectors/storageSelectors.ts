@@ -12,6 +12,7 @@ export type SavedSimulation = {
 	url: string
 	// Current language used for the UI translation -- not the model.
 	currentLang: Lang
+	localisation: Object | undefined
 }
 
 export const currentSimulationSelector = (
@@ -26,6 +27,7 @@ export const currentSimulationSelector = (
 		storedTrajets: state.storedTrajets,
 		url: state.simulation?.url,
 		currentLang: state.currentLang,
+		localisation: state.localisation,
 	}
 }
 

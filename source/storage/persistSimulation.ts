@@ -17,7 +17,8 @@ export function persistSimulation(store: Store<RootState, Action>) {
 			!state.simulation?.foldedSteps?.length &&
 			!Object.keys(state.actionChoices).length &&
 			!Object.values(state.tutorials) &&
-			!Object.keys(state.storedTrajets).length
+			!Object.keys(state.storedTrajets).length &&
+			!state.localisation
 		) {
 			return
 		}

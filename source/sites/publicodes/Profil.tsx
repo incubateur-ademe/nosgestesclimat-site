@@ -16,6 +16,7 @@ import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { skipTutorial } from '../../actions/actions'
 import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
+import Localisation from 'Components/localisation/Localisation'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
@@ -57,68 +58,95 @@ export default ({}) => {
 						</em>
 					</p>
 				)}
-				{tutorials.testIntro && (
+				{hasData ? (
 					<div
 						css={`
-							margin-bottom: 2rem;
+							display: flex;
+							align-items: center;
+							flex-wrap: wrap;
 						`}
 					>
-						<button
-							className="ui__ dashed-button"
-							onClick={() => {
-								dispatch(skipTutorial('testIntro', true))
-								dispatch(resetTutorials())
-								navigate('/tutoriel')
-							}}
+						<div
+							className="ui__ card content"
+							css="width: 20rem; margin-right: 2rem"
 						>
-							<Trans>🧑‍🏫 Revoir le tutoriel</Trans>
-						</button>
-					</div>
-				)}
-				{hasData ? (
-					<div>
-						{answeredQuestionsLength > 0 && (
-							<p>
-								<Trans i18nKey={`publicodes.Profil.recap`}>
-									Vous avez répondu à {{ answeredQuestionsLength }} questions et
-									choisi {{ actionChoicesLength }} actions.
-								</Trans>{' '}
-							</p>
-						)}
-						<details>
-							<Trans i18nKey={`publicodes.Profil.locationDonnées`}>
-								<summary>Où sont mes données ? </summary>
-								Vos données sont stockées dans votre navigateur, vous avez donc
-								le contrôle total sur elles. <br />
-							</Trans>
-							<Link to="/vie-privée">
-								<Trans>En savoir plus</Trans>
-							</Link>
-						</details>
-						<button
-							className="ui__ button plain"
-							css="margin: 1rem 0"
-							onClick={() => {
-								dispatch(resetSimulation())
-								dispatch(resetActionChoices())
-								dispatch(deletePreviousSimulation())
-								dispatch(resetStoredTrajets())
-								navigate('/simulateur/bilan')
-							}}
-						>
-							<Trans>♻️ Recommencer</Trans>
-						</button>
+							{answeredQuestionsLength > 0 && (
+								<p>
+									<Trans i18nKey={`publicodes.Profil.recap`}>
+										Vous avez répondu à {{ answeredQuestionsLength }} questions
+										et choisi {{ actionChoicesLength }} actions.
+									</Trans>{' '}
+								</p>
+							)}
+							<details>
+								<Trans i18nKey={`publicodes.Profil.locationDonnées`}>
+									<summary>Où sont mes données ? </summary>
+									Vos données sont stockées dans votre navigateur, vous avez
+									donc le contrôle total sur elles. <br />
+								</Trans>
+								<Link to="/vie-privée">
+									<Trans>En savoir plus</Trans>
+								</Link>
+							</details>
+						</div>
+						<div>
+							<button
+								className="ui__ button plain"
+								css="margin: 1rem 0"
+								onClick={() => {
+									dispatch(resetSimulation())
+									dispatch(resetActionChoices())
+									dispatch(deletePreviousSimulation())
+									dispatch(resetStoredTrajets())
+									navigate('/simulateur/bilan')
+								}}
+							>
+								<Trans>♻️ Recommencer</Trans>
+							</button>
+
+							{tutorials.testIntro && (
+								<div>
+									<button
+										className="ui__ dashed-button"
+										onClick={() => {
+											dispatch(skipTutorial('testIntro', true))
+											dispatch(resetTutorials())
+											navigate('/tutoriel')
+										}}
+									>
+										<Trans>🧑‍🏫 Revoir le tutoriel</Trans>
+									</button>
+								</div>
+							)}
+						</div>
 					</div>
 				) : (
-					<IllustratedMessage
-						emoji="🕳️"
-						message={
-							<p>
-								<Trans>Vous n'avez pas encore fait le test.</Trans>
-							</p>
-						}
-					></IllustratedMessage>
+					<div>
+						{tutorials.testIntro && (
+							<div>
+								<button
+									className="ui__ dashed-button"
+									onClick={() => {
+										dispatch(skipTutorial('testIntro', true))
+										dispatch(resetTutorials())
+										navigate('/tutoriel')
+									}}
+								>
+									<Trans>🧑‍🏫 Revoir le tutoriel</Trans>
+								</button>
+							</div>
+						)}
+						<IllustratedMessage
+							emoji="🕳️"
+							message={
+								<p>
+									<Trans>Vous n'avez pas encore fait le test.</Trans>
+								</p>
+							}
+						/>
+					</div>
 				)}
+				<Localisation />
 				<AnswerList />
 			</div>
 		</div>

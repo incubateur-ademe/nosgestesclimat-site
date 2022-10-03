@@ -253,6 +253,27 @@ function engineState(state = null, { type, to }: EngineAction) {
 
 const defaultToNull = (arg) => arg ?? null
 
+type LocalisationAction = {
+	type: string
+	country: object
+	userChosen: boolean
+}
+function localisation(
+	state = null,
+	{ type, localisationData }: LocalisationAction
+) {
+	if (type === 'SET_LOCALISATION') {
+		return localisationData
+	} else if (type === 'RESET_LOCALISATION') {
+		return null
+	} else return state
+}
+function pullRequestNumber(state = null, { type, number }) {
+	if (type === 'SET_PULL_REQUEST_NUMBER') {
+		return number
+	} else return state
+}
+
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
@@ -270,6 +291,8 @@ const mainReducer = (state: any, action: Action) =>
 		storedTrajets,
 		thenRedirectTo,
 		tracking,
+		localisation,
+		pullRequestNumber,
 		engineState,
 		currentLang,
 	})(state, action)

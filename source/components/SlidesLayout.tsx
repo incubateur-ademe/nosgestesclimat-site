@@ -21,6 +21,7 @@ export default ({ children, length, active }) => {
 				>
 					{slides.map((_, i) => (
 						<li
+							key={i}
 							aria-current={i === active ? 'step' : null}
 							css={`
 								height: 1rem;

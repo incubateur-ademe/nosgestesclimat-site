@@ -1,32 +1,54 @@
 import emoji from 'react-easy-emoji'
 
-export default ({ emoji: e, message, inline }) => (
+export default ({
+	emoji: e,
+	message,
+	inline,
+	image,
+	width,
+	direction,
+	backgroundcolor,
+}) => (
 	<div
 		className="ui__ card"
 		css={`
-			max-width: 26rem;
+			padding-top: 1rem;
+			background-color: ${backgroundcolor} !important;
+			max-width: ${width || '26rem'};
 			margin: 0 auto;
+			margin-bottom: 1rem;
 			display: flex;
 			flex-direction: column;
+			@media (min-width: 1200px) {
+				flex-direction: ${direction || 'column'};
+			}
 			align-items: center;
 			${inline &&
 			`flex-direction: row; justify-content: start; max-width: 100%; p {margin: 0}`}
 		`}
 	>
-		<span
-			css={`
-				img {
-					font-size: 300%;
-					margin: 0.6rem !important;
-				}
-			`}
-		>
-			{emoji(e)}
-		</span>
+		{e ? (
+			<span
+				css={`
+					img {
+						font-size: 300%;
+					}
+				`}
+			>
+				{emoji(e)}
+			</span>
+		) : (
+			<img
+				css={`
+					width: 4rem;
+				`}
+				src={image}
+			/>
+		)}
 
 		<div
 			css={`
-				margin: 1rem 0;
+				margin: ${direction === 'row' ? '1rem' : '1rem 0'};
 			`}
 		>
 			{message}

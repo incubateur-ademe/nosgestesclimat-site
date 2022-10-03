@@ -26,6 +26,8 @@ Then run this command in this repo :
 
 `yarn && yarn start`
 
+If you want to run the automatic localisation, which depdends on a Netlify Edge function, you must run `netlify dev`.
+
 ## Réutilisations de ce code
 
 -   [L'Empreinte Carbone de vos activités à Centrale Nantes](https://github.com/SustainabilityCN/nosgestesclimat-site-ECN)

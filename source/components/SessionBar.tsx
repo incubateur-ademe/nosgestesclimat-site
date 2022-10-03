@@ -1,25 +1,28 @@
-import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
+import { loadPreviousSimulation } from 'Actions/actions'
+import useLocalisation from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
-import { useEngine } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, Navigate, useSearchParams } from 'react-router-dom'
+import { useLocation, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	answeredQuestionsSelector,
-	objectifsSelector,
-} from 'Selectors/simulationSelectors'
+import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import { resetLocalisation } from '../actions/actions'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
-import ProgressCircle from './ProgressCircle'
+import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
+import {
+	getLocalisationPullRequest,
+	getSupportedFlag,
+	getFlagImgSrc,
+	supportedCountry,
+} from './localisation/useLocalisation'
+import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
 import { omit } from '../utils'
 import { Trans, useTranslation } from 'react-i18next'
-import LangSwitcher from './LangSwitcher'
 import { Link } from './Link'
 
 const ActionsInteractiveIcon = () => {
@@ -132,6 +135,12 @@ export default function SessionBar({
 
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
+	const dispatch = useDispatch()
+
+	const localisation = useLocalisation()
+	const flag = supportedCountry(localisation)
+		? getSupportedFlag(localisation)
+		: getFlagImgSrc('FR')
 
 	const location = useLocation(),
 		path = location.pathname
@@ -149,10 +158,17 @@ export default function SessionBar({
 	const persona = useSelector((state) => state.simulation?.persona)
 
 	const [searchParams, setSearchParams] = useSearchParams()
-	const [pullRequestNumber, setPullRequestNumber] = usePersistingState(
-		'PR',
-		undefined
-	)
+
+	const pullRequestNumber = useSelector((state) => state.pullRequestNumber),
+		// We only show the PR in the menu if it's set by the searchQuery,
+		// not by the localisation system
+		showPullRequestNumber =
+			pullRequestNumber &&
+			(!localisation ||
+				NODE_ENV === 'development' ||
+				!(pullRequestNumber === getLocalisationPullRequest(localisation)))
+
+	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 
 	const { t } = useTranslation()
 
@@ -176,13 +192,32 @@ export default function SessionBar({
 			<Trans>Agir</Trans>
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
-			<img
-				src={openmojiURL('profile')}
-				css="width: 2rem"
-				aria-hidden="true"
-				width="1"
-				height="1"
-			/>
+			<div
+				css={`
+					position: relative;
+				`}
+			>
+				<img
+					src={openmojiURL('profile')}
+					css="width: 2rem"
+					aria-hidden="true"
+					width="1"
+					height="1"
+				/>
+				{flag && (
+					<img
+						src={flag}
+						css={`
+							position: absolute;
+							left: 1.45rem;
+							top: -0.15rem;
+							width: 1.2rem;
+							border-radius: 0.3rem !important;
+						`}
+						aria-hidden="true"
+					/>
+				)}
+			</div>
 			{!persona ? (
 				t('Mon profil')
 			) : (
@@ -215,7 +250,7 @@ export default function SessionBar({
 				Personas
 			</Button>
 		),
-		pullRequestNumber && (
+		showPullRequestNumber && (
 			<MenuButton
 				key="pullRequest"
 				className="simple small"
@@ -243,7 +278,9 @@ export default function SessionBar({
 				<button
 					onClick={() => {
 						setSearchParams(omit(['PR'], searchParams))
-						setPullRequestNumber(null)
+						dispatch(resetLocalisation())
+						chooseIp(undefined)
+						dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number: null })
 					}}
 				>
 					<img

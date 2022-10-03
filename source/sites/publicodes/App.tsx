@@ -7,6 +7,7 @@ import React, { Suspense, useContext, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
@@ -31,10 +32,10 @@ import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import { useSelector } from 'react-redux'
-import { Lang } from '../../locales/translation'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 
+const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
@@ -81,6 +82,7 @@ export default function Root({}) {
 				tutorials: persistedSimulation?.tutorials || {},
 				storedTrajets: persistedSimulation?.storedTrajets || {},
 				currentLang: persistedSimulation?.currentLang || defaultLang,
+				localisation: persistedSimulation?.localisation,
 			}}
 		>
 			<Main />
@@ -140,6 +142,8 @@ const Main = ({}) => {
 					}
 				`}
 			>
+				{!isHomePage && !isTuto && <LocalisationMessage />}
+
 				{isHomePage && (
 					<div
 						css={`
