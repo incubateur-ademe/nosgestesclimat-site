@@ -37,6 +37,23 @@ export default ({}) => {
 
 	const { t } = useTranslation()
 
+	const ReviewTutorialButton = ({}) => {
+		return (
+			<div>
+				<button
+					className="ui__ dashed-button"
+					onClick={() => {
+						dispatch(skipTutorial('testIntro', true))
+						dispatch(resetTutorials())
+						navigate('/tutoriel')
+					}}
+				>
+					<Trans>🧑‍🏫 Revoir le tutoriel</Trans>
+				</button>
+			</div>
+		)
+	}
+
 	return (
 		<div>
 			<Meta
@@ -103,39 +120,12 @@ export default ({}) => {
 							>
 								<Trans>♻️ Recommencer</Trans>
 							</button>
-
-							{tutorials.testIntro && (
-								<div>
-									<button
-										className="ui__ dashed-button"
-										onClick={() => {
-											dispatch(skipTutorial('testIntro', true))
-											dispatch(resetTutorials())
-											navigate('/tutoriel')
-										}}
-									>
-										<Trans>🧑‍🏫 Revoir le tutoriel</Trans>
-									</button>
-								</div>
-							)}
+							{tutorials.testIntro && <ReviewTutorialButton />}
 						</div>
 					</div>
 				) : (
 					<div>
-						{tutorials.testIntro && (
-							<div>
-								<button
-									className="ui__ dashed-button"
-									onClick={() => {
-										dispatch(skipTutorial('testIntro', true))
-										dispatch(resetTutorials())
-										navigate('/tutoriel')
-									}}
-								>
-									<Trans>🧑‍🏫 Revoir le tutoriel</Trans>
-								</button>
-							</div>
-						)}
+						{tutorials.testIntro && <ReviewTutorialButton />}
 						<IllustratedMessage
 							emoji="🕳️"
 							message={

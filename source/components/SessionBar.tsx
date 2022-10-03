@@ -11,7 +11,6 @@ import { resetLocalisation } from '../actions/actions'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
-import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
 import {
 	getLocalisationPullRequest,

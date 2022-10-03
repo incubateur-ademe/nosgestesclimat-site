@@ -34,8 +34,6 @@ import sitePaths from './sitePaths'
 import { useSelector } from 'react-redux'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
-
-const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
