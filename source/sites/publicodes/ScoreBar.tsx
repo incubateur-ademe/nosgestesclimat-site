@@ -101,14 +101,10 @@ export default ({ actionMode = false, demoMode = false }) => {
 								alt={t('Planète représentant le changement climatique')}
 							/>
 							{!actionMode ? (
-								<div css="width: 8rem">
-									<HumanWeight
-										nodeValue={nodeValue}
-										overrideValue={
-											actionMode && actionTotal !== 0 && actionTotal
-										}
-									/>
-								</div>
+								<HumanWeight
+									nodeValue={nodeValue}
+									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+								/>
 							) : (
 								<DiffHumanWeight
 									{...{ nodeValue, engine, rules, actionChoices }}
@@ -119,10 +115,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 							<button
 								title={t("Afficher l'explication du score")}
 								onClick={() => setOpenExplanation(!openExplanation)}
-								css={`
-									position: relative;
-									right: 0.5rem;
-								`}
+								css={``}
 							>
 								<img
 									src={openmojiURL('questionCircle')}
