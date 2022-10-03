@@ -62,6 +62,10 @@ export const resetIntroTutorial = () =>
 	({
 		type: 'RESET_INTRO_TUTORIAL',
 	} as const)
+export const resetCategoryTutorials = () =>
+	({
+		type: 'RESET_CATEGORY_TUTORIALS',
+	} as const)
 export const resetStoredTrajets = () =>
 	({
 		type: 'RESET_TRAJETS',

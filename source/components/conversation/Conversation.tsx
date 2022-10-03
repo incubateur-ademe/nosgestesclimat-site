@@ -321,10 +321,12 @@ export default function Conversation({
 
 	return orderByCategories &&
 		isCategoryFirstQuestion &&
-		!tutorials[questionCategory.dottedName] ? (
+		!tutorials['testCategory-' + questionCategory.dottedName] ? (
 		<CategoryRespiration
 			questionCategory={questionCategory}
-			dismiss={() => dispatch(skipTutorial(questionCategory.dottedName))}
+			dismiss={() =>
+				dispatch(skipTutorial('testCategory-' + questionCategory.dottedName))
+			}
 		/>
 	) : (
 		<section

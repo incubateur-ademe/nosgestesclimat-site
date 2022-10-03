@@ -1,22 +1,21 @@
-import { Link } from 'react-router-dom'
 import {
 	deletePreviousSimulation,
 	resetActionChoices,
-	resetSimulation,
 	resetIntroTutorial,
+	resetSimulation,
 	resetStoredTrajets,
 } from 'Actions/actions'
+import Localisation from 'Components/localisation/Localisation'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { resetCategoryTutorials } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { resetIntroTutorials, skipTutorial } from '../../actions/actions'
-import { useNavigate } from 'react-router-dom'
-import Localisation from 'Components/localisation/Localisation'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
@@ -85,6 +84,7 @@ export default ({}) => {
 									dispatch(resetActionChoices())
 									dispatch(deletePreviousSimulation())
 									dispatch(resetStoredTrajets())
+									dispatch(resetCategoryTutorials())
 									navigate('/simulateur/bilan')
 								}}
 							>

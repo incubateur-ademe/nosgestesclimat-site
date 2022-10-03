@@ -210,6 +210,12 @@ function tutorials(state = {}, { type, id, unskip }) {
 				.map(([k, v]) => (k.includes('testIntro') ? null : [k, v]))
 				.filter(Boolean)
 		)
+	} else if (type === 'RESET_CATEGORY_TUTORIALS') {
+		return Object.fromEntries(
+			Object.entries(state)
+				.map(([k, v]) => (k.includes('testCategory') ? null : [k, v]))
+				.filter(Boolean)
+		)
 	} else return state
 }
 function tracking(
