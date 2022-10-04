@@ -112,14 +112,16 @@ export default function Data(props) {
 						<Section.Title>Intégrations et Iframes</Section.Title>
 						<Section.Intro>
 							<summary>En savoir plus</summary>
-							Les intégrations en iframe sont détéctées via le paramètre
-							'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé
-							le&nbsp;<a href="./diffuser">script dédié</a>. Ainsi, les visites
-							via les iframes d'intégrateurs qui n'ont pas utilisé ce script
-							sont dispersées dans les visites générales de Nos Gestes Climat.
-							Dans l'attente de chiffres plus précis, ce taux est donc
-							potentiellement sous-estimé par rapport à la réalité.
-							<i>(Données valables pour les 30 derniers jours)</i>
+							<p>
+								Les intégrations en iframe sont détéctées via le paramètre
+								'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé
+								le&nbsp;<a href="./diffuser">script dédié</a>. Ainsi, les
+								visites via les iframes d'intégrateurs qui n'ont pas utilisé ce
+								script sont dispersées dans les visites générales de Nos Gestes
+								Climat. Dans l'attente de chiffres plus précis, ce taux est donc
+								potentiellement sous-estimé par rapport à la réalité.
+								<i>(Données valables pour les 30 derniers jours)</i>
+							</p>
 						</Section.Intro>
 						<Wrapper>
 							<IframeFigures pages={pages} activePages={activePages} />
@@ -129,16 +131,45 @@ export default function Data(props) {
 						<Section.Title>Durée des visites</Section.Title>
 						<Section.Intro>
 							<summary>En savoir plus</summary>
-							Cette section est générée à partir des visites des 60 derniers
-							jours. Les visites dont le temps passé sur le site est inférieur à
-							1 minute ont été écartées. Pour éviter le biais de l'iframe qui
-							peut générer des visiteurs inactifs dans les statistiques, le
-							temps moyen sur le site a été calculé à partir des visites actives
-							(l'utilisateur a cliqué sur "Faire le test").
+							<p>
+								Cette section est générée à partir des visites des 60 derniers
+								jours. Les visites dont le temps passé sur le site est inférieur
+								à 1 minute ont été écartées. Pour éviter le biais de l'iframe
+								qui peut générer des visiteurs inactifs dans les statistiques,
+								le temps moyen sur le site a été calculé à partir des visites
+								actives (l'utilisateur a cliqué sur "Faire le test").
+							</p>
 						</Section.Intro>
 						<Wrapper>
 							<DurationFigures avgduration={avgduration} />
 							{duration && <DurationChart duration={duration} />}
+						</Wrapper>
+					</Section>
+					<Section>
+						<Section.Title>Score de nos utilisateurs</Section.Title>
+						<Section.Intro>
+							<summary>En savoir plus</summary>
+							<p>
+								Bien sûr, nous ne collectons pas{' '}
+								<a href="/vie-priv%C3%A9e">les données utlisateurs</a>.
+								Néanmoins, le score total ainsi que l'empreinte par catégorie
+								est présente dans l'URL de fin de test. Dans cette section, nous
+								agrégeons cees informations pour avoir une idée de l'empreinte
+								carbone moyenne de nos utilisateurs et de distribution du score
+								afin d'analyser ces résultats dans le contexte des évolutions du
+								modèle.
+							</p>{' '}
+							<p>
+								L'objectif ici n'est pas d'évaluer l'empreinte carbone des
+								Français : à priori, les utilisateurs du tests de sont pas
+								représentatifs des Français. De plus, ces données peuvent être
+								biaisées par des utilisateurs qui reviendraient à plusieurs
+								reprises sur la page de fin, en changeant ses réponses au test
+								(ce qui crée de nouveaux url de fin).
+							</p>
+						</Section.Intro>
+						<Wrapper>
+							<ScoreFromURL pages={pages} />
 						</Wrapper>
 					</Section>
 					<Section>
