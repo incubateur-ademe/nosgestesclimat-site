@@ -13,6 +13,7 @@ import SpecializedVisualisation from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
 import Chart from './index.js'
+import { useQuery } from '../../../utils'
 
 export default ({}) => {
 	// needed for this component to refresh on situation change :
@@ -31,6 +32,7 @@ export default ({}) => {
 	const nextQuestions = useNextQuestions()
 
 	const currentQuestion = useSelector(currentQuestionSelector)
+	const focusedCategory = useQuery().get('catégorie')
 
 	if (!categories) return null
 
@@ -43,6 +45,11 @@ export default ({}) => {
 	const value = currentQuestion && engine.evaluate(currentQuestion).nodeValue
 	const [traditionalChartShown, showTraditionalChart] = useState(false)
 
+	const showSecondLevelChart =
+		!inRespiration &&
+		displayedCategory &&
+		(!focusedCategory || focusedCategory === displayedCategory.dottedName)
+
 	return (
 		<div
 			css={`
@@ -54,7 +61,7 @@ export default ({}) => {
 					margin-bottom: 1rem;
 				`}
 			>
-				{!inRespiration && displayedCategory && (
+				{showSecondLevelChart && (
 					<CategoryVisualisation questionCategory={displayedCategory} />
 				)}
 			</div>
@@ -63,7 +70,7 @@ export default ({}) => {
 					key: 'categoriesChart',
 					categories: categories,
 					delay: 0,
-					indicator: nextQuestions.length > 0,
+					indicator: showSecondLevelChart,
 					questionCategory: displayedCategory,
 					filterSimulationOnClick: true,
 					onRestClick: () => showTraditionalChart(!traditionalChartShown),
