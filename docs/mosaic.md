@@ -26,7 +26,7 @@ a:
         tout:
             café . nombre: oui
             thé . nombre: oui
-        rien: aucun choix
+        aucun: aucun
     formule:
         somme:
             - b
