@@ -15,6 +15,7 @@ import {
 	usePeriod,
 	useReference,
 	usePages,
+	useActivePages,
 	useAllTime,
 	useKmHelp,
 	useSimulationsfromKmHelp,
@@ -60,6 +61,7 @@ export default function Data(props) {
 	const { data: period } = usePeriod()
 	const { data: reference } = useReference()
 	const { data: pages } = usePages()
+	const { data: activePages } = useActivePages()
 	const { data: allTime } = useAllTime()
 	const { data: kmhelp } = useKmHelp()
 	const { data: simulationsfromhelp } = useSimulationsfromKmHelp()
@@ -115,13 +117,12 @@ export default function Data(props) {
 							le&nbsp;<a href="./diffuser">script dédié</a>. Ainsi, les visites
 							via les iframes d'intégrateurs qui n'ont pas utilisé ce script
 							sont dispersées dans les visites générales de Nos Gestes Climat.
-							Afin de tenter d'estimer le taux d'affichage en iframe, nous avons
-							fait l'hypothèse que 60% (valeur arbitraire) des visites achevées
-							dès la page d'acceuil sont des iframes.{' '}
+							Dans l'attente de chiffres plus précis, ce taux est donc
+							potentiellement sous-estimé par rapport à la réalité.
 							<i>(Données valables pour les 30 derniers jours)</i>
 						</Section.Intro>
 						<Wrapper>
-							<IframeFigures pages={pages} />
+							<IframeFigures pages={pages} activePages={activePages} />
 						</Wrapper>
 					</Section>
 					<Section>

@@ -177,15 +177,15 @@ const getIframeRate = (pages, activePages) => {
 		0
 	)
 
-	const landingPage = pages.find((obj) => obj.label === '/index')
+	// const landingPage = pages.find((obj) => obj.label === '/index')
 
-	const exitLandingPage = landingPage.exit_nb_visits * 0.6 // 60% of exit are considered as iframes (arbitrary value)
+	// const exitLandingPage = landingPage.exit_nb_visits * 0.6 // 60% of exit are considered as iframes (arbitrary value)
 
-	const approximatedTotalIframes = exitLandingPage + totalIframe
+	// const approximatedTotalIframes = exitLandingPage + totalIframe
 
-	const iframes = (approximatedTotalIframes / totalPages) * 100
+	const iframes = (totalIframe / totalPages) * 100
 
-	const activeIframes = (totalActiveIframe / approximatedTotalIframes) * 100
+	const activeIframes = (totalActiveIframe / totalIframe) * 100
 
 	return [iframes, activeIframes]
 }
