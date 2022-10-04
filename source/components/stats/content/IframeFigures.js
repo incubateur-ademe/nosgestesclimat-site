@@ -78,16 +78,7 @@ const Text = styled.p`
 	font-weight: 300;
 	text-align: right;
 `
-const Toggle = styled.button`
-	display: inline;
-	margin: 0;
-	padding: 0;
-	font-size: 0.65rem;
-	color: var(--color);
-	background: none;
-	border: none;
-	cursor: pointer;
-`
+
 export default function IframeFigures(props) {
 	const [iframes, activeIframes] =
 		props.pages && getIframeRate(props.pages, props.activePages)
