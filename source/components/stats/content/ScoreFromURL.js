@@ -26,7 +26,7 @@ const Number = styled.span`
 	transition: color 500ms ease-out;
 	> small {
 		color: var(--lightColor);
-		font-size: 70%;
+		font-size: 60%;
 	}
 `
 const Text = styled.p`
@@ -48,13 +48,14 @@ export default function ScoreFromURL(props) {
 		.map((elt) => [Array(elt[1]).fill(elt[0])])
 		.flat()
 		.flat()
-
+	const totalVisits = flatScoreArray.length
 	return (
 		<Wrapper>
 			<Tile.Tile>
 				<TopBlock>
 					<Number>
-						{roundedMeanScore} tonnes <small>de CO₂e en moyenne</small>
+						{roundedMeanScore} tonnes{' '}
+						<small>de CO₂e en moyenne ({totalVisits} simulations)</small>
 					</Number>
 					<TotalChart flatScoreArray={flatScoreArray} />
 					<Text>Données valables pour les 30 derniers jours</Text>
