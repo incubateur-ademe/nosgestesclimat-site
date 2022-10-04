@@ -5,6 +5,7 @@ import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
+import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Meta from '../../components/utils/Meta'
@@ -92,12 +93,18 @@ export default () => {
 								margin-top: 1rem;
 								> a {
 									margin: 0.6rem 1rem 0.6rem 0 !important;
+									display: inline-flex !important;
+									align-items: center !important;
+									> svg {
+										margin-right: 0.4rem;
+									}
 								}
 							`}
 						>
 							<Link
 								to="/simulateur/bilan"
 								className="ui__ plain button cta"
+								css={``}
 								onClick={() =>
 									tracker.push([
 										'trackEvent',
@@ -107,7 +114,8 @@ export default () => {
 									])
 								}
 							>
-								{emoji('▶️')} Faire le test
+								<CircleSVG progress={0} white />
+								<span>Faire le test</span>
 							</Link>
 							<Link
 								to="/groupe"

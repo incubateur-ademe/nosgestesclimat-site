@@ -27,7 +27,7 @@ const Circle = ({}) => {
 	return <CircleSVG {...{ pathLength, realProgress }} />
 }
 
-const CircleSVG = ({ progress = 0, pathLength = 0 }) => (
+export const CircleSVG = ({ progress = 0, pathLength = 0, white = false }) => (
 	<svg
 		aria-label="Avancement du test"
 		role="progressbar"
@@ -38,18 +38,6 @@ const CircleSVG = ({ progress = 0, pathLength = 0 }) => (
 			width: 2rem;
 		`}
 	>
-		<path
-			fill="none"
-			strokeWidth="5"
-			stroke="var(--lighterColor)"
-			stroke-dasharray="0.3px 1px"
-			d="M 0, 20 a 20, 20 0 1,0 40,0 a 20, 20 0 1,0 -40,0"
-			pathLength="1"
-			stroke-dashoffset="0px"
-			data-projection-id="1"
-			css="transform: translateX(5px) translateY(5px) scaleX(-1) rotate(90deg); transform-origin: 20px 20px 0px;"
-			transform-origin="20px 20px"
-		></path>
 		<motion.path
 			fill="none"
 			strokeWidth="5"
@@ -65,7 +53,7 @@ const CircleSVG = ({ progress = 0, pathLength = 0 }) => (
 			}}
 		/>
 		<motion.path
-			fill="var(--color)"
+			fill={white ? 'white' : 'var(--color)'}
 			d="M15 15 L40 30 L15 40 L15 15"
 			strokeDasharray="0 1"
 			transform="translate(-0 -3)"
