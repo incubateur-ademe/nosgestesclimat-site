@@ -7,8 +7,7 @@ const Wrapper = styled(Tile.Content)`
 	width: 40%;
 	text-align: center;
 	padding-top: 2rem;
-	margin-bottom: 2rem;
-
+	margin: 0 0.5rem 2rem 0.5rem;
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;
 		padding-top: 0rem;
