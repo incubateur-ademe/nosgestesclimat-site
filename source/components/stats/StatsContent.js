@@ -14,8 +14,9 @@ import {
 	useKeywords,
 	usePeriod,
 	useReference,
+	useEntryPages,
+	useActiveEntryPages,
 	usePages,
-	useActivePages,
 	useAllTime,
 	useKmHelp,
 	useSimulationsfromKmHelp,
@@ -60,8 +61,9 @@ export default function Data(props) {
 	const { data: keywords } = useKeywords()
 	const { data: period } = usePeriod()
 	const { data: reference } = useReference()
+	const { data: entryPages } = useEntryPages()
+	const { data: activeEntryPages } = useActiveEntryPages()
 	const { data: pages } = usePages()
-	const { data: activePages } = useActivePages()
 	const { data: allTime } = useAllTime()
 	const { data: kmhelp } = useKmHelp()
 	const { data: simulationsfromhelp } = useSimulationsfromKmHelp()
@@ -78,6 +80,8 @@ export default function Data(props) {
 			period &&
 			reference &&
 			pages &&
+			activeEntryPages &&
+			entryPages &&
 			allTime ? (
 				<>
 					<Section>
@@ -86,7 +90,6 @@ export default function Data(props) {
 							<Evolution
 								period={period.value}
 								reference={reference.value}
-								pages={pages}
 								allTime={allTime.value}
 								simulations={simulations}
 							/>
@@ -124,7 +127,10 @@ export default function Data(props) {
 							</p>
 						</Section.Intro>
 						<Wrapper>
-							<IframeFigures pages={pages} activePages={activePages} />
+							<IframeFigures
+								pages={entryPages}
+								activePages={activeEntryPages}
+							/>
 						</Wrapper>
 					</Section>
 					<Section>
