@@ -11,9 +11,11 @@ import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
+import { motion } from 'framer-motion'
 import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -27,6 +29,7 @@ import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
+import SafeCategoryImage from '../SafeCategoryImage'
 import useKeypress from '../utils/useKeyPress'
 import { useSimulationProgress } from '../utils/useNextQuestion'
 import Aide from './Aide'
@@ -324,7 +327,33 @@ export default function Conversation({
 		isCategoryFirstQuestion &&
 		!tutorials['testCategory-' + questionCategory.dottedName]
 
-	return displayRespiration ? (
+	const displayCompletedCategory =
+		focusedCategory && !nextQuestions.find((q) => q.includes(focusedCategory))
+
+	return displayCompletedCategory ? (
+		<div css="text-align: center; padding: 1rem">
+			<motion.div
+				initial={{ opacity: 0.8, backgroundColor: '#ffffff' }}
+				animate={{ opacity: 1, scale: 1, backgroundColor: '#159f85' }}
+				transition={{ duration: 0.6 }}
+				css={`
+					border: 6px solid #159f85;
+					img {
+						width: 6rem;
+						animate: 1s linear;
+					}
+					margin: 0 auto 1rem;
+					width: 6rem;
+					border-radius: 6rem;
+					padding: 0.6rem;
+				`}
+			>
+				<SafeCategoryImage element={{ dottedName: focusedCategory }} />
+			</motion.div>
+			<p>Vous avez complété la catégorie {focusedCategory}</p>
+			<Link to="/profil"> Modifier mes réponses</Link>
+		</div>
+	) : displayRespiration ? (
 		<CategoryRespiration
 			questionCategory={questionCategory}
 			dismiss={() =>
