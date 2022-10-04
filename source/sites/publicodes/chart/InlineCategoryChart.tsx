@@ -32,13 +32,6 @@ export default ({}) => {
 
 	const currentQuestion = useSelector(currentQuestionSelector)
 
-	const completedCategories = categories
-		.filter(
-			({ dottedName }) =>
-				!nextQuestions.find((question) => question.includes(dottedName))
-		)
-		.map(({ dottedName }) => dottedName)
-
 	if (!categories) return null
 
 	const inRespiration =
@@ -70,7 +63,7 @@ export default ({}) => {
 					key: 'categoriesChart',
 					categories: categories,
 					delay: 0,
-					indicator: true,
+					indicator: nextQuestions.length > 0,
 					questionCategory: displayedCategory,
 					filterSimulationOnClick: true,
 					onRestClick: () => showTraditionalChart(!traditionalChartShown),
