@@ -120,9 +120,12 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				aria-hidden="true"
 			/>
 			<p>Vous avez terminé le test 👏</p>
-
 			<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
 				Voir mon résultat
+			</Link>
+			ou
+			<Link to="/profil" css="">
+				Modifier mes réponses
 			</Link>
 		</div>
 	)
