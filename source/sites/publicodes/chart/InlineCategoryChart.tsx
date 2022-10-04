@@ -42,7 +42,8 @@ export default ({}) => {
 	if (!categories) return null
 
 	const inRespiration =
-		displayedCategory && !tutorials[displayedCategory.dottedName]
+		displayedCategory &&
+		!tutorials['testCategory-' + displayedCategory.dottedName]
 
 	const categoryColor = displayedCategory && displayedCategory.color
 
