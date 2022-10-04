@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom'
+
 export default ({ children, last, skip }) => {
 	return (
 		<div
@@ -26,14 +28,19 @@ export default ({ children, last, skip }) => {
 					display: flex;
 					justify-content: center;
 					margin: 2rem 0 0.6rem;
+					> a {
+						text-decoration: none;
+					}
 				`}
 			>
-				<button
-					className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
-					onClick={() => skip('testIntro')}
-				>
-					{!last ? 'Passer le tutoriel' : "C'est parti !"}
-				</button>
+				<Link to="/simulateur/bilan">
+					<button
+						className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
+						onClick={() => skip('testIntro')}
+					>
+						{!last ? 'Passer le tutoriel' : "C'est parti !"}
+					</button>
+				</Link>
 			</div>
 		</div>
 	)

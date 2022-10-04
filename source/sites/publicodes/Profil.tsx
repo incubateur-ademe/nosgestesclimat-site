@@ -1,22 +1,21 @@
-import { Link } from 'react-router-dom'
 import {
 	deletePreviousSimulation,
 	resetActionChoices,
+	resetIntroTutorial,
 	resetSimulation,
-	resetTutorials,
 	resetStoredTrajets,
 } from 'Actions/actions'
+import Localisation from 'Components/localisation/Localisation'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import { resetCategoryTutorials } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { skipTutorial } from '../../actions/actions'
-import { useNavigate } from 'react-router-dom'
-import Localisation from 'Components/localisation/Localisation'
 
 export const useProfileData = () => {
 	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
@@ -85,47 +84,18 @@ export default ({}) => {
 									dispatch(resetActionChoices())
 									dispatch(deletePreviousSimulation())
 									dispatch(resetStoredTrajets())
+									dispatch(resetCategoryTutorials())
 									navigate('/simulateur/bilan')
 								}}
 							>
 								{emoji('♻️ ')} Recommencer
 							</button>
-							{tutorials.testIntro && (
-								<div>
-									<button
-										className="ui__ dashed-button"
-										onClick={() => {
-											dispatch(skipTutorial('testIntro', true))
-											dispatch(resetTutorials())
-											navigate('/tutoriel')
-										}}
-									>
-										{emoji('🧑‍🏫')} Revoir le tutoriel
-									</button>
-								</div>
-							)}
+							<TutorialLink {...{ dispatch, tutorials }} />
 						</div>
 					</div>
 				) : (
 					<div>
-						{tutorials.testIntro && (
-							<div
-								css={`
-									margin-bottom: 2rem;
-								`}
-							>
-								<button
-									className="ui__ dashed-button"
-									onClick={() => {
-										dispatch(skipTutorial('testIntro', true))
-										dispatch(resetTutorials())
-										navigate('/tutoriel')
-									}}
-								>
-									{emoji('🧑‍🏫')} Revoir le tutoriel
-								</button>
-							</div>
-						)}
+						<TutorialLink {...{ dispatch, tutorials }} />
 						<IllustratedMessage
 							emoji="🕳️"
 							message={<p>Vous n'avez pas encore fait le test.</p>}
@@ -138,3 +108,19 @@ export default ({}) => {
 		</div>
 	)
 }
+
+const TutorialLink = ({ tutorials, dispatch }) =>
+	tutorials.testIntro && (
+		<div>
+			<Link
+				css="text-decoration: none"
+				to="/tutoriel"
+				className="ui__ dashed-button"
+				onClick={() => {
+					dispatch(resetIntroTutorial())
+				}}
+			>
+				{emoji('🧑‍🏫')} Revoir le tutoriel
+			</Link>
+		</div>
+	)

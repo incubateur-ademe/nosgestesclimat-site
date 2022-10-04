@@ -11,9 +11,11 @@ import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
+import { motion } from 'framer-motion'
 import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -27,6 +29,7 @@ import Meta from '../../components/utils/Meta'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
+import SafeCategoryImage from '../SafeCategoryImage'
 import useKeypress from '../utils/useKeyPress'
 import { useSimulationProgress } from '../utils/useNextQuestion'
 import Aide from './Aide'
@@ -86,6 +89,7 @@ export default function Conversation({
 	}
 
 	const sortedQuestions = focusByCategory(questionsSortedByCategory)
+	console.log('FOCUS', focusedCategory, sortedQuestions)
 
 	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
@@ -318,12 +322,46 @@ export default function Conversation({
 				rules[mosaicQuestion.dottedName].rawNode.description)) ||
 			rules[currentQuestion]?.rawNode.description) != null
 
-	return orderByCategories &&
+	const displayRespiration =
+		orderByCategories &&
 		isCategoryFirstQuestion &&
-		!tutorials[questionCategory.dottedName] ? (
+		!tutorials['testCategory-' + questionCategory.dottedName]
+
+	const displayCompletedCategory =
+		focusedCategory && !nextQuestions.find((q) => q.includes(focusedCategory))
+
+	return displayCompletedCategory ? (
+		<div css="text-align: center; padding: 1rem">
+			<motion.div
+				initial={{ opacity: 0.1, borderWidth: '0' }}
+				animate={{ opacity: 1, scale: 1, borderWidth: '.8rem' }}
+				transition={{ duration: 0.6 }}
+				css={`
+					border: 0.8rem solid #159f85;
+					img {
+						width: 6rem;
+						animate: 1s linear;
+					}
+					margin: 0 auto 1rem;
+					width: 6rem;
+					border-radius: 6rem;
+					padding: 0.6rem;
+				`}
+			>
+				<SafeCategoryImage
+					element={{ dottedName: focusedCategory }}
+					whiteBackground="false"
+				/>
+			</motion.div>
+			<p>Vous avez complété la catégorie {focusedCategory}</p>
+			<Link to="/profil"> Modifier mes réponses</Link>
+		</div>
+	) : displayRespiration ? (
 		<CategoryRespiration
 			questionCategory={questionCategory}
-			dismiss={() => dispatch(skipTutorial(questionCategory.dottedName))}
+			dismiss={() =>
+				dispatch(skipTutorial('testCategory-' + questionCategory.dottedName))
+			}
 		/>
 	) : (
 		<section

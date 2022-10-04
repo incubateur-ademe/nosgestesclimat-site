@@ -13,6 +13,7 @@ import SpecializedVisualisation from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
 import Chart from './index.js'
+import { useQuery } from '../../../utils'
 
 export default ({}) => {
 	// needed for this component to refresh on situation change :
@@ -31,23 +32,23 @@ export default ({}) => {
 	const nextQuestions = useNextQuestions()
 
 	const currentQuestion = useSelector(currentQuestionSelector)
-
-	const completedCategories = categories
-		.filter(
-			({ dottedName }) =>
-				!nextQuestions.find((question) => question.includes(dottedName))
-		)
-		.map(({ dottedName }) => dottedName)
+	const focusedCategory = useQuery().get('catégorie')
 
 	if (!categories) return null
 
 	const inRespiration =
-		displayedCategory && !tutorials[displayedCategory.dottedName]
+		displayedCategory &&
+		!tutorials['testCategory-' + displayedCategory.dottedName]
 
 	const categoryColor = displayedCategory && displayedCategory.color
 
 	const value = currentQuestion && engine.evaluate(currentQuestion).nodeValue
 	const [traditionalChartShown, showTraditionalChart] = useState(false)
+
+	const showSecondLevelChart =
+		!inRespiration &&
+		displayedCategory &&
+		(!focusedCategory || focusedCategory === displayedCategory.dottedName)
 
 	return (
 		<div
@@ -60,7 +61,7 @@ export default ({}) => {
 					margin-bottom: 1rem;
 				`}
 			>
-				{!inRespiration && displayedCategory && (
+				{showSecondLevelChart && (
 					<CategoryVisualisation questionCategory={displayedCategory} />
 				)}
 			</div>
@@ -69,7 +70,7 @@ export default ({}) => {
 					key: 'categoriesChart',
 					categories: categories,
 					delay: 0,
-					indicator: true,
+					indicator: showSecondLevelChart,
 					questionCategory: displayedCategory,
 					filterSimulationOnClick: true,
 					onRestClick: () => showTraditionalChart(!traditionalChartShown),

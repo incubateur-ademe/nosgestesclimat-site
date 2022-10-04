@@ -1,15 +1,12 @@
-import { goToQuestion } from 'Actions/actions'
 import animate from 'Components/ui/animate'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
-import { default as React, useContext } from 'react'
+import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
-import { last } from 'Source/utils'
 import SlidesLayout from '../../../components/SlidesLayout'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
-import { useSearchParams } from 'react-router-dom'
 import { arrayLoopIteration } from '../../../utils'
 import HorizontalSwipe from '../HorizontalSwipe'
 import ActionSlide from './ActionSlide'
@@ -88,13 +85,7 @@ export default ({}) => {
 	return (
 		<div>
 			<IframeDataShareModal data={rehydratedDetails} />
-			<Link
-				to="/simulateur/bilan"
-				css="display: block; text-align: center"
-				onClick={() => {
-					dispatch(goToQuestion(last(answeredQuestions)))
-				}}
-			>
+			<Link to="/simulateur/bilan" css="display: block; text-align: center">
 				{!answeredQuestions.length ? (
 					<button class="ui__ button plain cta"> Faire mon test</button>
 				) : nextQuestions.length > 1 ? (
