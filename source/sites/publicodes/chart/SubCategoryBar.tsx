@@ -1,4 +1,3 @@
-import CircledEmojis from 'Components/CircledEmojis'
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router'

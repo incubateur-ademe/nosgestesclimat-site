@@ -319,9 +319,12 @@ export default function Conversation({
 				rules[mosaicQuestion.dottedName].rawNode.description)) ||
 			rules[currentQuestion]?.rawNode.description) != null
 
-	return orderByCategories &&
+	const displayRespiration =
+		orderByCategories &&
 		isCategoryFirstQuestion &&
-		!tutorials['testCategory-' + questionCategory.dottedName] ? (
+		!tutorials['testCategory-' + questionCategory.dottedName]
+
+	return displayRespiration ? (
 		<CategoryRespiration
 			questionCategory={questionCategory}
 			dismiss={() =>
