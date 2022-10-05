@@ -13,26 +13,61 @@ import { resetCategoryTutorials } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
+import { useEngine } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
+import {
+	getNextQuestions,
+	useNextQuestions,
+} from '../../components/utils/useNextQuestion'
+import {
+	answeredQuestionsSelector,
+	situationSelector,
+} from '../../selectors/simulationSelectors'
 
 export const useProfileData = () => {
-	const answeredQuestionsLength = useSelector(answeredQuestionsSelector).length
+	const answeredQuestions = useSelector(answeredQuestionsSelector),
+		answeredQuestionsLength = answeredQuestions.length
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const hasData = answeredQuestionsLength > 0
-	return { hasData, tutorials, answeredQuestionsLength }
+	return { hasData, tutorials, answeredQuestionsLength, answeredQuestions }
 }
 
 export default ({}) => {
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
-	const { hasData, answeredQuestionsLength, tutorials } = useProfileData()
+	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
+		useProfileData()
 	const navigate = useNavigate()
 	const actionChoicesLength = Object.keys(
-		useSelector((state) => state.actionChoices)
-	).length
+			useSelector((state) => state.actionChoices)
+		).length,
+		situation = useSelector(situationSelector)
+	const engine = useEngine(),
+		bilan = engine.evaluate('bilan')
+	const engineNextQuestions = getNextQuestions(
+			[bilan.missingVariables],
+			{},
+			[],
+			situation,
+			engine
+		),
+		nextQuestions = engineNextQuestions.filter(
+			(q) => !answeredQuestions.includes(q)
+		),
+		nextQuestionsLength = nextQuestions.length
+
+	const percentFinished = Math.round(
+		100 *
+			(answeredQuestionsLength /
+				(answeredQuestionsLength + nextQuestionsLength))
+	)
+	console.log('B4, ', bilan, nextQuestions)
+	const simulationStarted =
+		answeredQuestionsLength &&
+		answeredQuestionsLength > 0 &&
+		percentFinished < 100
 	return (
 		<div>
 			<Meta
@@ -64,8 +99,9 @@ export default ({}) => {
 						>
 							{answeredQuestionsLength > 0 && (
 								<p>
-									Vous avez répondu à {answeredQuestionsLength} questions et
-									choisi {actionChoicesLength} actions.{' '}
+									Vous avez terminé le test à {percentFinished} % (
+									{answeredQuestionsLength} questions) et choisi{' '}
+									{actionChoicesLength} actions.{' '}
 								</p>
 							)}
 							<details>
@@ -75,9 +111,24 @@ export default ({}) => {
 								<Link to="/vie-privée">En savoir plus</Link>
 							</details>
 						</div>
-						<div>
+						<div
+							css={`
+								display: flex;
+								flex-direction: column;
+								margin-top: 1rem;
+							`}
+						>
+							{simulationStarted && (
+								<Link
+									to="/simulateur/bilan"
+									className="ui__ button plain"
+									css="margin: 0"
+								>
+									{emoji('▶️')} Finir mon test
+								</Link>
+							)}
 							<button
-								className="ui__ button plain"
+								className={`ui__ button ${!simulationStarted ? 'plain' : ''}`}
 								css="margin: 1rem 0"
 								onClick={() => {
 									dispatch(resetSimulation())
