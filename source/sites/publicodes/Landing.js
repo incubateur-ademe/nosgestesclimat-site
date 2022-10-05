@@ -223,7 +223,7 @@ const ProfileLink = () => {
 				<Link
 					to="/profil"
 					title="Page profil"
-					className="ui__ button plain small"
+					className=""
 					css={`
 						width: 18rem !important;
 						border-radius: 2rem !important;
