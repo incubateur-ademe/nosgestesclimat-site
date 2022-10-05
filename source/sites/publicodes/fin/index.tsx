@@ -17,7 +17,7 @@ import Petrogaz from './Petrogaz'
 const { encodeRuleName } = utils
 
 // details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
-const rehydrateDetails = (encodedDetails) =>
+export const rehydrateDetails = (encodedDetails) =>
 	encodedDetails &&
 	encodedDetails
 		.match(/[a-z][0-9]+\.[0-9][0-9]/g)
@@ -28,7 +28,7 @@ const rehydrateDetails = (encodedDetails) =>
 			category === 'b' ? ['d', ...rest] : [category, ...rest]
 		)
 
-const sumFromDetails = (details) =>
+export const sumFromDetails = (details) =>
 	details.reduce((memo, [name, value]) => memo + value, 0)
 
 export default ({}) => {

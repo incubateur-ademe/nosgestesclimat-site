@@ -3,12 +3,19 @@ import styled from 'styled-components'
 
 import Tile from '../utils/Tile'
 
-const StyledTile = styled(Tile.Wrapper)`
-	> div {
+const FigureWrapper = styled.div`
+	width: 100%;
+	text-align: center;
+	padding-top: 0rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+`
+
+const TileWrapper = styled(Tile.Tile)`
+	width: 100%;
+	@media screen and (max-width: ${1200}px) {
 		width: 50%;
-		/* @media screen and (max-width: ${1200}px) {
-			width: 100%;
-		} */
 	}
 `
 
@@ -30,19 +37,19 @@ export default function KmFigures(props) {
 	const userPercent = (props.kmhelp / props.simulationsfromhelp) * 100
 	const ridesavg = props.ridesnumber / props.kmhelp
 	return (
-		<StyledTile>
-			<Tile.Tile>
+		<FigureWrapper>
+			<TileWrapper>
 				<Tile.Content>
 					<Number> {Math.round(userPercent).toLocaleString('fr-FR')}%</Number>
 					<Label>ont utilisé l'aide à la saisie des km</Label>
 				</Tile.Content>
-			</Tile.Tile>
-			<Tile.Tile>
+			</TileWrapper>
+			<TileWrapper>
 				<Tile.Content>
 					<Number>{Math.round(ridesavg).toLocaleString('fr-FR')}</Number>
 					<Label>trajets saisis en moyenne</Label>
 				</Tile.Content>
-			</Tile.Tile>
-		</StyledTile>
+			</TileWrapper>
+		</FigureWrapper>
 	)
 }

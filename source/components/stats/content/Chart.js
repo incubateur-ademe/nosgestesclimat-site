@@ -73,7 +73,7 @@ export default function AreaWeekly(props) {
 						/>
 						<YAxis
 							tickFormatter={(tick) =>
-								tick.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+								tick.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
 							}
 						/>
 						<Tooltip content={<CustomTooltip period={props.period} />} />

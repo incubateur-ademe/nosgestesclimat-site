@@ -7,8 +7,7 @@ const Wrapper = styled(Tile.Content)`
 	width: 40%;
 	text-align: center;
 	padding-top: 2rem;
-	margin-bottom: 2rem;
-
+	margin: 0 0.5rem 2rem 0.5rem;
 	@media screen and (max-width: ${1200}px) {
 		width: 100%;
 		padding-top: 0rem;
@@ -66,11 +65,12 @@ export default function Evolution(props) {
 	// We didn't track this stat at the beginning so we're guessing based on todays average completion
 	const baseSimulations = 32015
 	const simulations = props.simulations
+
 	return (
 		<Wrapper>
 			<TopBlock>
 				<BigNumber>
-					{props.allTime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+					{props.allTime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
 				</BigNumber>{' '}
 				&nbsp;visites depuis le lancement
 			</TopBlock>
@@ -87,7 +87,7 @@ export default function Evolution(props) {
 					<Number>
 						{(simulations?.nb_visits + baseSimulations)
 							.toString()
-							.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+							.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
 					</Number>{' '}
 					simulations terminées depuis le lancement
 				</Block>

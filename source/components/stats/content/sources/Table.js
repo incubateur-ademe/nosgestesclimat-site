@@ -83,7 +83,7 @@ export default function Table(props) {
 											<td>
 												{line.nb_visits
 													.toString()
-													.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+													.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
 											</td>
 											<td>
 												{props.total &&
