@@ -13,6 +13,11 @@ export default ({ isHomePage }) => {
 
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
+	const hideSessionBar =
+		pathname === '/' ||
+		pathname.startsWith('/nouveautés') ||
+		pathname.startsWith('/documentation')
+
 	return (
 		<>
 			<SkipLinks />
@@ -42,7 +47,7 @@ export default ({ isHomePage }) => {
 				`}
 			>
 				<Logo showText={largeScreen} size={largeScreen ? 'medium' : 'small'} />
-				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
+				{!hideSessionBar && <SessionBar />}
 			</nav>
 		</>
 	)
