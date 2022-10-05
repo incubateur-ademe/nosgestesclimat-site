@@ -46,12 +46,19 @@ export default function () {
 		return <Navigate to="/404" replace />
 	}
 	return (
-		<div>
+		<div
+			css={`
+				@media (min-width: 800px) {
+					max-width: 80%;
+				}
+
+				margin: 0 auto;
+			`}
+		>
 			<ScrollToTop key={pathname} />
 			<div
 				css={`
 					display: flex;
-					margin-top: 2rem;
 					justify-content: space-between;
 				`}
 			>
@@ -111,7 +118,7 @@ function BackToSimulation() {
 
 function DocumentationLanding() {
 	return (
-		<>
+		<div className="ui__ container">
 			<Meta
 				title="Comprendre nos calculs"
 				description="Notre modèle de calcul est entièrement transparent. Chacun peut l'explorer, donner son avis, l'améliorer."
@@ -119,13 +126,11 @@ function DocumentationLanding() {
 			<Méthode />
 			<h2>Explorer notre documentation</h2>
 			<SearchBar showListByDefault={true} />
-		</>
+		</div>
 	)
 }
 
 export const DocumentationStyle = styled.div`
-	max-width: 850px;
-	margin: 0 auto;
 	padding: 0 0.6rem;
 	#documentationRuleRoot > p:first-of-type {
 		display: inline-block;

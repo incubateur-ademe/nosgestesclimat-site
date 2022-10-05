@@ -66,7 +66,14 @@ export default function News() {
 		image = body.match(/!\[.*?\]\((.*?)\)/)[1] || null
 
 	return (
-		<>
+		<div
+			css={`
+				@media (min-width: 800px) {
+					max-width: 80%;
+				}
+				margin: 0 auto;
+			`}
+		>
 			<Meta
 				description="Découvrez les nouveautés de Nos Gestes Climat"
 				title={`Nouveautés - version ${releaseName}`}
@@ -131,7 +138,7 @@ export default function News() {
 					</NavigationButtons>
 				</MainBlock>
 			</NewsSection>
-		</>
+		</div>
 	)
 }
 
@@ -146,13 +153,10 @@ const NewsSection = styled.section`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-
-	@media (min-width: 1250px) {
-		margin-left: -175px;
-	}
 `
 
 const Sidebar = styled.ul`
+	width: 12rem;
 	display: flex;
 	flex-direction: column;
 	position: sticky;

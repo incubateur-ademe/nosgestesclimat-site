@@ -81,15 +81,29 @@ export default function Root({}) {
 		</Provider>
 	)
 }
+
+export const isFluidLayout = (encodedPathname) => {
+	const pathname = decodeURIComponent(encodedPathname)
+
+	return (
+		pathname === '/' ||
+		pathname.startsWith('/nouveautés') ||
+		pathname.startsWith('/documentation')
+	)
+}
+
 const Main = ({}) => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
+
 	const tracker = useContext(TrackerContext)
 
 	useEffect(() => {
 		tracker.track(location)
 	}, [location])
+
+	const fluidLayout = isFluidLayout(location.pathname)
 
 	return (
 		<div
@@ -101,16 +115,16 @@ const Main = ({}) => {
 				}
 
 				@media (min-width: 1200px) {
-					${!isHomePage &&
+					${!fluidLayout &&
 					`
 						transform: translateX(-4vw);
 						`}
 				}
-				${!isHomePage && !isTuto && sessionBarMargin}
+				${!fluidLayout && !isTuto && sessionBarMargin}
 			`}
-			className={isHomePage ? '' : 'ui__ container'}
+			className={fluidLayout ? '' : 'ui__ container'}
 		>
-			<Navigation isHomePage={isHomePage} />
+			<Navigation fluidLayout={fluidLayout} />
 			<main
 				tabIndex="0"
 				id="mainContent"
@@ -121,10 +135,9 @@ const Main = ({}) => {
 					}
 				`}
 			>
-
 				{!isHomePage && !isTuto && <LocalisationMessage />}
 
-				{isHomePage && (
+				{fluidLayout && (
 					<div
 						css={`
 							display: flex;
