@@ -95,7 +95,8 @@ export default () => {
 									margin: 0.6rem 1rem 0.6rem 0 !important;
 									display: inline-flex !important;
 									align-items: center !important;
-									> svg {
+									> svg,
+									img {
 										margin-right: 0.4rem;
 									}
 								}
@@ -129,7 +130,13 @@ export default () => {
 									])
 								}
 							>
-								{emoji('👥')} En groupe
+								<img
+									src="/images/silhouettes.svg"
+									width="100"
+									height="100"
+									css="width: 2rem; height: auto"
+								/>
+								<span>En groupe</span>
 							</Link>
 							<ProfileLink />
 						</div>
