@@ -50,7 +50,7 @@ const getArgs = (description) => {
 			alias: 's',
 			type: 'string',
 			default: utils.defaultLang,
-			choices: utils.availableLangs,
+			choices: utils.availableLanguages,
 			description: `The source language to translate from.`,
 		})
 		.option('file', {
@@ -77,7 +77,7 @@ const getArgs = (description) => {
 	const srcLang = argv.source ?? utils.defaultLang
 
 	if (!utils.availableLanguages.includes(srcLang)) {
-		utils.printErr(`ERROR: the language '${srcLang}' is not supported.`)
+		printErr(`ERROR: the language '${srcLang}' is not supported.`)
 		process.exit(-1)
 	}
 
