@@ -6637,17 +6637,17 @@ prr@~1.0.1:
   resolved "https://registry.yarnpkg.com/prr/-/prr-1.0.1.tgz#d3fc114ba06995a45ec6893f484ceb1d78f5f476"
   integrity sha512-yPw4Sng1gWghHQWj0B3ZggWUm4qVbPwPFcRG8KyxiU7J2OHFSoEHKS+EZ3fv5l1t9CyCiop6l/ZYeWbrgoQejw==
 
-publicodes-react@^1.0.0-beta.49:
-  version "1.0.0-beta.49"
-  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.49.tgz#7ec599e175493225b8f2274f90751c2abb5cf9d1"
-  integrity sha512-4kOpLr3jzeX76piAVQ2kMomugKUQ8YrFM/uSWA1NyR3vPjiTWblIp1G/IuTresvCaLAecKOW+ma5FGkODcyXeA==
+publicodes-react@^1.0.0-beta.55:
+  version "1.0.0-beta.55"
+  resolved "https://registry.yarnpkg.com/publicodes-react/-/publicodes-react-1.0.0-beta.55.tgz#2680d563016dcec5ea6bdc9e5194d1ca42d60a14"
+  integrity sha512-KtskXBUjxKw/8ZQqXN6hGJVJ4BAHbNTp88ttjLbgu2CD6coGhlwJ5kpWaOso3nDwRntd4nceKyEw/9m0Uwo+IA==
   dependencies:
     styled-components "^5.1.0"
 
-publicodes@^1.0.0-beta.49:
-  version "1.0.0-beta.49"
-  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.49.tgz#2b00979cefa53059d005b9070262582729b37ffd"
-  integrity sha512-HwKAVWAFQgKNqvDTWq7IGwufwqwmMB9j15+1L72DWOscB2SU81cpgvX9JQ7j30Xr549rBbGB4146JR3A7Sq8JQ==
+publicodes@^1.0.0-beta.55:
+  version "1.0.0-beta.55"
+  resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.55.tgz#5a158bf4e2225ac182a0aef0178f64b78f28b4a9"
+  integrity sha512-1YRq7NgUlvYy4MrlUY3kZl2Jk0fUvQHqBSpsIwiJsnq0RajneRxyR5oT/uUMK/NG3zE0xByqU6HrQ1735Icycw==
   dependencies:
     moo "^0.5.1"
     nearley "^2.19.2"
