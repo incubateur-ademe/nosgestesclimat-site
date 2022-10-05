@@ -133,8 +133,10 @@ export default ({
 										`
 											: ''}
 									`}
-									title={`${username} : ${formatTotal(value)} t`}
-									aria-label={`${username} : ${formatTotal(value)} t`}
+									title={`${username} : ${humanWeight(value, true).join(' ')}`}
+									aria-label={`${username} : ${humanWeight(value, true).join(
+										' '
+									)}`}
 									role="button"
 									onClick={() => setSpotlight(username)}
 									aria-pressed={spotlight === username}

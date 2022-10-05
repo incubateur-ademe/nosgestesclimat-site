@@ -29,13 +29,13 @@ export default function TotalChart(props) {
 						css={`
 							height: 100%;
 							width: 10px;
-							margin-left: -10px;
+							margin-left: -5px;
 							left: ${((elt - minValue) / (maxScore - minValue)) * 100}%;
 							background: var(--color);
 							opacity: 0.03;
 						`}
-						title={`${formatValue(elt)} t`}
-						aria-label={`${formatValue(elt)} t`}
+						title={humanWeight(elt, true).join(' ')}
+						aria-label={humanWeight(elt, true).join(' ')}
 					></li>
 				))}
 			</ul>

@@ -56,8 +56,10 @@ export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
 											: ''}
 									`}
-									title={`${username} : ${value} t`}
-									aria-label={`${username} : ${value} t`}
+									title={`${username} : ${humanWeight(value, true).join(' ')}`}
+									aria-label={`${username} : ${humanWeight(value, true).join(
+										' '
+									)}`}
 									onClick={() => setSpotlight(username)}
 									role="button"
 									aria-pressed={spotlight === username}
