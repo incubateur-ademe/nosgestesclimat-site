@@ -43,13 +43,6 @@ const Wrapper = styled.div`
 	}
 `
 export default function Data(props) {
-	const [chartDate, setChartDate] = useState('12')
-	const [chartPeriod, setChartPeriod] = useState('week')
-
-	const { data: chart } = useChart({
-		chartDate: Number(chartDate) + 1,
-		chartPeriod,
-	})
 	const { data: total } = useTotal()
 	const { data: simulations } = useSimulationsTerminees()
 	const { data: duration } = useVisitsDuration()
@@ -93,15 +86,8 @@ export default function Data(props) {
 								allTime={allTime.value}
 								simulations={simulations}
 							/>
-							{chart && (
-								<Chart
-									chart={chart}
-									period={chartPeriod}
-									date={chartDate}
-									setPeriod={setChartPeriod}
-									setDate={setChartDate}
-								/>
-							)}
+
+							<Chart />
 						</Wrapper>
 						<Sources
 							total={total.value}
