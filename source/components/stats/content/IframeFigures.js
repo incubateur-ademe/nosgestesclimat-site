@@ -81,7 +81,9 @@ const Text = styled.p`
 
 export default function IframeFigures(props) {
 	const [iframes, activeIframes] =
-		props.pages && getIframeRate(props.pages, props.activePages)
+		props.pages &&
+		props.activePages &&
+		getIframeRate(props.pages, props.activePages)
 	const [iframePages, totalIframe] =
 		props.pages && getIdentifiedIframes(props.pages)
 
@@ -152,7 +154,7 @@ export default function IframeFigures(props) {
 const getIframeRate = (pages, activePages) => {
 	const totalPages = pages.reduce((acc, cur) => acc + cur.entry_nb_visits, 0)
 
-	const iframePages = pages.filter((page) => page.label.includes('iframe'))
+	const iframePages = pages.filter((page) => page.label?.includes('iframe'))
 
 	const totalIframe = iframePages.reduce(
 		(acc, cur) => acc + cur.entry_nb_visits,
@@ -160,7 +162,7 @@ const getIframeRate = (pages, activePages) => {
 	)
 
 	const activeIframePages = activePages.filter((page) =>
-		page.label.includes('iframe')
+		page.label?.includes('iframe')
 	)
 
 	const totalActiveIframe = activeIframePages.reduce(
@@ -183,7 +185,7 @@ const getIframeRate = (pages, activePages) => {
 
 const getIdentifiedIframes = (pages) => {
 	const iframePages = pages
-		.filter((page) => page.label.includes('iframe'))
+		.filter((page) => page.label?.includes('iframe'))
 		.map((page) => {
 			if (!page.url) {
 				return [...page.subtable]
