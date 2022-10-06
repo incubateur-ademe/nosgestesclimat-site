@@ -168,4 +168,12 @@ export const DocumentationStyle = styled.div`
 	small {
 		background: none !important;
 	}
+	li {
+		&.active .content {
+			background-color: transparent !important;
+			a:hover {
+				color: white !important;
+			}
+		}
+	}
 `
