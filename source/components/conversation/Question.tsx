@@ -8,7 +8,11 @@ import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 import { Loading } from '../../sites/publicodes/App'
-import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
+import {
+	BinaryQuestionType,
+	InputCommonProps,
+	RuleInputProps,
+} from './RuleInput'
 const ReferencesLazy = React.lazy(
 	() => import('../../sites/publicodes/DocumentationReferences')
 )
@@ -36,7 +40,7 @@ export type Choice = ASTNode & { nodeKind: 'rule' } & {
 
 type QuestionProps = InputCommonProps & {
 	onSubmit: (source: string) => void
-	choices: Choice | typeof binaryQuestion
+	choices: Choice | BinaryQuestionType
 }
 
 export default function Question({
@@ -71,7 +75,7 @@ export default function Question({
 			return () => clearTimeout(timeoutId)
 		}
 	}, [currentSelection])
-	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
+	const renderBinaryQuestion = (choices: BinaryQuestionType) => {
 		return (
 			<div className="ui__ radio" aria-labelledby={'id-question-' + ruleTitle}>
 				{choices.map(({ value, label }) => (

@@ -8,19 +8,15 @@ import Stamp from '../../Stamp'
 import { mosaicLabelStyle } from './NumberedMosaic'
 import styled from 'styled-components'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
+import { Trans } from 'react-i18next'
 
 const MosaicLabelDiv = styled.div`
 	${mosaicLabelStyle}
 `
 
 export default function SelectDevices({
-	name,
-	setFormValue,
 	dottedName,
 	selectedRules,
-	value: currentValue,
-	question,
-	options: { defaultsToFalse },
 	suggestions,
 }) {
 	const dispatch = useDispatch()

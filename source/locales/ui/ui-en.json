@@ -29,6 +29,7 @@
   "💾 Télécharger les résultats": "💾 Download the results",
   "📊 Analysez les résultats et animez les discussions !": "📊 Analyze the results and lead the discussions!",
   "📋 Mes réponses": "📋 My answers",
+  "📍 Région de simulation": "📍 Simulation region",
   "📘 Comment ça marche ?": "📘 How does it work?",
   "📘 En savoir plus": "📘 Read more",
   "📝 Contexte sondage": "📝 Survey background",
@@ -75,6 +76,8 @@
   "Chargement": "Loading",
   "Choisir l'action": "Choose the action",
   "Choisir le type de tri des actions": "Choose the type of stock sorting",
+  "Choisir une autre région": "Choose another region",
+  "Choisissez la votre": "Choose your own",
   "Choississez d'abord un nom": "Choose a name first",
   "Cliquez pour partager le lien": "Click to share the link",
   "Comment créer un persona ?": "How to create a persona?",
@@ -92,6 +95,16 @@
           "choixAFaire": " You still have {{nbChoix}} to choose from.",
           "choixEnTrop": "You have made {{nbChoix}} too many choices!"
         }
+      }
+    },
+    "localisation": {
+      "Localisation": {
+        "warnMessage": "For the moment, there is no calculation model for {{countryName}}, you use the French model by default.",
+        "warnMessage2": "We could not detect your simulation country. You are using the French model by default."
+      },
+      "LocalisationMessage": {
+        "betaMsg": "It is currently in <1>beta</1> version.",
+        "version": "You are using the <1>{{versionName}}</1> of the test."
       }
     },
     "NewsBanner": {
@@ -137,6 +150,7 @@
   "Entre": "Between",
   "Entrez des mots clefs": "Enter keywords",
   "Entrez des mots clefs ici": "Enter keywords here",
+  "Envie de contribuer à une version pour votre région ?": "Want to contribute to a version for your region?",
   "Envie de donner un coup de pouce ?": "Want to give a helping hand?",
   "Envoyer": "Send",
   "Erreur inconnue côté serveur": "Unknown error on the server side",
@@ -240,6 +254,7 @@
   "Naviguez vers une question précise": "Navigate to a specific question",
   "Nom de la salle": "Name of the room",
   "Nombre de personnes": "Number of people",
+  "non": "no",
   "Non": "No",
   "Non applicable": "Not applicable",
   "Non chiffré": "Not quantified",
@@ -248,6 +263,7 @@
   "Nos Gestes Climat Conférence": "Our Climate Action Conference",
   "Nosgestesclimat - le top 3 de mes actions": "Nosgestesclimat - the top 3 of my actions",
   "Notre serveur semble indisponible": "Our server seems to be unavailable",
+  "Nous avons détecté que vous faites cette simulation depuis": "We have detected that you are doing this simulation since",
   "nouveautés": "news",
   "Nouveautés": "News",
   "Nouveautés - version ": "What's new - version ",
@@ -255,6 +271,7 @@
   "On vous propose une sélection graduelle de gestes.": "We propose a gradual selection of gestures.",
   "ont utilisé l'aide à la saisie des km": "used the km entry aid",
   "Origine des visites": "Origin of the visits",
+  "oui": "yes",
   "Oui": "Yes",
   "Ouvert, documenté et contributif": "Open, documented and contributory",
   "Ouvrir les options de tri": "Open the sorting options",
@@ -271,6 +288,7 @@
   "Participer au sondage": "Participate in the survey",
   "Participez à la conférence": "Participate in the conference",
   "Participez au sondage ": "Take the survey ",
+  "Pas votre région ?": "Not your region?",
   "Passer à l'action": "Taking action",
   "Passer à l'action !": "Take action!",
   "Passer le tutoriel": "Skip the tutorial",
@@ -408,6 +426,7 @@
   "Reprendre la simulation": "Resume the simulation",
   "Réseaux Sociaux": "Social Networks",
   "Revenir à ma simulation": "Return to my simulation",
+  "Revenir chez moi 🔙": "Coming home 🔙",
   "simulateurs": {
     "warning": {
       "plus": "Read the details",
@@ -439,6 +458,7 @@
   "Statistiques": "Statistics",
   "Stats générales": "General Stats",
   "Suivant": "Next",
+  "Suivez le guide !": "Follow the guide!",
   "Sur le même sujet": "On the same subject",
   "Terminer ma simulation": "Finish my simulation",
   "titre de la version": "title of the version",
@@ -460,6 +480,7 @@
   "Vos trajets apparaîtront dans ce tableau.": "Your trips will appear in this table.",
   "Votre mission : réduire votre empreinte.": "Your mission: to reduce your footprint.",
   "Votre part du logement": "Your share of the housing",
+  "Vous avez choisi": "You have chosen",
   "Vous avez été invités à un sondage Nos Gestes Climat nommé": "You have been invited to an Our Climate Action survey called",
   "Vous n'avez pas encore fait le test.": "You haven't taken the test yet."
 }

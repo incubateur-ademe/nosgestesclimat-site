@@ -29,6 +29,7 @@
   "💾 Télécharger les résultats": "💾 Scarica i risultati",
   "📊 Analysez les résultats et animez les discussions !": "📊 Analizzate i risultati e guidate le discussioni!",
   "📋 Mes réponses": "📋 Le mie risposte",
+  "📍 Région de simulation": "📍 Regione di simulazione",
   "📘 Comment ça marche ?": "📘 Come funziona?",
   "📘 En savoir plus": "📘 Per saperne di più",
   "📝 Contexte sondage": "📝 Contesto dell'indagine",
@@ -75,6 +76,8 @@
   "Chargement": "Caricamento",
   "Choisir l'action": "Scegliere l'azione",
   "Choisir le type de tri des actions": "Scegliere il tipo di smistamento delle scorte",
+  "Choisir une autre région": "Scegliere un'altra regione",
+  "Choisissez la votre": "Scegliete il vostro",
   "Choississez d'abord un nom": "Scegliere prima di tutto un nome",
   "Cliquez pour partager le lien": "Fare clic per condividere il link",
   "Comment créer un persona ?": "Come creare una persona?",
@@ -92,6 +95,16 @@
           "choixAFaire": " È ancora possibile scegliere tra {{nbChoix}}.",
           "choixEnTrop": "Avete fatto {{nbChoix}} troppe scelte!"
         }
+      }
+    },
+    "localisation": {
+      "Localisation": {
+        "warnMessage": "Per il momento non esiste un modello di calcolo per {{countryName}}, si utilizza il modello francese per impostazione predefinita.",
+        "warnMessage2": "Non siamo riusciti a rilevare il vostro paese di simulazione. Si utilizza il modello francese per impostazione predefinita."
+      },
+      "LocalisationMessage": {
+        "betaMsg": "Attualmente è in versione <1>beta</1>.",
+        "version": "Si sta utilizzando il <1>{{versionName}}</1> del test."
       }
     },
     "NewsBanner": {
@@ -137,6 +150,7 @@
   "Entre": "Tra",
   "Entrez des mots clefs": "Inserire le parole chiave",
   "Entrez des mots clefs ici": "Inserire qui le parole chiave",
+  "Envie de contribuer à une version pour votre région ?": "Volete contribuire a una versione per la vostra regione?",
   "Envie de donner un coup de pouce ?": "Volete dare una mano?",
   "Envoyer": "Inviare",
   "Erreur inconnue côté serveur": "Errore sconosciuto sul lato server",
@@ -240,6 +254,7 @@
   "Naviguez vers une question précise": "Navigare verso una domanda specifica",
   "Nom de la salle": "Nome della stanza",
   "Nombre de personnes": "Numero di persone",
+  "non": "non",
   "Non": "No",
   "Non applicable": "Non applicabile",
   "Non chiffré": "Non quantificato",
@@ -248,6 +263,7 @@
   "Nos Gestes Climat Conférence": "La nostra conferenza sull'azione per il clima",
   "Nosgestesclimat - le top 3 de mes actions": "Nosgestesclimat - la top 3 delle mie azioni",
   "Notre serveur semble indisponible": "Il nostro server sembra non essere disponibile",
+  "Nous avons détecté que vous faites cette simulation depuis": "Abbiamo rilevato che state effettuando questa simulazione da quando",
   "nouveautés": "notizie",
   "Nouveautés": "Notizie",
   "Nouveautés - version ": "Cosa c'è di nuovo - versione ",
@@ -255,6 +271,7 @@
   "On vous propose une sélection graduelle de gestes.": "Viene proposta una selezione graduale dei gesti.",
   "ont utilisé l'aide à la saisie des km": "ha utilizzato l'aiuto per l'inserimento dei km",
   "Origine des visites": "Origine delle visite",
+  "oui": "sì",
   "Oui": "Sì",
   "Ouvert, documenté et contributif": "Aperto, documentato e contributivo",
   "Ouvrir les options de tri": "Aprire le opzioni di ordinamento",
@@ -271,6 +288,7 @@
   "Participer au sondage": "Partecipare al sondaggio",
   "Participez à la conférence": "Partecipare alla conferenza",
   "Participez au sondage ": "Partecipare al sondaggio ",
+  "Pas votre région ?": "Non è la vostra regione?",
   "Passer à l'action": "Intervenire",
   "Passer à l'action !": "Agite!",
   "Passer le tutoriel": "Saltare il tutorial",
@@ -408,6 +426,7 @@
   "Reprendre la simulation": "Riprendere la simulazione",
   "Réseaux Sociaux": "Reti sociali",
   "Revenir à ma simulation": "Ritorno alla mia simulazione",
+  "Revenir chez moi 🔙": "Tornare a casa 🔙",
   "simulateurs": {
     "warning": {
       "plus": "Leggi i dettagli",
@@ -439,6 +458,7 @@
   "Statistiques": "Statistiche",
   "Stats générales": "Statistiche generali",
   "Suivant": "Avanti",
+  "Suivez le guide !": "Seguite la guida!",
   "Sur le même sujet": "Sullo stesso argomento",
   "Terminer ma simulation": "Terminare la simulazione",
   "titre de la version": "titolo della versione",
@@ -460,6 +480,7 @@
   "Vos trajets apparaîtront dans ce tableau.": "I vostri viaggi appariranno in questa tabella.",
   "Votre mission : réduire votre empreinte.": "La vostra missione: ridurre l'impronta ecologica.",
   "Votre part du logement": "La vostra quota di alloggi",
+  "Vous avez choisi": "Avete scelto",
   "Vous avez été invités à un sondage Nos Gestes Climat nommé": "Siete stati invitati a partecipare all'indagine \"La nostra azione per il clima\", denominata",
   "Vous n'avez pas encore fait le test.": "Non avete ancora fatto il test."
 }
