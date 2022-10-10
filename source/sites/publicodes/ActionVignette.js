@@ -130,7 +130,7 @@ export const ActionListCard = ({
 							display: inline-block;
 							color: white;
 							@media (min-width: 800px) {
-								font-size: 160%;
+								font-size: 110%;
 							}
 						}
 						text-decoration: none;
