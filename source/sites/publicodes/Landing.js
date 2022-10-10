@@ -151,10 +151,12 @@ export default () => {
 					display: flex;
 					justify-content: center;
 					align-items: center;
-					margin-top: 2rem;
+					flex-wrap: wrap;
+					max-width: 70%;
+					margin-top: 1rem;
 					> img,
 					> a {
-						margin: 0 0.4rem;
+						margin: 1rem 0.4rem;
 						display: flex;
 						align-items: center;
 					}
