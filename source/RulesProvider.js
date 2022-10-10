@@ -10,8 +10,12 @@ import {
 
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useTranslation } from 'react-i18next'
+
+import rulesFr from './locales/co2-fr.json'
+import rulesEn from './locales/co2-en-us.json'
 
 /* This component gets the publicode rules from the good URL,
  * then gives them
@@ -28,6 +32,7 @@ import { useDispatch, useSelector } from 'react-redux'
  * */
 
 export default ({ children }) => {
+	const { i18n } = useTranslation()
 	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
 
@@ -42,19 +47,23 @@ export default ({ children }) => {
 			console.log(
 				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
 			)
-			// Rules are stored in nested yaml files
-			const req = require.context(
-				'../../nosgestesclimat/data/',
-				true,
-				/\.(yaml)$/
-			)
-
-			const rules = req.keys().reduce((memo, key) => {
-				const jsonRuleSet = req(key).default || {}
-				return { ...memo, ...jsonRuleSet }
-			}, {})
-
-			setRules(rules, branchData.deployURL)
+			// // Rules are stored in nested yaml files
+			// const req = require.context(
+			// 	'../../nosgestesclimat/data/',
+			// 	true,
+			// 	/\.(yaml)$/
+			// )
+			//
+			// const rules = req.keys().reduce((memo, key) => {
+			// 	const jsonRuleSet = req(key).default || {}
+			// 	return { ...memo, ...jsonRuleSet }
+			// }, {})
+			//
+			if ('en' === i18n.language) {
+				setRules(rulesEn, branchData.deployURL)
+			} else {
+				setRules(rulesFr, branchData.deployURL)
+			}
 		} else {
 			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
@@ -62,7 +71,12 @@ export default ({ children }) => {
 					setRules(json, branchData.deployURL)
 				})
 		}
-	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
+	}, [
+		branchData.deployURL,
+		branchData.loaded,
+		branchData.shouldUseLocalFiles,
+		i18n.language,
+	])
 
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>
 }

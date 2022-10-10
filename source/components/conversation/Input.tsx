@@ -31,7 +31,7 @@ export default function Input({
 	const debouncedOnChange = useCallback(debounce(550, onChange), [])
 	const unité = serializeUnit(unit)
 
-	const { i18n } = useTranslation()
+	const { i18n, t } = useTranslation()
 	const abrvLocale = getCurrentLangInfos(i18n).abrvLocale
 	const { thousandSeparator, decimalSeparator } = currencyFormat(abrvLocale)
 
@@ -46,7 +46,7 @@ export default function Input({
 						}}
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
-					<div css="display: flex; justify-content: flex-end; align-items: center">
+					<div css="display: block">
 						{showAnimation && <AnimatedTargetValue value={value} unit="km" />}
 						<NumberFormat
 							autoFocus={autoFocus}
@@ -73,7 +73,7 @@ export default function Input({
 								: { value: value ?? '' })}
 						/>
 						<label htmlFor={id}>
-							<span className="suffix">&nbsp;{unité}</span>
+							<span className="suffix"> {t(unité as string)}</span>
 						</label>
 					</div>
 				</div>
