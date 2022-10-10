@@ -79,35 +79,7 @@ export default ({ headlessMode }) => {
 				`}
 			>
 				<div id="shareImage" css="padding: 2rem 0 0">
-					<div css="display: flex; align-items: center; justify-content: center">
-						<img
-							src="/images/pompe-essence.svg"
-							css="height: 10rem; margin-right: .4rem"
-							alt="Icône représentant une pompe à pétrole"
-						/>
-						<div
-							css={`
-								flex-direction: column;
-								display: flex;
-								justify-content: space-evenly;
-								height: 10rem;
-								width: 16rem;
-							`}
-						>
-							<div css="font-weight: bold; font-size: 280%;">
-								<span css="width: auto; text-align: right; display: inline-block">
-									{primaryValue}
-								</span>{' '}
-								pleins
-							</div>
-							<span>
-								de <NeutralH1>pétrole brut par an</NeutralH1>.
-							</span>
-							<small>
-								Soit {secondaryValue} litres (plein de {pleinVolume} litres).
-							</small>
-						</div>
-					</div>
+					<BigFigure {...{ primaryValue, secondaryValue, pleinVolume }} />
 					<div css="padding: 1rem; max-width: 30rem; margin: 0 auto; font-size: 90%">
 						<p>
 							C'est une estimation <em>a minima</em> de votre consommation de
@@ -142,3 +114,35 @@ export default ({ headlessMode }) => {
 		</div>
 	)
 }
+
+export const BigFigure = ({ primaryValue, secondaryValue, pleinVolume }) => (
+	<div css="display: flex; align-items: center; justify-content: center">
+		<img
+			src="/images/pompe-essence.svg"
+			css="height: 10rem; margin-right: .4rem"
+			alt="Icône représentant une pompe à pétrole"
+		/>
+		<div
+			css={`
+				flex-direction: column;
+				display: flex;
+				justify-content: space-evenly;
+				height: 10rem;
+				width: 16rem;
+			`}
+		>
+			<div css="font-weight: bold; font-size: 280%;">
+				<span css="width: auto; text-align: right; display: inline-block">
+					{primaryValue}
+				</span>{' '}
+				pleins
+			</div>
+			<span>
+				de <NeutralH1>pétrole brut par an</NeutralH1>.
+			</span>
+			<small>
+				Soit {secondaryValue} litres (plein de {pleinVolume} litres).
+			</small>
+		</div>
+	</div>
+)
