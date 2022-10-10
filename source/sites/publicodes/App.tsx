@@ -26,6 +26,7 @@ import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import useMediaQuery from '../../components/utils/useMediaQuery'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
@@ -98,6 +99,7 @@ const Main = ({}) => {
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
 	const tracker = useContext(TrackerContext)
+	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {
 		tracker.track(location)
@@ -148,7 +150,7 @@ const Main = ({}) => {
 							}
 						`}
 					>
-						<Logo showText />
+						<Logo showText size={largeScreen ? 'large' : 'medium'} />
 					</div>
 				)}
 				<Router />
