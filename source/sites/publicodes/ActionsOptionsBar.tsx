@@ -23,8 +23,8 @@ export default ({ finalActions, setRadical, radical }) => {
 			`}
 		>
 			<small role="status">
-				{finalActions.length} actions disponibles, <ActionsChosenIndicator />
-				sélectionnées.
+				{finalActions.length} actions disponibles
+				<ActionsChosenIndicator />
 			</small>{' '}
 			<small css="@media(max-width: 800px){display: none}">
 				Triées par :
