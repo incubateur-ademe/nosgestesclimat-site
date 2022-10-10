@@ -8,8 +8,8 @@ const StampStyle = styled.button`
 	${({ clickable }) => clickable && `cursor: pointer`}
 `
 
-export default ({ number }) => (
-	<StampStyle>
+export default ({ number, ...props }) => (
+	<StampStyle {...props}>
 		<svg
 			css="width:2.5rem"
 			viewBox="0 0 72 72"

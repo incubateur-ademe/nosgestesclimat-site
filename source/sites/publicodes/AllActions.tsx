@@ -192,6 +192,9 @@ const List = ({
 						css={`
 							width: 12rem;
 							margin: 0.4rem;
+							@media (max-width: 800px) {
+								width: 11rem;
+							}
 						`}
 					>
 						<ActionListCard

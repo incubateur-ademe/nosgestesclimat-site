@@ -79,7 +79,9 @@ export const ActionListCard = ({
 			situation,
 			engine
 		),
-		hasRemainingQuestions = remainingQuestions.length > 0
+		hasRemainingQuestions = remainingQuestions.length > 0,
+		pluralSuffix = remainingQuestions.length > 1 ? 's' : '',
+		remainingQuestionsText = `${remainingQuestions.length} question${pluralSuffix} restante${pluralSuffix}`
 	const categories = extractCategoriesNamespaces(rules, engine)
 	const categoryColor = categories.find(
 		(cat) => cat.dottedName === splitName(dottedName)[0]
@@ -158,7 +160,7 @@ export const ActionListCard = ({
 				)}
 			</div>
 
-			<div css="					margin-top: auto;">
+			<div css="margin-top: auto;">
 				<div
 					css={`
 						position: relative;
@@ -176,9 +178,17 @@ export const ActionListCard = ({
 						<Stamp
 							onClick={() => focusAction(dottedName)}
 							clickable
-							title={remainingQuestions.length + ' questions restantes'}
+							title={remainingQuestionsText}
 							number={remainingQuestions.length}
 						></Stamp>
+					)}
+					{hasRemainingQuestions && (
+						<p
+							css="color: var(--color); height: 0; cursor: pointer"
+							onClick={() => focusAction(dottedName)}
+						>
+							{remainingQuestionsText}
+						</p>
 					)}
 				</div>
 				<div
