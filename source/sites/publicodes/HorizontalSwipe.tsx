@@ -49,7 +49,15 @@ export default ({ children, next, previous }) => {
 			<AnimatePresence initial={false} custom={direction}>
 				<motion.div
 					className="slides"
-					css="position: absolute"
+					css={`
+						position: absolute;
+						width: 35rem;
+						max-width: 100%;
+						top: 0.4rem;
+						@media (min-height: 800px) {
+							top: 1.7rem;
+						}
+					`}
 					key={page}
 					custom={direction}
 					variants={variants}
@@ -76,7 +84,9 @@ export default ({ children, next, previous }) => {
 					{children}
 				</motion.div>
 			</AnimatePresence>
-			<NextButton onClick={() => paginate(1)}>{'‣'}</NextButton>
+			<NextButton onClick={() => paginate(1)} attention={page === 0}>
+				{'‣'}
+			</NextButton>
 			<NextButton reverse onClick={() => paginate(-1)}>
 				{'‣'}
 			</NextButton>
@@ -85,12 +95,12 @@ export default ({ children, next, previous }) => {
 }
 
 const NextButton = styled.button`
-	opacity: 0.6;
+	opacity: 0.75;
 	top: calc(50% - 20px);
 	position: absolute;
 	background: white;
-	border: 1px solid var(--color);
-	color: var(--color);
+	border: 1px solid var(--darkColor);
+	color: var(--darkColor);
 	border-radius: 30px;
 	width: 40px;
 	height: 40px;
@@ -107,8 +117,42 @@ const NextButton = styled.button`
 	${(props) =>
 		props.reverse &&
 		`
- left: 10px;
-  transform: scale(-1);
+    left: 10px;
+    transform: scale(-1);
+	`}
+	${(props) =>
+		props.attention &&
+		`
 
+animation-name: light, strong;
+animation-duration: 1s;
+animation-delay: 8s, 14s; 
+animation-timing-function: ease-in-out;
+animation-iteration-count: 6, infinite;
+animation-direction: alternate;
+	 
+@keyframes light{
+		0% {
+			transform: scale(1);
+			opacity: 0.6;
+		}
+		100% {
+			transform: scale(1.2);
+			opacity: 1
+		}
+	}
+	@keyframes strong {
+		0% {
+			transform: scale(1);
+			opacity: 0.6;
+			background: white;
+			color: var(--color)
+		}
+		100% {
+			transform: scale(1.2);
+			opacity: 1
+			; background: var(--color); color: white
+		}
+	}
 	`}
 `

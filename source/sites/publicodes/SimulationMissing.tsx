@@ -1,13 +1,14 @@
 import emoji from 'react-easy-emoji'
-import { useHistory } from 'react-router'
 import { Link } from 'react-router-dom'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { PersonaGrid } from './Personas'
 
 export default ({}) => {
-	const history = useHistory()
 	return (
-		<div className="ui__ card light colored content" css="margin-top: 1.6rem">
+		<div
+			className="ui__ card light colored content"
+			css="margin: 1.6em 0.5rem 1.6rem 0.5rem"
+		>
 			<h1>Simulation manquante</h1>
 			<IllustratedMessage
 				inline
@@ -29,7 +30,10 @@ export default ({}) => {
 				Vous pouvez aussi voir le parcours action comme si vous étiez l'un de
 				ces profils types.
 			</p>
-			<PersonaGrid additionnalOnClick={() => null} />
+			<PersonaGrid
+				additionnalOnClick={() => null}
+				warningIfSituationExists={true}
+			/>
 		</div>
 	)
 }

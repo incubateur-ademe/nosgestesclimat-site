@@ -115,7 +115,7 @@
 .ui__.card.box.thinner {
 	max-width: 15rem;
 }
-.ui__.card.interactive.light-border:hover {
+.ui__.card.interactive.light-border:not(.selected):hover {
 	border-color: var(--lightColor);
 	/* border-color: var(--lightColor); */
 }
@@ -200,4 +200,10 @@
 .ui__.card.interactive.selected {
 	border: 4px solid #2da44e;
 	background: #2da44e0f;
+}
+
+.ui__.card.inactive {
+	border: 4px solid grey;
+	background: #2da44e0f;
+	filter: grayscale(50%);
 }

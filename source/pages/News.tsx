@@ -1,13 +1,21 @@
+import { determinant } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { SitePathsContext } from 'Components/utils/SitePathsContext'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Redirect, useHistory, useRouteMatch } from 'react-router-dom'
-import { Link, NavLink } from 'react-router-dom'
+import {
+	Link,
+	Navigate,
+	NavLink,
+	Redirect,
+	useMatch,
+	useNavigate,
+} from 'react-router-dom'
 import styled from 'styled-components'
-import { determinant, hideNewsBanner } from 'Components/NewsBanner'
+import { localStorageKey } from '../components/NewsBanner'
 import Meta from '../components/utils/Meta'
+import { usePersistingState } from '../components/utils/persistState'
+import lastRelease from '../data/last-release.json'
 
 const dateCool = (date) =>
 	date.toLocaleString(undefined, {
@@ -25,17 +33,20 @@ type ReleasesData = Array<{
 
 export default function News() {
 	const [data, setData] = useState()
-	const history = useHistory()
-	const slug = useRouteMatch<{ slug: string }>(`${'/nouveautés'}/:slug`)?.params
+	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
+	const navigate = useNavigate()
+	const slug = useMatch(`${encodeURIComponent('nouveautés')}/:slug`)?.params
 		?.slug
-	useEffect(hideNewsBanner, [])
-	useEffect(
-		() =>
-			fetch('/data/releases.json')
-				.then((r) => r.json())
-				.then((json) => setData(json)),
-		[]
-	)
+	const fetchSetData = () =>
+		fetch('/data/releases.json')
+			.then((r) => r.json())
+			.then((json) => setData(json))
+	useEffect(() => {
+		setLastViewedRelease(lastRelease.name)
+	}, [])
+	useEffect(() => {
+		fetchSetData()
+	}, [])
 
 	if (!data) {
 		return null
@@ -47,7 +58,7 @@ export default function News() {
 		`${'/nouveautés'}/${slugify(data[index].name)}`
 
 	if (!slug || selectedRelease === -1) {
-		return <Redirect to={getPath(0)} />
+		return <Navigate to={getPath(0)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
@@ -55,7 +66,14 @@ export default function News() {
 		image = body.match(/!\[.*?\]\((.*?)\)/)[1] || null
 
 	return (
-		<>
+		<div
+			css={`
+				@media (min-width: 800px) {
+					max-width: 80%;
+				}
+				margin: 0 auto;
+			`}
+		>
 			<Meta
 				description="Découvrez les nouveautés de Nos Gestes Climat"
 				title={`Nouveautés - version ${releaseName}`}
@@ -71,18 +89,20 @@ export default function News() {
 					: `nouveautés ${determinant(releaseName)}${releaseName}`}
 				&nbsp;.
 			</p>
-			<SmallScreenSelect
-				value={selectedRelease}
-				onChange={(evt) => {
-					history.push(getPath(Number(evt.target.value)))
-				}}
-			>
-				{data.map(({ name }, index) => (
-					<option key={index} value={index}>
-						{name}
-					</option>
-				))}
-			</SmallScreenSelect>
+			<label title="titre de la version">
+				<SmallScreenSelect
+					value={selectedRelease}
+					onChange={(evt) => {
+						navigate(getPath(Number(evt.target.value)))
+					}}
+				>
+					{data.map(({ name }, index) => (
+						<option key={index} value={index}>
+							{name}
+						</option>
+					))}
+				</SmallScreenSelect>
+			</label>
 			<NewsSection>
 				<Sidebar>
 					{data.map(({ name, published_at: date }, index) => (
@@ -98,7 +118,7 @@ export default function News() {
 				</Sidebar>
 				<MainBlock>
 					<MarkdownWithAnchorLinks
-						source={body}
+						children={body}
 						escapeHtml={false}
 						renderers={{ text: TextRenderer }}
 					/>
@@ -118,7 +138,7 @@ export default function News() {
 					</NavigationButtons>
 				</MainBlock>
 			</NewsSection>
-		</>
+		</div>
 	)
 }
 
@@ -133,13 +153,10 @@ const NewsSection = styled.section`
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
-
-	@media (min-width: 1250px) {
-		margin-left: -175px;
-	}
 `
 
 const Sidebar = styled.ul`
+	width: 12rem;
 	display: flex;
 	flex-direction: column;
 	position: sticky;
@@ -167,10 +184,13 @@ const Sidebar = styled.ul`
 			padding: 4px 10px;
 			margin: 0;
 
-			&:hover,
 			&.active {
-				background: var(--color);
-				color: var(--textColor);
+				background: var(--darkColor);
+				color: var(--textColor) !important;
+			}
+			:hover:not(.active) {
+				color: var(--darkerColor);
+				background: var(--lightestColor);
 			}
 			&.active small {
 				color: var(--textColor);

@@ -1,13 +1,10 @@
-import React, {
-	createRef,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-	useState,
-} from 'react'
-import { shadowStyle } from '../styles'
-import Value from './Value'
+import React, { useEffect, useRef, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { useLocation } from 'react-router'
+import { useNavigate } from 'react-router-dom'
+import SafeCategoryImage from '../../../components/SafeCategoryImage'
+import { useQuery } from '../../../utils'
+import Value from './Value'
 
 export default ({
 	nodeValue,
@@ -20,38 +17,49 @@ export default ({
 	noText,
 	valueColor,
 	demoMode,
-}) => (
-	<>
-		<div
-			css={`
-				display: flex;
-				align-items: center;
-				height: 1.3rem;
-				position: relative;
-			`}
-			title={title}
-		>
-			<span
+	dottedName,
+}) => {
+	return (
+		<>
+			<div
 				css={`
-					font-size: 140%;
-					width: 2.3rem;
-					margin-left: -2.3rem;
+					display: flex;
+					align-items: center;
+					height: 2rem;
+					position: relative;
 				`}
+				title={title}
 			>
-				{emoji(icons)}
-			</span>
-			<BarContent
-				noText={noText}
-				color={color}
-				text={title}
-				shortText={abbreviation}
-				widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
-			/>
-
-			<Value {...{ nodeValue, demoMode, completed, color: valueColor }} />
-		</div>
-	</>
-)
+				<span
+					css={`
+						font-size: 140%;
+						width: 2.3rem;
+						margin-left: -2.3rem;
+						background: ${color};
+						border-radius: 3rem;
+						height: 2.3rem;
+						padding: 0.2rem;
+						margin-right: 0.6rem;
+						img {
+							width: 1.8rem;
+						}
+					`}
+				>
+					<SafeCategoryImage element={{ dottedName, icons }} />
+				</span>
+				<span class="visually-hidden">{title}</span>
+				<BarContent
+					noText={noText}
+					color={color}
+					text={title}
+					shortText={abbreviation}
+					widthPercentage={(nodeValue / empreinteMaximum) * 100 * 0.85}
+				/>
+				<Value {...{ nodeValue, demoMode, completed, color: valueColor }} />
+			</div>
+		</>
+	)
+}
 export const capitalizeFirst = (text) =>
 	text[0].toUpperCase() + text.slice(1, text.length)
 
@@ -77,7 +85,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 				background: ${color};
 				margin-top: 0rem;
 				margin-right: 0.8rem;
-				height: 1.3rem;
+				height: 2rem;
 				padding-left: 0.1rem;
 				border-radius: 1rem;
 				width: ${widthPercentage}%;
@@ -94,12 +102,12 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 						opacity: 0.9;
 						font-weight: bold;
 						color: white;
-						font-size: 90%;
-						line-height: 1.3rem;
+						font-size: 110%;
+						line-height: 2rem;
 						${!show && `display: none`}
 					`}
 				>
-					<span>{usedText}</span>
+					<span aria-hidden="true">{usedText}</span>
 				</span>
 			)}
 		</span>

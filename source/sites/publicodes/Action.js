@@ -13,11 +13,13 @@ import { Link } from 'react-router-dom'
 import { parentName } from '../../components/publicodesUtils'
 import { EngineContext } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
+import { questionConfig } from './questionConfig'
 
 const { decodeRuleName, encodeRuleName } = utils
 
 export default ({}) => {
-	const { encodedName } = useParams()
+	const encodedName = useParams()['*']
+
 	const rules = useSelector((state) => state.rules)
 	const nextQuestions = useNextQuestions()
 	const dottedName = decodeRuleName(encodedName)
@@ -30,6 +32,7 @@ export default ({}) => {
 	const config = {
 		objectifs: [dottedName],
 		situation: { ...(configSet?.situation || {}) },
+		questions: questionConfig,
 	}
 
 	const engine = useContext(EngineContext)
@@ -62,7 +65,7 @@ export default ({}) => {
 				margin: 1rem auto;
 			`}
 		>
-			<Meta title={title} description={description} />
+			<Meta title={'Action : ' + title} description={description} />
 			<ScrollToTop />
 			<Link to="/actions/liste">
 				<button className="ui__ button simple small ">
@@ -82,13 +85,13 @@ export default ({}) => {
 						}
 					`}
 				>
-					<h1>
+					<h2>
 						{icons && <span>{emoji(icons)}</span>}
 						{title}
-					</h1>
+					</h2>
 				</header>
 				<div css="margin: 1.6rem 0">
-					<Markdown source={description} />
+					<Markdown children={description} />
 					<div css="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem">
 						<Link to={'/documentation/' + encodedName}>
 							<button className="ui__ button small">
@@ -107,19 +110,19 @@ export default ({}) => {
 			</div>
 			{nextQuestions.length > 0 && (
 				<>
-					<p>Personnalisez cette estimation</p>
+					<h3>Personnalisez cette estimation</h3>
 					<Simulation
-						noFeedback
 						showConversation
 						customEnd={<div />}
 						targets={<div />}
 						explanations={null}
+						questionHeadingLevel="4"
 					/>
 				</>
 			)}
 			{relatedActions && (
 				<>
-					<p>Sur le même sujet</p>
+					<h3>Sur le même sujet</h3>
 					<div>
 						{relatedActions.map((action) => (
 							<Link

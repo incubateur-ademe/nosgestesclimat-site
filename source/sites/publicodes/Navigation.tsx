@@ -1,75 +1,54 @@
 import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import Logo from '../../components/Logo'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
-import Logo from './Logo'
+import useMediaQuery from '../../components/utils/useMediaQuery'
+import { isFluidLayout } from './App'
+import SkipLinks from './SkipLinks'
 
-export default ({ isHomePage }) => {
+export default ({ fluidLayout }) => {
 	const pathname = decodeURIComponent(location.pathname)
 
 	const { isIframe } = useContext(IframeOptionsContext)
 
+	const largeScreen = useMediaQuery('(min-width: 800px)')
+
 	return (
 		<>
-			<nav
-				css={`
-					display: flex;
-					justify-content: center;
-					margin: 0.6rem auto;
-
-					@media (min-width: 800px) {
-						flex-shrink: 0;
-						width: 12rem;
-						height: 100vh;
-						${isIframe && `height: 100% !important;`}
-						overflow: auto;
-						position: sticky;
-						top: 0;
-						flex-direction: column;
-						justify-content: start;
-						border-right: 1px solid #eee;
-					}
-					${isHomePage && `display: none`}
-				`}
-			>
-				<Link
-					to="/"
+			<SkipLinks />
+			{!fluidLayout && (
+				<nav
+					id="mainNavigation"
+					tabIndex="0"
 					css={`
 						display: flex;
-						align-items: center;
 						justify-content: center;
-						text-decoration: none;
-						font-size: 170%;
-						margin-bottom: 0;
-						#blockLogo {
-							display: none;
-						}
-						@media (min-width: 800px) {
-							margin-bottom: 0.4rem;
-							#inlineLogo {
-								display: none;
-							}
-							justify-content: start;
-							#blockLogo {
-								margin: 1rem;
-								display: block;
-							}
-						}
-						${(pathname.includes('simulateur/') ||
-							pathname.includes('actions/')) &&
-						`
-							@media (max-width: 800px){
-					svg {width: 2.6rem !important}
-					span {display:none}
-					}
+						margin: 0.6rem auto;
 
-					`}
+						outline: none !important;
+
+						@media (min-width: 800px) {
+							flex-shrink: 0;
+							width: 12rem;
+							height: 100vh;
+							${isIframe && `height: 100% !important;`}
+							overflow: auto;
+							position: sticky;
+							top: 0;
+							flex-direction: column;
+							justify-content: start;
+							border-right: 1px solid #eee;
+						}
 					`}
 				>
-					<Logo />
-				</Link>
-				{pathname !== '/' && !pathname.includes('nouveautés') && <SessionBar />}
-			</nav>
+					<Logo
+						showText={largeScreen}
+						size={largeScreen ? 'medium' : 'small'}
+					/>
+					<SessionBar />
+				</nav>
+			)}
 		</>
 	)
 }

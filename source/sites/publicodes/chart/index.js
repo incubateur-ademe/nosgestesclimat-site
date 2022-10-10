@@ -4,30 +4,29 @@ import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import React from 'react'
 import { useSelector } from 'react-redux'
+import { useNavigate, useLocation } from 'react-router-dom'
 import { Link } from 'react-router-dom'
 import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
+import {
+	questionCategoryName,
+	splitName,
+} from '../../../components/publicodesUtils'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
+import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
+import CategoryVisualisation from '../CategoryVisualisation'
 import Bar from './Bar'
-
-const showBudget = false
-const // Rough estimate of the 2050 budget per person to stay under 2° by 2100
-	climateBudgetPerYear = 2000,
-	climateBudgetPerDay = climateBudgetPerYear / 365,
-	// Based on current share of the annual mean of 12 ton per french
-	// Source : http://ravijen.fr/?p=440
-	transportShare = 1 / 4,
-	transportClimateBudget = climateBudgetPerDay * transportShare
+import useContinuousCategory from './useContinuousCategory'
 
 export default ({
 	details,
 	noText,
 	noCompletion,
 	valueColor,
-	links,
+	linkTo,
 	demoMode,
 	noAnimation,
 }) => {
@@ -42,6 +41,10 @@ export default ({
 			abbreviation: rules[category.dottedName].abbréviation,
 		})
 	)
+	const { pathname } = useLocation(),
+		navigate = useNavigate()
+
+	const questionCategory = useContinuousCategory(categories)
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
 		.filter(
@@ -70,25 +73,10 @@ export default ({
 		>
 			<div
 				css={`
+					margin-top: 1rem;
 					position: relative;
 				`}
 			>
-				<span
-					css={`
-				${!showBudget ? 'display: none' : ''}
-				height: 100%;
-				left: 0;
-				z-index: -1;
-				left: ${((transportClimateBudget * 1000) / empreinteMaximum) * 100 * 0.9}%;
-
-				width: 0px;
-				border-right: 8px dotted yellow;
-		        position: absolute;
-				margin-top: 2rem;
-				}
-					`}
-					key="budget"
-				></span>
 				<ul
 					css={`
 						margin-left: 2rem;
@@ -119,15 +107,32 @@ export default ({
 								layout
 								key={category.title}
 							>
-								{links ? (
-									<Link
-										to={
-											'/documentation/' +
-											utils.encodeRuleName(category.dottedName)
-										}
-									>
-										{bar}
-									</Link>
+								{!demoMode ? (
+									linkTo === 'documentation' ? (
+										<Link
+											to={
+												'/documentation/' +
+												utils.encodeRuleName(category.documentationDottedName)
+											}
+										>
+											{bar}
+										</Link>
+									) : (
+										<div
+											type="button"
+											css={`
+												cursor: pointer;
+											`}
+											title={
+												`N'afficher que les questions ` + category.dottedName
+											}
+											onClick={() =>
+												navigate(`${pathname}?catégorie=${category.dottedName}`)
+											}
+										>
+											{bar}
+										</div>
+									)
 								) : (
 									bar
 								)}
@@ -136,11 +141,6 @@ export default ({
 					})}
 				</ul>
 			</div>
-			{showBudget && (
-				<span css=" background: yellow ;">
-					Budget climat 1 journée {transportClimateBudget.toFixed(1)} kg
-				</span>
-			)}
 		</section>
 	)
 }

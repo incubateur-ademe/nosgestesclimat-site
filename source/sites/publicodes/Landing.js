@@ -1,33 +1,35 @@
-import LogoADEME from 'Images/LogoADEME'
-import { useContext } from 'react'
+import Illustration from 'Components/AnimatedIllustration'
+import animate from 'Components/ui/animate'
+import LogoADEME from 'Images/logoADEME.svg'
+import React, { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
+import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
+import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
+import Meta from '../../components/utils/Meta'
+import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import DocumentationButton from './DocumentationButton'
-import Illustration from './images/ecolab-climat-dessin.svg'
-import Marianne from './images/Marianne.svg'
+import LandingContent from './LandingContent'
+import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
-import animate from 'Components/ui/animate'
+
+const fluidLayoutMinWidth = '1200px'
 
 export default () => {
 	const tracker = useContext(TrackerContext)
+	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
+	const { isIframe } = useContext(IframeOptionsContext)
+
 	return (
 		<div
 			css={`
-				max-width: 850px;
 				margin: 0 auto;
 				border-radius: 1rem;
-				padding: 0.4rem;
-				h1 {
-					margin-top: 0.3rem;
-					font-size: 140%;
-					line-height: 1.2em;
-				}
 				> div > a {
 				}
-				text-align: center;
 				display: flex;
 				flex-direction: column;
 				justify-content: space-evenly;
@@ -38,85 +40,239 @@ export default () => {
 				}
 			`}
 		>
-			<h1>Connaissez-vous votre empreinte sur le climat ?</h1>
-			<Illustration
+			<Meta
+				title="Connaissez-vous votre empreinte climat ?"
+				description="Testez votre empreinte carbone, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire."
+				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
+			/>
+			<div
 				css={`
-					width: 60%;
-					height: auto;
-					border-radius: 0.8rem;
-					@media (max-width: 800px) {
-						width: 95%;
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					justify-content: center;
+					flex-wrap: wrap;
+					margin-top: 4rem;
+					padding: 0.6rem;
+					h1 {
+						margin-top: 0.3rem;
+						font-size: 220%;
+						line-height: 1.1em;
+						font-weight: bold;
+
+						color: var(--darkColor);
+					}
+					p {
+						font-size: 110%;
+					}
+					@media (max-width: ${fluidLayoutMinWidth}) {
+						margin-top: 2rem;
+						text-align: center;
+						h1 {
+							font-size: 180%;
+						}
 					}
 				`}
-				alt="Illustration sur fond mauve d'une scène mélant grande ville, péri-urbain et rural, où on peut voir quelques éléments d'une vie quotidienne, chaque élément étant émetteur d'une certaine empreinte sur le climat."
-			/>
-			<div css="margin: 1rem 0">
-				<div>
-					<Link
-						to="/simulateur/bilan"
-						className="ui__ plain button cta"
-						onClick={() =>
-							tracker.push(['trackEvent', 'NGC', 'Clic CTA accueil'])
-						}
-					>
-						Faire le test
-					</Link>
+			>
+				<div
+					css={`
+						display: flex;
+						flex-direction: column;
+						max-width: 35rem;
+					`}
+				>
+					<h1>Connaissez-vous votre empreinte sur le climat&nbsp;?</h1>
+					{mobile && <Illustration small aira-hidden="true" />}
+					<p>
+						En 10 minutes, obtenez une estimation de votre empreinte carbone de
+						consommation.
+					</p>
+					<div>
+						<div
+							css={`
+								margin-top: 1rem;
+								> a {
+									margin: 0.6rem 1rem 0.6rem 0 !important;
+									display: inline-flex !important;
+									align-items: center !important;
+									> svg,
+									img {
+										margin-right: 0.4rem;
+									}
+								}
+							`}
+						>
+							<Link
+								to="/simulateur/bilan"
+								className="ui__ plain button cta"
+								css={``}
+								onClick={() =>
+									tracker.push([
+										'trackEvent',
+										'NGC',
+										'Clic CTA accueil',
+										'Faire le test',
+									])
+								}
+							>
+								<CircleSVG progress={0} white />
+								<span>Faire le test</span>
+							</Link>
+							<Link
+								to="/groupe"
+								className="ui__ button cta"
+								onClick={() =>
+									tracker.push([
+										'trackEvent',
+										'NGC',
+										'Clic CTA accueil',
+										'Faire le test à plusieurs',
+									])
+								}
+							>
+								<img
+									src="/images/silhouettes.svg"
+									width="100"
+									height="100"
+									css="width: 2rem; height: auto"
+								/>
+								<span>En groupe</span>
+							</Link>
+							<ProfileLink />
+						</div>
+						<NewsBanner />
+					</div>
 				</div>
-				<div>
-					<Link to="/conférence" className="ui__ button small">
-						{emoji('👥')} Faire le test à plusieurs
-					</Link>
-				</div>
-				<NewsBanner />
+				{!mobile && <Illustration aira-hidden="true" />}
 			</div>
 
-			<footer>
-				<div
-					css={`
+			<div
+				css={`
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-wrap: wrap;
+					max-width: 70%;
+					margin-top: 1rem;
+					> img,
+					> a {
+						margin: 1rem 0.4rem;
 						display: flex;
 						align-items: center;
-						justify-content: center;
-						margin-bottom: 1rem;
-						img {
-							margin: 0 0.6rem;
-						}
-					`}
-				>
-					<Marianne
-						css="height: 6rem; margin-right: .6rem"
-						alt="Logo Marianne de la République Française"
+					}
+					> a {
+						height: 100%;
+					}
+				`}
+			>
+				<img
+					src="/images/marianne.svg"
+					alt="République Française"
+					css="width: 6rem; height: auto; margin-right: .6rem"
+					width="96"
+					height="86"
+				/>
+				<a href="https://ademe.fr" css="svg {width: 4rem !important}">
+					<LogoADEME />
+				</a>
+				<a href="https://datagir.ademe.fr">
+					<img
+						css="height: 3.4rem; width: auto;"
+						src="https://datagir.ademe.fr/logo.jpg"
 					/>
-					<a href="https://ademe.fr">
-						<LogoADEME />
-					</a>
-					<a href="https://www.associationbilancarbone.fr/">
-						<img
-							css="height: 2.5rem"
-							src="https://www.associationbilancarbone.fr/wp-content/themes/abc/assets/images/brand/abc_main_logo.svg"
-							alt="Logo de l'Association Bilan Carbone"
-						/>
-					</a>
-				</div>
-				<div
-					css={`
-						display: flex;
-						justify-content: center;
-						align-items: center;
-						flex-wrap: wrap;
-						> * {
-							margin: 0 0.6rem;
-						}
-						img {
-							font-size: 120%;
-						}
-					`}
-				>
-					<Link to="/à-propos">À propos</Link>
-					<DocumentationButton />
-					<Link to="/diffuser">Diffuser</Link>
-					<ProfileLink />
-				</div>
-			</footer>
+				</a>
+				<a href="https://abc-transitionbascarbone.fr">
+					<img
+						css="width: 6rem; height: auto;margin-left: 1rem !important"
+						src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+						alt="Logo de l'Association pour la transition Bas Carbone"
+						width="86"
+						height="29"
+					/>
+				</a>
+			</div>
+
+			{!isIframe && <LandingExplanations />}
+
+			<LandingContent background footer>
+				<footer>
+					{!isIframe && ( // would be a repetition with header logos
+						<div
+							css={`
+								background: var(--lightestColor);
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								flex-wrap: wrap;
+								margin: 1rem;
+								img {
+									margin: 0 0.6rem;
+								}
+							`}
+						>
+							<img
+								src="/images/logo-france-relance.svg"
+								alt="Logo de France Relance"
+								css="width: 5rem; height: auto; margin-right: .6rem"
+								width="96"
+								height="86"
+							/>
+
+							<div
+								css={`
+									display: flex;
+									align-items: center;
+									flex-direction: column;
+									font-size: 90%;
+									font-weight: bold;
+								`}
+							>
+								<img
+									src="/images/union-européenne.svg"
+									alt="Logo de l'Union Européenne"
+									css="width: 5rem; height: auto; margin-right: .6rem;"
+									width="96"
+									height="86"
+								/>
+								<span>NextGenerationEU</span>
+							</div>
+						</div>
+					)}
+					<div
+						css={`
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							flex-wrap: wrap;
+							> * {
+								margin: 0 0.6rem;
+							}
+							img {
+								font-size: 120%;
+							}
+						`}
+					>
+						<Link to="/à-propos">À propos</Link>
+						<DocumentationButton />
+						<Link to="/diffuser">Diffuser</Link>
+					</div>
+					<div
+						css={`
+							display: flex;
+							justify-content: center;
+							align-items: center;
+							> * {
+								margin: 0 0.6rem;
+								font-size: 80%;
+							}
+						`}
+					>
+						<Link to="/accessibilite" style={{ textDecoration: 'none' }}>
+							Accessibilité : partiellement conforme
+						</Link>
+					</div>
+				</footer>
+			</LandingContent>
 		</div>
 	)
 }
@@ -125,24 +281,39 @@ const ProfileLink = () => {
 	const { hasData } = useProfileData()
 	if (!hasData) return null
 	return (
-		<animate.fromTop delay="1">
+		<animate.appear delay="1">
 			<div
 				css={`
-					button {
-						padding: 0 0.2rem !important;
-						border-radius: 1rem !important;
-					}
+					display: flex;
+					justify-content: center;
+					margin-top: 1rem;
 				`}
 			>
-				<Link to="/profil">
-					<button className="ui__ button plain small" title="Mon profil">
-						<img
-							src={openmojiURL('profile')}
-							css="width: 2rem; filter: invert(1)"
-						/>
-					</button>
+				<Link
+					to="/profil"
+					title="Page profil"
+					className=""
+					css={`
+						width: 18rem !important;
+						border-radius: 2rem !important;
+						display: flex !important;
+						align-items: center !important;
+					`}
+				>
+					<img
+						aria-hidden="true"
+						src={openmojiURL('profile')}
+						css="width: 1.5rem"
+					/>
+					<span
+						css={`
+							margin-left: 0.5rem;
+						`}
+					>
+						Retrouver ma simulation
+					</span>
 				</Link>
 			</div>
-		</animate.fromTop>
+		</animate.appear>
 	)
 }

@@ -1,35 +1,51 @@
+import Logo from 'Components/Logo'
+import LogoADEME from 'Images/logoADEME.svg'
 import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
-import News from 'Pages/News'
-import React, { Suspense } from 'react'
+import React, { Suspense, useContext, useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Redirect, useLocation } from 'react-router'
-import { Route, Switch } from 'react-router-dom'
+import { useLocation } from 'react-router'
+import { Route, Routes } from 'react-router-dom'
+import LocalisationMessage from '../../components/localisation/LocalisationMessage'
+import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
+import { WithEngine } from '../../RulesProvider'
 import {
 	persistSimulation,
 	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
-import About from './About'
 import Actions from './Actions'
-import Contribution from './Contribution'
-import Diffuser from './Diffuser'
-import Fin from './Fin'
+import Fin from './fin'
 import Landing from './Landing'
-import Logo from './Logo'
 import Navigation from './Navigation'
-import Documentation from './pages/Documentation'
+import About from './pages/About'
+import Diffuser from './pages/Diffuser'
 import Personas from './Personas.tsx'
-import Privacy from './Privacy'
 import Profil from './Profil.tsx'
-import Tutorial from './Tutorial.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import useMediaQuery from '../../components/utils/useMediaQuery'
+
+const Documentation = React.lazy(() => import('./pages/Documentation'))
+const TutorialLazy = React.lazy(() => import('./Tutorial'))
+const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
+const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
+const StatsLazy = React.lazy(() => import('./pages/Stats'))
+const SurveyLazy = React.lazy(() => import('./conference/Survey'))
+const CGULazy = React.lazy(() => import('./pages/CGU'))
+const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
+const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
+const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
+const DocumentationContexteLazy = React.lazy(
+	() => import('./pages/DocumentationContexte')
+)
+const News = React.lazy(() => import('Pages/News'))
 
 let tracker = devTracker
+
 if (NODE_ENV === 'production') {
 	tracker = new Tracker()
 }
@@ -37,12 +53,6 @@ if (NODE_ENV === 'production') {
 export default function Root({}) {
 	const { language } = useTranslation().i18n
 	const paths = sitePaths()
-
-	const urlParams = new URLSearchParams(window.location.search)
-	/* This enables loading the rules of a branch,
-	 * to showcase the app as it would be once this branch of -data  has been merged*/
-	const branch = urlParams.get('branch')
-	const pullRequestNumber = urlParams.get('PR')
 
 	const iframeShareData = new URLSearchParams(
 		document?.location.search.substring(1)
@@ -64,108 +74,255 @@ export default function Root({}) {
 				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices || {},
 				tutorials: persistedSimulation?.tutorials || {},
+				storedTrajets: persistedSimulation?.storedTrajets || {},
+				localisation: persistedSimulation?.localisation,
 			}}
-			rulesURL={`https://${
-				branch
-					? `${branch}--`
-					: pullRequestNumber
-					? `deploy-preview-${pullRequestNumber}--`
-					: ''
-			}ecolab-data.netlify.app/co2.json`}
-			dataBranch={branch || pullRequestNumber}
 		>
 			<Main />
 		</Provider>
 	)
 }
+
+export const isFluidLayout = (encodedPathname) => {
+	const pathname = decodeURIComponent(encodedPathname)
+
+	return (
+		pathname === '/' ||
+		pathname.startsWith('/nouveautés') ||
+		pathname.startsWith('/documentation')
+	)
+}
+
 const Main = ({}) => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
+	const tracker = useContext(TrackerContext)
+	const largeScreen = useMediaQuery('(min-width: 800px)')
+
+	useEffect(() => {
+		tracker.track(location)
+	}, [location])
+
+	const fluidLayout = isFluidLayout(location.pathname)
+
 	return (
 		<div
-			className="ui__ container"
 			css={`
 				@media (min-width: 800px) {
 					display: flex;
 					min-height: 100vh;
+					padding-top: 1rem;
 				}
 
 				@media (min-width: 1200px) {
-					${!isHomePage &&
+					${!fluidLayout &&
 					`
 						transform: translateX(-4vw);
 						`}
 				}
-				${!isHomePage && !isTuto && sessionBarMargin}
+				${!fluidLayout && !isTuto && sessionBarMargin}
 			`}
+			className={fluidLayout ? '' : 'ui__ container'}
 		>
-			<Navigation isHomePage={isHomePage} />
+			<Navigation fluidLayout={fluidLayout} />
 			<main
+				tabIndex="0"
+				id="mainContent"
 				css={`
+					outline: none !important;
 					@media (min-width: 800px) {
 						flex-grow: 1;
-						padding: 1rem;
 					}
 				`}
 			>
-				{isHomePage && (
-					<nav
+				{!isHomePage && !isTuto && <LocalisationMessage />}
+
+				{fluidLayout && (
+					<div
 						css={`
-							display: flex;
-							align-items: center;
-							justify-content: center;
-							text-decoration: none;
-							font-size: 170%;
-							margin: 1rem auto;
+							margin: 0 auto;
+							@media (max-width: 800px) {
+								margin-top: 0.6rem;
+							}
+							@media (min-width: 1200px) {
+							}
 						`}
 					>
-						<Logo />
-					</nav>
+						<Logo showText size={largeScreen ? 'large' : 'medium'} />
+					</div>
 				)}
-				<Routes />
+				<Router />
 			</main>
 		</div>
 	)
 }
 
-const Routes = ({}) => {
-	return (
-		<Switch>
-			<Route exact path="/" component={Landing} />
-			{/* Removes trailing slashes */}
-			<Route
-				path={'/:url*(/+)'}
-				exact
-				strict
-				render={({ location }) => (
-					<Redirect to={location.pathname.replace(/\/+$/, location.search)} />
-				)}
-			/>
+export const Loading = () => <div>Chargement</div>
 
-			<Route path="/documentation" component={Documentation} />
-			<Route path="/simulateur/:name+" component={Simulateur} />
-			{/* Lien de compatibilité, à retirer par exemple mi-juillet 2020*/}
-			<Route path="/fin/:score" component={Fin} />
-			<Route path="/fin" component={Fin} />
-			<Route path="/personas" component={Personas} />
-			<Route path="/actions" component={Actions} />
-			<Route path="/contribuer/:input?" component={Contribution} />
-			<Route path="/à-propos" component={About} />
-			<Route path="/partenaires" component={Diffuser} />
-			<Route path="/diffuser" component={Diffuser} />
-			<Route path="/vie-privée" component={Privacy} />
-			<Route path="/nouveautés" component={News} />
-			<Route path="/profil" component={Profil} />
-			<Route path="/conférence/:room?">
-				<Suspense fallback="Chargement">
-					<ConferenceLazy />
-				</Suspense>
-			</Route>
-			<Redirect from="/conference/:room" to="/conférence/:room" />
-			<Route path="/tutoriel" component={Tutorial} />
-			<Route component={Route404} />
-		</Switch>
+const Router = ({}) => {
+	return (
+		<Routes>
+			<Route path="/" element={<Landing />} />
+			<Route
+				path="documentation/*"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<WithEngine>
+							<Documentation />
+						</WithEngine>
+					</Suspense>
+				}
+			/>
+			<Route
+				path="simulateur/*"
+				element={
+					<WithEngine>
+						<Simulateur />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/stats"
+				element={
+					<Suspense fallback={<Loading />}>
+						<StatsLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/fin/*"
+				element={
+					<WithEngine>
+						<Fin />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/personas"
+				element={
+					<WithEngine>
+						<Personas />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/actions/*"
+				element={
+					<WithEngine>
+						<Actions />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/profil"
+				element={
+					<WithEngine>
+						<Profil />
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/contribuer/*"
+				element={
+					<Suspense fallback={<Loading />}>
+						<ContributionLazy />
+					</Suspense>
+				}
+			/>
+			<Route path={encodeURIComponent('à-propos')} element={<About />} />
+			<Route
+				path="/cgu"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<CGULazy />
+					</Suspense>
+				}
+			/>
+			<Route path="/partenaires" element={<Diffuser />} />
+			<Route path="/diffuser" element={<Diffuser />} />
+			<Route
+				path={encodeURIComponent('vie-privée')}
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<PrivacyLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={`${encodeURIComponent('nouveautés')}/*`}
+				element={
+					<Suspense fallback={<Loading />}>
+						<News />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/guide"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GuideGroupeLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/guide/:encodedName"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GuideGroupeLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={`${encodeURIComponent('conférence')}/:room`}
+				element={
+					<Suspense fallback={<Loading />}>
+						<ConferenceLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/groupe"
+				element={
+					<Suspense fallback={<Loading />}>
+						<GroupSwitchLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/groupe/documentation-contexte"
+				element={
+					<Suspense fallback={<div>Chargement</div>}>
+						<DocumentationContexteLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/sondage/:room"
+				element={
+					<Suspense fallback={<Loading />}>
+						<SurveyLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/accessibilite"
+				element={
+					<Suspense fallback={<Loading />}>
+						<AccessibilityLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/tutoriel"
+				element={
+					<Suspense fallback={<Loading />}>
+						<TutorialLazy />
+					</Suspense>
+				}
+			/>
+			<Route path="*" element={<Route404 />} />
+		</Routes>
 	)
 }

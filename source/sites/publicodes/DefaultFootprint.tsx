@@ -1,12 +1,19 @@
-import Engine, { formatValue } from 'publicodes'
-import { useMemo } from 'react'
+import Engine from 'publicodes'
+import { WithEngine } from '../../RulesProvider'
 import { useSelector } from 'react-redux'
+import { humanWeight } from './HumanWeight'
 
-export const meanFormatter = (value) => Math.round(value / 100) / 10 + ' tonnes'
+export const meanFormatter = (value) => humanWeight(value, false).join(' ')
 
-export default ({}) => {
+const DefaultFootprint = ({}) => {
 	const rules = useSelector((state) => state.rules)
-	const engine = useMemo(() => new Engine(rules), [rules])
+	const engine = new Engine(rules)
 
-	return meanFormatter(engine.evaluate('bilan').nodeValue)
+	return <span>{meanFormatter(engine.evaluate('bilan').nodeValue)}</span>
 }
+
+export default () => (
+	<WithEngine>
+		<DefaultFootprint />
+	</WithEngine>
+)

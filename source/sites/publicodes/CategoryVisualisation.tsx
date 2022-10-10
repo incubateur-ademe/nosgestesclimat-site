@@ -1,29 +1,24 @@
 import emoji from 'react-easy-emoji'
-import SubCategoriesChart from './SubCategoriesChart'
+import SubCategoriesChart from './chart/SubCategoriesChart'
 import { CategoryLabel } from 'Components/conversation/UI'
-import { ruleFormula } from '../../components/publicodesUtils'
+import {
+	extractCategories,
+	getSubcategories,
+	ruleFormula,
+} from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
 import { useSelector } from 'react-redux'
+import AnimatedTargetValue from '../../components/ui/AnimatedTargetValue'
 
-export default ({ questionCategory }) => {
+export default ({ questionCategory: category, hideMeta = false }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
-	const category = questionCategory.name
-	const evaluated = engine.evaluate(category),
-		total = evaluated.nodeValue,
-		rule = engine.getRule(category),
-		formula = ruleFormula(rule)
 
-	if (!formula) return null
+	// The aim of this component is to visualize sums. Sometimes, relevant sums are hidden behind a division
+	// it should be visualized elsewhere
+	const subCategories = getSubcategories(rules, category, engine)
 
-	const sumToDisplay =
-		formula.nodeKind === 'somme'
-			? category
-			: formula.operationKind === '/'
-			? formula.explanation[0].dottedName
-			: null
-
-	if (!sumToDisplay) return null
+	const categoryValue = Math.round(engine.evaluate(category.name).nodeValue)
 
 	return (
 		<div
@@ -34,48 +29,35 @@ export default ({ questionCategory }) => {
 				flex-wrap: wrap;
 			`}
 		>
-			<CategoryLabel>
-				{emoji(questionCategory.icons || '🌍')}
-				{questionCategory.title}
-			</CategoryLabel>
-			<Inhabitants {...{ formula, engine }} />
-			{sumToDisplay && (
+			{!hideMeta && (
 				<div
 					css={`
-						width: 75%;
-						@media (max-width: 800px) {
-							width: 100%;
-						}
+						display: flex;
+						align-items: center;
 					`}
 				>
-					<SubCategoriesChart
-						{...{
-							color: questionCategory.color,
-							rules,
-							engine,
-							sumToDisplay,
-							total,
-						}}
-					/>
+					<CategoryLabel>
+						{emoji(category.icons || '🌍')}
+						{category.title}
+					</CategoryLabel>
+					<AnimatedTargetValue value={categoryValue} unit="kg" leftToRight />
 				</div>
 			)}
+			<div
+				css={`
+					width: 100%;
+				`}
+			>
+				<SubCategoriesChart
+					{...{
+						key: 'subCategoriesChart',
+						color: category.color,
+						rules,
+						engine,
+						categories: subCategories,
+					}}
+				/>
+			</div>
 		</div>
-	)
-}
-
-const Inhabitants = ({ formula, engine }) => {
-	const denominator = formula.operationKind === '/' && formula.explanation[1],
-		// This is custom code for the "logement" sub-category that divides a sum by the number of inhabitants of the home
-		inhabitants =
-			denominator.name === 'habitants' &&
-			engine.evaluate(denominator.dottedName).nodeValue
-	if (!denominator) return null
-	return (
-		<span
-			title={inhabitants <= 1 ? 'habitant' : 'habitants'}
-			css="margin: 0 .4rem"
-		>
-			{emoji(inhabitants > 1 ? '👥' : '👤')}x{inhabitants}
-		</span>
 	)
 }

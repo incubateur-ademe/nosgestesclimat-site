@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="emoji"
+   viewBox="0 0 72 72"
+   version="1.1"
+   sodipodi:docname="transport.svg"
+   inkscape:version="1.2.1 (2ed6d7ae0b, 2022-08-22, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs214" />
+  <sodipodi:namedview
+     id="namedview212"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="3.7627802"
+     inkscape:cx="85.309261"
+     inkscape:cy="65.510071"
+     inkscape:window-width="1920"
+     inkscape:window-height="1055"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="line" />
+  <g
+     id="color"
+     transform="translate(0.79728282,1.0630438)">
+    <path
+       fill="#3f3f3f"
+       d="M 36,8.0712 C 20.5754,8.0712 8.0712,20.5754 8.0712,36 8.0712,51.4246 20.5754,63.9288 36,63.9288 51.4246,63.9288 63.9288,51.4246 63.9288,36 63.9288,20.5754 51.4246,8.0712 36,8.0712 Z m 0,48.8445 c -11.5514,0 -20.9156,-9.3643 -20.9156,-20.9156 0,-11.5513 9.3642,-20.9157 20.9156,-20.9157 11.5514,0 20.9156,9.3642 20.9156,20.9156 0,11.5514 -9.3643,20.9156 -20.9156,20.9156 z"
+       id="path182" />
+  </g>
+  <g
+     id="skin" />
+  <g
+     id="skin-shadow" />
+  <g
+     id="hair" />
+  <g
+     id="line">
+    <circle
+       cx="36.797287"
+       cy="37.063049"
+       r="27.928801"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="circle190" />
+    <circle
+       cx="36.797287"
+       cy="37.063049"
+       r="21.297899"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="circle192" />
+    <line
+       x1="22.065525"
+       x2="34.671799"
+       y1="51.794807"
+       y2="39.213821"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line194" />
+    <line
+       x1="42.057034"
+       x2="37.665962"
+       y1="57.290394"
+       y2="39.728226"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line196" />
+    <line
+       x1="57.09351"
+       x2="40.124603"
+       y1="42.391674"
+       y2="38.345978"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line198" />
+    <line
+       x1="51.569752"
+       x2="39.399696"
+       y1="22.290581"
+       y2="34.447945"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="1.98547"
+       id="line200" />
+    <line
+       x1="31.564592"
+       x2="36.246212"
+       y1="16.862753"
+       y2="33.886055"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="1.94864"
+       id="line202" />
+    <line
+       x1="16.578032"
+       x2="33.546677"
+       y1="31.811392"
+       y2="36.416183"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line204" />
+    <circle
+       cx="36.797287"
+       cy="37.063049"
+       r="3"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="circle208"
+       style="fill:#3f3f3f;fill-opacity:1" />
+  </g>
+</svg>

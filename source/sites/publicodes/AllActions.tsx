@@ -23,10 +23,11 @@ const thresholds = [
 
 export default ({
 	actions: rawActions,
-	bilans,
+	bilan,
 	rules,
 	focusedAction,
 	focusAction,
+	radical,
 }) => {
 	const engine = useContext(EngineContext)
 
@@ -46,6 +47,31 @@ export default ({
 		},
 		{ value: 0 }
 	)
+	const numberedActions = thresholds.map(([threshold, label], index) => {
+		const thresholdActions = notRejected.filter(
+			(a) =>
+				a.value >= threshold &&
+				(index === 0 || a.value < thresholds[index - 1][0])
+		)
+		if (!thresholdActions.length) return null
+		return (
+			<div>
+				<List
+					{...{
+						actions: thresholdActions,
+						rules,
+						bilan,
+						actionChoices,
+						focusAction,
+						focusedAction,
+					}}
+				/>
+				<ThresholdSeparator>
+					<p>{label} &#9650;</p>
+				</ThresholdSeparator>
+			</div>
+		)
+	})
 
 	return (
 		<div>
@@ -67,44 +93,41 @@ export default ({
 				</animate.fromTop>
 			)}
 
-			{thresholds.map(
-				([threshold, label], index) =>
-					notRejected.find(({ value }) => value >= threshold) && (
-						<div>
-							<List
-								{...{
-									actions: notRejected.filter(
-										(a) =>
-											a.value >= threshold &&
-											(index === 0 || a.value < thresholds[index - 1][0])
-									),
-									rules,
-									bilans,
-									actionChoices,
-									focusAction,
-									focusedAction,
-								}}
-							/>
-							<ThresholdSeparator>
-								<h4>{label} &#9650;</h4>
-							</ThresholdSeparator>
-						</div>
-					)
-			)}
+			{radical ? numberedActions : numberedActions.slice().reverse()}
+
 			<ThresholdSeparator>
-				<h4>
+				<p>
 					<img
 						src="/images/270A.svg"
 						css="filter: invert(1); height: 2rem; vertical-align: middle"
 					/>
 					Actions d'engagement &#9660;
-				</h4>
+				</p>
 			</ThresholdSeparator>
 			<List
 				{...{
-					actions: notRejected.filter((a) => a.value == null),
+					actions: notRejected.filter((a) => a.value === undefined),
 					rules,
-					bilans,
+					bilan,
+					actionChoices,
+					focusAction,
+					focusedAction,
+				}}
+			/>
+			<ThresholdSeparator>
+				<p>
+					<img
+						src="/images/26D4.svg"
+						css="filter:invert(1); height: 2rem; vertical-align: middle; margin-right: .3rem"
+					/>
+					Actions négatives &#9660;
+				</p>
+			</ThresholdSeparator>
+			<List
+				{...{
+					actions: notRejected.filter((a) => a.value < 0),
+					rules,
+					bilan,
 					actionChoices,
 					focusAction,
 					focusedAction,
@@ -112,12 +135,12 @@ export default ({
 			/>
 			{rejected.length > 0 && (
 				<div>
-					<h2>Actions écartées</h2>
+					<h2>Actions écartées:</h2>
 					<List
 						{...{
 							actions: rejected,
 							rules,
-							bilans,
+							bilan,
 							actionChoices,
 							focusAction,
 							focusedAction,
@@ -127,7 +150,7 @@ export default ({
 			)}
 			<IllustratedButton icon="📚" to="/actions/plus">
 				<div>
-					<h3>Aller plus loin</h3>
+					<h2>Aller plus loin</h2>
 					<p>
 						<small>
 							Au-delà d'un simple chiffre, découvrez les enjeux qui se cachent
@@ -143,7 +166,7 @@ export default ({
 const List = ({
 	actions,
 	rules,
-	bilans,
+	bilan,
 	actionChoices,
 	focusedAction,
 	focusAction,
@@ -169,13 +192,9 @@ const List = ({
 						exit={{ scale: 0.2 }}
 						transition={{ duration: 1 }}
 						css={`
-							width: 11rem;
+							width: 12rem;
 							height: 16rem;
 							margin: 0.4rem;
-
-							@media (min-width: 800px) {
-								width: 12rem;
-							}
 						`}
 					>
 						<ActionListCard
@@ -184,7 +203,7 @@ const List = ({
 							key={evaluation.dottedName}
 							rule={rules[evaluation.dottedName]}
 							evaluation={evaluation}
-							total={bilans.length ? bilans[0].nodeValue : null}
+							total={bilan?.nodeValue}
 						/>
 					</motion.li>
 				)
@@ -225,14 +244,15 @@ const ThresholdSeparator = styled.div`
 	width: 100%;
 	height: 2rem;
 	text-align: center;
-	margin-bottom: 1rem;
-
-	h4 {
+	margin-bottom: 1em;
+	p {
 		display: inline-block;
 		font-weight: 400;
+		font-size: 1em;
 		padding: 0 0.8rem;
-		background: var(--color);
+		background: var(--darkColor);
 		color: white;
 		border-radius: 1rem;
+		margin-top: 0.5em;
 	}
 `

@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="emoji"
+   viewBox="0 0 72 72"
+   version="1.1"
+   sodipodi:docname="alimentation . boisson.svg"
+   inkscape:version="1.2 (56b05e47e7, 2022-06-09, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs220" />
+  <sodipodi:namedview
+     id="namedview218"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="5.7083333"
+     inkscape:cx="36"
+     inkscape:cy="36"
+     inkscape:window-width="950"
+     inkscape:window-height="1163"
+     inkscape:window-x="962"
+     inkscape:window-y="4"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="line" />
+  <g
+     id="color"
+     transform="matrix(1,0,0,0.8776426,0,5.3837256)">
+    <polygon
+       fill="#ea5a47"
+       stroke="none"
+       points="17,26 17,14 43.0198,14 55,14 55,26 "
+       id="polygon182" />
+    <path
+       fill="#ea5a47"
+       stroke="none"
+       d="M 56,24 C 56,35.0457 47.0457,44 36,44 24.9543,44 16,35.0457 16,24"
+       id="path184" />
+    <path
+       fill="#d22f27"
+       stroke="none"
+       d="M 55,24 V 14 h -7.5698 c 0.5966,6.3347 0.293,21.2038 -13.788,29.849 C 34.4169,43.9401 35.2009,44 36,44 47.0457,44 56,35.0457 56,24 Z"
+       id="path186" />
+    <path
+       fill="#ea5a47"
+       stroke="none"
+       stroke-miterlimit="10"
+       d="M 13,14"
+       id="path188" />
+    <path
+       fill="#ea5a47"
+       stroke="none"
+       stroke-miterlimit="10"
+       d="M 28,16"
+       id="path190" />
+  </g>
+  <g
+     id="hair" />
+  <g
+     id="skin" />
+  <g
+     id="skin-shadow" />
+  <g
+     id="line">
+    <path
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       d="M15.3129,5"
+       id="path196" />
+    <line
+       x1="20"
+       x2="52"
+       y1="67"
+       y2="67"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line198" />
+    <path
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       d="M16.3129,5"
+       id="path200" />
+    <line
+       x1="36"
+       x2="36"
+       y1="44"
+       y2="67"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line202" />
+    <path
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       d="M56,24c0,3.265-0.7824,6.3473-2.1699,9.0696C50.5236,39.557,43.7807,44,36,44c-11.0457,0-20-8.9543-20-20"
+       id="path204" />
+    <line
+       x1="16"
+       x2="16"
+       y1="5"
+       y2="24"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line206" />
+    <line
+       x1="56"
+       x2="56"
+       y1="5"
+       y2="24"
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line208" />
+    <path
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       d="M13,14"
+       id="path210" />
+    <path
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       d="M28,16"
+       id="path212" />
+    <line
+       x1="15.5"
+       x2="55.5"
+       y1="17.025547"
+       y2="17.025547"
+       fill="none"
+       stroke="#000000"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       id="line214" />
+  </g>
+</svg>

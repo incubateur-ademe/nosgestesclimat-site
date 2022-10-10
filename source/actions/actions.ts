@@ -21,12 +21,7 @@ export type Action =
 	| SetActiveTargetAction
 	| CompanyStatusAction
 
-export type ThunkResult<R = void> = ThunkAction<
-	R,
-	RootState,
-	{ history: History; sitePaths: SitePaths },
-	Action
->
+export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
 
 type StepAction = {
 	type: 'STEP_ACTION'
@@ -63,9 +58,17 @@ export const resetActionChoices = () =>
 	({
 		type: 'RESET_ACTION_CHOICES',
 	} as const)
-export const resetTutorials = () =>
+export const resetIntroTutorial = () =>
 	({
-		type: 'RESET_TUTORIALS',
+		type: 'RESET_INTRO_TUTORIAL',
+	} as const)
+export const resetCategoryTutorials = () =>
+	({
+		type: 'RESET_CATEGORY_TUTORIALS',
+	} as const)
+export const resetStoredTrajets = () =>
+	({
+		type: 'RESET_TRAJETS',
 	} as const)
 
 export const goToQuestion = (question: DottedName) =>
@@ -75,10 +78,10 @@ export const goToQuestion = (question: DottedName) =>
 		step: question,
 	} as const)
 
-export const validateStepWithValue =
-	(dottedName: DottedName, value: unknown): ThunkResult<void> =>
+export const validateWithDefaultValue =
+	(dottedName: DottedName): ThunkResult<void> =>
 	(dispatch) => {
-		dispatch(updateSituation(dottedName, value))
+		dispatch(updateSituation(dottedName, undefined))
 		dispatch({
 			type: 'STEP_ACTION',
 			name: 'fold',
@@ -108,13 +111,12 @@ export const setDifferentSituation = ({
 })
 
 export const setSimulationConfig =
-	(config: Object): ThunkResult<void> =>
-	(dispatch, getState, { history }): void => {
+	(config: Object, url): ThunkResult<void> =>
+	(dispatch, getState, {}): void => {
 		const pastSimulationConfig = getState().simulation?.config
 		if (pastSimulationConfig === config) {
 			return
 		}
-		const url = history.location.pathname
 		dispatch({
 			type: 'SET_SIMULATION',
 			url,
@@ -159,13 +161,6 @@ export const updateUnit = (targetUnit: string) =>
 		targetUnit,
 	} as const)
 
-export const goBackToSimulation =
-	(): ThunkResult<void> =>
-	(_, getState, { history }) => {
-		const url = getState().simulation?.url
-		url && history.push(url)
-	}
-
 export function loadPreviousSimulation() {
 	return {
 		type: 'LOAD_PREVIOUS_SIMULATION',
@@ -187,4 +182,22 @@ export const setActionChoice = (action: string, choice: boolean) =>
 		type: 'SET_ACTION_CHOICE',
 		action,
 		choice,
+	} as const)
+
+export const setStoredTrajets = (vehicule: string, trajets: object) =>
+	({
+		type: 'SET_TRAJETS',
+		vehicule,
+		trajets,
+	} as const)
+
+export const setLocalisation = (localisationData: Object) =>
+	({
+		type: 'SET_LOCALISATION',
+		localisationData,
+	} as const)
+
+export const resetLocalisation = () =>
+	({
+		type: 'RESET_LOCALISATION',
 	} as const)

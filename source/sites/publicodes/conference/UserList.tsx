@@ -1,6 +1,6 @@
 import emoji from 'react-easy-emoji'
 import { findContrastedTextColor } from '../../../components/utils/colors'
-export default ({ users, username, extremes }) => (
+export const UserList = ({ users, username, extremes }) => (
 	<ul
 		css={`
 			display: flex;
@@ -30,3 +30,32 @@ export default ({ users, username, extremes }) => (
 		))}
 	</ul>
 )
+
+export const UserBlock = ({ extremes, users, username, room }) => {
+	const uniqueUsers = getUniqueUsers(users)
+	return (
+		<div>
+			<h2 css="display: inline-block ;margin-right: 1rem">
+				{emoji('👤 ')}
+				Qui est connecté ?
+			</h2>
+			<span role="status" css="color: #397540; font-weight: bold">
+				{emoji('🟢')} {uniqueUsers.length} participant{plural(uniqueUsers)}
+			</span>
+			<UserList users={uniqueUsers} username={username} extremes={extremes} />
+			{extremes.length > 0 && (
+				<div>{emoji('⚠️')} Certains utilisateurs ont des bilans extrêmes.</div>
+			)}
+		</div>
+	)
+}
+const plural = (list) => (list.length > 1 ? 's' : '')
+
+const getUniqueUsers = (array) =>
+	array.filter(
+		(value, index, self) =>
+			index ===
+			self.findIndex(
+				(elt) => elt.name === value.name && elt.color === value.color
+			)
+	)

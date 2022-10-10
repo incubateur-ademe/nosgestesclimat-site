@@ -2,6 +2,10 @@ import geologicalPeriods from './périodesGéologiques.json'
 import adjectifs from './adjectifs.json'
 // Merci https://github.com/akaAgar/vocabulaire-francais
 import verbs from './participePassés.json'
+import fruits from './fruits.json'
+const periodsCount = geologicalPeriods.length
+const adjectifsCount = adjectifs.length
+const verbsCount = verbs.length
 
 export const getRandomInt = (max) => Math.floor(Math.random() * Math.floor(max))
 
@@ -18,11 +22,18 @@ export const stringToColour = function (str) {
 	return colour
 }
 
-export const generateRoomName = () => {
-	const periodsCount = geologicalPeriods.length
-	const adjectifsCount = adjectifs.length
-	const verbsCount = verbs.length
+export const generateFruitName = () => {
+	const fruit = fruits[getRandomInt(fruits.length)]
+	const isFeminine = fruit.endsWith('e') // sommaire, mais ça fonctionne plutôt bien vu notre gamme de fruits
+	return (
+		fruit +
+		' ' +
+		adjectifs[getRandomInt(adjectifsCount)].toLowerCase() +
+		(isFeminine ? 'e' : '')
+	)
+}
 
+export const generateRoomName = () => {
 	console.log(
 		'Suggestion de nom de conférence unique à 1/' +
 			periodsCount * adjectifsCount * verbsCount
@@ -37,14 +48,14 @@ export const generateRoomName = () => {
 		.toLowerCase()
 }
 
-export const extremeThreshold = 100 * 1000
+export const defaultThreshold = 100 * 1000
 
-export const filterExtremes = (elements) =>
+export const defaultProgressMin = 0.1
+
+export const filterExtremes = (elements, threshold) =>
 	Object.fromEntries(
-		Object.entries(elements).filter(
-			([_, { bilan }]) => bilan < extremeThreshold
-		)
+		Object.entries(elements).filter(([_, { total }]) => total < threshold)
 	)
 
-export const getExtremes = (elements) =>
-	Object.entries(elements).filter(([_, { bilan }]) => bilan >= extremeThreshold)
+export const getExtremes = (elements, threshold) =>
+	Object.entries(elements).filter(([_, { total }]) => total >= threshold)

@@ -27,7 +27,7 @@ settings:
     version: 'detect'
 
 overrides:
-  - files: ['*.test.js', 'cypress/integration/**/*.js']
+  - files: ['*.test.js']
     env:
       mocha: true
 

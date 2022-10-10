@@ -43,10 +43,9 @@ export function getNextSteps(
 	const byCount = ([, [count]]: [unknown, [number]]) => count
 	const byScore = ([, [, score]]: [unknown, [unknown, number]]) => score
 
-	const missingByTotalScore = reduce<MissingVariables, MissingVariables>(
-		mergeWith(add),
-		{},
-		missingVariables
+	const missingByTotalScore = missingVariables.reduce(
+		mergeWith((a, b) => a + b),
+		{}
 	)
 
 	const innerKeys = flatten(map(keys, missingVariables)),
@@ -65,7 +64,7 @@ export function getNextSteps(
 			missingByTargetsAdvanced,
 			missingByTotalScore
 		),
-		pairs = toPairs<number>(missingByCompound),
+		pairs = Object.entries(missingByCompound),
 		sortedPairs = sortWith([descend(byCount), descend(byScore) as any], pairs)
 	return map(head, sortedPairs) as any
 }
@@ -90,7 +89,8 @@ export function getNextQuestions(
 ): Array<DottedName> {
 	const {
 		'non prioritaires': notPriority = [],
-		liste: whitelist = [],
+		'liste prioritaire': priority = [],
+		'liste blanche': whitelist = [],
 		'liste noire': blacklist = [],
 	} = questionConfig
 
@@ -105,7 +105,6 @@ export function getNextQuestions(
 		const rule = engine.getRule(name)
 		return rule.rawNode.question != null
 	})
-
 	const lastStep = last(answeredQuestions)
 	// L'ajout de la réponse permet de traiter les questions dont la réponse est
 	// "une possibilité", exemple "contrat salarié . cdd"
@@ -116,14 +115,15 @@ export function getNextQuestions(
 					.replace(/'/g, '')
 					.trim() as DottedName)
 			: lastStep
-
 	return sortBy((question) => {
 		const indexList =
 			whitelist.findIndex((name) => question.startsWith(name)) + 1
 		const indexNotPriority =
 			notPriority.findIndex((name) => question.startsWith(name)) + 1
+		const indexPriority =
+			priority.findIndex((name) => question.startsWith(name)) === -1 ? 0 : -1
 		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
-		return indexList + indexNotPriority + differenceCoeff
+		return indexList + indexNotPriority + indexPriority + differenceCoeff
 	}, nextQuestions)
 }
 
@@ -157,5 +157,7 @@ export function useSimulationProgress(): number {
 	const numberQuestionAnswered = useSelector(answeredQuestionsSelector).length
 	const numberQuestionLeft = useNextQuestions().length
 
-	return numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft)
+	return (
+		numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft) || 0
+	)
 }

@@ -11,10 +11,14 @@
 	--textColor: rgb(24, 69, 123);
 }
 @media (min-width: 400px) {
-	:focus:not(:active):not(input) {
-		outline: 1px dashed var(--darkColor);
+	:focus:not(.focus-visible) {
+		outline: none;
+	}
+	:focus-visible:not(:active):not(input) {
+		outline: 3px solid var(--lightColor);
 	}
 }
+
 :active {
 	outline: none;
 }
@@ -234,7 +238,7 @@ textarea.ui__ {
 	width: 100%;
 }
 
-input.ui__[inputmode='numeric'] {
+input.ui__[inputmode='decimal'] {
 	width: 10rem;
 }
 input.ui__[type='date'] {
@@ -245,7 +249,7 @@ input.ui__.suffixed {
 }
 input.ui__:focus,
 select.ui__:focus {
-	border-color: var(--color);
+	outline: 1px solid var(--color);
 }
 
 /* Remove IE's clear button the appears before our suffix */
@@ -259,6 +263,12 @@ input.ui__::placeholder {
 	color: grey;
 }
 
+select.ui__:invalid {
+	opacity: 0.6;
+	color: grey;
+	border-color: black;
+}
+
 img[src="http://twemoji.maxcdn.com/2/72x72/.png"]
 {
 	display: none;
@@ -266,4 +276,16 @@ img[src="http://twemoji.maxcdn.com/2/72x72/.png"]
 
 details > summary {
 	cursor: pointer;
+}
+
+.visually-hidden {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap; /* added line */
+	border: 0;
 }

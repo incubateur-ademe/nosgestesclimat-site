@@ -12,19 +12,25 @@ Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résulta
 
 ## Et techniquement ?
 
-C'est un un _fork_ d'un simulateur de cotisations sociales, mon-entreprise.fr, lui-même forké pour futur.eco, qui permet de coder en français des règles de calculs, dans le langage [publi.codes](https://publi.codes). De ces règles de calcul, des simulateurs (pour l'utilisateur lambda) et des pages de documentation qui expliquent le calcul (pour l'expert ou le curieux) sont générés automatiquement.
+C'est un un _fork_ d'un outil de vulgarisation de l'empreinte climat [futur.eco](https://futur.eco), lui-même forké d'un simulateur public de cotisations sociales [mon-entreprise.fr](https://mon-entreprise.fr), qui permet de coder en français des règles de calculs, dans le langage [publi.codes](https://publi.codes). De ces règles de calcul, des simulateurs (pour l'utilisateur lambda) et des pages de documentation qui expliquent le calcul (pour l'expert ou le curieux) sont générés automatiquement.
 
 Le code est en Javascript / Typescript / React / styled-components / Webpack, Yjs, entre autres.
 
-### 🇬🇧 Installation
+### 🇬🇧Installation
 
-You need to clone another repo, https://github.com/datagir/nosgestesclimat, in the same directory than this one. The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly.
+The footprint model is stored in the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) `nosgestesclimat/` pointing to the corresponding GitHub [repository](https://github.com/datagir/nosgestesclimat).
+
+Consequently, to fetch all the data you need to provide the `--recursive` flag when cloning this repository or if it's already cloned you need to run `git submodule update --init --recursive`.
+
+The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly.
 
 > The production version fetches the JSON compiled YAML rules deployed by datagir/nosgestesclimat.
 
 Then run this command in this repo :
 
 `yarn && yarn start`
+
+If you want to run the automatic localisation, which depdends on a Netlify Edge function, you must run `netlify dev`.
 
 ## Réutilisations de ce code
 

@@ -7,6 +7,7 @@ import React, { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { parentName } from '../../components/publicodesUtils'
 import { EngineContext } from '../../components/utils/EngineContext'
+import { questionConfig } from './questionConfig'
 
 const { decodeRuleName, encodeRuleName } = utils
 
@@ -22,6 +23,7 @@ export default ({ dottedName }) => {
 	const config = {
 		objectifs: [dottedName],
 		situation: { ...(configSet?.situation || {}) },
+		questions: questionConfig,
 	}
 
 	const engine = useContext(EngineContext)
@@ -48,12 +50,12 @@ export default ({ dottedName }) => {
 
 	return nextQuestions.length > 0 ? (
 		<Simulation
-			noFeedback
 			showConversation
 			customEnd={<div />}
 			targets={<div />}
 			explanations={null}
 			animation="fromBottom"
+			questionHeadingLevel="3"
 		/>
 	) : null
 }

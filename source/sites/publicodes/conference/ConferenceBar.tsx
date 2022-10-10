@@ -1,26 +1,18 @@
-import { correctValue } from 'Components/publicodesUtils'
+import { correctValue, extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
-import { usePersistingState } from 'Components/utils/persistState'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import { WebrtcProvider } from 'y-webrtc'
 import * as Y from 'yjs'
+import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
-import { extractCategories } from 'Components/publicodesUtils'
-import { computeHumanMean } from './Stats'
-import { filterExtremes } from './utils'
 import { backgroundConferenceAnimation } from './conferenceStyle'
+import { computeHumanMean } from './Stats'
+import useYjs from './useYjs'
 
 export default () => {
-	const conference = useSelector((state) => state.conference)
-
-	const { room, ydoc, provider } = conference
-
-	const [users, setUsers] = useState([])
-
 	const situation = useSelector(situationSelector),
 		engine = useEngine(),
 		evaluation = engine.evaluate('bilan'),
@@ -28,54 +20,32 @@ export default () => {
 	const rules = useSelector((state) => state.rules)
 
 	const progress = useSimulationProgress()
+	const { elements, users, username, conference } = useYjs(null)
 
-	const byCategory = extractCategories(rules, engine)
+	const byCategory = minimalCategoryData(extractCategories(rules, engine))
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
-	const [username, setUsername] = usePersistingState('pseudo')
-
-	const [rawElements, setElements] = useState([])
-	const elements = filterExtremes(rawElements)
-	const dispatch = useDispatch()
-
-	const simulations = ydoc.get('simulations', Y.Map)
-
-	const awareness = provider.awareness
 
 	useEffect(() => {
-		console.log('useeffect with ?', conference)
-		if (!conference) {
-			const ydoc = new Y.Doc()
-			const provider = new WebrtcProvider(room, ydoc, {})
-			dispatch({ type: 'SET_CONFERENCE', room, ydoc, provider })
-		} else {
-			awareness.on('change', (changes) => {
-				// Whenever somebody updates their awareness information,
-				// we log all awareness information from all users.
-				setUsers(Array.from(awareness.getStates().values()))
-			})
-			simulations.observe((event) => {
-				setElements(simulations.toJSON())
-				console.log('SIMULATIONS', simulations.toJSON())
-			})
-		}
-	}, [room, conference])
+		if (!conference?.ydoc) return null
 
-	useEffect(() => {
-		if (!conference) return null
+		const simulations = conference.ydoc.get('simulations', Y.Map)
 
-		const simulations = ydoc.get('simulations', Y.Map)
-
-		simulations.set(username, { bilan: nodeValue, progress, byCategory })
+		simulations.set(username, {
+			total: Math.round(nodeValue),
+			progress,
+			byCategory,
+		})
 	}, [situation])
 
-	if (!conference) return <Link to="/conférence">Lancer une conférence</Link>
+	if (!conference?.ydoc)
+		return <Link to="/conférence">Lancer une conférence</Link>
 
 	const simulationArray = elements && Object.values(elements),
-		result = computeHumanMean(simulationArray.map((el) => el.bilan))
+		result = computeHumanMean(simulationArray.map((el) => el.total))
 
 	return (
-		<Link to={'/conférence/' + room} css="text-decoration: none;">
+		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
 			<div
 				css={`
 					${backgroundConferenceAnimation}
@@ -101,7 +71,9 @@ export default () => {
 					}
 				`}
 			>
-				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
+				<span css="text-transform: uppercase">
+					«&nbsp;{conference.room}&nbsp;»
+				</span>
 				<span>
 					{emoji('🧮')} {result}
 				</span>
@@ -115,6 +87,7 @@ export default () => {
 							border-radius: 2rem;
 							display: inline-block;
 							line-height: 1.5rem;
+							color: var(--darkerColor);
 							text-align: center;
 						`}
 					>

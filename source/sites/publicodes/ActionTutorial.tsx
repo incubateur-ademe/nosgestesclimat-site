@@ -19,15 +19,16 @@ export default ({ value, unit }) => {
 			<p>
 				Pour vous aider, nous vous présenterons{' '}
 				<strong>une liste d'actions</strong> :
-				<ul css="li {list-style-type: none;}">
-					<li>{emoji('✅')} sélectionnez celles qui vous intéressent</li>
-					<li>
-						{' '}
-						{emoji('❌')} écartez celles qui vous semblent trop ambitieuses ou
-						déplacées.
-					</li>
-				</ul>
 			</p>
+
+			<ul css="li {list-style-type: none;}">
+				<li>{emoji('✅')} sélectionnez celles qui vous intéressent</li>
+				<li>
+					{' '}
+					{emoji('❌')} écartez celles qui vous semblent trop ambitieuses ou
+					déplacées.
+				</li>
+			</ul>
 			<p>
 				{emoji('💡')} Pour améliorer la précision, certaines actions vous
 				poseront quelques questions en plus.

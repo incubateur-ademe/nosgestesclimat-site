@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   id="emoji"
+   viewBox="0 0 72 72"
+   version="1.1"
+   sodipodi:docname="logement.svg"
+   inkscape:version="1.2.1 (2ed6d7ae0b, 2022-08-22, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2828" />
+  <sodipodi:namedview
+     id="namedview2826"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="10.564584"
+     inkscape:cx="26.408991"
+     inkscape:cy="34.596724"
+     inkscape:window-width="1920"
+     inkscape:window-height="1055"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="emoji" />
+  <g
+     id="hair" />
+  <g
+     id="skin" />
+  <g
+     id="skin-shadow" />
+  <path
+     id="path11097"
+     style="fill:#181313;fill-opacity:1;stroke:#000000;stroke-width:2.4874;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none;stroke-opacity:1"
+     d="m 36.081021,13.060179 -21.275749,19.25303 c -0.144858,7.256408 -0.111491,16.574903 -0.0279,26.074476 l 44.095276,0.241796 c 0.05758,-9.667124 0.172742,-16.958468 0.130198,-26.625492 z M 23.182119,35.079917 H 33.886255 V 58.463668 H 23.182119 Z m 19.469253,2.548161 H 53.18811 V 47.778873 H 42.651372 Z"
+     sodipodi:nodetypes="cccccccccccccccc" />
+  <g
+     id="g9726"
+     transform="matrix(1.1903818,0,0,1.1903818,-7.1197158,-5.6756313)">
+    <polygon
+       fill="none"
+       stroke="#000000"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       points="24,17 29,17 29,21 24,26 "
+       id="polygon2822" />
+    <polygon
+       fill="#ea5a47"
+       stroke="none"
+       stroke-linecap="round"
+       stroke-linejoin="round"
+       stroke-miterlimit="10"
+       stroke-width="2"
+       points="29,21 24,26 24,17 29,17 "
+       id="polygon2808"
+       transform="translate(-0.03443866,-0.20574828)" />
+  </g>
+</svg>

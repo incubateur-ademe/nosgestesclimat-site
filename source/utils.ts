@@ -93,6 +93,45 @@ export const last = (array) => {
 	const [lastItem] = array.slice(-1)
 	return lastItem
 }
+
 export function useQuery() {
 	return new URLSearchParams(useLocation().search)
 }
+
+export function range(start, end) {
+	return Array(end - start + 1)
+		.fill()
+		.map((_, idx) => start + idx)
+}
+
+export function omit(keys, obj) {
+	if (!keys.length) return obj
+	const { [keys.pop()]: omitted, ...rest } = obj
+	return omit(keys, rest)
+}
+
+export const pipe =
+	(...fns) =>
+	(x) =>
+		fns.reduce((v, f) => f(v), x)
+
+export function arrayLoopIteration(array, key) {
+	const index = array.indexOf(key)
+
+	return index === array.length - 1 ? array[0] : array[index + 1]
+}
+
+export function isIterable<T>(obj: unknown): obj is Iterable<T> {
+	return Symbol.iterator in Object(obj)
+}
+
+//https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
+export function intersect(a, b) {
+	var setB = new Set(b)
+	return [...new Set(a)].filter((x) => setB.has(x))
+}
+
+export const pick = (obj, keys) =>
+	Object.fromEntries(
+		keys.filter((key) => key in obj).map((key) => [key, obj[key]])
+	)

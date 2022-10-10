@@ -1,23 +1,35 @@
 import AbacusFrance from 'Images/abacus-france.svg'
 import CO2e from 'Images/co2e.svg'
+import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import ObjectifClimat from 'Images/objectif-climat.svg'
+import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Navigate } from 'react-router'
+import { Link, useNavigate } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
 import emoji from '../../components/emoji'
-import CarbonImpact from './CarbonImpact'
-import Chart from './chart/index.js'
-import HorizontalSwipe from './HorizontalSwipe'
-import Slide from './TutorialSlide'
-import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import { Redirect } from 'react-router'
-import { useContext } from 'react'
-import { TrackerContext } from '../../components/utils/withTracker'
-import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
+import SlidesLayout from '../../components/SlidesLayout'
+import Meta from '../../components/utils/Meta'
 import useKeypress from '../../components/utils/useKeyPress'
+import { TrackerContext } from '../../components/utils/withTracker'
+import { WithEngine } from '../../RulesProvider'
+import Chart from './chart/index.js'
+import DefaultFootprint from './DefaultFootprint'
+import HorizontalSwipe from './HorizontalSwipe'
+import ScoreBar from './ScoreBar'
+import Slide from './TutorialSlide'
 
 export default ({}) => {
+	const navigate = useNavigate()
 	const tutorials = useSelector((state) => state.tutorials)
+	const thenRedirectTo = useSelector((state) => state.thenRedirectTo)
+
+	const tutos = Object.entries(tutorials)
+		.map(([k, v]) => v != null && k.split('testIntro')[1])
+		.filter(Boolean)
+
+	const index = tutos.length
+
 	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
 		last = index === slides.length - 1,
 		next = () => {
@@ -28,67 +40,62 @@ export default ({}) => {
 			])
 
 			skip(last ? 'testIntro' : 'testIntro' + index)
+			if (last) {
+				navigate('/simulateur/bilan')
+			}
 		},
 		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
-	useKeypress('Escape', () => skip('testIntro'), [])
-
-	if (tutorials['testIntro']) return <Redirect to={'/simulateur/bilan'} />
-
-	const tutos = Object.entries(tutorials)
-		.map(([k, v]) => v != null && k.split('testIntro')[1])
-		.filter(Boolean)
-
-	const index = tutos.length
+	useKeypress('Escape', false, () => skip('testIntro'), 'keyup', [])
 
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
 	const tracker = useContext(TrackerContext)
 
-	const { isIframe } = useContext(IframeOptionsContext)
+	// This results from a bug that introduced "slide5" in users' cache :/
+	// Here we correct the bug in the user's cache
+	useEffect(() => {
+		if (Object.keys(tutorials).includes('testIntro5'))
+			dispatch(skipTutorial('testIntro'))
+	}, [tutorials])
+
+	// This results from a bug that introduced "slide5" in users' cache :/
+	// Here we avoid an error
+	if (slides[index] == null) return null
 
 	return (
-		<div
-			css={`
-				height: 70vh;
-				@media (max-width: 800px) {
-					height: 95vh;
-				}
-				@media (min-aspect-ratio: 1280/700) {
-					height: 95vh;
-				}
-				${isIframe && `height: 45rem !important;`}
-				position: relative;
-				display: flex;
-				justify-content: center;
-				align-items: center;
-			`}
-		>
-			<HorizontalSwipe {...{ next, previous }}>
-				<Slide
-					{...{
-						last,
-						skip,
-					}}
-				>
-					<Component />
-				</Slide>
-			</HorizontalSwipe>
-		</div>
+		<>
+			<Meta
+				title="Tutorial"
+				description="Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation."
+			/>
+			<SlidesLayout length={slides.length} active={index}>
+				<HorizontalSwipe {...{ next, previous }}>
+					<Slide
+						{...{
+							last,
+							skip,
+						}}
+					>
+						<Component />
+					</Slide>
+				</HorizontalSwipe>
+			</SlidesLayout>
+		</>
 	)
 }
 
 const slides = [
 	() => (
 		<>
-			<h1>Mon empreinte climat {emoji('😶‍🌫️')} ?</h1>
+			<h1>Mon empreinte climat {emoji('😶‍🌫️')}?</h1>
 			<p>Pas de panique, on vous explique ce que c'est.</p>
 			<p>
 				La planète <strong>se réchauffe dangereusement</strong>, au fur et à
 				mesure des gaz à effet de serre que l'on émet.
 			</p>
-			<GreenhouseEffect css="max-height: 30vh" />
+			<GreenhouseEffect css="width: 60%; max-height: 20rem" />
 			<p>
 				Ce test vous donne en {emoji('⏱️')} 10 minutes chrono{' '}
 				<strong>une mesure de votre part </strong> dans ce réchauffement.
@@ -101,6 +108,7 @@ const slides = [
 			<p>
 				Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone
 				<img
+					alt=""
 					src="/images/co2.svg"
 					css={`
 						object-fit: cover;
@@ -113,6 +121,7 @@ const slides = [
 				sur le climat.
 			</p>
 			<div
+				aria-hidden="true"
 				css={`
 					svg {
 						height: 7rem;
@@ -173,11 +182,13 @@ const slides = [
 					</summary>{' '}
 					D'autres gaz, surtout le méthane&nbsp;
 					<img
+						alt=""
 						src="/images/methane.svg"
 						css="width: 1.8rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
 					/>{' '}
 					et le protoxyde d'azote{' '}
 					<img
+						alt=""
 						src="/images/n2o.svg"
 						css="width: 3rem; vertical-align: middle; object-fit: cover; height: 1.7rem"
 					/>{' '}
@@ -191,17 +202,29 @@ const slides = [
 		<>
 			<h1>Et concrètement ?</h1>
 			<p>
-				Chaque année, un français émet en moyenne{' '}
-				<strong> à peu près 10 tonnes</strong> de CO₂e.
+				Chaque année, un Français émet en moyenne <strong>10 tonnes</strong> de
+				CO₂e.
 			</p>
-			<AbacusFrance css="width:10rem; height: 100%" />
+			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
 			<p>
-				C'est votre point de départ dans ce test : chaque réponse que vous
-				donnerez va personnaliser ce résultat dans la barre de résultat.
+				Le point de départ de votre test Nos Gestes Climat est un résultat
+				calculé à partir de valeurs moyennes Françaises attribuées à chaque
+				question. Ce score initial est à prendre comme un minimum, qui commence
+				par défaut à ~ <DefaultFootprint /> de CO₂e en l'état actuel du
+				périmètre de calcul qui évolue selon les améliorations du modèle. Vos
+				réponses viendront ensuite affiner cette empreinte dans la barre de
+				score.
 			</p>
 			<div css="margin: 1rem 0">
-				<CarbonImpact demoMode />
+				<WithEngine>
+					<ScoreBar demoMode />
+				</WithEngine>
 			</div>
+			<blockquote>
+				{emoji('✨')} Nouveau ! Visualisez également votre consommation de{' '}
+				{emoji('⛽️')}&nbsp;pétrole, un indicateur complémentaire au sujet
+				climat.
+			</blockquote>
 		</>
 	),
 	() => (
@@ -214,6 +237,7 @@ const slides = [
 			</p>
 
 			<ObjectifClimat
+				aria-hidden="true"
 				css={`
 					width: 16rem;
 					g path:first-child {
@@ -272,7 +296,9 @@ const slides = [
 					margin: 0.6rem 0 1rem;
 				`}
 			>
-				<Chart demoMode />
+				<WithEngine>
+					<Chart demoMode />
+				</WithEngine>
 			</div>
 			<p>
 				L'empreinte de notre consommation individuelle, c'est la somme de toutes

@@ -1,11 +1,10 @@
 import styled from 'styled-components'
 
-const StampStyle = styled.div`
+const StampStyle = styled.button`
 	position: absolute;
 	border-radius: 1rem;
 	right: 0.5rem;
 	top: -2em;
-
 	${({ clickable }) => clickable && `cursor: pointer`}
 `
 

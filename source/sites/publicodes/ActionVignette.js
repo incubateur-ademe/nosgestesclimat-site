@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
+import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
@@ -11,16 +12,24 @@ import {
 } from '../../components/publicodesUtils'
 import Stamp from '../../components/Stamp'
 import { useEngine } from '../../components/utils/EngineContext'
-import { getNextQuestions } from '../../components/utils/useNextQuestion'
+import {
+	getNextQuestions,
+	useNextQuestions,
+} from '../../components/utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
+import { TrackerContext } from '../../components/utils/withTracker'
+import { questionConfig } from './questionConfig'
+
 const { encodeRuleName, decodeRuleName } = utils
 
 export const disabledAction = (flatRule, nodeValue) =>
-	flatRule.formule == null ? false : nodeValue === 0 || nodeValue === false
+	flatRule.formule == null
+		? false
+		: nodeValue === 0 || nodeValue === false || nodeValue === null
 
 export const supersededAction = (dottedName, rules, actionChoices) => {
 	return (
@@ -47,6 +56,8 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
+	const tracker = useContext(TrackerContext)
+
 	const dispatch = useDispatch()
 	const rules = useSelector((state) => state.rules),
 		{ nodeValue, dottedName, title, unit } = evaluation,
@@ -63,7 +74,7 @@ export const ActionListCard = ({
 
 	const remainingQuestions = getNextQuestions(
 			[evaluation.missingVariables],
-			{},
+			questionConfig,
 			answeredQuestions,
 			situation,
 			engine
@@ -118,6 +129,9 @@ export const ActionListCard = ({
 							line-height: 1.3rem;
 							display: inline-block;
 							color: white;
+							@media (min-width: 800px) {
+								font-size: 160%;
+							}
 						}
 						text-decoration: none;
 					`}
@@ -178,6 +192,8 @@ export const ActionListCard = ({
 					`}
 				>
 					<button
+						title="Choisir l'action"
+						aria-pressed={actionChoices[dottedName]}
 						css={`
 							${hasRemainingQuestions && 'filter: grayscale(1)'}
 						`}
@@ -193,13 +209,24 @@ export const ActionListCard = ({
 									actionChoices[dottedName] === true ? null : true
 								)
 							)
+							if (!actionChoices[dottedName]) {
+								const eventData = [
+									'trackEvent',
+									'/actions',
+									'Action sélectionnée',
+									dottedName,
+									nodeValue,
+								]
+								tracker.push(eventData)
+							}
 							e.stopPropagation()
 							e.preventDefault()
 						}}
 					>
-						{emoji('✅')}
+						<img src="/images/2714.svg" css="width: 3rem" />
 					</button>
 					<button
+						title="Rejeter l'action"
 						onClick={(e) => {
 							dispatch(
 								setActionChoice(
@@ -208,11 +235,18 @@ export const ActionListCard = ({
 									actionChoices[dottedName] === false ? null : false
 								)
 							)
+							tracker.push([
+								'trackEvent',
+								'/actions',
+								'Action rejetée',
+								dottedName,
+								nodeValue,
+							])
 							e.stopPropagation()
 							e.preventDefault()
 						}}
 					>
-						{emoji('❌')}
+						<img src="/images/274C.svg" css="width: 1.8rem" />
 					</button>
 				</div>
 			</div>
@@ -250,13 +284,21 @@ export const ActionGameCard = ({ evaluation, total, rule, effort }) => {
 							{emoji(icons)}
 						</div>
 					)}
-					<ActionValue {...{ dottedName, total, disabled, noFormula }} />
+					<div css="margin-top: 1.6rem;">
+						<ActionValue {...{ dottedName, total, disabled, noFormula }} />
+					</div>
 				</div>
 			</div>
 		</Link>
 	)
 }
-const ActionValue = ({ total, disabled, noFormula, dottedName, engine }) => {
+export const ActionValue = ({
+	total,
+	disabled,
+	noFormula,
+	dottedName,
+	engine,
+}) => {
 	const situation = useSelector(situationSelector),
 		evaluation = engine.evaluate(dottedName),
 		rawValue = evaluation.nodeValue

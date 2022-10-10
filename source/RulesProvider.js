@@ -1,34 +1,34 @@
 import {
+	engineOptions,
 	EngineProvider,
 	SituationProvider,
-	engineOptions,
 } from 'Components/utils/EngineContext'
 import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 
+import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
-import React, { useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-const removeLoader = () => {
-	// Remove loader
-	var css = document.createElement('style')
-	css.type = 'text/css'
-	css.innerHTML = `
-		#js {
-				animation: appear 0.5s;
-				opacity: 1;
-		}
-		#loading {
-				display: none !important;
-		}
-    `
-	document.body.appendChild(css)
-}
+/* This component gets the publicode rules from the good URL,
+ * then gives them
+ * to the engine to parse, and hence makes it available to the whole component tree
+ * through the state (state.rules) as unparsed, or through the useEngine hook as parsed.
+ *
+ * This component triggers loading rules as soon as possible, BUT the components that use
+ * the engine should wait for it to be available. Hence the use of the WithRules
+ * component that returns null if rules are not ready in the state.
+ *
+ * This logic is a handmade and basic implementation of react 18's Suspense for data loading
+ * principles. Switching to this experimental feature could be great if we had concurrent
+ * loading problems. Here, we only have one block of data (co2.json) at a time.
+ * */
 
-export default ({ children, rulesURL, dataBranch }) => {
+export default ({ children }) => {
+	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
 
 	const dispatch = useDispatch()
@@ -36,63 +36,55 @@ export default ({ children, rulesURL, dataBranch }) => {
 	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
 
 	useEffect(() => {
-		if (NODE_ENV === 'development' && !dataBranch) {
+		if (!branchData.loaded) return
+		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
+		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+			console.log(
+				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
+			)
 			// Rules are stored in nested yaml files
-			const req = require.context(
-				'../../nosgestesclimat/data/',
-				true,
-				/\.(yaml)$/
-			)
-
-			// Bigger rule explanations are stored in nested .md files
-			const reqPlus = require.context(
-				'raw-loader!../../nosgestesclimat/data/actions-plus/',
-				true,
-				/\.(md)$/
-			)
-
-			const plusDottedNames = Object.fromEntries(
-				reqPlus
-					.keys()
-					.map((path) => [
-						path.replace(/(\.\/|\.md)/g, ''),
-						reqPlus(path).default,
-					])
-			)
+			const req = require.context('../nosgestesclimat/data/', true, /\.(yaml)$/)
 
 			const rules = req.keys().reduce((memo, key) => {
-				const jsonRuleSet = req(key) || {}
-				const ruleSetPlus = Object.fromEntries(
-					Object.entries(jsonRuleSet).map(([k, v]) =>
-						plusDottedNames[k]
-							? [k, { ...v, plus: plusDottedNames[k] }]
-							: [k, v]
-					)
-				)
-				return { ...memo, ...ruleSetPlus }
+				const jsonRuleSet = req(key).default || {}
+				return { ...memo, ...jsonRuleSet }
 			}, {})
-			setRules(rules)
-			removeLoader()
+
+			setRules(rules, branchData.deployURL)
 		} else {
-			fetch(rulesURL, { mode: 'cors' })
+			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
-					setRules(json)
-					removeLoader()
+					setRules(json, branchData.deployURL)
 				})
 		}
-	}, [])
+	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
 
-	if (!rules) return null
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>
 }
 
 const EngineWrapper = ({ rules, children }) => {
-	const engine = useMemo(() => new Engine(rules, engineOptions), [
-			rules,
-			engineOptions,
-		]),
-		userSituation = useSelector(situationSelector),
+	const engineState = useSelector((state) => state.engineState)
+	const dispatch = useDispatch()
+	const branchData = useBranchData()
+
+	const engineRequested = engineState !== null
+	const engine = useMemo(() => {
+		const shouldParse = engineRequested && rules
+		if (shouldParse) {
+			console.log('⚙️ will parse the rules,  expensive operation')
+		}
+		const engine = shouldParse && new Engine(rules, engineOptions)
+
+		return engine
+	}, [engineRequested, branchData.deployURL, rules])
+
+	useEffect(() => {
+		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
+		return
+	}, [engine])
+
+	const userSituation = useSelector(situationSelector),
 		configSituation = useSelector(configSituationSelector),
 		situation = useMemo(
 			() => ({
@@ -107,4 +99,20 @@ const EngineWrapper = ({ rules, children }) => {
 			<SituationProvider situation={situation}>{children}</SituationProvider>
 		</EngineProvider>
 	)
+}
+
+export const WithEngine = ({
+	children,
+	fallback = <div>Chargement du modèle de calcul</div>,
+}) => {
+	const dispatch = useDispatch()
+	const engineState = useSelector((state) => state.engineState)
+
+	useEffect(() => {
+		if (!engineState) dispatch({ type: 'SET_ENGINE', to: 'requested' })
+		return
+	}, [])
+
+	if (engineState !== 'ready') return fallback
+	return children
 }

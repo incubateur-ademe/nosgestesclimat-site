@@ -1,14 +1,17 @@
 import classnames from 'classnames'
+import animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ASTNode } from 'publicodes'
-import { References } from 'publicodes-react'
 import { Rule } from 'publicodes/dist/types/rule'
+import React, { Suspense } from 'react'
 import { useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
-import { Explicable } from './Explicable'
+import { Loading } from '../../sites/publicodes/App'
 import { binaryQuestion, InputCommonProps, RuleInputProps } from './RuleInput'
-import animate from 'Components/ui/animate'
+const ReferencesLazy = React.lazy(
+	() => import('../../sites/publicodes/DocumentationReferences')
+)
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans
 	une liste, ou une liste de listes. Les données @choices sont un arbre de type:
@@ -43,6 +46,7 @@ export default function Question({
 	missing,
 	onChange,
 	value: currentValue,
+	title: ruleTitle,
 }: QuestionProps) {
 	const [currentSelection, setCurrentSelection] = useState(
 		missing ? null : `'${currentValue}'`
@@ -67,35 +71,35 @@ export default function Question({
 			return () => clearTimeout(timeoutId)
 		}
 	}, [currentSelection])
-
 	const renderBinaryQuestion = (choices: typeof binaryQuestion) => {
-		return choices.map(({ value, label }) => (
-			<span
-				key={value}
-				css={`
-					:not(:first-child) {
-						margin-left: 0.6rem;
-					}
-					input {
-						width: 0;
-						opacity: 0;
-						height: 0;
-						position: absolute;
-					}
-				`}
-			>
-				<RadioLabel
-					{...{
-						value,
-						label,
-						currentSelection,
-						onSubmit: handleSubmit,
-						name: questionDottedName,
-						onChange: handleChange,
-					}}
-				/>
-			</span>
-		))
+		return (
+			<div className="ui__ radio" aria-labelledby={'id-question-' + ruleTitle}>
+				{choices.map(({ value, label }) => (
+					<span
+						key={value}
+						css={`
+							input {
+								width: 0;
+								opacity: 0;
+								height: 0;
+								position: absolute;
+							}
+						`}
+					>
+						<RadioLabel
+							{...{
+								value,
+								label,
+								currentSelection,
+								onSubmit: handleSubmit,
+								name: questionDottedName,
+								onChange: handleChange,
+							}}
+						/>
+					</span>
+				))}
+			</div>
+		)
 	}
 	const renderChildren = (choices: Choice) => {
 		// seront stockées ainsi dans le state :
@@ -103,7 +107,11 @@ export default function Question({
 		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
 		return (
-			<ul css="width: 100%; padding: 0; margin:0" className="ui__ radio">
+			<ul
+				css="width: 100%; padding: 0; margin:0"
+				className="ui__ radio"
+				aria-labelledby={'id-question-' + ruleTitle}
+			>
 				{choices.canGiveUp && (
 					<li key="aucun" className="variantLeaf aucun">
 						<RadioLabel
@@ -120,6 +128,7 @@ export default function Question({
 					</li>
 				)}
 				{choices.children &&
+					choices.children.length <= 5 &&
 					choices.children.map(
 						({
 							title,
@@ -151,6 +160,33 @@ export default function Question({
 								</li>
 							)
 					)}
+				{/* If there are more than 5 possibilities in a question with "Plusieurs possibilités" a Select is displayed*/}
+				{choices.children && choices.children.length > 5 && (
+					<div aria-labelledby={'id-question-' + ruleTitle}>
+						<label title={choices.title}>
+							<select
+								name={choices.title}
+								className="ui__"
+								onChange={(e) => handleChange(e.target.value)}
+								css={`
+									font-size: 110% !important;
+									padding: 0.6rem 1.2rem !important;
+									width: 100% !important;
+								`}
+							>
+								<option value="">Choisissez une option</option>
+								{choices.children.map((node, index) => (
+									<option
+										key={node.dottedName + '-' + index}
+										value={relativeDottedName(node.dottedName)}
+									>
+										{node.title}
+									</option>
+								))}
+							</select>
+						</label>
+					</div>
+				)}
 			</ul>
 		)
 	}
@@ -189,6 +225,7 @@ export const RadioLabel = (props: RadioLabelProps) => {
 				<>
 					<button
 						className="ui__ link-button"
+						type="button"
 						onClick={() => setIsOpen(!isOpen)}
 						css={`
 							margin-left: 0.3rem !important;
@@ -200,15 +237,25 @@ export const RadioLabel = (props: RadioLabelProps) => {
 					</button>
 					{isOpen && (
 						<animate.appear>
-							<div className="ui__ card box">
+							<div
+								className="ui__ card box"
+								css={`
+									text-align: left !important;
+									> h2 {
+										margin-top: 0.5rem;
+									}
+								`}
+							>
 								<h2>{props.label}</h2>
-								<Markdown source={props.description} />
+								<Markdown>{props.description}</Markdown>
 								{props.références && (
 									<>
 										<h3>
 											<Trans>En savoir plus</Trans>
 										</h3>
-										<References refs={props.références} />
+										<Suspense fallback={<Loading />}>
+											<ReferencesLazy refs={props.références} />
+										</Suspense>
 									</>
 								)}
 							</div>
@@ -262,7 +309,9 @@ function RadioLabelContent({
 			/>
 			<span>
 				{icônes && <>{emoji(icônes)}&nbsp;</>}
-				<Trans>{label}</Trans>
+				<span className="radioText">
+					<Trans>{label}</Trans>
+				</span>
 			</span>
 		</label>
 	)

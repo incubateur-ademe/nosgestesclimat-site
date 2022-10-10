@@ -17,7 +17,7 @@ export default function DateInput({
 	onChange,
 	id,
 	onSubmit,
-	value
+	value,
 }: DateInputProps) {
 	const dateValue = useMemo(() => {
 		if (!value || typeof value !== 'string') return undefined
@@ -26,7 +26,7 @@ export default function DateInput({
 	}, [value])
 
 	const handleDateChange = useCallback(
-		evt => {
+		(evt) => {
 			if (!evt.target.value) {
 				return onChange(null)
 			}
@@ -37,7 +37,7 @@ export default function DateInput({
 			if (year.length > 4) {
 				return
 			}
-			if ([day, month, year].some(x => Number.isNaN(+x))) {
+			if ([day, month, year].some((x) => Number.isNaN(+x))) {
 				return
 			}
 			onChange(`${day}/${month}/${year}`)
@@ -50,7 +50,7 @@ export default function DateInput({
 				{suggestions && (
 					<InputSuggestions
 						suggestions={suggestions}
-						onFirstClick={value => {
+						onFirstClick={(value) => {
 							onChange(value)
 						}}
 						onSecondClick={() => onSubmit?.('suggestion')}
@@ -69,7 +69,6 @@ export default function DateInput({
 }
 
 const DateStyledInput = styled.input`
-	font-family: 'Roboto', sans-serif;
 	text-transform: uppercase;
 	height: inherit;
 `

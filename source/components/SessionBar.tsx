@@ -1,54 +1,91 @@
-import { goToQuestion, loadPreviousSimulation } from 'Actions/actions'
+import { loadPreviousSimulation } from 'Actions/actions'
+import useLocalisation from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
-import { useEngine } from 'Components/utils/EngineContext'
-import { last } from 'ramda'
-import React, { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory, useLocation } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
-import {
-	answeredQuestionsSelector,
-	objectifsSelector,
-} from 'Selectors/simulationSelectors'
+import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import CarbonImpact from '../sites/publicodes/CarbonImpact'
+import { resetLocalisation } from '../actions/actions'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
+import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
+import { omit } from '../utils'
+import CardGameIcon from './CardGameIcon'
+import {
+	getLocalisationPullRequest,
+	getSupportedFlag,
+	getFlagImgSrc,
+	supportedCountry,
+} from './localisation/useLocalisation'
+import ProgressCircle from './ProgressCircle'
+import { usePersistingState } from './utils/persistState'
+
+const ActionsInteractiveIcon = () => {
+	const actionChoices = useSelector((state) => state.actionChoices),
+		count = Object.values(actionChoices).filter((a) => a === true).length
+	return <CardGameIcon number={count} />
+}
 
 const openmojis = {
 	test: '25B6',
 	action: 'E10C',
 	conference: '1F3DF',
-	profile: '1F464',
+	sondage: '1F4CA',
+	profile: 'silhouette',
 	personas: '1F465',
+	github: 'E045',
 }
 export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
-const Button = styled.button`
+const MenuButton = styled.div`
 	margin: 0 0.2rem;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	font-size: 80%;
+	font-size: 110% !important;
 	color: var(--darkColor);
+	padding: 0 0.4rem !important;
 	@media (min-width: 800px) {
 		flex-direction: row;
 		justify-content: start;
 		padding: 0;
 		font-size: 100%;
 	}
-	> img {
+	img,
+	svg {
 		display: block;
 		font-size: 200%;
 		margin: 0.6rem !important;
 		@media (max-width: 800px) {
 			margin: 0 !important;
 		}
+		height: auto;
 	}
 `
+
+const Button = (props) => {
+	const location = useLocation(),
+		path = location.pathname
+	const isCurrent = path.includes(props.url)
+	return (
+		<Link
+			to={props.url}
+			css="text-decoration: none"
+			{...(isCurrent
+				? {
+						'aria-current': 'page',
+				  }
+				: {})}
+		>
+			<MenuButton {...props} />{' '}
+		</Link>
+	)
+}
 
 export const sessionBarMargin = `
 		@media (max-width: 800px) {
@@ -56,7 +93,7 @@ export const sessionBarMargin = `
 		}
 `
 
-export const buildEndURL = (rules, engine) => {
+export const buildEndURL = (rules, engine, slide) => {
 	const categories = extractCategories(rules, engine),
 		detailsString =
 			categories &&
@@ -70,7 +107,7 @@ export const buildEndURL = (rules, engine) => {
 
 	if (detailsString == null) return null
 
-	return `/fin?details=${detailsString}`
+	return `/fin?details=${detailsString}${slide ? `&diapo=${slide}` : ''}`
 }
 
 export const useSafePreviousSimulation = () => {
@@ -91,18 +128,17 @@ export default function SessionBar({
 	answerButtonOnly = false,
 	noResults = false,
 }) {
-	const dispatch = useDispatch()
-	const answeredQuestions = useSelector(answeredQuestionsSelector)
-	const arePreviousAnswers = !!answeredQuestions.length
 	useSafePreviousSimulation()
-	const [showAnswerModal, setShowAnswerModal] = useState(false)
 
-	const objectifs = useSelector(objectifsSelector)
 	const conference = useSelector((state) => state.conference)
-	const rules = useSelector((state) => state.rules)
-	const engine = useEngine(objectifs)
+	const survey = useSelector((state) => state.survey)
+	const dispatch = useDispatch()
 
-	const history = useHistory()
+	const localisation = useLocalisation()
+	const flag = supportedCountry(localisation)
+		? getSupportedFlag(localisation)
+		: getFlagImgSrc('FR')
+
 	const location = useLocation(),
 		path = location.pathname
 
@@ -110,95 +146,166 @@ export default function SessionBar({
 		path.includes(pathTarget)
 			? `
 		font-weight: bold;
-		img {
+		img, svg {
 		  background: var(--lighterColor);
-		  border-radius: .6rem;
+		  border-radius: 2rem;
 		}
 		`
 			: ''
+	const persona = useSelector((state) => state.simulation?.persona)
 
-	let buttons = [
+	const [searchParams, setSearchParams] = useSearchParams()
+
+	const pullRequestNumber = useSelector((state) => state.pullRequestNumber),
+		// We only show the PR in the menu if it's set by the searchQuery,
+		// not by the localisation system
+		showPullRequestNumber =
+			pullRequestNumber &&
+			(!localisation ||
+				NODE_ENV === 'development' ||
+				!(pullRequestNumber === getLocalisationPullRequest(localisation)))
+
+	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
+
+	let elements = [
 		<Button
 			className="simple small"
-			onClick={() => {
-				dispatch(goToQuestion(last(answeredQuestions)))
-				history.push('/simulateur/bilan')
-			}}
-			css={buttonStyle('simulateur')}
+			url={'/simulateur/bilan'}
+			css={`
+				${buttonStyle('simulateur')};
+			`}
 		>
-			<img src={openmojiURL('test')} css="width: 2rem" />
+			<ProgressCircle />
 			Le test
 		</Button>,
 		<Button
 			className="simple small"
-			onClick={() => {
-				history.push('/actions/liste')
-			}}
+			url="/actions/liste"
 			css={buttonStyle('/actions')}
 		>
-			<img src={actionImg} css="width: 2rem" />
+			<ActionsInteractiveIcon />
 			Agir
 		</Button>,
-		<Button
-			className="simple small"
-			onClick={() => history.push('/profil')}
-			css={buttonStyle('profil')}
-		>
-			<img src={openmojiURL('profile')} css="width: 2rem" />
-			Mon profil
+		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
+			<div
+				css={`
+					position: relative;
+				`}
+			>
+				<img
+					src={openmojiURL('profile')}
+					css="width: 2rem"
+					aria-hidden="true"
+					width="1"
+					height="1"
+				/>
+				{flag && (
+					<img
+						src={flag}
+						css={`
+							position: absolute;
+							left: 1.45rem;
+							top: -0.15rem;
+							width: 1.2rem;
+							border-radius: 0.3rem !important;
+						`}
+						aria-hidden="true"
+					/>
+				)}
+			</div>
+			{!persona ? (
+				'Mon profil'
+			) : (
+				<span
+					css={`
+						background: var(--color);
+						color: var(--textColor);
+						padding: 0 0.4rem;
+						border-radius: 0.3rem;
+					`}
+				>
+					{persona}
+				</span>
+			)}
 		</Button>,
 		NODE_ENV === 'development' && (
 			<Button
 				key="personas"
 				className="simple small"
-				onClick={() => history.push('/personas')}
+				url="/personas"
 				css={buttonStyle('personas')}
 			>
-				<img src={openmojiURL('personas')} css="width: 2rem" />
+				<img
+					src={openmojiURL('personas')}
+					css="width: 2rem"
+					aria-hidden="true"
+					width="1"
+					height="1"
+				/>
 				Personas
 			</Button>
 		),
-		conference?.room && (
-			<div
-				css={`
-					${backgroundConferenceAnimation}
-					color: white;
-					border-radius: 0.4rem;
-					margin-right: 0.6rem;
-				`}
+		showPullRequestNumber && (
+			<MenuButton
+				key="pullRequest"
+				className="simple small"
+				css={buttonStyle('github')}
 			>
-				<Button
-					className="simple small"
-					onClick={() => history.push('/conférence/' + conference.room)}
+				<a
+					href={
+						'https://github.com/datagir/nosgestesclimat/pull/' +
+						pullRequestNumber
+					}
 					css={`
-						${buttonStyle('conf')}
-						padding: 0.4rem;
-						color: white;
-						img {
-							filter: invert(1);
-							background: none;
-							margin: 0 0.6rem 0 0 !important;
-						}
-						@media (max-width: 800px) {
-							img {
-								margin: 0 !important;
-							}
-						}
+						display: flex;
+						align-items: center;
 					`}
 				>
-					<img src={conferenceImg} css="width: 2rem" />
-					Conférence
-				</Button>
-				<div
-					css={`
-						@media (max-width: 800px) {
-							display: none;
-						}
-					`}
+					<img
+						src={openmojiURL('github')}
+						css="width: 2rem"
+						aria-hidden="true"
+						width="1"
+						height="1"
+					/>
+					#{pullRequestNumber}
+				</a>
+				<button
+					onClick={() => {
+						setSearchParams(omit(['PR'], searchParams))
+						dispatch(resetLocalisation())
+						chooseIp(undefined)
+						dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number: null })
+					}}
 				>
-					<ConferenceBarLazy />
-				</div>
-			</div>
+					<img
+						css="width: 1.2rem"
+						src="/images/close-plain.svg"
+						width="1"
+						height="1"
+					/>
+				</button>
+			</MenuButton>
+		),
+		conference?.room && (
+			<GroupModeMenuEntry
+				title="Conférence"
+				icon={conferenceImg}
+				url={'/conférence/' + conference.room}
+				buttonStyle={buttonStyle}
+			>
+				<ConferenceBarLazy />
+			</GroupModeMenuEntry>
+		),
+		survey?.room && (
+			<GroupModeMenuEntry
+				title="Sondage"
+				icon={openmojiURL('sondage')}
+				url={'/sondage/' + survey.room}
+				buttonStyle={buttonStyle}
+			>
+				<SurveyBarLazy />
+			</GroupModeMenuEntry>
 		),
 	]
 
@@ -219,9 +326,9 @@ export default function SessionBar({
 				}
 			`}
 		>
-			{buttons.filter(Boolean).length > 0 && (
+			{elements.filter(Boolean).length > 0 && (
 				<NavBar>
-					{buttons.filter(Boolean).map((Comp, i) => (
+					{elements.filter(Boolean).map((Comp, i) => (
 						<li key={i}>{Comp}</li>
 					))}
 				</NavBar>
@@ -256,3 +363,54 @@ const NavBar = styled.ul`
 		}
 	}
 `
+
+const GroupModeMenuEntry = ({ title, icon, url, children, buttonStyle }) => {
+	return (
+		<div
+			css={`
+				${backgroundConferenceAnimation}
+				color: white;
+				border-radius: 0.4rem;
+				margin-right: 0.6rem;
+			`}
+		>
+			<Button
+				className="simple small"
+				url={url}
+				css={`
+					${buttonStyle('conf')}
+					padding: 0.4rem;
+					color: white;
+					img {
+						filter: invert(1);
+						background: none;
+						margin: 0 0.6rem 0 0 !important;
+					}
+					@media (max-width: 800px) {
+						img {
+							margin: 0 !important;
+						}
+					}
+				`}
+			>
+				<img
+					src={icon}
+					css="width: 2rem"
+					aria-hidden="true"
+					width="1"
+					height="1"
+				/>
+				{title}
+			</Button>
+			<div
+				css={`
+					@media (max-width: 800px) {
+						display: none;
+					}
+				`}
+			>
+				{children}
+			</div>
+		</div>
+	)
+}

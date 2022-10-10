@@ -1,7 +1,9 @@
 import { useLocation } from 'react-router'
-import { Link } from 'react-router-dom'
-export default ({ categories, selected, countByCategory }) => {
+import { useSearchParams } from 'react-router-dom'
+export default ({ categories, metric, selected, countByCategory }) => {
 	const location = useLocation()
+	const [searchParams, setSearchParams] = useSearchParams()
+
 	return (
 		<ul
 			css={`
@@ -10,7 +12,9 @@ export default ({ categories, selected, countByCategory }) => {
 				list-style-type: none;
 				justify-content: center;
 				padding-left: 0;
-				@media (max-width: 800px) {
+				// Here is a trick to detect device and apply css only on mobile devices.
+				// It allows to avoid scrollbar for categories on computer screens when zooming.
+				@media only screen and (hover: none) and (pointer: coarse) and (max-width: 800px) {
 					flex-wrap: nowrap;
 					overflow-x: auto;
 					white-space: nowrap;
@@ -43,29 +47,34 @@ export default ({ categories, selected, countByCategory }) => {
 						${!countByCategory[category.dottedName] ? 'background: #ccc' : ''}
 					`}
 				>
-					<Link
-						to={
-							selected === category.dottedName
-								? location.pathname
-								: location.pathname + '?catégorie=' + category.dottedName
+					<button
+						tabindex="-1"
+						css="text-transform: capitalize"
+						onClick={() =>
+							setSearchParams(
+								new URLSearchParams({
+									...(metric ? { métrique: metric } : {}),
+									...(selected === category.dottedName
+										? {}
+										: { catégorie: category.dottedName }),
+								})
+							)
 						}
 					>
-						<button>
-							{category.dottedName}{' '}
-							<span
-								css={`
-									background: white;
-									color: var(--color);
-									border-radius: 1rem;
-									width: 1rem;
-									margin-left: 0.2rem;
-									display: inline-block;
-								`}
-							>
-								{countByCategory[category.dottedName] || 0}
-							</span>
-						</button>
-					</Link>
+						{category.dottedName}{' '}
+						<span
+							css={`
+								background: white;
+								color: var(--darkColor);
+								border-radius: 1rem;
+								width: 1rem;
+								margin-left: 0.2rem;
+								display: inline-block;
+							`}
+						>
+							{countByCategory[category.dottedName] || 0}
+						</span>
+					</button>
 				</li>
 			))}
 		</ul>

@@ -1,6 +1,7 @@
 const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const path = require('path')
+require('dotenv').config()
 
 const {
 	commonLoaders,
@@ -18,6 +19,8 @@ module.exports = {
 		historyApiFallback: true,
 		static: path.join(__dirname, 'dist'),
 		hot: true,
+		host: '0.0.0.0',
+		allowedHosts: ['localhost', '.gitpod.io'],
 	},
 	mode: 'development',
 	plugins: [
@@ -25,8 +28,14 @@ module.exports = {
 		...HTMLPlugins({ injectTrackingScript: true }),
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('development'),
+			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
 		}),
-		new webpack.HotModuleReplacementPlugin(),
 		new ReactRefreshWebpackPlugin(),
+		/*
+			 * See eslintrc.required.js for why this is commented
+		new ESLintPlugin({
+			overrideConfigFile: path.resolve(__dirname, '.eslintrc.required.js'),
+		}),
+		*/
 	],
 }

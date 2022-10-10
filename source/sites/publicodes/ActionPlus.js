@@ -6,21 +6,28 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import Meta from 'Components/utils/Meta'
+import { title } from 'Components/publicodesUtils'
+import useFetchDocumentation from '../../components/useFetchDocumentation'
 
 export default () => {
-	const { encodedName } = useParams()
-	const rules = useSelector((state) => state.rules)
+	const encodedName = useParams()['*']
 	const dottedName = utils.decodeRuleName(encodedName)
-	const rule = rules[dottedName]
+	const rules = useSelector((state) => state.rules)
+	const documentation = useFetchDocumentation()
+	if (!documentation) return null
 
-	console.log(rule)
+	const rule = {
+		...rules[dottedName],
+		dottedName,
+		plus: documentation['actions-plus/' + dottedName],
+	}
 
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">
-			<Meta title={rule.titre} />
+			<Meta title={title(rule)} />
 			<ScrollToTop />
 			<div>
-				<Link to={'/actions/' + encodedName}>
+				<Link to={'/actions/plus'}>
 					<button className="ui__ button simple small ">
 						{emoji('◀')} Retour à la liste des fiches
 					</button>
@@ -33,7 +40,7 @@ export default () => {
 			</Link>
 			<div css="margin: 1.6rem 0">
 				<Markdown
-					source={rule.plus || "Cette fiche détaillée n'existe pas encore"}
+					children={rule.plus || "Cette fiche détaillée n'existe pas encore"}
 				/>
 			</div>
 		</div>

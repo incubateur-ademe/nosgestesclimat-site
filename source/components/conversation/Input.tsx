@@ -1,11 +1,11 @@
-import { formatValue, Evaluation, Unit } from 'publicodes'
-const { serializeUnit } = require('publicodes')
+import { Evaluation, serializeUnit, Unit, formatValue } from 'publicodes'
 import { useCallback } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { currencyFormat, debounce } from '../../utils'
-import InputSuggestions from './InputSuggestions'
+import AnimatedTargetValue from '../ui/AnimatedTargetValue'
 import InputEstimation from './InputEstimation'
+import InputSuggestions from './InputSuggestions'
 import { InputCommonProps } from './RuleInput'
 
 // TODO: fusionner Input.js et CurrencyInput.js
@@ -19,6 +19,8 @@ export default function Input({
 	unit,
 	autoFocus,
 	inputEstimation,
+	idDescription,
+	showAnimation,
 }: InputCommonProps & {
 	onSubmit: (source: string) => void
 	unit: Unit | undefined
@@ -29,7 +31,6 @@ export default function Input({
 	const { language } = useTranslation().i18n
 	const unité = serializeUnit(unit)
 	const { thousandSeparator, decimalSeparator } = currencyFormat(language)
-
 	return (
 		<>
 			<div className="step input">
@@ -41,24 +42,36 @@ export default function Input({
 						}}
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
-					<NumberFormat
-						autoFocus={autoFocus}
-						className="suffixed ui__"
-						id={id}
-						thousandSeparator={thousandSeparator}
-						decimalSeparator={decimalSeparator}
-						allowEmptyFormatting={true}
-						// We don't want to call `onValueChange` in case this component is
-						// re-render with a new "value" prop from the outside.
-						onValueChange={({ floatValue }) => {
-							debouncedOnChange(
-								floatValue != undefined ? { valeur: floatValue, unité } : {}
-							)
-						}}
-						autoComplete="off"
-						{...{ [missing ? 'placeholder' : 'value']: value ?? '' }}
-					/>
-					<span className="suffix">&nbsp;{unité}</span>
+					<div css="display: flex; justify-content: flex-end; align-items: center">
+						{showAnimation && <AnimatedTargetValue value={value} unit="km" />}
+						<NumberFormat
+							autoFocus={autoFocus}
+							className="suffixed ui__"
+							id={id}
+							aria-describedby={idDescription}
+							inputMode="decimal"
+							thousandSeparator={thousandSeparator}
+							decimalSeparator={decimalSeparator}
+							allowNegative={false}
+							// We don't want to call `onValueChange` in case this component is
+							// re-render with a new "value" prop from the outside.
+							onValueChange={({ floatValue }) => {
+								debouncedOnChange(
+									floatValue != undefined ? { valeur: floatValue, unité } : {}
+								)
+							}}
+							autoComplete="off"
+							{...(missing
+								? {
+										placeholder:
+											value != null ? formatValue(value, { precision: 1 }) : '',
+								  }
+								: { value: value ?? '' })}
+						/>
+						<label htmlFor={id}>
+							<span className="suffix">&nbsp;{unité}</span>
+						</label>
+					</div>
 				</div>
 			</div>
 			<div css="width: 100%">

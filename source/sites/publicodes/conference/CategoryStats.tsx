@@ -1,6 +1,6 @@
 import { humanWeight } from '../HumanWeight'
 
-export default ({ categories, maxCategory, spotlight }) => {
+export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 	const values = Object.values(categories)
 			.flat()
 			.map(({ username, value }) => value),
@@ -8,10 +8,10 @@ export default ({ categories, maxCategory, spotlight }) => {
 		max = Math.max(...values),
 		humanMax = humanWeight(max, true)
 
-	console.log(categories)
 	return (
 		<div>
 			<ul
+				title="Empreinte par catégorie"
 				css={`
 					padding-left: 0;
 					> li:nth-child(2n + 1) {
@@ -51,17 +51,25 @@ export default ({ categories, maxCategory, spotlight }) => {
 									key={value}
 									css={`
 										left: ${(value / maxCategory) * 100}%;
+										cursor: pointer;
 										${spotlight === username
-											? `background: yellow !important; opacity: 1 !important; z-index: 2`
+											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
 											: ''}
 									`}
+									title={`${username} : ${humanWeight(value, true).join(' ')}`}
+									aria-label={`${username} : ${humanWeight(value, true).join(
+										' '
+									)}`}
+									onClick={() => setSpotlight(username)}
+									role="button"
+									aria-pressed={spotlight === username}
 								></li>
 							))}
 						</ul>
 					</li>
 				))}
 			</ul>
-			<div css="width: 70%; margin-left: 32%;  display: flex; justify-content: space-between">
+			<div css="width: 70%; margin-left: 30%;  display: flex; justify-content: space-between">
 				<small>{Math.round(0)}</small>
 				<small>
 					{humanMax[0]} {humanMax[1]}

@@ -9,12 +9,21 @@ export default function Checkbox(
 			<input
 				type="checkbox"
 				className="ui__ checkbox-input"
-				style={{ display: 'none' }}
+				css={`
+					position: absolute !important;
+					width: 1px !important;
+					height: 1px;
+					padding: 0px;
+					margin: -1px;
+					overflow: hidden;
+					clip: rect(0px, 0px, 0px, 0px);
+					white-space: nowrap;
+					border: 0px none;
+				`}
 				{...props}
 			/>
 			<label
 				htmlFor={props.id}
-				tabIndex={0}
 				style={{ display: 'flex', alignItems: 'center' }}
 			>
 				<div className="ui__ checkbox">
@@ -23,9 +32,7 @@ export default function Checkbox(
 						<polyline points="3 11 8 14 14 5" />
 					</svg>
 				</div>
-				{'label' in props && (
-					<span style={{ marginLeft: '0.6rem' }}>{props.label}</span>
-				)}
+				{props.label && <span className="visually-hidden">{props.label}</span>}
 			</label>
 		</>
 	)

@@ -12,11 +12,13 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
+import { useNavigate } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { splitName, safeGetRule } from '../publicodesUtils'
+import { safeGetRule, splitName } from '../publicodesUtils'
+import SafeCategoryImage from '../SafeCategoryImage'
 import './AnswerList.css'
+import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
 export default function AnswerList() {
 	const dispatch = useDispatch()
@@ -100,6 +102,7 @@ const CategoryTable = ({ steps, categories, engine }) =>
 
 		return (
 			<SubCategory
+				key={category.dottedName}
 				{...{
 					rules: categoryRules,
 					rule: category,
@@ -198,7 +201,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 						`}
 				`}
 			>
-				{emoji(rule.rawNode.icônes || '')}
+				<SafeCategoryImage element={rule} whiteBackground={level > 1} />
 				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
 				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
 					<small>
@@ -246,7 +249,8 @@ function StepsTable({
 }
 
 const Answer = ({ rule, dispatch, language, level }) => {
-	const history = useHistory()
+	const navigate = useNavigate()
+	const storedTrajets = useSelector((state) => state.storedTrajets)
 	const path = parentName(rule.dottedName, ' · ', level)
 	return (
 		<tr
@@ -284,7 +288,7 @@ const Answer = ({ rule, dispatch, language, level }) => {
 					`}
 					onClick={() => {
 						dispatch(goToQuestion(rule.dottedName))
-						history.push('/simulateur/bilan')
+						navigate('/simulateur/bilan')
 					}}
 				>
 					<span
@@ -297,6 +301,28 @@ const Answer = ({ rule, dispatch, language, level }) => {
 						{rule.passedQuestion && emoji(' 🤷🏻')}
 					</span>
 				</button>
+				{storedTrajets[rule.dottedName] &&
+					storedTrajets[rule.dottedName].length > 0 && (
+						<details
+							className="ui__"
+							css={`
+								max-width: 20rem;
+								margin-right: 0px;
+								margin-left: auto;
+							`}
+						>
+							<summary
+								css={`
+									text-align: end !important;
+								`}
+							>
+								Voir en détails
+							</summary>
+							<AnswerTrajetsTable
+								trajets={storedTrajets[rule.dottedName]}
+							></AnswerTrajetsTable>
+						</details>
+					)}
 			</td>
 		</tr>
 	)

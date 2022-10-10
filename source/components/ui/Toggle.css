@@ -59,6 +59,14 @@
 	box-shadow: 0 0 0px 2px var(--color), 0 0 5px 3px var(--lightColor);
 }
 
+.ui__.radio input[type='radio']:focus ~ span .radioText {
+	border-bottom: 1px solid var(--lightColor);
+}
+
+.ui__.radio input[type='radio']:checked:focus ~ span .radioText {
+	border-bottom: 1px solid white;
+}
+
 .ui__.radio input[type='radio'] {
 	position: fixed;
 	left: -100vw;

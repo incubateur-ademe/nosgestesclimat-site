@@ -1,3 +1,11 @@
+- question: Comment utiliser ce calculateur ?
+  catégorie: général
+  id: tuto
+  réponse: |
+    Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de 2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur. 
+
+    Si vous l'avez déjà consulté, vous pouvez visiter votre [page profil](/profil) pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
+
 - question: Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
   catégorie: général
   id: ges
@@ -17,9 +25,11 @@
   catégorie: général
   réponse: |
 
-    Pour l'instant oui. Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO2e/kWh) influence particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+    Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens. 
 
-    Mais ce n'est que partie remise ! Si vous connaissez bien le sujet dans votre pays, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO2e/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+
+    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 
 - question: Je ne comprends pas si le calcul est fait par foyer ou par individu
   id: foyer
@@ -61,7 +71,7 @@
 
     Cet objectif de 2 tonnes est donc compliqué, mais c'est ce que nous devons atteindre collectivement au plus vite, et au plus tard en 2050 avec une progression régulière chaque année, afin de contenir le réchauffement climatique à +2°, et donc respecter l'accord de Paris. Ce "budget climat" ne relève pas du fait politique, mais découle des limites planétaires identifiées par la science du climat. Il est factuel, non négociable, sauf à vouloir s'exposer aux conséquences désastreuses qui y sont associées et largement décrites dans les [rapports du GIEC](https://www.ipcc.ch/languages-2/francais/).
 
-    > Pour en savoir plus, lisez notre article illustré sur ce sujet : <br/>
+    > Pour en savoir plus, lisez notre article illustré sur ce sujet :
     > 📘 [Le budget et l'empreinte carbone, c'est quoi ? ](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi)
 
 - question: J'ai compris l'objectif de 2 tonnes, mais j'ai beaucoup de mal à l'imaginer.
@@ -98,7 +108,6 @@
     Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une condition nécessaire mais non suffisante d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.).
 
     C’est d’ailleurs tout l’objet de Nos Gestes Climat ! œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
-
 
 - question: J’achète souvent des biens durables et écologiques mais l’outil ne semble pas faire la différence. Comment cela se fait-il ?
   catégorie: consommation
@@ -203,7 +212,6 @@
 
     A ce sujet, n’hésitez pas à consulter ce [simulateur](https://ecolab.ademe.fr/transport) pour comparer l’impact sur le climat de différents modes de transport pour un même trajet.
 
-
 - question: J’utilise un combustible qui n’est pas renseigné dans l’outil. Comment faire ?
   catégorie: logement
   id: autre-combustible
@@ -248,7 +256,7 @@
 
     Nous vous demandons donc l’âge du produit afin de connaître la durée restant à amortir. Consultez la question spécifique de l’amortissement pour comprendre de quoi il s’agit.
 
-- question:  J'ai entendu dire que le numérique avait un gros impact sur le climat, le simulateur semble me dire le contraire…
+- question: J'ai entendu dire que le numérique avait un gros impact sur le climat, le simulateur semble me dire le contraire…
   catégorie: numérique
   id: impact-numérique
   réponse: |

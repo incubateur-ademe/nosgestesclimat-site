@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
-import React, { useEffect, useRef } from 'react'
-import emoji from 'react-easy-emoji'
+import { useEffect, useRef } from 'react'
+import SafeCategoryImage from '../SafeCategoryImage'
+import useKeypress from '../utils/useKeyPress'
 
 // Naive implementation - in reality would want to attach
 // a window or resize listener. Also use state/layoutEffect instead of ref/effect
@@ -41,6 +42,8 @@ export default ({ dismiss, questionCategory }) => {
 	const containerRef = useRef(null)
 	const { height, width } = useDimensions(containerRef)
 
+	useKeypress('Enter', false, dismiss, 'keyup', [])
+
 	return (
 		<motion.section
 			initial={'closed'}
@@ -57,7 +60,7 @@ export default ({ dismiss, questionCategory }) => {
 					font-weight: 300;
 				}
 				img {
-					font-size: 350%;
+					width: 5rem;
 					margin: 0.4rem;
 				}
 				button {
@@ -92,7 +95,7 @@ export default ({ dismiss, questionCategory }) => {
 				}}
 			>
 				<h2>{questionCategory.title}</h2>
-				{emoji(questionCategory.icons)}
+				<SafeCategoryImage element={questionCategory} />
 				<button className="ui__ plain button attention" onClick={dismiss}>
 					Commencer
 				</button>

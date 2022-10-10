@@ -1,5 +1,5 @@
 import 'core-js/stable'
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
 import App from './App'
 import i18n from '../../locales/i18n'
 
@@ -7,4 +7,5 @@ i18n.changeLanguage('fr')
 
 let anchor = document.querySelector('#js')
 
-render(<App />, anchor)
+const root = createRoot(anchor) // createRoot(container!) if you use TypeScript
+root.render(<App />)

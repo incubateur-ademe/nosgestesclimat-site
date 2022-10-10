@@ -15,8 +15,8 @@ var { createDataDir, writeInDataDir } = require('./utils.js')
 // explorer can be found here : https://developer.github.com/v4/explorer/
 const githubAuthToken = process.env.GITHUB_API_SECRET
 const cursorOfV1Release = 'Y3Vyc29yOnYyOpHOARHb8g=='
-const repository = 'ecolab-data',
-	organization = 'betagouv'
+const repository = 'nosgestesclimat',
+	organization = 'datagir'
 
 // In case we cannot fetch the release (the API is down or the Authorization
 // token isn't valid) we fallback to some fake data -- it would be better to
@@ -47,7 +47,11 @@ async function main() {
 	// we deduplicate the releases data in two separated files that can be
 	// bundled/fetched separately.
 	writeInDataDir('releases.json', releases)
-	writeInDataDir('last-release.json', { name: releases[0].name })
+	const last = releases[0]
+	writeInDataDir('last-release.json', {
+		name: last.name,
+		date: last.published_at,
+	})
 }
 
 async function fetchReleases() {

@@ -10,6 +10,9 @@ export type SavedSimulation = {
 	actionChoices: Object
 	persona: string
 	tutorials: Object
+	storedTrajets: Object
+	url: string
+	localisation: Object | undefined
 }
 
 export const currentSimulationSelector = (
@@ -21,26 +24,22 @@ export const currentSimulationSelector = (
 		actionChoices: state.actionChoices,
 		persona: state.simulation?.persona,
 		tutorials: state.tutorials,
+		storedTrajets: state.storedTrajets,
+		url: state.simulation?.url,
+		localisation: state.localisation,
 	}
 }
 
 export const createStateFromSavedSimulation = (
 	state: RootState
 ): Partial<RootState> => {
-	const rules = state.rules
-
 	if (!state.previousSimulation) return {}
-
-	const safeFoldedSteps =
-		state.previousSimulation.foldedSteps?.filter(
-			(step) => rules[step] != null
-		) || []
 
 	return {
 		simulation: {
 			...state.simulation,
 			situation: state.previousSimulation.situation || {},
-			foldedSteps: safeFoldedSteps,
+			foldedSteps: state.previousSimulation.foldedSteps || [],
 			persona: state.previousSimulation.persona,
 		} as Simulation,
 		previousSimulation: null,

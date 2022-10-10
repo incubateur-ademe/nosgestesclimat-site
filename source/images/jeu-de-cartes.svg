@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="210mm"
+   height="210mm"
+   viewBox="0 0 210 210"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.1 (1:1.1+202109281954+c3084ef5ed)"
+   sodipodi:docname="jeu-de-cartes.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.67180616"
+     inkscape:cx="346.08197"
+     inkscape:cy="595.40984"
+     inkscape:window-width="1920"
+     inkscape:window-height="1176"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Calque 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#5c5dbd;fill-opacity:0.996078;fill-rule:evenodd;stroke:#000000;stroke-width:7.2062;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:19.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846-5-5"
+       width="105.19637"
+       height="151.33629"
+       x="-6.5428777"
+       y="61.500683"
+       ry="13.788778"
+       transform="matrix(0.96320622,-0.26876341,0.34952154,0.93692833,0,0)" />
+    <rect
+       style="fill:#5c5dbd;fill-opacity:0.996078;fill-rule:evenodd;stroke:#000000;stroke-width:7.19653;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:19.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846-5"
+       width="106.16804"
+       height="149.5493"
+       x="36.922913"
+       y="46.395515"
+       ry="13.625958"
+       transform="matrix(0.99154236,-0.12978347,0.17237524,0.98503136,0,0)" />
+    <rect
+       style="fill:#ffffff;fill-opacity:0.997404;fill-rule:evenodd;stroke:#000000;stroke-width:7.1932;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:19.2;stroke-dasharray:none;stroke-opacity:1"
+       id="rect846"
+       width="106.4689"
+       height="148.98828"
+       x="76.230515"
+       y="26.167141"
+       ry="13.574843" />
+    <text
+       xml:space="preserve"
+       style="font-size:102.827px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;letter-spacing:0px;stroke-width:0.385599"
+       x="97.642563"
+       y="140.42433"
+       id="text18286"><tspan
+         sodipodi:role="line"
+         id="tspan18284"
+         style="font-size:102.827px;stroke-width:0.385599"
+         x="97.642563"
+         y="140.42433">4</tspan></text>
+  </g>
+</svg>

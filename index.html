@@ -6,8 +6,7 @@
 
 		<link
 			rel="icon"
-			type="image/svg+xml"
-			href="<%= htmlWebpackPlugin.options.logo %>"
+			href="/images/favicon.png"
 		/>
 
 		<meta
@@ -28,7 +27,6 @@
 		/>
 
 		<meta property="og:image" content="<%= htmlWebpackPlugin.options.logo %>" data-react-helmet="true"	/>
-
 		<meta
 			name="google-site-verification"
 			content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
@@ -42,9 +40,6 @@
 			<%= htmlWebpackPlugin.options.title %>
 		</title>
 
-		<% for (var css in htmlWebpackPlugin.files.css) { %>
-		<link href="<%= htmlWebpackPlugin.files.css[css] %>" rel="stylesheet" />
-		<% } %>
 		<style>
 			html[data-useragent*='MSIE'] #outdated-browser,
 			html[data-useragent*='Safari'][data-useragent*='Version/8']
@@ -55,13 +50,6 @@
 				display: block !important;
 			}
 
-			html[data-useragent*='MSIE'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/8'] #loading,
-			html[data-useragent*='Safari'][data-useragent*='Version/7'] #loading,
-			html[data-useragent*='Trident'] #loading {
-				display: none !important;
-			}
-
 			html[data-useragent*='MSIE'] #js,
 			html[data-useragent*='Safari'][data-useragent*='Version/8'] #js,
 			html[data-useragent*='Safari'][data-useragent*='Version/7'] #js,
@@ -69,34 +57,13 @@
 				display: none !important;
 			}
 
-			/* Prevent FOUC effect */
-			#js {
-				opacity: 0;
-			}
 
-			/* CSS Loader */
-
-			#loading {
-				animation: appear 0.6s;
-				width: 100%;
-			}
-			#loading > img {
-				width: 8rem;
-				position: absolute;
-				top: 50%;
-				left: 50%;
-				  transform: translate(-50%, -50%);
-				
-			}
 
 		</style>
-		<meta name="theme-color" content="#3742fa" />
+		<meta name="theme-color" content="#5758BB" />
 	</head>
 
 	<body>
-		<div id="loading">
-				<img src="images/nosgestesclimat.png"/>
-		</div>
 
 		<!-- USER AGENT DATA ATTRIBUTE  -->
 
@@ -104,6 +71,11 @@
 			var b = document.documentElement
 			b.setAttribute('data-useragent', navigator.userAgent)
 		</script>
+		<script>
+				if(typeof navigator != 'undefined' && /prerender/i.test(navigator.userAgent)) {
+
+										SC_DISABLE_SPEEDY = true
+}</script>
 
 		<!-- APP  -->
 		<div id="js"></div>
@@ -133,14 +105,12 @@
 					>
 				</h3>
 				<h3>
-					<a
-						href="javascript:void(0);"
+					<button
 						onclick="
 					var b = document.documentElement;
 					b.setAttribute('data-useragent',  'force-navigation-anyway');
 				"
-						>Continuer quand même vers le site</a
-					>
+						>Continuer quand même vers le site</button>
 				</h3>
 			</div>
 		</div>
@@ -152,8 +122,9 @@
 		<script type="text/javascript">
 		  var _paq = window._paq || [];
 		  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-		  _paq.push(['trackPageView']);
-		  _paq.push(['enableLinkTracking']);
+			if (!window.location.pathname.match(/(\/sondage|conférence)/))
+				{_paq.push(['trackPageView']);}
+		_paq.push(['enableLinkTracking']);
 		  (function() {
 			var u="//stats.data.gouv.fr/";
 			_paq.push(['setTrackerUrl', u+'matomo.php']);

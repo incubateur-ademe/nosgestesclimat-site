@@ -1,5 +1,6 @@
 import { Action } from 'Actions/actions'
-import { defaultTo, omit, without } from 'ramda'
+import { omit } from 'Source/utils'
+
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { SavedSimulation } from 'Selectors/storageSelectors'
@@ -54,7 +55,6 @@ export type Simulation = {
 	url: string
 	hiddenNotifications: Array<string>
 	situation: Situation
-	initialSituation: Situation
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
@@ -94,7 +94,7 @@ function simulation(
 			return {
 				...state,
 				hiddenNotifications: [],
-				situation: state.initialSituation,
+				situation: {},
 				foldedSteps: [],
 				unfoldedStep: null,
 				persona: null,
@@ -159,8 +159,37 @@ function actionChoices(state = {}, { type, action, choice }) {
 		return {}
 	} else return state
 }
+function survey(state = null, { type, room, answers, contextFile }) {
+	if (type === 'UNSET_SURVEY') return {}
+	if (type === 'SET_SURVEY') {
+		if (state?.room === room) return state
+		return {
+			room,
+			answers: {},
+			contextFile: state?.contextFile,
+		}
+	}
+	if (type === 'ADD_SURVEY_CONTEXT') {
+		return {
+			room: state?.room,
+			answers: state?.answers,
+			contextFile,
+		}
+	}
+	if (type === 'ADD_SURVEY_ANSWERS') {
+		return {
+			room,
+			answers: answers.reduce(
+				(memo, next) => ({ ...memo, [next.id]: next }),
+				state.answers
+			),
+			contextFile: state?.contextFile,
+		}
+	} else return state
+}
 
 function conference(state = null, { type, room, ydoc, provider }) {
+	if (type === 'UNSET_CONFERENCE') return null
 	if (type === 'SET_CONFERENCE') {
 		if (state?.room === room) return state
 		return {
@@ -170,16 +199,83 @@ function conference(state = null, { type, room, ydoc, provider }) {
 		}
 	} else return state
 }
+//Tutorials are the main tutorial for the /simulateur/bilan simulation,
+//but also the small category pages displayed before starting the category, as a pause for the user
 function tutorials(state = {}, { type, id, unskip }) {
 	if (type === 'SKIP_TUTORIAL') {
 		return { ...state, [id]: unskip ? undefined : 'skip' }
-	} else if (type === 'RESET_TUTORIALS') {
+	} else if (type === 'RESET_INTRO_TUTORIAL') {
+		return Object.fromEntries(
+			Object.entries(state)
+				.map(([k, v]) => (k.includes('testIntro') ? null : [k, v]))
+				.filter(Boolean)
+		)
+	} else if (type === 'RESET_CATEGORY_TUTORIALS') {
+		return Object.fromEntries(
+			Object.entries(state)
+				.map(([k, v]) => (k.includes('testCategory') ? null : [k, v]))
+				.filter(Boolean)
+		)
+	} else return state
+}
+function tracking(
+	state = {
+		endEventFired: false,
+		firstQuestionEventFired: false,
+		progress50EventFired: false,
+		progress90EventFired: false,
+	},
+	{ type, name, value }
+) {
+	if (type === 'SET_TRACKING_VARIABLE') {
+		return { ...state, [name]: value }
+	} else return state
+}
+
+function storedTrajets(state = {}, { type, vehicule, trajets }) {
+	if (type === 'SET_TRAJETS') {
+		return { ...state, [vehicule]: trajets }
+	} else if (type === 'RESET_TRAJETS') {
 		return {}
 	} else return state
 }
-function tracking(state = {}, { type, name, value }) {
-	if (type === 'SET_TRACKING_VARIABLE') {
-		return { ...state, [name]: value }
+
+function thenRedirectTo(state = null, { type, to }) {
+	if (type === 'SET_THEN_REDIRECT_TO') {
+		return to
+	} else return state
+}
+type EngineState = 'requested' | 'ready'
+type EngineAction = {
+	type: string
+	to: EngineState
+}
+function engineState(state = null, { type, to }: EngineAction) {
+	if (type === 'SET_ENGINE') {
+		return to
+	} else return state
+}
+
+const defaultToNull = (arg) => arg ?? null
+
+type LocalisationAction = {
+	type: string
+	country: object
+	userChosen: boolean
+}
+function localisation(
+	state = null,
+	{ type, localisationData }: LocalisationAction
+) {
+	if (type === 'SET_LOCALISATION') {
+		return localisationData
+	} else if (type === 'RESET_LOCALISATION') {
+		return null
+	} else return state
+}
+function pullRequestNumber(state = null, { type, number }) {
+	if (type === 'SET_PULL_REQUEST_NUMBER') {
+		return number
 	} else return state
 }
 
@@ -189,14 +285,20 @@ const mainReducer = (state: any, action: Action) =>
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
 			simulation(a, b),
-		previousSimulation: defaultTo(null) as Reducer<SavedSimulation | null>,
+		previousSimulation: defaultToNull,
 		situationBranch,
 		rules,
 		actionChoices,
 		conference,
-		iframeOptions: defaultTo(null),
+		survey,
+		iframeOptions: defaultToNull,
 		tutorials,
+		storedTrajets,
+		thenRedirectTo,
 		tracking,
+		localisation,
+		pullRequestNumber,
+		engineState,
 	})(state, action)
 
 export default reduceReducers<RootState>(

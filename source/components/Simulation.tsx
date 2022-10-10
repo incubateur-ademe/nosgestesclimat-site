@@ -1,12 +1,8 @@
 import Conversation, {
 	ConversationProps,
 } from 'Components/conversation/Conversation'
-import PageFeedback from 'Components/Feedback/PageFeedback'
-import SearchButton from 'Components/SearchButton'
 import * as animate from 'Components/ui/animate'
 import React from 'react'
-import { Trans } from 'react-i18next'
-import LinkToForm from './Feedback/LinkToForm'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
@@ -23,37 +19,21 @@ export default function Simulation({
 	customEndMessages,
 	customEnd,
 	orderByCategories,
-	showLinkToForm,
 	showPeriodSwitch,
-	noFeedback,
 	animation = 'appear',
+	questionHeadingLevel,
 }: SimulationProps) {
 	const Animation = animate[animation]
 	return (
 		<>
-			<SearchButton invisibleButton />
 			<Animation delay={0.3}>
 				{results}
 				<Questions
 					customEnd={customEnd}
 					orderByCategories={orderByCategories}
 					customEndMessages={customEndMessages}
+					questionHeadingLevel={questionHeadingLevel}
 				/>
-				{!noFeedback && (
-					<>
-						{showLinkToForm && <LinkToForm />}
-						{!showLinkToForm && (
-							<PageFeedback
-								customMessage={
-									<Trans i18nKey="feedback.simulator">
-										Êtes-vous satisfait de ce simulateur ?
-									</Trans>
-								}
-								customEventName="rate simulator"
-							/>
-						)}
-					</>
-				)}{' '}
 				{explanations}
 			</Animation>
 		</>
@@ -64,6 +44,7 @@ function Questions({
 	customEndMessages,
 	customEnd,
 	orderByCategories,
+	questionHeadingLevel,
 }: {
 	customEndMessages?: ConversationProps['customEndMessages']
 	orderByCategories: Array<Object>
@@ -83,6 +64,7 @@ function Questions({
 					orderByCategories={orderByCategories}
 					customEnd={customEnd}
 					customEndMessages={customEndMessages}
+					questionHeadingLevel={questionHeadingLevel}
 				/>
 			</div>
 		</>

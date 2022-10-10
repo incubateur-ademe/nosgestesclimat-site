@@ -1,5 +1,6 @@
 import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
+import { WithEngine } from '../../../RulesProvider'
 
 const ConferenceBar = React.lazy(() => import('./ConferenceBar'))
 
@@ -8,8 +9,10 @@ export default () => {
 	if (!conference) return null
 
 	return (
-		<Suspense fallback="Chargement">
-			<ConferenceBar />
+		<Suspense fallback={<div>Chargement</div>}>
+			<WithEngine>
+				<ConferenceBar />
+			</WithEngine>
 		</Suspense>
 	)
 }

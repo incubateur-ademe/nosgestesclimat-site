@@ -2,7 +2,7 @@ import Input from 'Components/conversation/Input'
 import Question, { Choice } from 'Components/conversation/Question'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
-import { parentName } from 'Components/publicodesUtils'
+import { parentName, splitName } from 'Components/publicodesUtils'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
@@ -11,14 +11,17 @@ import {
 	EvaluatedRule,
 	formatValue,
 	reduceAST,
+	serializeUnit,
 	utils,
 } from 'publicodes'
 import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
-import mosaicQuestions from './mosaicQuestions'
+import estimationQuestions from './estimationQuestions'
 import ParagrapheInput from './ParagrapheInput'
+import NumberedMosaic from './select/NumberedMosaic'
+import SelectDevices from './select/SelectDevices'
 import TextInput from './TextInput'
 
 type Value = any
@@ -50,8 +53,37 @@ export const binaryQuestion = [
 	{ value: 'non', label: 'Non' },
 ] as const
 
-export const isMosaic = (dottedName) =>
-	mosaicQuestions.find(({ isApplicable }) => isApplicable(dottedName))
+/* function to detect if the question evaluated should be displayed as a child of a mosaic
+We only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
+If parent of degree 2 doesn't contain mosaic, return empty array
+If parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
+We take into account if the evaluated rule is already a mosaic 
+*/
+export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
+	if (!dottedName) return
+	const potentialMosaicRule = engine.getRule(dottedName).rawNode['mosaique']
+		? dottedName
+		: parentName(dottedName, ' . ', 0, 2)
+	const mosaicParams =
+		potentialMosaicRule &&
+		engine.getRule(potentialMosaicRule).rawNode['mosaique']
+	if (!mosaicParams) return
+	if (
+		dottedName !== potentialMosaicRule &&
+		!dottedName.includes(` . ${mosaicParams['clé']}`)
+	)
+		return
+	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
+		return (
+			rule.includes(potentialMosaicRule) &&
+			rule.includes(` . ${mosaicParams['clé']}`)
+		)
+	})
+	return [engine.getRule(potentialMosaicRule), mosaicParams, mosaicDottedNames]
+}
+
+export const isTransportEstimation = (dottedName) =>
+	estimationQuestions.find(({ isApplicable }) => isApplicable(dottedName))
 
 // This function takes the unknown rule and finds which React component should
 // be displayed to get a user input through successive if statements
@@ -66,8 +98,10 @@ export default function RuleInput<Name extends string = DottedName>({
 	autoFocus = false,
 	className,
 	onSubmit = () => null,
+	engine: givenEngine,
+	noSuggestions = false,
 }: RuleInputProps<Name>) {
-	const engine = useContext(EngineContext)
+	const engine = givenEngine || useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
 	const rules = engine.getParsedRules()
@@ -90,23 +124,56 @@ export default function RuleInput<Name extends string = DottedName>({
 		required: true,
 	}
 
-	if (isMosaic(rule.dottedName)) {
-		// This selects a precise set of questions to bypass their regular components and answer all of them in one big custom UI
-		const question = isMosaic(rule.dottedName)
-		const selectedRules = Object.entries(rules)
-			.filter(([dottedName]) => question.isApplicable(dottedName))
-			.map(([dottedName, questionRule]) => {
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
+		engine,
+		rules,
+		rule.dottedName
+	)
+	if (ruleMosaicInfos) {
+		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
+		const selectedRules = mosaicDottedNames.map(
+			([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
 				return [rules[parentRule], questionRule]
-			})
+			}
+		)
+		if (mosaicParams['type'] === 'selection')
+			return (
+				<SelectDevices
+					{...{
+						...commonProps,
+						dottedName: question.dottedName,
+						selectedRules,
+						options: question.options || {},
+						suggestions: mosaicParams['suggestions'] || {},
+					}}
+				/>
+			)
+		if (mosaicParams['type'] === 'nombre')
+			return (
+				<NumberedMosaic
+					{...{
+						...commonProps,
+						dottedName: question.dottedName,
+						selectedRules,
+						options: { chipsTotal: mosaicParams['total'] } || {},
+						suggestions: mosaicParams['suggestions'] || {},
+					}}
+				/>
+			)
+		return
+	}
 
+	if (isTransportEstimation(rule.dottedName)) {
+		const question = isTransportEstimation(rule.dottedName)
+		const unité = serializeUnit(evaluation.unit)
 		return (
 			<question.component
-				{...{
-					...commonProps,
-					selectedRules,
-					options: question.options || {},
-				}}
+				commonProps={commonProps}
+				evaluation={evaluation}
+				onSubmit={onSubmit}
+				setFinalValue={(value) => onChange({ valeur: value, unité })}
+				value={value as Evaluation<string>}
 			/>
 		)
 	}
@@ -120,18 +187,6 @@ export default function RuleInput<Name extends string = DottedName>({
 			/>
 		)
 	}
-	/* These input are specific to mon-entreprise, but could be useful for us. Disactivated to prune dependencies
-*
-*
-	if (rule.API && rule.API === 'commune')
-		return <SelectCommune {...commonProps} />
-	if (rule.API && rule.API === 'pays européen')
-		return <SelectEuropeCountry {...commonProps} />
-	if (rule.API) throw new Error("Les seules API implémentées sont 'commune'")
-	if (rule.dottedName == 'contrat salarié . ATMP . taux collectif ATMP')
-	return <SelectAtmp {...commonProps} onSubmit={onSubmit} />
-*
-*/
 
 	if (rule.rawNode.type === 'date') {
 		return (
@@ -208,14 +263,11 @@ export default function RuleInput<Name extends string = DottedName>({
 			onSubmit={onSubmit}
 			unit={evaluation.unit}
 			value={value as Evaluation<number>}
+			noSuggestions={noSuggestions}
 			inputEstimation={
 				rule.rawNode.aide &&
 				rules[
-					utils.disambiguateRuleReference(
-						rules,
-						rule.dottedName,
-						rule.rawNode.aide
-					)
+					utils.disambiguateReference(rules, rule.dottedName, rule.rawNode.aide)
 				]
 			}
 		/>
@@ -248,9 +300,11 @@ export const buildVariantTree = <Name extends string>(
 		variant
 			? {
 					canGiveUp,
-					children: (variant.explanation as (ASTNode & {
-						nodeKind: 'reference'
-					})[]).map(({ dottedName }) =>
+					children: (
+						variant.explanation as (ASTNode & {
+							nodeKind: 'reference'
+						})[]
+					).map(({ dottedName }) =>
 						buildVariantTree(engine, dottedName as Name)
 					),
 			  }

@@ -1,5 +1,4 @@
 import { ASTNode } from 'publicodes'
-import { toPairs } from 'ramda'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
@@ -26,13 +25,26 @@ export default function InputSuggestions({
 				align-items: baseline;
 				justify-content: flex-end;
 				margin-bottom: 0.4rem;
-				flew-wrap: wrap;
+				flex-wrap: wrap;
+
+				@media (max-width: 800px) {
+					flex-wrap: nowrap;
+					overflow-x: auto;
+					white-space: nowrap;
+					justify-content: normal;
+					height: 1.6rem;
+					scrollbar-width: none;
+					::-webkit-scrollbar {
+						display: none;
+					}
+				}
 			`}
 		>
-			{toPairs(suggestions).map(([text, value]: [string, ASTNode]) => {
+			{Object.entries(suggestions).map(([text, value]: [string, ASTNode]) => {
 				return (
 					<button
-						className="ui__ link-button"
+						className="ui__ suggestion plain button"
+						type="button"
 						key={text}
 						css={`
 							margin: 0.2rem 0.4rem !important;
@@ -45,7 +57,7 @@ export default function InputSuggestions({
 							if (suggestion !== value) setSuggestion(value)
 							else onSecondClick && onSecondClick(value)
 						}}
-						title={t('cliquez pour insérer cette suggestion')}
+						title={t('Insérer cette suggestion')}
 					>
 						{emoji(text)}
 					</button>
