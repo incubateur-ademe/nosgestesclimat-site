@@ -34,9 +34,9 @@ Yjs, entre autres.
 
 ### 🇬🇧Installation
 
-The mode is stored in the [git
+The footprint model is stored in the [git
 submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules)
-`nosgestesclimat/` pointing to the correspoding
+`nosgestesclimat/` pointing to the corresponding
 GitHub [repository](https://github.com/datagir/nosgestesclimat).
 
 Consequently, to fetch all the data you need to provide the `--recursive` flag
