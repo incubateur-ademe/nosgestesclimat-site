@@ -14,6 +14,7 @@ import useKeypress from '../../components/utils/useKeyPress'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
+import DefaultFootprint from './DefaultFootprint'
 import HorizontalSwipe from './HorizontalSwipe'
 import ScoreBar from './ScoreBar'
 import Slide from './TutorialSlide'
@@ -209,9 +210,10 @@ const slides = [
 				Le point de départ de votre test Nos Gestes Climat est un résultat
 				calculé à partir de valeurs moyennes Françaises attribuées à chaque
 				question. Ce score initial est à prendre comme un minimum, qui commence
-				par défaut à ~8 tonnes de CO₂e en l'état actuel du périmètre de calcul
-				qui évolue selon les améliorations du modèle. Vos réponses viendront
-				ensuite affiner cette empreinte dans la barre de score.
+				par défaut à ~ <DefaultFootprint /> de CO₂e en l'état actuel du
+				périmètre de calcul qui évolue selon les améliorations du modèle. Vos
+				réponses viendront ensuite affiner cette empreinte dans la barre de
+				score.
 			</p>
 			<div css="margin: 1rem 0">
 				<WithEngine>
