@@ -1,8 +1,8 @@
 export default ({ children, background = false, footer = false }) => (
 	<div
 		css={`
-			margin: 4rem 0;
-			padding: 2rem 0;
+			margin: 1rem 0;
+			padding: 1rem 0;
 			@media (max-width: 800px) {
 				margin: 2rem 0;
 				padding: 0.6rem 0;

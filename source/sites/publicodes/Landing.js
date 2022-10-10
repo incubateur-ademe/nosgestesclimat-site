@@ -78,7 +78,7 @@ export default () => {
 					css={`
 						display: flex;
 						flex-direction: column;
-						max-width: 30rem;
+						max-width: 35rem;
 					`}
 				>
 					<h1>Connaissez-vous votre empreinte sur le climat&nbsp;?</h1>
@@ -146,6 +146,52 @@ export default () => {
 				{!mobile && <Illustration aira-hidden="true" />}
 			</div>
 
+			<div
+				css={`
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-wrap: wrap;
+					max-width: 70%;
+					margin-top: 1rem;
+					> img,
+					> a {
+						margin: 1rem 0.4rem;
+						display: flex;
+						align-items: center;
+					}
+					> a {
+						height: 100%;
+					}
+				`}
+			>
+				<img
+					src="/images/marianne.svg"
+					alt="République Française"
+					css="width: 6rem; height: auto; margin-right: .6rem"
+					width="96"
+					height="86"
+				/>
+				<a href="https://ademe.fr" css="svg {width: 4rem !important}">
+					<LogoADEME />
+				</a>
+				<a href="https://datagir.ademe.fr">
+					<img
+						css="height: 3.4rem; width: auto;"
+						src="https://datagir.ademe.fr/logo.jpg"
+					/>
+				</a>
+				<a href="https://abc-transitionbascarbone.fr">
+					<img
+						css="width: 6rem; height: auto;margin-left: 1rem !important"
+						src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+						alt="Logo de l'Association pour la transition Bas Carbone"
+						width="86"
+						height="29"
+					/>
+				</a>
+			</div>
+
 			{!isIframe && <LandingExplanations />}
 
 			<LandingContent background footer>
@@ -157,31 +203,39 @@ export default () => {
 								display: flex;
 								align-items: center;
 								justify-content: center;
-								margin-bottom: 1rem;
+								flex-wrap: wrap;
+								margin: 1rem;
 								img {
 									margin: 0 0.6rem;
 								}
 							`}
 						>
 							<img
-								src="/images/marianne.svg"
-								alt="République Française"
-								css="width: 7.5rem; height: auto; margin-right: .6rem"
+								src="/images/logo-france-relance.svg"
+								alt="Logo de France Relance"
+								css="width: 5rem; height: auto; margin-right: .6rem"
 								width="96"
 								height="86"
 							/>
-							<a href="https://ademe.fr">
-								<LogoADEME />
-							</a>
-							<a href="https://abc-transitionbascarbone.fr">
+
+							<div
+								css={`
+									display: flex;
+									align-items: center;
+									flex-direction: column;
+									font-size: 90%;
+									font-weight: bold;
+								`}
+							>
 								<img
-									css="width: 6rem; height: auto;margin-left: 1rem !important"
-									src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
-									alt="Logo de l'Association pour la transition Bas Carbone"
-									width="86"
-									height="29"
+									src="/images/union-européenne.svg"
+									alt="Logo de l'Union Européenne"
+									css="width: 5rem; height: auto; margin-right: .6rem;"
+									width="96"
+									height="86"
 								/>
-							</a>
+								<span>NextGenerationEU</span>
+							</div>
 						</div>
 					)}
 					<div
