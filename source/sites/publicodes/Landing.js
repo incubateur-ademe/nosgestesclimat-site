@@ -203,22 +203,39 @@ export default () => {
 								display: flex;
 								align-items: center;
 								justify-content: center;
-								margin-bottom: 1rem;
+								flex-wrap: wrap;
+								margin: 1rem;
 								img {
 									margin: 0 0.6rem;
 								}
 							`}
 						>
 							<img
-								src="/images/marianne.svg"
-								alt="République Française"
-								css="width: 7.5rem; height: auto; margin-right: .6rem"
+								src="/images/logo-france-relance.svg"
+								alt="Logo de France Relance"
+								css="width: 5rem; height: auto; margin-right: .6rem"
 								width="96"
 								height="86"
 							/>
-							<a href="https://ademe.fr">
-								<LogoADEME />
-							</a>
+
+							<div
+								css={`
+									display: flex;
+									align-items: center;
+									flex-direction: column;
+									font-size: 90%;
+									font-weight: bold;
+								`}
+							>
+								<img
+									src="/images/union-européenne.svg"
+									alt="Logo de l'Union Européenne"
+									css="width: 5rem; height: auto; margin-right: .6rem;"
+									width="96"
+									height="86"
+								/>
+								<span>NextGenerationEU</span>
+							</div>
 						</div>
 					)}
 					<div
