@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           ref: ${{ github.event.client_payload.ref }}
-          token: ${{ secrets.PAT }}
+          token: ${{ secrets.REPO_ACCESS_TOKEN }}
           submodules: recursive
       - name: Update module
         run: |
