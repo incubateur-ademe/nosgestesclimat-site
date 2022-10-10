@@ -77,7 +77,7 @@ export default function MosaicInputSuggestions({
 							)
 								dispatch(updateSituation(dottedName, 0))
 							else
-								toPairs(values).forEach(
+								Object.entries(values).forEach(
 									([ruleName, value]: [string, ASTNode]) => {
 										const fullDottedName = `${dottedName} . ${ruleName}`
 										const card = document.getElementById(
