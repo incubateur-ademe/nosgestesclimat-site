@@ -25,8 +25,6 @@ Or, comme toute ressource fossile, les stocks de pétrole et le gaz ne se renouv
 
 L'[INSEE nous dit que](https://www.insee.fr/fr/statistiques/2119697) nous dépendions en 2021 à 37% de l'Afrique (12% Algérie, 11% Nigéria, 10% Libye), à 23% de l'ex-URSS dont **9% de Russie**, et 15% du Moyen-Orient dont 8% de l'Arabie-Saoudite.
 
-> Chacun de ces pays représentants au total 75% de nos importations de pétrole est classé "régime hybride" (donc non-démocratique) ou "régime autoritaire" sur l'[Indice de démocratie](https://fr.wikipedia.org/wiki/Indice_de_d%C3%A9mocratie).
-
 ## Le cas de la guerre menée par la Russie en Ukraine 💥
 
 <img style="width: 20rem; border-radius: .6rem" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg"/>
