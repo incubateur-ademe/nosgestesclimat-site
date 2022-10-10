@@ -10,9 +10,8 @@ import {
 
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
-import { useState, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useEngine } from './components/utils/EngineContext'
 
 /* This component gets the publicode rules from the good URL,
  * then gives them
@@ -44,11 +43,7 @@ export default ({ children }) => {
 				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
 			)
 			// Rules are stored in nested yaml files
-			const req = require.context(
-				'../../nosgestesclimat/data/',
-				true,
-				/\.(yaml)$/
-			)
+			const req = require.context('../nosgestesclimat/data/', true, /\.(yaml)$/)
 
 			const rules = req.keys().reduce((memo, key) => {
 				const jsonRuleSet = req(key).default || {}
