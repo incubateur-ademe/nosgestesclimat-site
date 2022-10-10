@@ -140,34 +140,14 @@ const Main = ({}) => {
 				{fluidLayout && (
 					<div
 						css={`
-							display: flex;
-							align-items: center;
-							justify-content: left;
-							max-width: 30rem;
 							margin: 0 auto;
-							> img,
-							> a {
-								margin: 0 0.3rem;
-							}
-							a:last-child {
-								margin-left: 1rem;
-							}
 							@media (max-width: 800px) {
 								margin-top: 0.6rem;
 							}
+							@media (min-width: 1200px) {
+							}
 						`}
 					>
-						<img
-							src="/images/marianne.svg"
-							alt="République Française"
-							css="width: 6rem; height: auto; margin-right: .6rem"
-							width="96"
-							height="86"
-						/>
-						<a href="https://ademe.fr" css="svg {width: 3.6rem !important}">
-							<LogoADEME />
-						</a>
-
 						<Logo showText />
 					</div>
 				)}

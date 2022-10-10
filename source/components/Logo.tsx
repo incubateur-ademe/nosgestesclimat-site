@@ -14,13 +14,13 @@ export default ({ showText, size = 'large' }) => (
 				small: '.1rem auto',
 			}[size]};
 			img {
-				width: ${{ large: '75px', medium: '55px', small: '30px' }[size]};
+				width: ${{ large: '100px', medium: '55px', small: '30px' }[size]};
 				height: auto;
 			}
 		`}
 	>
 		<img
-			src="/images/petit-logo.png"
+			src={`/images/petit-logo${size === 'large' ? '@2x' : ''}.png`}
 			srcSet="/images/petit-logo@2x.png 2x,
 							/images/petit-logo@3x.png 3x"
 			width="75"
@@ -30,12 +30,12 @@ export default ({ showText, size = 'large' }) => (
 			<div
 				css={`
 					font-weight: 900;
-					line-height: ${{ large: '1.25rem', medium: '1.05rem', small: '1rem' }[
+					line-height: ${{ large: '1.5rem', medium: '1.05rem', small: '1rem' }[
 						size
 					]};
 					color: var(--darkColor);
 					text-transform: uppercase;
-					font-size: ${{ large: '140%', medium: '113%', small: '60%' }[size]};
+					font-size: ${{ large: '160%', medium: '113%', small: '60%' }[size]};
 					margin-left: 0.2rem;
 				`}
 			>

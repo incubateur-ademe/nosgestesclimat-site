@@ -78,7 +78,7 @@ export default () => {
 					css={`
 						display: flex;
 						flex-direction: column;
-						max-width: 30rem;
+						max-width: 35rem;
 					`}
 				>
 					<h1>Connaissez-vous votre empreinte sur le climat&nbsp;?</h1>
@@ -146,6 +146,50 @@ export default () => {
 				{!mobile && <Illustration aira-hidden="true" />}
 			</div>
 
+			<div
+				css={`
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					margin-top: 2rem;
+					> img,
+					> a {
+						margin: 0 0.4rem;
+						display: flex;
+						align-items: center;
+					}
+					> a {
+						height: 100%;
+					}
+				`}
+			>
+				<img
+					src="/images/marianne.svg"
+					alt="République Française"
+					css="width: 6rem; height: auto; margin-right: .6rem"
+					width="96"
+					height="86"
+				/>
+				<a href="https://ademe.fr" css="svg {width: 4rem !important}">
+					<LogoADEME />
+				</a>
+				<a href="https://datagir.ademe.fr">
+					<img
+						css="height: 3.4rem; width: auto;"
+						src="https://datagir.ademe.fr/logo.jpg"
+					/>
+				</a>
+				<a href="https://abc-transitionbascarbone.fr">
+					<img
+						css="width: 6rem; height: auto;margin-left: 1rem !important"
+						src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+						alt="Logo de l'Association pour la transition Bas Carbone"
+						width="86"
+						height="29"
+					/>
+				</a>
+			</div>
+
 			{!isIframe && <LandingExplanations />}
 
 			<LandingContent background footer>
@@ -172,15 +216,6 @@ export default () => {
 							/>
 							<a href="https://ademe.fr">
 								<LogoADEME />
-							</a>
-							<a href="https://abc-transitionbascarbone.fr">
-								<img
-									css="width: 6rem; height: auto;margin-left: 1rem !important"
-									src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
-									alt="Logo de l'Association pour la transition Bas Carbone"
-									width="86"
-									height="29"
-								/>
 							</a>
 						</div>
 					)}
