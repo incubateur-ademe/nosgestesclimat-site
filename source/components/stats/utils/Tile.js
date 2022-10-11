@@ -65,7 +65,6 @@ export default function Tile(props) {
 Tile.Wrapper = styled.div`
 	display: flex;
 	flex-wrap: wrap;
-	margin: 0 -0.5rem;
 `
 Tile.Tile = TileWrapper
 Tile.Content = Content

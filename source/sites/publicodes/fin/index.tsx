@@ -1,15 +1,14 @@
-import { goToQuestion } from 'Actions/actions'
+import { Link } from 'Components/Link'
 import animate from 'Components/ui/animate'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'Components/Link'
+import { useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
-import { last } from 'Source/utils'
 import SlidesLayout from '../../../components/SlidesLayout'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
-import { useSearchParams } from 'react-router-dom'
 import { arrayLoopIteration } from '../../../utils'
 import HorizontalSwipe from '../HorizontalSwipe'
 import ActionSlide from './ActionSlide'
@@ -17,11 +16,10 @@ import Budget from './Budget'
 import Catégories from './Catégories'
 import IframeDataShareModal from './IframeDataShareModal'
 import Petrogaz from './Petrogaz'
-import { Trans } from 'react-i18next'
 const { encodeRuleName } = utils
 
 // details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
-const rehydrateDetails = (encodedDetails) =>
+export const rehydrateDetails = (encodedDetails) =>
 	encodedDetails &&
 	encodedDetails
 		.match(/[a-z][0-9]+\.[0-9][0-9]/g)
@@ -32,7 +30,7 @@ const rehydrateDetails = (encodedDetails) =>
 			category === 'b' ? ['d', ...rest] : [category, ...rest]
 		)
 
-const sumFromDetails = (details) =>
+export const sumFromDetails = (details) =>
 	details.reduce((memo, [name, value]) => memo + value, 0)
 
 export default ({}) => {
@@ -89,13 +87,7 @@ export default ({}) => {
 	return (
 		<div>
 			<IframeDataShareModal data={rehydratedDetails} />
-			<Link
-				to="/simulateur/bilan"
-				css="display: block; text-align: center"
-				onClick={() => {
-					dispatch(goToQuestion(last(answeredQuestions)))
-				}}
-			>
+			<Link to="/simulateur/bilan" css="display: block; text-align: center">
 				{!answeredQuestions.length ? (
 					<button class="ui__ button plain cta">
 						{' '}

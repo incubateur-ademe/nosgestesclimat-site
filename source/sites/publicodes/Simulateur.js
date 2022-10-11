@@ -1,5 +1,5 @@
 import { setSimulationConfig } from 'Actions/actions'
-import { useParams, useLocation } from 'react-router-dom'
+import { Link } from 'Components/Link'
 import { extractCategories } from 'Components/publicodesUtils'
 import { buildEndURL } from 'Components/SessionBar'
 import Simulation from 'Components/Simulation'
@@ -8,15 +8,16 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
+import { useLocation, useParams } from 'react-router-dom'
 import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import BandeauContribuer from './BandeauContribuer'
+import InlineCategoryChart from './chart/InlineCategoryChart'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
-import InlineCategoryChart from './chart/InlineCategoryChart'
-import { Trans } from 'react-i18next'
 
 const equivalentTargetArrays = (array1, array2) =>
 	array1.length === array2.length &&
@@ -71,7 +72,7 @@ const Simulateur = () => {
 					orderByCategories={categories}
 					customEnd={
 						isMainSimulation ? (
-							<RedirectionToEndPage {...{ rules, engine }} />
+							<MainSimulationEnding {...{ rules, engine }} />
 						) : rule.description ? (
 							<Markdown children={rule.description} />
 						) : (
@@ -97,10 +98,41 @@ const TutorialRedirection = () => {
 	return <Navigate to="/tutoriel" replace />
 }
 
-const RedirectionToEndPage = ({ rules, engine }) => {
+const MainSimulationEnding = ({ rules, engine }) => {
 	// Necessary to call 'buildEndURL' with the latest situation
 
-	return <Navigate to={buildEndURL(rules, engine)} replace />
+	return (
+		<div
+			css={`
+				img {
+					width: 8rem;
+					height: auto;
+				}
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 1rem;
+			`}
+		>
+			<img
+				src="/images/glowing-ngc-star.svg"
+				width="100"
+				height="100"
+				aria-hidden="true"
+			/>
+			<p>
+				<Trans>Vous avez terminé le test 👏</Trans>
+			</p>
+			<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
+				<Trans>Voir mon résultat</Trans>
+			</Link>
+			<Trans>ou</Trans>
+			<Link to="/profil" css="">
+				<Trans>Modifier mes réponses</Trans>
+			</Link>
+		</div>
+	)
 }
 
 export default Simulateur

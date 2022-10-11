@@ -124,10 +124,24 @@ export const useReference = () =>
 		(res) => res.data
 	)
 
+export const useEntryPages = () =>
+	useX(
+		'entryPages',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&expanded=1&filter_limit=1000`,
+		(res) => res.data
+	)
+
+export const useActiveEntryPages = () =>
+	useX(
+		'activeEntryPages',
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000&segment=eventAction%3D%3DClic%252520CTA%252520accueil`,
+		(res) => res.data
+	)
+
 export const usePages = () =>
 	useX(
 		'pages',
-		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getEntryPageUrls&filter_limit=1000`,
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=Actions.getPageUrls&filter_limit=-1`,
 		(res) => res.data
 	)
 

@@ -1,7 +1,7 @@
-import styled from 'styled-components'
-import { range } from 'ramda'
 import { motion } from 'framer-motion'
+import { range } from 'ramda'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import styled from 'styled-components'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 
 const delayPerPixel = 0.0025

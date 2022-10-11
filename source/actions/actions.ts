@@ -56,9 +56,13 @@ export const resetActionChoices = () =>
 	({
 		type: 'RESET_ACTION_CHOICES',
 	} as const)
-export const resetTutorials = () =>
+export const resetIntroTutorial = () =>
 	({
-		type: 'RESET_TUTORIALS',
+		type: 'RESET_INTRO_TUTORIAL',
+	} as const)
+export const resetCategoryTutorials = () =>
+	({
+		type: 'RESET_CATEGORY_TUTORIALS',
 	} as const)
 export const resetStoredTrajets = () =>
 	({

@@ -9,11 +9,11 @@ import {
 	Tooltip,
 	ResponsiveContainer,
 } from 'recharts'
-
 import {
 	getLangInfos,
 	getLangFromAbreviation,
 } from '../../../locales/translation.ts'
+import { useChart } from '../matomo'
 import Search from './chart/Search'
 import CustomTooltip from './chart/CustomTooltip'
 
@@ -34,28 +34,40 @@ const ChartWrapper = styled.div`
 	height: 22rem;
 `
 export default function AreaWeekly(props) {
-	const [data, setData] = useState(null)
-	useEffect(() => {
-		let dates = Object.keys(props.chart)
-		dates.length--
-		setData(
-			dates.map((date) => {
-				let points = { date }
-				points['Visiteurs'] = props.chart[date]
-				return points
-			})
-		)
-	}, [props.chart, props.sites])
 	const { i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	return data ? (
+	const [chartDate, setChartDate] = useState('12')
+	const [chartPeriod, setChartPeriod] = useState('week')
+
+	const { data: chart } = useChart({
+		chartDate: Number(chartDate) + 1,
+		chartPeriod,
+	})
+
+	const [data, setData] = useState(null)
+
+	useEffect(() => {
+		if (chart) {
+			let dates = Object.keys(chart)
+			dates.length--
+			setData(
+				dates.map((date) => {
+					let points = { date }
+					points['Visiteurs'] = chart[date]
+					return points
+				})
+			)
+		}
+	}, [chart])
+
+	return chart && data ? (
 		<Wrapper>
 			<Search
-				period={props.period}
-				date={props.date}
-				setPeriod={props.setPeriod}
-				setDate={props.setDate}
+				period={chartPeriod}
+				date={chartDate}
+				setPeriod={setChartPeriod}
+				setDate={setChartDate}
 			/>
 			<ChartWrapper>
 				<ResponsiveContainer>
@@ -80,10 +92,10 @@ export default function AreaWeekly(props) {
 						/>
 						<YAxis
 							tickFormatter={(tick) =>
-								tick.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')
+								tick.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
 							}
 						/>
-						<Tooltip content={<CustomTooltip period={props.period} />} />
+						<Tooltip content={<CustomTooltip period={chartPeriod} />} />
 						<Area
 							type="monotone"
 							dataKey={'Visiteurs'}

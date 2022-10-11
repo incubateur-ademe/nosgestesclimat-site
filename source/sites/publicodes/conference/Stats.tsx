@@ -1,16 +1,16 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import Progress from '../../../components/ui/Progress'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 import { WithEngine } from '../../../RulesProvider'
 import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
-import { useTranslation, Trans } from 'react-i18next'
-import {
-	getLangFromAbreviation,
-	getLangInfos,
-} from '../../../locales/translation'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -101,7 +101,7 @@ export default ({
 							<Trans>Moyenne</Trans> : {humanMean}{' '}
 						</span>
 						<small title={t('Moyenne française')}>
-							({emoji('🇫🇷')} <DefaultFootprint />)
+							(🇫🇷 <DefaultFootprint />)
 						</small>
 					</div>
 				</div>
@@ -143,8 +143,10 @@ export default ({
 										`
 											: ''}
 									`}
-									title={`${username} : ${formatTotal(value)} t`}
-									aria-label={`${username} : ${formatTotal(value)} t`}
+									title={`${username} : ${humanWeight(value, true).join(' ')}`}
+									aria-label={`${username} : ${humanWeight(value, true).join(
+										' '
+									)}`}
 									role="button"
 									onClick={() => setSpotlight(username)}
 									aria-pressed={spotlight === username}
@@ -168,10 +170,14 @@ export default ({
 							<div>
 								{spotlight === currentUser ? (
 									<span>
-										<span role="status" css="background: #fff45f;">
-											En jaune
-										</span>{' '}
-										: ma simulation à {spotlightValue} t.
+										<Trans
+											i18nKey={'site.publicodes.conferences.Stats.explication1'}
+										>
+											<span role="status" css="background: #fff45f;">
+												En jaune
+											</span>{' '}
+											: ma simulation à {{ spotlightValue }} t.
+										</Trans>
 									</span>
 								) : (
 									<button

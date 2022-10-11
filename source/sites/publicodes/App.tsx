@@ -32,6 +32,7 @@ import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import { useSelector } from 'react-redux'
+import useMediaQuery from '../../components/utils/useMediaQuery'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
@@ -87,14 +88,29 @@ export default function Root({}) {
 		</Provider>
 	)
 }
+
+export const isFluidLayout = (encodedPathname) => {
+	const pathname = decodeURIComponent(encodedPathname)
+
+	return (
+		pathname === '/' ||
+		pathname.startsWith('/nouveautés') ||
+		pathname.startsWith('/documentation')
+	)
+}
+
 const Main = ({}) => {
 	const location = useLocation()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
+
 	const tracker = useContext(TrackerContext)
 	const { i18n } = useTranslation()
 	const currentLangState = useSelector((state) => state.currentLang)
+
 	const [searchParams] = useSearchParams()
+
+	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {
 		tracker.track(location)
@@ -108,6 +124,8 @@ const Main = ({}) => {
 		)
 	}, [location, currentLangState, searchParams])
 
+	const fluidLayout = isFluidLayout(location.pathname)
+
 	return (
 		<div
 			css={`
@@ -118,16 +136,16 @@ const Main = ({}) => {
 				}
 
 				@media (min-width: 1200px) {
-					${!isHomePage &&
+					${!fluidLayout &&
 					`
 						transform: translateX(-4vw);
 						`}
 				}
-				${!isHomePage && !isTuto && sessionBarMargin}
+				${!fluidLayout && !isTuto && sessionBarMargin}
 			`}
-			className={isHomePage ? '' : 'ui__ container'}
+			className={fluidLayout ? '' : 'ui__ container'}
 		>
-			<Navigation isHomePage={isHomePage} />
+			<Navigation fluidLayout={fluidLayout} />
 			<main
 				tabIndex="0"
 				id="mainContent"
@@ -142,38 +160,18 @@ const Main = ({}) => {
 			>
 				{!isHomePage && !isTuto && <LocalisationMessage />}
 
-				{isHomePage && (
+				{fluidLayout && (
 					<div
 						css={`
-							display: flex;
-							align-items: center;
-							justify-content: left;
-							max-width: 30rem;
 							margin: 0 auto;
-							> img,
-							> a {
-								margin: 0 0.3rem;
-							}
-							a:last-child {
-								margin-left: 1rem;
-							}
 							@media (max-width: 800px) {
 								margin-top: 0.6rem;
 							}
+							@media (min-width: 1200px) {
+							}
 						`}
 					>
-						<img
-							src="/images/marianne.svg"
-							alt="République Française"
-							css="width: 6rem; height: auto; margin-right: .6rem"
-							width="96"
-							height="86"
-						/>
-						<a href="https://ademe.fr" css="svg {width: 3.6rem !important}">
-							<LogoADEME />
-						</a>
-
-						<Logo showText />
+						<Logo showText size={largeScreen ? 'large' : 'medium'} />
 					</div>
 				)}
 				<Router />

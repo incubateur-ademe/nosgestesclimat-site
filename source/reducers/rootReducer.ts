@@ -2,7 +2,7 @@ import { Action } from 'Actions/actions'
 import { omit } from 'Source/utils'
 
 import reduceReducers from 'reduce-reducers'
-import { CombinedState, combineReducers, Reducer } from 'redux'
+import { combineReducers, Reducer } from 'redux'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import storageRootReducer from './storageReducer'
@@ -205,11 +205,23 @@ function conference(state = null, { type, room, ydoc, provider }) {
 	} else return state
 }
 
+//Tutorials are the main tutorial for the /simulateur/bilan simulation,
+//but also the small category pages displayed before starting the category, as a pause for the user
 function tutorials(state = {}, { type, id, unskip }) {
 	if (type === 'SKIP_TUTORIAL') {
 		return { ...state, [id]: unskip ? undefined : 'skip' }
-	} else if (type === 'RESET_TUTORIALS') {
-		return {}
+	} else if (type === 'RESET_INTRO_TUTORIAL') {
+		return Object.fromEntries(
+			Object.entries(state)
+				.map(([k, v]) => (k.includes('testIntro') ? null : [k, v]))
+				.filter(Boolean)
+		)
+	} else if (type === 'RESET_CATEGORY_TUTORIALS') {
+		return Object.fromEntries(
+			Object.entries(state)
+				.map(([k, v]) => (k.includes('testCategory') ? null : [k, v]))
+				.filter(Boolean)
+		)
 	} else return state
 }
 

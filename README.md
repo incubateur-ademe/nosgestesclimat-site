@@ -16,9 +16,13 @@ C'est un un _fork_ d'un outil de vulgarisation de l'empreinte climat [futur.eco]
 
 Le code est en Javascript / Typescript / React / styled-components / Webpack, Yjs, entre autres.
 
-### 🇬🇧 Installation
+### 🇬🇧Installation
 
-You need to clone another repo, https://github.com/datagir/nosgestesclimat, in the same directory than this one. The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly.
+The footprint model is stored in the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) `nosgestesclimat/` pointing to the corresponding GitHub [repository](https://github.com/datagir/nosgestesclimat).
+
+Consequently, to fetch all the data you need to provide the `--recursive` flag when cloning this repository or if it's already cloned you need to run `git submodule update --init --recursive`.
+
+The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly.
 
 > The production version fetches the JSON compiled YAML rules deployed by datagir/nosgestesclimat.
 

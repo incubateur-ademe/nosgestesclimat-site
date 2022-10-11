@@ -1,7 +1,9 @@
 import { useTranslation } from 'react-i18next'
+import { Link } from 'Components/Link'
 
 export default ({ children, last, skip }) => {
 	const { t } = useTranslation()
+
 	return (
 		<div
 			className="ui__ card light colored content"
@@ -29,14 +31,19 @@ export default ({ children, last, skip }) => {
 					display: flex;
 					justify-content: center;
 					margin: 2rem 0 0.6rem;
+					> a {
+						text-decoration: none;
+					}
 				`}
 			>
-				<button
-					className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
-					onClick={() => skip('testIntro')}
-				>
-					{!last ? t('Passer le tutoriel') : t("C'est parti !")}
-				</button>
+				<Link to="/simulateur/bilan">
+					<button
+						className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
+						onClick={() => skip('testIntro')}
+					>
+						{!last ? t('Passer le tutoriel') : t("C'est parti !")}
+					</button>
+				</Link>
 			</div>
 		</div>
 	)

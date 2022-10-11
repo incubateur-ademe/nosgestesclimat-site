@@ -125,8 +125,7 @@ export const PersonaGrid = ({
 	useEffect(() => {
 		if (!branchData.loaded) return
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
-			const personas =
-				require('../../../../nosgestesclimat/personas.yaml').default
+			const personas = require('../../../nosgestesclimat/personas.yaml').default
 
 			setData(personas)
 		} else {
@@ -160,7 +159,7 @@ export const PersonaGrid = ({
 				// the schema of peronas is not fixed yet
 				situation: data.situation || data,
 				persona: nom,
-				foldedSteps: data.foldedSteps || defaultMissingVariables, // If not specified, act as if all questions were answered : all that is not in the situation object is a validated default value
+				foldedSteps: defaultMissingVariables, // If not specified, act as if all questions were answered : all that is not in the situation object is a validated default value
 			})
 		)
 	}

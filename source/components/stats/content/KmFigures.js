@@ -7,12 +7,19 @@ import {
 } from '../../../locales/translation'
 import Tile from '../utils/Tile'
 
-const StyledTile = styled(Tile.Wrapper)`
-	> div {
+const FigureWrapper = styled.div`
+	width: 100%;
+	text-align: center;
+	padding-top: 0rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+`
+
+const TileWrapper = styled(Tile.Tile)`
+	width: 100%;
+	@media screen and (max-width: ${1200}px) {
 		width: 50%;
-		/* @media screen and (max-width: ${1200}px) {
-			width: 100%;
-		} */
 	}
 `
 
@@ -37,8 +44,8 @@ export default function KmFigures(props) {
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
 	return (
-		<StyledTile>
-			<Tile.Tile>
+		<FigureWrapper>
+			<TileWrapper>
 				<Tile.Content>
 					<Number>
 						{' '}
@@ -49,15 +56,15 @@ export default function KmFigures(props) {
 					</Number>
 					<Label>{t(`ont utilisé l'aide à la saisie des km`)}</Label>
 				</Tile.Content>
-			</Tile.Tile>
-			<Tile.Tile>
+			</TileWrapper>
+			<TileWrapper>
 				<Tile.Content>
 					<Number>
 						{Math.round(ridesavg).toLocaleString(currentLangInfos.abrvLocale)}
 					</Number>
 					<Label>{t(`trajets saisis en moyenne`)}</Label>
 				</Tile.Content>
-			</Tile.Tile>
-		</StyledTile>
+			</TileWrapper>
+		</FigureWrapper>
 	)
 }

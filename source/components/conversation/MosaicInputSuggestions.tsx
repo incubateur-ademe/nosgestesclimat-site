@@ -1,5 +1,4 @@
 import { ASTNode } from 'publicodes'
-import { toPairs } from 'ramda'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -15,10 +14,20 @@ export default function MosaicInputSuggestions({
 	mosaicType,
 	dottedName,
 	relatedRuleNames,
-	suggestions = {},
+	suggestions: rawSuggestions = {},
 }: InputSuggestionsProps) {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
+
+	const suggestNothing =
+		mosaicType === 'selection' &&
+		!Object.values(rawSuggestions).includes('aucun') &&
+		!Object.values(rawSuggestions)
+			.map((elt) => Object.values(elt).every((bool) => bool === 'non'))
+			.some((bool) => bool === true)
+
+	const automaticSuggestions = suggestNothing ? { aucun: 'aucun' } : {}
+	const suggestions = { ...rawSuggestions, ...automaticSuggestions }
 
 	return (
 		<div
@@ -43,7 +52,7 @@ export default function MosaicInputSuggestions({
 				}
 			`}
 		>
-			{toPairs(suggestions).map(([text, values]: [string, ASTNode]) => {
+			{Object.entries(suggestions).map(([text, values]: [string, ASTNode]) => {
 				return (
 					<button
 						className="ui__ suggestion plain button"
@@ -61,10 +70,14 @@ export default function MosaicInputSuggestions({
 									updateSituation(elt, mosaicType === 'selection' ? 'non' : 0)
 								)
 							)
-							if (Object.values(values).every((bool) => bool === 'non'))
+
+							if (
+								Object.values(values).every((bool) => bool === 'non') ||
+								String(values) === 'aucun'
+							)
 								dispatch(updateSituation(dottedName, 0))
 							else
-								toPairs(values).forEach(
+								Object.entries(values).forEach(
 									([ruleName, value]: [string, ASTNode]) => {
 										const fullDottedName = `${dottedName} . ${ruleName}`
 										const card = document.getElementById(

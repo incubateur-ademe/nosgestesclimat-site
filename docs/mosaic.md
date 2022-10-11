@@ -23,10 +23,10 @@ a:
         type: selection
         clé: présent
         suggestions:
-        tout:
-            café . nombre: oui
-            thé . nombre: oui
-        rien: aucun choix
+            tout:
+                café . nombre: oui
+                thé . nombre: oui
+            aucun: aucun
     formule:
         somme:
             - b

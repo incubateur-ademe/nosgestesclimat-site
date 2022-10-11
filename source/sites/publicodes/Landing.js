@@ -1,9 +1,12 @@
 import Illustration from 'Components/AnimatedIllustration'
+import LangSwitcher from 'Components/LangSwitcher'
+import { Link } from 'Components/Link'
 import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
 import { useContext } from 'react'
-import { Link } from 'Components/Link'
+import { Trans, useTranslation } from 'react-i18next'
 import NewsBanner from '../../components/NewsBanner'
+import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Meta from '../../components/utils/Meta'
@@ -13,8 +16,6 @@ import DocumentationButton from './DocumentationButton'
 import LandingContent from './LandingContent'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
-import { useTranslation, Trans } from 'react-i18next'
-import LangSwitcher from 'Components/LangSwitcher'
 
 const fluidLayoutMinWidth = '1200px'
 
@@ -79,7 +80,7 @@ export default () => {
 					css={`
 						display: flex;
 						flex-direction: column;
-						max-width: 30rem;
+						max-width: 35rem;
 					`}
 				>
 					<h1>
@@ -98,12 +99,19 @@ export default () => {
 								margin-top: 1rem;
 								> a {
 									margin: 0.6rem 1rem 0.6rem 0 !important;
+									display: inline-flex !important;
+									align-items: center !important;
+									> svg,
+									img {
+										margin-right: 0.4rem;
+									}
 								}
 							`}
 						>
 							<Link
 								to="/simulateur/bilan"
 								className="ui__ plain button cta"
+								css={``}
 								onClick={() =>
 									tracker.push([
 										'trackEvent',
@@ -113,7 +121,10 @@ export default () => {
 									])
 								}
 							>
-								<Trans>▶️ Faire le test</Trans>
+								<CircleSVG progress={0} white />
+								<span>
+									<Trans>Faire le test</Trans>
+								</span>
 							</Link>
 							<Link
 								to="/groupe"
@@ -127,15 +138,70 @@ export default () => {
 									])
 								}
 							>
-								<Trans>👥 En groupe</Trans>
+								<img
+									src="/images/silhouettes.svg"
+									width="100"
+									height="100"
+									css="width: 2rem; height: auto"
+								/>
+								<span>
+									<Trans>En groupe</Trans>
+								</span>
 							</Link>
+							<ProfileLink />
 						</div>
 						<NewsBanner />
 					</div>
 				</div>
 				{!mobile && <Illustration aira-hidden="true" />}
 			</div>
-			<ProfileLink />
+
+			<div
+				css={`
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					flex-wrap: wrap;
+					max-width: 70%;
+					margin-top: 1rem;
+					> img,
+					> a {
+						margin: 1rem 0.4rem;
+						display: flex;
+						align-items: center;
+					}
+					> a {
+						height: 100%;
+					}
+				`}
+			>
+				<img
+					src="/images/marianne.svg"
+					alt="République Française"
+					css="width: 6rem; height: auto; margin-right: .6rem"
+					width="96"
+					height="86"
+				/>
+				<a href="https://ademe.fr" css="svg {width: 4rem !important}">
+					<LogoADEME />
+				</a>
+				<a href="https://datagir.ademe.fr">
+					<img
+						css="height: 3.4rem; width: auto;"
+						src="https://datagir.ademe.fr/logo.jpg"
+					/>
+				</a>
+				<a href="https://abc-transitionbascarbone.fr">
+					<img
+						css="width: 6rem; height: auto;margin-left: 1rem !important"
+						src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
+						alt="Logo de l'Association pour la transition Bas Carbone"
+						width="86"
+						height="29"
+					/>
+				</a>
+			</div>
+
 			{!isIframe && <LandingExplanations />}
 
 			<LandingContent background footer>
@@ -147,31 +213,39 @@ export default () => {
 								display: flex;
 								align-items: center;
 								justify-content: center;
-								margin-bottom: 1rem;
+								flex-wrap: wrap;
+								margin: 1rem;
 								img {
 									margin: 0 0.6rem;
 								}
 							`}
 						>
 							<img
-								src="/images/marianne.svg"
-								alt="République Française"
-								css="width: 7.5rem; height: auto; margin-right: .6rem"
+								src="/images/logo-france-relance.svg"
+								alt="Logo de France Relance"
+								css="width: 5rem; height: auto; margin-right: .6rem"
 								width="96"
 								height="86"
 							/>
-							<a href="https://ademe.fr">
-								<LogoADEME />
-							</a>
-							<a href="https://abc-transitionbascarbone.fr">
+
+							<div
+								css={`
+									display: flex;
+									align-items: center;
+									flex-direction: column;
+									font-size: 90%;
+									font-weight: bold;
+								`}
+							>
 								<img
-									css="width: 6rem; height: auto;margin-left: 1rem !important"
-									src="https://abc-transitionbascarbone.fr/wp-content/uploads/2022/02/logo-ABC-web.png"
-									alt="Logo de l'Association pour la transition Bas Carbone"
-									width="86"
-									height="29"
+									src="/images/union-européenne.svg"
+									alt="Logo de l'Union Européenne"
+									css="width: 5rem; height: auto; margin-right: .6rem;"
+									width="96"
+									height="86"
 								/>
-							</a>
+								<span>NextGenerationEU</span>
+							</div>
 						</div>
 					)}
 					<div
@@ -232,28 +306,38 @@ const ProfileLink = () => {
 	}
 
 	return (
-		<animate.fromTop delay="1">
+		<animate.appear delay="1">
 			<div
 				css={`
-					button {
-						padding: 0 0.2rem !important;
-						border-radius: 1rem !important;
-					}
+					display: flex;
+					justify-content: center;
+					margin-top: 1rem;
 				`}
 			>
 				<Link
 					to="/profil"
 					title={t('Page profil')}
-					className="ui__ button plain small"
-					css="border-radius: 2rem !important"
+					css={`
+						width: 18rem !important;
+						border-radius: 2rem !important;
+						display: flex !important;
+						align-items: center !important;
+					`}
 				>
 					<img
 						aria-hidden="true"
 						src={openmojiURL('profile')}
-						css="width: 2rem"
+						css="width: 1.5rem"
 					/>
+					<span
+						css={`
+							margin-left: 0.5rem;
+						`}
+					>
+						<Trans>Retrouver ma simulation</Trans>
+					</span>
 				</Link>
 			</div>
-		</animate.fromTop>
+		</animate.appear>
 	)
 }

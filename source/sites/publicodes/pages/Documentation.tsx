@@ -46,12 +46,19 @@ export default function () {
 	}
 
 	return (
-		<div>
+		<div
+			css={`
+				@media (min-width: 800px) {
+					max-width: 80%;
+				}
+
+				margin: 0 auto;
+			`}
+		>
 			<ScrollToTop key={pathname} />
 			<div
 				css={`
 					display: flex;
-					margin-top: 2rem;
 					justify-content: space-between;
 				`}
 			>
@@ -112,7 +119,7 @@ function BackToSimulation() {
 function DocumentationLanding() {
 	const { t } = useTranslation()
 	return (
-		<>
+		<div className="ui__ container">
 			<Meta
 				title={t('Comprendre nos calculs')}
 				description={t('meta.publicodes.pages.Documentation.description')}
@@ -122,13 +129,11 @@ function DocumentationLanding() {
 				<Trans>Explorer notre documentation</Trans>
 			</h2>
 			<SearchBar showListByDefault={true} />
-		</>
+		</div>
 	)
 }
 
 export const DocumentationStyle = styled.div`
-	max-width: 850px;
-	margin: 0 auto;
 	padding: 0 0.6rem;
 	#documentationRuleRoot > p:first-of-type {
 		display: inline-block;
@@ -165,5 +170,13 @@ export const DocumentationStyle = styled.div`
 	}
 	small {
 		background: none !important;
+	}
+	li {
+		&.active .content {
+			background-color: transparent !important;
+			a:hover {
+				color: white !important;
+			}
+		}
 	}
 `

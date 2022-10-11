@@ -48,7 +48,7 @@ export default function CustomTooltip(props) {
 			<Number>
 				{props.payload[0].value
 					.toString()
-					.replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
+					.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}{' '}
 			</Number>
 			{props.naming || t('visites')}
 		</Wrapper>

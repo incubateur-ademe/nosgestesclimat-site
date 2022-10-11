@@ -1,6 +1,7 @@
 import AbacusFrance from 'Images/abacus-france.svg'
 import CO2e from 'Images/co2e.svg'
 import ObjectifClimat from 'Images/objectif-climat.svg'
+import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'Components/Link'
 import { skipTutorial } from '../../actions/actions'
@@ -9,16 +10,16 @@ import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import { Navigate } from 'react-router'
-import { useContext, useEffect } from 'react'
 import { TrackerContext } from '../../components/utils/withTracker'
 import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
 import { Trans } from 'react-i18next'
 import { WithEngine } from '../../RulesProvider'
+import DefaultFootprint from './DefaultFootprint'
 
 export default ({}) => {
+	const navigate = useNavigate()
 	const tutorials = useSelector((state) => state.tutorials)
 	const thenRedirectTo = useSelector((state) => state.thenRedirectTo)
 
@@ -38,6 +39,9 @@ export default ({}) => {
 			])
 
 			skip(last ? 'testIntro' : 'testIntro' + index)
+			if (last) {
+				navigate('/simulateur/bilan')
+			}
 		},
 		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
@@ -54,9 +58,6 @@ export default ({}) => {
 		if (Object.keys(tutorials).includes('testIntro5'))
 			dispatch(skipTutorial('testIntro'))
 	}, [tutorials])
-
-	if (tutorials['testIntro'])
-		return <Navigate to={thenRedirectTo || '/simulateur/bilan'} replace />
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we avoid an error
@@ -234,9 +235,10 @@ const slides = [
 					Le point de départ de votre test Nos Gestes Climat est un résultat
 					calculé à partir de valeurs moyennes Françaises attribuées à chaque
 					question. Ce score initial est à prendre comme un minimum, qui
-					commence par défaut à ~8 tonnes de CO₂e en l'état actuel du périmètre
-					de calcul qui évolue selon les améliorations du modèle. Vos réponses
-					viendront ensuite affiner cette empreinte dans la barre de score.
+					commence par défaut à ~ <DefaultFootprint /> de CO₂e en l'état actuel
+					du périmètre de calcul qui évolue selon les améliorations du modèle.
+					Vos réponses viendront ensuite affiner cette empreinte dans la barre
+					de score.
 				</Trans>
 			</p>
 			<div css="margin: 1rem 0">

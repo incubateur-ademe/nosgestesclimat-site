@@ -1,14 +1,14 @@
 {
 	"name": "nosgestesclimat-site",
 	"license": "MIT",
-	"version": "2.2.0",
+	"version": "2.3.0",
 	"description": "The leading open source climate footprint calculator",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/datagir/nosgestesclimat-site.git"
 	},
 	"engines": {
-		"node": ">=16"
+		"node": ">=18"
 	},
 	"browserslist": [
 		"> 1% in FR",
@@ -95,8 +95,8 @@
 		"mini-css-extract-plugin": "^2.6.1",
 		"path-browserify": "^1.0.1",
 		"process": "^0.11.10",
-		"publicodes": "^1.0.0-beta.47",
-		"publicodes-react": "^1.0.0-beta.47",
+		"publicodes": "^1.0.0-beta.55",
+		"publicodes-react": "^1.0.0-beta.55",
 		"puppeteer-core": "^15.3.0",
 		"qrcode.react": "^3.1.0",
 		"ramda": "^0.28.0",
@@ -110,7 +110,7 @@
 		"react-query": "^3.39.1",
 		"react-redux": "^8.0.2",
 		"react-refresh": "^0.14.0",
-		"react-router-dom": "6",
+		"react-router-dom": "6.3.0",
 		"react-signature-pad-wrapper": "^3.2.0",
 		"recharts": "^2.1.12",
 		"reduce-reducers": "^1.0.4",
@@ -120,7 +120,7 @@
 		"remark-footnotes": "^4.0.1",
 		"reselect": "^4.1.6",
 		"socket.io-client": "^4.5.1",
-		"styled-components": "^5.3.5",
+		"styled-components": "^5.3.6",
 		"tinygradient": "^1.1.5",
 		"translation-check": "^1.0.2",
 		"twemoji": "^14.0.2",
@@ -134,8 +134,6 @@
 		"yjs": "^13.5.39"
 	},
 	"resolutions": {
-		"publicodes-react/react": "^18.1.0",
-		"publicodes-react/react-dom": "^18.1.0",
 		"styled-components": "^5"
 	},
 	"scripts": {
