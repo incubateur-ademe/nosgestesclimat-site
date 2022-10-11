@@ -5993,6 +5993,11 @@ node-gyp-build@~4.1.0:
   resolved "https://registry.npmjs.org/node-gyp-build/-/node-gyp-build-4.1.1.tgz"
   integrity sha512-dSq1xmcPDKPZ2EED2S6zw/b9NKsqzXRE6dVr8TVQnI3FJOTteUMuqF3Qqs6LZg+mLGYJWqQzMbIjMtJqTv87nQ==
 
+node-pandoc-promise@^0.0.6:
+  version "0.0.6"
+  resolved "https://registry.yarnpkg.com/node-pandoc-promise/-/node-pandoc-promise-0.0.6.tgz#8410de8e42ed966d570ea730a3c9f731a4dc7a1d"
+  integrity sha512-3+8hezyBOaWqUWypHtfv8sPa0Yo0sE/KUvjLN1gm48wrwqG2B45fhgIU73H1adF33FXiXkPeTW3lw5cjicemdg==
+
 node-pandoc@^0.3.0:
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/node-pandoc/-/node-pandoc-0.3.0.tgz#d46577cd0a72af415353fcb8a0117adb6242f9c8"
