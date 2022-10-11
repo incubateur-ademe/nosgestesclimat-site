@@ -7,78 +7,58 @@
 	Command: yarn translate:md [options]
 */
 
-const cliProgress = require('cli-progress')
 const fs = require('fs')
 const glob = require('glob')
-const yargs = require('yargs')
-const pandoc = require('node-pandoc')
 
-const utils = require('./utils')
-const cli = require('./cli')
+const utils = require('../../nosgestesclimat/scripts/i18n/utils')
+const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 
-const { srcLang, destLangs, srcFile } = cli.getArgs(
+const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
+
+const { srcLang, destLangs, srcFile, force } = cli.getArgs(
 	`Calls the DeepL API to translate the Markdown files.
 
-	Important: this script requires the 'pandoc' executable to be installed.`
-)
-
-const progressBar = new cliProgress.SingleBar(
-	{
-		stopOnComplete: true,
-		clearOnComplete: true,
-		forceRedraw: true,
-		format: '{lang} | {value}/{total} | {bar} | {msg} ',
-	},
-	cliProgress.Presets.shades_grey
+	Important: this script requires the 'pandoc' executable to be installed.`,
+	{ remove: false }
 )
 
 const translateTo = async (src, destPath, destLang) => {
-	progressBar.update(progressBar.value, {
-		msg: `Translating to '${destPath}'...`,
-		lang: destLang,
-	})
-	const translation = await utils.fetchTranslation(
+	console.log(`Translating to ${yellow(destPath)}...`)
+	const translation = await utils.fetchTranslationMarkdown(
 		src,
 		srcLang.toUpperCase(),
-		destLang.toUpperCase(),
-		'html'
+		destLang.toUpperCase()
 	)
-	pandoc(
-		translation,
-		'-f html -t markdown_strict --atx-headers',
-		(err, result) => {
-			cli.exitIfError(err, progressBar)
-			fs.writeFileSync(destPath, result, 'utf8', { flag: 'w' })
-			progressBar.increment()
-		}
-	)
+	fs.writeFileSync(destPath, translation, 'utf8', { flag: 'w' })
 }
 
 console.log(
-	`Translating Markdown files from 'source/locales/pages/${srcLang}'...`
+	`Translating Markdown files from ${yellow(
+		`source/locales/pages/${srcLang}/${srcFile}`
+	)}...`
 )
 glob(`source/locales/pages/${srcLang}/${srcFile}`, (err, files) => {
 	cli.exitIfError(err, `ERROR: an error occured while fetching the files:`)
-
 	console.log(
 		`Found ${cli.withStyle(
 			cli.colors.fgGreen,
 			files.length
 		)} files to translate.`
 	)
-	progressBar.start(files.length * destLangs.length, 0)
 
 	files.forEach((file) => {
 		const src = fs.readFileSync(file, 'utf8')
-		pandoc(src, ['-f', 'markdown_strict', '-t', 'html'], (err, srcContent) => {
-			cli.exitIfError(
-				err,
-				`ERROR: an error occured while converting '${file}' to HTML:`,
-				progressBar
-			)
-			destLangs.forEach((destLang) => {
-				translateTo(srcContent, file.replace(srcLang, destLang), destLang)
-			})
+		destLangs.forEach((destLang) => {
+			const destPath = file.replace(srcLang, destLang)
+			if (!fs.existsSync(destPath) || force) {
+				translateTo(src, destPath, destLang)
+			} else {
+				console.log(
+					`The file ${yellow(destPath)} already exists, ${yellow(
+						'skipping'
+					)}... (use the -f to force the translation)`
+				)
+			}
 		})
 	})
 })
