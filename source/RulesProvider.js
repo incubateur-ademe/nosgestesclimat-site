@@ -11,11 +11,12 @@ import {
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
 import { useEffect, useMemo } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 
-import rulesFr from './locales/co2-fr.json'
 import rulesEn from './locales/co2-en-us.json'
+import rulesFr from './locales/co2-fr.json'
+import { getCurrentLangAbrv } from './locales/translation'
 
 /* This component gets the publicode rules from the good URL,
  * then gives them
@@ -33,6 +34,7 @@ import rulesEn from './locales/co2-en-us.json'
 
 export default ({ children }) => {
 	const { i18n } = useTranslation()
+	const currLangAbrv = getCurrentLangAbrv(i18n)
 	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
 
@@ -45,7 +47,7 @@ export default ({ children }) => {
 		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			console.log(
-				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
+				'===== DEV MODE : the model is on your hard drive on ./nosgestesclimat ======='
 			)
 			// // Rules are stored in nested yaml files
 			// const req = require.context(
@@ -65,7 +67,12 @@ export default ({ children }) => {
 				setRules(rulesFr, branchData.deployURL)
 			}
 		} else {
-			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
+			const url =
+				branchData.deployURL +
+				// TODO: find a better way to manage 'en'
+				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}.json`
+			console.log('fetching:', url)
+			fetch(url, { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
 					setRules(json, branchData.deployURL)
