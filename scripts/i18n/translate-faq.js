@@ -12,13 +12,11 @@ const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
 
 const { destLangs, force } = cli.getArgs(
 	`Calls the DeepL API to translate the FAQ Yaml files.`,
-	{ source: false, file: false, remove: false }
+	{ target: true, force: true }
 )
 
 const srcLang = utils.defaultLang
 const srcPath = path.resolve(`source/locales/faq/FAQ-${srcLang}.yaml`)
-
-console.log('srcPAth:', srcPath)
 
 const translateTo = async (srcYAML, destPath, destLang) => {
 	let targetEntries = utils.readYAML(destPath)

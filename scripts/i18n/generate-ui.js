@@ -7,15 +7,14 @@
 const fs = require('fs')
 const ramda = require('ramda')
 const child_process = require('child_process')
-const yaml = require('yaml')
-const stringify = require('json-stable-stringify')
 
 const utils = require('../../nosgestesclimat/scripts/i18n/utils')
 const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 const paths = require('./paths')
 
 const { remove } = cli.getArgs(
-	'Analyses the source code and extracts the corresponding i18next resource file.'
+	'Analyses the source code and extracts the corresponding i18next resource file.',
+	{ remove: true }
 )
 
 const red = (str) => cli.withStyle(cli.colors.fgRed, str)
@@ -57,18 +56,7 @@ try {
 }
 
 console.log('Adding missing entries...')
-
 const translationIsTheKey = (key) => !utils.isI18nKey(key)
-const valueAlreadyProvided = (key, value) => {
-	const res =
-		utils.isI18nKey(key) &&
-		value === 'NO_TRANSLATION' &&
-		oldFrResource[key] !== undefined
-	if (res) {
-		console.log('key:', key, 'value:', value)
-	}
-	return res
-}
 
 if (remove) {
 	console.log('Removing unused entries...')

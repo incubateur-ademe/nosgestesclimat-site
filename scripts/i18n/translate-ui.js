@@ -13,11 +13,7 @@ const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, force } = cli.getArgs(
 	`Calls the DeepL API to translate the UI from the French one.`,
-	{
-		file: false,
-		//NOTE: remove should be supported?
-		remove: false,
-	}
+	{ source: true, force: true, target: true }
 )
 
 const srcPath = paths.uiTranslationResource[srcLang]

@@ -19,7 +19,7 @@ const { srcLang, destLangs, srcFile, force } = cli.getArgs(
 	`Calls the DeepL API to translate the Markdown files.
 
 	Important: this script requires the 'pandoc' executable to be installed.`,
-	{ remove: false }
+	{ file: true, source: true, force: true, target: true }
 )
 
 const translateTo = async (src, destPath, destLang) => {

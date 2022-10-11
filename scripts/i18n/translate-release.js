@@ -9,12 +9,9 @@
 
 const cliProgress = require('cli-progress')
 const fs = require('fs')
-const yargs = require('yargs')
-const stringify = require('json-stable-stringify')
-const pandoc = require('node-pandoc')
 
-const utils = require('./utils')
-const cli = require('./cli')
+const utils = require('../../nosgestesclimat/scripts/i18n/utils')
+const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs } = cli.getArgs(
 	`Calls the DeepL API to translate the JSON release files.
