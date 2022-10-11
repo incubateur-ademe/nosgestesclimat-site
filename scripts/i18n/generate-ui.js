@@ -51,9 +51,7 @@ try {
 const staticAnalysedFrResource = require(paths.staticAnalysisFrRes)
 let oldFrResource
 try {
-	oldFrResource = yaml.parse(
-		fs.readFileSync(paths.uiTranslationResource.fr, 'utf8')
-	).entries
+	oldFrResource = utils.readYAML(paths.uiTranslationResource.fr).entries
 } catch (err) {
 	oldFrResource = {}
 }
@@ -112,16 +110,7 @@ if (remove) {
 
 console.log(`Writting resources in ${paths.uiTranslationResource.fr}...`)
 try {
-	fs.writeFileSync(
-		paths.uiTranslationResource.fr,
-		yaml.stringify(
-			{ entries: oldFrResource },
-			{
-				sortMapEntries: true,
-				blockQuote: 'literal',
-			}
-		)
-	)
+	utils.writeYAML(paths.uiTranslationResource.fr, { entries: oldFrResource })
 } catch (err) {
 	cli.printErr('ERROR: an error occured while writting!')
 	cli.printErr(err.message)

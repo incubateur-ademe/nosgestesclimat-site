@@ -86,16 +86,7 @@ const translateTo = (targetLang, targetPath) => {
 						translatedEntries[key + utils.LOCK_KEY_EXT] = value
 					}
 					//	TODO: add a way to write all the translations at once
-					fs.writeFileSync(
-						targetPath,
-						yaml.stringify(
-							{ entries: translatedEntries },
-							{
-								sortMapEntries: true,
-								blockQuote: 'literal',
-							}
-						)
-					)
+					utils.writeYAML(targetPath, { entries: translatedEntries })
 					bar.increment({
 						msg: `Translating '${value}'...`,
 						lang: targetLang,

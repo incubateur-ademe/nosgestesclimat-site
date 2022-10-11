@@ -4,59 +4,103 @@
 	Command: yarn translate:faq -- [options]
 */
 
-const cliProgress = require('cli-progress')
-const fs = require('fs')
-const glob = require('glob')
-const yargs = require('yargs')
-const yaml = require('yaml')
-const prettier = require('prettier')
-const R = require('ramda')
+const path = require('path')
+const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
+const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
-const utils = require('./utils')
-const cli = require('./cli')
+const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
 
-const { srcLang, destLangs } = cli.getArgs(
+const { destLangs } = cli.getArgs(
 	`Calls the DeepL API to translate the FAQ Yaml files.`
 )
 
-const srcPath = `source/locales/faq/FAQ-${srcLang}.yaml`
+const srcLang = utils.defaultLang
+const srcPath = path.resolve(`source/locales/faq/FAQ-${srcLang}.yaml`)
+
+console.log('srcPAth:', srcPath)
 
 const translateTo = async (srcYAML, destPath, destLang) => {
-	const destYAML = []
-	await Promise.all(
-		srcYAML.map(async (faqEntry) => {
-			const trans = await utils.fetchTranslation(
-				[faqEntry.question, faqEntry['catégorie'], faqEntry['réponse']],
-				srcLang,
-				destLang
-			)
-			faqEntry.question = trans[0]
-			faqEntry['catégorie'] = trans[1]
-			faqEntry['réponse'] = trans[2]
-			destYAML.push(faqEntry)
+	let targetEntries = utils.readYAML(destPath)
+
+	const getIndexOfId = (id) => {
+		return targetEntries.findIndex((entry) => {
+			const res = entry.id === id
+			return res
 		})
+	}
+
+	const targetEntryIsUpToDate = (src, target) =>
+		target !== undefined &&
+		Object.entries(src).every(
+			([key, val]) => key === 'id' || val === target[key + utils.LOCK_KEY_EXT]
+		)
+
+	const updateTargetEntries = (newTargetEntry, refId) => {
+		const oldTargetEntryIdx = getIndexOfId(refId)
+		if (-1 === oldTargetEntryIdx) {
+			targetEntries.push(newTargetEntry)
+		} else {
+			targetEntries[oldTargetEntryIdx] = newTargetEntry
+		}
+	}
+
+	const missingEntries = srcYAML.filter(
+		(refEntry) =>
+			!targetEntryIsUpToDate(refEntry, targetEntries[getIndexOfId(refEntry.id)])
 	)
 
-	const formattedYaml = prettier.format(
-		yaml.stringify(destYAML, { sortMapEntries: false }),
-		{
-			parser: 'yaml',
-		}
-	)
-	fs.writeFileSync(destPath, formattedYaml, { flag: 'w' })
+	if (0 < missingEntries.length) {
+		console.log(
+			`Found ${yellow(missingEntries.length)} missing translations...`
+		)
+		await Promise.all(
+			missingEntries.map(async (refEntry) => {
+				const [question, catégorie] = await utils.fetchTranslation(
+					[refEntry.question, refEntry['catégorie']],
+					srcLang,
+					destLang
+				)
+				const réponse = await utils.fetchTranslationMarkdown(
+					refEntry['réponse'],
+					srcLang,
+					destLang
+				)
+				const targetEntry = {
+					id: refEntry.id,
+					question,
+					catégorie,
+					réponse,
+				}
+				Object.entries(refEntry).forEach(([key, val]) => {
+					if (key !== 'id') {
+						targetEntry[key + utils.LOCK_KEY_EXT] = val
+					}
+				})
+				updateTargetEntries(targetEntry, refEntry.id)
+			})
+		)
+
+		utils.writeYAML(destPath, targetEntries)
+		console.log(
+			`All missing translations succefully written in ${yellow(destPath)}`
+		)
+	} else {
+		console.log('Nothing to be done, all translations are up to date!')
+	}
 }
 
-const srcYAML = yaml.parse(fs.readFileSync(srcPath, 'utf8'))
+const srcYAML = utils.readYAML(srcPath)
 
 const run = async () => {
 	for (targetLang of destLangs) {
 		console.log(
-			`Translating the FAQ files from '${srcLang}' to '${targetLang}'...`
+			`Translating the FAQ files from ${yellow(srcLang)} to ${yellow(
+				targetLang
+			)}...`
 		)
-		const destPath = `source/locales/faq/FAQ-${targetLang}.yaml`
+		const destPath = path.resolve(`source/locales/faq/FAQ-${targetLang}.yaml`)
 		await translateTo(srcYAML, destPath, targetLang)
 	}
 }
 
-cli.printWarn(`WARN: internal links must be translated manually.`)
 run()
