@@ -3,12 +3,12 @@
 
 	Command: yarn translate:release [options]
 
-	TODO:
-	- [ ] Needs to be tested with pandoc and the DeepL API.
+	FIXME: there is still some errors with the pandoc translation.
 */
 
 const cliProgress = require('cli-progress')
 const fs = require('fs')
+const stringify = require('json-stable-stringify')
 
 const utils = require('../../nosgestesclimat/scripts/i18n/utils')
 const cli = require('../../nosgestesclimat/scripts/i18n/cli')
@@ -16,7 +16,8 @@ const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 const { srcLang, destLangs } = cli.getArgs(
 	`Calls the DeepL API to translate the JSON release files.
 
-	Important: this script requires the 'pandoc' executable to be installed.`
+	Important: this script requires the 'pandoc' executable to be installed.`,
+	{ source: true, target: true }
 )
 
 const srcPath = `source/locales/releases/releases-${srcLang}.json`
@@ -39,30 +40,14 @@ const translateTo = async (srcJSON, destPath, destLang) => {
 				msg: `Translating '${release.name}'...`,
 				lang: destLang,
 			})
-			pandoc(
+			const translation = await utils.fetchTranslationMarkdown(
 				release.body,
-				['-f', 'markdown_strict', '-t', 'html'],
-				async (err, bodyHTML) => {
-					cli.exitIfError(err, progressBar)
-					console.log('bodyHTML:', bodyHTML)
-					const translation = await utils.fetchTranslation(
-						bodyHTML,
-						srcLang.toUpperCase(),
-						destLang.toUpperCase(),
-						'html'
-					)
-					release.body = pandoc(
-						translation,
-						['-f', 'html', '-t', 'markdown_strict', '--atx-headers'],
-						(err, bodyMarkdown) => {
-							console.log('bodyMarkdown:', bodyMarkdown)
-							cli.exitIfError(err, progressBar)
-							tradJSON.push(bodyMarkdown)
-							progressBar.increment()
-						}
-					)
-				}
+				srcLang.toUpperCase(),
+				destLang.toUpperCase()
 			)
+			release.body = translation
+			tradJSON.push(release)
+			progressBar.increment()
 		})
 	)
 	fs.writeFileSync(

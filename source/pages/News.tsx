@@ -1,7 +1,7 @@
 import { determinant } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import {
@@ -15,7 +15,7 @@ import styled from 'styled-components'
 import { localStorageKey } from '../components/NewsBanner'
 import Meta from '../components/utils/Meta'
 import { usePersistingState } from '../components/utils/persistState'
-import { getCurrentLangInfos } from '../locales/translation'
+import { getCurrentLangInfos, Release } from '../locales/translation'
 
 import lastRelease from '../data/last-release.json'
 
@@ -34,7 +34,10 @@ export default function News() {
 	const navigate = useNavigate()
 	const slug = useMatch(`${encodeURIComponent('nouveautés')}/:slug`)?.params
 		?.slug
-	const data = currentLangInfos.releases
+	const data = currentLangInfos.releases?.sort(
+		(r1: Release, r2: Release) =>
+			-1 * r1.published_at.localeCompare(r2.published_at)
+	)
 
 	useEffect(() => {
 		setLastViewedRelease(lastRelease.name)
@@ -46,16 +49,21 @@ export default function News() {
 
 	const selectedRelease = data.findIndex(({ name }) => slugify(name) === slug)
 
-	const getPath = (index: number) =>
-		`${'/nouveautés'}/${slugify(data[index].name)}`
+	console.log('selectedRelease: ', selectedRelease)
+
+	const getPath = (index: number) => {
+		return `${'/nouveautés'}/${slugify(data[index]?.name)}`
+	}
 
 	if (!slug || selectedRelease === -1) {
 		return <Navigate to={getPath(0)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
-	const body = data[selectedRelease].body,
-		image = body.match(/!\[.*?\]\((.*?)\)/)[1] || undefined
+	const body = data[selectedRelease].body
+
+	// FIXME: doesn't work anymore with the translation...
+	// image = body.match(/!\[.*?\]\((.*?)\)/)[1] || undefined
 
 	return (
 		<div
@@ -69,7 +77,7 @@ export default function News() {
 			<Meta
 				description={t('Découvrez les nouveautés de Nos Gestes Climat')}
 				title={t(`Nouveautés - version `) + releaseName}
-				image={image}
+				// image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
 			<h1>
@@ -89,6 +97,8 @@ export default function News() {
 				<SmallScreenSelect
 					value={selectedRelease}
 					onChange={(evt) => {
+						console.log('evt:', evt)
+						console.log('target:', evt.target)
 						navigate(getPath(Number(evt.target.value)))
 					}}
 				>
