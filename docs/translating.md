@@ -67,7 +67,7 @@ This can be done automatically by using [`translate-ui.js`](#translate-ui.js).
 
 For non _hardcoded_ content such as the FAQ or Markdown pages.
 You need to modify the corresponding file inside `.source/locales/pages/` (resp. `.source/locales/faq`)
-and then running the script [`translate-md.js`](#translate-md.js) (resp. [`translate-faq.js`](#translate-faq.js))
+and then run the script [`translate-md.js`](#translate-md.js) (resp. [`translate-faq.js`](#translate-faq.js))
 to translate it in the remaining languages.
 
 > **Important**:
@@ -85,7 +85,7 @@ file, by adding:
 * a new enum value to `Lang`,
 * complete all related switch statements,
 * add corresponding import statements for [`faq`](#) and [`releases`](#),
-* runs all needed scripts has described [here](#edit-the-source-code).
+* runs all needed scripts as described [here](#edit-the-source-code).
 
 ## Architecture
 
@@ -106,7 +106,7 @@ In particular:
 Scripts related to the translation are stored in the folder
 [`scripts/i18n`](https://github.com/datagir/nosgestesclimat-site/tree/master/scripts/i18n).
 
-For each scripts you can specified different options -- e.g. source language,
+For each scripts you can specify different options -- e.g. source language,
 target languages, etc....
 All available options can be shown by providing the `(-h | --help)` flag.
 
