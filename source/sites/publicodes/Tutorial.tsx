@@ -1,27 +1,27 @@
+import { Link } from 'Components/Link'
 import AbacusFrance from 'Images/abacus-france.svg'
 import CO2e from 'Images/co2e.svg'
+import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import ObjectifClimat from 'Images/objectif-climat.svg'
 import { useContext, useEffect } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'Components/Link'
+import { useNavigate } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
-import ScoreBar from './ScoreBar'
-import Chart from './chart/index.js'
-import HorizontalSwipe from './HorizontalSwipe'
-import Slide from './TutorialSlide'
-import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import { TrackerContext } from '../../components/utils/withTracker'
-import useKeypress from '../../components/utils/useKeyPress'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
-import { Trans } from 'react-i18next'
+import useKeypress from '../../components/utils/useKeyPress'
+import { TrackerContext } from '../../components/utils/withTracker'
 import { WithEngine } from '../../RulesProvider'
+import Chart from './chart/index.js'
 import DefaultFootprint from './DefaultFootprint'
+import HorizontalSwipe from './HorizontalSwipe'
+import ScoreBar from './ScoreBar'
+import Slide from './TutorialSlide'
 
 export default ({}) => {
 	const navigate = useNavigate()
 	const tutorials = useSelector((state) => state.tutorials)
-	const thenRedirectTo = useSelector((state) => state.thenRedirectTo)
 
 	const tutos = Object.entries(tutorials)
 		.map(([k, v]) => v != null && k.split('testIntro')[1])
