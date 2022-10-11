@@ -1,4 +1,3 @@
-import { Link } from 'Components/Link'
 import {
 	deletePreviousSimulation,
 	resetActionChoices,
@@ -6,9 +5,11 @@ import {
 	resetSimulation,
 	resetStoredTrajets,
 } from 'Actions/actions'
+import { Link } from 'Components/Link'
 import Localisation from 'Components/localisation/Localisation'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { resetCategoryTutorials } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
@@ -16,8 +17,6 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { useEngine } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import { Trans } from 'react-i18next'
-import { useNavigate } from 'react-router-dom'
 import { getNextQuestions } from '../../components/utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
@@ -34,6 +33,7 @@ export const useProfileData = () => {
 }
 
 export default ({}) => {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
@@ -133,7 +133,7 @@ export default ({}) => {
 									className="ui__ button plain"
 									css="margin: 0"
 								>
-									<Trans>▶️' Finir mon test</Trans>
+									<Trans>▶️ Finir mon test</Trans>
 								</Link>
 							)}
 							<button
