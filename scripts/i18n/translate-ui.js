@@ -6,17 +6,18 @@
 
 const cliProgress = require('cli-progress')
 const fs = require('fs')
-const R = require('ramda')
-const stringify = require('json-stable-stringify')
-const yargs = require('yargs')
-const yaml = require('yaml')
 
 const paths = require('./paths')
 const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, force } = cli.getArgs(
-	`Calls the DeepL API to translate the UI from the French one.`
+	`Calls the DeepL API to translate the UI from the French one.`,
+	{
+		file: false,
+		//NOTE: remove should be supported?
+		remove: false,
+	}
 )
 
 const srcPath = paths.uiTranslationResource[srcLang]
@@ -59,10 +60,7 @@ const translateTo = (targetLang, targetPath) => {
 		)}.`
 	)
 
-	let translatedEntries = yaml.parse(
-		fs.readFileSync(targetPath, 'utf-8')
-	).entries
-
+	let translatedEntries = utils.readYAML(targetPath).entries
 	if (missingTranslations.length > 0) {
 		let bar = progressBars.create(missingTranslations.length, 0)
 

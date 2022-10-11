@@ -10,8 +10,9 @@ const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
 
-const { destLangs } = cli.getArgs(
-	`Calls the DeepL API to translate the FAQ Yaml files.`
+const { destLangs, force } = cli.getArgs(
+	`Calls the DeepL API to translate the FAQ Yaml files.`,
+	{ source: false, file: false, remove: false }
 )
 
 const srcLang = utils.defaultLang
@@ -44,10 +45,20 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 		}
 	}
 
-	const missingEntries = srcYAML.filter(
-		(refEntry) =>
-			!targetEntryIsUpToDate(refEntry, targetEntries[getIndexOfId(refEntry.id)])
-	)
+	const missingEntries = srcYAML.filter((refEntry) => {
+		const isUpToDate = targetEntryIsUpToDate(
+			refEntry,
+			targetEntries[getIndexOfId(refEntry.id)]
+		)
+
+		if (isUpToDate && force) {
+			cli.printWarn(
+				`Overriding the translation of the question with id: ${refEntry.id}`
+			)
+			return true
+		}
+		return !isUpToDate
+	})
 
 	if (0 < missingEntries.length) {
 		console.log(
