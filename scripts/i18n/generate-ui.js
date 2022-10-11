@@ -7,10 +7,12 @@
 const fs = require('fs')
 const ramda = require('ramda')
 const child_process = require('child_process')
+const yaml = require('yaml')
 const stringify = require('json-stable-stringify')
 
-const utils = require('./utils')
-const cli = require('./cli')
+const utils = require('../../nosgestesclimat/scripts/i18n/utils')
+const cli = require('../../nosgestesclimat/scripts/i18n/cli')
+const paths = require('./paths')
 
 const { remove } = cli.getArgs(
 	'Analyses the source code and extracts the corresponding i18next resource file.'
@@ -36,65 +38,71 @@ const printResult = (prefix, array, style) => {
 
 console.log(`Static analysis of the source code...`)
 try {
-	if (fs.existsSync(utils.paths.staticAnalysisFrRes)) {
-		fs.unlinkSync(utils.paths.staticAnalysisFrRes)
+	if (fs.existsSync(paths.staticAnalysisFrRes)) {
+		fs.unlinkSync(paths.staticAnalysisFrRes)
 	}
-	child_process.execSync(`i18next -c ${utils.paths.i18nextParserConfig}`)
+	child_process.execSync(`i18next -c ${paths.i18nextParserConfig}`)
 } catch (err) {
 	cli.printErr('ERROR: an error occured during the analysis!')
 	cli.printErr(err.message)
 	return
 }
 
-const analysedFrResourceInDotNotation = require(utils.paths.staticAnalysisFrRes)
-var oldFrResource
+const staticAnalysedFrResource = require(paths.staticAnalysisFrRes)
+let oldFrResource
 try {
-	oldFrResource = require(utils.paths.uiTranslationResource.fr)
-} catch {
-	oldFrResource = '{}'
+	oldFrResource = yaml.parse(
+		fs.readFileSync(paths.uiTranslationResource.fr, 'utf8')
+	).entries
+} catch (err) {
+	oldFrResource = {}
 }
 
 console.log('Adding missing entries...')
 
-const splitRegexp = /(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/
-const translationIsTheKey = (key) => 1 === key.split(splitRegexp).length
+const translationIsTheKey = (key) => !utils.isI18nKey(key)
+const valueAlreadyProvided = (key, value) => {
+	const res =
+		utils.isI18nKey(key) &&
+		value === 'NO_TRANSLATION' &&
+		oldFrResource[key] !== undefined
+	if (res) {
+		console.log('key:', key, 'value:', value)
+	}
+	return res
+}
 
 if (remove) {
 	console.log('Removing unused entries...')
-	const oldKeys = Object.keys(utils.nestedObjectToDotNotation(oldFrResource))
+	const oldKeys = Object.keys(oldFrResource)
 	const currentKeys = Object.keys(
-		utils.nestedObjectToDotNotation(analysedFrResourceInDotNotation)
+		utils.nestedObjectToDotNotation(staticAnalysedFrResource)
 	)
 	const unusedKeys = ramda.difference(oldKeys, currentKeys)
-	console.log('unused keys:', unusedKeys)
 	oldFrResource = ramda.omit(unusedKeys, oldFrResource)
+	printResult(green('-') + ' Removed', unusedKeys, green)
 } else {
 	let result = {
 		addedTranslations: [],
 		missingTranslations: [],
 		updatedTranslations: [],
 	}
-	Object.entries(analysedFrResourceInDotNotation)
+	Object.entries(staticAnalysedFrResource)
 		.map(([key, value]) => [
 			key,
 			value === 'NO_TRANSLATION' && translationIsTheKey(key) ? key : value,
 		])
-		.filter(
-			([key, value]) =>
-				!ramda.pathEq(key.split(splitRegexp), value, oldFrResource)
-		)
+		.filter(([key, value]) => oldFrResource[key] !== value)
 		.forEach(([key, value]) => {
-			const keys = key.split(splitRegexp)
-
-			if (!ramda.hasPath(keys, oldFrResource) || value !== 'NO_TRANSLATION') {
+			if (!oldFrResource[key] || value !== 'NO_TRANSLATION') {
 				if (value === 'NO_TRANSLATION') {
 					result.missingTranslations.push(key)
-				} else if (ramda.hasPath(keys, oldFrResource)) {
+				} else if (oldFrResource[key]) {
 					result.updatedTranslations.push(key)
 				} else {
 					result.addedTranslations.push(key)
 				}
-				oldFrResource = ramda.assocPath(keys, value, oldFrResource)
+				oldFrResource[key] = value
 			}
 		})
 	printResult(green('+') + ' Added', result.addedTranslations, green)
@@ -102,15 +110,17 @@ if (remove) {
 	printResult(red('-') + ' Missing', result.missingTranslations, red)
 }
 
-console.log(`Writting resources in ${utils.paths.uiTranslationResource.fr}...`)
+console.log(`Writting resources in ${paths.uiTranslationResource.fr}...`)
 try {
 	fs.writeFileSync(
-		utils.paths.uiTranslationResource.fr,
-
-		stringify(oldFrResource, {
-			cmp: (a, b) => a.key.localeCompare(b.key),
-			space: 2,
-		})
+		paths.uiTranslationResource.fr,
+		yaml.stringify(
+			{ entries: oldFrResource },
+			{
+				sortMapEntries: true,
+				blockQuote: 'literal',
+			}
+		)
 	)
 } catch (err) {
 	cli.printErr('ERROR: an error occured while writting!')

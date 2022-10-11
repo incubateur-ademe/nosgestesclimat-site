@@ -9,10 +9,11 @@ const fs = require('fs')
 const R = require('ramda')
 const stringify = require('json-stable-stringify')
 const yargs = require('yargs')
+const yaml = require('yaml')
 
-const utils = require('./utils')
-const cli = require('./cli')
-const paths = utils.paths
+const paths = require('./paths')
+const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
+const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, force } = cli.getArgs(
 	`Calls the DeepL API to translate the UI from the French one.`
@@ -42,7 +43,7 @@ const consecutiveEmojiRegexp =
 
 const interpolatedValueRegexp = /\{\{(.*)\}\}/g
 
-const ingoredValueRegexp = /<ignore>(.*)<\/ignore>/g
+const ignoredValueRegexp = /<ignore>(.*)<\/ignore>/g
 
 const translateTo = (targetLang, targetPath) => {
 	const missingTranslations = Object.entries(
@@ -58,7 +59,9 @@ const translateTo = (targetLang, targetPath) => {
 		)}.`
 	)
 
-	let translatedKeys = JSON.parse(fs.readFileSync(targetPath, 'utf-8'))
+	let translatedEntries = yaml.parse(
+		fs.readFileSync(targetPath, 'utf-8')
+	).entries
 
 	if (missingTranslations.length > 0) {
 		let bar = progressBars.create(missingTranslations.length, 0)
@@ -75,20 +78,23 @@ const translateTo = (targetLang, targetPath) => {
 					)
 					const translationWithCombinedEmojis = translation
 						.replace(consecutiveEmojiRegexp, (_, p1, p2) => `${p1}‍${p2}`)
-						.replace(ingoredValueRegexp, '{{$1}}')
+						.replace(ignoredValueRegexp, '{{$1}}')
 
-					translatedKeys = R.assocPath(
-						key.split(/(?<=[A-zÀ-ü0-9])\.(?=[A-zÀ-ü0-9])/),
-						translationWithCombinedEmojis,
-						translatedKeys
-					)
+					translatedEntries[key] = translationWithCombinedEmojis
+					if (utils.isI18nKey(key)) {
+						// we need to store the lock value.
+						translatedEntries[key + utils.LOCK_KEY_EXT] = value
+					}
 					//	TODO: add a way to write all the translations at once
 					fs.writeFileSync(
 						targetPath,
-						stringify(translatedKeys, {
-							cmp: (a, b) => a.key.localeCompare(b.key),
-							space: 2,
-						})
+						yaml.stringify(
+							{ entries: translatedEntries },
+							{
+								sortMapEntries: true,
+								blockQuote: 'literal',
+							}
+						)
 					)
 					bar.increment({
 						msg: `Translating '${value}'...`,
@@ -97,6 +103,7 @@ const translateTo = (targetLang, targetPath) => {
 				} catch (err) {
 					bar.stop()
 					progressBars.remove(bar)
+					console.log(`{key: ${key}, value: `, value)
 					cli.printErr(
 						`ERROR: an error occured while fetching the '${key}' translations:`
 					)

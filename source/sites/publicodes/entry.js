@@ -1,18 +1,14 @@
 import 'core-js/stable'
 import { createRoot } from 'react-dom/client'
-import App from './App'
 import i18next from '../../locales/i18n'
 import { getLangInfos, Lang } from '../../locales/translation'
+import App from './App'
 
 Object.keys(Lang).forEach((lang) => {
 	if (lang !== Lang.Default) {
-		const abrv = getLangInfos(Lang[lang]).abrv
-		console.log(`[i18next] Loading '${abrv}'...`)
-		i18next.addResourceBundle(
-			abrv,
-			'translation',
-			require(`../../locales/ui/ui-${abrv}.json`)
-		)
+		const infos = getLangInfos(Lang[lang])
+		console.log(`[i18next] Loading '${infos.abrv}'...`)
+		i18next.addResourceBundle(infos.abrv, 'translation', infos.uiTrad)
 	}
 })
 

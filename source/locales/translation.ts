@@ -4,14 +4,19 @@
 
 import { i18n } from 'i18next'
 
-import faqFr from './faq/FAQ-fr.yaml'
-import faqEn from './faq/FAQ-en-us.yaml'
-import faqIt from './faq/FAQ-it.yaml'
-import faqEs from './faq/FAQ-es.yaml'
+import uiEn from './ui/ui-en.yaml'
+import uiEs from './ui/ui-es.yaml'
+import uiFr from './ui/ui-fr.yaml'
+import uiIt from './ui/ui-it.yaml'
 
-import releasesFr from './releases/releases-fr.json'
+import faqEn from './faq/FAQ-en-us.yaml'
+import faqEs from './faq/FAQ-es.yaml'
+import faqFr from './faq/FAQ-fr.yaml'
+import faqIt from './faq/FAQ-it.yaml'
+
 import releasesEn from './releases/releases-en-us.json'
 import releasesEs from './releases/releases-es.json'
+import releasesFr from './releases/releases-fr.json'
 import releasesIt from './releases/releases-it.json'
 
 export enum Lang {
@@ -34,6 +39,7 @@ export type LangInfos = {
 	abrvLocale: string
 	faqContent: string // The FAQ content in YAML
 	releases: Release[] // The releases content in JSON
+	uiTrad: any // The UI translation in YAML
 }
 
 export const defaultLang = Lang.Fr
@@ -47,6 +53,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'fr-FR',
 				faqContent: faqFr,
 				releases: releasesFr,
+				uiTrad: uiFr.entries,
 			}
 		}
 		case Lang.En: {
@@ -56,6 +63,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'en-US',
 				faqContent: faqEn,
 				releases: releasesEn,
+				uiTrad: uiEn.entries,
 			}
 		}
 		case Lang.Es: {
@@ -65,6 +73,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'es-ES',
 				faqContent: faqEs,
 				releases: releasesEs,
+				uiTrad: uiEs.entries,
 			}
 		}
 		case Lang.It: {
@@ -74,6 +83,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'it-IT',
 				faqContent: faqIt,
 				releases: releasesIt,
+				uiTrad: uiIt.entries,
 			}
 		}
 	}
