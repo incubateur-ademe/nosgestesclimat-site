@@ -1,6 +1,7 @@
 import { splitName } from 'Components/publicodesUtils'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import {
 	correctValue,
@@ -18,6 +19,10 @@ import MetricFilters from './MetricFilters'
 import SimulationMissing from './SimulationMissing'
 
 export default ({ display }) => {
+	const engine = useContext(EngineContext)
+
+	const { t } = useTranslation()
+
 	let metric = useQuery().get('métrique')
 	let category = useQuery().get('catégorie')
 
@@ -31,8 +36,6 @@ export default ({ display }) => {
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const objectifs = ['bilan', ...flatActions.formule.somme]
-
-	const engine = useContext(EngineContext)
 
 	const targets = objectifs.map((o) => engine.evaluate(o))
 
@@ -81,7 +84,7 @@ export default ({ display }) => {
 	}
 
 	if (tutorials.actions !== 'skip') {
-		const [value, unit] = humanWeight(bilan.nodeValue)
+		const [value, unit] = humanWeight(t, bilan.nodeValue)
 		return <ActionTutorial {...{ value, unit }} />
 	}
 

@@ -104,7 +104,7 @@ export default ({}) => {
 								<p>
 									<Trans i18nKey={`publicodes.Profil.recap`}>
 										Vous avez terminé le test à {{ percentFinished }} % (
-										{{ answeredQuestionsLength }} questions) et choisi
+										{{ answeredQuestionsLength }} questions) et choisi{' '}
 										{{ actionChoicesLength }} actions.
 									</Trans>{' '}
 								</p>

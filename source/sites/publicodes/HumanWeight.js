@@ -1,17 +1,17 @@
 import { useTranslation } from 'react-i18next'
 
 import { correctValue } from '../../components/publicodesUtils'
-import { disabledAction, supersededAction } from './ActionVignette'
 import { getLangFromAbreviation, getLangInfos } from '../../locales/translation'
+import { disabledAction, supersededAction } from './ActionVignette'
 
 export const humanWeight = (
+	t, // Needs to be passed as an argument instead of calling useTranslation inside the body, to avoid 'Rendered more hooks than during the previous render.'
 	possiblyNegativeValue,
 	abrvLocale,
 	concise = false,
 	noSign
 ) => {
 	const v = Math.abs(possiblyNegativeValue)
-	const { t } = useTranslation()
 	const [raw, unit] =
 		v === 0
 			? [v, '']
@@ -20,8 +20,6 @@ export const humanWeight = (
 			: v < 1000
 			? [v, 'kg']
 			: [v / 1000, concise ? 't' : v > 2000 ? t('tonnes') : t('tonne')]
-
-	console.log('abrvLocale', abrvLocale)
 
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
 		resultValue = noSign ? raw : signedValue,
@@ -49,7 +47,7 @@ const HumanWeight = ({
 
 	const [value, unit] =
 		metric === 'climat'
-			? humanWeight(nodeValue, currentLangInfos.abrvLocale)
+			? humanWeight(t, nodeValue, currentLangInfos.abrvLocale)
 			: metric === 'pétrole'
 			? [nodeValue, '']
 			: [null]
@@ -99,6 +97,7 @@ const HumanWeight = ({
 						<ins>
 							{
 								humanWeight(
+									t,
 									nodeValue - overrideValue,
 									currentLangInfos.abrvLocale
 								)[0]
