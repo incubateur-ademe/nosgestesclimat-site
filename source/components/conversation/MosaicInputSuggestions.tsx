@@ -1,8 +1,8 @@
+import { updateSituation } from 'Actions/actions'
 import { ASTNode } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { updateSituation } from 'Actions/actions'
 
 type InputSuggestionsProps = {
 	dottedName: string
@@ -96,7 +96,7 @@ export default function MosaicInputSuggestions({
 						}}
 						title={t('Insérer cette suggestion')}
 					>
-						{emoji(text)}
+						{emoji(t(('aucun' === text ? 'Aucun' : text) as string))}
 					</button>
 				)
 			})}

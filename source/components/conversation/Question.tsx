@@ -3,10 +3,9 @@ import animate from 'Components/ui/animate'
 import { Markdown } from 'Components/utils/markdown'
 import { ASTNode } from 'publicodes'
 import { Rule } from 'publicodes/dist/types/rule'
-import React, { Suspense } from 'react'
-import { useCallback, useEffect, useState } from 'react'
+import React, { Suspense, useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { Loading } from '../../sites/publicodes/App'
 import {
 	BinaryQuestionType,
@@ -106,10 +105,12 @@ export default function Question({
 		)
 	}
 	const renderChildren = (choices: Choice) => {
+		const { t } = useTranslation()
 		// seront stockées ainsi dans le state :
 		// [parent object path]: dotted fieldName relative to parent
 		const relativeDottedName = (radioDottedName: string) =>
 			radioDottedName.split(questionDottedName + ' . ')[1]
+
 		return (
 			<ul
 				css="width: 100%; padding: 0; margin:0"
@@ -121,7 +122,7 @@ export default function Question({
 						<RadioLabel
 							{...{
 								value: 'non',
-								label: 'Aucun',
+								label: t('Aucun'),
 								currentSelection,
 								name: questionDottedName,
 								onSubmit: handleSubmit,
