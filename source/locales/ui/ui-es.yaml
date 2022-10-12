@@ -9,6 +9,7 @@ entries:
   A vous de choisir vos gestes à la carte.: Es usted quien elige sus gestos a la carta.
   "Accessibilité : partiellement conforme": "Accesibilidad: parcialmente conforme"
   Action: Acción
+  Actions d'engagement: Acciones de compromiso
   Actions non chiffrées: Acciones no cuantificadas
   Actions négatives: Acciones negativas
   "Actions écartées :": "Acciones descartadas :"
@@ -18,6 +19,7 @@ entries:
   Aide à la saisie: Ayuda a la entrada
   "Ajouter ": "Añadir "
   Aller au contenu: Ir al contenido
+  Annuler: Cancelar
   Aucun: No
   Autonome: Autónomo
   Avancement du groupe: Progreso del grupo
@@ -50,9 +52,11 @@ entries:
   Conférence: Conferencia
   Connaissez-vous votre empreinte climat ?: ¿Conoce su huella climática?
   Connaissez-vous votre empreinte sur le climat ?: ¿Conoce su huella climática?
+  Continuer: Continuar
   Contribuer: Contribuir
   Copier le lien: Copiar el enlace
   Copié ✅: Copiado ✅
+  De quoi est faite mon empreinte ?: ¿De qué está hecha mi huella?
   Diffuser: Difusión
   Documentation: Documentación
   Documentation Contexte Sondage: Encuesta sobre los antecedentes de la documentación
@@ -166,6 +170,7 @@ entries:
   Revenir chez moi 🔙: Volviendo a casa 🔙
   Revenir à ma simulation: Volver a mi simulación
   Réduire ma conso: Reducir mi consumo
+  Réduire ma conso de pétrole: Reducir mi consumo de aceite
   Réduire mon empreinte: Reducir mi huella
   Répondez à notre sondage sur le simulateur.: Responda a nuestra encuesta sobre el simulador.
   Réseaux Sociaux: Redes sociales
@@ -198,6 +203,7 @@ entries:
   Vous avez terminé le test 👏: Has completado la prueba 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: Ha sido invitado a una encuesta de Our Climate Action llamada
   Vous n'avez pas encore fait le test.: Todavía no has hecho la prueba.
+  actions choisies: acciones seleccionadas
   an: un
   catégorie complétée: categoría completada
   cet article: este artículo
@@ -386,6 +392,11 @@ entries:
   participant: participante
   pleins: completo
   pleins de pétrole: lleno de aceite
+  plus d'1 kg: más de 1 kg
+  plus d'1 tonne: más de 1 tonelada
+  plus de 10 kg: más de 10 kg
+  plus de 10 tonnes: más de 10 toneladas
+  plus de 100 kg: más de 100 kg
   publicodes.ActionTutorial.félicitation: Has completado tu simulación, 👏 ¡bien hecho!
   publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
   publicodes.ActionTutorial.msgEstimation: Ahora conoce su huella, estimada en
@@ -399,10 +410,11 @@ entries:
     certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Para ayudarle, le presentamos <2>una lista de acciones</2>:"
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
-  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}}
-    acciones disponibles, <3></3>seleccionado."
-  publicodes.ActionsOptionsBar.actionsRecap.lock: "{{numberOfAvailableFinalAction\
-    s}} actions disponibles, <3></3>sélectionnées."
+  publicodes.ActionVignette.questionsRestantesText: "{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}"
+  publicodes.ActionVignette.questionsRestantesText.lock: <ignore>nbRemainingQuestions}}
+    question{{pluralSuffix}} restante{{pluralSuffix</ignore>
+  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}} acciones disponibles,"
+  publicodes.ActionsOptionsBar.actionsRecap.lock: <ignore>numberOfAvailableFinalActions</ignore> actions disponibles,
   publicodes.AllActions.allerPlusLoin: <0>Ir más allá</0><1><0>Vaya más allá de
     una simple cifra y descubra las cuestiones que hay detrás de cada
     acción.</0></1>
@@ -475,6 +487,10 @@ entries:
     console (elle est un peu chargée...), puis copier le JSON affiché, le coller
     dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans
     personas.yaml.
+  publicodes.Personas.warningMsg: "Tenga cuidado, tiene una simulación en curso:
+    la selección de una persona sobrescribirá su simulación."
+  publicodes.Personas.warningMsg.lock: "Attention, vous avez une simulation en
+    cours : sélectionner un persona écrasera votre simulation."
   publicodes.Profil.locationDonnées: <0>¿Dónde están mis datos? </0>Tus datos se
     almacenan en tu navegador, por lo que tienes un control total sobre ellos
     <2></2>
@@ -721,6 +737,9 @@ entries:
     question (vos km en voiture, les m² de votre
     logement...).</1><2>Nosgestesclimat.fr n'est pas affilié au site
     {{parent}}.</2>
+  publicodes.fin.Petrogaz.equivalenceVolume: Es decir, {{secondaryValue}} litres (plein de {{pleinVolume}} litros).
+  publicodes.fin.Petrogaz.equivalenceVolume.lock: Soit <ignore>secondaryValue}}
+    litres (plein de {{pleinVolume</ignore> litres).
   publicodes.fin.Petrogaz.explications: <0>Se trata de una estimación
     <1>mínima</1> de su consumo anual de crudo.</0><1>Estimado a través del
     consumo de su coche, avión, autobús y aceite de calefacción, no tiene en
@@ -733,6 +752,8 @@ entries:
     acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.litres: Es decir, {{secondaryValue}} litres (plein de {{pleinVolume}} litros).
   publicodes.fin.Petrogaz.litres.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
+  publicodes.fin.Petrogaz.petroleBrut: de <1>petróleo crudo al año</1>
+  publicodes.fin.Petrogaz.petroleBrut.lock: de <1>pétrole brut par an</1>
   publicodes.shareText: >-
     #nosgestesclimat 🌍️
 
@@ -771,6 +792,7 @@ entries:
   sites.publicodes.Profile.TutorialLink.text.lock: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 ¿Pero qué significa esa pequeña <1>e</1>?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sélectionnées: seleccionado
   titre de la version: título de la versión
   tonne: tonelada
   tonnes: toneladas
@@ -802,6 +824,7 @@ entries:
   👤 Vous utilisez actuellement le persona: 👤 Actualmente estás usando la persona
   👥 En groupe: 👥 En un grupo
   💡 Choisissez un nom de salle: 💡 Elige un nombre de habitación
+  💡 Pourquoi ?: 💡 ¿Por qué?
   💾 Lancer le téléchargement.: 💾 Inicia la descarga.
   💾 Télécharger les résultats: 💾 Descargar los resultados
   📊 Analysez les résultats et animez les discussions !: 📊 ¡Analiza los resultados y dirige los debates!

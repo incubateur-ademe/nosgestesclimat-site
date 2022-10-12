@@ -4,6 +4,7 @@ import Meta from 'Components/utils/Meta'
 import { motion, useSpring } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { Link } from '../../../components/Link'
 import { correctValue } from '../../../components/publicodesUtils'
 import NeutralH1 from '../../../components/ui/NeutralH1'
 import { ActionButton } from './Buttons'
@@ -82,40 +83,7 @@ export default ({ headlessMode }) => {
 				`}
 			>
 				<div id="shareImage" css="padding: 2rem 0 0">
-					<div css="display: flex; align-items: center; justify-content: center">
-						<img
-							src="/images/pompe-essence.svg"
-							css="height: 10rem; margin-right: .4rem"
-							alt={t('Icône représentant une pompe à pétrole')}
-						/>
-						<div
-							css={`
-								flex-direction: column;
-								display: flex;
-								justify-content: space-evenly;
-								height: 10rem;
-								width: 16rem;
-							`}
-						>
-							<div css="font-weight: bold; font-size: 280%;">
-								<span css="width: auto; text-align: right; display: inline-block">
-									{primaryValue}
-								</span>{' '}
-								<Trans>pleins</Trans>
-							</div>
-							<span>
-								<Trans>
-									de <NeutralH1>pétrole brut par an</NeutralH1>.
-								</Trans>
-							</span>
-							<small>
-								<Trans i18nKey={`publicodes.fin.Petrogaz.litres`}>
-									Soit {{ secondaryValue }} litres (plein de {{ pleinVolume }}{' '}
-									litres).
-								</Trans>
-							</small>
-						</div>
-					</div>
+					<BigFigure {...{ primaryValue, secondaryValue, pleinVolume }} />
 					<div css="padding: 1rem; max-width: 30rem; margin: 0 auto; font-size: 90%">
 						<Trans i18nKey={`publicodes.fin.Petrogaz.explications`}>
 							<p>
@@ -138,6 +106,12 @@ export default ({ headlessMode }) => {
 					invertImage={false}
 					url={'/actions?métrique=pétrole'}
 				/>
+				<Link
+					to="/pétrole-et-gaz"
+					css="color: inherit; :hover {color: var(--lighterColor) !important}"
+				>
+					<Trans>💡 Pourquoi ?</Trans>
+				</Link>
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
 					<ShareButton
 						text={t('Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !')}
@@ -152,3 +126,40 @@ export default ({ headlessMode }) => {
 		</div>
 	)
 }
+
+export const BigFigure = ({ primaryValue, secondaryValue, pleinVolume }) => (
+	<div css="display: flex; align-items: center; justify-content: center">
+		<img
+			src="/images/pompe-essence.svg"
+			css="height: 10rem; margin-right: .4rem"
+			alt="Icône représentant une pompe à pétrole"
+		/>
+		<div
+			css={`
+				flex-direction: column;
+				display: flex;
+				justify-content: space-evenly;
+				height: 10rem;
+				width: 16rem;
+			`}
+		>
+			<div css="font-weight: bold; font-size: 280%;">
+				<span css="width: auto; text-align: right; display: inline-block">
+					{primaryValue}
+				</span>{' '}
+				<Trans>pleins</Trans>
+			</div>
+			<span>
+				<Trans i18nKey={'publicodes.fin.Petrogaz.petroleBrut'}>
+					de <NeutralH1>pétrole brut par an</NeutralH1>
+				</Trans>
+				.
+			</span>
+			<small>
+				<Trans i18nKey={'publicodes.fin.Petrogaz.equivalenceVolume'}>
+					Soit {{ secondaryValue }} litres (plein de {{ pleinVolume }} litres).
+				</Trans>
+			</small>
+		</div>
+	</div>
+)

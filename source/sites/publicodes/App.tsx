@@ -27,6 +27,7 @@ import Fin from './fin'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
+import PetrogazLanding from './pages/PetrogazLanding'
 import Diffuser from './pages/Diffuser'
 import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
@@ -353,6 +354,10 @@ const Router = ({}) => {
 						<TutorialLazy />
 					</Suspense>
 				}
+			/>
+			<Route
+				path={`/${encodeURIComponent('pétrole-et-gaz')}`}
+				element={<PetrogazLanding />}
 			/>
 			<Route path="*" element={<Route404 />} />
 		</Routes>

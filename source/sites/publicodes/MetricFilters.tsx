@@ -1,6 +1,5 @@
-import emoji from '../../components/emoji'
-import { useSearchParams } from 'react-router-dom'
 import { Trans } from 'react-i18next'
+import { useSearchParams } from 'react-router-dom'
 
 export default ({ selected }) => {
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -16,7 +15,7 @@ export default ({ selected }) => {
 				padding: 0.1rem 0rem;
 				border-radius: 0.2rem;
 				line-height: 1.6rem;
-				height: 1.8rem;
+				height: 2.2rem;
 				background: var(--darkerColor);
 				button {
 					color: white;
@@ -41,7 +40,7 @@ export default ({ selected }) => {
 					vertical-align: middle;
 				}
 
-				${selected && `border: 2px solid var(--lightColor)`}
+				${selected && `border: 4px solid gold`}
 			`}
 			onClick={() =>
 				setSearchParams({
@@ -51,7 +50,7 @@ export default ({ selected }) => {
 			}
 		>
 			<span>
-				<Trans>🇺🇦Réduire ma conso de pétrole</Trans>
+				<Trans>Réduire ma conso de pétrole</Trans>
 			</span>
 		</button>
 	)

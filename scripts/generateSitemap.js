@@ -11,6 +11,7 @@ const baseURLs = `https://nosgestesclimat.fr/simulateur/bilan
 https://nosgestesclimat.fr/vie-privée
 https://nosgestesclimat.fr/documentation
 https://nosgestesclimat.fr/à-propos
+https://nosgestesclimat.fr/pétrole-et-gaz
 https://nosgestesclimat.fr/nouveautés
 https://nosgestesclimat.fr/groupe
 https://nosgestesclimat.fr/profil

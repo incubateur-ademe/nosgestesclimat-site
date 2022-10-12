@@ -9,6 +9,7 @@ entries:
   A vous de choisir vos gestes à la carte.: It's up to you to choose your gestures.
   "Accessibilité : partiellement conforme": "Accessibility: partially compliant"
   Action: Action
+  Actions d'engagement: Commitment actions
   Actions non chiffrées: Unquantified actions
   Actions négatives: Negative actions
   "Actions écartées :": "Discarded actions:"
@@ -18,6 +19,7 @@ entries:
   Aide à la saisie: Input help
   "Ajouter ": "Add "
   Aller au contenu: Go to content
+  Annuler: Cancel
   Aucun: No
   Autonome: Autonomous
   Avancement du groupe: Group progress
@@ -50,9 +52,11 @@ entries:
   Conférence: Conference
   Connaissez-vous votre empreinte climat ?: Do you know your climate footprint?
   Connaissez-vous votre empreinte sur le climat ?: Do you know your climate footprint?
+  Continuer: Continue
   Contribuer: Contribute
   Copier le lien: Copy the link
   Copié ✅: Copied ✅
+  De quoi est faite mon empreinte ?: What is my footprint made of?
   Diffuser: Broadcast
   Documentation: Documentation
   Documentation Contexte Sondage: Documentation Background Survey
@@ -164,6 +168,7 @@ entries:
   Revenir chez moi 🔙: Coming home 🔙
   Revenir à ma simulation: Return to my simulation
   Réduire ma conso: Reduce my consumption
+  Réduire ma conso de pétrole: Reduce my oil consumption
   Réduire mon empreinte: Reduce my footprint
   Répondez à notre sondage sur le simulateur.: Take our survey on the simulator.
   Réseaux Sociaux: Social Networks
@@ -196,6 +201,7 @@ entries:
   Vous avez terminé le test 👏: You have completed the test 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: You have been invited to an Our Climate Action survey called
   Vous n'avez pas encore fait le test.: You haven't taken the test yet.
+  actions choisies: selected actions
   an: an
   catégorie complétée: completed category
   cet article: this article
@@ -381,6 +387,11 @@ entries:
   participant: participant
   pleins: full
   pleins de pétrole: full of oil
+  plus d'1 kg: more than 1 kg
+  plus d'1 tonne: more than 1 ton
+  plus de 10 kg: more than 10 kg
+  plus de 10 tonnes: more than 10 tons
+  plus de 100 kg: over 100 kg
   publicodes.ActionTutorial.félicitation: You have completed your simulation, 👏 well done!
   publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
   publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated
@@ -393,9 +404,11 @@ entries:
     certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "To help you, we will present you with <2>a list of actions</2>:"
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
-  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}} available actions, <3></3>selected."
-  publicodes.ActionsOptionsBar.actionsRecap.lock: "{{numberOfAvailableFinalAction\
-    s}} actions disponibles, <3></3>sélectionnées."
+  publicodes.ActionVignette.questionsRestantesText: "{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}"
+  publicodes.ActionVignette.questionsRestantesText.lock: <ignore>nbRemainingQuestions}}
+    question{{pluralSuffix}} restante{{pluralSuffix</ignore>
+  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}} actions available,"
+  publicodes.ActionsOptionsBar.actionsRecap.lock: <ignore>numberOfAvailableFinalActions</ignore> actions disponibles,
   publicodes.AllActions.allerPlusLoin: <0>Going further</0><1><0>Beyond a simple
     figure, discover the stakes behind each action.</0></1>
   publicodes.AllActions.allerPlusLoin.lock: <0>Aller plus loin</0><1><0>Au-delà
@@ -466,6 +479,10 @@ entries:
     console (elle est un peu chargée...), puis copier le JSON affiché, le coller
     dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans
     personas.yaml.
+  publicodes.Personas.warningMsg: "Be careful, you have a simulation in progress:
+    selecting a persona will overwrite your simulation."
+  publicodes.Personas.warningMsg.lock: "Attention, vous avez une simulation en
+    cours : sélectionner un persona écrasera votre simulation."
   publicodes.Profil.locationDonnées: <0>Where is my data? </0>Your data is stored
     in your browser, so you have full control over it <2></2>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0>Vos données
@@ -703,6 +720,9 @@ entries:
     question (vos km en voiture, les m² de votre
     logement...).</1><2>Nosgestesclimat.fr n'est pas affilié au site
     {{parent}}.</2>
+  publicodes.fin.Petrogaz.equivalenceVolume: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
+  publicodes.fin.Petrogaz.equivalenceVolume.lock: Soit <ignore>secondaryValue}}
+    litres (plein de {{pleinVolume</ignore> litres).
   publicodes.fin.Petrogaz.explications: <0>It is a <1>minimum</1> estimate of your
     crude oil consumption for the year.</0><1>Estimated via your car, plane, bus
     and heating oil consumption, it does not (yet) take into account the oil
@@ -715,6 +735,8 @@ entries:
     acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.litres: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
   publicodes.fin.Petrogaz.litres.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
+  publicodes.fin.Petrogaz.petroleBrut: of <1>crude oil per year</1>
+  publicodes.fin.Petrogaz.petroleBrut.lock: de <1>pétrole brut par an</1>
   publicodes.shareText: >-
     #nosgestesclimate 🌍️
 
@@ -753,6 +775,7 @@ entries:
   sites.publicodes.Profile.TutorialLink.text.lock: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sélectionnées: selected
   titre de la version: title of the version
   tonne: ton
   tonnes: tons
@@ -784,6 +807,7 @@ entries:
   👤 Vous utilisez actuellement le persona: 👤 You are currently using the persona
   👥 En groupe: 👥 As a group
   💡 Choisissez un nom de salle: 💡 Choose a room name
+  💡 Pourquoi ?: 💡 Why?
   💾 Lancer le téléchargement.: 💾 Start the download.
   💾 Télécharger les résultats: 💾 Download the results
   📊 Analysez les résultats et animez les discussions !: 📊 Analyze the results and lead the discussions!

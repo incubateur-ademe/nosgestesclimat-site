@@ -171,8 +171,10 @@ export const PersonaGrid = ({
 				message={
 					<div>
 						<p>
-							Attention, vous avez une simulation en cours : sélectionner un
-							persona écrasera votre simulation.{' '}
+							<Trans i18nKey={'publicodes.Personas.warningMsg'}>
+								Attention, vous avez une simulation en cours : sélectionner un
+								persona écrasera votre simulation.
+							</Trans>{' '}
 						</p>{' '}
 						<button
 							className="ui__ button simple"
@@ -182,13 +184,13 @@ export const PersonaGrid = ({
 								setWarning(false)
 							}}
 						>
-							Continuer
+							<Trans>Continuer</Trans>
 						</button>
 						<button
 							className="ui__ button simple"
 							onClick={() => setWarning(false)}
 						>
-							Annuler
+							<Trans>Annuler</Trans>
 						</button>
 					</div>
 				}

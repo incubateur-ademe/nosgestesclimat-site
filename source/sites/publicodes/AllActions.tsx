@@ -1,21 +1,13 @@
+import animate from 'Components/ui/animate'
 import { AnimatePresence, motion } from 'framer-motion'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
+import IllustratedButton from '../../components/IllustratedButton'
 import { correctValue } from '../../components/publicodesUtils'
+import { ScrollToElement } from '../../components/utils/Scroll'
 import ActionConversation from './ActionConversation'
 import { ActionListCard } from './ActionVignette'
-import animate from 'Components/ui/animate'
-import { ScrollToElement } from '../../components/utils/Scroll'
-import IllustratedButton from '../../components/IllustratedButton'
-import styled from 'styled-components'
-import { Trans } from 'react-i18next'
-
-const thresholds = [
-	[10000, 'plus de 10 tonnes'],
-	[1000, "plus d'1 tonne"],
-	[100, 'plus de 100 kg'],
-	[10, 'plus de 10 kg'],
-	[1, "plus d'1 kg"],
-]
 
 export default ({
 	actions: rawActions,
@@ -25,6 +17,16 @@ export default ({
 	focusAction,
 	radical,
 }) => {
+	const { t } = useTranslation()
+
+	const thresholds = [
+		[10000, t('plus de 10 tonnes')],
+		[1000, t("plus d'1 tonne")],
+		[100, t('plus de 100 kg')],
+		[10, t('plus de 10 kg')],
+		[1, t("plus d'1 kg")],
+	]
+
 	const actions = rawActions.map((a) => ({
 		...a,
 		value: correctValue({ nodeValue: a.nodeValue, unit: a.unit }),
@@ -94,7 +96,7 @@ export default ({
 						src="/images/270A.svg"
 						css="filter: invert(1); height: 2rem; vertical-align: middle"
 					/>
-					<Trans>Actions non chiffrées</Trans> &#9660;
+					<Trans>Actions d'engagement</Trans> &#9660;
 				</p>
 			</ThresholdSeparator>
 			<List
@@ -183,8 +185,10 @@ const List = ({ actions, rules, bilan, focusedAction, focusAction }) => (
 						transition={{ duration: 1 }}
 						css={`
 							width: 12rem;
-							height: 16rem;
 							margin: 0.4rem;
+							@media (max-width: 800px) {
+								width: 11rem;
+							}
 						`}
 					>
 						<ActionListCard

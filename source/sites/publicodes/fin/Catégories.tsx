@@ -1,7 +1,7 @@
 import Meta from 'Components/utils/Meta'
 import { motion, useSpring } from 'framer-motion'
-import { utils } from 'publicodes'
 import { useEffect, useState } from 'react'
+import { Trans } from 'react-i18next'
 import { DocumentationEndButton, generateImageLink } from '.'
 import RavijenChart from '../chart/RavijenChart'
 import FinShareButton from './FinShareButton'
@@ -75,7 +75,9 @@ export default ({ score, details, headlessMode }) => {
 					}
 				`}
 			>
-				<h1>De quoi est faite mon empreinte ?</h1>
+				<h1>
+					<Trans>De quoi est faite mon empreinte ?</Trans>
+				</h1>
 				<div
 					id="shareImage"
 					css="padding: 0"

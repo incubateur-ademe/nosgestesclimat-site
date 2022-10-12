@@ -29,10 +29,9 @@ export default ({ finalActions, setRadical, radical }) => {
 		>
 			<small role="status">
 				<Trans i18nKey="publicodes.ActionsOptionsBar.actionsRecap">
-					{{ numberOfAvailableFinalActions }} actions disponibles,{' '}
-					<ActionsChosenIndicator />
-					sélectionnées.
-				</Trans>
+					{{ numberOfAvailableFinalActions }} actions disponibles,
+				</Trans>{' '}
+				<ActionsChosenIndicator />
 			</small>{' '}
 			<small css="@media(max-width: 800px){display: none}">
 				<Trans>Triées par :</Trans>

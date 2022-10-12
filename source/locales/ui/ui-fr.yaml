@@ -7,7 +7,7 @@ entries:
   A vous de choisir vos gestes à la carte.: A vous de choisir vos gestes à la carte.
   "Accessibilité : partiellement conforme": "Accessibilité : partiellement conforme"
   Action: Action
-  Actions non chiffrées: Actions non chiffrées
+  Actions d'engagement: Actions d'engagement
   Actions négatives: Actions négatives
   "Actions écartées :": "Actions écartées :"
   Afficher l'explication du score: Afficher l'explication du score
@@ -16,6 +16,7 @@ entries:
   Aide à la saisie: Aide à la saisie
   "Ajouter ": "Ajouter "
   Aller au contenu: Aller au contenu
+  Annuler: Annuler
   Aucun: Aucun
   Autonome: Autonome
   Avancement du groupe: Avancement du groupe
@@ -47,9 +48,11 @@ entries:
   Conférence: Conférence
   Connaissez-vous votre empreinte climat ?: Connaissez-vous votre empreinte climat ?
   Connaissez-vous votre empreinte sur le climat ?: Connaissez-vous votre empreinte sur le climat ?
+  Continuer: Continuer
   Contribuer: Contribuer
   Copier le lien: Copier le lien
   Copié ✅: Copié ✅
+  De quoi est faite mon empreinte ?: De quoi est faite mon empreinte ?
   Diffuser: Diffuser
   Documentation: Documentation
   Documentation Contexte Sondage: Documentation Contexte Sondage
@@ -89,7 +92,6 @@ entries:
   Fermer les options de tri: Fermer les options de tri
   Fréquence: Fréquence
   Guidé: Guidé
-  Icône représentant une pompe à pétrole: Icône représentant une pompe à pétrole
   Initialisation...: Initialisation...
   Insérer cette suggestion: Insérer cette suggestion
   Intégrations et Iframes: Intégrations et Iframes
@@ -118,7 +120,6 @@ entries:
   Nombre de personnes: Nombre de personnes
   Non: Non
   Non applicable: Non applicable
-  Non chiffré: Non chiffré
   Nos Gestes Climat Conférence: Nos Gestes Climat Conférence
   Nos explications complètes: Nos explications complètes
   Nosgestesclimat - le top 3 de mes actions: Nosgestesclimat - le top 3 de mes actions
@@ -161,6 +162,7 @@ entries:
   Revenir chez moi 🔙: Revenir chez moi 🔙
   Revenir à ma simulation: Revenir à ma simulation
   Réduire ma conso: Réduire ma conso
+  Réduire ma conso de pétrole: Réduire ma conso de pétrole
   Réduire mon empreinte: Réduire mon empreinte
   Répondez à notre sondage sur le simulateur.: Répondez à notre sondage sur le simulateur.
   Réseaux Sociaux: Réseaux Sociaux
@@ -193,6 +195,7 @@ entries:
   Vous avez terminé le test 👏: Vous avez terminé le test 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: Vous avez été invités à un sondage Nos Gestes Climat nommé
   Vous n'avez pas encore fait le test.: Vous n'avez pas encore fait le test.
+  actions choisies: actions choisies
   an: an
   catégorie complétée: catégorie complétée
   cet article: cet article
@@ -243,7 +246,6 @@ entries:
     des utilisateurs qui reviendraient à plusieurs reprises sur la page de fin,
     en changeant ses réponses au test (ce qui crée de nouveaux url de fin).</3>"
   de: de
-  de <1>pétrole brut par an</1>.: de <1>pétrole brut par an</1>.
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>
   dernières nouveautés: dernières nouveautés
   en moyenne sur le site: en moyenne sur le site
@@ -285,6 +287,11 @@ entries:
   participant: participant
   pleins: pleins
   pleins de pétrole: pleins de pétrole
+  plus d'1 kg: plus d'1 kg
+  plus d'1 tonne: plus d'1 tonne
+  plus de 10 kg: plus de 10 kg
+  plus de 10 tonnes: plus de 10 tonnes
+  plus de 100 kg: plus de 100 kg
   publicodes.ActionTutorial.félicitation: Vous avez terminé votre simulation, 👏 bravo !
   publicodes.ActionTutorial.msgEstimation: Vous connaissez maintenant votre
     empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des
@@ -292,8 +299,8 @@ entries:
   publicodes.ActionTutorial.msgPrécision: 💡 Pour améliorer la précision,
     certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
-  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}}
-    actions disponibles, <3></3>sélectionnées."
+  publicodes.ActionVignette.questionsRestantesText: "{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}"
+  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}} actions disponibles,"
   publicodes.AllActions.allerPlusLoin: <0>Aller plus loin</0><1><0>Au-delà d'un
     simple chiffre, découvrez les enjeux qui se cachent derrière chaque
     action.</0></1>
@@ -331,6 +338,8 @@ entries:
     console (elle est un peu chargée...), puis copier le JSON affiché, le coller
     dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans
     personas.yaml.
+  publicodes.Personas.warningMsg: "Attention, vous avez une simulation en cours :
+    sélectionner un persona écrasera votre simulation."
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0>Vos données sont
     stockées dans votre navigateur, vous avez donc le contrôle total sur elles.
     <2></2>
@@ -449,12 +458,13 @@ entries:
     question (vos km en voiture, les m² de votre
     logement...).</1><2>Nosgestesclimat.fr n'est pas affilié au site
     {{parent}}.</2>
+  publicodes.fin.Petrogaz.equivalenceVolume: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
   publicodes.fin.Petrogaz.explications: <0>C'est une estimation <1>a minima</1> de
     votre consommation de pétrole brut à l'année.</0><1>Estimée via vos trajets
     en voiture, en avion, en bus, consommation de fioul pour chauffage, elle ne
     prend pas (encore) en compte le pétrole utilisé pour acheminer vos achats,
     et l'énergie grise de vos diverses possessions.</1>
-  publicodes.fin.Petrogaz.litres: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
+  publicodes.fin.Petrogaz.petroleBrut: de <1>pétrole brut par an</1>
   simulateurs.warning.plus: Lire les précisions
   simulateurs.warning.titre: 🚩 Avant de commencer...
   simulation-end.text: Vous avez maintenant accès à l'estimation la plus précise possible.
@@ -471,6 +481,7 @@ entries:
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
+  sélectionnées: sélectionnées
   titre de la version: titre de la version
   tonne: tonne
   tonnes: tonnes
@@ -491,7 +502,6 @@ entries:
   ✅ C'est fait: ✅ C'est fait
   ✅ sélectionnez celles qui vous intéressent: ✅ sélectionnez celles qui vous intéressent
   ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.: ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.
-  🇺🇦Réduire ma conso de pétrole: 🇺🇦Réduire ma conso de pétrole
   🌟 Vous avez complété cette simulation: 🌟 Vous avez complété cette simulation
   🎯 2 tonnes: 🎯 2 tonnes
   🎯 Montrer l'objectif: 🎯 Montrer l'objectif
@@ -501,6 +511,7 @@ entries:
   👤 Qui est connecté ?: 👤 Qui est connecté ?
   👤 Vous utilisez actuellement le persona: 👤 Vous utilisez actuellement le persona
   💡 Choisissez un nom de salle: 💡 Choisissez un nom de salle
+  💡 Pourquoi ?: 💡 Pourquoi ?
   💾 Lancer le téléchargement.: 💾 Lancer le téléchargement.
   💾 Télécharger les résultats: 💾 Télécharger les résultats
   📊 Analysez les résultats et animez les discussions !: 📊 Analysez les résultats et animez les discussions !

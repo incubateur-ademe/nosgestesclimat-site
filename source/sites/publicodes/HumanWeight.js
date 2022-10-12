@@ -12,11 +12,11 @@ export const humanWeight = (
 	noSign
 ) => {
 	const v = Math.abs(possiblyNegativeValue)
-	const [raw, unit] =
+	const [raw, unit, _digits] =
 		v === 0
-			? [v, '']
+			? [v, '', 0]
 			: v < 1
-			? [v * 1000, 'g']
+			? [v * 1000, 'g', 0]
 			: v < 1000
 			? [v, 'kg']
 			: [v / 1000, concise ? 't' : v > 2000 ? t('tonnes') : t('tonne')]
