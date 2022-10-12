@@ -96,8 +96,8 @@ export default ({ headlessMode }) => {
 				</div>
 				<ActionButton
 					text="Réduire ma conso"
-					imgSrc="/images/1F1FA-1F1E6.svg"
-					invertImage={false}
+					imgSrc="https://openmoji.org/data/color/svg/2198.svg"
+					invertImage={true}
 					url={'/actions?métrique=pétrole'}
 				/>
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
