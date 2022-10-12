@@ -9,7 +9,7 @@ import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { motion } from 'framer-motion'
 import React, { Suspense, useContext, useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import {
@@ -55,6 +55,8 @@ export default function Conversation({
 	const tracker = useContext(TrackerContext)
 	const objectifs = useSelector(objectifsSelector)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
+
+	const { t } = useTranslation()
 
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = orderByCategories
@@ -347,8 +349,13 @@ export default function Conversation({
 					whiteBackground="false"
 				/>
 			</motion.div>
-			<p>Vous avez complété la catégorie {focusedCategory}</p>
-			<Link to="/profil"> Modifier mes réponses</Link>
+			<p>
+				<Trans>Vous avez complété la catégorie</Trans>{' '}
+				{t(focusedCategory as string, { ns: 'categories' })}
+			</p>
+			<Link to="/profil">
+				<Trans>Modifier mes réponses</Trans>
+			</Link>
 		</div>
 	) : displayRespiration ? (
 		<CategoryRespiration

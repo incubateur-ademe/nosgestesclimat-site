@@ -1,0 +1,31 @@
+fr:
+  logement: logement
+  transport: transport
+  alimentation: alimentation
+  numérique: numérique
+  divers: divers
+  services publics: services publics
+
+en:
+  logement: housing
+  transport: transport
+  alimentation: food
+  numérique: digital
+  divers: various
+  services publics: utilities
+
+es:
+  logement: vivienda
+  transport: transporte
+  alimentation: alimentación
+  numérique: digital
+  divers: variados
+  services publics: servicios públicos
+
+it:
+  logement: allogio
+  transport: trasporto
+  alimentation: alimentazione
+  numérique: digitale
+  divers: vari
+  services publics: servizi pubblici

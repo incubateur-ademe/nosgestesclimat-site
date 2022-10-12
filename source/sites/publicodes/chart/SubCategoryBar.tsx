@@ -1,5 +1,6 @@
 import { findContrastedTextColor } from 'Components/utils/colors'
 import { motion } from 'framer-motion'
+import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
@@ -18,9 +19,14 @@ export default ({
 	click,
 	clicked,
 }) => {
+	const { t } = useTranslation()
 	const { pathname } = useLocation(),
 		navigate = useNavigate()
 	const percent = (nodeValue / total) * 100
+
+	const translatedTitle = t(title.toLowerCase() as string, {
+		ns: 'categories',
+	})
 
 	return (
 		<motion.li
@@ -77,7 +83,7 @@ export default ({
 						`}
 					>
 						<SafeCategoryImage element={{ dottedName, icons }} />
-						<div>{title}</div>
+						<div>{translatedTitle}</div>
 						<div>{Math.round((nodeValue / total) * 100)}&nbsp;%</div>
 					</span>
 				) : (

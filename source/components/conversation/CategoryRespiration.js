@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
-import { useTranslation, Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import SafeCategoryImage from '../SafeCategoryImage'
 import useKeypress from '../utils/useKeyPress'
 
@@ -96,7 +96,7 @@ export default ({ dismiss, questionCategory }) => {
 					},
 				}}
 			>
-				<h2>{t(questionCategory.title)}</h2>
+				<h2>{t(questionCategory.title.toLowerCase(), { ns: 'categories' })}</h2>
 				<SafeCategoryImage element={questionCategory} />
 				<button className="ui__ plain button attention" onClick={dismiss}>
 					<Trans>Commencer</Trans>

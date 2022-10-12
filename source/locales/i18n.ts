@@ -1,5 +1,6 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import categoriesTranslations from './categories.yaml'
 import { Lang } from './translation'
 import unitsTranslations from './units.yaml'
 
@@ -10,9 +11,12 @@ i18next
 		resources: Object.fromEntries(
 			Object.keys(Lang)
 				.filter((key) => key !== 'Default')
-				.map((key) => {
+				.flatMap((key) => {
 					const lng = key.toLowerCase()
-					return [lng, { units: unitsTranslations[lng] }]
+					return [
+						[lng, { units: unitsTranslations[lng] }],
+						[lng, { categories: categoriesTranslations[lng] }],
+					]
 				})
 		),
 		react: {

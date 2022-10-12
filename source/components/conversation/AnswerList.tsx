@@ -147,7 +147,12 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 }
 
 const SubCategory = ({ rule, rules, engine, level }) => {
+	const { t } = useTranslation()
 	const [open, setOpen] = useState(false)
+
+	const translatedTitle = t(rule.title.toLowerCase() as string, {
+		ns: 'categories',
+	})
 
 	return (
 		<div>
@@ -190,7 +195,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 				`}
 			>
 				<SafeCategoryImage element={rule} whiteBackground={level > 1} />
-				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
+				{level === 1 ? <h2>{translatedTitle}</h2> : <h3>{translatedTitle}</h3>}
 				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
 					<small>
 						{rules.length} {level === 1 && emoji('💬')}
@@ -237,9 +242,11 @@ function StepsTable({
 }
 
 const Answer = ({ rule, dispatch, language, level }) => {
+	const { t } = useTranslation()
 	const navigate = useNavigate()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
 	const path = parentName(rule.dottedName, ' · ', level)
+
 	return (
 		<tr
 			key={rule.dottedName}
@@ -253,7 +260,9 @@ const Answer = ({ rule, dispatch, language, level }) => {
 						<small>{path}</small>
 					</div>
 				)}
-				<div css="font-size: 110%">{rule.title}</div>
+				<div css="font-size: 110%">
+					{t(rule.title as string, { ns: 'categories' })}
+				</div>
 			</td>
 			<td>
 				<button
@@ -304,7 +313,7 @@ const Answer = ({ rule, dispatch, language, level }) => {
 									text-align: end !important;
 								`}
 							>
-								Voir en détails
+								<Trans>Voir en détails</Trans>
 							</summary>
 							<AnswerTrajetsTable
 								trajets={storedTrajets[rule.dottedName]}

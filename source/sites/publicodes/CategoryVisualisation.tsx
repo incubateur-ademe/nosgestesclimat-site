@@ -1,12 +1,14 @@
-import emoji from 'react-easy-emoji'
-import SubCategoriesChart from './chart/SubCategoriesChart'
 import { CategoryLabel } from 'Components/conversation/UI'
-import { getSubcategories } from '../../components/publicodesUtils'
-import { useEngine } from '../../components/utils/EngineContext'
+import emoji from 'react-easy-emoji'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { getSubcategories } from '../../components/publicodesUtils'
 import AnimatedTargetValue from '../../components/ui/AnimatedTargetValue'
+import { useEngine } from '../../components/utils/EngineContext'
+import SubCategoriesChart from './chart/SubCategoriesChart'
 
 export default ({ questionCategory: category, hideMeta = false }) => {
+	const { t } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 
@@ -34,7 +36,7 @@ export default ({ questionCategory: category, hideMeta = false }) => {
 				>
 					<CategoryLabel>
 						{emoji(category.icons || '🌍')}
-						{category.title}
+						{t(category.title as string, { ns: 'categories' })}
 					</CategoryLabel>
 					<AnimatedTargetValue value={categoryValue} unit="kg" leftToRight />
 				</div>
