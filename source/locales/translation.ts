@@ -115,7 +115,7 @@ export function getCurrentLangAbrv(i18n: i18n): string {
 export function changeLangTo(i18n: i18n, currentLangState: Lang) {
 	const langInfos = getLangInfos(currentLangState)
 	if (langInfos) {
-		console.log('Changing language to', langInfos.name)
 		i18n.changeLanguage(langInfos.abrv)
+		console.log('[i18next] current language:', i18n.language)
 	}
 }

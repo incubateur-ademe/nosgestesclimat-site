@@ -11,7 +11,7 @@ import {
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
 import { useEffect, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import rulesEn from './locales/co2-en-us.json'
@@ -94,6 +94,7 @@ const EngineWrapper = ({ rules, children }) => {
 	const branchData = useBranchData()
 
 	const engineRequested = engineState !== null
+
 	const engine = useMemo(() => {
 		const shouldParse = engineRequested && rules
 		if (shouldParse) {
@@ -128,7 +129,11 @@ const EngineWrapper = ({ rules, children }) => {
 
 export const WithEngine = ({
 	children,
-	fallback = <div>Chargement du modèle de calcul</div>,
+	fallback = (
+		<div>
+			<Trans>Chargement du modèle de calcul...</Trans>
+		</div>
+	),
 }) => {
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)

@@ -1,4 +1,4 @@
-import emoji from './emoji'
+import { Trans } from 'react-i18next'
 
 export default ({ openExplanation, setOpenExplanation }) => {
 	return (
@@ -19,17 +19,19 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						line-height: 1.1rem;
 					`}
 				>
-					{emoji('➡️ ')}Votre point de départ est le résultat du test calculé à
-					partir de valeurs moyennes Françaises attribuées à chaque question. Au
-					fur et à mesure de vos réponses, vous personnalisez votre score selon
-					votre mode de vie. Si vous répondez "je ne sais pas" à une question,
-					vous remarquerez que le total ne change pas puisqu'une valeur moyenne
-					vous est attribuée dans ce cas. Il est fréquent que le score initial
-					change car{' '}
-					<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
-						le modèle Nos Gestes Climat évolue
-					</a>{' '}
-					!
+					<Trans i18nKey={'components.ScoreExplanation.text'}>
+						➡️ Votre point de départ est le résultat du test calculé à partir de
+						valeurs moyennes Françaises attribuées à chaque question. Au fur et
+						à mesure de vos réponses, vous personnalisez votre score selon votre
+						mode de vie. Si vous répondez "je ne sais pas" à une question, vous
+						remarquerez que le total ne change pas puisqu'une valeur moyenne
+						vous est attribuée dans ce cas. Il est fréquent que le score initial
+						change car{' '}
+						<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
+							le modèle Nos Gestes Climat évolue
+						</a>{' '}
+						!
+					</Trans>
 				</p>
 				<button
 					onClick={() => setOpenExplanation(false)}
@@ -60,7 +62,7 @@ export default ({ openExplanation, setOpenExplanation }) => {
 							padding: 0.3rem !important;
 						`}
 					>
-						J'ai compris
+						<Trans>J'ai compris</Trans>
 					</button>
 				</div>
 			</div>

@@ -1,13 +1,14 @@
 import Logo from 'Components/Logo'
-import LogoADEME from 'Images/logoADEME.svg'
 import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
 import React, { Suspense, useContext, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
+import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
@@ -15,12 +16,12 @@ import {
 	persistSimulation,
 	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
+import Tracker, { devTracker } from '../../Tracker'
 import {
 	changeLangTo,
 	defaultLang,
 	getLangFromAbreviation,
 } from './../../locales/translation'
-import Tracker, { devTracker } from '../../Tracker'
 import Actions from './Actions'
 import Fin from './fin'
 import Landing from './Landing'
@@ -31,8 +32,6 @@ import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
-import { useSelector } from 'react-redux'
-import useMediaQuery from '../../components/utils/useMediaQuery'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
@@ -114,15 +113,15 @@ const Main = ({}) => {
 
 	useEffect(() => {
 		tracker.track(location)
+	}, [location])
+
+	useEffect(() => {
 		const lang = searchParams.get('lang')
 		changeLangTo(
 			i18n,
-			lang
-				? getLangFromAbreviation(lang)
-				: // NOTE(@EmileRolley): I don't know why currentLang is nested inside the state...
-				  currentLangState.currentLang
+			lang ? getLangFromAbreviation(lang) : currentLangState.currentLang
 		)
-	}, [location, currentLangState, searchParams])
+	}, [currentLangState, searchParams])
 
 	const fluidLayout = isFluidLayout(location.pathname)
 

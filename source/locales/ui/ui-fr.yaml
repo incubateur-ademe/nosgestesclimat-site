@@ -27,6 +27,7 @@ entries:
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
   Cette fiche détaillée n'existe pas encore: Cette fiche détaillée n'existe pas encore
   Chargement: Chargement
+  Chargement du modèle de calcul...: Chargement du modèle de calcul...
   Choisir l'action: Choisir l'action
   Choisir le type de tri des actions: Choisir le type de tri des actions
   Choisir une autre région: Choisir une autre région
@@ -292,8 +293,10 @@ entries:
     très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes
     pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: |-
-    {{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}
+  publicodes.Contribution.commentaireAugmenté: >-
+    {{fromLocation}} ? `Depuis la page
+    : `{{fromLocation}}`` : ''}
+
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Vous trouverez ici les réponses aux
     questions les plus fréquentes. S’il vous reste des interrogations ou si vous
@@ -452,8 +455,9 @@ entries:
   site.publicodes.conferences.Stats.explication1: "<0>En jaune</0> : ma simulation à {{spotlightValue}} t."
   sites.publicodes.Landing.description: En 10 minutes, obtenez une estimation de
     votre empreinte carbone de consommation.
-  sites.publicodes.LandingExplanations.faqLink: |-
+  sites.publicodes.LandingExplanations.faqLink: >-
     ## Des questions ?
+
 
 
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
