@@ -1,13 +1,16 @@
-import { useEngine } from 'Components/utils/EngineContext'
-import { useTranslation } from 'react-i18next'
-import { useState } from 'react'
-import { useSelector } from 'react-redux'
 import { Link } from 'Components/Link'
+import { useEngine } from 'Components/utils/EngineContext'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
-import { objectifsSelector } from '../../selectors/simulationSelectors'
+import {
+	objectifsSelector,
+	situationSelector,
+} from '../../selectors/simulationSelectors'
 import HumanWeight, { DiffHumanWeight } from './HumanWeight'
 import PetrolScore from './PetrolScore'
 
@@ -21,8 +24,8 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const objectif =
 		actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0]
 	// needed for this component to refresh on situation change :
+	const situation = useSelector(situationSelector)
 	const engine = useEngine()
-	console.log('engine:', engine)
 	const rules = useSelector((state) => state.rules),
 		evaluation = engine.evaluate(objectif),
 		{ nodeValue: rawNodeValue, dottedName, unit } = evaluation
