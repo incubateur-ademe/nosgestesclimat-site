@@ -14,8 +14,7 @@ import { useEffect, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import rulesEn from './locales/co2-en-us.json'
-import rulesFr from './locales/co2-fr.json'
+import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import { getCurrentLangAbrv } from './locales/translation'
 
 /* This component gets the publicode rules from the good URL,
@@ -49,23 +48,34 @@ export default ({ children }) => {
 			console.log(
 				'===== DEV MODE : the model is on your hard drive on ./nosgestesclimat ======='
 			)
-			// // Rules are stored in nested yaml files
-			// const req = require.context(
-			// 	'../../nosgestesclimat/data/',
-			// 	true,
-			// 	/\.(yaml)$/
-			// )
-			//
-			// const rules = req.keys().reduce((memo, key) => {
-			// 	const jsonRuleSet = req(key).default || {}
-			// 	return { ...memo, ...jsonRuleSet }
-			// }, {})
-			//
-			if ('en' === i18n.language) {
-				setRules(rulesEn, branchData.deployURL)
-			} else {
-				setRules(rulesFr, branchData.deployURL)
+			// Rules are stored in nested yaml files
+			const req = require.context('../nosgestesclimat/data/', true, /\.(yaml)$/)
+
+			const baseRules = req.keys().reduce((acc, key) => {
+				if (key.match(/translated-rules-.*yaml/)) {
+					// ignoring translating files.
+					return acc
+				}
+				const jsonRuleSet = req(key).default || {}
+				return { ...acc, ...jsonRuleSet }
+			}, {})
+
+			var rules = baseRules
+
+			const currentLang = i18n.language === 'en' ? 'en-us' : i18n.language
+			if (currentLang !== 'fr') {
+				const translatedRulesAttrs =
+					require(`../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
+				rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
+				if (!rules) {
+					console.error(
+						'Error occured while recompiling translated rules for:',
+						currentLang
+					)
+				}
 			}
+
+			setRules(rules, branchData.deployURL)
 		} else {
 			const url =
 				branchData.deployURL +
