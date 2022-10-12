@@ -2,12 +2,24 @@
 	This module is used to extend the react-router-dom lib by overriding
 	the Link component to keep the current search parameters when navigating.
 */
-import { Link as LinkReact, useLocation } from 'react-router-dom'
+import { Link as LinkReact, useSearchParams } from 'react-router-dom'
+
+const persistentSearchParams = ['lang']
 
 export const Link = ({ to, children, ...props }) => {
-	const { search } = useLocation()
+	const [searchParams] = useSearchParams()
+
+	for (let key of searchParams.keys()) {
+		if (!persistentSearchParams.includes(key)) {
+			searchParams.delete(key)
+		}
+	}
+
 	return (
-		<LinkReact to={{ pathname: to, search }} {...props}>
+		<LinkReact
+			to={{ pathname: to, search: searchParams.toString() }}
+			{...props}
+		>
 			{children}
 		</LinkReact>
 	)
