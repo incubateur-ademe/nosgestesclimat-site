@@ -87,10 +87,10 @@ export default ({ headlessMode }) => {
 						</p>
 
 						<p>
-							Estimée via vos trajets en voiture, en avion, en bus, consommation
-							de fioul pour chauffage, elle ne prend pas (encore) en compte le
-							pétrole utilisé pour acheminer vos achats, et l'énergie grise de
-							vos diverses possessions.
+							Estimée via vos trajets en voiture, en avion, en bus, fioul pour
+							chauffage, elle ne prend pas (encore) en compte le pétrole utilisé
+							pour acheminer vos achats et l'énergie grise de vos diverses
+							possessions.
 						</p>
 					</div>
 				</div>
@@ -100,6 +100,12 @@ export default ({ headlessMode }) => {
 					invertImage={true}
 					url={'/actions?métrique=pétrole'}
 				/>
+				<Link
+					to="/pétrole-et-gaz"
+					css="color: inherit; :hover {color: var(--lighterColor) !important}"
+				>
+					💡 Pourquoi ?
+				</Link>
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
 					<ShareButton
 						text="Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !"
