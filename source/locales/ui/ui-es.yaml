@@ -18,6 +18,7 @@ entries:
   Aide à la saisie: Ayuda a la entrada
   "Ajouter ": "Añadir "
   Aller au contenu: Ir al contenido
+  Aucun: No
   Autonome: Autónomo
   Avancement du groupe: Progreso del grupo
   Bientôt disponible !: ¡Disponible pronto!
@@ -30,6 +31,7 @@ entries:
   Cette fiche détaillée n'existe pas encore: Esta ficha detallada aún no existe
   Changer de langue 🌐: Cambiar el idioma 🌐
   Chargement: Cargando
+  Chargement du modèle de calcul...: Carga del modelo de cálculo...
   Choisir l'action: Elija la acción
   Choisir le type de tri des actions: Elija el tipo de clasificación de las existencias
   Choisir une autre région: Elija otra región
@@ -63,6 +65,7 @@ entries:
   Effacer le nom actuel: Borrar el nombre actual
   Empreinte totale: Huella total
   En cours de chargement: Actualmente cargando
+  En groupe: En grupos
   En savoir +: Leer más
   En savoir plus: Leer más
   "Enlever ": "Eliminar "
@@ -94,6 +97,7 @@ entries:
   Icône représentant une pompe à pétrole: Icono que representa una bomba de aceite
   Initialisation...: Inicialización...
   Insérer cette suggestion: Inserte esta sugerencia
+  Intégrations et Iframes: Integraciones e Iframes
   J'ai compris: Comprendo
   Je ne sais pas: No lo sé
   "L'objectif à atteindre, 2 tonnes de CO₂e": El objetivo a alcanzar, 2 toneladas de CO₂e
@@ -106,6 +110,7 @@ entries:
   Menu: Menú
   Mode groupe: Modo de grupo
   Modifier: Editar
+  Modifier mes réponses: Editar mis respuestas
   Mon empreinte climat: Mi huella climática
   Mon empreinte climat 😶‍🌫️: Mi huella climática 😶‍🌫️
   Mon profil: Mi perfil
@@ -157,12 +162,14 @@ entries:
   Refermer: Cerrar
   Rejeter l'action: Rechazar la acción
   Reprendre la simulation: Reanudar la simulación
+  Retrouver ma simulation: Encontrar mi simulación
   Revenir chez moi 🔙: Volviendo a casa 🔙
   Revenir à ma simulation: Volver a mi simulación
   Réduire ma conso: Reducir mi consumo
   Réduire mon empreinte: Reducir mi huella
   Répondez à notre sondage sur le simulateur.: Responda a nuestra encuesta sobre el simulador.
   Réseaux Sociaux: Redes sociales
+  Score de nos utilisateurs: Puntuación de nuestros usuarios
   Simulation manquante: Falta la simulación
   Sites Web: Páginas web
   Sondage: Encuesta
@@ -182,11 +189,13 @@ entries:
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Aquí está mi huella ⛽️ de aceite. Mida el suyo
   "Voir le reste : ": "Ver el resto "
   Voir ma situation: Ver mi situación
+  Voir mon résultat: Ver mi resultado
   Voir toutes les actions: Ver todas las acciones
   Vos trajets apparaîtront dans ce tableau.: Sus viajes aparecerán en esta tabla.
   "Votre mission : réduire votre empreinte.": "Su misión: reducir su huella."
   Votre part du logement: Su parte de la vivienda
   Vous avez choisi: Has elegido
+  Vous avez terminé le test 👏: Has completado la prueba 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: Ha sido invitado a una encuesta de Our Climate Action llamada
   Vous n'avez pas encore fait le test.: Todavía no has hecho la prueba.
   an: un
@@ -195,6 +204,20 @@ entries:
   cette page: esta página
   components.NewsBanner.miseAJourDate: Actualizado el {{date}}
   components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
+  components.ScoreExplanation.text: ➡️ Su punto de partida es la puntuación del
+    examen calculada a partir de los valores medios franceses asignados a cada
+    pregunta. A medida que vas respondiendo, vas personalizando tu puntuación en
+    función de tu estilo de vida. Si responde "No sé" a una pregunta, observará
+    que el total no cambia, ya que se le da un valor medio. La puntuación
+    inicial suele cambiar a medida que <2>evoluciona el modelo de Nuestra Acción
+    por el</2> Clima
+  components.ScoreExplanation.text.lock: ➡️ Votre point de départ est le résultat
+    du test calculé à partir de valeurs moyennes Françaises attribuées à chaque
+    question. Au fur et à mesure de vos réponses, vous personnalisez votre score
+    selon votre mode de vie. Si vous répondez "je ne sais pas" à une question,
+    vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
+    est attribuée dans ce cas. Il est fréquent que le score initial change car
+    <2>le modèle Nos Gestes Climat évolue</2> !
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Viaja {{kmParcouru}} km avec en moyenne {{nbPersonnes}} en el coche.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
@@ -218,12 +241,66 @@ entries:
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.version: Está utilizando el <1>{{versionName}}</1> de la prueba.
   components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test.
+  components.stats.StatsContent.dureeDesVisites: <0>Más información</0><1>Esta
+    sección se genera a partir de las visitas de los últimos 60 días. Se han
+    descartado las visitas con un tiempo de permanencia en el sitio inferior a 1
+    minuto. Para evitar el sesgo del iframe que puede generar visitantes
+    inactivos en las estadísticas, el tiempo medio en el sitio se ha calculado a
+    partir de las visitas activas (el usuario ha hecho clic en "Hacer la
+    prueba").</1>
+  components.stats.StatsContent.dureeDesVisites.lock: <0>En savoir
+    plus</0><1>Cette section est générée à partir des visites des 60 derniers
+    jours. Les visites dont le temps passé sur le site est inférieur à 1 minute
+    ont été écartées. Pour éviter le biais de l'iframe qui peut générer des
+    visiteurs inactifs dans les statistiques, le temps moyen sur le site a été
+    calculé à partir des visites actives (l'utilisateur a cliqué sur "Faire le
+    test").</1>
   components.stats.StatsContent.enSavoirPlus: <0>Esta</0>sección se genera a
     partir de las visitas de los últimos 60 días. Se han descartado las visitas
     con un tiempo de permanencia en el sitio inferior a 1 minuto. Para evitar el
     sesgo del iframe que puede generar visitantes inactivos en las estadísticas,
     el tiempo medio en el sitio se ha calculado a partir de las visitas activas
     (el usuario ha hecho clic en "Hacer la prueba").
+  components.stats.StatsContent.integrationEtIframes: <0>Más información</0><1>Las
+    integraciones iframe se detectan a través del parámetro "iframe" en la URL,
+    sólo si el integrador ha utilizado el <1>script dedicado</1>. Así, las
+    visitas a través de iframes de los integradores que no utilizaron este
+    script están dispersas en las visitas generales de Nuestros Gestos
+    Climáticos. A la espera de cifras más precisas, esta tasa está, por tanto,
+    potencialmente subestimada con respecto a la realidad.<3>(Datos válidos para
+    los últimos 30 días)</3></1>
+  components.stats.StatsContent.integrationEtIframes.lock: <0>En savoir
+    plus</0><1>Les intégrations en iframe sont détéctées via le paramètre
+    'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé
+    le&nbsp;<1>script dédié</1>. Ainsi, les visites via les iframes
+    d'intégrateurs qui n'ont pas utilisé ce script sont dispersées dans les
+    visites générales de Nos Gestes Climat. Dans l'attente de chiffres plus
+    précis, ce taux est donc potentiellement sous-estimé par rapport à la
+    réalité.<3>(Données valables pour les 30 derniers jours)</3></1>
+  components.stats.StatsContent.scoreUtilisateurs: "<0>Más información sobre este
+    sitio</0><1>Por supuesto, no recogemos <2>datos de los usuarios</2>. Sin
+    embargo, la puntuación total, así como la huella por categoría, está
+    presente en la URL del final de la prueba. En esta sección, agregamos esta
+    información para hacernos una idea de la huella de carbono media de nuestros
+    usuarios y de la distribución de la puntuación para analizar estos
+    resultados en el contexto de las evoluciones del modelo.</1> <3>El objetivo
+    aquí no es evaluar la huella de carbono de los franceses: a priori, los
+    usuarios de la prueba no son representativos de los franceses. Además, estos
+    datos pueden estar sesgados por los usuarios que vuelven a la página final
+    varias veces, cambiando sus respuestas al test (lo que crea nuevas urls
+    finales).</3>"
+  components.stats.StatsContent.scoreUtilisateurs.lock: "<0>En savoir
+    plus</0><1>Bien sûr, nous ne collectons pas <2>les données utlisateurs</2>.
+    Néanmoins, le score total ainsi que l'empreinte par catégorie est présente
+    dans l'URL de fin de test. Dans cette section, nous agrégeons cees
+    informations pour avoir une idée de l'empreinte carbone moyenne de nos
+    utilisateurs et de distribution du score afin d'analyser ces résultats dans
+    le contexte des évolutions du modèle.</1> <3>L'objectif ici n'est pas
+    d'évaluer l'empreinte carbone des Français : à priori, les utilisateurs du
+    tests de sont pas représentatifs des Français. De plus, ces données peuvent
+    être biaisées par des utilisateurs qui reviendraient à plusieurs reprises
+    sur la page de fin, en changeant ses réponses au test (ce qui crée de
+    nouveaux url de fin).</3>"
   de: de
   de <1>pétrole brut par an</1>.: de <1>petróleo crudo al año</1>.
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: de visitas este mes<1> (en comparación con el mes anterior)</1>
@@ -301,6 +378,7 @@ entries:
   noresults: No se han encontrado resultados para esta búsqueda
   nouveautés: noticias
   ont utilisé l'aide à la saisie des km: utilizó la ayuda de entrada de km
+  ou: o
   oui: sí
   pages.News.premierParagraphe: Estamos mejorando continuamente el sitio web en
     base a sus comentarios. Infórmese aquí sobre el
@@ -339,11 +417,15 @@ entries:
     quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 ¿Tienes un fallo que te impide usar Nuestros Gestos Climáticos?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: |-
-    {{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}
+  publicodes.Contribution.commentaireAugmenté: >-
+    {{fromLocation}} ? `Depuis la page
+    : `{{fromLocation}}`` : ''}
+
     &gt; Este ticket fue creado automáticamente por nuestro robot desde nuestra [página de contribución](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.commentaireAugmenté.lock: |-
-    {{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}
+  publicodes.Contribution.commentaireAugmenté.lock: >-
+    {{fromLocation}} ? `Depuis la
+    page : `{{fromLocation}}`` : ''}
+
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Aquí encontrará respuestas a las preguntas
     más frecuentes. Si todavía tiene preguntas o quiere sugerir mejoras, vaya al
@@ -399,11 +481,12 @@ entries:
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0>Vos données
     sont stockées dans votre navigateur, vous avez donc le contrôle total sur
     elles. <2></2>
-  publicodes.Profil.recap: Ha respondido a las acciones de
-    {{answeredQuestionsLength}} questions et choisi {{actionChoicesLength}}.
-  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} %
-    ({{answeredQuestionsLength}} questions) et choisi{{actionChoicesLength}}
-    actions.
+  publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} %
+    ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
+    acciones.
+  publicodes.Profil.recap.lock: Vous avez terminé le test à
+    <ignore>percentFinished}} % ({{answeredQuestionsLength}} questions) et
+    choisi {{actionChoicesLength</ignore> actions.
   publicodes.SimulationMissing.personnas: 💡 También puedes ver el curso de acción
     como si fueras uno de estos perfiles típicos.
   publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi voir le
@@ -465,7 +548,7 @@ entries:
     minimum, qui commence par défaut à ~ <1></1> de CO₂e en l'état actuel du
     périmètre de calcul qui évolue selon les améliorations du modèle. Vos
     réponses viendront ensuite affiner cette empreinte dans la barre de score.
-  publicodes.Tutorial.slide4.blockquote: |-
+  publicodes.Tutorial.slide4.blockquote: >-
     
     					{{sparkles}} ¡Nuevo! Vea también su consumo de aceite, un
     					{{fuelPump}} un indicador adicional sobre el tema
@@ -650,10 +733,12 @@ entries:
     acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.litres: Es decir, {{secondaryValue}} litres (plein de {{pleinVolume}} litros).
   publicodes.fin.Petrogaz.litres.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
-  publicodes.shareText: |-
+  publicodes.shareText: >-
     #nosgestesclimat 🌍️
 
+
     {{total}} toneladas de CO2e / año ⬇️
+
 
     {{graph}}
   simulateurs.warning.plus: Lea los detalles
@@ -665,19 +750,25 @@ entries:
   simulation-end.title: 🌟 Has completado esta simulación
   simulation-end.title.lock: 🌟 Vous avez complété cette simulation
   simulations terminées depuis le lancement: simulaciones realizadas desde el lanzamiento
+  site.publicodes.conferences.Stats.explication1: "<0>En amarillo</0>: mi simulación en {{spotlightValue}} t."
+  site.publicodes.conferences.Stats.explication1.lock: "<0>En jaune</0> : ma simulation à <ignore>spotlightValue</ignore> t."
   sites.publicodes.Landing.description: En 10 minutos, obtén una estimación de tu huella de carbono.
   sites.publicodes.Landing.description.lock: En 10 minutes, obtenez une estimation
     de votre empreinte carbone de consommation.
-  sites.publicodes.LandingExplanations.faqLink: |-
+  sites.publicodes.LandingExplanations.faqLink: >-
     ## ¿Alguna pregunta?
 
 
+
     Encuentre respuestas a las preguntas más comunes en nuestra página de [FAQ](/contribución).
-  sites.publicodes.LandingExplanations.faqLink.lock: |-
+  sites.publicodes.LandingExplanations.faqLink.lock: >-
     ## Des questions ?
 
 
+
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
+  sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Revisa el tutorial
+  sites.publicodes.Profile.TutorialLink.text.lock: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 ¿Pero qué significa esa pequeña <1>e</1>?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   titre de la version: título de la versión
@@ -690,6 +781,7 @@ entries:
   À propos: Sobre nosotros
   ⏲️  Choississez votre mode de simulation: ⏲️ Elige el modo de simulación
   ▶️ Faire le test: ▶️ Haz la prueba
+  ▶️ Finir mon test: ▶️ Terminar mi prueba
   ◀ Retour: ◀ Volver
   ◀ Retour à la liste: ◀ Volver a la lista
   ◀ Retour à la liste des fiches: ◀ Volver a la lista de tarjetas

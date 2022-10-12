@@ -18,6 +18,7 @@ entries:
   Aide à la saisie: Input help
   "Ajouter ": "Add "
   Aller au contenu: Go to content
+  Aucun: No
   Autonome: Autonomous
   Avancement du groupe: Group progress
   Bientôt disponible !: Available soon !
@@ -30,6 +31,7 @@ entries:
   Cette fiche détaillée n'existe pas encore: This detailed sheet does not exist yet
   Changer de langue 🌐: Change language 🌐
   Chargement: Loading
+  Chargement du modèle de calcul...: Loading the calculation model...
   Choisir l'action: Choose the action
   Choisir le type de tri des actions: Choose the type of stock sorting
   Choisir une autre région: Choose another region
@@ -200,6 +202,20 @@ entries:
   cette page: this page
   components.NewsBanner.miseAJourDate: Updated on {{date}}
   components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
+  components.ScoreExplanation.text: ➡️ Your starting point is the test score
+    calculated from average French values assigned to each question. As you
+    answer, you customize your score according to your lifestyle. If you answer
+    "I don't know" to a question, you will notice that the total does not change
+    since an average value is assigned to you in this case. It is frequent that
+    the initial score changes because <2>the Our Climate Action model
+    evolves</2>!
+  components.ScoreExplanation.text.lock: ➡️ Votre point de départ est le résultat
+    du test calculé à partir de valeurs moyennes Françaises attribuées à chaque
+    question. Au fur et à mesure de vos réponses, vous personnalisez votre score
+    selon votre mode de vie. Si vous répondez "je ne sais pas" à une question,
+    vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
+    est attribuée dans ce cas. Il est fréquent que le score initial change car
+    <2>le modèle Nos Gestes Climat évolue</2> !
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
     You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
     car.
@@ -393,11 +409,15 @@ entries:
     quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Our Climate Gestures?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: |-
-    {{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}
+  publicodes.Contribution.commentaireAugmenté: >-
+    {{fromLocation}} ? `Depuis la page
+    : `{{fromLocation}}`` : ''}
+
     &gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.commentaireAugmenté.lock: |-
-    {{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}
+  publicodes.Contribution.commentaireAugmenté.lock: >-
+    {{fromLocation}} ? `Depuis la
+    page : `{{fromLocation}}`` : ''}
+
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Here you will find answers to the most
     frequently asked questions. If you still have questions or if you want to
@@ -451,11 +471,12 @@ entries:
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0>Vos données
     sont stockées dans votre navigateur, vous avez donc le contrôle total sur
     elles. <2></2>
-  publicodes.Profil.recap: You have responded to {{answeredQuestionsLength}}
-    questions et choisi {{actionChoicesLength}} actions.
-  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} %
-    ({{answeredQuestionsLength}} questions) et choisi{{actionChoicesLength}}
+  publicodes.Profil.recap: You have completed the test at {{percentFinished}} %
+    ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
     actions.
+  publicodes.Profil.recap.lock: Vous avez terminé le test à
+    <ignore>percentFinished}} % ({{answeredQuestionsLength}} questions) et
+    choisi {{actionChoicesLength</ignore> actions.
   publicodes.SimulationMissing.personnas: 💡 You can also see the action course as
     if you were one of these sample profiles.
   publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi voir le
@@ -516,8 +537,8 @@ entries:
     minimum, qui commence par défaut à ~ <1></1> de CO₂e en l'état actuel du
     périmètre de calcul qui évolue selon les améliorations du modèle. Vos
     réponses viendront ensuite affiner cette empreinte dans la barre de score.
-  publicodes.Tutorial.slide4.blockquote: |-
-
+  publicodes.Tutorial.slide4.blockquote: >-
+    
     					{{sparkles}} New! See also your oil consumption, a complementary
     					{{fuelPump}} an additional indicator on the subject of
     					climate.
@@ -694,10 +715,12 @@ entries:
     acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.litres: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
   publicodes.fin.Petrogaz.litres.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
-  publicodes.shareText: |-
+  publicodes.shareText: >-
     #nosgestesclimate 🌍️
 
+
     {{total}} tons CO2e / year ⬇️
+
 
     {{graph}}
   simulateurs.warning.plus: Read the details
@@ -714,13 +737,15 @@ entries:
   sites.publicodes.Landing.description: In 10 minutes, get an estimate of your carbon footprint.
   sites.publicodes.Landing.description.lock: En 10 minutes, obtenez une estimation
     de votre empreinte carbone de consommation.
-  sites.publicodes.LandingExplanations.faqLink: |-
+  sites.publicodes.LandingExplanations.faqLink: >-
     ## Any questions?
 
 
+
     Find answers to common questions on our [FAQ](/contribute) page.
-  sites.publicodes.LandingExplanations.faqLink.lock: |-
+  sites.publicodes.LandingExplanations.faqLink.lock: >-
     ## Des questions ?
+
 
 
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).

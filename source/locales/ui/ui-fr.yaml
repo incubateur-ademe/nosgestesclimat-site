@@ -16,6 +16,7 @@ entries:
   Aide à la saisie: Aide à la saisie
   "Ajouter ": "Ajouter "
   Aller au contenu: Aller au contenu
+  Aucun: Aucun
   Autonome: Autonome
   Avancement du groupe: Avancement du groupe
   Bientôt disponible !: Bientôt disponible !
@@ -197,6 +198,13 @@ entries:
   cet article: cet article
   cette page: cette page
   components.NewsBanner.miseAJourDate: Mise à jour le {{date}}
+  components.ScoreExplanation.text: ➡️ Votre point de départ est le résultat du
+    test calculé à partir de valeurs moyennes Françaises attribuées à chaque
+    question. Au fur et à mesure de vos réponses, vous personnalisez votre score
+    selon votre mode de vie. Si vous répondez "je ne sais pas" à une question,
+    vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
+    est attribuée dans ce cas. Il est fréquent que le score initial change car
+    <2>le modèle Nos Gestes Climat évolue</2> !
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.
@@ -327,7 +335,7 @@ entries:
     stockées dans votre navigateur, vous avez donc le contrôle total sur elles.
     <2></2>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} %
-    ({{answeredQuestionsLength}} questions) et choisi{{actionChoicesLength}}
+    ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
     actions.
   publicodes.SimulationMissing.personnas: 💡 Vous pouvez aussi voir le parcours
     action comme si vous étiez l'un de ces profils types.
