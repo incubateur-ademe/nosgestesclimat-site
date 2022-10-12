@@ -1,16 +1,20 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
+import { Lang } from './translation'
 import unitsTranslations from './units.yaml'
-
-export type AvailableLangs = 'fr' | 'en'
 
 i18next
 	.use(initReactI18next)
 	.init({
-		resources: {
-			fr: { units: unitsTranslations.fr },
-			en: { units: unitsTranslations.en },
-		},
+		fallbackLng: 'fr',
+		resources: Object.fromEntries(
+			Object.keys(Lang)
+				.filter((key) => key !== 'Default')
+				.map((key) => {
+					const lng = key.toLowerCase()
+					return [lng, { units: unitsTranslations[lng] }]
+				})
+		),
 		react: {
 			useSuspense: false,
 		},

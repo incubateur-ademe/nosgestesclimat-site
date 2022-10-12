@@ -73,7 +73,10 @@ export default function Input({
 								: { value: value ?? '' })}
 						/>
 						<label htmlFor={id}>
-							<span className="suffix"> {t(unité as string)}</span>
+							<span className="suffix">
+								{' '}
+								{t(unité as string, { ns: 'units' })}
+							</span>
 						</label>
 					</div>
 				</div>

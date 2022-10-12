@@ -1,47 +1,103 @@
 fr:
-  heure_plural: heures
-  jour_plural: jours
-  jour ouvré_plural: jours ouvrés
-  semaine_plural: semaines
-  trimestre_plural: trimestres
-  trimestre validé_plural: trimestres validés
-  an_plural: ans
-  employé_plural: employés
-  point_plural: points
-  mois_plural: mois
-  manifestation_plural: manifestations
-  titre-restaurant_plural: titres-restaurant
-  part_plural: parts
-  enfant_plural: enfants
+  heure: heure
+  heures: heure
+  point: point
+  points: points
+  jour: jour
+  jours: jours
+  semaine: semaine
+  semaines: semaines
+  km: km
+  an: an
+  ans: ans
+  année: année
+  années: annnées
+  mois: mois
+  voyageur: voyageur
+  voyageurs: voyageurs
+  personne: personne
+  personnes: personnes
+  climatiseur: climatiseur
+  h / an: h / an
+  h / semaine: h / semaine
+  km / an: km / an
+  l / semaine: l / semaine
+  €: €
+
 en:
   heure: hour
-  heure_plural: hours
+  heures: hours
   point: point
-  points_plural: points
+  points: points
   jour: day
-  jour_plural: days
-  jour ouvré: working day
-  jour ouvré_plural: working days
+  jours: days
   semaine: week
-  semaine_plural: weeks
-  trimestre: quarter
-  trimestre_plural: quarters
-  trimestre validé: validated quarter
-  trimestre validé_plural: validated quarters
+  semaines: weeks
   km: km
-  repas: meal
-  repas_plural: meals
-  employé: employee
-  employé_plural: employees
   an: year
-  an_plural: years
+  ans: years
+  année: year
+  années: years
   mois: month
-  mois_plural: months
-  manifestation: event
-  manifestation_plural: events
-  titre-restaurant: meal voucher
-  titre-restaurant_plural: meal vouchers
-  part: share
-  part_plural: shares
-  enfant: child
-  enfant_plural: children
+  voyageur: traveler
+  voyageurs: travelers
+  personne: person
+  personnes: people
+  climatiseur: air-conditioner
+  h / an: h / year
+  h / semaine: h / week
+  km / an: km / year
+  l / semaine: l / week
+  €: $
+
+es:
+  heure: hora
+  heures: horas
+  point: punto
+  points: puntos
+  jour: día
+  jours: días
+  semaine: semana
+  semaines: semanas
+  km: km
+  an: año
+  ans: años
+  année: año
+  années: años
+  mois: mes
+  voyageur: viajero
+  voyageurs: viajeros
+  personne: persona
+  personnes: personas
+  climatiseur: aire acondicionado
+  h / an: h / año
+  h / semaine: h / semana
+  km / an: km / año
+  l / semaine: l / semana
+  €: €
+
+it:
+  heure: ora
+  heures: ore
+  point: punto
+  points: punti
+  jour: giorno
+  jours: giorni
+  semaine: settimana
+  semaines: settimane
+  km: km
+  an: anno
+  ans: anni
+  année: anno
+  années: anni
+  mois: mese
+  voyageur: viaggiatore
+  voyageurs: viaggiatori
+  personne: persona
+  personnes: persone
+  climatiseur: condizionatore
+  h / an: o / anno
+  h / semaine: o / settimiana
+  km / an: km / anno
+  l / semaine: l / settimiana
+  €: €
