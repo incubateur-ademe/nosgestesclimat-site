@@ -25,9 +25,7 @@ Or, comme toute ressource fossile, les stocks de pétrole et le gaz ne se renouv
 
 L'[INSEE nous dit que](https://www.insee.fr/fr/statistiques/2119697) nous dépendions en 2021 à 37% de l'Afrique (12% Algérie, 11% Nigéria, 10% Libye), à 23% de l'ex-URSS dont **9% de Russie**, et 15% du Moyen-Orient dont 8% de l'Arabie-Saoudite.
 
-## Le cas de la guerre menée par la Russie en Ukraine 💥
-
-<img style="width: 20rem; border-radius: .6rem" src="https://upload.wikimedia.org/wikipedia/commons/4/49/Flag_of_Ukraine.svg"/>
+## Le cas de la guerre menée par la Russie en Ukraine 🇺🇦
 
 Le 24 février 2022, [la Russie lance une opération militaire dans le but d'envahir l'Ukraine](https://fr.wikipedia.org/wiki/Invasion_de_l%27Ukraine), ce qui constitue la plus importante opération militaire qu'ait connue l'Europe depuis la fin de la Seconde Guerre mondiale.
 
