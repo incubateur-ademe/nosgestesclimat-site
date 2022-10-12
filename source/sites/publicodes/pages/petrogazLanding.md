@@ -21,7 +21,7 @@ Nous avons donc ajouté dans la barre de résultat de Nos Gestes Climat **une es
 
 La réduction de la consommation de pétrole et de gaz est donc nécessaire pour le climat. Mais comme on le dit souvent, "il n'y a pas que le climat" : il y a aussi la géopolitique et la stratégie nationale, car nous n'avons pas ou presque de pétrole et de gaz sur le territoire français.
 
-Or, comme toute ressource fossile, les stocks de pétrole et le gaz ne se renouvelleront pas de notre vivant, ni du vivant de nos arrières petits-enfants : les tensions mondiales sur la demande peuvent fortement se faire ressentir sur notre économie, dont la consommation d'énergie est majoritairement fossile (pétrole et gaz).
+Or, comme toute ressource fossile, les stocks de pétrole et le gaz ne se renouvelleront pas de notre vivant, ni du vivant de nos arrière-petits-enfants : les tensions mondiales sur la demande peuvent fortement se faire ressentir sur notre économie, dont la consommation d'énergie est majoritairement fossile (pétrole et gaz).
 
 [D'après l'INSEE](https://www.insee.fr/fr/statistiques/2119697) nous dépendions en 2021 à 37% de l'Afrique (12% Algérie, 11% Nigéria, 10% Libye), à 23% de l'ex-URSS dont **9% de Russie**, et 15% du Moyen-Orient dont 8% de l'Arabie-Saoudite.
 
