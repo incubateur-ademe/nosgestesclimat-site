@@ -3,20 +3,19 @@ import { disabledAction, supersededAction } from './ActionVignette'
 
 export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
 	const v = Math.abs(possiblyNegativeValue)
-	const [raw, unit] =
+	const [raw, unit, digits] =
 		v === 0
-			? [v, '']
+			? [v, '', 0]
 			: v < 1
-			? [v * 1000, 'g']
+			? [v * 1000, 'g', 0]
 			: v < 1000
-			? [v, 'kg']
-			: [v / 1000, concise ? 't' : v > 2000 ? 'tonnes' : 'tonne']
+			? [v, 'kg', 0]
+			: [v / 1000, concise ? 't' : v > 2000 ? 'tonnes' : 'tonne', 1]
 
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
 		resultValue = noSign ? raw : signedValue,
 		value = resultValue.toLocaleString('fr-FR', {
-			minimumFractionDigits: 1,
-			maximumFractionDigits: 1,
+			maximumFractionDigits: digits,
 		})
 
 	return [value, unit]
