@@ -1,17 +1,15 @@
+import animate from 'Components/ui/animate'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { AnimatePresence, motion } from 'framer-motion'
-import React, { useContext, useEffect, useState } from 'react'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
+import styled from 'styled-components'
+import IllustratedButton from '../../components/IllustratedButton'
 import { correctValue } from '../../components/publicodesUtils'
-import { sortBy } from '../../utils'
+import { ScrollToElement } from '../../components/utils/Scroll'
 import ActionConversation from './ActionConversation'
 import { ActionListCard } from './ActionVignette'
-import animate from 'Components/ui/animate'
-import { ScrollToElement } from '../../components/utils/Scroll'
-import DisableScroll from '../../components/utils/DisableScroll'
-import IllustratedButton from '../../components/IllustratedButton'
-import styled from 'styled-components'
 
 const thresholds = [
 	[10000, 'plus de 10 tonnes'],
@@ -101,7 +99,7 @@ export default ({
 						src="/images/270A.svg"
 						css="filter: invert(1); height: 2rem; vertical-align: middle"
 					/>
-					Actions non chiffrées &#9660;
+					Actions d'engagement &#9660;
 				</p>
 			</ThresholdSeparator>
 			<List
@@ -193,8 +191,10 @@ const List = ({
 						transition={{ duration: 1 }}
 						css={`
 							width: 12rem;
-							height: 16rem;
 							margin: 0.4rem;
+							@media (max-width: 800px) {
+								width: 11rem;
+							}
 						`}
 					>
 						<ActionListCard

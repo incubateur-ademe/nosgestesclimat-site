@@ -5,7 +5,11 @@ import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
-import { correctValue } from '../../components/publicodesUtils'
+import {
+	correctValue,
+	extractCategoriesNamespaces,
+	splitName,
+} from '../../components/publicodesUtils'
 import Stamp from '../../components/Stamp'
 import { useEngine } from '../../components/utils/EngineContext'
 import {
@@ -75,13 +79,16 @@ export const ActionListCard = ({
 			situation,
 			engine
 		),
-		hasRemainingQuestions = remainingQuestions.length > 0
+		hasRemainingQuestions = remainingQuestions.length > 0,
+		pluralSuffix = remainingQuestions.length > 1 ? 's' : '',
+		remainingQuestionsText = `${remainingQuestions.length} question${pluralSuffix} restante${pluralSuffix}`
+	const categories = extractCategoriesNamespaces(rules, engine)
+	const categoryColor = categories.find(
+		(cat) => cat.dottedName === splitName(dottedName)[0]
+	).color
 
 	return (
 		<div
-			className={`ui__ interactive card light-border ${
-				actionChoices[evaluation.dottedName] ? 'selected' : ''
-			}`}
 			css={`
 				${disabled ? disabledStyle : ''}
 				${focused && `border: 4px solid var(--color) !important;`}
@@ -89,130 +96,169 @@ export const ActionListCard = ({
 				width: 100%;
 				display: flex;
 				flex-direction: column;
-				justify-content: start;
-				height: 100%;
+				justify-content: center;
+				align-items: center;
+				height: 14.5rem;
+				${noFormula && 'height: 13rem;'}
 				${hasRemainingQuestions && `background: #eee !important; `}
+				position: relative;
+				> div {
+					padding: 0.4rem !important;
+				}
+				color: white;
+				border: 4px solid ${categoryColor};
+				border-radius: 0.6rem;
+				box-shadow: 2px 2px 10px #bbb;
 			`}
 		>
-			<Link
+			<div
 				css={`
-					display: block;
-					margin-top: 0.6rem;
-					margin-bottom: 1rem;
-					h2 {
-						margin-left: 0.6rem;
-						display: inline;
-						font-weight: 500;
-						font-size: 100%;
-						@media (min-width: 800px) {
-							font-size: 110%;
-						}
-					}
-					text-decoration: none;
-					height: 5.5rem;
+					background: ${categoryColor} !important;
+					height: 6rem;
+					width: 100%;
+					display: flex;
+					align-items: center;
 				`}
-				to={'/actions/' + encodeRuleName(dottedName)}
 			>
+				<Link
+					css={`
+						h2 {
+							margin-top: 0rem;
+							text-align: center;
+							display: inline;
+							font-size: 120%;
+							font-weight: 600;
+							line-height: 1.3rem;
+							display: inline-block;
+							color: white;
+							@media (min-width: 800px) {
+								font-size: 110%;
+							}
+						}
+						text-decoration: none;
+					`}
+					to={'/actions/' + encodeRuleName(dottedName)}
+				>
+					<h2>{title}</h2>
+				</Link>
 				{icons && (
 					<span
 						css={`
-							font-size: 150%;
+							position: absolute;
+							top: 10%;
+							transform: translateX(-50%);
+							left: 50%;
+							font-size: 400%;
+							white-space: nowrap;
+							mix-blend-mode: lighten;
+							filter: grayscale(1);
+							opacity: 0.3;
 						`}
 					>
 						{emoji(icons)}
 					</span>
 				)}
-				<h2>{title}</h2>
-			</Link>
-
-			<div
-				css={`
-					position: relative;
-				`}
-			>
-				<div
-					css={hasRemainingQuestions ? `filter: blur(1px) grayscale(1)` : ''}
-				>
-					<ActionValue
-						{...{ dottedName, total, disabled, noFormula, engine }}
-					/>
-				</div>
-				{hasRemainingQuestions && (
-					<Stamp onClick={() => focusAction(dottedName)} clickable>
-						{remainingQuestions.length} question
-						{remainingQuestions.length > 1 && 's'}
-					</Stamp>
-				)}
 			</div>
-			<div
-				css={`
-					display: flex;
-					justify-content: space-evenly;
-					align-items: center;
-					button img {
-						font-size: 200%;
-					}
-					margin-bottom: 1rem;
-					margin-top: auto;
-				`}
-			>
-				<button
-					title="Choisir l'action"
-					aria-pressed={actionChoices[dottedName]}
-					css={`
-						${hasRemainingQuestions && 'filter: grayscale(1)'}
-					`}
-					onClick={(e) => {
-						if (hasRemainingQuestions) {
-							focusAction(dottedName)
-							return null
-						}
 
-						dispatch(
-							setActionChoice(
-								dottedName,
-								actionChoices[dottedName] === true ? null : true
+			<div css="margin-top: auto;">
+				<div
+					css={`
+						position: relative;
+						margin-bottom: 1.4rem;
+					`}
+				>
+					<div
+						css={hasRemainingQuestions ? `filter: blur(1px) grayscale(1)` : ''}
+					>
+						<ActionValue
+							{...{ dottedName, total, disabled, noFormula, engine }}
+						/>
+					</div>
+					{hasRemainingQuestions && (
+						<Stamp
+							onClick={() => focusAction(dottedName)}
+							clickable
+							title={remainingQuestionsText}
+							number={remainingQuestions.length}
+						></Stamp>
+					)}
+					{hasRemainingQuestions && (
+						<p
+							css="color: var(--color); height: 0; cursor: pointer"
+							onClick={() => focusAction(dottedName)}
+						>
+							{remainingQuestionsText}
+						</p>
+					)}
+				</div>
+				<div
+					css={`
+						display: flex;
+						justify-content: space-evenly;
+						button img {
+							font-size: 200%;
+						}
+						margin-bottom: 1rem;
+					`}
+				>
+					<button
+						title="Choisir l'action"
+						aria-pressed={actionChoices[dottedName]}
+						css={`
+							${hasRemainingQuestions && 'filter: grayscale(1)'}
+						`}
+						onClick={(e) => {
+							if (hasRemainingQuestions) {
+								focusAction(dottedName)
+								return null
+							}
+
+							dispatch(
+								setActionChoice(
+									dottedName,
+									actionChoices[dottedName] === true ? null : true
+								)
 							)
-						)
-						if (!actionChoices[dottedName]) {
-							const eventData = [
+							if (!actionChoices[dottedName]) {
+								const eventData = [
+									'trackEvent',
+									'/actions',
+									'Action sélectionnée',
+									dottedName,
+									nodeValue,
+								]
+								tracker.push(eventData)
+							}
+							e.stopPropagation()
+							e.preventDefault()
+						}}
+					>
+						<img src="/images/2714.svg" css="width: 3rem" />
+					</button>
+					<button
+						title="Rejeter l'action"
+						onClick={(e) => {
+							dispatch(
+								setActionChoice(
+									dottedName,
+
+									actionChoices[dottedName] === false ? null : false
+								)
+							)
+							tracker.push([
 								'trackEvent',
 								'/actions',
-								'Action sélectionnée',
+								'Action rejetée',
 								dottedName,
 								nodeValue,
-							]
-							tracker.push(eventData)
-						}
-						e.stopPropagation()
-						e.preventDefault()
-					}}
-				>
-					<img src="/images/2714.svg" css="width: 3rem" />
-				</button>
-				<button
-					title="Rejeter l'action"
-					onClick={(e) => {
-						dispatch(
-							setActionChoice(
-								dottedName,
-
-								actionChoices[dottedName] === false ? null : false
-							)
-						)
-						tracker.push([
-							'trackEvent',
-							'/actions',
-							'Action rejetée',
-							dottedName,
-							nodeValue,
-						])
-						e.stopPropagation()
-						e.preventDefault()
-					}}
-				>
-					<img src="/images/274C.svg" css="width: 1.8rem" />
-				</button>
+							])
+							e.stopPropagation()
+							e.preventDefault()
+						}}
+					>
+						<img src="/images/274C.svg" css="width: 1.8rem" />
+					</button>
+				</div>
 			</div>
 		</div>
 	)
@@ -279,30 +325,43 @@ export const ActionValue = ({
 		<div
 			css={`
 				font-size: 100%;
-				strong {
-					background: var(--color);
-					border-radius: 0.3rem;
-					color: var(--textColor);
-					padding: 0.1rem 0.4rem;
-					font-weight: bold;
-					${correctedValue < 0 && `background: #e33e3e`}
-				}
+				text-align: center;
 			`}
 		>
-			{noFormula ? (
-				'Non chiffré'
-			) : disabled ? (
+			{noFormula ? null : disabled ? (
 				'Non applicable'
 			) : (
 				<div>
-					<strong>
-						{sign} {stringValue} {unit}
-					</strong>{' '}
-					{total && (
-						<span css="margin-left: .4rem">
-							{sign}&nbsp;{Math.abs(relativeValue)}%
-						</span>
-					)}
+					{sign}&nbsp;
+					<span
+						css={`
+							background: var(--color);
+							border-radius: 0.3rem;
+							color: var(--textColor);
+							padding: 0rem 0.4rem;
+							padding-right: 0;
+							border: 2px solid var(--color);
+							border-radius: 0.3rem;
+							${correctedValue < 0 && `background: #e33e3e`};
+						`}
+					>
+						<strong>{stringValue}</strong>&nbsp;
+						<span>{unit}</span>
+						{total && (
+							<span
+								css={`
+									margin-left: 0.4rem;
+									padding: 0 0.2rem;
+									background: var(--lighterColor);
+									color: var(--color);
+									border-top-right-radius: 0.3rem;
+									border-bottom-right-radius: 0.3rem;
+								`}
+							>
+								{Math.abs(relativeValue)}%
+							</span>
+						)}
+					</span>
 				</div>
 			)}
 		</div>
