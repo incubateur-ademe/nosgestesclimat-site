@@ -16,7 +16,7 @@ export default ({ selected }) => {
 				padding: 0.1rem 0rem;
 				border-radius: 0.2rem;
 				line-height: 1.6rem;
-				height: 1.8rem;
+				height: 2.2rem;
 				background: var(--darkerColor);
 				button {
 					color: white;
@@ -41,7 +41,7 @@ export default ({ selected }) => {
 					vertical-align: middle;
 				}
 
-				${selected && `border: 2px solid var(--lightColor)`}
+				${selected && `border: 4px solid gold`}
 			`}
 			onClick={() =>
 				setSearchParams({
@@ -50,7 +50,7 @@ export default ({ selected }) => {
 				})
 			}
 		>
-			{emoji('🇺🇦')} <span>Réduire ma conso de pétrole</span>
+			<span>Réduire ma conso de pétrole</span>
 		</button>
 	)
 }

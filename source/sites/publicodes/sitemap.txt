@@ -2,6 +2,7 @@ https://nosgestesclimat.fr/simulateur/bilan
 https://nosgestesclimat.fr/vie-privée
 https://nosgestesclimat.fr/documentation
 https://nosgestesclimat.fr/à-propos
+https://nosgestesclimat.fr/pétrole-et-gaz
 https://nosgestesclimat.fr/nouveautés
 https://nosgestesclimat.fr/groupe
 https://nosgestesclimat.fr/profil
@@ -11,6 +12,8 @@ https://nosgestesclimat.fr/personas
 https://nosgestesclimat.fr/stats
 https://nosgestesclimat.fr/actions
 https://nosgestesclimat.fr/actions/plus
+https://nosgestesclimat.fr/nouveautés/Guadeloupe
+https://nosgestesclimat.fr/nouveautés/Tré‑la‑Tête
 https://nosgestesclimat.fr/nouveautés/Deux-alpes
 https://nosgestesclimat.fr/nouveautés/Gabiétous-(Gavarnie)
 https://nosgestesclimat.fr/nouveautés/Gébroulaz
@@ -589,11 +592,15 @@ https://nosgestesclimat.fr/documentation/logement/baisse-température
 https://nosgestesclimat.fr/documentation/logement/baisse-température/nombre-degrés
 https://nosgestesclimat.fr/documentation/logement/température
 https://nosgestesclimat.fr/documentation/logement/baisse-température/gains-1-degré
-https://nosgestesclimat.fr/documentation/logement/empreinte-chauffage
+https://nosgestesclimat.fr/documentation/logement/empreinte-chauffage-air
+https://nosgestesclimat.fr/documentation/logement/empreinte-chauffage-air-utilisateur
+https://nosgestesclimat.fr/documentation/logement/empreinte-par-défaut-chauffage-air
 https://nosgestesclimat.fr/documentation/logement/part-chauffage-électricité
 https://nosgestesclimat.fr/documentation/logement/part-chauffage-gaz
 https://nosgestesclimat.fr/documentation/logement/part-chauffage-bois
 https://nosgestesclimat.fr/documentation/logement/part-chauffage-fioul
+https://nosgestesclimat.fr/documentation/logement/part-chauffage-réseau-de-chaleur
+https://nosgestesclimat.fr/documentation/logement/part-chauffage-GPL
 https://nosgestesclimat.fr/documentation/logement/éteindre-appareils
 https://nosgestesclimat.fr/documentation/logement/éteindre-appareils/empreinte-du-foyer
 https://nosgestesclimat.fr/documentation/logement/énergie-de-veille
