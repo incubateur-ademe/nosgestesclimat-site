@@ -10,7 +10,7 @@ import {
 	extractCategoriesNamespaces,
 	splitName,
 } from '../../components/publicodesUtils'
-import Stamp from '../../components/Stamp'
+import NotificationBubble from '../../components/NotificationBubble'
 import { useEngine } from '../../components/utils/EngineContext'
 import {
 	getNextQuestions,
@@ -175,12 +175,12 @@ export const ActionListCard = ({
 						/>
 					</div>
 					{hasRemainingQuestions && (
-						<Stamp
+						<NotificationBubble
 							onClick={() => focusAction(dottedName)}
 							clickable
 							title={remainingQuestionsText}
 							number={remainingQuestions.length}
-						></Stamp>
+						></NotificationBubble>
 					)}
 					{hasRemainingQuestions && (
 						<p
