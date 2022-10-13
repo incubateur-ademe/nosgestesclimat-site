@@ -12,6 +12,7 @@ const stringify = require('json-stable-stringify')
 
 const utils = require('../../nosgestesclimat/scripts/i18n/utils')
 const cli = require('../../nosgestesclimat/scripts/i18n/cli')
+const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
 
 const { srcLang, destLangs } = cli.getArgs(
 	`Calls the DeepL API to translate the JSON release files.
@@ -40,7 +41,7 @@ const translateTo = async (srcJSON, destPath, destLang) => {
 				msg: `Translating '${release.name}'...`,
 				lang: destLang,
 			})
-			const translation = await utils.fetchTranslationMarkdown(
+			const translation = await deepl.fetchTranslationMarkdown(
 				release.body,
 				srcLang.toUpperCase(),
 				destLang.toUpperCase()

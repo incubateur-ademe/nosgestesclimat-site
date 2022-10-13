@@ -6,9 +6,8 @@
 
 const path = require('path')
 const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
+const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
-
-const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
 
 const { destLangs, force } = cli.getArgs(
 	`Calls the DeepL API to translate the FAQ Yaml files.`,
@@ -60,16 +59,16 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 
 	if (0 < missingEntries.length) {
 		console.log(
-			`Found ${yellow(missingEntries.length)} missing translations...`
+			`Found ${cli.yellow(missingEntries.length)} missing translations...`
 		)
 		await Promise.all(
 			missingEntries.map(async (refEntry) => {
-				const [question, catégorie] = await utils.fetchTranslation(
+				const [question, catégorie] = await deepl.fetchTranslation(
 					[refEntry.question, refEntry['catégorie']],
 					srcLang,
 					destLang
 				)
-				const réponse = await utils.fetchTranslationMarkdown(
+				const réponse = await deepl.fetchTranslationMarkdown(
 					refEntry['réponse'],
 					srcLang,
 					destLang
@@ -91,7 +90,7 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 
 		utils.writeYAML(destPath, targetEntries)
 		console.log(
-			`All missing translations succefully written in ${yellow(destPath)}`
+			`All missing translations succefully written in ${cli.yellow(destPath)}`
 		)
 	} else {
 		console.log('Nothing to be done, all translations are up to date!')
@@ -103,7 +102,7 @@ const srcYAML = utils.readYAML(srcPath)
 const run = async () => {
 	for (targetLang of destLangs) {
 		console.log(
-			`Translating the FAQ files from ${yellow(srcLang)} to ${yellow(
+			`Translating the FAQ files from ${cli.yellow(srcLang)} to ${cli.yellow(
 				targetLang
 			)}...`
 		)

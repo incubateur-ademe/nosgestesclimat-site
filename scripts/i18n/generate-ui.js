@@ -17,10 +17,6 @@ const { remove } = cli.getArgs(
 	{ remove: true }
 )
 
-const red = (str) => cli.withStyle(cli.colors.fgRed, str)
-const green = (str) => cli.withStyle(cli.colors.fgGreen, str)
-const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
-
 const printResult = (prefix, array, style) => {
 	if (array.length > 0) {
 		const entries = array.length > 10 ? array.slice(0, 10) : array
@@ -66,7 +62,7 @@ if (remove) {
 	)
 	const unusedKeys = ramda.difference(oldKeys, currentKeys)
 	oldFrResource = ramda.omit(unusedKeys, oldFrResource)
-	printResult(green('-') + ' Removed', unusedKeys, green)
+	printResult(cli.green('-') + ' Removed', unusedKeys, cli.green)
 } else {
 	let result = {
 		addedTranslations: [],
@@ -91,9 +87,13 @@ if (remove) {
 				oldFrResource[key] = value
 			}
 		})
-	printResult(green('+') + ' Added', result.addedTranslations, green)
-	printResult(yellow('~') + ' Updated', result.updatedTranslations, yellow)
-	printResult(red('-') + ' Missing', result.missingTranslations, red)
+	printResult(cli.green('+') + ' Added', result.addedTranslations, cli.green)
+	printResult(
+		cli.yellow('~') + ' Updated',
+		result.updatedTranslations,
+		cli.yellow
+	)
+	printResult(cli.red('-') + ' Missing', result.missingTranslations, cli.red)
 }
 
 console.log(`Writting resources in ${paths.uiTranslationResource.fr}...`)

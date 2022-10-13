@@ -11,9 +11,8 @@ const fs = require('fs')
 const glob = require('glob')
 
 const utils = require('../../nosgestesclimat/scripts/i18n/utils')
+const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('../../nosgestesclimat/scripts/i18n/cli')
-
-const yellow = (str) => cli.withStyle(cli.colors.fgYellow, str)
 
 const { srcLang, destLangs, srcFile, force } = cli.getArgs(
 	`Calls the DeepL API to translate the Markdown files.
@@ -29,8 +28,8 @@ const { srcLang, destLangs, srcFile, force } = cli.getArgs(
 )
 
 const translateTo = async (src, destPath, destLang) => {
-	console.log(`Translating to ${yellow(destPath)}...`)
-	const translation = await utils.fetchTranslationMarkdown(
+	console.log(`Translating to ${cli.yellow(destPath)}...`)
+	const translation = await deepl.fetchTranslationMarkdown(
 		src,
 		srcLang.toUpperCase(),
 		destLang.toUpperCase()
@@ -39,7 +38,7 @@ const translateTo = async (src, destPath, destLang) => {
 }
 
 console.log(
-	`Translating Markdown files from ${yellow(
+	`Translating Markdown files from ${cli.yellow(
 		`source/locales/pages/${srcLang}/${srcFile}`
 	)}...`
 )
@@ -60,7 +59,7 @@ glob(`source/locales/pages/${srcLang}/${srcFile}`, (err, files) => {
 				translateTo(src, destPath, destLang)
 			} else {
 				console.log(
-					`The file ${yellow(destPath)} already exists, ${yellow(
+					`The file ${cli.yellow(destPath)} already exists, ${cli.yellow(
 						'skipping'
 					)}... (use the -f to force the translation)`
 				)

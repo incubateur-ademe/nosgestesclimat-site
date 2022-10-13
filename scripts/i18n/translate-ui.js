@@ -9,6 +9,7 @@ const fs = require('fs')
 
 const paths = require('./paths')
 const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
+const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, force } = cli.getArgs(
@@ -65,7 +66,7 @@ const translateTo = (targetLang, targetPath) => {
 			.forEach(async ([key, value]) => {
 				try {
 					value = value.replace(interpolatedValueRegexp, '<ignore>$1</ignore>')
-					const translation = await utils.fetchTranslation(
+					const translation = await deepl.fetchTranslation(
 						value,
 						srcLang,
 						targetLang
