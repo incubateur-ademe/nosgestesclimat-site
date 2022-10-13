@@ -1,9 +1,10 @@
 import { resetSimulation } from 'Actions/actions'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
+import { addTranslationToBasePersonas } from '../../../nosgestesclimat/scripts/addTranslationToBasePersonas'
 import { setDifferentSituation } from '../../actions/actions'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import useBranchData from '../../components/useBranchData'
@@ -47,7 +48,9 @@ export default ({}) => {
 			<h1>Personas</h1>
 			<p>
 				<em>
-					Sélectionnez un persona et éventuellement un graphique à afficher.
+					<Trans>
+						Sélectionnez un persona et éventuellement un graphique à afficher.
+					</Trans>
 				</em>
 			</p>
 			<form>
@@ -111,6 +114,7 @@ export const PersonaGrid = ({
 	additionnalOnClick,
 	warningIfSituationExists,
 }) => {
+	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
 	const selectedPersona = useSelector((state) => state.simulation?.persona)
@@ -121,23 +125,43 @@ export const PersonaGrid = ({
 	const engine = useEngine()
 
 	const branchData = useBranchData()
+	const lang = i18n.language === 'en' ? 'en-us' : i18n.language
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
-			const personas = require('../../../nosgestesclimat/personas.yaml').default
 
+		console.log(
+			`${NODE_ENV} === 'development' && ${branchData.shouldUseLocalFiles}`
+		)
+		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+			const basePersonas =
+				require(`../../../nosgestesclimat/personas/personas-fr.yaml`).default
+			const translatedPersonasAttrs =
+				require(`../../../nosgestesclimat/personas/personas-${lang}.yaml`).default
+			const personas = addTranslationToBasePersonas(
+				basePersonas,
+				translatedPersonasAttrs
+			)
 			setData(personas)
 		} else {
-			fetch(branchData.deployURL + '/personas.json', {
+			fetch(branchData.deployURL + `/personas-${lang}.json`, {
 				mode: 'cors',
 			})
 				.then((response) => response.json())
 				.then((json) => {
 					setData(json)
 				})
+				.catch((err) => {
+					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
+					console.log('err:', err)
+				})
 		}
-	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
+	}, [
+		branchData.deployURL,
+		branchData.loaded,
+		branchData.shouldUseLocalFiles,
+		lang,
+	])
 
 	if (!data) return null
 
