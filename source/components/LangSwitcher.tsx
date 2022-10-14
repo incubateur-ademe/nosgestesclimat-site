@@ -1,13 +1,13 @@
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
 	Lang,
 } from '../locales/translation'
-import { useDispatch } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
-import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
 
 export default function LangSwitcher() {
 	const dispatch = useDispatch()
@@ -76,8 +76,8 @@ export default function LangSwitcher() {
 const ColumnFlex = styled.div`
 	padding: 10px 50px;
 	border: solid 1px;
-	border-radius: 5px;
-	background-color: #e6e6f5;
+	border-radius: 1rem;
+	background-color: #f0f0f9;
 	border-color: #5758bb;
 	position: fixed;
 	top: 10px;
