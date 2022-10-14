@@ -1,8 +1,12 @@
-# UI translation
+<h1 align="center">Translation of the UI</h1>
 
-The website UI is automatically translated in [available languages](TODO: link
-to translation.ts). This is achieved with
-[`react-i18next`](https://react.i18next.com/).
+
+<p align="center">This file contains all the information about the translation of the UI of <a href="https://nosgestesclimat.fr/">nosgestesclimat.fr</a>.</p>
+
+<p align="center">The website UI is automatically translated in different natural languages -- this is achieved with
+<a href="https://react.i18next.com/"><code>react-i18next</code></a>.</p>
+
+> For the model (test's questions) translation, please refer to this [file](https:/github.com/datagir/nosgestesclimat/blob/master/docs/translation.md).
 
 ---
 
@@ -38,7 +42,7 @@ Once the content modified,
     <summary>Script output example</summary>
 
     ```
-    > npm run generate:ui
+    > yarn run generate:ui
 
     > nosgestesclimat-site@2.1.0 generate:ui
     > node scripts/i18n/generate-ui.js
@@ -115,7 +119,7 @@ All available options can be shown by providing the `(-h | --help)` flag.
 This script allows to analyse the source code to generate the reference
 resource file -- `source/locales/ui/ui-fr.yaml`.
 
->   To run with `npm`:
+>   To run with `yarn`:
 >
 >   ```
 >   yarn generate:ui -- [options]
@@ -126,7 +130,7 @@ resource file -- `source/locales/ui/ui-fr.yaml`.
 This script allows to translate generated `i18next` resource files into
 targeted languages.
 
->   To run with `npm`:
+>   To run with `yarn`:
 >
 >   ```
 >   yarn translate:ui -- [options]
@@ -139,7 +143,7 @@ This script allows to translate Markdown files into targeted languages.
 Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
 machine to be able to run this script.
 
->   To run with `npm`:
+>   To run with `yarn`:
 >
 >   ```
 >   yarn translate:md -- [options]
@@ -149,7 +153,7 @@ machine to be able to run this script.
 
 This script allows to translate FAQ files into targeted languages.
 
->   To run with `npm`:
+>   To run with `yarn`:
 >
 >   ```
 >   yarn translate:faq -- [options]
@@ -162,7 +166,7 @@ This script allows to translate releases files into targeted languages.
 Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
 machine to be able to run this script.
 
->   To run with `npm`:
+>   To run with `yarn`:
 >
 >   ```
 >   yarn translate:releases -- [options]
