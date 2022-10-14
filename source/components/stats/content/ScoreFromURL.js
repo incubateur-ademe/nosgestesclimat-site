@@ -66,10 +66,15 @@ export default function ScoreFromURL(props) {
 }
 
 const getScores = (pages) => {
-	const endPages = pages.filter((page) => page.label.includes('fin'))
-	return endPages.map((obj) => {
-		const regex = /[tasdln](\d*\.?[\d*$])+/g
-		const encodedDetails = obj.label.match(regex).join()
+	const queryStringDetailsValuesRegexp = /[tasdln](\d*\.?[\d*$])+/g
+	const endPagesWithDetailsParam = pages.filter(
+		(page) => page.label.includes('fin') && page.label.includes('details=')
+	)
+
+	return endPagesWithDetailsParam.map((obj) => {
+		const encodedDetails = obj.label
+			.match(queryStringDetailsValuesRegexp)
+			.join()
 		const rehydratedDetails = rehydrateDetails(encodedDetails)
 		const score = sumFromDetails(rehydratedDetails)
 		return [score, obj.nb_visits]

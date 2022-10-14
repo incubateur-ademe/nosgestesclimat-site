@@ -5,12 +5,12 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { setActionChoice } from '../../actions/actions'
+import NotificationBubble from '../../components/NotificationBubble'
 import {
 	correctValue,
 	extractCategoriesNamespaces,
 	splitName,
 } from '../../components/publicodesUtils'
-import Stamp from '../../components/Stamp'
 import { useEngine } from '../../components/utils/EngineContext'
 import { getNextQuestions } from '../../components/utils/useNextQuestion'
 import { TrackerContext } from '../../components/utils/withTracker'
@@ -178,12 +178,12 @@ export const ActionListCard = ({
 						/>
 					</div>
 					{hasRemainingQuestions && (
-						<Stamp
+						<NotificationBubble
 							onClick={() => focusAction(dottedName)}
 							clickable
 							title={remainingQuestionsText}
-							number={nbRemainingQuestions}
-						></Stamp>
+							number={remainingQuestions.length}
+						></NotificationBubble>
 					)}
 					{hasRemainingQuestions && (
 						<p
