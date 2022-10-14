@@ -84,6 +84,7 @@ const ColumnFlex = styled.div`
 	right: 10px;
 	z-index: 10;
 	@media (min-width: 800px) {
+		border: solid 0px;
 		position: relative;
 		top: 0px;
 		right: 0px;
