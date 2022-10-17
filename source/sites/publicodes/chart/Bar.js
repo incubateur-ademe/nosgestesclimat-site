@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import Value from './Value'
 
@@ -15,6 +16,7 @@ export default ({
 	demoMode,
 	dottedName,
 }) => {
+	const { t } = useTranslation()
 	return (
 		<>
 			<div

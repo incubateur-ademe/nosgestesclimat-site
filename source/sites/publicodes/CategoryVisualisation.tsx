@@ -1,6 +1,5 @@
 import { CategoryLabel } from 'Components/conversation/UI'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { getSubcategories } from '../../components/publicodesUtils'
 import AnimatedTargetValue from '../../components/ui/AnimatedTargetValue'
@@ -8,7 +7,6 @@ import { useEngine } from '../../components/utils/EngineContext'
 import SubCategoriesChart from './chart/SubCategoriesChart'
 
 export default ({ questionCategory: category, hideMeta = false }) => {
-	const { t } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 
@@ -36,7 +34,7 @@ export default ({ questionCategory: category, hideMeta = false }) => {
 				>
 					<CategoryLabel>
 						{emoji(category.icons || '🌍')}
-						{t(category.title as string, { ns: 'categories' })}
+						{category.title}
 					</CategoryLabel>
 					<AnimatedTargetValue value={categoryValue} unit="kg" leftToRight />
 				</div>

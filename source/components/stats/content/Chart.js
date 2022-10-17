@@ -1,21 +1,21 @@
-import { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import {
-	AreaChart,
 	Area,
+	AreaChart,
+	ResponsiveContainer,
+	Tooltip,
 	XAxis,
 	YAxis,
-	Tooltip,
-	ResponsiveContainer,
 } from 'recharts'
+import styled from 'styled-components'
 import {
-	getLangInfos,
 	getLangFromAbreviation,
+	getLangInfos,
 } from '../../../locales/translation.ts'
 import { useChart } from '../matomo'
-import Search from './chart/Search'
 import CustomTooltip from './chart/CustomTooltip'
+import Search from './chart/Search'
 
 const Wrapper = styled.div`
 	width: 60%;

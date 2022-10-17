@@ -1,7 +1,6 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
 import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
@@ -17,15 +16,24 @@ export default ({}) => {
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
-	const categories = extractCategories(rules, engine).map((category) => ({
-		...category,
-		abbreviation: rules[category.dottedName].abbréviation,
-	}))
+	const [categories, setCategories] = useState(
+		extractCategories(rules, engine).map((category) => ({
+			...category,
+			abbreviation: rules[category.dottedName].abbréviation,
+		}))
+	)
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const displayedCategory = useContinuousCategory(categories)
+	useEffect(() => {
+		setCategories(
+			extractCategories(rules, engine).map((category) => ({
+				...category,
+				abbreviation: rules[category.dottedName].abbréviation,
+			}))
+		)
+	}, [rules])
 
-	const nextQuestions = useNextQuestions()
+	const displayedCategory = useContinuousCategory(categories)
 
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const focusedCategory = useQuery().get('catégorie')

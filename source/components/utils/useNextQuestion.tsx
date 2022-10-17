@@ -1,3 +1,5 @@
+import { DottedName } from 'modele-social'
+import Engine from 'publicodes'
 import {
 	countBy,
 	descend,
@@ -21,7 +23,6 @@ import {
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
-import { DottedName } from 'modele-social'
 import {
 	answeredQuestionsSelector,
 	configSelector,
@@ -30,7 +31,6 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { EngineContext } from './EngineContext'
-import Engine from 'publicodes'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(

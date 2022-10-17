@@ -1,6 +1,5 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import categoriesTranslations from './categories.yaml'
 import { Lang } from './translation'
 import unitsTranslations from './units.yaml'
 
@@ -15,7 +14,7 @@ i18next
 					const lng = key.toLowerCase()
 					return [
 						[lng, { units: unitsTranslations[lng] }],
-						[lng, { categories: categoriesTranslations[lng] }],
+						// [lng, { categories: categoriesTranslations[lng] }],
 					]
 				})
 		),
