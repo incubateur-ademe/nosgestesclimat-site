@@ -25,6 +25,8 @@ jobs:
           cache: 'yarn'
       - run: yarn install --immutable
       - run: git log | head && git status
+      - run: yarn check:ui
+      - run: yarn check:faq
       - id: check-ui
         run: |
           # Checks the translation of the UI's texts
