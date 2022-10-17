@@ -19,6 +19,8 @@ jobs:
       check-faq-result: ${{ steps.check-faq.outputs.result }}
     steps:
       - uses: actions/checkout@v2
+        with:
+          submodules: recursive
       - uses: actions/setup-node@v2
         with:
           node-version: '18'

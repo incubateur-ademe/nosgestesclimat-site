@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { inIframe } from 'Source/utils'
 
@@ -7,6 +7,7 @@ import { inIframe } from 'Source/utils'
 const shareDataPopupTimeout = 3500
 
 export default ({ data }) => {
+	const { t } = useTranslation()
 	var [isOpen, setIsOpen] = useState(false)
 	//To delay the dialog show in to let the animation play
 	const timeoutRef = useRef(null)
