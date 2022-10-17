@@ -53,7 +53,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'fr-FR',
 				faqContent: faqFr,
 				releases: releasesFr,
-				uiTrad: uiFr,
+				uiTrad: uiFr.entries,
 			}
 		}
 		case Lang.En: {
@@ -63,7 +63,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'en-US',
 				faqContent: faqEn,
 				releases: releasesEn,
-				uiTrad: uiEn,
+				uiTrad: uiEn.entries,
 			}
 		}
 		case Lang.Es: {
@@ -73,7 +73,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'es-ES',
 				faqContent: faqEs,
 				releases: releasesEs,
-				uiTrad: uiEs,
+				uiTrad: uiEs.entries,
 			}
 		}
 		case Lang.It: {
@@ -83,7 +83,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'it-IT',
 				faqContent: faqIt,
 				releases: releasesIt,
-				uiTrad: uiIt,
+				uiTrad: uiIt.entries,
 			}
 		}
 	}
