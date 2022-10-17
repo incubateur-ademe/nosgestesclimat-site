@@ -19,7 +19,6 @@ import {
 import Tracker, { devTracker } from '../../Tracker'
 import {
 	changeLangTo,
-	defaultLang,
 	getLangFromAbreviation,
 } from './../../locales/translation'
 import Actions from './Actions'
@@ -27,8 +26,8 @@ import Fin from './fin'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
-import PetrogazLanding from './pages/PetrogazLanding'
 import Diffuser from './pages/Diffuser'
+import PetrogazLanding from './pages/PetrogazLanding'
 import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
@@ -64,6 +63,9 @@ export default function Root({}) {
 	).get('shareData')
 
 	const persistedSimulation = retrievePersistedSimulation()
+
+	const navigatorLanguage = window.navigator.language
+
 	return (
 		<Provider
 			tracker={tracker}
@@ -77,10 +79,10 @@ export default function Root({}) {
 				//...retrievePersistedState(),
 				previousSimulation: persistedSimulation,
 				iframeOptions: { iframeShareData },
-				actionChoices: persistedSimulation?.actionChoices || {},
-				tutorials: persistedSimulation?.tutorials || {},
-				storedTrajets: persistedSimulation?.storedTrajets || {},
-				currentLang: persistedSimulation?.currentLang || defaultLang,
+				actionChoices: persistedSimulation?.actionChoices ?? {},
+				tutorials: persistedSimulation?.tutorials ?? {},
+				storedTrajets: persistedSimulation?.storedTrajets ?? {},
+				currentLang: persistedSimulation?.currentLang ?? navigatorLanguage,
 				localisation: persistedSimulation?.localisation,
 			}}
 		>
@@ -106,9 +108,9 @@ const Main = ({}) => {
 
 	const tracker = useContext(TrackerContext)
 	const { i18n } = useTranslation()
-	const currentLangState = useSelector((state) => state.currentLang)
+	const currentLang = useSelector((state) => state.currentLang)
 
-	const [searchParams] = useSearchParams()
+	const [searchParams, setSearchParams] = useSearchParams()
 
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
@@ -118,11 +120,15 @@ const Main = ({}) => {
 
 	useEffect(() => {
 		const lang = searchParams.get('lang')
-		changeLangTo(
-			i18n,
-			lang ? getLangFromAbreviation(lang) : currentLangState.currentLang
-		)
-	}, [currentLangState, searchParams])
+
+		if (lang) {
+			changeLangTo(i18n, getLangFromAbreviation(lang))
+		} else {
+			changeLangTo(i18n, currentLang)
+			searchParams.set('lang', i18n.language)
+			setSearchParams(searchParams)
+		}
+	}, [currentLang, searchParams])
 
 	const fluidLayout = isFluidLayout(location.pathname)
 
