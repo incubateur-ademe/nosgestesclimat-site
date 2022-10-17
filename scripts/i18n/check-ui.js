@@ -8,14 +8,14 @@ const { srcLang, destLangs, markdown } = cli.getArgs(
 	{ source: true, target: true, markdown: true }
 )
 
-const srcPath = paths.uiTranslationResource[srcLang]
+const srcPath = paths.UI[srcLang]
 
 cli.printChecksResultTableHeader(markdown)
 
 destLangs.forEach((destLang) => {
 	const nbMissingTranslations = utils.getUiMissingTranslations(
 		srcPath,
-		paths.uiTranslationResource[destLang]
+		paths.UI[destLang]
 	).length
 
 	cli.printChecksResult(nbMissingTranslations, 'UI texts', destLang, markdown)

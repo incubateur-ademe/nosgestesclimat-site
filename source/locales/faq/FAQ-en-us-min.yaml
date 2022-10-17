@@ -1,0 +1,262 @@
+- catégorie: general
+  id: tuto
+  question: How to use this calculator?
+  réponse: |
+    If you haven't done so, check out the 2-minute [tutorial](/tutoriel) to understand the idea and how the calculator works
+
+    If you have already done so, you can visit your [profile page](/profil) to restart the tutorial and possibly start from scratch in your test.
+- catégorie: general
+  id: ges
+  question: What is the carbon footprint? How is it that what I eat or my garbage
+    can emits greenhouse gases (GHG)?
+  réponse: |
+    Everything we consume, use, throw away required material (which had to be extracted), energy to be assembled, shaped or packaged.
+
+    These goods are transported, stored and when they reach the end of their life (or when we simply decide to throw them away), they become waste that must still be collected and then treated, and sometimes recycled.
+
+    This is why, even if it may seem counter-intuitive, all our daily actions contribute to the emission of greenhouse gases. Some very much, others very little. Eating one kg of potatoes emits greenhouse gases, driving 10,000 km in a car also, but obviously in very different proportions. And of course we don't have these figures in mind.
+
+    To know how much each of our actions emits, we rely on the [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) of the ADEME (the French environment agency) which for different data (km driven, kg of meat, kWh consumed, a TV, etc.) allow us to estimate the quantity of greenhouse gases emitted.
+
+    The goal of our Climate Action is to manipulate these figures to simply question our lifestyle in order to identify what contributes more or less to our carbon footprint.
+- catégorie: digital
+  id: impact-numérique
+  question: I've heard that digital has a big impact on the climate, the simulator
+    seems to tell me the opposite..
+  réponse: |
+    
+    The evaluation of the impact of digital technology, and more particularly of "dematerialized" content (streaming, videoconferencing, storage on a cloud, sending of emails, etc.) is still a subject of work among technical and institutional actors.
+
+    We estimate the digital footprint as best we can based on data from the [Base Carbone®](https://www.bilans-ges.ademe.fr/) but some information or questions may be missing.
+
+    If you want to track the impact of your internet browsing, the "carbonalyser" browser extension is there for you.
+
+    And if you want to help us improve these reflections, please contribute. We explain how [here](https://github.com/betagouv/ecolab-data/issues/185).
+- catégorie: public services
+  id: services-publics-majoritaires
+  question: Yes, but still, this post sometimes represents more than some of my impacts..
+  réponse: |
+    
+    Indeed, it can be frustrating to have impacts counted for which we have no direct leverage.
+
+    **But that is the whole point of the transition in the broadest sense**
+
+    This transition cannot be thought of only at the individual level. It is a necessary but not sufficient condition for a more global transition at the scale of our society. This means playing with indirect levers of action (voting, associative commitment, awareness-raising around us, etc.).
+
+    This is the purpose of Nos Gestes Climat! to raise awareness of these issues and make people aware of them!
+- catégorie: power supply
+  id: alimentation-locale
+  question: Why aren't we asking about local food either?
+  réponse: |
+    
+    Local food allows us to reduce the transport distances of the products we consume while supporting the farmers of our regions.
+
+    Nevertheless, the question of the origin of our products and the associated impacts cannot be summed up in the comparison between short and long distance. The effects of scale, the centralization of products, the efficiency of the transport used and many other parameters complicate the matter from a carbon accounting point of view. As for the possibility of informing the origin of the products we consume, it would mean adding a lot of questions, diverting UCS from its general public target.
+- catégorie: consumption
+  id: effet-qualité
+  question: I often buy durable and environmentally friendly goods but the tool
+    doesn't seem to make a difference. Why is that?
+  réponse: |
+    This is a common comment when it comes to assessing one's carbon footprint.
+
+    The display of the carbon weight of each product, good and service that we consume does not yet exist, so we must approximate this impact. We have to choose between simplicity and precision.
+
+    NGC, being a general public calculator, we choose simplicity.
+
+    Thus, this approximation is done by major product family. More concretely, the NGC calculator is based on monetary ratios (X g of CO2e are emitted for Y € of purchased products), by type of products, given by the [Base Carbone®](https://www.bilans-ges.ademe.fr/) of the ADEME.
+
+    These monetary ratios make it possible to estimate the carbon content of a product or service purchased from its price. To do this, a standard "average" product is considered. It does not take into account the specificities of less impacting products (second-hand, sustainable, eco-designed...), which tends to increase the final footprint.
+
+    NGC has chosen to focus its questions on new products because the difference in impact with second hand products is very significant. The production phase of the product, which very often represents the majority of the impacts, is not taken into account for second-hand products. As for the differences in impacts between new products (typically between fast-fashion jeans and eco-designed jeans), NGC chooses, once again, to remain simple.
+- catégorie: housing
+  id: autre-combustible
+  question: I use a fuel that is not indicated in the tool. How do I do it?
+  réponse: |
+    
+    At the present time, you will have to reason with the fuel that is as close as possible to the fuel you use. NGC has chosen to focus on the most used fuel types in France.
+
+    However, as part of the continuous development of NGC, it is possible that some fuel types will be added in the future.
+- catégorie: power supply
+  id: régime
+  question: The questions asked do not correspond well to my type of diet
+    (seasonal, fish, garden vegetables, etc.)
+  réponse: |
+    
+    NGC is, above all, a tool designed for the general public. This is why we wanted to limit the number of questions to the aspects that we know are the most important in our diet.
+
+    Nevertheless, NGC is a free access tool where everyone's contribution is possible and desired. Do not hesitate to contribute and to send us your suggestions for improvement!
+
+    We explain you how [here](https://github.com/betagouv/ecolab-data/issues/185).
+- catégorie: transport
+  id: autres-carburants
+  question: Why can't I enter the type of fuel I use?
+  réponse: |
+    
+    NGC chooses not to ask about the type of fuel, simply because **there is not much difference between them.** Whether it is gasoline, diesel or LPG, the impacts are very similar. So we focus on the most important issues (number of km driven, number of occupants, use of public transport, etc.).
+
+    In this respect, please feel free to consult this [simulator] (https://ecolab.ademe.fr/transport) to compare the climate impact of different modes of transport for the same journey.
+- catégorie: transport
+  id: pas-de-voiture
+  question: I don't have a car but I am still asked for all this information ..
+  réponse: |
+    
+    As soon as you enter a car mileage greater than 0, the tool tries to "apply" to you a share of the construction depreciation of the car you are using.
+
+    If you have any suggestions about this limit and in general about the tool, please feel free to contribute. NGC is an open access tool where everyone's contribution is possible and desired. We explain how [here](https://github.com/betagouv/ecolab-data/issues/185).
+
+    ### But what is damping?
+
+    The manufacturing of a car is an industrial process far from being trivial and contributes to emit several tons of CO2e. In order not to create large variations in the footprint, especially in the years when you buy a new vehicle, this impact is spread over the life of the vehicle. This makes it possible to compare your carbon footprint from year to year.
+
+    If you own your own car, the entire impact of the construction is attributed to you. The depreciation is then linear, i.e. distributed equally from year to year. We ask how old your car is in order to know how much of the depreciation you have left to do. The depreciation period of a car, considered by Our Climate Gestures is 10 years. Any older vehicle is not considered (and automatically has zero emissions).
+
+    If you do not own your car, only a fraction of the impact of its manufacture is applied to your carbon footprint, in proportion to your use.
+
+    **On average, a car is stationary 95% of the time, so it's a good idea to share it!
+- catégorie: transport
+  id: déplacements-pro
+  question: Do I have to report my business trips?
+  réponse: |
+    
+    No.
+
+    UCS is dedicated to assessing **individual carbon footprint**. The trips you make as part of your work such as delivering a client, going to a meeting, flying to a 3-day seminar, etc. are not to be taken into account when answering the questions of the calculator.
+
+    These business-related trips will be included in the carbon footprint of your organization (company, community, association, etc.). This is known as a Greenhouse Gas Emission Assessment (GHGEA).
+
+    **Nevertheless, you are asked about your regular commuting to and from work ** Why? Because you personally have control over the type of transport you choose to use and where you live.
+
+    However, the reality is often quite different and far be it from us to blame those whose daily mobility is centered around the car because they are far from their workplace. Even if some choices can be questioned, many of us are, in fact, forced to use the individual car, for lack of serious alternatives available (public transport, teleworking, carpooling, etc.).
+- catégorie: digital
+  id: age-électronique
+  question: Why am I being asked the age of my electronic equipment?
+  réponse: |
+    
+    As is the case for cars, a depreciation is made for electronic products whose manufacture has a very high impact on the climate (especially because of the extraction phase of raw materials).
+
+    We therefore ask you the age of the product in order to know the remaining period to be amortized. See the specific question of depreciation to understand what it is about.
+- catégorie: housing
+  id: réseau-chaleur
+  question: I am connected to my community's heating network but this option is
+    not offered by the tool..
+  réponse: |
+    
+    Indeed, NGC does not allow to inform if you are connected to a heat network, for several reasons.
+
+    First of all, it would require to list all the heating networks in France and there are more than 750 of them..
+
+    Moreover, the data (i.e. the network's emission factor) is **not always reliable and controllable** and is subject to strong changes over time, depending on the processes used to operate the heating network (heat recovered from incinerators, renewable energy but also often fuel oil or natural gas).
+
+    We have not chosen to consider an "average" heating network either, given that their impact in terms of greenhouse gases can vary greatly depending on the proportion of hydrocarbons used in their operation.
+- catégorie: housing
+  id: électricité-dite-verte
+  question: My home is supplied with green electricity, why can't I take it into account?
+  réponse: |
+    
+    Unless you have your own source of electricity (photovoltaic panels), the so-called "green" electricity supplied by renewable energy producers cannot be delivered to you without the existence of the French electrical grid, a single network shared by all
+
+    NGC uses only the emission factor of this grid, which will be lower the more sustainable sources are connected to it. This emission factor is particularly [low](https://www.electricitymap.org/ranking) thanks to the important share of nuclear and hydro dams in our mix.
+
+    Moreover, the figures provided by the "green" electricity suppliers are theoretical figures, which have not been subject to technical consultations like all the figures in the [Base Carbone®](https://www.bilans-ges.ademe.fr/).
+
+    Nevertheless, subscribing to [a "green" electricity contract](https://agirpourlatransition.ademe.fr/particuliers/vertvolt) is a good way to be in phase with one's values, to participate in the creation of non relocatable jobs and to send a message to decision-makers in favor of the development of renewable energies.
+- catégorie: power supply
+  id: bio-2
+  question: So it is to avoid that it is unfavorable to our carbon footprint that
+    you do not ask the question of organic?
+  réponse: |
+    
+    No.
+
+    That's just not where the fundamental issue of the power station lies.
+
+    The main issue of this item is the consumption of meat and animal products (milk, cheese, etc.) which represent, between them, about 75% of the carbon footprint of the average French person's diet. Knowing that your turnip is organic or that the beef you eat was raised on organic food is therefore secondary, given that the issue at stake is the reduction of meat consumption, especially red meat.
+- catégorie: public services
+  id: services-publics
+  question: At the end of my calculation there is a "utility" item, what is it?
+  réponse: |
+    
+    This item represents the carbon footprint of French public services on an individual scale. That is to say that the impact of the services is distributed among the 66 million French people.
+
+    So everyone takes their share for several reasons.
+
+    First of all, it is extremely rare, indeed almost impossible, to live without ever using a single public service. Whether it is health care, roads, education, and more generally everything that is financed by taxes, everyone benefits from public services.
+
+    Second, trying to account for how much of a public service an individual uses "for real" is not currently possible with the data we have on the footprint of this sector.
+- catégorie: power supply
+  id: bio
+  question: I consume organic food but I don't see any specific questions about it?
+  réponse: |
+    
+    **Note: eating organic does not, in itself, reduce the carbon footprint
+
+    With the same production and products, an organic crop will require larger agricultural plots, reducing the size of forests and natural areas, which are essential for carbon sequestration. This is why, on a global scale and for equal quantities consumed, organic farming tends to be considered as having "more impact" on the climate than conventional farming.
+
+    Nevertheless, this is not a reason not to eat organic.
+
+    From soil and groundwater pollution, to loss of biodiversity, to the preservation of farmers' health, organic food considerably reduces many other environmental impacts while also reducing the risks to our health. We are touching here on environmental issues in general, and must take a step back from our 100% greenhouse gas-centered calculation.
+- catégorie: general
+  id: 2tonnes
+  question: Why this 2 ton goal? It's super ambitious!
+  réponse: |
+    This reaction is normal! And let's be honest, at the moment, very few people emit less than 2 tons. However, if your footprint is around 4 or 5 tons, you've already come a long way.
+
+    It's all about individual progress towards less greenhouse gas emitting lifestyles, but it's essential that changes take place on a larger scale to facilitate the emergence of these lifestyles.
+
+    > For example, a community where citizens massively switch to cycling (or to another low-carbon mode) will push its elected officials to promote new infrastructure and adequate policies, which in turn will help the next ones to switch to cycling, and so on ♻️ !
+
+    This 2-tonne target is therefore complicated, but it is what we must collectively achieve as soon as possible, and by 2050 at the latest with a steady progression each year, in order to contain global warming to +2°, and thus respect the Paris Agreement. This "climate budget" is not a political fact, but results from the planetary limits identified by climate science. It is factual, non-negotiable, unless we want to expose ourselves to the disastrous consequences that are associated with it and widely described in the [IPCC reports](https://www.ipcc.ch/languages-2/francais/).
+
+    > To learn more, read our illustrated article on this subject:
+    > 📘 [Budget and carbon footprint, what is it? ](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi)
+- catégorie: general
+  id: international
+  question: Is the calculator only for French people?
+  réponse: |
+    For the moment, the site is only available for the French-speaking
+    population, but we are in the process of adding the overseas
+    territories, and then the French-speaking countries. The translation
+    project has also been launched, first in English, which will allow us to
+    add all European countries.
+
+    Why is internationalization important? Some parameters of the model, in
+    particular the footprint of the electricity mix (in gCO2e/kWh),
+    particularly influence the final result, which will therefore not be
+    valid in Belgium, Congo, Quebec, Algeria or elsewhere.
+
+    If you are familiar with the subject in your country or region, come and
+    [discuss it](https://github.com/datagir/nosgestesclimat-site/issues/71).
+- catégorie: general
+  id: déprime
+  question: I get the 2 ton goal, but I have a hard time imagining it.
+  réponse: |
+    
+    The carbon footprint exercise can also cause discouragement because we coldly count the emissions of the lifestyle we know, without apprehending at this stage all the possibilities of a low-carbon life.
+
+    Walking in nature, playing music, cycling, sailing, taking advantage of the train all over the country, spending time with our loved ones, partying, reading, chatting, gardening, learning to cook differently... A low-carbon life is full of joyful experiences, which do not necessarily find their way into an individual carbon footprint, but which will be at the heart of the lifestyles we are inventing at this very moment.
+- catégorie: general
+  id: finance
+  question: Why not take into account individual savings?
+  réponse: |
+    
+    Emissions from bank-financed fossil fuels are accounted for by those who use them.
+
+    > For example, your bank may finance the extraction of oil off the coast of Siberia, but this oil is extracted for a specific use: driving a car for 10 km, heating a house or producing plastic.
+    > In the model, it is the consumption of cars, housing and plastic that is attributed to these emissions.
+
+    It would be very difficult for us, given the current data, to include a share of responsibility for the footprint of personal wealth in the model, without double counting.
+- catégorie: general
+  id: foyer
+  question: I don't understand if the calculation is done per household or per individual
+  réponse: |
+    Our Climate Gestures is an individual carbon footprint calculator
+
+    However, some questions can be confusing (like the number of people living in your home or the average number of passengers in your car). These questions are there so that we can bring a larger impact to the individual scale.
+
+    However, for some consumer goods, this distinction is not always clear.
+
+    Indeed, within a household, it is very difficult to arbitrate between some goods and services used for personal consumption and others that can be shared (video streaming, tools, etc.).
+
+    Fortunately, these "gray area" items are not the most important ones in our footprint: you can quickly answer the questions without worrying about a potentially false estimate.
+
+    The team is working on developing a ["household"] pathway (https://github.com/datagir/nosgestesclimat/issues/113) so that you can estimate your family's carbon footprint.

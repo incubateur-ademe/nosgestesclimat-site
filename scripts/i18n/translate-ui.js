@@ -17,7 +17,7 @@ const { srcLang, destLangs, force } = cli.getArgs(
 	{ source: true, force: true, target: true }
 )
 
-const srcPath = paths.uiTranslationResource[srcLang]
+const srcPath = paths.UI[srcLang]
 
 if (!fs.existsSync(srcPath)) {
 	cli.printErr(
@@ -100,5 +100,5 @@ const translateTo = (targetLang, targetPath) => {
 	}
 }
 destLangs.forEach((lang) => {
-	translateTo(lang, paths.uiTranslationResource[lang])
+	translateTo(lang, paths.UI[lang])
 })

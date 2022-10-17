@@ -4,7 +4,7 @@
 	Command: yarn translate:faq -- [options]
 */
 
-const path = require('path')
+const paths = require('./paths')
 const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
 const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
@@ -14,7 +14,7 @@ const { srcLang, destLangs, force } = cli.getArgs(
 	{ source: true, target: true, force: true }
 )
 
-const srcPath = path.resolve(`source/locales/faq/FAQ-${srcLang}.yaml`)
+const srcPath = paths.FAQ[srcLang].withLock
 
 const translateTo = async (srcYAML, destPath, destLang) => {
 	let targetEntries = utils.readYAML(destPath)
@@ -99,14 +99,14 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 const srcYAML = utils.readYAML(srcPath)
 
 const run = async () => {
-	for (targetLang of destLangs) {
+	for (destLang of destLangs) {
 		console.log(
 			`Translating the FAQ files from ${cli.yellow(srcLang)} to ${cli.yellow(
-				targetLang
+				destLang
 			)}...`
 		)
-		const destPath = path.resolve(`source/locales/faq/FAQ-${targetLang}.yaml`)
-		await translateTo(srcYAML, destPath, targetLang)
+		const destPath = paths.FAQ[destLang].withLock
+		await translateTo(srcYAML, destPath, destLang)
 	}
 }
 

@@ -1,4 +1,4 @@
-const path = require('path')
+const paths = require('./paths')
 const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
@@ -7,9 +7,7 @@ const { srcLang, destLangs, markdown } = cli.getArgs(
 	{ source: true, target: true, markdown: true }
 )
 
-const srcYAML = utils.readYAML(
-	path.resolve(`source/locales/faq/FAQ-${srcLang}.yaml`)
-)
+const srcYAML = utils.readYAML(paths.FAQ[srcLang].withLock)
 
 const getIndexOfId = (id, targetEntries) => {
 	return targetEntries.findIndex((entry) => {
@@ -27,9 +25,7 @@ const targetEntryIsUpToDate = (src, target) =>
 cli.printChecksResultTableHeader(markdown)
 
 destLangs.forEach((targetLang) => {
-	const targetEntries = utils.readYAML(
-		path.resolve(`source/locales/faq/FAQ-${targetLang}.yaml`)
-	)
+	const targetEntries = utils.readYAML(paths.FAQ[targetLang].withLock)
 
 	const nbMissingTranslations = srcYAML.reduce((nbMissing, refEntry) => {
 		const isUpToDate = targetEntryIsUpToDate(
