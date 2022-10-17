@@ -1,5 +1,5 @@
-import { capitalise0, sortBy } from '../utils'
 import { utils as coreUtils } from 'publicodes'
+import { capitalise0, sortBy } from '../utils'
 
 export const parentName = (
 	dottedName,
@@ -101,19 +101,21 @@ export const extractCategories = (
 		const split = splitName(dottedName),
 			parent = split.length > 1 && split[0]
 
+		console.log(dottedName, rule, parent)
+
 		return {
 			...node,
-			icons: icônes || rules[parent].icônes,
+			icons: icônes || rules[parent]?.icônes,
 			color:
 				categoryColorOverride[dottedName] ||
 				categoryColorOverride[parent] ||
 				couleur ||
-				rules[parent].couleur,
+				rules[parent]?.couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,
 			dottedName: (parentRule === 'bilan' && parent) || node.dottedName,
 			documentationDottedName: node.dottedName,
 			title:
-				parentRule === 'bilan' && parent ? rules[parent].titre : node.title,
+				parentRule === 'bilan' && parent ? rules[parent]?.titre : node.title,
 		}
 	})
 

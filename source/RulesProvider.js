@@ -47,6 +47,7 @@ export default ({ children }) => {
 
 			const rules = req.keys().reduce((memo, key) => {
 				const jsonRuleSet = req(key).default || {}
+				if (!key.includes('bilan')) return memo
 				return { ...memo, ...jsonRuleSet }
 			}, {})
 

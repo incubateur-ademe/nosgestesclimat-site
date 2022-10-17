@@ -1,10 +1,11 @@
-import { useEngine } from 'Components/utils/EngineContext'
 import { correctValue } from 'Components/publicodesUtils'
-import HumanWeight from './HumanWeight'
+import { useEngine } from 'Components/utils/EngineContext'
 import { Link } from 'react-router-dom'
+import HumanWeight from './HumanWeight'
 
 export default ({ endURL }) => {
 	const engine = useEngine()
+	return null
 	const evaluation = engine.evaluate('pétrole . pleins')
 	const nbrePleins = Math.round(correctValue(evaluation))
 

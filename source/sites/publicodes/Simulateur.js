@@ -10,15 +10,13 @@ import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
-import { useLocation, useParams } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
-import InlineCategoryChart from './chart/InlineCategoryChart'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
-import { Link } from 'react-router-dom'
 
 const equivalentTargetArrays = (array1, array2) =>
 	array1.length === array2.length &&
@@ -76,7 +74,7 @@ const Simulateur = (props) => {
 							<EndingCongratulations />
 						)
 					}
-					explanations={<InlineCategoryChart />}
+					explanations={null}
 				/>
 			) : (
 				<TutorialRedirection />
