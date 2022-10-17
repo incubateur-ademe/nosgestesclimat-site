@@ -1,27 +1,23 @@
-import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
-import emoji from 'react-easy-emoji'
 import { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
+import NotificationBubble from '../../components/NotificationBubble'
 import {
 	correctValue,
 	extractCategoriesNamespaces,
 	splitName,
 } from '../../components/publicodesUtils'
-import NotificationBubble from '../../components/NotificationBubble'
 import { useEngine } from '../../components/utils/EngineContext'
-import {
-	getNextQuestions,
-	useNextQuestions,
-} from '../../components/utils/useNextQuestion'
+import { getNextQuestions } from '../../components/utils/useNextQuestion'
+import { TrackerContext } from '../../components/utils/withTracker'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
-import { TrackerContext } from '../../components/utils/withTracker'
 import { questionConfig } from './questionConfig'
 
 const { encodeRuleName, decodeRuleName } = utils
@@ -122,6 +118,7 @@ export const ActionListCard = ({
 			>
 				<Link
 					css={`
+						z-index: 1;
 						h2 {
 							margin-top: 0rem;
 							text-align: center;
