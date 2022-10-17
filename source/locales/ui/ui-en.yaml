@@ -1,5 +1,5 @@
 entries:
-  " et visualisez les résultats du groupe": " and view the results of the group"
+  ' et visualisez les résultats du groupe': ' and view the results of the group'
   (15 min de lecture): (15 min reading)
   (co-voiturage pris en compte): (carpooling taken into account)
   404.action: Return to a safe place
@@ -7,17 +7,17 @@ entries:
   404.message: This page does not exist or no longer exists
   404.message.lock: Cette page n'existe pas ou n'existe plus
   A vous de choisir vos gestes à la carte.: It's up to you to choose your gestures.
-  "Accessibilité : partiellement conforme": "Accessibility: partially compliant"
+  'Accessibilité : partiellement conforme': 'Accessibility: partially compliant'
   Action: Action
   Actions d'engagement: Commitment actions
   Actions non chiffrées: Unquantified actions
   Actions négatives: Negative actions
-  "Actions écartées :": "Discarded actions:"
+  'Actions écartées :': 'Discarded actions:'
   Afficher l'explication du score: Show score explanation
   Afficher ma simulation: Show my simulation
   Agir: Act
   Aide à la saisie: Input help
-  "Ajouter ": "Add "
+  'Ajouter ': 'Add '
   Aller au contenu: Go to content
   Annuler: Cancel
   Aucun: No
@@ -29,7 +29,7 @@ entries:
   Cacher: Hide
   Cacher l'objectif: Hide the lens
   Ce guide n'existe pas encore: This guide does not exist yet
-  "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "This contribution will be public: do not put sensitive information in it"
+  "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'This contribution will be public: do not put sensitive information in it'
   Cette fiche détaillée n'existe pas encore: This detailed sheet does not exist yet
   Changer de langue 🌐: Change language 🌐
   Chargement: Loading
@@ -72,7 +72,7 @@ entries:
   En groupe: As a group
   En savoir +: Read more
   En savoir plus: Read more
-  "Enlever ": "Remove "
+  'Enlever ': 'Remove '
   Entre: Between
   Entrez des mots clefs: Enter keywords
   Entrez des mots clefs ici: Enter keywords here
@@ -83,8 +83,7 @@ entries:
   Et mes données ?: What about my data?
   Explorer les catégories: Explore categories
   Explorer notre documentation: Explore our documentation
-  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
-    Explore and modify the information you have entered in the nosgestesclimate
+  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore and modify the information you have entered in the nosgestesclimate
     pathway.
   Explorez notre documentation: Explore our documentation
   Faire le test: Take the test
@@ -104,10 +103,10 @@ entries:
   Je ne sais pas: I do not know
   "L'objectif à atteindre, 2 tonnes de CO₂e": The goal to achieve, 2 tons of CO₂e
   La voiture en chiffres: The car in figures
-  "Le reste : ": "The rest "
+  'Le reste : ': 'The rest '
   Le test: The test
   Le titre bref de votre problème: The short title of your problem
-  "Les 3 actions au plus fort impact pour vous :": "The 3 actions with the highest impact for you:"
+  'Les 3 actions au plus fort impact pour vous :': 'The 3 actions with the highest impact for you:'
   Les nouveautés ✨: What's new ✨
   Menu: Menu
   Mode groupe: Group mode
@@ -116,10 +115,10 @@ entries:
   Mon empreinte climat: My climate footprint
   Mon empreinte climat 😶‍🌫️: My climate footprint 😶‍🌫️
   Mon profil: My profile
-  "Mon total :": "My total:"
+  'Mon total :': 'My total:'
   Moyenne: Average
   Moyenne française: French average
-  "N'afficher que les questions ": "Display only the questions "
+  "N'afficher que les questions ": 'Display only the questions '
   Naviguez vers une question précise: Navigate to a specific question
   Nom de la salle: Name of the room
   Nombre de personnes: Number of people
@@ -132,19 +131,19 @@ entries:
   Notre serveur semble indisponible: Our server seems to be unavailable
   Nous avons détecté que vous faites cette simulation depuis: We have detected that you are doing this simulation since
   Nouveautés: News
-  "Nouveautés - version ": "What's new - version "
+  'Nouveautés - version ': "What's new - version "
   On la mesure comment ?: How is it measured?
   On vous propose une sélection graduelle de gestes.: We propose a gradual selection of gestures.
   Origine des visites: Origin of the visits
   Oui: Yes
-  "Ouvert, documenté et contributif": Open, documented and contributory
+  'Ouvert, documenté et contributif': Open, documented and contributory
   Ouvrir les options de tri: Open the sorting options
   Page de fin de simulation principale: Main simulation end page
   Page de fin de simulation pétrole: End of oil simulation page
   Page profil: Profile page
   Partager mes résultats: Share my results
   Participer au sondage: Participate in the survey
-  "Participez au sondage ": "Take the survey "
+  'Participez au sondage ': 'Take the survey '
   Participez à la conférence: Participate in the conference
   Pas votre région ?: Not your region?
   Passer le tutoriel: Skip the tutorial
@@ -155,7 +154,7 @@ entries:
   Plus de 30 minutes: More than 30 minutes
   Point d'interrogation: Question mark
   Pompe à pétrole: Oil pump
-  "Pour en savoir plus, tout est expliqué <1></1>dans ": "To learn more, everything is explained <1></1>in "
+  'Pour en savoir plus, tout est expliqué <1></1>dans ': 'To learn more, everything is explained <1></1>in '
   Progression dans les diapo: Progression through the slides
   Précédent: Previous
   Prêt à démarrer ?: Ready to get started?
@@ -185,19 +184,19 @@ entries:
   Sélectionnez un persona et éventuellement un graphique à afficher.: Select a persona and possibly a graphic to display.
   Terminer ma simulation: Finish my simulation
   Trajet (Optionnel): Route (Optional)
-  "Tri :": "Sorting:"
-  "Triées par :": "Sorted by :"
+  'Tri :': 'Sorting:'
+  'Triées par :': 'Sorted by :'
   Une personne au moins est présente dans la voiture (vous !): At least one person is present in the car (you!)
-  "Une question, un problème ?": A question, a problem?
+  'Une question, un problème ?': A question, a problem?
   Version: Version
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Here's my footprint ⛽️ oil. Measure yours!
   Voir en détails: See in details
-  "Voir le reste : ": "See the rest "
+  'Voir le reste : ': 'See the rest '
   Voir ma situation: See my situation
   Voir mon résultat: See my result
   Voir toutes les actions: See all actions
   Vos trajets apparaîtront dans ce tableau.: Your trips will appear in this table.
-  "Votre mission : réduire votre empreinte.": "Your mission: to reduce your footprint."
+  'Votre mission : réduire votre empreinte.': 'Your mission: to reduce your footprint.'
   Votre part du logement: Your share of the housing
   Vous avez choisi: You have chosen
   Vous avez complété la catégorie: You have completed the category
@@ -225,14 +224,12 @@ entries:
     vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
     est attribuée dans ce cas. Il est fréquent que le score initial change car
     <2>le modèle Nos Gestes Climat évolue</2> !
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
-    You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
     car.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock:
-    Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.
-  components.conversation.select.NumberedMosaic.choixAFaire: " You still have {{nbChoix}} to choose from."
-  components.conversation.select.NumberedMosaic.choixAFaire.lock: " Il vous reste {{nbChoix}} choix à faire."
+  components.conversation.select.NumberedMosaic.choixAFaire: ' You still have {{nbChoix}} to choose from.'
+  components.conversation.select.NumberedMosaic.choixAFaire.lock: ' Il vous reste {{nbChoix}} choix à faire.'
   components.conversation.select.NumberedMosaic.choixEnTrop: You have made {{nbChoix}} too many choices!
   components.conversation.select.NumberedMosaic.choixEnTrop.lock: Vous avez fait {{nbChoix}} choix en trop !
   components.localisation.Localisation.warnMessage: For the moment, there is no
@@ -283,7 +280,7 @@ entries:
     visites générales de Nos Gestes Climat. Dans l'attente de chiffres plus
     précis, ce taux est donc potentiellement sous-estimé par rapport à la
     réalité.<3>(Données valables pour les 30 derniers jours)</3></1>
-  components.stats.StatsContent.scoreUtilisateurs: "<0>Read more about it</0><1>Of
+  components.stats.StatsContent.scoreUtilisateurs: '<0>Read more about it</0><1>Of
     course, we do not collect <2>user data</2>. Nevertheless, the total score as
     well as the footprint per category is present in the end of test URL. In
     this section, we aggregate this information to get an idea of the average
@@ -293,7 +290,7 @@ entries:
     a priori, the test users are not representative of the French. Moreover,
     these data can be biased by users who would come back several times on the
     end page, changing their answers to the test (which creates new end
-    url).</3>"
+    url).</3>'
   components.stats.StatsContent.scoreUtilisateurs.lock: "<0>En savoir
     plus</0><1>Bien sûr, nous ne collectons pas <2>les données utlisateurs</2>.
     Néanmoins, le score total ainsi que l'empreinte par catégorie est présente
@@ -353,7 +350,7 @@ entries:
   meta.publicodes.Landing.description.lock: Testez votre empreinte carbone, tout
     seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
-  meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
+  meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full tanks of oil. Measure yours!
   meta.publicodes.fin.Petrogaz.description.lock: Mon empreinte pétrole est de
     {{empreinte}} pleins de pétrole. Mesure la tienne !
   meta.publicodes.fin.actionslide.description: Top 3 actions to reduce my climate
@@ -389,7 +386,7 @@ entries:
   pages.News.premierParagraphe.lock: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les
   participant: participant
   pleins: full
-  pleins de pétrole: full of oil
+  pleins de pétrole: full tanks of oil
   plus d'1 kg: more than 1 kg
   plus d'1 tonne: more than 1 ton
   plus de 10 kg: more than 10 kg
@@ -405,12 +402,12 @@ entries:
   publicodes.ActionTutorial.msgPrécision: 💡 To improve accuracy, some actions will ask you a few more questions.
   publicodes.ActionTutorial.msgPrécision.lock: 💡 Pour améliorer la précision,
     certaines actions vous poseront quelques questions en plus.
-  publicodes.ActionTutorial.msgPrésentation: "To help you, we will present you with <2>a list of actions</2>:"
+  publicodes.ActionTutorial.msgPrésentation: 'To help you, we will present you with <2>a list of actions</2>:'
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
-  publicodes.ActionVignette.questionsRestantesText: "{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}"
+  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: <ignore>nbRemainingQuestions}}
     question{{pluralSuffix}} restante{{pluralSuffix</ignore>
-  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}} actions available,"
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions available,'
   publicodes.ActionsOptionsBar.actionsRecap.lock: <ignore>numberOfAvailableFinalActions</ignore> actions disponibles,
   publicodes.AllActions.allerPlusLoin: <0>Going further</0><1><0>Beyond a simple
     figure, discover the stakes behind each action.</0></1>
@@ -482,10 +479,10 @@ entries:
     console (elle est un peu chargée...), puis copier le JSON affiché, le coller
     dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans
     personas.yaml.
-  publicodes.Personas.warningMsg: "Be careful, you have a simulation in progress:
-    selecting a persona will overwrite your simulation."
-  publicodes.Personas.warningMsg.lock: "Attention, vous avez une simulation en
-    cours : sélectionner un persona écrasera votre simulation."
+  publicodes.Personas.warningMsg: 'Be careful, you have a simulation in progress:
+    selecting a persona will overwrite your simulation.'
+  publicodes.Personas.warningMsg.lock: 'Attention, vous avez une simulation en
+    cours : sélectionner un persona écrasera votre simulation.'
   publicodes.Profil.locationDonnées: <0>Where is my data? </0>Your data is stored
     in your browser, so you have full control over it <2></2>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0>Vos données
@@ -517,16 +514,16 @@ entries:
     measure of your part </2> in this warming.</0>
   publicodes.Tutorial.slide1.p2.lock: <0>Ce test vous donne en ⏱️ 10 minutes
     chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>
-  publicodes.Tutorial.slide2.blockquote: "Other gases, especially methane <1></1>
+  publicodes.Tutorial.slide2.blockquote: 'Other gases, especially methane <1></1>
     and nitrous oxide <5></5> also warm the planet: we convert their warming
-    potential to CO₂ equivalent to simplify the measurement "
+    potential to CO₂ equivalent to simplify the measurement '
   publicodes.Tutorial.slide2.blockquote.lock: "D'autres gaz, surtout le
     méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la
     planète : on convertit leur potentiel de réchauffement en équivalent CO₂
     pour simplifier la mesure. "
-  publicodes.Tutorial.slide2.p1: "With a unit with a barbaric name: the CO₂
+  publicodes.Tutorial.slide2.p1: 'With a unit with a barbaric name: the CO₂
     equivalent. Carbon dioxide<1></1>, you know it: we breathe it out all day,
-    but without influence on the climate."
+    but without influence on the climate.'
   publicodes.Tutorial.slide2.p1.lock: "Avec une unité au nom barbare :
     l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on
     l'expire toute la journée, mais sans influence sur le climat."
@@ -558,26 +555,26 @@ entries:
     périmètre de calcul qui évolue selon les améliorations du modèle. Vos
     réponses viendront ensuite affiner cette empreinte dans la barre de score.
   publicodes.Tutorial.slide4.blockquote: >-
-    
+
     					{{sparkles}} New! See also your oil consumption, a complementary
     					{{fuelPump}} an additional indicator on the subject of
     					climate.
   publicodes.Tutorial.slide4.p1: <0>And concretely?</0><1>Every year, a French
     person emits on average <2> about 10 tons of</2> CO₂e.</1>
-  publicodes.Tutorial.slide4.p2: "This is your starting point in this test: each
-    of your answers will personalize this result in the score bar."
+  publicodes.Tutorial.slide4.p2: 'This is your starting point in this test: each
+    of your answers will personalize this result in the score bar.'
   publicodes.Tutorial.slide5.p1: <0>And the goal?</0><1>We have to decrease our
     climate footprint as soon as possible.</1><2>In France, this means going
     from ~10 tons to <2>less than 2 tons</2> per year.</2>
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
-  publicodes.Tutorial.slide6: "<0>So, are you ready to go?</0><1>A few tips to
+  publicodes.Tutorial.slide6: '<0>So, are you ready to go?</0><1>A few tips to
     help you complete the test.</1><2>👤 Answer the questions on behalf of
     yourself, not your household: this is an individual test.</2><3>💼 Answer
     for your personal life, not for your job or studies. <2>One exception: </2>
     your commute must be included in the miles driven.</3><4>❓️ Any other
-    questions? Check out our <2>FAQs</2> at any time.</4>"
+    questions? Check out our <2>FAQs</2> at any time.</4>'
   publicodes.Tutorial.slide6.lock: "<0>Alors, c'est parti ?</0><1>Quelques astuces
     pour vous aider à compléter le test.</1><2>👤 Répondez aux questions en
     votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼
@@ -587,12 +584,12 @@ entries:
     moment.</4>"
   publicodes.chart.RavijenChart.equivalenceCase: One box 🔲 = {{nbKg}} kg of CO₂e.
   publicodes.chart.RavijenChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
-  publicodes.conference.Conference.donnéesExplications: "<0>By participating, you
+  publicodes.conference.Conference.donnéesExplications: '<0>By participating, you
     agree to share your aggregated simulation results with other conference
     participants: the total and the categories (transportation, housing, etc.).
     However, our servers do not store them: it works in P2P (peer to
     peer).</0><1>Only the name of the conference room will be indexed in <2>the
-    usage statistics</2> of Our Climate Action </1>"
+    usage statistics</2> of Our Climate Action </1>'
   publicodes.conference.Conference.donnéesExplications.lock: "<0>En participant,
     vous acceptez de partager vos résultats agrégés de simulation avec les
     autres participants de la conférence : le total et les catégories
@@ -600,41 +597,35 @@ entries:
     cela fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de
     conférence sera indexé dans <2>les statistiques d'utilisation</2> de Nos
     Gestes Climat. </1>"
-  publicodes.conference.DataWarning.viePrivée: "🕵 By participating, you agree to
+  publicodes.conference.DataWarning.viePrivée: '🕵 By participating, you agree to
     the <1>anonymous</1> collection of your aggregated simulation results on our
     server: total climate footprint and categories (transportation, housing,
-    etc.). <3>Read more</3>"
+    etc.). <3>Read more</3>'
   publicodes.conference.DataWarning.viePrivée.lock: "🕵 En participant, vous
     acceptez la collecte <1>anonyme</1> de vos résultats agrégés de simulation
     sur notre serveur : l'empreinte climat totale et les catégories (transport,
     logement, etc.). <3>En savoir plus</3>"
-  publicodes.conference.Instructions.avertissementModeConference:
-    "🔒️ Your organization may block the use of conference mode. Test beforehand
-    in duet: if there is a problem, you can use the polling mode."
-  publicodes.conference.Instructions.avertissementModeConference.lock:
-    "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence.
+  publicodes.conference.Instructions.avertissementModeConference: '🔒️ Your organization may block the use of conference mode. Test beforehand
+    in duet: if there is a problem, you can use the polling mode.'
+  publicodes.conference.Instructions.avertissementModeConference.lock: "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence.
     Faites le test au préalable en duo : en cas de problème, vous pouvez
     utiliser le mode sondage."
   publicodes.conference.Instructions.contextualisationLink: 💡 Want to add
     questions to get additional information about respondents? <2>Check out the
     "survey contextualization!" feature </2>
-  publicodes.conference.Instructions.contextualisationLink.lock:
-    💡 Vous souhaitez ajouter des questions pour obtenir des informations
+  publicodes.conference.Instructions.contextualisationLink.lock: 💡 Vous souhaitez ajouter des questions pour obtenir des informations
     supplémentaires sur les répondants ? <2>Découvrez la fonctionnalité
     "contextualisation de sondage !" </2>
-  publicodes.conference.Instructions.descriptionModeConference:
-    "Ephemeral mode: perfect for a workshop, an interactive presentation or
+  publicodes.conference.Instructions.descriptionModeConference: 'Ephemeral mode: perfect for a workshop, an interactive presentation or
     between friends. The data remains between the participants (peer-to-peer),
-    without a server, <2>just for the time of the conference</2>."
-  publicodes.conference.Instructions.descriptionModeConference.lock:
-    "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
+    without a server, <2>just for the time of the conference</2>.'
+  publicodes.conference.Instructions.descriptionModeConference.lock: "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
     interactive ou entre amis. Les données restent entre les participants
     (pair-à-pair), sans serveur, <2>juste le temps de la conférence</2>."
-  publicodes.conference.Instructions.descriptionModeSondage: "Persistent mode: the
+  publicodes.conference.Instructions.descriptionModeSondage: 'Persistent mode: the
     interface is almost the same, but the data is stored on our server and thus
-    remains accessible <1>for two months</1>."
-  publicodes.conference.Instructions.descriptionModeSondage.lock:
-    "Mode persistant : l'interface est presque la même, mais les données sont
+    remains accessible <1>for two months</1>.'
+  publicodes.conference.Instructions.descriptionModeSondage.lock: "Mode persistant : l'interface est presque la même, mais les données sont
     stockées sur notre serveur et ainsi restent accessibles <1>pendant deux
     mois</1>."
   publicodes.conference.Instructions.guideLien: The results are in, what to do?
@@ -652,17 +643,15 @@ entries:
     sera derrière son écran, mais visualisera en temps-réel les résultats des
     autres.</0><1>C'est l'occasion de se confronter aux autres et de réfléchir
     ensemble aux enjeux de notre propre impact.</1>
-  publicodes.conference.Instructions.liensSimulationConference:
-    At the agreed time, open this link all at the same time and do your own
+  publicodes.conference.Instructions.liensSimulationConference: At the agreed time, open this link all at the same time and do your own
     simulation.
-  publicodes.conference.Instructions.liensSimulationConference.lock:
-    Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
+  publicodes.conference.Instructions.liensSimulationConference.lock: Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
     votre côté votre simulation.
   publicodes.conference.Instructions.liensSimulationSondage: Participants must come and do their simulation on this link.
   publicodes.conference.Instructions.liensSimulationSondage.lock: Les participants doivent venir faire leur simulation sur ce lien.
-  publicodes.conference.Instructions.resultatInfos: "The results for each category
+  publicodes.conference.Instructions.resultatInfos: 'The results for each category
     (food, transportation, housing, etc.) are displayed progressively and in
-    real time for the entire group on "
+    real time for the entire group on '
   publicodes.conference.Instructions.resultatInfos.lock: "Les résultats pour
     chaque catégorie (alimentation, transport, logement ...) s'affichent
     progressivement et en temps réel pour l'ensemble du groupe sur "
@@ -670,8 +659,7 @@ entries:
   publicodes.conference.NamingBlock.nomSalleCourt.lock: ⚠️ Votre nom de salle est
     court, il y a un petit risque que des inconnus puissent le deviner
   publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres: 💡 Your room name can only contain letters, numbers and dashes
-  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres.lock:
-    💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
+  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres.lock: 💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
     tirets
   publicodes.conference.NoTestMessage.bienvenue: Welcome to the group mode of Our
     Climate Action! You haven't started your test yet, go ahead!
@@ -683,9 +671,9 @@ entries:
   publicodes.conference.Survey.excel: 'To open it with Microsoft Excel, open an
     empty spreadsheet, then Data &gt; From a text / CSV file. Select "Origin:
     Unicode UTF-8" and "Delimiter: comma".'
-  publicodes.conference.Survey.excel.lock: "Pour l'ouvrir avec Microsoft Excel,
-    ouvrez un tableur vide, puis Données > À partir d'un fichier texte / CSV.
-    Sélectionnez \"Origine : Unicode UTF-8\" et \"Délimiteur : virgule\"."
+  publicodes.conference.Survey.excel.lock: 'Pour l''ouvrir avec Microsoft Excel,
+    ouvrez un tableur vide, puis Données > À partir d''un fichier texte / CSV.
+    Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: To open it with <2>LibreOffice</2>, it is automatic.
   publicodes.conference.Survey.libreOffice.lock: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
   publicodes.conference.Survey.resultat: The results on the view page only include
@@ -698,9 +686,9 @@ entries:
     moins 10% du test</1>. En revanche le CSV contient les simulations de toutes
     les personnes ayant participé au sondage en cliquant sur le lien. La colonne
     "progress" vous permet de filtrer les simulations à votre tour.
-  publicodes.fin.ActionTeaser.félicitations: "{{displayedTotal}} tons!<2> You are well below the French average</2> "
-  publicodes.fin.ActionTeaser.félicitations.lock: "{{displayedTotal}} tonnes !<2>
-    Vous êtes très nettement en-dessous de la moyenne française.</2> "
+  publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tons!<2> You are well below the French average</2> '
+  publicodes.fin.ActionTeaser.félicitations.lock: '{{displayedTotal}} tonnes !<2>
+    Vous êtes très nettement en-dessous de la moyenne française.</2> '
   publicodes.fin.ActionTeaser.messagePourConvaincre: Chances are, your time is
     better spent convincing and helping others than trying to earn your "extra
     tons" (although you'll have to do that eventually).
@@ -757,8 +745,8 @@ entries:
   simulation-end.title: 🌟 You have completed this simulation
   simulation-end.title.lock: 🌟 Vous avez complété cette simulation
   simulations terminées depuis le lancement: simulations completed since the launch
-  site.publicodes.conferences.Stats.explication1: "<0>In yellow</0>: my simulation at {{spotlightValue}} t."
-  site.publicodes.conferences.Stats.explication1.lock: "<0>En jaune</0> : ma simulation à {{spotlightValue}} t."
+  site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my simulation at {{spotlightValue}} t.'
+  site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
   sites.publicodes.Landing.description: In 10 minutes, get an estimate of your carbon footprint.
   sites.publicodes.Landing.description.lock: En 10 minutes, obtenez une estimation
     de votre empreinte carbone de consommation.
@@ -785,7 +773,7 @@ entries:
   trajets saisis en moyenne: trips entered on average
   visites: visits
   visites depuis le lancement: visits since the launch
-  "{{res}} tonnes de CO₂e": "{{res}} tons of CO₂e"
+  '{{res}} tonnes de CO₂e': '{{res}} tons of CO₂e'
   À propos: About us
   ⏲️  Choississez votre mode de simulation: ⏲️ Choose your simulation mode
   ▶️ Faire le test: ▶️ Take the test
@@ -821,7 +809,7 @@ entries:
   📝 Contexte sondage: 📝 Survey background
   🔃 Générer un autre nom: 🔃 Generate another name
   🔍 Rechercher: 🔍 Search
-  "🔗 Partagez le lien à vos amis, collègues, etc.": 🔗 Share the link with your friends, colleagues, etc.
+  '🔗 Partagez le lien à vos amis, collègues, etc.': 🔗 Share the link with your friends, colleagues, etc.
   🚪 Quitter la conférence: 🚪 Leave the conference
   🧑‍🏫 Revoir le tutoriel: 🧑‍🏫 Review the tutorial
   🧮 Visualisez à tout moment les résultats de votre groupe: 🧮 View your group's results at any time
