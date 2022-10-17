@@ -71,7 +71,7 @@ export default function Conversation({
 		: nextQuestions
 
 	const focusedCategory = useQuery().get('catégorie')
-	const focusedCategoryTitle = rules[focusedCategory].title ?? focusedCategory
+	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
 
 	const focusByCategory = (questions) => {
 		if (!focusedCategory) return questions
