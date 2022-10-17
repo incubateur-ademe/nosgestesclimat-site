@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import styled from 'styled-components'
 import {
@@ -10,7 +9,6 @@ import {
 } from '../locales/translation'
 
 export default function LangSwitcher() {
-	const dispatch = useDispatch()
 	const { i18n } = useTranslation()
 	const currentLang = getLangFromAbreviation(i18n.language)
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -53,10 +51,6 @@ export default function LangSwitcher() {
 												: 'ui__ dashed-button'
 										}
 										onClick={() => {
-											dispatch({
-												type: 'SET_LANGUAGE',
-												currentLang: lang,
-											})
 											searchParams.set('lang', langInfos.abrv)
 											setSearchParams(searchParams)
 											setIsOpen(!isOpen)

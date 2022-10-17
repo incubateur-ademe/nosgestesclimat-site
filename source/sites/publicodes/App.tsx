@@ -4,7 +4,7 @@ import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
 import React, { Suspense, useContext, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
@@ -64,7 +64,9 @@ export default function Root({}) {
 
 	const persistedSimulation = retrievePersistedSimulation()
 
-	const navigatorLanguage = window.navigator.language
+	const navigatorLanguage = getLangFromAbreviation(
+		window.navigator.language.toLowerCase()
+	)
 
 	return (
 		<Provider
@@ -102,6 +104,7 @@ export const isFluidLayout = (encodedPathname) => {
 }
 
 const Main = ({}) => {
+	const dispatch = useDispatch()
 	const location = useLocation()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
@@ -125,6 +128,10 @@ const Main = ({}) => {
 			changeLangTo(i18n, getLangFromAbreviation(lang))
 		} else {
 			changeLangTo(i18n, currentLang)
+			dispatch({
+				type: 'SET_LANGUAGE',
+				currentLang,
+			})
 			searchParams.set('lang', i18n.language)
 			setSearchParams(searchParams)
 		}

@@ -94,6 +94,7 @@ export function getLangFromAbreviation(abrv: string): Lang {
 		case 'fr':
 			return Lang.Fr
 		case 'en':
+		case 'en-us':
 			return Lang.En
 		case 'es':
 			return Lang.Es
