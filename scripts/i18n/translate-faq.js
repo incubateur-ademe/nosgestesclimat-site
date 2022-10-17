@@ -9,12 +9,11 @@ const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
 const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
-const { destLangs, force } = cli.getArgs(
+const { srcLang, destLangs, force } = cli.getArgs(
 	`Calls the DeepL API to translate the FAQ Yaml files.`,
-	{ target: true, force: true }
+	{ source: true, target: true, force: true }
 )
 
-const srcLang = utils.defaultLang
 const srcPath = path.resolve(`source/locales/faq/FAQ-${srcLang}.yaml`)
 
 const translateTo = async (srcYAML, destPath, destLang) => {

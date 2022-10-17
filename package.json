@@ -150,15 +150,12 @@
 		"test:bundlesize": "bundlesize",
 		"test:dev-e2e:publicode": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
 		"generate:ui": "node scripts/i18n/generate-ui.js",
-		"translate:faq": "node scripts/i18n/translate-faq.js",
+		"translate:faq": "node scripts/i18n/generate-ui.js && node scripts/i18n/translate-faq.js",
+		"check:faq": "node scripts/i18n/check-faq.js",
 		"translate:ui": "node scripts/i18n/translate-ui.js",
+		"check:ui": "node scripts/i18n/generate-ui.js && node scripts/i18n/check-ui.js",
 		"translate:md": "node scripts/i18n/translate-md.js",
 		"translate:releases": "node scripts/i18n/translate-release.js",
-		"i18n:rules:check": "node scripts/i18n/check-missing-rule-translation.js",
-		"i18n:rules:translate": "node scripts/i18n/translate-rules.js",
-		"i18n:ui:check": "yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/check-missing-UI-translation",
-		"i18n:ui:translate": "rm -rf source/locales/static-analysis-fr.json && yarn run i18next -c scripts/i18n/parser.config.js && node scripts/i18n/translate-ui.js",
-		"publish:publicodes": "yarn run lint && yarn run ",
 		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr --ref > source/components/IllustrationSVG.tsx"
 	}
 }

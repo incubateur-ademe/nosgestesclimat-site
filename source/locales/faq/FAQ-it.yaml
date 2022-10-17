@@ -11,8 +11,7 @@
     Se lo avete fatto, potete visitare la vostra [página de perfil](/profil) per ricominciare l'esercitazione e, possibilmente, partire da zero nel vostro test.
   réponse.lock: >
     Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de
-    2 minutes chrono pour comprendre l'idée et le fonctionnement du
-    calculateur. 
+    2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur.
 
 
     Si vous l'avez déjà consulté, vous pouvez visiter votre [page profil](/profil) pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
@@ -271,20 +270,43 @@
 - catégorie: generale
   catégorie.lock: général
   id: international
-  question: la calcolatrice è solo per i francesi?
+  question: La calcolatrice è solo per i francesi?
   question.lock: Le calculateur est il destiné uniquement aux français ?
   réponse: >
-    
-    Al momento, sì. Alcuni parametri del modello, in particolare l'altezza del mix elettrico (in gCO2e/kWh), influiscono in modo particolare sul risultato finale, che per tanto non sarà valido in Bélgica, Congo, Quebec, Argelia e altri Paesi.
+    Per il momento il sito è riservato alla popolazione francofona della
+
+    Francia metropolitana, ma stiamo per aggiungere i territori d'oltremare
+
+    e poi i Paesi francofoni. È stato inoltre avviato il progetto di
+
+    traduzione, prima in inglese, che ci permetterà di aggiungere tutti i
+
+    Paesi europei.
 
 
-    Tuttavia, questa è solo una soluzione temporanea. Se conoscete il problema nel vostro Paese, visitate [discuss](https://github.com/datagir/nosgestesclimat-site/issues/71).
+    Perché l'internazionalizzazione è importante? Alcuni parametri del
+
+    modello, in particolare l'impronta del mix elettrico (in gCO2e/kWh),
+
+    hanno una particolare influenza sul risultato finale, che non sarà
+
+    quindi valido in Belgio, Congo, Quebec, Algeria o altrove.
+
+
+    Se avete familiarità con l'argomento nel vostro Paese o nella vostra
+
+    regione, venite a
+
+    [discuterne](https://github.com/datagir/nosgestesclimat-site/issues/71).
   réponse.lock: >
     
-    Pour l'instant oui. Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO2e/kWh) influence particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+    Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
 
 
-    Mais ce n'est que partie remise ! Si vous connaissez bien le sujet dans votre pays, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO2e/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+
+
+    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 - catégorie: vivienda
   catégorie.lock: logement
   id: réseau-chaleur
