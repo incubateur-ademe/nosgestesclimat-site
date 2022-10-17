@@ -150,7 +150,7 @@
 		"test:bundlesize": "bundlesize",
 		"test:dev-e2e:publicode": "cypress open --browser chromium --config baseUrl=http://localhost:8080/publicodes,integrationFolder=cypress/integration/publi.codes",
 		"generate:ui": "node scripts/i18n/generate-ui.js",
-		"translate:faq": "node scripts/i18n/generate-ui.js && node scripts/i18n/translate-faq.js",
+		"translate:faq": "node scripts/i18n/translate-faq.js",
 		"compile:faq": "node scripts/i18n/compile-faq.js",
 		"check:faq": "node scripts/i18n/check-faq.js",
 		"translate:ui": "node scripts/i18n/translate-ui.js",

@@ -15,7 +15,10 @@ const staticAnalysisFrRes = path.resolve(
 const UI = Object.fromEntries(
 	utils.availableLanguages.map((lang) => [
 		lang,
-		path.resolve(`source/locales/ui/ui-${lang}.yaml`),
+		{
+			withLock: path.resolve(`source/locales/ui/ui-${lang}.yaml`),
+			withoutLock: path.resolve(`source/locales/ui/ui-${lang}-min.yaml`),
+		},
 	])
 )
 

@@ -17,7 +17,7 @@ const { srcLang, destLangs, force } = cli.getArgs(
 const srcPath = paths.FAQ[srcLang].withLock
 
 const translateTo = async (srcYAML, destPath, destLang) => {
-	let targetEntries = utils.readYAML(destPath)
+	let targetEntries = utils.readYAML(destPath) ?? []
 
 	const getIndexOfId = (id) => {
 		return targetEntries.findIndex((entry) => {
@@ -42,10 +42,8 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 	}
 
 	const missingEntries = srcYAML.filter((refEntry) => {
-		const isUpToDate = targetEntryIsUpToDate(
-			refEntry,
-			targetEntries[getIndexOfId(refEntry.id)]
-		)
+		const i = getIndexOfId(refEntry.id)
+		const isUpToDate = targetEntryIsUpToDate(refEntry, targetEntries[i])
 
 		if (isUpToDate && force) {
 			cli.printWarn(
