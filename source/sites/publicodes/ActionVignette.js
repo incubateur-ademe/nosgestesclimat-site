@@ -86,9 +86,6 @@ export const ActionListCard = ({
 	return (
 		<div
 			css={`
-				${disabled ? disabledStyle : ''}
-				${focused && `border: 4px solid var(--color) !important;`}
-		
 				width: 100%;
 				display: flex;
 				flex-direction: column;
@@ -105,6 +102,14 @@ export const ActionListCard = ({
 				border: 4px solid ${categoryColor};
 				border-radius: 0.6rem;
 				box-shadow: 2px 2px 10px #bbb;
+
+				${disabled ? disabledStyle : ''}
+				${focused && `border: 4px solid var(--color) !important;`}
+				${actionChoices[evaluation.dottedName] &&
+				`
+				  border: 6px solid #2da44e;
+				  background: #2da44e3b;
+				`}
 			`}
 		>
 			<div
