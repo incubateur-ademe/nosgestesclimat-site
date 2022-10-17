@@ -4,10 +4,10 @@
 
 import { i18n } from 'i18next'
 
-import uiEn from './ui/ui-en.yaml'
-import uiEs from './ui/ui-es.yaml'
-import uiFr from './ui/ui-fr.yaml'
-import uiIt from './ui/ui-it.yaml'
+import uiEn from './ui/ui-en-us-min.yaml'
+import uiEs from './ui/ui-es-min.yaml'
+import uiFr from './ui/ui-fr-min.yaml'
+import uiIt from './ui/ui-it-min.yaml'
 
 import faqEn from './faq/FAQ-en-us-min.yaml'
 import faqEs from './faq/FAQ-es-min.yaml'
@@ -53,7 +53,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'fr-FR',
 				faqContent: faqFr,
 				releases: releasesFr,
-				uiTrad: uiFr.entries,
+				uiTrad: uiFr,
 			}
 		}
 		case Lang.En: {
@@ -63,7 +63,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'en-US',
 				faqContent: faqEn,
 				releases: releasesEn,
-				uiTrad: uiEn.entries,
+				uiTrad: uiEn,
 			}
 		}
 		case Lang.Es: {
@@ -73,7 +73,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'es-ES',
 				faqContent: faqEs,
 				releases: releasesEs,
-				uiTrad: uiEs.entries,
+				uiTrad: uiEs,
 			}
 		}
 		case Lang.It: {
@@ -83,7 +83,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 				abrvLocale: 'it-IT',
 				faqContent: faqIt,
 				releases: releasesIt,
-				uiTrad: uiIt.entries,
+				uiTrad: uiIt,
 			}
 		}
 	}

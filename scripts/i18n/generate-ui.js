@@ -46,7 +46,7 @@ try {
 const staticAnalysedFrResource = require(paths.staticAnalysisFrRes)
 let oldFrResource
 try {
-	oldFrResource = utils.readYAML(paths.UI.fr).entries
+	oldFrResource = utils.readYAML(paths.UI.fr.withLock).entries
 } catch (err) {
 	oldFrResource = {}
 }
@@ -96,9 +96,9 @@ if (remove) {
 	printResult(cli.red('-') + ' Missing', result.missingTranslations, cli.red)
 }
 
-console.log(`Writting resources in ${paths.UI.fr}...`)
+console.log(`Writting resources in ${paths.UI.fr.withLock}...`)
 try {
-	utils.writeYAML(paths.UI.fr, { entries: oldFrResource })
+	utils.writeYAML(paths.UI.fr.withLock, { entries: oldFrResource })
 } catch (err) {
 	cli.printErr('ERROR: an error occured while writting!')
 	cli.printErr(err.message)
