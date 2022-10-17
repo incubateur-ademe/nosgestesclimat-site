@@ -1,27 +1,23 @@
-import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
-import emoji from 'react-easy-emoji'
 import { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
+import NotificationBubble from '../../components/NotificationBubble'
 import {
 	correctValue,
 	extractCategoriesNamespaces,
 	splitName,
 } from '../../components/publicodesUtils'
-import NotificationBubble from '../../components/NotificationBubble'
 import { useEngine } from '../../components/utils/EngineContext'
-import {
-	getNextQuestions,
-	useNextQuestions,
-} from '../../components/utils/useNextQuestion'
+import { getNextQuestions } from '../../components/utils/useNextQuestion'
+import { TrackerContext } from '../../components/utils/withTracker'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
-import { TrackerContext } from '../../components/utils/withTracker'
 import { questionConfig } from './questionConfig'
 
 const { encodeRuleName, decodeRuleName } = utils
@@ -90,9 +86,6 @@ export const ActionListCard = ({
 	return (
 		<div
 			css={`
-				${disabled ? disabledStyle : ''}
-				${focused && `border: 4px solid var(--color) !important;`}
-		
 				width: 100%;
 				display: flex;
 				flex-direction: column;
@@ -109,6 +102,14 @@ export const ActionListCard = ({
 				border: 4px solid ${categoryColor};
 				border-radius: 0.6rem;
 				box-shadow: 2px 2px 10px #bbb;
+
+				${disabled ? disabledStyle : ''}
+				${focused && `border: 4px solid var(--color) !important;`}
+				${actionChoices[evaluation.dottedName] &&
+				`
+				  border: 6px solid #2da44e;
+				  background: #2da44e3b;
+				`}
 			`}
 		>
 			<div
@@ -122,6 +123,7 @@ export const ActionListCard = ({
 			>
 				<Link
 					css={`
+						z-index: 1;
 						h2 {
 							margin-top: 0rem;
 							text-align: center;
