@@ -1,0 +1,73 @@
+# Generates an artifact containing the result of the translations status of the UI.
+#
+# TODO: to factorize with the model's CI.
+
+name: Generate PR artifact
+
+on:
+  pull_request:
+    types: [ opened, synchronize ]
+  push:
+    branches:
+      - '!master'
+
+jobs:
+  compile:
+    runs-on: ubuntu-22.04
+    outputs:
+      check-ui-result: ${{ steps.check-ui.outputs.result }}
+      check-faq-result: ${{ steps.check-faq.outputs.result }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '17'
+          cache: 'yarn'
+      - run: yarn install --immutable
+      - run: git log | head && git status
+      - id: check-ui
+        run: |
+          # Checks the translation of the UI's texts
+          body="$(yarn check:ui --markdown 2> /dev/null | tail --lines=+6 | head --lines=-1)"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo "::set-output name=result::${body}"
+      - id: check-faq
+        run: |
+          # Checks the translation of FAQ's questions
+          body="$(yarn check:faq --markdown 2> /dev/null | tail --lines=+3 | head --lines=-1)"
+          body="${body//'%'/'%25'}"
+          body="${body//$'\n'/'%0A'}"
+          body="${body//$'\r'/'%0D'}"
+          echo "::set-output name=result::${body}"
+
+  upload-artifact:
+    runs-on: ubuntu-22.04
+    needs: compile
+    steps:
+      - name: Create artifact
+        run: |
+          mkdir -p artifacts
+          echo "
+          <h1 align="center">Report for the pull request #${{ github.event.pull_request.number }}</h2>
+
+          ---
+
+          ### :globe_with_meridians: Translation status
+
+          #### UI's texts
+
+          ${{ needs.compile.outputs.check-ui-result }}
+
+          #### FAQ's questions
+
+          ${{ needs.compile.outputs.check-faq-result }}
+
+          > _You will find more information about the translation in the [dedicated file](https:/github.com/datagir/nosgestesclimat-site/blob/master/docs/translating.md)._
+          " > artifacts/result.md
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: pr_message
+          path: artifacts
