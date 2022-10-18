@@ -1,21 +1,21 @@
 entries:
-  " et visualisez les résultats du groupe": " y ver los resultados del grupo"
+  ' et visualisez les résultats du groupe': ' y ver los resultados del grupo'
   (15 min de lecture): (15 minutos de lectura)
   (co-voiturage pris en compte): (teniendo en cuenta el uso compartido del coche)
   404.action: Volver a la seguridad
   404.message: Esta página no existe o ya no existe
   A vous de choisir vos gestes à la carte.: Es usted quien elige sus gestos a la carta.
-  "Accessibilité : partiellement conforme": "Accesibilidad: parcialmente conforme"
+  'Accessibilité : partiellement conforme': 'Accesibilidad: parcialmente conforme'
   Action: Acción
   Actions d'engagement: Acciones de compromiso
   Actions non chiffrées: Acciones no cuantificadas
   Actions négatives: Acciones negativas
-  "Actions écartées :": "Acciones descartadas :"
+  'Actions écartées :': 'Acciones descartadas :'
   Afficher l'explication du score: Mostrar explicación de la puntuación
   Afficher ma simulation: Ver mi simulación
   Agir: Actuar
   Aide à la saisie: Ayuda a la entrada
-  "Ajouter ": "Añadir "
+  'Ajouter ': 'Añadir '
   Aller au contenu: Ir al contenido
   Annuler: Cancelar
   Aucun: No
@@ -27,7 +27,7 @@ entries:
   Cacher: Ocultar
   Cacher l'objectif: Ocultación de la lente
   Ce guide n'existe pas encore: Esta guía aún no existe
-  "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Esta contribución será pública: no ponga información sensible en ella"
+  "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'Esta contribución será pública: no ponga información sensible en ella'
   Cette fiche détaillée n'existe pas encore: Esta ficha detallada aún no existe
   Changer de langue 🌐: Cambiar el idioma 🌐
   Chargement: Cargando
@@ -70,7 +70,7 @@ entries:
   En groupe: En grupos
   En savoir +: Leer más
   En savoir plus: Leer más
-  "Enlever ": "Eliminar "
+  'Enlever ': 'Eliminar '
   Entre: Entre
   Entrez des mots clefs: Introduzca las palabras clave
   Entrez des mots clefs ici: Introduzca aquí las palabras clave
@@ -87,7 +87,9 @@ entries:
   Explorez notre documentation: Explore nuestra documentación
   Faire le test: Realización de la prueba
   Faire mon test: Haz mi prueba
-  Faites le test à plusieurs via le mode conférence ou sondage: Realice la prueba con varias personas a través del modo conferencia o encuesta
+  Faites le test à plusieurs via le mode conférence ou sondage:
+    Realice la prueba con varias personas a través del modo conferencia o
+    encuesta
   Faites un test d'empreinte climat avec moi: Haz una prueba de huella climática conmigo
   Faites votre test: Haz tu prueba
   Fermer la notification de nouveautés: Cerrar la notificación de noticias
@@ -102,10 +104,10 @@ entries:
   Je ne sais pas: No lo sé
   "L'objectif à atteindre, 2 tonnes de CO₂e": El objetivo a alcanzar, 2 toneladas de CO₂e
   La voiture en chiffres: El coche en cifras
-  "Le reste : ": "El resto "
+  'Le reste : ': 'El resto '
   Le test: La prueba
   Le titre bref de votre problème: El título corto de su problema
-  "Les 3 actions au plus fort impact pour vous :": "Las 3 acciones con mayor impacto para ti:"
+  'Les 3 actions au plus fort impact pour vous :': 'Las 3 acciones con mayor impacto para ti:'
   Les nouveautés ✨: Novedades ✨
   Menu: Menú
   Mode groupe: Modo de grupo
@@ -114,10 +116,10 @@ entries:
   Mon empreinte climat: Mi huella climática
   Mon empreinte climat 😶‍🌫️: Mi huella climática 😶‍🌫️
   Mon profil: Mi perfil
-  "Mon total :": "Mi total :"
+  'Mon total :': 'Mi total :'
   Moyenne: Media
   Moyenne française: Media francesa
-  "N'afficher que les questions ": "Mostrar sólo preguntas "
+  "N'afficher que les questions ": 'Mostrar sólo preguntas '
   Naviguez vers une question précise: Navegar a una pregunta específica
   Nom de la salle: Nombre de la sala
   Nombre de personnes: Número de personas
@@ -130,19 +132,19 @@ entries:
   Notre serveur semble indisponible: Nuestro servidor parece no estar disponible
   Nous avons détecté que vous faites cette simulation depuis: Hemos detectado que ha estado haciendo esta simulación desde
   Nouveautés: Noticias
-  "Nouveautés - version ": "Novedades - versión "
+  'Nouveautés - version ': 'Novedades - versión '
   On la mesure comment ?: ¿Cómo se mide?
   On vous propose une sélection graduelle de gestes.: Se propone una selección gradual de gestos.
   Origine des visites: Origen de las visitas
   Oui: Sí
-  "Ouvert, documenté et contributif": Abierto, documentado y contributivo
+  'Ouvert, documenté et contributif': Abierto, documentado y contributivo
   Ouvrir les options de tri: Abrir las opciones de clasificación
   Page de fin de simulation principale: Página final de la simulación principal
   Page de fin de simulation pétrole: Fin de la página de simulación de petróleo
   Page profil: Página de perfil
   Partager mes résultats: Compartir mis resultados
   Participer au sondage: Participar en la encuesta
-  "Participez au sondage ": "Participar en la encuesta "
+  'Participez au sondage ': 'Participar en la encuesta '
   Participez à la conférence: Participar en la conferencia
   Pas votre région ?: ¿No es su región?
   Passer le tutoriel: Omitir el tutorial
@@ -153,7 +155,7 @@ entries:
   Plus de 30 minutes: Más de 30 minutos
   Point d'interrogation: Signo de interrogación
   Pompe à pétrole: Bomba de aceite
-  "Pour en savoir plus, tout est expliqué <1></1>dans ": "Para saber más, todo está explicado <1></1>en "
+  'Pour en savoir plus, tout est expliqué <1></1>dans ': 'Para saber más, todo está explicado <1></1>en '
   Progression dans les diapo: Progresión a través de las diapositivas
   Précédent: Anteriormente
   Prêt à démarrer ?: ¿Listo para empezar?
@@ -183,19 +185,19 @@ entries:
   Sélectionnez un persona et éventuellement un graphique à afficher.: Seleccione una persona y, posiblemente, un gráfico que se mostrará.
   Terminer ma simulation: Terminar mi simulación
   Trajet (Optionnel): Ruta (opcional)
-  "Tri :": "Clasificación :"
-  "Triées par :": "Clasificado por :"
+  'Tri :': 'Clasificación :'
+  'Triées par :': 'Clasificado por :'
   Une personne au moins est présente dans la voiture (vous !): Al menos una persona está presente en el coche (¡tú!)
-  "Une question, un problème ?": ¿Una pregunta, un problema?
+  'Une question, un problème ?': ¿Una pregunta, un problema?
   Version: Versión
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Aquí está mi huella ⛽️ de aceite. Mida el suyo
   Voir en détails: Ver en detalle
-  "Voir le reste : ": "Ver el resto "
+  'Voir le reste : ': 'Ver el resto '
   Voir ma situation: Ver mi situación
   Voir mon résultat: Ver mi resultado
   Voir toutes les actions: Ver todas las acciones
   Vos trajets apparaîtront dans ce tableau.: Sus viajes aparecerán en esta tabla.
-  "Votre mission : réduire votre empreinte.": "Su misión: reducir su huella."
+  'Votre mission : réduire votre empreinte.': 'Su misión: reducir su huella.'
   Votre part du logement: Su parte de la vivienda
   Vous avez choisi: Has elegido
   Vous avez complété la catégorie: Ha completado la categoría
@@ -212,11 +214,11 @@ entries:
     examen calculada a partir de los valores medios franceses asignados a cada
     pregunta. A medida que vas respondiendo, vas personalizando tu puntuación en
     función de tu estilo de vida. Si responde "No sé" a una pregunta, observará
-    que el total no cambia, ya que se le da un valor medio. La puntuación inicial
-    suele cambiar a medida que <2>evoluciona el modelo de Nuestra Acción por
-    el</2> Clima
+    que el total no cambia, ya que se le da un valor medio. La puntuación
+    inicial suele cambiar a medida que <2>evoluciona el modelo de Nuestra Acción
+    por el</2> Clima
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Viaja {{kmParcouru}} km avec en moyenne {{nbPersonnes}} en el coche.
-  components.conversation.select.NumberedMosaic.choixAFaire: " Todavía tienes {{nbChoix}} para elegir."
+  components.conversation.select.NumberedMosaic.choixAFaire: ' Todavía tienes {{nbChoix}} para elegir.'
   components.conversation.select.NumberedMosaic.choixEnTrop: Has hecho {{nbChoix}} ¡demasiadas elecciones!
   components.localisation.Localisation.warnMessage: Por el momento, no existe un
     modelo de cálculo para {{countryName}}, se utiliza el modelo francés por
@@ -228,33 +230,38 @@ entries:
   components.stats.StatsContent.dureeDesVisites: <0>Más información</0><1>Esta
     sección se genera a partir de las visitas de los últimos 60 días. Se han
     descartado las visitas con un tiempo de permanencia en el sitio inferior a 1
-    minuto. Para evitar el sesgo del iframe que puede generar visitantes inactivos
-    en las estadísticas, el tiempo medio en el sitio se ha calculado a partir de
-    las visitas activas (el usuario ha hecho clic en "Hacer la prueba").</1>
+    minuto. Para evitar el sesgo del iframe que puede generar visitantes
+    inactivos en las estadísticas, el tiempo medio en el sitio se ha calculado a
+    partir de las visitas activas (el usuario ha hecho clic en "Hacer la
+    prueba").</1>
   components.stats.StatsContent.enSavoirPlus: <0>Esta</0>sección se genera a
     partir de las visitas de los últimos 60 días. Se han descartado las visitas
     con un tiempo de permanencia en el sitio inferior a 1 minuto. Para evitar el
     sesgo del iframe que puede generar visitantes inactivos en las estadísticas,
     el tiempo medio en el sitio se ha calculado a partir de las visitas activas
     (el usuario ha hecho clic en "Hacer la prueba").
-  components.stats.StatsContent.integrationEtIframes: <0>Más información</0><1>Las
+  components.stats.StatsContent.integrationEtIframes:
+    <0>Más información</0><1>Las
     integraciones iframe se detectan a través del parámetro "iframe" en la URL,
-    sólo si el integrador ha utilizado el <1>script dedicado</1>. Así, las visitas
-    a través de iframes de los integradores que no utilizaron este script están
-    dispersas en las visitas generales de Nuestros Gestos Climáticos. A la espera
-    de cifras más precisas, esta tasa está, por tanto, potencialmente subestimada
-    con respecto a la realidad.<3>(Datos válidos para los últimos 30 días)</3></1>
-  components.stats.StatsContent.scoreUtilisateurs: "<0>Más información sobre este
+    sólo si el integrador ha utilizado el <1>script dedicado</1>. Así, las
+    visitas a través de iframes de los integradores que no utilizaron este
+    script están dispersas en las visitas generales de Nuestros Gestos
+    Climáticos. A la espera de cifras más precisas, esta tasa está, por tanto,
+    potencialmente subestimada con respecto a la realidad.<3>(Datos válidos para
+    los últimos 30 días)</3></1>
+  components.stats.StatsContent.scoreUtilisateurs:
+    '<0>Más información sobre este
     sitio</0><1>Por supuesto, no recogemos <2>datos de los usuarios</2>. Sin
-    embargo, la puntuación total, así como la huella por categoría, está presente
-    en la URL del final de la prueba. En esta sección, agregamos esta información
-    para hacernos una idea de la huella de carbono media de nuestros usuarios y de
-    la distribución de la puntuación para analizar estos resultados en el contexto
-    de las evoluciones del modelo.</1> <3>El objetivo aquí no es evaluar la huella
-    de carbono de los franceses: a priori, los usuarios de la prueba no son
-    representativos de los franceses. Además, estos datos pueden estar sesgados
-    por los usuarios que vuelven a la página final varias veces, cambiando sus
-    respuestas al test (lo que crea nuevas urls finales).</3>"
+    embargo, la puntuación total, así como la huella por categoría, está
+    presente en la URL del final de la prueba. En esta sección, agregamos esta
+    información para hacernos una idea de la huella de carbono media de nuestros
+    usuarios y de la distribución de la puntuación para analizar estos
+    resultados en el contexto de las evoluciones del modelo.</1> <3>El objetivo
+    aquí no es evaluar la huella de carbono de los franceses: a priori, los
+    usuarios de la prueba no son representativos de los franceses. Además, estos
+    datos pueden estar sesgados por los usuarios que vuelven a la página final
+    varias veces, cambiando sus respuestas al test (lo que crea nuevas urls
+    finales).</3>'
   de: de
   de <1>pétrole brut par an</1>.: de <1>petróleo crudo al año</1>.
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: de visitas este mes<1> (en comparación con el mes anterior)</1>
@@ -272,6 +279,7 @@ entries:
     nosotros directamente en <2>contact@mon-entreprise.beta.gouv.fr</2>
   habitant: residente
   habitants: habitantes
+  humanWeight.unitSuffix: de
   la page à partager à l'étape 3: la página que se va a compartir en el paso 3
   le + d'impact climat: el + impacto climático
   le - d'impact climat: el - impacto climático
@@ -281,17 +289,20 @@ entries:
     relación con los objetivos climáticos y, sobre todo, actuar a su nivel con
     gestos personalizados según sus respuestas.
   meta.pages.accessibility.description: El sitio web de Nos Gestes Climat cumple
-    parcialmente con las Directrices Generales de Accesibilidad, RGAA versión 4.1
+    parcialmente con las Directrices Generales de Accesibilidad, RGAA versión
+    4.1
   meta.pages.actions.description: Descubra qué puede hacer para reducir su huella climática
-  meta.publicodes.Contribution.description: Descubra las preguntas más frecuentes
+  meta.publicodes.Contribution.description:
+    Descubra las preguntas más frecuentes
     sobre Nuestra Acción por el Clima, y cómo hacer otras nuevas o ayudarnos.
   meta.publicodes.Landing.description: Comprueba tu huella de carbono, solo o en
-    grupo. Averigua cómo se distribuye tu huella. Siga el camino de la acción para
-    reducirlo.
+    grupo. Averigua cómo se distribuye tu huella. Siga el camino de la acción
+    para reducirlo.
   meta.publicodes.fin.Petrogaz.description: Mi huella de aceite es {{empreinte}} llena de aceite. Mida el suyo
   meta.publicodes.fin.actionslide.description: Las 3 principales acciones para
     reducir mi huella climática en {{roundedValue}} toneladas de CO₂‍ₑ.
-  meta.publicodes.pages.Diffuser.description: Este simulador le permite evaluar su
+  meta.publicodes.pages.Diffuser.description:
+    Este simulador le permite evaluar su
     huella de carbono individual total anual y por grandes categorías
     (alimentación, transporte, vivienda, varios, servicios públicos, digital),
     situarla en relación con los objetivos climáticos y, sobre todo, actuar a su
@@ -299,9 +310,11 @@ entries:
   meta.publicodes.pages.Documentation.description: Nuestro modelo de cálculo es
     totalmente transparente. Todo el mundo puede explorarla, dar su opinión y
     mejorarla.
-  meta.publicodes.pages.Privacy.description: Nuestros gestos climáticos, fuera del
+  meta.publicodes.pages.Privacy.description:
+    Nuestros gestos climáticos, fuera del
     modo de grupo, funcionan sin servidor, por lo que tus datos permanecen
-    contigo. Recogemos datos agregados de forma anónima para mejorar el simulador.
+    contigo. Recogemos datos agregados de forma anónima para mejorar el
+    simulador.
   minutes: minutos
   mon empreinte annuelle: mi huella anual
   mon objectif: mi objetivo
@@ -324,10 +337,11 @@ entries:
   publicodes.ActionTutorial.félicitation: Has completado tu simulación, 👏 ¡bien hecho!
   publicodes.ActionTutorial.msgEstimation: Ahora conoce su huella, estimada en
     {{value}} {{unit}}, y probablemente ya tiene ideas para reducirla...
-  publicodes.ActionTutorial.msgPrécision: 💡 Para mejorar la precisión, algunas acciones te harán algunas preguntas más.
-  publicodes.ActionTutorial.msgPrésentation: "Para ayudarle, le presentamos <2>una lista de acciones</2>:"
-  publicodes.ActionVignette.questionsRestantesText: "{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}"
-  publicodes.ActionsOptionsBar.actionsRecap: "{{numberOfAvailableFinalActions}} acciones disponibles,"
+  publicodes.ActionTutorial.msgPrécision: 💡 Para mejorar la precisión, algunas
+    acciones te harán algunas preguntas más.
+  publicodes.ActionTutorial.msgPrésentation: 'Para ayudarle, le presentamos <2>una lista de acciones</2>:'
+  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
+  publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} acciones disponibles,'
   publicodes.AllActions.allerPlusLoin: <0>Ir más allá</0><1><0>Vaya más allá de
     una simple cifra y descubra las cuestiones que hay detrás de cada
     acción.</0></1>
@@ -338,7 +352,8 @@ entries:
   publicodes.Contribution.commentaireAugmenté: |-
     {{fromLocation}} ? `Depuis la page : `{{fromLocation}}`` : ''}
     &gt; Este ticket fue creado automáticamente por nuestro robot desde nuestra [página de contribución](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.description: Aquí encontrará respuestas a las preguntas
+  publicodes.Contribution.description:
+    Aquí encontrará respuestas a las preguntas
     más frecuentes. Si todavía tiene preguntas o quiere sugerir mejoras, vaya al
     final de la página. ¡Disfrute de la lectura!
   publicodes.Contribution.descriptionComplète: <0>Una descripción completa de su
@@ -346,7 +361,8 @@ entries:
     versión 93, Chrome versión 95, Safari, etc.), y la plataforma (iPhone,
     Android, ordenador con Windows, etc.), nos ayudará a resolver el fallo más
     rápidamente.</0></1>
-  publicodes.Contribution.liensVersGithub: Si tienes algún comentario o pregunta,
+  publicodes.Contribution.liensVersGithub:
+    Si tienes algún comentario o pregunta,
     <2>abre un ticket directamente en GitHub</2>.
   publicodes.Contribution.remerciements: ¡Gracias 😍! Siga el progreso de su
     sugerencia haciendo clic en <1>este enlace</1>.
@@ -354,130 +370,145 @@ entries:
     de una diversidad de usuarios cuando vean nuestra pantalla de "acción".
   publicodes.Personas.lienGenerateur: Para los nombres de pila, puede utilizar <2>este generador</2>
   publicodes.Personas.tuto: que se produzca. Puede copiar y pegar los datos de
-    otra persona y modificarlos, o crear una desde cero a partir de la simulación.
-    Una vez que la simulación sea satisfactoria, haga clic en "Modificar mis
-    respuestas" y luego escriba Ctrl-C, abra la consola del navegador (F12),
-    asegúrese de estar en la pestaña "Consola", vaya a la parte inferior de la
-    consola (está un poco ocupada...), luego copie el JSON que se muestra, péguelo
-    en <2>esta herramienta</2> para generar un YAML, y luego insértelo en
-    personas.yaml.
-  publicodes.Personas.warningMsg: "Tenga cuidado, tiene una simulación en curso:
-    la selección de una persona sobrescribirá su simulación."
+    otra persona y modificarlos, o crear una desde cero a partir de la
+    simulación. Una vez que la simulación sea satisfactoria, haga clic en
+    "Modificar mis respuestas" y luego escriba Ctrl-C, abra la consola del
+    navegador (F12), asegúrese de estar en la pestaña "Consola", vaya a la parte
+    inferior de la consola (está un poco ocupada...), luego copie el JSON que se
+    muestra, péguelo en <2>esta herramienta</2> para generar un YAML, y luego
+    insértelo en personas.yaml.
+  publicodes.Personas.warningMsg: 'Tenga cuidado, tiene una simulación en curso:
+    la selección de una persona sobrescribirá su simulación.'
   publicodes.Profil.locationDonnées: <0>¿Dónde están mis datos? </0>Tus datos se
     almacenan en tu navegador, por lo que tienes un control total sobre ellos
     <2></2>
   publicodes.Profil.recap: Ha completado la prueba en {{percentFinished}} %
     ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
     acciones.
-  publicodes.SimulationMissing.personnas: 💡 También puedes ver el curso de acción
+  publicodes.SimulationMissing.personnas:
+    💡 También puedes ver el curso de acción
     como si fueras uno de estos perfiles típicos.
   publicodes.SimulationMissing.simulationManquante: Todavía no has hecho la
-    prueba. Para desbloquear este curso, tienes que contarnos un poco más sobre tu
-    estilo de vida.
-  publicodes.Tutorial.slide1.p1: <0>Que no cunda el pánico, le explicaremos lo que
-    es.</0><1>El planeta se está calentando <1>peligrosamente</1>, ya que cada vez
-    emitimos más gases de efecto invernadero.</1>
+    prueba. Para desbloquear este curso, tienes que contarnos un poco más sobre
+    tu estilo de vida.
+  publicodes.Tutorial.slide1.p1:
+    <0>Que no cunda el pánico, le explicaremos lo que
+    es.</0><1>El planeta se está calentando <1>peligrosamente</1>, ya que cada
+    vez emitimos más gases de efecto invernadero.</1>
   publicodes.Tutorial.slide1.p2: <0>Esta prueba te da en ⏱️ 10 minutos <2>una
     medida de tu parte </2> en este calentamiento.</0>
-  publicodes.Tutorial.slide2.blockquote: "Otros gases, especialmente el metano
-    <1></1> y el óxido nitroso <5></5> también calientan el planeta: su potencial
-    de calentamiento se convierte en equivalente de CO₂ para simplificar la
-    medición "
-  publicodes.Tutorial.slide2.p1: "Con una unidad de nombre bárbaro: el equivalente
+  publicodes.Tutorial.slide2.blockquote: 'Otros gases, especialmente el metano
+    <1></1> y el óxido nitroso <5></5> también calientan el planeta: su
+    potencial de calentamiento se convierte en equivalente de CO₂ para
+    simplificar la medición '
+  publicodes.Tutorial.slide2.p1:
+    'Con una unidad de nombre bárbaro: el equivalente
     al CO₂. Dióxido de carbono<1></1>, usted lo sabe: lo exhalamos todo el día,
-    pero no influye en el clima."
+    pero no influye en el clima.'
   publicodes.Tutorial.slide2.p2: ¡Son las máquinas que hacen nuestro confort
-    moderno las que rechazan masivamente, tanto que lo contamos en miles de kilos
-    por año y por persona, por tanto en <1>toneladas</1> de CO₂e!
-  publicodes.Tutorial.slide3.blockquote: ✨ ¡Nuevo! Vea también su consumo de ⛽️
+    moderno las que rechazan masivamente, tanto que lo contamos en miles de
+    kilos por año y por persona, por tanto en <1>toneladas</1> de CO₂e!
+  publicodes.Tutorial.slide3.blockquote:
+    ✨ ¡Nuevo! Vea también su consumo de ⛽️
     aceite, un indicador complementario al tema del clima.
   publicodes.Tutorial.slide3.p1: <0>¿Y en términos concretos?</0><1>Cada año, un
     francés emite una media de <1>10 toneladas</1> de CO₂e.</1>
-  publicodes.Tutorial.slide3.p2: El punto de partida de su test Nos Gestes Climat
-    es una puntuación calculada a partir de los valores medios franceses asignados
-    a cada pregunta. Esta puntuación inicial debe tomarse como un mínimo, que
-    comienza por defecto en ~8 toneladas de CO₂e en el estado actual del perímetro
-    de cálculo, que evoluciona en función de las mejoras del modelo. Sus
-    respuestas afinarán esta huella en la barra de puntuación.
+  publicodes.Tutorial.slide3.p2:
+    El punto de partida de su test Nos Gestes Climat
+    es una puntuación calculada a partir de los valores medios franceses
+    asignados a cada pregunta. Esta puntuación inicial debe tomarse como un
+    mínimo, que comienza por defecto en ~8 toneladas de CO₂e en el estado actual
+    del perímetro de cálculo, que evoluciona en función de las mejoras del
+    modelo. Sus respuestas afinarán esta huella en la barra de puntuación.
   publicodes.Tutorial.slide4.blockquote: |-
 
-                      {{sparkles}} ¡Nuevo! Vea también su consumo de aceite, un
-                      {{fuelPump}} un indicador adicional sobre el tema
-                      clima.
+    					{{sparkles}} ¡Nuevo! Vea también su consumo de aceite, un
+    					{{fuelPump}} un indicador adicional sobre el tema
+    					clima.
   publicodes.Tutorial.slide4.p1: <0>¿Y en términos concretos?</0><1>Cada año, un
     francés emite una media de <2> unas 10 toneladas de</2> CO₂e.</1>
-  publicodes.Tutorial.slide4.p2: "Este es su punto de partida en esta prueba: cada
-    una de sus respuestas personalizará este resultado en la barra de puntuación."
+  publicodes.Tutorial.slide4.p2:
+    'Este es su punto de partida en esta prueba: cada
+    una de sus respuestas personalizará este resultado en la barra de
+    puntuación.'
   publicodes.Tutorial.slide5.p1: <0>¿Y el objetivo?</0><1>Tenemos que reducir
     nuestra huella climática lo antes posible.</1><2>En Francia, esto significa
     pasar de unas 10 toneladas a <2>menos de 2 toneladas</2> al año.</2>
-  publicodes.Tutorial.slide6: "<0>Entonces, ¿estás listo para ir?</0><1>Algunos
-    consejos para ayudarte a completar el test.</1><2>👤 Responde a las preguntas
-    en tu nombre, no en el de tu familia: es una prueba individual.</2><3>💼
-    Contesta para tu vida personal, no para tu trabajo o estudios. <2>Una
-    excepción: </2> el trayecto del trabajo a casa debe incluirse en los
-    kilómetros recorridos.</3><4>❓️ ¿Alguna otra pregunta? Consulte nuestras
-    <2>preguntas frecuentes</2> en cualquier momento.</4>"
+  publicodes.Tutorial.slide6: '<0>Entonces, ¿estás listo para ir?</0><1>Algunos
+    consejos para ayudarte a completar el test.</1><2>👤 Responde a las
+    preguntas en tu nombre, no en el de tu familia: es una prueba
+    individual.</2><3>💼 Contesta para tu vida personal, no para tu trabajo o
+    estudios. <2>Una excepción: </2> el trayecto del trabajo a casa debe
+    incluirse en los kilómetros recorridos.</3><4>❓️ ¿Alguna otra pregunta?
+    Consulte nuestras <2>preguntas frecuentes</2> en cualquier momento.</4>'
   publicodes.chart.RavijenChart.equivalenceCase: Una caja 🔲 = {{nbKg}} kg de CO₂e.
-  publicodes.conference.Conference.donnéesExplications: "<0>Al participar, acepta
+  publicodes.conference.Conference.donnéesExplications:
+    '<0>Al participar, acepta
     compartir con los demás participantes en la conferencia los resultados
     agregados de su simulación: el total y las categorías (transporte,
     alojamiento, etc.). Sin embargo, nuestros servidores no los almacenan:
     funciona en P2P (peer-to-peer).</0><1>Sólo el nombre de la sala de
     conferencias se indexará en <2>las estadísticas de uso</2> de Nuestra Acción
-    por el Clima </1>"
-  publicodes.conference.DataWarning.viePrivée: "🕵 Al participar, aceptas la
+    por el Clima </1>'
+  publicodes.conference.DataWarning.viePrivée: '🕵 Al participar, aceptas la
     recopilación <1>anónima</1> de tus resultados de simulación agregados en
     nuestro servidor: huella climática total y categorías (transporte, vivienda,
-    etc.). <3>Leer más</3>"
+    etc.). <3>Leer más</3>'
   publicodes.conference.Instructions.avertissementModeConference:
-    "su organización puede bloquear el uso del modo conferencia. Pruébalo antes en
-    el dúo: si hay algún problema, puedes utilizar el modo de sondeo."
+    'su organización puede bloquear el uso del modo conferencia. Pruébalo antes
+    en el dúo: si hay algún problema, puedes utilizar el modo de sondeo.'
   publicodes.conference.Instructions.contextualisationLink: 💡 ¿Quieres añadir
     preguntas para obtener información adicional sobre los encuestados?
     <2>Comprueba la "función de contextualización de la encuesta" </2>
   publicodes.conference.Instructions.descriptionModeConference:
-    "Modo efímero: perfecto para un taller, una presentación interactiva o entre
+    'Modo efímero: perfecto para un taller, una presentación interactiva o entre
     amigos. Los datos permanecen entre los participantes (peer-to-peer), sin
-    servidor, <2>sólo durante la duración de la conferencia</2>."
-  publicodes.conference.Instructions.descriptionModeSondage: "Modo persistente: la
-    interfaz es casi la misma, pero los datos se almacenan en nuestro servidor y,
-    por tanto, siguen siendo accesibles <1>durante dos meses</1>."
+    servidor, <2>sólo durante la duración de la conferencia</2>.'
+  publicodes.conference.Instructions.descriptionModeSondage:
+    'Modo persistente: la
+    interfaz es casi la misma, pero los datos se almacenan en nuestro servidor
+    y, por tanto, siguen siendo accesibles <1>durante dos meses</1>.'
   publicodes.conference.Instructions.guideLien: Ya están los resultados, ¿qué
     hacer? Nuestra guía le acompaña en sus reflexiones y debates en esta página
-  publicodes.conference.Instructions.intro: <0>La prueba de la huella climática es
-    una prueba individual, pero aquí te sugerimos que la hagas con otras personas.
-    Cada persona estará detrás de su propia pantalla, pero podrá ver los
-    resultados de los demás en tiempo real.</0><1>Es una oportunidad para
-    confrontar a los demás y reflexionar juntos sobre los retos de nuestro propio
-    impacto.</1>
-  publicodes.conference.Instructions.liensSimulationConference: A la hora acordada, abre este enlace todos a la vez y haz tu propia simulación.
+  publicodes.conference.Instructions.intro:
+    <0>La prueba de la huella climática es
+    una prueba individual, pero aquí te sugerimos que la hagas con otras
+    personas. Cada persona estará detrás de su propia pantalla, pero podrá ver
+    los resultados de los demás en tiempo real.</0><1>Es una oportunidad para
+    confrontar a los demás y reflexionar juntos sobre los retos de nuestro
+    propio impacto.</1>
+  publicodes.conference.Instructions.liensSimulationConference:
+    A la hora acordada, abre este enlace todos a la vez y haz tu propia
+    simulación.
   publicodes.conference.Instructions.liensSimulationSondage: Los participantes deben venir a hacer su simulación en este enlace.
-  publicodes.conference.Instructions.resultatInfos: "Los resultados de cada
+  publicodes.conference.Instructions.resultatInfos: 'Los resultados de cada
     categoría (alimentación, transporte, vivienda, etc.) se muestran
-    progresivamente y en tiempo real para todo el grupo en "
+    progresivamente y en tiempo real para todo el grupo en '
   publicodes.conference.NamingBlock.nomSalleCourt: ⚠️ El nombre de tu habitación
     es corto, hay un pequeño riesgo de que los desconocidos lo adivinen
   publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres: 💡 El nombre de tu habitación sólo puede contener letras, números y guiones
   publicodes.conference.NoTestMessage.bienvenue: ¡Bienvenido al modo de grupo de
     Nuestra Acción Climática! Todavía no has empezado el examen, ¡adelante!
   publicodes.conference.Survey.csv: Puede recuperar los resultados de la encuesta en formato .csv.
-  publicodes.conference.Survey.excel: 'Para abrirlo con Microsoft Excel, abra una
-    hoja de cálculo vacía y, a continuación, Datos &gt; Desde un archivo de texto
-    / CSV. Seleccione "Origen: Unicode UTF-8" y "Delimitador: coma".'
+  publicodes.conference.Survey.excel:
+    'Para abrirlo con Microsoft Excel, abra una
+    hoja de cálculo vacía y, a continuación, Datos &gt; Desde un archivo de
+    texto / CSV. Seleccione "Origen: Unicode UTF-8" y "Delimitador: coma".'
   publicodes.conference.Survey.libreOffice: Para abrirlo con <2>LibreOffice</2>, es automático.
   publicodes.conference.Survey.resultat: Los resultados de la página de
-    visualización sólo tienen en cuenta a los participantes que completaron <1>al
-    menos el 10% de la prueba</1>. El CSV, por su parte, contiene las simulaciones
-    de todas las personas que han participado en la encuesta haciendo clic en el
-    enlace. La columna "progreso" permite filtrar las simulaciones sucesivamente.
-  publicodes.fin.ActionTeaser.félicitations: "{{displayedTotal}} ¡Toneladas!<2>
-    Está usted muy por debajo de la media francesa</2> "
+    visualización sólo tienen en cuenta a los participantes que completaron
+    <1>al menos el 10% de la prueba</1>. El CSV, por su parte, contiene las
+    simulaciones de todas las personas que han participado en la encuesta
+    haciendo clic en el enlace. La columna "progreso" permite filtrar las
+    simulaciones sucesivamente.
+  publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} ¡Toneladas!<2>
+    Está usted muy por debajo de la media francesa</2> '
   publicodes.fin.ActionTeaser.messagePourConvaincre: Lo más probable es que tu
-    tiempo se emplee mejor en convencer y ayudar a los demás que en intentar ganar
-    tus "toneladas extra" (aunque algún día tendrás que hacerlo).
+    tiempo se emplee mejor en convencer y ayudar a los demás que en intentar
+    ganar tus "toneladas extra" (aunque algún día tendrás que hacerlo).
   publicodes.fin.IframeDataShareModal.partageResultats: Comparta sus resultados en {{parent}}?
-  publicodes.fin.IframeDataShareModal.text: <0>Al hacer clic en el botón Aceptar,
+  publicodes.fin.IframeDataShareModal.text:
+    <0>Al hacer clic en el botón Aceptar,
     usted autoriza {{parent}} à récupérer le bilan de votre empreinte
     climat.</0><1>Estos son tus resultados en las categorías principales
     (transporte, alimentación...), pero <1>no</1> los detalles de cada pregunta
@@ -502,7 +533,7 @@ entries:
   simulation-end.text: Ahora tiene acceso a la estimación más precisa posible.
   simulation-end.title: 🌟 Has completado esta simulación
   simulations terminées depuis le lancement: simulaciones realizadas desde el lanzamiento
-  site.publicodes.conferences.Stats.explication1: "<0>En amarillo</0>: mi simulación en {{spotlightValue}} t."
+  site.publicodes.conferences.Stats.explication1: '<0>En amarillo</0>: mi simulación en {{spotlightValue}} t.'
   sites.publicodes.Landing.description: En 10 minutos, obtén una estimación de tu huella de carbono.
   sites.publicodes.LandingExplanations.faqLink: |-
     ## ¿Alguna pregunta?
@@ -511,6 +542,7 @@ entries:
     Encuentre respuestas a las preguntas más comunes en nuestra página de [FAQ](/contribución).
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Revisa el tutorial
   sites.publicodes.Tutorial.questionE: 💡 ¿Pero qué significa esa pequeña <1>e</1>?
+  suffixeUnité: suffixUnit
   sélectionnées: seleccionado
   titre de la version: título de la versión
   tonne: tonelada
@@ -518,7 +550,7 @@ entries:
   trajets saisis en moyenne: viajes introducidos de media
   visites: visita
   visites depuis le lancement: visitas desde el lanzamiento
-  "{{res}} tonnes de CO₂e": "{{res}} toneladas de CO₂e"
+  '{{res}} tonnes de CO₂e': '{{res}} toneladas de CO₂e'
   À propos: Sobre nosotros
   ⏲️  Choississez votre mode de simulation: ⏲️ Elige el modo de simulación
   ▶️ Faire le test: ▶️ Haz la prueba
@@ -554,7 +586,7 @@ entries:
   📝 Contexte sondage: 📝 Contexto de la encuesta
   🔃 Générer un autre nom: 🔃 Generar otro nombre
   🔍 Rechercher: 🔍 Búsqueda
-  "🔗 Partagez le lien à vos amis, collègues, etc.": 🔗 Comparte el enlace con tus amigos, compañeros, etc.
+  '🔗 Partagez le lien à vos amis, collègues, etc.': 🔗 Comparte el enlace con tus amigos, compañeros, etc.
   🚪 Quitter la conférence: 🚪 Abandonar la conferencia
   🧑‍🏫 Revoir le tutoriel: 🧑‍🏫 Revisa el tutorial
   🧮 Visualisez à tout moment les résultats de votre groupe: 🧮 Consulta los resultados de tu grupo en cualquier momento

@@ -16,7 +16,7 @@ destLangs.forEach((destLang) => {
 	)
 	utils.writeYAML(
 		destPaths.withoutLock,
-		Object.fromEntries(withoutLock),
+		{ entries: Object.fromEntries(withoutLock) },
 		'literal'
 	)
 	console.log(`Written in ${cli.yellow(destPaths.withoutLock)}`)
