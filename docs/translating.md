@@ -1,6 +1,5 @@
 <h1 align="center">Translation of the UI</h1>
 
-
 <p align="center">This file contains all the information about the translation of the UI of <a href="https://nosgestesclimat.fr/">nosgestesclimat.fr</a>.</p>
 
 <p align="center">The website UI is automatically translated in different natural languages -- this is achieved with
@@ -12,16 +11,16 @@
 
 <!-- vim-markdown-toc GitLab -->
 
-* [Workflows](#workflows)
-    * [Editing the source code](#editing-the-source-code)
-    * [Adding a new language](#adding-a-new-language)
-* [Architecture](#architecture)
-* [Available scripts](#available-scripts)
-    * [`generate-ui.js`](#generate-uijs)
-    * [`translate-ui.js`](#translate-uijs)
-    * [`translate-md.js`](#translate-mdjs)
-    * [`translate-faq.js`](#translate-faqjs)
-    * [`translate-releases.js`](#translate-releasesjs)
+-   [Workflows](#workflows)
+    -   [Editing the source code](#editing-the-source-code)
+    -   [Adding a new language](#adding-a-new-language)
+-   [Architecture](#architecture)
+-   [Available scripts](#available-scripts)
+    -   [`generate-ui.js`](#generate-uijs)
+    -   [`translate-ui.js`](#translate-uijs)
+    -   [`translate-md.js`](#translate-mdjs)
+    -   [`translate-faq.js`](#translate-faqjs)
+    -   [`translate-releases.js`](#translate-releasesjs)
 
 <!-- vim-markdown-toc -->
 
@@ -34,6 +33,10 @@
 When adding a new string containing a content which need to be translated,
 you need to wrap it inside a [`Trans`](https://react.i18next.com/latest/trans-component) React component
 or inside a function call to [`t`](https://react.i18next.com/latest/usetranslation-hook).
+
+If your text fragment is "universal", not depending of the specific context, you can use `<span>{t('Cliquez ici')}</span>` to translate `Cliquez ici` to `Click here` in the whole application.
+
+However, if the text fragment is context dependant, e.g. the word "de" in `<span>{value} {t('tonnes')} {t('de')} CO2e</span>`, it should be translated via an i18n key, using the `Trans` component : `<span>{value} {t('tonnes')} <Trans i18nKey="unitSuffix">de</Trans> CO2e</span>`, since the french word "de" can also be translated as "from" in another context.
 
 Once the content modified,
 
@@ -60,6 +63,7 @@ Once the content modified,
     Writting resources in /home/emile/Projects/datagir/nosgestesclimat-site/source/locales/ui/ui-fr.json...
 
     ```
+
     </details>
 
     For _added_ and _updated_ entries, their translation are automatically
@@ -67,7 +71,7 @@ Once the content modified,
     to replace the `'NO_TRANSLATION'` string by the adequate one.
 
 2. then, you need to translate the generated resource file into the other supported languages.
-This can be done automatically by using [`translate-ui.js`](#translate-ui.js).
+   This can be done automatically by using [`translate-ui.js`](#translate-ui.js).
 
 For non _hardcoded_ content such as the FAQ or Markdown pages.
 You need to modify the corresponding file inside `.source/locales/pages/` (resp. `.source/locales/faq`)
@@ -76,20 +80,20 @@ to translate it in the remaining languages.
 
 > **Important**:
 >
-> - you need to manually retranslate into french the internal page url.
-> - the automatic translation rely on the Deepl API. Consequently, you need
->   to set the environment variable `DEEPL_API_KEY` before running
->   `translate-*.js` scripts.
+> -   you need to manually retranslate into french the internal page url.
+> -   the automatic translation rely on the Deepl API. Consequently, you need
+>     to set the environment variable `DEEPL_API_KEY` before running
+>     `translate-*.js` scripts.
 
 ### Adding a new language
 
 To support a new language you need to modify the [`./source/locales/translations.ts`]()
 file, by adding:
 
-* a new enum value to `Lang`,
-* complete all related switch statements,
-* add corresponding import statements for [`faq`](#) and [`releases`](#),
-* runs all needed scripts as described [here](#edit-the-source-code).
+-   a new enum value to `Lang`,
+-   complete all related switch statements,
+-   add corresponding import statements for [`faq`](#) and [`releases`](#),
+-   runs all needed scripts as described [here](#edit-the-source-code).
 
 ## Architecture
 
@@ -98,12 +102,12 @@ Files related to the translation are available in the folder
 
 In particular:
 
-- `ui/ui-<lang>.yaml` are the resource files used by [`react-i18next`](https://react.i18next.com/).
+-   `ui/ui-<lang>.yaml` are the resource files used by [`react-i18next`](https://react.i18next.com/).
     It associates the translated text to the corresponding id.
-- `pages/<lang>/*.md` are the Markdown files used for pages with static contents.
-- `faq/FAQ-<lang>.yaml` contains the FAQ questions.
-  > They are stored in the YAML format to be easily exported as metadata for Google.
-- `faq/releases-<lang>.yaml` contains the fetched releases content.
+-   `pages/<lang>/*.md` are the Markdown files used for pages with static contents.
+-   `faq/FAQ-<lang>.yaml` contains the FAQ questions.
+    > They are stored in the YAML format to be easily exported as metadata for Google.
+-   `faq/releases-<lang>.yaml` contains the fetched releases content.
 
 ## Available scripts
 
@@ -119,22 +123,22 @@ All available options can be shown by providing the `(-h | --help)` flag.
 This script allows to analyse the source code to generate the reference
 resource file -- `source/locales/ui/ui-fr.yaml`.
 
->   To run with `yarn`:
+> To run with `yarn`:
 >
->   ```
->   yarn generate:ui -- [options]
->   ```
+> ```
+> yarn generate:ui -- [options]
+> ```
 
 ### `translate-ui.js`
 
 This script allows to translate generated `i18next` resource files into
 targeted languages.
 
->   To run with `yarn`:
+> To run with `yarn`:
 >
->   ```
->   yarn translate:ui -- [options]
->   ```
+> ```
+> yarn translate:ui -- [options]
+> ```
 
 ### `translate-md.js`
 
@@ -143,22 +147,21 @@ This script allows to translate Markdown files into targeted languages.
 Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
 machine to be able to run this script.
 
->   To run with `yarn`:
+> To run with `yarn`:
 >
->   ```
->   yarn translate:md -- [options]
->   ```
+> ```
+> yarn translate:md -- [options]
+> ```
 
 ### `translate-faq.js`
 
 This script allows to translate FAQ files into targeted languages.
 
->   To run with `yarn`:
+> To run with `yarn`:
 >
->   ```
->   yarn translate:faq -- [options]
->   ```
-
+> ```
+> yarn translate:faq -- [options]
+> ```
 
 ### `translate-releases.js`
 
@@ -166,8 +169,8 @@ This script allows to translate releases files into targeted languages.
 Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
 machine to be able to run this script.
 
->   To run with `yarn`:
+> To run with `yarn`:
 >
->   ```
->   yarn translate:releases -- [options]
->   ```
+> ```
+> yarn translate:releases -- [options]
+> ```
