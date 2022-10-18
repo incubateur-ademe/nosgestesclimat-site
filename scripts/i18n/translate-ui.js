@@ -17,11 +17,11 @@ const { srcLang, destLangs, force } = cli.getArgs(
 	{ source: true, force: true, target: true }
 )
 
-const srcPath = paths.UI[srcLang]
+const srcPath = paths.UI[srcLang].withLock
 
 if (!fs.existsSync(srcPath)) {
 	cli.printErr(
-		`ERROR: ${srcPath} does not exist.\nPlease run: 'npm run generate:ui' first.`
+		`ERROR: ${srcPath} does not exist.\nPlease run: 'yarn generate:ui' first.`
 	)
 	process.exit(-1)
 }
@@ -100,5 +100,5 @@ const translateTo = (targetLang, targetPath) => {
 	}
 }
 destLangs.forEach((lang) => {
-	translateTo(lang, paths.UI[lang])
+	translateTo(lang, paths.UI[lang].withLock)
 })
