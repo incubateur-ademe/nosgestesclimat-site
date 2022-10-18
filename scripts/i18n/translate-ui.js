@@ -47,6 +47,7 @@ const translateTo = (targetLang, targetPath) => {
 	const missingTranslations = Object.entries(
 		utils.getUiMissingTranslations(srcPath, targetPath, force)
 	)
+
 	console.log(
 		`Found ${cli.withStyle(
 			cli.colors.fgGreen,
@@ -63,11 +64,14 @@ const translateTo = (targetLang, targetPath) => {
 
 		missingTranslations
 			.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
-			.forEach(async ([key, value]) => {
+			.forEach(async ([key, refValue]) => {
 				try {
-					value = value.replace(interpolatedValueRegexp, '<ignore>$1</ignore>')
+					valueWithIgnoreTags = refValue.replace(
+						interpolatedValueRegexp,
+						'<ignore>$1</ignore>'
+					)
 					const translation = await deepl.fetchTranslation(
-						value,
+						valueWithIgnoreTags,
 						srcLang,
 						targetLang
 					)
@@ -78,18 +82,17 @@ const translateTo = (targetLang, targetPath) => {
 					translatedEntries[key] = translationWithCombinedEmojis
 					if (utils.isI18nKey(key)) {
 						// we need to store the lock value.
-						translatedEntries[key + utils.LOCK_KEY_EXT] = value
+						translatedEntries[key + utils.LOCK_KEY_EXT] = refValue
 					}
 					//	TODO: add a way to write all the translations at once
 					utils.writeYAML(targetPath, { entries: translatedEntries })
 					bar.increment({
-						msg: `Translating '${value}'...`,
+						msg: `Translating '${key}'...`,
 						lang: targetLang,
 					})
 				} catch (err) {
 					bar.stop()
 					progressBars.remove(bar)
-					console.log(`{key: ${key}, value: `, value)
 					cli.printErr(
 						`ERROR: an error occured while fetching the '${key}' translations:`
 					)

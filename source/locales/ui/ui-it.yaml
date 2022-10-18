@@ -428,11 +428,9 @@ entries:
   publicodes.ActionTutorial.msgPrésentation: 'Per aiutarvi, vi presentiamo <2>un elenco di azioni</2>:'
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
   publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
-  publicodes.ActionVignette.questionsRestantesText.lock:
-    <ignore>nbRemainingQuestions}}
-    question{{pluralSuffix}} restante{{pluralSuffix</ignore>
+  publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} azioni disponibili,'
-  publicodes.ActionsOptionsBar.actionsRecap.lock: <ignore>numberOfAvailableFinalActions</ignore> actions disponibles,
+  publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
   publicodes.AllActions.allerPlusLoin: <0>Andare oltre</0><1><0>Andate oltre la
     semplice cifra e scoprite i problemi che si celano dietro ogni
     azione.</0></1>
@@ -521,9 +519,10 @@ entries:
   publicodes.Profil.recap: Avete completato il test su {{percentFinished}} %
     ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
     azioni.
-  publicodes.Profil.recap.lock: Vous avez terminé le test à
-    <ignore>percentFinished}} % ({{answeredQuestionsLength}} questions) et
-    choisi {{actionChoicesLength</ignore> actions.
+  publicodes.Profil.recap.lock:
+    Vous avez terminé le test à {{percentFinished}} %
+    ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
+    actions.
   publicodes.SimulationMissing.personnas: 💡 Potete anche vedere il percorso
     d'azione come se foste uno di questi profili tipici.
   publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi voir le
@@ -775,8 +774,7 @@ entries:
     logement...).</1><2>Nosgestesclimat.fr n'est pas affilié au site
     {{parent}}.</2>
   publicodes.fin.Petrogaz.equivalenceVolume: Cioè {{secondaryValue}} litres (plein de {{pleinVolume}} litri).
-  publicodes.fin.Petrogaz.equivalenceVolume.lock: Soit <ignore>secondaryValue}}
-    litres (plein de {{pleinVolume</ignore> litres).
+  publicodes.fin.Petrogaz.equivalenceVolume.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
   publicodes.fin.Petrogaz.explications: <0>Si tratta di una stima <1>minima</1>
     del consumo annuale di petrolio grezzo.</0><1>Stimato attraverso il consumo
     di auto, aerei, autobus e gasolio da riscaldamento, non tiene (ancora) conto
@@ -809,7 +807,7 @@ entries:
   simulation-end.title.lock: 🌟 Vous avez complété cette simulation
   simulations terminées depuis le lancement: simulazioni completate dal lancio
   site.publicodes.conferences.Stats.explication1: '<0>In giallo</0>: la mia simulazione a {{spotlightValue}} t.'
-  site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : ma simulation à <ignore>spotlightValue</ignore> t.'
+  site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
   sites.publicodes.Landing.description: In 10 minuti, potrete ottenere una stima della vostra impronta di carbonio.
   sites.publicodes.Landing.description.lock:
     En 10 minutes, obtenez une estimation
