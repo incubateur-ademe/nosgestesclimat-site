@@ -338,6 +338,8 @@ entries:
     directement à <2>contact@mon-entreprise.beta.gouv.fr</2>
   habitant: residente
   habitants: abitanti
+  humanWeight.unitSuffix: da
+  humanWeight.unitSuffix.lock: de
   la page à partager à l'étape 3: la pagina da condividere al punto 3
   le + d'impact climat: il + impatto climatico
   le - d'impact climat: l'impatto climatico
