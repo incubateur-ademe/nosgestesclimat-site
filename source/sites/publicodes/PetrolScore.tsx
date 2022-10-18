@@ -1,8 +1,8 @@
-import { useEngine } from 'Components/utils/EngineContext'
-import { correctValue } from 'Components/publicodesUtils'
-import HumanWeight from './HumanWeight'
 import { Link } from 'Components/Link'
+import { correctValue } from 'Components/publicodesUtils'
+import { useEngine } from 'Components/utils/EngineContext'
 import { useTranslation } from 'react-i18next'
+import HumanWeight from './HumanWeight'
 
 export default ({ endURL }) => {
 	const engine = useEngine()
@@ -46,8 +46,8 @@ export default ({ endURL }) => {
 							{...{
 								nodeValue: roundedValue,
 								metric: 'pétrole',
-								unitSuffix: 'pleins',
-								longUnitSuffix: t('pleins de pétrole'),
+								unitText: 'pleins',
+								longUnitText: t('pleins de pétrole'),
 							}}
 						/>
 					</div>
