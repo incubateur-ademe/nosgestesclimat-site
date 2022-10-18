@@ -42,7 +42,7 @@ const HumanWeight = ({
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 	const unitText = givenUnitText || (
 		<span>
-			<Trans i18nKey="humanWeight.unitSuffix" /> CO₂-e / {t('an')}
+			<Trans i18nKey="unitSuffix">de</Trans> CO₂-e / {t('an')}
 		</span>
 	)
 
