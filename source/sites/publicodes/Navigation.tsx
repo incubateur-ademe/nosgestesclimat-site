@@ -44,7 +44,7 @@ export default ({ fluidLayout }) => {
 						size={largeScreen ? 'medium' : 'small'}
 					/>
 					<SessionBar />
-					<LangSwitcher />
+					<LangSwitcher from="navigation" />
 				</nav>
 			)}
 		</>

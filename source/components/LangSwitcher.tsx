@@ -8,11 +8,39 @@ import {
 	Lang,
 } from '../locales/translation'
 
-export default function LangSwitcher() {
+export type LangSwitcherLocation = 'landing' | 'navigation'
+
+export type LangSwitcherProps = {
+	from: LangSwitcherLocation
+}
+
+export default function LangSwitcher({ from }: LangSwitcherProps) {
 	const { i18n } = useTranslation()
 	const currentLang = getLangFromAbreviation(i18n.language)
 	const [searchParams, setSearchParams] = useSearchParams()
 	const [isOpen, setIsOpen] = useState(false)
+
+	const langButtons = Object.keys(Lang)
+		.filter((l) => l !== Lang.Default)
+		.map((l) => [Lang[l], getLangInfos(Lang[l])])
+		.map(([lang, langInfos]) => {
+			return (
+				<div>
+					<button
+						className={
+							lang === currentLang ? 'ui__ text-button' : 'ui__ dashed-button'
+						}
+						onClick={() => {
+							searchParams.set('lang', langInfos.abrv)
+							setSearchParams(searchParams)
+							setIsOpen(!isOpen)
+						}}
+					>
+						{langInfos.name}
+					</button>
+				</div>
+			)
+		})
 
 	return (
 		<LangSwitcherContainer>
@@ -36,43 +64,15 @@ export default function LangSwitcher() {
 					</svg>
 				</button>
 			)}
-			{isOpen && (
-				<ColumnFlex>
-					{Object.keys(Lang)
-						.filter((l) => l !== Lang.Default)
-						.map((l) => [Lang[l], getLangInfos(Lang[l])])
-						.map(([lang, langInfos]) => {
-							return (
-								<div>
-									<button
-										className={
-											lang === currentLang
-												? 'ui__ text-button'
-												: 'ui__ dashed-button'
-										}
-										onClick={() => {
-											searchParams.set('lang', langInfos.abrv)
-											setSearchParams(searchParams)
-											setIsOpen(!isOpen)
-										}}
-									>
-										{langInfos.name}
-									</button>
-								</div>
-							)
-						})}
-				</ColumnFlex>
-			)}
+			{isOpen && styledLangButtons(from, langButtons)}
 		</LangSwitcherContainer>
 	)
 }
 
-const ColumnFlex = styled.div`
+const ColumnFlexBase = styled.div`
 	padding: 10px 50px;
 	border: solid 1px;
 	border-radius: 1rem;
-	background-color: #f0f0f9;
-	border-color: #5758bb;
 	position: fixed;
 	top: 10px;
 	right: 10px;
@@ -90,6 +90,25 @@ const ColumnFlex = styled.div`
 	}
 `
 
+function styledLangButtons(
+	from: LangSwitcherLocation,
+	langButtons: JSX.Element[]
+): JSX.Element {
+	console.log('from:', from)
+	switch (from) {
+		case 'landing':
+			const ContainerLanding = styled(ColumnFlexBase)`
+				background-color: #e6e6f5;
+			`
+			return <ContainerLanding>{langButtons}</ContainerLanding>
+		case 'navigation':
+			const ContainerNav = styled(ColumnFlexBase)`
+				background-color: #f1f1f9;
+			`
+			return <ContainerNav>{langButtons}</ContainerNav>
+	}
+}
+
 const LangSwitcherContainer = styled.div`
 	position: fixed;
 	top: 10px;
@@ -99,6 +118,7 @@ const LangSwitcherContainer = styled.div`
 		position: relative;
 		top: 0px;
 		right: 0px;
+		padding-top: 10px;
 		display: flex;
 		flex-direction: column;
 		align-items: center;

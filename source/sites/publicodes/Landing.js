@@ -273,7 +273,7 @@ export default () => {
 							<Trans>Nouveautés</Trans>
 						</Link>
 						<div>
-							<LangSwitcher className="simple small" />
+							<LangSwitcher className="simple small" from="landing" />
 						</div>
 					</div>
 					<div
