@@ -5,11 +5,10 @@ import {
 	resetSimulation,
 	resetStoredTrajets,
 } from 'Actions/actions'
-import { Link } from 'Components/Link'
 import Localisation from 'Components/localisation/Localisation'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { resetCategoryTutorials } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'

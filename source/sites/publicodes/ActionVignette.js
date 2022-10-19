@@ -1,9 +1,9 @@
-import { Link } from 'Components/Link'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
 import NotificationBubble from '../../components/NotificationBubble'
 import {

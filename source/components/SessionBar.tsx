@@ -2,8 +2,9 @@ import { loadPreviousSimulation } from 'Actions/actions'
 import useLocalisation from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
@@ -11,18 +12,16 @@ import { resetLocalisation } from '../actions/actions'
 import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
 import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
+import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
 import {
+	getFlagImgSrc,
 	getLocalisationPullRequest,
 	getSupportedFlag,
-	getFlagImgSrc,
 	isRegionSupported,
 } from './localisation/useLocalisation'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
-import { omit } from '../utils'
-import { Trans, useTranslation } from 'react-i18next'
-import { Link } from './Link'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),

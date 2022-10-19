@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { Link } from 'Components/Link'
+import { Link } from 'react-router-dom'
 
 export default ({ children, last, skip }) => {
 	const { t } = useTranslation()

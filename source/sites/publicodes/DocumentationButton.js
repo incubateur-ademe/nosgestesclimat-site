@@ -1,5 +1,5 @@
-import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 const DocumentationButton = (props) => {
 	return (

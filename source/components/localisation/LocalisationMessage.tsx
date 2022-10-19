@@ -1,12 +1,11 @@
-import IllustratedMessage from '../ui/IllustratedMessage'
-import useLocalisation, {
-	supportedRegions,
-	isRegionSupported,
-	getSupportedFlag,
-} from './useLocalisation'
-import { Link } from 'react-router-dom'
-import { usePersistingState } from '../utils/persistState'
 import { Trans } from 'react-i18next'
+import { Link } from 'react-router-dom'
+import IllustratedMessage from '../ui/IllustratedMessage'
+import { usePersistingState } from '../utils/persistState'
+import useLocalisation, {
+	getSupportedFlag,
+	isRegionSupported,
+} from './useLocalisation'
 
 export default () => {
 	const [messagesRead, setRead] = usePersistingState(

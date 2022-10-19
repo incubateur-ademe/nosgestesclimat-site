@@ -1,10 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next'
-import { Link } from 'Components/Link'
-import lastRelease from '../data/last-release.json'
-import { usePersistingState } from './utils/persistState'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { capitalise0 } from '../utils'
+import lastRelease from '../data/last-release.json'
 import { getCurrentLangInfos } from '../locales/translation'
+import { capitalise0 } from '../utils'
+import { usePersistingState } from './utils/persistState'
 
 export const localStorageKey = 'last-viewed-release'
 

@@ -1,13 +1,13 @@
 import { splitName, title } from 'Components/publicodesUtils'
+import useFetchDocumentation from 'Components/useFetchDocumentation'
 import { Markdown } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
-import { useParams } from 'react-router'
-import { Link } from 'Components/Link'
-import styled from 'styled-components'
-import useFetchDocumentation from 'Components/useFetchDocumentation'
 import { useTranslation } from 'react-i18next'
+import { useParams } from 'react-router'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 export default () => {
 	const documentation = useFetchDocumentation()

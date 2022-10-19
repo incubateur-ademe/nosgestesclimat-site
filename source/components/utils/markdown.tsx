@@ -1,10 +1,8 @@
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
-import { isIterable } from '../../utils'
 import emoji from 'react-easy-emoji'
-
-import { Link } from 'Components/Link'
+import { Link, useLocation } from 'react-router-dom'
+import { isIterable } from '../../utils'
 
 const internalURLs = {
 	'nosgestesclimat.fr': 'nosgestesclimat',
@@ -37,10 +35,7 @@ export function LinkRenderer({
 			internalURLs[domain as keyof typeof internalURLs] === siteName
 		) {
 			return (
-				<Link
-					to={href.replace(`https://${domain}`, '')}
-					{...otherProps}
-				>
+				<Link to={href.replace(`https://${domain}`, '')} {...otherProps}>
 					{children}
 				</Link>
 			)

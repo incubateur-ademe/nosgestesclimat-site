@@ -1,9 +1,9 @@
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
-import { useSelector } from 'react-redux'
-import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { title } from '../../components/publicodesUtils'
 import useFetchDocumentation from '../../components/useFetchDocumentation'
@@ -40,9 +40,7 @@ export default () => {
 			<CardGrid>
 				{plusListe.map((rule) => (
 					<li key={rule.dottedName}>
-						<Link
-							to={'/actions/plus/' + utils.encodeRuleName(rule.dottedName)}
-						>
+						<Link to={'/actions/plus/' + utils.encodeRuleName(rule.dottedName)}>
 							<div
 								className="ui__ card"
 								css={`

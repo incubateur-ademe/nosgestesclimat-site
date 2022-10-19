@@ -1,4 +1,4 @@
-import { Link } from 'Components/Link'
+import { Link } from 'react-router-dom'
 
 export default ({ showText, size = 'large' }) => (
 	<Link

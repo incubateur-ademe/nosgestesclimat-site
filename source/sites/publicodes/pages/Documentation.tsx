@@ -80,10 +80,13 @@ export default function () {
 const DocPage = ({ documentationPath, engine }) => {
 	const url = useParams()['*']
 	const { i18n } = useTranslation()
+	console.log('engineParsedRules:', engine.context.parsedRules)
+	console.log('url:', url)
+	console.log('documentationPath:', documentationPath)
 	return (
 		<DocumentationStyle>
 			<RulePage
-				language={i18n.language as 'fr' | 'en'}
+				language={i18n.language}
 				rulePath={url}
 				engine={engine}
 				documentationPath={documentationPath}

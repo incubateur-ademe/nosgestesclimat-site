@@ -1,6 +1,6 @@
 import { RuleLink as EngineRuleLink } from 'publicodes-react'
 import React, { useContext } from 'react'
-import { Link } from 'Components/Link'
+import { Link } from 'react-router-dom'
 import { EngineContext } from './utils/EngineContext'
 import { SitePathsContext } from './utils/SitePathsContext'
 

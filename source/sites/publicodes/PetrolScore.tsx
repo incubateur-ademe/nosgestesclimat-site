@@ -1,7 +1,7 @@
-import { Link } from 'Components/Link'
 import { correctValue } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useTranslation } from 'react-i18next'
+import { Link } from 'react-router-dom'
 import HumanWeight from './HumanWeight'
 
 export default ({ endURL }) => {

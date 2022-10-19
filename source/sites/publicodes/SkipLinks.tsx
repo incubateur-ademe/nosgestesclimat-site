@@ -1,5 +1,5 @@
-import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 export default () => {
 	const focusTarget = (focusTarget) => {
@@ -25,10 +25,7 @@ export default () => {
 		>
 			<ul>
 				<li>
-					<Link
-						to="#mainContent"
-						onClick={() => focusTarget('#mainContent')}
-					>
+					<Link to="#mainContent" onClick={() => focusTarget('#mainContent')}>
 						<Trans>Aller au contenu</Trans>
 					</Link>
 				</li>

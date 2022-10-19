@@ -1,7 +1,7 @@
-import { useEffect, useState } from 'react'
-import { Link } from 'Components/Link'
 import animate from 'Components/ui/animate'
+import { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
+import { Link } from 'react-router-dom'
 
 export default () => {
 	const [visible, setVisible] = useState(false)

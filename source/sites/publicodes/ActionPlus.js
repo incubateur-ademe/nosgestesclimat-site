@@ -1,13 +1,13 @@
+import { title } from 'Components/publicodesUtils'
 import { Markdown } from 'Components/utils/markdown'
+import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { Link } from 'Components/Link'
-import Meta from 'Components/utils/Meta'
-import { title } from 'Components/publicodesUtils'
+import { Link } from 'react-router-dom'
 import useFetchDocumentation from '../../components/useFetchDocumentation'
-import { useTranslation } from 'react-i18next'
 
 export default () => {
 	const { t } = useTranslation()

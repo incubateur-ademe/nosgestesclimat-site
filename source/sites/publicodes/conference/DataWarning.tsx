@@ -1,8 +1,7 @@
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
-import IllustratedMessage from '../../../components/ui/IllustratedMessage'
-import { Link } from 'Components/Link'
 import { Trans } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
+import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 
 export default ({ room }) => {
 	const navigate = useNavigate()

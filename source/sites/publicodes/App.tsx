@@ -134,7 +134,7 @@ const Main = ({}) => {
 				currentLang,
 			})
 			searchParams.set('lang', i18n.language)
-			setSearchParams(searchParams)
+			setSearchParams(searchParams, { replace: true })
 		}
 	}, [currentLang, searchParams])
 

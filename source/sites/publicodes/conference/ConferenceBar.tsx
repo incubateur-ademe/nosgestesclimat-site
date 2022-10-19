@@ -3,7 +3,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
-import { Link } from 'Components/Link'
+import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import * as Y from 'yjs'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
@@ -45,10 +45,7 @@ export default () => {
 		result = computeHumanMean(simulationArray.map((el) => el.total))
 
 	return (
-		<Link
-			to={'/conférence/' + conference.room}
-			css="text-decoration: none;"
-		>
+		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
 			<div
 				css={`
 					${backgroundConferenceAnimation}
