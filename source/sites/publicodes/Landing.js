@@ -84,7 +84,9 @@ export default () => {
 					`}
 				>
 					<h1>
-						<Trans>Connaissez-vous votre empreinte sur le climat ?</Trans>
+						<Trans i18nKey={'publicodes.Landing.question'}>
+							Connaissez-vous votre empreinte sur le climat ?
+						</Trans>
 					</h1>
 					{mobile && <Illustration small aira-hidden="true" />}
 					<p>

@@ -331,11 +331,58 @@ entries:
   le - d'impact climat: l'impatto climatico
   meta.pages.actions.description: Scoprite cosa potete fare per ridurre la vostra impronta climatica
   meta.pages.actions.description.lock: Découvrez les gestes qui veous permettent de réduire votre empreinte climat
+  meta.publicodes.About.description:
+    Questo simulatore vi permette di valutare la
+    vostra impronta di carbonio annuale totale e individuale e per grandi
+    categorie (cibo, trasporti, abitazione, varie, servizi pubblici, digitale),
+    di situarla in relazione agli obiettivi climatici e soprattutto di agire al
+    vostro livello con gesti personalizzati in base alle vostre risposte.
+  meta.publicodes.About.description.lock: Ce simulateur vous permet d'évaluer
+    votre empreinte carbone individuelle annuelle totale et par grandes
+    catégories (alimentation, transport, logement, divers, services publics,
+    numérique), de la situer par rapport aux objectifs climatiques et surtout de
+    passer à l’action à votre niveau avec des gestes personnalisés en fonction
+    de vos réponses.
+  meta.publicodes.About.title: Chi siamo
+  meta.publicodes.About.title.lock: À propos
+  meta.publicodes.Accessibility.description: Il sito web di Nos Gestes Climat è
+    parzialmente conforme alle Linee guida generali per l'accessibilità, RGAA
+    versione 4.1
+  meta.publicodes.Accessibility.description.lock: Le site Nos Gestes Climat est
+    partiellement conforme avec le référentiel général d’amélioration de
+    l’accessibilité, RGAA version 4.1
+  meta.publicodes.Accessibility.title: Accessibilità
+  meta.publicodes.Accessibility.title.lock: Accessibilité
+  meta.publicodes.CGU.description:
+    Le presenti condizioni generali di utilizzo (di
+    seguito denominate "CGU") definiscono il quadro giuridico della Piattaforma
+    "La nostra azione per il clima" e definiscono le condizioni di accesso e di
+    utilizzo dei servizi da parte dell'Utente.
+  meta.publicodes.CGU.description.lock: Les présentes conditions générales
+    d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme
+    "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation
+    des services par l'Utilisateur.
+  meta.publicodes.CGU.title: Termini e condizioni d'uso
+  meta.publicodes.CGU.title.lock: Conditions générales d'utilisation
   meta.publicodes.Contribution.description: Scoprite le domande più frequenti
     sulla Nostra azione per il clima e come porne di nuove o aiutarci.
   meta.publicodes.Contribution.description.lock: Découvrez les questions
     fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous
     aider.
+  meta.publicodes.Diffuser.description:
+    Questo simulatore vi permette di valutare
+    la vostra impronta di carbonio annuale totale e individuale e per grandi
+    categorie (cibo, trasporti, abitazione, varie, servizi pubblici, digitale),
+    di situarla in relazione agli obiettivi climatici e soprattutto di agire al
+    vostro livello con gesti personalizzati in base alle vostre risposte.
+  meta.publicodes.Diffuser.description.lock: Ce simulateur vous permet d'évaluer
+    votre empreinte carbone individuelle annuelle totale et par grandes
+    catégories (alimentation, transport, logement, divers, services publics,
+    numérique), de la situer par rapport aux objectifs climatiques et surtout de
+    passer à l’action à votre niveau avec des gestes personnalisés en fonction
+    de vos réponses.
+  meta.publicodes.Diffuser.title: Diffondere la nostra azione per il clima
+  meta.publicodes.Diffuser.title.lock: Diffuser Nos Gestes Climat
   meta.publicodes.Landing.description:
     Testate la vostra impronta di carbonio, da
     soli o in gruppo. Scoprite come è distribuita la vostra impronta. Seguire il
@@ -343,6 +390,22 @@ entries:
   meta.publicodes.Landing.description.lock: Testez votre empreinte carbone, tout
     seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
+  meta.publicodes.Méthode.description: Il nostro modello di calcolo è
+    completamente trasparente. Tutti possono esplorarlo, dare la propria
+    opinione e migliorarlo.
+  meta.publicodes.Méthode.description.lock:
+    Notre modèle de calcul est entièrement
+    transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
+  meta.publicodes.Méthode.title: Capire i nostri calcoli
+  meta.publicodes.Méthode.title.lock: Comprendre nos calculs
+  meta.publicodes.Privacy.description: I nostri gesti climatici, fuori dalla
+    modalità di gruppo, funzionano senza server, quindi i vostri dati restano
+    con voi. Raccogliamo dati aggregati anonimi per migliorare il simulatore.
+  meta.publicodes.Privacy.description.lock: Nos gestes climat, hors mode groupe,
+    fonctionne sans serveur, donc vos données restent chez vous. Nous collectons
+    anonymement des données aggregées pour améliorer le simulateur.
+  meta.publicodes.Privacy.title: Dati personali
+  meta.publicodes.Privacy.title.lock: Données personnelles
   meta.publicodes.fin.Petrogaz.description: La mia impronta di petrolio è
     {{empreinte}} piena di petrolio. Misurate il vostro!
   meta.publicodes.fin.Petrogaz.description.lock: Mon empreinte pétrole est de

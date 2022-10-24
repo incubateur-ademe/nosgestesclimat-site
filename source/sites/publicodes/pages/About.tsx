@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { Lang } from '../../../locales/translation'
 import MarkdownPage from './MarkdownPage'
 
@@ -7,6 +8,7 @@ import contentFr from 'raw-loader!../../../locales/pages/fr/about.md'
 import contentIt from 'raw-loader!../../../locales/pages/it/about.md'
 
 export default () => {
+	const { t } = useTranslation()
 	return (
 		<MarkdownPage
 			markdownFiles={[
@@ -15,8 +17,8 @@ export default () => {
 				[Lang.Es, contentEs],
 				[Lang.It, contentIt],
 			]}
-			title={'À propos'}
-			descriptionId="About"
+			title={t('meta.publicodes.About.title')}
+			description={t('meta.publicodes.About.description')}
 		/>
 	)
 }

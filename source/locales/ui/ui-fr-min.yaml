@@ -268,12 +268,43 @@ entries:
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
   meta.pages.actions.description: Découvrez les gestes qui veous permettent de réduire votre empreinte climat
+  meta.publicodes.About.description: Ce simulateur vous permet d'évaluer votre
+    empreinte carbone individuelle annuelle totale et par grandes catégories
+    (alimentation, transport, logement, divers, services publics, numérique), de
+    la situer par rapport aux objectifs climatiques et surtout de passer à
+    l’action à votre niveau avec des gestes personnalisés en fonction de vos
+    réponses.
+  meta.publicodes.About.title: À propos
+  meta.publicodes.Accessibility.description: Le site Nos Gestes Climat est
+    partiellement conforme avec le référentiel général d’amélioration de
+    l’accessibilité, RGAA version 4.1
+  meta.publicodes.Accessibility.title: Accessibilité
+  meta.publicodes.CGU.description: Les présentes conditions générales
+    d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme
+    "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation
+    des services par l'Utilisateur.
+  meta.publicodes.CGU.title: Conditions générales d'utilisation
   meta.publicodes.Contribution.description:
     Découvrez les questions fréquentes sur
     Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
+  meta.publicodes.Diffuser.description:
+    Ce simulateur vous permet d'évaluer votre
+    empreinte carbone individuelle annuelle totale et par grandes catégories
+    (alimentation, transport, logement, divers, services publics, numérique), de
+    la situer par rapport aux objectifs climatiques et surtout de passer à
+    l’action à votre niveau avec des gestes personnalisés en fonction de vos
+    réponses.
+  meta.publicodes.Diffuser.title: Diffuser Nos Gestes Climat
   meta.publicodes.Landing.description: Testez votre empreinte carbone, tout seul
     ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
+  meta.publicodes.Méthode.description: Notre modèle de calcul est entièrement
+    transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
+  meta.publicodes.Méthode.title: Comprendre nos calculs
+  meta.publicodes.Privacy.description: Nos gestes climat, hors mode groupe,
+    fonctionne sans serveur, donc vos données restent chez vous. Nous collectons
+    anonymement des données aggregées pour améliorer le simulateur.
+  meta.publicodes.Privacy.title: Données personnelles
   meta.publicodes.fin.Petrogaz.description: Mon empreinte pétrole est de
     {{empreinte}} pleins de pétrole. Mesure la tienne !
   meta.publicodes.fin.actionslide.description: Le top 3 des actions pour réduire

@@ -270,12 +270,42 @@ entries:
   le + d'impact climat: el + impacto climático
   le - d'impact climat: el - impacto climático
   meta.pages.actions.description: Descubra qué puede hacer para reducir su huella climática
+  meta.publicodes.About.description: Este simulador le permite evaluar su huella
+    de carbono individual total anual y por grandes categorías (alimentación,
+    transporte, vivienda, varios, servicios públicos, digital), situarla en
+    relación con los objetivos climáticos y, sobre todo, actuar a su nivel con
+    gestos personalizados según sus respuestas.
+  meta.publicodes.About.title: Sobre nosotros
+  meta.publicodes.Accessibility.description: El sitio web de Nos Gestes Climat
+    cumple parcialmente con las Directrices Generales de Accesibilidad, RGAA
+    versión 4.1
+  meta.publicodes.Accessibility.title: Accesibilidad
+  meta.publicodes.CGU.description:
+    Las presentes condiciones generales de uso (en
+    adelante "CGU") establecen el marco legal de la Plataforma "Nuestra Acción
+    Climática" y definen las condiciones de acceso y uso de los servicios por
+    parte del Usuario.
+  meta.publicodes.CGU.title: Condiciones de uso
   meta.publicodes.Contribution.description:
     Descubra las preguntas más frecuentes
     sobre Nuestra Acción por el Clima, y cómo hacer otras nuevas o ayudarnos.
+  meta.publicodes.Diffuser.description: Este simulador le permite evaluar su
+    huella de carbono individual total anual y por grandes categorías
+    (alimentación, transporte, vivienda, varios, servicios públicos, digital),
+    situarla en relación con los objetivos climáticos y, sobre todo, actuar a su
+    nivel con gestos personalizados según sus respuestas.
+  meta.publicodes.Diffuser.title: Difundir nuestra acción climática
   meta.publicodes.Landing.description: Comprueba tu huella de carbono, solo o en
     grupo. Averigua cómo se distribuye tu huella. Siga el camino de la acción
     para reducirlo.
+  meta.publicodes.Méthode.description: Nuestro modelo de cálculo es totalmente
+    transparente. Todo el mundo puede explorarla, dar su opinión y mejorarla.
+  meta.publicodes.Méthode.title: Comprender nuestros cálculos
+  meta.publicodes.Privacy.description:
+    Nuestros gestos climáticos, fuera del modo
+    de grupo, funcionan sin servidor, por lo que tus datos permanecen contigo.
+    Recogemos datos agregados de forma anónima para mejorar el simulador.
+  meta.publicodes.Privacy.title: Datos personales
   meta.publicodes.fin.Petrogaz.description: Mi huella de aceite es {{empreinte}} llena de aceite. Mida el suyo
   meta.publicodes.fin.actionslide.description: Las 3 principales acciones para
     reducir mi huella climática en {{roundedValue}} toneladas de CO₂‍ₑ.

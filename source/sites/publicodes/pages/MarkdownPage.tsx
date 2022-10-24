@@ -8,11 +8,11 @@ export type PageProps = {
 	markdownFiles: Array<[Lang, string]>
 	// Information about the page metadata
 	title: string
-	descriptionId: string
+	description: string
 }
 
-export default ({ markdownFiles, title, descriptionId }: PageProps) => {
-	const { t, i18n } = useTranslation()
+export default ({ markdownFiles, title, description }: PageProps) => {
+	const { i18n } = useTranslation()
 	const l: Lang = i18n.language as Lang
 
 	const content =
@@ -21,10 +21,7 @@ export default ({ markdownFiles, title, descriptionId }: PageProps) => {
 
 	return (
 		<section className="ui__ container">
-			<Meta
-				title={t(title)}
-				description={t(`meta.publicodes.pages.${descriptionId}.description`)}
-			/>
+			<Meta title={title} description={description} />
 			<Markdown children={content} />
 		</section>
 	)

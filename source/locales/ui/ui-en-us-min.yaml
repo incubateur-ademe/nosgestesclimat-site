@@ -265,11 +265,39 @@ entries:
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
   meta.pages.actions.description: Find out how you can reduce your climate footprint
+  meta.publicodes.About.description: This simulator allows you to evaluate your
+    total annual individual carbon footprint and by major categories (food,
+    transportation, housing, miscellaneous, utilities, digital), to situate it
+    in relation to the climate objectives and above all to take action at your
+    level with personalized gestures according to your answers.
+  meta.publicodes.About.title: About us
+  meta.publicodes.Accessibility.description: The site Our Climate Gestures is
+    partially compliant with the General Accessibility Guidelines, RGAA version
+    4.1
+  meta.publicodes.Accessibility.title: Accessibility
+  meta.publicodes.CGU.description: These general terms of use (called "GTC") set
+    the legal framework of the Platform "Our Climate Gestures" and define the
+    conditions of access and use of services by the User.
+  meta.publicodes.CGU.title: Terms and conditions of use
   meta.publicodes.Contribution.description: Find out the most common questions
     about Our Climate Action, and how to ask new ones or help us.
+  meta.publicodes.Diffuser.description:
+    This simulator allows you to evaluate your
+    total annual individual carbon footprint and by major categories (food,
+    transportation, housing, miscellaneous, utilities, digital), to situate it
+    in relation to the climate objectives and above all to take action at your
+    level with personalized gestures according to your answers.
+  meta.publicodes.Diffuser.title: Spreading Our Climate Gestures
   meta.publicodes.Landing.description: Test your carbon footprint, alone or in a
     group. Discover the breakdown of your footprint. Follow the path to action
     to reduce it.
+  meta.publicodes.Méthode.description: Our calculation model is completely
+    transparent. Everyone can explore it, give their opinion, improve it.
+  meta.publicodes.Méthode.title: Understanding our calculations
+  meta.publicodes.Privacy.description: Our climate gestures, out of group mode,
+    work without a server, so your data stays with you. We collect anonymously
+    aggregated data to improve the simulator.
+  meta.publicodes.Privacy.title: Personal data
   meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
   meta.publicodes.fin.actionslide.description:
     Top 3 actions to reduce my climate

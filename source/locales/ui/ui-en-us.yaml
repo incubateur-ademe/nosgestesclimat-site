@@ -326,17 +326,76 @@ entries:
   le - d'impact climat: the - climate impact
   meta.pages.actions.description: Find out how you can reduce your climate footprint
   meta.pages.actions.description.lock: Découvrez les gestes qui veous permettent de réduire votre empreinte climat
+  meta.publicodes.About.description: This simulator allows you to evaluate your
+    total annual individual carbon footprint and by major categories (food,
+    transportation, housing, miscellaneous, utilities, digital), to situate it
+    in relation to the climate objectives and above all to take action at your
+    level with personalized gestures according to your answers.
+  meta.publicodes.About.description.lock: Ce simulateur vous permet d'évaluer
+    votre empreinte carbone individuelle annuelle totale et par grandes
+    catégories (alimentation, transport, logement, divers, services publics,
+    numérique), de la situer par rapport aux objectifs climatiques et surtout de
+    passer à l’action à votre niveau avec des gestes personnalisés en fonction
+    de vos réponses.
+  meta.publicodes.About.title: About us
+  meta.publicodes.About.title.lock: À propos
+  meta.publicodes.Accessibility.description: The site Our Climate Gestures is
+    partially compliant with the General Accessibility Guidelines, RGAA version
+    4.1
+  meta.publicodes.Accessibility.description.lock: Le site Nos Gestes Climat est
+    partiellement conforme avec le référentiel général d’amélioration de
+    l’accessibilité, RGAA version 4.1
+  meta.publicodes.Accessibility.title: Accessibility
+  meta.publicodes.Accessibility.title.lock: Accessibilité
+  meta.publicodes.CGU.description: These general terms of use (called "GTC") set
+    the legal framework of the Platform "Our Climate Gestures" and define the
+    conditions of access and use of services by the User.
+  meta.publicodes.CGU.description.lock: Les présentes conditions générales
+    d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme
+    "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation
+    des services par l'Utilisateur.
+  meta.publicodes.CGU.title: Terms and conditions of use
+  meta.publicodes.CGU.title.lock: Conditions générales d'utilisation
   meta.publicodes.Contribution.description: Find out the most common questions
     about Our Climate Action, and how to ask new ones or help us.
   meta.publicodes.Contribution.description.lock: Découvrez les questions
     fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous
     aider.
+  meta.publicodes.Diffuser.description:
+    This simulator allows you to evaluate your
+    total annual individual carbon footprint and by major categories (food,
+    transportation, housing, miscellaneous, utilities, digital), to situate it
+    in relation to the climate objectives and above all to take action at your
+    level with personalized gestures according to your answers.
+  meta.publicodes.Diffuser.description.lock: Ce simulateur vous permet d'évaluer
+    votre empreinte carbone individuelle annuelle totale et par grandes
+    catégories (alimentation, transport, logement, divers, services publics,
+    numérique), de la situer par rapport aux objectifs climatiques et surtout de
+    passer à l’action à votre niveau avec des gestes personnalisés en fonction
+    de vos réponses.
+  meta.publicodes.Diffuser.title: Spreading Our Climate Gestures
+  meta.publicodes.Diffuser.title.lock: Diffuser Nos Gestes Climat
   meta.publicodes.Landing.description: Test your carbon footprint, alone or in a
     group. Discover the breakdown of your footprint. Follow the path to action
     to reduce it.
   meta.publicodes.Landing.description.lock: Testez votre empreinte carbone, tout
     seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
+  meta.publicodes.Méthode.description: Our calculation model is completely
+    transparent. Everyone can explore it, give their opinion, improve it.
+  meta.publicodes.Méthode.description.lock:
+    Notre modèle de calcul est entièrement
+    transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
+  meta.publicodes.Méthode.title: Understanding our calculations
+  meta.publicodes.Méthode.title.lock: Comprendre nos calculs
+  meta.publicodes.Privacy.description: Our climate gestures, out of group mode,
+    work without a server, so your data stays with you. We collect anonymously
+    aggregated data to improve the simulator.
+  meta.publicodes.Privacy.description.lock: Nos gestes climat, hors mode groupe,
+    fonctionne sans serveur, donc vos données restent chez vous. Nous collectons
+    anonymement des données aggregées pour améliorer le simulateur.
+  meta.publicodes.Privacy.title: Personal data
+  meta.publicodes.Privacy.title.lock: Données personnelles
   meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
   meta.publicodes.fin.Petrogaz.description.lock: Mon empreinte pétrole est de
     {{empreinte}} pleins de pétrole. Mesure la tienne !
