@@ -13,6 +13,8 @@ import Engine from 'publicodes'
 import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
+const path = require('path')
+
 /* This component gets the publicode rules from the good URL,
  * then gives them
  * to the engine to parse, and hence makes it available to the whole component tree
@@ -47,9 +49,20 @@ export default ({ children }) => {
 
 			const rules = req.keys().reduce((memo, key) => {
 				const jsonRuleSet = req(key).default || {}
-				return { ...memo, ...jsonRuleSet }
+				const splitName = key
+					.replace(`${path.dirname(key)}/`, '')
+					.split('>.yaml')
+				const prefixedRuleSet =
+					splitName.length > 1
+						? Object.fromEntries(
+								Object.entries(jsonRuleSet).map(([k, v]) => [
+									k === 'index' ? splitName[0] : splitName[0] + ' . ' + k,
+									v,
+								])
+						  )
+						: jsonRuleSet
+				return { ...memo, ...prefixedRuleSet }
 			}, {})
-
 			setRules(rules, branchData.deployURL)
 		} else {
 			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
