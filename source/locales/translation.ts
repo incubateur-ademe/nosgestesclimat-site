@@ -5,14 +5,14 @@
 import { i18n } from 'i18next'
 
 import uiEn from '!locale-yaml-loader!./ui/ui-en-us.yaml'
-import uiEs from '!locale-yaml-loader!./ui/ui-es-min.yaml'
-import uiFr from '!locale-yaml-loader!./ui/ui-fr-min.yaml'
-import uiIt from '!locale-yaml-loader!./ui/ui-it-min.yaml'
+import uiEs from '!locale-yaml-loader!./ui/ui-es.yaml'
+import uiFr from '!locale-yaml-loader!./ui/ui-fr.yaml'
+import uiIt from '!locale-yaml-loader!./ui/ui-it.yaml'
 
-import faqEn from './faq/FAQ-en-us-min.yaml'
-import faqEs from './faq/FAQ-es-min.yaml'
-import faqFr from './faq/FAQ-fr-min.yaml'
-import faqIt from './faq/FAQ-it-min.yaml'
+import faqEn from '!locale-yaml-loader!./faq/FAQ-en-us.yaml'
+import faqEs from '!locale-yaml-loader!./faq/FAQ-es.yaml'
+import faqFr from '!locale-yaml-loader!./faq/FAQ-fr.yaml'
+import faqIt from '!locale-yaml-loader!./faq/FAQ-it.yaml'
 
 import releasesEn from './releases/releases-en-us.json'
 import releasesEs from './releases/releases-es.json'
