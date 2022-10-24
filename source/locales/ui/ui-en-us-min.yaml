@@ -8,7 +8,6 @@ entries:
   'Accessibilité : partiellement conforme': 'Accessibility: partially compliant'
   Action: Action
   Actions d'engagement: Commitment actions
-  Actions non chiffrées: Unquantified actions
   Actions négatives: Negative actions
   'Actions écartées :': 'Discarded actions:'
   Afficher l'explication du score: Show score explanation
@@ -29,7 +28,6 @@ entries:
   Ce guide n'existe pas encore: This guide does not exist yet
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'This contribution will be public: do not put sensitive information in it'
   Cette fiche détaillée n'existe pas encore: This detailed sheet does not exist yet
-  Changer de langue 🌐: Change language 🌐
   Chargement: Loading
   Chargement du modèle de calcul...: Loading the calculation model...
   Choisir l'action: Choose the action
@@ -49,7 +47,6 @@ entries:
   Confirmer: Confirm
   Conférence: Conference
   Connaissez-vous votre empreinte climat ?: Do you know your climate footprint?
-  Connaissez-vous votre empreinte sur le climat ?: Do you know your climate footprint?
   Continuer: Continue
   Contribuer: Contribute
   Copier le lien: Copy the link
@@ -94,7 +91,6 @@ entries:
   Fermer les options de tri: Close sorting options
   Fréquence: Frequency
   Guidé: Guided
-  Icône représentant une pompe à pétrole: Icon representing an oil pump
   Initialisation...: Initialization...
   Insérer cette suggestion: Insert this suggestion
   Intégrations et Iframes: Integrations and Iframes
@@ -123,7 +119,6 @@ entries:
   Nombre de personnes: Number of people
   Non: No
   Non applicable: Not applicable
-  Non chiffré: Not quantified
   Nos Gestes Climat Conférence: Our Climate Action Conference
   Nos explications complètes: Our complete explanations
   Nosgestesclimat - le top 3 de mes actions: Nosgestesclimat - the top 3 of my actions
@@ -226,19 +221,12 @@ entries:
     simulation country. You are using the French model by default.
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> of the test.
-  components.stats.StatsContent.dureeDesVisites:
-    <0>Learn more</0><1>This section
-    is generated from visits over the last 60 days. Visits with a time spent on
-    the site of less than 1 minute have been discarded. To avoid the iframe bias
-    that can generate inactive visitors in the statistics, the average time on
-    the site has been calculated from active visits (the user has clicked on
-    "Take the test").</1>
-  components.stats.StatsContent.enSavoirPlus: <0>Learn moreThis</0>section is
-    generated from visits over the last 60 days. Visits with a time spent on the
-    site of less than 1 minute have been discarded. To avoid the iframe bias
-    that can generate inactive visitors in the statistics, the average time on
-    the site was calculated from active visits (the user clicked on "Take the
-    test").
+  components.stats.StatsContent.dureeDesVisites: <0>Learn more about this
+    site</0><1>This section is generated from visits over the last 60 days.
+    Visits with a time spent on the site of less than 1 minute have been
+    discarded. To avoid the iframe bias that can generate inactive visitors in
+    the statistics, the average time on the site has been calculated from active
+    visits (the user has clicked on "Take the test").</1>
   components.stats.StatsContent.integrationEtIframes: <0>Learn more about iframe
     integrations</0><1>Iframe integrations are detected via the 'iframe'
     parameter in the URL, only if the integrator has used the <1>dedicated
@@ -258,8 +246,6 @@ entries:
     these data can be biased by users who would come back several times on the
     end page, changing their answers to the test (which creates new end
     url).</3>'
-  de: from
-  de <1>pétrole brut par an</1>.: of <1>crude oil per year</1>.
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: of visits this month<1> (compared to the month before)</1>
   dernières nouveautés: latest news
   en moyenne sur le site: on average on the site
@@ -270,54 +256,34 @@ entries:
     expectations?
   feedback.question: Is this page useful to you?
   feedback.reportError: Make a suggestion
-  feedback.simulator: Are you satisfied with this simulator?
   feedback.thanks: Thank you for your feedback! You can contact us directly at
     <2>contact@mon-entreprise.beta.gouv.fr</2>
   habitant: resident
   habitants: inhabitants
-  humanWeight.unitSuffix: of
+  humanWeight.unitSuffix: from
   la page à partager à l'étape 3: the page to be shared in step 3
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
-  meta.pages.about.description: This simulator allows you to evaluate your total
-    annual individual carbon footprint and by major categories (food,
-    transportation, housing, miscellaneous, utilities, digital), to situate it
-    in relation to the climate objectives and above all to take action at your
-    level with personalized gestures according to your answers.
-  meta.pages.accessibility.description:
-    The site Our Climate Gestures is partially
-    compliant with the General Accessibility Guidelines, RGAA version 4.1
   meta.pages.actions.description: Find out how you can reduce your climate footprint
   meta.publicodes.Contribution.description: Find out the most common questions
     about Our Climate Action, and how to ask new ones or help us.
   meta.publicodes.Landing.description: Test your carbon footprint, alone or in a
     group. Discover the breakdown of your footprint. Follow the path to action
     to reduce it.
-  meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full tanks of oil. Measure yours!
+  meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
   meta.publicodes.fin.actionslide.description:
     Top 3 actions to reduce my climate
     footprint by {{roundedValue}} tons of CO₂‍ₑ.
-  meta.publicodes.pages.Diffuser.description: This simulator allows you to
-    evaluate your total annual individual carbon footprint and by major
-    categories (food, transportation, housing, miscellaneous, utilities,
-    digital), to situate it in relation to the climate objectives and above all
-    to take action at your level with personalized gestures according to your
-    answers.
   meta.publicodes.pages.Documentation.description: Our calculation model is
     completely transparent. Everyone can explore it, give their opinion, improve
     it.
-  meta.publicodes.pages.Privacy.description: Our climate gestures, out of group
-    mode, work without a server, so your data stays with you. We collect
-    anonymously aggregated data to improve the simulator.
   minutes: minutes
   mon empreinte annuelle: my annual footprint
   mon objectif: my goal
-  non: no
   noresults: No results were found for this search
   nouveautés: news
   ont utilisé l'aide à la saisie des km: used the km entry aid
   ou: or
-  oui: yes
   pages.News.premierParagraphe: We are continuously improving the site based on
     your feedback. Discover here the
   participant: participant
@@ -347,7 +313,7 @@ entries:
     &gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Here you will find answers to the most
     frequently asked questions. If you still have questions or if you want to
-    suggest improvements, go to the bottom of the page. Have a nice reading!
+    suggest improvements, go to the bottom of the page. Have a good read!
   publicodes.Contribution.descriptionComplète: <0>A complete description of your
     problem</0><1><0>By indicating the browser you are using (e.g. Firefox
     version 93, Chrome version 95, Safari, etc.), and the platform (iPhone,
@@ -358,6 +324,7 @@ entries:
   publicodes.Contribution.remerciements:
     Thank you 😍! Follow the progress of your
     suggestion by clicking on <1>this link</1>.
+  publicodes.Landing.question: Do you know your climate footprint?
   publicodes.Personas.description: Personas will allow us to take the side of a
     diversity of users when they see our "take action" screen.
   publicodes.Personas.lienGenerateur: For the first names, you can use <2>this generator</2>
@@ -408,18 +375,9 @@ entries:
   publicodes.Tutorial.slide3.p2: The starting point for your Nos Gestes Climat
     test is a score calculated from average French values assigned to each
     question. This initial score is to be taken as a minimum, which starts by
-    default at ~8 tons of CO₂e in the current state of the calculation perimeter
-    that evolves according to the improvements of the model. Your answers will
-    then refine this footprint in the score bar.
-  publicodes.Tutorial.slide4.blockquote: |-
-
-    					{{sparkles}} New! See also your oil consumption, a complementary
-    					{{fuelPump}} an additional indicator on the subject of
-    					climate.
-  publicodes.Tutorial.slide4.p1: <0>And concretely?</0><1>Every year, a French
-    person emits on average <2> about 10 tons of</2> CO₂e.</1>
-  publicodes.Tutorial.slide4.p2: 'This is your starting point in this test: each
-    of your answers will personalize this result in the score bar.'
+    default at ~ <1></1> de CO₂e in the current state of the calculation
+    perimeter which evolves according to the improvements of the model. Your
+    answers will then refine this footprint in the score bar.
   publicodes.Tutorial.slide5.p1: <0>And the goal?</0><1>We have to decrease our
     climate footprint as soon as possible.</1><2>In France, this means going
     from ~10 tons to <2>less than 2 tons</2> per year.</2>
@@ -466,7 +424,7 @@ entries:
   publicodes.conference.Instructions.liensSimulationConference:
     At the agreed time, open this link all at the same time and do your own
     simulation.
-  publicodes.conference.Instructions.liensSimulationSondage: Participants must come and do their simulation on this link.
+  publicodes.conference.Instructions.liensSimulationSondage: Participants must come to make their simulation on this link.
   publicodes.conference.Instructions.resultatInfos:
     'The results for each category
     (food, transportation, housing, etc.) are displayed progressively and in
@@ -488,9 +446,9 @@ entries:
     the survey by clicking on the link. The "progress" column allows you to
     filter the simulations in turn.
   publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tons!<2> You are well below the French average</2> '
-  publicodes.fin.ActionTeaser.messagePourConvaincre: Chances are, your time is
-    better spent convincing and helping others than trying to earn your "extra
-    tons" (although you'll have to do that eventually).
+  publicodes.fin.ActionTeaser.messagePourConvaincre: Chances are, your time will
+    be better spent convincing and helping others than trying to earn your
+    "extra tons" (although you will have to do that eventually).
   publicodes.fin.IframeDataShareModal.partageResultats: Share your results at {{parent}}?
   publicodes.fin.IframeDataShareModal.text: <0>By clicking on the Accept button,
     you authorize {{parent}} à récupérer le bilan de votre empreinte
@@ -505,14 +463,7 @@ entries:
     and heating oil consumption, it does not (yet) take into account the oil
     used to transport your purchases, and the grey energy of your various
     possessions.</1>
-  publicodes.fin.Petrogaz.litres: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
   publicodes.fin.Petrogaz.petroleBrut: of <1>crude oil per year</1>
-  publicodes.shareText: |-
-    #nosgestesclimate 🌍️
-
-    {{total}} tons CO2e / year ⬇️
-
-    {{graph}}
   simulateurs.warning.plus: Read the details
   simulateurs.warning.titre: 🚩 Before you start...
   simulation-end.text: You now have access to the most accurate estimate possible.
@@ -527,7 +478,6 @@ entries:
     Find answers to common questions on our [FAQ](/contribute) page.
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Review the tutorial
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
-  suffixeUnité: suffixUnit
   sélectionnées: selected
   titre de la version: title of the version
   tonne: ton
@@ -538,7 +488,6 @@ entries:
   '{{res}} tonnes de CO₂e': '{{res}} tons of CO₂e'
   À propos: About us
   ⏲️  Choississez votre mode de simulation: ⏲️ Choose your simulation mode
-  ▶️ Faire le test: ▶️ Take the test
   ▶️ Finir mon test: ▶️ Finish my test
   ◀ Retour: ◀ Back
   ◀ Retour à la liste: ◀ Back to the list
@@ -549,7 +498,6 @@ entries:
   ✅ C'est fait: ✅ Done
   ✅ sélectionnez celles qui vous intéressent: ✅ select the ones that interest you
   ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.: ❌ discard those that seem too ambitious or out of place.
-  🇺🇦Réduire ma conso de pétrole: 🇺‍🇦Reduce my oil consumption
   🌟 Vous avez complété cette simulation: 🌟 You have completed this simulation
   🎯 2 tonnes: 🎯 2 tons
   🎯 Montrer l'objectif: 🎯 Showing the lens
@@ -558,7 +506,6 @@ entries:
   👎 Refuser: 👎 Refuse
   👤 Qui est connecté ?: 👤 Who is connected?
   👤 Vous utilisez actuellement le persona: 👤 You are currently using the persona
-  👥 En groupe: 👥 As a group
   💡 Choisissez un nom de salle: 💡 Choose a room name
   💡 Pourquoi ?: 💡 Why?
   💾 Lancer le téléchargement.: 💾 Start the download.
@@ -573,7 +520,6 @@ entries:
   🔍 Rechercher: 🔍 Search
   '🔗 Partagez le lien à vos amis, collègues, etc.': 🔗 Share the link with your friends, colleagues, etc.
   🚪 Quitter la conférence: 🚪 Leave the conference
-  🧑‍🏫 Revoir le tutoriel: 🧑‍🏫 Review the tutorial
   🧮 Visualisez à tout moment les résultats de votre groupe: 🧮 View your group's results at any time
   🧮 Voir le geste climat correspondant: 🧮 See the corresponding climate action
   🧮 Voir les réponses: 🧮 See answers

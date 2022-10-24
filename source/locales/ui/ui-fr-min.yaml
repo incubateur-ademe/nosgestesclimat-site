@@ -47,7 +47,6 @@ entries:
   Confirmer: Confirmer
   Conférence: Conférence
   Connaissez-vous votre empreinte climat ?: Connaissez-vous votre empreinte climat ?
-  Connaissez-vous votre empreinte sur le climat ?: Connaissez-vous votre empreinte sur le climat ?
   Continuer: Continuer
   Contribuer: Contribuer
   Copier le lien: Copier le lien
@@ -250,7 +249,6 @@ entries:
     représentatifs des Français. De plus, ces données peuvent être biaisées par
     des utilisateurs qui reviendraient à plusieurs reprises sur la page de fin,
     en changeant ses réponses au test (ce qui crée de nouveaux url de fin).</3>"
-  de: de
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>
   dernières nouveautés: dernières nouveautés
   en moyenne sur le site: en moyenne sur le site
@@ -332,6 +330,7 @@ entries:
     vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre
     suggestion en cliquant sur <1>ce lien</1>.
+  publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?
   publicodes.Personas.description: Les personas nous permettront de prendre le
     parti d'une diversité d'utilisateurs quand ils voient notamment notre écran
     "passer à l'action".
@@ -498,7 +497,6 @@ entries:
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
-  suffixeUnité: suffixeUnité
   sélectionnées: sélectionnées
   titre de la version: titre de la version
   tonne: tonne

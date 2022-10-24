@@ -12,9 +12,9 @@ const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
 const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
-const { srcLang, destLangs, force } = cli.getArgs(
+const { srcLang, destLangs, force, remove } = cli.getArgs(
 	`Calls the DeepL API to translate the UI from the French one.`,
-	{ source: true, force: true, target: true }
+	{ source: true, force: true, target: true, remove: true }
 )
 
 const srcPath = paths.UI[srcLang].withLock
@@ -43,9 +43,11 @@ const interpolatedValueRegexp = /\{\{(.*)\}\}/g
 
 const ignoredValueRegexp = /<ignore>(.*)<\/ignore>/g
 
-const translateTo = (targetLang, targetPath) => {
-	const missingTranslations = Object.entries(
-		utils.getUiMissingTranslations(srcPath, targetPath, force)
+const translateTo = async (targetLang, targetPath) => {
+	const missingTranslations = utils.getUiMissingTranslations(
+		srcPath,
+		targetPath,
+		force
 	)
 
 	console.log(
@@ -62,45 +64,64 @@ const translateTo = (targetLang, targetPath) => {
 	if (missingTranslations.length > 0) {
 		let bar = progressBars.create(missingTranslations.length, 0)
 
-		missingTranslations
-			.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
-			.forEach(async ([key, refValue]) => {
-				try {
-					valueWithIgnoreTags = refValue.replace(
-						interpolatedValueRegexp,
-						'<ignore>$1</ignore>'
-					)
-					const translation = await deepl.fetchTranslation(
-						valueWithIgnoreTags,
-						srcLang,
-						targetLang
-					)
-					const translationWithCombinedEmojis = translation
-						.replace(consecutiveEmojiRegexp, (_, p1, p2) => `${p1}‍${p2}`)
-						.replace(ignoredValueRegexp, '{{$1}}')
+		await Promise.all(
+			missingTranslations
+				.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
+				.map(async ([key, refValue]) => {
+					try {
+						valueWithIgnoreTags = refValue.replace(
+							interpolatedValueRegexp,
+							'<ignore>$1</ignore>'
+						)
+						const translation = await deepl.fetchTranslation(
+							valueWithIgnoreTags,
+							srcLang,
+							targetLang
+						)
+						const translationWithCombinedEmojis = translation
+							.replace(consecutiveEmojiRegexp, (_, p1, p2) => `${p1}‍${p2}`)
+							.replace(ignoredValueRegexp, '{{$1}}')
 
-					translatedEntries[key] = translationWithCombinedEmojis
-					if (utils.isI18nKey(key)) {
-						// we need to store the lock value.
-						translatedEntries[key + utils.LOCK_KEY_EXT] = refValue
+						translatedEntries[key] = translationWithCombinedEmojis
+						if (utils.isI18nKey(key)) {
+							// we need to store the lock value.
+							translatedEntries[key + utils.LOCK_KEY_EXT] = refValue
+						}
+						bar.increment({
+							msg: `Translating '${key}'...`,
+							lang: targetLang,
+						})
+					} catch (err) {
+						cli.printErr(
+							`ERROR: an error occured while fetching the '${key}' translations:`
+						)
+						cli.printErr(err)
 					}
-					//	TODO: add a way to write all the translations at once
-					utils.writeYAML(targetPath, { entries: translatedEntries })
-					bar.increment({
-						msg: `Translating '${key}'...`,
-						lang: targetLang,
-					})
-				} catch (err) {
-					bar.stop()
-					progressBars.remove(bar)
-					cli.printErr(
-						`ERROR: an error occured while fetching the '${key}' translations:`
-					)
-					cli.printErr(err)
-					process.exit(-1)
-				}
-			})
+				})
+		)
 	}
+	if (remove) {
+		// removes unused keys in translations
+		const srcEntriesKeys = Object.keys(utils.readYAML(srcPath).entries)
+		const entriesToKeep = Object.entries(translatedEntries).filter(
+			([key, _]) => {
+				return srcEntriesKeys.includes(key)
+			}
+		)
+
+		const nbEntriesToRemove =
+			Object.keys(translatedEntries).length - entriesToKeep.length
+
+		if (nbEntriesToRemove > 0) {
+			console.log(
+				`Removed ${cli.yellow(nbEntriesToRemove)} translations for ${cli.yellow(
+					targetLang
+				)}`
+			)
+			translatedEntries = Object.fromEntries(entriesToKeep)
+		}
+	}
+	utils.writeYAML(targetPath, { entries: translatedEntries })
 }
 destLangs.forEach((lang) => {
 	translateTo(lang, paths.UI[lang].withLock)
