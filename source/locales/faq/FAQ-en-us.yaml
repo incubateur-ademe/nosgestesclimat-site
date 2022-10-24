@@ -61,7 +61,7 @@
   question.lock: J'ai entendu dire que le numérique avait un gros impact sur le
     climat, le simulateur semble me dire le contraire…
   réponse: >
-    
+
     The evaluation of the impact of digital technology, and more particularly of "dematerialized" content (streaming, videoconferencing, storage on a cloud, sending of emails, etc.) is still a subject of work among technical and institutional actors.
 
 
@@ -73,7 +73,7 @@
 
     And if you want to help us improve these reflections, please contribute. We explain how [here](https://github.com/betagouv/ecolab-data/issues/185).
   réponse.lock: >
-    
+
     L’évaluation des impacts du numérique et plus particulièrement des contenus « dématérialisés » (streaming, visio-conférence, stockage sur un cloud, envoi de mail, etc.) est encore un sujet de travail parmi les acteurs techniques et institutionnels.
 
 
@@ -91,7 +91,7 @@
   question.lock: Oui mais quand même, ce poste représente parfois plus que
     certains de mes impacts…
   réponse: >
-    
+
     Indeed, it can be frustrating to have impacts counted for which we have no direct leverage.
 
 
@@ -103,7 +103,7 @@
 
     This is the purpose of Nos Gestes Climat! to raise awareness of these issues and make people aware of them!
   réponse.lock: >
-    
+
     En effet, il peut être frustrant de se voir comptabiliser des impacts pour lesquels nous n’avons aucun levier d’action direct.
 
 
@@ -114,19 +114,19 @@
 
 
     C’est d’ailleurs tout l’objet de Nos Gestes Climat ! œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
-- catégorie: power supply
+- catégorie: food
   catégorie.lock: alimentation
   id: alimentation-locale
   question: Why aren't we asking about local food either?
   question.lock: Pourquoi ne pose-t-on pas non plus de question sur l’alimentation locale ?
   réponse: >
-    
+
     Local food allows us to reduce the transport distances of the products we consume while supporting the farmers of our regions.
 
 
     Nevertheless, the question of the origin of our products and the associated impacts cannot be summed up in the comparison between short and long distance. The effects of scale, the centralization of products, the efficiency of the transport used and many other parameters complicate the matter from a carbon accounting point of view. As for the possibility of informing the origin of the products we consume, it would mean adding a lot of questions, diverting UCS from its general public target.
   réponse.lock: >
-    
+
     L’alimentation locale permet en effet de réduire les distances de transports des produits que nous consommons tout en soutenant les agriculteurs de nos régions.
 
 
@@ -181,18 +181,18 @@
   question.lock: J’utilise un combustible qui n’est pas renseigné dans l’outil.
     Comment faire ?
   réponse: >
-    
+
     At the present time, you will have to reason with the fuel that is as close as possible to the fuel you use. NGC has chosen to focus on the most used fuel types in France.
 
 
     However, as part of the continuous development of NGC, it is possible that some fuel types will be added in the future.
   réponse.lock: >
-    
+
     A l’heure actuelle, il vous faudra raisonner avec le combustible qui s’approche le plus possible du combustible que vous utilisez. NGC fait le choix de se focaliser sur les types de combustible les plus utilisés en France.
 
 
     Néanmoins, dans le cadre du développement continu de NGC, il est possible que certains types de combustibles soient ajoutés dans le futur.
-- catégorie: power supply
+- catégorie: food
   catégorie.lock: alimentation
   id: régime
   question: The questions asked do not correspond well to my type of diet
@@ -200,7 +200,7 @@
   question.lock: Les questions posées ne correspondent pas bien à mon type
     d’alimentation (de saison, poisson, légumes du potager, etc.)
   réponse: >
-    
+
     NGC is, above all, a tool designed for the general public. This is why we wanted to limit the number of questions to the aspects that we know are the most important in our diet.
 
 
@@ -209,7 +209,7 @@
 
     We explain you how [here](https://github.com/betagouv/ecolab-data/issues/185).
   réponse.lock: >
-    
+
     NGC est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants de notre alimentation.
 
 
@@ -224,13 +224,13 @@
   question.lock: Pourquoi est-ce que je ne peux pas renseigner le type de
     carburant que j’utilise ?
   réponse: >
-    
+
     NGC chooses not to ask about the type of fuel, simply because **there is not much difference between them.** Whether it is gasoline, diesel or LPG, the impacts are very similar. So we focus on the most important issues (number of km driven, number of occupants, use of public transport, etc.).
 
 
     In this respect, please feel free to consult this [simulator] (https://ecolab.ademe.fr/transport) to compare the climate impact of different modes of transport for the same journey.
   réponse.lock: >
-    
+
     NGC fait le choix de ne pas poser de question sur le type de carburant, tout simplement car **il n’y a pas beaucoup de différence entre eux.** Qu’il s’agisse d’essence, de gazole ou de GPL, les impacts sont très similaires. Nous nous concentrons donc sur les enjeux les plus importants (nombre de km parcourus, nombre d’occupants, utilisation des transports en commun, etc.).
 
 
@@ -242,7 +242,7 @@
   question.lock: Je n'ai pas de voiture mais on me demande quand même toutes ses
     informations …
   réponse: >
-    
+
     As soon as you enter a car mileage greater than 0, the tool tries to "apply" to you a share of the construction depreciation of the car you are using.
 
 
@@ -263,7 +263,7 @@
 
     **On average, a car is stationary 95% of the time, so it's a good idea to share it!
   réponse.lock: >
-    
+
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil cherche à vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
 
@@ -289,7 +289,7 @@
   question: Do I have to report my business trips?
   question.lock: Dois-je renseigner mes déplacements pro ?
   réponse: >
-    
+
     No.
 
 
@@ -304,7 +304,7 @@
 
     However, the reality is often quite different and far be it from us to blame those whose daily mobility is centered around the car because they are far from their workplace. Even if some choices can be questioned, many of us are, in fact, forced to use the individual car, for lack of serious alternatives available (public transport, teleworking, carpooling, etc.).
   réponse.lock: >
-    
+
     Non.
 
 
@@ -324,13 +324,13 @@
   question: Why am I being asked the age of my electronic equipment?
   question.lock: Pourquoi me demande-t-on l’âge de mes équipements électroniques ?
   réponse: >
-    
+
     As is the case for cars, a depreciation is made for electronic products whose manufacture has a very high impact on the climate (especially because of the extraction phase of raw materials).
 
 
     We therefore ask you the age of the product in order to know the remaining period to be amortized. See the specific question of depreciation to understand what it is about.
   réponse.lock: >
-    
+
     À l’instar de ce qui est fait pour la voiture, un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat (notamment à cause de la phase d’extraction des matières premières).
 
 
@@ -343,7 +343,7 @@
   question.lock: Je suis raccordé au réseau de chaleur de ma collectivité mais
     cette option n’est pas proposée par l’outil…
   réponse: >
-    
+
     Indeed, NGC does not allow to inform if you are connected to a heat network, for several reasons.
 
 
@@ -355,7 +355,7 @@
 
     We have not chosen to consider an "average" heating network either, given that their impact in terms of greenhouse gases can vary greatly depending on the proportion of hydrocarbons used in their operation.
   réponse.lock: >
-    
+
     En effet, NGC ne permet pas de renseigner si on est raccordé à un réseau de chaleur, et ce pour plusieurs raisons.
 
 
@@ -373,7 +373,7 @@
   question.lock: Mon logement est alimenté en électricité verte, pourquoi ne
     puis-je pas le prendre en compte ?
   réponse: >
-    
+
     Unless you have your own source of electricity (photovoltaic panels), the so-called "green" electricity supplied by renewable energy producers cannot be delivered to you without the existence of the French electrical grid, a single network shared by all
 
 
@@ -385,7 +385,7 @@
 
     Nevertheless, subscribing to [a "green" electricity contract](https://agirpourlatransition.ademe.fr/particuliers/vertvolt) is a good way to be in phase with one's values, to participate in the creation of non relocatable jobs and to send a message to decision-makers in favor of the development of renewable energies.
   réponse.lock: >
-    
+
     À moins de posséder sa propre source d’électricité (panneaux photovoltaïque), l’électricité dite « verte » fournie par les producteurs d’énergie renouvelable ne peut vous être acheminée sans l’existence du **réseau électrique français, réseau unique et partagé par tous.**
 
 
@@ -396,7 +396,7 @@
 
 
     Néanmoins, souscrire [un contrat d’électricité « verte »](https://agirpourlatransition.ademe.fr/particuliers/vertvolt) est un bon moyen pour être en phase avec ses valeurs, participer à la création d’emplois non délocalisables et passer un message aux décideur·se·s en faveur du développement des énergies renouvelables.
-- catégorie: power supply
+- catégorie: food
   catégorie.lock: alimentation
   id: bio-2
   question: So it is to avoid that it is unfavorable to our carbon footprint that
@@ -404,7 +404,7 @@
   question.lock: C’est donc pour éviter que cela soit défavorable à notre
     empreinte carbone que vous ne posez pas la question du bio ?
   réponse: >
-    
+
     No.
 
 
@@ -413,7 +413,7 @@
 
     The main issue of this item is the consumption of meat and animal products (milk, cheese, etc.) which represent, between them, about 75% of the carbon footprint of the average French person's diet. Knowing that your turnip is organic or that the beef you eat was raised on organic food is therefore secondary, given that the issue at stake is the reduction of meat consumption, especially red meat.
   réponse.lock: >
-    
+
     Non.
 
 
@@ -428,7 +428,7 @@
   question.lock: À la fin de mon calcul il y a un poste « service public »,
     qu’est-ce que c’est ?
   réponse: >
-    
+
     This item represents the carbon footprint of French public services on an individual scale. That is to say that the impact of the services is distributed among the 66 million French people.
 
 
@@ -440,7 +440,7 @@
 
     Second, trying to account for how much of a public service an individual uses "for real" is not currently possible with the data we have on the footprint of this sector.
   réponse.lock: >
-    
+
     Ce poste représente l’empreinte carbone des services publics français ramené à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 66 millions de français.
 
 
@@ -451,13 +451,13 @@
 
 
     Deuxièmement, essayer de comptabiliser la part de service public qu’un individu utilise « pour de vrai » n'est pas actuellement possible avec les données dont nous disposons sur l'empreinte de ce secteur.
-- catégorie: power supply
+- catégorie: food
   catégorie.lock: alimentation
   id: bio
   question: I consume organic food but I don't see any specific questions about it?
   question.lock: Je consomme bio mais je ne vois pas de questions spécifiques à ce sujet ?
   réponse: >
-    
+
     **Note: eating organic does not, in itself, reduce the carbon footprint
 
 
@@ -469,7 +469,7 @@
 
     From soil and groundwater pollution, to loss of biodiversity, to the preservation of farmers' health, organic food considerably reduces many other environmental impacts while also reducing the risks to our health. We are touching here on environmental issues in general, and must take a step back from our 100% greenhouse gas-centered calculation.
   réponse.lock: >
-    
+
     **Attention : manger bio ne réduit pas, en soi, l’empreinte carbone.**
 
 
@@ -552,7 +552,7 @@
 
     [discuss it](https://github.com/datagir/nosgestesclimat-site/issues/71).
   réponse.lock: >
-    
+
     Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
 
 
@@ -566,13 +566,13 @@
   question: I get the 2 ton goal, but I have a hard time imagining it.
   question.lock: J'ai compris l'objectif de 2 tonnes, mais j'ai beaucoup de mal à l'imaginer.
   réponse: >
-    
+
     The carbon footprint exercise can also cause discouragement because we coldly count the emissions of the lifestyle we know, without apprehending at this stage all the possibilities of a low-carbon life.
 
 
     Walking in nature, playing music, cycling, sailing, taking advantage of the train all over the country, spending time with our loved ones, partying, reading, chatting, gardening, learning to cook differently... A low-carbon life is full of joyful experiences, which do not necessarily find their way into an individual carbon footprint, but which will be at the heart of the lifestyles we are inventing at this very moment.
   réponse.lock: >
-    
+
     L'exercice du bilan carbone peut aussi provoquer un découragement car nous comptons froidement les émissions du mode de vie qu'on connait, sans appréhender à ce stade toutes les possibilités d'une vie bas carbone.
 
 
@@ -583,7 +583,7 @@
   question: Why not take into account individual savings?
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   réponse: >
-    
+
     Emissions from bank-financed fossil fuels are accounted for by those who use them.
 
 
@@ -594,7 +594,7 @@
 
     It would be very difficult for us, given the current data, to include a share of responsibility for the footprint of personal wealth in the model, without double counting.
   réponse.lock: >
-    
+
     Les émissions des énergies fossiles financées par les banques sont comptabilisées pour ceux qui les utilisent.
 
 
