@@ -4,10 +4,10 @@
 
 import { i18n } from 'i18next'
 
-import uiEn from './ui/ui-en-us-min.yaml'
-import uiEs from './ui/ui-es-min.yaml'
-import uiFr from './ui/ui-fr-min.yaml'
-import uiIt from './ui/ui-it-min.yaml'
+import uiEn from '!locale-yaml-loader!./ui/ui-en-us.yaml'
+import uiEs from '!locale-yaml-loader!./ui/ui-es-min.yaml'
+import uiFr from '!locale-yaml-loader!./ui/ui-fr-min.yaml'
+import uiIt from '!locale-yaml-loader!./ui/ui-it-min.yaml'
 
 import faqEn from './faq/FAQ-en-us-min.yaml'
 import faqEs from './faq/FAQ-es-min.yaml'
