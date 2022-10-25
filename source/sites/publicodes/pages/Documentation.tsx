@@ -1,10 +1,9 @@
 import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
-import { EngineContext } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { useContext, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -19,6 +18,7 @@ import {
 } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
+import { useEngine } from '../../../components/utils/EngineContext'
 import Meta from '../../../components/utils/Meta'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
@@ -29,7 +29,7 @@ export default function () {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const documentationPath = '/documentation'
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)

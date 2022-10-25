@@ -11,47 +11,137 @@
 
 <!-- vim-markdown-toc GitLab -->
 
--   [Workflows](#workflows)
-    -   [Editing the source code](#editing-the-source-code)
-    -   [Adding a new language](#adding-a-new-language)
--   [Architecture](#architecture)
--   [Available scripts](#available-scripts)
-    -   [`generate-ui.js`](#generate-uijs)
-    -   [`translate-ui.js`](#translate-uijs)
-    -   [`translate-md.js`](#translate-mdjs)
-    -   [`translate-faq.js`](#translate-faqjs)
-    -   [`translate-releases.js`](#translate-releasesjs)
+* [Configuration](#configuration)
+    * [DeepL API key](#deepl-api-key)
+    * [Dev dependencies](#dev-dependencies)
+* [Workflows](#workflows)
+    * [Editing the source code](#editing-the-source-code)
+        * [Adding content](#adding-content)
+        * [Updating the translations](#updating-the-translations)
+            * [For non-tech users](#for-non-tech-users)
+    * [Adding a new language](#adding-a-new-language)
+* [Architecture](#architecture)
+* [Available scripts](#available-scripts)
+    * [`generate-ui.js`](#generate-uijs)
+    * [`translate-ui.js`](#translate-uijs)
+    * [`check-ui.js`](#check-uijs)
+    * [`translate-md.js`](#translate-mdjs)
+    * [`translate-faq.js`](#translate-faqjs)
+    * [`check-faq.js`](#check-faqjs)
+    * [`translate-releases.js`](#translate-releasesjs)
 
 <!-- vim-markdown-toc -->
 
 ---
 
+## Configuration
+
+### DeepL API key
+
+To be able to run all available scripts you need to have defined the _env_
+variable `DEEPL_API_KEY` with a valid [DeepL API
+key](https://www.deepl.com/fr/docs-api/introduction/).
+
+> You can specify it when running the command like:
+>
+> ```
+> DEEPL_API_KEY=<your-api-key> yarn <cmd>
+> ```
+>
+> or saving it in your `.bashrc` file -- or other terminal config file.
+
+### Dev dependencies
+
+Before running any scripts, make sure that you have all the dependencies installed by
+running:
+
+```
+yarn install
+```
+
+Moreover, in order to translate Markdown content some scripts use
+[`pandoc`](https://pandoc.org/MANUAL.html). Make sure it is installed.
+
 ## Workflows
 
 ### Editing the source code
+
+#### Adding content
 
 When adding a new string containing a content which need to be translated,
 you need to wrap it inside a [`Trans`](https://react.i18next.com/latest/trans-component) React component
 or inside a function call to [`t`](https://react.i18next.com/latest/usetranslation-hook).
 
-If your text fragment is "universal", not depending of the specific context, you can use `<span>{t('Cliquez ici')}</span>` to translate `Cliquez ici` to `Click here` in the whole application.
+If the text fragment doesn't depend on the context, e.g the string _"Cliquez ici"_,
+you can use both variants:
 
-However, if the text fragment is context dependant, e.g. the word "de" in `<span>{value} {t('tonnes')} {t('de')} CO2e</span>`, it should be translated via an i18n key, using the `Trans` component : `<span>{value} {t('tonnes')} <Trans i18nKey="unitSuffix">de</Trans> CO2e</span>`, since the french word "de" can also be translated as "from" in another context.
+```jsx
+// Calling the [t] hook
+<p>{t('Cliquez ici')}</p>
+
+// or using the [Trans] component
+<p><Trans>Cliquez ici</Trans></p>
+```
+
+However, if the text fragment is **context dependant**, e.g. the word _"de"_ in
+french which can be translated both into either "from" or "of", you need to
+specify an unique i18n key. You can use both variants:
+
+> i18n keys follow the form: `<path>.<to>.<file>.<content description>`
+
+```jsx
+// Calling the [t] hook
+<span>{value} {t('tonnes')} {t('humanWeight.unitSuffix')} CO2e</span>
+
+// or using the [Trans] component
+<Trans i18nKey="humanWeight.unitSuffix">de</Trans> CO2e</span>
+
+```
+
+<details>
+
+<summary> <b>Important</b>: if you choose the first version (by calling `t`)...</summary>
+
+> you will need to provide by hand the default value after executing the
+> command `yarn generate:ui` (see the section [Updating the
+> translations](#updating-the-translations)):
+>
+> ```
+> ...
+> Adding missing entries...
+> - Missing 1 translations:
+>   humanWeight.unitSuffix
+> ```
+>
+> you need to replace in [`ui/ui-fr.yaml`]():
+> ```yaml
+>   humanWeight.unitSuffix: NO_TRANSLATION
+> ```
+> by
+> ```yaml
+>   humanWeight.unitSuffix: de
+> ```
+
+</details>
+
+Then you can specify the wanted translation in the corresponding
+`source/locales/ui/ui-<lang>.yaml` file:
+
+```yaml
+# example in source/locales/ui/ui-en-us.yaml:
+humanWeight.unitSuffix: of # The wanted translated value
+humanWeight.unitSuffix.lock: de # The reference value
+```
+
+#### Updating the translations
 
 Once the content modified,
 
-1. you can update the resource files with the [`generate-ui.js`](#generate-ui.js) script.
-    <details>
-    <summary>Script output example</summary>
+1. you can update the reference translation file (`ui/ui-fr.yaml`) with the
+   [`generate-ui.js`](#generate-ui.js) script.
+   The command will print a brief report about added entries:
 
     ```
-    > yarn run generate:ui
-
-    > nosgestesclimat-site@2.1.0 generate:ui
-    > node scripts/i18n/generate-ui.js
-
-    Static analysis of the source code...
-    Adding missing entries...
     + Added 2 translations:
         Cacher l'objectif
         catégorie complétée
@@ -60,40 +150,64 @@ Once the content modified,
     - Missing 2 translations:
         components.conversation.select.NumberedMosaic.choixAFaire
         components.conversation.select.NumberedMosaic.choixEnTrop
-    Writting resources in /home/emile/Projects/datagir/nosgestesclimat-site/source/locales/ui/ui-fr.json...
-
     ```
 
-    </details>
+    **+ Added** translations correspond to new entries which has been added to
+    the translation file. Their values has been retrieved from the source code:
+    here, the key _"Cacher l'objectif"_ is the value itself (it corresponds to
+    a `<Trans>Cacher l'objectif</Trans>`).
 
-    For _added_ and _updated_ entries, their translation are automatically
-    retrieved from the source code. However, for missing entries, you need
-    to replace the `'NO_TRANSLATION'` string by the adequate one.
+    **~ Updated** translations correspond to existing entries that have been
+    modified. Their values has been retrieved from the source code: here, the
+    key _"components.stats.StatsContent.enSavoirPlus"_ corresponds to a `<Trans
+    i18nKey="components.stats.StatsContent.enSavoirPlus">...</Trans>`.
 
-2. then, you need to translate the generated resource file into the other supported languages.
-   This can be done automatically by using [`translate-ui.js`](#translate-ui.js).
+    **- Missing** translations correspond to new entries that don't have a
+    corresponding default value. It corresponds to a `t` call with a i18n key,
+    for example here,
+    `t('components.conversation.select.NumberedMosaic.choixAFaire')`.
+    Consequently, the saved value will be `NO_TRANSLATION` and you need to
+    modify it by hand in the `ui/ui-fr.yaml` file by the wanted value.
 
-For non _hardcoded_ content such as the FAQ or Markdown pages.
-You need to modify the corresponding file inside `.source/locales/pages/` (resp. `.source/locales/faq`)
-and then run the script [`translate-md.js`](#translate-md.js) (resp. [`translate-faq.js`](#translate-faq.js))
-to translate it in the remaining languages.
+2. Once the reference translation file (`ui/ui-fr.yaml`) updated, you need to
+   translate the generated resource file into the other supported languages.
+   This can be done automatically by using
+   [`translate-ui.js`](#translate-ui.js).
 
-> **Important**:
->
-> -   you need to manually retranslate into french the internal page url.
-> -   the automatic translation rely on the Deepl API. Consequently, you need
->     to set the environment variable `DEEPL_API_KEY` before running
->     `translate-*.js` scripts.
+    For non _hardcoded_ content such as the FAQ or Markdown pages. You need to
+    modify the corresponding file inside `.source/locales/pages/` (resp.
+    `.source/locales/faq`) and then run the script
+    [`translate-md.js`](#translate-md.js) (resp.
+    [`translate-faq.js`](#translate-faq.js)) to translate it in the remaining
+    languages.
+
+> **Important**: the automatic translation rely on the Deepl API. Consequently,
+> you need to set the environment variable `DEEPL_API_KEY` before running
+> `translate-*.js` scripts. See the [Configuration section](#configuration).
+
+##### For non-tech users
+
+If you can't or don't want to run any scripts, a report with missing
+translations will be added in a comment when opening a new [Pull
+Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
+
+If there is missing translations or if you have a question, don't hesistate to
+ping one of the maintainers of `nosgestesclimat-site`.
 
 ### Adding a new language
 
-To support a new language you need to modify the [`./source/locales/translations.ts`]()
-file, by adding:
+To support a new language you need to modify the
+[`./source/locales/translations.ts`]() file, by:
 
--   a new enum value to `Lang`,
--   complete all related switch statements,
--   add corresponding import statements for [`faq`](#) and [`releases`](#),
--   runs all needed scripts as described [here](#edit-the-source-code).
+- adding a new value to `Lang` enum,
+- completing all related switch statements,
+- adding corresponding import statements for FAQ, releases and UI files,
+- extending all `source/sites/publicodes/pages/*.tsx` to load translated Markdown pages,
+- updating the `availableLanguages` variable of the `./nosgestesclimat/scripts/i18n/utils.js` file,
+- runs all needed scripts as described in the [Updating the translation section](#updating-the-translations).
+(If there is some errors during the scripts execution, you will need to add
+empty folders/files in the `source/locales` corresponding the abreviation added
+to the `availableLanguages`).
 
 ## Architecture
 
@@ -106,8 +220,7 @@ In particular:
     It associates the translated text to the corresponding id.
 -   `pages/<lang>/*.md` are the Markdown files used for pages with static contents.
 -   `faq/FAQ-<lang>.yaml` contains the FAQ questions.
-    > They are stored in the YAML format to be easily exported as metadata for Google.
--   `faq/releases-<lang>.yaml` contains the fetched releases content.
+-   `releases/releases-<lang>.yaml` contains the fetched releases content.
 
 ## Available scripts
 
@@ -116,17 +229,26 @@ Scripts related to the translation are stored in the folder
 
 For each scripts you can specify different options -- e.g. source language,
 target languages, etc....
-All available options can be shown by providing the `(-h | --help)` flag.
+All available options can be shown by providing the `--help` (`-h`) flag.
+
+As translation scripts of the website have lot in commons with those of the
+model, commons functions and variables are stored in
+[`nosgestesclimat/scripts/i18n`](), in particular `utils.js` and `cli.js`.
 
 ### `generate-ui.js`
 
 This script allows to analyse the source code to generate the reference
-resource file -- `source/locales/ui/ui-fr.yaml`.
+resource file -- `source/locales/ui/ui-fr.yaml`. It uses the
+[`i18next-parser`](https://github.com/i18next/i18next-parser) to analyse the
+source code and find missing or not up to date translations.
+
+If the `--remove` (`-r`) flag is specified, unused keys stored in the reference
+resource file will be removed.
 
 > To run with `yarn`:
 >
 > ```
-> yarn generate:ui -- [options]
+> yarn generate:ui [options]
 > ```
 
 ### `translate-ui.js`
@@ -134,10 +256,33 @@ resource file -- `source/locales/ui/ui-fr.yaml`.
 This script allows to translate generated `i18next` resource files into
 targeted languages.
 
+You can specify following flags:
+
+- `--force` (`-f`) to force the translation of all the entries. By default,
+    only missing or not up to date entries are translated.
+- `--target` (`-t`) to choose the language(s) translate into.
+- `--remove` (`-r`) to remove unused entries.
+
 > To run with `yarn`:
 >
 > ```
-> yarn translate:ui -- [options]
+> yarn translate:ui [options]
+> ```
+
+### `check-ui.js`
+
+This scripts allows to verify if all translations are up to date.
+
+You can specify following flags:
+
+- `--target` (`-t`) to choose the language(s) translate into.
+- `--markdown` (`-m`) to print the result in a Mardown table format. (It's
+    designed to print report in PRs via GitHub Actions)
+
+> To run with `yarn`:
+>
+> ```
+> yarn check:ui [options]
 > ```
 
 ### `translate-md.js`
@@ -147,30 +292,62 @@ This script allows to translate Markdown files into targeted languages.
 Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
 machine to be able to run this script.
 
+You can specify following flags:
+
+- `--target` (`-t`) to choose the language(s) translate into.
+- `--file` (`-p`) to select a specific Markdown file to translate from the
+    `locales/pages/<src_lang>` folder. (By default, all the files in
+    `locales/pages/<src_lang>` will be translated).
+
 > To run with `yarn`:
 >
 > ```
-> yarn translate:md -- [options]
+> yarn translate:md [options]
 > ```
 
 ### `translate-faq.js`
 
 This script allows to translate FAQ files into targeted languages.
 
+- `--force` (`-f`) to force the translation of all the entries. By default,
+    only missing or not up to date entries are translated.
+- `--target` (`-t`) to choose the language(s) translate into.
+
 > To run with `yarn`:
 >
 > ```
-> yarn translate:faq -- [options]
+> yarn translate:faq [options]
+> ```
+
+### `check-faq.js`
+
+This scripts allows to verify if all FAQ translations are up to date.
+
+You can specify following flags:
+
+- `--target` (`-t`) to choose the language(s) translate into.
+- `--markdown` (`-m`) to print the result in a Mardown table format. (It's
+    designed to print report in PRs via GitHub Actions)
+
+> To run with `yarn`:
+>
+> ```
+> yarn check:faq [options]
 > ```
 
 ### `translate-releases.js`
 
 This script allows to translate releases files into targeted languages.
+
 Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
 machine to be able to run this script.
+
+You can specify following flag:
+
+- `--target` (`-t`) to choose the language(s) translate into.
 
 > To run with `yarn`:
 >
 > ```
-> yarn translate:releases -- [options]
+> yarn translate:releases [options]
 > ```
