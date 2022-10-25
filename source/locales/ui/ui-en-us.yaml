@@ -467,7 +467,7 @@ entries:
     certaines actions vous poseront quelques questions en plus.
   publicodes.ActionTutorial.msgPrésentation: 'To help you, we will present you with <2>a list of actions</2>:'
   publicodes.ActionTutorial.msgPrésentation.lock: "Pour vous aider, nous vous présenterons <2>une liste d'actions</2> :"
-  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
+  publicodes.ActionVignette.questionsRestantesText: '{{nbRemainingQuestions}} remaining question{{pluralSuffix}}'
   publicodes.ActionVignette.questionsRestantesText.lock: '{{nbRemainingQuestions}} question{{pluralSuffix}} restante{{pluralSuffix}}'
   publicodes.ActionsOptionsBar.actionsRecap: '{{numberOfAvailableFinalActions}} actions available,'
   publicodes.ActionsOptionsBar.actionsRecap.lock: '{{numberOfAvailableFinalActions}} actions disponibles,'
