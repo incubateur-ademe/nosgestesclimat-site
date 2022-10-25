@@ -20,6 +20,7 @@ import Tracker, { devTracker } from '../../Tracker'
 import {
 	changeLangTo,
 	getLangFromAbreviation,
+	getLangInfos,
 } from './../../locales/translation'
 import Actions from './Actions'
 import Fin from './fin'
@@ -64,10 +65,9 @@ export default function Root({}) {
 
 	const persistedSimulation = retrievePersistedSimulation()
 
-	const navigatorLanguage = getLangFromAbreviation(
-		'en-us'
-		// window.navigator.language.toLowerCase()
-	)
+	const currentLang =
+		persistedSimulation?.currentLang ??
+		getLangFromAbreviation(window.navigator.language.toLowerCase())
 
 	return (
 		<Provider
@@ -85,7 +85,7 @@ export default function Root({}) {
 				actionChoices: persistedSimulation?.actionChoices ?? {},
 				tutorials: persistedSimulation?.tutorials ?? {},
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
-				currentLang: persistedSimulation?.currentLang ?? navigatorLanguage,
+				currentLang,
 				localisation: persistedSimulation?.localisation,
 			}}
 		>
@@ -106,28 +106,28 @@ export const isFluidLayout = (encodedPathname) => {
 
 const Main = ({}) => {
 	const dispatch = useDispatch()
+	const { i18n } = useTranslation()
 	const location = useLocation()
+	const [searchParams, setSearchParams] = useSearchParams()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
 	const tracker = useContext(TrackerContext)
-	const { i18n } = useTranslation()
-	const currentLang = useSelector((state) => state.currentLang)
-
-	const [searchParams, setSearchParams] = useSearchParams()
-
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {
 		tracker.track(location)
 	}, [location])
 
-	useEffect(() => {
-		const lang = searchParams.get('lang')
+	const currentLangState = useSelector((state) => state.currentLang)
+	const currentLangParam = searchParams.get('lang')
 
-		if (lang) {
-			changeLangTo(i18n, getLangFromAbreviation(lang))
-		} else {
+	useEffect(() => {
+		const currentLangAbrv = getLangInfos(currentLangState).abrv
+
+		if (currentLangParam && currentLangParam !== i18n.language) {
+			// The 'lang' search param has been modified.
+			const currentLang = getLangFromAbreviation(currentLangParam)
 			changeLangTo(i18n, currentLang)
 			dispatch({
 				type: 'SET_LANGUAGE',
@@ -135,8 +135,14 @@ const Main = ({}) => {
 			})
 			searchParams.set('lang', i18n.language)
 			setSearchParams(searchParams, { replace: true })
+		} else if (!currentLangParam) {
+			// There is no 'lang' search param,
+			// -> set it up from the one stored in the persisting state.
+			searchParams.set('lang', currentLangAbrv)
+			changeLangTo(i18n, currentLangState)
+			setSearchParams(searchParams, { replace: true })
 		}
-	}, [currentLang, searchParams])
+	}, [currentLangParam])
 
 	const fluidLayout = isFluidLayout(location.pathname)
 

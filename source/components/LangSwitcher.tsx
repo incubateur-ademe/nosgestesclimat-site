@@ -32,7 +32,7 @@ export default function LangSwitcher({ from }: LangSwitcherProps) {
 						}
 						onClick={() => {
 							searchParams.set('lang', langInfos.abrv)
-							setSearchParams(searchParams)
+							setSearchParams(searchParams, { replace: true })
 							setIsOpen(!isOpen)
 						}}
 					>

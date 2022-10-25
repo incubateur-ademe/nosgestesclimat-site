@@ -161,7 +161,7 @@ function actionChoices(state = {}, { type, action, choice }) {
 }
 
 function currentLang(state = {}, { type, currentLang }) {
-	return type === 'SET_LANGUAGE' ? { ...state, currentLang } : state
+	return type === 'SET_LANGUAGE' ? currentLang : state
 }
 
 function survey(state = null, { type, room, answers, contextFile }) {
