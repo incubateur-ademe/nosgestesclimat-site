@@ -46,16 +46,6 @@ export const defaultLang = Lang.Fr
 
 export function getLangInfos(lang: Lang): LangInfos {
 	switch (lang) {
-		case Lang.Fr: {
-			return {
-				name: 'Français',
-				abrv: 'fr',
-				abrvLocale: 'fr-FR',
-				faqContent: faqFr,
-				releases: releasesFr,
-				uiTrad: uiFr.entries,
-			}
-		}
 		case Lang.En: {
 			return {
 				name: 'English',
@@ -84,6 +74,17 @@ export function getLangInfos(lang: Lang): LangInfos {
 				faqContent: faqIt,
 				releases: releasesIt,
 				uiTrad: uiIt.entries,
+			}
+		}
+		case Lang.Fr:
+		default: {
+			return {
+				name: 'Français',
+				abrv: 'fr',
+				abrvLocale: 'fr-FR',
+				faqContent: faqFr,
+				releases: releasesFr,
+				uiTrad: uiFr.entries,
 			}
 		}
 	}

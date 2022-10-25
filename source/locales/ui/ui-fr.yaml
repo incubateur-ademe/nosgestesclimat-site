@@ -30,6 +30,7 @@ entries:
   Cette fiche détaillée n'existe pas encore: Cette fiche détaillée n'existe pas encore
   Chargement: Chargement
   Chargement du modèle de calcul...: Chargement du modèle de calcul...
+  Chargement...: Chargement...
   Choisir l'action: Choisir l'action
   Choisir le type de tri des actions: Choisir le type de tri des actions
   Choisir une autre région: Choisir une autre région
@@ -210,6 +211,8 @@ entries:
     vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
     est attribuée dans ce cas. Il est fréquent que le score initial change car
     <2>le modèle Nos Gestes Climat évolue</2> !
+  components.TranslationAlertBanner.alertMessage: <0>Cette page a été traduite de façons automatique via DeepL.</0>
+  components.TranslationAlertBanner.wikiLink: Veuillez vous reporter au <2>wiki</2> si vous trouvez une erreur.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.

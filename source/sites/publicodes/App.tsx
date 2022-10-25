@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
+import TranslationAlertBanner from '../../components/TranslationAlertBanner'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
@@ -21,6 +22,7 @@ import {
 	changeLangTo,
 	getLangFromAbreviation,
 	getLangInfos,
+	Lang,
 } from './../../locales/translation'
 import Actions from './Actions'
 import Fin from './fin'
@@ -178,6 +180,7 @@ const Main = ({}) => {
 					}
 				`}
 			>
+				{Lang.Default !== currentLangState && <TranslationAlertBanner />}
 				{!isHomePage && !isTuto && <LocalisationMessage />}
 
 				{fluidLayout && (
@@ -200,7 +203,11 @@ const Main = ({}) => {
 	)
 }
 
-export const Loading = () => <div>Chargement</div>
+export const Loading = () => (
+	<div>
+		<Trans>Chargement...</Trans>
+	</div>
+)
 
 const Router = ({}) => {
 	return (

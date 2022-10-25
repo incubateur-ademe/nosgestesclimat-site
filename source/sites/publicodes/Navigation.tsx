@@ -31,6 +31,7 @@ export default ({ fluidLayout }) => {
 							height: 100vh;
 							${isIframe && `height: 100% !important;`}
 							overflow: auto;
+							margin: 0 auto;
 							position: sticky;
 							top: 0;
 							flex-direction: column;

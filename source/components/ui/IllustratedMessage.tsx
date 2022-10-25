@@ -15,7 +15,7 @@ export default ({
 			padding-top: 1rem;
 			background-color: ${backgroundcolor} !important;
 			max-width: ${width || '26rem'};
-			margin: 0 auto;
+			margin: 5px auto;
 			margin-bottom: 1rem;
 			display: flex;
 			flex-direction: column;
