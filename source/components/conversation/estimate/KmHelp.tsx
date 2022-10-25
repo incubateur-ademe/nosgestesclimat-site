@@ -1,21 +1,21 @@
-import animate from 'Components/ui/animate'
-import { useState, Fragment, useEffect, useRef, useContext } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Trans, useTranslation } from 'react-i18next'
-import { setStoredTrajets, updateSituation } from '../../../actions/actions'
-import { freqList } from './dataHelp'
-import ReadOnlyRow from './ReadOnlyRow'
-import EditableRow from './EditableRow'
-import KmForm from './KmForm'
-import KmHelpButton from './KmHelpButton'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
-import { TrackerContext } from '../../utils/withTracker'
 import emoji from 'Components/emoji'
+import animate from 'Components/ui/animate'
+import { motion } from 'framer-motion'
+import { Fragment, useContext, useEffect, useRef, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
+import { setStoredTrajets, updateSituation } from '../../../actions/actions'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
 } from '../../../locales/translation'
+import { TrackerContext } from '../../utils/withTracker'
+import { freqList } from './dataHelp'
+import EditableRow from './EditableRow'
+import KmForm from './KmForm'
+import KmHelpButton from './KmHelpButton'
+import ReadOnlyRow from './ReadOnlyRow'
 
 const openmojis = {
 	calendrier: '1F4C5',
@@ -52,7 +52,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 	const [editTrajetId, setEditTrajetId] = useState(null)
 
 	const trajetValue = (trajet, factor) => {
-		const period = freqList.find((f) => f.name === trajet.periode)
+		const period = freqList((s) => s).find((f) => f.name === trajet.periode)
 		const freqValue = period ? period.value * trajet.xfois : 0
 		return trajet.distance * freqValue * factor(trajet)
 	}
@@ -209,7 +209,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 							])
 						}}
 					>
-						Fermer
+						<Trans>Fermer</Trans>
 					</button>
 				</div>
 				<KmForm
@@ -230,10 +230,10 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 								<tr>
 									<th scope="col">Motif</th>
 									<th scope="col" css="width: 20%">
-										Label
+										{t('Label')}
 									</th>
 									<th scope="col" css="width: 3rem">
-										"KM"
+										{t('KM', { ns: 'units' })}
 									</th>
 									<th scope="col" css="width: 25%">
 										{t('Fréquence')}

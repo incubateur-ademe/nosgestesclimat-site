@@ -16,6 +16,7 @@ entries:
   Afficher ma simulation: Visualizza la mia simulazione
   Agir: Atto
   Aide à la saisie: Guida all'inserimento
+  Ajouter: Aggiungi
   'Ajouter ': 'Aggiungi '
   Aller au contenu: Vai al contenuto
   Annuler: Annullamento
@@ -54,10 +55,13 @@ entries:
   Contribuer: Contribuire
   Copier le lien: Copiare il link
   Copié ✅: Copiato ✅
+  Courses: Gare
   De quoi est faite mon empreinte ?: Di cosa è fatta la mia impronta?
   Diffuser: Trasmissione
+  Distance: Distanza
   Documentation: Documentazione
   Documentation Contexte Sondage: Documentazione Indagine di base
+  Domicile-Travail: Da casa al lavoro
   Données valables pour les 30 derniers jours: Dati validi per gli ultimi 30 giorni
   Durée des visites: Durata delle visite
   Découvrez la FAQ !: Consulta le FAQ!
@@ -90,6 +94,7 @@ entries:
   Faites le test à plusieurs via le mode conférence ou sondage: Eseguire il test con più persone in modalità conferenza o sondaggio
   Faites un test d'empreinte climat avec moi: Fate un test sull'impronta climatica con me
   Faites votre test: Eseguire il test
+  Fermer: Chiudere
   Fermer la notification de nouveautés: Chiudere la notifica delle notizie
   Fermer les options de tri: Chiudere le opzioni di ordinamento
   Fréquence: Frequenza
@@ -99,14 +104,18 @@ entries:
   Intégrations et Iframes: Integrazioni e Iframe
   J'ai compris: Capisco
   Je ne sais pas: Non lo so
+  KM: KM
   "L'objectif à atteindre, 2 tonnes de CO₂e": L'obiettivo da raggiungere, 2 tonnellate di CO₂e
   La voiture en chiffres: L'auto in cifre
+  Label: Etichetta
+  Label (facultatif): Etichetta (opzionale)
   'Le reste : ': 'Il resto '
   Le test: Il test
   Le titre bref de votre problème: Il titolo breve del problema
   'Les 3 actions au plus fort impact pour vous :': 'Le 3 azioni di maggiore impatto per voi:'
   Les nouveautés ✨: Cosa c'è di nuovo ✨
   Menu: Menu
+  Mobilité académique: Mobilità accademica
   Mode groupe: Modalità gruppo
   Modifier: Modifica
   Modifier mes réponses: Modificare le mie risposte
@@ -114,10 +123,12 @@ entries:
   Mon empreinte climat 😶‍🌫️: La mia impronta climatica 😶‍🌫️
   Mon profil: Il mio profilo
   'Mon total :': 'Il mio totale :'
+  Motif: Modello
   Moyenne: Media
   Moyenne française: Media francese
   "N'afficher que les questions ": 'Visualizza solo le domande '
   Naviguez vers une question précise: Navigare verso una domanda specifica
+  Nbre de personnes: Numero di persone
   Nom de la salle: Nome della stanza
   Nombre de personnes: Numero di persone
   Non: No
@@ -157,6 +168,7 @@ entries:
   Prêt à démarrer ?: Siete pronti per iniziare?
   Questions fréquentes: Domande frequenti
   Quitter: Uscita
+  RDV médicaux: Appuntamenti medici
   Refermer: Chiudere
   Rejeter l'action: Rifiutare l'azione
   Reprendre la simulation: Riprendere la simulazione
@@ -173,6 +185,8 @@ entries:
   Sites Web: Siti web
   Sondage: Sondaggio
   Sondage créé: Sondaggio creato
+  Sorties ponctuelles: Gite una tantum
+  Sport ou Loisir: Sport o tempo libero
   Statistiques: Statistiche
   Stats générales: Statistiche generali
   Suivant: Avanti
@@ -185,7 +199,9 @@ entries:
   'Triées par :': 'Ordinati per :'
   Une personne au moins est présente dans la voiture (vous !): Almeno una persona è presente in macchina (voi!)
   'Une question, un problème ?': Una domanda, un problema?
+  Vacances: Vacanze
   Version: Versione
+  Visite familiale: Visita alla famiglia
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Ecco la mia impronta ⛽️ di olio. Misurate il vostro!
   Voir en détails: Vedi in dettaglio
   'Voir le reste : ': 'Vedi il resto '
@@ -202,6 +218,7 @@ entries:
     Siete stati invitati
     a partecipare all'indagine "La nostra azione per il clima", denominata
   Vous n'avez pas encore fait le test.: Non avete ancora fatto il test.
+  Week-end: Fine settimana
   actions choisies: azioni selezionate
   an: un
   catégorie complétée: categoria completata
@@ -327,10 +344,12 @@ entries:
     all'indirizzo <2>contact@mon-entreprise.beta.gouv.fr</2>
   feedback.thanks.lock: Merci pour votre retour ! Vous pouvez nous contacter
     directement à <2>contact@mon-entreprise.beta.gouv.fr</2>
+  fois par: volte per
   habitant: residente
   habitants: abitanti
   humanWeight.unitSuffix: da
   humanWeight.unitSuffix.lock: de
+  jour: giorno
   la page à partager à l'étape 3: la pagina da condividere al punto 3
   le + d'impact climat: il + impatto climatico
   le - d'impact climat: l'impatto climatico
@@ -429,6 +448,7 @@ entries:
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
   minutes: minuti
+  mois: mese
   mon empreinte annuelle: la mia impronta annuale
   mon objectif: il mio obiettivo
   noresults: Non sono stati trovati risultati per questa ricerca
@@ -815,6 +835,8 @@ entries:
     acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.petroleBrut: di <1>petrolio greggio all'anno</1>
   publicodes.fin.Petrogaz.petroleBrut.lock: de <1>pétrole brut par an</1>
+  période: periodo
+  semaine: settimana
   simulateurs.warning.plus: Leggi i dettagli
   simulateurs.warning.plus.lock: Lire les précisions
   simulateurs.warning.titre: 🚩 Prima di iniziare...

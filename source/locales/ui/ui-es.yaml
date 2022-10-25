@@ -16,6 +16,7 @@ entries:
   Afficher ma simulation: Ver mi simulación
   Agir: Actuar
   Aide à la saisie: Ayuda a la entrada
+  Ajouter: Añadir
   'Ajouter ': 'Añadir '
   Aller au contenu: Ir al contenido
   Annuler: Cancelar
@@ -54,10 +55,13 @@ entries:
   Contribuer: Contribuir
   Copier le lien: Copiar el enlace
   Copié ✅: Copiado ✅
+  Courses: Carreras
   De quoi est faite mon empreinte ?: ¿De qué está hecha mi huella?
   Diffuser: Difusión
+  Distance: Distancia
   Documentation: Documentación
   Documentation Contexte Sondage: Encuesta sobre los antecedentes de la documentación
+  Domicile-Travail: De casa al trabajo
   Données valables pour les 30 derniers jours: Datos válidos para los últimos 30 días
   Durée des visites: Duración de las visitas
   Découvrez la FAQ !: Consulte las preguntas frecuentes
@@ -92,6 +96,7 @@ entries:
     encuesta
   Faites un test d'empreinte climat avec moi: Haz una prueba de huella climática conmigo
   Faites votre test: Haz tu prueba
+  Fermer: Cerrar
   Fermer la notification de nouveautés: Cerrar la notificación de noticias
   Fermer les options de tri: Cerrar las opciones de clasificación
   Fréquence: Frecuencia
@@ -101,14 +106,18 @@ entries:
   Intégrations et Iframes: Integraciones e Iframes
   J'ai compris: Comprendo
   Je ne sais pas: No lo sé
+  KM: KM
   "L'objectif à atteindre, 2 tonnes de CO₂e": El objetivo a alcanzar, 2 toneladas de CO₂e
   La voiture en chiffres: El coche en cifras
+  Label: Etiqueta
+  Label (facultatif): Etiqueta (opcional)
   'Le reste : ': 'El resto '
   Le test: La prueba
   Le titre bref de votre problème: El título corto de su problema
   'Les 3 actions au plus fort impact pour vous :': 'Las 3 acciones con mayor impacto para ti:'
   Les nouveautés ✨: Novedades ✨
   Menu: Menú
+  Mobilité académique: Movilidad académica
   Mode groupe: Modo de grupo
   Modifier: Editar
   Modifier mes réponses: Editar mis respuestas
@@ -116,10 +125,12 @@ entries:
   Mon empreinte climat 😶‍🌫️: Mi huella climática 😶‍🌫️
   Mon profil: Mi perfil
   'Mon total :': 'Mi total :'
+  Motif: Patrón
   Moyenne: Media
   Moyenne française: Media francesa
   "N'afficher que les questions ": 'Mostrar sólo preguntas '
   Naviguez vers une question précise: Navegar a una pregunta específica
+  Nbre de personnes: Número de personas
   Nom de la salle: Nombre de la sala
   Nombre de personnes: Número de personas
   Non: No
@@ -159,6 +170,7 @@ entries:
   Prêt à démarrer ?: ¿Listo para empezar?
   Questions fréquentes: Preguntas frecuentes
   Quitter: Salida
+  RDV médicaux: Citas médicas
   Refermer: Cerrar
   Rejeter l'action: Rechazar la acción
   Reprendre la simulation: Reanudar la simulación
@@ -175,6 +187,8 @@ entries:
   Sites Web: Páginas web
   Sondage: Encuesta
   Sondage créé: Encuesta creada
+  Sorties ponctuelles: Salidas puntuales
+  Sport ou Loisir: Deporte u ocio
   Statistiques: Estadísticas
   Stats générales: Estadísticas generales
   Suivant: Siguiente
@@ -187,7 +201,9 @@ entries:
   'Triées par :': 'Clasificado por :'
   Une personne au moins est présente dans la voiture (vous !): Al menos una persona está presente en el coche (¡tú!)
   'Une question, un problème ?': ¿Una pregunta, un problema?
+  Vacances: Vacaciones
   Version: Versión
+  Visite familiale: Visita de la familia
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Aquí está mi huella ⛽️ de aceite. Mida el suyo
   Voir en détails: Ver en detalle
   'Voir le reste : ': 'Ver el resto '
@@ -202,6 +218,7 @@ entries:
   Vous avez terminé le test 👏: Has completado la prueba 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: Ha sido invitado a una encuesta de Our Climate Action llamada
   Vous n'avez pas encore fait le test.: Todavía no has hecho la prueba.
+  Week-end: Fin de semana
   actions choisies: acciones seleccionadas
   an: un
   catégorie complétée: categoría completada
@@ -327,10 +344,12 @@ entries:
     nosotros directamente en <2>contact@mon-entreprise.beta.gouv.fr</2>
   feedback.thanks.lock: Merci pour votre retour ! Vous pouvez nous contacter
     directement à <2>contact@mon-entreprise.beta.gouv.fr</2>
+  fois par: veces por
   habitant: residente
   habitants: habitantes
   humanWeight.unitSuffix: de
   humanWeight.unitSuffix.lock: de
+  jour: día
   la page à partager à l'étape 3: la página que se va a compartir en el paso 3
   le + d'impact climat: el + impacto climático
   le - d'impact climat: el - impacto climático
@@ -424,6 +443,7 @@ entries:
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
   minutes: minutos
+  mois: mes
   mon empreinte annuelle: mi huella anual
   mon objectif: mi objetivo
   noresults: No se han encontrado resultados para esta búsqueda
@@ -808,6 +828,8 @@ entries:
     acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.petroleBrut: de <1>petróleo crudo al año</1>
   publicodes.fin.Petrogaz.petroleBrut.lock: de <1>pétrole brut par an</1>
+  période: período
+  semaine: semana
   simulateurs.warning.plus: Lea los detalles
   simulateurs.warning.plus.lock: Lire les précisions
   simulateurs.warning.titre: 🚩 Antes de empezar...

@@ -14,6 +14,7 @@ entries:
   Afficher ma simulation: Afficher ma simulation
   Agir: Agir
   Aide à la saisie: Aide à la saisie
+  Ajouter: Ajouter
   'Ajouter ': 'Ajouter '
   Aller au contenu: Aller au contenu
   Annuler: Annuler
@@ -52,10 +53,13 @@ entries:
   Contribuer: Contribuer
   Copier le lien: Copier le lien
   Copié ✅: Copié ✅
+  Courses: Courses
   De quoi est faite mon empreinte ?: De quoi est faite mon empreinte ?
   Diffuser: Diffuser
+  Distance: Distance
   Documentation: Documentation
   Documentation Contexte Sondage: Documentation Contexte Sondage
+  Domicile-Travail: Domicile-Travail
   Données valables pour les 30 derniers jours: Données valables pour les 30 derniers jours
   Durée des visites: Durée des visites
   Découvrez la FAQ !: Découvrez la FAQ !
@@ -88,6 +92,7 @@ entries:
   Faites le test à plusieurs via le mode conférence ou sondage: Faites le test à plusieurs via le mode conférence ou sondage
   Faites un test d'empreinte climat avec moi: Faites un test d'empreinte climat avec moi
   Faites votre test: Faites votre test
+  Fermer: Fermer
   Fermer la notification de nouveautés: Fermer la notification de nouveautés
   Fermer les options de tri: Fermer les options de tri
   Fréquence: Fréquence
@@ -97,14 +102,18 @@ entries:
   Intégrations et Iframes: Intégrations et Iframes
   J'ai compris: J'ai compris
   Je ne sais pas: Je ne sais pas
+  KM: KM
   "L'objectif à atteindre, 2 tonnes de CO₂e": L'objectif à atteindre, 2 tonnes de CO₂e
   La voiture en chiffres: La voiture en chiffres
+  Label: Label
+  Label (facultatif): Label (facultatif)
   'Le reste : ': 'Le reste : '
   Le test: Le test
   Le titre bref de votre problème: Le titre bref de votre problème
   'Les 3 actions au plus fort impact pour vous :': 'Les 3 actions au plus fort impact pour vous :'
   Les nouveautés ✨: Les nouveautés ✨
   Menu: Menu
+  Mobilité académique: Mobilité académique
   Mode groupe: Mode groupe
   Modifier: Modifier
   Modifier mes réponses: Modifier mes réponses
@@ -112,10 +121,12 @@ entries:
   Mon empreinte climat 😶‍🌫️: Mon empreinte climat 😶‍🌫️
   Mon profil: Mon profil
   'Mon total :': 'Mon total :'
+  Motif: Motif
   Moyenne: Moyenne
   Moyenne française: Moyenne française
   "N'afficher que les questions ": "N'afficher que les questions "
   Naviguez vers une question précise: Naviguez vers une question précise
+  Nbre de personnes: Nbre de personnes
   Nom de la salle: Nom de la salle
   Nombre de personnes: Nombre de personnes
   Non: Non
@@ -155,6 +166,7 @@ entries:
   Prêt à démarrer ?: Prêt à démarrer ?
   Questions fréquentes: Questions fréquentes
   Quitter: Quitter
+  RDV médicaux: RDV médicaux
   Refermer: Refermer
   Rejeter l'action: Rejeter l'action
   Reprendre la simulation: Reprendre la simulation
@@ -171,6 +183,8 @@ entries:
   Sites Web: Sites Web
   Sondage: Sondage
   Sondage créé: Sondage créé
+  Sorties ponctuelles: Sorties ponctuelles
+  Sport ou Loisir: Sport ou Loisir
   Statistiques: Statistiques
   Stats générales: Stats générales
   Suivant: Suivant
@@ -183,7 +197,9 @@ entries:
   'Triées par :': 'Triées par :'
   Une personne au moins est présente dans la voiture (vous !): Une personne au moins est présente dans la voiture (vous !)
   'Une question, un problème ?': Une question, un problème ?
+  Vacances: Vacances
   Version: Version
+  Visite familiale: Visite familiale
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !
   Voir en détails: Voir en détails
   'Voir le reste : ': 'Voir le reste : '
@@ -198,6 +214,7 @@ entries:
   Vous avez terminé le test 👏: Vous avez terminé le test 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: Vous avez été invités à un sondage Nos Gestes Climat nommé
   Vous n'avez pas encore fait le test.: Vous n'avez pas encore fait le test.
+  Week-end: Week-end
   actions choisies: actions choisies
   an: an
   catégorie complétée: catégorie complétée
@@ -264,9 +281,11 @@ entries:
   feedback.reportError: Faire une suggestion
   feedback.thanks: Merci pour votre retour ! Vous pouvez nous contacter
     directement à <2>contact@mon-entreprise.beta.gouv.fr</2>
+  fois par: fois par
   habitant: habitant
   habitants: habitants
   humanWeight.unitSuffix: de
+  jour: jour
   la page à partager à l'étape 3: la page à partager à l'étape 3
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
@@ -316,6 +335,7 @@ entries:
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
   minutes: minutes
+  mois: mois
   mon empreinte annuelle: mon empreinte annuelle
   mon objectif: mon objectif
   noresults: Aucun résultat ne correspond à cette recherche
@@ -518,6 +538,8 @@ entries:
     prend pas (encore) en compte le pétrole utilisé pour acheminer vos achats,
     et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.petroleBrut: de <1>pétrole brut par an</1>
+  période: période
+  semaine: semaine
   simulateurs.warning.plus: Lire les précisions
   simulateurs.warning.titre: 🚩 Avant de commencer...
   simulation-end.text: Vous avez maintenant accès à l'estimation la plus précise possible.

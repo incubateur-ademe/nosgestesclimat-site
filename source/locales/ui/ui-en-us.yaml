@@ -16,6 +16,7 @@ entries:
   Afficher ma simulation: Show my simulation
   Agir: Act
   Aide à la saisie: Input help
+  Ajouter: Add
   'Ajouter ': 'Add '
   Aller au contenu: Go to content
   Annuler: Cancel
@@ -54,10 +55,13 @@ entries:
   Contribuer: Contribute
   Copier le lien: Copy the link
   Copié ✅: Copied ✅
+  Courses: Races
   De quoi est faite mon empreinte ?: What is my footprint made of?
   Diffuser: Broadcast
+  Distance: Distance
   Documentation: Documentation
   Documentation Contexte Sondage: Documentation Background Survey
+  Domicile-Travail: Home to Work
   Données valables pour les 30 derniers jours: Data valid for the last 30 days
   Durée des visites: Duration of the visits
   Découvrez la FAQ !: Discover the FAQ!
@@ -90,6 +94,7 @@ entries:
   Faites le test à plusieurs via le mode conférence ou sondage: Take the test with several people via the conference or survey mode
   Faites un test d'empreinte climat avec moi: Take a climate footprint test with me
   Faites votre test: Take your test
+  Fermer: Close
   Fermer la notification de nouveautés: Close the news notification
   Fermer les options de tri: Close sorting options
   Fréquence: Frequency
@@ -99,14 +104,18 @@ entries:
   Intégrations et Iframes: Integrations and Iframes
   J'ai compris: I understand
   Je ne sais pas: I do not know
+  KM: KM
   "L'objectif à atteindre, 2 tonnes de CO₂e": The goal to achieve, 2 tons of CO₂e
   La voiture en chiffres: The car in figures
+  Label: Label
+  Label (facultatif): Label (optional)
   'Le reste : ': 'The rest '
   Le test: The test
   Le titre bref de votre problème: The short title of your problem
   'Les 3 actions au plus fort impact pour vous :': 'The 3 actions with the highest impact for you:'
   Les nouveautés ✨: What's new ✨
   Menu: Menu
+  Mobilité académique: Academic mobility
   Mode groupe: Group mode
   Modifier: Edit
   Modifier mes réponses: Edit my answers
@@ -114,10 +123,12 @@ entries:
   Mon empreinte climat 😶‍🌫️: My climate footprint 😶‍🌫️
   Mon profil: My profile
   'Mon total :': 'My total:'
+  Motif: Pattern
   Moyenne: Average
   Moyenne française: French average
   "N'afficher que les questions ": 'Display only the questions '
   Naviguez vers une question précise: Navigate to a specific question
+  Nbre de personnes: Number of people
   Nom de la salle: Name of the room
   Nombre de personnes: Number of people
   Non: No
@@ -157,6 +168,7 @@ entries:
   Prêt à démarrer ?: Ready to get started?
   Questions fréquentes: Frequently asked questions
   Quitter: Exit
+  RDV médicaux: Medical appointments
   Refermer: Close
   Rejeter l'action: Reject the action
   Reprendre la simulation: Resume the simulation
@@ -173,6 +185,8 @@ entries:
   Sites Web: Websites
   Sondage: Survey
   Sondage créé: Survey created
+  Sorties ponctuelles: Occasional outings
+  Sport ou Loisir: Sport or Leisure
   Statistiques: Statistics
   Stats générales: General Stats
   Suivant: Next
@@ -185,7 +199,9 @@ entries:
   'Triées par :': 'Sorted by :'
   Une personne au moins est présente dans la voiture (vous !): At least one person is present in the car (you!)
   'Une question, un problème ?': A question, a problem?
+  Vacances: Vacations
   Version: Version
+  Visite familiale: Family visit
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Here's my footprint ⛽️ oil. Measure yours!
   Voir en détails: See in details
   'Voir le reste : ': 'See the rest '
@@ -200,6 +216,7 @@ entries:
   Vous avez terminé le test 👏: You have completed the test 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: You have been invited to an Our Climate Action survey called
   Vous n'avez pas encore fait le test.: You haven't taken the test yet.
+  Week-end: Weekend
   actions choisies: selected actions
   an: an
   catégorie complétée: completed category
@@ -322,10 +339,12 @@ entries:
     <2>contact@mon-entreprise.beta.gouv.fr</2>
   feedback.thanks.lock: Merci pour votre retour ! Vous pouvez nous contacter
     directement à <2>contact@mon-entreprise.beta.gouv.fr</2>
+  fois par: times per
   habitant: resident
   habitants: inhabitants
   humanWeight.unitSuffix: of
   humanWeight.unitSuffix.lock: de
+  jour: day
   la page à partager à l'étape 3: the page to be shared in step 3
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
@@ -417,6 +436,7 @@ entries:
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
   minutes: minutes
+  mois: month
   mon empreinte annuelle: my annual footprint
   mon objectif: my goal
   noresults: No results were found for this search
@@ -794,6 +814,8 @@ entries:
     acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.petroleBrut: of <1>crude oil per year</1>
   publicodes.fin.Petrogaz.petroleBrut.lock: de <1>pétrole brut par an</1>
+  période: period
+  semaine: week
   simulateurs.warning.plus: Read the details
   simulateurs.warning.plus.lock: Lire les précisions
   simulateurs.warning.titre: 🚩 Before you start...

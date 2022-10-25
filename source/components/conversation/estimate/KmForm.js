@@ -1,10 +1,13 @@
-import styled from 'styled-components'
-import { useState, useRef } from 'react'
-import { motifList, freqList } from './dataHelp'
 import { nanoid } from 'nanoid'
+import { useRef, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
+import styled from 'styled-components'
+import { freqList, motifList } from './dataHelp'
 
 export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
+	const { t } = useTranslation()
+
 	const [addFormData, setAddFormData] = useState({
 		motif: '',
 		label: '',
@@ -94,8 +97,10 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 								onChange={handleAddFormChange}
 								required
 							>
-								<option value="">Motif</option>
-								{motifList.map((m) => (
+								<option value="">
+									<Trans>Motif</Trans>
+								</option>
+								{motifList(t).map((m) => (
 									<option key={m.id} value={m.name}>
 										{m.name}
 									</option>
@@ -112,7 +117,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 								`}
 								name="label"
 								type="text"
-								placeholder="Label (facultatif)"
+								placeholder={t('Label (facultatif)')}
 								onChange={handleAddFormChange}
 							/>
 						</label>
@@ -127,7 +132,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 									width: 5rem !important;
 								`}
 								name="distance"
-								placeholder="Distance"
+								placeholder={t('Distance')}
 								onChange={handleAddFormChange}
 								aria-describedby="unitéDistance"
 								required
@@ -157,7 +162,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 									required
 								/>
 							</span>
-							<span css="padding-top: 0.25rem"> fois par </span>
+							<span css="padding-top: 0.25rem"> {t('fois par')} </span>
 							<span
 								css={`
 									:focus-within {
@@ -175,8 +180,10 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 										onChange={handleAddFormChange}
 										required
 									>
-										<option value="">période</option>
-										{freqList.map((f) => (
+										<option value="">
+											<Trans>période</Trans>
+										</option>
+										{freqList((s) => t(s, { ns: 'units' })).map((f) => (
 											<option key={f.id} value={f.name}>
 												{f.name}
 											</option>
@@ -203,7 +210,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 									width: 10rem !important;
 								`}
 								name="personnes"
-								placeholder="Nbre de personnes"
+								placeholder={t('Nbre de personnes')}
 								onChange={handleAddFormChange}
 								id="peopleFieldinForm"
 								required
@@ -239,7 +246,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 						])
 					}}
 				>
-					Ajouter
+					<Trans>Ajouter</Trans>
 				</button>
 			</div>
 		</form>

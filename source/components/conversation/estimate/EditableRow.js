@@ -1,6 +1,6 @@
-import { freqList, motifList } from './dataHelp'
-import NumberFormat from 'react-number-format'
 import { useTranslation } from 'react-i18next'
+import NumberFormat from 'react-number-format'
+import { freqList, motifList } from './dataHelp'
 
 export default function EditableRow({
 	editFormData,
@@ -38,7 +38,7 @@ export default function EditableRow({
 					value={editFormData.motif}
 					onChange={handleEditFormChange}
 				>
-					{motifList.map((m) => (
+					{motifList(t).map((m) => (
 						<option key={m.id} value={m.name}>
 							{m.name}
 						</option>
@@ -87,7 +87,7 @@ export default function EditableRow({
 					onChange={handleEditFormChange}
 					required
 				>
-					{freqList.map((f) => (
+					{freqList((s) => t(s, { ns: 'units' })).map((f) => (
 						<option key={f.id} value={f.name}>
 							{f.name}
 						</option>
