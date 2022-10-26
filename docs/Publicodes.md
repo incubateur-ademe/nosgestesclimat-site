@@ -27,6 +27,6 @@ such as `formule` or `note` supported by default by the publicode interpreter.
 However, during the implementation of the NGC's website new _mécanismes_ were
 added on top of native ones:
 
-* [`mosaic`](https://github.com/datagir/nosgestesclimat-site/wiki/Publicodes/mosaic):
+* [`mosaic`](https://github.com/datagir/nosgestesclimat-site/wiki/mosaic):
     used to specify a set of related questions needed to be answer at the same
     time.
