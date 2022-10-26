@@ -39,7 +39,7 @@ issues](https://github.com/datagir/nosgestesclimat-site/issues) and step
 directly to the [contributing
 guide](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution).
 
-### You are a non-tech users
+### You are a non-tech user
 
 If you are just curious about the project and want to get involved. You can
 contribute in non-tech areas such as improving the
