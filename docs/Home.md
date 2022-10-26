@@ -19,8 +19,6 @@
   </p>
 </div>
 
----
-
 This wiki aims to help you navigate inside the documentation related to the
 NGC's website: [nosgestesclimat.fr](https://nosgestesclimat.fr). For information about the NGC's model itself (simulator
 questions, underlying computations, emission factors, etc...), please refer to
@@ -35,7 +33,7 @@ If you are a carbon expert, you should start from the dedicated
 ### You are a developer
 
 If you are a developer and want to contribute, you can look at [opened
-issues](https://github.com/datagir/nosgestesclimat-site/issues) and step
+issues](https://github.com/datagir/nosgestesclimat-site/issues) and step in
 directly to the [contributing
 guide](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution).
 
