@@ -19,6 +19,8 @@
   </p>
 </div>
 
+---
+
 This wiki aims to help you navigate inside the documentation related to the
 NGC's website: [nosgestesclimat.fr](https://nosgestesclimat.fr). For information about the NGC's model itself (simulator
 questions, underlying computations, emission factors, etc...), please refer to
