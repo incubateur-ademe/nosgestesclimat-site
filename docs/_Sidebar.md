@@ -4,10 +4,10 @@
   <br/>
 </div>
 
-1. [**Index**](https://github.com/datagir/nosgestesclimat-site/wiki)
+1. [**Home**](https://github.com/datagir/nosgestesclimat-site/wiki)
    * [You are a carbon expert](https://github.com/datagir/nosgestesclimat-site/wiki#you-are-a-carbon-expert)
    * [You are a developer](https://github.com/datagir/nosgestesclimat-site/wiki#you-are-a-developer)
-   * [You are a carbon expert](https://github.com/datagir/nosgestesclimat-site/wiki#you-are-a-non-tech-user)
+   * [You are a non-tech user](https://github.com/datagir/nosgestesclimat-site/wiki#you-are-a-non-tech-user)
 2. [**Documentation**](https://github.com/datagir/nosgestesclimat-site/wiki/Documentation)
    * [Updating the wiki](https://github.com/datagir/nosgestesclimat-site/wiki/Documentation#updating-the-wiki)
 3. [**Translation**](https://github.com/datagir/nosgestesclimat-site/wiki/Translation)
