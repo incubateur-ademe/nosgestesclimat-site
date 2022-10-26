@@ -16,16 +16,13 @@ Climatique](https://avenirclimatique.org/les-outils/) and
 
 ## Who is developing it?
 
-This carbon calculator is developed by the
-[Datagir](https://datagir.ademe.fr/) team of the French[Agency for
-Ecological Transition](https://www.ademe.fr/) (ADEME) and
-[beta.gouv.fr](https://beta.gouv.fr/), in partnership with
-the[Association Bilan Carbone](https://www.associationbilancarbone.fr/)
-(ABC).
+This carbon calculator is developed by the [Datagir](https://datagir.ademe.fr/)
+team of [The French Agency for Ecological Transition ](https://www.ademe.fr/)
+(ADEME) and [beta.gouv.fr](https://beta.gouv.fr/), in partnership with
+the [Association Bilan Carbone](https://www.associationbilancarbone.fr/) (ABC).
 
-The code for this site [is
-free](https://github.com/betagouv/ecolab-data). Dive into our carbon
-models by exploring the [documentation](/documentation).
+The code for this site [is free](https://github.com/betagouv/ecolab-data). Dive
+into our carbon models by exploring the [documentation](/documentation).
 
 ## New features
 

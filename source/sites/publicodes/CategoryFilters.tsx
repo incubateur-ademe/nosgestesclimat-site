@@ -59,7 +59,7 @@ export default ({ categories, metric, selected, countByCategory }) => {
 							)
 						}
 					>
-						{category.dottedName}{' '}
+						{category.title}{' '}
 						<span
 							css={`
 								background: white;
