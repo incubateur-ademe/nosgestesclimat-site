@@ -224,20 +224,19 @@ const slides = [
 			<Trans i18nKey={`publicodes.Tutorial.slide3.p1`}>
 				<h1>Et concrètement ?</h1>
 				<p>
-					Chaque année, un Français émet en moyenne <strong>10 tonnes</strong>{' '}
-					de CO₂e.
+					Chaque année, un Français émet en moyenne environ{' '}
+					<strong>10 tonnes</strong> de CO₂e.
 				</p>
 			</Trans>
 			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
 			<p>
 				<Trans i18nKey={`publicodes.Tutorial.slide3.p2`}>
-					Le point de départ de votre test Nos Gestes Climat est un résultat
-					calculé à partir de valeurs moyennes Françaises attribuées à chaque
-					question. Ce score initial est à prendre comme un minimum, qui
-					commence par défaut à ~ <DefaultFootprint /> de CO₂e en l'état actuel
-					du périmètre de calcul qui évolue selon les améliorations du modèle.
-					Vos réponses viendront ensuite affiner cette empreinte dans la barre
-					de score.
+					Le point de départ de votre test est un résultat calculé à partir de
+					valeurs moyennes Françaises attribuées à chaque question. Ce score
+					initial est à prendre comme un minimum, qui commence par défaut à ~{' '}
+					<DefaultFootprint /> de CO₂e en l'état actuel du périmètre de calcul
+					qui évolue selon les améliorations du modèle. Vos réponses viendront
+					ensuite affiner cette empreinte dans la barre de score.
 				</Trans>
 			</p>
 			<div css="margin: 1rem 0">
