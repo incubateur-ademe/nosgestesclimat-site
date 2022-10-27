@@ -103,9 +103,16 @@ const translateTo = async (targetLang, targetPath) => {
 	if (remove) {
 		// removes unused keys in translations
 		const srcEntriesKeys = Object.keys(utils.readYAML(srcPath).entries)
+		const srcEntriesKeysWithLock = srcEntriesKeys.flatMap((key) => [
+			key,
+			key + utils.LOCK_KEY_EXT,
+		])
+
 		const entriesToKeep = Object.entries(translatedEntries).filter(
 			([key, _]) => {
-				return srcEntriesKeys.includes(key)
+				return (
+					srcEntriesKeys.includes(key) || srcEntriesKeysWithLock.includes(key)
+				)
 			}
 		)
 

@@ -6,25 +6,21 @@ export default () => {
 	return (
 		<animate.appear>
 			<AlertBanner>
-				<p>
-					⚠️{' '}
-					<Trans i18nKey={'components.TranslationAlertBanner.alertMessage'}>
-						<strong>
-							Cette page a été traduite de façons automatique via DeepL.
-						</strong>
-					</Trans>{' '}
-					⚠️
-				</p>
-				<p>
+				<p
+					css={`
+						margin: 0;
+					`}
+				>
 					<Trans i18nKey={'components.TranslationAlertBanner.wikiLink'}>
-						Veuillez vous reporter au{' '}
+						Cette page a <strong>été traduite de façons automatique</strong>. Si
+						vous avez une suggestion,{' '}
 						<a
-							href="https://github.com/datagir/nosgestesclimat-site/wiki/Translation"
+							href="https://github.com/datagir/nosgestesclimat-site/wiki/Translation#correction"
 							target="blank"
 						>
-							wiki
-						</a>{' '}
-						si vous trouvez une erreur.
+							reportez vous au wiki
+						</a>
+						.
 					</Trans>
 				</p>
 			</AlertBanner>
@@ -33,16 +29,17 @@ export default () => {
 }
 
 const AlertBanner = styled.div`
-	background-color: #fff8d3;
+	background-color: #f1f1f9;
 	display: inline-flex;
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
-	padding: 10px;
+	padding: 0.3rem 0.6rem;
 	margin-bottom: 0.6rem;
+	border-radius: 0.3rem;
 
 	@media (min-width: 800px) {
-		padding-bottom: 0rem;
+		margin: 0;
 	}
 `

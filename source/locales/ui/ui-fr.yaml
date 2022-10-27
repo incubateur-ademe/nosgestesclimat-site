@@ -228,8 +228,9 @@ entries:
     vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
     est attribuée dans ce cas. Il est fréquent que le score initial change car
     <2>le modèle Nos Gestes Climat évolue</2> !
-  components.TranslationAlertBanner.alertMessage: <0>Cette page a été traduite de façons automatique via DeepL.</0>
-  components.TranslationAlertBanner.wikiLink: Veuillez vous reporter au <2>wiki</2> si vous trouvez une erreur.
+  components.TranslationAlertBanner.wikiLink: Cette page a <1>été traduite de
+    façons automatique</1>. Si vous avez une suggestion, <4>reportez vous au
+    wiki</4>.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.
@@ -438,13 +439,14 @@ entries:
   publicodes.Tutorial.slide3.blockquote: ✨ Nouveau ! Visualisez également votre
     consommation de ⛽️ pétrole, un indicateur complémentaire au sujet climat.
   publicodes.Tutorial.slide3.p1: <0>Et concrètement ?</0><1>Chaque année, un
-    Français émet en moyenne <1>10 tonnes</1> de CO₂e.</1>
-  publicodes.Tutorial.slide3.p2: Le point de départ de votre test Nos Gestes
-    Climat est un résultat calculé à partir de valeurs moyennes Françaises
-    attribuées à chaque question. Ce score initial est à prendre comme un
-    minimum, qui commence par défaut à ~ <1></1> de CO₂e en l'état actuel du
-    périmètre de calcul qui évolue selon les améliorations du modèle. Vos
-    réponses viendront ensuite affiner cette empreinte dans la barre de score.
+    Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
+  publicodes.Tutorial.slide3.p2:
+    Le point de départ de votre test est un résultat
+    calculé à partir de valeurs moyennes Françaises attribuées à chaque
+    question. Ce score initial est à prendre comme un minimum, qui commence par
+    défaut à ~ <2></2> de CO₂e en l'état actuel du périmètre de calcul qui
+    évolue selon les améliorations du modèle. Vos réponses viendront ensuite
+    affiner cette empreinte dans la barre de score.
   publicodes.Tutorial.slide5.p1: <0>Et l'objectif ?</0><1>Nous devons diminuer
     notre empreinte climat au plus vite.</1><2>En France, ça consiste à passer
     de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>

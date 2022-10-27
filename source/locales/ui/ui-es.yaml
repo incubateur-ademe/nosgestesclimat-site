@@ -241,10 +241,12 @@ entries:
     vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
     est attribuée dans ce cas. Il est fréquent que le score initial change car
     <2>le modèle Nos Gestes Climat évolue</2> !
-  components.TranslationAlertBanner.alertMessage: <0>Esta página ha sido traducida automáticamente a través de DeepL.</0>
-  components.TranslationAlertBanner.alertMessage.lock: <0>Cette page a été traduite de façons automatique via DeepL.</0>
-  components.TranslationAlertBanner.wikiLink: Por favor, consulte la <2>wiki</2> si encuentra un error.
-  components.TranslationAlertBanner.wikiLink.lock: Veuillez vous reporter au <2>wiki</2> si vous trouvez une erreur.
+  components.TranslationAlertBanner.wikiLink: Esta página ha <1>sido traducida
+    automáticamente</1>. Si tiene alguna sugerencia, <4>consulte la wiki</4>.
+  components.TranslationAlertBanner.wikiLink.lock:
+    Cette page a <1>été traduite de
+    façons automatique</1>. Si vous avez une suggestion, <4>reportez vous au
+    wiki</4>.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Viaja {{kmParcouru}} km avec en moyenne {{nbPersonnes}} en el coche.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
@@ -633,24 +635,22 @@ entries:
     votre consommation de ⛽️ pétrole, un indicateur complémentaire au sujet
     climat.
   publicodes.Tutorial.slide3.p1: <0>¿Y en términos concretos?</0><1>Cada año, un
-    francés emite una media de <1>10 toneladas</1> de CO₂e.</1>
+    francés emite una media de <2>10 toneladas de</2> CO₂e.</1>
   publicodes.Tutorial.slide3.p1.lock:
     <0>Et concrètement ?</0><1>Chaque année, un
-    Français émet en moyenne <1>10 tonnes</1> de CO₂e.</1>
-  publicodes.Tutorial.slide3.p2:
-    El punto de partida de su test Nos Gestes Climat
-    es una puntuación calculada a partir de los valores medios franceses
-    asignados a cada pregunta. Esta puntuación inicial debe tomarse como un
-    mínimo, que comienza por defecto en ~ <1></1> de CO₂e en el estado actual
-    del perímetro de cálculo, que evoluciona en función de las mejoras del
-    modelo. Sus respuestas afinarán esta huella en la barra de puntuación.
-  publicodes.Tutorial.slide3.p2.lock:
-    Le point de départ de votre test Nos Gestes
-    Climat est un résultat calculé à partir de valeurs moyennes Françaises
-    attribuées à chaque question. Ce score initial est à prendre comme un
-    minimum, qui commence par défaut à ~ <1></1> de CO₂e en l'état actuel du
-    périmètre de calcul qui évolue selon les améliorations du modèle. Vos
-    réponses viendront ensuite affiner cette empreinte dans la barre de score.
+    Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
+  publicodes.Tutorial.slide3.p2: El punto de partida de su prueba es una
+    puntuación calculada a partir de los valores medios franceses asignados a
+    cada pregunta. Esta puntuación inicial debe tomarse como un mínimo, que
+    comienza por defecto en ~ <2></2> de CO₂e en el estado actual del ámbito de
+    cálculo que evoluciona según las mejoras del modelo. Sus respuestas afinarán
+    esta huella en la barra de puntuación.
+  publicodes.Tutorial.slide3.p2.lock: Le point de départ de votre test est un
+    résultat calculé à partir de valeurs moyennes Françaises attribuées à chaque
+    question. Ce score initial est à prendre comme un minimum, qui commence par
+    défaut à ~ <2></2> de CO₂e en l'état actuel du périmètre de calcul qui
+    évolue selon les améliorations du modèle. Vos réponses viendront ensuite
+    affiner cette empreinte dans la barre de score.
   publicodes.Tutorial.slide5.p1: <0>¿Y el objetivo?</0><1>Tenemos que reducir
     nuestra huella climática lo antes posible.</1><2>En Francia, esto significa
     pasar de unas 10 toneladas a <2>menos de 2 toneladas</2> al año.</2>
