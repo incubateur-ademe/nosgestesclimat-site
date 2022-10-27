@@ -638,24 +638,25 @@ entries:
     votre consommation de ⛽️ pétrole, un indicateur complémentaire au sujet
     climat.
   publicodes.Tutorial.slide3.p1: <0>E in termini concreti?</0><1>Ogni anno, un
-    francese emette in media <1>10 tonnellate</1> di CO₂e.</1>
+    francese emette in media circa <2>10 tonnellate di</2> CO₂e.</1>
   publicodes.Tutorial.slide3.p1.lock:
     <0>Et concrètement ?</0><1>Chaque année, un
-    Français émet en moyenne <1>10 tonnes</1> de CO₂e.</1>
+    Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
   publicodes.Tutorial.slide3.p2:
-    Il punto di partenza del test Nos Gestes Climat è
-    un punteggio calcolato in base ai valori medi francesi assegnati a ciascuna
-    domanda. Questo punteggio iniziale deve essere preso come minimo, che parte
-    per default da ~ <1></1> de CO₂e nello stato attuale del perimetro di
-    calcolo, che si evolve in base ai miglioramenti del modello. Le vostre
-    risposte perfezioneranno l'impronta nella barra dei punteggi.
+    Il punteggio di partenza del test è calcolato in
+    base allo stile di vita medio francese. È da considerarsi come un minimo che
+    riflette lo stato attuale del perimetro di calcolo, che completiamo ogni
+    mese.
   publicodes.Tutorial.slide3.p2.lock:
-    Le point de départ de votre test Nos Gestes
-    Climat est un résultat calculé à partir de valeurs moyennes Françaises
-    attribuées à chaque question. Ce score initial est à prendre comme un
-    minimum, qui commence par défaut à ~ <1></1> de CO₂e en l'état actuel du
-    périmètre de calcul qui évolue selon les améliorations du modèle. Vos
-    réponses viendront ensuite affiner cette empreinte dans la barre de score.
+    Le score de départ de votre test est calculé
+    à partir du mode de vie moyen français. Il est à prendre comme un minimum
+    qui reflète l'état actuel du périmètre de calcul, que nous complétons chaque
+    mois.
+  publicodes.Tutorial.slide3.p3: Ciascuna delle vostre risposte modificherà la
+    vostra impronta in questa barra del punteggio.
+  publicodes.Tutorial.slide3.p3.lock:
+    Chacune de vos réponses va ensuite modifier
+    votre empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>E l'obiettivo?</0><1>Dobbiamo ridurre la
     nostra impronta climatica il prima possibile.</1><2>In Francia, ciò
     significa passare da ~10 tonnellate a <2>meno di 2 tonnellate</2>

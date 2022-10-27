@@ -565,9 +565,9 @@ entries:
   publicodes.SimulationMissing.simulationManquante.lock: Vous n'avez pas encore
     fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu
     plus sur votre mode de vie.
-  publicodes.Tutorial.slide1.p1: <0>Do not worry, we'll briefly explain what it is.</0><1>The
-    planet is <1>warming up dangerously</1>, as we emit more and more greenhouse
-    gases.</1>
+  publicodes.Tutorial.slide1.p1: <0>Do not worry, we'll briefly explain what it
+    is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and
+    more greenhouse gases.</1>
   publicodes.Tutorial.slide1.p1.lock: <0>Pas de panique, on vous explique ce que
     c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à
     mesure des gaz à effet de serre que l'on émet.</1>
@@ -582,16 +582,18 @@ entries:
     méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la
     planète : on convertit leur potentiel de réchauffement en équivalent CO₂
     pour simplifier la mesure. "
-  publicodes.Tutorial.slide2.p1: |
+  publicodes.Tutorial.slide2.p1: >
     Through a unit with a barbaric name: the CO₂
+
     equivalent. You already know carbon dioxide<1></1>, it's what we breathe out all day,
+
     but without influence on the climate.
   publicodes.Tutorial.slide2.p1.lock: "Avec une unité au nom barbare :
     l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on
     l'expire toute la journée, mais sans influence sur le climat."
-  publicodes.Tutorial.slide2.p2: Machines that enable our modern comfort
-    do reject massive amounts of CO₂, so much that we count it in thousands of kilos
-    per year and per person, therefore in <1>tons</1> of CO₂e!
+  publicodes.Tutorial.slide2.p2: Machines that enable our modern comfort do reject
+    massive amounts of CO₂, so much that we count it in thousands of kilos per
+    year and per person, therefore in <1>tons</1> of CO₂e!
   publicodes.Tutorial.slide2.p2.lock: Ce sont les machines qui font notre confort
     moderne qui en rejettent massivement, à tel point qu'on le compte en
     milliers de kilos par an et par personne, donc en <1>tonnes</1> de CO₂e !
@@ -601,21 +603,20 @@ entries:
     votre consommation de ⛽️ pétrole, un indicateur complémentaire au sujet
     climat.
   publicodes.Tutorial.slide3.p1: <0>And practically speaking ?</0><1>Every year, a
-    French person emits an average of <1>10 tons</1> of CO₂e.</1>
+    French person emits on average about <2>10 tons of</2> CO₂e.</1>
   publicodes.Tutorial.slide3.p1.lock: <0>Et concrètement ?</0><1>Chaque année, un
-    Français émet en moyenne <1>10 tonnes</1> de CO₂e.</1>
-  publicodes.Tutorial.slide3.p2: The starting point for your Nos Gestes Climat
-    test is a score calculated from average French values assigned to each
-    question. This initial score is to be taken as a minimum, which starts by
-    default at ~ <1></1> de CO₂e in the current state of the calculation
-    perimeter which evolves according to the improvements of the model. Your
-    answers will then refine this footprint in the score bar.
-  publicodes.Tutorial.slide3.p2.lock: Le point de départ de votre test Nos Gestes
-    Climat est un résultat calculé à partir de valeurs moyennes Françaises
-    attribuées à chaque question. Ce score initial est à prendre comme un
-    minimum, qui commence par défaut à ~ <1></1> de CO₂e en l'état actuel du
-    périmètre de calcul qui évolue selon les améliorations du modèle. Vos
-    réponses viendront ensuite affiner cette empreinte dans la barre de score.
+    Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
+  publicodes.Tutorial.slide3.p2: The starting score of your test is calculated
+    from the average French lifestyle. It is to be taken as a minimum that
+    reflects the current state of the calculation perimeter, which we complete
+    each month.
+  publicodes.Tutorial.slide3.p2.lock: Le score de départ de votre test est calculé
+    à partir du mode de vie moyen français. Il est à prendre comme un minimum
+    qui reflète l'état actuel du périmètre de calcul, que nous complétons chaque
+    mois.
+  publicodes.Tutorial.slide3.p3: Each of your answers will then change your footprint in this score bar.
+  publicodes.Tutorial.slide3.p3.lock: Chacune de vos réponses va ensuite modifier
+    votre empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>And the goal?</0><1>We have to decrease our
     climate footprint as soon as possible.</1><2>In France, this means going
     from ~10 tons to <2>less than 2 tons</2> per year.</2>
