@@ -656,16 +656,27 @@ entries:
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
-  publicodes.Tutorial.slide6: '<0>Entonces, ¿estás listo para ir?</0><1>Algunos
-    consejos para ayudarte a completar el test.</1><2>👤 Responde a las
+  publicodes.Tutorial.slide6:
+    <0>¿De dónde viene nuestra huella?</0><1>Conducir un
+    coche, comer un filete, calentar una casa, recibir tratamiento médico,
+    comprar una televisión...</1><2><0><0></0></0></2><3>La huella de nuestro
+    consumo individual es la suma de todas estas actividades que conforman
+    nuestra vida moderna </3>
+  publicodes.Tutorial.slide6.lock: <0>D'où vient notre empreinte ?</0><1>Prendre
+    la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter
+    une TV...</1><2><0><0></0></0></2><3>L'empreinte de notre consommation
+    individuelle, c'est la somme de toutes ces activités qui font notre vie
+    moderne. </3>
+  publicodes.Tutorial.slide7: '<0>Entonces, ¿estás listo para ir?</0><1>Algunos
+    consejos para ayudarte a completar el test:</1><2>👤 Responde a las
     preguntas en tu nombre, no en el de tu familia: es una prueba
     individual.</2><3>💼 Contesta para tu vida personal, no para tu trabajo o
     estudios. <2>Una excepción: </2> el trayecto del trabajo a casa debe
     incluirse en los kilómetros recorridos.</3><4>❓️ ¿Alguna otra pregunta?
     Consulte nuestras <2>preguntas frecuentes</2> en cualquier momento.</4>'
-  publicodes.Tutorial.slide6.lock:
+  publicodes.Tutorial.slide7.lock:
     "<0>Alors, c'est parti ?</0><1>Quelques astuces
-    pour vous aider à compléter le test.</1><2>👤 Répondez aux questions en
+    pour vous aider à compléter le test :</1><2>👤 Répondez aux questions en
     votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼
     Répondez pour votre vie perso, pas pour votre boulot ou études. <2>Une seule
     exception </2>: votre trajet domicile-travail doit être inclus dans les km

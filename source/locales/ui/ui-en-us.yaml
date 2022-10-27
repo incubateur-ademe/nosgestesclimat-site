@@ -651,15 +651,26 @@ entries:
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
-  publicodes.Tutorial.slide6: '<0>So, are you ready to go?</0><1>A few tips to
-    help you complete the test.</1><2>👤 Answer the questions on behalf of
-    yourself, not your household: this is an individual test.</2><3>💼 Answer
-    for your personal life, not for your job or studies. <2>One exception: </2>
-    your commute must be included in the miles driven.</3><4>❓️ Any other
-    questions? Check out our <2>FAQs</2> at any time.</4>'
-  publicodes.Tutorial.slide6.lock:
+  publicodes.Tutorial.slide6:
+    <0>Where does our footprint come from?</0><1>Taking
+    the car, eating a steak, heating your house, getting medical care, buying a
+    TV...</1><2><0><0></0></0></2><3>The footprint of our individual consumption
+    is the sum of all these activities that make up our modern life </3>
+  publicodes.Tutorial.slide6.lock: <0>D'où vient notre empreinte ?</0><1>Prendre
+    la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter
+    une TV...</1><2><0><0></0></0></2><3>L'empreinte de notre consommation
+    individuelle, c'est la somme de toutes ces activités qui font notre vie
+    moderne. </3>
+  publicodes.Tutorial.slide7:
+    '<0>So, are you ready to go?</0><1>Some tips to help
+    you complete the test:</1><2>👤 Answer the questions on behalf of yourself,
+    not your household: this is an individual test.</2><3>💼 Answer for your
+    personal life, not for your job or studies. <2>One exception: </2> your
+    commute must be included in the miles driven.</3><4>❓️ More questions? Check
+    out our <2>FAQs</2> at any time.</4>'
+  publicodes.Tutorial.slide7.lock:
     "<0>Alors, c'est parti ?</0><1>Quelques astuces
-    pour vous aider à compléter le test.</1><2>👤 Répondez aux questions en
+    pour vous aider à compléter le test :</1><2>👤 Répondez aux questions en
     votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼
     Répondez pour votre vie perso, pas pour votre boulot ou études. <2>Une seule
     exception </2>: votre trajet domicile-travail doit être inclus dans les km
