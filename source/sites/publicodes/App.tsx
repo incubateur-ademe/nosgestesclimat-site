@@ -1,5 +1,4 @@
 import Logo from 'Components/Logo'
-import LogoADEME from 'Images/logoADEME.svg'
 import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
@@ -8,6 +7,7 @@ import { useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 import { Route, Routes } from 'react-router-dom'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
+import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
@@ -21,13 +21,12 @@ import Fin from './fin'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
-import PetrogazLanding from './pages/PetrogazLanding'
 import Diffuser from './pages/Diffuser'
+import PetrogazLanding from './pages/PetrogazLanding'
 import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
-import useMediaQuery from '../../components/utils/useMediaQuery'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
@@ -50,6 +49,8 @@ let tracker = devTracker
 if (NODE_ENV === 'production') {
 	tracker = new Tracker()
 }
+
+// Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 export default function Root({}) {
 	const { language } = useTranslation().i18n
@@ -84,7 +85,7 @@ export default function Root({}) {
 	)
 }
 
-export const isFluidLayout = (encodedPathname) => {
+const isFluidLayout = (encodedPathname) => {
 	const pathname = decodeURIComponent(encodedPathname)
 
 	return (

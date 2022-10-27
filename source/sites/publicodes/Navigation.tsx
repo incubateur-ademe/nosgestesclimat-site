@@ -1,10 +1,8 @@
 import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
-import { Link } from 'react-router-dom'
 import Logo from '../../components/Logo'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useMediaQuery from '../../components/utils/useMediaQuery'
-import { isFluidLayout } from './App'
 import SkipLinks from './SkipLinks'
 
 export default ({ fluidLayout }) => {
