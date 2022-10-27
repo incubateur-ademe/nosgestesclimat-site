@@ -13,7 +13,6 @@ import useKeypress from '../../components/utils/useKeyPress'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
-import DefaultFootprint from './DefaultFootprint'
 import HorizontalSwipe from './HorizontalSwipe'
 import ScoreBar from './ScoreBar'
 import Slide from './TutorialSlide'
@@ -231,12 +230,15 @@ const slides = [
 			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
 			<p>
 				<Trans i18nKey={`publicodes.Tutorial.slide3.p2`}>
-					Le point de départ de votre test est un résultat calculé à partir de
-					valeurs moyennes Françaises attribuées à chaque question. Ce score
-					initial est à prendre comme un minimum, qui commence par défaut à ~{' '}
-					<DefaultFootprint /> de CO₂e en l'état actuel du périmètre de calcul
-					qui évolue selon les améliorations du modèle. Vos réponses viendront
-					ensuite affiner cette empreinte dans la barre de score.
+					Le score de départ de votre test est calculé à partir du mode de vie
+					moyen français. Il est à prendre comme un minimum qui reflète l'état
+					actuel du périmètre de calcul, que nous complétons chaque mois.
+				</Trans>
+			</p>
+			<p>
+				<Trans i18nKey={`publicodes.Tutorial.slide3.p3`}>
+					Chacune de vos réponses va ensuite modifier votre empreinte dans cette
+					barre de score.
 				</Trans>
 			</p>
 			<div css="margin: 1rem 0">
