@@ -320,6 +320,10 @@ entries:
   meta.publicodes.Landing.description: Testez votre empreinte carbone, tout seul
     ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
+  meta.publicodes.LandingExplanations.description:
+    Testez votre empreinte carbone,
+    tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez
+    le parcours de passage à l'action pour la réduire.
   meta.publicodes.Méthode.description: Notre modèle de calcul est entièrement
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Comprendre nos calculs
@@ -387,6 +391,7 @@ entries:
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre
     suggestion en cliquant sur <1>ce lien</1>.
   publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?
+  publicodes.LandingExplanations.question: Connaissez-vous votre empreinte sur le climat ?
   publicodes.Personas.description: Les personas nous permettront de prendre le
     parti d'une diversité d'utilisateurs quand ils voient notamment notre écran
     "passer à l'action".

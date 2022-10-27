@@ -414,6 +414,12 @@ entries:
   meta.publicodes.Landing.description.lock: Testez votre empreinte carbone, tout
     seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
+  meta.publicodes.LandingExplanations.description: Testate la vostra impronta di
+    carbonio, da soli o in gruppo. Scoprite come è distribuita la vostra
+    impronta. Seguire il percorso di azione per ridurlo.
+  meta.publicodes.LandingExplanations.description.lock: Testez votre empreinte
+    carbone, tout seul ou en groupe. Découvrez la répartition de votre
+    empreinte. Suivez le parcours de passage à l'action pour la réduire.
   meta.publicodes.Méthode.description: Il nostro modello di calcolo è
     completamente trasparente. Tutti possono esplorarlo, dare la propria
     opinione e migliorarlo.
@@ -538,6 +544,8 @@ entries:
     votre suggestion en cliquant sur <1>ce lien</1>.
   publicodes.Landing.question: Conoscete la vostra impronta climatica?
   publicodes.Landing.question.lock: Connaissez-vous votre empreinte sur le climat ?
+  publicodes.LandingExplanations.question: Conoscete la vostra impronta climatica?
+  publicodes.LandingExplanations.question.lock: Connaissez-vous votre empreinte sur le climat ?
   publicodes.Personas.description: Le personas ci permetteranno di prendere le
     parti di diversi utenti quando vedranno la nostra schermata di "azione".
   publicodes.Personas.description.lock: Les personas nous permettront de prendre

@@ -405,6 +405,12 @@ entries:
   meta.publicodes.Landing.description.lock: Testez votre empreinte carbone, tout
     seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
+  meta.publicodes.LandingExplanations.description: Test your carbon footprint,
+    alone or in a group. Discover the breakdown of your footprint. Follow the
+    path to action to reduce it.
+  meta.publicodes.LandingExplanations.description.lock: Testez votre empreinte
+    carbone, tout seul ou en groupe. Découvrez la répartition de votre
+    empreinte. Suivez le parcours de passage à l'action pour la réduire.
   meta.publicodes.Méthode.description: Our calculation model is completely
     transparent. Everyone can explore it, give their opinion, improve it.
   meta.publicodes.Méthode.description.lock:
@@ -523,6 +529,8 @@ entries:
     votre suggestion en cliquant sur <1>ce lien</1>.
   publicodes.Landing.question: Do you know your climate footprint?
   publicodes.Landing.question.lock: Connaissez-vous votre empreinte sur le climat ?
+  publicodes.LandingExplanations.question: Do you know your climate footprint?
+  publicodes.LandingExplanations.question.lock: Connaissez-vous votre empreinte sur le climat ?
   publicodes.Personas.description: Personas will allow us to take the side of a
     diversity of users when they see our "take action" screen.
   publicodes.Personas.description.lock: Les personas nous permettront de prendre
