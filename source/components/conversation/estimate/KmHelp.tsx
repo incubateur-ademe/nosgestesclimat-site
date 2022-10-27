@@ -52,7 +52,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 	const [editTrajetId, setEditTrajetId] = useState(null)
 
 	const trajetValue = (trajet, factor) => {
-		const period = freqList((s) => s).find((f) => f.name === trajet.periode)
+		const period = freqList(t).find((f) => f.name === trajet.periode)
 		const freqValue = period ? period.value * trajet.xfois : 0
 		return trajet.distance * freqValue * factor(trajet)
 	}
@@ -283,7 +283,9 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 											>
 												<Trans>Mon total :</Trans>{' '}
 												<strong>
-													&nbsp;{sum.toLocaleString(abrvLocale)} km&nbsp;
+													&nbsp;
+													{sum.toLocaleString(currentLangInfos.abrvLocale)}{' '}
+													km&nbsp;
 												</strong>{' '}
 												<Trans>(co-voiturage pris en compte)</Trans>
 											</span>

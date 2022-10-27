@@ -13,7 +13,6 @@ import useKeypress from '../../components/utils/useKeyPress'
 import { TrackerContext } from '../../components/utils/withTracker'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
-import DefaultFootprint from './DefaultFootprint'
 import HorizontalSwipe from './HorizontalSwipe'
 import ScoreBar from './ScoreBar'
 import Slide from './TutorialSlide'
@@ -231,12 +230,15 @@ const slides = [
 			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
 			<p>
 				<Trans i18nKey={`publicodes.Tutorial.slide3.p2`}>
-					Le point de départ de votre test est un résultat calculé à partir de
-					valeurs moyennes Françaises attribuées à chaque question. Ce score
-					initial est à prendre comme un minimum, qui commence par défaut à ~{' '}
-					<DefaultFootprint /> de CO₂e en l'état actuel du périmètre de calcul
-					qui évolue selon les améliorations du modèle. Vos réponses viendront
-					ensuite affiner cette empreinte dans la barre de score.
+					Le score de départ de votre test est calculé à partir du mode de vie
+					moyen français. Il est à prendre comme un minimum qui reflète l'état
+					actuel du périmètre de calcul, que nous complétons chaque mois.
+				</Trans>
+			</p>
+			<p>
+				<Trans i18nKey={`publicodes.Tutorial.slide3.p3`}>
+					Chacune de vos réponses va ensuite modifier votre empreinte dans cette
+					barre de score.
 				</Trans>
 			</p>
 			<div css="margin: 1rem 0">
@@ -298,12 +300,9 @@ const slides = [
 					}
 				`}
 			/>
-			<p css="text-align: center; line-height: 1.2rem">
+			<p css="text-align: center; line-height: 1.2rem; max-width: 18rem; margin: 0 auto">
 				<em>
-					<Trans>
-						Pour en savoir plus, tout est expliqué <br />
-						dans{' '}
-					</Trans>
+					<Trans>Pour en savoir plus, tout est expliqué dans </Trans>
 					<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
 						<Trans>cet article</Trans>
 					</a>{' '}
@@ -339,19 +338,19 @@ const slides = [
 	),
 	() => (
 		<>
-			<Trans i18nKey={`publicodes.Tutorial.slide6`}>
+			<Trans i18nKey={`publicodes.Tutorial.slide7`}>
 				<h1>Alors, c'est parti ?</h1>
-				<p>Quelques astuces pour vous aider à compléter le test.</p>
-				<blockquote>
+				<p>Quelques astuces pour vous aider à compléter le test :</p>
+				<blockquote key="individuel">
 					👤 Répondez aux questions en votre nom, pas au nom de votre foyer :
 					c'est un test individuel.
 				</blockquote>
-				<blockquote>
+				<blockquote key="perso">
 					💼 Répondez pour votre vie perso, pas pour votre boulot ou études.{' '}
 					<em>Une seule exception </em>: votre trajet domicile-travail doit être
 					inclus dans les km parcourus.
 				</blockquote>
-				<blockquote>
+				<blockquote key="questions">
 					❓️ D'autres questions ? Consultez notre{' '}
 					<Link to="/contribuer">FAQ</Link> à tout moment.
 				</blockquote>

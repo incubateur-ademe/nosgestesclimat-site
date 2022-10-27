@@ -163,6 +163,7 @@ entries:
   Point d'interrogation: Punto interrogativo
   Pompe à pétrole: Pompa dell'olio
   'Pour en savoir plus, tout est expliqué <1></1>dans ': Per saperne di più, tutto è spiegato in <1></1>
+  'Pour en savoir plus, tout est expliqué dans ': 'Per ulteriori informazioni, vedere '
   Progression dans les diapo: Progressione attraverso le diapositive
   Précédent: Precedente
   Prêt à démarrer ?: Siete pronti per iniziare?
@@ -645,18 +646,21 @@ entries:
   publicodes.Tutorial.slide3.p1.lock:
     <0>Et concrètement ?</0><1>Chaque année, un
     Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
-  publicodes.Tutorial.slide3.p2: Il punto di partenza del test è un punteggio
-    calcolato dalla media dei valori francesi assegnati a ciascuna domanda.
-    Questo punteggio iniziale deve essere considerato come un minimo, che parte
-    per impostazione predefinita da ~ <2></2> di CO₂e nello stato attuale
-    dell'ambito di calcolo che si evolve in base ai miglioramenti del modello.
-    Le vostre risposte perfezioneranno l'impronta nella barra dei punteggi.
-  publicodes.Tutorial.slide3.p2.lock: Le point de départ de votre test est un
-    résultat calculé à partir de valeurs moyennes Françaises attribuées à chaque
-    question. Ce score initial est à prendre comme un minimum, qui commence par
-    défaut à ~ <2></2> de CO₂e en l'état actuel du périmètre de calcul qui
-    évolue selon les améliorations du modèle. Vos réponses viendront ensuite
-    affiner cette empreinte dans la barre de score.
+  publicodes.Tutorial.slide3.p2:
+    Il punteggio di partenza del test è calcolato in
+    base allo stile di vita medio francese. È da considerarsi come un minimo che
+    riflette lo stato attuale del perimetro di calcolo, che completiamo ogni
+    mese.
+  publicodes.Tutorial.slide3.p2.lock:
+    Le score de départ de votre test est calculé
+    à partir du mode de vie moyen français. Il est à prendre comme un minimum
+    qui reflète l'état actuel du périmètre de calcul, que nous complétons chaque
+    mois.
+  publicodes.Tutorial.slide3.p3: Ciascuna delle vostre risposte modificherà la
+    vostra impronta in questa barra del punteggio.
+  publicodes.Tutorial.slide3.p3.lock:
+    Chacune de vos réponses va ensuite modifier
+    votre empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>E l'obiettivo?</0><1>Dobbiamo ridurre la
     nostra impronta climatica il prima possibile.</1><2>In Francia, ciò
     significa passare da ~10 tonnellate a <2>meno di 2 tonnellate</2>
@@ -664,16 +668,26 @@ entries:
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
-  publicodes.Tutorial.slide6: "<0>Allora, siete pronti a partire?</0><1>Alcuni
-    suggerimenti per aiutarvi a completare il test.</1><2>👤 Rispondete alle
+  publicodes.Tutorial.slide6: <0>Da dove viene la nostra impronta?</0><1>Guidare
+    un'auto, mangiare una bistecca, riscaldare una casa, ricevere cure mediche,
+    comprare un televisore...</1><2><0><0></0></0></2><3>L'impronta dei nostri
+    consumi individuali è la somma di tutte queste attività che compongono la
+    nostra vita moderna </3>
+  publicodes.Tutorial.slide6.lock: <0>D'où vient notre empreinte ?</0><1>Prendre
+    la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter
+    une TV...</1><2><0><0></0></0></2><3>L'empreinte de notre consommation
+    individuelle, c'est la somme de toutes ces activités qui font notre vie
+    moderne. </3>
+  publicodes.Tutorial.slide7: "<0>Allora, siete pronti a partire?</0><1>Alcuni
+    suggerimenti per aiutarvi a completare il test:</1><2>👤 Rispondete alle
     domande a nome vostro, non del vostro nucleo familiare: questo è un test
     individuale.</2><3>💼 Rispondete per la vostra vita personale, non per il
     vostro lavoro o i vostri studi. <2>Un'eccezione: </2> il tragitto
     casa-lavoro deve essere incluso nei km percorsi.</3><4>❓️ Ci sono altre
     domande? Consultate le nostre <2>FAQ</2> in qualsiasi momento.</4>"
-  publicodes.Tutorial.slide6.lock:
+  publicodes.Tutorial.slide7.lock:
     "<0>Alors, c'est parti ?</0><1>Quelques astuces
-    pour vous aider à compléter le test.</1><2>👤 Répondez aux questions en
+    pour vous aider à compléter le test :</1><2>👤 Répondez aux questions en
     votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼
     Répondez pour votre vie perso, pas pour votre boulot ou études. <2>Une seule
     exception </2>: votre trajet domicile-travail doit être inclus dans les km
