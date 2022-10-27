@@ -300,12 +300,9 @@ const slides = [
 					}
 				`}
 			/>
-			<p css="text-align: center; line-height: 1.2rem">
+			<p css="text-align: center; line-height: 1.2rem; max-width: 18rem; margin: 0 auto">
 				<em>
-					<Trans>
-						Pour en savoir plus, tout est expliqué <br />
-						dans{' '}
-					</Trans>
+					<Trans>Pour en savoir plus, tout est expliqué dans </Trans>
 					<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
 						<Trans>cet article</Trans>
 					</a>{' '}
