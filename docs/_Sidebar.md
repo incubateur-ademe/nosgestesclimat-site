@@ -18,6 +18,7 @@
    * [Workflows](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#workflows)
        * [Editing the source code](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#editing-the-source-code)
        * [Adding a new language](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#adding-a-new-language)
+       * [Improving an existing translation](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#improving-an-existing-translation)
    * [Architecture](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#architecture)
    * [Available scripts](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#available-scripts)
 5. [**Publicodes**](https://github.com/datagir/nosgestesclimat-site/wiki/Publicodes)
