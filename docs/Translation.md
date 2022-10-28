@@ -5,11 +5,10 @@
 <p align="center">The website UI is automatically translated in different natural languages -- this is achieved with
 <a href="https://react.i18next.com/"><code>react-i18next</code></a>.</p>
 
-> For the model (test's questions) translation, please refer to this [file](https:/github.com/datagir/nosgestesclimat/blob/master/docs/translation.md).
+> For the model (test's questions) translation, please refer to this
+> [file](https:/github.com/datagir/nosgestesclimat/blob/master/docs/translation.md).
 
 ## Configuration
-
-Test
 
 ### DeepL API key
 
@@ -166,8 +165,47 @@ If you can't or don't want to run any scripts, a report with missing
 translations will be added in a comment when opening a new [Pull
 Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request).
 
-If there is missing translations or if you have a question, don't hesistate to
+If there is missing translations or if you have a question, don't hesitate to
 ping one of the maintainers of `nosgestesclimat-site`.
+
+### Improving an existing translation
+
+If you found a translation incorrect or imprecise, you can modify it directly
+from the  `./source/locales`.
+
+If you are ready to create a [pull
+request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+to push your suggestion directly to the project, please refer to the [dedicated
+guide](#contribution-guide-for-translation-from-github). Otherwise, you can
+simply send you suggestion in a mail to: datagir@ademe.fr.
+
+#### Contribution guide for translation from GitHub
+
+1. The first step consists of finding the file where is stored the targeted
+   translation. You can refer to the [dedicated section](#architecture) or
+   search for it from with the GitHub search bar:
+    1. Press `/` and paste the searched text.
+    2. Choose the `In this repository` choice.
+    3. Look at `code results` and click on the corresponding file name.
+2. When the file is found, you need to edit it.
+    1. Select the `master` branch on the button -- at the left of the file
+       path.
+    2. Then, press `E` (or click in the pencil button) to edit the file.
+    3. Click on the text, and press `Ctrl-F` to search for the specific
+       translation.
+    4. Now, you can edit the translation text.
+    5. When all you changes made, go to the bottom of the page to the `Commit
+       changes` section. Enter in the first text field:
+        ```
+        fix(t9n): update translation in the <filename>.
+        ```
+3. Finally, select the `Create a new branch for this commit and start a pull
+   request.` option. You can add more information if you want about your
+   translation before clicking on the `Create pull request` button to open the
+   pull request.
+
+Well done! We will look at you proposition before updating translations and
+integrating the changes to the project.
 
 ### Adding a new language
 
