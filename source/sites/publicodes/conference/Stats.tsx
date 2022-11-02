@@ -90,9 +90,7 @@ export default ({
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
 						<span role="status">Moyenne : {humanMean}&nbsp;</span>
-						<small title="Moyenne française">
-							({emoji('🇫🇷')} <DefaultFootprint />)
-						</small>
+						<small title="Moyenne française">({emoji('🇫🇷')} ~10 tonnes)</small>
 					</div>
 				</div>
 				{elements.length > 0 && (
