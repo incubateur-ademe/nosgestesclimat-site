@@ -207,13 +207,13 @@ const slides = [
 			</p>
 			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
 			<p>
-				Le point de départ de votre test Nos Gestes Climat est un résultat
-				calculé à partir de valeurs moyennes Françaises attribuées à chaque
-				question. Ce score initial est à prendre comme un minimum, qui commence
-				par défaut à ~ <DefaultFootprint /> de CO₂e en l'état actuel du
-				périmètre de calcul qui évolue selon les améliorations du modèle. Vos
-				réponses viendront ensuite affiner cette empreinte dans la barre de
-				score.
+				Le score de départ de votre test est calculé à partir du mode de vie
+				moyen français. Il est à prendre comme un minimum qui reflète l'état
+				actuel du modèle de calcul, complété et amélioré chaque mois.
+			</p>
+			<p>
+				Chacune de vos réponses modifiera ensuite votre empreinte dans cette
+				barre de score.
 			</p>
 			<div css="margin: 1rem 0">
 				<WithEngine>
