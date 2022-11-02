@@ -58,6 +58,8 @@ if (NODE_ENV === 'production') {
 	tracker = new Tracker()
 }
 
+// Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
+
 export default function Root({}) {
 	const paths = sitePaths()
 
@@ -96,7 +98,7 @@ export default function Root({}) {
 	)
 }
 
-export const isFluidLayout = (encodedPathname) => {
+const isFluidLayout = (encodedPathname) => {
 	const pathname = decodeURIComponent(encodedPathname)
 
 	return (

@@ -127,13 +127,11 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 	return (
 		<div
 			css={`
-				display: flex;
-				flex-direction: row;
-				align-items: flex-start
-				flex-wrap: wrap;
-				justify-content: space-evenly;
+				display: grid;
+				grid-template-columns: repeat(2, 1fr);
+				gap: 10px;
 				@media (max-width: 800px) {
-					flex-direction: column;
+					grid-template-columns: repeat(1, 1fr);
 				}
 				margin: 1rem 0;
 				.step.input {
