@@ -1,12 +1,48 @@
 <h1 align="center">Translation of the UI</h1>
 
-<p align="center">This file contains all the information about the translation of the UI of <a href="https://nosgestesclimat.fr/">nosgestesclimat.fr</a>.</p>
+<p align="center">This file contains all the information on translating the <a href="https://nosgestesclimat.fr/">nosgestesclimat.fr</a> web interface.</p>
 
 <p align="center">The website UI is automatically translated in different natural languages -- this is achieved with
 <a href="https://react.i18next.com/"><code>react-i18next</code></a>.</p>
 
-> For the model (test's questions) translation, please refer to this
+> For the model translation (e.g. test's questions, categories' names, etc...)
+> , please refer to this
 > [file](https:/github.com/datagir/nosgestesclimat/blob/master/docs/translation.md).
+
+---
+
+<details open=true>
+
+<summary>Table of content</summary>
+<!-- vim-markdown-toc GitLab -->
+
+* [Configuration](#configuration)
+   * [DeepL API key](#deepl-api-key)
+   * [Dev dependencies](#dev-dependencies)
+* [Workflows](#workflows)
+   * [Editing the source code](#editing-the-source-code)
+      * [Adding content](#adding-content)
+      * [Adding units translation](#adding-units-translation)
+      * [Updating the translation](#updating-the-translation)
+         * [For non-tech users](#for-non-tech-users)
+   * [Improving an existing translation](#improving-an-existing-translation)
+      * [Contribution guide for translation from GitHub](#contribution-guide-for-translation-from-github)
+   * [Adding a new language](#adding-a-new-language)
+* [Architecture](#architecture)
+* [Available scripts](#available-scripts)
+   * [`generate-ui.js`](#generate-uijs)
+   * [`translate-ui.js`](#translate-uijs)
+   * [`check-ui.js`](#check-uijs)
+   * [`translate-md.js`](#translate-mdjs)
+   * [`translate-faq.js`](#translate-faqjs)
+   * [`check-faq.js`](#check-faqjs)
+   * [`translate-releases.js`](#translate-releasesjs)
+
+<!-- vim-markdown-toc -->
+
+</details>
+
+---
 
 ## Configuration
 
@@ -16,7 +52,7 @@ To be able to run all available scripts you need to have defined the _env_
 variable `DEEPL_API_KEY` with a valid [DeepL API
 key](https://www.deepl.com/fr/docs-api/introduction/).
 
-> You can specify it when running the command like:
+> You can specify it when running the command:
 >
 > ```
 > DEEPL_API_KEY=<your-api-key> yarn <cmd>
@@ -42,7 +78,7 @@ Moreover, in order to translate Markdown content some scripts use
 
 #### Adding content
 
-When adding a new string containing a content which need to be translated,
+When adding a new string containing a content which needs to be translated,
 you need to wrap it inside a [`Trans`](https://react.i18next.com/latest/trans-component) React component
 or inside a function call to [`t`](https://react.i18next.com/latest/usetranslation-hook).
 
@@ -74,11 +110,11 @@ specify an unique i18n key. You can use both variants:
 
 <details>
 
-<summary> <b>Important</b>: if you choose the first version (by calling `t`)...</summary>
+<summary> <b>Important</b>: if you choose the first version (by calling <code>t</code>)...</summary>
 
 > you will need to provide by hand the default value after executing the
 > command `yarn generate:ui` (see the section [Updating the
-> translations](#updating-the-translations)):
+> translations](#updating-the-translation)):
 >
 > ```
 > ...
@@ -107,7 +143,33 @@ humanWeight.unitSuffix: of # The wanted translated value
 humanWeight.unitSuffix.lock: de # The reference value
 ```
 
-#### Updating the translations
+#### Adding units translation
+
+When using units such as _heures_ or _km / an_, you needs to specify the name
+space `units` to the configuration of the `t` function call:
+
+```jsx
+<p>{t('heures', {ns: 'units'})}</p>
+
+// if the content is stored in a string
+<p>{t(uniVariable as string, {ns: 'units'})}</p>
+```
+
+Translations are stored in a separated file: `./source/locales/units.yaml`.
+
+There is a root attribute for each available languages. The units to translate
+is the key and the value is the corresponding translation:
+
+```yaml
+en:
+  heure: hour
+  km / an: km / year
+```
+
+> **Important:** they need to be translated by hand in the
+> `./source/locales/units.yaml`.
+
+#### Updating the translation
 
 Once the content modified,
 
@@ -128,8 +190,8 @@ Once the content modified,
 
     **+ Added** translations correspond to new entries which has been added to
     the translation file. Their values has been retrieved from the source code:
-    here, the key _"Cacher l'objectif"_ is the value itself (it corresponds to
-    a `<Trans>Cacher l'objectif</Trans>`).
+    here, the key _"Cacher l'objectif"_ is the value itself -- it corresponds to
+    a `<Trans>Cacher l'objectif</Trans>`.
 
     **\~ Updated** translations correspond to existing entries that have been
     modified. Their values has been retrieved from the source code: here, the
@@ -173,11 +235,11 @@ ping one of the maintainers of `nosgestesclimat-site`.
 If you found a translation incorrect or imprecise, you can modify it directly
 from the  `./source/locales`.
 
-If you are ready to create a [pull
-request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
+If you are ready to create a [Pull
+Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 to push your suggestion directly to the project, please refer to the [dedicated
 guide](#contribution-guide-for-translation-from-github). Otherwise, you can
-simply send you suggestion in a mail to: datagir@ademe.fr.
+simply send your suggestion in a mail to: datagir@ademe.fr.
 
 #### Contribution guide for translation from GitHub
 
@@ -187,39 +249,40 @@ simply send you suggestion in a mail to: datagir@ademe.fr.
     1. Press `/` and paste the searched text.
     2. Choose the `In this repository` choice.
     3. Look at `code results` and click on the corresponding file name.
-2. When the file is found, you need to edit it.
+2. Once you've found the file, you need to edit it.
     1. Select the `master` branch on the button -- at the left of the file
        path.
-    2. Then, press `E` (or click in the pencil button) to edit the file.
+    2. Then, press `E` to edit the file -- or click in the pencil button.
     3. Click on the text, and press `Ctrl-F` to search for the specific
        translation.
     4. Now, you can edit the translation text.
-    5. When all you changes made, go to the bottom of the page to the `Commit
+    5. When all changes have been made, go to the bottom of the page under the `Commit
        changes` section. Enter in the first text field:
         ```
-        fix(t9n): update translation in the <filename>.
+        fix(t9n): update translation in the <edited_filename>.
         ```
 3. Finally, select the `Create a new branch for this commit and start a pull
    request.` option. You can add more information if you want about your
    translation before clicking on the `Create pull request` button to open the
    pull request.
 
-Well done! We will look at you proposition before updating translations and
-integrating the changes to the project.
+Well done! We will look at your proposition before [updating the
+translations](#updating-the-translation) and integrating the changes to the
+project.
 
 ### Adding a new language
 
 To support a new language you need to modify the
 [`./source/locales/translations.ts`]() file, by:
 
-- adding a new value to `Lang` enum,
+- adding a new value to `Lang` enumeration,
 - completing all related switch statements,
 - adding corresponding import statements for FAQ, releases and UI files,
 - extending all `source/sites/publicodes/pages/*.tsx` to load translated Markdown pages,
 - updating the `availableLanguages` variable of the `./nosgestesclimat/scripts/i18n/utils.js` file,
-- runs all needed scripts as described in the [Updating the translation section](#updating-the-translations).
+- runs all needed scripts as described in the [Updating the translation section](#updating-the-translation).
 (If there is some errors during the scripts execution, you will need to add
-empty folders/files in the `source/locales` corresponding the abreviation added
+empty folders/files in the `source/locales` corresponding the abbreviation added
 to the `availableLanguages`).
 
 ## Architecture

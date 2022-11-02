@@ -17,6 +17,7 @@
    * [Configuration](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#configuration)
    * [Workflows](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#workflows)
        * [Editing the source code](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#editing-the-source-code)
+       * [Adding units translation](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#adding-units-translation)
        * [Adding a new language](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#adding-a-new-language)
        * [Improving an existing translation](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#improving-an-existing-translation)
    * [Architecture](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#architecture)
