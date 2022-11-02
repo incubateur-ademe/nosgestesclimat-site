@@ -63,7 +63,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 						padding: 0.4rem;
 					}
 					text-align: center;
-					box-shadow: 2px 2px 10px #bbb;
 				`}
 			>
 				<div
@@ -71,6 +70,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 						display: flex;
 						justify-content: space-evenly;
 						align-items: center;
+						box-shadow: 2px 2px 10px #bbb;
 					`}
 				>
 					<div
@@ -147,11 +147,11 @@ export default ({ actionMode = false, demoMode = false }) => {
 				)}
 				*/}
 				</div>
+				<ScoreExplanation
+					openExplanation={openExplanation}
+					setOpenExplanation={setOpenExplanation}
+				/>
 			</div>
-			<ScoreExplanation
-				openExplanation={openExplanation}
-				setOpenExplanation={setOpenExplanation}
-			/>
 		</div>
 	)
 }

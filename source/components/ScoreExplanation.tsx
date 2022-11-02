@@ -7,8 +7,16 @@ export default ({ openExplanation, setOpenExplanation }) => {
 				className="ui__ card"
 				css={`
 					position: relative;
-					top: -0.5rem;
-					padding: 1.2rem 1.2rem 0.5rem 1.5rem;
+					padding: 1.8rem 1.2rem 0.5rem 1.5rem;
+					top: 0.5rem;
+					@media (max-width: 800px) {
+						max-height: 15rem;
+						position: fixed;
+						top: auto;
+						bottom: 9rem;
+						margin-left: 0.5rem;
+						margin-right: 0.5rem;
+					}
 				`}
 			>
 				<p
@@ -42,7 +50,7 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						top: 0.3rem;
 						padding: 0;
 					`}
-					title="Fermer la notification de nouveautés"
+					title="Fermer la notification d'explication"
 				>
 					&times;
 				</button>
