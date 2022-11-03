@@ -26,6 +26,9 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						text-align: left !important;
 						color: var(--darkColor) !important;
 						line-height: 1.1rem;
+						> a {
+							text-decoration: underline !important;
+						}
 					`}
 				>
 					{emoji('➡️ ')}
