@@ -1,6 +1,6 @@
 import { useEngine } from 'Components/utils/EngineContext'
 import { utils } from 'publicodes'
-import { useState } from 'react'
+import { useState, useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -14,6 +14,7 @@ import {
 } from '../../selectors/simulationSelectors'
 import HumanWeight, { DiffHumanWeight } from './HumanWeight'
 import PetrolScore from './PetrolScore'
+import { TrackerContext } from '../../components/utils/withTracker'
 
 const openmojis = {
 	questionCircle: '2754',
@@ -39,6 +40,8 @@ export default ({ actionMode = false, demoMode = false }) => {
 
 	const [openExplanation, setOpenExplanation] = useState(false)
 
+	const tracker = useContext(TrackerContext)
+
 	return (
 		<div>
 			<div
@@ -63,7 +66,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 						padding: 0.4rem;
 					}
 					text-align: center;
-					box-shadow: 2px 2px 10px #bbb;
 				`}
 			>
 				<div
@@ -71,6 +73,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 						display: flex;
 						justify-content: space-evenly;
 						align-items: center;
+						box-shadow: 2px 2px 10px #bbb;
 					`}
 				>
 					<div
@@ -121,7 +124,10 @@ export default ({ actionMode = false, demoMode = false }) => {
 						{!demoMode && (
 							<button
 								title="Afficher l'explication du score"
-								onClick={() => setOpenExplanation(!openExplanation)}
+								onClick={() => {
+									setOpenExplanation(!openExplanation)
+									tracker.push(['trackEvent', 'NGC', 'Clic explication score'])
+								}}
 								css={`
 									position: relative;
 									right: 0.5rem;
@@ -147,11 +153,11 @@ export default ({ actionMode = false, demoMode = false }) => {
 				)}
 				*/}
 				</div>
+				<ScoreExplanation
+					openExplanation={openExplanation}
+					setOpenExplanation={setOpenExplanation}
+				/>
 			</div>
-			<ScoreExplanation
-				openExplanation={openExplanation}
-				setOpenExplanation={setOpenExplanation}
-			/>
 		</div>
 	)
 }

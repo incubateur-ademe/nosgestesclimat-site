@@ -2,7 +2,7 @@ import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import Progress from '../../../components/ui/Progress'
 import { WithEngine } from '../../../RulesProvider'
-import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
+import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
@@ -90,9 +90,7 @@ export default ({
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
 						<span role="status">Moyenne : {humanMean}&nbsp;</span>
-						<small title="Moyenne française">
-							({emoji('🇫🇷')} <DefaultFootprint />)
-						</small>
+						<small title="Moyenne française">({emoji('🇫🇷')} ~10 tonnes)</small>
 					</div>
 				</div>
 				{elements.length > 0 && (
