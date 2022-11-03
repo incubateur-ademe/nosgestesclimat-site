@@ -1,4 +1,5 @@
 import emoji from './emoji'
+import DefaultFootprint from '../sites/publicodes/DefaultFootprint'
 
 export default ({ openExplanation, setOpenExplanation }) => {
 	return (
@@ -27,16 +28,18 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						line-height: 1.1rem;
 					`}
 				>
-					{emoji('➡️ ')}Votre point de départ est le résultat du test calculé à
-					partir de valeurs par défaut attribuées à chaque question. Au fur et à
-					mesure de vos réponses, vous personnalisez votre score selon votre
-					mode de vie. Si vous répondez "je ne sais pas" à une question, vous
-					remarquerez que le total ne change pas puisqu'une valeur standard vous
-					est attribuée dans ce cas. Il est fréquent que le score initial change
-					car{' '}
+					{emoji('➡️ ')}
+					<DefaultFootprint /> de CO2-e par an, c'est{' '}
+					<b>un point de départ théorique</b> calculé à partir de valeurs par
+					défaut attribuées à l'avance à chaque question. Au fur et à mesure de
+					vos réponses, vous{' '}
+					<b>personnalisez votre score selon votre mode de vie</b>. Si vous
+					répondez "je ne sais pas" à une question, vous remarquerez que le
+					total ne change pas puisqu'une valeur standard vous est attribuée dans
+					ce cas. Il est fréquent que le score initial change car
 					<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
 						le modèle Nos Gestes Climat évolue
-					</a>{' '}
+					</a>
 					!
 				</p>
 				<button
