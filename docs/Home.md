@@ -37,7 +37,7 @@ If you are a carbon expert, you should start from the dedicated
 If you are a developer and want to contribute, you can look at [opened
 issues](https://github.com/datagir/nosgestesclimat-site/issues) and step in
 directly to the [contributing
-guide](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution).
+guide](https://github.com/datagir/nosgestesclimat-site/wiki/Contributing).
 
 ### You are a non-tech user
 

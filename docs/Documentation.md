@@ -10,8 +10,9 @@ folder and can be read from the
 To modify the wiki's content, you need to do it in the
 [`./docs`](https://github.com/datagir/nosgestesclimat-site/tree/master/docs)
 folder.
-Once modification pushed in `master`, a GitHub Action will update the wiki from
-the content of the
+Once modification pushed in `master`, a [GitHub
+Action](https://github.com/datagir/nosgestesclimat-site/blob/master/.github/workflows/publish-wiki.yaml)
+will update the wiki from the content of the
 [`./docs`](https://github.com/datagir/nosgestesclimat-site/tree/master/docs)
 folder.
 
