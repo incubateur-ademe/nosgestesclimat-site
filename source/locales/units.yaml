@@ -1,103 +1,111 @@
 fr:
-  heure: heure
-  heures: heure
-  point: point
-  points: points
-  jour: jour
-  jours: jours
-  semaine: semaine
-  semaines: semaines
-  km: km
+  € / an: € / an
   an: an
-  ans: ans
   année: année
   années: annnées
-  mois: mois
-  voyageur: voyageur
-  voyageurs: voyageurs
-  personne: personne
-  personnes: personnes
+  ans: ans
   climatiseur: climatiseur
   h / an: h / an
+  heure: heure
+  heures: heure
   h / semaine: h / semaine
+  jour: jour
+  jours: jours
   km / an: km / an
+  km: km
+  litre: litre
+  litres: litres
   l / semaine: l / semaine
-  €: €
-
-en:
-  heure: hour
-  heures: hours
+  mois: mois
+  personne: personne
+  personnes: personnes
   point: point
   points: points
-  jour: day
-  jours: days
-  semaine: week
-  semaines: weeks
-  km: km
-  an: year
-  ans: years
-  année: year
+  semaine: semaine
+  semaines: semaines
+  voyageurs: voyageurs
+  voyageur: voyageur
+
+en:
+  € / an: € / year
   années: years
-  mois: month
-  voyageur: traveler
-  voyageurs: travelers
-  personne: person
-  personnes: people
+  année: year
+  ans: years
+  an: year
   climatiseur: air-conditioner
   h / an: h / year
+  heure: hour
+  heures: hours
   h / semaine: h / week
+  jour: day
+  jours: days
   km / an: km / year
+  km: km
+  litre: liter
+  litres: liters
   l / semaine: l / week
-  €: $
+  mois: month
+  personne: person
+  personnes: people
+  point: point
+  points: points
+  semaines: weeks
+  semaine: week
+  voyageurs: travelers
+  voyageur: traveler
 
 es:
-  heure: hora
-  heures: horas
-  point: punto
-  points: puntos
-  jour: día
-  jours: días
-  semaine: semana
-  semaines: semanas
-  km: km
+  € / an: € / año
   an: año
-  ans: años
   année: año
   années: años
-  mois: mes
-  voyageur: viajero
-  voyageurs: viajeros
-  personne: persona
-  personnes: personas
+  ans: años
   climatiseur: aire acondicionado
   h / an: h / año
+  heure: hora
+  heures: horas
   h / semaine: h / semana
+  jour: día
+  jours: días
   km / an: km / año
+  km: km
+  litre: litro
+  litres: litros
   l / semaine: l / semana
-  €: €
+  mois: mes
+  personne: persona
+  personnes: personas
+  point: punto
+  points: puntos
+  semaine: semana
+  semaines: semanas
+  voyageurs: viajeros
+  voyageur: viajero
 
 it:
-  heure: ora
-  heures: ore
-  point: punto
-  points: punti
-  jour: giorno
-  jours: giorni
-  semaine: settimana
-  semaines: settimane
-  km: km
+  € / an: € / anno
   an: anno
-  ans: anni
   année: anno
   années: anni
-  mois: mese
-  voyageur: viaggiatore
-  voyageurs: viaggiatori
-  personne: persona
-  personnes: persone
+  ans: anni
   climatiseur: condizionatore
   h / an: o / anno
+  heure: ora
+  heures: ore
   h / semaine: o / settimiana
+  jour: giorno
+  jours: giorni
   km / an: km / anno
+  km: km
+  litre: litro
+  litres: litri
   l / semaine: l / settimiana
-  €: €
+  mois: mese
+  personne: persona
+  personnes: persone
+  point: punto
+  points: punti
+  semaine: settimana
+  semaines: settimane
+  voyageurs: viaggiatori
+  voyageur: viaggiatore
