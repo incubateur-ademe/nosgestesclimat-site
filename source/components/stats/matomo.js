@@ -11,20 +11,7 @@ export const useChart = ({ chartPeriod, chartDate }) =>
 				.get(
 					`https://stats.data.gouv.fr/?module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`
 				)
-				.then((res) => res.data)
-				.then((data) => {
-					let total = {}
-					for (let key in data) {
-						for (let date in data[key]) {
-							if (!total[date]) {
-								total[date] = data[key][date]
-							} else {
-								total[date] += data[key][date]
-							}
-						}
-					}
-					return { ...data, total }
-				}),
+				.then((res) => res.data),
 		{
 			keepPreviousData: true,
 		}

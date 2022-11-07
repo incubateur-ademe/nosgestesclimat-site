@@ -2,7 +2,6 @@ import React, { useState, useEffect, useContext } from 'react'
 import styled from 'styled-components'
 
 import {
-	useChart,
 	useTotal,
 	useSimulationsTerminees,
 	useVisitsDuration,
@@ -86,7 +85,6 @@ export default function Data(props) {
 								allTime={allTime.value}
 								simulations={simulations}
 							/>
-
 							<Chart />
 						</Wrapper>
 						<Sources
