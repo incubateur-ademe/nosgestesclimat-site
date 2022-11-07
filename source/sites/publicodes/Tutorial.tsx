@@ -237,7 +237,7 @@ const slides = [
 			</p>
 			<p>
 				<Trans i18nKey={`publicodes.Tutorial.slide3.p3`}>
-					Chacune de vos réponses va ensuite modifier votre empreinte dans cette
+					Chacune de vos réponses modifiera ensuite votre empreinte dans cette
 					barre de score.
 				</Trans>
 			</p>

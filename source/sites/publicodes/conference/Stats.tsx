@@ -7,7 +7,7 @@ import {
 	getLangInfos,
 } from '../../../locales/translation'
 import { WithEngine } from '../../../RulesProvider'
-import DefaultFootprint, { meanFormatter } from '../DefaultFootprint'
+import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
@@ -101,7 +101,7 @@ export default ({
 							<Trans>Moyenne</Trans> : {humanMean}{' '}
 						</span>
 						<small title={t('Moyenne française')}>
-							(🇫🇷 <DefaultFootprint />)
+							🇫🇷~10 {t('tonnes', { ns: 'units' })}
 						</small>
 					</div>
 				</div>

@@ -15,7 +15,7 @@ export default () => {
 						Cette page a <strong>été traduite de façons automatique</strong>. Si
 						vous avez une suggestion,{' '}
 						<a
-							href="https://github.com/datagir/nosgestesclimat-site/wiki/Translation#correction"
+							href="https://github.com/datagir/nosgestesclimat-site/wiki/Translation#improving-an-existing-translation"
 							target="blank"
 						>
 							reportez vous au wiki

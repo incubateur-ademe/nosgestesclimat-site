@@ -86,7 +86,6 @@ export default function Data() {
 								allTime={allTime.value}
 								simulations={simulations}
 							/>
-
 							<Chart />
 						</Wrapper>
 						<Sources

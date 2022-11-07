@@ -1,5 +1,5 @@
 import { useEngine } from 'Components/utils/EngineContext'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -7,6 +7,7 @@ import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
+import { TrackerContext } from '../../components/utils/withTracker'
 import {
 	objectifsSelector,
 	situationSelector,
@@ -39,6 +40,8 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const { t } = useTranslation()
 	const [openExplanation, setOpenExplanation] = useState(false)
 
+	const tracker = useContext(TrackerContext)
+
 	return (
 		<div>
 			<div
@@ -63,7 +66,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 						padding: 0.4rem;
 					}
 					text-align: center;
-					box-shadow: 2px 2px 10px #bbb;
 				`}
 			>
 				<div
@@ -71,6 +73,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 						display: flex;
 						justify-content: space-evenly;
 						align-items: center;
+						box-shadow: 2px 2px 10px #bbb;
 					`}
 				>
 					<div
@@ -117,8 +120,14 @@ export default ({ actionMode = false, demoMode = false }) => {
 						{!demoMode && (
 							<button
 								title={t("Afficher l'explication du score")}
-								onClick={() => setOpenExplanation(!openExplanation)}
-								css={``}
+								onClick={() => {
+									setOpenExplanation(!openExplanation)
+									tracker.push(['trackEvent', 'NGC', 'Clic explication score'])
+								}}
+								css={`
+									position: relative;
+									right: 0.5rem;
+								`}
 							>
 								<img
 									src={openmojiURL('questionCircle')}
@@ -140,11 +149,11 @@ export default ({ actionMode = false, demoMode = false }) => {
 				)}
 				*/}
 				</div>
+				<ScoreExplanation
+					openExplanation={openExplanation}
+					setOpenExplanation={setOpenExplanation}
+				/>
 			</div>
-			<ScoreExplanation
-				openExplanation={openExplanation}
-				setOpenExplanation={setOpenExplanation}
-			/>
 		</div>
 	)
 }

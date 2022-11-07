@@ -225,21 +225,21 @@ entries:
   cette page: this page
   components.NewsBanner.miseAJourDate: Updated on {{date}}
   components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
-  components.ScoreExplanation.text: ➡️ Your starting point is the test score
-    calculated from average French values assigned to each question. As you
-    answer, you customize your score according to your lifestyle. If you answer
-    "I don't know" to a question, you will notice that the total does not change
-    since an average value is assigned to you in this case. It is frequent that
-    the initial score changes because <2>the Our Climate Action model
-    evolves</2>!
-  components.ScoreExplanation.text.lock:
-    ➡️ Votre point de départ est le résultat
-    du test calculé à partir de valeurs moyennes Françaises attribuées à chaque
-    question. Au fur et à mesure de vos réponses, vous personnalisez votre score
-    selon votre mode de vie. Si vous répondez "je ne sais pas" à une question,
-    vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
-    est attribuée dans ce cas. Il est fréquent que le score initial change car
-    <2>le modèle Nos Gestes Climat évolue</2> !
+  components.ScoreExplanation.text: <0></0> of CO2-e per year, this is <3>a
+    theoretical starting point</3> calculated from default values assigned in
+    advance to each question. As you answer, you <6>customize your score
+    according to your</6> lifestyle. If you answer "I don't know" to a question,
+    you will notice that the total does not change since a standard value is
+    assigned to you in this case. It is common for the initial score to change
+    as the<8>Our Climate Action model evolves</8>!
+  components.ScoreExplanation.text.lock: <0></0> de CO2-e par an, c'est <3>un
+    point de départ théorique</3> calculé à partir de valeurs par défaut
+    attribuées à l'avance à chaque question. Au fur et à mesure de vos réponses,
+    vous <6>personnalisez votre score selon votre mode de vie</6>. Si vous
+    répondez "je ne sais pas" à une question, vous remarquerez que le total ne
+    change pas puisqu'une valeur standard vous est attribuée dans ce cas. Il est
+    fréquent que le score initial change car<8>le modèle Nos Gestes Climat
+    évolue</8>!
   components.TranslationAlertBanner.wikiLink:
     This page has <1>been automatically
     translated</1>. If you have a suggestion, please <4>refer to the wiki</4>.
@@ -629,20 +629,26 @@ entries:
   publicodes.Tutorial.slide3.blockquote.lock: ✨ Nouveau ! Visualisez également
     votre consommation de ⛽️ pétrole, un indicateur complémentaire au sujet
     climat.
-  publicodes.Tutorial.slide3.p1: <0>And practically speaking ?</0><1>Every year, a
+  publicodes.Tutorial.slide3.p1:
+    <0>And practically speaking ?</0><1>Every year, a
     French person emits on average about <2>10 tons of</2> CO₂e.</1>
-  publicodes.Tutorial.slide3.p1.lock: <0>Et concrètement ?</0><1>Chaque année, un
+  publicodes.Tutorial.slide3.p1.lock:
+    <0>Et concrètement ?</0><1>Chaque année, un
     Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
   publicodes.Tutorial.slide3.p2: The starting score of your test is calculated
     from the average French lifestyle. It is to be taken as a minimum that
     reflects the current state of the calculation perimeter, which we complete
     each month.
-  publicodes.Tutorial.slide3.p2.lock: Le score de départ de votre test est calculé
+  publicodes.Tutorial.slide3.p2.lock:
+    Le score de départ de votre test est calculé
     à partir du mode de vie moyen français. Il est à prendre comme un minimum
     qui reflète l'état actuel du périmètre de calcul, que nous complétons chaque
     mois.
   publicodes.Tutorial.slide3.p3: Each of your answers will then change your footprint in this score bar.
-  publicodes.Tutorial.slide3.p3.lock: Chacune de vos réponses va ensuite modifier
+  publicodes.Tutorial.slide3.p3.lock: Chacune de vos réponses modifiera ensuite
+    votre empreinte dans cette barre de score.
+  publicodes.Tutorial.slide3.p4: Each of your answers will then change your footprint in this score bar.
+  publicodes.Tutorial.slide3.p4.lock: Chacune de vos réponses modifiera ensuite
     votre empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>And the goal?</0><1>We have to decrease our
     climate footprint as soon as possible.</1><2>In France, this means going
@@ -650,7 +656,8 @@ entries:
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
-  publicodes.Tutorial.slide6: <0>Where does our footprint come from?</0><1>Taking
+  publicodes.Tutorial.slide6:
+    <0>Where does our footprint come from?</0><1>Taking
     the car, eating a steak, heating your house, getting medical care, buying a
     TV...</1><2><0><0></0></0></2><3>The footprint of our individual consumption
     is the sum of all these activities that make up our modern life </3>
@@ -659,13 +666,15 @@ entries:
     une TV...</1><2><0><0></0></0></2><3>L'empreinte de notre consommation
     individuelle, c'est la somme de toutes ces activités qui font notre vie
     moderne. </3>
-  publicodes.Tutorial.slide7: '<0>So, are you ready to go?</0><1>Some tips to help
+  publicodes.Tutorial.slide7:
+    '<0>So, are you ready to go?</0><1>Some tips to help
     you complete the test:</1><2>👤 Answer the questions on behalf of yourself,
     not your household: this is an individual test.</2><3>💼 Answer for your
     personal life, not for your job or studies. <2>One exception: </2> your
     commute must be included in the miles driven.</3><4>❓️ More questions? Check
     out our <2>FAQs</2> at any time.</4>'
-  publicodes.Tutorial.slide7.lock: "<0>Alors, c'est parti ?</0><1>Quelques astuces
+  publicodes.Tutorial.slide7.lock:
+    "<0>Alors, c'est parti ?</0><1>Quelques astuces
     pour vous aider à compléter le test :</1><2>👤 Répondez aux questions en
     votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼
     Répondez pour votre vie perso, pas pour votre boulot ou études. <2>Une seule

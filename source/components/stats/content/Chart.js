@@ -50,7 +50,7 @@ export default function AreaWeekly(props) {
 	useEffect(() => {
 		if (chart) {
 			let dates = Object.keys(chart)
-			dates.length--
+			dates.length-- //last period is removed from data
 			setData(
 				dates.map((date) => {
 					let points = { date }

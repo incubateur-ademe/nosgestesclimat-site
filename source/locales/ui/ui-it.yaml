@@ -227,21 +227,22 @@ entries:
   cette page: questa pagina
   components.NewsBanner.miseAJourDate: Aggiornato il {{date}}
   components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
-  components.ScoreExplanation.text: ➡️ Il punto di partenza è il punteggio del
-    test calcolato in base alla media dei valori francesi assegnati a ciascuna
-    domanda. Man mano che si risponde, si personalizza il punteggio in base al
-    proprio stile di vita. Se si risponde "Non so" a una domanda, si noterà che
-    il totale non cambia, poiché viene fornito un valore medio. Il punteggio
-    iniziale cambia spesso con l'<2>evolversi del modello Our Climate
-    Action</2>!
-  components.ScoreExplanation.text.lock:
-    ➡️ Votre point de départ est le résultat
-    du test calculé à partir de valeurs moyennes Françaises attribuées à chaque
-    question. Au fur et à mesure de vos réponses, vous personnalisez votre score
-    selon votre mode de vie. Si vous répondez "je ne sais pas" à une question,
-    vous remarquerez que le total ne change pas puisqu'une valeur moyenne vous
-    est attribuée dans ce cas. Il est fréquent que le score initial change car
-    <2>le modèle Nos Gestes Climat évolue</2> !
+  components.ScoreExplanation.text:
+    <0></0> per anno, si tratta di <3>un punto di
+    partenza teorico</3> calcolato a partire da valori predefiniti assegnati in
+    anticipo a ciascuna domanda. Man mano che si risponde, si <6>personalizza il
+    punteggio in base al proprio</6> stile di vita. Se si risponde "Non so" a
+    una domanda, si noterà che il totale non cambia perché viene dato un valore
+    standard. Il punteggio iniziale cambia spesso con l'<8>evolversi</8>
+    del<8>modello Our Climate Action</8>!
+  components.ScoreExplanation.text.lock: <0></0> de CO2-e par an, c'est <3>un
+    point de départ théorique</3> calculé à partir de valeurs par défaut
+    attribuées à l'avance à chaque question. Au fur et à mesure de vos réponses,
+    vous <6>personnalisez votre score selon votre mode de vie</6>. Si vous
+    répondez "je ne sais pas" à une question, vous remarquerez que le total ne
+    change pas puisqu'une valeur standard vous est attribuée dans ce cas. Il est
+    fréquent que le score initial change car<8>le modèle Nos Gestes Climat
+    évolue</8>!
   components.TranslationAlertBanner.wikiLink: Questa pagina è stata <1>tradotta
     automaticamente</1>. Se avete un suggerimento, fate <4>riferimento al
     wiki</4>.
@@ -658,8 +659,11 @@ entries:
     mois.
   publicodes.Tutorial.slide3.p3: Ciascuna delle vostre risposte modificherà la
     vostra impronta in questa barra del punteggio.
-  publicodes.Tutorial.slide3.p3.lock:
-    Chacune de vos réponses va ensuite modifier
+  publicodes.Tutorial.slide3.p3.lock: Chacune de vos réponses modifiera ensuite
+    votre empreinte dans cette barre de score.
+  publicodes.Tutorial.slide3.p4: Ciascuna delle vostre risposte modificherà la
+    vostra impronta in questa barra del punteggio.
+  publicodes.Tutorial.slide3.p4.lock: Chacune de vos réponses modifiera ensuite
     votre empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>E l'obiettivo?</0><1>Dobbiamo ridurre la
     nostra impronta climatica il prima possibile.</1><2>In Francia, ciò
