@@ -41,7 +41,9 @@ export default function ScoreFromURL(props) {
 	const scores = props.pages && getScores(props.pages)
 	// we exclude high number of visits on same urls (corresponds to average test score ?)
 	// pb : if a user goes to end page, come back to test, change test score, come back to end page, 2 score values are taken into account instead of one.
-	const filteredScores = scores.slice(scores.findIndex((elt) => elt[1] < 50))
+	const filteredScores = scores
+		.slice(scores.findIndex((elt) => elt[1] < 50))
+		.filter((elt) => elt[0] < 100000)
 	const meanScore = weightedAverage(filteredScores)
 	const roundedMeanScore = formatValue(meanScore / 1000)
 	const flatScoreArray = filteredScores
