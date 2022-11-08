@@ -217,7 +217,7 @@ export default ({}) => {
 										const augmentedComment =
 											comment +
 											t('publicodes.Contribution.commentaireAugmenté', {
-												fromLocation: fromLocation,
+												fromLocation,
 											})
 										createIssue(sujet, augmentedComment, setURL, disableButton)
 									}}

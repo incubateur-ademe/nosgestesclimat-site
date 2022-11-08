@@ -25,6 +25,8 @@ const getBackgroundColor = (score) =>
 
 export default ({ score, details, headlessMode, nextSlide }) => {
 	//	Configuration is try and test, feeling, really
+	const { t } = useTranslation()
+
 	const valueSpring = useSpring(0, {
 		mass: 15,
 		stiffness: 50,
@@ -55,13 +57,13 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
 		useContext(IframeOptionsContext)
 
-	const { t } = useTranslation()
-
 	return (
 		<div>
 			<Meta
-				title="Mon empreinte climat"
-				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO2e. Mesure la tienne !`}
+				title={t('Mon empreinte climat')}
+				description={t('meta.publicodes.fin.Budget.description', {
+					roundedValue,
+				})}
 				image={shareImage}
 				url={window.location}
 			/>

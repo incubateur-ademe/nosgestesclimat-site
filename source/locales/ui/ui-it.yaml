@@ -441,6 +441,10 @@ entries:
     anonymement des données aggregées pour améliorer le simulateur.
   meta.publicodes.Privacy.title: Dati personali
   meta.publicodes.Privacy.title.lock: Données personnelles
+  meta.publicodes.fin.Budget.description: La mia impronta climatica è di
+    {{roundedValue}} tonnellate di CO2e. Misurate il vostro!
+  meta.publicodes.fin.Budget.description.lock: Mon empreinte climat est de
+    {{roundedValue}} tonnes de CO2e. Mesure la tienne !
   meta.publicodes.fin.Petrogaz.description: La mia impronta di petrolio è
     {{empreinte}} piena di petrolio. Misurate il vostro!
   meta.publicodes.fin.Petrogaz.description.lock: Mon empreinte pétrole est de

@@ -91,11 +91,10 @@ export function getLangInfos(lang: Lang): LangInfos {
 }
 
 export function getLangFromAbreviation(abrv: string): Lang {
-	switch (abrv) {
+	switch (abrv.slice(0, 2)) {
 		case 'fr':
 			return Lang.Fr
 		case 'en':
-		case 'en-us':
 			return Lang.En
 		case 'es':
 			return Lang.Es

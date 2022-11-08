@@ -430,6 +430,9 @@ entries:
     anonymement des données aggregées pour améliorer le simulateur.
   meta.publicodes.Privacy.title: Personal data
   meta.publicodes.Privacy.title.lock: Données personnelles
+  meta.publicodes.fin.Budget.description: My climate footprint is {{roundedValue}} tons of CO2e. Measure yours!
+  meta.publicodes.fin.Budget.description.lock: Mon empreinte climat est de
+    {{roundedValue}} tonnes de CO2e. Mesure la tienne !
   meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
   meta.publicodes.fin.Petrogaz.description.lock: Mon empreinte pétrole est de
     {{empreinte}} pleins de pétrole. Mesure la tienne !
