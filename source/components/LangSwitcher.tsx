@@ -1,8 +1,9 @@
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSearchParams } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import {
+	changeLangTo,
 	getLangFromAbreviation,
 	getLangInfos,
 	Lang,
@@ -17,8 +18,8 @@ export type LangSwitcherProps = {
 export default function LangSwitcher({ from }: LangSwitcherProps) {
 	const { i18n } = useTranslation()
 	const currentLang = getLangFromAbreviation(i18n.language)
-	const [searchParams, setSearchParams] = useSearchParams()
 	const [isOpen, setIsOpen] = useState(false)
+	const dispatch = useDispatch()
 
 	const langButtons = Object.keys(Lang)
 		.filter((l) => l !== Lang.Default)
@@ -31,8 +32,11 @@ export default function LangSwitcher({ from }: LangSwitcherProps) {
 							lang === currentLang ? 'ui__ text-button' : 'ui__ dashed-button'
 						}
 						onClick={() => {
-							searchParams.set('lang', langInfos.abrv)
-							setSearchParams(searchParams, { replace: true })
+							changeLangTo(i18n, lang)
+							dispatch({
+								type: 'SET_LANGUAGE',
+								currentLang: lang,
+							})
 							setIsOpen(!isOpen)
 						}}
 					>

@@ -49,13 +49,14 @@ export default ({}) => {
 	const tracker = useContext(TrackerContext)
 
 	const componentCorrespondence = {
-			bilan: Budget,
-			categories: Catégories,
-			action: ActionSlide,
-			petrogaz: Petrogaz,
-		},
-		componentKeys = Object.keys(componentCorrespondence),
-		Component = componentCorrespondence[slideName] || Budget
+		bilan: Budget,
+		categories: Catégories,
+		action: ActionSlide,
+		petrogaz: Petrogaz,
+	}
+	console.log('slideName:', slideName)
+	const componentKeys = Object.keys(componentCorrespondence)
+	const Component = componentCorrespondence[slideName] || Budget
 
 	const next = () => {
 		setSearchParams({

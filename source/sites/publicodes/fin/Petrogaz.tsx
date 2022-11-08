@@ -13,6 +13,7 @@ import { DocumentationEndButton, generateImageLink } from './index'
 const petrolRuleName = 'pétrole . pétrole brut'
 
 export default ({ headlessMode }) => {
+	const { t } = useTranslation()
 	const shareImage = generateImageLink(window.location)
 	//
 	//	Configuration is try and test, feeling, really
@@ -40,10 +41,9 @@ export default ({ headlessMode }) => {
 		headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
-	}, [])
-	const gradientPosition = Math.round((1 - value / score) * 400 + 50)
+	}, [score, headlessMode, valueSpring])
 
-	const { t } = useTranslation()
+	const gradientPosition = Math.round((1 - value / score) * 400 + 50)
 
 	return (
 		<div>

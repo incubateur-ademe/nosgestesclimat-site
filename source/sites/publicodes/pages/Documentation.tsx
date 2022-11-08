@@ -3,7 +3,7 @@ import SearchButton from 'Components/SearchButton'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -26,6 +26,7 @@ import References from '../DocumentationReferences'
 import Méthode from './Méthode'
 
 export default function () {
+	console.log('Rendering Documentation')
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
@@ -44,6 +45,8 @@ export default function () {
 	if (!documentationSitePaths[pathname]) {
 		return <Navigate to="/404" replace />
 	}
+
+	useEffect(() => console.log('Documentation rendered!'), [])
 
 	return (
 		<div
@@ -83,6 +86,7 @@ const DocPage = ({ documentationPath, engine }) => {
 	console.log('engineParsedRules:', engine.context.parsedRules)
 	console.log('url:', url)
 	console.log('documentationPath:', documentationPath)
+
 	return (
 		<DocumentationStyle>
 			<RulePage
