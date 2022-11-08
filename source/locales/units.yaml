@@ -25,6 +25,7 @@ fr:
   semaines: semaines
   voyageurs: voyageurs
   voyageur: voyageur
+  l / centkm: l / centkm
 
 en:
   € / an: € / year
@@ -53,6 +54,7 @@ en:
   semaine: week
   voyageurs: travelers
   voyageur: traveler
+  l / centkm: l / hundred km
 
 es:
   € / an: € / año
@@ -81,6 +83,7 @@ es:
   semaines: semanas
   voyageurs: viajeros
   voyageur: viajero
+  l / centkm: l / cien km
 
 it:
   € / an: € / anno
@@ -109,3 +112,4 @@ it:
   semaines: settimane
   voyageurs: viaggiatori
   voyageur: viaggiatore
+  l / centkm: l / cento km
