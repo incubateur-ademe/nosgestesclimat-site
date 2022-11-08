@@ -20,7 +20,7 @@ entries:
   'Ajouter ': 'Add '
   Aller au contenu: Go to content
   Annuler: Cancel
-  Aucun: No
+  Aucun: None
   Autonome: Autonomous
   Avancement du groupe: Group progress
   Bientôt disponible !: Available soon !
@@ -85,8 +85,7 @@ entries:
   Et mes données ?: What about my data?
   Explorer les catégories: Explore categories
   Explorer notre documentation: Explore our documentation
-  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
-    Explore and modify the information you have entered in the nosgestesclimate
+  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore and modify the information you have entered in the nosgestesclimate
     pathway.
   Explorez notre documentation: Explore our documentation
   Faire le test: Take the test
@@ -240,18 +239,14 @@ entries:
     change pas puisqu'une valeur standard vous est attribuée dans ce cas. Il est
     fréquent que le score initial change car<8>le modèle Nos Gestes Climat
     évolue</8>!
-  components.TranslationAlertBanner.wikiLink:
-    This page has <1>been automatically
+  components.TranslationAlertBanner.wikiLink: This page has <1>been automatically
     translated</1>. If you have a suggestion, please <4>refer to the wiki</4>.
-  components.TranslationAlertBanner.wikiLink.lock:
-    Cette page a <1>été traduite de
+  components.TranslationAlertBanner.wikiLink.lock: Cette page a <1>été traduite de
     façons automatique</1>. Si vous avez une suggestion, <4>reportez vous au
     wiki</4>.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
-    You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
     car.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock:
-    Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.
   components.conversation.select.NumberedMosaic.choixAFaire: ' You still have {{nbChoix}} to choose from.'
   components.conversation.select.NumberedMosaic.choixAFaire.lock: ' Il vous reste {{nbChoix}} choix à faire.'
@@ -299,8 +294,7 @@ entries:
     visites générales de Nos Gestes Climat. Dans l'attente de chiffres plus
     précis, ce taux est donc potentiellement sous-estimé par rapport à la
     réalité.<3>(Données valables pour les 30 derniers jours)</3></1>
-  components.stats.StatsContent.scoreUtilisateurs:
-    '<0>Read more about it</0><1>Of
+  components.stats.StatsContent.scoreUtilisateurs: '<0>Read more about it</0><1>Of
     course, we do not collect <2>user data</2>. Nevertheless, the total score as
     well as the footprint per category is present in the end of test URL. In
     this section, we aggregate this information to get an idea of the average
@@ -331,8 +325,7 @@ entries:
   feedback.bad.form.headline: Your feedback is valuable to us in order to
     continuously improve this site. What should we work on to better meet your
     expectations?
-  feedback.bad.form.headline.lock:
-    Votre retour nous est précieux afin d'améliorer
+  feedback.bad.form.headline.lock: Votre retour nous est précieux afin d'améliorer
     ce site en continu. Sur quoi devrions nous travailler afin de mieux répondre
     à vos attentes ?
   feedback.question: Is this page useful to you?
@@ -389,8 +382,7 @@ entries:
   meta.publicodes.Contribution.description.lock: Découvrez les questions
     fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous
     aider.
-  meta.publicodes.Diffuser.description:
-    This simulator allows you to evaluate your
+  meta.publicodes.Diffuser.description: This simulator allows you to evaluate your
     total annual individual carbon footprint and by major categories (food,
     transportation, housing, miscellaneous, utilities, digital), to situate it
     in relation to the climate objectives and above all to take action at your
@@ -417,8 +409,7 @@ entries:
     empreinte. Suivez le parcours de passage à l'action pour la réduire.
   meta.publicodes.Méthode.description: Our calculation model is completely
     transparent. Everyone can explore it, give their opinion, improve it.
-  meta.publicodes.Méthode.description.lock:
-    Notre modèle de calcul est entièrement
+  meta.publicodes.Méthode.description.lock: Notre modèle de calcul est entièrement
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Understanding our calculations
   meta.publicodes.Méthode.title.lock: Comprendre nos calculs
@@ -436,16 +427,14 @@ entries:
   meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
   meta.publicodes.fin.Petrogaz.description.lock: Mon empreinte pétrole est de
     {{empreinte}} pleins de pétrole. Mesure la tienne !
-  meta.publicodes.fin.actionslide.description:
-    Top 3 actions to reduce my climate
+  meta.publicodes.fin.actionslide.description: Top 3 actions to reduce my climate
     footprint by {{roundedValue}} tons of CO₂‍ₑ.
   meta.publicodes.fin.actionslide.description.lock: Le top 3 des actions pour
     réduire mon empreinte climat de {{roundedValue}} tonnes de CO₂ₑ.
   meta.publicodes.pages.Documentation.description: Our calculation model is
     completely transparent. Everyone can explore it, give their opinion, improve
     it.
-  meta.publicodes.pages.Documentation.description.lock:
-    Notre modèle de calcul est
+  meta.publicodes.pages.Documentation.description.lock: Notre modèle de calcul est
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
   minutes: minutes
@@ -469,8 +458,7 @@ entries:
   plus de 100 kg: over 100 kg
   publicodes.ActionTutorial.félicitation: You have completed your simulation, 👏 well done!
   publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
-  publicodes.ActionTutorial.msgEstimation:
-    You now know your footprint, estimated
+  publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated
     at {{value}} {{unit}}, and you probably already have ideas to reduce it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre
     empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des
@@ -519,8 +507,7 @@ entries:
     version 93, Chrome version 95, Safari, etc.), and the platform (iPhone,
     Android, Windows computer, etc.), you will help us resolve the bug
     faster.</0></1>
-  publicodes.Contribution.descriptionComplète.lock:
-    <0>La description complète de
+  publicodes.Contribution.descriptionComplète.lock: <0>La description complète de
     votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par
     exemple Firefox version 93, Chrome version 95, Safari, etc.), et la
     plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à
@@ -529,8 +516,7 @@ entries:
     invite you to <2>open a ticket directly on GitHub</2>.
   publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question,
     nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
-  publicodes.Contribution.remerciements:
-    Thank you 😍! Follow the progress of your
+  publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your
     suggestion by clicking on <1>this link</1>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de
     votre suggestion en cliquant sur <1>ce lien</1>.
@@ -560,27 +546,22 @@ entries:
     console (elle est un peu chargée...), puis copier le JSON affiché, le coller
     dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans
     personas.yaml.
-  publicodes.Personas.warningMsg:
-    'Be careful, you have a simulation in progress:
+  publicodes.Personas.warningMsg: 'Be careful, you have a simulation in progress:
     selecting a persona will overwrite your simulation.'
   publicodes.Personas.warningMsg.lock: 'Attention, vous avez une simulation en
     cours : sélectionner un persona écrasera votre simulation.'
-  publicodes.Profil.locationDonnées:
-    <0>Where is my data? </0>Your data is stored
+  publicodes.Profil.locationDonnées: <0>Where is my data? </0>Your data is stored
     in your browser, so you have full control over it <2></2>
-  publicodes.Profil.locationDonnées.lock:
-    <0>Où sont mes données ? </0>Vos données
+  publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0>Vos données
     sont stockées dans votre navigateur, vous avez donc le contrôle total sur
     elles. <2></2>
   publicodes.Profil.recap: You have completed the test at {{percentFinished}} %
     ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
     actions.
-  publicodes.Profil.recap.lock:
-    Vous avez terminé le test à {{percentFinished}} %
+  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} %
     ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
     actions.
-  publicodes.SimulationMissing.personnas:
-    💡 You can also see the action course as
+  publicodes.SimulationMissing.personnas: 💡 You can also see the action course as
     if you were one of these sample profiles.
   publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi voir le
     parcours action comme si vous étiez l'un de ces profils types.
@@ -596,13 +577,11 @@ entries:
   publicodes.Tutorial.slide1.p1.lock: <0>Pas de panique, on vous explique ce que
     c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à
     mesure des gaz à effet de serre que l'on émet.</1>
-  publicodes.Tutorial.slide1.p2:
-    <0>This test gives you in ⏱️ 10 minutes flat <2>a
+  publicodes.Tutorial.slide1.p2: <0>This test gives you in ⏱️ 10 minutes flat <2>a
     measure of your part </2> in this warming.</0>
   publicodes.Tutorial.slide1.p2.lock: <0>Ce test vous donne en ⏱️ 10 minutes
     chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>
-  publicodes.Tutorial.slide2.blockquote:
-    'Other gases, especially methane <1></1>
+  publicodes.Tutorial.slide2.blockquote: 'Other gases, especially methane <1></1>
     and nitrous oxide <5></5> also warm the planet: we convert their warming
     potential to CO₂ equivalent to simplify the unit.'
   publicodes.Tutorial.slide2.blockquote.lock: "D'autres gaz, surtout le
@@ -618,32 +597,26 @@ entries:
   publicodes.Tutorial.slide2.p1.lock: "Avec une unité au nom barbare :
     l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on
     l'expire toute la journée, mais sans influence sur le climat."
-  publicodes.Tutorial.slide2.p2:
-    Machines that enable our modern comfort do reject
+  publicodes.Tutorial.slide2.p2: Machines that enable our modern comfort do reject
     massive amounts of CO₂, so much that we count it in thousands of kilos per
     year and per person, therefore in <1>tons</1> of CO₂e!
-  publicodes.Tutorial.slide2.p2.lock:
-    Ce sont les machines qui font notre confort
+  publicodes.Tutorial.slide2.p2.lock: Ce sont les machines qui font notre confort
     moderne qui en rejettent massivement, à tel point qu'on le compte en
     milliers de kilos par an et par personne, donc en <1>tonnes</1> de CO₂e !
-  publicodes.Tutorial.slide3.blockquote:
-    ✨ New! Also view your ⛽️ oil consumption,
+  publicodes.Tutorial.slide3.blockquote: ✨ New! Also view your ⛽️ oil consumption,
     a complementary indicator to the climate topic.
   publicodes.Tutorial.slide3.blockquote.lock: ✨ Nouveau ! Visualisez également
     votre consommation de ⛽️ pétrole, un indicateur complémentaire au sujet
     climat.
-  publicodes.Tutorial.slide3.p1:
-    <0>And practically speaking ?</0><1>Every year, a
+  publicodes.Tutorial.slide3.p1: <0>And practically speaking ?</0><1>Every year, a
     French person emits on average about <2>10 tons of</2> CO₂e.</1>
-  publicodes.Tutorial.slide3.p1.lock:
-    <0>Et concrètement ?</0><1>Chaque année, un
+  publicodes.Tutorial.slide3.p1.lock: <0>Et concrètement ?</0><1>Chaque année, un
     Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
   publicodes.Tutorial.slide3.p2: The starting score of your test is calculated
     from the average French lifestyle. It is to be taken as a minimum that
     reflects the current state of the calculation perimeter, which we complete
     each month.
-  publicodes.Tutorial.slide3.p2.lock:
-    Le score de départ de votre test est calculé
+  publicodes.Tutorial.slide3.p2.lock: Le score de départ de votre test est calculé
     à partir du mode de vie moyen français. Il est à prendre comme un minimum
     qui reflète l'état actuel du périmètre de calcul, que nous complétons chaque
     mois.
@@ -659,8 +632,7 @@ entries:
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
-  publicodes.Tutorial.slide6:
-    <0>Where does our footprint come from?</0><1>Taking
+  publicodes.Tutorial.slide6: <0>Where does our footprint come from?</0><1>Taking
     the car, eating a steak, heating your house, getting medical care, buying a
     TV...</1><2><0><0></0></0></2><3>The footprint of our individual consumption
     is the sum of all these activities that make up our modern life </3>
@@ -669,15 +641,13 @@ entries:
     une TV...</1><2><0><0></0></0></2><3>L'empreinte de notre consommation
     individuelle, c'est la somme de toutes ces activités qui font notre vie
     moderne. </3>
-  publicodes.Tutorial.slide7:
-    '<0>So, are you ready to go?</0><1>Some tips to help
+  publicodes.Tutorial.slide7: '<0>So, are you ready to go?</0><1>Some tips to help
     you complete the test:</1><2>👤 Answer the questions on behalf of yourself,
     not your household: this is an individual test.</2><3>💼 Answer for your
     personal life, not for your job or studies. <2>One exception: </2> your
     commute must be included in the miles driven.</3><4>❓️ More questions? Check
     out our <2>FAQs</2> at any time.</4>'
-  publicodes.Tutorial.slide7.lock:
-    "<0>Alors, c'est parti ?</0><1>Quelques astuces
+  publicodes.Tutorial.slide7.lock: "<0>Alors, c'est parti ?</0><1>Quelques astuces
     pour vous aider à compléter le test :</1><2>👤 Répondez aux questions en
     votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼
     Répondez pour votre vie perso, pas pour votre boulot ou études. <2>Une seule
@@ -686,8 +656,7 @@ entries:
     moment.</4>"
   publicodes.chart.RavijenChart.equivalenceCase: One box 🔲 = {{nbKg}} kg of CO₂e.
   publicodes.chart.RavijenChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
-  publicodes.conference.Conference.donnéesExplications:
-    '<0>By participating, you
+  publicodes.conference.Conference.donnéesExplications: '<0>By participating, you
     agree to share your aggregated simulation results with other conference
     participants: the total and the categories (transportation, housing, etc.).
     However, our servers do not store them: it works in P2P (peer to
@@ -700,8 +669,7 @@ entries:
     cela fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de
     conférence sera indexé dans <2>les statistiques d'utilisation</2> de Nos
     Gestes Climat. </1>"
-  publicodes.conference.DataWarning.viePrivée:
-    '🕵 By participating, you agree to
+  publicodes.conference.DataWarning.viePrivée: '🕵 By participating, you agree to
     the <1>anonymous</1> collection of your aggregated simulation results on our
     server: total climate footprint and categories (transportation, housing,
     etc.). <3>Read more</3>'
@@ -709,34 +677,27 @@ entries:
     acceptez la collecte <1>anonyme</1> de vos résultats agrégés de simulation
     sur notre serveur : l'empreinte climat totale et les catégories (transport,
     logement, etc.). <3>En savoir plus</3>"
-  publicodes.conference.Instructions.avertissementModeConference:
-    '🔒️ Your organization may block the use of conference mode. Test beforehand
+  publicodes.conference.Instructions.avertissementModeConference: '🔒️ Your organization may block the use of conference mode. Test beforehand
     in duet: if there is a problem, you can use the polling mode.'
-  publicodes.conference.Instructions.avertissementModeConference.lock:
-    "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence.
+  publicodes.conference.Instructions.avertissementModeConference.lock: "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence.
     Faites le test au préalable en duo : en cas de problème, vous pouvez
     utiliser le mode sondage."
   publicodes.conference.Instructions.contextualisationLink: 💡 Want to add
     questions to get additional information about respondents? <2>Check out the
     "survey contextualization!" feature </2>
-  publicodes.conference.Instructions.contextualisationLink.lock:
-    💡 Vous souhaitez ajouter des questions pour obtenir des informations
+  publicodes.conference.Instructions.contextualisationLink.lock: 💡 Vous souhaitez ajouter des questions pour obtenir des informations
     supplémentaires sur les répondants ? <2>Découvrez la fonctionnalité
     "contextualisation de sondage !" </2>
-  publicodes.conference.Instructions.descriptionModeConference:
-    'Ephemeral mode: perfect for a workshop, an interactive presentation or
+  publicodes.conference.Instructions.descriptionModeConference: 'Ephemeral mode: perfect for a workshop, an interactive presentation or
     between friends. The data remains between the participants (peer-to-peer),
     without a server, <2>just for the time of the conference</2>.'
-  publicodes.conference.Instructions.descriptionModeConference.lock:
-    "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
+  publicodes.conference.Instructions.descriptionModeConference.lock: "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
     interactive ou entre amis. Les données restent entre les participants
     (pair-à-pair), sans serveur, <2>juste le temps de la conférence</2>."
-  publicodes.conference.Instructions.descriptionModeSondage:
-    'Persistent mode: the
+  publicodes.conference.Instructions.descriptionModeSondage: 'Persistent mode: the
     interface is almost the same, but the data is stored on our server and thus
     remains accessible <1>for two months</1>.'
-  publicodes.conference.Instructions.descriptionModeSondage.lock:
-    "Mode persistant : l'interface est presque la même, mais les données sont
+  publicodes.conference.Instructions.descriptionModeSondage.lock: "Mode persistant : l'interface est presque la même, mais les données sont
     stockées sur notre serveur et ainsi restent accessibles <1>pendant deux
     mois</1>."
   publicodes.conference.Instructions.guideLien: The results are in, what to do?
@@ -749,37 +710,30 @@ entries:
     will be behind his or her own screen, but will be able to see the results of
     the others in real time.</0><1>It is an opportunity to confront others and
     to think together about the stakes of our own impact.</1>
-  publicodes.conference.Instructions.intro.lock:
-    <0>Le test d'empreinte climat est
+  publicodes.conference.Instructions.intro.lock: <0>Le test d'empreinte climat est
     individuel, mais nous vous proposons ici de le faire à plusieurs. Chacun
     sera derrière son écran, mais visualisera en temps-réel les résultats des
     autres.</0><1>C'est l'occasion de se confronter aux autres et de réfléchir
     ensemble aux enjeux de notre propre impact.</1>
-  publicodes.conference.Instructions.liensSimulationConference:
-    At the agreed time, open this link all at the same time and do your own
+  publicodes.conference.Instructions.liensSimulationConference: At the agreed time, open this link all at the same time and do your own
     simulation.
-  publicodes.conference.Instructions.liensSimulationConference.lock:
-    Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
+  publicodes.conference.Instructions.liensSimulationConference.lock: Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
     votre côté votre simulation.
   publicodes.conference.Instructions.liensSimulationSondage: Participants must come to make their simulation on this link.
   publicodes.conference.Instructions.liensSimulationSondage.lock: Les participants doivent venir faire leur simulation sur ce lien.
-  publicodes.conference.Instructions.resultatInfos:
-    'The results for each category
+  publicodes.conference.Instructions.resultatInfos: 'The results for each category
     (food, transportation, housing, etc.) are displayed progressively and in
     real time for the entire group on '
   publicodes.conference.Instructions.resultatInfos.lock: "Les résultats pour
     chaque catégorie (alimentation, transport, logement ...) s'affichent
     progressivement et en temps réel pour l'ensemble du groupe sur "
   publicodes.conference.NamingBlock.nomSalleCourt: ⚠️ Your room name is short, there is a small risk that strangers may guess it
-  publicodes.conference.NamingBlock.nomSalleCourt.lock:
-    ⚠️ Votre nom de salle est
+  publicodes.conference.NamingBlock.nomSalleCourt.lock: ⚠️ Votre nom de salle est
     court, il y a un petit risque que des inconnus puissent le deviner
   publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres: 💡 Your room name can only contain letters, numbers and dashes
-  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres.lock:
-    💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
+  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres.lock: 💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
     tirets
-  publicodes.conference.NoTestMessage.bienvenue:
-    Welcome to the group mode of Our
+  publicodes.conference.NoTestMessage.bienvenue: Welcome to the group mode of Our
     Climate Action! You haven't started your test yet, go ahead!
   publicodes.conference.NoTestMessage.bienvenue.lock: Bienvenue dans le mode
     groupe de Nos Gestes Climat ! Vous n'avez pas encore débuté votre test,
@@ -794,8 +748,7 @@ entries:
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: To open it with <2>LibreOffice</2>, it is automatic.
   publicodes.conference.Survey.libreOffice.lock: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
-  publicodes.conference.Survey.resultat:
-    The results on the view page only include
+  publicodes.conference.Survey.resultat: The results on the view page only include
     participants who completed <1>at least 10% of the test</1>. The CSV, on the
     other hand, contains the simulations of all the people who participated in
     the survey by clicking on the link. The "progress" column allows you to
@@ -806,8 +759,7 @@ entries:
     les personnes ayant participé au sondage en cliquant sur le lien. La colonne
     "progress" vous permet de filtrer les simulations à votre tour.
   publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tons!<2> You are well below the French average</2> '
-  publicodes.fin.ActionTeaser.félicitations.lock:
-    '{{displayedTotal}} tonnes !<2>
+  publicodes.fin.ActionTeaser.félicitations.lock: '{{displayedTotal}} tonnes !<2>
     Vous êtes très nettement en-dessous de la moyenne française.</2> '
   publicodes.fin.ActionTeaser.messagePourConvaincre: Chances are, your time will
     be better spent convincing and helping others than trying to earn your
@@ -833,8 +785,7 @@ entries:
     {{parent}}.</2>
   publicodes.fin.Petrogaz.equivalenceVolume: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
   publicodes.fin.Petrogaz.equivalenceVolume.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
-  publicodes.fin.Petrogaz.explications:
-    <0>It is a <1>minimum</1> estimate of your
+  publicodes.fin.Petrogaz.explications: <0>It is a <1>minimum</1> estimate of your
     crude oil consumption for the year.</0><1>Estimated via your car, plane, bus
     and heating oil consumption, it does not (yet) take into account the oil
     used to transport your purchases, and the grey energy of your various
@@ -860,8 +811,7 @@ entries:
   site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my simulation at {{spotlightValue}} t.'
   site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
   sites.publicodes.Landing.description: In 10 minutes, get an estimate of your carbon footprint.
-  sites.publicodes.Landing.description.lock:
-    En 10 minutes, obtenez une estimation
+  sites.publicodes.Landing.description.lock: En 10 minutes, obtenez une estimation
     de votre empreinte carbone de consommation.
   sites.publicodes.LandingExplanations.faqLink: >-
     ## Any questions?
