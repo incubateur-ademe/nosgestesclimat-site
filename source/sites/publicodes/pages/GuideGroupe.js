@@ -11,9 +11,10 @@ import styled from 'styled-components'
 
 export default () => {
 	const documentation = useFetchDocumentation()
-	if (!documentation) return null
 
 	const { t } = useTranslation()
+
+	if (!documentation) return null
 
 	const { encodedName } = useParams()
 
@@ -25,7 +26,7 @@ export default () => {
 				<Markdown
 					children={
 						documentation['guide-mode-groupe/guide'] ||
-						"Ce guide n'existe pas encore"
+						t("Ce guide n'existe pas encore")
 					}
 				/>
 			</GuideWrapper>
@@ -64,7 +65,9 @@ export default () => {
 				/>
 				{encodedName !== 'guide' && relatedActions.length > 0 && (
 					<>
-						<h2>Pour aller plus loin:</h2>
+						<h2>
+							<Trans>Pour aller plus loin</Trans>:
+						</h2>
 						<div>
 							{relatedActions.map((action) => (
 								<Link
