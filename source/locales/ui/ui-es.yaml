@@ -166,6 +166,7 @@ entries:
   Pompe à pétrole: Bomba de aceite
   'Pour en savoir plus, tout est expliqué <1></1>dans ': 'Para saber más, todo está explicado <1></1>en '
   'Pour en savoir plus, tout est expliqué dans ': 'Para más información, consulte '
+  Problème de traduction: Problema de traducción
   Progression dans les diapo: Progresión a través de las diapositivas
   Précédent: Anteriormente
   Prêt à démarrer ?: ¿Listo para empezar?
@@ -200,6 +201,7 @@ entries:
   Trajet (Optionnel): Ruta (opcional)
   'Tri :': 'Clasificación :'
   'Triées par :': 'Clasificado por :'
+  Un problème de traduction ?: ¿Un problema de traducción?
   Une personne au moins est présente dans la voiture (vous !): Al menos una persona está presente en el coche (¡tú!)
   'Une question, un problème ?': ¿Una pregunta, un problema?
   Vacances: Vacaciones
@@ -216,6 +218,8 @@ entries:
   Votre part du logement: Su parte de la vivienda
   Vous avez choisi: Has elegido
   Vous avez complété la catégorie: Ha completado la categoría
+  Vous avez du temps pour nous aider à traduire: Tienes tiempo para ayudarnos a traducir
+  Vous avez juste 30 secondes pour nous aider: Sólo tienes 30 segundos para ayudarnos
   Vous avez terminé le test 👏: Has completado la prueba 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: Ha sido invitado a una encuesta de Our Climate Action llamada
   Vous n'avez pas encore fait le test.: Todavía no has hecho la prueba.
@@ -242,12 +246,12 @@ entries:
     change pas puisqu'une valeur standard vous est attribuée dans ce cas. Il est
     fréquent que le score initial change car<8>le modèle Nos Gestes Climat
     évolue</8>!
-  components.TranslationAlertBanner.wikiLink: Esta página ha <1>sido traducida
-    automáticamente</1>. Si tiene alguna sugerencia, <4>consulte la wiki</4>.
+  components.TranslationAlertBanner.wikiLink:
+    La traducción de esta página está en
+    versión <1>beta</1>.<3>¿Algún problema, alguna sugerencia?</3>
   components.TranslationAlertBanner.wikiLink.lock:
-    Cette page a <1>été traduite de
-    façons automatique</1>. Si vous avez une suggestion, <4>reportez vous au
-    wiki</4>.
+    La traduction de cette page est
+    en version <1>beta</1>.<3>Un problème, une suggestion ?</3>.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Viaja {{kmParcouru}} km avec en moyenne {{nbPersonnes}} en el coche.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
@@ -534,6 +538,8 @@ entries:
     exemple Firefox version 93, Chrome version 95, Safari, etc.), et la
     plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à
     résoudre le bug plus rapidement.</0></1>
+  publicodes.Contribution.descriptionComplèteTraduction: <0>Una descripción completa de su problema</0>
+  publicodes.Contribution.descriptionComplèteTraduction.lock: <0>La description complète de votre problème</0>
   publicodes.Contribution.liensVersGithub:
     Si tienes algún comentario o pregunta,
     <2>abre un ticket directamente en GitHub</2>.
@@ -543,6 +549,24 @@ entries:
     sugerencia haciendo clic en <1>este enlace</1>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de
     votre suggestion en cliquant sur <1>ce lien</1>.
+  publicodes.Contribution.titreQuestion: Tengo otra pregunta
+  publicodes.Contribution.titreQuestion.lock: J'ai une autre question
+  publicodes.Contribution.traductionIntro: Nuestra Acción por el Clima acaba de
+    ser traducida a varios idiomas. No dudes en compartir tus dudas sobre un
+    problema de traducción en la web 😊. Lo tendremos en cuenta rápidamente.
+  publicodes.Contribution.traductionIntro.lock:
+    Nos Gestes Climat vient tout juste
+    d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de
+    vos doutes quand à un problèm de traduction sur le site 😊. Nous le
+    prendrons en compte rapidement.
+  publicodes.Contribution.translationWikiInvite:
+    'Siga nuestra guía completa para
+    contribuir directamente a la traducción del sitio: <2>vaya a nuestra
+    wiki</2>.'
+  publicodes.Contribution.translationWikiInvite.lock:
+    'Suivez notre guide complet
+    pour contribuer directement à la traduction du site : <2>rendez-vous sur
+    notre wiki</2>.'
   publicodes.Landing.question: ¿Conoce su huella climática?
   publicodes.Landing.question.lock: Connaissez-vous votre empreinte sur le climat ?
   publicodes.LandingExplanations.question: ¿Conoce su huella climática?

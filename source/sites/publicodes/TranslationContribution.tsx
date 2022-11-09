@@ -65,7 +65,11 @@ export default ({}) => {
 								/>
 							</label>
 							<label css="color: var(--color)">
-								<Trans i18nKey={'publicodes.Contribution.descriptionComplète'}>
+								<Trans
+									i18nKey={
+										'publicodes.Contribution.descriptionComplèteTraduction'
+									}
+								>
 									<p>La description complète de votre problème</p>
 								</Trans>
 								<textarea
