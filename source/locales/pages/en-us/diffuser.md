@@ -1,6 +1,6 @@
 # Disseminate Our Climate Actions
 
-Our Climate Gestures is a public service, its code [is
+Nos Gestes Climat is a public service, its code [is
 free](/documentation) and reusable by everyone.
 
 However, you can take advantage of and distribute our simulator in

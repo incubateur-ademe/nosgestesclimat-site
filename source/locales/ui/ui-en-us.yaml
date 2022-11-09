@@ -66,7 +66,7 @@ entries:
   Durée des visites: Duration of the visits
   Découvrez la FAQ !: Discover the FAQ!
   Découvrez les enjeux qui se cachent derrière chaque action.: Discover the issues behind each action.
-  Découvrez les nouveautés de Nos Gestes Climat: Discover the new features of Our Climate Gestures
+  Découvrez les nouveautés de Nos Gestes Climat: Discover the new features of Nos Gestes Climat
   Démarrer: Start
   Effacer le nom actuel: Delete current name
   Empreinte totale: Total footprint
@@ -283,7 +283,7 @@ entries:
     integrations</0><1>Iframe integrations are detected via the 'iframe'
     parameter in the URL, only if the integrator has used the <1>dedicated
     script</1>. Thus, the visits via iframes of integrators who did not use this
-    script are scattered in the general visits of Our Climate Gestures. Pending
+    script are scattered in the general visits of Nos Gestes Climat. Pending
     more precise figures, this rate is therefore potentially underestimated
     compared to reality.<3>(Data valid for the last 30 days)</3></1>
   components.stats.StatsContent.integrationEtIframes.lock: <0>En savoir
@@ -360,7 +360,7 @@ entries:
     de vos réponses.
   meta.publicodes.About.title: About us
   meta.publicodes.About.title.lock: À propos
-  meta.publicodes.Accessibility.description: The site Our Climate Gestures is
+  meta.publicodes.Accessibility.description: The site Nos Gestes Climat is
     partially compliant with the General Accessibility Guidelines, RGAA version
     4.1
   meta.publicodes.Accessibility.description.lock: Le site Nos Gestes Climat est
@@ -369,7 +369,7 @@ entries:
   meta.publicodes.Accessibility.title: Accessibility
   meta.publicodes.Accessibility.title.lock: Accessibilité
   meta.publicodes.CGU.description: These general terms of use (called "GTC") set
-    the legal framework of the Platform "Our Climate Gestures" and define the
+    the legal framework of the Platform "Nos Gestes Climat" and define the
     conditions of access and use of services by the User.
   meta.publicodes.CGU.description.lock: Les présentes conditions générales
     d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme
@@ -393,7 +393,7 @@ entries:
     numérique), de la situer par rapport aux objectifs climatiques et surtout de
     passer à l’action à votre niveau avec des gestes personnalisés en fonction
     de vos réponses.
-  meta.publicodes.Diffuser.title: Spreading Our Climate Gestures
+  meta.publicodes.Diffuser.title: Spreading Nos Gestes Climat
   meta.publicodes.Diffuser.title.lock: Diffuser Nos Gestes Climat
   meta.publicodes.Landing.description: Test your carbon footprint, alone or in a
     group. Discover the breakdown of your footprint. Follow the path to action
@@ -413,7 +413,7 @@ entries:
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Understanding our calculations
   meta.publicodes.Méthode.title.lock: Comprendre nos calculs
-  meta.publicodes.Privacy.description: Our climate gestures, out of group mode,
+  meta.publicodes.Privacy.description: Nos Gestes Climat, out of group mode,
     work without a server, so your data stays with you. We collect anonymously
     aggregated data to improve the simulator.
   meta.publicodes.Privacy.description.lock: Nos gestes climat, hors mode groupe,
@@ -484,7 +484,7 @@ entries:
     chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas
     quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.titreQuestion: I have a question
-  publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Our Climate Gestures?
+  publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Nos Gestes Climat?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: >-
     {{fromLocation}} ? `Depuis la page

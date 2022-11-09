@@ -255,7 +255,7 @@
     The manufacturing of a car is an industrial process far from being trivial and contributes to emit several tons of CO2e. In order not to create large variations in the footprint, especially in the years when you buy a new vehicle, this impact is spread over the life of the vehicle. This makes it possible to compare your carbon footprint from year to year.
 
 
-    If you own your own car, the entire impact of the construction is attributed to you. The depreciation is then linear, i.e. distributed equally from year to year. We ask how old your car is in order to know how much of the depreciation you have left to do. The depreciation period of a car, considered by Our Climate Gestures is 10 years. Any older vehicle is not considered (and automatically has zero emissions).
+    If you own your own car, the entire impact of the construction is attributed to you. The depreciation is then linear, i.e. distributed equally from year to year. We ask how old your car is in order to know how much of the depreciation you have left to do. The depreciation period of a car, considered by Nos Gestes Climat is 10 years. Any older vehicle is not considered (and automatically has zero emissions).
 
 
     If you do not own your car, only a fraction of the impact of its manufacture is applied to your carbon footprint, in proportion to your use.
@@ -610,7 +610,7 @@
   question: I don't understand if the calculation is done per household or per individual
   question.lock: Je ne comprends pas si le calcul est fait par foyer ou par individu
   réponse: >
-    Our Climate Gestures is an individual carbon footprint calculator
+    Nos Gestes Climat is an individual carbon footprint calculator
 
 
     However, some questions can be confusing (like the number of people living in your home or the average number of passengers in your car). These questions are there so that we can bring a larger impact to the individual scale.
