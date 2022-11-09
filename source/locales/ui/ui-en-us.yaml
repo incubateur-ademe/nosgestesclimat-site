@@ -163,6 +163,7 @@ entries:
   Pompe à pétrole: Oil pump
   'Pour en savoir plus, tout est expliqué <1></1>dans ': 'To learn more, everything is explained <1></1>in '
   'Pour en savoir plus, tout est expliqué dans ': 'To learn more, everything is explained in '
+  Problème de traduction: Translation problem
   Progression dans les diapo: Progression through the slides
   Précédent: Previous
   Prêt à démarrer ?: Ready to get started?
@@ -197,6 +198,7 @@ entries:
   Trajet (Optionnel): Route (Optional)
   'Tri :': 'Sorting:'
   'Triées par :': 'Sorted by :'
+  Un problème de traduction ?: A translation problem?
   Une personne au moins est présente dans la voiture (vous !): At least one person is present in the car (you!)
   'Une question, un problème ?': A question, a problem?
   Vacances: Vacations
@@ -213,6 +215,8 @@ entries:
   Votre part du logement: Your share of the housing
   Vous avez choisi: You have chosen
   Vous avez complété la catégorie: You have completed the category
+  Vous avez du temps pour nous aider à traduire: You have time to help us translate
+  Vous avez juste 30 secondes pour nous aider: You have just 30 seconds to help us
   Vous avez terminé le test 👏: You have completed the test 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: You have been invited to an Our Climate Action survey called
   Vous n'avez pas encore fait le test.: You haven't taken the test yet.
@@ -240,10 +244,9 @@ entries:
     fréquent que le score initial change car<8>le modèle Nos Gestes Climat
     évolue</8>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in
-    <1>beta</1> version. <3>Found an error, a better suggestion ?</3>
+    <1>beta</1> version.<3>Found a problem, a better suggestion?</3>.
   components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est
-    en version <1>beta</1>. Si vous avez une suggestion, <4>reportez vous au
-    wiki</4>.
+    en version <1>beta</1>.<3>Un problème, une suggestion ?</3>.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
     car.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
@@ -413,8 +416,8 @@ entries:
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Understanding our calculations
   meta.publicodes.Méthode.title.lock: Comprendre nos calculs
-  meta.publicodes.Privacy.description: Nos Gestes Climat, out of group mode,
-    work without a server, so your data stays with you. We collect anonymously
+  meta.publicodes.Privacy.description: Nos Gestes Climat, out of group mode, work
+    without a server, so your data stays with you. We collect anonymously
     aggregated data to improve the simulator.
   meta.publicodes.Privacy.description.lock: Nos gestes climat, hors mode groupe,
     fonctionne sans serveur, donc vos données restent chez vous. Nous collectons
@@ -483,7 +486,6 @@ entries:
   publicodes.AllActions.msgPlusActions.lock: <0>Nous n'avons plus d'actions
     chiffrées très impactantes à vous proposer 🤷</0><1>Découvrez plus bas
     quelques pistes pour agir autrement ⏬</1>
-  publicodes.Contribution.titreQuestion: I have a question
   publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Nos Gestes Climat?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: >-
@@ -513,6 +515,8 @@ entries:
     exemple Firefox version 93, Chrome version 95, Safari, etc.), et la
     plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à
     résoudre le bug plus rapidement.</0></1>
+  publicodes.Contribution.descriptionComplèteTraduction: <0>The complete description of your problem</0>
+  publicodes.Contribution.descriptionComplèteTraduction.lock: <0>La description complète de votre problème</0>
   publicodes.Contribution.liensVersGithub: For any comments or questions, we
     invite you to <2>open a ticket directly on GitHub</2>.
   publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question,
@@ -521,6 +525,21 @@ entries:
     suggestion by clicking on <1>this link</1>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de
     votre suggestion en cliquant sur <1>ce lien</1>.
+  publicodes.Contribution.titreQuestion: I have another question
+  publicodes.Contribution.titreQuestion.lock: J'ai une autre question
+  publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been
+    translated into several languages. Do not hesitate to share your doubts
+    about a translation problem on the site 😊. We will take it into account
+    quickly.
+  publicodes.Contribution.traductionIntro.lock: Nos Gestes Climat vient tout juste
+    d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de
+    vos doutes quand à un problèm de traduction sur le site 😊. Nous le
+    prendrons en compte rapidement.
+  publicodes.Contribution.translationWikiInvite: 'Follow our complete guide to
+    contribute directly to the translation of the site: <2>go to our wiki</2>.'
+  publicodes.Contribution.translationWikiInvite.lock: 'Suivez notre guide complet
+    pour contribuer directement à la traduction du site : <2>rendez-vous sur
+    notre wiki</2>.'
   publicodes.Landing.question: Do you know your climate footprint?
   publicodes.Landing.question.lock: Connaissez-vous votre empreinte sur le climat ?
   publicodes.LandingExplanations.question: Do you know your climate footprint?

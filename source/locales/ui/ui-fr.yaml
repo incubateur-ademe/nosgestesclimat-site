@@ -162,6 +162,7 @@ entries:
   Pompe à pétrole: Pompe à pétrole
   'Pour en savoir plus, tout est expliqué <1></1>dans ': 'Pour en savoir plus, tout est expliqué <1></1>dans '
   'Pour en savoir plus, tout est expliqué dans ': 'Pour en savoir plus, tout est expliqué dans '
+  Problème de traduction: Problème de traduction
   Progression dans les diapo: Progression dans les diapo
   Précédent: Précédent
   Prêt à démarrer ?: Prêt à démarrer ?
@@ -196,6 +197,7 @@ entries:
   Trajet (Optionnel): Trajet (Optionnel)
   'Tri :': 'Tri :'
   'Triées par :': 'Triées par :'
+  Un problème de traduction ?: Un problème de traduction ?
   Une personne au moins est présente dans la voiture (vous !): Une personne au moins est présente dans la voiture (vous !)
   'Une question, un problème ?': Une question, un problème ?
   Vacances: Vacances
@@ -212,6 +214,8 @@ entries:
   Votre part du logement: Votre part du logement
   Vous avez choisi: Vous avez choisi
   Vous avez complété la catégorie: Vous avez complété la catégorie
+  Vous avez du temps pour nous aider à traduire: Vous avez du temps pour nous aider à traduire
+  Vous avez juste 30 secondes pour nous aider: Vous avez juste 30 secondes pour nous aider
   Vous avez terminé le test 👏: Vous avez terminé le test 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: Vous avez été invités à un sondage Nos Gestes Climat nommé
   Vous n'avez pas encore fait le test.: Vous n'avez pas encore fait le test.
@@ -390,10 +394,20 @@ entries:
     Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme
     (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le
     bug plus rapidement.</0></1>
+  publicodes.Contribution.descriptionComplèteTraduction: <0>La description complète de votre problème</0>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous
     vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre
     suggestion en cliquant sur <1>ce lien</1>.
+  publicodes.Contribution.titreQuestion: J'ai une autre question
+  publicodes.Contribution.traductionIntro: Nos Gestes Climat vient tout juste
+    d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de
+    vos doutes quand à un problèm de traduction sur le site 😊. Nous le
+    prendrons en compte rapidement.
+  publicodes.Contribution.translationWikiInvite:
+    'Suivez notre guide complet pour
+    contribuer directement à la traduction du site : <2>rendez-vous sur notre
+    wiki</2>.'
   publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?
   publicodes.LandingExplanations.question: Connaissez-vous votre empreinte sur le climat ?
   publicodes.Personas.description: Les personas nous permettront de prendre le
