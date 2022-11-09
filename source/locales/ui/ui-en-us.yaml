@@ -101,6 +101,7 @@ entries:
   Guidé: Guided
   Initialisation...: Initialization...
   Insérer cette suggestion: Insert this suggestion
+  Intégrateurs identifiés: Identified integrators
   Intégrations et Iframes: Integrations and Iframes
   J'ai compris: I understand
   Je ne sais pas: I do not know
@@ -132,6 +133,7 @@ entries:
   Nom de la salle: Name of the room
   Nombre de personnes: Number of people
   Nombre de visites pour les: Number of visits for
+  Nombre de visites pour les 60 derniers jours: Number of visits for the last 60 days
   Non: No
   Non applicable: Not applicable
   Nos Gestes Climat Conférence: Our Climate Action Conference
@@ -206,6 +208,7 @@ entries:
   Vacances: Vacations
   Version: Version
   Visite familiale: Family visit
+  Visites: Visits
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Here's my footprint ⛽️ oil. Measure yours!
   Voir en détails: See in details
   'Voir le reste : ': 'See the rest '
@@ -326,10 +329,14 @@ entries:
     être biaisées par des utilisateurs qui reviendraient à plusieurs reprises
     sur la page de fin, en changeant ses réponses au test (ce qui crée de
     nouveaux url de fin).</3>"
+  de CO₂e en moyenne: of CO₂e on average
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: of visits this month<1> (compared to the month before)</1>
   derniers: latest
   dernières: latest
   dernières nouveautés: latest news
+  des visites affichées en iframe: of visits are displayed in iframe
+  des visites en iframe sont actives: of iframe visits are active
+  des vistes affichées en iframe: iframe display of lists
   en moyenne sur le site: on average on the site
   et: and
   et visualisez les résultats du groupe: and view the results of the group
@@ -883,6 +890,7 @@ entries:
   simulation-end.text.lock: Vous avez maintenant accès à l'estimation la plus précise possible.
   simulation-end.title: 🌟 You have completed this simulation
   simulation-end.title.lock: 🌟 Vous avez complété cette simulation
+  simulations: simulations
   simulations terminées depuis le lancement: simulations completed since the launch
   site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my simulation at {{spotlightValue}} t.'
   site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'

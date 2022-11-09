@@ -1,12 +1,13 @@
-import styled from 'styled-components'
+import { Trans } from 'react-i18next'
 import {
-	BarChart,
 	Bar,
+	BarChart,
+	ResponsiveContainer,
+	Tooltip,
 	XAxis,
 	YAxis,
-	Tooltip,
-	ResponsiveContainer,
 } from 'recharts'
+import styled from 'styled-components'
 
 import CustomTooltip from './histogram/CustomTooltip'
 
@@ -50,7 +51,9 @@ export default function visitDuration(props) {
 
 	return (
 		<ChartWrapper>
-			<ChartTitle>Nombre de visites pour les 60 derniers jours</ChartTitle>
+			<ChartTitle>
+				<Trans>Nombre de visites pour les 60 derniers jours</Trans>
+			</ChartTitle>
 			<ResponsiveContainer width="100%" height="100%">
 				<BarChart data={duration}>
 					<XAxis dataKey="label" />

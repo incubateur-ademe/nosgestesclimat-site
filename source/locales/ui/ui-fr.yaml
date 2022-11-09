@@ -99,6 +99,7 @@ entries:
   Guidé: Guidé
   Initialisation...: Initialisation...
   Insérer cette suggestion: Insérer cette suggestion
+  Intégrateurs identifiés: Intégrateurs identifiés
   Intégrations et Iframes: Intégrations et Iframes
   J'ai compris: J'ai compris
   Je ne sais pas: Je ne sais pas
@@ -130,6 +131,7 @@ entries:
   Nom de la salle: Nom de la salle
   Nombre de personnes: Nombre de personnes
   Nombre de visites pour les: Nombre de visites pour les
+  Nombre de visites pour les 60 derniers jours: Nombre de visites pour les 60 derniers jours
   Non: Non
   Non applicable: Non applicable
   Nos Gestes Climat Conférence: Nos Gestes Climat Conférence
@@ -204,6 +206,7 @@ entries:
   Vacances: Vacances
   Version: Version
   Visite familiale: Visite familiale
+  Visites: Visites
   Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !: Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !
   Voir en détails: Voir en détails
   'Voir le reste : ': 'Voir le reste : '
@@ -276,10 +279,14 @@ entries:
     représentatifs des Français. De plus, ces données peuvent être biaisées par
     des utilisateurs qui reviendraient à plusieurs reprises sur la page de fin,
     en changeant ses réponses au test (ce qui crée de nouveaux url de fin).</3>"
+  de CO₂e en moyenne: de CO₂e en moyenne
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>
   derniers: derniers
   dernières: dernières
   dernières nouveautés: dernières nouveautés
+  des visites affichées en iframe: des visites affichées en iframe
+  des visites en iframe sont actives: des visites en iframe sont actives
+  des vistes affichées en iframe: des vistes affichées en iframe
   en moyenne sur le site: en moyenne sur le site
   et: et
   et visualisez les résultats du groupe: et visualisez les résultats du groupe
@@ -579,6 +586,7 @@ entries:
   simulateurs.warning.titre: 🚩 Avant de commencer...
   simulation-end.text: Vous avez maintenant accès à l'estimation la plus précise possible.
   simulation-end.title: 🌟 Vous avez complété cette simulation
+  simulations: simulations
   simulations terminées depuis le lancement: simulations terminées depuis le lancement
   site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
   sites.publicodes.Landing.description: En 10 minutes, obtenez une estimation de

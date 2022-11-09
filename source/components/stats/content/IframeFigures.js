@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import Table from './sources/Table'
+import { Trans, useTranslation } from 'react-i18next'
+import { getCurrentLangInfos } from '../../../locales/translation'
 
 import Tile from '../utils/Tile'
 
@@ -86,6 +87,8 @@ export default function IframeFigures(props) {
 		getIframeRate(props.pages, props.activePages)
 	const [iframePages, totalIframe] =
 		props.pages && getIdentifiedIframes(props.pages)
+	const { i18n } = useTranslation()
+	const currentLangInfos = getCurrentLangInfos(i18n)
 
 	return (
 		<div>
@@ -94,20 +97,26 @@ export default function IframeFigures(props) {
 					<Tile.Content>
 						<Number>
 							{' '}
-							{Math.round(iframes).toLocaleString('fr-FR')}
+							{Math.round(iframes).toLocaleString(currentLangInfos.abrvLocale)}
 							<Small>&nbsp;%</Small>
 						</Number>
-						<Label>des vistes affichées en iframe</Label>
+						<Label>
+							<Trans>des visites affichées en iframe</Trans>
+						</Label>
 					</Tile.Content>
 				</TileWrapper>
 				<TileWrapper>
 					<Tile.Content>
 						<Number>
 							{' '}
-							{Math.round(activeIframes).toLocaleString('fr-FR') || '-'}
+							{Math.round(activeIframes).toLocaleString(
+								currentLangInfos.abrvLocale
+							) || '-'}
 							<Small>&nbsp;%</Small>
 						</Number>
-						<Label>des visites en iframe sont actives</Label>
+						<Label>
+							<Trans>des visites en iframe sont actives</Trans>
+						</Label>
 					</Tile.Content>
 				</TileWrapper>
 			</FigureWrapper>
@@ -116,8 +125,12 @@ export default function IframeFigures(props) {
 					<Wrapper>
 						<tbody>
 							<tr>
-								<th>Intégrateurs identifiés</th>
-								<th>Visites</th>
+								<th>
+									<Trans>Intégrateurs identifiés</Trans>
+								</th>
+								<th>
+									<Trans>Visites</Trans>
+								</th>
 								<th>%</th>
 							</tr>
 							{iframePages &&
@@ -143,7 +156,9 @@ export default function IframeFigures(props) {
 								)}
 						</tbody>
 					</Wrapper>
-					<Text>Données valables pour les 30 derniers jours</Text>
+					<Text>
+						<Trans>Données valables pour les 30 derniers jours</Trans>
+					</Text>
 				</Tile.Content>
 			</Tile.Tile>
 		</div>
