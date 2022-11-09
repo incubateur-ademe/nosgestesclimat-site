@@ -13,7 +13,7 @@ export default () => {
 				>
 					<Trans i18nKey={'components.TranslationAlertBanner.wikiLink'}>
 						La traduction de cette page est en version <strong>beta</strong>.
-						<a href="/contribuer">Un problème, une suggestion ?</a>.
+						<a href="/contribuer-traduction">Un problème, une suggestion ?</a>.
 					</Trans>
 				</p>
 			</AlertBanner>

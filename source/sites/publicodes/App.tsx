@@ -35,6 +35,7 @@ import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import TranslationContribution from './TranslationContribution'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
@@ -273,6 +274,14 @@ const Router = ({}) => {
 				element={
 					<Suspense fallback={<Loading />}>
 						<ContributionLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/contribuer-traduction"
+				element={
+					<Suspense fallback={<Loading />}>
+						<TranslationContribution />
 					</Suspense>
 				}
 			/>
