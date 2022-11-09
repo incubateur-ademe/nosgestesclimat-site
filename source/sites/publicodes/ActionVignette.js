@@ -318,18 +318,22 @@ export const ActionValue = ({
 	dottedName,
 	engine,
 }) => {
+	const { t, i18n } = useTranslation()
 	const evaluation = engine.evaluate(dottedName),
 		rawValue = evaluation.nodeValue
 	const correctedValue = correctValue({
 		nodeValue: rawValue,
 		unit: evaluation.unit,
 	})
-	const [stringValue, unit] = humanWeight(correctedValue, false, true),
+	const [stringValue, unit] = humanWeight(
+			{ t, i18n },
+			correctedValue,
+			false,
+			true
+		),
 		relativeValue = Math.round(100 * (correctedValue / total))
 
 	const sign = correctedValue > 0 ? '-' : '+'
-
-	const { t } = useTranslation()
 
 	return (
 		<div
