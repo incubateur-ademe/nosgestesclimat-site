@@ -230,8 +230,8 @@ entries:
     "je ne sais pas" à une question, vous remarquerez que le total ne change pas
     puisqu'une valeur standard vous est attribuée dans ce cas. Il est fréquent
     que le score initial change car<8>le modèle Nos Gestes Climat évolue</8>!
-  components.TranslationAlertBanner.wikiLink: Cette page a <1>été traduite de
-    façons automatique</1>. Si vous avez une suggestion, <4>reportez vous au
+  components.TranslationAlertBanner.wikiLink: La traduction de cette page est en
+    version <1>beta</1>. Si vous avez une suggestion, <4>reportez vous au
     wiki</4>.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
@@ -334,7 +334,8 @@ entries:
     fonctionne sans serveur, donc vos données restent chez vous. Nous collectons
     anonymement des données aggregées pour améliorer le simulateur.
   meta.publicodes.Privacy.title: Données personnelles
-  meta.publicodes.fin.Budget.description: Mon empreinte climat est de {{roundedValue}} tonnes de CO2e. Mesure la tienne !
+  meta.publicodes.fin.Budget.description: Mon empreinte climat est de
+    {{roundedValue}} tonnes de CO2e. Mesure la tienne !
   meta.publicodes.fin.Petrogaz.description: Mon empreinte pétrole est de
     {{empreinte}} pleins de pétrole. Mesure la tienne !
   meta.publicodes.fin.actionslide.description: Le top 3 des actions pour réduire
