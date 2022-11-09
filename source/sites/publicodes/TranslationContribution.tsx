@@ -49,77 +49,75 @@ export default ({}) => {
 				<Trans>Vous avez juste 30 secondes pour nous aider</Trans>
 			</h2>
 			<div className="ui__ card" css="padding: 1rem 0">
-				<div className="ui__ card" css="padding: 1rem 0">
-					{!URL ? (
-						<form css={formStyle}>
-							<label css="color: var(--color)">
-								<Trans>Le titre bref de votre problème</Trans>
-								<input
-									aria-describedby="messageAttention"
-									value={sujet}
-									onChange={(e) => setSujet(e.target.value)}
-									type="text"
-									name="sujet"
-									placeholder={t('Problème de traduction')}
-									required
-								/>
-							</label>
-							<label css="color: var(--color)">
-								<Trans
-									i18nKey={
-										'publicodes.Contribution.descriptionComplèteTraduction'
-									}
-								>
-									<p>La description complète de votre problème</p>
-								</Trans>
-								<textarea
-									aria-describedby="messageAttention"
-									value={comment}
-									onChange={(e) => setComment(e.target.value)}
-									name="comment"
-									required
-								/>
-							</label>
-							<p id="messageAttention">
-								<em>
-									<Trans>
-										Cette contribution sera publique : n'y mettez pas
-										d'informations sensibles
-									</Trans>
-								</em>
-							</p>
-							<button
-								className="ui__ button"
-								type="submit"
-								disabled={buttonDisabled}
-								onClick={(e) => {
-									if (buttonDisabled) return null
-
-									e.preventDefault()
-									disableButton(true)
-									const augmentedComment =
-										comment +
-										t('publicodes.Contribution.commentaireAugmenté', {
-											fromLocation,
-										})
-									createIssue(sujet, augmentedComment, setURL, disableButton, [
-										'i18n',
-										'contribution externe',
-									])
-								}}
+				{!URL ? (
+					<form css={formStyle}>
+						<label css="color: var(--color)">
+							<Trans>Le titre bref de votre problème</Trans>
+							<input
+								aria-describedby="messageAttention"
+								value={sujet}
+								onChange={(e) => setSujet(e.target.value)}
+								type="text"
+								name="sujet"
+								placeholder={t('Problème de traduction')}
+								required
+							/>
+						</label>
+						<label css="color: var(--color)">
+							<Trans
+								i18nKey={
+									'publicodes.Contribution.descriptionComplèteTraduction'
+								}
 							>
-								<Trans>Envoyer</Trans>
-							</button>
-						</form>
-					) : (
-						<p role="status">
-							<Trans i18nKey={'publicodes.Contribution.remerciements'}>
-								Merci 😍! Suivez l'avancement de votre suggestion en cliquant
-								sur <a href={URL}>ce lien</a>.
+								<p>La description complète de votre problème</p>
 							</Trans>
+							<textarea
+								aria-describedby="messageAttention"
+								value={comment}
+								onChange={(e) => setComment(e.target.value)}
+								name="comment"
+								required
+							/>
+						</label>
+						<p id="messageAttention">
+							<em>
+								<Trans>
+									Cette contribution sera publique : n'y mettez pas
+									d'informations sensibles
+								</Trans>
+							</em>
 						</p>
-					)}
-				</div>
+						<button
+							className="ui__ button"
+							type="submit"
+							disabled={buttonDisabled}
+							onClick={(e) => {
+								if (buttonDisabled) return null
+
+								e.preventDefault()
+								disableButton(true)
+								const augmentedComment =
+									comment +
+									t('publicodes.Contribution.commentaireAugmenté', {
+										fromLocation,
+									})
+								createIssue(sujet, augmentedComment, setURL, disableButton, [
+									'i18n',
+									'contribution externe',
+								])
+							}}
+						>
+							<Trans>Envoyer</Trans>
+						</button>
+					</form>
+				) : (
+					<p role="status">
+						<Trans i18nKey={'publicodes.Contribution.remerciements'}>
+							Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur{' '}
+							<a href={URL}>ce lien</a>.
+						</Trans>
+					</p>
+				)}
 			</div>
 		</div>
 	)
