@@ -102,7 +102,10 @@ export default ({}) => {
 										t('publicodes.Contribution.commentaireAugmenté', {
 											fromLocation,
 										})
-									createIssue(sujet, augmentedComment, setURL, disableButton)
+									createIssue(sujet, augmentedComment, setURL, disableButton, [
+										'i18n',
+										'contribution externe',
+									])
 								}}
 							>
 								<Trans>Envoyer</Trans>
