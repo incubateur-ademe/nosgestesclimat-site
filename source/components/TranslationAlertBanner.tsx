@@ -12,7 +12,7 @@ export default () => {
 					`}
 				>
 					<Trans i18nKey={'components.TranslationAlertBanner.wikiLink'}>
-						Cette page a <strong>été traduite de façons automatique</strong>. Si
+						La traduction de cette page est en version <strong>beta</strong>. Si
 						vous avez une suggestion,{' '}
 						<a
 							href="https://github.com/datagir/nosgestesclimat-site/wiki/Translation#improving-an-existing-translation"
