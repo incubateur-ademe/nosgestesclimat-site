@@ -12,15 +12,8 @@ export default () => {
 					`}
 				>
 					<Trans i18nKey={'components.TranslationAlertBanner.wikiLink'}>
-						La traduction de cette page est en version <strong>beta</strong>. Si
-						vous avez une suggestion,{' '}
-						<a
-							href="https://github.com/datagir/nosgestesclimat-site/wiki/Translation#improving-an-existing-translation"
-							target="blank"
-						>
-							reportez vous au wiki
-						</a>
-						.
+						La traduction de cette page est en version <strong>beta</strong>.
+						<a href="/contribuer">Un problème, une suggestion ?</a>.
 					</Trans>
 				</p>
 			</AlertBanner>
