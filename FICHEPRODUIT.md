@@ -1,8 +1,6 @@
 ## Le drame
 
-On ne présente plus le changement climatique. 1,5 degrés, c'est un chiffre qu'on commence à bien connaître. 
-
-Seulement, des faits et mécanismes physiques et des chiffres de réchauffement planétaires, comment se traduisent les objectifs de l'accord de Paris dans notre vie quotidienne ? Autrement dit, quelle est *mon* empreinte sur le climat, de quoi est-elle constituée ? Et comment puis-je agir dessus, efficacement ?
+On ne présente plus le changement climatique. 1,5 degrés, 2 degrés, ce sont des objectifs aujourd'hui bien connus. Seulement, des faits et mécanismes physiques et des chiffres de réchauffement planétaires, comment se traduisent les objectifs de l'accord de Paris dans notre vie quotidienne ? Autrement dit, quelle est *mon* empreinte sur le climat, de quoi est-elle constituée ? Et comment puis-je agir dessus, efficacement ?
 
 Une des incompréhensions les plus courantes identifiées est la méconnaissance des ordres de grandeur de l'empreinte personnelle et sa décomposition. À titre d'exemple, un coup de projecteur immense a été mis par les médias sur l'empreinte climat du numérique, à tel point que de nombreux citoyens se donnent pour objectif prioritaire de trier leur boîte mail, alors même que l'empreinte de ce "geste" est absolument insignifiante relativement aux autres postes (voiture, avion, chauffage, etc.).
 
