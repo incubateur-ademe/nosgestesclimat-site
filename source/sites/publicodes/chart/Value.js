@@ -1,9 +1,9 @@
-import { humanWeight } from '../HumanWeight'
 import { useTranslation } from 'react-i18next'
+import { humanWeight } from '../HumanWeight'
 
 export default ({ nodeValue, color, completed, demoMode }) => {
-	const [value, unit] = humanWeight(nodeValue, true)
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
+	const [value, unit] = humanWeight({ t, i18n }, nodeValue, true)
 
 	return (
 		<span

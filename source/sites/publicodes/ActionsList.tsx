@@ -21,7 +21,7 @@ import SimulationMissing from './SimulationMissing'
 export default ({ display }) => {
 	const engine = useContext(EngineContext)
 
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 
 	let metric = useQuery().get('métrique')
 	let category = useQuery().get('catégorie')
@@ -84,7 +84,7 @@ export default ({ display }) => {
 	}
 
 	if (tutorials.actions !== 'skip') {
-		const [value, unit] = humanWeight(t, bilan.nodeValue)
+		const [value, unit] = humanWeight({ t, i18n }, bilan.nodeValue)
 		return <ActionTutorial {...{ value, unit }} />
 	}
 

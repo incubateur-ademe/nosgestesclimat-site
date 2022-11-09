@@ -63,8 +63,8 @@ export default ({
 
 	const maxValue = Math.max(...values),
 		minValue = 2000, // 2 tonnes, the ultimate objective
-		max = humanWeight(maxValue, true).join(' '),
-		min = humanWeight(minValue, true).join(' ')
+		max = humanWeight({ t, i18n }, maxValue, true).join(' '),
+		min = humanWeight({ t, i18n }, minValue, true).join(' ')
 
 	const formatTotal = (total) =>
 		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
@@ -143,10 +143,16 @@ export default ({
 										`
 											: ''}
 									`}
-									title={`${username} : ${humanWeight(value, true).join(' ')}`}
-									aria-label={`${username} : ${humanWeight(value, true).join(
-										' '
-									)}`}
+									title={`${username} : ${humanWeight(
+										{ t, i18n },
+										value,
+										true
+									).join(' ')}`}
+									aria-label={`${username} : ${humanWeight(
+										{ t, i18n },
+										value,
+										true
+									).join(' ')}`}
 									role="button"
 									onClick={() => setSpotlight(username)}
 									aria-pressed={spotlight === username}
