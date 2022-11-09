@@ -141,7 +141,12 @@ export default ({}) => {
 					</li>
 				))}
 			</div>
-			<h2 css="font-size: 180%">🙋‍♀️' J'ai une autre question</h2>
+			<h2 css="font-size: 180%">
+				🙋‍♀️
+				<Trans i18nKey={'publicodes.Contribution.titreQuestion'}>
+					J'ai une autre question
+				</Trans>
+			</h2>
 			<div className="ui__ card" css="padding: 1rem 0">
 				<p>
 					<Trans i18nKey={'publicodes.Contribution.liensVersGithub'}>
