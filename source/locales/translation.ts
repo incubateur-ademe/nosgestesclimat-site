@@ -5,26 +5,26 @@
 import { i18n } from 'i18next'
 
 import uiEn from '!locale-yaml-loader!./ui/ui-en-us.yaml'
-import uiEs from '!locale-yaml-loader!./ui/ui-es.yaml'
+// import uiEs from '!locale-yaml-loader!./ui/ui-es.yaml'
 import uiFr from '!locale-yaml-loader!./ui/ui-fr.yaml'
-import uiIt from '!locale-yaml-loader!./ui/ui-it.yaml'
+// import uiIt from '!locale-yaml-loader!./ui/ui-it.yaml'
 
 import faqEn from '!locale-yaml-loader!./faq/FAQ-en-us.yaml'
-import faqEs from '!locale-yaml-loader!./faq/FAQ-es.yaml'
+// import faqEs from '!locale-yaml-loader!./faq/FAQ-es.yaml'
 import faqFr from '!locale-yaml-loader!./faq/FAQ-fr.yaml'
-import faqIt from '!locale-yaml-loader!./faq/FAQ-it.yaml'
+// import faqIt from '!locale-yaml-loader!./faq/FAQ-it.yaml'
 
 import releasesEn from './releases/releases-en-us.json'
-import releasesEs from './releases/releases-es.json'
+// import releasesEs from './releases/releases-es.json'
 import releasesFr from './releases/releases-fr.json'
-import releasesIt from './releases/releases-it.json'
+// import releasesIt from './releases/releases-it.json'
 
 export enum Lang {
 	Default = 'Fr',
 	Fr = 'Fr',
 	En = 'En',
-	Es = 'Es',
-	It = 'It',
+	// Es = 'Es',
+	// It = 'It',
 }
 
 export type Release = {
@@ -56,26 +56,26 @@ export function getLangInfos(lang: Lang): LangInfos {
 				uiTrad: uiEn.entries,
 			}
 		}
-		case Lang.Es: {
-			return {
-				name: 'Español',
-				abrv: 'es',
-				abrvLocale: 'es-ES',
-				faqContent: faqEs,
-				releases: releasesEs,
-				uiTrad: uiEs.entries,
-			}
-		}
-		case Lang.It: {
-			return {
-				name: 'Italiano',
-				abrv: 'it',
-				abrvLocale: 'it-IT',
-				faqContent: faqIt,
-				releases: releasesIt,
-				uiTrad: uiIt.entries,
-			}
-		}
+		// case Lang.Es: {
+		// 	return {
+		// 		name: 'Español',
+		// 		abrv: 'es',
+		// 		abrvLocale: 'es-ES',
+		// 		faqContent: faqEs,
+		// 		releases: releasesEs,
+		// 		uiTrad: uiEs.entries,
+		// 	}
+		// }
+		// case Lang.It: {
+		// 	return {
+		// 		name: 'Italiano',
+		// 		abrv: 'it',
+		// 		abrvLocale: 'it-IT',
+		// 		faqContent: faqIt,
+		// 		releases: releasesIt,
+		// 		uiTrad: uiIt.entries,
+		// 	}
+		// }
 		case Lang.Fr:
 		default: {
 			return {
@@ -96,10 +96,10 @@ export function getLangFromAbreviation(abrv: string): Lang {
 			return Lang.Fr
 		case 'en':
 			return Lang.En
-		case 'es':
-			return Lang.Es
-		case 'it':
-			return Lang.It
+		// case 'es':
+		// 	return Lang.Es
+		// case 'it':
+		// 	return Lang.It
 		default:
 			return Lang.Default
 	}
