@@ -38,7 +38,7 @@ export const createIssue = (
 	}
 
 	fetch(
-		'https://publicodes.netlify.app/.netlify/functions/createIssue?' +
+		'/.netlify/functions/create-issue?' +
 			Object.entries({
 				repo: 'datagir/nosgestesclimat',
 				title,
