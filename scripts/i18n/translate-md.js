@@ -1,9 +1,6 @@
 /*
 	Calls the DeepL API to translate the Markdown files.
 
-	NOTE: In order to avoid to translate internal links, we use pandoc to
-	convert the Markdown to HTML and then back to Markdown.
-
 	Command: yarn translate:md [options]
 */
 
@@ -15,9 +12,7 @@ const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, srcFile, force } = cli.getArgs(
-	`Calls the DeepL API to translate the Markdown files.
-
-	Important: this script requires the 'pandoc' executable to be installed.`,
+	`Calls the DeepL API to translate the Markdown files.`,
 	{
 		file: true,
 		source: true,

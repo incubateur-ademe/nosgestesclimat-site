@@ -69,9 +69,6 @@ running:
 yarn install
 ```
 
-Moreover, in order to translate Markdown content some scripts use
-[`pandoc`](https://pandoc.org/MANUAL.html). Make sure it is installed.
-
 ## Workflows
 
 ### Editing the source code
@@ -365,9 +362,6 @@ You can specify following flags:
 
 This script allows to translate Markdown files into targeted languages.
 
-Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
-machine to be able to run this script.
-
 You can specify following flags:
 
 - `--target` (`-t`) to choose the language(s) translate into.
@@ -414,9 +408,6 @@ You can specify following flags:
 ### `translate-releases.js`
 
 This script allows to translate releases files into targeted languages.
-
-Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
-machine to be able to run this script.
 
 You can specify following flag:
 

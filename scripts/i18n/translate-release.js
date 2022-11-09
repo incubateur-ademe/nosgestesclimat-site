@@ -2,8 +2,6 @@
 	Calls the DeepL API to translate the JSON release files.
 
 	Command: yarn translate:release [options]
-
-	FIXME: there is still some errors with the pandoc translation.
 */
 
 const cliProgress = require('cli-progress')
@@ -15,9 +13,7 @@ const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
 
 const { srcLang, destLangs } = cli.getArgs(
-	`Calls the DeepL API to translate the JSON release files.
-
-	Important: this script requires the 'pandoc' executable to be installed.`,
+	`Calls the DeepL API to translate the JSON release files.`,
 	{ source: true, target: true }
 )
 
