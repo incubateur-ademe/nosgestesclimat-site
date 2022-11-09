@@ -6,7 +6,7 @@ import Meta from '../../components/utils/Meta'
 import { getCurrentLangInfos } from '../../locales/translation'
 import { useQuery } from '../../utils'
 
-const formStyle = `
+export const formStyle = `
 label {
 	display: block;
 	margin-bottom: 1em;
@@ -26,7 +26,7 @@ label textarea {
 	height: 6em;
 }`
 
-const createIssue = (title, body, setURL, disableButton) => {
+export const createIssue = (title, body, setURL, disableButton) => {
 	if (title == null || body == null || [title, body].includes('')) {
 		return null
 	}
