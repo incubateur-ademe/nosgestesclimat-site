@@ -129,6 +129,7 @@ entries:
   Nbre de personnes: Nbre de personnes
   Nom de la salle: Nom de la salle
   Nombre de personnes: Nombre de personnes
+  Nombre de visites pour les: Nombre de visites pour les
   Non: Non
   Non applicable: Non applicable
   Nos Gestes Climat Conférence: Nos Gestes Climat Conférence
@@ -276,6 +277,8 @@ entries:
     des utilisateurs qui reviendraient à plusieurs reprises sur la page de fin,
     en changeant ses réponses au test (ce qui crée de nouveaux url de fin).</3>"
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>
+  derniers: derniers
+  dernières: dernières
   dernières nouveautés: dernières nouveautés
   en moyenne sur le site: en moyenne sur le site
   et: et
@@ -292,6 +295,7 @@ entries:
   habitants: habitants
   humanWeight.unitSuffix: de
   jour: jour
+  jours: jours
   la page à partager à l'étape 3: la page à partager à l'étape 3
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
@@ -570,6 +574,7 @@ entries:
   publicodes.fin.Petrogaz.petroleBrut: de <1>pétrole brut par an</1>
   période: période
   semaine: semaine
+  semaines: semaines
   simulateurs.warning.plus: Lire les précisions
   simulateurs.warning.titre: 🚩 Avant de commencer...
   simulation-end.text: Vous avez maintenant accès à l'estimation la plus précise possible.

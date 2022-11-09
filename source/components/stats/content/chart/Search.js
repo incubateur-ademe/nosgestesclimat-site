@@ -1,8 +1,8 @@
-import React from 'react'
 import styled from 'styled-components'
 
 import FancySelect from '../../utils/FancySelect'
 
+import { Trans, useTranslation } from 'react-i18next'
 import { range } from '../../../../utils'
 
 const Wrapper = styled.div`
@@ -14,9 +14,11 @@ const Wrapper = styled.div`
 	}
 `
 export default function Search(props) {
+	const { t, i18n } = useTranslation()
+
 	return (
 		<Wrapper>
-			Nombre de visites pour les{' '}
+			<Trans>Nombre de visites pour les</Trans>{' '}
 			<FancySelect
 				fancy
 				value={props.date}
@@ -28,16 +30,15 @@ export default function Search(props) {
 					label: String(elt),
 				}))}
 			/>{' '}
-			derni
-			{props.period === 'week' ? 'ère' : 'er'}s{' '}
+			{props.period === 'week' ? t('dernières') : t('derniers')}{' '}
 			<FancySelect
 				fancy
 				value={props.period}
 				onChange={props.setPeriod}
 				options={[
-					{ value: 'day', label: 'jours' },
-					{ value: 'week', label: 'semaines' },
-					{ value: 'month', label: 'mois' },
+					{ value: 'day', label: t('jours') },
+					{ value: 'week', label: t('semaines') },
+					{ value: 'month', label: t('mois') },
 				]}
 			/>
 		</Wrapper>

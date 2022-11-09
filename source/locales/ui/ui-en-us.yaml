@@ -131,6 +131,7 @@ entries:
   Nbre de personnes: Number of people
   Nom de la salle: Name of the room
   Nombre de personnes: Number of people
+  Nombre de visites pour les: Number of visits for
   Non: No
   Non applicable: Not applicable
   Nos Gestes Climat Conférence: Our Climate Action Conference
@@ -326,6 +327,8 @@ entries:
     sur la page de fin, en changeant ses réponses au test (ce qui crée de
     nouveaux url de fin).</3>"
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: of visits this month<1> (compared to the month before)</1>
+  derniers: latest
+  dernières: latest
   dernières nouveautés: latest news
   en moyenne sur le site: on average on the site
   et: and
@@ -351,6 +354,7 @@ entries:
   humanWeight.unitSuffix: of
   humanWeight.unitSuffix.lock: de
   jour: day
+  jours: days
   la page à partager à l'étape 3: the page to be shared in step 3
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
@@ -870,6 +874,7 @@ entries:
   publicodes.fin.Petrogaz.petroleBrut.lock: de <1>pétrole brut par an</1>
   période: period
   semaine: week
+  semaines: weeks
   simulateurs.warning.plus: Read the details
   simulateurs.warning.plus.lock: Lire les précisions
   simulateurs.warning.titre: 🚩 Before you start...
