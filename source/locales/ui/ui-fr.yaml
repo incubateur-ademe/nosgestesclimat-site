@@ -235,7 +235,7 @@ entries:
     puisqu'une valeur standard vous est attribuée dans ce cas. Il est fréquent
     que le score initial change car<8>le modèle Nos Gestes Climat évolue</8>!
   components.TranslationAlertBanner.wikiLink: La traduction de cette page est en
-    version <1>beta</1>.<3>Un problème, une suggestion ?</3>.
+    version <1>beta</1>. <4>Un problème, une suggestion ?</4>
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
     Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.

@@ -12,8 +12,8 @@ export default () => {
 					`}
 				>
 					<Trans i18nKey={'components.TranslationAlertBanner.wikiLink'}>
-						La traduction de cette page est en version <strong>beta</strong>.
-						<a href="/contribuer-traduction">Un problème, une suggestion ?</a>.
+						La traduction de cette page est en version <strong>beta</strong>.{' '}
+						<a href="/contribuer-traduction">Un problème, une suggestion ?</a>
 					</Trans>
 				</p>
 			</AlertBanner>

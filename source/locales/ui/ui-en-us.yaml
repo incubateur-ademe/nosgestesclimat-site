@@ -243,8 +243,7 @@ entries:
     change pas puisqu'une valeur standard vous est attribuée dans ce cas. Il est
     fréquent que le score initial change car<8>le modèle Nos Gestes Climat
     évolue</8>!
-  components.TranslationAlertBanner.wikiLink: The translation of this page is in
-    <1>beta</1> version.<3>Found a problem, a better suggestion?</3>.
+  components.TranslationAlertBanner.wikiLink: The translation of this page is in <1>beta</1> version.<3>Found a problem, a better suggestion?</3>.
   components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est
     en version <1>beta</1>.<3>Un problème, une suggestion ?</3>.
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
