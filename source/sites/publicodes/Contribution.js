@@ -26,7 +26,13 @@ label textarea {
 	height: 6em;
 }`
 
-export const createIssue = (title, body, setURL, disableButton) => {
+export const createIssue = (
+	title,
+	body,
+	setURL,
+	disableButton,
+	labels = ['contribution externe']
+) => {
 	if (title == null || body == null || [title, body].includes('')) {
 		return null
 	}
@@ -37,7 +43,7 @@ export const createIssue = (title, body, setURL, disableButton) => {
 				repo: 'datagir/nosgestesclimat',
 				title,
 				body,
-				labels: ['contribution'],
+				labels,
 			})
 				.map(([k, v]) => k + '=' + encodeURIComponent(v))
 				.join('&'),
