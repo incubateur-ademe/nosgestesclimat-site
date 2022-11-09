@@ -1,7 +1,7 @@
 # General Terms of Use
 
 These general conditions of use (called "GCU") set the legal framework
-of the Platform "Our Climate Gestures" and define the conditions of
+of the Platform "Nos Gestes Climat" and define the conditions of
 access and use of services by the User.
 
 ## Article 1 - Scope of application
@@ -60,7 +60,7 @@ server.
 
 ### 4.3 Broadcasting
 
-Our Climate Gestures is a public service, its code is free and reusable
+Nos Gestes Climat is a public service, its code is free and reusable
 by everyone under the MIT license, on this code repository:
 https://github.com/datagir/nosgestesclimat-site.
 

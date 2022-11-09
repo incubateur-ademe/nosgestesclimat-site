@@ -43,7 +43,7 @@
 
     sull'ammortamento.
   réponse.lock: >
-    
+
     À l’instar de ce qui est fait pour la voiture, un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat (notamment à cause de la phase d’extraction des matières premières).
 
 
@@ -82,7 +82,7 @@
 
     possibile con i dati che abbiamo sull'impronta del settore.
   réponse.lock: >
-    
+
     Ce poste représente l’empreinte carbone des services publics français ramené à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 66 millions de français.
 
 
@@ -119,7 +119,7 @@
 
     come.
   réponse.lock: >
-    
+
     NGC est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants de notre alimentation.
 
 
@@ -158,7 +158,7 @@
 
     dal suo obiettivo pubblico generale.
   réponse.lock: >
-    
+
     L’alimentation locale permet en effet de réduire les distances de transports des produits que nous consommons tout en soutenant les agriculteurs de nos régions.
 
 
@@ -181,7 +181,7 @@
 
     futuro vengano aggiunti alcuni tipi di carburante.
   réponse.lock: >
-    
+
     A l’heure actuelle, il vous faudra raisonner avec le combustible qui s’approche le plus possible du combustible que vous utilisez. NGC fait le choix de se focaliser sur les types de combustible les plus utilisés en France.
 
 
@@ -212,7 +212,7 @@
 
     viaggio.
   réponse.lock: >
-    
+
     NGC fait le choix de ne pas poser de question sur le type de carburant, tout simplement car **il n’y a pas beaucoup de différence entre eux.** Qu’il s’agisse d’essence, de gazole ou de GPL, les impacts sont très similaires. Nous nous concentrons donc sur les enjeux les plus importants (nombre de km parcourus, nombre d’occupants, utilisation des transports en commun, etc.).
 
 
@@ -252,7 +252,7 @@
 
     come.
   réponse.lock: >
-    
+
     L’évaluation des impacts du numérique et plus particulièrement des contenus « dématérialisés » (streaming, visio-conférence, stockage sur un cloud, envoi de mail, etc.) est encore un sujet de travail parmi les acteurs techniques et institutionnels.
 
 
@@ -289,7 +289,7 @@
 
     ridurre il consumo di carne, in particolare di carne rossa.
   réponse.lock: >
-    
+
     Non.
 
 
@@ -336,7 +336,7 @@
 
     rispetto al nostro calcolo incentrato al 100% sui gas serra.
   réponse.lock: >
-    
+
     **Attention : manger bio ne réduit pas, en soi, l’empreinte carbone.**
 
 
@@ -375,7 +375,7 @@
 
     personale senza fare doppi conti.
   réponse.lock: >
-    
+
     Les émissions des énergies fossiles financées par les banques sont comptabilisées pour ceux qui les utilisent.
 
 
@@ -415,7 +415,7 @@
 
     pubblica su questi temi!
   réponse.lock: >
-    
+
     En effet, il peut être frustrant de se voir comptabiliser des impacts pour lesquels nous n’avons aucun levier d’action direct.
 
 
@@ -458,7 +458,7 @@
 
     [discuterne](https://github.com/datagir/nosgestesclimat-site/issues/71).
   réponse.lock: >
-    
+
     Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
 
 
@@ -558,7 +558,7 @@
 
     centro degli stili di vita che stiamo inventando in questo momento.
   réponse.lock: >
-    
+
     L'exercice du bilan carbone peut aussi provoquer un découragement car nous comptons froidement les émissions du mode de vie qu'on connait, sans appréhender à ce stade toutes les possibilités d'une vie bas carbone.
 
 
@@ -611,7 +611,7 @@
 
     pubblico, telelavoro, car pooling, ecc.).
   réponse.lock: >
-    
+
     Non.
 
 
@@ -754,7 +754,7 @@
 
     fare. Il periodo di ammortamento di un'automobile, come considerato da
 
-    Our Climate Gestures, è di 10 anni. Qualsiasi veicolo più vecchio non
+    Nos Gestes Climat, è di 10 anni. Qualsiasi veicolo più vecchio non
 
     viene quindi considerato (e automaticamente ha emissioni zero).
 
@@ -770,7 +770,7 @@
 
     idea condividerla!**
   réponse.lock: >
-    
+
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil cherche à vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
 
@@ -839,7 +839,7 @@
 
     sviluppo delle energie rinnovabili.
   réponse.lock: >
-    
+
     À moins de posséder sa propre source d’électricité (panneaux photovoltaïque), l’électricité dite « verte » fournie par les producteurs d’énergie renouvelable ne peut vous être acheminée sans l’existence du **réseau électrique français, réseau unique et partagé par tous.**
 
 
@@ -890,7 +890,7 @@
 
     variare notevolmente.
   réponse.lock: >
-    
+
     En effet, NGC ne permet pas de renseigner si on est raccordé à un réseau de chaleur, et ce pour plusieurs raisons.
 
 
