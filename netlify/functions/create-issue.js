@@ -1,3 +1,5 @@
+import fetch from 'node-fetch'
+
 let { GITHUB_TOKEN } = process.env
 
 exports.handler = async (event, context) => {
