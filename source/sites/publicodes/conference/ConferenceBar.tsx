@@ -2,6 +2,7 @@ import { correctValue, extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -13,6 +14,8 @@ import { computeHumanMean } from './Stats'
 import useYjs from './useYjs'
 
 export default () => {
+	const translation = useTranslation()
+
 	const situation = useSelector(situationSelector),
 		engine = useEngine(),
 		evaluation = engine.evaluate('bilan'),
@@ -42,7 +45,10 @@ export default () => {
 		return <Link to="/conférence">Lancer une conférence</Link>
 
 	const simulationArray = elements && Object.values(elements),
-		result = computeHumanMean(simulationArray.map((el) => el.total))
+		result = computeHumanMean(
+			translation,
+			simulationArray.map((el) => el.total)
+		)
 
 	return (
 		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">

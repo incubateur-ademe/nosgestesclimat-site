@@ -7,6 +7,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import {useTranslation} from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -20,6 +21,7 @@ import useDatabase, { answersURL } from './useDatabase'
 import { defaultProgressMin, defaultThreshold } from './utils'
 
 export default () => {
+	const translation = useTranslation()
 	const situation = useSelector(situationSelector),
 		engine = useEngine(),
 		evaluation = engine.evaluate('bilan'),
@@ -115,7 +117,12 @@ export default () => {
 	}, [])
 
 	const simulationArray = [],
-		result = null && computeHumanMean(simulationArray.map((el) => el.total))
+		result =
+			null &&
+			computeHumanMean(
+				translation,
+				simulationArray.map((el) => el.total)
+			)
 
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
