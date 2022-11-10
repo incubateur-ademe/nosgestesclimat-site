@@ -41,11 +41,13 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const [openExplanation, setOpenExplanation] = useState(false)
 
 	const tracker = useContext(TrackerContext)
+	const tutorials = useSelector((state) => state.tutorials)
 
 	const blur = Object.keys(situation).length === 0
 
 	useEffect(() => {
-		if (!blur) setTimeout(() => setOpenExplanation(true), 2000)
+		if (!blur && !tutorials['scoreExplanation'])
+			setTimeout(() => setOpenExplanation(true), 2000)
 	}, [blur])
 
 	return (
