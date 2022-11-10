@@ -393,6 +393,7 @@ entries:
     pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: >-
+
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Vous trouverez ici les réponses aux
     questions les plus fréquentes. S’il vous reste des interrogations ou si vous
