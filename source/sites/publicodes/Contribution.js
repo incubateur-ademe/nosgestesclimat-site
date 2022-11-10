@@ -227,9 +227,15 @@ export default ({}) => {
 										disableButton(true)
 										const augmentedComment =
 											comment +
-											t('publicodes.Contribution.commentaireAugmenté', {
-												fromLocation,
-											})
+											(fromLocation
+												? '\n> ' +
+												  t('Depuis la page') +
+												  ': `' +
+												  fromLocation +
+												  '`'
+												: '') +
+											'\n' +
+											t('publicodes.Contribution.commentaireAugmenté')
 										createIssue(sujet, augmentedComment, setURL, disableButton)
 									}}
 								>

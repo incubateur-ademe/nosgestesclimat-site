@@ -55,6 +55,7 @@ entries:
   Copié ✅: Copié ✅
   Courses: Courses
   De quoi est faite mon empreinte ?: De quoi est faite mon empreinte ?
+  Depuis la page: Depuis la page
   Diffuser: Diffuser
   Distance: Distance
   Documentation: Documentation
@@ -163,6 +164,7 @@ entries:
   Plus de 30 minutes: Plus de 30 minutes
   Point d'interrogation: Point d'interrogation
   Pompe à pétrole: Pompe à pétrole
+  Pour aller plus loin: Pour aller plus loin
   'Pour en savoir plus, tout est expliqué <1></1>dans ': 'Pour en savoir plus, tout est expliqué <1></1>dans '
   'Pour en savoir plus, tout est expliqué dans ': 'Pour en savoir plus, tout est expliqué dans '
   Problème de traduction: Problème de traduction
@@ -391,9 +393,6 @@ entries:
     pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: >-
-    {{fromLocation}} ? `Depuis la page
-    : `{{fromLocation}}`` : ''}
-
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Vous trouverez ici les réponses aux
     questions les plus fréquentes. S’il vous reste des interrogations ou si vous

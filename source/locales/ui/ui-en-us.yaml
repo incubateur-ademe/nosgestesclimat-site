@@ -57,6 +57,7 @@ entries:
   Copié ✅: Copied ✅
   Courses: Races
   De quoi est faite mon empreinte ?: What is my footprint made of?
+  Depuis la page: From the page
   Diffuser: Broadcast
   Distance: Distance
   Documentation: Documentation
@@ -165,6 +166,7 @@ entries:
   Plus de 30 minutes: More than 30 minutes
   Point d'interrogation: Question mark
   Pompe à pétrole: Oil pump
+  Pour aller plus loin: To go further
   'Pour en savoir plus, tout est expliqué <1></1>dans ': 'To learn more, everything is explained <1></1>in '
   'Pour en savoir plus, tout est expliqué dans ': 'To learn more, everything is explained in '
   Problème de traduction: Translation problem
@@ -511,16 +513,12 @@ entries:
     quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Nos Gestes Climat?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: >-
-    {{fromLocation}} ? `Depuis la page
-    : `{{fromLocation}}`` : ''}
-
-    &gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.commentaireAugmenté.lock: >-
-    {{fromLocation}} ? `Depuis la
-    page : `{{fromLocation}}`` : ''}
-
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
+  publicodes.Contribution.commentaireAugmenté: '> This ticket was created
+    automatically by our robot from our [contribution
+    page](https://nosgestesclimat.fr/contribuer).'
+  publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé
+    automatiquement par notre robot depuis notre [page de
+    contribution](https://nosgestesclimat.fr/contribuer).'
   publicodes.Contribution.description: Here you will find answers to the most
     frequently asked questions. If you still have questions or if you want to
     suggest improvements, go to the bottom of the page. Have a good read!
