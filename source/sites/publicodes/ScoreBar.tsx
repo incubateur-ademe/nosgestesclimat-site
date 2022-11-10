@@ -43,7 +43,9 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const tracker = useContext(TrackerContext)
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const blur = Object.keys(situation).length === 0
+	const situationLength = Object.keys(situation).length
+
+	const blur = situationLength === 0
 
 	useEffect(() => {
 		if (!blur && !tutorials['scoreExplanation'])
@@ -165,6 +167,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 				<ScoreExplanation
 					openExplanation={openExplanation}
 					setOpenExplanation={setOpenExplanation}
+					situationLength={situationLength}
 				/>
 			</div>
 		</div>
