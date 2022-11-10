@@ -18,6 +18,7 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						bottom: 18rem;
 						margin-left: 0.5rem;
 						margin-right: 0.5rem;
+						filter: drop-shadow(0rem -1rem 2rem var(--darkColor));
 					}
 				`}
 			>
