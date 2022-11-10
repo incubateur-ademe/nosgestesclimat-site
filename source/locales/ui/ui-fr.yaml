@@ -241,6 +241,13 @@ entries:
     "je ne sais pas" à une question, vous remarquerez que le total ne change pas
     puisqu'une valeur standard vous est attribuée dans ce cas. Il est fréquent
     que le score initial change car<8>le modèle Nos Gestes Climat évolue</8>!
+  components.ScoreExplanation.text.p1:
+    🧮 Voici votre score ! Pour l'instant vous
+    n'avez répondu qu'à 1 question, il évoluera à chaque nouvelle réponse.
+  components.ScoreExplanation.text.p2: 'Si vous répondez "je ne sais pas" à une
+    question, le score ne changera pas : une valeur par défaut vous est
+    attribuée.'
+  components.ScoreExplanation.text.p3: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: La traduction de cette page est en
     version <1>beta</1>. <4>Un problème, une suggestion ?</4>
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:

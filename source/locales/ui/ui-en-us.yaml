@@ -251,6 +251,18 @@ entries:
     change pas puisqu'une valeur standard vous est attribuée dans ce cas. Il est
     fréquent que le score initial change car<8>le modèle Nos Gestes Climat
     évolue</8>!
+  components.ScoreExplanation.text.p1: 🧮 Here is your score! For now you have
+    only answered 1 question, it will change with each new answer.
+  components.ScoreExplanation.text.p1.lock:
+    🧮 Voici votre score ! Pour l'instant
+    vous n'avez répondu qu'à 1 question, il évoluera à chaque nouvelle réponse.
+  components.ScoreExplanation.text.p2: 'If you answer "I don''t know" to a
+    question, the score will not change: you are assigned a default value.'
+  components.ScoreExplanation.text.p2.lock: 'Si vous répondez "je ne sais pas" à
+    une question, le score ne changera pas : une valeur par défaut vous est
+    attribuée.'
+  components.ScoreExplanation.text.p3: 💡 We improve the calculation and its default values<1>every month</1>!
+  components.ScoreExplanation.text.p3.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in
     <1>beta</1> version. <4>A problem, a suggestion?</4>
   components.TranslationAlertBanner.wikiLink.lock:
