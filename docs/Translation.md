@@ -34,7 +34,7 @@
    * [`generate-ui.js`](#generate-uijs)
    * [`translate-ui.js`](#translate-uijs)
    * [`check-ui.js`](#check-uijs)
-   * [`translate-md.js`](#translate-mdjs)
+   * [`translate-pages.js`](#translate-pagesjs)
    * [`translate-faq.js`](#translate-faqjs)
    * [`check-faq.js`](#check-faqjs)
    * [`translate-releases.js`](#translate-releasesjs)
@@ -220,7 +220,7 @@ Once the content modified,
     For non _hardcoded_ content such as the FAQ or Markdown pages. You need to
     modify the corresponding file inside `.source/locales/pages/` (resp.
     `.source/locales/faq`) and then run the script
-    [`translate-md.js`](#translate-md.js) (resp.
+    [`translate-pages.js`](#translate-pages.js) (resp.
     [`translate-faq.js`](#translate-faq.js)) to translate it in the remaining
     languages.
 
@@ -368,7 +368,7 @@ You can specify following flags:
 > yarn check:ui [options]
 > ```
 
-### `translate-md.js`
+### `translate-pages.js`
 
 This script allows to translate Markdown files into targeted languages.
 
@@ -382,7 +382,7 @@ You can specify following flags:
 > To run with `yarn`:
 >
 > ```
-> yarn translate:md [options]
+> yarn translate:pages [options]
 > ```
 
 ### `translate-faq.js`
