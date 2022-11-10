@@ -18,25 +18,25 @@
 - catégorie: general
   catégorie.lock: général
   id: ges
-  question: What is the carbon footprint? How is it that what I eat or my garbage
-    can emits greenhouse gases (GHG)?
+  question: What is a carbon footprint? How can my food or my garbage
+    emit greenhouse gases (GHG)?
   question.lock: Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que
     je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
   réponse: >
-    Everything we consume, use, throw away required material (which had to
-    be extracted), energy to be assembled, shaped or packaged.
+    Everything we consume, use, and throw away require material (which had to
+    be extracted) and energy to be assembled, shaped or packaged.
 
 
-    These goods are transported, stored and when they reach the end of their life (or when we simply decide to throw them away), they become waste that must still be collected and then treated, and sometimes recycled.
+    These goods are transported, stored and, when they reach the end of their life (or when we simply decide to throw them away), they become waste that must be collected and then treated, and sometimes recycled.
 
 
-    This is why, even if it may seem counter-intuitive, all our daily actions contribute to the emission of greenhouse gases. Some very much, others very little. Eating one kg of potatoes emits greenhouse gases, driving 10,000 km in a car also, but obviously in very different proportions. And of course we don't have these figures in mind.
+    This is why, even if it may seem counter-intuitive, all of our daily actions contribute to the emission of greenhouse gases. Some very much, others very little. Eating one kg of potatoes emits greenhouse gases, as does driving 10,000 km in a car, but obviously in very different proportions. And of course we don't have these figures in mind.
 
 
     To know how much each of our actions emits, we rely on the [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) of the ADEME (the French environment agency) which for different data (km driven, kg of meat, kWh consumed, a TV, etc.) allow us to estimate the quantity of greenhouse gases emitted.
 
 
-    The goal of our Climate Action is to manipulate these figures to simply question our lifestyle in order to identify what contributes more or less to our carbon footprint.
+    The goal of Nos Gestes Climat is to use this data to question our lifestyle in order to identify what has the biggest impact on our carbon footprint.
   réponse.lock: >
     Tous ce que nous consommons, utilisons, jetons a nécessité de la
     matière (qui a du être extraite), de l'énergie pour être assemblé, mis en
@@ -56,8 +56,8 @@
 - catégorie: digital
   catégorie.lock: numérique
   id: impact-numérique
-  question: I've heard that digital has a big impact on the climate, the simulator
-    seems to tell me the opposite..
+  question: I've heard that digital has a big impact on the climate, but the simulator
+    seems to tell me the opposite…
   question.lock: J'ai entendu dire que le numérique avait un gros impact sur le
     climat, le simulateur semble me dire le contraire…
   réponse: >
@@ -87,21 +87,21 @@
 - catégorie: public services
   catégorie.lock: services publics
   id: services-publics-majoritaires
-  question: Yes, but still, this post sometimes represents more than some of my impacts..
+  question: Public services sometimes represent more than some of my activities…
   question.lock: Oui mais quand même, ce poste représente parfois plus que
     certains de mes impacts…
   réponse: >
 
-    Indeed, it can be frustrating to have impacts counted for which we have no direct leverage.
+    Indeed, it can be frustrating to have greenhouse gas emissions included in our footprint which are beyond our direct control.
 
 
-    **But that is the whole point of the transition in the broadest sense**
+    **But that is the whole point of the ecological transition in the broadest sense**
 
 
-    This transition cannot be thought of only at the individual level. It is a necessary but not sufficient condition for a more global transition at the scale of our society. This means playing with indirect levers of action (voting, associative commitment, awareness-raising around us, etc.).
+    This transition cannot be thought of only at the individual level. Direct, individual action is a necessary but not sufficient condition for a more global transition at the scale of our society. This means playing with indirect levers of action (voting, associative commitment, awareness-raising around us, etc.).
 
 
-    This is the purpose of Nos Gestes Climat! to raise awareness of these issues and make people aware of them!
+    This is the purpose of Nos Gestes Climat: to raise awareness of these issues and make people aware of them!
   réponse.lock: >
 
     En effet, il peut être frustrant de se voir comptabiliser des impacts pour lesquels nous n’avons aucun levier d’action direct.
@@ -117,7 +117,7 @@
 - catégorie: food
   catégorie.lock: alimentation
   id: alimentation-locale
-  question: Why aren't we asking about local food either?
+  question: Why aren't we asking about local food?
   question.lock: Pourquoi ne pose-t-on pas non plus de question sur l’alimentation locale ?
   réponse: >
 
@@ -135,7 +135,7 @@
   catégorie.lock: consommation
   id: effet-qualité
   question: I often buy durable and environmentally friendly goods but the tool
-    doesn't seem to make a difference. Why is that?
+    doesn't seem to take this into account. Why is that?
   question.lock: J’achète souvent des biens durables et écologiques mais l’outil
     ne semble pas faire la différence. Comment cela se fait-il ?
   réponse: >
@@ -238,7 +238,7 @@
 - catégorie: transport
   catégorie.lock: transport
   id: pas-de-voiture
-  question: I don't have a car but I am still asked for all this information ..
+  question: I don't have a car but I am still asked for all this information…
   question.lock: Je n'ai pas de voiture mais on me demande quand même toutes ses
     informations …
   réponse: >
@@ -339,7 +339,7 @@
   catégorie.lock: logement
   id: réseau-chaleur
   question: I am connected to my community's heating network but this option is
-    not offered by the tool..
+    not offered by the tool…
   question.lock: Je suis raccordé au réseau de chaleur de ma collectivité mais
     cette option n’est pas proposée par l’outil…
   réponse: >
@@ -347,7 +347,7 @@
     Indeed, NGC does not allow to inform if you are connected to a heat network, for several reasons.
 
 
-    First of all, it would require to list all the heating networks in France and there are more than 750 of them..
+    First of all, it would require to list all the heating networks in France and there are more than 750 of them…
 
 
     Moreover, the data (i.e. the network's emission factor) is **not always reliable and controllable** and is subject to strong changes over time, depending on the processes used to operate the heating network (heat recovered from incinerators, renewable energy but also often fuel oil or natural gas).
@@ -399,8 +399,7 @@
 - catégorie: food
   catégorie.lock: alimentation
   id: bio-2
-  question: So it is to avoid that it is unfavorable to our carbon footprint that
-    you do not ask the question of organic?
+  question: So you don't ask questions about organic food because it increases our carbon footprint?
   question.lock: C’est donc pour éviter que cela soit défavorable à notre
     empreinte carbone que vous ne posez pas la question du bio ?
   réponse: >
@@ -408,10 +407,10 @@
     No.
 
 
-    That's just not where the fundamental issue of the power station lies.
+    That's just not where the largest climate impact of our diet lies.
 
 
-    The main issue of this item is the consumption of meat and animal products (milk, cheese, etc.) which represent, between them, about 75% of the carbon footprint of the average French person's diet. Knowing that your turnip is organic or that the beef you eat was raised on organic food is therefore secondary, given that the issue at stake is the reduction of meat consumption, especially red meat.
+    The main concern of the food section is the consumption of meat and animal products (milk, cheese, etc.) which represent, between them, about 75% of the carbon footprint of the average French person's diet. Knowing that your turnip is organic or that the beef you eat was raised on organic food is therefore secondary, given that the issue at stake is the reduction of meat consumption, especially red meat.
   réponse.lock: >
 
     Non.
@@ -424,21 +423,21 @@
 - catégorie: public services
   catégorie.lock: services publics
   id: services-publics
-  question: At the end of my calculation there is a "utility" item, what is it?
+  question: At the end of my calculation there is a "public services" section, what is it?
   question.lock: À la fin de mon calcul il y a un poste « service public »,
     qu’est-ce que c’est ?
   réponse: >
 
-    This item represents the carbon footprint of French public services on an individual scale. That is to say that the impact of the services is distributed among the 66 million French people.
+    This section represents the carbon footprint of French public services on an individual scale. That is to say that the impact of the services is distributed among the 66 million French residents.
 
 
     So everyone takes their share for several reasons.
 
 
-    First of all, it is extremely rare, indeed almost impossible, to live without ever using a single public service. Whether it is health care, roads, education, and more generally everything that is financed by taxes, everyone benefits from public services.
+    First of all, it is extremely rare, indeed almost impossible, to live without ever using a single public service. Whether it is health care, roads, education, or more generally anything that is financed by taxes, everyone benefits from public services.
 
 
-    Second, trying to account for how much of a public service an individual uses "for real" is not currently possible with the data we have on the footprint of this sector.
+    Secondly, trying to account for how much of a public service an individual uses "for real" is not currently possible with the data we have on the footprint of this sector.
   réponse.lock: >
 
     Ce poste représente l’empreinte carbone des services publics français ramené à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 66 millions de français.
@@ -483,21 +482,21 @@
 - catégorie: general
   catégorie.lock: général
   id: 2tonnes
-  question: Why this 2 ton goal? It's super ambitious!
+  question: Where does this 2 tonne goal come from? It's super ambitious!
   question.lock: Pourquoi cet objectif de 2 tonnes ? C'est super ambitieux !
   réponse: >
     This reaction is normal! And let's be honest, at the moment, very few
-    people emit less than 2 tons. However, if your footprint is around 4 or 5
-    tons, you've already come a long way.
+    people emit less than 2 tonnes. However, if your footprint is around 4 or 5
+    tonnes, you've already come a long way.
 
 
     It's all about individual progress towards less greenhouse gas emitting lifestyles, but it's essential that changes take place on a larger scale to facilitate the emergence of these lifestyles.
 
 
-    > For example, a community where citizens massively switch to cycling (or to another low-carbon mode) will push its elected officials to promote new infrastructure and adequate policies, which in turn will help the next ones to switch to cycling, and so on ♻️ !
+    > For example, a large group of citizens switching to cycling (or to another low-carbon modes of transport) will push its elected officials to promote new infrastructure and adequate policies, which in turn will help the more people to switch to cycling, and so on ♻️ !
 
 
-    This 2-tonne target is therefore complicated, but it is what we must collectively achieve as soon as possible, and by 2050 at the latest with a steady progression each year, in order to contain global warming to +2°, and thus respect the Paris Agreement. This "climate budget" is not a political fact, but results from the planetary limits identified by climate science. It is factual, non-negotiable, unless we want to expose ourselves to the disastrous consequences that are associated with it and widely described in the [IPCC reports](https://www.ipcc.ch/languages-2/francais/).
+    This 2-tonne target is therefore complicated, but it is what we must collectively achieve as soon as possible, by 2050 at the latest with a steady progression each year, in order to limit global warming to +2°, and thus respect the Paris Agreement. This "climate budget" is not a political fact, but results from the planetary limits identified by climate science. It is factual, non-negotiable, unless we want to expose ourselves to the disastrous consequences that are associated with it and widely described in the [IPCC reports](https://www.ipcc.ch/languages-2/english/).
 
 
     > To learn more, read our illustrated article on this subject:
@@ -525,12 +524,12 @@
 - catégorie: general
   catégorie.lock: général
   id: international
-  question: Is the calculator only for French people?
+  question: Is the calculator only for French residents?
   question.lock: Le calculateur est il destiné uniquement aux français ?
   réponse: >
-    For the moment, the site is only available for the French-speaking
+    For the moment, the site is only available for the residents of Metropolitan
 
-    population, but we are in the process of adding the overseas
+    France, but we are in the process of adding the overseas
 
     territories, and then the French-speaking countries. The translation
 
@@ -563,11 +562,11 @@
 - catégorie: general
   catégorie.lock: général
   id: déprime
-  question: I get the 2 ton goal, but I have a hard time imagining it.
+  question: I get the 2 tonne goal, but I have a hard time imagining it.
   question.lock: J'ai compris l'objectif de 2 tonnes, mais j'ai beaucoup de mal à l'imaginer.
   réponse: >
 
-    The carbon footprint exercise can also cause discouragement because we coldly count the emissions of the lifestyle we know, without apprehending at this stage all the possibilities of a low-carbon life.
+    The carbon footprint exercise can also be discouraging because we coldly count the emissions of the lifestyle we know, without accounting for, at this stage, all the possibilities of a low-carbon life.
 
 
     Walking in nature, playing music, cycling, sailing, taking advantage of the train all over the country, spending time with our loved ones, partying, reading, chatting, gardening, learning to cook differently... A low-carbon life is full of joyful experiences, which do not necessarily find their way into an individual carbon footprint, but which will be at the heart of the lifestyles we are inventing at this very moment.
@@ -580,7 +579,7 @@
 - catégorie: general
   catégorie.lock: général
   id: finance
-  question: Why not take into account individual savings?
+  question: Why not take into account individual financial savings?
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   réponse: >
 
@@ -607,7 +606,7 @@
 - catégorie: general
   catégorie.lock: général
   id: foyer
-  question: I don't understand if the calculation is done per household or per individual
+  question: Is the calculation is done per household or per individual?
   question.lock: Je ne comprends pas si le calcul est fait par foyer ou par individu
   réponse: >
     Nos Gestes Climat is an individual carbon footprint calculator
