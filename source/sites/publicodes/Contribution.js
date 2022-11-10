@@ -234,7 +234,6 @@ export default ({}) => {
 												  fromLocation +
 												  '`'
 												: '') +
-											'<br/>' +
 											t('publicodes.Contribution.commentaireAugmenté')
 										createIssue(sujet, augmentedComment, setURL, disableButton)
 									}}
