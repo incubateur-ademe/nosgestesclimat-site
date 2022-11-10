@@ -15,7 +15,7 @@ export default function InputSuggestions({
 	onFirstClick,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	return (
 		<div

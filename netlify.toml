@@ -14,3 +14,7 @@
 [[edge_functions]]
   path = "/geolocation"
   function = "geolocation"
+
+[functions]
+  node_bundler = "esbuild"
+

@@ -1,9 +1,12 @@
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
+
 export default () => {
 	const focusTarget = (focusTarget) => {
 		const target = document.querySelector(focusTarget)
 		target.focus()
 	}
+
 	return (
 		<nav
 			aria-label="Accès rapide"
@@ -23,7 +26,7 @@ export default () => {
 			<ul>
 				<li>
 					<Link to="#mainContent" onClick={() => focusTarget('#mainContent')}>
-						Aller au contenu
+						<Trans>Aller au contenu</Trans>
 					</Link>
 				</li>
 				<li>
@@ -31,11 +34,13 @@ export default () => {
 						to="#mainNavigation"
 						onClick={() => focusTarget('#mainNavigation')}
 					>
-						Menu
+						<Trans>Menu</Trans>
 					</Link>
 				</li>
 				<li>
-					<Link to="/à-propos">À propos</Link>
+					<Link to="/à-propos">
+						<Trans>À propos</Trans>
+					</Link>
 				</li>
 			</ul>
 		</nav>

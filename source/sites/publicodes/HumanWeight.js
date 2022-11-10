@@ -1,21 +1,32 @@
+import { Trans, useTranslation } from 'react-i18next'
+
 import { correctValue } from '../../components/publicodesUtils'
+import { getCurrentLangInfos } from '../../locales/translation'
 import { disabledAction, supersededAction } from './ActionVignette'
 
-export const humanWeight = (possiblyNegativeValue, concise = false, noSign) => {
+export const humanWeight = (
+	{ t, i18n }, // We need to be passed as an argument instead of calling useTranslation inside the body, to avoid 'Rendered more hooks than during the previous render.'
+	possiblyNegativeValue,
+	concise = false,
+	noSign
+) => {
 	const v = Math.abs(possiblyNegativeValue)
-	const [raw, unit, digits] =
+	const [raw, unit, _digits] =
 		v === 0
 			? [v, '', 0]
 			: v < 1
 			? [v * 1000, 'g', 0]
 			: v < 1000
-			? [v, 'kg', 0]
-			: [v / 1000, concise ? 't' : v > 2000 ? 'tonnes' : 'tonne', 1]
+			? [v, 'kg']
+			: [v / 1000, concise ? 't' : v > 2000 ? t('tonnes') : t('tonne')]
+
+	const abrvLocale = getCurrentLangInfos(i18n).abrvLocale
 
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
 		resultValue = noSign ? raw : signedValue,
-		value = resultValue.toLocaleString('fr-FR', {
-			maximumFractionDigits: digits,
+		value = resultValue.toLocaleString(abrvLocale, {
+			minimumFractionDigits: 1,
+			maximumFractionDigits: 1,
 		})
 
 	return [value, unit]
@@ -25,12 +36,20 @@ const HumanWeight = ({
 	nodeValue,
 	overrideValue,
 	metric = 'climat',
-	unitSuffix = 'de CO₂-e / an',
-	longUnitSuffix,
+	unitText: givenUnitText,
+	longUnitText,
 }) => {
+	const { t, i18n } = useTranslation()
+	const unitText = givenUnitText || (
+		<span>
+			<Trans i18nKey="humanWeight.unitSuffix">de</Trans> CO₂-e /{' '}
+			{t('an', { ns: 'units' })}
+		</span>
+	)
+
 	const [value, unit] =
 		metric === 'climat'
-			? humanWeight(nodeValue)
+			? humanWeight({ t, i18n }, nodeValue)
 			: metric === 'pétrole'
 			? [nodeValue, '']
 			: [null]
@@ -76,7 +95,8 @@ const HumanWeight = ({
 				{overrideValue ? (
 					<>
 						<del css="">{value}</del>
-						&nbsp;<ins>{humanWeight(nodeValue - overrideValue)[0]}</ins>
+						&nbsp;
+						<ins>{humanWeight({ t, i18n }, nodeValue - overrideValue)[0]}</ins>
 					</>
 				) : (
 					value
@@ -87,7 +107,7 @@ const HumanWeight = ({
 				<span
 					className="unitSuffix"
 					css={
-						longUnitSuffix &&
+						longUnitText &&
 						`
 						@media (min-width: 800px) {
 							display: none;
@@ -95,9 +115,9 @@ const HumanWeight = ({
 					`
 					}
 				>
-					{unitSuffix}
+					{unitText}
 				</span>
-				{longUnitSuffix && (
+				{longUnitText && (
 					<span
 						className="unitSuffix"
 						css={`
@@ -106,7 +126,7 @@ const HumanWeight = ({
 							}
 						`}
 					>
-						{longUnitSuffix}
+						{longUnitText}
 					</span>
 				)}
 			</span>

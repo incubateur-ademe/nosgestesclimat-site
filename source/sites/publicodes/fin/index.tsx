@@ -2,6 +2,7 @@ import animate from 'Components/ui/animate'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
@@ -48,13 +49,14 @@ export default ({}) => {
 	const tracker = useContext(TrackerContext)
 
 	const componentCorrespondence = {
-			bilan: Budget,
-			categories: Catégories,
-			action: ActionSlide,
-			petrogaz: Petrogaz,
-		},
-		componentKeys = Object.keys(componentCorrespondence),
-		Component = componentCorrespondence[slideName] || Budget
+		bilan: Budget,
+		categories: Catégories,
+		action: ActionSlide,
+		petrogaz: Petrogaz,
+	}
+	console.log('slideName:', slideName)
+	const componentKeys = Object.keys(componentCorrespondence)
+	const Component = componentCorrespondence[slideName] || Budget
 
 	const next = () => {
 		setSearchParams({
@@ -87,13 +89,19 @@ export default ({}) => {
 			<IframeDataShareModal data={rehydratedDetails} />
 			<Link to="/simulateur/bilan" css="display: block; text-align: center">
 				{!answeredQuestions.length ? (
-					<button class="ui__ button plain cta"> Faire mon test</button>
+					<button class="ui__ button plain cta">
+						{' '}
+						<Trans>Faire mon test</Trans>
+					</button>
 				) : nextQuestions.length > 1 ? (
-					<button class="ui__ button plain"> ← Terminer ma simulation</button>
+					<button class="ui__ button plain">
+						{' '}
+						← <Trans>Terminer ma simulation</Trans>
+					</button>
 				) : (
 					<button className="ui__ simple small push-left button">
 						{' '}
-						← Revenir à ma simulation
+						← <Trans>Revenir à ma simulation</Trans>
 					</button>
 				)}
 			</Link>
@@ -126,7 +134,7 @@ export const DocumentationEndButton = ({ ruleName, color }) => (
 	>
 		<small>
 			<Link to={'/documentation/' + encodeRuleName(ruleName)}>
-				Comprendre le calcul{' '}
+				<Trans>Comprendre le calcul</Trans>{' '}
 			</Link>
 		</small>
 	</div>

@@ -3,7 +3,6 @@ import { omit } from 'Source/utils'
 
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { SavedSimulation } from 'Selectors/storageSelectors'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import storageRootReducer from './storageReducer'
@@ -145,6 +144,7 @@ function simulation(
 	}
 	return state
 }
+
 function rules(state = null, { type, rules }) {
 	if (type === 'SET_RULES') {
 		return rules
@@ -159,6 +159,11 @@ function actionChoices(state = {}, { type, action, choice }) {
 		return {}
 	} else return state
 }
+
+function currentLang(state = {}, { type, currentLang }) {
+	return type === 'SET_LANGUAGE' ? currentLang : state
+}
+
 function survey(state = null, { type, room, answers, contextFile }) {
 	if (type === 'UNSET_SURVEY') return {}
 	if (type === 'SET_SURVEY') {
@@ -199,6 +204,7 @@ function conference(state = null, { type, room, ydoc, provider }) {
 		}
 	} else return state
 }
+
 //Tutorials are the main tutorial for the /simulateur/bilan simulation,
 //but also the small category pages displayed before starting the category, as a pause for the user
 function tutorials(state = {}, { type, id, unskip }) {
@@ -218,6 +224,7 @@ function tutorials(state = {}, { type, id, unskip }) {
 		)
 	} else return state
 }
+
 function tracking(
 	state = {
 		endEventFired: false,
@@ -263,6 +270,7 @@ type LocalisationAction = {
 	country: object
 	userChosen: boolean
 }
+
 function localisation(
 	state = null,
 	{ type, localisationData }: LocalisationAction
@@ -273,6 +281,7 @@ function localisation(
 		return null
 	} else return state
 }
+
 function pullRequestNumber(state = null, { type, number }) {
 	if (type === 'SET_PULL_REQUEST_NUMBER') {
 		return number
@@ -299,6 +308,7 @@ const mainReducer = (state: any, action: Action) =>
 		localisation,
 		pullRequestNumber,
 		engineState,
+		currentLang,
 	})(state, action)
 
 export default reduceReducers<RootState>(

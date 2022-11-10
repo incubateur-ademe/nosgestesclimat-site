@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { inIframe } from 'Source/utils'
 
@@ -7,6 +7,7 @@ import { inIframe } from 'Source/utils'
 const shareDataPopupTimeout = 3500
 
 export default ({ data }) => {
+	const { t } = useTranslation()
 	var [isOpen, setIsOpen] = useState(false)
 	//To delay the dialog show in to let the animation play
 	const timeoutRef = useRef(null)
@@ -19,7 +20,8 @@ export default ({ data }) => {
 			setIsOpen(true)
 		}, shareDataPopupTimeout)
 	}, [])
-	function onReject() {
+
+	const onReject = () => {
 		window.parent.postMessage(
 			{
 				messageType: 'ngc-iframe-share',
@@ -29,32 +31,19 @@ export default ({ data }) => {
 		)
 		setIsOpen(false)
 	}
-	function onAccept() {
+
+	const onAccept = () => {
 		window.parent.postMessage({ messageType: 'ngc-iframe-share', data }, '*')
 		setIsOpen(false)
 	}
-	function onClose() {
-		setIsOpen(false)
-	}
-	if (!inIframe() || !document.referrer || !iframeOptions?.iframeShareData)
+
+	if (!inIframe() || !document.referrer || !iframeOptions?.iframeShareData) {
 		return null
+	}
+
 	const parent = document.referrer
 		? new URL(document.referrer).hostname
 		: 'parent'
-	const text = (
-		<div>
-			<p>
-				En cliquant sur le bouton Accepter, vous autorisez {parent} à récupérer le 
-	      bilan de votre empreinte climat.
-			</p>
-			<p>
-				Il s'agit de vos résultats sur les grandes catégories (transport,
-				alimentation...), mais <em>pas</em> le détail question par question (vos
-				km en voiture, les m² de votre logement...).
-			</p>
-			<p>Nosgestesclimat.fr n'est pas affilié au site {parent}.</p>
-		</div>
-	)
 
 	if (!isOpen) return null
 	return (
@@ -75,8 +64,25 @@ export default ({ data }) => {
 				background: #fff;
 			`}
 		>
-			<h2>Partage de vos résultats à {parent} ?</h2>
-			<p>{text}</p>
+			<h2>
+				<Trans i18nKey={'publicodes.fin.IframeDataShareModal.partageResultats'}>
+					Partage de vos résultats à {{ parent }} ?
+				</Trans>
+			</h2>
+			<div>
+				<Trans i18nKey="publicodes.fin.IframeDataShareModal.text">
+					<p>
+						En cliquant sur le bouton Accepter, vous autorisez {{ parent }} à
+						récupérer le bilan de votre empreinte climat.
+					</p>
+					<p>
+						Il s'agit de vos résultats sur les grandes catégories (transport,
+						alimentation...), mais <em>pas</em> le détail question par question
+						(vos km en voiture, les m² de votre logement...).
+					</p>
+					<p>Nosgestesclimat.fr n'est pas affilié au site {{ parent }}.</p>
+				</Trans>
+			</div>
 			<div
 				css={`
 					display: flex;
@@ -85,10 +91,10 @@ export default ({ data }) => {
 				`}
 			>
 				<button onClick={onAccept} className="ui__ plain button">
-					{emoji('👍')} Accepter
+					{t('👍 Accepter')}
 				</button>
 				<button onClick={onReject} className="ui__ button ">
-					{emoji('👎')} refuser
+					{t('👎 Refuser')}
 				</button>
 			</div>
 		</div>

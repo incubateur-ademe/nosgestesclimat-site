@@ -1,12 +1,13 @@
+import { useTranslation } from 'react-i18next'
 import { humanWeight } from '../HumanWeight'
 
 export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
+	const { t, i18n } = useTranslation()
 	const values = Object.values(categories)
 			.flat()
-			.map(({ username, value }) => value),
-		min = Math.min(...values),
+			.map(({ value }) => value),
 		max = Math.max(...values),
-		humanMax = humanWeight(max, true)
+		humanMax = humanWeight({ t, i18n }, max, true)
 
 	return (
 		<div>
@@ -56,10 +57,16 @@ export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
 											: ''}
 									`}
-									title={`${username} : ${humanWeight(value, true).join(' ')}`}
-									aria-label={`${username} : ${humanWeight(value, true).join(
-										' '
-									)}`}
+									title={`${username} : ${humanWeight(
+										{ t, i18n },
+										value,
+										true
+									).join(' ')}`}
+									aria-label={`${username} : ${humanWeight(
+										{ t, i18n },
+										value,
+										true
+									).join(' ')}`}
 									onClick={() => setSpotlight(username)}
 									role="button"
 									aria-pressed={spotlight === username}

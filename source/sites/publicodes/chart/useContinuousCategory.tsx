@@ -9,6 +9,7 @@ import { currentQuestionSelector } from 'Selectors/simulationSelectors'
 export default (categories) => {
 	const [displayedCategory, setDisplayedCategory] = useState(null)
 	const currentQuestion = useSelector(currentQuestionSelector)
+
 	useEffect(() => {
 		const newCategory =
 			currentQuestion &&
@@ -16,6 +17,7 @@ export default (categories) => {
 				({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
 			)
 		newCategory && setDisplayedCategory(newCategory)
-	}, [currentQuestion])
+	}, [currentQuestion, categories])
+
 	return displayedCategory
 }

@@ -1,6 +1,5 @@
 import { ScrollToElement } from 'Components/utils/Scroll'
-import { TrackerContext } from 'Components/utils/withTracker'
-import React, { useContext, useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useLocation } from 'react-router'
 
@@ -8,12 +7,12 @@ type Props = { onEnd: () => void; onCancel: () => void }
 declare global {
 	const $: any
 }
-export default function FeedbackForm({ onEnd, onCancel }: Props) {
-	// const tracker = useContext(TrackerContext)
+export default function FeedbackForm({ onCancel }: Props) {
 	const pathname = useLocation().pathname
 	const page = pathname.split('/').slice(-1)[0]
 	const isSimulateur = pathname.includes('simulateurs')
 	const lang = useTranslation().i18n.language
+
 	useEffect(() => {
 		const script = document.createElement('script')
 		script.src = 'https://code.jquery.com/jquery-2.1.4.min.js'
@@ -39,23 +38,23 @@ export default function FeedbackForm({ onEnd, onCancel }: Props) {
 							tag: 'textarea',
 							placeholder: 'Your Message...',
 							defaultValue: '',
-							rows: 7
+							rows: 7,
 						},
 						{
 							display: 'Nom',
 							name: 'name',
 							tag: 'input',
 							type: 'text',
-							defaultValue: '-'
+							defaultValue: '-',
 						},
 						{
 							display: 'Email (pour recevoir notre réponse)',
 							name: 'email',
 							tag: 'input',
 							type: 'email',
-							placeholder: 'Your Email'
-						}
-					]
+							placeholder: 'Your Email',
+						},
+					],
 				})
 			}
 			script.src = 'https://mon-entreprise.zammad.com/assets/form/form.js'

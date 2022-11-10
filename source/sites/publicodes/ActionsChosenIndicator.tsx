@@ -1,11 +1,15 @@
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import animate from 'Components/ui/animate'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 export default ({}) => {
+	const { t } = useTranslation()
 	const actionChoices = useSelector((state) => state.actionChoices),
 		count = Object.values(actionChoices).filter((a) => a === true).length
-	if (count == 0) return '.'
+
+	if (count == 0) {
+		return '.'
+	}
 	return (
 		<span>
 			,{' '}
@@ -30,10 +34,10 @@ export default ({}) => {
 			>
 				<animate.appear>
 					<div>{count}</div>
-					<div title="actions choisies">&#10004;</div>
+					<div title={t('actions choisies')}>&#10004;</div>
 				</animate.appear>
 			</span>
-			sélectionnées.
+			<Trans>sélectionnées</Trans>.
 		</span>
 	)
 }

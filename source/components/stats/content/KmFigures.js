@@ -1,6 +1,10 @@
-import React from 'react'
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
+import {
+	getLangInfos,
+	getLangFromAbreviation,
+} from '../../../locales/translation'
 import Tile from '../utils/Tile'
 
 const FigureWrapper = styled.div`
@@ -36,18 +40,29 @@ const Label = styled.span`
 export default function KmFigures(props) {
 	const userPercent = (props.kmhelp / props.simulationsfromhelp) * 100
 	const ridesavg = props.ridesnumber / props.kmhelp
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	return (
 		<FigureWrapper>
 			<TileWrapper>
 				<Tile.Content>
-					<Number> {Math.round(userPercent).toLocaleString('fr-FR')}%</Number>
-					<Label>ont utilisé l'aide à la saisie des km</Label>
+					<Number>
+						{' '}
+						{Math.round(userPercent).toLocaleString(
+							currentLangInfos.abrvLocale
+						)}
+						%
+					</Number>
+					<Label>{t(`ont utilisé l'aide à la saisie des km`)}</Label>
 				</Tile.Content>
 			</TileWrapper>
 			<TileWrapper>
 				<Tile.Content>
-					<Number>{Math.round(ridesavg).toLocaleString('fr-FR')}</Number>
-					<Label>trajets saisis en moyenne</Label>
+					<Number>
+						{Math.round(ridesavg).toLocaleString(currentLangInfos.abrvLocale)}
+					</Number>
+					<Label>{t(`trajets saisis en moyenne`)}</Label>
 				</Tile.Content>
 			</TileWrapper>
 		</FigureWrapper>

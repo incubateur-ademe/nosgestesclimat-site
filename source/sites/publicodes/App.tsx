@@ -3,10 +3,12 @@ import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
 import 'Components/ui/index.css'
 import React, { Suspense, useContext, useEffect } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
-import { Route, Routes } from 'react-router-dom'
+import { Route, Routes, useSearchParams } from 'react-router-dom'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
+import TranslationAlertBanner from '../../components/TranslationAlertBanner'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
@@ -16,6 +18,12 @@ import {
 	retrievePersistedSimulation,
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
+import {
+	changeLangTo,
+	getLangFromAbreviation,
+	getLangInfos,
+	Lang,
+} from './../../locales/translation'
 import Actions from './Actions'
 import Fin from './fin'
 import Landing from './Landing'
@@ -27,6 +35,7 @@ import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
+import TranslationContribution from './TranslationContribution'
 
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
@@ -53,7 +62,6 @@ if (NODE_ENV === 'production') {
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 export default function Root({}) {
-	const { language } = useTranslation().i18n
 	const paths = sitePaths()
 
 	const iframeShareData = new URLSearchParams(
@@ -61,6 +69,11 @@ export default function Root({}) {
 	).get('shareData')
 
 	const persistedSimulation = retrievePersistedSimulation()
+
+	const currentLang =
+		persistedSimulation?.currentLang ??
+		getLangFromAbreviation(window.navigator.language.toLowerCase())
+
 	return (
 		<Provider
 			tracker={tracker}
@@ -74,9 +87,10 @@ export default function Root({}) {
 				//...retrievePersistedState(),
 				previousSimulation: persistedSimulation,
 				iframeOptions: { iframeShareData },
-				actionChoices: persistedSimulation?.actionChoices || {},
-				tutorials: persistedSimulation?.tutorials || {},
-				storedTrajets: persistedSimulation?.storedTrajets || {},
+				actionChoices: persistedSimulation?.actionChoices ?? {},
+				tutorials: persistedSimulation?.tutorials ?? {},
+				storedTrajets: persistedSimulation?.storedTrajets ?? {},
+				currentLang,
 				localisation: persistedSimulation?.localisation,
 			}}
 		>
@@ -96,7 +110,10 @@ const isFluidLayout = (encodedPathname) => {
 }
 
 const Main = ({}) => {
+	const dispatch = useDispatch()
+	const { i18n } = useTranslation()
 	const location = useLocation()
+	const [searchParams, _] = useSearchParams()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
@@ -106,6 +123,26 @@ const Main = ({}) => {
 	useEffect(() => {
 		tracker.track(location)
 	}, [location])
+
+	const currentLangState = useSelector((state) => state.currentLang)
+	const currentLangParam = searchParams.get('lang')
+
+	if (i18n.language !== getLangInfos(currentLangState).abrv) {
+		// sync up the [i18n.language] with the current lang stored in the persisiting state.
+		changeLangTo(i18n, currentLangState)
+	}
+
+	useEffect(() => {
+		if (currentLangParam && currentLangParam !== i18n.language) {
+			// The 'lang' search param has been modified.
+			const currentLang = getLangFromAbreviation(currentLangParam)
+			changeLangTo(i18n, currentLang)
+			dispatch({
+				type: 'SET_LANGUAGE',
+				currentLang,
+			})
+		}
+	}, [currentLangParam])
 
 	const fluidLayout = isFluidLayout(location.pathname)
 
@@ -134,11 +171,14 @@ const Main = ({}) => {
 				id="mainContent"
 				css={`
 					outline: none !important;
+					padding-left: 0rem;
 					@media (min-width: 800px) {
 						flex-grow: 1;
+						padding-left: 0.6rem;
 					}
 				`}
 			>
+				{Lang.Default !== currentLangState && <TranslationAlertBanner />}
 				{!isHomePage && !isTuto && <LocalisationMessage />}
 
 				{fluidLayout && (
@@ -161,7 +201,11 @@ const Main = ({}) => {
 	)
 }
 
-export const Loading = () => <div>Chargement</div>
+export const Loading = () => (
+	<div>
+		<Trans>Chargement...</Trans>
+	</div>
+)
 
 const Router = ({}) => {
 	return (
@@ -170,7 +214,7 @@ const Router = ({}) => {
 			<Route
 				path="documentation/*"
 				element={
-					<Suspense fallback={<div>Chargement</div>}>
+					<Suspense fallback={<Loading />}>
 						<WithEngine>
 							<Documentation />
 						</WithEngine>
@@ -233,11 +277,25 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
+			<Route
+				path="/contribuer-traduction"
+				element={
+					<Suspense fallback={<Loading />}>
+						<TranslationContribution />
+					</Suspense>
+				}
+			/>
 			<Route path={encodeURIComponent('à-propos')} element={<About />} />
 			<Route
 				path="/cgu"
 				element={
-					<Suspense fallback={<div>Chargement</div>}>
+					<Suspense
+						fallback={
+							<div>
+								<Trans>Chargement</Trans>
+							</div>
+						}
+					>
 						<CGULazy />
 					</Suspense>
 				}
@@ -247,7 +305,13 @@ const Router = ({}) => {
 			<Route
 				path={encodeURIComponent('vie-privée')}
 				element={
-					<Suspense fallback={<div>Chargement</div>}>
+					<Suspense
+						fallback={
+							<div>
+								<Trans>Chargement</Trans>
+							</div>
+						}
+					>
 						<PrivacyLazy />
 					</Suspense>
 				}

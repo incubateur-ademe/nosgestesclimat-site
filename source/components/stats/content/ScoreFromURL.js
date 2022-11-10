@@ -1,7 +1,8 @@
-import { rehydrateDetails, sumFromDetails } from '../../../sites/publicodes/fin'
-import styled from 'styled-components'
-import Tile from '../utils/Tile'
 import { formatValue } from 'publicodes'
+import { Trans } from 'react-i18next'
+import styled from 'styled-components'
+import { rehydrateDetails, sumFromDetails } from '../../../sites/publicodes/fin'
+import Tile from '../utils/Tile'
 import TotalChart from './TotalChart'
 
 const Wrapper = styled.div`
@@ -56,11 +57,16 @@ export default function ScoreFromURL(props) {
 			<Tile.Tile>
 				<TopBlock>
 					<Number>
-						{roundedMeanScore} tonnes{' '}
-						<small>de CO₂e en moyenne ({totalVisits} simulations)</small>
+						{roundedMeanScore} <Trans>tonnes</Trans>{' '}
+						<small>
+							<Trans>de CO₂e en moyenne</Trans> ({totalVisits}{' '}
+							<Trans>simulations</Trans>)
+						</small>
 					</Number>
 					<TotalChart flatScoreArray={flatScoreArray} />
-					<Text>Données valables pour les 30 derniers jours</Text>
+					<Text>
+						<Trans>Données valables pour les 30 derniers jours</Trans>
+					</Text>
 				</TopBlock>
 			</Tile.Tile>
 		</Wrapper>

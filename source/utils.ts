@@ -63,13 +63,21 @@ export function getSessionStorage() {
 	}
 }
 
-export const currencyFormat = (language: string) => ({
-	isCurrencyPrefixed: !!formatValue(12, { language, displayedUnit: '€' }).match(
-		/^€/
-	),
-	thousandSeparator: formatValue(1000, { language }).charAt(1),
-	decimalSeparator: formatValue(0.1, { language }).charAt(1),
-})
+export const currencyFormat = (language: string) => {
+	const thousandSeparator = formatValue(1000, { language }).charAt(1)
+	const decimalSeparator = formatValue(0.1, { language }).charAt(1)
+	const notNumberOrValue = (val: string) =>
+		'0' <= val && val <= '9' ? '' : val
+
+	return {
+		isCurrencyPrefixed: !!formatValue(12, {
+			language,
+			displayedUnit: '€',
+		}).match(/^€/),
+		thousandSeparator: notNumberOrValue(thousandSeparator),
+		decimalSeparator: notNumberOrValue(decimalSeparator),
+	}
+}
 
 export function hash(str: string): number {
 	let hash = 0

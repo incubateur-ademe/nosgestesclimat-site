@@ -18,6 +18,7 @@
    * [Custom iframe integration](https://github.com/datagir/nosgestesclimat-site/wiki/Customisation#custom-iframe-integration)
 5. [**Translation**](https://github.com/datagir/nosgestesclimat-site/wiki/Translation)
    * [Configuration](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#configuration)
+   * [Available languages](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#available-languages)
    * [Workflows](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#workflows)
        * [Editing the source code](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#editing-the-source-code)
        * [Adding units translation](https://github.com/datagir/nosgestesclimat-site/wiki/Translation#adding-units-translation)

@@ -1,16 +1,21 @@
+import emoji from 'Components/emoji'
 import animate from 'Components/ui/animate'
-import { useState, Fragment, useEffect, useRef, useContext } from 'react'
+import { motion } from 'framer-motion'
+import { Fragment, useContext, useEffect, useRef, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../actions/actions'
-import { motifList, freqList } from './dataHelp'
-import ReadOnlyRow from './ReadOnlyRow'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
+import { TrackerContext } from '../../utils/withTracker'
+import { freqList } from './dataHelp'
 import EditableRow from './EditableRow'
 import KmForm from './KmForm'
 import KmHelpButton from './KmHelpButton'
-import { motion } from 'framer-motion'
-import styled from 'styled-components'
-import { TrackerContext } from '../../utils/withTracker'
-import emoji from 'Components/emoji'
+import ReadOnlyRow from './ReadOnlyRow'
 
 const openmojis = {
 	calendrier: '1F4C5',
@@ -24,6 +29,8 @@ const openmojis = {
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 export default function KmHelp({ setFinalValue, dottedName }) {
+	const { t, i18n } = useTranslation()
+
 	const tracker = useContext(TrackerContext)
 
 	const dispatch = useDispatch()
@@ -45,7 +52,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 	const [editTrajetId, setEditTrajetId] = useState(null)
 
 	const trajetValue = (trajet, factor) => {
-		const period = freqList.find((f) => f.name === trajet.periode)
+		const period = freqList(t).find((f) => f.name === trajet.periode)
 		const freqValue = period ? period.value * trajet.xfois : 0
 		return trajet.distance * freqValue * factor(trajet)
 	}
@@ -100,7 +107,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		}
 
 		if (editFormData.personnes == 0) {
-			alert('Une personne au moins est présente dans la voiture (vous !)')
+			alert(t('Une personne au moins est présente dans la voiture (vous !)'))
 			return null
 		}
 
@@ -122,6 +129,8 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 		}
 	}
 
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	return !isOpen ? (
 		<div
 			css={`
@@ -129,7 +138,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			`}
 		>
 			<KmHelpButton
-				text="&nbsp; Aide à la saisie"
+				text={t('Aide à la saisie')}
 				openmojiURL={openmojiURL}
 				onHandleClick={() => {
 					setIsOpen(true)
@@ -162,12 +171,19 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 							text-align: right;
 						`}
 					>
-						Vous parcourez {rawSum.toLocaleString('fr-FR')} km avec en moyenne{' '}
-						{covoitAvg.toLocaleString('fr-FR', {
-							minimumFractionDigits: 1,
-							maximumFractionDigits: 1,
-						})}{' '}
-						personnes dans la voiture.
+						{t(
+							'components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne',
+							{
+								kmParcouru: rawSum.toLocaleString(currentLangInfos.abrvLocale),
+								nbPersonnes: covoitAvg.toLocaleString(
+									currentLangInfos.abrvLocale,
+									{
+										minimumFractionDigits: 1,
+										maximumFractionDigits: 1,
+									}
+								),
+							}
+						)}
 					</div>
 				</div>
 			)}
@@ -193,7 +209,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 							])
 						}}
 					>
-						Fermer
+						<Trans>Fermer</Trans>
 					</button>
 				</div>
 				<KmForm
@@ -214,22 +230,22 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 								<tr>
 									<th scope="col">Motif</th>
 									<th scope="col" css="width: 20%">
-										Label
+										{t('Label')}
 									</th>
 									<th scope="col" css="width: 3rem">
-										"KM"
+										{t('KM', { ns: 'units' })}
 									</th>
 									<th scope="col" css="width: 25%">
-										Fréquence
+										{t('Fréquence')}
 									</th>
 									<th
 										scope="col"
 										css="width: 10%; color: transparent; text-shadow: 0 0 0 white;"
 									>
-										{emoji('👥', 'Nombre de personnes')}
+										{emoji('👥', t('Nombre de personnes'))}
 									</th>
 									<th scope="col" css="width: 5.5rem">
-										Modifier
+										{t('Modifier')}
 									</th>
 								</tr>
 							</thead>
@@ -265,11 +281,13 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 													justify-content: right;
 												`}
 											>
-												Mon total :{' '}
+												<Trans>Mon total :</Trans>{' '}
 												<strong>
-													&nbsp;{sum.toLocaleString('fr-FR')} km&nbsp;
+													&nbsp;
+													{sum.toLocaleString(currentLangInfos.abrvLocale)}{' '}
+													km&nbsp;
 												</strong>{' '}
-												(co-voiturage pris en compte)
+												<Trans>(co-voiturage pris en compte)</Trans>
 											</span>
 										</td>
 									)}
@@ -284,7 +302,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 									display: block;
 								`}
 							>
-								Vos trajets apparaîtront dans ce tableau.{' '}
+								<Trans>Vos trajets apparaîtront dans ce tableau.</Trans>{' '}
 							</small>
 						)}
 					</form>

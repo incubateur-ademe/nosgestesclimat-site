@@ -1,9 +1,16 @@
 import 'core-js/stable'
 import { createRoot } from 'react-dom/client'
+import i18next from '../../locales/i18n'
+import { getLangInfos, Lang } from '../../locales/translation'
 import App from './App'
-import i18n from '../../locales/i18n'
 
-i18n.changeLanguage('fr')
+Object.keys(Lang).forEach((lang) => {
+	if (lang !== Lang.Default) {
+		const infos = getLangInfos(Lang[lang])
+		console.log(`[i18next] Loading '${infos.abrv}'...`)
+		i18next.addResourceBundle(infos.abrv, 'translation', infos.uiTrad)
+	}
+})
 
 let anchor = document.querySelector('#js')
 

@@ -1,4 +1,3 @@
-import { Twemoji } from 'Components/emoji'
 import { getEmojiComponents } from './emoji'
 
 export default ({ emojiBackground = '#ffffffa6', emojis, emojiTitle }) => {

@@ -1,8 +1,10 @@
 import { resetSimulation } from 'Actions/actions'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
+import { addTranslationToBasePersonas } from '../../../nosgestesclimat/scripts/i18n/addTranslationToBasePersonas'
 import { setDifferentSituation } from '../../actions/actions'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import useBranchData from '../../components/useBranchData'
@@ -46,7 +48,9 @@ export default ({}) => {
 			<h1>Personas</h1>
 			<p>
 				<em>
-					Sélectionnez un persona et éventuellement un graphique à afficher.
+					<Trans>
+						Sélectionnez un persona et éventuellement un graphique à afficher.
+					</Trans>
 				</em>
 			</p>
 			<form>
@@ -69,28 +73,38 @@ export default ({}) => {
 			)}
 			<PersonaGrid />
 			<p>
-				Les personas nous permettront de prendre le parti d'une diversité
-				d'utilisateurs quand ils voient notamment notre écran "passer à
-				l'action".
+				<Trans i18nKey={`publicodes.Personas.description`}>
+					Les personas nous permettront de prendre le parti d'une diversité
+					d'utilisateurs quand ils voient notamment notre écran "passer à
+					l'action".
+				</Trans>
 			</p>
-			<h2>Comment créer un persona ?</h2>
+			<h2>
+				<Trans>Comment créer un persona ?</Trans>
+			</h2>
 			<p>
-				C'est dans le fichier{' '}
+				<Trans>C'est dans le fichier</Trans>{' '}
 				<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/personas.yaml">
 					personas.yaml
 				</a>{' '}
-				que ça se passe. On peut soit copier coller les données d'un autre
-				persona et les modifier, soit en créer un de zéro depuis la simulation.
-				Une fois la simulation satisfaisante, cliquer sur "Modifier mes
-				réponses" puis taper Ctrl-C, ouvrir la console du navigateur (F12),
-				vérifiez bien que vous êtes dans l'onglet "Console", allez tout en bas
-				de la console (elle est un peu chargée...), puis copier le JSON affiché,
-				le coller dans <a href="https://www.json2yaml.com">cet outil</a> pour
-				générer un YAML, puis l'insérer dans personas.yaml.
+				<Trans i18nKey={`publicodes.Personas.tuto`}>
+					que ça se passe. On peut soit copier coller les données d'un autre
+					persona et les modifier, soit en créer un de zéro depuis la
+					simulation. Une fois la simulation satisfaisante, cliquer sur
+					"Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du
+					navigateur (F12), vérifiez bien que vous êtes dans l'onglet "Console",
+					allez tout en bas de la console (elle est un peu chargée...), puis
+					copier le JSON affiché, le coller dans{' '}
+					<a href="https://www.json2yaml.com">cet outil</a> pour générer un
+					YAML, puis l'insérer dans personas.yaml.
+				</Trans>
 			</p>
 			<p>
-				Pour les prénoms, on peut utiliser{' '}
-				<a href="https://lorraine-hipseau.me">ce générateur</a>.
+				<Trans i18nKey={`publicodes.Personas.lienGenerateur`}>
+					Pour les prénoms, on peut utiliser{' '}
+					<a href="https://lorraine-hipseau.me">ce générateur</a>
+				</Trans>
+				.
 			</p>
 		</div>
 	)
@@ -100,6 +114,7 @@ export const PersonaGrid = ({
 	additionnalOnClick,
 	warningIfSituationExists,
 }) => {
+	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
 	const selectedPersona = useSelector((state) => state.simulation?.persona)
@@ -110,23 +125,43 @@ export const PersonaGrid = ({
 	const engine = useEngine()
 
 	const branchData = useBranchData()
+	const lang = i18n.language === 'en' ? 'en-us' : i18n.language
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
-			const personas = require('../../../nosgestesclimat/personas.yaml').default
 
+		console.log(
+			`${NODE_ENV} === 'development' && ${branchData.shouldUseLocalFiles}`
+		)
+		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+			const basePersonas =
+				require(`../../../nosgestesclimat/personas/personas-fr.yaml`).default
+			const translatedPersonasAttrs =
+				require(`../../../nosgestesclimat/personas/personas-${lang}.yaml`).default
+			const personas = addTranslationToBasePersonas(
+				basePersonas,
+				translatedPersonasAttrs
+			)
 			setData(personas)
 		} else {
-			fetch(branchData.deployURL + '/personas.json', {
+			fetch(branchData.deployURL + `/personas-${lang}.json`, {
 				mode: 'cors',
 			})
 				.then((response) => response.json())
 				.then((json) => {
 					setData(json)
 				})
+				.catch((err) => {
+					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
+					console.log('err:', err)
+				})
 		}
-	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
+	}, [
+		branchData.deployURL,
+		branchData.loaded,
+		branchData.shouldUseLocalFiles,
+		lang,
+	])
 
 	if (!data) return null
 
@@ -160,8 +195,10 @@ export const PersonaGrid = ({
 				message={
 					<div>
 						<p>
-							Attention, vous avez une simulation en cours : sélectionner un
-							persona écrasera votre simulation.{' '}
+							<Trans i18nKey={'publicodes.Personas.warningMsg'}>
+								Attention, vous avez une simulation en cours : sélectionner un
+								persona écrasera votre simulation.
+							</Trans>{' '}
 						</p>{' '}
 						<button
 							className="ui__ button simple"
@@ -171,13 +208,13 @@ export const PersonaGrid = ({
 								setWarning(false)
 							}}
 						>
-							Continuer
+							<Trans>Continuer</Trans>
 						</button>
 						<button
 							className="ui__ button simple"
 							onClick={() => setWarning(false)}
 						>
-							Annuler
+							<Trans>Annuler</Trans>
 						</button>
 					</div>
 				}

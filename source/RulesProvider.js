@@ -11,7 +11,11 @@ import {
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
 import { useEffect, useMemo } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
+import { getCurrentLangAbrv } from './locales/translation'
 
 /* This component gets the publicode rules from the good URL,
  * then gives them
@@ -28,6 +32,8 @@ import { useDispatch, useSelector } from 'react-redux'
  * */
 
 export default ({ children }) => {
+	const { i18n } = useTranslation()
+	const currLangAbrv = getCurrentLangAbrv(i18n)
 	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
 
@@ -40,25 +46,54 @@ export default ({ children }) => {
 		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			console.log(
-				'=====DEV MODE : the model is on your hard drive on ../nosgestesclimat ======='
+				'===== DEV MODE : the model is on your hard drive on ./nosgestesclimat ======='
 			)
 			// Rules are stored in nested yaml files
 			const req = require.context('../nosgestesclimat/data/', true, /\.(yaml)$/)
 
-			const rules = req.keys().reduce((memo, key) => {
+			const baseRules = req.keys().reduce((acc, key) => {
+				if (key.match(/translated-rules-.*yaml/)) {
+					// ignoring translating files.
+					return acc
+				}
 				const jsonRuleSet = req(key).default || {}
-				return { ...memo, ...jsonRuleSet }
+				return { ...acc, ...jsonRuleSet }
 			}, {})
+
+			var rules = baseRules
+
+			const currentLang = i18n.language === 'en' ? 'en-us' : i18n.language
+			if (currentLang !== 'fr') {
+				const translatedRulesAttrs =
+					require(`../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
+				rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
+				if (!rules) {
+					console.error(
+						'Error occured while recompiling translated rules for:',
+						currentLang
+					)
+				}
+			}
 
 			setRules(rules, branchData.deployURL)
 		} else {
-			fetch(branchData.deployURL + '/co2.json', { mode: 'cors' })
+			const url =
+				branchData.deployURL +
+				// TODO: find a better way to manage 'en'
+				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}.json`
+			console.log('fetching:', url)
+			fetch(url, { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
 					setRules(json, branchData.deployURL)
 				})
 		}
-	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
+	}, [
+		branchData.deployURL,
+		branchData.loaded,
+		branchData.shouldUseLocalFiles,
+		i18n.language,
+	])
 
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>
 }
@@ -69,6 +104,7 @@ const EngineWrapper = ({ rules, children }) => {
 	const branchData = useBranchData()
 
 	const engineRequested = engineState !== null
+
 	const engine = useMemo(() => {
 		const shouldParse = engineRequested && rules
 		if (shouldParse) {
@@ -103,7 +139,11 @@ const EngineWrapper = ({ rules, children }) => {
 
 export const WithEngine = ({
 	children,
-	fallback = <div>Chargement du modèle de calcul</div>,
+	fallback = (
+		<div>
+			<Trans>Chargement du modèle de calcul...</Trans>
+		</div>
+	),
 }) => {
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)

@@ -2,10 +2,10 @@ import supportedCountries from 'Components/localisation/supportedCountries.yaml'
 import useLocalisation, {
 	getFlagImgSrc,
 	getCountryNameInFrench,
-	supportedCountry,
+	isRegionSupported,
 	getLocalisationPullRequest,
 } from 'Components/localisation/useLocalisation'
-import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { setLocalisation, resetLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
@@ -24,22 +24,30 @@ export default () => {
 		[]
 	)
 
-	const supported = supportedCountry(localisation)
+	const supported = isRegionSupported(localisation)
+
+	const countryName = getCountryNameInFrench(localisation?.country.code)
 
 	return (
 		<div>
-			<h2>{emoji('📍')} Région de simulation</h2>
+			<h2>
+				<Trans>📍 Région de simulation</Trans>
+			</h2>
 			{localisation != null ? (
 				supported ? (
 					<p>
 						{localisation.userChosen ? (
-							<span>Vous avez choisi </span>
+							<span>
+								<Trans>Vous avez choisi</Trans>{' '}
+							</span>
 						) : (
 							<span>
-								Nous avons détecté que vous faites cette simulation depuis{' '}
+								<Trans>
+									Nous avons détecté que vous faites cette simulation depuis
+								</Trans>{' '}
 							</span>
 						)}
-						{getCountryNameInFrench(localisation?.country.code)}
+						{countryName}
 						<img
 							src={getSupportedFlag(localisation)}
 							aria-hidden="true"
@@ -61,13 +69,15 @@ export default () => {
 									})
 								}}
 							>
-								Revenir chez moi 🔙{' '}
+								<Trans>Revenir chez moi 🔙</Trans>
 							</button>
 						)}
 					</p>
 				) : (
 					<p>
-						Nous avons détecté que vous faites cette simulation depuis{' '}
+						<Trans>
+							Nous avons détecté que vous faites cette simulation depuis
+						</Trans>{' '}
 						{getCountryNameInFrench(localisation?.country.code)}
 						<img
 							src={
@@ -81,20 +91,26 @@ export default () => {
 								vertical-align: sub;
 							`}
 						/>
-						. Pour le moment, il n'existe pas de modèle de calcul pour{' '}
-						{getCountryNameInFrench(localisation?.country.code)}, vous utilisez
-						le modèle Français par défault.
+						.
+						<Trans i18nKey="components.localisation.Localisation.warnMessage">
+							Pour le moment, il n'existe pas de modèle de calcul pour{' '}
+							{{ countryName }}, vous utilisez le modèle Français par défault.
+						</Trans>
 					</p>
 				)
 			) : (
 				<p>
-					Nous n'avons pas pu détecter votre pays de simulation. Vous utilisez
-					le modèle Français par défault.{' '}
+					<Trans i18nKey="components.localisation.Localisation.warnMessage2">
+						Nous n'avons pas pu détecter votre pays de simulation. Vous utilisez
+						le modèle Français par défault.
+					</Trans>{' '}
 				</p>
 			)}
 
 			<details>
-				<summary>Choisir une autre région</summary>
+				<summary>
+					<Trans>Choisir une autre région</Trans>
+				</summary>
 				<ul>
 					{supportedCountries.map(
 						({ nom, code, inactif }) =>
@@ -126,12 +142,14 @@ export default () => {
 					message={
 						<div>
 							<p>
-								Envie de contribuer à une version pour votre région ?{' '}
+								<Trans>
+									Envie de contribuer à une version pour votre région ?
+								</Trans>{' '}
 								<a
 									target="_blank"
 									href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
 								>
-									Suivez le guide !
+									<Trans>Suivez le guide !</Trans>
 									<NewTabSvg />
 								</a>
 							</p>

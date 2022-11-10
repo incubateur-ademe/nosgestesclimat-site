@@ -5,12 +5,12 @@ import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { utils } from 'publicodes'
-import React, { useContext, useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { parentName } from '../../components/publicodesUtils'
 import { EngineContext } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { questionConfig } from './questionConfig'
@@ -20,6 +20,8 @@ const { decodeRuleName, encodeRuleName } = utils
 export default ({}) => {
 	const encodedName = useParams()['*']
 
+	const { t } = useTranslation()
+
 	const rules = useSelector((state) => state.rules)
 	const nextQuestions = useNextQuestions()
 	const dottedName = decodeRuleName(encodedName)
@@ -28,7 +30,6 @@ export default ({}) => {
 	// TODO here we need to apply a rustine to accommodate for this issue
 	// https://github.com/betagouv/mon-entreprise/issues/1316#issuecomment-758833973
 	// to be continued...
-	const actionParent = parentName(dottedName)
 	const config = {
 		objectifs: [dottedName],
 		situation: { ...(configSet?.situation || {}) },
@@ -44,7 +45,7 @@ export default ({}) => {
 	if (!configSet) return null
 
 	const evaluation = engine.evaluate(dottedName),
-		{ nodeValue, title } = evaluation
+		{ title } = evaluation
 
 	const { description, icônes: icons, plus } = rules[dottedName]
 
@@ -65,11 +66,11 @@ export default ({}) => {
 				margin: 1rem auto;
 			`}
 		>
-			<Meta title={'Action : ' + title} description={description} />
+			<Meta title={t('Action') + ' : ' + title} description={description} />
 			<ScrollToTop />
 			<Link to="/actions/liste">
 				<button className="ui__ button simple small ">
-					{emoji('◀')} Retour à la liste
+					<Trans>◀ Retour à la liste</Trans>
 				</button>
 			</Link>
 			<div className="ui__ card" css={'padding: .1rem; margin: .8rem 0'}>
@@ -95,13 +96,13 @@ export default ({}) => {
 					<div css="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem">
 						<Link to={'/documentation/' + encodedName}>
 							<button className="ui__ button small">
-								{emoji('⚙️')} Comprendre le calcul
+								<Trans>⚙️ Comprendre le calcul</Trans>
 							</button>
 						</Link>
 						{plus && (
 							<Link to={'/actions/plus/' + encodedName}>
 								<button className="ui__ button small">
-									{emoji('📘')} En savoir plus
+									<Trans>📘 En savoir plus</Trans>
 								</button>
 							</Link>
 						)}
@@ -110,7 +111,9 @@ export default ({}) => {
 			</div>
 			{nextQuestions.length > 0 && (
 				<>
-					<h3>Personnalisez cette estimation</h3>
+					<h3>
+						<Trans>Personnalisez cette estimation</Trans>
+					</h3>
 					<Simulation
 						showConversation
 						customEnd={<div />}
@@ -122,7 +125,9 @@ export default ({}) => {
 			)}
 			{relatedActions && (
 				<>
-					<h3>Sur le même sujet</h3>
+					<h3>
+						<Trans>Sur le même sujet</Trans>
+					</h3>
 					<div>
 						{relatedActions.map((action) => (
 							<Link

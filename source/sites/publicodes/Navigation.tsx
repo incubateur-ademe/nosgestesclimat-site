@@ -1,13 +1,12 @@
 import SessionBar from 'Components/SessionBar'
 import { useContext } from 'react'
+import LangSwitcher from '../../components/LangSwitcher'
 import Logo from '../../components/Logo'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import SkipLinks from './SkipLinks'
 
 export default ({ fluidLayout }) => {
-	const pathname = decodeURIComponent(location.pathname)
-
 	const { isIframe } = useContext(IframeOptionsContext)
 
 	const largeScreen = useMediaQuery('(min-width: 800px)')
@@ -18,7 +17,7 @@ export default ({ fluidLayout }) => {
 			{!fluidLayout && (
 				<nav
 					id="mainNavigation"
-					tabIndex="0"
+					tabIndex={0}
 					css={`
 						display: flex;
 						justify-content: center;
@@ -32,6 +31,7 @@ export default ({ fluidLayout }) => {
 							height: 100vh;
 							${isIframe && `height: 100% !important;`}
 							overflow: auto;
+							margin: 0 auto;
 							position: sticky;
 							top: 0;
 							flex-direction: column;
@@ -45,6 +45,7 @@ export default ({ fluidLayout }) => {
 						size={largeScreen ? 'medium' : 'small'}
 					/>
 					<SessionBar />
+					<LangSwitcher from="navigation" />
 				</nav>
 			)}
 		</>

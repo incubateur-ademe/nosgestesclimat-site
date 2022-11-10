@@ -1,4 +1,3 @@
-import emoji from 'react-easy-emoji'
 import { Trans } from 'react-i18next'
 
 export default ({ customEnd, customEndMessages }) => (
@@ -6,9 +5,8 @@ export default ({ customEnd, customEndMessages }) => (
 		{customEnd || (
 			<>
 				<h3>
-					{emoji('🌟')}{' '}
 					<Trans i18nKey="simulation-end.title">
-						Vous avez complété cette simulation
+						🌟 Vous avez complété cette simulation
 					</Trans>
 				</h3>
 				<p>

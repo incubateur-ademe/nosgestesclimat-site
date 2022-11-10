@@ -1,11 +1,28 @@
-import { loadResources } from 'i18next'
+/*
+	This module contains all types and functions related to the localisation of the model.
+
+	Important: the localisation is not the same as the translation!
+	The localisation is about which model to use (i.e. how to compute the quantity of CO2),
+	whereas the translation is about the text displayed to the user.
+*/
+
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
-import supportedCountries from './supportedCountries.yaml'
+import supportedCountriesYAML from './supportedCountries.yaml'
 
 const API = '/geolocation'
+
+export type Region = {
+	PR: string
+	nom: string
+	code: string
+	gentilé: string
+	drapeau: string
+}
+
+export const supportedRegions: Region[] = supportedCountriesYAML
 
 // Other alternatives :
 // https://positionstack.com/product
@@ -73,21 +90,25 @@ export const getFlagImgSrc = (code) =>
 	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${code.toLowerCase()}.svg`
 
 export const getCountryNameInFrench = (code) => {
-	// For now, website is only available in French, this function enables to adapt message for French Language according to the country detected.
+	// For now, website is only available in French, this function enables to adapt message
+	// for French Language according to the country detected.
 	// Including French prepositions subtelties.
-	if (!code) return
+	if (!code) {
+		return undefined
+	}
 	const regionNamesInFrench = new Intl.DisplayNames(['fr'], { type: 'region' }),
 		countryNameAuto = regionNamesInFrench.of(code),
 		countryName =
 			countryNameAuto === 'France' ? 'France métropolitaine' : countryNameAuto,
 		preposition = (countryName && frenchCountryPrepositions[countryName]) || ''
+
 	return `${preposition} ${countryName}`
 }
 
 export const getSupportedFlag = (localisation) => {
 	if (!localisation) return
 
-	const supported = supportedCountries.find(
+	const supported = supportedRegions.find(
 		(c) => c.code === localisation.country.code
 	)
 
@@ -97,16 +118,21 @@ export const getSupportedFlag = (localisation) => {
 }
 
 export const getLocalisationPullRequest = (localisation) => {
-	const supported = supportedCountry(localisation)
+	const supported = isRegionSupported(localisation)
 	if (!supported) return false // this will load the french model
 	return supported.PR
 }
 
-export const supportedCountry = (localisation) => {
-	if (!localisation) return
-	const supported = supportedCountries.find(
+export const isRegionSupported = (localisation) => {
+	if (!localisation) {
+		return undefined
+	}
+
+	const supported = supportedRegions.find(
 		(c) => c.code === localisation.country.code
 	)
-	if (supported?.inactif === 'oui') return false
+	if (supported?.inactif === 'oui') {
+		return false
+	}
 	return supported
 }

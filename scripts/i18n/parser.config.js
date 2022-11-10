@@ -7,7 +7,7 @@ module.exports = {
 	createOldCatalogs: false,
 	// Save the \_old files
 
-	defaultNamespace: 'translation',
+	defaultNamespace: 'units',
 	// Default namespace used in your i18next config
 
 	defaultValue: 'NO_TRANSLATION',
@@ -21,7 +21,11 @@ module.exports = {
 
 	keySeparator: false,
 	// Key separator used in your translation keys
-	// If you want to use plain english keys, separators such as `.` and `:` will conflict. You might want to set `keySeparator: false` and `namespaceSeparator: false`. That way, `t('Status: Loading...')` will not think that there are a namespace and three separator dots for instance.
+	// If you want to use plain english keys, separators such as `.` and `:`
+	// will conflict. You might want to set `keySeparator: false` and
+	// `namespaceSeparator: false`. That way, `t('Status: Loading...')` will
+	// not think that there are a namespace and three separator dots for
+	// instance.
 
 	// see below for more details
 	lexers: {
@@ -32,12 +36,12 @@ module.exports = {
 		html: ['HTMLLexer'],
 
 		mjs: ['JavascriptLexer'],
-		js: ['JavascriptLexer'], // if you're writing jsx inside .js files, change this to JsxLexer
-		ts: ['JavascriptLexer'],
+		js: ['JsxLexer'], // if you're writing jsx inside .js files, change this to JsxLexer
+		ts: ['JsxLexer'],
 		jsx: ['JsxLexer'],
 		tsx: ['JsxLexer'],
 
-		default: ['JavascriptLexer']
+		default: ['JsxLexer'],
 	},
 
 	lineEnding: 'auto',
@@ -70,6 +74,6 @@ module.exports = {
 	// Whether to use the keys as the default value; ex. "Hello": "Hello", "World": "World"
 	// The option `defaultValue` will not work if this is set to true
 
-	verbose: false
+	verbose: false,
 	// Display info about the parsing including some stats
 }

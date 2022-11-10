@@ -1,12 +1,14 @@
-import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import lastRelease from '../data/last-release.json'
-import { usePersistingState } from './utils/persistState'
 import styled from 'styled-components'
+import lastRelease from '../data/last-release.json'
+import { getCurrentLangInfos } from '../locales/translation'
 import { capitalise0 } from '../utils'
+import { usePersistingState } from './utils/persistState'
 
 export const localStorageKey = 'last-viewed-release'
 
+// TODO: support translations
 export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
@@ -25,12 +27,18 @@ export default function NewsBanner() {
 
 	const showBanner = lastViewedRelease !== lastRelease.name
 
-	const date = new Date(lastRelease.date).toLocaleDateString('fr-FR', {
-		weekday: 'long',
-		year: 'numeric',
-		month: 'long',
-		day: 'numeric',
-	})
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getCurrentLangInfos(i18n)
+
+	const date = new Date(lastRelease.date).toLocaleDateString(
+		currentLangInfos.abrvLocale,
+		{
+			weekday: 'long',
+			year: 'numeric',
+			month: 'long',
+			day: 'numeric',
+		}
+	)
 
 	return showBanner ? (
 		<div
@@ -48,20 +56,24 @@ export default function NewsBanner() {
 		>
 			<div>
 				<h2>
-					<Dot /> Nouveautés
+					<Dot /> <Trans>Nouveautés</Trans>
 				</h2>
 				<div>
-					<small>Mise à jour le {date}</small>
+					<small>
+						<Trans i18nKey={'components.NewsBanner.miseAJourDate'}>
+							Mise à jour le {{ date }}
+						</Trans>
+					</small>
 				</div>
 				<div>
-					Version{' '}
+					<Trans>Version</Trans>{' '}
 					<Link to={'/nouveautés'}>{capitalise0(lastRelease.name)}</Link>
 				</div>
 			</div>
 			<button
 				onClick={() => setLastViewedRelease(lastRelease.name)}
 				css="border: none; font-size: 120%; color: var(--color); position: absolute; right: .6rem; top: .6rem; padding: 0"
-				title="Fermer la notification de nouveautés"
+				title={t('Fermer la notification de nouveautés')}
 			>
 				&times;
 			</button>

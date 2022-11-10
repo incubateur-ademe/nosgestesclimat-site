@@ -1,10 +1,9 @@
 import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
-import { EngineContext } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { useContext, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -19,6 +18,7 @@ import {
 } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
+import { useEngine } from '../../../components/utils/EngineContext'
 import Meta from '../../../components/utils/Meta'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
@@ -26,10 +26,11 @@ import References from '../DocumentationReferences'
 import Méthode from './Méthode'
 
 export default function () {
+	console.log('Rendering Documentation')
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
-	const engine = useContext(EngineContext)
+	const engine = useEngine()
 	const documentationPath = '/documentation'
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)
@@ -37,7 +38,6 @@ export default function () {
 		() => getDocumentationSiteMap({ engine, documentationPath }),
 		[engine, documentationPath]
 	)
-	const { i18n } = useTranslation()
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
@@ -45,6 +45,9 @@ export default function () {
 	if (!documentationSitePaths[pathname]) {
 		return <Navigate to="/404" replace />
 	}
+
+	useEffect(() => console.log('Documentation rendered!'), [])
+
 	return (
 		<div
 			css={`
@@ -80,10 +83,14 @@ export default function () {
 const DocPage = ({ documentationPath, engine }) => {
 	const url = useParams()['*']
 	const { i18n } = useTranslation()
+	console.log('engineParsedRules:', engine.context.parsedRules)
+	console.log('url:', url)
+	console.log('documentationPath:', documentationPath)
+
 	return (
 		<DocumentationStyle>
 			<RulePage
-				language={i18n.language as 'fr' | 'en'}
+				language={i18n.language}
 				rulePath={url}
 				engine={engine}
 				documentationPath={documentationPath}
@@ -111,20 +118,23 @@ function BackToSimulation() {
 				navigate(url)
 			}}
 		>
-			← <Trans i18nKey="back">Reprendre la simulation</Trans>
+			<Trans>Reprendre la simulation</Trans>
 		</button>
 	)
 }
 
 function DocumentationLanding() {
+	const { t } = useTranslation()
 	return (
 		<div className="ui__ container">
 			<Meta
-				title="Comprendre nos calculs"
-				description="Notre modèle de calcul est entièrement transparent. Chacun peut l'explorer, donner son avis, l'améliorer."
+				title={t('Comprendre nos calculs')}
+				description={t('meta.publicodes.pages.Documentation.description')}
 			/>
 			<Méthode />
-			<h2>Explorer notre documentation</h2>
+			<h2>
+				<Trans>Explorer notre documentation</Trans>
+			</h2>
 			<SearchBar showListByDefault={true} />
 		</div>
 	)

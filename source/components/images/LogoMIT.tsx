@@ -1,4 +1,3 @@
-import React from 'react'
 import styled, { keyframes } from 'styled-components'
 
 const Wrapper = styled.div`
@@ -6,16 +5,13 @@ const Wrapper = styled.div`
 	align-items: center;
 	text-decoration: none;
 `
+
 const Svg = styled.svg`
 	width: 1.8rem;
 	height: auto;
 	margin-right: 0.3rem;
 `
-const Title = styled.h1`
-	margin: 0;
-	font-size: 0.875rem;
-	color: #ffffff;
-`
+
 const Path = styled.path`
 	fill: ${(props) => (props.hover ? 'white' : 'var(--color)')};
 `

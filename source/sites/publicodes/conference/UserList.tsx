@@ -1,5 +1,7 @@
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { findContrastedTextColor } from '../../../components/utils/colors'
+
 export const UserList = ({ users, username, extremes }) => (
 	<ul
 		css={`
@@ -21,7 +23,7 @@ export const UserList = ({ users, username, extremes }) => (
 					border-radius: 0.6rem;
 				`}
 			>
-				{extremes.find(([key, value]) => key === u.name) && (
+				{extremes.find(([key, _]) => key === u.name) && (
 					<span>{emoji('⚠️ ')}</span>
 				)}
 				{u.name}
@@ -31,20 +33,24 @@ export const UserList = ({ users, username, extremes }) => (
 	</ul>
 )
 
-export const UserBlock = ({ extremes, users, username, room }) => {
+export const UserBlock = ({ extremes, users, username }) => {
 	const uniqueUsers = getUniqueUsers(users)
+	const { t } = useTranslation()
+
 	return (
 		<div>
 			<h2 css="display: inline-block ;margin-right: 1rem">
-				{emoji('👤 ')}
-				Qui est connecté ?
+				<Trans>👤 Qui est connecté ?</Trans>
 			</h2>
 			<span role="status" css="color: #397540; font-weight: bold">
-				{emoji('🟢')} {uniqueUsers.length} participant{plural(uniqueUsers)}
+				{emoji('🟢')} {uniqueUsers.length} {t('participant')}
+				{plural(uniqueUsers)}
 			</span>
 			<UserList users={uniqueUsers} username={username} extremes={extremes} />
 			{extremes.length > 0 && (
-				<div>{emoji('⚠️')} Certains utilisateurs ont des bilans extrêmes.</div>
+				<div>
+					<Trans>⚠️ Certains utilisateurs ont des bilans extrêmes.</Trans>
+				</div>
 			)}
 		</div>
 	)

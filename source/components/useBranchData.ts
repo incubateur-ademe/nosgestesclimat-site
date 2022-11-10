@@ -1,7 +1,5 @@
-import supportedCountries from 'Components/localisation/supportedCountries.yaml'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import useLocalStorageState from 'use-local-storage-state'
 
 export default () => {
 	const dispatch = useDispatch()
@@ -12,8 +10,6 @@ export default () => {
 	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
 	const setPullRequestNumber = (number) =>
 		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })
-
-	console.log('pn', pullRequestNumber)
 
 	useEffect(() => {
 		if (pullRequestNumber) return

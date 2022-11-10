@@ -21,7 +21,6 @@ import './AnswerList.css'
 import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
 export default function AnswerList() {
-	const dispatch = useDispatch()
 	const engine = useEngine()
 	const situation = useSelector(situationSelector)
 	const foldedQuestionNames = useSelector(answeredQuestionsSelector)
@@ -56,16 +55,6 @@ export default function AnswerList() {
 					data: { situation, foldedSteps: foldedQuestionNames },
 				})
 			)
-			/* MARCHE PAS : 
-			console.log(
-				Object.fromEntries(
-					Object.entries(situation).map(([key, value]) => [
-						key,
-						serializeEvaluation(value),
-					])
-				)
-			)
-			*/
 			e.preventDefault()
 			return false
 		}
@@ -80,8 +69,7 @@ export default function AnswerList() {
 			{!!foldedStepsToDisplay.length && (
 				<div>
 					<h2>
-						{emoji('📋 ')}
-						<Trans>Mes réponses</Trans>
+						<Trans>📋 Mes réponses</Trans>
 					</h2>
 					<CategoryTable
 						{...{ steps: foldedStepsToDisplay, categories, engine }}
@@ -202,7 +190,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 				`}
 			>
 				<SafeCategoryImage element={rule} whiteBackground={level > 1} />
-				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
+				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.tile}</h3>}
 				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
 					<small>
 						{rules.length} {level === 1 && emoji('💬')}
@@ -239,7 +227,6 @@ function StepsTable({
 							level,
 							rule,
 							dispatch,
-							language,
 						}}
 					/>
 				))}
@@ -248,10 +235,11 @@ function StepsTable({
 	)
 }
 
-const Answer = ({ rule, dispatch, language, level }) => {
+const Answer = ({ rule, dispatch, level }) => {
 	const navigate = useNavigate()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
 	const path = parentName(rule.dottedName, ' · ', level)
+
 	return (
 		<tr
 			key={rule.dottedName}
@@ -297,7 +285,7 @@ const Answer = ({ rule, dispatch, language, level }) => {
 							${rule.passedQuestion ? 'opacity: .5' : ''}
 						`}
 					>
-						{formatValue(rule, { language })}
+						{formatValue(rule)}
 						{rule.passedQuestion && emoji(' 🤷🏻')}
 					</span>
 				</button>
@@ -316,7 +304,7 @@ const Answer = ({ rule, dispatch, language, level }) => {
 									text-align: end !important;
 								`}
 							>
-								Voir en détails
+								<Trans>Voir en détails</Trans>
 							</summary>
 							<AnswerTrajetsTable
 								trajets={storedTrajets[rule.dottedName]}

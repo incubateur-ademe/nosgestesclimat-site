@@ -1,60 +1,60 @@
-export const motifList = [
+export const motifList = (t) => [
 	{
-		name: 'Vacances',
+		name: t('Vacances'),
 		id: '1v',
 	},
 	{
-		name: 'Domicile-Travail',
+		name: t('Domicile-Travail'),
 		id: '2dt',
 	},
 	{
-		name: 'Visite familiale',
+		name: t('Visite familiale'),
 		id: '3vf',
 	},
 	{
-		name: 'Mobilité académique',
+		name: t('Mobilité académique'),
 		id: '4ma',
 	},
 	{
-		name: 'Sport ou Loisir',
+		name: t('Sport ou Loisir'),
 		id: '5sl',
 	},
 	{
-		name: 'Sorties ponctuelles',
+		name: t('Sorties ponctuelles'),
 		id: '6sp',
 	},
 	{
-		name: 'Courses',
+		name: t('Courses'),
 		id: '7c',
 	},
 	{
-		name: 'RDV médicaux',
+		name: t('RDV médicaux'),
 		id: '8rm',
 	},
 	{
-		name: 'Week-end',
+		name: t('Week-end'),
 		id: '9we',
 	},
 ]
 
-export const freqList = [
+export const freqList = (t) => [
 	{
-		name: 'jour',
+		name: t('jour'),
 		id: '1j',
 		value: 365,
 	},
 	{
-		name: 'semaine',
+		name: t('semaine'),
 		id: '1s',
 		value: 52,
 	},
 	{
-		name: 'mois',
+		name: t('mois'),
 		id: '1m',
 		value: 12,
 	},
 	{
-		name: 'an',
+		name: t('an'),
 		id: '1a',
 		value: 1,
 	},

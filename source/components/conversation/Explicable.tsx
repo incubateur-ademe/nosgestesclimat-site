@@ -1,5 +1,5 @@
 import { explainVariable } from 'Actions/actions'
-import React, { useContext, useState } from 'react'
+import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'

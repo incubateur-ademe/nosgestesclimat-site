@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { extractCategories } from '../../../components/publicodesUtils'
 import ShareButton from '../../../components/ShareButton'
@@ -13,6 +14,7 @@ export default ({ textColor, showResult }) => {
 	}))
 	const total = Math.round(engine.evaluate('bilan').nodeValue / 1000)
 	const shareText = generateShareText(categories, total)
+	const { t } = useTranslation()
 	if (showResult)
 		return <textarea value={shareText} css="height: 12rem; width: 16rem" />
 	return (
@@ -22,7 +24,7 @@ export default ({ textColor, showResult }) => {
 				url={'https://nosgestesclimat.fr'}
 				title={'Nos Gestes Climat'}
 				color={textColor}
-				label="Partager mes résultats"
+				label={t('Partager mes résultats')}
 			/>
 		</div>
 	)
@@ -51,7 +53,7 @@ const generateShareText = (categories, total) => {
 		})
 		.join('\n')
 
-	return `#nosgestesclimat 🌍️  
+	return `#nosgestesclimat 🌍️
 
 ${total} tonnes CO2e / an ⬇️
 

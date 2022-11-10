@@ -1,6 +1,7 @@
 import { utils } from 'publicodes'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
@@ -19,8 +20,6 @@ import {
 } from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
 import { questionConfig } from './questionConfig'
-
-const { encodeRuleName, decodeRuleName } = utils
 
 export const disabledAction = (flatRule, nodeValue) =>
 	flatRule.formule == null
@@ -56,7 +55,7 @@ export const ActionListCard = ({
 
 	const dispatch = useDispatch()
 	const rules = useSelector((state) => state.rules),
-		{ nodeValue, dottedName, title, unit } = evaluation,
+		{ nodeValue, dottedName, title } = evaluation,
 		{ icônes: icons } = rule
 	const actionChoices = useSelector((state) => state.actionChoices),
 		situation = useSelector(situationSelector),
@@ -75,13 +74,21 @@ export const ActionListCard = ({
 			situation,
 			engine
 		),
-		hasRemainingQuestions = remainingQuestions.length > 0,
-		pluralSuffix = remainingQuestions.length > 1 ? 's' : '',
-		remainingQuestionsText = `${remainingQuestions.length} question${pluralSuffix} restante${pluralSuffix}`
+		nbRemainingQuestions = remainingQuestions.length,
+		hasRemainingQuestions = nbRemainingQuestions > 0,
+		pluralSuffix = nbRemainingQuestions > 1 ? 's' : '',
+		remainingQuestionsText = (
+			<Trans i18nKey={'publicodes.ActionVignette.questionsRestantesText'}>
+				{{ nbRemainingQuestions }} question{{ pluralSuffix }} restante
+				{{ pluralSuffix }}
+			</Trans>
+		)
 	const categories = extractCategoriesNamespaces(rules, engine)
 	const categoryColor = categories.find(
 		(cat) => cat.dottedName === splitName(dottedName)[0]
 	).color
+
+	const { t } = useTranslation()
 
 	return (
 		<div
@@ -139,7 +146,7 @@ export const ActionListCard = ({
 						}
 						text-decoration: none;
 					`}
-					to={'/actions/' + encodeRuleName(dottedName)}
+					to={'/actions/' + utils.encodeRuleName(dottedName)}
 				>
 					<h2>{title}</h2>
 				</Link>
@@ -204,7 +211,7 @@ export const ActionListCard = ({
 					`}
 				>
 					<button
-						title="Choisir l'action"
+						title={t("Choisir l'action")}
 						aria-pressed={actionChoices[dottedName]}
 						css={`
 							${hasRemainingQuestions && 'filter: grayscale(1)'}
@@ -238,7 +245,7 @@ export const ActionListCard = ({
 						<img src="/images/2714.svg" css="width: 3rem" />
 					</button>
 					<button
-						title="Rejeter l'action"
+						title={t("Rejeter l'action")}
 						onClick={(e) => {
 							dispatch(
 								setActionChoice(
@@ -266,9 +273,9 @@ export const ActionListCard = ({
 	)
 }
 
-export const ActionGameCard = ({ evaluation, total, rule, effort }) => {
+export const ActionGameCard = ({ evaluation, total, rule }) => {
 	const rules = useSelector((state) => state.rules),
-		{ nodeValue, dottedName, title, unit } = evaluation,
+		{ nodeValue, dottedName, title } = evaluation,
 		{ icônes: icons } = rule
 
 	const flatRule = rules[dottedName],
@@ -282,7 +289,7 @@ export const ActionGameCard = ({ evaluation, total, rule, effort }) => {
 				text-decoration: none;
 				width: 100%;
 			`}
-			to={'/actions/' + encodeRuleName(dottedName)}
+			to={'/actions/' + utils.encodeRuleName(dottedName)}
 		>
 			<div css={``}>
 				<h2>{title}</h2>
@@ -311,14 +318,19 @@ export const ActionValue = ({
 	dottedName,
 	engine,
 }) => {
-	const situation = useSelector(situationSelector),
-		evaluation = engine.evaluate(dottedName),
+	const { t, i18n } = useTranslation()
+	const evaluation = engine.evaluate(dottedName),
 		rawValue = evaluation.nodeValue
 	const correctedValue = correctValue({
 		nodeValue: rawValue,
 		unit: evaluation.unit,
 	})
-	const [stringValue, unit] = humanWeight(correctedValue, false, true),
+	const [stringValue, unit] = humanWeight(
+			{ t, i18n },
+			correctedValue,
+			false,
+			true
+		),
 		relativeValue = Math.round(100 * (correctedValue / total))
 
 	const sign = correctedValue > 0 ? '-' : '+'
@@ -331,7 +343,7 @@ export const ActionValue = ({
 			`}
 		>
 			{noFormula ? null : disabled ? (
-				'Non applicable'
+				t('Non applicable')
 			) : (
 				<div>
 					{sign}&nbsp;
@@ -348,7 +360,7 @@ export const ActionValue = ({
 						`}
 					>
 						<strong>{stringValue}</strong>&nbsp;
-						<span>{unit}</span>
+						<span>{t(unit, { ns: 'units' })}</span>
 						{total && (
 							<span
 								css={`

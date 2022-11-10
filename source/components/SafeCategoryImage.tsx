@@ -1,5 +1,4 @@
 import { useState } from 'react'
-import emoji from './emoji'
 
 export default ({ element, whiteBackground = false }) => {
 	const [fail, setFail] = useState(false)

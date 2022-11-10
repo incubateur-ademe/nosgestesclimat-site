@@ -2,9 +2,9 @@ import ShareButton from 'Components/ShareButton'
 import { useEngine } from 'Components/utils/EngineContext'
 import Meta from 'Components/utils/Meta'
 import { motion, useSpring } from 'framer-motion'
-import { default as React, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import emoji from '../../../components/emoji'
 import { correctValue } from '../../../components/publicodesUtils'
 import NeutralH1 from '../../../components/ui/NeutralH1'
 import { ActionButton } from './Buttons'
@@ -13,6 +13,7 @@ import { DocumentationEndButton, generateImageLink } from './index'
 const petrolRuleName = 'pétrole . pétrole brut'
 
 export default ({ headlessMode }) => {
+	const { t } = useTranslation()
 	const shareImage = generateImageLink(window.location)
 	//
 	//	Configuration is try and test, feeling, really
@@ -40,14 +41,17 @@ export default ({ headlessMode }) => {
 		headlessMode ? setValue(score) : valueSpring.set(score)
 
 		return () => unsubscribe()
-	}, [])
+	}, [score, headlessMode, valueSpring])
+
 	const gradientPosition = Math.round((1 - value / score) * 400 + 50)
 
 	return (
 		<div>
 			<Meta
-				title="Mon empreinte climat"
-				description={`Mon empreinte pétrole est de ${primaryValue} pleins de pétrole. Mesure la tienne !`}
+				title={t('Mon empreinte climat')}
+				description={t(`meta.publicodes.fin.Petrogaz.description`, {
+					empreinte: primaryValue,
+				})}
 				image={shareImage}
 				url={window.location}
 			/>
@@ -81,38 +85,40 @@ export default ({ headlessMode }) => {
 				<div id="shareImage" css="padding: 2rem 0 0">
 					<BigFigure {...{ primaryValue, secondaryValue, pleinVolume }} />
 					<div css="padding: 1rem; max-width: 30rem; margin: 0 auto; font-size: 90%">
-						<p>
-							C'est une estimation <em>a minima</em> de votre consommation de
-							pétrole brut à l'année.
-						</p>
+						<Trans i18nKey={`publicodes.fin.Petrogaz.explications`}>
+							<p>
+								C'est une estimation <em>a minima</em> de votre consommation de
+								pétrole brut à l'année.
+							</p>
 
-						<p>
-							Estimée via vos trajets en voiture, en avion, en bus, fioul pour
-							chauffage, elle ne prend pas (encore) en compte le pétrole utilisé
-							pour acheminer vos achats et l'énergie grise de vos diverses
-							possessions.
-						</p>
+							<p>
+								Estimée via vos trajets en voiture, en avion, en bus,
+								consommation de fioul pour chauffage, elle ne prend pas (encore)
+								en compte le pétrole utilisé pour acheminer vos achats, et
+								l'énergie grise de vos diverses possessions.
+							</p>
+						</Trans>
 					</div>
 				</div>
 				<ActionButton
-					text="Réduire ma conso"
-					imgSrc="https://openmoji.org/data/color/svg/2198.svg"
-					invertImage={true}
+					text={t('Réduire ma conso')}
+					imgSrc="/images/1F1FA-1F1E6.svg"
+					invertImage={false}
 					url={'/actions?métrique=pétrole'}
 				/>
 				<Link
 					to="/pétrole-et-gaz"
 					css="color: inherit; :hover {color: var(--lighterColor) !important}"
 				>
-					💡 Pourquoi ?
+					<Trans>💡 Pourquoi ?</Trans>
 				</Link>
 				<div css="display: flex; flex-direction: column; margin: 1rem 0">
 					<ShareButton
-						text="Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !"
+						text={t('Voilà mon empreinte ⛽️ pétrole. Mesure la tienne !')}
 						url={window.location}
 						title={'Nos Gestes Climat'}
 						color="white"
-						label="Partager mes résultats"
+						label={t('Partager mes résultats')}
 					/>
 				</div>
 				<DocumentationEndButton ruleName={petrolRuleName} />
@@ -141,13 +147,18 @@ export const BigFigure = ({ primaryValue, secondaryValue, pleinVolume }) => (
 				<span css="width: auto; text-align: right; display: inline-block">
 					{primaryValue}
 				</span>{' '}
-				pleins
+				<Trans>pleins</Trans>
 			</div>
 			<span>
-				de <NeutralH1>pétrole brut par an</NeutralH1>.
+				<Trans i18nKey={'publicodes.fin.Petrogaz.petroleBrut'}>
+					de <NeutralH1>pétrole brut par an</NeutralH1>
+				</Trans>
+				.
 			</span>
 			<small>
-				Soit {secondaryValue} litres (plein de {pleinVolume} litres).
+				<Trans i18nKey={'publicodes.fin.Petrogaz.equivalenceVolume'}>
+					Soit {{ secondaryValue }} litres (plein de {{ pleinVolume }} litres).
+				</Trans>
 			</small>
 		</div>
 	</div>

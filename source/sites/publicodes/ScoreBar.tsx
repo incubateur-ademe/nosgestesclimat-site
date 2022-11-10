@@ -1,20 +1,19 @@
 import { useEngine } from 'Components/utils/EngineContext'
-import { utils } from 'publicodes'
-import { useState, useContext } from 'react'
-import emoji from 'react-easy-emoji'
+import { useContext, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
+import { TrackerContext } from '../../components/utils/withTracker'
 import {
 	objectifsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
 import HumanWeight, { DiffHumanWeight } from './HumanWeight'
 import PetrolScore from './PetrolScore'
-import { TrackerContext } from '../../components/utils/withTracker'
 
 const openmojis = {
 	questionCircle: '2754',
@@ -24,13 +23,13 @@ const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 export default ({ actionMode = false, demoMode = false }) => {
 	const objectif =
-			actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0],
-		// needed for this component to refresh on situation change :
-		situation = useSelector(situationSelector),
-		engine = useEngine(),
-		rules = useSelector((state) => state.rules),
+		actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0]
+	// needed for this component to refresh on situation change :
+	const situation = useSelector(situationSelector)
+	const engine = useEngine()
+	const rules = useSelector((state) => state.rules),
 		evaluation = engine.evaluate(objectif),
-		{ nodeValue: rawNodeValue, dottedName, unit, rawNode } = evaluation
+		{ nodeValue: rawNodeValue, dottedName, unit } = evaluation
 	const actionChoices = useSelector((state) => state.actionChoices)
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
@@ -38,6 +37,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const category = rules[splitName(dottedName)[0]],
 		color = category && category.couleur
 
+	const { t } = useTranslation()
 	const [openExplanation, setOpenExplanation] = useState(false)
 
 	const tracker = useContext(TrackerContext)
@@ -99,22 +99,18 @@ export default ({ actionMode = false, demoMode = false }) => {
 								color: white !important;
 							`}
 							to={demoMode ? '#' : buildEndURL(rules, engine)}
-							title="Page de fin de simulation principale"
+							title={t('Page de fin de simulation principale')}
 						>
 							<img
 								src={'/images/climate-change-small.svg'}
 								css="width:3rem;margin-right: .8rem;"
-								alt="Planète représentant le changement climatique"
+								alt={t('Planète représentant le changement climatique')}
 							/>
 							{!actionMode ? (
-								<div css="width: 8rem">
-									<HumanWeight
-										nodeValue={nodeValue}
-										overrideValue={
-											actionMode && actionTotal !== 0 && actionTotal
-										}
-									/>
-								</div>
+								<HumanWeight
+									nodeValue={nodeValue}
+									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+								/>
 							) : (
 								<DiffHumanWeight
 									{...{ nodeValue, engine, rules, actionChoices }}
@@ -123,7 +119,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 						</Link>
 						{!demoMode && (
 							<button
-								title="Afficher l'explication du score"
+								title={t("Afficher l'explication du score")}
 								onClick={() => {
 									setOpenExplanation(!openExplanation)
 									tracker.push(['trackEvent', 'NGC', 'Clic explication score'])
@@ -136,7 +132,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 								<img
 									src={openmojiURL('questionCircle')}
 									css="width:1.5rem;"
-									alt="Point d'interrogation"
+									alt={t("Point d'interrogation")}
 								/>
 							</button>
 						)}
@@ -144,8 +140,8 @@ export default ({ actionMode = false, demoMode = false }) => {
 					<PetrolScore
 						endURL={demoMode ? '#' : buildEndURL(rules, engine, 'petrogaz')}
 					/>
-					{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement 
-				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo 
+					{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement
+				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo
 				de la page fin.
 
 				{!demoMode && !actionMode && (
@@ -161,23 +157,3 @@ export default ({ actionMode = false, demoMode = false }) => {
 		</div>
 	)
 }
-
-const DocumentationLink = ({ dottedName }) => (
-	<div>
-		<Link to={'/documentation/' + utils.encodeRuleName(dottedName)}>
-			<span css="font-size: 140%" alt="Comprendre le calcul">
-				{emoji('❔ ')}
-			</span>
-			<small
-				css={`
-					color: var(--textColor);
-					@media (max-width: 800px) {
-						display: none;
-					}
-				`}
-			>
-				Comprendre le calcul
-			</small>
-		</Link>
-	</div>
-)

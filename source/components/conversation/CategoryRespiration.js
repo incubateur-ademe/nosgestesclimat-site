@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
+import { Trans } from 'react-i18next'
 import SafeCategoryImage from '../SafeCategoryImage'
 import useKeypress from '../utils/useKeyPress'
 
@@ -40,7 +41,7 @@ const sidebar = {
 
 export default ({ dismiss, questionCategory }) => {
 	const containerRef = useRef(null)
-	const { height, width } = useDimensions(containerRef)
+	const { width } = useDimensions(containerRef)
 
 	useKeypress('Enter', false, dismiss, 'keyup', [])
 
@@ -97,7 +98,7 @@ export default ({ dismiss, questionCategory }) => {
 				<h2>{questionCategory.title}</h2>
 				<SafeCategoryImage element={questionCategory} />
 				<button className="ui__ plain button attention" onClick={dismiss}>
-					Commencer
+					<Trans>Commencer</Trans>
 				</button>
 			</motion.div>
 		</motion.section>

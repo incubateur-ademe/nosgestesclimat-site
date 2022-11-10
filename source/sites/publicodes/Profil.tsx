@@ -6,7 +6,7 @@ import {
 	resetStoredTrajets,
 } from 'Actions/actions'
 import Localisation from 'Components/localisation/Localisation'
-import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { resetCategoryTutorials } from '../../actions/actions'
@@ -16,10 +16,7 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { useEngine } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import {
-	getNextQuestions,
-	useNextQuestions,
-} from '../../components/utils/useNextQuestion'
+import { getNextQuestions } from '../../components/utils/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -35,6 +32,7 @@ export const useProfileData = () => {
 }
 
 export default ({}) => {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
@@ -71,16 +69,20 @@ export default ({}) => {
 	return (
 		<div>
 			<Meta
-				title="Mon profil"
-				description="Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat."
+				title={t('Mon profil')}
+				description={t(
+					'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
+				)}
 			/>
-			<Title>Mon profil</Title>
+			<Title>
+				<Trans>Mon profil</Trans>
+			</Title>
 			<div className="ui__ container" css="padding-top: 1rem">
 				<ScrollToTop />
 				{persona && (
 					<p>
 						<em>
-							{emoji('👤')}&nbsp; Vous utilisez actuellement le persona{' '}
+							<Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
 							<code>{persona}</code>
 						</em>
 					</p>
@@ -99,16 +101,22 @@ export default ({}) => {
 						>
 							{answeredQuestionsLength > 0 && (
 								<p>
-									Vous avez terminé le test à {percentFinished} % (
-									{answeredQuestionsLength} questions) et choisi{' '}
-									{actionChoicesLength} actions.{' '}
+									<Trans i18nKey={`publicodes.Profil.recap`}>
+										Vous avez terminé le test à {{ percentFinished }} % (
+										{{ answeredQuestionsLength }} questions) et choisi{' '}
+										{{ actionChoicesLength }} actions.
+									</Trans>{' '}
 								</p>
 							)}
 							<details>
-								<summary>Où sont mes données ? </summary>
-								Vos données sont stockées dans votre navigateur, vous avez donc
-								le contrôle total sur elles. <br />
-								<Link to="/vie-privée">En savoir plus</Link>
+								<Trans i18nKey={`publicodes.Profil.locationDonnées`}>
+									<summary>Où sont mes données ? </summary>
+									Vos données sont stockées dans votre navigateur, vous avez
+									donc le contrôle total sur elles. <br />
+								</Trans>
+								<Link to="/vie-privée">
+									<Trans>En savoir plus</Trans>
+								</Link>
 							</details>
 						</div>
 						<div
@@ -124,7 +132,7 @@ export default ({}) => {
 									className="ui__ button plain"
 									css="margin: 0"
 								>
-									{emoji('▶️')} Finir mon test
+									<Trans>▶️ Finir mon test</Trans>
 								</Link>
 							)}
 							<button
@@ -139,7 +147,7 @@ export default ({}) => {
 									navigate('/simulateur/bilan')
 								}}
 							>
-								{emoji('♻️ ')} Recommencer
+								<Trans>♻️ Recommencer</Trans>
 							</button>
 							<TutorialLink {...{ dispatch, tutorials }} />
 						</div>
@@ -149,8 +157,12 @@ export default ({}) => {
 						<TutorialLink {...{ dispatch, tutorials }} />
 						<IllustratedMessage
 							emoji="🕳️"
-							message={<p>Vous n'avez pas encore fait le test.</p>}
-						></IllustratedMessage>
+							message={
+								<p>
+									<Trans>Vous n'avez pas encore fait le test.</Trans>
+								</p>
+							}
+						/>
 					</div>
 				)}
 				<Localisation />
@@ -171,7 +183,9 @@ const TutorialLink = ({ tutorials, dispatch }) =>
 					dispatch(resetIntroTutorial())
 				}}
 			>
-				{emoji('🧑‍🏫')} Revoir le tutoriel
+				<Trans i18nKey={'sites.publicodes.Profile.TutorialLink.text'}>
+					🧑‍🏫 Revoir le tutoriel
+				</Trans>
 			</Link>
 		</div>
 	)

@@ -1,5 +1,5 @@
-import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
 
 const TileWrapper = styled.div`
 	margin-bottom: 1rem;
@@ -41,6 +41,8 @@ const ButtonWrapper = styled.div`
 	justify-content: flex-end;
 `
 export default function Tile(props) {
+	const { t } = useTranslation()
+
 	return (
 		<TileWrapper>
 			<Content>
@@ -51,7 +53,7 @@ export default function Tile(props) {
 				<Bottom>
 					{props.link && (
 						<ButtonWrapper>
-							<button>{props.linkLabel || 'En savoir +'}</button>
+							<button>{props.linkLabel || t('En savoir +')}</button>
 						</ButtonWrapper>
 					)}
 				</Bottom>

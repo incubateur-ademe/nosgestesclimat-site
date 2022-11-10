@@ -1,5 +1,4 @@
 import { updateSituation } from 'Actions/actions'
-import React from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -8,6 +7,7 @@ import { useEngine } from '../../utils/EngineContext'
 import { Mosaic } from './UI'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
 import NumberFormat from 'react-number-format'
+import { useTranslation } from 'react-i18next'
 
 export default function NumberedMosaic({
 	name,
@@ -27,6 +27,8 @@ export default function NumberedMosaic({
 		const evaluated = engine.evaluate(dottedName)
 		return memo + evaluated.nodeValue
 	}, 0)
+
+	const { t } = useTranslation()
 
 	const choiceElements = (
 		<div>
@@ -74,7 +76,7 @@ export default function NumberedMosaic({
 											value > 0 &&
 											dispatch(updateSituation(question.dottedName, value - 1))
 										}
-										title={`Enlever ${title.toLowerCase()}`}
+										title={t(`Enlever `) + title.toLowerCase()}
 									>
 										-
 									</button>
@@ -114,7 +116,7 @@ export default function NumberedMosaic({
 										onClick={() =>
 											dispatch(updateSituation(question.dottedName, value + 1))
 										}
-										title={`Ajouter ${title.toLowerCase()}`}
+										title={t(`Ajouter `) + title.toLowerCase()}
 									>
 										+
 									</button>
@@ -133,7 +135,9 @@ export default function NumberedMosaic({
 							role="alert"
 							css="text-decoration: underline; text-decoration-color: red;   text-decoration-thickness: 0.2rem;"
 						>
-							Vous avez fait {chipsCount - chipsTotal} choix en trop !
+							{t(`components.conversation.select.NumberedMosaic.choixEnTrop`, {
+								nbChoix: chipsCount - chipsTotal,
+							})}
 						</p>
 					) : chipsCount === chipsTotal ? (
 						<p role="alert">{emoji('😋👍')}</p>
@@ -142,7 +146,9 @@ export default function NumberedMosaic({
 							role="alert"
 							css="text-decoration: underline; text-decoration-color: yellow; text-decoration-thickness: 0.2rem;"
 						>
-							Il vous reste {chipsTotal - chipsCount} choix à faire.
+							{t(`components.conversation.select.NumberedMosaic.choixAFaire`, {
+								nbChoix: chipsTotal - chipsCount,
+							})}
 						</p>
 					)}
 				</div>

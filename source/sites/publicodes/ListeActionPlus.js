@@ -1,8 +1,7 @@
-import { EngineContext } from 'Components/utils/EngineContext'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
-import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
@@ -28,11 +27,15 @@ export default () => {
 		<div className="ui__ container">
 			<ScrollToTop />
 			<h1>
-				Nos explications complètes{' '}
+				<Trans>Nos explications complètes</Trans>{' '}
 				<img src="https://img.shields.io/badge/-beta-purple" />
 			</h1>
 			<p>
-				<em>Découvrez les enjeux qui se cachent derrière chaque action.</em>
+				<em>
+					<Trans>
+						Découvrez les enjeux qui se cachent derrière chaque action.
+					</Trans>
+				</em>
 			</p>
 			<CardGrid>
 				{plusListe.map((rule) => (

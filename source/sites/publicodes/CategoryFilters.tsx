@@ -1,8 +1,6 @@
-import { useLocation } from 'react-router'
 import { useSearchParams } from 'react-router-dom'
 export default ({ categories, metric, selected, countByCategory }) => {
-	const location = useLocation()
-	const [searchParams, setSearchParams] = useSearchParams()
+	const [_, setSearchParams] = useSearchParams()
 
 	return (
 		<ul
@@ -61,7 +59,7 @@ export default ({ categories, metric, selected, countByCategory }) => {
 							)
 						}
 					>
-						{category.dottedName}{' '}
+						{category.title}{' '}
 						<span
 							css={`
 								background: white;

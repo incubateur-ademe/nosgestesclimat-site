@@ -1,4 +1,4 @@
-import React from 'react'
+import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 const DocumentationButton = (props) => {
@@ -14,7 +14,7 @@ const DocumentationButton = (props) => {
 			`}
 		>
 			<Link {...props} to={'/documentation'}>
-				Documentation
+				<Trans>Documentation</Trans>
 			</Link>
 		</div>
 	)

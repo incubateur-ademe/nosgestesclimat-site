@@ -1,4 +1,5 @@
 import emojiFn from 'react-easy-emoji'
+
 type PropType = {
 	emoji: string
 }

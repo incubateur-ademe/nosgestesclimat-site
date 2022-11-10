@@ -1,5 +1,10 @@
-import React from 'react'
 import styled from 'styled-components'
+import { useTranslation, Trans } from 'react-i18next'
+
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../../locales/translation'
 
 const Wrapper = styled.div`
 	padding: 1rem;
@@ -19,14 +24,25 @@ const Number = styled.span`
 `
 export default function CustomTooltip(props) {
 	const label = props.label && props.label.replace(/\s/g, ' ')
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	return props.active && props.payload && props.payload.length ? (
 		<Wrapper>
 			{label === '30+ min' ? (
-				<Label>Plus de 30 minutes</Label>
+				<Label>
+					<Trans>Plus de 30 minutes</Trans>
+				</Label>
 			) : (
 				<Label>
-					Entre {label.split('-')[0].toLocaleString('fr-fr')} et{' '}
-					{label.split('-')[1].split(' ')[0].toLocaleString('fr-fr')} minutes
+					{t('Entre') + ' '}
+					{label.split('-')[0].toLocaleString(currentLangInfos.abrvLocale)}{' '}
+					{t('et') + ' '}
+					{label
+						.split('-')[1]
+						.split(' ')[0]
+						.toLocaleString(currentLangInfos.abrvLocale)}{' '}
+					{t('minutes')}
 				</Label>
 			)}
 			<Number>
@@ -34,7 +50,7 @@ export default function CustomTooltip(props) {
 					.toString()
 					.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}{' '}
 			</Number>
-			{props.naming || 'visites'}
+			{props.naming || t('visites')}
 		</Wrapper>
 	) : null
 }

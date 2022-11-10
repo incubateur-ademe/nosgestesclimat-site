@@ -1,35 +1,39 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import React, { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import {
-	objectifsSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
+import { objectifsSelector } from 'Selectors/simulationSelectors'
 import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
+import { useQuery } from '../../../utils'
 import CategoryVisualisation from '../CategoryVisualisation'
+import Chart from './index.js'
 import SpecializedVisualisation from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
-import Chart from './index.js'
-import { useQuery } from '../../../utils'
 
 export default ({}) => {
 	// needed for this component to refresh on situation change :
-	const situation = useSelector(situationSelector)
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
-	const categories = extractCategories(rules, engine).map((category) => ({
-		...category,
-		abbreviation: rules[category.dottedName].abbréviation,
-	}))
+	const [categories, setCategories] = useState(
+		extractCategories(rules, engine).map((category) => ({
+			...category,
+			abbreviation: rules[category.dottedName].abbréviation,
+		}))
+	)
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const displayedCategory = useContinuousCategory(categories)
+	useEffect(() => {
+		setCategories(
+			extractCategories(rules, engine).map((category) => ({
+				...category,
+				abbreviation: rules[category.dottedName].abbréviation,
+			}))
+		)
+	}, [rules])
 
-	const nextQuestions = useNextQuestions()
+	const displayedCategory = useContinuousCategory(categories)
 
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const focusedCategory = useQuery().get('catégorie')

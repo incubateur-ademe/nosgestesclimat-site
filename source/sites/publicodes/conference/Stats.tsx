@@ -1,6 +1,11 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 import Progress from '../../../components/ui/Progress'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 import { WithEngine } from '../../../RulesProvider'
 import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
@@ -28,6 +33,9 @@ export default ({
 	setThreshold,
 	contextRules,
 }) => {
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	const [contextFilter, setContextFilter] = useState({})
 
 	const elements = filterElements(rawElements, contextFilter)
@@ -55,11 +63,11 @@ export default ({
 
 	const maxValue = Math.max(...values),
 		minValue = 2000, // 2 tonnes, the ultimate objective
-		max = humanWeight(maxValue, true).join(' '),
-		min = humanWeight(minValue, true).join(' ')
+		max = humanWeight({ t, i18n }, maxValue, true).join(' '),
+		min = humanWeight({ t, i18n }, minValue, true).join(' ')
 
 	const formatTotal = (total) =>
-		(total / 1000).toLocaleString('fr-FR', {
+		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 		})
 	const spotlightElement = elements.find((el) => el.username === spotlight),
@@ -69,13 +77,13 @@ export default ({
 		<div>
 			<div css=" text-align: center">
 				<p role="heading" aria-level="2">
-					Avancement du groupe{' '}
+					<Trans>Avancement du groupe</Trans>{' '}
 					<span role="status">
 						({elements.length} participant
 						{elements.length > 1 ? 's' : ''})
 					</span>
 				</p>
-				<Progress progress={meanProgress} label="Avancement du groupe" />
+				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
 			</div>
 			<WithEngine>
 				<FilterBar
@@ -89,14 +97,18 @@ export default ({
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
-						<span role="status">Moyenne : {humanMean}&nbsp;</span>
-						<small title="Moyenne française">({emoji('🇫🇷')} ~10 tonnes)</small>
+						<span role="status">
+							<Trans>Moyenne</Trans> : {humanMean}{' '}
+						</span>
+						<small title={t('Moyenne française')}>
+							🇫🇷~10 {t('tonnes', { ns: 'units' })}
+						</small>
 					</div>
 				</div>
 				{elements.length > 0 && (
 					<div>
 						<ul
-							title="Empreinte totale"
+							title={t('Empreinte totale')}
 							css={`
 								width: 100%;
 								position: relative;
@@ -124,17 +136,23 @@ export default ({
 
 										cursor: pointer;
 										${spotlight === username
-											? `background: yellow; opacity: 1; 
+											? `background: yellow; opacity: 1;
 										border-right: 2px dashed black;
 										border-left: 2px dashed black;
 										z-index: 1;
 										`
 											: ''}
 									`}
-									title={`${username} : ${humanWeight(value, true).join(' ')}`}
-									aria-label={`${username} : ${humanWeight(value, true).join(
-										' '
-									)}`}
+									title={`${username} : ${humanWeight(
+										{ t, i18n },
+										value,
+										true
+									).join(' ')}`}
+									aria-label={`${username} : ${humanWeight(
+										{ t, i18n },
+										value,
+										true
+									).join(' ')}`}
 									role="button"
 									onClick={() => setSpotlight(username)}
 									aria-pressed={spotlight === username}
@@ -158,10 +176,14 @@ export default ({
 							<div>
 								{spotlight === currentUser ? (
 									<span>
-										<span role="status" css="background: #fff45f;">
-											En jaune
-										</span>{' '}
-										: ma simulation à {spotlightValue} t.
+										<Trans
+											i18nKey={'site.publicodes.conferences.Stats.explication1'}
+										>
+											<span role="status" css="background: #fff45f;">
+												En jaune
+											</span>{' '}
+											: ma simulation à {{ spotlightValue }} t.
+										</Trans>
 									</span>
 								) : (
 									<button
@@ -169,7 +191,7 @@ export default ({
 										onClick={() => setSpotlight(currentUser)}
 									>
 										<span css="background: #fff45f;">
-											Afficher ma simulation
+											<Trans>Afficher ma simulation</Trans>
 										</span>
 									</button>
 								)}

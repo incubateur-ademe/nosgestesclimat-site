@@ -19,6 +19,7 @@
 * [Configuration](#configuration)
    * [DeepL API key](#deepl-api-key)
    * [Dev dependencies](#dev-dependencies)
+* [Available languages](#available-languages)
 * [Workflows](#workflows)
    * [Editing the source code](#editing-the-source-code)
       * [Adding content](#adding-content)
@@ -69,8 +70,14 @@ running:
 yarn install
 ```
 
-Moreover, in order to translate Markdown content some scripts use
-[`pandoc`](https://pandoc.org/MANUAL.html). Make sure it is installed.
+## Available languages
+
+Currently, the model and the website UI are available in:
+
+* `fr` -- is the reference language.
+* `en-us` -- has been review by hand.
+* `es` -- automatically generated.
+* `it` -- automatically generated.
 
 ## Workflows
 
@@ -233,7 +240,7 @@ ping one of the maintainers of `nosgestesclimat-site`.
 ### Improving an existing translation
 
 If you found a translation incorrect or imprecise, you can modify it directly
-from the  `./source/locales`.
+from the `./source/locales` folder.
 
 If you are ready to create a [Pull
 Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
@@ -365,9 +372,6 @@ You can specify following flags:
 
 This script allows to translate Markdown files into targeted languages.
 
-Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
-machine to be able to run this script.
-
 You can specify following flags:
 
 - `--target` (`-t`) to choose the language(s) translate into.
@@ -414,9 +418,6 @@ You can specify following flags:
 ### `translate-releases.js`
 
 This script allows to translate releases files into targeted languages.
-
-Note: you will need to have [`pandoc`](https://pandoc.org) installed in your
-machine to be able to run this script.
 
 You can specify following flag:
 

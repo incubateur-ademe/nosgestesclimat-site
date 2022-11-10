@@ -1,5 +1,3 @@
-import { SitePaths } from 'Components/utils/SitePathsContext'
-import { History } from 'history'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
@@ -149,7 +147,8 @@ export const skipTutorial = (id: string, unskip: boolean) => ({
 	id,
 	unskip,
 })
-export const setTrackingVariable = (name: string, value) => ({
+
+export const setTrackingVariable = (name: string, value: boolean) => ({
 	type: 'SET_TRACKING_VARIABLE',
 	name,
 	value,

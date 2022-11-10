@@ -1,8 +1,7 @@
 import QRCode from 'qrcode.react'
 import { useContext, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import emoji from '../../../components/emoji'
+import { Trans, useTranslation } from 'react-i18next'
+import { Link, useNavigate } from 'react-router-dom'
 import ShareButton from '../../../components/ShareButton'
 import { ThemeColorsContext } from '../../../components/utils/colors'
 import { useQuery } from '../../../utils'
@@ -36,10 +35,12 @@ export default ({
 		shareURL = URLbase + URLPath
 	const URLGuide = `/guide`
 
+	const { t } = useTranslation()
+
 	return (
 		<div>
 			{!room && (
-				<>
+				<Trans i18nKey={'publicodes.conference.Instructions.intro'}>
 					<p>
 						Le test d'empreinte climat est individuel, mais nous vous proposons
 						ici de le faire à plusieurs. Chacun sera derrière son écran, mais
@@ -49,24 +50,22 @@ export default ({
 						C'est l'occasion de se confronter aux autres et de réfléchir
 						ensemble aux enjeux de notre propre impact.
 					</p>
-				</>
+				</Trans>
 			)}
-			<h2>{emoji('📘')} Comment ça marche ?</h2>
+			<h2>{t('📘 Comment ça marche ?')}</h2>
 			{!started && (
 				<InstructionBlock
 					index="1"
-					title={<span>{emoji('💡 ')} Choisissez un nom de salle</span>}
+					title={<span>{t('💡 Choisissez un nom de salle')}</span>}
 				>
 					{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
-					{room && <p>{emoji('✅')} C'est fait</p>}
+					{room && <p>{t(`✅ C'est fait`)}</p>}
 				</InstructionBlock>
 			)}
 			{!started && newRoom !== '' && !room && (
 				<InstructionBlock
 					index="2"
-					title={
-						<span>{emoji('⏲️')} Choississez votre mode de simulation</span>
-					}
+					title={<span>{t(`⏲️  Choississez votre mode de simulation`)}</span>}
 				>
 					<div
 						css={`
@@ -91,12 +90,20 @@ export default ({
 								checked={mode === 'conférence'}
 								onChange={(e) => setMode(e.target.value)}
 							/>
-							<h3>Conférence</h3>
+							<h3>
+								<Trans>Conférence</Trans>
+							</h3>
 							<p>
-								Mode éphémère : parfait pour l'animation d'un atelier, une
-								présentation interactive ou entre amis. Les données restent
-								entre les participants (pair-à-pair), sans serveur,{' '}
-								<strong>juste le temps de la conférence</strong>.
+								<Trans
+									i18nKey={
+										'publicodes.conference.Instructions.descriptionModeConference'
+									}
+								>
+									Mode éphémère : parfait pour l'animation d'un atelier, une
+									présentation interactive ou entre amis. Les données restent
+									entre les participants (pair-à-pair), sans serveur,{' '}
+									<strong>juste le temps de la conférence</strong>.
+								</Trans>
 							</p>
 						</label>
 						<label
@@ -111,28 +118,44 @@ export default ({
 								checked={mode === 'sondage'}
 								onChange={(e) => setMode(e.target.value)}
 							/>
-							<h3>Sondage</h3>
+							<h3>
+								<Trans>Sondage</Trans>
+							</h3>
 							<p>
-								Mode persistant : l'interface est presque la même, mais les
-								données sont stockées sur notre serveur et ainsi restent
-								accessibles <strong>pendant deux mois</strong>.
+								<Trans
+									i18nKey={
+										'publicodes.conference.Instructions.descriptionModeSondage'
+									}
+								>
+									Mode persistant : l'interface est presque la même, mais les
+									données sont stockées sur notre serveur et ainsi restent
+									accessibles <strong>pendant deux mois</strong>.
+								</Trans>
 							</p>
 						</label>
 					</div>
 					{mode == 'conférence' && (
 						<p>
-							{emoji('🔒️')} Votre organisation peut bloquer l'utilisation du
-							mode conférence. Faites le test au préalable en duo : en cas de
-							problème, vous pouvez utiliser le mode sondage.
+							<Trans
+								i18nKey={`publicodes.conference.Instructions.avertissementModeConference`}
+							>
+								🔒️ Votre organisation peut bloquer l'utilisation du mode
+								conférence. Faites le test au préalable en duo : en cas de
+								problème, vous pouvez utiliser le mode sondage.
+							</Trans>
 						</p>
 					)}
 					{mode == 'sondage' && (
 						<p>
-							{emoji('💡')} Vous souhaitez ajouter des questions pour obtenir
-							des informations supplémentaires sur les répondants ?{' '}
-							<Link to={'/groupe/documentation-contexte'}>
-								Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
-							</Link>
+							<Trans
+								i18nKey={`publicodes.conference.Instructions.contextualisationLink`}
+							>
+								💡 Vous souhaitez ajouter des questions pour obtenir des
+								informations supplémentaires sur les répondants ?{' '}
+								<Link to={'/groupe/documentation-contexte'}>
+									Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
+								</Link>
+							</Trans>
 						</p>
 					)}
 				</InstructionBlock>
@@ -141,13 +164,13 @@ export default ({
 				index="3"
 				noIndex={started}
 				title={
-					<span>
-						{emoji('🔗 ')} Partagez le lien à vos amis, collègues, etc.
-					</span>
+					<span>{t(`🔗 Partagez le lien à vos amis, collègues, etc.`)}</span>
 				}
 			>
 				{!newRoom && !room ? (
-					<p>Choississez d'abord un nom</p>
+					<p>
+						<Trans>Choississez d'abord un nom</Trans>
+					</p>
 				) : (
 					<div
 						css={`
@@ -169,9 +192,9 @@ export default ({
 							aria-label={'QR code'}
 						/>
 						<ShareButton
-							text="Faites un test d'empreinte climat avec moi"
+							text={t("Faites un test d'empreinte climat avec moi")}
 							url={shareURL}
-							title={'Nos Gestes Climat Conférence'}
+							title={t('Nos Gestes Climat Conférence')}
 						/>
 					</div>
 				)}
@@ -179,22 +202,30 @@ export default ({
 			<InstructionBlock
 				index="4"
 				noIndex={started}
-				title={
-					<span>{emoji('🎰 ')} Faites toutes et tous votre simulation</span>
-				}
+				title={<span>{t(`🎰 Faites toutes et tous votre simulation`)}</span>}
 			>
 				{!room ? (
 					<Link to={'/simulateur/bilan'}>
-						<button className="ui__ button plain">Faites votre test </button>
+						<button className="ui__ button plain">
+							{t(`Faites votre test`)}
+						</button>
 					</Link>
 				) : mode === 'conférence' ? (
 					<p>
-						Au moment convenu, ouvrez ce lien tous en même temps et faites
-						chacun de votre côté votre simulation.
+						<Trans
+							i18nKey={`publicodes.conference.Instructions.liensSimulationConference`}
+						>
+							Au moment convenu, ouvrez ce lien tous en même temps et faites
+							chacun de votre côté votre simulation.
+						</Trans>
 					</p>
 				) : (
 					<p>
-						Les participants doivent venir faire leur simulation sur ce lien.
+						<Trans
+							i18nKey={`publicodes.conference.Instructions.liensSimulationSondage`}
+						>
+							Les participants doivent venir faire leur simulation sur ce lien.
+						</Trans>
 					</p>
 				)}
 			</InstructionBlock>
@@ -203,25 +234,26 @@ export default ({
 				noIndex={started}
 				title={
 					<span>
-						{emoji('🧮 ')} Visualisez à tout moment les résultats de votre
-						groupe
+						{t(`🧮 Visualisez à tout moment les résultats de votre groupe`)}
 					</span>
 				}
 			>
-				Les résultats pour chaque catégorie (alimentation, transport, logement
-				...) s'affichent progressivement et en temps réel pour l'ensemble du
-				groupe sur{' '}
+				<Trans i18nKey={`publicodes.conference.Instructions.resultatInfos`}>
+					Les résultats pour chaque catégorie (alimentation, transport, logement
+					...) s'affichent progressivement et en temps réel pour l'ensemble du
+					groupe sur{' '}
+				</Trans>
 				{!started ? (
-					"la page à partager à l'étape 3"
+					t(`la page à partager à l'étape 3`)
 				) : (
 					<span>
-						cette page <Link to={URLPath}>{URLPath}</Link>
+						{t(`cette page`)} <Link to={URLPath}>{URLPath}</Link>
 					</span>
 				)}
 				.
 			</InstructionBlock>
 			{newRoom !== '' && !room && (
-				<InstructionBlock index="6" title="Prêt à démarrer ?">
+				<InstructionBlock index="6" title={t('Prêt à démarrer ?')}>
 					<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
 				</InstructionBlock>
 			)}
@@ -230,12 +262,17 @@ export default ({
 					noIndex={started}
 					title={
 						<span>
-							{emoji('📊')} Analysez les résultats et animez les discussions !
+							<Trans>
+								📊 Analysez les résultats et animez les discussions !
+							</Trans>
 						</span>
 					}
 				>
-					Les résultats sont là, que faire ? Notre guide vous accompagne dans
-					vos réflexions et vos discussions sur cette page &nbsp;
+					<Trans i18nKey={`publicodes.conference.Instructions.guideLien`}>
+						Les résultats sont là, que faire ? Notre guide vous accompagne dans
+						vos réflexions et vos discussions sur cette page
+					</Trans>
+					&nbsp;
 					<Link to={URLGuide}>{URLGuide}</Link> !
 				</InstructionBlock>
 			)}

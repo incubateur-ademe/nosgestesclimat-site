@@ -1,12 +1,10 @@
 import { goToQuestion } from 'Actions/actions'
 import highlightMatches from 'Components/highlightMatches'
 import { useEngine } from 'Components/utils/EngineContext'
-import React, { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import Worker from 'worker-loader!./QuestionFinder.worker.ts'
-import emoji from '../emoji'
-import useKeypress from '../utils/useKeyPress'
 
 const worker = new Worker()
 
@@ -38,7 +36,7 @@ export default function QuestionFinder({
 			matches: Matches
 		}>
 	>([])
-	const { i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	const searchIndex: Array<SearchItem> = useMemo(
 		() =>
@@ -99,7 +97,7 @@ export default function QuestionFinder({
 					className="ui__"
 					value={input}
 					css="margin: 0 !important"
-					placeholder={i18n.t('Naviguez vers une question précise')}
+					placeholder={t('Naviguez vers une question précise')}
 					onChange={(e) => {
 						const input = e.target.value
 						if (input.length > 0) worker.postMessage({ input })

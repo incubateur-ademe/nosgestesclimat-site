@@ -1,8 +1,4 @@
-import {
-	goToQuestion,
-	updateSituation,
-	validateStepWithValue,
-} from 'Actions/actions'
+import { goToQuestion, updateSituation } from 'Actions/actions'
 import RuleInput, {
 	getRelatedMosaicInfosIfExists,
 	RuleInputProps,
@@ -58,7 +54,6 @@ export default function Conversation({
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	const tracker = useContext(TrackerContext)
 	const objectifs = useSelector(objectifsSelector)
-	const rawRules = useSelector((state) => state.rules)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
 
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
@@ -76,6 +71,8 @@ export default function Conversation({
 		: nextQuestions
 
 	const focusedCategory = useQuery().get('catégorie')
+	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
+
 	const focusByCategory = (questions) => {
 		if (!focusedCategory) return questions
 		const filtered = questionsSortedByCategory.filter(
@@ -89,7 +86,6 @@ export default function Conversation({
 	}
 
 	const sortedQuestions = focusByCategory(questionsSortedByCategory)
-	console.log('FOCUS', focusedCategory, sortedQuestions)
 
 	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
@@ -353,8 +349,13 @@ export default function Conversation({
 					whiteBackground="false"
 				/>
 			</motion.div>
-			<p>Vous avez complété la catégorie {focusedCategory}</p>
-			<Link to="/profil"> Modifier mes réponses</Link>
+			<p>
+				<Trans>Vous avez complété la catégorie</Trans>{' '}
+				<i>{focusedCategoryTitle}</i>
+			</p>
+			<Link to="/profil">
+				<Trans>Modifier mes réponses</Trans>
+			</Link>
 		</div>
 	) : displayRespiration ? (
 		<CategoryRespiration

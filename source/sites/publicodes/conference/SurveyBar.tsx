@@ -1,4 +1,8 @@
-import { correctValue, splitName } from 'Components/publicodesUtils'
+import {
+	correctValue,
+	extractCategories,
+	splitName,
+} from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
@@ -6,15 +10,14 @@ import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
-import { extractCategories } from 'Components/publicodesUtils'
-import { computeHumanMean } from './Stats'
-import { backgroundConferenceAnimation } from './conferenceStyle'
-import useDatabase, { answersURL } from './useDatabase'
-import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { v4 as uuidv4 } from 'uuid'
+import { minimalCategoryData } from '../../../components/publicodesUtils'
+import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
+import { backgroundConferenceAnimation } from './conferenceStyle'
+import { computeHumanMean } from './Stats'
 import { getElements } from './Survey'
-import { defaultThreshold, defaultProgressMin } from './utils'
+import useDatabase, { answersURL } from './useDatabase'
+import { defaultProgressMin, defaultThreshold } from './utils'
 
 export default () => {
 	const situation = useSelector(situationSelector),

@@ -1,8 +1,12 @@
 import { motion } from 'framer-motion'
 import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
 
 export default function ({ backgroundColor, activeColor, value }) {
 	const inhabitants = Math.round(1 / value)
+
+	const { t } = useTranslation()
+
 	return (
 		<div
 			css={`
@@ -29,11 +33,13 @@ export default function ({ backgroundColor, activeColor, value }) {
 					top: 0rem;
 				`}
 			>
-				<p>Votre part du logement</p>
+				<p>
+					<Trans>Votre part du logement</Trans>
+				</p>
 				<img
 					src="/images/thin-arrow-left.svg"
 					aria-hidden
-					title="Comprendre l'objectif à atteindre"
+					title={t("Comprendre l'objectif à atteindre")}
 					css={`
 						height: 3rem;
 
@@ -82,7 +88,7 @@ export default function ({ backgroundColor, activeColor, value }) {
 					1 / {inhabitants}
 				</motion.text>
 			</svg>
-			<span title={inhabitants <= 1 ? 'habitant' : 'habitants'}>
+			<span title={inhabitants <= 1 ? t('habitant') : t('habitants')}>
 				{emoji(inhabitants > 1 ? '👥' : '👤')}x{inhabitants}
 			</span>
 		</div>

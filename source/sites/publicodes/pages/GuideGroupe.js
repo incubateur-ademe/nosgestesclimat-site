@@ -1,19 +1,19 @@
 import { splitName, title } from 'Components/publicodesUtils'
+import useFetchDocumentation from 'Components/useFetchDocumentation'
 import { Markdown } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
-import emoji from 'react-easy-emoji'
-import { useSelector } from 'react-redux'
+import { Trans, useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import useFetchDocumentation from 'Components/useFetchDocumentation'
 
 export default () => {
-	const rules = useSelector((state) => state.rules)
-
 	const documentation = useFetchDocumentation()
+
+	const { t } = useTranslation()
+
 	if (!documentation) return null
 
 	const { encodedName } = useParams()
@@ -26,7 +26,7 @@ export default () => {
 				<Markdown
 					children={
 						documentation['guide-mode-groupe/guide'] ||
-						"Ce guide n'existe pas encore"
+						t("Ce guide n'existe pas encore")
 					}
 				/>
 			</GuideWrapper>
@@ -52,18 +52,22 @@ export default () => {
 			<Meta title={titre} />
 			<ScrollToTop />
 			<Link to={'/guide'}>
-				<button className="ui__ button simple">{emoji('◀')} Retour</button>
+				<button className="ui__ button simple">
+					<Trans>◀ Retour</Trans>
+				</button>
 			</Link>
 			<div>
 				<Markdown
 					children={
 						documentation['guide-mode-groupe/' + encodedName] ||
-						"Ce guide n'existe pas encore"
+						t("Ce guide n'existe pas encore")
 					}
 				/>
 				{encodedName !== 'guide' && relatedActions.length > 0 && (
 					<>
-						<h2>Pour aller plus loin:</h2>
+						<h2>
+							<Trans>Pour aller plus loin</Trans>:
+						</h2>
 						<div>
 							{relatedActions.map((action) => (
 								<Link

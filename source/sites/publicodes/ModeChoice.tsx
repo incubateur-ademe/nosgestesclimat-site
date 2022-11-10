@@ -1,7 +1,7 @@
 import IllustratedButton from 'Components/IllustratedButton'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { setActionMode } from '../../actions/actions'
-import { useSafePreviousSimulation } from '../../components/SessionBar'
 
 export default ({}) => {
 	const dispatch = useDispatch()
@@ -15,9 +15,15 @@ export default ({}) => {
 			`}
 		>
 			<div>
-				<h1>Passer à l'action</h1>
-				<p>Votre mission : réduire votre empreinte.</p>
-				<p>Comment voulez-vous procéder ?</p>
+				<h1>
+					<Trans>Passer à l'action</Trans>
+				</h1>
+				<p>
+					<Trans>Votre mission : réduire votre empreinte.</Trans>
+				</p>
+				<p>
+					<Trans>Comment voulez-vous procéder ?</Trans>
+				</p>
 			</div>
 			<div>
 				<IllustratedButton
@@ -26,9 +32,15 @@ export default ({}) => {
 					onClick={() => dispatch(setActionMode('guidé'))}
 				>
 					<div>
-						<div>Guidé</div>
+						<div>
+							<Trans>Guidé</Trans>
+						</div>
 						<p>
-							<small>On vous propose une sélection graduelle de gestes.</small>
+							<small>
+								<Trans>
+									On vous propose une sélection graduelle de gestes.
+								</Trans>
+							</small>
 						</p>
 					</div>
 				</IllustratedButton>
@@ -38,9 +50,13 @@ export default ({}) => {
 					onClick={() => dispatch(setActionMode('autonome'))}
 				>
 					<div>
-						<div>Autonome</div>
+						<div>
+							<Trans>Autonome</Trans>
+						</div>
 						<p>
-							<small>A vous de choisir vos gestes à la carte.</small>
+							<small>
+								<Trans>A vous de choisir vos gestes à la carte.</Trans>
+							</small>
 						</p>
 					</div>
 				</IllustratedButton>

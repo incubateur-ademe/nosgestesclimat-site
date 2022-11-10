@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import styled from 'styled-components'
+import { Trans } from 'react-i18next'
 
 import Tile from '../utils/Tile'
 
@@ -72,7 +73,7 @@ export default function Evolution(props) {
 				<BigNumber>
 					{props.allTime.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
 				</BigNumber>{' '}
-				&nbsp;visites depuis le lancement
+				&nbsp;<Trans>visites depuis le lancement</Trans>
 			</TopBlock>
 			<BlockWrapper>
 				<Block>
@@ -80,8 +81,10 @@ export default function Evolution(props) {
 						{percent > 0 && '+'}
 						{Math.round(percent * 10) / 10}%
 					</Number>
-					de visites ce mois ci
-					<Small>&nbsp;(par rapport au mois d'avant)</Small>
+					<Trans>
+						de visites ce mois ci
+						<Small>&nbsp;(par rapport au mois d'avant)</Small>
+					</Trans>
 				</Block>
 				<Block>
 					<Number>
@@ -89,7 +92,7 @@ export default function Evolution(props) {
 							.toString()
 							.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}
 					</Number>{' '}
-					simulations terminées depuis le lancement
+					<Trans>simulations terminées depuis le lancement</Trans>
 				</Block>
 			</BlockWrapper>
 		</Wrapper>

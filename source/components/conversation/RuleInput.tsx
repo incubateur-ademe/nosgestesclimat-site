@@ -48,16 +48,16 @@ export type InputCommonProps<Name extends string = string> = Pick<
 		required: boolean
 	}
 
-export const binaryQuestion = [
-	{ value: 'oui', label: 'Oui' },
-	{ value: 'non', label: 'Non' },
-] as const
+export type BinaryQuestionType = [
+	{ value: string; label: string },
+	{ value: string; label: string }
+]
 
 /* function to detect if the question evaluated should be displayed as a child of a mosaic
 We only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
 If parent of degree 2 doesn't contain mosaic, return empty array
 If parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
-We take into account if the evaluated rule is already a mosaic 
+We take into account if the evaluated rule is already a mosaic
 */
 export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
 	if (!dottedName) return
@@ -101,6 +101,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	engine: givenEngine,
 	noSuggestions = false,
 }: RuleInputProps<Name>) {
+	const { t } = useTranslation()
 	const engine = givenEngine || useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
@@ -216,8 +217,8 @@ export default function RuleInput<Name extends string = DottedName>({
 			<Question
 				{...commonProps}
 				choices={[
-					{ value: 'oui', label: 'Oui' },
-					{ value: 'non', label: 'Non' },
+					{ value: 'oui', label: t('Oui') },
+					{ value: 'non', label: t('Non') },
 				]}
 				onSubmit={onSubmit}
 			/>

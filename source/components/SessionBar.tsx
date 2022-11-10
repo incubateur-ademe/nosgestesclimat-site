@@ -2,6 +2,7 @@ import { loadPreviousSimulation } from 'Actions/actions'
 import useLocalisation from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEffect } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
@@ -14,10 +15,10 @@ import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
 import {
+	getFlagImgSrc,
 	getLocalisationPullRequest,
 	getSupportedFlag,
-	getFlagImgSrc,
-	supportedCountry,
+	isRegionSupported,
 } from './localisation/useLocalisation'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
@@ -135,7 +136,7 @@ export default function SessionBar({
 	const dispatch = useDispatch()
 
 	const localisation = useLocalisation()
-	const flag = supportedCountry(localisation)
+	const flag = isRegionSupported(localisation)
 		? getSupportedFlag(localisation)
 		: getFlagImgSrc('FR')
 
@@ -167,16 +168,18 @@ export default function SessionBar({
 
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 
+	const { t } = useTranslation()
+
 	let elements = [
 		<Button
 			className="simple small"
-			url={'/simulateur/bilan'}
+			url="/simulateur/bilan"
 			css={`
 				${buttonStyle('simulateur')};
 			`}
 		>
 			<ProgressCircle />
-			Le test
+			<Trans>Le test</Trans>
 		</Button>,
 		<Button
 			className="simple small"
@@ -184,7 +187,7 @@ export default function SessionBar({
 			css={buttonStyle('/actions')}
 		>
 			<ActionsInteractiveIcon />
-			Agir
+			<Trans>Agir</Trans>
 		</Button>,
 		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
 			<div
@@ -214,7 +217,7 @@ export default function SessionBar({
 				)}
 			</div>
 			{!persona ? (
-				'Mon profil'
+				t('Mon profil')
 			) : (
 				<span
 					css={`

@@ -7,7 +7,7 @@ export default function ParagrapheInput({
 	value,
 	id,
 	defaultValue,
-	autoFocus
+	autoFocus,
 }: InputCommonProps) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 

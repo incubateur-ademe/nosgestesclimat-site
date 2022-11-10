@@ -1,5 +1,5 @@
-import React from 'react'
 import styled from 'styled-components'
+import { Trans } from 'react-i18next'
 
 import Tile from '../../utils/Tile'
 
@@ -96,7 +96,9 @@ export default function Table(props) {
 							)}
 					</tbody>
 				</Wrapper>
-				<Text>Données valables pour les 30 derniers jours</Text>
+				<Text>
+					<Trans>Données valables pour les 30 derniers jours</Trans>
+				</Text>
 			</Tile.Content>
 		</Tile.Tile>
 	)

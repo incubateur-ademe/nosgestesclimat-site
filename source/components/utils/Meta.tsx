@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import { Helmet } from 'react-helmet'
-import { useLocation } from 'react-router'
 
 type PropType = {
 	title: string
@@ -17,7 +16,6 @@ export default function Meta({
 	url,
 	children,
 }: PropType) {
-	const { pathname } = useLocation()
 	return (
 		<Helmet>
 			<title>{title} - Nos Gestes Climat</title>

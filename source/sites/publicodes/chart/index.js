@@ -2,24 +2,13 @@ import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
-import React from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useNavigate, useLocation } from 'react-router-dom'
-import { Link } from 'react-router-dom'
-import {
-	objectifsSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { objectifsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import {
-	questionCategoryName,
-	splitName,
-} from '../../../components/publicodesUtils'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
-import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
-import CategoryVisualisation from '../CategoryVisualisation'
 import Bar from './Bar'
-import useContinuousCategory from './useContinuousCategory'
 
 export default ({
 	details,
@@ -31,7 +20,6 @@ export default ({
 	noAnimation,
 }) => {
 	// needed for this component to refresh on situation change :
-	const situation = useSelector(situationSelector)
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
@@ -44,7 +32,6 @@ export default ({
 	const { pathname } = useLocation(),
 		navigate = useNavigate()
 
-	const questionCategory = useContinuousCategory(categories)
 	const nextQuestions = useNextQuestions()
 	const completedCategories = categories
 		.filter(
@@ -59,6 +46,8 @@ export default ({
 		(memo, next) => (memo.nodeValue > next.nodeValue ? memo : next),
 		-1
 	).nodeValue
+
+	const { t } = useTranslation()
 
 	return (
 		<section
@@ -124,7 +113,7 @@ export default ({
 												cursor: pointer;
 											`}
 											title={
-												`N'afficher que les questions ` + category.dottedName
+												t(`N'afficher que les questions `) + category.dottedName
 											}
 											onClick={() =>
 												navigate(`${pathname}?catégorie=${category.dottedName}`)

@@ -2,14 +2,13 @@ import { findContrastedTextColor } from 'Components/utils/colors'
 import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 import Meta from 'Components/utils/Meta'
 import { motion, useSpring } from 'framer-motion'
-import { utils } from 'publicodes'
 import { useContext, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import tinygradient from 'tinygradient'
 import { DocumentationEndButton, generateImageLink } from '.'
 import { ActionButton, IntegratorActionButton } from './Buttons'
 import ClimateTargetChart from './ClimateTargetChart'
 import FinShareButton from './FinShareButton'
-const { encodeRuleName } = utils
 const gradient = tinygradient([
 		'#78e08f',
 		'#e1d738',
@@ -26,10 +25,12 @@ const getBackgroundColor = (score) =>
 
 export default ({ score, details, headlessMode, nextSlide }) => {
 	//	Configuration is try and test, feeling, really
+	const { t } = useTranslation()
+
 	const valueSpring = useSpring(0, {
-		mass: 10,
+		mass: 15,
 		stiffness: 50,
-		damping: 60,
+		damping: 50,
 	})
 
 	const [value, setValue] = useState(0)
@@ -51,8 +52,6 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 			maximumSignificantDigits: 2,
 			minimumSignificantDigits: 2,
 		}),
-		integerValue = roundedValue.split(',')[0],
-		decimalValue = roundedValue.split(',')[1],
 		shareImage = generateImageLink(window.location)
 
 	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
@@ -61,8 +60,10 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 	return (
 		<div>
 			<Meta
-				title="Mon empreinte climat"
-				description={`Mon empreinte climat est de ${roundedValue} tonnes de CO2e. Mesure la tienne !`}
+				title={t('Mon empreinte climat')}
+				description={t('meta.publicodes.fin.Budget.description', {
+					roundedValue,
+				})}
 				image={shareImage}
 				url={window.location}
 			/>
@@ -128,7 +129,9 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 					</div>
 				)}
 
-				{integratorActionText && <ActionButton text="Réduire mon empreinte" />}
+				{integratorActionText && (
+					<ActionButton text={t('Réduire mon empreinte')} />
+				)}
 				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>
 		</div>

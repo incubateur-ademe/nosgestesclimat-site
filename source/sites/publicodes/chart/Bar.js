@@ -1,9 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react'
-import emoji from 'react-easy-emoji'
-import { useLocation } from 'react-router'
-import { useNavigate } from 'react-router-dom'
+import { useEffect, useRef, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
-import { useQuery } from '../../../utils'
 import Value from './Value'
 
 export default ({
@@ -19,6 +16,7 @@ export default ({
 	demoMode,
 	dottedName,
 }) => {
+	const { t } = useTranslation()
 	return (
 		<>
 			<div
@@ -62,8 +60,6 @@ export default ({
 }
 export const capitalizeFirst = (text) =>
 	text[0].toUpperCase() + text.slice(1, text.length)
-
-const Check = ({}) => <span css="margin-left: .3rem">{emoji(' ✅')}</span>
 
 const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 	const textRef = useRef(null)

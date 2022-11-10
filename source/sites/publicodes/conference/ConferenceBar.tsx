@@ -16,7 +16,7 @@ export default () => {
 	const situation = useSelector(situationSelector),
 		engine = useEngine(),
 		evaluation = engine.evaluate('bilan'),
-		{ nodeValue: rawNodeValue, dottedName, unit, rawNode } = evaluation
+		{ nodeValue: rawNodeValue, unit } = evaluation
 	const rules = useSelector((state) => state.rules)
 
 	const progress = useSimulationProgress()

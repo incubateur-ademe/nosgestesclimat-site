@@ -1,4 +1,4 @@
-import emoji from './emoji'
+import { Trans } from 'react-i18next'
 import DefaultFootprint from '../sites/publicodes/DefaultFootprint'
 
 export default ({ openExplanation, setOpenExplanation }) => {
@@ -31,19 +31,21 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						}
 					`}
 				>
-					{emoji('➡️ ')}
-					<DefaultFootprint /> de CO2-e par an, c'est{' '}
-					<b>un point de départ théorique</b> calculé à partir de valeurs par
-					défaut attribuées à l'avance à chaque question. Au fur et à mesure de
-					vos réponses, vous{' '}
-					<b>personnalisez votre score selon votre mode de vie</b>. Si vous
-					répondez "je ne sais pas" à une question, vous remarquerez que le
-					total ne change pas puisqu'une valeur standard vous est attribuée dans
-					ce cas. Il est fréquent que le score initial change car
-					<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
-						le modèle Nos Gestes Climat évolue
-					</a>
-					!
+					➡️
+					<Trans i18nKey={'components.ScoreExplanation.text'}>
+						<DefaultFootprint /> de CO2-e par an, c'est{' '}
+						<b>un point de départ théorique</b> calculé à partir de valeurs par
+						défaut attribuées à l'avance à chaque question. Au fur et à mesure
+						de vos réponses, vous{' '}
+						<b>personnalisez votre score selon votre mode de vie</b>. Si vous
+						répondez "je ne sais pas" à une question, vous remarquerez que le
+						total ne change pas puisqu'une valeur standard vous est attribuée
+						dans ce cas. Il est fréquent que le score initial change car
+						<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
+							le modèle Nos Gestes Climat évolue
+						</a>
+						!
+					</Trans>
 				</p>
 				<button
 					onClick={() => setOpenExplanation(false)}
@@ -74,7 +76,7 @@ export default ({ openExplanation, setOpenExplanation }) => {
 							padding: 0.3rem !important;
 						`}
 					>
-						J'ai compris
+						<Trans>J'ai compris</Trans>
 					</button>
 				</div>
 			</div>

@@ -1,8 +1,8 @@
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
 import React, { useEffect } from 'react'
+import emoji from 'react-easy-emoji'
 import { Link, useLocation } from 'react-router-dom'
 import { isIterable } from '../../utils'
-import emoji from 'react-easy-emoji'
 
 const internalURLs = {
 	'nosgestesclimat.fr': 'nosgestesclimat',

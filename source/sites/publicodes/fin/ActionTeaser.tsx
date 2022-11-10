@@ -1,30 +1,27 @@
 import { correctValue, splitName } from 'Components/publicodesUtils'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { utils } from 'publicodes'
 import { partition } from 'ramda'
-import React, { useContext } from 'react'
+import { useContext } from 'react'
 import { useSelector } from 'react-redux'
-import {
-	answeredQuestionsSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
 import { extractCategoriesNamespaces } from '../../../components/publicodesUtils'
 import { sortBy } from '../../../utils'
 import { ActionValue, disabledAction } from '../ActionVignette'
 import emoji from 'react-easy-emoji'
 import CircledEmojis from '../../../components/CircledEmojis'
 import { motion } from 'framer-motion'
-
-const { encodeRuleName, decodeRuleName } = utils
+import { Trans, useTranslation } from 'react-i18next'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation'
 
 export default ({}) => {
+	const { i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	const rules = useSelector((state) => state.rules)
-	const situation = useSelector(situationSelector),
-		answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	const flatActions = rules['actions']
-
-	const simulation = useSelector((state) => state.simulation)
 
 	const objectifs = ['bilan', ...flatActions.formule.somme]
 
@@ -36,9 +33,12 @@ export default ({}) => {
 
 	const [bilans, actions] = partition((t) => t.dottedName === 'bilan', targets),
 		total = bilans[0].nodeValue,
-		displayedTotal = (total / 1000).toLocaleString('FR-fr', {
-			maximumSignificantDigits: 2,
-		})
+		displayedTotal = (total / 1000).toLocaleString(
+			currentLangInfos.abrvLocale,
+			{
+				maximumSignificantDigits: 2,
+			}
+		)
 
 	// This is arbitrary. The chances that most actions are harder at this stages are high
 	// it could also be set to 3000
@@ -83,17 +83,21 @@ export default ({}) => {
 				>
 					<div>{emoji('👏')}</div>
 					<p>
-						{displayedTotal} tonnes !
-						<strong>
-							{' '}
-							Vous êtes très nettement en-dessous de la moyenne française.
-						</strong>{' '}
+						<Trans i18nKey={'publicodes.fin.ActionTeaser.félicitations'}>
+							{{ displayedTotal }} tonnes !
+							<strong>
+								{' '}
+								Vous êtes très nettement en-dessous de la moyenne française.
+							</strong>{' '}
+						</Trans>
 					</p>
 				</div>
 				<p>
-					Il y a de grandes chances que votre temps soit plus efficace à
-					convaincre et aider les autres qu'à chercher à gagner vos "tonnes en
-					trop" (même s'il faudra le faire un jour).
+					<Trans i18nKey={'publicodes.fin.ActionTeaser.messagePourConvaincre'}>
+						Il y a de grandes chances que votre temps soit plus efficace à
+						convaincre et aider les autres qu'à chercher à gagner vos "tonnes en
+						trop" (même s'il faudra le faire un jour).
+					</Trans>
 				</p>
 			</div>
 		)

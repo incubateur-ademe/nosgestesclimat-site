@@ -3,7 +3,6 @@ import animate from 'Components/ui/animate'
 import { useEngine } from 'Components/utils/EngineContext'
 import Engine, { RuleNode } from 'publicodes'
 import emoji from 'react-easy-emoji'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
 import './Notifications.css'
@@ -54,7 +53,6 @@ export function getCurrentNotification(
 }
 
 export default function Notifications({ currentQuestion }) {
-	const { t } = useTranslation()
 	const hiddenNotifications = useSelector(
 		(state: RootState) => state.simulation?.hiddenNotifications
 	)

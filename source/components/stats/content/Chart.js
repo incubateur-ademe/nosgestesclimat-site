@@ -1,16 +1,21 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
+import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import {
-	AreaChart,
 	Area,
+	AreaChart,
+	ResponsiveContainer,
+	Tooltip,
 	XAxis,
 	YAxis,
-	Tooltip,
-	ResponsiveContainer,
 } from 'recharts'
+import styled from 'styled-components'
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../locales/translation.ts'
 import { useChart } from '../matomo'
-import Search from './chart/Search'
 import CustomTooltip from './chart/CustomTooltip'
+import Search from './chart/Search'
 
 const Wrapper = styled.div`
 	width: 60%;
@@ -29,6 +34,9 @@ const ChartWrapper = styled.div`
 	height: 22rem;
 `
 export default function AreaWeekly(props) {
+	const { i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	const [chartDate, setChartDate] = useState('12')
 	const [chartPeriod, setChartPeriod] = useState('week')
 
@@ -69,12 +77,12 @@ export default function AreaWeekly(props) {
 							tick={{ fontSize: 12 }}
 							tickFormatter={(tick) => {
 								const date = new Date(tick.split(',')[0])
-								return chartPeriod === 'month'
-									? date.toLocaleDateString('fr-fr', {
+								return props.period === 'month'
+									? date.toLocaleDateString(currentLangInfos.abrvLocale, {
 											month: 'long',
 											year: 'numeric',
 									  })
-									: date.toLocaleDateString('fr-fr', {
+									: date.toLocaleDateString(currentLangInfos.abrvLocale, {
 											day: '2-digit',
 											month: '2-digit',
 									  })

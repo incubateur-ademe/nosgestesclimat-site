@@ -1,5 +1,6 @@
+import { DottedName } from 'modele-social'
+import Engine from 'publicodes'
 import {
-	add,
 	countBy,
 	descend,
 	difference,
@@ -12,20 +13,16 @@ import {
 	length,
 	map,
 	mergeWith,
-	negate,
 	pair,
 	pipe,
-	reduce,
 	sortBy,
 	sortWith,
 	takeWhile,
-	toPairs,
 	zipWith,
 } from 'ramda'
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
-import { DottedName } from 'modele-social'
 import {
 	answeredQuestionsSelector,
 	configSelector,
@@ -34,7 +31,6 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { EngineContext } from './EngineContext'
-import Engine from 'publicodes'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(
@@ -153,7 +149,6 @@ export const useNextQuestions = function (): Array<DottedName> {
 }
 
 export function useSimulationProgress(): number {
-	const objectifs = useSelector(objectifsSelector)
 	const numberQuestionAnswered = useSelector(answeredQuestionsSelector).length
 	const numberQuestionLeft = useNextQuestions().length
 

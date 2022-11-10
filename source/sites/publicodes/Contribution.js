@@ -1,12 +1,12 @@
-import emoji from 'Components/emoji'
 import { Markdown } from 'Components/utils/markdown'
 import { useState } from 'react'
 import { renderToString } from 'react-dom/server'
+import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
+import { getCurrentLangInfos } from '../../locales/translation'
 import { useQuery } from '../../utils'
-import FAQ from './FAQ.yaml'
 
-const formStyle = `
+export const formStyle = `
 label {
 	display: block;
 	margin-bottom: 1em;
@@ -26,18 +26,24 @@ label textarea {
 	height: 6em;
 }`
 
-const createIssue = (title, body, setURL, disableButton) => {
+export const createIssue = (
+	title,
+	body,
+	setURL,
+	disableButton,
+	labels = ['contribution externe']
+) => {
 	if (title == null || body == null || [title, body].includes('')) {
 		return null
 	}
 
 	fetch(
-		'https://publicodes.netlify.app/.netlify/functions/createIssue?' +
+		'/.netlify/functions/create-issue?' +
 			Object.entries({
 				repo: 'datagir/nosgestesclimat',
 				title,
 				body,
-				labels: ['contribution'],
+				labels,
 			})
 				.map(([k, v]) => k + '=' + encodeURIComponent(v))
 				.join('&'),
@@ -58,6 +64,9 @@ export default ({}) => {
 	const [URL, setURL] = useState(null)
 	const [buttonDisabled, disableButton] = useState(false)
 
+	const { i18n } = useTranslation()
+	const FAQ = getCurrentLangInfos(i18n).faqContent
+
 	const structuredFAQ = {
 		'@context': 'https://schema.org',
 		'@type': 'FAQPage',
@@ -76,21 +85,27 @@ export default ({}) => {
 		[]
 	)
 
+	const { t } = useTranslation()
+
 	return (
 		<div className="ui__ container" css="padding-bottom: 1rem">
 			<Meta
-				title="Contribuer"
-				description="Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider."
+				title={t('Contribuer')}
+				description={t('meta.publicodes.Contribution.description')}
 			>
 				<script type="application/ld+json">
 					{JSON.stringify(structuredFAQ)}
 				</script>
 			</Meta>
-			<h1>Questions fréquentes</h1>
+			<h1>
+				<Trans>Questions fréquentes</Trans>
+			</h1>
 			<p>
-				Vous trouverez ici les réponses aux questions les plus fréquentes. S’il
-				vous reste des interrogations ou si vous souhaitez nous proposer des
-				améliorations, rendez-vous tout en bas. Bonne lecture !
+				<Trans i18nKey={'publicodes.Contribution.description'}>
+					Vous trouverez ici les réponses aux questions les plus fréquentes.
+					S’il vous reste des interrogations ou si vous souhaitez nous proposer
+					des améliorations, rendez-vous tout en bas. Bonne lecture !
+				</Trans>
 			</p>
 			<div
 				css={`
@@ -132,26 +147,35 @@ export default ({}) => {
 					</li>
 				))}
 			</div>
-			<h2 css="font-size: 180%">{emoji('🙋‍♀️')} J'ai une autre question</h2>
+			<h2 css="font-size: 180%">
+				🙋‍♀️
+				<Trans i18nKey={'publicodes.Contribution.titreQuestion'}>
+					J'ai une autre question
+				</Trans>
+			</h2>
 			<div className="ui__ card" css="padding: 1rem 0">
 				<p>
-					Pour toute remarque ou question, nous vous invitons à{' '}
-					<a href="https://github.com/datagir/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
-						ouvrir un ticket directement sur Github
-					</a>
-					.
+					<Trans i18nKey={'publicodes.Contribution.liensVersGithub'}>
+						Pour toute remarque ou question, nous vous invitons à{' '}
+						<a href="https://github.com/datagir/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
+							ouvrir un ticket directement sur GitHub
+						</a>
+						.
+					</Trans>
 				</p>
 				<details>
 					<summary>
-						{emoji('🐛')} Vous avez un bug qui vous empêche d'utiliser Nos
-						Gestes Climat ?{' '}
+						<Trans i18nKey={'publicodes.Contribution.bugQuestion'}>
+							🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat
+							?
+						</Trans>
 					</summary>
 
 					<div className="ui__ card" css="padding: 1rem 0">
 						{!URL ? (
 							<form css={formStyle}>
 								<label css="color: var(--color)">
-									Le titre bref de votre problème
+									<Trans>Le titre bref de votre problème</Trans>
 									<input
 										aria-describedby="messageAttention"
 										value={sujet}
@@ -162,15 +186,20 @@ export default ({}) => {
 									/>
 								</label>
 								<label css="color: var(--color)">
-									<p>La description complète de votre problème</p>
-									<p>
-										<small>
-											En indiquant le navigateur que vous utilisez (par exemple
-											Firefox version 93, Chrome version 95, Safari, etc.), et
-											la plateforme (iPhone, Android, ordinateur Windows, etc.),
-											vous nous aiderez à résoudre le bug plus rapidement.
-										</small>
-									</p>
+									<Trans
+										i18nKey={'publicodes.Contribution.descriptionComplète'}
+									>
+										<p>La description complète de votre problème</p>
+										<p>
+											<small>
+												En indiquant le navigateur que vous utilisez (par
+												exemple Firefox version 93, Chrome version 95, Safari,
+												etc.), et la plateforme (iPhone, Android, ordinateur
+												Windows, etc.), vous nous aiderez à résoudre le bug plus
+												rapidement.
+											</small>
+										</p>
+									</Trans>
 									<textarea
 										aria-describedby="messageAttention"
 										value={comment}
@@ -181,8 +210,10 @@ export default ({}) => {
 								</label>
 								<p id="messageAttention">
 									<em>
-										Cette contribution sera publique : n'y mettez pas
-										d'informations sensibles
+										<Trans>
+											Cette contribution sera publique : n'y mettez pas
+											d'informations sensibles
+										</Trans>
 									</em>
 								</p>
 								<button
@@ -196,23 +227,26 @@ export default ({}) => {
 										disableButton(true)
 										const augmentedComment =
 											comment +
-											`
-
-${fromLocation ? `Depuis la page : \`${fromLocation}\`` : ''}
-
-> Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
-
-									`
+											(fromLocation
+												? '\n> ' +
+												  t('Depuis la page') +
+												  ': `' +
+												  fromLocation +
+												  '`'
+												: '') +
+											t('publicodes.Contribution.commentaireAugmenté')
 										createIssue(sujet, augmentedComment, setURL, disableButton)
 									}}
 								>
-									Envoyer
+									<Trans>Envoyer</Trans>
 								</button>
 							</form>
 						) : (
 							<p role="status">
-								Merci {emoji('😍')}! Suivez l'avancement de votre suggestion en
-								cliquant sur <a href={URL}>ce lien</a>.
+								<Trans i18nKey={'publicodes.Contribution.remerciements'}>
+									Merci 😍! Suivez l'avancement de votre suggestion en cliquant
+									sur <a href={URL}>ce lien</a>.
+								</Trans>
 							</p>
 						)}
 					</div>

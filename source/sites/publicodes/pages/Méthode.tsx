@@ -1,12 +1,24 @@
-import { Markdown } from 'Components/utils/markdown'
-import content from 'raw-loader!./méthode.md'
+import { useTranslation } from 'react-i18next'
+import { Lang } from '../../../locales/translation'
+import MarkdownPage from './MarkdownPage'
 
-// we're using markdown here so that non coder can change text
-// if useful, extend this to other documentation pages
-export default function Méthode() {
+import contentEn from 'raw-loader!../../../locales/pages/en-us/méthode.md'
+// import contentEs from 'raw-loader!../../../locales/pages/es/méthode.md'
+import contentFr from 'raw-loader!../../../locales/pages/fr/méthode.md'
+// import contentIt from 'raw-loader!../../../locales/pages/it/méthode.md'
+
+export default () => {
+	const { t } = useTranslation()
 	return (
-		<p css="img:not(.emoji){max-width: 10rem; margin: 1.6rem auto; display: block; }">
-			<Markdown children={content} />
-		</p>
+		<MarkdownPage
+			markdownFiles={[
+				[Lang.Fr, contentFr],
+				[Lang.En, contentEn],
+				// [Lang.Es, contentEs],
+				// [Lang.It, contentIt],
+			]}
+			title={t('meta.publicodes.Méthode.title')}
+			description={t('meta.publicodes.Méthode.description')}
+		/>
 	)
 }

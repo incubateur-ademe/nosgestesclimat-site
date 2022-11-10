@@ -1,5 +1,10 @@
-import React from 'react'
 import styled from 'styled-components'
+import { useTranslation } from 'react-i18next'
+
+import {
+	getLangFromAbreviation,
+	getLangInfos,
+} from '../../../../locales/translation'
 
 const Wrapper = styled.div`
 	padding: 1rem;
@@ -18,37 +23,52 @@ const Number = styled.span`
 	font-weight: 700;
 `
 export default function CustomTooltip(props) {
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+
 	return props.active && props.payload && props.payload.length ? (
 		<Wrapper>
 			{props.period === 'week' && (
 				<Label>
 					Semaine du{' '}
-					{new Date(props.label.split(',')[0]).toLocaleDateString('fr-fr', {
-						day: '2-digit',
-						month: '2-digit',
-					})}{' '}
+					{new Date(props.label.split(',')[0]).toLocaleDateString(
+						currentLangInfos.abrvLocale,
+						{
+							day: '2-digit',
+							month: '2-digit',
+						}
+					)}{' '}
 					au{' '}
-					{new Date(props.label.split(',')[1]).toLocaleDateString('fr-fr', {
-						day: '2-digit',
-						month: '2-digit',
-					})}
+					{new Date(props.label.split(',')[1]).toLocaleDateString(
+						currentLangInfos.abrvLocale,
+						{
+							day: '2-digit',
+							month: '2-digit',
+						}
+					)}
 				</Label>
 			)}
 			{props.period === 'month' && (
 				<Label>
-					{new Date(props.label).toLocaleDateString('fr-fr', {
-						month: 'long',
-						year: 'numeric',
-					})}
+					{new Date(props.label).toLocaleDateString(
+						currentLangInfos.abrvLocale,
+						{
+							month: 'long',
+							year: 'numeric',
+						}
+					)}
 				</Label>
 			)}
 			{props.period === 'day' && (
 				<Label>
-					{new Date(props.label).toLocaleDateString('fr-fr', {
-						weekday: 'long',
-						day: '2-digit',
-						month: 'long',
-					})}
+					{new Date(props.label).toLocaleDateString(
+						currentLangInfos.abrvLocale,
+						{
+							weekday: 'long',
+							day: '2-digit',
+							month: 'long',
+						}
+					)}
 				</Label>
 			)}
 			<Number>
@@ -56,7 +76,7 @@ export default function CustomTooltip(props) {
 					.toString()
 					.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')}{' '}
 			</Number>
-			{props.naming || 'visites'}
+			{props.naming || t('visites')}
 		</Wrapper>
 	) : null
 }
