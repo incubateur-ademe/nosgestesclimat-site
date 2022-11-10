@@ -15,7 +15,7 @@ Mais bien avant le CO₂ émis lors de la combustion du pétrole et du gaz qui f
     	/>
 Nous avons donc ajouté dans la barre de résultat de Nos Gestes Climat **une estimation des pleins d'essence** qui correspondent à votre mode de vie.
 
-    	</div>
+</div>
 
 ## Au-delà du climat 🗺️
 

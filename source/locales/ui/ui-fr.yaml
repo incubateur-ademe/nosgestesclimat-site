@@ -165,7 +165,6 @@ entries:
   Point d'interrogation: Point d'interrogation
   Pompe à pétrole: Pompe à pétrole
   Pour aller plus loin: Pour aller plus loin
-  'Pour en savoir plus, tout est expliqué <1></1>dans ': 'Pour en savoir plus, tout est expliqué <1></1>dans '
   'Pour en savoir plus, tout est expliqué dans ': 'Pour en savoir plus, tout est expliqué dans '
   Problème de traduction: Problème de traduction
   Progression dans les diapo: Progression dans les diapo
@@ -296,7 +295,6 @@ entries:
   dernières nouveautés: dernières nouveautés
   des visites affichées en iframe: des visites affichées en iframe
   des visites en iframe sont actives: des visites en iframe sont actives
-  des vistes affichées en iframe: des vistes affichées en iframe
   en moyenne sur le site: en moyenne sur le site
   et: et
   et visualisez les résultats du groupe: et visualisez les résultats du groupe
@@ -354,6 +352,12 @@ entries:
   meta.publicodes.Méthode.description: Notre modèle de calcul est entièrement
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Comprendre nos calculs
+  meta.publicodes.PetrogazLanding.description: Nos Gestes Climat vous permet non
+    seulement d'estimer votre empreinte sur le climat, mais également votre
+    consommation de pétrole. Ce dernier est responsable d'une grande partie de
+    l'empreinte climat, mais son achat a également d'autres conséquences,
+    notamment géopolitiques.
+  meta.publicodes.PetrogazLanding.title: Mon empreinte pétrole et gaz
   meta.publicodes.Privacy.description: Nos gestes climat, hors mode groupe,
     fonctionne sans serveur, donc vos données restent chez vous. Nous collectons
     anonymement des données aggregées pour améliorer le simulateur.
@@ -375,6 +379,7 @@ entries:
   nouveautés: nouveautés
   ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
   ou: ou
+  pages.News.determinant: of
   pages.News.premierParagraphe: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les
   participant: participant
   pleins: pleins
@@ -400,9 +405,9 @@ entries:
     très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes
     pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: '> Ce ticket a été créé
-    automatiquement par notre robot depuis notre [page de
-    contribution](https://nosgestesclimat.fr/contribuer).'
+  publicodes.Contribution.commentaireAugmenté: >-
+
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Vous trouverez ici les réponses aux
     questions les plus fréquentes. S’il vous reste des interrogations ou si vous
     souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne
@@ -481,8 +486,6 @@ entries:
     reflète l'état actuel du périmètre de calcul, que nous complétons chaque
     mois.
   publicodes.Tutorial.slide3.p3: Chacune de vos réponses modifiera ensuite votre
-    empreinte dans cette barre de score.
-  publicodes.Tutorial.slide3.p4: Chacune de vos réponses modifiera ensuite votre
     empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>Et l'objectif ?</0><1>Nous devons diminuer
     notre empreinte climat au plus vite.</1><2>En France, ça consiste à passer

@@ -6,7 +6,7 @@ entries:
   404.action.lock: Revenir en lieu sûr
   404.message: This page does not exist or no longer exists
   404.message.lock: Cette page n'existe pas ou n'existe plus
-  A vous de choisir vos gestes à la carte.: It's up to you to choose your gestures.
+  A vous de choisir vos gestes à la carte.: It's up to you to choose your actions.
   'Accessibilité : partiellement conforme': 'Accessibility: partially compliant'
   Action: Action
   Actions d'engagement: Commitment actions
@@ -23,7 +23,7 @@ entries:
   Aucun: None
   Autonome: Autonomous
   Avancement du groupe: Group progress
-  Bientôt disponible !: Available soon !
+  Bientôt disponible !: Available soon!
   C'est dans le fichier: It is in the
   C'est parti !: Let's go!
   Cacher: Hide
@@ -45,7 +45,7 @@ entries:
   Comment réduire mon empreinte ?: How can I reduce my footprint?
   Comment voulez-vous procéder ?: How do you want to proceed?
   Comprendre l'objectif à atteindre: Understand the objective to be achieved
-  Comprendre l'ojectif de 2 tonnes: Understanding the 2 ton goal
+  Comprendre l'ojectif de 2 tonnes: Understanding the 2 tonne goal
   Comprendre le calcul: Understanding the calculation
   Comprendre nos calculs: Understanding our calculations
   Confirmer: Confirm
@@ -107,7 +107,7 @@ entries:
   J'ai compris: I understand
   Je ne sais pas: I do not know
   KM: KM
-  "L'objectif à atteindre, 2 tonnes de CO₂e": The goal to achieve, 2 tons of CO₂e
+  "L'objectif à atteindre, 2 tonnes de CO₂e": The goal to achieve, 2 tonnes of CO₂e
   La voiture en chiffres: The car in figures
   Label: Label
   Label (facultatif): Label (optional)
@@ -141,7 +141,7 @@ entries:
   Nos explications complètes: Our complete explanations
   Nosgestesclimat - le top 3 de mes actions: Nosgestesclimat - the top 3 of my actions
   Notre serveur semble indisponible: Our server seems to be unavailable
-  Nous avons détecté que vous faites cette simulation depuis: We have detected that you are doing this simulation since
+  Nous avons détecté que vous faites cette simulation depuis: We have detected that you are doing this simulation from
   Nouveautés: News
   'Nouveautés - version ': "What's new - version "
   On la mesure comment ?: How is it measured?
@@ -450,6 +450,18 @@ entries:
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Understanding our calculations
   meta.publicodes.Méthode.title.lock: Comprendre nos calculs
+  meta.publicodes.PetrogazLanding.description: Nos Gestes Climat allows you to
+    estimate not only your climate footprint, but also your oil consumption. Oil
+    is responsible for a large part of the climate footprint, but its purchase
+    also has other consequences, notably geopolitical.
+  meta.publicodes.PetrogazLanding.description.lock:
+    Nos Gestes Climat vous permet
+    non seulement d'estimer votre empreinte sur le climat, mais également votre
+    consommation de pétrole. Ce dernier est responsable d'une grande partie de
+    l'empreinte climat, mais son achat a également d'autres conséquences,
+    notamment géopolitiques.
+  meta.publicodes.PetrogazLanding.title: My oil and gas footprint
+  meta.publicodes.PetrogazLanding.title.lock: Mon empreinte pétrole et gaz
   meta.publicodes.Privacy.description:
     Nos Gestes Climat, out of group mode, work
     without a server, so your data stays with you. We collect anonymously
@@ -459,7 +471,7 @@ entries:
     anonymement des données aggregées pour améliorer le simulateur.
   meta.publicodes.Privacy.title: Personal data
   meta.publicodes.Privacy.title.lock: Données personnelles
-  meta.publicodes.fin.Budget.description: My climate footprint is {{roundedValue}} tons of CO2e. Measure yours!
+  meta.publicodes.fin.Budget.description: My climate footprint is {{roundedValue}} tonnes of CO2e. Measure yours!
   meta.publicodes.fin.Budget.description.lock: Mon empreinte climat est de
     {{roundedValue}} tonnes de CO2e. Mesure la tienne !
   meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
@@ -467,7 +479,7 @@ entries:
     {{empreinte}} pleins de pétrole. Mesure la tienne !
   meta.publicodes.fin.actionslide.description:
     Top 3 actions to reduce my climate
-    footprint by {{roundedValue}} tons of CO₂‍ₑ.
+    footprint by {{roundedValue}} tonnes of CO₂‍ₑ.
   meta.publicodes.fin.actionslide.description.lock: Le top 3 des actions pour
     réduire mon empreinte climat de {{roundedValue}} tonnes de CO₂ₑ.
   meta.publicodes.pages.Documentation.description: Our calculation model is
@@ -485,6 +497,8 @@ entries:
   nouveautés: news
   ont utilisé l'aide à la saisie des km: used the km entry aid
   ou: or
+  pages.News.determinant: of
+  pages.News.determinant.lock: of
   pages.News.premierParagraphe: We are continuously improving the site based on
     your feedback. Discover here the
   pages.News.premierParagraphe.lock: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les
@@ -492,9 +506,9 @@ entries:
   pleins: full tanks
   pleins de pétrole: full tanks of oil
   plus d'1 kg: more than 1 kg
-  plus d'1 tonne: more than 1 ton
+  plus d'1 tonne: more than 1 tonne
   plus de 10 kg: more than 10 kg
-  plus de 10 tonnes: more than 10 tons
+  plus de 10 tonnes: more than 10 tonnes
   plus de 100 kg: over 100 kg
   publicodes.ActionTutorial.félicitation: You have completed your simulation, 👏 well done!
   publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
@@ -616,8 +630,8 @@ entries:
     <0>Où sont mes données ? </0>Vos données
     sont stockées dans votre navigateur, vous avez donc le contrôle total sur
     elles. <2></2>
-  publicodes.Profil.recap: You have completed the test at {{percentFinished}} %
-    ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
+  publicodes.Profil.recap: You have completed {{percentFinished}}% of the test
+    ({{answeredQuestionsLength}} questions) and chosen {{actionChoicesLength}}
     actions.
   publicodes.Profil.recap.lock:
     Vous avez terminé le test à {{percentFinished}} %
@@ -663,9 +677,9 @@ entries:
     l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on
     l'expire toute la journée, mais sans influence sur le climat."
   publicodes.Tutorial.slide2.p2:
-    Machines that enable our modern comfort do reject
+    Machines that enable our modern comfort do emit
     massive amounts of CO₂, so much that we count it in thousands of kilos per
-    year and per person, therefore in <1>tons</1> of CO₂e!
+    year and per person, therefore in <1>tonnes</1> of CO₂e!
   publicodes.Tutorial.slide2.p2.lock:
     Ce sont les machines qui font notre confort
     moderne qui en rejettent massivement, à tel point qu'on le compte en
@@ -678,7 +692,7 @@ entries:
     climat.
   publicodes.Tutorial.slide3.p1:
     <0>And practically speaking ?</0><1>Every year, a
-    French person emits on average about <2>10 tons of</2> CO₂e.</1>
+    French person emits on average about <2>10 tonnes of</2> CO₂e.</1>
   publicodes.Tutorial.slide3.p1.lock:
     <0>Et concrètement ?</0><1>Chaque année, un
     Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
@@ -699,7 +713,7 @@ entries:
     votre empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>And the goal?</0><1>We have to decrease our
     climate footprint as soon as possible.</1><2>In France, this means going
-    from ~10 tons to <2>less than 2 tons</2> per year.</2>
+    from ~10 tonnes to <2>less than 2 tonnes</2> per year.</2>
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
@@ -849,13 +863,13 @@ entries:
     moins 10% du test</1>. En revanche le CSV contient les simulations de toutes
     les personnes ayant participé au sondage en cliquant sur le lien. La colonne
     "progress" vous permet de filtrer les simulations à votre tour.
-  publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tons!<2> You are well below the French average</2> '
+  publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tonnes!<2> You are well below the French average</2> '
   publicodes.fin.ActionTeaser.félicitations.lock:
     '{{displayedTotal}} tonnes !<2>
     Vous êtes très nettement en-dessous de la moyenne française.</2> '
   publicodes.fin.ActionTeaser.messagePourConvaincre: Chances are, your time will
     be better spent convincing and helping others than trying to earn your
-    "extra tons" (although you will have to do that eventually).
+    "extra tonnes" (although you will have to do that eventually).
   publicodes.fin.ActionTeaser.messagePourConvaincre.lock: Il y a de grandes
     chances que votre temps soit plus efficace à convaincre et aider les autres
     qu'à chercher à gagner vos "tonnes en trop" (même s'il faudra le faire un
@@ -914,7 +928,7 @@ entries:
 
 
 
-    Find answers to common questions on our [FAQ](/contribute) page.
+    Find answers to common questions on our [FAQ](/contribuer) page.
   sites.publicodes.LandingExplanations.faqLink.lock: >-
     ## Des questions ?
 
@@ -927,12 +941,12 @@ entries:
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
   sélectionnées: selected
   titre de la version: title of the version
-  tonne: ton
-  tonnes: tons
+  tonne: tonne
+  tonnes: tonnes
   trajets saisis en moyenne: trips entered on average
   visites: visits
   visites depuis le lancement: visits since the launch
-  '{{res}} tonnes de CO₂e': '{{res}} tons of CO₂e'
+  '{{res}} tonnes de CO₂e': '{{res}} tonnes of CO₂e'
   À propos: About us
   ⏲️  Choississez votre mode de simulation: ⏲️ Choose your simulation mode
   ▶️ Finir mon test: ▶️ Finish my test
@@ -946,7 +960,7 @@ entries:
   ✅ sélectionnez celles qui vous intéressent: ✅ select the ones that interest you
   ❌ écartez celles qui vous semblent trop ambitieuses ou déplacées.: ❌ discard those that seem too ambitious or out of place.
   🌟 Vous avez complété cette simulation: 🌟 You have completed this simulation
-  🎯 2 tonnes: 🎯 2 tons
+  🎯 2 tonnes: 🎯 2 tonnes
   🎯 Montrer l'objectif: 🎯 Showing the lens
   🎰 Faites toutes et tous votre simulation: 🎰 Everyone do your simulation
   👍 Accepter: 👍 Accept
