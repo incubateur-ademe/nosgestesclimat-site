@@ -240,13 +240,15 @@ ping one of the maintainers of `nosgestesclimat-site`.
 ### Improving an existing translation
 
 If you found a translation incorrect or imprecise, you can modify it directly
-from the `./source/locales` folder.
+from the
+[`./source/locales`](https://github.com/datagir/nosgestesclimat-site/tree/master/source/locales)
+folder.
 
 If you are ready to create a [Pull
 Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
-to push your suggestion directly to the project, please refer to the [dedicated
-guide](#contribution-guide-for-translation-from-github). Otherwise, you can
-simply send your suggestion in a mail to: datagir@ademe.fr.
+to push your suggestion directly to the project, please refer to the
+contribution guide below. Otherwise, you can simply send your suggestion in a
+mail to: datagir@ademe.fr.
 
 #### Contribution guide for translation from GitHub
 
