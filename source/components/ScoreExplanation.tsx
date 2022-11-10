@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { Trans } from 'react-i18next'
 import TriangleShape from '../sites/publicodes/chart/TriangleShape'
-import DefaultFootprint from '../sites/publicodes/DefaultFootprint'
 
 export default ({ openExplanation, setOpenExplanation }) => {
 	return (
@@ -16,7 +15,7 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						max-height: 15rem;
 						position: fixed;
 						top: auto;
-						bottom: 15rem;
+						bottom: 18rem;
 						margin-left: 0.5rem;
 						margin-right: 0.5rem;
 					}
@@ -44,31 +43,35 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						position: relative;
 						border: 0.4rem solid var(--color) !important;
 						padding: 1.8rem 1.2rem 0.5rem 1.5rem;
-					`}
-				>
-					<p
-						css={`
-							font-size: 90% !important;
+						p {
 							text-align: left !important;
 							color: var(--darkColor) !important;
-							line-height: 1.1rem;
+							line-height: 1.15rem;
 							> a {
 								text-decoration: underline !important;
 							}
-						`}
-					>
-						➡️
-						<Trans i18nKey={'components.ScoreExplanation.text'}>
-							<DefaultFootprint /> de CO2-e par an, c'est{' '}
-							<b>un point de départ théorique</b> calculé à partir de valeurs
-							par défaut attribuées à l'avance à chaque question. Au fur et à
-							mesure de vos réponses, vous{' '}
-							<b>personnalisez votre score selon votre mode de vie</b>. Si vous
-							répondez "je ne sais pas" à une question, vous remarquerez que le
-							total ne change pas puisqu'une valeur standard vous est attribuée
-							dans ce cas. Il est fréquent que le score initial change car
+							  margin: 1.2rem 0;
+}
+						}
+					`}
+				>
+					<p>
+						<Trans i18nKey={'components.ScoreExplanation.text.p1'}>
+							🧮 Voici votre score ! Pour l'instant vous n'avez répondu qu'à 1
+							question, il évoluera à chaque nouvelle réponse.
+						</Trans>
+					</p>
+					<p>
+						<Trans i18nKey={'components.ScoreExplanation.text.p2'}>
+							Si vous répondez "je ne sais pas" à une question, le score ne
+							changera pas : une valeur par défaut vous est attribuée.
+						</Trans>
+					</p>
+					<p>
+						<Trans i18nKey={'components.ScoreExplanation.text.p3'}>
+							💡 Nous améliorons le calcul et ses valeurs par défaut
 							<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
-								le modèle Nos Gestes Climat évolue
+								tous les mois
 							</a>
 							!
 						</Trans>
