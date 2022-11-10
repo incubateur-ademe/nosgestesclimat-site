@@ -7,7 +7,7 @@ Our calculation model is completely transparent.
 At any time during the simulation, click on "🔬 understand the
 calculation" and follow the links.
 
-The code is not only transparent, but also contributory: everyone can
+The code is not only transparent, but also open to contributions: everyone can
 explore it, give feedback, improve it.
 
 [🎤 Come and contribute](/contribuer)!
