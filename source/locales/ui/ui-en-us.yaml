@@ -185,6 +185,7 @@ entries:
   Réduire ma conso: Reduce my consumption
   Réduire ma conso de pétrole: Reduce my oil consumption
   Réduire mon empreinte: Reduce my footprint
+  Répondez aux questions pour obtenir votre score: Answer the questions to get your score
   Répondez à notre sondage sur le simulateur.: Take our survey on the simulator.
   Réseaux Sociaux: Social Networks
   Score de nos utilisateurs: Score of our users
@@ -513,12 +514,12 @@ entries:
     quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Nos Gestes Climat?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: >-
-
-    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.commentaireAugmenté.lock: >-
-
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
+  publicodes.Contribution.commentaireAugmenté: '> This ticket was created
+    automatically by our robot from our [contribution
+    page](https://nosgestesclimat.fr/contribuer).'
+  publicodes.Contribution.commentaireAugmenté.lock: '> Ce ticket a été créé
+    automatiquement par notre robot depuis notre [page de
+    contribution](https://nosgestesclimat.fr/contribuer).'
   publicodes.Contribution.description: Here you will find answers to the most
     frequently asked questions. If you still have questions or if you want to
     suggest improvements, go to the bottom of the page. Have a good read!

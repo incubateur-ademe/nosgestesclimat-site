@@ -183,6 +183,7 @@ entries:
   Réduire ma conso: Réduire ma conso
   Réduire ma conso de pétrole: Réduire ma conso de pétrole
   Réduire mon empreinte: Réduire mon empreinte
+  Répondez aux questions pour obtenir votre score: Répondez aux questions pour obtenir votre score
   Répondez à notre sondage sur le simulateur.: Répondez à notre sondage sur le simulateur.
   Réseaux Sociaux: Réseaux Sociaux
   Score de nos utilisateurs: Score de nos utilisateurs
@@ -392,8 +393,9 @@ entries:
     très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes
     pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: >-
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
+  publicodes.Contribution.commentaireAugmenté: '> Ce ticket a été créé
+    automatiquement par notre robot depuis notre [page de
+    contribution](https://nosgestesclimat.fr/contribuer).'
   publicodes.Contribution.description: Vous trouverez ici les réponses aux
     questions les plus fréquentes. S’il vous reste des interrogations ou si vous
     souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne

@@ -42,6 +42,8 @@ export default ({ actionMode = false, demoMode = false }) => {
 
 	const tracker = useContext(TrackerContext)
 
+	const blur = Object.keys(situation).length === 0
+
 	return (
 		<div>
 			<div
@@ -99,7 +101,11 @@ export default ({ actionMode = false, demoMode = false }) => {
 								color: white !important;
 							`}
 							to={demoMode ? '#' : buildEndURL(rules, engine)}
-							title={t('Page de fin de simulation principale')}
+							title={
+								blur
+									? t('Répondez aux questions pour obtenir votre score')
+									: t('Page de fin de simulation principale')
+							}
 						>
 							<img
 								src={'/images/climate-change-small.svg'}
@@ -110,6 +116,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 								<HumanWeight
 									nodeValue={nodeValue}
 									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
+									blur={blur}
 								/>
 							) : (
 								<DiffHumanWeight
