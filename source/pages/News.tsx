@@ -88,10 +88,14 @@ export default function News() {
 					Nous améliorons le site en continu à partir de vos retours. Découvrez
 					ici les
 				</Trans>{' '}
-				{selectedRelease === 0
-					? t('dernières nouveautés')
-					: t(`nouveautés`) + `${determinant(releaseName)}${releaseName}`}
-				&nbsp;.
+				{(selectedRelease === 0 ? t('dernières nouveautés') : t(`nouveautés`)) +
+					' ' +
+					`${
+						i18n.language === 'fr'
+							? determinant(releaseName)
+							: t('pages.News.determinant') + ' '
+					}`}
+				<strong>{releaseName}</strong>.
 			</p>
 			<label title={t('titre de la version')}>
 				<SmallScreenSelect

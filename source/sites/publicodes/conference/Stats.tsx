@@ -19,10 +19,10 @@ export const computeMean = (simulationArray) =>
 		.filter((el) => el !== null)
 		.reduce((memo, next) => memo + next || 0, 0) / simulationArray.length
 
-export const computeHumanMean = (simulationArray) => {
+export const computeHumanMean = ({ t, i18n }, simulationArray) => {
 	const result = computeMean(simulationArray)
 
-	return result ? meanFormatter(result) : 'résultats en attente'
+	return result ? meanFormatter({ t, i18n }, result) : 'résultats en attente'
 }
 
 export default ({
@@ -46,7 +46,7 @@ export default ({
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
 	const values = elements.map((el) => el.total)
 	const mean = computeMean(values),
-		humanMean = computeHumanMean(values)
+		humanMean = computeHumanMean({ t, i18n }, values)
 
 	const progressList = elements.map((el) => el.progress),
 		meanProgress = computeMean(progressList)

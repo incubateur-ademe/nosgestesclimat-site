@@ -9,9 +9,10 @@ export type PageProps = {
 	// Information about the page metadata
 	title: string
 	description: string
+	image?: string
 }
 
-export default ({ markdownFiles, title, description }: PageProps) => {
+export default ({ markdownFiles, title, description, image }: PageProps) => {
 	const { i18n } = useTranslation()
 	const l: Lang = i18n.language as Lang
 
@@ -21,7 +22,7 @@ export default ({ markdownFiles, title, description }: PageProps) => {
 
 	return (
 		<section className="ui__ container">
-			<Meta title={title} description={description} />
+			<Meta title={title} description={description} image={image} />
 			<Markdown children={content} />
 		</section>
 	)
