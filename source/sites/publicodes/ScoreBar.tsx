@@ -1,5 +1,5 @@
 import { useEngine } from 'Components/utils/EngineContext'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -43,6 +43,10 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const tracker = useContext(TrackerContext)
 
 	const blur = Object.keys(situation).length === 0
+
+	useEffect(() => {
+		if (!blur) setTimeout(() => setOpenExplanation(true), 2000)
+	}, [blur])
 
 	return (
 		<div>
