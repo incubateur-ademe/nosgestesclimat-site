@@ -141,7 +141,7 @@ entries:
   Nos explications complètes: Our complete explanations
   Nosgestesclimat - le top 3 de mes actions: Nosgestesclimat - the top 3 of my actions
   Notre serveur semble indisponible: Our server seems to be unavailable
-  Nous avons détecté que vous faites cette simulation depuis: We have detected that you are doing this simulation since
+  Nous avons détecté que vous faites cette simulation depuis: We have detected that you are doing this simulation from
   Nouveautés: News
   'Nouveautés - version ': "What's new - version "
   On la mesure comment ?: How is it measured?
@@ -603,8 +603,8 @@ entries:
     <0>Où sont mes données ? </0>Vos données
     sont stockées dans votre navigateur, vous avez donc le contrôle total sur
     elles. <2></2>
-  publicodes.Profil.recap: You have completed the test at {{percentFinished}} %
-    ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
+  publicodes.Profil.recap: You have completed {{percentFinished}}% of the test
+    ({{answeredQuestionsLength}} questions) and chosen {{actionChoicesLength}}
     actions.
   publicodes.Profil.recap.lock:
     Vous avez terminé le test à {{percentFinished}} %
