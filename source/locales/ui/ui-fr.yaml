@@ -346,6 +346,12 @@ entries:
   meta.publicodes.Méthode.description: Notre modèle de calcul est entièrement
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Comprendre nos calculs
+  meta.publicodes.PetrogazLanding.description: Nos Gestes Climat vous permet non
+    seulement d'estimer votre empreinte sur le climat, mais également votre
+    consommation de pétrole. Ce dernier est responsable d'une grande partie de
+    l'empreinte climat, mais son achat a également d'autres conséquences,
+    notamment géopolitiques.
+  meta.publicodes.PetrogazLanding.title: Mon empreinte pétrole et gaz
   meta.publicodes.Privacy.description: Nos gestes climat, hors mode groupe,
     fonctionne sans serveur, donc vos données restent chez vous. Nous collectons
     anonymement des données aggregées pour améliorer le simulateur.
