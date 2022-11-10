@@ -165,7 +165,6 @@ entries:
   Point d'interrogation: Point d'interrogation
   Pompe à pétrole: Pompe à pétrole
   Pour aller plus loin: Pour aller plus loin
-  'Pour en savoir plus, tout est expliqué <1></1>dans ': 'Pour en savoir plus, tout est expliqué <1></1>dans '
   'Pour en savoir plus, tout est expliqué dans ': 'Pour en savoir plus, tout est expliqué dans '
   Problème de traduction: Problème de traduction
   Progression dans les diapo: Progression dans les diapo
@@ -288,7 +287,6 @@ entries:
   dernières nouveautés: dernières nouveautés
   des visites affichées en iframe: des visites affichées en iframe
   des visites en iframe sont actives: des visites en iframe sont actives
-  des vistes affichées en iframe: des vistes affichées en iframe
   en moyenne sur le site: en moyenne sur le site
   et: et
   et visualisez les résultats du groupe: et visualisez les résultats du groupe
@@ -373,6 +371,7 @@ entries:
   nouveautés: nouveautés
   ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
   ou: ou
+  pages.News.determinant: of
   pages.News.premierParagraphe: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les
   participant: participant
   pleins: pleins
@@ -479,8 +478,6 @@ entries:
     reflète l'état actuel du périmètre de calcul, que nous complétons chaque
     mois.
   publicodes.Tutorial.slide3.p3: Chacune de vos réponses modifiera ensuite votre
-    empreinte dans cette barre de score.
-  publicodes.Tutorial.slide3.p4: Chacune de vos réponses modifiera ensuite votre
     empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>Et l'objectif ?</0><1>Nous devons diminuer
     notre empreinte climat au plus vite.</1><2>En France, ça consiste à passer
