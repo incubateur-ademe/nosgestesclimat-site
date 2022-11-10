@@ -100,10 +100,6 @@ export default ({ openExplanation, setOpenExplanation }) => {
 						<button
 							className="ui__ button plain small"
 							onClick={() => setOpenExplanation(false)}
-							css={`
-								font-size: 80% !important;
-								padding: 0.3rem !important;
-							`}
 						>
 							<Trans>J'ai compris</Trans>
 						</button>
