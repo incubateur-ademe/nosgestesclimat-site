@@ -9,7 +9,7 @@ import Localisation from 'Components/localisation/Localisation'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { resetCategoryTutorials } from '../../actions/actions'
+import { resetCategoryTutorials, skipTutorial } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
@@ -144,6 +144,7 @@ export default ({}) => {
 									dispatch(deletePreviousSimulation())
 									dispatch(resetStoredTrajets())
 									dispatch(resetCategoryTutorials())
+									dispatch(skipTutorial('scoreExplanation', true))
 									navigate('/simulateur/bilan')
 								}}
 							>
