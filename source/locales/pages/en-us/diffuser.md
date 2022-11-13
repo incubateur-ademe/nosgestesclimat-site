@@ -14,7 +14,7 @@ For example, to share the page _/diffuser_ in English :
 
 The currently supported languages are French (`fr`) and English (`en`).
 
-> Note that when you change the interface language, the NGC's model remains unchanged. It is only the text of the site that is translated and not the NGC's model itself.
+> Note that when you change the interface language, the model of calculation remains unchanged. Only the website's text is translated.
 
 ## You want to integrate the simulator directly on your site
 
