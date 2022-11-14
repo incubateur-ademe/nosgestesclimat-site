@@ -8,38 +8,39 @@ import SafeCategoryImage from '../../../components/SafeCategoryImage'
 
 // This component was named in the honor of http://ravijen.fr/?p=440
 
-export default ({ categories, empreinteTotale, color, onCategoryClick }) => {
+export default () => {
 	const { t } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
-	const sortedCategories = extractCategories(rules, engine, details).map(
-		(category) => ({
-			...category,
-			abbreviation: rules[category.dottedName].abbréviation,
-		})
-	)
+	const sortedCategories = extractCategories(rules, engine).map((category) => ({
+		...category,
+		abbreviation: rules[category.dottedName].abbréviation,
+	}))
 	const categories = relegate('services publics', sortedCategories)
 
 	if (!categories) return null
 
 	const empreinteTotale = categories.reduce(
-		(memo, next) => next.nodeValue + memo,
-		0
-	)
+			(memo, next) => next.nodeValue + memo,
+			0
+		),
+		empreinteMax = categories.reduce(
+			(memo, next) => (next.nodeValue > memo.nodeValue ? next : memo),
+			{ nodeValue: -Infinity }
+		)
 	return (
 		<ol
 			css={`
 				margin: 0;
-				width: ${barWidth};
-				height: 100%;
+				height: 20rem;
 				padding: 0;
-				${barBorderStyle(color)}
+				border: 2px solid white;
 				cursor: pointer;
-				:hover {
-					border-color: var(--lightColor);
-				}
+				display: flex;
+				justify-content: center;
+				align-items: end;
+				border: 5px dashed chartreuse;
 			`}
-			onClick={onCategoryClick}
 			title={t('Explorer les catégories')}
 		>
 			{categories.map((category, index) => (
@@ -49,34 +50,22 @@ export default ({ categories, empreinteTotale, color, onCategoryClick }) => {
 						(category.nodeValue / empreinteTotale) * 100
 					)}%`}
 					css={`
-						margin: 0;
+						width: 3rem;
+						margin: 0 1rem;
 						list-style-type: none;
 						background: ${category.color};
-						height: ${(category.nodeValue / empreinteTotale) * 100}%;
+						height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
 						display: flex;
 						align-items: center;
 						justify-content: center;
 						img {
-							font-size: 120%;
+							width: 3rem;
+							${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
+							'width: 1.5rem'}
 						}
-						@media (min-height: 800px) {
-							img {
-								font-size: 180%;
-							}
-						}
-						${index < categories.length - 1 &&
-						`
-					border-bottom: 4px solid ${color};
-
-					padding: 0;
-					`}
 					`}
 				>
-					{category.nodeValue / empreinteTotale > 0.1 ? (
-						<SafeCategoryImage element={category} />
-					) : (
-						''
-					)}
+					<SafeCategoryImage element={category} />
 				</li>
 			))}
 		</ol>

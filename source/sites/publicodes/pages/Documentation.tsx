@@ -22,6 +22,7 @@ import { useEngine } from '../../../components/utils/EngineContext'
 import Meta from '../../../components/utils/Meta'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
+import RavijenChart from '../chart/RavijenChart'
 import References from '../DocumentationReferences'
 import Méthode from './Méthode'
 
@@ -98,9 +99,7 @@ const DocPage = ({ documentationPath, engine }) => {
 					Text: ({ children }) => (
 						<>
 							<Markdown children={children} />
-							{children.includes('<RavijenChart/>') && (
-								<div>Ici se charger un graphe 📊</div>
-							)}
+							{children.includes('<RavijenChart/>') && <RavijenChart />}
 						</>
 					),
 					References: References,
