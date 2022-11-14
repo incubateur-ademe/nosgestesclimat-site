@@ -1,7 +1,6 @@
 import { goToQuestion } from 'Actions/actions'
 import {
 	extractCategoriesNamespaces,
-	parentName,
 	sortCategories,
 } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
@@ -140,6 +139,7 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 				{...{
 					rules: lonelyRules,
 					level,
+					engine,
 				}}
 			/>
 		</div>
@@ -213,11 +213,12 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 function StepsTable({
 	rules,
 	level,
+	engine,
 }: {
 	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
 }) {
 	const dispatch = useDispatch()
-	const language = useTranslation().i18n.language
+
 	return (
 		<table>
 			<tbody>
@@ -227,6 +228,7 @@ function StepsTable({
 							level,
 							rule,
 							dispatch,
+							engine,
 						}}
 					/>
 				))}
@@ -235,11 +237,16 @@ function StepsTable({
 	)
 }
 
-const Answer = ({ rule, dispatch, level }) => {
+const Answer = ({ rule, dispatch, level, engine }) => {
 	const { t } = useTranslation()
 	const navigate = useNavigate()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
-	const path = parentName(rule.dottedName, ' · ', level)
+	const levelDottedName = rule.dottedName.split(' . ')
+	const levelRule =
+		levelDottedName.length > level + 1
+			? engine.getRule(levelDottedName.slice(0, level + 1).join(' . '))
+			: undefined
+
 
 	if (rule.unit?.numerators) {
 		rule.unit.numerators = rule.unit.numerators.map((unit: string) =>
@@ -249,6 +256,7 @@ const Answer = ({ rule, dispatch, level }) => {
 
 	var formattedValue: string = formatValue(rule)
 	if (rule.type === 'boolean') {
+		// TODO: support all needed values
 		formattedValue = t(formattedValue, { ns: 'units' })
 	}
 
@@ -260,9 +268,9 @@ const Answer = ({ rule, dispatch, level }) => {
 			`}
 		>
 			<td>
-				{path && (
+				{levelRule && (
 					<div>
-						<small>{path}</small>
+						<small>{levelRule.title}</small>
 					</div>
 				)}
 				<div css="font-size: 110%">{rule.title}</div>
