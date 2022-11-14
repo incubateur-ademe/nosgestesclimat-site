@@ -102,12 +102,11 @@ export default ({ actionMode = false, demoMode = false }) => {
 								align-items: center;
 								justify-content: center;
 								color: white !important;
-								${blur &&
-								`
-											cursor: default;
-								}`}
 							`}
 							to={demoMode || blur ? '#' : buildEndURL(rules, engine)}
+							onClick={() => {
+								blur && setOpenExplanation(true)
+							}}
 							title={
 								blur
 									? t('Répondez aux questions pour obtenir votre score')
