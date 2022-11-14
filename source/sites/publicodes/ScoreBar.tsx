@@ -48,7 +48,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const answeredQuestionsLength = answeredQuestions.length
 
-	const blur = answeredQuestionsLength === 0
+	const blur = Object.keys(situation).length === 0
 
 	useEffect(() => {
 		if (blur && !tutorials['scoreExplanation']) {
