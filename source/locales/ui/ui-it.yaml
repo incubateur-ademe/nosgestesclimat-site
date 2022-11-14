@@ -689,8 +689,8 @@ entries:
     exception </2>: votre trajet domicile-travail doit être inclus dans les km
     parcourus.</3><4>❓️ D'autres questions ? Consultez notre <2>FAQ</2> à tout
     moment.</4>"
-  publicodes.chart.RavijenChart.equivalenceCase: Una scatola 🔲 = {{nbKg}} kg di CO₂e.
-  publicodes.chart.RavijenChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
+  publicodes.chart.GridChart.equivalenceCase: Una scatola 🔲 = {{nbKg}} kg di CO₂e.
+  publicodes.chart.GridChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
   publicodes.conference.Conference.donnéesExplications: '<0>Partecipando, si
     accetta di condividere con gli altri partecipanti alla conferenza i
     risultati aggregati della simulazione: il totale e le categorie (trasporto,

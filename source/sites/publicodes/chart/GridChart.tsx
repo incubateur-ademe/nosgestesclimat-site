@@ -114,7 +114,7 @@ export default ({ details }) => {
 					</p>
 					{total < 16000 && (
 						<p>
-							<Trans i18nKey={'publicodes.chart.RavijenChart.equivalenceCase'}>
+							<Trans i18nKey={'publicodes.chart.GridChart.equivalenceCase'}>
 								Une case 🔲 ={' '}
 								{{
 									nbKg: Math.round(pixel),
