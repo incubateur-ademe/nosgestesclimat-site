@@ -1,5 +1,5 @@
 import { useEngine } from 'Components/utils/EngineContext'
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -46,6 +46,12 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const situationLength = Object.keys(situation).length
 
 	const blur = situationLength === 0
+
+	useEffect(() => {
+		if (!blur && !tutorials['scoreExplanation']) {
+			setTimeout(() => setOpenExplanation(true), 500)
+		}
+	}, [blur])
 
 	return (
 		<div>
