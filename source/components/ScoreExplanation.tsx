@@ -74,16 +74,15 @@ export default ({ openExplanation, setOpenExplanation, situationLength }) => {
 					{situationLength === 1 && (
 						<p>
 							<Trans i18nKey={'components.ScoreExplanation.text.p2'}>
-								🧮 Voici votre score de départ calculé à partir de valeurs par
-								défaut attribuées à l'avance à chaque question. Il évoluera à
-								chaque nouvelle réponse !
+								🧮 Voici votre score de départ, il évoluera à chaque nouvelle
+								réponse !
 							</Trans>
 						</p>
 					)}
 					{situationLength > 1 && (
 						<p>
 							<Trans i18nKey={'components.ScoreExplanation.text.p3'}>
-								🧮 Voici votre score provisoire ! Il évolue à chaque nouvelle
+								🧮 Voici votre score provisoire, il évolue à chaque nouvelle
 								réponse !
 							</Trans>
 						</p>

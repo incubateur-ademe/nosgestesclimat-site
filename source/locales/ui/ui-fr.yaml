@@ -234,10 +234,8 @@ entries:
   components.NewsBanner.miseAJourDate: Mise à jour le {{date}}
   components.ScoreExplanation.text.p1: 🧮 Répondez à la première question pour
     afficher votre score, il évoluera à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p2: 🧮 Voici votre score de départ calculé à
-    partir de valeurs par défaut attribuées à l'avance à chaque question. Il
-    évoluera à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p3: 🧮 Voici votre score provisoire ! Il évolue à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p2: 🧮 Voici votre score de départ, il évoluera à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p3: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
   components.ScoreExplanation.text.p4: 'Si vous répondez "je ne sais pas" à une
     question, le score ne changera pas : une valeur par défaut vous est
     attribuée.'
