@@ -9,11 +9,9 @@ import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
 import { TrackerContext } from '../../components/utils/withTracker'
 import {
-	answeredQuestionsSelector,
 	objectifsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
-
 import HumanWeight, { DiffHumanWeight } from './HumanWeight'
 import PetrolScore from './PetrolScore'
 
@@ -45,10 +43,9 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const tracker = useContext(TrackerContext)
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const answeredQuestions = useSelector(answeredQuestionsSelector)
-	const answeredQuestionsLength = answeredQuestions.length
+	const situationLength = Object.keys(situation).length
 
-	const blur = Object.keys(situation).length === 0
+	const blur = situationLength === 0
 
 	useEffect(() => {
 		if (blur && !tutorials['scoreExplanation']) {
@@ -175,7 +172,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 				<ScoreExplanation
 					openExplanation={openExplanation}
 					setOpenExplanation={setOpenExplanation}
-					answeredQuestionsLength={answeredQuestionsLength}
+					situationLength={situationLength}
 				/>
 			</div>
 		</div>
