@@ -26,6 +26,8 @@ fr:
   voyageurs: voyageurs
   voyageur: voyageur
   l / centkm: l / centkm
+  oui: oui
+  non: non
 
 en:
   € / an: € / year
@@ -55,6 +57,8 @@ en:
   voyageurs: travelers
   voyageur: traveler
   l / centkm: l / hundred km
+  oui: yes
+  non: no
 
 es:
   € / an: € / año
@@ -84,6 +88,8 @@ es:
   voyageurs: viajeros
   voyageur: viajero
   l / centkm: l / cien km
+  oui: sí
+  non: no
 
 it:
   € / an: € / anno
@@ -113,3 +119,5 @@ it:
   voyageurs: viaggiatori
   voyageur: viaggiatore
   l / centkm: l / cento km
+  oui: sí
+  non: no
