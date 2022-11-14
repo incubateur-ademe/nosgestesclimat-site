@@ -4,6 +4,23 @@ Nos Gestes Climat est un service public, son code [est libre](/documentation) et
 
 Cependant, vous pouvez profiter et diffuser notre simulateur de plusieurs façons sans mobiliser des compétences de développement.
 
+## Vous souhaitez partager une page dans une langue spécifique
+
+Depuis la version [Glacier du Géant](https://nosgestesclimat.fr/nouveautés/glacier-du-géant), l'interface du
+site Nos Gestes Climat est traduite dans plusieurs langues. Vous pouvez donc
+partager une page du site dans une langue spécifique en précisant à la fin de
+l'URL `?lang=en`.
+
+Par exemple, pour partager la page  _/diffuser_ en anglais :
+
+`https://nosgestesclimat.fr/diffuser?lang=en`
+
+Les langues supportées actuellement sont le français (`fr`) et l'anglais (`en`).
+
+> Notez que lorsque vous changez la langue de l'interface, le modèle reste
+> inchangé. C'est simplement le texte du site qui est traduit et non le modèle
+> en lui-même.
+
 ## Vous voulez intégrer le simulateur directement sur votre site
 
 Rien de plus simple ! Intégrez le dans un article de blog ou un site simplement en ajoutant la ligne ci-dessous à votre page web.
