@@ -26,8 +26,10 @@ fr:
   voyageurs: voyageurs
   voyageur: voyageur
   l / centkm: l / centkm
+  # NOTE: following entries should be moved in a separated file?
   oui: oui
   non: non
+  Non applicable: Non applicable
 
 en:
   € / an: € / year
@@ -59,6 +61,7 @@ en:
   l / centkm: l / hundred km
   oui: yes
   non: no
+  Non applicable: inapplicable
 
 es:
   € / an: € / año
@@ -90,6 +93,7 @@ es:
   l / centkm: l / cien km
   oui: sí
   non: no
+  Non applicable: no se aplica
 
 it:
   € / an: € / anno
@@ -121,3 +125,4 @@ it:
   l / centkm: l / cento km
   oui: sí
   non: no
+  Non applicable: non applicabile

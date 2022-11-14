@@ -239,6 +239,9 @@ function StepsTable({
 
 const Answer = ({ rule, dispatch, level, engine }) => {
 	const { t } = useTranslation()
+	const translateUnits = (units: array[string]) => {
+		return units.map((unit: string) => t(unit, { ns: 'units' }))
+	}
 	const navigate = useNavigate()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
 	const levelDottedName = rule.dottedName.split(' . ')
@@ -247,18 +250,18 @@ const Answer = ({ rule, dispatch, level, engine }) => {
 			? engine.getRule(levelDottedName.slice(0, level + 1).join(' . '))
 			: undefined
 
-
+	if (rule.unit?.denominators) {
+		rule.unit.denominators = translateUnits(rule.unit.denominators)
+	}
 	if (rule.unit?.numerators) {
-		rule.unit.numerators = rule.unit.numerators.map((unit: string) =>
-			t(unit, { ns: 'units' })
-		)
+		rule.unit.numerators = translateUnits(rule.unit.numerators)
 	}
 
-	var formattedValue: string = formatValue(rule)
-	if (rule.type === 'boolean') {
-		// TODO: support all needed values
-		formattedValue = t(formattedValue, { ns: 'units' })
-	}
+	const formattedValue =
+		rule.type === 'string'
+			? // Retrieve the translated title of the rule implicated to a suggestion
+			  engine.getRule(rule.dottedName + ' . ' + rule.nodeValue)?.title
+			: t(formatValue(rule) as string, { ns: 'units' })
 
 	return (
 		<tr
