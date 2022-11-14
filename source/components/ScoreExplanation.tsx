@@ -4,7 +4,11 @@ import { useDispatch } from 'react-redux'
 import { skipTutorial } from '../actions/actions'
 import TriangleShape from '../sites/publicodes/chart/TriangleShape'
 
-export default ({ openExplanation, setOpenExplanation, situationLength }) => {
+export default ({
+	openExplanation,
+	setOpenExplanation,
+	answeredQuestionsLength,
+}) => {
 	const dispatch = useDispatch()
 	const close = () => {
 		dispatch(skipTutorial('scoreExplanation'))
@@ -63,31 +67,39 @@ export default ({ openExplanation, setOpenExplanation, situationLength }) => {
 						}
 					`}
 				>
-					{situationLength <= 1 && (
+					{answeredQuestionsLength === 0 && (
 						<p>
 							<Trans i18nKey={'components.ScoreExplanation.text.p1'}>
+								🧮 Répondez à la première question pour afficher votre score, il
+								évoluera à chaque nouvelle réponse !
+							</Trans>
+						</p>
+					)}
+					{answeredQuestionsLength === 1 && (
+						<p>
+							<Trans i18nKey={'components.ScoreExplanation.text.p2'}>
 								🧮 Voici votre score de départ calculé à partir de valeurs par
 								défaut attribuées à l'avance à chaque question. Il évoluera à
 								chaque nouvelle réponse !
 							</Trans>
 						</p>
 					)}
-					{situationLength > 1 && (
+					{answeredQuestionsLength > 1 && (
 						<p>
-							<Trans i18nKey={'components.ScoreExplanation.text.p2'}>
+							<Trans i18nKey={'components.ScoreExplanation.text.p3'}>
 								🧮 Voici votre score provisoire ! Il évolue à chaque nouvelle
 								réponse !
 							</Trans>
 						</p>
 					)}
 					<p>
-						<Trans i18nKey={'components.ScoreExplanation.text.p3'}>
+						<Trans i18nKey={'components.ScoreExplanation.text.p4'}>
 							Si vous répondez "je ne sais pas" à une question, le score ne
 							changera pas : une valeur par défaut vous est attribuée.
 						</Trans>
 					</p>
 					<p>
-						<Trans i18nKey={'components.ScoreExplanation.text.p4'}>
+						<Trans i18nKey={'components.ScoreExplanation.text.p5'}>
 							💡 Nous améliorons le calcul et ses valeurs par défaut
 							<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
 								tous les mois

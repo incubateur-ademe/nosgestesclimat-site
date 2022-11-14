@@ -232,14 +232,16 @@ entries:
   cet article: cet article
   cette page: cette page
   components.NewsBanner.miseAJourDate: Mise à jour le {{date}}
-  components.ScoreExplanation.text.p1: 🧮 Voici votre score de départ calculé à
+  components.ScoreExplanation.text.p1: 🧮 Répondez à la première question pour
+    afficher votre score, il évoluera à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p2: 🧮 Voici votre score de départ calculé à
     partir de valeurs par défaut attribuées à l'avance à chaque question. Il
     évoluera à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p2: 🧮 Voici votre score provisoire ! Il évolue à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p3: 'Si vous répondez "je ne sais pas" à une
+  components.ScoreExplanation.text.p3: 🧮 Voici votre score provisoire ! Il évolue à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p4: 'Si vous répondez "je ne sais pas" à une
     question, le score ne changera pas : une valeur par défaut vous est
     attribuée.'
-  components.ScoreExplanation.text.p4: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
+  components.ScoreExplanation.text.p5: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: La traduction de cette page est en
     version <1>beta</1>. <4>Un problème, une suggestion ?</4>
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:

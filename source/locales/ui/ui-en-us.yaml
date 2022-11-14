@@ -234,22 +234,25 @@ entries:
   cette page: this page
   components.NewsBanner.miseAJourDate: Updated on {{date}}
   components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
-  components.ScoreExplanation.text.p1: 🧮 Here is your starting score calculated
+  components.ScoreExplanation.text.p1: 🧮 Answer the first question to display
+    your score, it will change with each new answer!
+  components.ScoreExplanation.text.p1.lock: 🧮 Répondez à la première question
+    pour afficher votre score, il évoluera à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p2: 🧮 Here is your starting score calculated
     from default values assigned in advance to each question. It will change
     with each new answer!
-  components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ calculé
+  components.ScoreExplanation.text.p2.lock: 🧮 Voici votre score de départ calculé
     à partir de valeurs par défaut attribuées à l'avance à chaque question. Il
     évoluera à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p2: 🧮 Here is your provisional score! It
-    changes every time you answer a question!
-  components.ScoreExplanation.text.p2.lock: 🧮 Voici votre score provisoire ! Il évolue à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p3: 'If you answer "I do not know" to a
+  components.ScoreExplanation.text.p3: 🧮 Here is your provisional score! It changes with each new answer!
+  components.ScoreExplanation.text.p3.lock: 🧮 Voici votre score provisoire ! Il évolue à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p4: 'If you answer "I don''t know" to a
     question, the score will not change: you are assigned a default value.'
-  components.ScoreExplanation.text.p3.lock: 'Si vous répondez "je ne sais pas" à
+  components.ScoreExplanation.text.p4.lock: 'Si vous répondez "je ne sais pas" à
     une question, le score ne changera pas : une valeur par défaut vous est
     attribuée.'
-  components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default values <1>every month</1>!
-  components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
+  components.ScoreExplanation.text.p5: 💡 We improve the calculation and its default valuesevery<1>month</1>!
+  components.ScoreExplanation.text.p5.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in
     <1>beta</1> version. <4>A problem, a suggestion?</4>
   components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est
