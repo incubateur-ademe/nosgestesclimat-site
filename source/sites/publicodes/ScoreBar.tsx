@@ -112,7 +112,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 								justify-content: center;
 								color: white !important;
 							`}
-							to={demoMode ? '#' : buildEndURL(rules, engine)}
+							to={demoMode || blur ? '#' : buildEndURL(rules, engine)}
 							title={
 								blur
 									? t('Répondez aux questions pour obtenir votre score')
