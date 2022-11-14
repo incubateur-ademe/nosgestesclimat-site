@@ -95,7 +95,14 @@ const DocPage = ({ documentationPath, engine }) => {
 				renderers={{
 					Head: Helmet,
 					Link: Link,
-					Text: Markdown,
+					Text: ({ children }) => (
+						<>
+							<Markdown children={children} />
+							{children.includes('<RavijenChart/>') && (
+								<div>Ici se charger un graphe 📊</div>
+							)}
+						</>
+					),
 					References: References,
 				}}
 			/>
