@@ -137,8 +137,8 @@ const ColumnFlexBase = styled.div`
 const LangSwitcherContainerBase = styled.div`
 	direction: rtl;
 	position: absolute;
-	top: 1rem;
-	right: 1rem;
+	top: 0.6rem;
+	right: 0.6rem;
 	z-index: 10;
 `
 
@@ -155,6 +155,7 @@ function LangSwitcherContainer({
 		case 'navigation':
 		default:
 			const LangSwitcherNav = styled(LangSwitcherContainerBase)`
+				top: auto;
 				@media (min-width: 800px) {
 					position: relative;
 					top: 0px;
