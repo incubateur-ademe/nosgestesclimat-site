@@ -16,7 +16,7 @@ export default ({ openExplanation, setOpenExplanation, situationLength }) => {
 				positionTransition
 				initial={{ opacity: 0, y: 50, scale: 0.3 }}
 				animate={{ opacity: 1, y: 0, scale: 1 }}
-				exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
+				exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.4 } }}
 				css={`
 					@media (max-width: 800px) {
 						max-height: 15rem;
@@ -63,38 +63,31 @@ export default ({ openExplanation, setOpenExplanation, situationLength }) => {
 						}
 					`}
 				>
-					{situationLength === 0 && (
+					{situationLength <= 1 && (
 						<p>
 							<Trans i18nKey={'components.ScoreExplanation.text.p1'}>
-								🧮 Répondez à la première question pour afficher votre score, il
-								évoluera à chaque nouvelle réponse !
-							</Trans>
-						</p>
-					)}
-					{situationLength === 1 && (
-						<p>
-							<Trans i18nKey={'components.ScoreExplanation.text.p2'}>
-								🧮 Voici votre score de départ, il évoluera à chaque nouvelle
-								réponse !
+								🧮 Voici votre score de départ, calculé à partir de réponses
+								attribuées à l'avance à chaque question ! Il évoluera à chaque
+								nouvelle réponse.
 							</Trans>
 						</p>
 					)}
 					{situationLength > 1 && (
 						<p>
-							<Trans i18nKey={'components.ScoreExplanation.text.p3'}>
+							<Trans i18nKey={'components.ScoreExplanation.text.p2'}>
 								🧮 Voici votre score provisoire, il évolue à chaque nouvelle
 								réponse !
 							</Trans>
 						</p>
 					)}
 					<p>
-						<Trans i18nKey={'components.ScoreExplanation.text.p4'}>
-							Si vous répondez "je ne sais pas" à une question, le score ne
+						<Trans i18nKey={'components.ScoreExplanation.text.p3'}>
+							🤔 Si vous répondez "je ne sais pas" à une question, le score ne
 							changera pas : une valeur par défaut vous est attribuée.
 						</Trans>
 					</p>
 					<p>
-						<Trans i18nKey={'components.ScoreExplanation.text.p5'}>
+						<Trans i18nKey={'components.ScoreExplanation.text.p4'}>
 							💡 Nous améliorons le calcul et ses valeurs par défaut
 							<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
 								tous les mois

@@ -61,7 +61,6 @@ export default ({}) => {
 			(answeredQuestionsLength /
 				(answeredQuestionsLength + nextQuestionsLength))
 	)
-	console.log('B4, ', bilan, nextQuestions)
 	const simulationStarted =
 		answeredQuestionsLength &&
 		answeredQuestionsLength > 0 &&
@@ -144,6 +143,7 @@ export default ({}) => {
 									dispatch(deletePreviousSimulation())
 									dispatch(resetStoredTrajets())
 									dispatch(resetCategoryTutorials())
+									dispatch(skipTutorial('scoreAnimation', true))
 									dispatch(skipTutorial('scoreExplanation', true))
 									navigate('/simulateur/bilan')
 								}}

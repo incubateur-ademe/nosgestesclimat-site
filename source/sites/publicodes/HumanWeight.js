@@ -38,7 +38,6 @@ const HumanWeight = ({
 	metric = 'climat',
 	unitText: givenUnitText,
 	longUnitText,
-	blur,
 }) => {
 	const { t, i18n } = useTranslation()
 	const unitText = givenUnitText || (
@@ -93,11 +92,7 @@ const HumanWeight = ({
 					font-weight: 600;
 				`}
 			>
-				<span
-					css={`
-						${blur && `filter: blur(5px);`}
-					`}
-				>
+				<span>
 					{overrideValue ? (
 						<>
 							<del css="">{value}</del>

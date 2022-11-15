@@ -21,7 +21,7 @@ const openmojis = {
 
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
-export default ({ actionMode = false, demoMode = false }) => {
+export default ({ testStarted, actionMode = false, demoMode = false }) => {
 	const objectif =
 		actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0]
 	// needed for this component to refresh on situation change :
@@ -45,13 +45,11 @@ export default ({ actionMode = false, demoMode = false }) => {
 
 	const situationLength = Object.keys(situation).length
 
-	const blur = situationLength === 0
-
 	useEffect(() => {
-		if (!blur && !tutorials['scoreExplanation']) {
-			setTimeout(() => setOpenExplanation(true), 500)
+		if (testStarted && !tutorials['scoreExplanation']) {
+			setTimeout(() => setOpenExplanation(true), 1500)
 		}
-	}, [blur])
+	}, [testStarted])
 
 	return (
 		<div>
@@ -109,15 +107,8 @@ export default ({ actionMode = false, demoMode = false }) => {
 								justify-content: center;
 								color: white !important;
 							`}
-							to={demoMode || blur ? '#' : buildEndURL(rules, engine)}
-							onClick={() => {
-								blur && setOpenExplanation(true)
-							}}
-							title={
-								blur
-									? t('Répondez aux questions pour obtenir votre score')
-									: t('Page de fin de simulation principale')
-							}
+							to={demoMode ? '#' : buildEndURL(rules, engine)}
+							title={t('Page de fin de simulation principale')}
 						>
 							<img
 								src={'/images/climate-change-small.svg'}
@@ -128,7 +119,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 								<HumanWeight
 									nodeValue={nodeValue}
 									overrideValue={actionMode && actionTotal !== 0 && actionTotal}
-									blur={blur}
 								/>
 							) : (
 								<DiffHumanWeight
