@@ -90,6 +90,7 @@ export default function LangSwitcher({ from }: LangSwitcherProps) {
 }
 
 const BaseButton = styled.button`
+	direction: ltr;
 	font-family: inherit;
 	cursor: pointer;
 	color: var(--color);
@@ -121,7 +122,7 @@ const ColumnFlexBase = styled.div`
 	display: flex;
 	position: fixed;
 	flex-direction: column;
-	align-items: flex-start;
+	align-items: flex-end;
 	justify-content: center;
 	background-color: var(--lightestColor);
 	z-index: 10;
@@ -134,6 +135,7 @@ const ColumnFlexBase = styled.div`
 `
 
 const LangSwitcherContainerBase = styled.div`
+	direction: rtl;
 	position: absolute;
 	top: 1rem;
 	right: 1rem;

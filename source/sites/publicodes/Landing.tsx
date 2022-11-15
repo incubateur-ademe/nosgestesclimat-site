@@ -1,5 +1,4 @@
 import Illustration from 'Components/AnimatedIllustration'
-import LangSwitcher from 'Components/LangSwitcher'
 import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
 import { useContext } from 'react'
@@ -274,9 +273,6 @@ export default () => {
 						<Link to="/nouveautés">
 							<Trans>Nouveautés</Trans>
 						</Link>
-						<div>
-							<LangSwitcher className="simple small" from="landing" />
-						</div>
 					</div>
 					<div
 						css={`

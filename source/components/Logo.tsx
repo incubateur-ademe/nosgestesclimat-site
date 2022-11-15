@@ -8,6 +8,7 @@ export default ({ showText, size = 'large' }) => (
 			align-items: center;
 			justify-content: center;
 			text-decoration: none;
+			width: 100%;
 			margin: ${{
 				large: '1rem auto',
 				medium: '1rem 3rem 0rem 0rem',
