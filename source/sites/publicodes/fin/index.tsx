@@ -96,12 +96,12 @@ export default ({}) => {
 				) : nextQuestions.length > 1 ? (
 					<button class="ui__ button plain">
 						{' '}
-						← <Trans>Terminer ma simulation</Trans>
+						← <Trans>Revenir aux questions</Trans>
 					</button>
 				) : (
 					<button className="ui__ simple small push-left button">
 						{' '}
-						← <Trans>Revenir à ma simulation</Trans>
+						← <Trans>Revenir au test</Trans>
 					</button>
 				)}
 			</Link>
