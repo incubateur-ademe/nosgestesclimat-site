@@ -33,9 +33,19 @@ export default function LangSwitcher({ from }: LangSwitcherProps) {
 	const langButtons = Object.keys(Lang)
 		.filter((l) => l !== Lang.Default)
 		.map((l) => [Lang[l], getLangInfos(Lang[l])])
-		.map(([lang, langInfos]) => {
+		.map(([lang, langInfos], idx) => {
 			return (
-				<div>
+				<div
+					css={`
+						&:hover {
+							background-color: var(--lighterColor);
+						}
+						border-radius: ${idx === 0
+							? '0.3rem 0.3rem 0 0'
+							: '0 0 0.3rem 0.3rem'};
+						width: 100%;
+					`}
+				>
 					{lang === currentLang ? (
 						<SelectedButton onClick={(_) => switchTo(lang)}>
 							{langInfos.abrv.toUpperCase()} - {langInfos.name}
@@ -116,6 +126,10 @@ const ClosedButton = styled(BaseButton)`
 	@media (min-width: 800px) {
 		margin-top: 1rem;
 	}
+
+	&:hover {
+		background-color: var(--lighterColor);
+	}
 `
 
 const ColumnFlexBase = styled.div`
@@ -138,7 +152,6 @@ const ColumnFlexBase = styled.div`
 `
 
 const LangSwitcherContainerBase = styled.div`
-	direction: rtl;
 	position: absolute;
 	top: 0.6rem;
 	right: 0.6rem;
