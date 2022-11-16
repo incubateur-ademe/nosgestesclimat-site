@@ -317,7 +317,8 @@ export default function SessionBar({
 	return (
 		<div
 			css={`
-				margin: 1rem 0 2rem;
+				margin: 0;
+				margin-top: 1rem;
 
 				@media (max-width: 800px) {
 					margin: 0;
