@@ -454,6 +454,9 @@ entries:
     Vous n'avez pas encore fait le
     test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur
     votre mode de vie.
+  publicodes.TranslationContribution.commentaireAugmenté: >-
+
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
   publicodes.Tutorial.slide1.p1: <0>Pas de panique, on vous explique ce que
     c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à
     mesure des gaz à effet de serre que l'on émet.</1>

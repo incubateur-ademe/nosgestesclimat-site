@@ -98,7 +98,7 @@ export default ({}) => {
 								disableButton(true)
 								const augmentedComment =
 									comment +
-									t('publicodes.Contribution.commentaireAugmenté', {
+									t('publicodes.TranslationContribution.commentaireAugmenté', {
 										fromLocation,
 									})
 								createIssue(sujet, augmentedComment, setURL, disableButton, [
