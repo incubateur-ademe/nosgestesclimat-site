@@ -112,7 +112,7 @@ export default ({}) => {
 					</form>
 				) : (
 					<p role="status">
-						<Trans i18nKey={'publicodes.Contribution.remerciements'}>
+						<Trans i18nKey={'publicodes.TranslationContribution.remerciements'}>
 							Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur{' '}
 							<a href={URL}>ce lien</a>.
 						</Trans>

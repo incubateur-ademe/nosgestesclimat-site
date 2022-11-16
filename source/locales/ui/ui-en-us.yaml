@@ -559,9 +559,9 @@ entries:
     nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements:
     Thank you 😍! Follow the progress of your
-    suggestion by clicking <2>this link</2>.
+    suggestion by clicking on <1>this link</1>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de
-    votre suggestion en cliquant sur <2>ce lien</2>.
+    votre suggestion en cliquant sur <1>ce lien</1>.
   publicodes.Contribution.titreQuestion: I have another question
   publicodes.Contribution.titreQuestion.lock: J'ai une autre question
   publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been
@@ -640,8 +640,11 @@ entries:
     > This ticket was created automatically by our robot from our [contribution page for translation](https://nosgestesclimat.fr/contribuer-traduction).
   publicodes.TranslationContribution.commentaireAugmenté.lock: >-
 
-
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
+  publicodes.TranslationContribution.remerciements: Thank you 😍! Follow the
+    progress of your suggestion by clicking on <2>this link</2>.
+  publicodes.TranslationContribution.remerciements.lock: Merci 😍! Suivez
+    l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Tutorial.slide1.p1: <0>Do not worry, we'll briefly explain what it
     is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and
     more greenhouse gases.</1>
