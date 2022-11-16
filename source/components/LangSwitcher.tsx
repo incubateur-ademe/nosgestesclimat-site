@@ -95,7 +95,6 @@ const BaseButton = styled.button`
 	cursor: pointer;
 	color: var(--color);
 	font-size: 1rem;
-	width: max-content;
 `
 
 const SelectedButton = styled(BaseButton)`
@@ -111,24 +110,28 @@ const ClosedButton = styled(BaseButton)`
 	align-items: center;
 	padding: 0.3rem;
 	padding-top: 0;
+	margin: 0;
 	background-color: var(--lightestColor);
+
+	@media (min-width: 800px) {
+		margin-top: 1rem;
+	}
 `
 
 const ColumnFlexBase = styled.div`
-	padding: 0.2rem 1rem;
 	border: solid 1px;
 	border-radius: 0.3rem;
 	border-color: var(--darkColor);
 	display: flex;
-	position: fixed;
 	flex-direction: column;
 	align-items: flex-end;
 	justify-content: center;
 	background-color: var(--lightestColor);
 	z-index: 10;
+
 	@media (min-width: 800px) {
 		position: relative;
-		top: 0px;
+		top: 1rem;
 		right: 0px;
 		display: flex;
 	}
@@ -140,6 +143,10 @@ const LangSwitcherContainerBase = styled.div`
 	top: 0.6rem;
 	right: 0.6rem;
 	z-index: 10;
+
+	@media (min-width: 800px) {
+		right: 1rem;
+	}
 `
 
 function LangSwitcherContainer({
