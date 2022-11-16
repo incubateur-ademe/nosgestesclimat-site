@@ -171,85 +171,83 @@ export default ({}) => {
 						</Trans>
 					</summary>
 
-					<div className="ui__ card" css="padding: 1rem 0">
-						{!URL ? (
-							<form css={formStyle}>
-								<label css="color: var(--color)">
-									<Trans>Le titre bref de votre problème</Trans>
-									<input
-										aria-describedby="messageAttention"
-										value={sujet}
-										onChange={(e) => setSujet(e.target.value)}
-										type="text"
-										name="sujet"
-										required
-									/>
-								</label>
-								<label css="color: var(--color)">
-									<Trans
-										i18nKey={'publicodes.Contribution.descriptionComplète'}
-									>
-										<p>La description complète de votre problème</p>
-										<p>
-											<small>
-												En indiquant le navigateur que vous utilisez (par
-												exemple Firefox version 93, Chrome version 95, Safari,
-												etc.), et la plateforme (iPhone, Android, ordinateur
-												Windows, etc.), vous nous aiderez à résoudre le bug plus
-												rapidement.
-											</small>
-										</p>
-									</Trans>
-									<textarea
-										aria-describedby="messageAttention"
-										value={comment}
-										onChange={(e) => setComment(e.target.value)}
-										name="comment"
-										required
-									/>
-								</label>
-								<p id="messageAttention">
-									<em>
-										<Trans>
-											Cette contribution sera publique : n'y mettez pas
-											d'informations sensibles
-										</Trans>
-									</em>
-								</p>
-								<button
-									className="ui__ button"
-									type="submit"
-									disabled={buttonDisabled}
-									onClick={(e) => {
-										if (buttonDisabled) return null
-
-										e.preventDefault()
-										disableButton(true)
-										const augmentedComment =
-											comment +
-											(fromLocation
-												? '\n> ' +
-												  t('Depuis la page') +
-												  ': `' +
-												  fromLocation +
-												  '`'
-												: '') +
-											t('publicodes.Contribution.commentaireAugmenté')
-										createIssue(sujet, augmentedComment, setURL, disableButton)
-									}}
-								>
-									<Trans>Envoyer</Trans>
-								</button>
-							</form>
-						) : (
-							<p role="status">
-								<Trans i18nKey={'publicodes.Contribution.remerciements'}>
-									Merci 😍! Suivez l'avancement de votre suggestion en cliquant
-									sur <a href={URL}>ce lien</a>.
+					{!URL ? (
+						<form css={formStyle}>
+							<label css="color: var(--color)">
+								<Trans>Le titre bref de votre problème</Trans>
+								<input
+									aria-describedby="messageAttention"
+									value={sujet}
+									onChange={(e) => setSujet(e.target.value)}
+									type="text"
+									name="sujet"
+									required
+								/>
+							</label>
+							<label css="color: var(--color)">
+								<Trans i18nKey={'publicodes.Contribution.descriptionComplète'}>
+									<p>La description complète de votre problème</p>
+									<p>
+										<small>
+											En indiquant le navigateur que vous utilisez (par exemple
+											Firefox version 93, Chrome version 95, Safari, etc.), et
+											la plateforme (iPhone, Android, ordinateur Windows, etc.),
+											vous nous aiderez à résoudre le bug plus rapidement.
+										</small>
+									</p>
 								</Trans>
+								<textarea
+									aria-describedby="messageAttention"
+									value={comment}
+									onChange={(e) => setComment(e.target.value)}
+									name="comment"
+									required
+								/>
+							</label>
+							<p id="messageAttention">
+								<em>
+									<Trans>
+										Cette contribution sera publique : n'y mettez pas
+										d'informations sensibles
+									</Trans>
+								</em>
 							</p>
-						)}
-					</div>
+							<button
+								className="ui__ button"
+								type="submit"
+								disabled={buttonDisabled}
+								onClick={(e) => {
+									if (buttonDisabled) return null
+
+									e.preventDefault()
+									disableButton(true)
+									const augmentedComment =
+										comment +
+										(fromLocation
+											? '\n> ' +
+											  t('Depuis la page') +
+											  ': `' +
+											  fromLocation +
+											  '`'
+											: '') +
+										t('publicodes.Contribution.commentaireAugmenté')
+									createIssue(sujet, augmentedComment, setURL, disableButton, [
+										'FAQ',
+										'contribution externe',
+									])
+								}}
+							>
+								<Trans>Envoyer</Trans>
+							</button>
+						</form>
+					) : (
+						<p role="status">
+							<Trans i18nKey={'publicodes.Contribution.remerciements'}>
+								Merci 😍! Suivez l'avancement de votre suggestion en cliquant
+								sur <a href={URL}>ce lien</a>.
+							</Trans>
+						</p>
+					)}
 				</details>
 			</div>
 		</div>

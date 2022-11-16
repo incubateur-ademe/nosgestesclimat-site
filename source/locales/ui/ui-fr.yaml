@@ -414,7 +414,7 @@ entries:
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous
     vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre
-    suggestion en cliquant sur <2>ce lien</2>.
+    suggestion en cliquant sur <1>ce lien</1>.
   publicodes.Contribution.titreQuestion: J'ai une autre question
   publicodes.Contribution.traductionIntro: Nos Gestes Climat vient tout juste
     d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de
@@ -454,6 +454,12 @@ entries:
     Vous n'avez pas encore fait le
     test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur
     votre mode de vie.
+  publicodes.TranslationContribution.commentaireAugmenté: >-
+
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
+  publicodes.TranslationContribution.remerciements:
+    Merci 😍! Suivez l'avancement
+    de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Tutorial.slide1.p1: <0>Pas de panique, on vous explique ce que
     c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à
     mesure des gaz à effet de serre que l'on émet.</1>
