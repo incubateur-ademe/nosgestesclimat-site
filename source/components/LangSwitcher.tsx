@@ -158,7 +158,8 @@ const LangSwitcherContainerBase = styled.div`
 	z-index: 10;
 
 	@media (min-width: 800px) {
-		right: 1rem;
+		right: 2rem;
+		top: 1rem;
 	}
 `
 
