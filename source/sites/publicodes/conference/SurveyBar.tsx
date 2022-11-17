@@ -7,7 +7,7 @@ import { useEngine } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
-import {useTranslation} from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
@@ -85,35 +85,36 @@ export default () => {
 	}, [survey.room])
 
 	useEffect(() => {
-		return async () => {
-			if (!survey || !survey.room || !cachedSurveyId) return null
+		if (!survey || !survey.room || !cachedSurveyId) return
 
-			const answer = {
-				survey: survey.room,
-				data,
-				id: cachedSurveyId,
-			}
-			socket.emit('answer', { room: survey.room, answer })
-
-			// This should not be necessary, but for a reason I don't understand the server doesn't emit to A A's response
-			dispatch({
-				type: 'ADD_SURVEY_ANSWERS',
-				answers: [answer],
-				room: survey.room,
-			})
+		const answer = {
+			survey: survey.room,
+			data,
+			id: cachedSurveyId,
 		}
+		socket.emit('answer', { room: survey.room, answer })
+
+		// This should not be necessary, but for a reason I don't understand the server doesn't emit to A A's response
+		dispatch({
+			type: 'ADD_SURVEY_ANSWERS',
+			answers: [answer],
+			room: survey.room,
+		})
 	}, [situation, surveyContext, survey.room, cachedSurveyId])
 
 	useEffect(() => {
-		return async () => {
-			socket.on('received', (data) => {
-				dispatch({
-					type: 'ADD_SURVEY_ANSWERS',
-					answers: [data.answer],
-					room: survey.room,
-				})
+		const onReceived = (data) => {
+			console.log('YOYOOY', survey)
+			dispatch({
+				type: 'ADD_SURVEY_ANSWERS',
+				answers: [data.answer],
+				room: survey.room,
 			})
 		}
+		socket.on('received', onReceived)
+
+		// On cleanup, remove the attached listener
+		return () => socket.off('received', onReceived)
 	}, [])
 
 	const simulationArray = [],
