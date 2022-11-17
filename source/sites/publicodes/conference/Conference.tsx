@@ -89,7 +89,7 @@ export default () => {
 			>
 				{t('🚪 Quitter la conférence')}
 			</button>
-			<Instructions {...{ room, started: true }} />
+			<Instructions {...{ room, started: true, mode: 'conférence' }} />
 			<h2>
 				<Trans>Et mes données ?</Trans>
 			</h2>{' '}
