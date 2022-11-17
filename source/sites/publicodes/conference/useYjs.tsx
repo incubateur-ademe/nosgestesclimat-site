@@ -71,7 +71,8 @@ export default (room, connectionType: 'p2p' | 'database') => {
 			})
 		}
 		return
-	}, [room, conference])
+	}, [room, conference, username])
+
 	if (!room && !conference) return {}
 
 	return { users, elements: rawElements, username, conference }
