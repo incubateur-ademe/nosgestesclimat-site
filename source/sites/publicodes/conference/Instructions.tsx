@@ -100,7 +100,7 @@ export default ({
 									}
 								>
 									Mode persistant : les données des participants sont stockées
-									sur notre serveur et restent accessibles et téléchargeables
+									sur notre serveur et restent accessibles et téléchargeables{' '}
 									<strong>pendant deux mois</strong>.
 								</Trans>
 							</p>
@@ -134,32 +134,45 @@ export default ({
 							</p>
 						</label>
 					</div>
-					{mode == 'conférence' && (
-						<p>
-							⚠️{' '}
-							<Trans
-								i18nKey={`publicodes.conference.Instructions.avertissementModeConference`}
-							>
-								Attention, il est possible que votre organisation bloque le
-								pair-à-pair, et donc l'utilisation du mode conférence. Faites le
-								test au préalable sur site et en duo : en cas de problème, vous
-								pouvez utiliser le mode sondage.
-							</Trans>
-						</p>
-					)}
-					{mode == 'sondage' && (
-						<p>
-							<Trans
-								i18nKey={`publicodes.conference.Instructions.contextualisationLink`}
-							>
-								💡 Vous souhaitez ajouter des questions pour obtenir des
-								informations supplémentaires sur les répondants ?{' '}
-								<Link to={'/groupe/documentation-contexte'}>
-									Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
-								</Link>
-							</Trans>
-						</p>
-					)}
+					<div
+						css={`
+							margin-top: 1rem;
+						`}
+					>
+						{mode == 'conférence' && (
+							<p>
+								⚠️{' '}
+								<Trans
+									i18nKey={`publicodes.conference.Instructions.avertissementModeConference`}
+								>
+									<strong
+										css={`
+											background: yellow;
+										`}
+									>
+										Attention
+									</strong>
+									, il est possible que votre organisation bloque le
+									pair-à-pair, et donc l'utilisation du mode conférence. Faites
+									le test au préalable sur site et en duo : en cas de problème,
+									vous pouvez utiliser le mode sondage.
+								</Trans>
+							</p>
+						)}
+						{mode == 'sondage' && (
+							<p>
+								<Trans
+									i18nKey={`publicodes.conference.Instructions.contextualisationLink`}
+								>
+									💡 Vous souhaitez ajouter des questions pour obtenir des
+									informations supplémentaires sur les répondants ?{' '}
+									<Link to={'/groupe/documentation-contexte'}>
+										Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
+									</Link>
+								</Trans>
+							</p>
+						)}
+					</div>
 				</InstructionBlock>
 			)}
 			{newRoom !== '' && !room && (
