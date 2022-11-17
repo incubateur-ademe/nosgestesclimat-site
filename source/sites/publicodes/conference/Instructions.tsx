@@ -18,7 +18,7 @@ export default ({
 	room,
 	newRoom,
 	setNewRoom,
-	mode: defaultMode = 'conférence',
+	mode: defaultMode = 'sondage',
 	started = false,
 }) => {
 	const URLMode = useQuery().get('mode')
@@ -80,6 +80,33 @@ export default ({
 					>
 						<label
 							className={`ui__ card box interactive ${
+								mode === 'sondage' ? 'selected' : ''
+							}`}
+						>
+							<input
+								type="radio"
+								name="mode"
+								value="sondage"
+								checked={mode === 'sondage'}
+								onChange={(e) => setMode(e.target.value)}
+							/>
+							<h3>
+								<Trans>Sondage</Trans>
+							</h3>
+							<p>
+								<Trans
+									i18nKey={
+										'publicodes.conference.Instructions.descriptionModeSondage'
+									}
+								>
+									Mode persistant : l'interface est presque la même, mais les
+									données sont stockées sur notre serveur et ainsi restent
+									accessibles <strong>pendant deux mois</strong>.
+								</Trans>
+							</p>
+						</label>
+						<label
+							className={`ui__ card box interactive ${
 								mode === 'conférence' ? 'selected' : ''
 							}`}
 						>
@@ -103,33 +130,6 @@ export default ({
 									présentation interactive ou entre amis. Les données restent
 									entre les participants (pair-à-pair), sans serveur,{' '}
 									<strong>juste le temps de la conférence</strong>.
-								</Trans>
-							</p>
-						</label>
-						<label
-							className={`ui__ card box interactive ${
-								mode === 'sondage' ? 'selected' : ''
-							}`}
-						>
-							<input
-								type="radio"
-								name="mode"
-								value="sondage"
-								checked={mode === 'sondage'}
-								onChange={(e) => setMode(e.target.value)}
-							/>
-							<h3>
-								<Trans>Sondage</Trans>
-							</h3>
-							<p>
-								<Trans
-									i18nKey={
-										'publicodes.conference.Instructions.descriptionModeSondage'
-									}
-								>
-									Mode persistant : l'interface est presque la même, mais les
-									données sont stockées sur notre serveur et ainsi restent
-									accessibles <strong>pendant deux mois</strong>.
 								</Trans>
 							</p>
 						</label>
