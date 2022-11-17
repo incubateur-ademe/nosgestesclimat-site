@@ -299,6 +299,7 @@ const InstructionBlock = ({ title, index, children, noIndex }) => (
 				css={`
 					font-size: 300%;
 					padding: 1rem;
+					width: 4rem;
 					background: var(--lightercolor);
 					border-radius: 5rem;
 					margin: 0 1rem;
@@ -307,7 +308,14 @@ const InstructionBlock = ({ title, index, children, noIndex }) => (
 				{index}
 			</div>
 		)}
-		<div>
+		<div
+			css={`
+				width: calc(100% - 3rem);
+				@media (max-width: 800px) {
+					width: 100%;
+				}
+			`}
+		>
 			<h3>{title}</h3>
 			{children}
 		</div>
