@@ -1,34 +1,34 @@
-import styled from 'styled-components'
 import { Trans } from 'react-i18next'
+import styled from 'styled-components'
 
-import {
-	useTotal,
-	useSimulationsTerminees,
-	useVisitsDuration,
-	useVisitsAvgDuration,
-	useWebsites,
-	useOldWebsites,
-	useSocials,
-	useKeywords,
-	usePeriod,
-	useReference,
-	useEntryPages,
-	useActiveEntryPages,
-	usePages,
-	useAllTime,
-	useKmHelp,
-	useSimulationsfromKmHelp,
-	useRidesNumber,
-} from './matomo'
-import Section from './utils/Section'
-import Evolution from './content/Evolution'
-import Sources from './content/Sources'
 import Chart from './content/Chart'
 import DurationChart from './content/DurationChart'
 import DurationFigures from './content/DurationFigures'
+import Evolution from './content/Evolution'
 import IframeFigures from './content/IframeFigures'
 import KmFigures from './content/KmFigures'
 import ScoreFromURL from './content/ScoreFromURL'
+import Sources from './content/Sources'
+import {
+	useActiveEntryPages,
+	useAllTime,
+	useEntryPages,
+	useKeywords,
+	useKmHelp,
+	useOldWebsites,
+	usePages,
+	usePeriod,
+	useReference,
+	useRidesNumber,
+	useSimulationsfromKmHelp,
+	useSimulationsTerminees,
+	useSocials,
+	useTotal,
+	useVisitsAvgDuration,
+	useVisitsDuration,
+	useWebsites,
+} from './matomo'
+import Section from './utils/Section'
 
 const Wrapper = styled.div`
 	display: flex;
@@ -108,11 +108,11 @@ export default function Data() {
 								<p>
 									Les intégrations en iframe sont détéctées via le paramètre
 									'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé
-									le&nbsp;<a href="./diffuser">script dédié</a>. Ainsi, les
-									visites via les iframes d'intégrateurs qui n'ont pas utilisé
-									ce script sont dispersées dans les visites générales de Nos
-									Gestes Climat. Dans l'attente de chiffres plus précis, ce taux
-									est donc potentiellement sous-estimé par rapport à la réalité.
+									le <a href="./diffuser">script dédié</a>. Ainsi, les visites
+									via les iframes d'intégrateurs qui n'ont pas utilisé ce script
+									sont dispersées dans les visites générales de Nos Gestes
+									Climat. Dans l'attente de chiffres plus précis, ce taux est
+									donc potentiellement sous-estimé par rapport à la réalité.{' '}
 									<i>(Données valables pour les 30 derniers jours)</i>
 								</p>
 							</Trans>
