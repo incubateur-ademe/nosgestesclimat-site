@@ -20,6 +20,7 @@ export default function Meta({
 	children,
 }: PropType) {
 	const { pathname } = useLocation()
+	console.log('OIZNAOINZDOINZAdesc', title, description, image, url, pathname)
 	return (
 		<Helmet>
 			<title>{title} - Nos Gestes Climat</title>
