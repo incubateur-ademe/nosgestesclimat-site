@@ -160,8 +160,13 @@ export default ({
 					)}
 				</InstructionBlock>
 			)}
+			{newRoom !== '' && !room && (
+				<InstructionBlock index="3" title={t('Prêt à démarrer ?')}>
+					<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
+				</InstructionBlock>
+			)}
 			<InstructionBlock
-				index="3"
+				index="4"
 				noIndex={started}
 				title={
 					<span>{t(`🔗 Partagez le lien à vos amis, collègues, etc.`)}</span>
@@ -171,7 +176,7 @@ export default ({
 					<p>
 						<Trans>Choisissez d'abord un nom</Trans>
 					</p>
-				) : (
+				) : newRoom && !room ? null : (
 					<div
 						css={`
 							display: flex;
@@ -200,37 +205,46 @@ export default ({
 				)}
 			</InstructionBlock>
 			<InstructionBlock
-				index="4"
+				index="5"
 				noIndex={started}
 				title={<span>{t(`🎰 Faites toutes et tous votre simulation`)}</span>}
 			>
-				{!room ? (
-					<Link to={'/simulateur/bilan'}>
-						<button className="ui__ button plain">
-							{t(`Faites votre test`)}
-						</button>
-					</Link>
-				) : mode === 'conférence' ? (
-					<p>
-						<Trans
-							i18nKey={`publicodes.conference.Instructions.liensSimulationConference`}
-						>
-							Au moment convenu, ouvrez ce lien tous en même temps et faites
-							chacun de votre côté votre simulation.
-						</Trans>
-					</p>
+				{!room ? null : mode === 'conférence' ? (
+					<>
+						<p>
+							<Trans
+								i18nKey={`publicodes.conference.Instructions.liensSimulationConference`}
+							>
+								Au moment convenu, ouvrez ce lien tous en même temps et faites
+								chacun de votre côté votre simulation.
+							</Trans>
+						</p>
+						<Link to={'/simulateur/bilan'}>
+							<button className="ui__ button plain">
+								{t(`Faites votre test`)}
+							</button>
+						</Link>
+					</>
 				) : (
-					<p>
-						<Trans
-							i18nKey={`publicodes.conference.Instructions.liensSimulationSondage`}
-						>
-							Les participants doivent venir faire leur simulation sur ce lien.
-						</Trans>
-					</p>
+					<>
+						<p>
+							<Trans
+								i18nKey={`publicodes.conference.Instructions.liensSimulationSondage`}
+							>
+								Les participants doivent venir faire leur simulation sur ce
+								lien.
+							</Trans>
+						</p>
+						<Link to={'/simulateur/bilan'}>
+							<button className="ui__ button plain">
+								{t(`Faites votre test`)}
+							</button>
+						</Link>
+					</>
 				)}
 			</InstructionBlock>
 			<InstructionBlock
-				index="5"
+				index="6"
 				noIndex={started}
 				title={
 					<span>
@@ -252,11 +266,6 @@ export default ({
 				)}
 				.
 			</InstructionBlock>
-			{newRoom !== '' && !room && (
-				<InstructionBlock index="6" title={t('Prêt à démarrer ?')}>
-					<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
-				</InstructionBlock>
-			)}
 			{room && (
 				<InstructionBlock
 					noIndex={started}
