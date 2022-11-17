@@ -35,8 +35,8 @@ entries:
   Choisir l'action: Choisir l'action
   Choisir le type de tri des actions: Choisir le type de tri des actions
   Choisir une autre région: Choisir une autre région
+  Choisissez d'abord un nom: Choisissez d'abord un nom
   Choisissez la votre: Choisissez la votre
-  Choississez d'abord un nom: Choississez d'abord un nom
   Cliquez pour partager le lien: Cliquez pour partager le lien
   Commencer: Commencer
   Comment créer un persona ?: Comment créer un persona ?
@@ -514,9 +514,10 @@ entries:
     serveur : l'empreinte climat totale et les catégories (transport, logement,
     etc.). <3>En savoir plus</3>"
   publicodes.conference.Instructions.avertissementModeConference:
-    "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence.
-    Faites le test au préalable en duo : en cas de problème, vous pouvez
-    utiliser le mode sondage."
+    "<0>Attention</0>, il est possible que votre organisation bloque le
+    pair-à-pair, et donc l'utilisation du mode conférence. Faites le test au
+    préalable sur site et en duo : en cas de problème, vous pouvez utiliser le
+    mode sondage."
   publicodes.conference.Instructions.contextualisationLink: 💡 Vous souhaitez
     ajouter des questions pour obtenir des informations supplémentaires sur les
     répondants ? <2>Découvrez la fonctionnalité "contextualisation de sondage !"
@@ -524,10 +525,10 @@ entries:
   publicodes.conference.Instructions.descriptionModeConference:
     "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
     interactive ou entre amis. Les données restent entre les participants
-    (pair-à-pair), sans serveur, <2>juste le temps de la conférence</2>."
-  publicodes.conference.Instructions.descriptionModeSondage: "Mode persistant :
-    l'interface est presque la même, mais les données sont stockées sur notre
-    serveur et ainsi restent accessibles <1>pendant deux mois</1>."
+    (pair-à-pair sans serveur), <2>juste le temps de la conférence</2>."
+  publicodes.conference.Instructions.descriptionModeSondage: 'Mode persistant :
+    les données des participants sont stockées sur notre serveur et restent
+    accessibles et téléchargeables <2>pendant deux mois</2>.'
   publicodes.conference.Instructions.guideLien:
     Les résultats sont là, que faire ?
     Notre guide vous accompagne dans vos réflexions et vos discussions sur cette
@@ -617,7 +618,7 @@ entries:
   '{unit}': '{unit}'
   '{{res}} tonnes de CO₂e': '{{res}} tonnes de CO₂e'
   À propos: À propos
-  ⏲️  Choississez votre mode de simulation: ⏲️  Choississez votre mode de simulation
+  ⏲️  Choisissez votre mode de simulation: ⏲️  Choisissez votre mode de simulation
   ▶️ Finir mon test: ▶️ Finir mon test
   ◀ Retour: ◀ Retour
   ◀ Retour à la liste: ◀ Retour à la liste

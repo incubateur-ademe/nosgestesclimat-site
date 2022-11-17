@@ -18,7 +18,7 @@ export default ({
 	room,
 	newRoom,
 	setNewRoom,
-	mode: defaultMode = 'conférence',
+	mode: defaultMode = 'sondage',
 	started = false,
 }) => {
 	const URLMode = useQuery().get('mode')
@@ -65,7 +65,7 @@ export default ({
 			{!started && newRoom !== '' && !room && (
 				<InstructionBlock
 					index="2"
-					title={<span>{t(`⏲️  Choississez votre mode de simulation`)}</span>}
+					title={<span>{t(`⏲️  Choisissez votre mode de simulation`)}</span>}
 				>
 					<div
 						css={`
@@ -80,34 +80,6 @@ export default ({
 					>
 						<label
 							className={`ui__ card box interactive ${
-								mode === 'conférence' ? 'selected' : ''
-							}`}
-						>
-							<input
-								type="radio"
-								name="mode"
-								value="conférence"
-								checked={mode === 'conférence'}
-								onChange={(e) => setMode(e.target.value)}
-							/>
-							<h3>
-								<Trans>Conférence</Trans>
-							</h3>
-							<p>
-								<Trans
-									i18nKey={
-										'publicodes.conference.Instructions.descriptionModeConference'
-									}
-								>
-									Mode éphémère : parfait pour l'animation d'un atelier, une
-									présentation interactive ou entre amis. Les données restent
-									entre les participants (pair-à-pair), sans serveur,{' '}
-									<strong>juste le temps de la conférence</strong>.
-								</Trans>
-							</p>
-						</label>
-						<label
-							className={`ui__ card box interactive ${
 								mode === 'sondage' ? 'selected' : ''
 							}`}
 						>
@@ -119,7 +91,7 @@ export default ({
 								onChange={(e) => setMode(e.target.value)}
 							/>
 							<h3>
-								<Trans>Sondage</Trans>
+								💾 <Trans>Sondage</Trans>
 							</h3>
 							<p>
 								<Trans
@@ -127,41 +99,89 @@ export default ({
 										'publicodes.conference.Instructions.descriptionModeSondage'
 									}
 								>
-									Mode persistant : l'interface est presque la même, mais les
-									données sont stockées sur notre serveur et ainsi restent
-									accessibles <strong>pendant deux mois</strong>.
+									Mode persistant : les données des participants sont stockées
+									sur notre serveur et restent accessibles et téléchargeables{' '}
+									<strong>pendant deux mois</strong>.
+								</Trans>
+							</p>
+						</label>
+						<label
+							className={`ui__ card box interactive ${
+								mode === 'conférence' ? 'selected' : ''
+							}`}
+						>
+							<input
+								type="radio"
+								name="mode"
+								value="conférence"
+								checked={mode === 'conférence'}
+								onChange={(e) => setMode(e.target.value)}
+							/>
+							<h3>
+								🌠 <Trans>Conférence</Trans>
+							</h3>
+							<p>
+								<Trans
+									i18nKey={
+										'publicodes.conference.Instructions.descriptionModeConference'
+									}
+								>
+									Mode éphémère : parfait pour l'animation d'un atelier, une
+									présentation interactive ou entre amis. Les données restent
+									entre les participants (pair-à-pair sans serveur),{' '}
+									<strong>juste le temps de la conférence</strong>.
 								</Trans>
 							</p>
 						</label>
 					</div>
-					{mode == 'conférence' && (
-						<p>
-							<Trans
-								i18nKey={`publicodes.conference.Instructions.avertissementModeConference`}
-							>
-								🔒️ Votre organisation peut bloquer l'utilisation du mode
-								conférence. Faites le test au préalable en duo : en cas de
-								problème, vous pouvez utiliser le mode sondage.
-							</Trans>
-						</p>
-					)}
-					{mode == 'sondage' && (
-						<p>
-							<Trans
-								i18nKey={`publicodes.conference.Instructions.contextualisationLink`}
-							>
-								💡 Vous souhaitez ajouter des questions pour obtenir des
-								informations supplémentaires sur les répondants ?{' '}
-								<Link to={'/groupe/documentation-contexte'}>
-									Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
-								</Link>
-							</Trans>
-						</p>
-					)}
+					<div
+						css={`
+							margin-top: 1rem;
+						`}
+					>
+						{mode == 'conférence' && (
+							<p>
+								⚠️{' '}
+								<Trans
+									i18nKey={`publicodes.conference.Instructions.avertissementModeConference`}
+								>
+									<strong
+										css={`
+											background: yellow;
+										`}
+									>
+										Attention
+									</strong>
+									, il est possible que votre organisation bloque le
+									pair-à-pair, et donc l'utilisation du mode conférence. Faites
+									le test au préalable sur site et en duo : en cas de problème,
+									vous pouvez utiliser le mode sondage.
+								</Trans>
+							</p>
+						)}
+						{mode == 'sondage' && (
+							<p>
+								<Trans
+									i18nKey={`publicodes.conference.Instructions.contextualisationLink`}
+								>
+									💡 Vous souhaitez ajouter des questions pour obtenir des
+									informations supplémentaires sur les répondants ?{' '}
+									<Link to={'/groupe/documentation-contexte'}>
+										Découvrez la fonctionnalité "contextualisation de sondage !"{' '}
+									</Link>
+								</Trans>
+							</p>
+						)}
+					</div>
+				</InstructionBlock>
+			)}
+			{newRoom !== '' && !room && (
+				<InstructionBlock index="3" title={t('Prêt à démarrer ?')}>
+					<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
 				</InstructionBlock>
 			)}
 			<InstructionBlock
-				index="3"
+				index="4"
 				noIndex={started}
 				title={
 					<span>{t(`🔗 Partagez le lien à vos amis, collègues, etc.`)}</span>
@@ -169,9 +189,9 @@ export default ({
 			>
 				{!newRoom && !room ? (
 					<p>
-						<Trans>Choississez d'abord un nom</Trans>
+						<Trans>Choisissez d'abord un nom</Trans>
 					</p>
-				) : (
+				) : newRoom && !room ? null : (
 					<div
 						css={`
 							display: flex;
@@ -200,37 +220,46 @@ export default ({
 				)}
 			</InstructionBlock>
 			<InstructionBlock
-				index="4"
+				index="5"
 				noIndex={started}
 				title={<span>{t(`🎰 Faites toutes et tous votre simulation`)}</span>}
 			>
-				{!room ? (
-					<Link to={'/simulateur/bilan'}>
-						<button className="ui__ button plain">
-							{t(`Faites votre test`)}
-						</button>
-					</Link>
-				) : mode === 'conférence' ? (
-					<p>
-						<Trans
-							i18nKey={`publicodes.conference.Instructions.liensSimulationConference`}
-						>
-							Au moment convenu, ouvrez ce lien tous en même temps et faites
-							chacun de votre côté votre simulation.
-						</Trans>
-					</p>
+				{!room ? null : mode === 'conférence' ? (
+					<>
+						<p>
+							<Trans
+								i18nKey={`publicodes.conference.Instructions.liensSimulationConference`}
+							>
+								Au moment convenu, ouvrez ce lien tous en même temps et faites
+								chacun de votre côté votre simulation.
+							</Trans>
+						</p>
+						<Link to={'/simulateur/bilan'}>
+							<button className="ui__ button plain">
+								{t(`Faites votre test`)}
+							</button>
+						</Link>
+					</>
 				) : (
-					<p>
-						<Trans
-							i18nKey={`publicodes.conference.Instructions.liensSimulationSondage`}
-						>
-							Les participants doivent venir faire leur simulation sur ce lien.
-						</Trans>
-					</p>
+					<>
+						<p>
+							<Trans
+								i18nKey={`publicodes.conference.Instructions.liensSimulationSondage`}
+							>
+								Les participants doivent venir faire leur simulation sur ce
+								lien.
+							</Trans>
+						</p>
+						<Link to={'/simulateur/bilan'}>
+							<button className="ui__ button plain">
+								{t(`Faites votre test`)}
+							</button>
+						</Link>
+					</>
 				)}
 			</InstructionBlock>
 			<InstructionBlock
-				index="5"
+				index="6"
 				noIndex={started}
 				title={
 					<span>
@@ -252,11 +281,6 @@ export default ({
 				)}
 				.
 			</InstructionBlock>
-			{newRoom !== '' && !room && (
-				<InstructionBlock index="6" title={t('Prêt à démarrer ?')}>
-					<LoadingButton {...{ mode, URLPath, room: room || newRoom }} />
-				</InstructionBlock>
-			)}
 			{room && (
 				<InstructionBlock
 					noIndex={started}
@@ -299,6 +323,7 @@ const InstructionBlock = ({ title, index, children, noIndex }) => (
 				css={`
 					font-size: 300%;
 					padding: 1rem;
+					width: 4rem;
 					background: var(--lightercolor);
 					border-radius: 5rem;
 					margin: 0 1rem;
@@ -307,7 +332,14 @@ const InstructionBlock = ({ title, index, children, noIndex }) => (
 				{index}
 			</div>
 		)}
-		<div>
+		<div
+			css={`
+				width: calc(100% - 3rem);
+				@media (max-width: 800px) {
+					width: 100%;
+				}
+			`}
+		>
 			<h3>{title}</h3>
 			{children}
 		</div>
