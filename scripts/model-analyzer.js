@@ -16,6 +16,11 @@ const args = yargs
 		default: 'nosgestesclimat/data/**/*.yaml',
 		description: `Regexp matching the Publicodes model's files`,
 	})
+	.option('save', {
+		type: 'string',
+		alias: 's',
+		description: 'Path to save the dependency graph in a JSON format',
+	})
 	.option('ignore', {
 		type: 'string',
 		alias: 'i',
@@ -23,7 +28,7 @@ const args = yargs
 		default: [
 			'nosgestesclimat/data/translated-*.yaml',
 			'nosgestesclimat/data/actions.yaml',
-			'**/actions/*.yaml',
+			// '**/actions/*.yaml',
 		],
 		description: 'Regexps matching the path to ignore',
 	})
@@ -56,27 +61,90 @@ const removeParentReferences = (dottedName, set) => {
 	return set
 }
 
+const getDependencyGraphStats = (graph) => {
+	const graphEntries = Object.entries(graph.nodes)
+
+	const stats = graphEntries.reduce(
+		(stats, [name, _]) => {
+			const degIn = graph.directDependantsOf(name).length
+			const degOut = graph.directDependenciesOf(name).length
+			return {
+				...stats,
+				totalDeg: stats.totalDeg + degOut,
+				maxDegOut: degOut > stats.maxDegOut ? degOut : stats.maxDegOut,
+				maxDegIn: degIn > stats.maxDegIn ? degIn : stats.maxDegIn,
+			}
+		},
+		{
+			nbNodes: graph.size(),
+			totalDeg: 0,
+			averageDeg: 0,
+			maxDegOut: 0,
+			maxDegIn: 0,
+		}
+	)
+
+	return { ...stats, averageDeg: stats.totalDeg / stats.nbNodes }
+}
+
 const getDependencyGraph = (model, dependencyMap) => {
-	let deps = Object.fromEntries(dependencyMap)
 	const graph = new dGraph.DepGraph()
+	var deps = Object.fromEntries(dependencyMap)
+	const modelWithoutSituations = Object.entries(model).filter(
+		([name, _]) => !name.endsWith('$SITUATION')
+	)
 
-	Object.entries(model)
-		.filter(([name, _]) => !name.endsWith('$SITUATION'))
-		.forEach(([name, value]) => {
-			graph.addNode(name, value)
-		})
+	modelWithoutSituations.forEach(([name, value]) => {
+		graph.addNode(name, value)
+	})
 
-	deps = Object.entries(deps)
+	Object.entries(deps)
 		.filter(([name, _]) => {
 			return !name.endsWith('$SITUATION')
 		})
 		.forEach(([name, set]) => {
-			removeParentReferences(name, set).forEach((to) =>
-				graph.addDependency(name, to)
-			)
+			const realDeps = removeParentReferences(name, set)
+			realDeps.forEach((to) => graph.addDependency(name, to))
 		})
 
 	return graph
+}
+
+const dGraphToJSON = (graph, ruleNames, parsedRules) => {
+	return ruleNames.reduce((acc, name) => {
+		const deps = graph.directDependantsOf(name)
+		const title = parsedRules[name]?.title ?? name
+
+		acc.push({ _name: name, _deps: deps, Title: title })
+		return acc
+	}, [])
+}
+
+// To be compressible, a node (rule) needs to be a constant:
+// - no question
+// - no dependency
+const isCompressible = (name, graph, parsedRules) => {
+	return (
+		!parsedRules[name].rawNode.question &&
+		graph.dependenciesOf(name).length === 0
+	)
+}
+
+const getCompressibleNodes = (graph, parsedRules) => {
+	var compressibleNodes = []
+	let compressibleLeafs = []
+
+	do {
+		compressibleLeafs = graph
+			.overallOrder(true)
+			.filter((leaf) => isCompressible(leaf, graph, parsedRules))
+		compressibleLeafs.forEach((leaf) => {
+			graph.removeNode(leaf)
+		})
+		compressibleNodes = compressibleNodes.concat(compressibleLeafs)
+	} while (compressibleLeafs.length > 0)
+
+	return { compressedGraph: graph, compressibleNodes }
 }
 
 glob(args.model, { ignore: args.ignore }, (err, files) => {
@@ -95,35 +163,36 @@ glob(args.model, { ignore: args.ignore }, (err, files) => {
 		}
 	}, {})
 
-	// line()
+	line()
 	// console.log('Analyzed files:', files)
 	//
 	// line()
-	// const ruleNames = Object.keys(model)
-	// console.log('Number of rules:', ruleNames.length)
-	//
-	// line()
+	const ruleNames = Object.keys(model)
 	const engine = new Engine(model)
-	// console.log(
-	// 	'engine:',
-	// 	engine.baseContext.referencesMaps.referencesIn.get('intensité électricité')
-	// )
-	// const parsedRules = engine.getParsedRules()
-	// const parsedRuleNames = Object.keys(parsedRules)
-	// getStatsOnNodesDegree(engine.baseContext.referencesMaps.referencesIn)
-	// console.log("Number of parsed rule's names:", parsedRuleNames.length)
-	// console.log(
-	// 	parsedRules['alimentation . boisson'].explanation.valeur.sourceMap.args
-	// 		.valeur
-	// )
-
-	line()
+	const parsedRules = engine.getParsedRules()
 	const graph = getDependencyGraph(
 		model,
 		engine.baseContext.referencesMaps.referencesIn
 	)
-	console.log('Number of nodes:', graph.size())
-	console.log('Entry nodes:', graph.entryNodes())
-	//
-	// line()
+	const beforeStats = getDependencyGraphStats(graph)
+	const { compressedGraph, compressibleNodes } = getCompressibleNodes(
+		graph,
+		parsedRules
+	)
+	const afterStats = getDependencyGraphStats(compressedGraph)
+
+	console.log('Before compression:', beforeStats)
+	console.log('After compression:', afterStats)
+
+	if (args.save) {
+		const graphJSON = dGraphToJSON(graph, ruleNames, parsedRules)
+		console.log(graphJSON)
+		JSON.stringify(graphJSON)
+		fs.writeFileSync(
+			path.resolve(args.save),
+			JSON.stringify(graphJSON, { sortMapEntries: true })
+		)
+	}
+
+	line()
 })
