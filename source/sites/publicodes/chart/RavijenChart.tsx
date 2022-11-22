@@ -39,7 +39,7 @@ export default () => {
 		<ol
 			css={`
 				margin: 0;
-				height: 30rem;
+				height: 40rem;
 				padding: 0;
 				border: 2px solid white;
 				cursor: pointer;
@@ -150,9 +150,11 @@ const VerticalBarFragment = ({
 				strong {
 					color: inherit;
 					display: block;
+					line-height: 1.2rem;
 				}
 				small {
 					color: inherit;
+					line-height: 1rem;
 				}
 				border-bottom: 1px solid white;
 				display: flex;
