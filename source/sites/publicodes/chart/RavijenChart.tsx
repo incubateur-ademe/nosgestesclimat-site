@@ -1,6 +1,9 @@
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { extractCategories } from '../../../components/publicodesUtils'
+import {
+	extractCategories,
+	getSubcategories,
+} from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 
 import { relegate } from 'Components/publicodesUtils'
@@ -32,7 +35,7 @@ export default () => {
 		<ol
 			css={`
 				margin: 0;
-				height: 20rem;
+				height: 30rem;
 				padding: 0;
 				border: 2px solid white;
 				cursor: pointer;
@@ -55,18 +58,29 @@ export default () => {
 						list-style-type: none;
 						background: ${category.color};
 						height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						img {
+
+						> img {
+							height: 3rem;
 							width: 3rem;
 							${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
 							'width: 1.5rem'}
 						}
 					`}
 				>
+					<SubCategoriesVerticalBar {...{ category, engine, rules }} />
 					<SafeCategoryImage element={category} />
 				</li>
+			))}
+		</ol>
+	)
+}
+
+const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
+	const subCategories = getSubcategories(rules, category, engine)
+	return (
+		<ol>
+			{subCategories.map((subCategory) => (
+				<li>Lalala</li>
 			))}
 		</ol>
 	)
