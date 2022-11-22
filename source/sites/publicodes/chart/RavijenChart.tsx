@@ -8,6 +8,8 @@ import { useEngine } from '../../../components/utils/EngineContext'
 
 import { relegate } from 'Components/publicodesUtils'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
+import { humanWeight } from '../HumanWeight'
+import { groupTooSmallCategories } from './chartUtils'
 
 // This component was named in the honor of http://ravijen.fr/?p=440
 
@@ -31,6 +33,8 @@ export default () => {
 			(memo, next) => (next.nodeValue > memo.nodeValue ? next : memo),
 			{ nodeValue: -Infinity }
 		)
+
+	const barWidthPercent = 100 / categories.length
 	return (
 		<ol
 			css={`
@@ -53,8 +57,8 @@ export default () => {
 						(category.nodeValue / empreinteTotale) * 100
 					)}%`}
 					css={`
-						width: 3rem;
-						margin: 0 1rem;
+						width: calc(${barWidthPercent}% - 0.8rem);
+						margin: 0 0.4rem;
 						list-style-type: none;
 						background: ${category.color};
 						height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
@@ -67,7 +71,13 @@ export default () => {
 						}
 					`}
 				>
-					<SubCategoriesVerticalBar {...{ category, engine, rules }} />
+					<div
+						css={`
+							height: calc(100% - 3rem);
+						`}
+					>
+						<SubCategoriesVerticalBar {...{ category, engine, rules }} />
+					</div>
 					<SafeCategoryImage element={category} />
 				</li>
 			))}
@@ -76,12 +86,86 @@ export default () => {
 }
 
 const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
-	const subCategories = getSubcategories(rules, category, engine)
+	const { t, i18n } = useTranslation()
+	const categories = getSubcategories(rules, category, engine)
+	const { rest, restWidth, bigEnough, total } =
+		groupTooSmallCategories(categories)
 	return (
-		<ol>
-			{subCategories.map((subCategory) => (
-				<li>Lalala</li>
-			))}
+		<ol
+			css={`
+				height: 100%;
+				list-style-type: none;
+				padding-left: 0;
+			`}
+		>
+			{restWidth > 0 && (
+				<VerticalBarFragment
+					{...{
+						label: 'Autres',
+
+						title: t('Le reste : ') + rest.labels.join(', '),
+						nodeValue: rest.value,
+						dottedName: 'rest',
+						heightPercentage: restWidth,
+					}}
+				/>
+			)}
+			{bigEnough
+				.reverse()
+				.map(({ nodeValue, title, icons, color, dottedName }) => {
+					return (
+						<VerticalBarFragment
+							{...{
+								label: title,
+								nodeValue,
+
+								dottedName,
+								heightPercentage: (nodeValue / total) * 100,
+							}}
+						/>
+					)
+				})}
 		</ol>
+	)
+}
+
+const VerticalBarFragment = ({
+	title,
+	label,
+	nodeValue,
+	dottedName,
+	heightPercentage,
+}) => {
+	const { t, i18n } = useTranslation()
+	const [value, unit] = humanWeight({ t, i18n }, nodeValue, false)
+
+	return (
+		<li
+			css={`
+				text-align: center;
+				margin: 0;
+				padding: 0 0 0.4rem;
+				height: ${heightPercentage}%;
+				color: white;
+				strong {
+					color: inherit;
+					display: block;
+				}
+				small {
+					color: inherit;
+				}
+				border-bottom: 1px solid white;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+			`}
+			key={dottedName}
+			title={title}
+		>
+			<strong>{label}</strong>
+			<small>
+				{value}&nbsp;{unit}
+			</small>
+		</li>
 	)
 }
