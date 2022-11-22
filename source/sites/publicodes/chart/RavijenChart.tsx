@@ -46,7 +46,6 @@ export default () => {
 				display: flex;
 				justify-content: center;
 				align-items: end;
-				border: 5px dashed chartreuse;
 			`}
 			title={t('Explorer les catégories')}
 		>
@@ -60,25 +59,46 @@ export default () => {
 						width: calc(${barWidthPercent}% - 0.8rem);
 						margin: 0 0.4rem;
 						list-style-type: none;
-						background: ${category.color};
-						height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
-
-						> img {
-							height: 3rem;
-							width: 3rem;
-							${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
-							'width: 1.5rem'}
-						}
+						height: 100%;
+						display: flex;
+						flex-direction: column;
+						justify-content: end;
 					`}
 				>
 					<div
 						css={`
-							height: calc(100% - 3rem);
+							background: ${category.color};
+							height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
 						`}
 					>
 						<SubCategoriesVerticalBar {...{ category, engine, rules }} />
 					</div>
-					<SafeCategoryImage element={category} />
+					<div
+						css={`
+							margin-top: 0.4rem;
+							background: var(--color) !important;
+							> span > img {
+								height: 3rem;
+								width: 3rem;
+								${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
+								'width: 1.5rem'}
+							}
+							h3 {
+								font-size: 100%;
+								color: white;
+								text-align: center;
+								margin: 0;
+							}
+							padding: 0.6rem 0;
+						`}
+					>
+						<SafeCategoryImage element={category} />
+						<h3>
+							{category.title.length < 12
+								? category.title
+								: category.abbreviation}
+						</h3>
+					</div>
 				</li>
 			))}
 		</ol>
@@ -156,7 +176,7 @@ const VerticalBarFragment = ({
 					color: inherit;
 					line-height: 1rem;
 				}
-				border-bottom: 1px solid white;
+				border-top: 1px solid white;
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
