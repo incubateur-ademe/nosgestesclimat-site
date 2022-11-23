@@ -11,22 +11,22 @@ export const humanWeight = (
 	noSign
 ) => {
 	const v = Math.abs(possiblyNegativeValue)
-	const [raw, unit, _digits] =
+	const [raw, unit, digits] =
 		v === 0
 			? [v, '', 0]
 			: v < 1
-			? [v * 1000, 'g', 0]
+			? [v * 1000, 'g', 1]
 			: v < 1000
-			? [v, 'kg']
-			: [v / 1000, concise ? 't' : v > 2000 ? t('tonnes') : t('tonne')]
+			? [v, 'kg', 0]
+			: [v / 1000, concise ? 't' : v > 2000 ? t('tonnes') : t('tonne'), 1]
 
 	const abrvLocale = getCurrentLangInfos(i18n).abrvLocale
 
 	const signedValue = raw * (possiblyNegativeValue < 0 ? -1 : 1),
 		resultValue = noSign ? raw : signedValue,
 		value = resultValue.toLocaleString(abrvLocale, {
-			minimumFractionDigits: v < 1000 ? 0 : 1,
-			maximumFractionDigits: v < 1000 ? 0 : 1,
+			minimumFractionDigits: digits,
+			maximumFractionDigits: digits,
 		})
 
 	return [value, unit]
