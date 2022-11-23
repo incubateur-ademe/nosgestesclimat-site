@@ -5,7 +5,7 @@ import Simulation from 'Components/Simulation'
 import Title from 'Components/Title'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
-import { motion, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -41,8 +41,6 @@ const Simulateur = () => {
 	const tutorials = useSelector((state) => state.tutorials)
 	const url = useLocation().pathname
 
-	const controls = useAnimation()
-
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
 			dispatch(setSimulationConfig(config, url))
@@ -61,7 +59,9 @@ const Simulateur = () => {
 			</Title>
 			{tutorials.testIntro && (
 				<motion.div
-					initial={{ opacity: 0, scale: 0.8 }}
+					initial={
+						tutorials.scoreExplanation ? false : { opacity: 0, scale: 0.8 }
+					}
 					animate={{ opacity: 1, scale: 1 }}
 					transition={{ duration: 0.5 }}
 				>
