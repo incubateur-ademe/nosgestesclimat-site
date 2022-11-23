@@ -21,7 +21,7 @@ const openmojis = {
 
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
-export default ({ testStarted, actionMode = false, demoMode = false }) => {
+export default ({ actionMode = false, demoMode = false }) => {
 	const objectif =
 		actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0]
 	// needed for this component to refresh on situation change :
@@ -46,10 +46,10 @@ export default ({ testStarted, actionMode = false, demoMode = false }) => {
 	const situationLength = Object.keys(situation).length
 
 	useEffect(() => {
-		if (testStarted && !tutorials['scoreExplanation']) {
-			setTimeout(() => setOpenExplanation(true), 1500)
+		if (!tutorials['scoreExplanation']) {
+			setTimeout(() => setOpenExplanation(true), 1200)
 		}
-	}, [testStarted])
+	}, [tutorials])
 
 	return (
 		<div>
