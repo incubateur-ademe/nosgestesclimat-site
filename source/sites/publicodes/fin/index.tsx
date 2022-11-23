@@ -74,15 +74,15 @@ export default ({}) => {
 
 		tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
 	}
+	const nextQuestions = useNextQuestions()
+
 	const slideProps = {
 		score,
 		details: Object.fromEntries(rehydratedDetails),
 		headlessMode,
 		nextSlide: next,
+		noQuestionsLeft: !nextQuestions.length,
 	}
-
-	const nextQuestions = useNextQuestions()
-	console.log(nextQuestions)
 
 	return (
 		<div>

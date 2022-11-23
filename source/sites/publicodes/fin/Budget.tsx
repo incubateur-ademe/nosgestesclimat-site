@@ -23,7 +23,13 @@ const getBackgroundColor = (score) =>
 		Math.round((score < 2000 ? 0 : score > 20000 ? 19000 : score - 2000) / 1000)
 	]
 
-export default ({ score, details, headlessMode, nextSlide }) => {
+export default ({
+	score,
+	details,
+	headlessMode,
+	nextSlide,
+	noQuestionsLeft,
+}) => {
 	//	Configuration is try and test, feeling, really
 	const { t } = useTranslation()
 
@@ -102,7 +108,7 @@ export default ({ score, details, headlessMode, nextSlide }) => {
 					/>
 				</div>
 
-				<FinShareButton textColor={textColor} />
+				{noQuestionsLeft && <FinShareButton textColor={textColor} />}
 
 				{integratorActionText && integratorActionUrl && (
 					<IntegratorActionButton />
