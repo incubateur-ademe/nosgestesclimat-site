@@ -10,7 +10,7 @@ export default ({ textColor, showResult }) => {
 	const engine = useEngine()
 	const categories = extractCategories(rules, engine).map((category) => ({
 		...category,
-		abbreviation: rules[category.dottedName].abbréviation,
+		abbreviation: rules[category.dottedName].abréviation,
 	}))
 	const total = Math.round(engine.evaluate('bilan').nodeValue / 1000)
 	const shareText = generateShareText(categories, total)

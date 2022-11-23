@@ -19,7 +19,7 @@ export default () => {
 	const engine = useEngine()
 	const sortedCategories = extractCategories(rules, engine).map((category) => ({
 		...category,
-		abbreviation: rules[category.dottedName].abbréviation,
+		abbreviation: rules[category.dottedName].abréviation,
 	}))
 	const categories = relegateCommonCategories(sortedCategories)
 
@@ -49,58 +49,61 @@ export default () => {
 			`}
 			title={t('Explorer les catégories')}
 		>
-			{categories.map((category, index) => (
-				<li
-					key={category.title}
-					title={`${category.title} : ${Math.round(
-						(category.nodeValue / empreinteTotale) * 100
-					)}%`}
-					css={`
-						width: calc(${barWidthPercent}% - 0.8rem);
-						margin: 0 0.4rem;
-						list-style-type: none;
-						height: 100%;
-						display: flex;
-						flex-direction: column;
-						justify-content: end;
-					`}
-				>
-					<div
+			{categories.map((category, index) => {
+				console.log(category)
+				return (
+					<li
+						key={category.title}
+						title={`${category.title} : ${Math.round(
+							(category.nodeValue / empreinteTotale) * 100
+						)}%`}
 						css={`
-							background: ${category.color};
-							height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
+							width: calc(${barWidthPercent}% - 0.8rem);
+							margin: 0 0.4rem;
+							list-style-type: none;
+							height: 100%;
+							display: flex;
+							flex-direction: column;
+							justify-content: end;
 						`}
 					>
-						<SubCategoriesVerticalBar {...{ category, engine, rules }} />
-					</div>
-					<div
-						css={`
-							margin-top: 0.4rem;
-							background: var(--color) !important;
-							> span > img {
-								height: 3rem;
-								width: 3rem;
-								${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
-								'width: 1.5rem'}
-							}
-							h3 {
-								font-size: 100%;
-								color: white;
-								text-align: center;
-								margin: 0;
-							}
-							padding: 0.6rem 0;
-						`}
-					>
-						<SafeCategoryImage element={category} />
-						<h3>
-							{category.title.length < 12
-								? category.title
-								: category.abbreviation}
-						</h3>
-					</div>
-				</li>
-			))}
+						<div
+							css={`
+								background: ${category.color};
+								height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
+							`}
+						>
+							<SubCategoriesVerticalBar {...{ category, engine, rules }} />
+						</div>
+						<div
+							css={`
+								margin-top: 0.4rem;
+								background: var(--color) !important;
+								> span > img {
+									height: 3rem;
+									width: 3rem;
+									${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
+									'width: 1.5rem'}
+								}
+								h3 {
+									font-size: 100%;
+									color: white;
+									text-align: center;
+									margin: 0;
+								}
+								padding: 0.6rem 0;
+							`}
+						>
+							<SafeCategoryImage element={category} />
+							<h3>
+								{category.title.length < 12
+									? category.title
+									: category.abbreviation}
+							</h3>
+						</div>
+					</li>
+				)
+			})}
 		</ol>
 	)
 }
@@ -122,7 +125,6 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 				<VerticalBarFragment
 					{...{
 						label: 'Autres',
-
 						title: t('Le reste : ') + rest.labels.join(', '),
 						nodeValue: rest.value,
 						dottedName: 'rest',
@@ -132,13 +134,12 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 			)}
 			{bigEnough
 				.reverse()
-				.map(({ nodeValue, title, icons, color, dottedName }) => {
+				.map(({ nodeValue, title, abbreviation, icons, color, dottedName }) => {
 					return (
 						<VerticalBarFragment
 							{...{
-								label: title,
+								label: abbreviation || title,
 								nodeValue,
-
 								dottedName,
 								heightPercentage: (nodeValue / total) * 100,
 							}}

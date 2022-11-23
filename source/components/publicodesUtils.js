@@ -97,10 +97,9 @@ export const extractCategories = (
 
 	const categories = sumNodes.map((dottedName) => {
 		const node = engine.evaluate(dottedName)
-		const { icônes, couleur } = rules[dottedName]
+		const { icônes, couleur, abréviation } = rules[dottedName]
 		const split = splitName(dottedName),
 			parent = split.length > 1 && split[0]
-
 		return {
 			...node,
 			icons: icônes || rules[parent].icônes,
@@ -114,6 +113,7 @@ export const extractCategories = (
 			documentationDottedName: node.dottedName,
 			title:
 				parentRule === 'bilan' && parent ? rules[parent].titre : node.title,
+			abbreviation: abréviation,
 		}
 	})
 
