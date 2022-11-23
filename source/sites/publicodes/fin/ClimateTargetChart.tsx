@@ -5,10 +5,10 @@ import { useSelector } from 'react-redux'
 import { extractCategories } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 
-import { relegate } from 'Components/publicodesUtils'
+import { relegateCommonCategories } from 'Components/publicodesUtils'
 import { useLayoutEffect, useRef, useState } from 'react'
-import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { Trans, useTranslation } from 'react-i18next'
+import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -44,7 +44,7 @@ export default ({ details, color, value, score, nextSlide }) => {
 			abbreviation: rules[category.dottedName].abbréviation,
 		})
 	)
-	const categories = relegate('services publics', sortedCategories)
+	const categories = relegateCommonCategories(sortedCategories)
 
 	if (!categories) return null
 

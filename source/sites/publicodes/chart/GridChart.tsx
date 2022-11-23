@@ -5,7 +5,10 @@ import { useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
-import { getSubcategories, relegate } from '../../../components/publicodesUtils'
+import {
+	getSubcategories,
+	relegateCommonCategories,
+} from '../../../components/publicodesUtils'
 import useMediaQuery from '../../../components/utils/useMediaQuery'
 import { ObjectiveExplanation } from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
@@ -44,7 +47,7 @@ export default ({ details }) => {
 
 	if (!categories) return null
 
-	const allSubCategories = relegate('services publics', categories)
+	const allSubCategories = relegateCommonCategories(categories)
 		.map((category) =>
 			getSubcategories(rules, category, engine).map((el) => ({
 				...el,

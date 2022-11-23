@@ -3,10 +3,10 @@ import { useSelector } from 'react-redux'
 import {
 	extractCategories,
 	getSubcategories,
+	relegateCommonCategories,
 } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 
-import { relegate } from 'Components/publicodesUtils'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { humanWeight } from '../HumanWeight'
 import { groupTooSmallCategories } from './chartUtils'
@@ -21,7 +21,7 @@ export default () => {
 		...category,
 		abbreviation: rules[category.dottedName].abbréviation,
 	}))
-	const categories = relegate('services publics', sortedCategories)
+	const categories = relegateCommonCategories(sortedCategories)
 
 	if (!categories) return null
 
