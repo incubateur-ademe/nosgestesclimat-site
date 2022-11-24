@@ -8,6 +8,7 @@ import {
 import { useEngine } from '../../../components/utils/EngineContext'
 
 import { capitalise0 } from 'publicodes'
+import { useLayoutEffect, useRef, useState } from 'react'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { humanWeight } from '../HumanWeight'
 import { groupTooSmallCategories } from './chartUtils'
@@ -163,6 +164,11 @@ const VerticalBarFragment = ({
 	const { t, i18n } = useTranslation()
 	const [value, unit] = humanWeight({ t, i18n }, nodeValue, false)
 
+	const ref = useRef()
+	const isOverflow = useIsOverflow(ref, true)
+
+	console.log('yo', isOverflow)
+
 	return (
 		<li
 			css={`
@@ -188,15 +194,43 @@ const VerticalBarFragment = ({
 					width: 2rem;
 					height: auto;
 				}
+				${isOverflow && `border: 1px dashed chartreuse`}
 			`}
+			ref={ref}
 			key={dottedName}
 			title={title}
 		>
 			<SafeCategoryImage element={{ dottedName }} />
-			{heightPercentage > 13 && <strong>{label}</strong>}
+
+			{!isOverflow && <strong>{label}</strong>}
 			<small>
 				{value}&nbsp;{unit}
 			</small>
 		</li>
 	)
+}
+
+const useIsOverflow = (ref, isVerticalOverflow, callback) => {
+	const [isOverflow, setIsOverflow] = useState(undefined)
+
+	useLayoutEffect(() => {
+		const { current } = ref
+		const { clientWidth, scrollWidth, clientHeight, scrollHeight } = current
+
+		const trigger = () => {
+			const hasOverflow = isVerticalOverflow
+				? scrollHeight > clientHeight
+				: scrollWidth > clientWidth
+
+			setIsOverflow(hasOverflow)
+
+			if (callback) callback(hasOverflow)
+		}
+
+		if (current) {
+			trigger()
+		}
+	}, [callback, ref, isVerticalOverflow])
+
+	return isOverflow
 }
