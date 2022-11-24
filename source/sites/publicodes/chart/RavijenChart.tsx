@@ -125,7 +125,7 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 			{restWidth > 0 && (
 				<VerticalBarFragment
 					{...{
-						label: 'Autres',
+						label: restWidth < 10 ? '...' : 'Autres',
 						title: t('Le reste : ') + rest.labels.join(', '),
 						nodeValue: rest.value,
 						dottedName: 'rest',
@@ -143,6 +143,7 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 								nodeValue,
 								dottedName,
 								heightPercentage: (nodeValue / total) * 100,
+								icons,
 							}}
 						/>
 					)
@@ -157,6 +158,7 @@ const VerticalBarFragment = ({
 	nodeValue,
 	dottedName,
 	heightPercentage,
+	icons,
 }) => {
 	const { t, i18n } = useTranslation()
 	const [value, unit] = humanWeight({ t, i18n }, nodeValue, false)
@@ -182,11 +184,16 @@ const VerticalBarFragment = ({
 				display: flex;
 				flex-direction: column;
 				justify-content: center;
+				img {
+					width: 2rem;
+					height: auto;
+				}
 			`}
 			key={dottedName}
 			title={title}
 		>
-			<strong>{label}</strong>
+			<SafeCategoryImage element={{ dottedName }} />
+			{heightPercentage > 13 && <strong>{label}</strong>}
 			<small>
 				{value}&nbsp;{unit}
 			</small>
