@@ -7,8 +7,9 @@ import {
 } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 
-import { capitalise0 } from 'publicodes'
+import { capitalise0, utils } from 'publicodes'
 import { useLayoutEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { humanWeight } from '../HumanWeight'
 import { groupTooSmallCategories } from './chartUtils'
@@ -81,34 +82,38 @@ export default () => {
 						>
 							<SubCategoriesVerticalBar {...{ category, engine, rules }} />
 						</div>
-						<div
-							css={`
-								margin-top: 0.4rem;
-								background: var(--color) !important;
-								> span > img {
-									height: 2.5rem;
-									width: 2.5rem;
-									${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
-									'width: 1.5rem'}
-								}
-								h3 {
-									font-size: 100%;
-									color: white;
-									margin: 0;
-								}
-								text-align: center;
-								padding: 0.6rem 0;
-								color: white;
-							`}
+						<Link
+							to={`/documentation/${utils.encodeRuleName(category.dottedName)}`}
 						>
-							<SafeCategoryImage element={category} />
-							<h3>
-								{category.title.length < 12
-									? category.title
-									: capitalise0(category.abbreviation)}
-							</h3>
-							{value}&nbsp;{unit}
-						</div>
+							<div
+								css={`
+									margin-top: 0.4rem;
+									background: var(--color) !important;
+									> span > img {
+										height: 2.5rem;
+										width: 2.5rem;
+										${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
+										'width: 1.5rem'}
+									}
+									h3 {
+										font-size: 100%;
+										color: white;
+										margin: 0;
+									}
+									text-align: center;
+									padding: 0.6rem 0;
+									color: white;
+								`}
+							>
+								<SafeCategoryImage element={category} />
+								<h3>
+									{category.title.length < 12
+										? category.title
+										: capitalise0(category.abbreviation)}
+								</h3>
+								{value}&nbsp;{unit}
+							</div>
+						</Link>
 					</li>
 				)
 			})}
