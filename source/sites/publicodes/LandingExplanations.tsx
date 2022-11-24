@@ -47,8 +47,6 @@ export default () => {
 							[Lang.Es, contentEs],
 							[Lang.It, contentIt],
 						]}
-						title={t(`publicodes.LandingExplanations.question`)}
-						descriptionId={t(`meta.publicodes.LandingExplanations.description`)}
 					/>
 				</LandingContent>
 				<LandingContent>

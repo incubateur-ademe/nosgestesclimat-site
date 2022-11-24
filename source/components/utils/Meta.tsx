@@ -1,5 +1,6 @@
 import { ReactNode } from 'react'
 import { Helmet } from 'react-helmet'
+import { useLocation } from 'react-router-dom'
 
 type PropType = {
 	title: string
@@ -9,6 +10,8 @@ type PropType = {
 	more?: ReactNode | null
 }
 
+const websiteURL = 'https://nosgestesclimat.fr'
+
 export default function Meta({
 	title,
 	description,
@@ -16,6 +19,7 @@ export default function Meta({
 	url,
 	children,
 }: PropType) {
+	const { pathname } = useLocation()
 	return (
 		<Helmet>
 			<title>{title} - Nos Gestes Climat</title>
@@ -28,6 +32,17 @@ export default function Meta({
 			{image && <meta property="og:image" content={image} />}
 			{url && <meta property="og:url" content={url} />}
 			{children}
+			<link
+				rel="alternate"
+				hrefLang="en"
+				href={websiteURL + pathname + '?lang=en'}
+			/>
+			<link
+				rel="alternate"
+				hrefLang="fr"
+				href={websiteURL + pathname + '?lang=fr'}
+			/>
+			<link rel="alternate" hrefLang="x-default" href={websiteURL + pathname} />
 		</Helmet>
 	)
 }

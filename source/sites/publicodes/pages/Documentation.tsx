@@ -3,7 +3,7 @@ import SearchButton from 'Components/SearchButton'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -45,8 +45,6 @@ export default function () {
 	if (!documentationSitePaths[pathname]) {
 		return <Navigate to="/404" replace />
 	}
-
-	useEffect(() => console.log('Documentation rendered!'), [])
 
 	return (
 		<div

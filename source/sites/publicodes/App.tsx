@@ -7,6 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import TranslationAlertBanner from '../../components/TranslationAlertBanner'
 import useMediaQuery from '../../components/utils/useMediaQuery'
@@ -174,11 +175,10 @@ const Main = ({}) => {
 					padding-left: 0rem;
 					@media (min-width: 800px) {
 						flex-grow: 1;
-						padding-left: 0.6rem;
+						${!isHomePage ? 'padding-left: 0.6rem;' : ''}
 					}
 				`}
 			>
-				{Lang.Default !== currentLangState && <TranslationAlertBanner />}
 				{!isHomePage && !isTuto && <LocalisationMessage />}
 
 				{fluidLayout && (
@@ -194,6 +194,10 @@ const Main = ({}) => {
 					>
 						<Logo showText size={largeScreen ? 'large' : 'medium'} />
 					</div>
+				)}
+				{isHomePage && <LangSwitcher from="landing" />}
+				{Lang.Default !== currentLangState && (
+					<TranslationAlertBanner isBelow={isHomePage} />
 				)}
 				<Router />
 			</main>

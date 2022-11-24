@@ -7,8 +7,8 @@ import { getLangInfos, Lang } from '../../../locales/translation'
 export type PageProps = {
 	markdownFiles: Array<[Lang, string]>
 	// Information about the page metadata
-	title: string
-	description: string
+	title?: string
+	description?: string
 	image?: string
 }
 
@@ -22,7 +22,9 @@ export default ({ markdownFiles, title, description, image }: PageProps) => {
 
 	return (
 		<section className="ui__ container">
-			<Meta title={title} description={description} image={image} />
+			{title && description && (
+				<Meta title={title} description={description} image={image} />
+			)}
 			<Markdown children={content} />
 		</section>
 	)

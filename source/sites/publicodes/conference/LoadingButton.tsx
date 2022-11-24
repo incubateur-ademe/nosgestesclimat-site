@@ -18,7 +18,7 @@ export default ({ mode, URLPath, room }) => {
 		<div>
 			<button
 				type="submit"
-				className="ui__ button plain"
+				className="ui__ button plain cta"
 				onClick={async () => {
 					setClicked(true)
 

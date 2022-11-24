@@ -2,10 +2,10 @@ import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import animate from './ui/animate'
 
-export default () => {
+export default ({ isBelow }) => {
 	return (
 		<animate.appear>
-			<AlertBanner>
+			<AlertBanner isBelow={isBelow}>
 				<p
 					css={`
 						margin: 0;
@@ -21,7 +21,7 @@ export default () => {
 	)
 }
 
-const AlertBanner = styled.div`
+const BaseAlertBanner = styled.div`
 	background-color: #f1f1f9;
 	display: inline-flex;
 	flex-direction: column;
@@ -39,3 +39,17 @@ const AlertBanner = styled.div`
 		padding: 0.3rem 0.6rem;
 	}
 `
+
+const AlertBanner = ({ isBelow, children }) => {
+	if (isBelow) {
+		const BelowAlertBanner = styled(BaseAlertBanner)`
+			margin-top: 0.6rem;
+		`
+		return <BelowAlertBanner>{children}</BelowAlertBanner>
+	} else {
+		const AboveAlertBanner = styled(BaseAlertBanner)`
+			margin-bottom: 0.6rem;
+		`
+		return <AboveAlertBanner>{children}</AboveAlertBanner>
+	}
+}

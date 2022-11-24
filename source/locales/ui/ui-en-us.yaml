@@ -37,8 +37,8 @@ entries:
   Choisir l'action: Choose the action
   Choisir le type de tri des actions: Choose the type of stock sorting
   Choisir une autre région: Choose another region
+  Choisissez d'abord un nom: Choose a name first
   Choisissez la votre: Choose your own
-  Choississez d'abord un nom: Choose a name first
   Cliquez pour partager le lien: Click to share the link
   Commencer: Start
   Comment créer un persona ?: How to create a persona?
@@ -105,7 +105,7 @@ entries:
   Intégrateurs identifiés: Identified integrators
   Intégrations et Iframes: Integrations and Iframes
   J'ai compris: I understand
-  Je ne sais pas: I do not know
+  Je ne sais pas: I don't know
   KM: KM
   "L'objectif à atteindre, 2 tonnes de CO₂e": The goal to achieve, 2 tonnes of CO₂e
   La voiture en chiffres: The car in figures
@@ -299,15 +299,15 @@ entries:
     script</1>. Thus, the visits via iframes of integrators who did not use this
     script are scattered in the general visits of Nos Gestes Climat. Pending
     more precise figures, this rate is therefore potentially underestimated
-    compared to reality.<3>(Data valid for the last 30 days)</3></1>
+    compared to reality. <4>(Data valid for the last 30 days)</4></1>
   components.stats.StatsContent.integrationEtIframes.lock: <0>En savoir
     plus</0><1>Les intégrations en iframe sont détéctées via le paramètre
-    'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé
-    le&nbsp;<1>script dédié</1>. Ainsi, les visites via les iframes
-    d'intégrateurs qui n'ont pas utilisé ce script sont dispersées dans les
-    visites générales de Nos Gestes Climat. Dans l'attente de chiffres plus
-    précis, ce taux est donc potentiellement sous-estimé par rapport à la
-    réalité.<3>(Données valables pour les 30 derniers jours)</3></1>
+    'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé le <1>script
+    dédié</1>. Ainsi, les visites via les iframes d'intégrateurs qui n'ont pas
+    utilisé ce script sont dispersées dans les visites générales de Nos Gestes
+    Climat. Dans l'attente de chiffres plus précis, ce taux est donc
+    potentiellement sous-estimé par rapport à la réalité. <4>(Données valables
+    pour les 30 derniers jours)</4></1>
   components.stats.StatsContent.scoreUtilisateurs:
     '<0>Read more about it</0><1>Of
     course, we do not collect <2>user data</2>. Nevertheless, the total score as
@@ -416,7 +416,7 @@ entries:
     numérique), de la situer par rapport aux objectifs climatiques et surtout de
     passer à l’action à votre niveau avec des gestes personnalisés en fonction
     de vos réponses.
-  meta.publicodes.Diffuser.title: Spreading Nos Gestes Climat
+  meta.publicodes.Diffuser.title: Sharing Nos Gestes Climat
   meta.publicodes.Diffuser.title.lock: Diffuser Nos Gestes Climat
   meta.publicodes.Landing.description: Test your carbon footprint, alone or in a
     group. Discover the breakdown of your footprint. Follow the path to action
@@ -527,11 +527,9 @@ entries:
     quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Nos Gestes Climat?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: >-
-
-    &gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.commentaireAugmenté.lock: >-
-
+  publicodes.Contribution.commentaireAugmenté: |-
+    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
+  publicodes.Contribution.commentaireAugmenté.lock: |-
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Here you will find answers to the most
     frequently asked questions. If you still have questions or if you want to
@@ -559,9 +557,9 @@ entries:
     nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements:
     Thank you 😍! Follow the progress of your
-    suggestion by clicking <2>this link</2>.
+    suggestion by clicking on <1>this link</1>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de
-    votre suggestion en cliquant sur <2>ce lien</2>.
+    votre suggestion en cliquant sur <1>ce lien</1>.
   publicodes.Contribution.titreQuestion: I have another question
   publicodes.Contribution.titreQuestion.lock: J'ai une autre question
   publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been
@@ -635,6 +633,16 @@ entries:
   publicodes.SimulationMissing.simulationManquante.lock: Vous n'avez pas encore
     fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu
     plus sur votre mode de vie.
+  publicodes.TranslationContribution.commentaireAugmenté: |-
+
+    > This ticket was created automatically by our robot from our [contribution page for translation](https://nosgestesclimat.fr/contribuer-traduction).
+  publicodes.TranslationContribution.commentaireAugmenté.lock: |-
+
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
+  publicodes.TranslationContribution.remerciements: Thank you 😍! Follow the
+    progress of your suggestion by clicking on <2>this link</2>.
+  publicodes.TranslationContribution.remerciements.lock: Merci 😍! Suivez
+    l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Tutorial.slide1.p1: <0>Do not worry, we'll briefly explain what it
     is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and
     more greenhouse gases.</1>
@@ -654,11 +662,9 @@ entries:
     méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la
     planète : on convertit leur potentiel de réchauffement en équivalent CO₂
     pour simplifier la mesure. "
-  publicodes.Tutorial.slide2.p1: >
+  publicodes.Tutorial.slide2.p1: |
     Through a unit with a barbaric name: the CO₂
-
     equivalent. You already know carbon dioxide<1></1>, it's what we breathe out all day,
-
     but without influence on the climate.
   publicodes.Tutorial.slide2.p1.lock: "Avec une unité au nom barbare :
     l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on
@@ -727,12 +733,14 @@ entries:
     sur notre serveur : l'empreinte climat totale et les catégories (transport,
     logement, etc.). <3>En savoir plus</3>"
   publicodes.conference.Instructions.avertissementModeConference:
-    '🔒️ Your organization may block the use of conference mode. Test beforehand
-    in duet: if there is a problem, you can use the polling mode.'
+    '<0>Be careful</0>, it is possible that your organization blocks
+    peer-to-peer, and therefore the use of the conference mode. Test beforehand
+    on site and in duet: in case of problem, you can use the survey mode.'
   publicodes.conference.Instructions.avertissementModeConference.lock:
-    "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence.
-    Faites le test au préalable en duo : en cas de problème, vous pouvez
-    utiliser le mode sondage."
+    "<0>Attention</0>, il est possible que votre organisation bloque le
+    pair-à-pair, et donc l'utilisation du mode conférence. Faites le test au
+    préalable sur site et en duo : en cas de problème, vous pouvez utiliser le
+    mode sondage."
   publicodes.conference.Instructions.contextualisationLink: 💡 Want to add
     questions to get additional information about respondents? <2>Check out the
     "survey contextualization!" feature </2>
@@ -742,20 +750,18 @@ entries:
     "contextualisation de sondage !" </2>
   publicodes.conference.Instructions.descriptionModeConference:
     'Ephemeral mode: perfect for a workshop, an interactive presentation or
-    between friends. The data remains between the participants (peer-to-peer),
-    without a server, <2>just for the time of the conference</2>.'
+    between friends. The data remains between the participants (peer-to-peer
+    without server), <2>just the time of the conference</2>.'
   publicodes.conference.Instructions.descriptionModeConference.lock:
     "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
     interactive ou entre amis. Les données restent entre les participants
-    (pair-à-pair), sans serveur, <2>juste le temps de la conférence</2>."
-  publicodes.conference.Instructions.descriptionModeSondage:
-    'Persistent mode: the
-    interface is almost the same, but the data is stored on our server and thus
-    remains accessible <1>for two months</1>.'
+    (pair-à-pair sans serveur), <2>juste le temps de la conférence</2>."
+  publicodes.conference.Instructions.descriptionModeSondage: 'Persistent mode:
+    participant data is stored on our server and remains accessible and
+    downloadable <2>for two months</2>.'
   publicodes.conference.Instructions.descriptionModeSondage.lock:
-    "Mode persistant : l'interface est presque la même, mais les données sont
-    stockées sur notre serveur et ainsi restent accessibles <1>pendant deux
-    mois</1>."
+    'Mode persistant : les données des participants sont stockées sur notre
+    serveur et restent accessibles et téléchargeables <2>pendant deux mois</2>.'
   publicodes.conference.Instructions.guideLien: The results are in, what to do?
     Our guide accompanies you in your thoughts and discussions on this page
   publicodes.conference.Instructions.guideLien.lock: Les résultats sont là, que
@@ -882,15 +888,13 @@ entries:
   sites.publicodes.Landing.description.lock:
     En 10 minutes, obtenez une estimation
     de votre empreinte carbone de consommation.
-  sites.publicodes.LandingExplanations.faqLink: >-
+  sites.publicodes.LandingExplanations.faqLink: |-
     ## Any questions?
 
 
-
     Find answers to common questions on our [FAQ](/contribuer) page.
-  sites.publicodes.LandingExplanations.faqLink.lock: >-
+  sites.publicodes.LandingExplanations.faqLink.lock: |-
     ## Des questions ?
-
 
 
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
@@ -907,7 +911,7 @@ entries:
   visites depuis le lancement: visits since the launch
   '{{res}} tonnes de CO₂e': '{{res}} tonnes of CO₂e'
   À propos: About us
-  ⏲️  Choississez votre mode de simulation: ⏲️ Choose your simulation mode
+  ⏲️  Choisissez votre mode de simulation: ⏲️ Choose your simulation mode
   ▶️ Finir mon test: ▶️ Finish my test
   ◀ Retour: ◀ Back
   ◀ Retour à la liste: ◀ Back to the list

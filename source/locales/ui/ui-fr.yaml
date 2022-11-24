@@ -35,8 +35,8 @@ entries:
   Choisir l'action: Choisir l'action
   Choisir le type de tri des actions: Choisir le type de tri des actions
   Choisir une autre région: Choisir une autre région
+  Choisissez d'abord un nom: Choisissez d'abord un nom
   Choisissez la votre: Choisissez la votre
-  Choississez d'abord un nom: Choississez d'abord un nom
   Cliquez pour partager le lien: Cliquez pour partager le lien
   Commencer: Commencer
   Comment créer un persona ?: Comment créer un persona ?
@@ -264,12 +264,12 @@ entries:
   components.stats.StatsContent.integrationEtIframes:
     <0>En savoir plus</0><1>Les
     intégrations en iframe sont détéctées via le paramètre 'iframe' dans l'URL,
-    ceci seulement si l'intégrateur a utilisé le&nbsp;<1>script dédié</1>.
-    Ainsi, les visites via les iframes d'intégrateurs qui n'ont pas utilisé ce
-    script sont dispersées dans les visites générales de Nos Gestes Climat. Dans
-    l'attente de chiffres plus précis, ce taux est donc potentiellement
-    sous-estimé par rapport à la réalité.<3>(Données valables pour les 30
-    derniers jours)</3></1>
+    ceci seulement si l'intégrateur a utilisé le <1>script dédié</1>. Ainsi, les
+    visites via les iframes d'intégrateurs qui n'ont pas utilisé ce script sont
+    dispersées dans les visites générales de Nos Gestes Climat. Dans l'attente
+    de chiffres plus précis, ce taux est donc potentiellement sous-estimé par
+    rapport à la réalité. <4>(Données valables pour les 30 derniers
+    jours)</4></1>
   components.stats.StatsContent.scoreUtilisateurs: "<0>En savoir plus</0><1>Bien
     sûr, nous ne collectons pas <2>les données utlisateurs</2>. Néanmoins, le
     score total ainsi que l'empreinte par catégorie est présente dans l'URL de
@@ -398,7 +398,7 @@ entries:
     très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes
     pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: >-
+  publicodes.Contribution.commentaireAugmenté: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Vous trouverez ici les réponses aux
@@ -415,7 +415,7 @@ entries:
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous
     vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre
-    suggestion en cliquant sur <2>ce lien</2>.
+    suggestion en cliquant sur <1>ce lien</1>.
   publicodes.Contribution.titreQuestion: J'ai une autre question
   publicodes.Contribution.traductionIntro: Nos Gestes Climat vient tout juste
     d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de
@@ -455,6 +455,12 @@ entries:
     Vous n'avez pas encore fait le
     test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur
     votre mode de vie.
+  publicodes.TranslationContribution.commentaireAugmenté: |-
+
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
+  publicodes.TranslationContribution.remerciements:
+    Merci 😍! Suivez l'avancement
+    de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Tutorial.slide1.p1: <0>Pas de panique, on vous explique ce que
     c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à
     mesure des gaz à effet de serre que l'on émet.</1>
@@ -499,9 +505,10 @@ entries:
     serveur : l'empreinte climat totale et les catégories (transport, logement,
     etc.). <3>En savoir plus</3>"
   publicodes.conference.Instructions.avertissementModeConference:
-    "🔒️ Votre organisation peut bloquer l'utilisation du mode conférence.
-    Faites le test au préalable en duo : en cas de problème, vous pouvez
-    utiliser le mode sondage."
+    "<0>Attention</0>, il est possible que votre organisation bloque le
+    pair-à-pair, et donc l'utilisation du mode conférence. Faites le test au
+    préalable sur site et en duo : en cas de problème, vous pouvez utiliser le
+    mode sondage."
   publicodes.conference.Instructions.contextualisationLink: 💡 Vous souhaitez
     ajouter des questions pour obtenir des informations supplémentaires sur les
     répondants ? <2>Découvrez la fonctionnalité "contextualisation de sondage !"
@@ -509,10 +516,10 @@ entries:
   publicodes.conference.Instructions.descriptionModeConference:
     "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
     interactive ou entre amis. Les données restent entre les participants
-    (pair-à-pair), sans serveur, <2>juste le temps de la conférence</2>."
-  publicodes.conference.Instructions.descriptionModeSondage: "Mode persistant :
-    l'interface est presque la même, mais les données sont stockées sur notre
-    serveur et ainsi restent accessibles <1>pendant deux mois</1>."
+    (pair-à-pair sans serveur), <2>juste le temps de la conférence</2>."
+  publicodes.conference.Instructions.descriptionModeSondage: 'Mode persistant :
+    les données des participants sont stockées sur notre serveur et restent
+    accessibles et téléchargeables <2>pendant deux mois</2>.'
   publicodes.conference.Instructions.guideLien:
     Les résultats sont là, que faire ?
     Notre guide vous accompagne dans vos réflexions et vos discussions sur cette
@@ -585,9 +592,8 @@ entries:
   site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
   sites.publicodes.Landing.description: En 10 minutes, obtenez une estimation de
     votre empreinte carbone de consommation.
-  sites.publicodes.LandingExplanations.faqLink: >-
+  sites.publicodes.LandingExplanations.faqLink: |-
     ## Des questions ?
-
 
 
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
@@ -603,7 +609,7 @@ entries:
   '{unit}': '{unit}'
   '{{res}} tonnes de CO₂e': '{{res}} tonnes de CO₂e'
   À propos: À propos
-  ⏲️  Choississez votre mode de simulation: ⏲️  Choississez votre mode de simulation
+  ⏲️  Choisissez votre mode de simulation: ⏲️  Choisissez votre mode de simulation
   ▶️ Finir mon test: ▶️ Finir mon test
   ◀ Retour: ◀ Retour
   ◀ Retour à la liste: ◀ Retour à la liste
