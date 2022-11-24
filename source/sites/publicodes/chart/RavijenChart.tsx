@@ -7,6 +7,7 @@ import {
 } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 
+import { capitalise0 } from 'publicodes'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { humanWeight } from '../HumanWeight'
 import { groupTooSmallCategories } from './chartUtils'
@@ -138,7 +139,7 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 					return (
 						<VerticalBarFragment
 							{...{
-								label: abbreviation || title,
+								label: (abbreviation && capitalise0(abbreviation)) || title,
 								nodeValue,
 								dottedName,
 								heightPercentage: (nodeValue / total) * 100,
