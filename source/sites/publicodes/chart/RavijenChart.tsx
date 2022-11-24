@@ -16,7 +16,7 @@ import { groupTooSmallCategories } from './chartUtils'
 // This component was named in the honor of http://ravijen.fr/?p=440
 
 export default () => {
-	const { t } = useTranslation()
+	const { t, i18n } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const sortedCategories = extractCategories(rules, engine).map((category) => ({
@@ -52,7 +52,11 @@ export default () => {
 			title={t('Explorer les catégories')}
 		>
 			{categories.map((category, index) => {
-				console.log(category)
+				const [value, unit] = humanWeight(
+					{ t, i18n },
+					category.nodeValue,
+					false
+				)
 				return (
 					<li
 						key={category.title}
@@ -82,26 +86,28 @@ export default () => {
 								margin-top: 0.4rem;
 								background: var(--color) !important;
 								> span > img {
-									height: 3rem;
-									width: 3rem;
+									height: 2.5rem;
+									width: 2.5rem;
 									${category.nodeValue / empreinteMax.nodeValue < 0.1 &&
 									'width: 1.5rem'}
 								}
 								h3 {
 									font-size: 100%;
 									color: white;
-									text-align: center;
 									margin: 0;
 								}
+								text-align: center;
 								padding: 0.6rem 0;
+								color: white;
 							`}
 						>
 							<SafeCategoryImage element={category} />
 							<h3>
 								{category.title.length < 12
 									? category.title
-									: category.abbreviation}
+									: capitalise0(category.abbreviation)}
 							</h3>
+							{value}&nbsp;{unit}
 						</div>
 					</li>
 				)
