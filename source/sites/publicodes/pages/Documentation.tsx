@@ -1,4 +1,3 @@
-import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
@@ -19,11 +18,11 @@ import {
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
 import { useEngine } from '../../../components/utils/EngineContext'
-import Meta from '../../../components/utils/Meta'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
 import RavijenChart from '../chart/RavijenChart'
 import References from '../DocumentationReferences'
+import DocumentationLanding from './DocumentationLanding'
 
 export default function () {
 	console.log('Rendering Documentation')
@@ -123,23 +122,6 @@ function BackToSimulation() {
 		>
 			<Trans>Reprendre la simulation</Trans>
 		</button>
-	)
-}
-
-function DocumentationLanding() {
-	const { t } = useTranslation()
-	return (
-		<div className="ui__ container">
-			<Meta
-				title={t('Comprendre nos calculs')}
-				description={t('meta.publicodes.pages.Documentation.description')}
-			/>
-			<h1>Documentation</h1>
-			<h2>
-				<Trans>Explorez notre modèle</Trans>
-			</h2>
-			<SearchBar />
-		</div>
 	)
 }
 
