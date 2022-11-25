@@ -134,9 +134,9 @@ function DocumentationLanding() {
 				title={t('Comprendre nos calculs')}
 				description={t('meta.publicodes.pages.Documentation.description')}
 			/>
-			<h1>Documentation nosgestesclimat.fr</h1>
+			<h1>Documentation</h1>
 			<h2>
-				<Trans>Explorer notre modèle</Trans>
+				<Trans>Explorez notre modèle</Trans>
 			</h2>
 			<SearchBar />
 		</div>

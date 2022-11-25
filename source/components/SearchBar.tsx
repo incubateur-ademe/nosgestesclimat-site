@@ -59,7 +59,23 @@ export default function SearchBar({}: SearchBarProps) {
 
 	return (
 		<>
-			<label title={t('Entrez des mots clefs')}>
+			<label
+				title={t('Entrez des mots clefs')}
+				css={`
+					margin: 0.6rem 0;
+					display: flex;
+					align-items: center;
+					height: 2rem;
+				`}
+			>
+				<img
+					src="/images/1F50D.svg"
+					width="100px"
+					height="100px"
+					css={`
+						width: 3rem;
+					`}
+				/>
 				<input
 					type="search"
 					className="ui__"
@@ -72,7 +88,7 @@ export default function SearchBar({}: SearchBarProps) {
 					}}
 				/>
 			</label>
-			{!!input.length && !results.length ? (
+			{input.length > 2 && !results.length ? (
 				<p
 					role="status"
 					className="ui__ notice light-bg"
