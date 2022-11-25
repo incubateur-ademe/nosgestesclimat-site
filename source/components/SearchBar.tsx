@@ -109,6 +109,12 @@ export default function SearchBar({}: SearchBarProps) {
 							padding: 0;
 							margin: 0;
 							list-style: none;
+							li {
+								margin: 0.4rem 0;
+							}
+							small {
+								display: block;
+							}
 						`}
 					>
 						{(!results.length && !input.length
@@ -141,6 +147,13 @@ export default function SearchBar({}: SearchBarProps) {
 											))}
 										<br />
 									</small>
+									<span
+										css={`
+											margin-right: 0.6rem;
+										`}
+									>
+										{rules[item.dottedName].rawNode.icônes}
+									</span>
 									{highlightMatches(
 										item.title,
 										matches.filter((m) => m.key === 'title')
