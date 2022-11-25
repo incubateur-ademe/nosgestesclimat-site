@@ -1,11 +1,11 @@
+import highlightMatches from 'Components/highlightMatches'
+import { utils } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'
 import { useEngine } from './utils/EngineContext'
-import { utils } from 'publicodes'
-import highlightMatches from 'Components/highlightMatches'
 
 const worker = new Worker()
 
@@ -87,51 +87,53 @@ export default function SearchBar({}: SearchBarProps) {
 					</Trans>
 				</p>
 			) : (
-				<ul
-					css={`
-						padding: 0;
-						margin: 0;
-						list-style: none;
-					`}
-				>
-					{(!results.length && !input.length
-						? searchIndex.map((item) => ({ item, matches: [] }))
-						: results
-					).map(({ item, matches }) => (
-						<li key={item.dottedName}>
-							<RuleLink
-								dottedName={item.dottedName}
-								style={{
-									width: '100%',
-									textDecoration: 'none',
-									lineHeight: '1.5rem',
-								}}
-							>
-								<small>
-									{item.espace
-										.slice(1)
-										.reverse()
-										.map((name) => (
-											<span key={name}>
-												{highlightMatches(
-													name,
-													matches.filter(
-														(m) => m.key === 'espace' && m.value === name
-													)
-												)}{' '}
-												›{' '}
-											</span>
-										))}
-									<br />
-								</small>
-								{highlightMatches(
-									item.title,
-									matches.filter((m) => m.key === 'title')
-								)}
-							</RuleLink>
-						</li>
-					))}
-				</ul>
+				input.length > 2 && (
+					<ul
+						css={`
+							padding: 0;
+							margin: 0;
+							list-style: none;
+						`}
+					>
+						{(!results.length && !input.length
+							? searchIndex.map((item) => ({ item, matches: [] }))
+							: results
+						).map(({ item, matches }) => (
+							<li key={item.dottedName}>
+								<RuleLink
+									dottedName={item.dottedName}
+									style={{
+										width: '100%',
+										textDecoration: 'none',
+										lineHeight: '1.5rem',
+									}}
+								>
+									<small>
+										{item.espace
+											.slice(1)
+											.reverse()
+											.map((name) => (
+												<span key={name}>
+													{highlightMatches(
+														name,
+														matches.filter(
+															(m) => m.key === 'espace' && m.value === name
+														)
+													)}{' '}
+													›{' '}
+												</span>
+											))}
+										<br />
+									</small>
+									{highlightMatches(
+										item.title,
+										matches.filter((m) => m.key === 'title')
+									)}
+								</RuleLink>
+							</li>
+						))}
+					</ul>
+				)
 			)}
 		</>
 	)

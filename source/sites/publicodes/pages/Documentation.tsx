@@ -24,7 +24,6 @@ import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
 import RavijenChart from '../chart/RavijenChart'
 import References from '../DocumentationReferences'
-import Méthode from './Méthode'
 
 export default function () {
 	console.log('Rendering Documentation')
@@ -135,11 +134,11 @@ function DocumentationLanding() {
 				title={t('Comprendre nos calculs')}
 				description={t('meta.publicodes.pages.Documentation.description')}
 			/>
-			<Méthode />
+			<h1>Documentation nosgestesclimat.fr</h1>
 			<h2>
-				<Trans>Explorer notre documentation</Trans>
+				<Trans>Explorer notre modèle</Trans>
 			</h2>
-			<SearchBar showListByDefault={true} />
+			<SearchBar />
 		</div>
 	)
 }
