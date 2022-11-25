@@ -26,6 +26,7 @@ export default ({ target = 'bilan', numberBottomRight }) => {
 			abbreviation: rules[category.dottedName].abréviation,
 		})
 	)
+
 	const categories =
 		target === 'bilan'
 			? relegateCommonCategories(sortedCategories)
@@ -135,7 +136,7 @@ const SubCategoriesVerticalBar = ({
 	numberBottomRight,
 }) => {
 	const { t, i18n } = useTranslation()
-	const categories = getSubcategories(rules, category, engine)
+	const categories = getSubcategories(rules, category, engine, true)
 	const { rest, restWidth, bigEnough, total } =
 		groupTooSmallCategories(categories)
 	return (

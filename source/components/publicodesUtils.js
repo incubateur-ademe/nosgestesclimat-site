@@ -120,7 +120,7 @@ export const extractCategories = (
 	return sort ? sortCategories(categories) : categories
 }
 
-export const getSubcategories = (rules, category, engine) => {
+export const getSubcategories = (rules, category, engine, sort) => {
 	const sumToDisplay =
 		category.name === 'services publics'
 			? null
@@ -138,13 +138,16 @@ export const getSubcategories = (rules, category, engine) => {
 		false
 	)
 
-	return category.name === 'logement'
-		? subCategories.map((el) => ({
-				...el,
-				nodeValue:
-					el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
-		  }))
-		: subCategories
+	const items =
+		category.name === 'logement'
+			? subCategories.map((el) => ({
+					...el,
+					nodeValue:
+						el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
+			  }))
+			: subCategories
+
+	return sort ? sortCategories(items) : items
 }
 
 export const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
