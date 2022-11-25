@@ -41,7 +41,7 @@ export default function DocumentationLanding() {
 					> li {
 						height: 10rem;
 					}
-					max-width: 50rem;
+					max-width: 60rem;
 					padding: 0;
 				`}
 			>
@@ -50,6 +50,7 @@ export default function DocumentationLanding() {
 						key={dottedName}
 						className="ui__ card box"
 						css={`
+							flex: auto !important;
 							background: ${getColor(dottedName) || 'var(--color)'} !important;
 							a {
 								text-decoration: none;
@@ -76,7 +77,7 @@ export default function DocumentationLanding() {
 								text-decoration: none;
 							}
 							height: 12rem !important;
-							width: 12rem !important;
+							width: 11rem !important;
 							max-width: 12rem !important;
 							position: relative;
 						`}
