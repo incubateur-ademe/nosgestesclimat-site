@@ -89,9 +89,9 @@ export default function DocumentationLanding() {
 									white-space: nowrap;
 									mix-blend-mode: lighten;
 									filter: grayscale(1);
-									opacity: 0.25;
+									opacity: 0.2;
 									img {
-										width: 12rem;
+										width: 11rem;
 									}
 								`}
 							>
