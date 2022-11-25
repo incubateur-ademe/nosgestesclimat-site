@@ -42,7 +42,8 @@ export default () => {
 		<ol
 			css={`
 				margin: 0;
-				height: 40rem;
+				min-width: 30rem;
+				height: 50rem;
 				padding: 0;
 				border: 2px solid white;
 				cursor: pointer;
