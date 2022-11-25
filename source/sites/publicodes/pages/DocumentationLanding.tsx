@@ -35,12 +35,14 @@ export default function DocumentationLanding() {
 			<ol
 				css={`
 					display: flex;
-					justify-content: center;
+					justify-content: start;
 					align-items: center;
 					flex-wrap: wrap;
 					> li {
 						height: 10rem;
 					}
+					max-width: 50rem;
+					padding: 0;
 				`}
 			>
 				{editos.map(({ icônes, color, dottedName, title, edito, couleur }) => (
@@ -73,8 +75,9 @@ export default function DocumentationLanding() {
 								}
 								text-decoration: none;
 							}
-							height: 6rem;
-							width: 100%;
+							height: 12rem !important;
+							width: 12rem !important;
+							max-width: 12rem !important;
 							position: relative;
 						`}
 					>
