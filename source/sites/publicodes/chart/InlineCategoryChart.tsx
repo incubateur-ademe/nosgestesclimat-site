@@ -64,7 +64,7 @@ export default ({}) => {
 			<div
 				css={`
 					padding: 1rem 0.2rem;
-					height: 40rem;
+					height: 50rem;
 					width: 40rem;
 					margin: 0 auto;
 				`}
