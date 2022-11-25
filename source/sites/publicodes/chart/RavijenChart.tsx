@@ -46,7 +46,6 @@ export default () => {
 				height: 50rem;
 				padding: 0;
 				border: 2px solid white;
-				cursor: pointer;
 				display: flex;
 				justify-content: center;
 				align-items: end;
@@ -133,6 +132,9 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 				height: 100%;
 				list-style-type: none;
 				padding-left: 0;
+				a {
+					text-decoration: none;
+				}
 			`}
 		>
 			{restWidth > 0 && (
@@ -151,15 +153,17 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 				.reverse()
 				.map(({ nodeValue, title, abbreviation, icons, color, dottedName }) => {
 					return (
-						<VerticalBarFragment
-							{...{
-								label: (abbreviation && capitalise0(abbreviation)) || title,
-								nodeValue,
-								dottedName,
-								heightPercentage: (nodeValue / total) * 100,
-								icons,
-							}}
-						/>
+						<Link to={`/documentation/${utils.encodeRuleName(dottedName)}`}>
+							<VerticalBarFragment
+								{...{
+									label: (abbreviation && capitalise0(abbreviation)) || title,
+									nodeValue,
+									dottedName,
+									heightPercentage: (nodeValue / total) * 100,
+									icons,
+								}}
+							/>
+						</Link>
 					)
 				})}
 		</ol>
