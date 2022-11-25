@@ -77,6 +77,7 @@ export default function SearchBar({}: SearchBarProps) {
 					`}
 				/>
 				<input
+					autoFocus
 					type="search"
 					className="ui__"
 					value={input}
