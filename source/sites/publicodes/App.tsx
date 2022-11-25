@@ -28,6 +28,7 @@ import {
 import Actions from './Actions'
 import Fin from './fin'
 import Landing from './Landing'
+import Model from './Model'
 import Navigation from './Navigation'
 import About from './pages/About'
 import Diffuser from './pages/Diffuser'
@@ -221,6 +222,16 @@ const Router = ({}) => {
 					<Suspense fallback={<Loading />}>
 						<WithEngine>
 							<Documentation />
+						</WithEngine>
+					</Suspense>
+				}
+			/>
+			<Route
+				path={encodeURIComponent('modèle')}
+				element={
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<Model />
 						</WithEngine>
 					</Suspense>
 				}
