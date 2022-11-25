@@ -27,12 +27,16 @@ const BaseAlertBanner = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	width: 100%;
-	padding: 0.3rem 0.6rem;
+	width: calc(100% - 0.4rem);
+	margin-bottom: 0.6rem;
+	margin-right: 0.4rem;
 	border-radius: 0.3rem;
+	padding: 0.3rem 1rem;
+	text-align: center;
 
 	@media (min-width: 800px) {
 		margin: 0;
+		padding: 0.3rem 0.6rem;
 	}
 `
 

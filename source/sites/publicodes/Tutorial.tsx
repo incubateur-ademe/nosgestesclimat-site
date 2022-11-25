@@ -1,4 +1,3 @@
-import AbacusFrance from 'Images/abacus-france.svg'
 import CO2e from 'Images/co2e.svg'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import ObjectifClimat from 'Images/objectif-climat.svg'
@@ -14,7 +13,6 @@ import { TrackerContext } from '../../components/utils/withTracker'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
-import ScoreBar from './ScoreBar'
 import Slide from './TutorialSlide'
 
 export default ({}) => {
@@ -215,42 +213,6 @@ const slides = [
 						réchauffement en équivalent CO₂ pour simplifier la mesure.{' '}
 					</Trans>
 				</details>
-			</blockquote>
-		</>
-	),
-	() => (
-		<>
-			<Trans i18nKey={`publicodes.Tutorial.slide3.p1`}>
-				<h1>Et concrètement ?</h1>
-				<p>
-					Chaque année, un Français émet en moyenne environ{' '}
-					<strong>10 tonnes</strong> de CO₂e.
-				</p>
-			</Trans>
-			<AbacusFrance aria-hidden="true" css="width:8rem; height: 100%" />
-			<p>
-				<Trans i18nKey={`publicodes.Tutorial.slide3.p2`}>
-					Le score de départ de votre test est calculé à partir du mode de vie
-					moyen français. Il est à prendre comme un minimum qui reflète l'état
-					actuel du périmètre de calcul, que nous complétons chaque mois.
-				</Trans>
-			</p>
-			<p>
-				<Trans i18nKey={`publicodes.Tutorial.slide3.p3`}>
-					Chacune de vos réponses modifiera ensuite votre empreinte dans cette
-					barre de score.
-				</Trans>
-			</p>
-			<div css="margin: 1rem 0">
-				<WithEngine>
-					<ScoreBar demoMode />
-				</WithEngine>
-			</div>
-			<blockquote>
-				<Trans i18nKey={`publicodes.Tutorial.slide3.blockquote`}>
-					✨ Nouveau ! Visualisez également votre consommation de ⛽️ pétrole,
-					un indicateur complémentaire au sujet climat.
-				</Trans>
 			</blockquote>
 		</>
 	),

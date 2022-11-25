@@ -89,7 +89,7 @@ export default function Root({}) {
 				previousSimulation: persistedSimulation,
 				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices ?? {},
-				tutorials: persistedSimulation?.tutorials ?? {},
+				tutorials: persistedSimulation?.tutorials,
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
 				currentLang,
 				localisation: persistedSimulation?.localisation,

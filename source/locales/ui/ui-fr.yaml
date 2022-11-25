@@ -177,8 +177,9 @@ entries:
   Rejeter l'action: Rejeter l'action
   Reprendre la simulation: Reprendre la simulation
   Retrouver ma simulation: Retrouver ma simulation
+  Revenir au test: Revenir au test
+  Revenir aux questions: Revenir aux questions
   Revenir chez moi 🔙: Revenir chez moi 🔙
-  Revenir à ma simulation: Revenir à ma simulation
   Réduire ma conso: Réduire ma conso
   Réduire ma conso de pétrole: Réduire ma conso de pétrole
   Réduire mon empreinte: Réduire mon empreinte
@@ -197,7 +198,6 @@ entries:
   Suivez le guide !: Suivez le guide !
   Sur le même sujet: Sur le même sujet
   Sélectionnez un persona et éventuellement un graphique à afficher.: Sélectionnez un persona et éventuellement un graphique à afficher.
-  Terminer ma simulation: Terminer ma simulation
   Trajet (Optionnel): Trajet (Optionnel)
   'Tri :': 'Tri :'
   'Triées par :': 'Triées par :'
@@ -231,14 +231,15 @@ entries:
   cet article: cet article
   cette page: cette page
   components.NewsBanner.miseAJourDate: Mise à jour le {{date}}
-  components.ScoreExplanation.text:
-    <0></0> de CO2-e par an, c'est <3>un point de
-    départ théorique</3> calculé à partir de valeurs par défaut attribuées à
-    l'avance à chaque question. Au fur et à mesure de vos réponses, vous
-    <6>personnalisez votre score selon votre mode de vie</6>. Si vous répondez
-    "je ne sais pas" à une question, vous remarquerez que le total ne change pas
-    puisqu'une valeur standard vous est attribuée dans ce cas. Il est fréquent
-    que le score initial change car<8>le modèle Nos Gestes Climat évolue</8>!
+  components.ScoreExplanation.text.p1: 🧮 Voici votre score de départ, calculé à
+    partir de réponses attribuées à l'avance à chaque question ! Il évoluera à
+    chaque nouvelle réponse.
+  components.ScoreExplanation.text.p2: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
+  components.ScoreExplanation.text.p3:
+    '🤔 Si vous répondez "je ne sais pas" à une
+    question, le score ne changera pas : une valeur par défaut vous est
+    attribuée.'
+  components.ScoreExplanation.text.p4: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: La traduction de cette page est en
     version <1>beta</1>. <4>Un problème, une suggestion ?</4>
   components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
@@ -475,16 +476,6 @@ entries:
   publicodes.Tutorial.slide2.p2: Ce sont les machines qui font notre confort
     moderne qui en rejettent massivement, à tel point qu'on le compte en
     milliers de kilos par an et par personne, donc en <1>tonnes</1> de CO₂e !
-  publicodes.Tutorial.slide3.blockquote: ✨ Nouveau ! Visualisez également votre
-    consommation de ⛽️ pétrole, un indicateur complémentaire au sujet climat.
-  publicodes.Tutorial.slide3.p1: <0>Et concrètement ?</0><1>Chaque année, un
-    Français émet en moyenne environ <2>10 tonnes</2> de CO₂e.</1>
-  publicodes.Tutorial.slide3.p2: Le score de départ de votre test est calculé à
-    partir du mode de vie moyen français. Il est à prendre comme un minimum qui
-    reflète l'état actuel du périmètre de calcul, que nous complétons chaque
-    mois.
-  publicodes.Tutorial.slide3.p3: Chacune de vos réponses modifiera ensuite votre
-    empreinte dans cette barre de score.
   publicodes.Tutorial.slide5.p1: <0>Et l'objectif ?</0><1>Nous devons diminuer
     notre empreinte climat au plus vite.</1><2>En France, ça consiste à passer
     de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
