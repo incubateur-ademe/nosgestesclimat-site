@@ -16,7 +16,7 @@ import { groupTooSmallCategories } from './chartUtils'
 
 // This component was named in the honor of http://ravijen.fr/?p=440
 
-export default ({ target = 'bilan' }) => {
+export default ({ target = 'bilan', numberBottomRight }) => {
 	const { t, i18n } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
@@ -85,7 +85,9 @@ export default ({ target = 'bilan' }) => {
 								height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
 							`}
 						>
-							<SubCategoriesVerticalBar {...{ category, engine, rules }} />
+							<SubCategoriesVerticalBar
+								{...{ category, engine, rules, numberBottomRight }}
+							/>
 						</div>
 						<Link
 							to={`/documentation/${utils.encodeRuleName(category.dottedName)}`}
@@ -126,7 +128,12 @@ export default ({ target = 'bilan' }) => {
 	)
 }
 
-const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
+const SubCategoriesVerticalBar = ({
+	rules,
+	category,
+	engine,
+	numberBottomRight,
+}) => {
 	const { t, i18n } = useTranslation()
 	const categories = getSubcategories(rules, category, engine)
 	const { rest, restWidth, bigEnough, total } =
@@ -151,6 +158,7 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 						dottedName: 'rest',
 						heightPercentage: restWidth,
 						compact: true,
+						numberBottomRight,
 					}}
 				/>
 			)}
@@ -166,6 +174,7 @@ const SubCategoriesVerticalBar = ({ rules, category, engine }) => {
 									dottedName,
 									heightPercentage: (nodeValue / total) * 100,
 									icons,
+									numberBottomRight,
 								}}
 							/>
 						</Link>
@@ -182,6 +191,7 @@ const VerticalBarFragment = ({
 	dottedName,
 	heightPercentage,
 	compact,
+	numberBottomRight,
 }) => {
 	const { t, i18n } = useTranslation()
 	const [value, unit] = humanWeight({ t, i18n }, nodeValue, false)
@@ -202,7 +212,14 @@ const VerticalBarFragment = ({
 					display: block;
 					line-height: 1.2rem;
 				}
+				position: relative;
 				small {
+					${numberBottomRight &&
+					`
+					position: absolute;
+					bottom: 0.2rem;
+					right: 0.3rem;
+					`}
 					color: inherit;
 					line-height: 1rem;
 				}
@@ -222,7 +239,9 @@ const VerticalBarFragment = ({
 		>
 			<SafeCategoryImage element={{ dottedName }} voidIfFail={!compact} />
 
-			{!isOverflow && <strong>{label}</strong>}
+			{!isOverflow && (
+				<strong>{label.replace(/Attribution (SP|SMS)/g, '')}</strong>
+			)}
 			<small>
 				{value}&nbsp;{unit}
 			</small>
