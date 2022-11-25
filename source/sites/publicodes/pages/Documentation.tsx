@@ -97,7 +97,15 @@ const DocPage = ({ documentationPath, engine }) => {
 					Text: ({ children }) => (
 						<>
 							<Markdown children={children} />
-							{children.includes('<RavijenChart/>') && <RavijenChart />}
+							{children.includes('<RavijenChart/>') && (
+								<div
+									css={`
+										height: 50rem;
+									`}
+								>
+									<RavijenChart />
+								</div>
+							)}
 						</>
 					),
 					References: References,

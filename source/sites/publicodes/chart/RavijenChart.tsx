@@ -16,15 +16,20 @@ import { groupTooSmallCategories } from './chartUtils'
 
 // This component was named in the honor of http://ravijen.fr/?p=440
 
-export default () => {
+export default ({ target = 'bilan' }) => {
 	const { t, i18n } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
-	const sortedCategories = extractCategories(rules, engine).map((category) => ({
-		...category,
-		abbreviation: rules[category.dottedName].abréviation,
-	}))
-	const categories = relegateCommonCategories(sortedCategories)
+	const sortedCategories = extractCategories(rules, engine, null, target).map(
+		(category) => ({
+			...category,
+			abbreviation: rules[category.dottedName].abréviation,
+		})
+	)
+	const categories =
+		target === 'bilan'
+			? relegateCommonCategories(sortedCategories)
+			: sortedCategories
 
 	if (!categories) return null
 
@@ -43,7 +48,7 @@ export default () => {
 			css={`
 				margin: 0;
 				min-width: 30rem;
-				height: 50rem;
+				height: 100%;
 				padding: 0;
 				border: 2px solid white;
 				display: flex;
