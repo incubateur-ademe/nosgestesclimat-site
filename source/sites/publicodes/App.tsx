@@ -73,7 +73,9 @@ export default function Root({}) {
 
 	const currentLang =
 		persistedSimulation?.currentLang ??
-		getLangFromAbreviation(window.navigator.language.toLowerCase())
+		getLangFromAbreviation(
+			window.FORCE_LANGUAGE || window.navigator.language.toLowerCase()
+		)
 
 	return (
 		<Provider
