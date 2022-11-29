@@ -6,6 +6,7 @@ import unitsTranslations from './units.yaml'
 i18next
 	.use(initReactI18next)
 	.init({
+		fallbackLng: 'fr',
 		resources: Object.fromEntries(
 			Object.keys(Lang)
 				.filter((key) => key !== 'Default')
