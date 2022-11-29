@@ -66,7 +66,6 @@ https://nosgestesclimat.fr/documentation/alimentation/manger-de-saison
 https://nosgestesclimat.fr/documentation/alimentation/manger-de-saison/recalcul
 https://nosgestesclimat.fr/documentation/alimentation/boisson/eau-en-bouteille/arrêter
 https://nosgestesclimat.fr/documentation/alimentation/déchets/réduire-gaspillage
-https://nosgestesclimat.fr/documentation/alimentation/déchets/avoir-un-stop-pub
 https://nosgestesclimat.fr/documentation/alimentation/déchets/composter
 https://nosgestesclimat.fr/documentation/alimentation/déchets/recyclage
 https://nosgestesclimat.fr/documentation/alimentation/déchets/vrac
@@ -480,6 +479,7 @@ https://nosgestesclimat.fr/documentation/divers/meubles
 https://nosgestesclimat.fr/documentation/divers/meubles/allongement
 https://nosgestesclimat.fr/documentation/divers/meubles/seconde-main
 https://nosgestesclimat.fr/documentation/divers/textile/seconde-main
+https://nosgestesclimat.fr/documentation/divers/avoir-un-stop-pub
 https://nosgestesclimat.fr/documentation/divers/publicité
 https://nosgestesclimat.fr/documentation/divers/électroménager/allongement
 https://nosgestesclimat.fr/documentation/divers/électroménager/appareils-préservation-allongée
@@ -492,17 +492,6 @@ https://nosgestesclimat.fr/documentation/finance/intensité-classique
 https://nosgestesclimat.fr/documentation/finance/intensité-responsable
 https://nosgestesclimat.fr/documentation/finance/actifs-classiques
 https://nosgestesclimat.fr/documentation/finance/actifs-responsables
-https://nosgestesclimat.fr/documentation/humour
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/temps-de-lecture
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/temps-de-lecture/lecture-d'une-page
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/temps-de-lecture/pages
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/empreinte-usage
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/empreinte-usage/éclairage
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/empreinte-usage/ordinateur
-https://nosgestesclimat.fr/documentation/empreinte-mix-électrique
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/empreinte-usage/ordinateur/conso
-https://nosgestesclimat.fr/documentation/humour/lecture-AR5/empreinte-usage/ordinateur/puissance
 https://nosgestesclimat.fr/documentation/divers/électroménager
 https://nosgestesclimat.fr/documentation/divers/électroménager/appareils
 https://nosgestesclimat.fr/documentation/divers/électroménager/appareils/réfrigérateur/présent
