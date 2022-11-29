@@ -1,12 +1,12 @@
 import i18next from 'i18next'
 import { initReactI18next } from 'react-i18next'
-import { Lang } from './translation'
+import { getLangInfos, Lang } from './translation'
 import unitsTranslations from './units.yaml'
 
 i18next
 	.use(initReactI18next)
 	.init({
-		fallbackLng: 'fr',
+		fallbackLng: getLangInfos(Lang.Default).abrv,
 		resources: Object.fromEntries(
 			Object.keys(Lang)
 				.filter((key) => key !== 'Default')
