@@ -15,7 +15,11 @@ export default ({ currentQuestion, categoryColor, value }) => {
 					height: 100%;
 				`}
 			>
-				<RavijenChart target="services publics" numberBottomRight />
+				<RavijenChart
+					target="services publics"
+					numberBottomRight
+					verticalReverse={true}
+				/>
 			</motion.div>
 		)
 

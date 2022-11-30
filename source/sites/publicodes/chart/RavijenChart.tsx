@@ -16,7 +16,7 @@ import { groupTooSmallCategories } from './chartUtils'
 
 // This component was named in the honor of http://ravijen.fr/?p=440
 
-export default ({ target = 'bilan', numberBottomRight }) => {
+export default ({ target = 'bilan', numberBottomRight, verticalReverse }) => {
 	const { t, i18n } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
@@ -77,7 +77,7 @@ export default ({ target = 'bilan', numberBottomRight }) => {
 							height: 100%;
 							display: flex;
 							flex-direction: column;
-							justify-content: end;
+							justify-content: ${verticalReverse ? 'start' : 'end'};
 						`}
 					>
 						<div
@@ -87,10 +87,19 @@ export default ({ target = 'bilan', numberBottomRight }) => {
 							`}
 						>
 							<SubCategoriesVerticalBar
-								{...{ category, engine, rules, numberBottomRight }}
+								{...{
+									category,
+									engine,
+									rules,
+									numberBottomRight,
+									verticalReverse,
+								}}
 							/>
 						</div>
 						<Link
+							css={`
+								${verticalReverse && ` order: -1;`}
+							`}
 							to={`/documentation/${utils.encodeRuleName(category.dottedName)}`}
 						>
 							<div
@@ -134,11 +143,47 @@ const SubCategoriesVerticalBar = ({
 	category,
 	engine,
 	numberBottomRight,
+	verticalReverse,
 }) => {
 	const { t, i18n } = useTranslation()
 	const categories = getSubcategories(rules, category, engine, true)
 	const { rest, restWidth, bigEnough, total } =
 		groupTooSmallCategories(categories)
+
+	const reverseOrNot = (list) => (verticalReverse ? list : list.reverse())
+	const Other = () =>
+		restWidth > 0 && (
+			<VerticalBarFragment
+				{...{
+					label: restWidth < 10 ? '...' : 'Autres',
+					title: t('Le reste : ') + rest.labels.join(', '),
+					nodeValue: rest.value,
+					dottedName: 'rest',
+					heightPercentage: restWidth,
+					compact: true,
+					numberBottomRight,
+				}}
+			/>
+		)
+	const List = () =>
+		reverseOrNot(bigEnough).map(
+			({ nodeValue, title, abbreviation, icons, color, dottedName }) => {
+				return (
+					<Link to={`/documentation/${utils.encodeRuleName(dottedName)}`}>
+						<VerticalBarFragment
+							{...{
+								label: (abbreviation && capitalise0(abbreviation)) || title,
+								nodeValue,
+								dottedName,
+								heightPercentage: (nodeValue / total) * 100,
+								icons,
+								numberBottomRight,
+							}}
+						/>
+					</Link>
+				)
+			}
+		)
 	return (
 		<ol
 			css={`
@@ -150,37 +195,15 @@ const SubCategoriesVerticalBar = ({
 				}
 			`}
 		>
-			{restWidth > 0 && (
-				<VerticalBarFragment
-					{...{
-						label: restWidth < 10 ? '...' : 'Autres',
-						title: t('Le reste : ') + rest.labels.join(', '),
-						nodeValue: rest.value,
-						dottedName: 'rest',
-						heightPercentage: restWidth,
-						compact: true,
-						numberBottomRight,
-					}}
-				/>
+			{verticalReverse ? (
+				<>
+					<List /> <Other />
+				</>
+			) : (
+				<>
+					<Other /> <List />
+				</>
 			)}
-			{bigEnough
-				.reverse()
-				.map(({ nodeValue, title, abbreviation, icons, color, dottedName }) => {
-					return (
-						<Link to={`/documentation/${utils.encodeRuleName(dottedName)}`}>
-							<VerticalBarFragment
-								{...{
-									label: (abbreviation && capitalise0(abbreviation)) || title,
-									nodeValue,
-									dottedName,
-									heightPercentage: (nodeValue / total) * 100,
-									icons,
-									numberBottomRight,
-								}}
-							/>
-						</Link>
-					)
-				})}
 		</ol>
 	)
 }
