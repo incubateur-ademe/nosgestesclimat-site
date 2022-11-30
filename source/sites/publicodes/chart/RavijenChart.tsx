@@ -236,7 +236,7 @@ const VerticalBarFragment = ({
 			`}
 			ref={ref}
 			key={dottedName}
-			title={title}
+			title={`${label} : ${value} ${unit}`}
 		>
 			<SafeCategoryImage element={{ dottedName }} voidIfFail={!compact} />
 
