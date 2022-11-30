@@ -120,13 +120,13 @@ export const extractCategories = (
 	return sort ? sortCategories(categories) : categories
 }
 
+const nodesToExpand = [
+	'alimentation . repas',
+	'alimentation . déjeuners et dîners',
+	'alimentation . empreinte de 14 repas',
+]
+
 export const getSubcategories = (rules, category, engine, sort) => {
-	const sumToDisplay =
-		category.name === 'services publics'
-			? null
-			: category.name === 'logement'
-			? 'logement . impact'
-			: category.name
 
 	if (!sumToDisplay) return [category]
 
@@ -138,14 +138,27 @@ export const getSubcategories = (rules, category, engine, sort) => {
 		false
 	)
 
+	const flattenCategories = (list, nodeToExpand) =>
+		list
+			.map((item) =>
+				nodeToExpand === item.dottedName
+					? extractCategories(rules, engine, null, item.dottedName)
+					: item
+			)
+			.flat(1)
+
 	const items =
 		category.name === 'logement'
-			? subCategories.map((el) => ({
+			? console.log('C', category) ||
+			  subCategories.map((el) => ({
 					...el,
-					nodeValue:
+					nodeValue: category.operator ==='/' ? 
 						el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
 			  }))
-			: subCategories
+			//: category.name === 'alimentation'
+			//? flattenCategories(subCategories, 'alimentation . repas')
+
+	console.log('OTEMS', category.name, items)
 
 	return sort ? sortCategories(items) : items
 }
