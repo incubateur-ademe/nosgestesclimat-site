@@ -173,6 +173,7 @@ const SubCategoriesVerticalBar = ({
 						<VerticalBarFragment
 							{...{
 								label: (abbreviation && capitalise0(abbreviation)) || title,
+								title: (abbreviation && capitalise0(abbreviation)) || title,
 								nodeValue,
 								dottedName,
 								heightPercentage: (nodeValue / total) * 100,
@@ -259,7 +260,7 @@ const VerticalBarFragment = ({
 			`}
 			ref={ref}
 			key={dottedName}
-			title={`${label} : ${value} ${unit}`}
+			title={`${title} : ${value} ${unit}`}
 		>
 			<SafeCategoryImage element={{ dottedName }} voidIfFail={!compact} />
 
