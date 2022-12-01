@@ -61,9 +61,9 @@ export default function Conversation({
 				const category = orderByCategories.find(
 					(c) => question.indexOf(c.dottedName) === 0
 				)
-				if (!category) return -1000000
+				if (!category) return 1000000
 				// We artificially put this category (since it has no actionable question) at the end
-				if (category.name === 'services sociétaux') return 1000000
+				if (category.name === 'services sociétaux') return 100000
 				const value = -category?.nodeValue
 				return value
 		  })(nextQuestions)
