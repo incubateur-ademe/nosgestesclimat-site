@@ -180,6 +180,7 @@ entries:
   Revenir au test: Revenir au test
   Revenir aux questions: Revenir aux questions
   Revenir chez moi 🔙: Revenir chez moi 🔙
+  Récupération des données: Récupération des données
   Réduire ma conso: Réduire ma conso
   Réduire ma conso de pétrole: Réduire ma conso de pétrole
   Réduire mon empreinte: Réduire mon empreinte
@@ -202,6 +203,7 @@ entries:
   'Tri :': 'Tri :'
   'Triées par :': 'Triées par :'
   Un problème de traduction ?: Un problème de traduction ?
+  Une erreur est survenue lors de la récupération des données: Une erreur est survenue lors de la récupération des données
   Une personne au moins est présente dans la voiture (vous !): Une personne au moins est présente dans la voiture (vous !)
   'Une question, un problème ?': Une question, un problème ?
   Vacances: Vacances
@@ -264,12 +266,12 @@ entries:
   components.stats.StatsContent.integrationEtIframes:
     <0>En savoir plus</0><1>Les
     intégrations en iframe sont détéctées via le paramètre 'iframe' dans l'URL,
-    ceci seulement si l'intégrateur a utilisé le <1>script dédié</1>. Ainsi, les
+    ceci seulement si l'intégrateur a utilisé le <2>script dédié</2>. Ainsi, les
     visites via les iframes d'intégrateurs qui n'ont pas utilisé ce script sont
     dispersées dans les visites générales de Nos Gestes Climat. Dans l'attente
     de chiffres plus précis, ce taux est donc potentiellement sous-estimé par
-    rapport à la réalité. <4>(Données valables pour les 30 derniers
-    jours)</4></1>
+    rapport à la réalité. <5>(Données valables pour les 30 derniers
+    jours)</5></1>
   components.stats.StatsContent.scoreUtilisateurs: "<0>En savoir plus</0><1>Bien
     sûr, nous ne collectons pas <2>les données utlisateurs</2>. Néanmoins, le
     score total ainsi que l'empreinte par catégorie est présente dans l'URL de
