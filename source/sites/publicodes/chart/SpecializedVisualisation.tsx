@@ -3,10 +3,10 @@ import Inhabitants from './Inhabitants'
 import RavijenChart from './RavijenChart'
 
 export const activatedSpecializedVisualisations = [
-	'services publics . question rhétorique',
+	'services sociétaux . question rhétorique',
 ]
 export default ({ currentQuestion, categoryColor, value }) => {
-	if (currentQuestion === 'services publics . question rhétorique')
+	if (currentQuestion === 'services sociétaux . question rhétorique')
 		return (
 			<motion.div
 				initial={{ scale: 0 }}
@@ -16,7 +16,7 @@ export default ({ currentQuestion, categoryColor, value }) => {
 				`}
 			>
 				<RavijenChart
-					target="services publics"
+					target="services sociétaux"
 					numberBottomRight
 					verticalReverse={true}
 				/>

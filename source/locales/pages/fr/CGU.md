@@ -41,7 +41,7 @@ traitements de données à caractère personnel.
 L'utilisateur accède au simulateur au travers du bouton « faire le
 test », qui enclenche un questionnaire afin de déterminer l'empreinte
 carbone. Les thèmes abordés sont notamment, l'alimentation, le
-transport, le logement, les services publics, ...
+transport, le logement, les services sociétaux, ...
 
 Il peut à tout moment cliquer sur le bouton « comprendre le calcul »
 afin d'en apprendre plus sur le simulateur.

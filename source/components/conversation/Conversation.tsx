@@ -55,7 +55,6 @@ export default function Conversation({
 	const tracker = useContext(TrackerContext)
 	const objectifs = useSelector(objectifsSelector)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
-
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = orderByCategories
 		? sortBy((question) => {
@@ -64,12 +63,11 @@ export default function Conversation({
 				)
 				if (!category) return -1000000
 				// We artificially put this category (since it has no actionable question) at the end
-				if (category.name === 'services publics') return 1000000
+				if (category.name === 'services sociétaux') return 1000000
 				const value = -category?.nodeValue
 				return value
 		  })(nextQuestions)
 		: nextQuestions
-
 	const focusedCategory = useQuery().get('catégorie')
 	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
 

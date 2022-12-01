@@ -175,6 +175,6 @@ export function relegate(keys, array) {
 }
 
 export function relegateCommonCategories(array) {
-	const keys = ['services publics']
+	const keys = ['services sociétaux']
 	return relegate(keys, array)
 }
