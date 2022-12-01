@@ -106,6 +106,15 @@ const DocPage = ({ documentationPath, engine }) => {
 									<RavijenChart />
 								</div>
 							)}
+							{children.includes('<RavijenChartSociétaux/>') && (
+								<div
+									css={`
+										height: 50rem;
+									`}
+								>
+									<RavijenChart target="services sociétaux" numberBottomRight />
+								</div>
+							)}
 						</>
 					),
 					References: References,
