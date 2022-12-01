@@ -122,11 +122,7 @@ export const extractCategories = (
 
 export const getSubcategories = (rules, category, engine, sort) => {
 	const sumToDisplay =
-		category.name === 'services publics'
-			? null
-			: category.name === 'logement'
-			? 'logement . impact'
-			: category.name
+		category.name === 'logement' ? 'logement . impact' : category.name
 
 	if (!sumToDisplay) return [category]
 
