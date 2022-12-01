@@ -12,8 +12,7 @@ L'utilisation de la plateforme est gratuite et ouverte à tous.
 
 La plateforme Nos Gestes Climat a pour objectif d'évaluer l'empreinte
 carbone individuelle annuelle de consommation, total et par grandes catégories
-(alimentation, transport, logement, divers, services publics,
-numérique), de la situer par rapport aux objectifs climatiques. En
+(alimentation, transport, logement, divers, services socétaux), de la situer par rapport aux objectifs climatiques. En
 fonction des réponses et du résultat, des gestes personnalisés sont
 proposés.
 
