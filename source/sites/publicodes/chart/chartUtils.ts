@@ -27,7 +27,7 @@ export const groupTooSmallCategories = (categories) => {
 }
 
 export const getTitle = (title: String) => {
-	const titleRegex = /[a-zA-Z'\u00C0-\u00ff]+( [a-zA-Z'\u00C0-\u00ff]+)*/
-	const newTitle = title?.match(titleRegex)[0]
+	const percentRegex = /^[0-9% ]*/
+	const newTitle = title?.replace(percentRegex, '')
 	return newTitle
 }
