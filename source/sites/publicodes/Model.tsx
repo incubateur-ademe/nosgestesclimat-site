@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import ModelDemoBlock from './ModelDemoBlock'
+import ModelIssuePreviews from './ModelIssuePreviews'
 
 // I18N : I didn't write this page as a .md file, even if it's easier to translate and edit, because of its highly interactive nature
 export default ({}) => {
@@ -100,9 +101,10 @@ export default ({}) => {
 					.
 				</Trans>
 				<p>
-					Voici à titre d'exemple quelques <em>issues</em> importantes du
-					moment.
+					Voici à titre d'exemple quelques <em>issues</em> importantes du moment
+					parmi la centaine de sujets documentés.
 				</p>
+				<ModelIssuePreviews />
 			</p>
 		</div>
 	)
