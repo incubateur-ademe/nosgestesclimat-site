@@ -79,8 +79,12 @@ export default ({}) => {
 				</Trans>
 			</p>
 			<p>
-				TODO montrer visuellement le périmètre important du projet. Vue en
-				graphe ?{' '}
+				Il est constitué d'une combinaison de centaines de modèles micro
+				"bottom-up" pour les consommations carbonées de notre vie quotidienne,
+				et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
+				l'empreinte par personne des services dits sociétaux (services publics
+				et services de base tels les télécom). TODO lien vers la realease
+				d'explication.
 			</p>
 			<h2>
 				<Trans>En développement actif</Trans>
@@ -91,10 +95,6 @@ export default ({}) => {
 					"Puelse" github ?{' '}
 				</Trans>
 			</p>
-			<h2>
-				<Trans>Un modèle hybride</Trans>
-			</h2>
-			<p>Faire un lien vers la page de release du modèle hybride</p>
 		</div>
 	)
 }
