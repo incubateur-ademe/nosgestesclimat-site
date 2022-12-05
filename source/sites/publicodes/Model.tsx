@@ -41,28 +41,31 @@ export default ({}) => {
 				</Trans>
 			</p>
 			<h2>
-				<Trans>Une nouvelle expérience métier intéractive</Trans>
+				<Trans>Une technologie moderne</Trans>
 			</h2>
 			<p>
 				Le modèle est basé sur <a href="https://publi.codes">publicodes</a>, un
 				langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
+				Entièrement paramétrable, depuis les questions posées à l'utilisateur
+				jusqu'aux hypothèses du modèle de calcul.
 			</p>
 			<p>
 				{' '}
-				Entièrement paramétrable, des questions posées à l'utilisateur jusqu'aux
-				hypothèses du modèle de calcul, TODO Montrer ici qu'en modifiant une
-				valeur (par exemple l'empreinte d'une voiture) on change le résultat
-				final de la simulation, et que ça tourne là directement dans le
-				navigateur.
+				⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres de calcul
+				sur les résultats finaux.
 			</p>
 			<ModelDemoBlock />
 			<p>
 				🕵️
 				<Trans>
-					Le modèle de calcul est directement embarqué chez le client, dans son
-					navigateur. En effet, les données collectées sont si descriptive de la
-					vie des utilisateurs que faire les calculs côté serveur poserait un
-					risque élevé pour ces données sensibles.
+					Le modèle de calcul est directement embarqué chez le client, le calcul
+					a lieu là dans votre navigateur, pas sur nos serveurs. Les données
+					collectées sont si descriptives de la vie des utilisateurs, donc
+					sensibles en termes de vie privée, que faire les calculs côté serveur{' '}
+					<a href="https://github.com/datagir/nosgestesclimat-site/issues/400">
+						et les stocker
+					</a>{' '}
+					poserait un risque trop élevé.
 				</Trans>
 			</p>
 			<h2>
