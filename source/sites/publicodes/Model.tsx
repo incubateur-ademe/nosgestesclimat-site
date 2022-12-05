@@ -33,11 +33,6 @@ export default ({}) => {
 					<Link to="/documention">explorer</Link>,{' '}
 					<Link to="/contribuer">donner son avis</Link>,{' '}
 					<a href="https://github.com/datagir/nosgestesclimat">l'améliorer</a>.
-					C'est un standard qui évolue régulièrement et qui peut être réutilisé{' '}
-					<a href="https://github.com/datagir/nosgestesclimat/blob/master/LICENSE">
-						librement
-					</a>{' '}
-					par tout type d'acteur.
 				</Trans>
 			</p>
 			<h2>
@@ -46,8 +41,14 @@ export default ({}) => {
 			<p>
 				Le modèle est basé sur <a href="https://publi.codes">publicodes</a>, un
 				langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
+			</p>
+			<p>
 				Entièrement paramétrable, depuis les questions posées à l'utilisateur
-				jusqu'aux hypothèses du modèle de calcul.
+				jusqu'aux hypothèses du modèle de calcul, il peut être réutilisé{' '}
+				<a href="https://github.com/datagir/nosgestesclimat/blob/master/LICENSE">
+					librement
+				</a>{' '}
+				par tout type d'acteur.
 			</p>
 			<p>
 				{' '}
@@ -91,9 +92,17 @@ export default ({}) => {
 			</h2>
 			<p>
 				<Trans i18nKey={'model.active'}>
-					TODO Montrer ici l'activité intense sur github : les issues, une vue
-					"Puelse" github ?{' '}
+					La construction du modèle (pistes de travail, réflexions en cours,
+					feuille de route, etc.) est amplement{' '}
+					<a href="https://github.com/datagir/nosgestesclimat/issues">
+						documentée publiquement
+					</a>
+					.
 				</Trans>
+				<p>
+					Voici à titre d'exemple quelques <em>issues</em> importantes du
+					moment.
+				</p>
 			</p>
 		</div>
 	)
