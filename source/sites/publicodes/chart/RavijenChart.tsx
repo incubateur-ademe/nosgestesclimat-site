@@ -156,7 +156,7 @@ const SubCategoriesVerticalBar = ({
 		restWidth > 0 && (
 			<VerticalBarFragment
 				{...{
-					label: restWidth < 10 ? '...' : 'Autres',
+					label: restWidth < 5 ? '...' : 'Autres',
 					title: t('Le reste : ') + rest.labels.join(', '),
 					nodeValue: rest.value,
 					dottedName: 'rest',

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
 export default ({ element, whiteBackground = false, voidIfFail }) => {
+	if (element.dottedName === 'rest') return
 	const [fail, setFail] = useState(false)
 	return (
 		<span
