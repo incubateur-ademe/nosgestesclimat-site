@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
 
+// I18N : I didn't write this page as a .md file, even if it's easier to translate and edit, because of its highly interactive nature
 export default ({}) => {
 	const rules = useSelector((state) => state.rules)
 	const numberOfRules = Object.keys(rules).length
@@ -31,8 +32,11 @@ export default ({}) => {
 					<Link to="/documention">explorer</Link>,{' '}
 					<Link to="/contribuer">donner son avis</Link>,{' '}
 					<a href="https://github.com/datagir/nosgestesclimat">l'améliorer</a>.
-					C'est un standard qui évolue régulièrement et qui peut être réutilisé
-					librement par tout type d'acteur.
+					C'est un standard qui évolue régulièrement et qui peut être réutilisé{' '}
+					<a href="https://github.com/datagir/nosgestesclimat/blob/master/LICENSE">
+						librement
+					</a>{' '}
+					par tout type d'acteur.
 				</Trans>
 			</p>
 			<h2>
@@ -43,7 +47,15 @@ export default ({}) => {
 				d'une voiture) on change le résultat final de la simulation, et que ça
 				tourne là directement dans le navigateur.
 			</p>
-			<p>Parle de la vie privée : ça tourne chez vous, pas sur des serveurs</p>
+			<p>
+				🕵️
+				<Trans>
+					Le modèle de calcul est directement embarqué chez le client, dans son
+					navigateur. En effet, les données collectées sont si descriptive de la
+					vie des utilisateurs que faire les calculs côté serveur poserait un
+					risque élevé pour ces données sensibles.
+				</Trans>
+			</p>
 			<h2>
 				<Trans>Un modèle complet</Trans>
 			</h2>
