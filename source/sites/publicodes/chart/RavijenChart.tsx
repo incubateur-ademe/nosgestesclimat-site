@@ -12,7 +12,7 @@ import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { humanWeight } from '../HumanWeight'
-import { groupTooSmallCategories } from './chartUtils'
+import { getTitle, groupTooSmallCategories } from './chartUtils'
 
 // This component was named in the honor of http://ravijen.fr/?p=440
 
@@ -151,6 +151,7 @@ const SubCategoriesVerticalBar = ({
 		groupTooSmallCategories(categories)
 
 	const reverseOrNot = (list) => (verticalReverse ? list : list.reverse())
+
 	const Other = () =>
 		restWidth > 0 && (
 			<VerticalBarFragment
@@ -168,12 +169,17 @@ const SubCategoriesVerticalBar = ({
 	const List = () =>
 		reverseOrNot(bigEnough).map(
 			({ nodeValue, title, abbreviation, icons, color, dottedName }) => {
+				const titleWithoutPercent = getTitle(title)
 				return (
 					<Link to={`/documentation/${utils.encodeRuleName(dottedName)}`}>
 						<VerticalBarFragment
 							{...{
-								label: (abbreviation && capitalise0(abbreviation)) || title,
-								title: (abbreviation && capitalise0(abbreviation)) || title,
+								label:
+									(abbreviation && capitalise0(abbreviation)) ||
+									titleWithoutPercent,
+								title:
+									(abbreviation && capitalise0(abbreviation)) ||
+									titleWithoutPercent,
 								nodeValue,
 								dottedName,
 								heightPercentage: (nodeValue / total) * 100,

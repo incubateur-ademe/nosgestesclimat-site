@@ -12,7 +12,7 @@ export const groupTooSmallCategories = (categories) => {
 					}
 					return {
 						value: tooSmall ? memo.value + nodeValue : memo.value,
-						labels: tooSmall ? [...memo.labels, title] : memo.labels,
+						labels: tooSmall ? [...memo.labels, getTitle(title)] : memo.labels,
 					}
 				},
 				{ value: 0, labels: [] }
@@ -24,4 +24,10 @@ export const groupTooSmallCategories = (categories) => {
 	)
 
 	return { rest, bigEnough, total, restWidth }
+}
+
+export const getTitle = (title: String) => {
+	const titleRegex = /[a-zA-Z'\u00C0-\u00ff]+( [a-zA-Z'\u00C0-\u00ff]+)*/
+	const newTitle = title?.match(titleRegex)[0]
+	return newTitle
 }
