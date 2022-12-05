@@ -88,6 +88,10 @@ export default ({}) => {
 					"Puelse" github ?{' '}
 				</Trans>
 			</p>
+			<h2>
+				<Trans>Un modèle hybride</Trans>
+			</h2>
+			<p>Faire un lien vers la page de release du modèle hybride</p>
 		</div>
 	)
 }
