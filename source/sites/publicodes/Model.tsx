@@ -2,6 +2,7 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
+import ModelDemoBlock from './ModelDemoBlock'
 
 // I18N : I didn't write this page as a .md file, even if it's easier to translate and edit, because of its highly interactive nature
 export default ({}) => {
@@ -43,10 +44,18 @@ export default ({}) => {
 				<Trans>Une nouvelle expérience métier intéractive</Trans>
 			</h2>
 			<p>
-				TODO Montrer ici qu'en modifiant une valeur (par exemple l'empreinte
-				d'une voiture) on change le résultat final de la simulation, et que ça
-				tourne là directement dans le navigateur.
+				Le modèle est basé sur <a href="https://publi.codes">publicodes</a>, un
+				langage conçu par l'État pour exprimer des algorithmes d'intérêt public.
 			</p>
+			<p>
+				{' '}
+				Entièrement paramétrable, des questions posées à l'utilisateur jusqu'aux
+				hypothèses du modèle de calcul, TODO Montrer ici qu'en modifiant une
+				valeur (par exemple l'empreinte d'une voiture) on change le résultat
+				final de la simulation, et que ça tourne là directement dans le
+				navigateur.
+			</p>
+			<ModelDemoBlock />
 			<p>
 				🕵️
 				<Trans>
