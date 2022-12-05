@@ -106,7 +106,7 @@ const DocPage = ({ documentationPath, engine }) => {
 									<RavijenChart />
 								</div>
 							)}
-							{children.includes('<RavijenChartSociétaux/>') && (
+							{children.includes('<RavijenChartSocietaux/>') && (
 								<div
 									css={`
 										height: 50rem;
