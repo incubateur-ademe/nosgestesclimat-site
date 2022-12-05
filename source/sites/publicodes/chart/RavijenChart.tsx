@@ -256,7 +256,7 @@ const VerticalBarFragment = ({
 				}
 				border-top: 1px solid white;
 				display: flex;
-				flex-direction: column;
+				flex-direction: ${nodeValue < 100 ? 'row' : 'column'};
 				justify-content: center;
 				img {
 					width: 2rem;
@@ -270,10 +270,15 @@ const VerticalBarFragment = ({
 		>
 			<SafeCategoryImage element={{ dottedName }} voidIfFail={!compact} />
 
-			{!isOverflow && (
-				<strong>{label.replace(/Attribution (SP|SMS)/g, '')}</strong>
-			)}
-			<small>
+			{!isOverflow && <strong>{label}</strong>}
+			<small
+				css={`
+					${nodeValue < 100 &&
+					`
+					padding-left: 0.5rem;
+					line-height: 1.2rem !important`};
+				`}
+			>
 				{value}&nbsp;{unit}
 			</small>
 		</li>
