@@ -13,11 +13,11 @@ import SpecializedVisualisation, {
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
 
-export default ({}) => {
+export default ({ givenEngine }) => {
 	// needed for this component to refresh on situation change :
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
-	const engine = useEngine(objectifs)
+	const engine = givenEngine || useEngine(objectifs)
 	const [categories, setCategories] = useState(
 		extractCategories(rules, engine).map((category) => ({
 			...category,

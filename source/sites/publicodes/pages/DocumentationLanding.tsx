@@ -25,6 +25,19 @@ export default function DocumentationLanding() {
 				description={t('meta.publicodes.pages.Documentation.description')}
 			/>
 			<h1>Documentation</h1>
+			<p>
+				<Trans>
+					Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du
+					même nom, composé d'un ensemble de briques. Sur cette documentation,
+					vous avez accès en toute transparence à l'ensemble des variables du
+					calcul.
+				</Trans>
+			</p>
+			<p>
+				<Link to="/modèle">
+					💡 <Trans> En savoir plus sur notre modèle</Trans>
+				</Link>
+			</p>
 			<h2>
 				<Trans>Explorez nos modèles</Trans>
 			</h2>
