@@ -1,7 +1,10 @@
-import Engine from 'publicodes'
+import Engine, { utils } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import HumanWeight from './HumanWeight'
+
+const encodeRuleName = utils.encodeRuleName
 
 const demoDottedNames = [
 	'intensité électricité',
@@ -44,7 +47,7 @@ export default () => {
 				{demoDottedNames.map((el) => (
 					<li key={el}>
 						<label>
-							{el}{' '}
+							<Link to={'/documentation/' + encodeRuleName(el)}>{el}</Link>{' '}
 							<input
 								type="number"
 								value={situation[el]}
