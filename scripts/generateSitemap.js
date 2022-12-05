@@ -10,6 +10,7 @@ const destinationURL = path.resolve(
 const baseURLs = `https://nosgestesclimat.fr/simulateur/bilan
 https://nosgestesclimat.fr/vie-privée
 https://nosgestesclimat.fr/documentation
+https://nosgestesclimat.fr/modèle
 https://nosgestesclimat.fr/à-propos
 https://nosgestesclimat.fr/pétrole-et-gaz
 https://nosgestesclimat.fr/nouveautés
