@@ -36,10 +36,13 @@ export default () => {
 		)
 	}, [situation])
 
-	console.log(situation, indicators)
-
 	const onChange = (dottedName, value) =>
 		setSituation({ ...situation, [dottedName]: value })
+
+	const defaultValues = demoDottedNames.reduce((obj, el) => {
+		obj[el] = engine.evaluate(el).nodeValue
+		return obj
+	}, {})
 
 	return (
 		<div css="margin: 1rem 0; padding: .6rem;  background: var(--lighterColor)">
@@ -51,6 +54,7 @@ export default () => {
 							<input
 								type="number"
 								value={situation[el]}
+								placeholder={defaultValues[el]}
 								onChange={(e) =>
 									onChange(el, e.target.value === '' ? null : e.target.value)
 								}
