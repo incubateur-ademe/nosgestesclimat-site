@@ -96,6 +96,14 @@ const DocPage = ({ documentationPath, engine }) => {
 					Link: Link,
 					Text: ({ children }) => (
 						<>
+							<Helmet>
+								<meta
+									property="og:image"
+									content={`https://ogimager.osc-fr1.scalingo.io/capture/${encodeURIComponent(
+										window.location.href
+									)}/${encodeURIComponent('documentationRuleRoot header')}`}
+								/>
+							</Helmet>
 							<Markdown children={children} />
 							{children.includes('<RavijenChart/>') && (
 								<div
