@@ -1,6 +1,7 @@
-const hideSmallerThanRatio = 0.1
-
-export const groupTooSmallCategories = (categories) => {
+export const groupTooSmallCategories = (
+	categories,
+	hideSmallerThanRatio = 0.1
+) => {
 	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
 	const rest = categories
 			.filter((el) => el.nodeValue)

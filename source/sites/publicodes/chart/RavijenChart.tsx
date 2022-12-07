@@ -10,6 +10,7 @@ import { useEngine } from '../../../components/utils/EngineContext'
 import { capitalise0, utils } from 'publicodes'
 import { useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
+import { useElementSize } from 'usehooks-ts'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { humanWeight } from '../HumanWeight'
 import { getTitle, groupTooSmallCategories } from './chartUtils'
@@ -18,7 +19,7 @@ import { getTitle, groupTooSmallCategories } from './chartUtils'
 
 export default ({
 	target = 'bilan',
-	numberBottomRight,
+	numberBottomRight, // This saves space, but is less visually attractive. Hence activated for the more technical "services sociétaux" graph, not for the main graph
 	verticalReverse,
 	noLinks,
 }) => {
@@ -155,8 +156,17 @@ const SubCategoriesVerticalBar = ({
 }) => {
 	const { t, i18n } = useTranslation()
 	const categories = getSubcategories(rules, category, engine, true)
-	const { rest, restWidth, bigEnough, total } =
-		groupTooSmallCategories(categories)
+
+	const [barRef, { width, height }] = useElementSize()
+	console.log(width, height)
+
+	const maximumBarHeightPixels = 30,
+		maximumBarHeightRatio = maximumBarHeightPixels / height
+
+	const { rest, restWidth, bigEnough, total } = groupTooSmallCategories(
+		categories,
+		maximumBarHeightRatio
+	)
 
 	const reverseOrNot = (list) => (verticalReverse ? list : list.reverse())
 
@@ -212,6 +222,7 @@ const SubCategoriesVerticalBar = ({
 					text-decoration: none;
 				}
 			`}
+			ref={barRef}
 		>
 			{verticalReverse ? (
 				<>
