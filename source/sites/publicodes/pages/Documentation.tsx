@@ -140,6 +140,7 @@ const GraphContainer = styled.div`
 	height: 45rem;
 	width: 90%;
 	margin: 2rem 1rem;
+	overflow: scroll;
 `
 
 function BackToSimulation() {

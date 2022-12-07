@@ -65,7 +65,7 @@ export default ({ givenEngine }) => {
 				css={`
 					padding: 1rem 0.2rem;
 					height: 50rem;
-					width: 40rem;
+					overflow: scroll;
 					margin: 0 auto;
 				`}
 			>
