@@ -7,12 +7,18 @@ export const groupTooSmallCategories = (categories) => {
 			.reduce(
 				(memo, { nodeValue, title, icons }) => {
 					const tooSmall = nodeValue < hideSmallerThanRatio * total
+
 					if (tooSmall) {
 						//console.log(title, nodeValue)
 					}
 					return {
 						value: tooSmall ? memo.value + nodeValue : memo.value,
-						labels: tooSmall ? [...memo.labels, getTitle(title)] : memo.labels,
+						labels: tooSmall
+							? [
+									...memo.labels,
+									`${getTitle(title)} [${Math.round(nodeValue)} kg]`,
+							  ]
+							: memo.labels,
 					}
 				},
 				{ value: 0, labels: [] }
