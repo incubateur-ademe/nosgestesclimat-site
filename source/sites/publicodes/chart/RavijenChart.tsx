@@ -8,7 +8,7 @@ import {
 import { useEngine } from '../../../components/utils/EngineContext'
 
 import { capitalise0, utils } from 'publicodes'
-import { useLayoutEffect, useRef, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useElementSize } from 'usehooks-ts'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
@@ -158,7 +158,6 @@ const SubCategoriesVerticalBar = ({
 	const categories = getSubcategories(rules, category, engine, true)
 
 	const [barRef, { width, height }] = useElementSize()
-	console.log(width, height)
 
 	const maximumBarHeightPixels = 30,
 		maximumBarHeightRatio = maximumBarHeightPixels / height
@@ -248,16 +247,28 @@ const VerticalBarFragment = ({
 }) => {
 	const { t, i18n } = useTranslation()
 	const [value, unit] = humanWeight({ t, i18n }, nodeValue, false)
+	const [hidden, setHidden] = useState({})
 
-	const ref = useRef()
-	const isOverflow = useIsOverflow(ref, true)
+	const [ref, { width, height }] = useElementSize()
+
+	console.log(dottedName, height)
+	useEffect(() => {
+		if (!height) return
+		if (height < 80 && !hidden.value) {
+			setHidden({ value: true, largeImage: true })
+			return
+		}
+		if (height < 30 && !hidden.label) {
+			setHidden({ value: true, label: true, largeImage: true })
+			return
+		}
+	}, [height, hidden])
 
 	return (
 		<li
 			css={`
 				text-align: center;
 				margin: 0;
-				padding: 0 0 0.4rem;
 				height: ${heightPercentage}%;
 				color: white;
 				strong {
@@ -282,6 +293,7 @@ const VerticalBarFragment = ({
 				justify-content: center;
 				img {
 					width: 2rem;
+					${hidden.largeImage && `width: 1.6rem`};
 					${compact ? 'height: 1rem' : 'height: auto'}
 				}
 			`}
@@ -291,45 +303,21 @@ const VerticalBarFragment = ({
 		>
 			<SafeCategoryImage element={{ dottedName }} voidIfFail={!compact} />
 
-			{!isOverflow && <strong>{label}</strong>}
-			<small
-				css={`
-					${nodeValue < 100 &&
-					`
+			{!hidden.label && <strong>{label}</strong>}
+			{(!hidden.value || numberBottomRight) && (
+				<small
+					css={`
+						${nodeValue < 100 &&
+						`
 					padding-left: 0.5rem;
 					line-height: 1.2rem !important`};
-				`}
-			>
-				{value}&nbsp;{unit}
-			</small>
+					`}
+				>
+					{value}&nbsp;{unit}
+				</small>
+			)}
 		</li>
 	)
 }
-
-const useIsOverflow = (ref, isVerticalOverflow, callback) => {
-	const [isOverflow, setIsOverflow] = useState(undefined)
-
-	useLayoutEffect(() => {
-		const { current } = ref
-		const { clientWidth, scrollWidth, clientHeight, scrollHeight } = current
-
-		const trigger = () => {
-			const hasOverflow = isVerticalOverflow
-				? scrollHeight > clientHeight
-				: scrollWidth > clientWidth
-
-			setIsOverflow(hasOverflow)
-
-			if (callback) callback(hasOverflow)
-		}
-
-		if (current) {
-			trigger()
-		}
-	}, [callback, ref, isVerticalOverflow])
-
-	return isOverflow
-}
-
 const ConditionalLink = ({ active, ...props }) =>
 	active ? <Link {...props} /> : <span>{props.children}</span>
