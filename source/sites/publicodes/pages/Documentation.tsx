@@ -106,22 +106,14 @@ const DocPage = ({ documentationPath, engine }) => {
 							</Helmet>
 							<Markdown children={children} />
 							{children.includes('<RavijenChart/>') && (
-								<div
-									css={`
-										height: 50rem;
-									`}
-								>
+								<GraphContainer>
 									<RavijenChart />
-								</div>
+								</GraphContainer>
 							)}
 							{children.includes('<RavijenChartSocietaux/>') && (
-								<div
-									css={`
-										height: 50rem;
-									`}
-								>
+								<GraphContainer>
 									<RavijenChart target="services sociétaux" numberBottomRight />
-								</div>
+								</GraphContainer>
 							)}
 						</>
 					),
@@ -131,6 +123,11 @@ const DocPage = ({ documentationPath, engine }) => {
 		</DocumentationStyle>
 	)
 }
+const GraphContainer = styled.div`
+	height: 45rem;
+	width: 90%;
+	margin: 2rem 1rem;
+`
 
 function BackToSimulation() {
 	const url = useSelector(currentSimulationSelector)?.url
