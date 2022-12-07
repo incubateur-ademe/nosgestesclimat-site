@@ -96,6 +96,7 @@ const DocPage = ({ documentationPath, engine }) => {
 					Link: Link,
 					Text: ({ children }) => (
 						<>
+							{/* This isn't clean, created as many Helmets as there are text nodes. Should be integrated in publicodes as an option */}
 							<Helmet>
 								<meta
 									property="og:image"
@@ -123,6 +124,18 @@ const DocPage = ({ documentationPath, engine }) => {
 		</DocumentationStyle>
 	)
 }
+
+// Not integratable yet, see https://github.com/betagouv/publicodes/issues/336
+const GithubContributionLink = ({ dottedName }) => (
+	<a
+		href={`https://github.com/search?q=${encodeURIComponent(
+			`repo:datagir/nosgestesclimat "${dottedName}:"`
+		)} path:data&type=code`}
+	>
+		✏️ Contribuer
+	</a>
+)
+
 const GraphContainer = styled.div`
 	height: 45rem;
 	width: 90%;
