@@ -262,7 +262,6 @@ const VerticalBarFragment = ({
 					width: 2rem;
 					${compact ? 'height: 1rem' : 'height: auto'}
 				}
-				${isOverflow && `border: 1px dashed chartreuse`}
 			`}
 			ref={ref}
 			key={dottedName}
