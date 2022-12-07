@@ -89,7 +89,11 @@ export default ({
 						<div
 							css={`
 								background: ${category.color};
-								height: ${(category.nodeValue / empreinteMax.nodeValue) * 100}%;
+								--availableHeight: calc(100% - 7rem);
+								height: calc(
+									${category.nodeValue / empreinteMax.nodeValue} *
+										var(--availableHeight)
+								);
 							`}
 						>
 							<SubCategoriesVerticalBar
@@ -112,6 +116,7 @@ export default ({
 						>
 							<div
 								css={`
+									height: 7rem;
 									margin-top: 0.4rem;
 									background: var(--color) !important;
 									> span > img {
@@ -258,7 +263,7 @@ const VerticalBarFragment = ({
 			setHidden({ value: true, largeImage: true })
 			return
 		}
-		if (height < 30 && !hidden.label) {
+		if (height < 40 && !hidden.label) {
 			setHidden({ value: true, label: true, largeImage: true })
 			return
 		}
