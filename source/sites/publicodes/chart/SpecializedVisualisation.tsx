@@ -12,7 +12,7 @@ export default ({ currentQuestion, categoryColor, value }) => {
 				initial={{ scale: 0 }}
 				animate={{ scale: 1 }}
 				css={`
-					width: 40rem;
+					width: 100%;
 					height: 100%;
 				`}
 			>
