@@ -13,6 +13,7 @@ export default ({ currentQuestion, categoryColor, value }) => {
 				animate={{ scale: 1 }}
 				css={`
 					width: 100%;
+					min-width: 40rem;
 					height: 100%;
 				`}
 			>
