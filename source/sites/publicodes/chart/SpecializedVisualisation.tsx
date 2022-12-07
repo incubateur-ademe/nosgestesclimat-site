@@ -16,6 +16,7 @@ export default ({ currentQuestion, categoryColor, value }) => {
 				`}
 			>
 				<RavijenChart
+					noLinks
 					target="services sociétaux"
 					numberBottomRight
 					verticalReverse={true}

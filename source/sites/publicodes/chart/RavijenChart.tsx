@@ -16,7 +16,12 @@ import { getTitle, groupTooSmallCategories } from './chartUtils'
 
 // This component was named in the honor of http://ravijen.fr/?p=440
 
-export default ({ target = 'bilan', numberBottomRight, verticalReverse }) => {
+export default ({
+	target = 'bilan',
+	numberBottomRight,
+	verticalReverse,
+	noLinks,
+}) => {
 	const { t, i18n } = useTranslation()
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
@@ -88,6 +93,7 @@ export default ({ target = 'bilan', numberBottomRight, verticalReverse }) => {
 						>
 							<SubCategoriesVerticalBar
 								{...{
+									noLinks,
 									category,
 									engine,
 									rules,
@@ -96,7 +102,8 @@ export default ({ target = 'bilan', numberBottomRight, verticalReverse }) => {
 								}}
 							/>
 						</div>
-						<Link
+						<ConditionalLink
+							active={!noLinks}
 							css={`
 								${verticalReverse && ` order: -1;`}
 							`}
@@ -130,7 +137,7 @@ export default ({ target = 'bilan', numberBottomRight, verticalReverse }) => {
 								</h3>
 								{value}&nbsp;{unit}
 							</div>
-						</Link>
+						</ConditionalLink>
 					</li>
 				)
 			})}
@@ -144,6 +151,7 @@ const SubCategoriesVerticalBar = ({
 	engine,
 	numberBottomRight,
 	verticalReverse,
+	noLinks,
 }) => {
 	const { t, i18n } = useTranslation()
 	const categories = getSubcategories(rules, category, engine, true)
@@ -171,7 +179,10 @@ const SubCategoriesVerticalBar = ({
 			({ nodeValue, title, abbreviation, icons, color, dottedName }) => {
 				const titleWithoutPercent = getTitle(title)
 				return (
-					<Link to={`/documentation/${utils.encodeRuleName(dottedName)}`}>
+					<ConditionalLink
+						active={!noLinks}
+						to={`/documentation/${utils.encodeRuleName(dottedName)}`}
+					>
 						<VerticalBarFragment
 							{...{
 								label:
@@ -187,7 +198,7 @@ const SubCategoriesVerticalBar = ({
 								numberBottomRight,
 							}}
 						/>
-					</Link>
+					</ConditionalLink>
 				)
 			}
 		)
@@ -308,3 +319,6 @@ const useIsOverflow = (ref, isVerticalOverflow, callback) => {
 
 	return isOverflow
 }
+
+const ConditionalLink = ({ active, ...props }) =>
+	active ? <Link {...props} /> : <span>{props.children}</span>
