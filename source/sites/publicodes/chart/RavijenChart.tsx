@@ -263,12 +263,16 @@ const VerticalBarFragment = ({
 			setHidden({ value: true, largeImage: true })
 			return
 		}
-		if (height < 40 && !hidden.label) {
-			setHidden({ value: true, label: true, largeImage: true })
+		if (height < 50 && !hidden.inline) {
+			setHidden({ value: true, inline: true, largeImage: true })
+			return
+		}
+		if (height < 30 && !hidden.label) {
+			setHidden({ value: true, inline: true, label: true, largeImage: true })
 			return
 		}
 	}, [height, hidden])
-
+	console.log(dottedName, hidden.inline)
 	return (
 		<li
 			css={`
@@ -278,7 +282,9 @@ const VerticalBarFragment = ({
 				color: white;
 				strong {
 					color: inherit;
-					display: block;
+					display: flex;
+					align-items: center;
+					justify-content: center;
 					line-height: 1.2rem;
 				}
 				position: relative;
@@ -294,7 +300,7 @@ const VerticalBarFragment = ({
 				}
 				border-top: 1px solid white;
 				display: flex;
-				flex-direction: ${nodeValue < 100 ? 'row' : 'column'};
+				flex-direction: ${hidden.inline ? 'row' : 'column'};
 				justify-content: center;
 				img {
 					width: 2rem;
@@ -310,14 +316,7 @@ const VerticalBarFragment = ({
 
 			{!hidden.label && <strong>{label}</strong>}
 			{(!hidden.value || numberBottomRight) && (
-				<small
-					css={`
-						${nodeValue < 100 &&
-						`
-					padding-left: 0.5rem;
-					line-height: 1.2rem !important`};
-					`}
-				>
+				<small>
 					{value}&nbsp;{unit}
 				</small>
 			)}
