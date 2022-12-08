@@ -12,6 +12,7 @@ import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
 import { situationSelector } from '../../selectors/simulationSelectors'
 import GridChart from './chart/GridChart'
+import RavijenChart from './chart/RavijenChart'
 import ActionSlide from './fin/ActionSlide'
 import Budget from './fin/Budget'
 import FinShareButton from './fin/FinShareButton'
@@ -19,6 +20,7 @@ import { CardGrid } from './ListeActionPlus'
 
 const Nothing = () => null
 const visualisationChoices = {
+	ravijen: RavijenChart,
 	budget: Budget,
 	'sous-catégories': GridChart,
 	emojis: () => <FinShareButton showResult />,
@@ -34,7 +36,9 @@ export default ({}) => {
 		visualisation: 'aucun',
 	})
 
-	const Visualisation = visualisationChoices[searchParams.get('visualisation')]
+	const visualisationParam = searchParams.get('visualisation')
+	const Visualisation = visualisationChoices[`${visualisationParam}`]
+
 	const engine = useEngine()
 
 	const slideProps = {
@@ -67,7 +71,17 @@ export default ({}) => {
 				))}
 			</form>
 			{persona && (
-				<div css="max-width: 35rem; margin: 0 auto">
+				<div
+					css={`
+						max-width: 35rem;
+						margin: 0 auto;
+						${visualisationParam === 'ravijen' &&
+						`
+						height: 45rem; 
+						max-width: none;
+						`}
+					`}
+				>
 					<Visualisation {...slideProps} />
 				</div>
 			)}
