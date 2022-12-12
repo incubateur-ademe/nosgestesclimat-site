@@ -70,6 +70,7 @@ export default ({
 					category.nodeValue,
 					false
 				)
+				const ratio = category.nodeValue / empreinteMax.nodeValue
 				return (
 					<li
 						key={category.title}
@@ -90,10 +91,7 @@ export default ({
 							css={`
 								background: ${category.color};
 								--availableHeight: calc(100% - 7rem);
-								height: calc(
-									${category.nodeValue / empreinteMax.nodeValue} *
-										var(--availableHeight)
-								);
+								height: calc(${ratio} * var(--availableHeight));
 							`}
 						>
 							<SubCategoriesVerticalBar
@@ -104,6 +102,7 @@ export default ({
 									rules,
 									numberBottomRight,
 									verticalReverse,
+									ratio,
 								}}
 							/>
 						</div>
@@ -158,6 +157,7 @@ const SubCategoriesVerticalBar = ({
 	numberBottomRight,
 	verticalReverse,
 	noLinks,
+	ratio,
 }) => {
 	const { t, i18n } = useTranslation()
 	const categories = getSubcategories(rules, category, engine, true)
@@ -176,7 +176,32 @@ const SubCategoriesVerticalBar = ({
 	const reverseOrNot = (list) => (verticalReverse ? list : list.reverse())
 
 	const Other = () =>
-		restWidth > 0 && (
+		restWidth > 0 && detailsShown ? (
+			<ul
+				css={`
+					height: ${100 / ratio}%;
+					background: white;
+					padding: 0;
+					position: relative;
+					li {
+						list-style-type: none;
+					}
+				`}
+			>
+				{rest.categories.map((restCategory) => (
+					<li>
+						{getTitle(restCategory.title)} ({Math.round(restCategory.nodeValue)}{' '}
+						kg)
+						<div
+							css={`
+								height: ${(restCategory.nodeValue / total) * 100}%;
+								background: ${category.color};
+							`}
+						></div>
+					</li>
+				))}
+			</ul>
+		) : (
 			<VerticalBarFragment
 				{...{
 					label: restWidth < 5 ? '...' : 'Autres',

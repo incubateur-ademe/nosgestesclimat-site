@@ -22,12 +22,10 @@ export const groupTooSmallCategories = (
 									`${getTitle(title)} [${Math.round(nodeValue)} kg]`,
 							  ]
 							: memo.labels,
-						restCategories: tooSmall
-							? [...memo.restCategories, next]
-							: memo.restCategories,
+						categories: tooSmall ? [...memo.categories, next] : memo.categories,
 					}
 				},
-				{ value: 0, labels: [], restCategories: [] }
+				{ value: 0, labels: [], categories: [] }
 			),
 		restWidth = (rest.value / total) * 100
 
