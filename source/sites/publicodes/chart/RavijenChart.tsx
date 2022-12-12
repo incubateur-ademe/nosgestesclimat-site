@@ -190,11 +190,22 @@ const SubCategoriesVerticalBar = ({
 			>
 				{rest.categories.map((restCategory) => (
 					<li>
-						{getTitle(restCategory.title)} ({Math.round(restCategory.nodeValue)}{' '}
-						kg)
+						<div
+							css={`
+								display: flex;
+								align-items: center;
+								justify-content: space-between;
+							`}
+						>
+							<span css="max-width: 70%; overflow: auto; display: inline-block; white-space: nowrap;">
+								{getTitle(restCategory.title)}
+							</span>
+							<small>{Math.round(restCategory.nodeValue)} kg</small>
+						</div>
 						<div
 							css={`
 								height: ${(restCategory.nodeValue / total) * 100}%;
+								min-height: 1px;
 								background: ${category.color};
 							`}
 						></div>
