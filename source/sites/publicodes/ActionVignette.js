@@ -88,7 +88,10 @@ export const ActionListCard = ({
 		(cat) => cat.dottedName === splitName(dottedName)[0]
 	)
 
-	const categoryColor = foundCategory?.color
+	const categoryColor =
+		foundCategory?.color ||
+		rules[splitName(dottedName)[0]]?.couleur ||
+		'var(--color)'
 
 	const { t } = useTranslation()
 
