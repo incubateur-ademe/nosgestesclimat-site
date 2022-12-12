@@ -89,7 +89,6 @@ export default ({
 					>
 						<div
 							css={`
-								background: ${category.color};
 								--availableHeight: calc(100% - 7rem);
 								height: calc(${ratio} * var(--availableHeight));
 							`}
@@ -163,7 +162,7 @@ const SubCategoriesVerticalBar = ({
 	const categories = getSubcategories(rules, category, engine, true)
 
 	const [barRef, { width, height }] = useElementSize()
-	const [detailsShown, showDetails] = useState(true)
+	const [detailsShown, showDetails] = useState(false)
 
 	const maximumBarHeightPixels = 30,
 		maximumBarHeightRatio = maximumBarHeightPixels / height
@@ -175,46 +174,63 @@ const SubCategoriesVerticalBar = ({
 
 	const reverseOrNot = (list) => (verticalReverse ? list : list.reverse())
 
+	console.log('rW', restWidth)
+
 	const Other = () =>
 		restWidth > 0 && detailsShown ? (
-			<ul
-				css={`
-					height: ${100 / ratio}%;
-					background: white;
-					padding: 0;
-					position: relative;
-					li {
-						list-style-type: none;
-					}
-				`}
-			>
-				{rest.categories.map((restCategory) => (
-					<li>
-						<div
+			<>
+				<button
+					onClick={() => showDetails(false)}
+					css="img {width:2rem}; display: block;  margin: 1rem auto 0"
+				>
+					<img src="/images/burger-menu.svg" />
+				</button>
+				<ul
+					css={`
+						height: ${100}%;
+						padding: 0;
+						li {
+							list-style-type: none;
+							z-index: 1;
+							background: white;
+							position: relative;
+						}
+					`}
+				>
+					{rest.categories.map((restCategory) => (
+						<li
 							css={`
-								display: flex;
-								align-items: center;
-								justify-content: space-between;
+								height: calc(2rem + ${(restCategory.nodeValue / total) * 100}%);
 							`}
 						>
-							<span css="max-width: 70%; overflow: auto; display: inline-block; white-space: nowrap;">
-								{getTitle(restCategory.title)}
-							</span>
-							<small>{Math.round(restCategory.nodeValue)} kg</small>
-						</div>
-						<div
-							css={`
-								height: ${(restCategory.nodeValue / total) * 100}%;
-								min-height: 1px;
-								background: ${category.color};
-							`}
-						></div>
-					</li>
-				))}
-			</ul>
+							<div
+								css={`
+									display: flex;
+									align-items: center;
+									justify-content: space-between;
+									height: 2rem;
+								`}
+							>
+								<span css="max-width: 70%; overflow: auto; display: inline-block; white-space: nowrap;">
+									{getTitle(restCategory.title)}
+								</span>
+								<small>{Math.round(restCategory.nodeValue)} kg</small>
+							</div>
+							<div
+								css={`
+									height: calc(100% - 2rem);
+									min-height: 1px;
+									background: ${category.color};
+								`}
+							></div>
+						</li>
+					))}
+				</ul>
+			</>
 		) : (
 			<VerticalBarFragment
 				{...{
+					onClick: () => showDetails(true),
 					label: restWidth < 5 ? '...' : 'Autres',
 					title: t('Le reste : ') + rest.labels.join(', '),
 					nodeValue: rest.value,
@@ -222,6 +238,7 @@ const SubCategoriesVerticalBar = ({
 					heightPercentage: restWidth,
 					compact: true,
 					numberBottomRight,
+					color: category.color,
 				}}
 			/>
 		)
@@ -247,6 +264,7 @@ const SubCategoriesVerticalBar = ({
 								heightPercentage: (nodeValue / total) * 100,
 								icons,
 								numberBottomRight,
+								color: category.color,
 							}}
 						/>
 					</ConditionalLink>
@@ -286,6 +304,8 @@ const VerticalBarFragment = ({
 	heightPercentage,
 	compact,
 	numberBottomRight,
+	color,
+	onClick,
 }) => {
 	const { t, i18n } = useTranslation()
 	const [value, unit] = humanWeight({ t, i18n }, nodeValue, false)
@@ -312,10 +332,13 @@ const VerticalBarFragment = ({
 	console.log(dottedName, hidden.inline)
 	return (
 		<li
+			onClick={onClick}
 			css={`
+				cursor: pointer;
 				text-align: center;
 				margin: 0;
 				height: ${heightPercentage}%;
+				background: ${color};
 				color: white;
 				strong {
 					color: inherit;
