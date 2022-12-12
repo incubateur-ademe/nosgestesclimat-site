@@ -7,6 +7,7 @@ import {
 } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 
+import { motion } from 'framer-motion'
 import { capitalise0, utils } from 'publicodes'
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
@@ -178,7 +179,11 @@ const SubCategoriesVerticalBar = ({
 
 	const Other = () =>
 		restWidth > 0 && detailsShown ? (
-			<>
+			<motion.div
+				initial={{ opacity: 0, height: 0 }}
+				animate={{ opacity: 1, height: '100%' }}
+				exit={{ height: 0, opacity: 0 }}
+			>
 				<button
 					onClick={() => showDetails(false)}
 					css="img {width:2rem}; display: block;  margin: 1rem auto 0"
@@ -226,7 +231,7 @@ const SubCategoriesVerticalBar = ({
 						</li>
 					))}
 				</ul>
-			</>
+			</motion.div>
 		) : (
 			<VerticalBarFragment
 				{...{
