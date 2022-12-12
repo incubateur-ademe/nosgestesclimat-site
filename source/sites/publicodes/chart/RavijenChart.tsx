@@ -23,7 +23,7 @@ export default ({
 	numberBottomRight, // This saves space, but is less visually attractive. Hence activated for the more technical "services sociétaux" graph, not for the main graph
 	verticalReverse,
 	noLinks,
-	expandOtherOnClick,
+	expandOtherOnClick, // This expansion is activated onClick, because it could mislead the user making this cateogy bigger than it is, because of the white space
 }) => {
 	const { t, i18n } = useTranslation()
 	const rules = useSelector((state) => state.rules)
