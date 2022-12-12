@@ -3,10 +3,12 @@ export const groupTooSmallCategories = (
 	hideSmallerThanRatio = 0.1
 ) => {
 	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
+
 	const rest = categories
 			.filter((el) => el.nodeValue)
 			.reduce(
-				(memo, { nodeValue, title, icons }) => {
+				(memo, next) => {
+					const { nodeValue, title, icons } = next
 					const tooSmall = nodeValue < hideSmallerThanRatio * total
 
 					if (tooSmall) {
@@ -20,9 +22,12 @@ export const groupTooSmallCategories = (
 									`${getTitle(title)} [${Math.round(nodeValue)} kg]`,
 							  ]
 							: memo.labels,
+						restCategories: tooSmall
+							? [...memo.restCategories, next]
+							: memo.restCategories,
 					}
 				},
-				{ value: 0, labels: [] }
+				{ value: 0, labels: [], restCategories: [] }
 			),
 		restWidth = (rest.value / total) * 100
 

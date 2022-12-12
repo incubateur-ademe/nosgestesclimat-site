@@ -163,6 +163,7 @@ const SubCategoriesVerticalBar = ({
 	const categories = getSubcategories(rules, category, engine, true)
 
 	const [barRef, { width, height }] = useElementSize()
+	const [detailsShown, showDetails] = useState(true)
 
 	const maximumBarHeightPixels = 30,
 		maximumBarHeightRatio = maximumBarHeightPixels / height
