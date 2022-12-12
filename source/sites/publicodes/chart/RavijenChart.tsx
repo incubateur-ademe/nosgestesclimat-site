@@ -235,7 +235,7 @@ const SubCategoriesVerticalBar = ({
 		) : (
 			<VerticalBarFragment
 				{...{
-					onClick: () => showDetails(true),
+					expandOtherOnClick: () => showDetails(true),
 					label: restWidth < 5 ? '...' : 'Autres',
 					title: t('Le reste : ') + rest.labels.join(', '),
 					nodeValue: rest.value,
@@ -310,7 +310,7 @@ const VerticalBarFragment = ({
 	compact,
 	numberBottomRight,
 	color,
-	onClick,
+	expandOtherOnClick,
 }) => {
 	const { t, i18n } = useTranslation()
 	const [value, unit] = humanWeight({ t, i18n }, nodeValue, false)
@@ -337,9 +337,9 @@ const VerticalBarFragment = ({
 	console.log(dottedName, hidden.inline)
 	return (
 		<li
-			onClick={onClick}
+			onClick={expandOtherOnClick}
 			css={`
-				cursor: pointer;
+				${expandOtherOnClick && `cursor: pointer;`}
 				text-align: center;
 				margin: 0;
 				height: ${heightPercentage}%;
@@ -379,7 +379,18 @@ const VerticalBarFragment = ({
 		>
 			<SafeCategoryImage element={{ dottedName }} voidIfFail={!compact} />
 
-			{!hidden.label && <strong>{label}</strong>}
+			{!hidden.label && (
+				<strong>
+					{label}
+
+					{expandOtherOnClick && (
+						<img
+							src="/images/burger-menu.svg"
+							css="height: 2rem !important; filter: invert(1); padding-top: 0.2rem;"
+						/>
+					)}
+				</strong>
+			)}
 			{(!hidden.value || numberBottomRight) && (
 				<small>
 					{value}&nbsp;{unit}
