@@ -216,7 +216,7 @@ const SubCategoriesVerticalBar = ({
 									height: 2rem;
 								`}
 							>
-								<span css="max-width: 70%; overflow: auto; display: inline-block; white-space: nowrap;">
+								<span css="max-width: 70%; overflow: hidden; display: inline-block; white-space: nowrap;">
 									{getTitle(restCategory.title)}
 								</span>
 								<small>{Math.round(restCategory.nodeValue)} kg</small>
