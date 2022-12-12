@@ -23,6 +23,7 @@ export default ({
 	numberBottomRight, // This saves space, but is less visually attractive. Hence activated for the more technical "services sociétaux" graph, not for the main graph
 	verticalReverse,
 	noLinks,
+	expandOtherOnClick,
 }) => {
 	const { t, i18n } = useTranslation()
 	const rules = useSelector((state) => state.rules)
@@ -103,6 +104,7 @@ export default ({
 									numberBottomRight,
 									verticalReverse,
 									ratio,
+									expandOtherOnClick,
 								}}
 							/>
 						</div>
@@ -157,7 +159,7 @@ const SubCategoriesVerticalBar = ({
 	numberBottomRight,
 	verticalReverse,
 	noLinks,
-	ratio,
+	expandOtherOnClick,
 }) => {
 	const { t, i18n } = useTranslation()
 	const categories = getSubcategories(rules, category, engine, true)
@@ -175,10 +177,8 @@ const SubCategoriesVerticalBar = ({
 
 	const reverseOrNot = (list) => (verticalReverse ? list : list.reverse())
 
-	console.log('rW', restWidth)
-
 	const Other = () =>
-		restWidth > 0 && detailsShown ? (
+		restWidth > 0 && expandOtherOnClick && detailsShown ? (
 			<motion.div
 				initial={{ opacity: 0, height: 0 }}
 				animate={{ opacity: 1, height: '100%' }}

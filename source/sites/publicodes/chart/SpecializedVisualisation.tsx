@@ -22,6 +22,7 @@ export default ({ currentQuestion, categoryColor, value }) => {
 					target="services sociétaux"
 					numberBottomRight
 					verticalReverse={true}
+					expandOtherOnClick
 				/>
 			</motion.div>
 		)
