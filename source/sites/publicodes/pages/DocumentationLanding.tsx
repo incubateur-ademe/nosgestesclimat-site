@@ -26,7 +26,7 @@ export default function DocumentationLanding() {
 			/>
 			<h1>Documentation</h1>
 			<p>
-				<Trans>
+				<Trans i18nKey={'meta.publicodes.pages.Documentation.intro'}>
 					Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du
 					même nom, composé d'un ensemble de briques. Sur cette documentation,
 					vous avez accès en toute transparence à l'ensemble des variables du
