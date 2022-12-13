@@ -139,7 +139,7 @@ export default ({
 								<SafeCategoryImage element={category} />
 								<h3>
 									{category.title.length < 12
-										? category.title
+										? capitalise0(category.title)
 										: capitalise0(category.abbreviation)}
 								</h3>
 								{value}&nbsp;{unit}
@@ -262,10 +262,10 @@ const SubCategoriesVerticalBar = ({
 							{...{
 								label:
 									(abbreviation && capitalise0(abbreviation)) ||
-									titleWithoutPercent,
+									capitalise0(titleWithoutPercent),
 								title:
 									(abbreviation && capitalise0(abbreviation)) ||
-									titleWithoutPercent,
+									capitalise0(titleWithoutPercent),
 								nodeValue,
 								dottedName,
 								heightPercentage: (nodeValue / total) * 100,
