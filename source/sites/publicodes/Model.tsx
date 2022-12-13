@@ -31,7 +31,7 @@ export default ({}) => {
 			<p>
 				<Trans i18nKey="model.intro2">
 					Entièrement ouvert (open source) et contributif, chacun peut l'
-					<Link to="/documention">explorer</Link>,{' '}
+					<Link to="/documentation">explorer</Link>,{' '}
 					<Link to="/contribuer">donner son avis</Link>,{' '}
 					<a href="https://github.com/datagir/nosgestesclimat">l'améliorer</a>.
 				</Trans>
