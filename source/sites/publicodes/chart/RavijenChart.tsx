@@ -56,7 +56,7 @@ export default ({
 		<ol
 			css={`
 				margin: 0;
-				min-width: 30rem;
+				min-width: 35rem;
 				height: 100%;
 				padding: 0;
 				border: 2px solid white;
