@@ -12,10 +12,9 @@ import editorialisedModels from './editorialisedModels.yaml'
 export default function DocumentationLanding() {
 	const { t } = useTranslation()
 	const rules = useSelector((state) => state.rules)
-	const editos = Object.entries(editorialisedModels).map(([key, value]) => ({
-		dottedName: key,
-		...rules[key],
-		edito: value.label,
+	const editos = editorialisedModels.map((dottedName) => ({
+		...rules[dottedName],
+		dottedName,
 	}))
 	const getColor = (dottedName) => rules[splitName(dottedName)[0]].couleur
 	return (
@@ -58,7 +57,7 @@ export default function DocumentationLanding() {
 					padding: 0;
 				`}
 			>
-				{editos.map(({ icônes, color, dottedName, title, edito, couleur }) => (
+				{editos.map(({ icônes, color, dottedName, title, résumé, couleur }) => (
 					<li
 						key={dottedName}
 						className="ui__ card box"
@@ -114,7 +113,7 @@ export default function DocumentationLanding() {
 							>
 								<SafeCategoryImage element={{ dottedName }} />
 							</span>
-							<h2>{<Markdown>{edito}</Markdown>}</h2>
+							{résumé && <h2>{<Markdown>{résumé}</Markdown>}</h2>}
 						</Link>
 					</li>
 				))}

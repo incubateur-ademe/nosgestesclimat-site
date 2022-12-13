@@ -1,13 +1,6 @@
-bilan:
-  label: Le coeur de nosgestesclimat, c'est **le bilan** d'empreinte climat personelle
-services publics:
-  label: Les constantes de **service public** et de base obtenues à partir des travaux du SDES
-alimentation . plats:
-  label: |
-    **6 repas** représentatifs de notre consommation
-logement . chauffage . empreinte par défaut:
-  label: Un calcul statistique du **chauffage** résidentiel français moyen
-transport . voiture . empreinte:
-  label: Le premier poste moyen d'empreinte, l'incontournable **voiture individuelle**
-alimentation . déchets:
-  label: Un modèle d'empreinte des **déchets**
+- bilan
+- services sociétaux
+- alimentation . plats
+- logement . chauffage . empreinte par défaut
+- transport . voiture . empreinte
+- alimentation . déchets
