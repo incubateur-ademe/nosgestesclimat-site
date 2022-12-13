@@ -236,7 +236,7 @@ const SubCategoriesVerticalBar = ({
 			<VerticalBarFragment
 				{...{
 					expandOtherOnClick: () => showDetails(true),
-					label: restWidth < 5 ? '...' : 'Autres',
+					label: restWidth < 5 ? '...' : t('Autres'),
 					title: t('Le reste : ') + rest.labels.join(', '),
 					nodeValue: rest.value,
 					dottedName: 'rest',
