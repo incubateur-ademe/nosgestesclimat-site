@@ -166,7 +166,6 @@ const SubCategoriesVerticalBar = ({
 
 	const [barRef, { width, height }] = useElementSize()
 	const [detailsShown, showDetails] = useState(false)
-
 	const maximumBarHeightPixels = 30,
 		maximumBarHeightRatio = maximumBarHeightPixels / height
 
@@ -176,7 +175,6 @@ const SubCategoriesVerticalBar = ({
 	)
 
 	const reverseOrNot = (list) => (verticalReverse ? list : list.reverse())
-
 	const Other = () =>
 		restWidth > 0 && expandOtherOnClick && detailsShown ? (
 			<motion.div
@@ -233,19 +231,23 @@ const SubCategoriesVerticalBar = ({
 				</ul>
 			</motion.div>
 		) : (
-			<VerticalBarFragment
-				{...{
-					expandOtherOnClick: () => showDetails(true),
-					label: restWidth < 5 ? '...' : t('Autres'),
-					title: t('Le reste : ') + rest.labels.join(', '),
-					nodeValue: rest.value,
-					dottedName: 'rest',
-					heightPercentage: restWidth,
-					compact: true,
-					numberBottomRight,
-					color: category.color,
-				}}
-			/>
+			restWidth > 0 && (
+				<VerticalBarFragment
+					{...{
+						expandOtherOnClick: expandOtherOnClick
+							? () => showDetails(true)
+							: null,
+						label: restWidth < 5 ? '...' : t('Autres'),
+						title: t('Le reste : ') + rest.labels.join(', '),
+						nodeValue: rest.value,
+						dottedName: 'rest',
+						heightPercentage: restWidth,
+						compact: true,
+						numberBottomRight,
+						color: category.color,
+					}}
+				/>
+			)
 		)
 	const List = () =>
 		reverseOrNot(bigEnough).map(
@@ -318,7 +320,6 @@ const VerticalBarFragment = ({
 
 	const [ref, { width, height }] = useElementSize()
 
-	console.log(dottedName, height)
 	useEffect(() => {
 		if (!height) return
 		if (height < 80 && !hidden.value) {
@@ -334,7 +335,6 @@ const VerticalBarFragment = ({
 			return
 		}
 	}, [height, hidden])
-	console.log(dottedName, hidden.inline)
 	return (
 		<li
 			onClick={expandOtherOnClick}
@@ -379,10 +379,9 @@ const VerticalBarFragment = ({
 		>
 			<SafeCategoryImage element={{ dottedName }} voidIfFail={!compact} />
 
-			{!hidden.label && (
+			{!hidden.label ? (
 				<strong>
 					{label}
-
 					{expandOtherOnClick && (
 						<img
 							src="/images/burger-menu.svg"
@@ -390,6 +389,8 @@ const VerticalBarFragment = ({
 						/>
 					)}
 				</strong>
+			) : (
+				<strong css="align-items: flex-end !important;">...</strong>
 			)}
 			{(!hidden.value || numberBottomRight) && (
 				<small>
