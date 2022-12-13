@@ -262,10 +262,10 @@ const SubCategoriesVerticalBar = ({
 							{...{
 								label:
 									(abbreviation && capitalise0(abbreviation)) ||
-									capitalise0(titleWithoutPercent),
+									titleWithoutPercent,
 								title:
 									(abbreviation && capitalise0(abbreviation)) ||
-									capitalise0(titleWithoutPercent),
+									titleWithoutPercent,
 								nodeValue,
 								dottedName,
 								heightPercentage: (nodeValue / total) * 100,

@@ -1,3 +1,5 @@
+import { capitalise0 } from 'publicodes'
+
 export const groupTooSmallCategories = (
 	categories,
 	hideSmallerThanRatio = 0.1
@@ -39,5 +41,5 @@ export const groupTooSmallCategories = (
 export const getTitle = (title: String) => {
 	const percentRegex = /^[0-9% ]*/
 	const newTitle = title?.replace(percentRegex, '')
-	return newTitle
+	return capitalise0(newTitle)
 }
