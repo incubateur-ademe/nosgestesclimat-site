@@ -37,7 +37,7 @@ export default ({}) => {
 				</Trans>
 			</p>
 			<h2>
-				<Trans>Une technologie moderne</Trans>
+				💫 <Trans>Une technologie moderne</Trans>
 			</h2>
 			<p>
 				<Trans i18nKey="model.modern">
@@ -77,7 +77,7 @@ export default ({}) => {
 				</Trans>
 			</p>
 			<h2>
-				<Trans>Un modèle complet</Trans>
+				📚️ <Trans>Un modèle complet</Trans>
 			</h2>
 			<p>
 				<Trans i18nKey={'model.stats'}>
@@ -97,7 +97,7 @@ export default ({}) => {
 				</Trans>
 			</p>
 			<h2>
-				<Trans>En développement actif</Trans>
+				⏩️ <Trans>En développement actif</Trans>
 			</h2>
 			<p>
 				<Trans i18nKey={'model.active'}>
