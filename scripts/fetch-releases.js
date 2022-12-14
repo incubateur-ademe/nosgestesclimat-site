@@ -17,21 +17,11 @@ const repository = 'nosgestesclimat',
 async function main() {
 	createDataDir()
 	const releases = await fetchReleases()
-	// The last release name is fetched on all pages (to display the banner)
-	// whereas the full release data is used only in the dedicated page, that why
-	// we deduplicate the releases data in two separated files that can be
-	// bundled/fetched separately.
 	writeInDataDir('releases.json', releases)
-	const last = releases[0]
-	writeInDataDir(
-		'last-release.json',
-		last
-			? {
-					name: last.name,
-					date: last.published_at,
-			  }
-			: {}
-	)
+
+	// The last release name is fetched on all pages (to display the banner)
+	// whereas the full release data is used only in the dedicated page.
+	// But since translation, releases are directly downloaded in the main bundle, making this optimization useless...
 }
 
 async function fetchReleases() {

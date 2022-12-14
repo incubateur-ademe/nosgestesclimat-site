@@ -1,8 +1,8 @@
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import lastRelease from '../data/last-release.json'
 import { getCurrentLangInfos } from '../locales/translation'
+import { sortReleases } from '../pages/News'
 import { capitalise0 } from '../utils'
 import { usePersistingState } from './utils/persistState'
 
@@ -13,6 +13,12 @@ export const determinant = (word: string) =>
 	/^[aeiouy]/i.exec(word) ? 'd’' : 'de '
 
 export default function NewsBanner() {
+	const { t, i18n } = useTranslation()
+	const currentLangInfos = getCurrentLangInfos(i18n)
+
+	const releases = sortReleases(currentLangInfos.releases),
+		lastRelease = releases && releases[0]
+
 	const [lastViewedRelease, setLastViewedRelease] = usePersistingState(
 		localStorageKey,
 		null
@@ -27,10 +33,7 @@ export default function NewsBanner() {
 
 	const showBanner = lastRelease.name && lastViewedRelease !== lastRelease.name
 
-	const { t, i18n } = useTranslation()
-	const currentLangInfos = getCurrentLangInfos(i18n)
-
-	const date = new Date(lastRelease.date).toLocaleDateString(
+	const date = new Date(lastRelease.published_at).toLocaleDateString(
 		currentLangInfos.abrvLocale,
 		{
 			weekday: 'long',
@@ -61,12 +64,11 @@ export default function NewsBanner() {
 				<div>
 					<small>
 						<Trans i18nKey={'components.NewsBanner.miseAJourDate'}>
-							Mise à jour le {{ date }}
+							Dernière mise à jour le {{ date }}
 						</Trans>
 					</small>
 				</div>
 				<div>
-					<Trans>Version</Trans>{' '}
 					<Link to={'/nouveautés'}>{capitalise0(lastRelease.name)}</Link>
 				</div>
 			</div>
