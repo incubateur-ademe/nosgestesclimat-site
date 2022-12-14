@@ -1,7 +1,6 @@
-import Illustration from 'Components/AnimatedIllustration'
 import animate from 'Components/ui/animate'
 import LogoADEME from 'Images/logoADEME.svg'
-import { useContext } from 'react'
+import React, { Suspense, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import NewsBanner from '../../components/NewsBanner'
@@ -15,8 +14,17 @@ import DocumentationButton from './DocumentationButton'
 import LandingContent from './LandingContent'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
+const LazyIllustration = React.lazy(
+	() => import('Components/AnimatedIllustration')
+)
 
 const fluidLayoutMinWidth = '1200px'
+
+const Illustration = () => (
+	<Suspense fallback={null}>
+		<LazyIllustration />
+	</Suspense>
+)
 
 export default () => {
 	const tracker = useContext(TrackerContext)
