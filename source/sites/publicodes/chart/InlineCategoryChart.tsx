@@ -7,19 +7,21 @@ import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
 import { useQuery } from '../../../utils'
 import CategoryVisualisation from '../CategoryVisualisation'
 import Chart from './index.js'
-import SpecializedVisualisation from './SpecializedVisualisation'
+import SpecializedVisualisation, {
+	activatedSpecializedVisualisations,
+} from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
 
-export default ({}) => {
+export default ({ givenEngine }) => {
 	// needed for this component to refresh on situation change :
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
-	const engine = useEngine(objectifs)
+	const engine = givenEngine || useEngine(objectifs)
 	const [categories, setCategories] = useState(
 		extractCategories(rules, engine).map((category) => ({
 			...category,
-			abbreviation: rules[category.dottedName].abbréviation,
+			abbreviation: rules[category.dottedName].abréviation,
 		}))
 	)
 	const tutorials = useSelector((state) => state.tutorials)
@@ -28,7 +30,7 @@ export default ({}) => {
 		setCategories(
 			extractCategories(rules, engine).map((category) => ({
 				...category,
-				abbreviation: rules[category.dottedName].abbréviation,
+				abbreviation: rules[category.dottedName].abréviation,
 			}))
 		)
 	}, [rules])
@@ -53,6 +55,25 @@ export default ({}) => {
 		!inRespiration &&
 		displayedCategory &&
 		(!focusedCategory || focusedCategory === displayedCategory.dottedName)
+
+	const specializedVisualisationShown =
+		activatedSpecializedVisualisations.includes(currentQuestion)
+
+	if (!inRespiration && specializedVisualisationShown)
+		return (
+			<div
+				css={`
+					padding: 1rem 0.2rem;
+					height: 50rem;
+					overflow: scroll;
+					margin: 0 auto;
+				`}
+			>
+				<SpecializedVisualisation
+					{...{ currentQuestion, categoryColor, value }}
+				/>
+			</div>
+		)
 
 	return (
 		<div
@@ -81,11 +102,6 @@ export default ({}) => {
 				}}
 			/>
 			{traditionalChartShown && <Chart />}
-			{!inRespiration && (
-				<SpecializedVisualisation
-					{...{ currentQuestion, categoryColor, value }}
-				/>
-			)}
 		</div>
 	)
 }

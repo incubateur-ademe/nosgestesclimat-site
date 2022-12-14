@@ -1,11 +1,11 @@
+import highlightMatches from 'Components/highlightMatches'
+import { utils } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Worker from 'worker-loader!./SearchBar.worker.js'
 import RuleLink from './RuleLink'
 import './SearchBar.css'
 import { useEngine } from './utils/EngineContext'
-import { utils } from 'publicodes'
-import highlightMatches from 'Components/highlightMatches'
 
 const worker = new Worker()
 
@@ -59,8 +59,25 @@ export default function SearchBar({}: SearchBarProps) {
 
 	return (
 		<>
-			<label title={t('Entrez des mots clefs')}>
+			<label
+				title={t('Entrez des mots clefs')}
+				css={`
+					margin: 0.6rem 0;
+					display: flex;
+					align-items: center;
+					height: 2rem;
+				`}
+			>
+				<img
+					src="/images/1F50D.svg"
+					width="100px"
+					height="100px"
+					css={`
+						width: 3rem;
+					`}
+				/>
 				<input
+					autoFocus
 					type="search"
 					className="ui__"
 					value={input}
@@ -72,7 +89,7 @@ export default function SearchBar({}: SearchBarProps) {
 					}}
 				/>
 			</label>
-			{!!input.length && !results.length ? (
+			{input.length > 2 && !results.length ? (
 				<p
 					role="status"
 					className="ui__ notice light-bg"
@@ -87,51 +104,66 @@ export default function SearchBar({}: SearchBarProps) {
 					</Trans>
 				</p>
 			) : (
-				<ul
-					css={`
-						padding: 0;
-						margin: 0;
-						list-style: none;
-					`}
-				>
-					{(!results.length && !input.length
-						? searchIndex.map((item) => ({ item, matches: [] }))
-						: results
-					).map(({ item, matches }) => (
-						<li key={item.dottedName}>
-							<RuleLink
-								dottedName={item.dottedName}
-								style={{
-									width: '100%',
-									textDecoration: 'none',
-									lineHeight: '1.5rem',
-								}}
-							>
-								<small>
-									{item.espace
-										.slice(1)
-										.reverse()
-										.map((name) => (
-											<span key={name}>
-												{highlightMatches(
-													name,
-													matches.filter(
-														(m) => m.key === 'espace' && m.value === name
-													)
-												)}{' '}
-												›{' '}
-											</span>
-										))}
-									<br />
-								</small>
-								{highlightMatches(
-									item.title,
-									matches.filter((m) => m.key === 'title')
-								)}
-							</RuleLink>
-						</li>
-					))}
-				</ul>
+				input.length > 2 && (
+					<ul
+						css={`
+							padding: 0;
+							margin: 0;
+							list-style: none;
+							li {
+								margin: 0.4rem 0;
+							}
+							small {
+								display: block;
+							}
+						`}
+					>
+						{(!results.length && !input.length
+							? searchIndex.map((item) => ({ item, matches: [] }))
+							: results
+						).map(({ item, matches }) => (
+							<li key={item.dottedName}>
+								<RuleLink
+									dottedName={item.dottedName}
+									style={{
+										width: '100%',
+										textDecoration: 'none',
+										lineHeight: '1.5rem',
+									}}
+								>
+									<small>
+										{item.espace
+											.slice(1)
+											.reverse()
+											.map((name) => (
+												<span key={name}>
+													{highlightMatches(
+														name,
+														matches.filter(
+															(m) => m.key === 'espace' && m.value === name
+														)
+													)}{' '}
+													›{' '}
+												</span>
+											))}
+										<br />
+									</small>
+									<span
+										css={`
+											margin-right: 0.6rem;
+										`}
+									>
+										{rules[item.dottedName].rawNode.icônes}
+									</span>
+									{highlightMatches(
+										item.title,
+										matches.filter((m) => m.key === 'title')
+									)}
+								</RuleLink>
+							</li>
+						))}
+					</ul>
+				)
 			)}
 		</>
 	)

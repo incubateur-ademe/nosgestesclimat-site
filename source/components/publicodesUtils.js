@@ -1,5 +1,5 @@
-import { capitalise0, sortBy } from '../utils'
 import { utils as coreUtils } from 'publicodes'
+import { capitalise0, sortBy } from '../utils'
 
 export const parentName = (
 	dottedName,
@@ -97,10 +97,9 @@ export const extractCategories = (
 
 	const categories = sumNodes.map((dottedName) => {
 		const node = engine.evaluate(dottedName)
-		const { icônes, couleur } = rules[dottedName]
+		const { icônes, couleur, abréviation } = rules[dottedName]
 		const split = splitName(dottedName),
 			parent = split.length > 1 && split[0]
-
 		return {
 			...node,
 			icons: icônes || rules[parent].icônes,
@@ -114,19 +113,16 @@ export const extractCategories = (
 			documentationDottedName: node.dottedName,
 			title:
 				parentRule === 'bilan' && parent ? rules[parent].titre : node.title,
+			abbreviation: abréviation,
 		}
 	})
 
 	return sort ? sortCategories(categories) : categories
 }
 
-export const getSubcategories = (rules, category, engine) => {
+export const getSubcategories = (rules, category, engine, sort) => {
 	const sumToDisplay =
-		category.name === 'services publics'
-			? null
-			: category.name === 'logement'
-			? 'logement . impact'
-			: category.name
+		category.name === 'logement' ? 'logement . impact' : category.name
 
 	if (!sumToDisplay) return [category]
 
@@ -138,13 +134,16 @@ export const getSubcategories = (rules, category, engine) => {
 		false
 	)
 
-	return category.name === 'logement'
-		? subCategories.map((el) => ({
-				...el,
-				nodeValue:
-					el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
-		  }))
-		: subCategories
+	const items =
+		category.name === 'logement'
+			? subCategories.map((el) => ({
+					...el,
+					nodeValue:
+						el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
+			  }))
+			: subCategories
+
+	return sort ? sortCategories(items) : items
 }
 
 export const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
@@ -159,8 +158,19 @@ export const safeGetRule = (engine, dottedName) => {
 }
 
 export const questionCategoryName = (dottedName) => splitName(dottedName)[0]
-export function relegate(key, array) {
-	const isKey = (a) => a.dottedName === key
-	const categories = [...array.filter((a) => !isKey(a)), array.find(isKey)]
+
+export function relegate(keys, array) {
+	const categories = keys.reduce((memo, key) => {
+		const isKey = (a) => a.dottedName === key
+		const arrayWithoutKey = memo.filter((a) => !isKey(a))
+		if (arrayWithoutKey.length === array.length)
+			throw Error('Make sure the key you want to relegate is in array')
+		return [...arrayWithoutKey, memo.find(isKey)]
+	}, array)
 	return categories
+}
+
+export function relegateCommonCategories(array) {
+	const keys = ['services sociétaux']
+	return relegate(keys, array)
 }

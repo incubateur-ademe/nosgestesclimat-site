@@ -1,4 +1,4 @@
-import { History, Location } from 'history'
+import { Location } from 'history'
 import { debounce, inIframe } from './utils'
 
 declare global {
