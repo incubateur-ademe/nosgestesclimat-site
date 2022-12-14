@@ -3,6 +3,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
 import { RulePage } from 'publicodes-react'
+import { useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -15,13 +16,17 @@ import {
 } from 'react-router-dom'
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
+import { splitName } from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
+import Meta from '../../../components/utils/Meta'
 import { WithEngine } from '../../../RulesProvider'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
+import { capitalise0 } from '../../../utils'
 import BandeauContribuer from '../BandeauContribuer'
 import RavijenChart from '../chart/RavijenChart'
 import References from '../DocumentationReferences'
 import DocumentationLanding from './DocumentationLanding'
+import DocumentationStyle from './DocumentationStyle'
 
 export default function () {
 	console.log('Rendering Documentation')
@@ -33,6 +38,9 @@ export default function () {
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)
 
+	const url = useParams()['*']
+
+	const [loadEngine, setLoadEngine] = useState(false)
 	if (!rules)
 		return (
 			<div css="height: 10vh; background: purple">
@@ -43,11 +51,14 @@ export default function () {
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
 	}
-	const dottedName = pathname.split('/documentation/')[1]
+	const encodedDottedName = pathname.split('/documentation/')[1],
+		dottedName = utils.decodeRuleName(encodedDottedName)
 
-	if (!dottedName || !rules[utils.decodeRuleName(dottedName)]) {
+	if (!dottedName || !rules[dottedName]) {
 		return <Navigate to="/404" replace />
 	}
+
+	const rule = rules[dottedName]
 
 	return (
 		<div
@@ -69,20 +80,71 @@ export default function () {
 				{currentSimulation ? <BackToSimulation /> : <span />}
 				<SearchButton key={pathname} />
 			</div>
-			<WithEngine>
-				<DocPage dottedName={dottedName} />
-			</WithEngine>
+
+			{!loadEngine && (
+				<div>
+					<QuickDocPage
+						rule={rule}
+						dottedName={dottedName}
+						setLoadEngine={setLoadEngine}
+					/>
+				</div>
+			)}
+			{loadEngine && (
+				<WithEngine>
+					<DocPage dottedName={dottedName} />
+				</WithEngine>
+			)}
 
 			<BandeauContribuer />
 		</div>
 	)
 }
+const QuickDocPage = ({ rule, dottedName, setLoadEngine }) => {
+	const split = splitName(dottedName),
+		title = rule.titre || capitalise0(split[splitName.length - 1]),
+		parents = split.slice(0, -1).join(' > ')
 
-const DocPage = ({ dottedName }) => {
+	console.log(split, title)
+	return (
+		<div
+			css={`
+				width: 700px;
+				margin: 0 auto;
+			`}
+		>
+			<DocumentationStyle>
+				<Meta description={rule.description} title={title} />
+				<header>
+					<small>{parents}</small>
+					<h1>{title}</h1>
+				</header>
+				<section>
+					{rule.description && <Markdown>{rule.description}</Markdown>}
+				</section>
+				<button
+					onClick={() => setLoadEngine(true)}
+					className="ui__ button cta plain"
+				>
+					🧮 Lancer le calcul
+				</button>
+				{rule.formule && (
+					<div>
+						<h2>Comment cette donnée est-elle calculée ?</h2>
+
+						<blockquote>{JSON.stringify(rule.formule, null, 3)}</blockquote>
+					</div>
+				)}
+			</DocumentationStyle>
+		</div>
+	)
+}
+
+const DocPage = ({ engine: givenEngine }) => {
 	const url = useParams()['*']
 	const { i18n } = useTranslation()
 
-	const engine = useEngine()
+	const engine = givenEngine || useEngine()
 	console.log('engineParsedRules:', engine.context.parsedRules)
 	console.log('url:', url)
 	const documentationPath = '/documentation'
@@ -163,51 +225,3 @@ function BackToSimulation() {
 		</button>
 	)
 }
-
-export const DocumentationStyle = styled.div`
-	padding: 0 0.6rem;
-	#documentationRuleRoot > p:first-of-type {
-		display: inline-block;
-		background: var(--lighterColor);
-		padding: 0.4rem 0.6rem 0.2rem;
-	}
-	header {
-		color: var(--textColor);
-		a {
-			color: var(--textColor);
-		}
-		a:hover {
-			background: var(--darkerColor) !important;
-			color: white !important;
-		}
-		h1 {
-			margin-top: 0.6rem;
-			margin-bottom: 0.6rem;
-			a {
-				text-decoration: none;
-			}
-		}
-		background: linear-gradient(60deg, var(--darkColor) 0%, var(--color) 100%);
-		padding: 0.6rem 1rem;
-		box-shadow: 0 1px 3px rgba(var(--rgbColor), 0.12),
-			0 1px 2px rgba(var(--rgbColor), 0.24);
-		border-radius: 0.4rem;
-	}
-	button {
-		color: inherit;
-	}
-	span {
-		background: inherit;
-	}
-	small {
-		background: none !important;
-	}
-	li {
-		&.active .content {
-			background-color: transparent !important;
-			a:hover {
-				color: white !important;
-			}
-		}
-	}
-`
