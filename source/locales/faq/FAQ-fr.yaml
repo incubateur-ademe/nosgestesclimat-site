@@ -20,6 +20,8 @@
 
     Le but de nos Nos Gestes Climat est de manipuler ces chiffres pour questionner simplement notre mode de vie afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
 
+    > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
+
 - question: Le calculateur est il destiné uniquement aux français ?
   id: international
   catégorie: général
@@ -27,7 +29,7 @@
 
     Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
 
-    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO2e/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO₂ₑ/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
 
     Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 
@@ -83,6 +85,24 @@
 
     Marcher dans la nature, jouer de la musique, faire du vélo, naviguer à la voile, profiter du train sur tout le territoire, passer du temps avec ses proches, faire la fête, lire, discuter, faire son potager, apprendre à cuisiner autrement... Une vie bas carbone, c'est plein d'expériences joyeuses, qui ne retrouvent pas forcément dans un bilan carbone individuel, mais qui seront au coeur des modes de vie que nous inventons en ce moment même.
 
+- question: Pourquoi l'empreinte de départ du test est-elle inférieure à 10 tonnes ?
+  id: défaut
+  catégorie: général
+  réponse: |
+    L'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, n'est qu'un point de départ ! Il vous permet tout au long du test de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
+
+    Si vous suivez attentivement les chiffres d'empreinte carbone nationale, vous remarquerez que ce chiffre est différent des `8,9 tonnes de CO₂ₑ`, [le dernier chiffre calculé par le Ministère de l'Environnement en novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
+
+    Cette différence est normale (tant que l'ordre de grandeur reste identique), car les deux approches de calcul sont différentes. En effet, cette moyenne englobe l'impact carbone de l’ensemble des activités de l’économie française qu'elle divise ensuite par les 67 millions de français, là où Nos Gestes Climat se base sur une approche de consommation réelle catégorisée en postes que nous savons significatifs et représentant la grande majorité de l’empreinte carbone d’un individu. 
+
+    Ainsi, les périmètres des activités prises en compte ne sont pas parfaitement « juxtaposés » (par exemple : même si vous n'avez pas de bateau, l'empreinte moyenne française vous attribue une part des émissions liées à la fabrication, l'entretien et la réparation des bateaux ainsi qu'une part d'émissions liées aux services des marinas). 
+
+    Pourtant, comme vous le découvrirez pendant le test, votre alimentation, vos déplacements et votre habitat sont responsables de la très grande majorité de vos émissions… et c'est justement la force de Nos Gestes Climat : laisser de côté la moyenne pour vous proposer *votre simulation à vous*, de la façon la plus précise possible.
+
+    Au final, rien de grave, tant que l'ordre de grandeur de ces estimations est identique (~10 tonnes).  
+
+    > Nous menons un travail de consolidation méthodologique afin d’améliorer l’exhaustivité des périmètres pris en compte par NGC : le modèle évolue très régulièrement pour devenir plus précis et complet.
+
 - question: À la fin de mon calcul il y a un poste « service public », qu’est-ce que c’est ?
   id: services-publics
   catégorie: services publics
@@ -119,7 +139,7 @@
 
     NGC, étant un calculateur grand public, nous faisons le choix de la simplicité.
 
-    Ainsi, cette approximation se fait par grande famille de produit. Plus concrètement, le calculateur NGC se base sur des ratios monétaires (X g de CO2e sont émis pour Y € de produits achetés), par type de produits, donnés par la [Base Carbone®](https://www.bilans-ges.ademe.fr/) de l’ADEME.
+    Ainsi, cette approximation se fait par grande famille de produit. Plus concrètement, le calculateur NGC se base sur des ratios monétaires (X g de CO₂ₑ sont émis pour Y € de produits achetés), par type de produits, donnés par la [Base Carbone®](https://www.bilans-ges.ademe.fr/) de l’ADEME.
 
     Ces ratios monétaires permettent d’estimer le contenu carbone d’un produit ou service acheté à partir de son prix. Pour se faire, un produit « moyen » standard est considéré. Il ne prend donc pas en compte les spécificités des produits moins impactant (occasion, durables, éco-conçus…), ce qui tend à majorer l’empreinte finale.
 
@@ -195,7 +215,7 @@
 
     ### Mais qu’est-ce que l’amortissement ?
 
-    La fabrication d'une voiture est un process industriel loin d’être anodin et qui contribue à émettre plusieurs tonnes de CO2e. Pour ne pas créer de fortes variations de l’empreinte, notamment les années où l’on achète un nouveau véhicule, cet impact est réparti sur la durée de vie du véhicule. Cela rend possible la comparaison de votre empreinte carbone d’année en année.
+    La fabrication d'une voiture est un process industriel loin d’être anodin et qui contribue à émettre plusieurs tonnes de CO₂ₑ. Pour ne pas créer de fortes variations de l’empreinte, notamment les années où l’on achète un nouveau véhicule, cet impact est réparti sur la durée de vie du véhicule. Cela rend possible la comparaison de votre empreinte carbone d’année en année.
 
     Dans le cas où vous possédez votre propre voiture, l’ensemble de l’impact de la construction vous est attribué. L’amortissement est alors linéaire, c’est-à-dire réparti à valeur égale d’année en année. Nous posons la question de l’âge de votre voiture afin de savoir quelle part de l’amortissement il vous reste à faire. La durée d’amortissement d’une voiture, considérée par Nos Gestes Climat est de 10 ans. Tout véhicule plus ancien n’est donc pas considéré (et automatiquement à émissions nulles).
 
@@ -265,4 +285,4 @@
 
     Nous estimons au mieux l’empreinte numérique en nous basant sur les données de la [Base Carbone®](https://www.bilans-ges.ademe.fr/) mais certaines informations ou questionnements peuvent s’avérer manquant.
 
-    Pour aller plus loin, n'hésitez pas à tester [le simulateur intéractif d'impactco2.fr](https://impactco2.fr/usagenumerique).
+    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le simulateur intéractif d'impactco2.fr](https://impactco2.fr/usagenumerique).
