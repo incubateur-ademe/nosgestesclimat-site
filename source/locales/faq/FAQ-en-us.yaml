@@ -100,6 +100,8 @@
 
     This transition cannot be thought of only at the individual level. Direct, individual action is a necessary but not sufficient condition for a more global transition at the scale of our society. This means playing with indirect levers of action (voting, associative commitment, awareness-raising around us, etc.).
 
+    > We have integrated some of them into the <a href="https://nosgestesclimat.fr/actions">action pathway</a> after the test.
+
 
     This is the purpose of Nos Gestes Climat: to raise awareness of these issues and make people aware of them!
   réponse.lock: >
@@ -643,3 +645,37 @@
 
 
     L’équipe travaille à développer un parcours [« foyer »](https://github.com/datagir/nosgestesclimat/issues/113) afin de pouvoir estimer l’empreinte carbone de sa famille.
+
+- catégorie: general
+  catégorie.lock: général
+  id: défaut
+  question: Why is the starting footprint of the test less than 10 tons?
+  question.lock: Pourquoi l'empreinte de départ du test est-elle inférieure à 10 tonnes ?
+  réponse: |
+    The footprint that appears at the beginning of the test, before you have answered the questions, is only a starting point! It allows you to compare the footprint of your consumption items (car mileage, heating...) to values that are close to the French average 
+
+    If you follow closely the national carbon footprint figures, you will notice that this figure is different from `8.9 tons of CO₂ₑ`, <a href="https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021">the latest figure calculated by the Ministry of Environment in November 2022</a>.
+
+    This difference is normal (as long as the order of magnitude remains the same), because the two calculation approaches are different. Indeed, this average encompasses the carbon impact of all the activities of the French economy which it then divides by the 67 million French people, where Nos Gestes Climat is based on an approach of real consumption categorized into items that we know are significant and represent the vast majority of an individual's carbon footprint 
+
+    Thus, the perimeters of the activities taken into account are not perfectly "juxtaposed" (for example: even if you don't have a boat, the average French footprint attributes to you a share of the emissions related to the manufacture, maintenance and repair of boats as well as a share of emissions related to marina services) 
+
+    However, as you will discover during the test, your food, your travels and your habitat are responsible for the vast majority of your emissions... and this is precisely the strength of Nos Gestes Climat: leaving aside the average to propose *your own simulation*, in the most accurate way possible.
+
+    In the end, nothing serious, as long as the order of magnitude of these estimates is identical (~10 tons).  
+
+    > We are working on a methodological consolidation in order to improve the exhaustiveness of the perimeters taken into account by NGC: the model evolves very regularly to become more precise and complete.
+  réponse.lock: |
+    L'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, n'est qu'un point de départ ! Il vous permet tout au long du test de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
+
+    Si vous suivez attentivement les chiffres d'empreinte carbone nationale, vous remarquerez que ce chiffre est différent des `8,9 tonnes de CO₂ₑ`, [le dernier chiffre calculé par le Ministère de l'Environnement en novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
+
+    Cette différence est normale (tant que l'ordre de grandeur reste identique), car les deux approches de calcul sont différentes. En effet, cette moyenne englobe l'impact carbone de l’ensemble des activités de l’économie française qu'elle divise ensuite par les 67 millions de français, là où Nos Gestes Climat se base sur une approche de consommation réelle catégorisée en postes que nous savons significatifs et représentant la grande majorité de l’empreinte carbone d’un individu. 
+
+    Ainsi, les périmètres des activités prises en compte ne sont pas parfaitement « juxtaposés » (par exemple : même si vous n'avez pas de bateau, l'empreinte moyenne française vous attribue une part des émissions liées à la fabrication, l'entretien et la réparation des bateaux ainsi qu'une part d'émissions liées aux services des marinas). 
+
+    Pourtant, comme vous le découvrirez pendant le test, votre alimentation, vos déplacements et votre habitat sont responsables de la très grande majorité de vos émissions… et c'est justement la force de Nos Gestes Climat : laisser de côté la moyenne pour vous proposer *votre simulation à vous*, de la façon la plus précise possible.
+
+    Au final, rien de grave, tant que l'ordre de grandeur de ces estimations est identique (~10 tonnes).  
+
+    > Nous menons un travail de consolidation méthodologique afin d’améliorer l’exhaustivité des périmètres pris en compte par NGC : le modèle évolue très régulièrement pour devenir plus précis et complet.
