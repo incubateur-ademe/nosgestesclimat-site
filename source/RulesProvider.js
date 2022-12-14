@@ -131,9 +131,19 @@ const EngineWrapper = ({ rules, children }) => {
 		)
 
 	return (
-		<EngineProvider value={engine}>
-			<SituationProvider situation={situation}>{children}</SituationProvider>
-		</EngineProvider>
+		<>
+			{!rules && (
+				<div css="height: 10vh; background: red;">Pas encore de règles</div>
+			)}
+			{rules && !engine && (
+				<div css="height: 10vh; background: yellow;">
+					Règles mais pas moteur{' '}
+				</div>
+			)}
+			<EngineProvider value={engine}>
+				<SituationProvider situation={situation}>{children}</SituationProvider>
+			</EngineProvider>
+		</>
 	)
 }
 

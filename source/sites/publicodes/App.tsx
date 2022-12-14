@@ -222,7 +222,7 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine fallback={<div css="height: 10rem; background: red">Les règles sont chargées, mais pas encore le moteur de calcul</div>}>
+						<WithEngine>
 							<Documentation />
 						</WithEngine>
 					</Suspense>
