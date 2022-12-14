@@ -260,7 +260,7 @@ entries:
   catégorie complétée: catégorie complétée
   cet article: cet article
   cette page: cette page
-  components.NewsBanner.miseAJourDate: Mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Dernière mise à jour le {{date}}
   components.ScoreExplanation.text.p1: 🧮 Voici votre score de départ, calculé à
     partir de réponses attribuées à l'avance à chaque question ! Il évoluera à
     chaque nouvelle réponse.
@@ -425,7 +425,7 @@ entries:
     "bottom-up" pour les consommations carbonées de notre vie quotidienne, et
     d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte
     par personne des services dits sociétaux (services publics et services de
-    base tels les télécom). TODO lien vers la realease d'explication.
+    base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   mois: mois
   mon empreinte annuelle: mon empreinte annuelle
   mon objectif: mon objectif
@@ -459,7 +459,7 @@ entries:
     très impactantes à vous proposer 🤷</0><1>Découvrez plus bas quelques pistes
     pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: >-
+  publicodes.Contribution.commentaireAugmenté: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Vous trouverez ici les réponses aux
@@ -516,7 +516,7 @@ entries:
     Vous n'avez pas encore fait le
     test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur
     votre mode de vie.
-  publicodes.TranslationContribution.commentaireAugmenté: >-
+  publicodes.TranslationContribution.commentaireAugmenté: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
   publicodes.TranslationContribution.remerciements:
@@ -653,9 +653,8 @@ entries:
   site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
   sites.publicodes.Landing.description: En 10 minutes, obtenez une estimation de
     votre empreinte carbone de consommation.
-  sites.publicodes.LandingExplanations.faqLink: >-
+  sites.publicodes.LandingExplanations.faqLink: |-
     ## Des questions ?
-
 
 
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).

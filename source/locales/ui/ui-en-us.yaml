@@ -60,9 +60,11 @@ entries:
   Courses: Races
   De quoi est faite mon empreinte ?: What is my footprint made of?
   Depuis la page: From the page
-  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.": Behind the nosgestesclimat.fr website, lies the individual climate footprint
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.":
+    Behind the nosgestesclimat.fr website, lies the individual climate footprint
     model of reference consumption.
-  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence..lock": Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence..lock":
+    Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat
     individuelle de consommation de référence.
   Diffuser: Broadcast
   Distance: Distance
@@ -83,7 +85,8 @@ entries:
   En savoir +: Read more
   En savoir plus: Read more
   'Enlever ': 'Remove '
-  "Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un standard qui évolue régulièrement et qui peut être réutilisé librement par tout type d'acteur.": Entirely open source and contributive, everyone can<1>explore</1> it,
+  "Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un standard qui évolue régulièrement et qui peut être réutilisé librement par tout type d'acteur.":
+    Entirely open source and contributive, everyone can<1>explore</1> it,
     <4>give their opinion</4>, <7>improve it</7>. It is a standard that evolves
     regularly and can be freely reused by any type of actor.
   Entre: Between
@@ -96,7 +99,8 @@ entries:
   Et mes données ?: What about my data?
   Explorer les catégories: Explore categories
   Explorer notre documentation: Explore our documentation
-  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore and modify the information you have entered in the nosgestesclimate
+  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
+    Explore and modify the information you have entered in the nosgestesclimate
     pathway.
   Explorez nos modèles: Explore our models
   Explorez notre documentation: Explore our documentation
@@ -121,15 +125,18 @@ entries:
   La voiture en chiffres: The car in figures
   Label: Label
   Label (facultatif): Label (optional)
-  "Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.": The model now includes <1>{numberOfRules}</1> calculation rules. Among them,
+  "Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    The model now includes <1>{numberOfRules}</1> calculation rules. Among them,
     {numberOfQuestions} rules are questions to be asked to the user to calculate
     a specific result.
-  "Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.": The model now includes {numberOfRules} calculation rules. Among them,
+  "Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    The model now includes {numberOfRules} calculation rules. Among them,
     {numberOfQuestions} rules are questions to be asked to the user to calculate
     a specific result.
   Le modèle d'empreinte carbone de référence: The reference carbon footprint model
   'Le reste : ': 'The rest '
-  "Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.": The Nos Gestes Climat simulator is based on the calculation model of the
+  "Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.":
+    The Nos Gestes Climat simulator is based on the calculation model of the
     same name, composed of a set of bricks. On this documentation, you have
     transparent access to all the variables of the calculation.
   Le test: The test
@@ -257,9 +264,10 @@ entries:
   catégorie complétée: completed category
   cet article: this article
   cette page: this page
-  components.NewsBanner.miseAJourDate: Updated on {{date}}
-  components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
-  components.ScoreExplanation.text.p1: 🧮 This is your starting score, calculated
+  components.NewsBanner.miseAJourDate: Last updated on {{date}}
+  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour le {{date}}
+  components.ScoreExplanation.text.p1:
+    🧮 This is your starting score, calculated
     from pre-assigned answers to each question! It will change with each new
     answer.
   components.ScoreExplanation.text.p1.lock: 🧮 Voici votre score de départ,
@@ -269,18 +277,22 @@ entries:
   components.ScoreExplanation.text.p2.lock: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
   components.ScoreExplanation.text.p3: '🤔 If you answer "I don''t know" to a
     question, the score will not change: you are assigned a default value.'
-  components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas"
+  components.ScoreExplanation.text.p3.lock:
+    '🤔 Si vous répondez "je ne sais pas"
     à une question, le score ne changera pas : une valeur par défaut vous est
     attribuée.'
   components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default valuesevery<1>month</1>!
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in
     <1>beta</1> version. <4>A problem, a suggestion?</4>
-  components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est
+  components.TranslationAlertBanner.wikiLink.lock:
+    La traduction de cette page est
     en version <1>beta</1>. <4>Un problème, une suggestion ?</4>
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
+    You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the
     car.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock:
+    Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.
   components.conversation.select.NumberedMosaic.choixAFaire: ' You still have {{nbChoix}} to choose from.'
   components.conversation.select.NumberedMosaic.choixAFaire.lock: ' Il vous reste {{nbChoix}} choix à faire.'
@@ -328,7 +340,8 @@ entries:
     Climat. Dans l'attente de chiffres plus précis, ce taux est donc
     potentiellement sous-estimé par rapport à la réalité. <5>(Données valables
     pour les 30 derniers jours)</5></1>
-  components.stats.StatsContent.scoreUtilisateurs: '<0>Read more about it</0><1>Of
+  components.stats.StatsContent.scoreUtilisateurs:
+    '<0>Read more about it</0><1>Of
     course, we do not collect <2>user data</2>. Nevertheless, the total score as
     well as the footprint per category is present in the end of test URL. In
     this section, we aggregate this information to get an idea of the average
@@ -364,7 +377,8 @@ entries:
   feedback.bad.form.headline: Your feedback is valuable to us in order to
     continuously improve this site. What should we work on to better meet your
     expectations?
-  feedback.bad.form.headline.lock: Votre retour nous est précieux afin d'améliorer
+  feedback.bad.form.headline.lock:
+    Votre retour nous est précieux afin d'améliorer
     ce site en continu. Sur quoi devrions nous travailler afin de mieux répondre
     à vos attentes ?
   feedback.question: Is this page useful to you?
@@ -422,7 +436,8 @@ entries:
   meta.publicodes.Contribution.description.lock: Découvrez les questions
     fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous
     aider.
-  meta.publicodes.Diffuser.description: This simulator allows you to evaluate your
+  meta.publicodes.Diffuser.description:
+    This simulator allows you to evaluate your
     total annual individual carbon footprint and by major categories (food,
     transportation, housing, miscellaneous, utilities, digital), to situate it
     in relation to the climate objectives and above all to take action at your
@@ -449,7 +464,8 @@ entries:
     empreinte. Suivez le parcours de passage à l'action pour la réduire.
   meta.publicodes.Méthode.description: Our calculation model is completely
     transparent. Everyone can explore it, give their opinion, improve it.
-  meta.publicodes.Méthode.description.lock: Notre modèle de calcul est entièrement
+  meta.publicodes.Méthode.description.lock:
+    Notre modèle de calcul est entièrement
     transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
   meta.publicodes.Méthode.title: Understanding our calculations
   meta.publicodes.Méthode.title.lock: Comprendre nos calculs
@@ -457,14 +473,16 @@ entries:
     estimate not only your climate footprint, but also your oil consumption. Oil
     is responsible for a large part of the climate footprint, but its purchase
     also has other consequences, notably geopolitical.
-  meta.publicodes.PetrogazLanding.description.lock: Nos Gestes Climat vous permet
+  meta.publicodes.PetrogazLanding.description.lock:
+    Nos Gestes Climat vous permet
     non seulement d'estimer votre empreinte sur le climat, mais également votre
     consommation de pétrole. Ce dernier est responsable d'une grande partie de
     l'empreinte climat, mais son achat a également d'autres conséquences,
     notamment géopolitiques.
   meta.publicodes.PetrogazLanding.title: My oil and gas footprint
   meta.publicodes.PetrogazLanding.title.lock: Mon empreinte pétrole et gaz
-  meta.publicodes.Privacy.description: Nos Gestes Climat, out of group mode, work
+  meta.publicodes.Privacy.description:
+    Nos Gestes Climat, out of group mode, work
     without a server, so your data stays with you. We collect anonymously
     aggregated data to improve the simulator.
   meta.publicodes.Privacy.description.lock: Nos gestes climat, hors mode groupe,
@@ -478,36 +496,43 @@ entries:
   meta.publicodes.fin.Petrogaz.description: My oil footprint is {{empreinte}} full of oil. Measure yours!
   meta.publicodes.fin.Petrogaz.description.lock: Mon empreinte pétrole est de
     {{empreinte}} pleins de pétrole. Mesure la tienne !
-  meta.publicodes.fin.actionslide.description: Top 3 actions to reduce my climate
+  meta.publicodes.fin.actionslide.description:
+    Top 3 actions to reduce my climate
     footprint by {{roundedValue}} tonnes of CO₂‍ₑ.
   meta.publicodes.fin.actionslide.description.lock: Le top 3 des actions pour
     réduire mon empreinte climat de {{roundedValue}} tonnes de CO₂ₑ.
   meta.publicodes.pages.Documentation.description: Our calculation model is
     completely transparent. Everyone can explore it, give their opinion, improve
     it.
-  meta.publicodes.pages.Documentation.description.lock: Notre modèle de calcul est
+  meta.publicodes.pages.Documentation.description.lock:
+    Notre modèle de calcul est
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
   meta.publicodes.pages.Documentation.intro: The Nos Gestes Climat simulator is
     based on the calculation model of the same name, composed of a set of
     bricks. On this documentation, you have transparent access to all the
     variables of the calculation.
-  meta.publicodes.pages.Documentation.intro.lock: Le simulateur Nos Gestes Climat
+  meta.publicodes.pages.Documentation.intro.lock:
+    Le simulateur Nos Gestes Climat
     est basé sur le modèle de calcul du même nom, composé d'un ensemble de
     briques. Sur cette documentation, vous avez accès en toute transparence à
     l'ensemble des variables du calcul.
   minutes: minutes
   model.active: Here are some examples of important <1>issues</1> of the moment
     among the hundred or so documented topics.
-  model.active.lock: Voici à titre d'exemple quelques <1>issues</1> importantes du
+  model.active.lock:
+    Voici à titre d'exemple quelques <1>issues</1> importantes du
     moment parmi la centaine de sujets documentés.
-  model.intro: Behind the nosgestesclimat.fr website, lies the individual climate
+  model.intro:
+    Behind the nosgestesclimat.fr website, lies the individual climate
     footprint model of reference consumption.
   model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle
     d'empreinte climat individuelle de consommation de référence.
-  model.intro2: Entirely open source and contributive, everyone can<1>explore</1>
+  model.intro2:
+    Entirely open source and contributive, everyone can<1>explore</1>
     it, <4>give their opinion</4>, <7>improve it</7>.
-  model.intro2.lock: Entièrement ouvert (open source) et contributif, chacun peut
+  model.intro2.lock:
+    Entièrement ouvert (open source) et contributif, chacun peut
     l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
   model.modern: The model is based on <1>publicodes</1>, a language designed by
     the state to express public interest algorithms.
@@ -521,34 +546,37 @@ entries:
     réutilisé <2>librement</2> par tout type d'acteur.
   model.modern3: ⬇️ Below, you can see the influence of 3 calculation parameters
     on the final results.
-  model.modern3.lock: ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres
+  model.modern3.lock:
+    ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres
     de calcul sur les résultats finaux.
   model.modern4: The calculation model is embedded directly in the client, the
     calculation takes place there in your browser, not on our servers. The data
     collected is so descriptive of users' lives, and therefore sensitive in
     terms of privacy, that doing the calculations on the server side <2>and
     storing them</2> would pose too high a risk.
-  model.modern4.lock: Le modèle de calcul est directement embarqué chez le client,
+  model.modern4.lock:
+    Le modèle de calcul est directement embarqué chez le client,
     le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données
     collectées sont si descriptives de la vie des utilisateurs, donc sensibles
     en termes de vie privée, que faire les calculs côté serveur <2>et les
     stocker</2> poserait un risque trop élevé.
   model.stats: The model now includes <1></1> calculation rules. Among them,
     <3></3> rules are questions to ask the user to calculate a precise result.
-  model.stats.lock: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi
+  model.stats.lock:
+    Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi
     elles, <3></3> règles sont des questions à poser à l'utilisateur pour
     calculer un résultat précis.
   model.stats2: It consists of a combination of hundreds of "bottom-up" micro
-    models for the carbon consumption of our daily life, and a "top-down" model
+    models for the carbon consumption of our daily lives, and a "top-down" model
     derived from the work of the SDES to estimate the per capita footprint of
-    so-called societal services (utilities and basic services such as telecom).
-    TODO link to the explanation realease.
+    so-called societal services (public services and basic services such as
+    telecommunications). <2>Learn more about this hybridization</2>.
   model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles
     micro "bottom-up" pour les consommations carbonées de notre vie quotidienne,
     et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
     l'empreinte par personne des services dits sociétaux (services publics et
-    services de base tels les télécom). TODO lien vers la realease
-    d'explication.
+    services de base tels les télécom). <2>En savoir plus sur cette
+    hybridation</2>.
   mois: month
   mon empreinte annuelle: my annual footprint
   mon objectif: my goal
@@ -571,7 +599,8 @@ entries:
   plus de 100 kg: over 100 kg
   publicodes.ActionTutorial.félicitation: You have completed your simulation, 👏 well done!
   publicodes.ActionTutorial.félicitation.lock: Vous avez terminé votre simulation, 👏 bravo !
-  publicodes.ActionTutorial.msgEstimation: You now know your footprint, estimated
+  publicodes.ActionTutorial.msgEstimation:
+    You now know your footprint, estimated
     at {{value}} {{unit}}, and you probably already have ideas to reduce it...
   publicodes.ActionTutorial.msgEstimation.lock: Vous connaissez maintenant votre
     empreinte, estimée à {{value}} {{unit}}, et vous avez sûrement déjà des
@@ -598,10 +627,10 @@ entries:
     quelques pistes pour agir autrement ⏬</1>
   publicodes.Contribution.bugQuestion: 🐛 You have a bug that prevents you from using Nos Gestes Climat?
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
-  publicodes.Contribution.commentaireAugmenté: >-
+  publicodes.Contribution.commentaireAugmenté: |-
 
     > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.commentaireAugmenté.lock: >-
+  publicodes.Contribution.commentaireAugmenté.lock: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Here you will find answers to the most
@@ -616,7 +645,8 @@ entries:
     version 93, Chrome version 95, Safari, etc.), and the platform (iPhone,
     Android, Windows computer, etc.), you will help us resolve the bug
     faster.</0></1>
-  publicodes.Contribution.descriptionComplète.lock: <0>La description complète de
+  publicodes.Contribution.descriptionComplète.lock:
+    <0>La description complète de
     votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par
     exemple Firefox version 93, Chrome version 95, Safari, etc.), et la
     plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à
@@ -627,7 +657,8 @@ entries:
     invite you to <2>open a ticket directly on GitHub</2>.
   publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question,
     nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
-  publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your
+  publicodes.Contribution.remerciements:
+    Thank you 😍! Follow the progress of your
     suggestion by clicking on <1>this link</1>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de
     votre suggestion en cliquant sur <1>ce lien</1>.
@@ -637,13 +668,15 @@ entries:
     translated into several languages. Do not hesitate to share your doubts
     about a translation problem on the site 😊. We will take it into account
     quickly.
-  publicodes.Contribution.traductionIntro.lock: Nos Gestes Climat vient tout juste
+  publicodes.Contribution.traductionIntro.lock:
+    Nos Gestes Climat vient tout juste
     d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de
     vos doutes quand à un problèm de traduction sur le site 😊. Nous le
     prendrons en compte rapidement.
   publicodes.Contribution.translationWikiInvite: 'Follow our complete guide to
     contribute directly to the translation of the site: <2>go to our wiki</2>.'
-  publicodes.Contribution.translationWikiInvite.lock: 'Suivez notre guide complet
+  publicodes.Contribution.translationWikiInvite.lock:
+    'Suivez notre guide complet
     pour contribuer directement à la traduction du site : <2>rendez-vous sur
     notre wiki</2>.'
   publicodes.Landing.question: Do you know your climate footprint?
@@ -672,22 +705,27 @@ entries:
     console (elle est un peu chargée...), puis copier le JSON affiché, le coller
     dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans
     personas.yaml.
-  publicodes.Personas.warningMsg: 'Be careful, you have a simulation in progress:
+  publicodes.Personas.warningMsg:
+    'Be careful, you have a simulation in progress:
     selecting a persona will overwrite your simulation.'
   publicodes.Personas.warningMsg.lock: 'Attention, vous avez une simulation en
     cours : sélectionner un persona écrasera votre simulation.'
-  publicodes.Profil.locationDonnées: <0>Where is my data? </0>Your data is stored
+  publicodes.Profil.locationDonnées:
+    <0>Where is my data? </0>Your data is stored
     in your browser, so you have full control over it <2></2>
-  publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0>Vos données
+  publicodes.Profil.locationDonnées.lock:
+    <0>Où sont mes données ? </0>Vos données
     sont stockées dans votre navigateur, vous avez donc le contrôle total sur
     elles. <2></2>
   publicodes.Profil.recap: You have completed {{percentFinished}}% of the test
     ({{answeredQuestionsLength}} questions) and chosen {{actionChoicesLength}}
     actions.
-  publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} %
+  publicodes.Profil.recap.lock:
+    Vous avez terminé le test à {{percentFinished}} %
     ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}}
     actions.
-  publicodes.SimulationMissing.personnas: 💡 You can also see the action course as
+  publicodes.SimulationMissing.personnas:
+    💡 You can also see the action course as
     if you were one of these sample profiles.
   publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi voir le
     parcours action comme si vous étiez l'un de ces profils types.
@@ -697,11 +735,10 @@ entries:
   publicodes.SimulationMissing.simulationManquante.lock: Vous n'avez pas encore
     fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu
     plus sur votre mode de vie.
-  publicodes.TranslationContribution.commentaireAugmenté: >-
+  publicodes.TranslationContribution.commentaireAugmenté: |-
 
     &gt; This ticket was created automatically by our robot from our [translation contribution page](https://nosgestesclimat.fr/contribuer-traduction).
-  publicodes.TranslationContribution.commentaireAugmenté.lock: >-
-
+  publicodes.TranslationContribution.commentaireAugmenté.lock: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
   publicodes.TranslationContribution.remerciements: Thank you 😍! Follow the
@@ -714,22 +751,22 @@ entries:
   publicodes.Tutorial.slide1.p1.lock: <0>Pas de panique, on vous explique ce que
     c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à
     mesure des gaz à effet de serre que l'on émet.</1>
-  publicodes.Tutorial.slide1.p2: <0>This test gives you in ⏱️ 10 minutes flat <2>a
+  publicodes.Tutorial.slide1.p2:
+    <0>This test gives you in ⏱️ 10 minutes flat <2>a
     measure of your part </2> in this warming.</0>
   publicodes.Tutorial.slide1.p2.lock: <0>Ce test vous donne en ⏱️ 10 minutes
     chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>
-  publicodes.Tutorial.slide2.blockquote: 'Other gases, especially methane <1></1>
+  publicodes.Tutorial.slide2.blockquote:
+    'Other gases, especially methane <1></1>
     and nitrous oxide <5></5> also warm the planet: we convert their warming
     potential to CO₂ equivalent to simplify the unit.'
   publicodes.Tutorial.slide2.blockquote.lock: "D'autres gaz, surtout le
     méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la
     planète : on convertit leur potentiel de réchauffement en équivalent CO₂
     pour simplifier la mesure. "
-  publicodes.Tutorial.slide2.p1: >
+  publicodes.Tutorial.slide2.p1: |
     Through a unit with a barbaric name: the CO₂
-
     equivalent. You already know carbon dioxide<1></1>, it's what we breathe out all day,
-
     but without influence on the climate.
   publicodes.Tutorial.slide2.p1.lock: "Avec une unité au nom barbare :
     l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on
@@ -737,7 +774,8 @@ entries:
   publicodes.Tutorial.slide2.p2: Machines that enable our modern comfort do emit
     massive amounts of CO₂, so much that we count it in thousands of kilos per
     year and per person, therefore in <1>tonnes</1> of CO₂e!
-  publicodes.Tutorial.slide2.p2.lock: Ce sont les machines qui font notre confort
+  publicodes.Tutorial.slide2.p2.lock:
+    Ce sont les machines qui font notre confort
     moderne qui en rejettent massivement, à tel point qu'on le compte en
     milliers de kilos par an et par personne, donc en <1>tonnes</1> de CO₂e !
   publicodes.Tutorial.slide5.p1: <0>And the goal?</0><1>We have to decrease our
@@ -746,7 +784,8 @@ entries:
   publicodes.Tutorial.slide5.p1.lock: <0>Et l'objectif ?</0><1>Nous devons
     diminuer notre empreinte climat au plus vite.</1><2>En France, ça consiste à
     passer de ~10 tonnes à <2>moins de 2 tonnes</2> par an.</2>
-  publicodes.Tutorial.slide6: <0>Where does our footprint come from?</0><1>Taking
+  publicodes.Tutorial.slide6:
+    <0>Where does our footprint come from?</0><1>Taking
     the car, eating a steak, heating your house, getting medical care, buying a
     TV...</1><2><0><0></0></0></2><3>The footprint of our individual consumption
     is the sum of all these activities that make up our modern life </3>
@@ -755,13 +794,15 @@ entries:
     une TV...</1><2><0><0></0></0></2><3>L'empreinte de notre consommation
     individuelle, c'est la somme de toutes ces activités qui font notre vie
     moderne. </3>
-  publicodes.Tutorial.slide7: '<0>So, are you ready to go?</0><1>Some tips to help
+  publicodes.Tutorial.slide7:
+    '<0>So, are you ready to go?</0><1>Some tips to help
     you complete the test:</1><2>👤 Answer the questions on behalf of yourself,
     not your household: this is an individual test.</2><3>💼 Answer for your
     personal life, not for your job or studies. <2>One exception: </2> your
     commute must be included in the miles driven.</3><4>❓️ More questions? Check
     out our <2>FAQs</2> at any time.</4>'
-  publicodes.Tutorial.slide7.lock: "<0>Alors, c'est parti ?</0><1>Quelques astuces
+  publicodes.Tutorial.slide7.lock:
+    "<0>Alors, c'est parti ?</0><1>Quelques astuces
     pour vous aider à compléter le test :</1><2>👤 Répondez aux questions en
     votre nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼
     Répondez pour votre vie perso, pas pour votre boulot ou études. <2>Une seule
@@ -770,7 +811,8 @@ entries:
     moment.</4>"
   publicodes.chart.GridChart.equivalenceCase: One box 🔲 = {{nbKg}} kg of CO₂e.
   publicodes.chart.GridChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
-  publicodes.conference.Conference.donnéesExplications: '<0>By participating, you
+  publicodes.conference.Conference.donnéesExplications:
+    '<0>By participating, you
     agree to share your aggregated simulation results with other conference
     participants: the total and the categories (transportation, housing, etc.).
     However, our servers do not store them: it works in P2P (peer to
@@ -783,7 +825,8 @@ entries:
     cela fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de
     conférence sera indexé dans <2>les statistiques d'utilisation</2> de Nos
     Gestes Climat. </1>"
-  publicodes.conference.DataWarning.viePrivée: '🕵 By participating, you agree to
+  publicodes.conference.DataWarning.viePrivée:
+    '🕵 By participating, you agree to
     the <1>anonymous</1> collection of your aggregated simulation results on our
     server: total climate footprint and categories (transportation, housing,
     etc.). <3>Read more</3>'
@@ -791,29 +834,35 @@ entries:
     acceptez la collecte <1>anonyme</1> de vos résultats agrégés de simulation
     sur notre serveur : l'empreinte climat totale et les catégories (transport,
     logement, etc.). <3>En savoir plus</3>"
-  publicodes.conference.Instructions.avertissementModeConference: '<0>Be careful</0>, it is possible that your organization blocks
+  publicodes.conference.Instructions.avertissementModeConference:
+    '<0>Be careful</0>, it is possible that your organization blocks
     peer-to-peer, and therefore the use of the conference mode. Test beforehand
     on site and in duet: in case of problem, you can use the survey mode.'
-  publicodes.conference.Instructions.avertissementModeConference.lock: "<0>Attention</0>, il est possible que votre organisation bloque le
+  publicodes.conference.Instructions.avertissementModeConference.lock:
+    "<0>Attention</0>, il est possible que votre organisation bloque le
     pair-à-pair, et donc l'utilisation du mode conférence. Faites le test au
     préalable sur site et en duo : en cas de problème, vous pouvez utiliser le
     mode sondage."
   publicodes.conference.Instructions.contextualisationLink: 💡 Want to add
     questions to get additional information about respondents? <2>Check out the
     "survey contextualization!" feature </2>
-  publicodes.conference.Instructions.contextualisationLink.lock: 💡 Vous souhaitez ajouter des questions pour obtenir des informations
+  publicodes.conference.Instructions.contextualisationLink.lock:
+    💡 Vous souhaitez ajouter des questions pour obtenir des informations
     supplémentaires sur les répondants ? <2>Découvrez la fonctionnalité
     "contextualisation de sondage !" </2>
-  publicodes.conference.Instructions.descriptionModeConference: 'Ephemeral mode: perfect for a workshop, an interactive presentation or
+  publicodes.conference.Instructions.descriptionModeConference:
+    'Ephemeral mode: perfect for a workshop, an interactive presentation or
     between friends. The data remains between the participants (peer-to-peer
     without server), <2>just the time of the conference</2>.'
-  publicodes.conference.Instructions.descriptionModeConference.lock: "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
+  publicodes.conference.Instructions.descriptionModeConference.lock:
+    "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
     interactive ou entre amis. Les données restent entre les participants
     (pair-à-pair sans serveur), <2>juste le temps de la conférence</2>."
   publicodes.conference.Instructions.descriptionModeSondage: 'Persistent mode:
     participant data is stored on our server and remains accessible and
     downloadable <2>for two months</2>.'
-  publicodes.conference.Instructions.descriptionModeSondage.lock: 'Mode persistant : les données des participants sont stockées sur notre
+  publicodes.conference.Instructions.descriptionModeSondage.lock:
+    'Mode persistant : les données des participants sont stockées sur notre
     serveur et restent accessibles et téléchargeables <2>pendant deux mois</2>.'
   publicodes.conference.Instructions.guideLien: The results are in, what to do?
     Our guide accompanies you in your thoughts and discussions on this page
@@ -825,30 +874,37 @@ entries:
     will be behind his or her own screen, but will be able to see the results of
     the others in real time.</0><1>It is an opportunity to confront others and
     to think together about the stakes of our own impact.</1>
-  publicodes.conference.Instructions.intro.lock: <0>Le test d'empreinte climat est
+  publicodes.conference.Instructions.intro.lock:
+    <0>Le test d'empreinte climat est
     individuel, mais nous vous proposons ici de le faire à plusieurs. Chacun
     sera derrière son écran, mais visualisera en temps-réel les résultats des
     autres.</0><1>C'est l'occasion de se confronter aux autres et de réfléchir
     ensemble aux enjeux de notre propre impact.</1>
-  publicodes.conference.Instructions.liensSimulationConference: At the agreed time, open this link all at the same time and do your own
+  publicodes.conference.Instructions.liensSimulationConference:
+    At the agreed time, open this link all at the same time and do your own
     simulation.
-  publicodes.conference.Instructions.liensSimulationConference.lock: Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
+  publicodes.conference.Instructions.liensSimulationConference.lock:
+    Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
     votre côté votre simulation.
   publicodes.conference.Instructions.liensSimulationSondage: Participants must come to make their simulation on this link.
   publicodes.conference.Instructions.liensSimulationSondage.lock: Les participants doivent venir faire leur simulation sur ce lien.
-  publicodes.conference.Instructions.resultatInfos: 'The results for each category
+  publicodes.conference.Instructions.resultatInfos:
+    'The results for each category
     (food, transportation, housing, etc.) are displayed progressively and in
     real time for the entire group on '
   publicodes.conference.Instructions.resultatInfos.lock: "Les résultats pour
     chaque catégorie (alimentation, transport, logement ...) s'affichent
     progressivement et en temps réel pour l'ensemble du groupe sur "
   publicodes.conference.NamingBlock.nomSalleCourt: ⚠️ Your room name is short, there is a small risk that strangers may guess it
-  publicodes.conference.NamingBlock.nomSalleCourt.lock: ⚠️ Votre nom de salle est
+  publicodes.conference.NamingBlock.nomSalleCourt.lock:
+    ⚠️ Votre nom de salle est
     court, il y a un petit risque que des inconnus puissent le deviner
   publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres: 💡 Your room name can only contain letters, numbers and dashes
-  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres.lock: 💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
+  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres.lock:
+    💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
     tirets
-  publicodes.conference.NoTestMessage.bienvenue: Welcome to the group mode of Our
+  publicodes.conference.NoTestMessage.bienvenue:
+    Welcome to the group mode of Our
     Climate Action! You haven't started your test yet, go ahead!
   publicodes.conference.NoTestMessage.bienvenue.lock: Bienvenue dans le mode
     groupe de Nos Gestes Climat ! Vous n'avez pas encore débuté votre test,
@@ -863,7 +919,8 @@ entries:
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: To open it with <2>LibreOffice</2>, it is automatic.
   publicodes.conference.Survey.libreOffice.lock: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
-  publicodes.conference.Survey.resultat: The results on the view page only include
+  publicodes.conference.Survey.resultat:
+    The results on the view page only include
     participants who completed <1>at least 10% of the test</1>. The CSV, on the
     other hand, contains the simulations of all the people who participated in
     the survey by clicking on the link. The "progress" column allows you to
@@ -874,7 +931,8 @@ entries:
     les personnes ayant participé au sondage en cliquant sur le lien. La colonne
     "progress" vous permet de filtrer les simulations à votre tour.
   publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tonnes!<2> You are well below the French average</2> '
-  publicodes.fin.ActionTeaser.félicitations.lock: '{{displayedTotal}} tonnes !<2>
+  publicodes.fin.ActionTeaser.félicitations.lock:
+    '{{displayedTotal}} tonnes !<2>
     Vous êtes très nettement en-dessous de la moyenne française.</2> '
   publicodes.fin.ActionTeaser.messagePourConvaincre: Chances are, your time will
     be better spent convincing and helping others than trying to earn your
@@ -900,7 +958,8 @@ entries:
     {{parent}}.</2>
   publicodes.fin.Petrogaz.equivalenceVolume: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
   publicodes.fin.Petrogaz.equivalenceVolume.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
-  publicodes.fin.Petrogaz.explications: <0>It is a <1>minimum</1> estimate of your
+  publicodes.fin.Petrogaz.explications:
+    <0>It is a <1>minimum</1> estimate of your
     crude oil consumption for the year.</0><1>Estimated via your car, plane, bus
     and heating oil consumption, it does not (yet) take into account the oil
     used to transport your purchases, and the grey energy of your various
@@ -928,17 +987,16 @@ entries:
   site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my simulation at {{spotlightValue}} t.'
   site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
   sites.publicodes.Landing.description: In 10 minutes, get an estimate of your carbon footprint.
-  sites.publicodes.Landing.description.lock: En 10 minutes, obtenez une estimation
+  sites.publicodes.Landing.description.lock:
+    En 10 minutes, obtenez une estimation
     de votre empreinte carbone de consommation.
-  sites.publicodes.LandingExplanations.faqLink: >-
+  sites.publicodes.LandingExplanations.faqLink: |-
     ## Any questions?
 
 
-
     Find answers to common questions on our [FAQ](/contribuer) page.
-  sites.publicodes.LandingExplanations.faqLink.lock: >-
+  sites.publicodes.LandingExplanations.faqLink.lock: |-
     ## Des questions ?
-
 
 
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).

@@ -11,47 +11,17 @@ require('dotenv').config()
 require('isomorphic-fetch')
 var { createDataDir, writeInDataDir } = require('./utils.js')
 
-// We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
-// explorer can be found here : https://developer.github.com/v4/explorer/
-const githubAuthToken = process.env.GITHUB_API_SECRET
-const cursorOfV1Release = 'Y3Vyc29yOnYyOpHOARHb8g=='
 const repository = 'nosgestesclimat',
 	organization = 'datagir'
-
-// In case we cannot fetch the release (the API is down or the Authorization
-// token isn't valid) we fallback to some fake data -- it would be better to
-// have a static ressource accessible without authentification.
-const fakeData = [
-	{
-		name: 'Fake release',
-		descriptionHTML: `You are seing this fake release because you
-	didn't configure your GitHub access token and we weren't
-	able to fetch the real releases from GitHub.<br /><br />
-	See the script <pre>fetch-releases.js</pre> for more informations.`,
-	},
-	{
-		name: 'Release 2',
-		descriptionHTML: 'blah blah blah',
-	},
-	{
-		name: 'Release 3',
-		descriptionHTML: 'blah blah blah',
-	},
-]
 
 async function main() {
 	createDataDir()
 	const releases = await fetchReleases()
-	// The last release name is fetched on all pages (to display the banner)
-	// whereas the full release data is used only in the dedicated page, that why
-	// we deduplicate the releases data in two separated files that can be
-	// bundled/fetched separately.
 	writeInDataDir('releases.json', releases)
-	const last = releases[0]
-	writeInDataDir('last-release.json', {
-		name: last.name,
-		date: last.published_at,
-	})
+
+	// The last release name is fetched on all pages (to display the banner)
+	// whereas the full release data is used only in the dedicated page.
+	// But since translation, releases are directly downloaded in the main bundle, making this optimization useless...
 }
 
 async function fetchReleases() {
@@ -63,7 +33,7 @@ async function fetchReleases() {
 		return data.filter(Boolean)
 	} catch (e) {
 		console.log(e)
-		return fakeData
+		return []
 	}
 }
 
