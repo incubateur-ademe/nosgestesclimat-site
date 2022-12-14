@@ -14,27 +14,6 @@ var { createDataDir, writeInDataDir } = require('./utils.js')
 const repository = 'nosgestesclimat',
 	organization = 'datagir'
 
-// In case we cannot fetch the release (the API is down or the Authorization
-// token isn't valid) we fallback to some fake data -- it would be better to
-// have a static ressource accessible without authentification.
-const fakeData = [
-	{
-		name: 'Fake release',
-		descriptionHTML: `You are seing this fake release because you
-	didn't configure your GitHub access token and we weren't
-	able to fetch the real releases from GitHub.<br /><br />
-	See the script <pre>fetch-releases.js</pre> for more informations.`,
-	},
-	{
-		name: 'Release 2',
-		descriptionHTML: 'blah blah blah',
-	},
-	{
-		name: 'Release 3',
-		descriptionHTML: 'blah blah blah',
-	},
-]
-
 async function main() {
 	createDataDir()
 	const releases = await fetchReleases()
@@ -44,10 +23,15 @@ async function main() {
 	// bundled/fetched separately.
 	writeInDataDir('releases.json', releases)
 	const last = releases[0]
-	writeInDataDir('last-release.json', {
-		name: last.name,
-		date: last.published_at,
-	})
+	writeInDataDir(
+		'last-release.json',
+		last
+			? {
+					name: last.name,
+					date: last.published_at,
+			  }
+			: {}
+	)
 }
 
 async function fetchReleases() {
@@ -59,7 +43,7 @@ async function fetchReleases() {
 		return data.filter(Boolean)
 	} catch (e) {
 		console.log(e)
-		return fakeData
+		return []
 	}
 }
 
