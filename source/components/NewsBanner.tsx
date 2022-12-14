@@ -62,9 +62,9 @@ export default function NewsBanner() {
 					<Dot /> <Trans>Nouveautés</Trans>
 				</h2>
 				<div>
-					<small>
+					<small css="line-height: 1.2rem;max-width: 12rem">
 						<Trans i18nKey={'components.NewsBanner.miseAJourDate'}>
-							Dernière mise à jour le {{ date }}
+							Dernière mise à jour {{ date }}
 						</Trans>
 					</small>
 				</div>
