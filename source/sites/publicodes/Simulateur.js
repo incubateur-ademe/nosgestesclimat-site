@@ -5,6 +5,7 @@ import Simulation from 'Components/Simulation'
 import Title from 'Components/Title'
 import { useEngine } from 'Components/utils/EngineContext'
 import { Markdown } from 'Components/utils/markdown'
+import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
@@ -50,15 +51,23 @@ const Simulateur = () => {
 		return null
 	}
 
-	const introPassed = tutorials.testIntro
-
 	return (
 		<div>
 			<Meta title={evaluation.title} />
 			<Title>
 				<Trans>Le test</Trans>
 			</Title>
-			{introPassed && <ScoreBar />}
+			{tutorials.testIntro && (
+				<motion.div
+					initial={
+						tutorials.scoreExplanation ? false : { opacity: 0, scale: 0.8 }
+					}
+					animate={{ opacity: 1, scale: 1 }}
+					transition={{ duration: 0.5 }}
+				>
+					<ScoreBar />
+				</motion.div>
+			)}
 			{!isMainSimulation && (
 				<h1>
 					{evaluation.rawNode.title || (
@@ -67,19 +76,21 @@ const Simulateur = () => {
 				</h1>
 			)}
 			{tutorials.testIntro ? (
-				<Simulation
-					orderByCategories={categories}
-					customEnd={
-						isMainSimulation ? (
-							<MainSimulationEnding {...{ rules, engine }} />
-						) : rule.description ? (
-							<Markdown children={rule.description} />
-						) : (
-							<EndingCongratulations />
-						)
-					}
-					explanations={<InlineCategoryChart />}
-				/>
+				tutorials.scoreExplanation && (
+					<Simulation
+						orderByCategories={categories}
+						customEnd={
+							isMainSimulation ? (
+								<MainSimulationEnding {...{ rules, engine }} />
+							) : rule.description ? (
+								<Markdown children={rule.description} />
+							) : (
+								<EndingCongratulations />
+							)
+						}
+						explanations={<InlineCategoryChart />}
+					/>
+				)
 			) : (
 				<TutorialRedirection />
 			)}

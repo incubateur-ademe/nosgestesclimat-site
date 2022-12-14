@@ -6,7 +6,7 @@ import { DocumentationEndButton, generateImageLink } from '.'
 import GridChart from '../chart/GridChart'
 import FinShareButton from './FinShareButton'
 
-export default ({ score, details, headlessMode }) => {
+export default ({ score, details, headlessMode, noQuestionsLeft }) => {
 	//	Configuration is try and test, feeling, really
 	const valueSpring = useSpring(0, {
 		mass: 10,
@@ -95,7 +95,7 @@ export default ({ score, details, headlessMode }) => {
 						/>
 					</div>
 				</div>
-				<FinShareButton textColor={textColor} />
+				{noQuestionsLeft && <FinShareButton textColor={textColor} />}
 
 				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>

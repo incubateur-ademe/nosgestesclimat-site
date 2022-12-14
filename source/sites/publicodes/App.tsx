@@ -74,7 +74,9 @@ export default function Root({}) {
 
 	const currentLang =
 		persistedSimulation?.currentLang ??
-		getLangFromAbreviation(window.navigator.language.toLowerCase())
+		getLangFromAbreviation(
+			window.FORCE_LANGUAGE || window.navigator.language.toLowerCase()
+		)
 
 	return (
 		<Provider
@@ -90,7 +92,7 @@ export default function Root({}) {
 				previousSimulation: persistedSimulation,
 				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices ?? {},
-				tutorials: persistedSimulation?.tutorials ?? {},
+				tutorials: persistedSimulation?.tutorials,
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
 				currentLang,
 				localisation: persistedSimulation?.localisation,
