@@ -92,8 +92,11 @@ export default ({}) => {
 					"bottom-up" pour les consommations carbonées de notre vie quotidienne,
 					et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
 					l'empreinte par personne des services dits sociétaux (services publics
-					et services de base tels les télécom). TODO lien vers la realease
-					d'explication.
+					et services de base tels les télécom).{' '}
+					<a href="https://github.com/datagir/nosgestesclimat/releases/tag/2.5.0">
+						En savoir plus sur cette hybridation
+					</a>
+					.
 				</Trans>
 			</p>
 			<h2>
