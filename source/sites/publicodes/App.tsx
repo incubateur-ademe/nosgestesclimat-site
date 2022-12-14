@@ -222,9 +222,7 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine>
 							<Documentation />
-						</WithEngine>
 					</Suspense>
 				}
 			/>

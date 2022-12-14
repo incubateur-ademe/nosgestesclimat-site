@@ -110,7 +110,7 @@ const EngineWrapper = ({ rules, children }) => {
 		if (shouldParse) {
 			console.log('⚙️ will parse the rules,  expensive operation')
 		}
-		const engine = shouldParse && false && new Engine(rules, engineOptions)
+		const engine = shouldParse && new Engine(rules, engineOptions)
 
 		return engine
 	}, [engineRequested, branchData.deployURL, rules])
@@ -131,19 +131,9 @@ const EngineWrapper = ({ rules, children }) => {
 		)
 
 	return (
-		<>
-			{!rules && (
-				<div css="height: 10vh; background: red;">Pas encore de règles</div>
-			)}
-			{rules && (!engine || !engine.getParsedRules()) && (
-				<div css="height: 10vh; background: yellow;">
-					Règles mais pas moteur{' '}
-				</div>
-			)}
-			<EngineProvider value={engine}>
-				<SituationProvider situation={situation}>{children}</SituationProvider>
-			</EngineProvider>
-		</>
+		<EngineProvider value={engine}>
+			<SituationProvider situation={situation}>{children}</SituationProvider>
+		</EngineProvider>
 	)
 }
 

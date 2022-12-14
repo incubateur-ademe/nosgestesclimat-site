@@ -1,16 +1,14 @@
 import SearchButton from 'Components/SearchButton'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
-import { getDocumentationSiteMap, RulePage } from 'publicodes-react'
-import { useMemo } from 'react'
+import { utils } from 'publicodes'
+import { RulePage } from 'publicodes-react'
 import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import {
 	Link,
 	Navigate,
-	Route,
-	Routes,
 	useLocation,
 	useNavigate,
 	useParams,
@@ -18,6 +16,7 @@ import {
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
 import { useEngine } from '../../../components/utils/EngineContext'
+import { WithEngine } from '../../../RulesProvider'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
 import RavijenChart from '../chart/RavijenChart'
@@ -27,21 +26,26 @@ import DocumentationLanding from './DocumentationLanding'
 export default function () {
 	console.log('Rendering Documentation')
 	const currentSimulation = useSelector(
-		(state: RootState) => !!state.simulation?.url
-	)
-	const engine = useEngine()
-	const documentationPath = '/documentation'
+			(state: RootState) => !!state.simulation?.url
+		),
+		rules = useSelector((state) => state.rules)
+
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)
-	const documentationSitePaths = useMemo(
-		() => getDocumentationSiteMap({ engine, documentationPath }),
-		[engine, documentationPath]
-	)
+
+	if (!rules)
+		return (
+			<div css="height: 10vh; background: purple">
+				Chargement des règles page doc
+			</div>
+		)
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
 	}
-	if (!documentationSitePaths[pathname]) {
+	const dottedName = pathname.split('/documentation/')[1]
+
+	if (!dottedName || !rules[utils.decodeRuleName(dottedName)]) {
 		return <Navigate to="/404" replace />
 	}
 
@@ -65,24 +69,23 @@ export default function () {
 				{currentSimulation ? <BackToSimulation /> : <span />}
 				<SearchButton key={pathname} />
 			</div>
-			<Routes>
-				<Route
-					path="*"
-					element={<DocPage {...{ documentationPath, engine }} />}
-				/>
-			</Routes>
+			<WithEngine>
+				<DocPage dottedName={dottedName} />
+			</WithEngine>
 
 			<BandeauContribuer />
 		</div>
 	)
 }
 
-const DocPage = ({ documentationPath, engine }) => {
+const DocPage = ({ dottedName }) => {
 	const url = useParams()['*']
 	const { i18n } = useTranslation()
+
+	const engine = useEngine()
 	console.log('engineParsedRules:', engine.context.parsedRules)
 	console.log('url:', url)
-	console.log('documentationPath:', documentationPath)
+	const documentationPath = '/documentation'
 
 	return (
 		<DocumentationStyle>
