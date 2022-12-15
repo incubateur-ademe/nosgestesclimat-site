@@ -1,4 +1,5 @@
 entries:
+  ' En savoir plus sur notre modèle': ' Learn more about our model'
   ' et visualisez les résultats du groupe': ' and view the results of the group'
   (15 min de lecture): (15 min reading)
   (co-voiturage pris en compte): (carpooling taken into account)
@@ -22,6 +23,7 @@ entries:
   Annuler: Cancel
   Aucun: None
   Autonome: Autonomous
+  Autres: Other
   Avancement du groupe: Group progress
   Bientôt disponible !: Available soon!
   C'est dans le fichier: It is in the
@@ -58,6 +60,12 @@ entries:
   Courses: Races
   De quoi est faite mon empreinte ?: What is my footprint made of?
   Depuis la page: From the page
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.":
+    Behind the nosgestesclimat.fr website, lies the individual climate footprint
+    model of reference consumption.
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence..lock":
+    Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat
+    individuelle de consommation de référence.
   Diffuser: Broadcast
   Distance: Distance
   Documentation: Documentation
@@ -72,10 +80,15 @@ entries:
   Effacer le nom actuel: Delete current name
   Empreinte totale: Total footprint
   En cours de chargement: In the process of loading
+  En développement actif: In active development
   En groupe: As a group
   En savoir +: Read more
   En savoir plus: Read more
   'Enlever ': 'Remove '
+  "Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un standard qui évolue régulièrement et qui peut être réutilisé librement par tout type d'acteur.":
+    Entirely open source and contributive, everyone can<1>explore</1> it,
+    <4>give their opinion</4>, <7>improve it</7>. It is a standard that evolves
+    regularly and can be freely reused by any type of actor.
   Entre: Between
   Entrez des mots clefs: Enter keywords
   Entrez des mots clefs ici: Enter keywords here
@@ -89,6 +102,7 @@ entries:
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
     Explore and modify the information you have entered in the nosgestesclimate
     pathway.
+  Explorez nos modèles: Explore our models
   Explorez notre documentation: Explore our documentation
   Faire le test: Take the test
   Faire mon test: Take my test
@@ -111,7 +125,20 @@ entries:
   La voiture en chiffres: The car in figures
   Label: Label
   Label (facultatif): Label (optional)
+  "Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    The model now includes <1>{numberOfRules}</1> calculation rules. Among them,
+    {numberOfQuestions} rules are questions to be asked to the user to calculate
+    a specific result.
+  "Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    The model now includes {numberOfRules} calculation rules. Among them,
+    {numberOfQuestions} rules are questions to be asked to the user to calculate
+    a specific result.
+  Le modèle d'empreinte carbone de référence: The reference carbon footprint model
   'Le reste : ': 'The rest '
+  "Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.":
+    The Nos Gestes Climat simulator is based on the calculation model of the
+    same name, composed of a set of bricks. On this documentation, you have
+    transparent access to all the variables of the calculation.
   Le test: The test
   Le titre bref de votre problème: The short title of your problem
   'Les 3 actions au plus fort impact pour vous :': 'The 3 actions with the highest impact for you:'
@@ -172,6 +199,7 @@ entries:
   Progression dans les diapo: Progression through the slides
   Précédent: Previous
   Prêt à démarrer ?: Ready to get started?
+  'Quelques suggestions ': 'Some suggestions '
   Questions fréquentes: Frequently asked questions
   Quitter: Exit
   RDV médicaux: Medical appointments
@@ -204,10 +232,12 @@ entries:
   Trajet (Optionnel): Route (Optional)
   'Tri :': 'Sorting:'
   'Triées par :': 'Sorted by :'
+  Un modèle complet: A complete model
   Un problème de traduction ?: A translation problem?
   Une erreur est survenue lors de la récupération des données: An error occurred while retrieving the data
   Une personne au moins est présente dans la voiture (vous !): At least one person is present in the car (you!)
   'Une question, un problème ?': A question, a problem?
+  Une technologie moderne: Modern technology
   Vacances: Vacations
   Version: Version
   Visite familiale: Family visit
@@ -223,8 +253,8 @@ entries:
   Votre part du logement: Your share of the housing
   Vous avez choisi: You have chosen
   Vous avez complété la catégorie: You have completed the category
-  Vous avez du temps pour nous aider à traduire: You have time to help us translate
-  Vous avez juste 30 secondes pour nous aider: You have just 30 seconds to help us
+  Vous avez du temps pour nous aider à traduire: If you have some time to help us translate
+  Vous avez juste 30 secondes pour nous aider: If you only have 30 seconds to help us
   Vous avez terminé le test 👏: You have completed the test 👏
   Vous avez été invités à un sondage Nos Gestes Climat nommé: You have been invited to an Our Climate Action survey called
   Vous n'avez pas encore fait le test.: You haven't taken the test yet.
@@ -234,8 +264,8 @@ entries:
   catégorie complétée: completed category
   cet article: this article
   cette page: this page
-  components.NewsBanner.miseAJourDate: Updated on {{date}}
-  components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Last updated on {{date}}
+  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour le {{date}}
   components.ScoreExplanation.text.p1:
     🧮 This is your starting score, calculated
     from pre-assigned answers to each question! It will change with each new
@@ -478,7 +508,75 @@ entries:
     Notre modèle de calcul est
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
+  meta.publicodes.pages.Documentation.intro: The Nos Gestes Climat simulator is
+    based on the calculation model of the same name, composed of a set of
+    bricks. On this documentation, you have transparent access to all the
+    variables of the calculation.
+  meta.publicodes.pages.Documentation.intro.lock:
+    Le simulateur Nos Gestes Climat
+    est basé sur le modèle de calcul du même nom, composé d'un ensemble de
+    briques. Sur cette documentation, vous avez accès en toute transparence à
+    l'ensemble des variables du calcul.
   minutes: minutes
+  model.active: Here are some examples of important <1>issues</1> of the moment
+    among the hundred or so documented topics.
+  model.active.lock:
+    Voici à titre d'exemple quelques <1>issues</1> importantes du
+    moment parmi la centaine de sujets documentés.
+  model.intro:
+    Behind the nosgestesclimat.fr website, lies the individual climate
+    footprint model of reference consumption.
+  model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle
+    d'empreinte climat individuelle de consommation de référence.
+  model.intro2:
+    Entirely open source and contributive, everyone can<1>explore</1>
+    it, <4>give their opinion</4>, <7>improve it</7>.
+  model.intro2.lock:
+    Entièrement ouvert (open source) et contributif, chacun peut
+    l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
+  model.modern: The model is based on <1>publicodes</1>, a language designed by
+    the state to express public interest algorithms.
+  model.modern.lock: Le modèle est basé sur <1>publicodes</1>, un langage conçu
+    par l'État pour exprimer des algorithmes d'intérêt public.
+  model.modern2: Fully customizable, from the questions asked to the user to the
+    assumptions of the calculation model, it can be <2>freely</2> reused by any
+    type of actor.
+  model.modern2.lock: Entièrement paramétrable, depuis les questions posées à
+    l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être
+    réutilisé <2>librement</2> par tout type d'acteur.
+  model.modern3: ⬇️ Below, you can see the influence of 3 calculation parameters
+    on the final results.
+  model.modern3.lock:
+    ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres
+    de calcul sur les résultats finaux.
+  model.modern4: The calculation model is embedded directly in the client, the
+    calculation takes place there in your browser, not on our servers. The data
+    collected is so descriptive of users' lives, and therefore sensitive in
+    terms of privacy, that doing the calculations on the server side <2>and
+    storing them</2> would pose too high a risk.
+  model.modern4.lock:
+    Le modèle de calcul est directement embarqué chez le client,
+    le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données
+    collectées sont si descriptives de la vie des utilisateurs, donc sensibles
+    en termes de vie privée, que faire les calculs côté serveur <2>et les
+    stocker</2> poserait un risque trop élevé.
+  model.stats: The model now includes <1></1> calculation rules. Among them,
+    <3></3> rules are questions to ask the user to calculate a precise result.
+  model.stats.lock:
+    Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi
+    elles, <3></3> règles sont des questions à poser à l'utilisateur pour
+    calculer un résultat précis.
+  model.stats2: It consists of a combination of hundreds of "bottom-up" micro
+    models for the carbon consumption of our daily lives, and a "top-down" model
+    derived from the work of the SDES to estimate the per capita footprint of
+    so-called societal services (public services and basic services such as
+    telecommunications). <2>Learn more about this hybridization</2>.
+  model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles
+    micro "bottom-up" pour les consommations carbonées de notre vie quotidienne,
+    et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
+    l'empreinte par personne des services dits sociétaux (services publics et
+    services de base tels les télécom). <2>En savoir plus sur cette
+    hybridation</2>.
   mois: month
   mon empreinte annuelle: my annual footprint
   mon objectif: my goal
@@ -531,7 +629,7 @@ entries:
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: |-
 
-    &gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
+    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.commentaireAugmenté.lock: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
@@ -639,7 +737,7 @@ entries:
     plus sur votre mode de vie.
   publicodes.TranslationContribution.commentaireAugmenté: |-
 
-    > This ticket was created automatically by our robot from our [contribution page for translation](https://nosgestesclimat.fr/contribuer-traduction).
+    &gt; This ticket was created automatically by our robot from our [translation contribution page](https://nosgestesclimat.fr/contribuer-traduction).
   publicodes.TranslationContribution.commentaireAugmenté.lock: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
@@ -711,8 +809,8 @@ entries:
     exception </2>: votre trajet domicile-travail doit être inclus dans les km
     parcourus.</3><4>❓️ D'autres questions ? Consultez notre <2>FAQ</2> à tout
     moment.</4>"
-  publicodes.chart.RavijenChart.equivalenceCase: One box 🔲 = {{nbKg}} kg of CO₂e.
-  publicodes.chart.RavijenChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
+  publicodes.chart.GridChart.equivalenceCase: One box 🔲 = {{nbKg}} kg of CO₂e.
+  publicodes.chart.GridChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
   publicodes.conference.Conference.donnéesExplications:
     '<0>By participating, you
     agree to share your aggregated simulation results with other conference

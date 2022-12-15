@@ -1,6 +1,7 @@
 import { useState } from 'react'
 
-export default ({ element, whiteBackground = false }) => {
+export default ({ element, whiteBackground = false, voidIfFail }) => {
+	if (element.dottedName === 'rest') return
 	const [fail, setFail] = useState(false)
 	return (
 		<span
@@ -31,7 +32,7 @@ export default ({ element, whiteBackground = false }) => {
 					}}
 				/>
 			) : (
-				<img src={'/images/three-dots.svg'} />
+				!voidIfFail && <img src={'/images/three-dots.svg'} />
 			)}
 		</span>
 	)

@@ -1,4 +1,5 @@
 entries:
+  ' En savoir plus sur notre modèle': ' En savoir plus sur notre modèle'
   ' et visualisez les résultats du groupe': ' et visualisez les résultats du groupe'
   (15 min de lecture): (15 min de lecture)
   (co-voiturage pris en compte): (co-voiturage pris en compte)
@@ -20,6 +21,7 @@ entries:
   Annuler: Annuler
   Aucun: Aucun
   Autonome: Autonome
+  Autres: Autres
   Avancement du groupe: Avancement du groupe
   Bientôt disponible !: Bientôt disponible !
   C'est dans le fichier: C'est dans le fichier
@@ -56,6 +58,9 @@ entries:
   Courses: Courses
   De quoi est faite mon empreinte ?: De quoi est faite mon empreinte ?
   Depuis la page: Depuis la page
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.":
+    Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat
+    individuelle de consommation de référence.
   Diffuser: Diffuser
   Distance: Distance
   Documentation: Documentation
@@ -70,10 +75,16 @@ entries:
   Effacer le nom actuel: Effacer le nom actuel
   Empreinte totale: Empreinte totale
   En cours de chargement: En cours de chargement
+  En développement actif: En développement actif
   En groupe: En groupe
   En savoir +: En savoir +
   En savoir plus: En savoir plus
   'Enlever ': 'Enlever '
+  "Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un standard qui évolue régulièrement et qui peut être réutilisé librement par tout type d'acteur.":
+    Entièrement ouvert (open source) et contributif, chacun peut
+    l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un
+    standard qui évolue régulièrement et qui peut être réutilisé librement par
+    tout type d'acteur.
   Entre: Entre
   Entrez des mots clefs: Entrez des mots clefs
   Entrez des mots clefs ici: Entrez des mots clefs ici
@@ -87,6 +98,7 @@ entries:
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
     Explorez et modifiez les informations que vous avez saisies dans le parcours
     nosgestesclimat.
+  Explorez nos modèles: Explorez nos modèles
   Explorez notre documentation: Explorez notre documentation
   Faire le test: Faire le test
   Faire mon test: Faire mon test
@@ -109,7 +121,20 @@ entries:
   La voiture en chiffres: La voiture en chiffres
   Label: Label
   Label (facultatif): Label (facultatif)
+  "Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul.
+    Parmi elles, {numberOfQuestions} règles sont des questions à poser à
+    l'utilisateur pour calculer un résultat précis.
+  "Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi
+    elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur
+    pour calculer un résultat précis.
+  Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
   'Le reste : ': 'Le reste : '
+  "Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.":
+    Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même
+    nom, composé d'un ensemble de briques. Sur cette documentation, vous avez
+    accès en toute transparence à l'ensemble des variables du calcul.
   Le test: Le test
   Le titre bref de votre problème: Le titre bref de votre problème
   'Les 3 actions au plus fort impact pour vous :': 'Les 3 actions au plus fort impact pour vous :'
@@ -170,6 +195,7 @@ entries:
   Progression dans les diapo: Progression dans les diapo
   Précédent: Précédent
   Prêt à démarrer ?: Prêt à démarrer ?
+  'Quelques suggestions ': 'Quelques suggestions '
   Questions fréquentes: Questions fréquentes
   Quitter: Quitter
   RDV médicaux: RDV médicaux
@@ -202,10 +228,12 @@ entries:
   Trajet (Optionnel): Trajet (Optionnel)
   'Tri :': 'Tri :'
   'Triées par :': 'Triées par :'
+  Un modèle complet: Un modèle complet
   Un problème de traduction ?: Un problème de traduction ?
   Une erreur est survenue lors de la récupération des données: Une erreur est survenue lors de la récupération des données
   Une personne au moins est présente dans la voiture (vous !): Une personne au moins est présente dans la voiture (vous !)
   'Une question, un problème ?': Une question, un problème ?
+  Une technologie moderne: Une technologie moderne
   Vacances: Vacances
   Version: Version
   Visite familiale: Visite familiale
@@ -232,7 +260,7 @@ entries:
   catégorie complétée: catégorie complétée
   cet article: cet article
   cette page: cette page
-  components.NewsBanner.miseAJourDate: Mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Dernière mise à jour le {{date}}
   components.ScoreExplanation.text.p1: 🧮 Voici votre score de départ, calculé à
     partir de réponses attribuées à l'avance à chaque question ! Il évoluera à
     chaque nouvelle réponse.
@@ -366,7 +394,38 @@ entries:
   meta.publicodes.pages.Documentation.description: Notre modèle de calcul est
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
+  meta.publicodes.pages.Documentation.intro: Le simulateur Nos Gestes Climat est
+    basé sur le modèle de calcul du même nom, composé d'un ensemble de briques.
+    Sur cette documentation, vous avez accès en toute transparence à l'ensemble
+    des variables du calcul.
   minutes: minutes
+  model.active: Voici à titre d'exemple quelques <1>issues</1> importantes du
+    moment parmi la centaine de sujets documentés.
+  model.intro:
+    Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte
+    climat individuelle de consommation de référence.
+  model.intro2: Entièrement ouvert (open source) et contributif, chacun peut
+    l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
+  model.modern: Le modèle est basé sur <1>publicodes</1>, un langage conçu par
+    l'État pour exprimer des algorithmes d'intérêt public.
+  model.modern2: Entièrement paramétrable, depuis les questions posées à
+    l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être
+    réutilisé <2>librement</2> par tout type d'acteur.
+  model.modern3: ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres de
+    calcul sur les résultats finaux.
+  model.modern4: Le modèle de calcul est directement embarqué chez le client, le
+    calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données
+    collectées sont si descriptives de la vie des utilisateurs, donc sensibles
+    en termes de vie privée, que faire les calculs côté serveur <2>et les
+    stocker</2> poserait un risque trop élevé.
+  model.stats: Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi
+    elles, <3></3> règles sont des questions à poser à l'utilisateur pour
+    calculer un résultat précis.
+  model.stats2: Il est constitué d'une combinaison de centaines de modèles micro
+    "bottom-up" pour les consommations carbonées de notre vie quotidienne, et
+    d'un modèle "top-down" dérivé des travaux du SDES pour estimer l'empreinte
+    par personne des services dits sociétaux (services publics et services de
+    base tels les télécom). <2>En savoir plus sur cette hybridation</2>.
   mois: mois
   mon empreinte annuelle: mon empreinte annuelle
   mon objectif: mon objectif
@@ -494,7 +553,7 @@ entries:
     exception </2>: votre trajet domicile-travail doit être inclus dans les km
     parcourus.</3><4>❓️ D'autres questions ? Consultez notre <2>FAQ</2> à tout
     moment.</4>"
-  publicodes.chart.RavijenChart.equivalenceCase: Une case 🔲 = {{nbKg}} kg de CO₂e.
+  publicodes.chart.GridChart.equivalenceCase: Une case 🔲 = {{nbKg}} kg de CO₂e.
   publicodes.conference.Conference.donnéesExplications: "<0>En participant, vous
     acceptez de partager vos résultats agrégés de simulation avec les autres
     participants de la conférence : le total et les catégories (transport,

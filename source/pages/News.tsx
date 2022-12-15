@@ -17,8 +17,6 @@ import Meta from '../components/utils/Meta'
 import { usePersistingState } from '../components/utils/persistState'
 import { getCurrentLangInfos, Release } from '../locales/translation'
 
-import lastRelease from '../data/last-release.json'
-
 const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
 		year: 'numeric',
@@ -27,6 +25,12 @@ const dateCool = (date: Date, abrvLocale: string) =>
 
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
+export const sortReleases = (releases) =>
+	releases?.sort(
+		(r1: Release, r2: Release) =>
+			-1 * r1.published_at.localeCompare(r2.published_at)
+	)
+
 export default function News() {
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getCurrentLangInfos(i18n)
@@ -34,10 +38,9 @@ export default function News() {
 	const navigate = useNavigate()
 	const slug = useMatch(`${encodeURIComponent('nouveautés')}/:slug`)?.params
 		?.slug
-	const data = currentLangInfos.releases?.sort(
-		(r1: Release, r2: Release) =>
-			-1 * r1.published_at.localeCompare(r2.published_at)
-	)
+
+	const data = sortReleases(currentLangInfos.releases),
+		lastRelease = data && data[0]
 
 	useEffect(() => {
 		setLastViewedRelease(lastRelease.name)

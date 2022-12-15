@@ -14,10 +14,6 @@ const { writeFileSync } = require('fs')
 var { createDataDir, writeInDataDir } = require('./utils.js')
 const { writeJSON } = require('../nosgestesclimat/scripts/i18n/utils.js')
 
-// We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
-// explorer can be found here : https://developer.github.com/v4/explorer/
-const githubAuthToken = process.env.GITHUB_API_SECRET
-const cursorOfV1Release = 'Y3Vyc29yOnYyOpHOARHb8g=='
 const repository = 'nosgestesclimat',
 	organization = 'datagir'
 
@@ -70,7 +66,7 @@ async function fetchReleases() {
 		return data.filter(Boolean)
 	} catch (e) {
 		console.log(e)
-		return fakeData
+		return []
 	}
 }
 

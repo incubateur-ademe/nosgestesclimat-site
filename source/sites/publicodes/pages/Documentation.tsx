@@ -1,4 +1,3 @@
-import SearchBar from 'Components/SearchBar'
 import SearchButton from 'Components/SearchButton'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
@@ -19,11 +18,11 @@ import {
 import { RootState } from 'Reducers/rootReducer'
 import styled from 'styled-components'
 import { useEngine } from '../../../components/utils/EngineContext'
-import Meta from '../../../components/utils/Meta'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
+import RavijenChart from '../chart/RavijenChart'
 import References from '../DocumentationReferences'
-import Méthode from './Méthode'
+import DocumentationLanding from './DocumentationLanding'
 
 export default function () {
 	console.log('Rendering Documentation')
@@ -95,13 +94,54 @@ const DocPage = ({ documentationPath, engine }) => {
 				renderers={{
 					Head: Helmet,
 					Link: Link,
-					Text: Markdown,
+					Text: ({ children }) => (
+						<>
+							{/* This isn't clean, created as many Helmets as there are text nodes. Should be integrated in publicodes as an option */}
+							<Helmet>
+								<meta
+									property="og:image"
+									content={`https://ogimager.osc-fr1.scalingo.io/capture/${encodeURIComponent(
+										window.location.href
+									)}/${encodeURIComponent('documentationRuleRoot header')}`}
+								/>
+							</Helmet>
+							<Markdown children={children} />
+							{children.includes('<RavijenChart/>') && (
+								<GraphContainer>
+									<RavijenChart />
+								</GraphContainer>
+							)}
+							{children.includes('<RavijenChartSocietaux/>') && (
+								<GraphContainer>
+									<RavijenChart target="services sociétaux" numberBottomRight />
+								</GraphContainer>
+							)}
+						</>
+					),
 					References: References,
 				}}
 			/>
 		</DocumentationStyle>
 	)
 }
+
+// Not integratable yet, see https://github.com/betagouv/publicodes/issues/336
+const GithubContributionLink = ({ dottedName }) => (
+	<a
+		href={`https://github.com/search?q=${encodeURIComponent(
+			`repo:datagir/nosgestesclimat "${dottedName}:"`
+		)} path:data&type=code`}
+	>
+		✏️ Contribuer
+	</a>
+)
+
+const GraphContainer = styled.div`
+	height: 45rem;
+	width: 90%;
+	margin: 2rem 1rem;
+	overflow: scroll;
+`
 
 function BackToSimulation() {
 	const url = useSelector(currentSimulationSelector)?.url
@@ -118,23 +158,6 @@ function BackToSimulation() {
 		>
 			<Trans>Reprendre la simulation</Trans>
 		</button>
-	)
-}
-
-function DocumentationLanding() {
-	const { t } = useTranslation()
-	return (
-		<div className="ui__ container">
-			<Meta
-				title={t('Comprendre nos calculs')}
-				description={t('meta.publicodes.pages.Documentation.description')}
-			/>
-			<Méthode />
-			<h2>
-				<Trans>Explorer notre documentation</Trans>
-			</h2>
-			<SearchBar showListByDefault={true} />
-		</div>
 	)
 }
 
