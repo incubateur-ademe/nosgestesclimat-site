@@ -7,9 +7,9 @@ import { Link } from 'react-router-dom'
 import { getLangInfos, Lang } from '../../../locales/translation'
 
 import contentEn from 'raw-loader!../../../locales/pages/en-us/documentation.md'
-// import contentEs from 'raw-loader!../../../locales/pages/es/documentation.md'
+import contentEs from 'raw-loader!../../../locales/pages/es/documentation.md'
 import contentFr from 'raw-loader!../../../locales/pages/fr/documentation.md'
-// import contentIt from 'raw-loader!../../../locales/pages/it/documentation.md'
+import contentIt from 'raw-loader!../../../locales/pages/it/documentation.md'
 
 export default () => {
 	const { t, i18n } = useTranslation()
@@ -19,8 +19,8 @@ export default () => {
 		[
 			[Lang.Fr, contentFr],
 			[Lang.En, contentEn],
-			// [Lang.Es, contentEs],
-			// [Lang.It, contentIt],
+			[Lang.Es, contentEs],
+			[Lang.It, contentIt],
 		].find(([lang]) => getLangInfos(lang).abrv === l)?.[1] || contentFr
 
 	return (
