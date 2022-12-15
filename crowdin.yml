@@ -1,0 +1,5 @@
+files:
+  - source: /source/locales/ui/ui-fr.yaml
+    translation: /source/locales/ui/ui-%two_letters_code%.yaml
+  - source: /source/locales/faq/FAQ-fr.yaml
+    translation: /source/locales/faq/FAQ-%two_letters_code%.yaml
