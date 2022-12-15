@@ -9,7 +9,10 @@
 // "public repo" authorization when generating the access token.
 require('dotenv').config()
 require('isomorphic-fetch')
+const path = require('path')
+const { writeFileSync } = require('fs')
 var { createDataDir, writeInDataDir } = require('./utils.js')
+const { writeJSON } = require('../nosgestesclimat/scripts/i18n/utils.js')
 
 // We use the GitHub API V4 in GraphQL to download the releases. A GraphQL
 // explorer can be found here : https://developer.github.com/v4/explorer/
@@ -17,6 +20,8 @@ const githubAuthToken = process.env.GITHUB_API_SECRET
 const cursorOfV1Release = 'Y3Vyc29yOnYyOpHOARHb8g=='
 const repository = 'nosgestesclimat',
 	organization = 'datagir'
+
+const localPath = path.resolve('source/locales/releases/releases-fr.json')
 
 // In case we cannot fetch the release (the API is down or the Authorization
 // token isn't valid) we fallback to some fake data -- it would be better to
@@ -46,12 +51,14 @@ async function main() {
 	// whereas the full release data is used only in the dedicated page, that why
 	// we deduplicate the releases data in two separated files that can be
 	// bundled/fetched separately.
-	writeInDataDir('releases.json', releases)
+	writeJSON(localPath, releases)
+	console.log(`Wrote ${releases.length} releases in ${localPath}`)
 	const last = releases[0]
 	writeInDataDir('last-release.json', {
 		name: last.name,
 		date: last.published_at,
 	})
+	console.log(`Wrote last release in ${localPath}`)
 }
 
 async function fetchReleases() {
