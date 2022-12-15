@@ -264,8 +264,8 @@ entries:
   catégorie complétée: completed category
   cet article: this article
   cette page: this page
-  components.NewsBanner.miseAJourDate: Last updated on {{date}}
-  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Last update {{date}}
+  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour {{date}}
   components.ScoreExplanation.text.p1:
     🧮 This is your starting score, calculated
     from pre-assigned answers to each question! It will change with each new

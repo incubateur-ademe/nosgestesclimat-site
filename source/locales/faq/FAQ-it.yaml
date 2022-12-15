@@ -3,23 +3,16 @@
   id: tuto
   question: Come si usa questa calcolatrice?
   question.lock: Comment utiliser ce calculateur ?
-  réponse: >
+  réponse: |
     Se non l'avete ancora fatto, date un'occhiata [all'esercitazione
-
     di](/tutoriel) 2 minuti per capire l'idea e il funzionamento della
-
     calcolatrice.
 
-
     Se l'avete già fatto, potete visitare la [pagina](/profil) del vostro
-
     [profilo](/profil) per riavviare l'esercitazione ed eventualmente
-
     iniziare il test da zero.
-  réponse.lock: >
-    Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de
-    2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur.
-
+  réponse.lock: |
+    Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de 2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur.
 
     Si vous l'avez déjà consulté, vous pouvez visiter votre [page profil](/profil) pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
 - catégorie: digitale
@@ -27,70 +20,47 @@
   id: age-électronique
   question: Perché mi viene chiesta l'età delle mie apparecchiature elettroniche?
   question.lock: Pourquoi me demande-t-on l’âge de mes équipements électroniques ?
-  réponse: >
+  réponse: |
     Come nel caso delle automobili, viene effettuato un deprezzamento per i
-
     prodotti elettronici la cui produzione ha un impatto molto elevato sul
-
     clima (in particolare a causa della fase di estrazione delle materie
-
     prime).
 
-
     Vi chiediamo quindi l'età del prodotto per sapere per quanto tempo sarà
-
     ammortizzato. Per capire di cosa si tratta, si veda la domanda specifica
-
     sull'ammortamento.
-  réponse.lock: >
+  réponse.lock: |
 
     À l’instar de ce qui est fait pour la voiture, un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat (notamment à cause de la phase d’extraction des matières premières).
-
 
     Nous vous demandons donc l’âge du produit afin de connaître la durée restant à amortir. Consultez la question spécifique de l’amortissement pour comprendre de quoi il s’agit.
 - catégorie: servizi pubblici
   catégorie.lock: services publics
   id: services-publics
-  question: Alla fine del mio calcolo c'è una voce "servizio pubblico", qual è?
-  question.lock: À la fin de mon calcul il y a un poste « service public »,
-    qu’est-ce que c’est ?
-  réponse: >
-    Questa voce rappresenta l'impronta di carbonio dei servizi pubblici
+  question:
+    Alla fine del mio calcolo c'è una voce "servizio pubblico" o "servizi
+    sociali", qual è?
+  question.lock: À la fin de mon calcul il y a un poste « service public » ou «
+    services sociétaux » , qu’est-ce que c’est ?
+  réponse: |-
+    Queste voci rappresentano l'impronta di carbonio dei servizi pubblici francesi, oltre a un insieme di servizi "di base" difficilmente evitabili, scalati a livello individuale. In altre parole, l'impatto dei servizi è distribuito su 67 milioni di francesi.
 
-    francesi su scala individuale. In altre parole, l'impatto dei servizi è
+    > 🔎 Leggete il nostro [post sul blog "L'impronta dei servizi sociali"](https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22) per approfondire.
 
-    distribuito tra i 66 milioni di francesi.
+    In un certo senso, quindi, ognuno sta prendendo la "sua parte" e per diversi motivi.
 
+    In primo luogo, è estremamente raro, se non quasi impossibile, vivere senza mai utilizzare un singolo servizio pubblico. Che si tratti di servizi sanitari, strade migliori, istruzione e, più in generale, di tutto ciò che è finanziato dalle tasse, tutti beneficiano dei servizi pubblici. Inoltre, questi servizi e il loro finanziamento sono votati ogni anno dall'assemblea e definiti da un governo regolarmente eletto.
 
-    Quindi tutti "fanno la loro parte" per diversi motivi.
+    In secondo luogo, cercare di valutare la quantità di un servizio pubblico che un individuo utilizza "realmente" non è attualmente possibile con i dati che abbiamo sull'impronta del settore.
+  réponse.lock: |
 
+    Ces poste représentent l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 67 millions de français.
 
-    Innanzitutto, è estremamente raro, se non quasi impossibile, vivere
-
-    senza mai utilizzare un singolo servizio pubblico. Che si tratti di
-
-    servizi sanitari, strade migliori, istruzione e, più in generale, di
-
-    tutto ciò che è finanziato dalle tasse, tutti beneficiano dei servizi
-
-    pubblici.
-
-
-    In secondo luogo, cercare di valutare la quantità di un servizio
-
-    pubblico che un individuo utilizza "realmente" non è attualmente
-
-    possibile con i dati che abbiamo sull'impronta del settore.
-  réponse.lock: >
-
-    Ce poste représente l’empreinte carbone des services publics français ramené à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 66 millions de français.
-
+    > 🔎 Lisez notre [article de blog "L'empreinte des services sociétaux"](https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22) pour aller plus loin.
 
     Tout le monde prend donc en quelque sorte « sa part » et ce pour plusieurs raisons.
 
-
-    Tout d’abord, il est extrêmement rare voire quasi impossible de vivre sans jamais utiliser un seul service public. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics.
-
+    Tout d’abord, il est extrêmement rare voire quasi impossible de vivre sans jamais utiliser un seul service public. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics. De plus, ces services et leur financement sont votés chaque année par l'assemblée et définis par un gouvernement élu régulièrement.
 
     Deuxièmement, essayer de comptabiliser la part de service public qu’un individu utilise « pour de vrai » n'est pas actuellement possible avec les données dont nous disposons sur l'empreinte de ce secteur.
 - catégorie: alimentazione
@@ -100,31 +70,22 @@
     (stagionale, pesce, verdure dell'orto, ecc.)
   question.lock: Les questions posées ne correspondent pas bien à mon type
     d’alimentation (de saison, poisson, légumes du potager, etc.)
-  réponse: >
+  réponse: |
     NGC è soprattutto uno strumento pensato per il grande pubblico. Per
-
     questo motivo abbiamo voluto limitare il numero di domande agli aspetti
-
     che sappiamo essere i più importanti nella nostra alimentazione.
 
-
     Tuttavia, NGC è uno strumento di libero accesso dove il contributo di
-
     tutti è possibile e auspicato. Non esitate quindi a contribuire e a
-
     darci i vostri suggerimenti per migliorare!
 
-
     [Qui](https://github.com/betagouv/ecolab-data/issues/185) spieghiamo
-
     come.
-  réponse.lock: >
+  réponse.lock: |
 
     NGC est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants de notre alimentation.
 
-
     Néanmoins, NGC est un outil libre d’accès où la contribution de tous est possible et souhaitée. N’hésitez donc pas à contribuer et à nous faire part de vos suggestions d’amélioration !
-
 
     On vous explique comment [ici](https://github.com/betagouv/ecolab-data/issues/185).
 - catégorie: alimentazione
@@ -132,35 +93,23 @@
   id: alimentation-locale
   question: Perché non si parla nemmeno di cibo locale?
   question.lock: Pourquoi ne pose-t-on pas non plus de question sur l’alimentation locale ?
-  réponse: >
+  réponse: |
     Gli alimenti locali ci permettono di ridurre le distanze di trasporto
-
     dei prodotti che consumiamo e di sostenere gli agricoltori delle nostre
-
     regioni.
 
-
     Tuttavia, la questione dell'origine dei nostri prodotti e degli impatti
-
     ad essi associati non può essere riassunta in un confronto tra distanze
-
     brevi e lunghe. Gli effetti di scala, la centralizzazione dei prodotti,
-
     l'efficienza dei trasporti utilizzati e molti altri parametri rendono la
-
     questione più complessa dal punto di vista della contabilizzazione delle
-
     emissioni di carbonio. Per quanto riguarda la possibilità di fornire
-
     informazioni sull'origine dei prodotti che consumiamo, ciò
-
     significherebbe aggiungere un gran numero di domande, distogliendo l'UCS
-
     dal suo obiettivo pubblico generale.
-  réponse.lock: >
+  réponse.lock: |
 
     L’alimentation locale permet en effet de réduire les distances de transports des produits que nous consommons tout en soutenant les agriculteurs de nos régions.
-
 
     Néanmoins la question de la provenance de nos produits et des impacts associés ne peut être résumée à la comparaison entre une courte et longue distance. Les effets d’échelle, la centralisation des produits, l’efficacité des transports utilisés et bien d’autres paramètres complexifient la chose d’un point de vue de la comptabilité carbone. Quant à la possibilité de renseigner la provenance des produits que nous consommons, cela reviendrait à rajouter un grand nombre de question, détournant NGC de sa cible grand public.
 - catégorie: alloggio
@@ -169,21 +118,16 @@
   question: Utilizzo un carburante che non è stato inserito nello strumento. Come si fa?
   question.lock: J’utilise un combustible qui n’est pas renseigné dans l’outil.
     Comment faire ?
-  réponse: >
+  réponse: |
     Al momento, dovrete ragionare con il carburante che si avvicina il più
-
     possibile a quello che utilizzate. NGC ha scelto di concentrarsi sui
-
     tipi di carburante più comuni utilizzati in Francia.
 
-
     Tuttavia, nell'ambito del continuo sviluppo di NGC, è possibile che in
-
     futuro vengano aggiunti alcuni tipi di carburante.
-  réponse.lock: >
+  réponse.lock: |
 
     A l’heure actuelle, il vous faudra raisonner avec le combustible qui s’approche le plus possible du combustible que vous utilisez. NGC fait le choix de se focaliser sur les types de combustible les plus utilisés en France.
-
 
     Néanmoins, dans le cadre du développement continu de NGC, il est possible que certains types de combustibles soient ajoutés dans le futur.
 - catégorie: trasporto
@@ -192,109 +136,67 @@
   question: Perché non posso inserire il tipo di carburante che uso?
   question.lock: Pourquoi est-ce que je ne peux pas renseigner le type de
     carburant que j’utilise ?
-  réponse: >
+  réponse: |
     NGC sceglie di non chiedere il tipo di carburante, semplicemente perché
-
     **non c'è molta differenza tra loro.** Che si tratti di benzina, diesel
-
     o GPL, gli impatti sono molto simili. Ci concentriamo quindi sugli
-
     aspetti più importanti (numero di chilometri percorsi, numero di
-
     occupanti, uso del trasporto pubblico, ecc.)
 
-
     A questo proposito, non esitate a consultare questo
-
     [simulatore](https://ecolab.ademe.fr/transport) per confrontare
-
     l'impatto sul clima di diverse modalità di trasporto per lo stesso
-
     viaggio.
-  réponse.lock: >
+  réponse.lock: |
 
     NGC fait le choix de ne pas poser de question sur le type de carburant, tout simplement car **il n’y a pas beaucoup de différence entre eux.** Qu’il s’agisse d’essence, de gazole ou de GPL, les impacts sont très similaires. Nous nous concentrons donc sur les enjeux les plus importants (nombre de km parcourus, nombre d’occupants, utilisation des transports en commun, etc.).
-
 
     A ce sujet, n’hésitez pas à consulter ce [simulateur](https://ecolab.ademe.fr/transport) pour comparer l’impact sur le climat de différents modes de transport pour un même trajet.
 - catégorie: digitale
   catégorie.lock: numérique
   id: impact-numérique
-  question: Ho sentito dire che il digitale ha un grande impatto sul clima, il
+  question:
+    Ho sentito dire che il digitale ha un grande impatto sul clima, ma il
     simulatore sembra dirmi il contrario..
   question.lock: J'ai entendu dire que le numérique avait un gros impact sur le
     climat, le simulateur semble me dire le contraire…
-  réponse: >
-    La valutazione dell'impatto delle tecnologie digitali, e più in
+  réponse: |-
+    La valutazione dell'impatto delle tecnologie digitali, e più in particolare dei contenuti "dematerializzati" (streaming, videoconferenze, archiviazione su cloud, invio di e-mail, ecc.) è ancora oggetto di lavoro tra gli attori tecnici e istituzionali.
 
-    particolare dei contenuti "dematerializzati" (streaming,
+    Stimiamo l'impronta digitale nel miglior modo possibile sulla base dei dati del [Carbone® di base](https://www.bilans-ges.ademe.fr/), ma alcune informazioni o domande potrebbero essere mancanti.
 
-    videoconferenze, archiviazione su cloud, invio di e-mail, ecc.) è ancora
-
-    oggetto di lavoro tra gli attori tecnici e istituzionali.
-
-
-    Stimiamo l'impronta digitale nel miglior modo possibile sulla base dei
-
-    dati del [Carbone® di base](https://www.bilans-ges.ademe.fr/), ma alcune
-
-    informazioni o domande potrebbero essere mancanti.
-
-
-    Se volete monitorare l'impatto della vostra navigazione in Internet,
-
-    l'estensione del browser "carbonalyser" fa al caso vostro.
-
-
-    E se volete aiutarci a migliorare queste riflessioni, contribuite.
-
-    [Qui](https://github.com/betagouv/ecolab-data/issues/185) spieghiamo
-
-    come.
-  réponse.lock: >
+    > 🕹️ Per approfondire, non esitate a provare [il simulatore interattivo di impactco2.fr.](https://impactco2.fr/usagenumerique)
+  réponse.lock: |
 
     L’évaluation des impacts du numérique et plus particulièrement des contenus « dématérialisés » (streaming, visio-conférence, stockage sur un cloud, envoi de mail, etc.) est encore un sujet de travail parmi les acteurs techniques et institutionnels.
 
-
     Nous estimons au mieux l’empreinte numérique en nous basant sur les données de la [Base Carbone®](https://www.bilans-ges.ademe.fr/) mais certaines informations ou questionnements peuvent s’avérer manquant.
 
-
-    Si vous souhaitez suivre l’impact de vos navigations sur internet, l’extension pour navigateur « carbonalyser » est là pour vous.
-
-
-    Et si vous souhaitez nous aider à contribuer à l’amélioration de ces réflexions, n’hésitez pas à contribuer. On vous explique comment [ici](https://github.com/betagouv/ecolab-data/issues/185).
+    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le simulateur intéractif d'impactco2.fr](https://impactco2.fr/usagenumerique).
 - catégorie: alimentazione
   catégorie.lock: alimentation
   id: bio-2
-  question: Quindi è per evitare che questo sia dannoso per la nostra impronta di
+  question:
+    Quindi è per evitare che questo sia dannoso per la nostra impronta di
     carbonio che non si pone la domanda del biologico?
   question.lock: C’est donc pour éviter que cela soit défavorable à notre
     empreinte carbone que vous ne posez pas la question du bio ?
-  réponse: >
+  réponse: |
     No.
-
 
     Non è questo il punto fondamentale della questione alimentare.
 
-
     Il problema principale è il consumo di carne e di prodotti animali
-
     (latte, formaggio, ecc.), che insieme rappresentano circa il 75%
-
     dell'impronta di carbonio della dieta di un francese medio. Sapere che
-
     la vostra rapa è biologica o che il manzo che mangiate è stato allevato
-
     con mangimi biologici è quindi secondario, dato che il problema è
-
     ridurre il consumo di carne, in particolare di carne rossa.
-  réponse.lock: >
+  réponse.lock: |
 
     Non.
 
-
     Ce n’est simplement pas là que se situe l’enjeu fondamental du poste alimentation.
-
 
     Le principal enjeu de ce poste est la consommation de viande et de produits issus des animaux (laits, fromages, etc.) qui représente, à eux deux, environ 75 % de l’empreinte carbone de l’alimentation d’un français moyen. Savoir que son navet est bio ou que le bœuf que je mange a été élevé avec une alimentation bio est donc secondaire, étant donné que l’enjeu se situe sur la réduction de la consommation de viande, notamment rouge.
 - catégorie: alimentazione
@@ -302,49 +204,32 @@
   id: bio
   question: Io mangio biologico, ma non vedo nessuna domanda specifica al riguardo?
   question.lock: Je consomme bio mais je ne vois pas de questions spécifiques à ce sujet ?
-  réponse: >
+  réponse: |
     **Attenzione: mangiare biologico non riduce di per sé l'impronta di
-
     carbonio.**
 
-
     A parità di produzione e di prodotti, l'agricoltura biologica richiederà
-
     appezzamenti di terreno più grandi, riducendo le dimensioni delle
-
     foreste e delle aree naturali, essenziali per il sequestro del carbonio.
-
     Per questo motivo, su scala globale e a parità di quantità consumate,
-
     l'agricoltura biologica tende a essere considerata "più impattante" sul
-
     clima rispetto all'agricoltura convenzionale.
-
 
     Tuttavia, questo non è un motivo per non mangiare biologico.
 
-
     Dall'inquinamento del suolo e delle falde acquifere, alla perdita di
-
     biodiversità, fino alla salvaguardia della salute degli agricoltori, gli
-
     alimenti biologici riducono notevolmente molti altri impatti ambientali,
-
     riducendo al contempo i rischi per la nostra salute. Si tratta di
-
     questioni ambientali in generale e dobbiamo fare un passo indietro
-
     rispetto al nostro calcolo incentrato al 100% sui gas serra.
-  réponse.lock: >
+  réponse.lock: |
 
     **Attention : manger bio ne réduit pas, en soi, l’empreinte carbone.**
 
-
     A production et produits égaux, une culture bio va nécessiter des parcelles agricoles plus grandes, réduisant la taille des forêts et des zones naturelles, zones essentielles à la séquestration du carbone. C’est pourquoi, à l’échelle globale et à quantités consommées égales, on tend à considérer que le bio a « plus d’impact » sur le climat que l’agriculture conventionnelle.
 
-
     Néanmoins, ce n’est pas une raison pour ne pas manger bio.
-
 
     De la pollution des sols et des nappes phréatiques, à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
 - catégorie: generale
@@ -352,37 +237,25 @@
   id: finance
   question: Perché non prendere in considerazione i risparmi individuali?
   question.lock: Pourquoi ne pas prendre en compte l'épargne individuelle ?
-  réponse: >
+  réponse: |
     Le emissioni prodotte dai combustibili fossili finanziati dalle banche
-
     sono contabilizzate da coloro che li utilizzano.
 
-
     > Per esempio, la vostra banca può finanziare l'estrazione di petrolio
-
     > al largo delle coste della Siberia, ma questo petrolio viene estratto
-
     > per un uso specifico: guidare un'auto per 10 km, riscaldare una casa o
-
     > produrre plastica. È il consumo dell'auto, della casa e della plastica
-
     > che viene attribuito a queste emissioni nel modello.
 
-
     Sarebbe molto difficile per noi, dati i dati attuali, includere nel
-
     modello una quota di responsabilità per l'impronta della ricchezza
-
     personale senza fare doppi conti.
-  réponse.lock: >
+  réponse.lock: |
 
     Les émissions des énergies fossiles financées par les banques sont comptabilisées pour ceux qui les utilisent.
 
-
     > De façon illustrée, votre banque finance peut-être l'extraction du pétrole au large de la Sibérie, mais ce pétrole est extrait pour un usage précis : faire 10km de voiture, chauffer une maison ou produire du plastique.
-
     > Ce sont les consommations voiture, logement et plastique qui dans le modèle se voient attribuer ces émissions.
-
 
     Il nous serait très difficile au vu des données actuelles d'inclure une part de responsabilité de l'empreinte des fortunes personnelles dans le modèle, sans faire un double comptage.
 - catégorie: servizi pubblici
@@ -391,79 +264,43 @@
   question: Sì, ma comunque questo post a volte rappresenta più di alcuni miei impatti..
   question.lock: Oui mais quand même, ce poste représente parfois plus que
     certains de mes impacts…
-  réponse: >
-    In effetti, può essere frustrante veder conteggiare impatti per i quali
-
-    non abbiamo alcuna influenza diretta.
-
+  réponse: |-
+    In effetti, può essere frustrante veder conteggiare impatti per i quali non abbiamo alcuna influenza diretta.
 
     **Ma è proprio questo il senso della transizione in senso lato.**
 
+    Questa transizione non può essere pensata solo a livello individuale. È una condizione necessaria, ma non sufficiente, per una transizione più globale della nostra società. Si tratta quindi di giocare con leve d'azione indirette (il voto, l'impegno associativo, la sensibilizzazione intorno a noi, ecc.) 
 
-    Questa transizione non può essere pensata solo a livello individuale. È
+    > Abbiamo integrato alcuni di questi elementi nel [percorso di azione](https://nosgestesclimat.fr/actions) dopo il test.
 
-    una condizione necessaria ma non sufficiente per una transizione più
-
-    globale della nostra società. Si tratta quindi di giocare con leve
-
-    d'azione indirette (il voto, l'impegno associativo, la sensibilizzazione
-
-    intorno a noi, ecc.)
-
-
-    Questo è lo scopo di Nos Gestes Climat! per sensibilizzare l'opinione
-
-    pubblica su questi temi!
-  réponse.lock: >
+    Questo è l'intero scopo dei Nostri gesti per il clima! Lavorare per sensibilizzare l'opinione pubblica su questi temi!
+  réponse.lock: |
 
     En effet, il peut être frustrant de se voir comptabiliser des impacts pour lesquels nous n’avons aucun levier d’action direct.
 
-
     **Mais c’est là tout l’enjeu de la transition au sens large.**
 
+    Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une condition nécessaire mais non suffisante d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.). 
 
-    Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une condition nécessaire mais non suffisante d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.).
+    > Nous en avons intégré quelques uns dans le [parcours action](https://nosgestesclimat.fr/actions) après le test.
 
-
-    C’est d’ailleurs tout l’objet de Nos Gestes Climat ! œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
+    C’est d’ailleurs tout l’objet de Nos Gestes Climat ! Œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
 - catégorie: generale
   catégorie.lock: général
   id: international
   question: La calcolatrice è solo per i francesi?
   question.lock: Le calculateur est il destiné uniquement aux français ?
-  réponse: >
-    Per il momento il sito è riservato alla popolazione francofona della
+  réponse: |-
+    Per il momento il sito è riservato alla popolazione francofona della Francia metropolitana, ma stiamo per aggiungere i territori d'oltremare e poi i Paesi francofoni. È stato inoltre avviato il progetto di traduzione, prima in inglese, che ci permetterà di aggiungere tutti i Paesi europei.
 
-    Francia metropolitana, ma stiamo per aggiungere i territori d'oltremare
+    Perché l'internazionalizzazione è importante? Alcuni parametri del modello, in particolare l'impronta del mix elettrico (in gCO₂ₑ/kWh) influenzano particolarmente il risultato finale, che non sarà quindi valido in Belgio, Congo, Quebec, Algeria o altrove.
 
-    e poi i Paesi francofoni. È stato inoltre avviato il progetto di
-
-    traduzione, prima in inglese, che ci permetterà di aggiungere tutti i
-
-    Paesi europei.
-
-
-    Perché l'internazionalizzazione è importante? Alcuni parametri del
-
-    modello, in particolare l'impronta del mix elettrico (in gCO2e/kWh),
-
-    hanno una particolare influenza sul risultato finale, che non sarà
-
-    quindi valido in Belgio, Congo, Quebec, Algeria o altrove.
-
-
-    Se avete familiarità con l'argomento nel vostro Paese o nella vostra
-
-    regione, venite a
-
-    [discuterne](https://github.com/datagir/nosgestesclimat-site/issues/71).
-  réponse.lock: >
+    Se avete familiarità con l'argomento nel vostro Paese o nella vostra regione, venite a [discuterne](https://github.com/datagir/nosgestesclimat-site/issues/71).
+  réponse.lock: |
 
     Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
 
-
-    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO2e/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
-
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO₂ₑ/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
 
     Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 - catégorie: generale
@@ -471,96 +308,64 @@
   id: foyer
   question: Non capisco se il calcolo viene fatto per famiglia o per individuo
   question.lock: Je ne comprends pas si le calcul est fait par foyer ou par individu
-  réponse: >
+  réponse: |
     Il nostro Gesto Climatico è un calcolatore dell'**impronta di carbonio
-
     individuale**.
 
-
     Tuttavia, alcune domande possono creare confusione (come il numero di
-
     persone che vivono nella vostra casa o il numero medio di passeggeri
-
     nella vostra auto). Queste domande servono a far sì che un impatto più
-
     ampio possa essere portato a livello individuale.
 
-
     Tuttavia, per alcuni beni di consumo, questa distinzione non è sempre
-
     chiara.
 
-
     In effetti, all'interno di una famiglia, è molto difficile arbitrare tra
-
     alcuni beni e servizi utilizzati per il consumo personale e altri che
-
     possono essere condivisi (streaming video, strumenti, ecc.).
 
-
     Fortunatamente, queste "zone grigie" non sono le più importanti nella
-
     nostra impronta: potete rispondere rapidamente alle domande senza
-
     preoccuparvi di una stima potenzialmente sbagliata.
 
-
     Il team sta lavorando allo sviluppo di un percorso
-
     ["domestico](https://github.com/datagir/nosgestesclimat/issues/113) "
-
     per stimare l'impronta di carbonio della propria famiglia.
-  réponse.lock: >
-    Nos Gestes Climat est un calculateur **d’empreinte carbone
-    individuelle.**
-
+  réponse.lock: |
+    Nos Gestes Climat est un calculateur **d’empreinte carbone individuelle.**
 
     Cependant, certaines questions peuvent prêter à confusion (comme le nombre de personnes vivant dans votre logement ou encore le nombre de passagers en moyenne dans votre voiture). Ces questions sont là pour que l’on puisse ramener un impact plus large à l’échelle individuelle.
 
-
     Néanmoins, pour certains biens de consommation, cette distinction n’est pas toujours claire.
-
 
     En effet, au sein d’un foyer, il est très difficile d’arbitrer entre certains biens et services utilisés dans le cadre d’une consommation personnelle et d’autres pouvant être mutualisés (streaming vidéo, outils, etc.).
 
-
     Heureusement, ces éléments en "zone grise" ne sont pas les plus importants dans notre empreinte : vous pouvez répondre rapidement aux questions sans vous préoccuper d’une estimation potentiellement fausse.
-
 
     L’équipe travaille à développer un parcours [« foyer »](https://github.com/datagir/nosgestesclimat/issues/113) afin de pouvoir estimer l’empreinte carbone de sa famille.
 - catégorie: generale
   catégorie.lock: général
   id: déprime
-  question: Capisco l'obiettivo delle 2 tonnellate, ma lo trovo molto difficile da
+  question:
+    Capisco l'obiettivo delle 2 tonnellate, ma lo trovo molto difficile da
     immaginare.
   question.lock: J'ai compris l'objectif de 2 tonnes, mais j'ai beaucoup de mal à l'imaginer.
-  réponse: >
+  réponse: |
     L'esercizio dell'impronta di carbonio può anche essere scoraggiante
-
     perché si contano freddamente le emissioni dello stile di vita che
-
     conosciamo, senza cogliere in questa fase tutte le possibilità di una
-
     vita a basse emissioni di carbonio.
 
-
     Camminare nella natura, suonare, andare in bicicletta, in barca a vela,
-
     prendere il treno per tutto il paese, passare il tempo con la famiglia e
-
     gli amici, festeggiare, leggere, chiacchierare, fare giardinaggio,
-
     imparare a cucinare in modo diverso... Una vita a basse emissioni di
-
     carbonio è piena di esperienze gioiose, che non rientrano
-
     necessariamente nell'impronta di carbonio individuale, ma che saranno al
-
     centro degli stili di vita che stiamo inventando in questo momento.
-  réponse.lock: >
+  réponse.lock: |
 
     L'exercice du bilan carbone peut aussi provoquer un découragement car nous comptons froidement les émissions du mode de vie qu'on connait, sans appréhender à ce stade toutes les possibilités d'une vie bas carbone.
-
 
     Marcher dans la nature, jouer de la musique, faire du vélo, naviguer à la voile, profiter du train sur tout le territoire, passer du temps avec ses proches, faire la fête, lire, discuter, faire son potager, apprendre à cuisiner autrement... Une vie bas carbone, c'est plein d'expériences joyeuses, qui ne retrouvent pas forcément dans un bilan carbone individuel, mais qui seront au coeur des modes de vie que nous inventons en ce moment même.
 - catégorie: trasporto
@@ -568,139 +373,71 @@
   id: déplacements-pro
   question: Devo comunicare i miei viaggi di lavoro?
   question.lock: Dois-je renseigner mes déplacements pro ?
-  réponse: >
+  réponse: |
     No.
 
-
     UCS si dedica alla valutazione delle **impronte di carbonio
-
     individuali**. Gli spostamenti effettuati nell'ambito del proprio
-
     lavoro, come la consegna di un cliente, una riunione, un volo per
-
     partecipare a un seminario di tre giorni, ecc. non devono essere presi
-
     in considerazione per rispondere alle domande della calcolatrice.
 
-
     Questi viaggi di lavoro saranno inclusi nell'impronta di carbonio della
-
     vostra organizzazione (azienda, comunità, associazione, ecc.). Si tratta
-
     di un bilancio delle emissioni di gas a effetto serra (GHGEB).
 
-
     **Tuttavia, vi viene chiesto di riferire sui tragitti regolari
-
     casa-lavoro.** Perché vi viene chiesto questo? Perché, personalmente,
-
     avete il controllo sul tipo di trasporto che scegliete di utilizzare e
-
     sul luogo in cui vivete.
 
-
     Tuttavia, la realtà è spesso molto diversa e lungi da noi biasimare
-
     coloro la cui mobilità quotidiana è incentrata sull'automobile perché
-
     sono lontani dal luogo di lavoro. Anche se certe scelte possono essere
-
     messe in discussione, molti di noi sono di fatto costretti a usare
-
     l'auto individuale, in mancanza di alternative serie (trasporto
-
     pubblico, telelavoro, car pooling, ecc.).
-  réponse.lock: >
+  réponse.lock: |
 
     Non.
 
-
     NGC est dédié à l’évaluation de **l’empreinte carbone individuelle**. Les déplacements que vous effectuez dans le cadre de votre travail comme livrer un client, se rendre à une réunion, prendre l’avion pour assister à 3 jours de séminaire, etc. ne sont pas à prendre en compte quand vous répondez aux questions du calculateur.
-
 
     Ces déplacements relevant de l’activité professionnelle seront comptabilisés dans l’empreinte carbone de votre organisation (entreprise, collectivité, association, etc). On parle alors de bilans d’émissions de Gaz à Effet de Serre (BEGES).
 
-
     **Néanmoins, les déplacements réguliers domicile-travail vous sont demandés.** Pourquoi ? Car, à titre personnel, vous avez la main sur le type de transports que vous choisissez d’utiliser et sur l’endroit où vous habitez.
-
 
     Cependant la réalité est souvent bien différente et loin de nous la volonté de culpabiliser ceux dont la mobilité quotidienne est centrée autour de la voiture car ils sont éloignés de leur lieu de travail. Même si certains choix peuvent être questionnés, beaucoup d’entre nous sont, en effet, contraints à la voiture individuelle, faute d’alternatives sérieuses disponibles (transports en commun, télétravail, covoiturage, etc.).
 - catégorie: consumo
   catégorie.lock: consommation
   id: effet-qualité
-  question: Acquisto spesso prodotti sostenibili ed ecologici, ma lo strumento non
+  question:
+    Acquisto spesso prodotti sostenibili ed ecologici, ma lo strumento non
     sembra fare la differenza. Perché?
   question.lock: J’achète souvent des biens durables et écologiques mais l’outil
     ne semble pas faire la différence. Comment cela se fait-il ?
-  réponse: >
-    Questo è un commento comune quando si tratta di valutare la nostra
+  réponse: |-
+    Questo è un commento comune quando si tratta di valutare la nostra impronta di carbonio.
 
-    impronta di carbonio.
-
-
-    Poiché il peso del carbonio di ogni prodotto, bene e servizio che
-
-    consumiamo non esiste ancora, dobbiamo approssimare questo impatto.
-
-    Dobbiamo scegliere tra semplicità e precisione.
-
+    Poiché il peso del carbonio di ogni prodotto, bene e servizio che consumiamo non esiste ancora, dobbiamo approssimare questo impatto. Dobbiamo scegliere tra semplicità e precisione.
 
     Poiché NGC è un calcolatore pubblico, abbiamo scelto la semplicità.
 
+    Pertanto, questa approssimazione viene effettuata per famiglia di prodotti principali. Più concretamente, il calcolatore NGC si basa su rapporti monetari (X g di CO₂ₑ sono emessi per Y € di prodotti acquistati), per tipo di prodotto, dati dall'ADEME [Base Carbone®](https://www.bilans-ges.ademe.fr/).
 
-    Pertanto, questa approssimazione viene effettuata per famiglia di
+    Questi rapporti monetari permettono di stimare il contenuto di carbonio di un prodotto o servizio acquistato a partire dal suo prezzo. A tal fine, si considera un prodotto standard "medio". Non tiene conto delle specificità dei prodotti meno impattanti (di seconda mano, sostenibili, di design ecologico...), il che tende ad aumentare l'impronta finale.
 
-    prodotti principali. Più concretamente, il calcolatore NGC si basa su
-
-    rapporti monetari (X g di CO2e sono emessi per Y € di prodotti
-
-    acquistati), per tipo di prodotto, dati dalla [Base
-
-    Carbone®](https://www.bilans-ges.ademe.fr/) dell'ADEME.
-
-
-    Questi rapporti monetari permettono di stimare il contenuto di carbonio
-
-    di un prodotto o servizio acquistato a partire dal suo prezzo. A tal
-
-    fine, si considera un prodotto standard "medio". Non tiene conto delle
-
-    specificità dei prodotti meno impattanti (di seconda mano, sostenibili,
-
-    di design ecologico...), il che tende ad aumentare l'impronta finale.
-
-
-    NGC ha scelto di concentrare le domande sui prodotti acquistati nuovi
-
-    perché la differenza di impatto con i prodotti di seconda mano è molto
-
-    significativa. La fase di produzione del prodotto, che molto spesso
-
-    rappresenta la maggior parte degli impatti, non viene presa in
-
-    considerazione per i prodotti di seconda mano. Per quanto riguarda le
-
-    differenze di impatto tra i nuovi prodotti (tipicamente tra jeans
-
-    fast-fashion e jeans eco-designati), NGC sceglie, ancora una volta, di
-
-    non fare confusione.
-  réponse.lock: >
-    C’est une remarque qui revient souvent quand il s’agit d’évaluer
-    son empreinte carbone.
-
+    NGC ha scelto di concentrare le domande sui prodotti acquistati nuovi perché la differenza di impatto con i prodotti di seconda mano è molto significativa. La fase di produzione del prodotto, che molto spesso rappresenta la maggior parte degli impatti, non viene presa in considerazione per i prodotti di seconda mano. Per quanto riguarda le differenze di impatto tra i nuovi prodotti (tipicamente tra jeans fast-fashion e jeans eco-designati), NGC sceglie, ancora una volta, di non fare confusione.
+  réponse.lock: |
+    C’est une remarque qui revient souvent quand il s’agit d’évaluer son empreinte carbone.
 
     L’affichage du poids carbone de chaque produit, bien et service que nous consommons n’existant pas encore, nous devons donc approximer cet impact. Il faut ici arbitrer ente simplicité et précision.
 
-
     NGC, étant un calculateur grand public, nous faisons le choix de la simplicité.
 
-
-    Ainsi, cette approximation se fait par grande famille de produit. Plus concrètement, le calculateur NGC se base sur des ratios monétaires (X g de CO2e sont émis pour Y € de produits achetés), par type de produits, donnés par la [Base Carbone®](https://www.bilans-ges.ademe.fr/) de l’ADEME.
-
+    Ainsi, cette approximation se fait par grande famille de produit. Plus concrètement, le calculateur NGC se base sur des ratios monétaires (X g de CO₂ₑ sont émis pour Y € de produits achetés), par type de produits, donnés par la [Base Carbone®](https://www.bilans-ges.ademe.fr/) de l’ADEME.
 
     Ces ratios monétaires permettent d’estimer le contenu carbone d’un produit ou service acheté à partir de son prix. Pour se faire, un produit « moyen » standard est considéré. Il ne prend donc pas en compte les spécificités des produits moins impactant (occasion, durables, éco-conçus…), ce qui tend à majorer l’empreinte finale.
-
 
     NGC a fait le choix de focaliser ses questions sur les produits achetés neufs car la différence d’impact avec les produits d’occasion est très significative. La phase de production du produit, qui représente très souvent la majorité des impacts, n’est pas prise en compte pour les produits d’occasion. Quant aux différences d’impacts entre les produits neufs (typiquement entre un jean issu de la fast-fashion et un jean éco-conçu), NGC choisit, une fois encore, de rester simple.
 - catégorie: trasporto
@@ -709,85 +446,33 @@
   question: Non ho un'auto, ma mi vengono comunque chieste tutte queste informazioni..
   question.lock: Je n'ai pas de voiture mais on me demande quand même toutes ses
     informations …
-  réponse: >
-    Non appena inserite un chilometraggio superiore a 0, lo strumento cerca
+  réponse: |-
+    Non appena inserite un chilometraggio superiore a 0, lo strumento cerca di "applicarvi" una quota del deprezzamento edilizio dell'auto che utilizzate.
 
-    di "applicarvi" una quota del deprezzamento edilizio dell'auto che
-
-    utilizzate.
-
-
-    Se avete suggerimenti su questo limite e sullo strumento in generale,
-
-    sentitevi liberi di contribuire. NGC è uno strumento ad accesso aperto
-
-    in cui il contributo di tutti è possibile e auspicato.
-
-    [Qui](https://github.com/betagouv/ecolab-data/issues/185) spieghiamo
-
-    come.
-
+    Se avete suggerimenti su questo limite e sullo strumento in generale, sentitevi liberi di contribuire. NGC è uno strumento ad accesso aperto in cui il contributo di tutti è possibile e auspicato. [Qui](https://github.com/betagouv/ecolab-data/issues/185) spieghiamo come.
 
     ### Ma cos'è il deprezzamento?
 
+    La produzione di un'automobile è un processo industriale tutt'altro che banale che contribuisce all'emissione di diverse tonnellate di CO₂ₑ. Per non creare grandi variazioni nell'impronta, soprattutto negli anni in cui si acquista un veicolo nuovo, questo impatto viene distribuito sulla vita del veicolo. In questo modo è possibile confrontare l'impronta di carbonio di anno in anno.
 
-    La produzione di un'automobile è un processo industriale tutt'altro che
+    Se siete proprietari di un'autovettura, l'intero impatto della costruzione viene attribuito a voi. L'ammortamento è quindi lineare, cioè ripartito equamente di anno in anno. Vi chiediamo quanti anni ha la vostra auto per sapere quanta parte della svalutazione dovete ancora fare. Il periodo di ammortamento di un'automobile, come considerato da Our Climate Gestures, è di 10 anni. Qualsiasi veicolo più vecchio non viene quindi considerato (e automaticamente ha emissioni zero).
 
-    banale che contribuisce all'emissione di diverse tonnellate di CO2e. Per
+    Se non possedete un'auto, solo una frazione dell'impatto della sua produzione viene applicata alla vostra impronta di carbonio, in proporzione al vostro utilizzo.
 
-    non creare grandi variazioni nell'impronta, soprattutto negli anni in
-
-    cui si acquista un veicolo nuovo, questo impatto viene distribuito sulla
-
-    vita del veicolo. In questo modo è possibile confrontare la propria
-
-    impronta di carbonio di anno in anno.
-
-
-    Se siete proprietari di un'autovettura, l'intero impatto della
-
-    costruzione viene attribuito a voi. L'ammortamento è quindi lineare,
-
-    cioè ripartito equamente di anno in anno. Vi chiediamo quanti anni ha la
-
-    vostra auto per sapere quanta parte della svalutazione dovete ancora
-
-    fare. Il periodo di ammortamento di un'automobile, come considerato da
-
-    Nos Gestes Climat, è di 10 anni. Qualsiasi veicolo più vecchio non
-
-    viene quindi considerato (e automaticamente ha emissioni zero).
-
-
-    Se non possedete un'auto, solo una frazione dell'impatto della sua
-
-    produzione viene applicata alla vostra impronta di carbonio, in
-
-    proporzione al vostro utilizzo.
-
-
-    **In media, un'auto è ferma per il 95% del tempo, quindi è una buona
-
-    idea condividerla!**
-  réponse.lock: >
+    **In media, un'auto è ferma per il 95% del tempo, quindi è una buona idea condividerla!**
+  réponse.lock: |
 
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil cherche à vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
-
     Si vous avez des suggestions à faire quant à cette limite et de manière générale sur l’outil, n’hésitez pas à contribuer. NGC est un outil libre d’accès où la contribution de tous est possible et souhaitée. On vous explique comment [ici](https://github.com/betagouv/ecolab-data/issues/185).
-
 
     ### Mais qu’est-ce que l’amortissement ?
 
-
-    La fabrication d'une voiture est un process industriel loin d’être anodin et qui contribue à émettre plusieurs tonnes de CO2e. Pour ne pas créer de fortes variations de l’empreinte, notamment les années où l’on achète un nouveau véhicule, cet impact est réparti sur la durée de vie du véhicule. Cela rend possible la comparaison de votre empreinte carbone d’année en année.
-
+    La fabrication d'une voiture est un process industriel loin d’être anodin et qui contribue à émettre plusieurs tonnes de CO₂ₑ. Pour ne pas créer de fortes variations de l’empreinte, notamment les années où l’on achète un nouveau véhicule, cet impact est réparti sur la durée de vie du véhicule. Cela rend possible la comparaison de votre empreinte carbone d’année en année.
 
     Dans le cas où vous possédez votre propre voiture, l’ensemble de l’impact de la construction vous est attribué. L’amortissement est alors linéaire, c’est-à-dire réparti à valeur égale d’année en année. Nous posons la question de l’âge de votre voiture afin de savoir quelle part de l’amortissement il vous reste à faire. La durée d’amortissement d’une voiture, considérée par Nos Gestes Climat est de 10 ans. Tout véhicule plus ancien n’est donc pas considéré (et automatiquement à émissions nulles).
 
-
     Dans le cas où vous n’êtes pas propriétaire, seule une fraction de l’impact de cette fabrication est appliquée à votre empreinte carbone, au prorata de votre utilisation.
-
 
     **Une voiture reste en moyenne 95 % du temps à l’arrêt : vous faites donc bien de la partager !**
 - catégorie: alloggio
@@ -797,57 +482,36 @@
     tenerne conto?
   question.lock: Mon logement est alimenté en électricité verte, pourquoi ne
     puis-je pas le prendre en compte ?
-  réponse: >
+  réponse: |
     A meno che non abbiate una vostra fonte di elettricità (pannelli
-
     fotovoltaici), la cosiddetta elettricità "verde" fornita dai produttori
-
     di energia rinnovabile non può esservi fornita senza l'esistenza della
-
     **rete elettrica francese, una rete unica condivisa da tutti**.
 
-
     NGC utilizza quindi solo il fattore di emissione di questa rete, che
-
     sarà tanto più basso quanto più fonti sostenibili vi saranno collegate.
-
     Questo fattore di emissione è particolarmente
-
     [basso](https://www.electricitymap.org/ranking) grazie all'ampia quota
-
     di nucleare e idroelettrico nel nostro mix.
 
-
     Inoltre, le cifre fornite dai fornitori di elettricità "verde" sono
-
     cifre teoriche, che non sono state sottoposte a consultazioni tecniche
-
     come tutte le cifre del [Base
-
     Carbone®](https://www.bilans-ges.ademe.fr/).
 
-
     Tuttavia, sottoscrivere [un contratto di elettricità
-
     "verde"](https://agirpourlatransition.ademe.fr/particuliers/vertvolt) è
-
     un buon modo per essere in linea con i propri valori, per partecipare
-
     alla creazione di posti di lavoro che non possono essere delocalizzati e
-
     per inviare un messaggio ai responsabili delle decisioni a favore dello
-
     sviluppo delle energie rinnovabili.
-  réponse.lock: >
+  réponse.lock: |
 
     À moins de posséder sa propre source d’électricité (panneaux photovoltaïque), l’électricité dite « verte » fournie par les producteurs d’énergie renouvelable ne peut vous être acheminée sans l’existence du **réseau électrique français, réseau unique et partagé par tous.**
 
-
     NGC utilise donc seulement le facteur d’émission de ce réseau, qui sera d’autant plus bas que des sources durables y seront connectées. Ce facteur d’émission est particulièrement [faible](https://www.electricitymap.org/ranking) grâce à la part importante de nucléaire et de barrages hydrauliques dans notre mix.
 
-
     De plus, les chiffres fournis par les fournisseurs d’électricité "verte" sont des chiffres théoriques, qui n’ont pas fait l’objet de concertations techniques comme l’ensemble des chiffres de la [Base Carbone®](https://www.bilans-ges.ademe.fr/).
-
 
     Néanmoins, souscrire [un contrat d’électricité « verte »](https://agirpourlatransition.ademe.fr/particuliers/vertvolt) est un bon moyen pour être en phase avec ses valeurs, participer à la création d’emplois non délocalisables et passer un message aux décideur·se·s en faveur du développement des énergies renouvelables.
 - catégorie: alloggio
@@ -857,48 +521,31 @@
     opzione non è offerta dallo strumento..
   question.lock: Je suis raccordé au réseau de chaleur de ma collectivité mais
     cette option n’est pas proposée par l’outil…
-  réponse: >
-    In effetti, la NGC non consente di indicare se si è collegati a una
-    rete
-
+  réponse: |
+    In effetti, la NGC non consente di indicare se si è collegati a una rete
     di riscaldamento, e questo per diversi motivi.
 
-
     Innanzitutto, sarebbe necessario un elenco di tutte le reti di
-
     riscaldamento in Francia, che sono più di 750..
 
-
     Inoltre, i dati (cioè il fattore di emissione della rete) **non sono
-
     sempre affidabili e controllabili** e sono soggetti a variazioni
-
     significative nel tempo, a seconda dei processi utilizzati per il
-
     funzionamento della rete di riscaldamento (calore recuperato da
-
     inceneritori, energia rinnovabile, ma spesso anche olio combustibile o
-
     gas naturale).
 
-
     Non abbiamo nemmeno scelto di considerare una rete di riscaldamento
-
     "media", dato che, a seconda della percentuale di idrocarburi utilizzati
-
     nel loro funzionamento, il loro impatto in termini di gas serra può
-
     variare notevolmente.
-  réponse.lock: >
+  réponse.lock: |
 
     En effet, NGC ne permet pas de renseigner si on est raccordé à un réseau de chaleur, et ce pour plusieurs raisons.
 
-
     Tout d’abord, cela nécessiterait de répertorier l’ensemble des réseaux de chaleur en France et il en existe plus de 750…
 
-
     De plus, la donnée (i.e. le facteur d’émission du réseau) n’est **pas toujours fiable et contrôlable** et est sujette à de fortes évolutions au cours du temps, en fonction des procédés utilisés pour faire fonctionner le réseau de chaleur (chaleur récupérée depuis les incinérateurs, énergie renouvelable mais aussi souvent fuel ou gaz naturel).
-
 
     Nous n’avons pas fait le choix non plus de considérer un réseau de chaleur « moyen » étant donné qu’en fonction de la part d’hydrocarbure utilisée dans leur fonctionnement, leur impact en termes de gaz à effet de serre peut varier très fortement.
 - catégorie: generale
@@ -906,142 +553,108 @@
   id: 2tonnes
   question: Perché l'obiettivo delle 2 tonnellate? È super ambizioso!
   question.lock: Pourquoi cet objectif de 2 tonnes ? C'est super ambitieux !
-  réponse: >
-    Questa reazione è normale! E siamo onesti, al momento pochissime
-    persone
-
+  réponse: |
+    Questa reazione è normale! E siamo onesti, al momento pochissime persone
     emettono meno di 2 tonnellate. Tuttavia, se il vostro ingombro è di
-
     circa 4 o 5 tonnellate, avete già fatto molta strada.
 
-
     Si tratta di progressi individuali verso stili di vita con minori
-
     emissioni di gas serra, ma è essenziale che i cambiamenti avvengano su
-
     scala più ampia per facilitare l'emergere di questi stili di vita.
 
-
     > Ad esempio, una comunità in cui i cittadini passano in massa alla
-
     > bicicletta (o a un altro modo di trasporto a basse emissioni di
-
     > carbonio) spingerà i suoi funzionari eletti a promuovere nuove
-
     > infrastrutture e politiche, che a loro volta aiuteranno i successivi a
-
     > passare alla bicicletta, e così via ♻️ !
 
-
     Questo obiettivo di 2 tonnellate è quindi complicato, ma è quello che
-
     dobbiamo raggiungere collettivamente il prima possibile, e al più tardi
-
     entro il 2050 con una progressione costante ogni anno, per contenere il
-
     riscaldamento globale a +2° e rispettare così l'Accordo di Parigi.
-
     Questo "bilancio climatico" non è una questione politica, ma deriva dai
-
     limiti planetari identificati dalla scienza del clima. È un dato di
-
     fatto, non negoziabile, a meno che non vogliamo esporci alle conseguenze
-
     disastrose ad esso associate e ampiamente descritte nei
-
     [rapporti](https://www.ipcc.ch/languages-2/francais/) dell
-
     ['IPCC](https://www.ipcc.ch/languages-2/francais/).
 
-
     > Per saperne di più, leggete il nostro articolo illustrato
-
     > sull'argomento: 📘 [Qual è il bilancio e l'impronta di
-
     > carbonio?](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi)
-  réponse.lock: >
-    Cette réaction est normale ! Et soyons honnête, à l'heure
-    actuelle, très peu de gens émettent moins 2 tonnes. Sachez pourtant que si
-    votre empreinte se situe autour de 4 ou 5 tonnes vous avez déjà fait une
-    grande partie du chemin.
-
+  réponse.lock: |
+    Cette réaction est normale ! Et soyons honnête, à l'heure actuelle, très peu de gens émettent moins 2 tonnes. Sachez pourtant que si votre empreinte se situe autour de 4 ou 5 tonnes vous avez déjà fait une grande partie du chemin.
 
     Il s'agit de progresser individuellement vers des modes de vies moins émetteurs de gaz à effet de serre, mais il est essentiel que des changements s'opèrent à plus large échelle pour faciliter l'émergence de ces mode de vies.
 
-
     > Ainsi, une collectivité où les citoyens se mettent massivement au vélo (ou à un autre mode bas carbone) poussera ses élus à favoriser de nouvelles infrastructures et politiques adéquates, ce qui en retour aidera les prochains à se mettre au vélo, et ainsi de suite ♻️ !
-
 
     Cet objectif de 2 tonnes est donc compliqué, mais c'est ce que nous devons atteindre collectivement au plus vite, et au plus tard en 2050 avec une progression régulière chaque année, afin de contenir le réchauffement climatique à +2°, et donc respecter l'accord de Paris. Ce "budget climat" ne relève pas du fait politique, mais découle des limites planétaires identifiées par la science du climat. Il est factuel, non négociable, sauf à vouloir s'exposer aux conséquences désastreuses qui y sont associées et largement décrites dans les [rapports du GIEC](https://www.ipcc.ch/languages-2/francais/).
 
-
     > Pour en savoir plus, lisez notre article illustré sur ce sujet :
-
     > 📘 [Le budget et l'empreinte carbone, c'est quoi ? ](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi)
 - catégorie: generale
   catégorie.lock: général
   id: ges
   question: Qual è l'impronta di carbonio? Perché ciò che mangio o la mia
     spazzatura emettono gas a effetto serra (GHG)?
-  question.lock: Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que
+  question.lock:
+    Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que
     je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
-  réponse: >
-    Tutto ciò che consumiamo, usiamo o gettiamo via ha richiesto materiale
+  réponse: |-
+    Tutto ciò che consumiamo, usiamo o gettiamo via ha richiesto materiale (che ha dovuto essere estratto), energia per essere assemblato, modellato o confezionato.
 
-    (che ha dovuto essere estratto) ed energia per essere assemblato,
+    Questi beni vengono trasportati, immagazzinati e quando giungono a fine vita (o quando decidiamo semplicemente di buttarli), diventano rifiuti che devono essere raccolti e poi trattati, e talvolta riciclati.
 
-    modellato o confezionato.
+    Ecco perché, anche se può sembrare controintuitivo, tutte le nostre azioni quotidiane contribuiscono all'emissione di gas serra. Alcuni molto, altri molto poco. Mangiare un chilo di patate emette gas serra, così come guidare 10.000 km in auto, ma ovviamente in proporzioni molto diverse. E naturalmente non abbiamo queste cifre in testa.
 
+    Per sapere quanto emette ciascuna delle nostre azioni, ci affidiamo alla [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) dell'ADEME (l'agenzia francese per l'ambiente) che, per diversi dati (km percorsi, kg di carne, kWh consumati, un televisore, ecc.), ci permette di stimare la quantità di gas serra emessi.
 
-    Questi beni vengono trasportati, immagazzinati e quando giungono a fine
+    L'obiettivo dei nostri Gesti climatici è quello di manipolare queste cifre per mettere semplicemente in discussione il nostro stile di vita, al fine di individuare ciò che contribuisce di più o di meno alla nostra impronta di carbonio.
 
-    vita (o quando decidiamo semplicemente di buttarli via), diventano
-
-    rifiuti che devono essere raccolti e poi trattati, e talvolta riciclati.
-
-
-    Ecco perché, anche se può sembrare controintuitivo, tutte le nostre
-
-    azioni quotidiane contribuiscono all'emissione di gas serra. Alcuni
-
-    molto, altri molto poco. Mangiare un chilo di patate emette gas serra,
-
-    così come guidare 10.000 km in auto, ma ovviamente in proporzioni molto
-
-    diverse. E naturalmente non abbiamo queste cifre in testa.
-
-
-    Per sapere quanto emette ciascuna delle nostre azioni, ci affidiamo alla
-
-    [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) dell'ADEME
-
-    (l'agenzia francese per l'ambiente) che, per diversi dati (km percorsi,
-
-    kg di carne, kWh consumati, un televisore, ecc.), ci permette di stimare
-
-    la quantità di gas serra emessi.
-
-
-    L'obiettivo delle nostre Azioni per il clima è quello di manipolare
-
-    queste cifre per mettere semplicemente in discussione il nostro stile di
-
-    vita, al fine di individuare ciò che contribuisce di più o di meno alla
-
-    nostra impronta di carbonio.
-  réponse.lock: >
-    Tous ce que nous consommons, utilisons, jetons a nécessité de la
-    matière (qui a du être extraite), de l'énergie pour être assemblé, mis en
-    forme ou bien encore conditionné.
-
+    > 💡 Per scoprire l'impronta climatica consumo per consumo, non esitate a continuare su [impactCO2.fr](https://impactco2.fr) dopo il test Our Climate Action.
+  réponse.lock: |
+    Tous ce que nous consommons, utilisons, jetons a nécessité de la matière (qui a du être extraite), de l'énergie pour être assemblé, mis en forme ou bien encore conditionné.
 
     Ces biens sont transportés, stockés et quand ils arrivent en fin de vie (ou qu'on décide tout simplement de les jeter), deviennent des déchets qui doivent encore être collectés puis traités, et parfois recyclés.
 
-
     C'est pourquoi, même si cela peut sembler contre intuitif tous nos gestes quotidiens participent à émettre des gaz à de serre. Certains énormément, d'autres très peu. Manger un kg de patates émet des gaz à effet de serre, rouler 10 000 km en voiture aussi, mais bien évidemment dans des proportions très différentes. Et nous n'avons naturellement pas ces chiffres en tête.
-
 
     Pour savoir combien émettent chacunes de nos actions, nous nous en remettons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'agence française de l'environnement) qui pour différentes données (km roulé, kg de viande, kWh consommé, une TV, etc.) permettent d'estimer la quantité de gaz à effet de serre émise.
 
-
     Le but de nos Nos Gestes Climat est de manipuler ces chiffres pour questionner simplement notre mode de vie afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
+
+    > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
+- catégorie: generale
+  catégorie.lock: général
+  id: défaut
+  question: Perché l'ingombro iniziale del test è inferiore a 10 tonnellate?
+  question.lock: Pourquoi l'empreinte de départ du test est-elle inférieure à 10 tonnes ?
+  réponse: |-
+    L'impronta che appare all'inizio del test, prima di aver risposto alle domande, è solo un punto di partenza! Durante il test, consente di confrontare l'impronta dei propri consumi (chilometri percorsi in auto, riscaldamento, ecc.) con valori che si avvicinano il più possibile alla media francese 
+
+    Se si seguono da vicino i dati nazionali sull'impronta di carbonio, si noterà che questa cifra è diversa dalle `8,9 tonnellate di CO₂ₑ, l'` [ultimo dato calcolato dal Ministero dell'Ambiente nel novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
+
+    Questa differenza è normale (purché l'ordine di grandezza rimanga lo stesso), poiché i due approcci di calcolo sono diversi. Infatti, questa media include l'impatto di carbonio di tutte le attività dell'economia francese, che poi divide per i 67 milioni di francesi, mentre Nos Gestes Climat si basa su un approccio di consumo reale categorizzato in voci che sappiamo essere significative e che rappresentano la grande maggioranza dell'impronta di carbonio di un individuo 
+
+    Pertanto, i perimetri delle attività prese in considerazione non sono perfettamente "giustapposti" (ad esempio: anche se non avete una barca, l'impronta media francese vi attribuisce una parte delle emissioni legate alla fabbricazione, alla manutenzione e alla riparazione delle imbarcazioni e una parte delle emissioni legate ai servizi dei porti turistici) 
+
+    Tuttavia, come scoprirete durante il test, il cibo, gli spostamenti e l'abitazione sono responsabili della stragrande maggioranza delle vostre emissioni... ed è proprio questa la forza di Nos Gestes Climat: lasciare da parte la media e proporre la propria _simulazione_, il più accurata possibile.
+
+    In definitiva, nulla di grave, purché l'ordine di grandezza di queste stime sia identico (\~10 tonnellate). 
+
+    > Stiamo lavorando al consolidamento della metodologia per migliorare l'esaustività dei perimetri presi in considerazione da NGC: il modello si evolve molto regolarmente per diventare più preciso e completo.
+  réponse.lock: |
+    L'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, n'est qu'un point de départ ! Il vous permet tout au long du test de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
+
+    Si vous suivez attentivement les chiffres d'empreinte carbone nationale, vous remarquerez que ce chiffre est différent des `8,9 tonnes de CO₂ₑ`, [le dernier chiffre calculé par le Ministère de l'Environnement en novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
+
+    Cette différence est normale (tant que l'ordre de grandeur reste identique), car les deux approches de calcul sont différentes. En effet, cette moyenne englobe l'impact carbone de l’ensemble des activités de l’économie française qu'elle divise ensuite par les 67 millions de français, là où Nos Gestes Climat se base sur une approche de consommation réelle catégorisée en postes que nous savons significatifs et représentant la grande majorité de l’empreinte carbone d’un individu. 
+
+    Ainsi, les périmètres des activités prises en compte ne sont pas parfaitement « juxtaposés » (par exemple : même si vous n'avez pas de bateau, l'empreinte moyenne française vous attribue une part des émissions liées à la fabrication, l'entretien et la réparation des bateaux ainsi qu'une part d'émissions liées aux services des marinas). 
+
+    Pourtant, comme vous le découvrirez pendant le test, votre alimentation, vos déplacements et votre habitat sont responsables de la très grande majorité de vos émissions… et c'est justement la force de Nos Gestes Climat : laisser de côté la moyenne pour vous proposer *votre simulation à vous*, de la façon la plus précise possible.
+
+    Au final, rien de grave, tant que l'ordre de grandeur de ces estimations est identique (~10 tonnes).  
+
+    > Nous menons un travail de consolidation méthodologique afin d’améliorer l’exhaustivité des périmètres pris en compte par NGC : le modèle évolue très régulièrement pour devenir plus précis et complet.

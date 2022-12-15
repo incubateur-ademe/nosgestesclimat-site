@@ -260,7 +260,7 @@ entries:
   catégorie complétée: catégorie complétée
   cet article: cet article
   cette page: cette page
-  components.NewsBanner.miseAJourDate: Dernière mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Dernière mise à jour {{date}}
   components.ScoreExplanation.text.p1: 🧮 Voici votre score de départ, calculé à
     partir de réponses attribuées à l'avance à chaque question ! Il évoluera à
     chaque nouvelle réponse.

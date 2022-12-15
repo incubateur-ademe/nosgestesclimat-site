@@ -1,4 +1,5 @@
 entries:
+  ' En savoir plus sur notre modèle': ' Más información sobre nuestro modelo'
   ' et visualisez les résultats du groupe': ' y ver los resultados del grupo'
   (15 min de lecture): (15 minutos de lectura)
   (co-voiturage pris en compte): (teniendo en cuenta el uso compartido del coche)
@@ -22,6 +23,7 @@ entries:
   Annuler: Cancelar
   Aucun: No
   Autonome: Autónomo
+  Autres: Otros
   Avancement du groupe: Progreso del grupo
   Bientôt disponible !: ¡Disponible pronto!
   C'est dans le fichier: Está en el
@@ -58,6 +60,12 @@ entries:
   Courses: Carreras
   De quoi est faite mon empreinte ?: ¿De qué está hecha mi huella?
   Depuis la page: Desde el
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.":
+    Detrás de la web nosgestesclimat.fr está el modelo de huella climática
+    individual del consumo de referencia.
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence..lock":
+    Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat
+    individuelle de consommation de référence.
   Diffuser: Difusión
   Distance: Distancia
   Documentation: Documentación
@@ -72,10 +80,16 @@ entries:
   Effacer le nom actuel: Borrar el nombre actual
   Empreinte totale: Huella total
   En cours de chargement: Actualmente cargando
+  En développement actif: En desarrollo activo
   En groupe: En grupos
   En savoir +: Leer más
   En savoir plus: Leer más
   'Enlever ': 'Eliminar '
+  "Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un standard qui évolue régulièrement et qui peut être réutilisé librement par tout type d'acteur.":
+    Totalmente de código abierto y contributivo, todo el mundo
+    puede<1>explorarlo</1>, <4>opinar</4> y <7>mejorarlo</7>. Es una norma que
+    evoluciona regularmente y puede ser reutilizada libremente por cualquier
+    tipo de actor.
   Entre: Entre
   Entrez des mots clefs: Introduzca las palabras clave
   Entrez des mots clefs ici: Introduzca aquí las palabras clave
@@ -89,6 +103,7 @@ entries:
   Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
     Explore y modifique la información que ha introducido en la vía
     nosgestesclimate.
+  Explorez nos modèles: Explore nuestros modelos
   Explorez notre documentation: Explore nuestra documentación
   Faire le test: Realización de la prueba
   Faire mon test: Haz mi prueba
@@ -113,7 +128,20 @@ entries:
   La voiture en chiffres: El coche en cifras
   Label: Etiqueta
   Label (facultatif): Etiqueta (opcional)
+  "Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    El modelo incluye ahora <1>{numberOfRules}</1> reglas de cálculo. Entre
+    ellas, las reglas {numberOfQuestions} son preguntas que deben hacerse al
+    usuario para calcular un resultado concreto.
+  "Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
+    El modelo incluye ahora {numberOfRules} reglas de cálculo. Entre ellas, las
+    reglas {numberOfQuestions} son preguntas que se deben hacer al usuario para
+    calcular un resultado concreto.
+  Le modèle d'empreinte carbone de référence: El modelo de referencia de la huella de carbono
   'Le reste : ': 'El resto '
+  "Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.":
+    El simulador Nos Gestes Climat se basa en el modelo de cálculo del mismo
+    nombre, compuesto por un conjunto de ladrillos. En esta documentación, tiene
+    acceso transparente a todas las variables del cálculo.
   Le test: La prueba
   Le titre bref de votre problème: El título corto de su problema
   'Les 3 actions au plus fort impact pour vous :': 'Las 3 acciones con mayor impacto para ti:'
@@ -175,6 +203,7 @@ entries:
   Progression dans les diapo: Progresión a través de las diapositivas
   Précédent: Anteriormente
   Prêt à démarrer ?: ¿Listo para empezar?
+  'Quelques suggestions ': 'Algunas sugerencias '
   Questions fréquentes: Preguntas frecuentes
   Quitter: Salida
   RDV médicaux: Citas médicas
@@ -209,10 +238,12 @@ entries:
   Trajet (Optionnel): Ruta (opcional)
   'Tri :': 'Clasificación :'
   'Triées par :': 'Clasificado por :'
+  Un modèle complet: Un modelo completo
   Un problème de traduction ?: ¿Un problema de traducción?
   Une erreur est survenue lors de la récupération des données: Se ha producido un error al recuperar los datos
   Une personne au moins est présente dans la voiture (vous !): Al menos una persona está presente en el coche (¡tú!)
   'Une question, un problème ?': ¿Una pregunta, un problema?
+  Une technologie moderne: Tecnología moderna
   Vacances: Vacaciones
   Version: Versión
   Visite familiale: Visita de la familia
@@ -239,8 +270,8 @@ entries:
   catégorie complétée: categoría completada
   cet article: este artículo
   cette page: esta página
-  components.NewsBanner.miseAJourDate: Actualizado el {{date}}
-  components.NewsBanner.miseAJourDate.lock: Mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Última actualización {{date}}
+  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour {{date}}
   components.ScoreExplanation.text: <0></0> por año es <3>un</3> punto <3>de
     partida teórico</3> calculado a partir de valores por defecto asignados de
     antemano a cada pregunta. A medida que vas respondiendo, vas
@@ -506,7 +537,76 @@ entries:
     Notre modèle de calcul est
     entièrement transparent. Chacun peut l'explorer, donner son avis,
     l'améliorer.
+  meta.publicodes.pages.Documentation.intro: El simulador Nos Gestes Climat se
+    basa en el modelo de cálculo del mismo nombre, compuesto por un conjunto de
+    ladrillos. En esta documentación, tiene acceso transparente a todas las
+    variables del cálculo.
+  meta.publicodes.pages.Documentation.intro.lock:
+    Le simulateur Nos Gestes Climat
+    est basé sur le modèle de calcul du même nom, composé d'un ensemble de
+    briques. Sur cette documentation, vous avez accès en toute transparence à
+    l'ensemble des variables du calcul.
   minutes: minutos
+  model.active: He aquí algunos ejemplos de importantes <1>cuestiones</1> de
+    actualidad entre el centenar de temas documentados.
+  model.active.lock:
+    Voici à titre d'exemple quelques <1>issues</1> importantes du
+    moment parmi la centaine de sujets documentés.
+  model.intro: Detrás de la web nosgestesclimat.fr está el modelo de huella
+    climática individual del consumo de referencia.
+  model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle
+    d'empreinte climat individuelle de consommation de référence.
+  model.intro2: Es totalmente de código abierto y contributivo, por lo que
+    cualquiera puede<1>explorarlo</1>, <4>dar su opinión</4> y <7>mejorarlo</7>.
+  model.intro2.lock:
+    Entièrement ouvert (open source) et contributif, chacun peut
+    l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
+  model.modern: El modelo se basa en <1>publicodes</1>, un lenguaje diseñado por
+    el Estado para expresar algoritmos de interés público.
+  model.modern.lock: Le modèle est basé sur <1>publicodes</1>, un langage conçu
+    par l'État pour exprimer des algorithmes d'intérêt public.
+  model.modern2: Es totalmente personalizable, desde las preguntas formuladas al
+    usuario hasta las hipótesis del modelo de cálculo, y puede ser reutilizado
+    <2>libremente</2> por cualquier tipo de actor.
+  model.modern2.lock: Entièrement paramétrable, depuis les questions posées à
+    l'utilisateur jusqu'aux hypothèses du modèle de calcul, il peut être
+    réutilisé <2>librement</2> par tout type d'acteur.
+  model.modern3: ⬇️ A continuación puedes ver la influencia de 3 parámetros de
+    cálculo en los resultados finales.
+  model.modern3.lock:
+    ⬇️ Ci-dessous, vous pouvez voir l'influence de 3 paramètres
+    de calcul sur les résultats finaux.
+  model.modern4:
+    El modelo de cálculo está incrustado directamente en el cliente,
+    el cálculo tiene lugar allí en su navegador, no en nuestros servidores. Los
+    datos recogidos son tan descriptivos de la vida de los usuarios, y por tanto
+    sensibles en términos de privacidad, que hacer los cálculos en el servidor
+    <2>y almacenarlos</2> supondría un riesgo demasiado alto.
+  model.modern4.lock:
+    Le modèle de calcul est directement embarqué chez le client,
+    le calcul a lieu là dans votre navigateur, pas sur nos serveurs. Les données
+    collectées sont si descriptives de la vie des utilisateurs, donc sensibles
+    en termes de vie privée, que faire les calculs côté serveur <2>et les
+    stocker</2> poserait un risque trop élevé.
+  model.stats: El modelo incluye ahora <1></1> reglas de cálculo. Entre ellas,
+    <3></3> rules son preguntas que deben formularse al usuario para calcular un
+    resultado preciso.
+  model.stats.lock:
+    Le modèle comprend aujourd'hui <1></1> règles de calcul. Parmi
+    elles, <3></3> règles sont des questions à poser à l'utilisateur pour
+    calculer un résultat précis.
+  model.stats2: Consiste en una combinación de cientos de micromodelos
+    "ascendentes" para el consumo de carbono de nuestra vida cotidiana, y un
+    modelo "descendente" derivado del trabajo del SDES para estimar la huella
+    per cápita de los llamados servicios sociales (servicios públicos y
+    servicios básicos como las telecomunicaciones). <2>Más información sobre
+    esta hibridación</2>.
+  model.stats2.lock: Il est constitué d'une combinaison de centaines de modèles
+    micro "bottom-up" pour les consommations carbonées de notre vie quotidienne,
+    et d'un modèle "top-down" dérivé des travaux du SDES pour estimer
+    l'empreinte par personne des services dits sociétaux (services publics et
+    services de base tels les télécom). <2>En savoir plus sur cette
+    hybridation</2>.
   mois: mes
   mon empreinte annuelle: mi huella anual
   mon objectif: mi objetivo
@@ -769,6 +869,8 @@ entries:
     exception </2>: votre trajet domicile-travail doit être inclus dans les km
     parcourus.</3><4>❓️ D'autres questions ? Consultez notre <2>FAQ</2> à tout
     moment.</4>"
+  publicodes.chart.GridChart.equivalenceCase: Una caja 🔲 = {{nbKg}} kg de CO₂e.
+  publicodes.chart.GridChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
   publicodes.chart.RavijenChart.equivalenceCase: Una caja 🔲 = {{nbKg}} kg de CO₂e.
   publicodes.chart.RavijenChart.equivalenceCase.lock: Une case 🔲 = {{nbKg}} kg de CO₂e.
   publicodes.conference.Conference.donnéesExplications:
