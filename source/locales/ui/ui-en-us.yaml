@@ -84,7 +84,9 @@ entries:
   Et mes données ?: What about my data?
   Explorer les catégories: Explore categories
   Explorer notre documentation: Explore our documentation
-  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explore and modify the information you have entered in the nosgestesclimate pathway.
+  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
+    - 
+    - 
   Explorez notre documentation: Explore our documentation
   Faire le test: Take the test
   Faire mon test: Take my test
@@ -233,18 +235,33 @@ entries:
   components.NewsBanner.miseAJourDate: Updated on {{date}}
   components.ScoreExplanation.text.p1: '🧮 This is your starting score, calculated from pre-assigned answers to each question! It will change with each new answer.'
   components.ScoreExplanation.text.p2: '🧮 Here is your provisional score, it changes with each new answer!'
-  components.ScoreExplanation.text.p3: '🤔 If you answer "I don''t know" to a question, the score will not change: you are assigned a default value.'
+  components.ScoreExplanation.text.p3:
+    0:
+    question, le score ne changera pas:
+    1:
   components.ScoreExplanation.text.p4: '💡 We improve the calculation and its default valuesevery<1>month</1>!'
   components.TranslationAlertBanner.wikiLink: The translation of this page is in <1>beta</1> version. <4>A problem, a suggestion?</4>
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the car.
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
+    - 
+    - 
   components.conversation.select.NumberedMosaic.choixAFaire: ' You still have {{nbChoix}} to choose from.'
   components.conversation.select.NumberedMosaic.choixEnTrop: You have made {{nbChoix}} too many choices!
   components.localisation.Localisation.warnMessage: For the moment, there is no calculation model for {{countryName}}, you use the French model by default.
-  components.localisation.Localisation.warnMessage2: We could not detect your simulation country. You are using the French model by default.
+  components.localisation.Localisation.warnMessage2:
+    - 
+    - 
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> of the test.
   components.stats.StatsContent.dureeDesVisites: <0>Learn more about this site</0><1>This section is generated from visits over the last 60 days. Visits with a time spent on the site of less than 1 minute have been discarded. To avoid the iframe bias that can generate inactive visitors in the statistics, the average time on the site has been calculated from active visits (the user has clicked on "Take the test").</1>
-  components.stats.StatsContent.integrationEtIframes: <0>Learn more about iframe integrations</0><1>Iframe integrations are detected via the 'iframe' parameter in the URL, only if the integrator has used the <2>dedicated script</2>. Thus, the visits via iframes of integrators who did not use this script are scattered in the general visits of Nos Gestes Climat. Pending more precise figures, this rate is therefore potentially underestimated compared to reality. <5>(Data valid for the last 30 days)</5></1>
+  components.stats.StatsContent.integrationEtIframes:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   components.stats.StatsContent.scoreUtilisateurs: "<0>Read more about it</0><1>Of course, we do not collect <2>user data</2>. Nevertheless, the total score as well as the footprint per category is present in the end of test URL. In this section, we aggregate this information to get an idea of the average carbon footprint of our users and the distribution of the score in order to analyze these results in the context of the evolutions of the model.</1> <3>The objective here is not to evaluate the carbon footprint of the French: a priori, the test users are not representative of the French. Moreover, these data can be biased by users who would come back several times on the end page, changing their answers to the test (which creates new end url).</3>"
   de CO₂e en moyenne: of CO₂e on average
   de visites ce mois ci<1>&nbsp;(par rapport au mois d'avant)</1>: of visits this month<1> (compared to the month before)</1>
@@ -276,11 +293,22 @@ entries:
   meta.publicodes.Accessibility.title: Accessibility
   meta.publicodes.CGU.description: These general terms of use (called "GTC") set the legal framework of the Platform "Nos Gestes Climat" and define the conditions of access and use of services by the User.
   meta.publicodes.CGU.title: Terms and conditions of use
-  meta.publicodes.Contribution.description: Find out the most common questions about Our Climate Action, and how to ask new ones or help us.
-  meta.publicodes.Diffuser.description: This simulator allows you to evaluate your total annual individual carbon footprint and by major categories (food, transportation, housing, miscellaneous, utilities, digital), to situate it in relation to the climate objectives and above all to take action at your level with personalized gestures according to your answers.
+  meta.publicodes.Contribution.description:
+    - 
+    - 
+  meta.publicodes.Diffuser.description:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   meta.publicodes.Diffuser.title: Sharing Nos Gestes Climat
   meta.publicodes.Landing.description: Test your carbon footprint, alone or in a group. Discover the breakdown of your footprint. Follow the path to action to reduce it.
-  meta.publicodes.LandingExplanations.description: Test your carbon footprint, alone or in a group. Discover the breakdown of your footprint. Follow the path to action to reduce it.
+  meta.publicodes.LandingExplanations.description:
+    - 
+    - 
+    - 
   meta.publicodes.Méthode.description: Our calculation model is completely transparent. Everyone can explore it, give their opinion, improve it.
   meta.publicodes.Méthode.title: Understanding our calculations
   meta.publicodes.PetrogazLanding.description: Nos Gestes Climat allows you to estimate not only your climate footprint, but also your oil consumption. Oil is responsible for a large part of the climate footprint, but its purchase also has other consequences, notably geopolitical.
@@ -322,13 +350,21 @@ entries:
 
     &gt; This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
   publicodes.Contribution.description: Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!
-  publicodes.Contribution.descriptionComplète: <0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>
+  publicodes.Contribution.descriptionComplète:
+    - 
+    - 
+    - 
+    - 
+    - 
   publicodes.Contribution.descriptionComplèteTraduction: <0>The complete description of your problem</0>
   publicodes.Contribution.liensVersGithub: For any comments or questions, we invite you to <2>open a ticket directly on GitHub</2>.
   publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <1>this link</1>.
   publicodes.Contribution.titreQuestion: I have another question
   publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been translated into several languages. Do not hesitate to share your doubts about a translation problem on the site 😊. We will take it into account quickly.
-  publicodes.Contribution.translationWikiInvite: 'Follow our complete guide to contribute directly to the translation of the site: <2>go to our wiki</2>.'
+  publicodes.Contribution.translationWikiInvite:
+    0:
+    contribuer directement à la traduction du site:
+    1:
   publicodes.Landing.question: Do you know your climate footprint?
   publicodes.LandingExplanations.question: Do you know your climate footprint?
   publicodes.Personas.description: Personas will allow us to take the side of a diversity of users when they see our "take action" screen.
@@ -337,14 +373,22 @@ entries:
   publicodes.Personas.warningMsg:
     - '''Be careful, you have a simulation in progress:'
     - selecting a persona will overwrite your simulation.'
-  publicodes.Profil.locationDonnées: <0>Where is my data? </0>Your data is stored in your browser, so you have full control over it <2></2>
+  publicodes.Profil.locationDonnées:
+    - 
+    - 
+    - 
   publicodes.Profil.recap: You have completed {{percentFinished}}% of the test ({{answeredQuestionsLength}} questions) and chosen {{actionChoicesLength}} actions.
   publicodes.SimulationMissing.personnas: '💡 You can also see the action course as if you were one of these sample profiles.'
-  publicodes.SimulationMissing.simulationManquante: You haven't taken the test yet. To unlock this course, you need to tell us a little more about your lifestyle.
+  publicodes.SimulationMissing.simulationManquante:
+    - 
+    - 
+    - 
   publicodes.TranslationContribution.commentaireAugmenté: |-
 
     > This ticket was created automatically by our robot from our [contribution page for translation](https://nosgestesclimat.fr/contribuer-traduction).
-  publicodes.TranslationContribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <2>this link</2>.
+  publicodes.TranslationContribution.remerciements:
+    - 
+    - 
   publicodes.Tutorial.slide1.p1: <0>Do not worry, we'll briefly explain what it is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and more greenhouse gases.</1>
   publicodes.Tutorial.slide1.p2: <0>This test gives you in ⏱️ 10 minutes flat <2>a measure of your part </2> in this warming.</0>
   publicodes.Tutorial.slide2.blockquote: "Other gases, especially methane <1></1> and nitrous oxide <5></5> also warm the planet: we convert their warming potential to CO₂ equivalent to simplify the unit."
@@ -352,32 +396,81 @@ entries:
   publicodes.Tutorial.slide2.p2: Machines that enable our modern comfort do emit massive amounts of CO₂, so much that we count it in thousands of kilos per year and per person, therefore in <1>tonnes</1> of CO₂e!
   publicodes.Tutorial.slide5.p1: <0>And the goal?</0><1>We have to decrease our climate footprint as soon as possible.</1><2>In France, this means going from ~10 tonnes to <2>less than 2 tonnes</2> per year.</2>
   publicodes.Tutorial.slide6: <0>Where does our footprint come from?</0><1>Taking the car, eating a steak, heating your house, getting medical care, buying a TV...</1><2><0><0></0></0></2><3>The footprint of our individual consumption is the sum of all these activities that make up our modern life </3>
-  publicodes.Tutorial.slide7: "<0>So, are you ready to go?</0><1>Some tips to help you complete the test:</1><2>👤 Answer the questions on behalf of yourself, not your household: this is an individual test.</2><3>💼 Answer for your personal life, not for your job or studies. <2>One exception: </2> your commute must be included in the miles driven.</3><4>❓️ More questions? Check out our <2>FAQs</2> at any time.</4>"
+  publicodes.Tutorial.slide7:
+    0:
+    1:
+    nom, pas au nom de votre foyer:
+    2:
+    exception </2>:
+    3:
+    4:
   publicodes.chart.RavijenChart.equivalenceCase: One box 🔲 = {{nbKg}} kg of CO₂e.
   publicodes.conference.Conference.donnéesExplications: "<0>By participating, you agree to share your aggregated simulation results with other conference participants: the total and the categories (transportation, housing, etc.). However, our servers do not store them: it works in P2P (peer to peer).</0><1>Only the name of the conference room will be indexed in <2>the usage statistics</2> of Our Climate Action </1>"
   publicodes.conference.DataWarning.viePrivée: "🕵 By participating, you agree to the <1>anonymous</1> collection of your aggregated simulation results on our server: total climate footprint and categories (transportation, housing, etc.). <3>Read more</3>"
-  publicodes.conference.Instructions.avertissementModeConference: "<0>Be careful</0>, it is possible that your organization blocks peer-to-peer, and therefore the use of the conference mode. Test beforehand on site and in duet: in case of problem, you can use the survey mode."
+  publicodes.conference.Instructions.avertissementModeConference:
+    0:
+    1:
+    préalable sur site et en duo:
+    2:
   publicodes.conference.Instructions.contextualisationLink: '💡 Want to add questions to get additional information about respondents? <2>Check out the "survey contextualization!" feature </2>'
-  publicodes.conference.Instructions.descriptionModeConference: "Ephemeral mode: perfect for a workshop, an interactive presentation or between friends. The data remains between the participants (peer-to-peer without server), <2>just the time of the conference</2>."
+  publicodes.conference.Instructions.descriptionModeConference:
+    ""Mode éphémère":
+    0:
+    1:
   publicodes.conference.Instructions.descriptionModeSondage: 'Persistent mode: participant data is stored on our server and remains accessible and downloadable <2>for two months</2>.'
-  publicodes.conference.Instructions.guideLien: The results are in, what to do? Our guide accompanies you in your thoughts and discussions on this page
+  publicodes.conference.Instructions.guideLien:
+    - 
+    - 
+    - 
   publicodes.conference.Instructions.intro: <0>The climate footprint test is an individual test, but here we suggest that you do it with others. Everyone will be behind his or her own screen, but will be able to see the results of the others in real time.</0><1>It is an opportunity to confront others and to think together about the stakes of our own impact.</1>
-  publicodes.conference.Instructions.liensSimulationConference: At the agreed time, open this link all at the same time and do your own simulation.
+  publicodes.conference.Instructions.liensSimulationConference:
+    - 
+    - 
   publicodes.conference.Instructions.liensSimulationSondage: Participants must come to make their simulation on this link.
   publicodes.conference.Instructions.resultatInfos: "The results for each category (food, transportation, housing, etc.) are displayed progressively and in real time for the entire group on "
   publicodes.conference.NamingBlock.nomSalleCourt: '⚠️ Your room name is short, there is a small risk that strangers may guess it'
-  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres: '💡 Your room name can only contain letters, numbers and dashes'
-  publicodes.conference.NoTestMessage.bienvenue: Welcome to the group mode of Our Climate Action! You haven't started your test yet, go ahead!
+  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres:
+    - 
+    - 
+  publicodes.conference.NoTestMessage.bienvenue:
+    - 
+    - 
   publicodes.conference.Survey.csv: You can retrieve the survey results in .csv format.
-  publicodes.conference.Survey.excel: 'To open it with Microsoft Excel, open an empty spreadsheet, then Data &gt; From a text / CSV file. Select "Origin: Unicode UTF-8" and "Delimiter: comma".'
+  publicodes.conference.Survey.excel:
+    0:
+    1:
+    Sélectionnez "Origine:
+      Unicode UTF-8" et "Délimiteur:
   publicodes.conference.Survey.libreOffice: To open it with <2>LibreOffice</2>, it is automatic.
-  publicodes.conference.Survey.resultat: The results on the view page only include participants who completed <1>at least 10% of the test</1>. The CSV, on the other hand, contains the simulations of all the people who participated in the survey by clicking on the link. The "progress" column allows you to filter the simulations in turn.
-  publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tonnes!<2> You are well below the French average</2> '
-  publicodes.fin.ActionTeaser.messagePourConvaincre: Chances are, your time will be better spent convincing and helping others than trying to earn your "extra tonnes" (although you will have to do that eventually).
+  publicodes.conference.Survey.resultat:
+    - 
+    - 
+    - 
+    - 
+    - 
+  publicodes.fin.ActionTeaser.félicitations:
+    - 
+    - 
+  publicodes.fin.ActionTeaser.messagePourConvaincre:
+    - 
+    - 
+    - 
   publicodes.fin.IframeDataShareModal.partageResultats: Share your results at {{parent}}?
-  publicodes.fin.IframeDataShareModal.text: <0>By clicking on the Accept button, you authorize {{parent}} à récupérer le bilan de votre empreinte climat.</0><1>These are your results on the main categories (transport, food...), but <1>not</1> the details of each question (your car kilometers, the m² of your house...).</1><2>Nosgestesclimat.fr n'est pas affilié au site {{parent}}.</2>
+  publicodes.fin.IframeDataShareModal.text:
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
+    - 
   publicodes.fin.Petrogaz.equivalenceVolume: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
-  publicodes.fin.Petrogaz.explications: <0>It is a <1>minimum</1> estimate of your crude oil consumption for the year.</0><1>Estimated via your car, plane, bus and heating oil consumption, it does not (yet) take into account the oil used to transport your purchases, and the grey energy of your various possessions.</1>
+  publicodes.fin.Petrogaz.explications:
+    - 
+    - 
+    - 
+    - 
+    - 
   publicodes.fin.Petrogaz.petroleBrut: of <1>crude oil per year</1>
   période: period
   semaine: week
