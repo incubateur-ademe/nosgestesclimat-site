@@ -4,7 +4,7 @@ Avec **bientôt [un million de tests complétés](/stats)**, nosgestesclimat.fr 
 
 ## L'empreinte climat, qu'est-ce que c'est ?
 
-Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais comment connaitre et comprendre son impact à sa propre échelle ?
+Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais quel est notre impact, à notre échelle de citoyen ?
 
 Pour estimer sa propre contribution au réchauffement de la planète, il est d'usage de calculer _l'empreinte carbone individuelle de consommation_.
 
