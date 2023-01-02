@@ -8,7 +8,7 @@ Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais qu
 
 Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer _l'empreinte carbone individuelle de consommation_.
 
-Le principe est simple : pour chaque acte de consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on attribue une quantité de gaz à effet serre (gaz contribuant au réchauffement climatique) plus au moins importante.
+Le principe est simple : pour chaque consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on décompte les émissions de gaz à effet serre (les différents gaz qui réchauffent le climat terrestre) plus au moins importante.
 
 Au fil des questions porttant sur tous les aspects de nos modes vies, découpés en grand secteur comme l’alimentation, le logement, le transport, etc. Nos Gestes Climat reconstitue votre bilan carbone personnel.
 
