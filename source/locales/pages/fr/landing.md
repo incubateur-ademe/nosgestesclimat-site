@@ -6,7 +6,7 @@ Avec **bientôt [un million de tests complétés](/stats)**, nosgestesclimat.fr 
 
 Le climat se réchauffe à cause des activités humaines, c'est un fait. Mais quel est notre impact, à notre échelle de citoyen ?
 
-Pour estimer sa propre contribution au réchauffement de la planète, il est d'usage de calculer _l'empreinte carbone individuelle de consommation_.
+Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer _l'empreinte carbone individuelle de consommation_.
 
 Le principe est simple : pour chaque acte de consommation (prendre sa voiture pour 10km, manger un steak, chauffer sa maison au gaz...), on attribue une quantité de gaz à effet serre (gaz contribuant au réchauffement climatique) plus au moins importante.
 
