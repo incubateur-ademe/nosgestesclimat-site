@@ -14,6 +14,6 @@ Au fil des questions portant sur tous les aspects de nos modes vies, découpés 
 
 ## Réduire son empreinte, dès maintenant !
 
-Connaitre son empreinte c’est bien, savoir comment la réduire c’est mieux. Ainsi, le [parcours action](https://nosgestesclimat.fr/actions/liste) vous permet de découvrir les moyens pour réduire votre empreinte carbone. Des écogestes aux grandes actions à l’impact très significatif, très rapidement ou plus progressivement, seul ou en groupe, il existe une multitude de manière de réduire son empreinte carbone.
+Connaitre son empreinte c’est bien, savoir comment la réduire c’est mieux. Après 10 minutes de test, le [parcours action](https://nosgestesclimat.fr/actions/liste) vous permet de prioriser les éco-gestes pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les grands gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
 
 Cependant, la tâche est ardue et atteindre le [budget climat](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/) de 2 tonnes n’est vraiment pas chose aisée. Comme vous le découvrirez, certaines actions ne relèvent pas toujours d’un ressort personnel et mettent en avant le besoin de transformation collective : l’état, les entreprises, les collectivités et la société dans son ensemble doit également évoluer vers un mode de vie bas carbone.
