@@ -1,5 +1,4 @@
 import Markdown from 'markdown-to-jsx'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 
 import { getCurrentLangAbrv, Lang } from './../../locales/translation'
@@ -77,7 +76,7 @@ export default () => {
 						{avantages.map((el: Avantage) => {
 							return (
 								<div key={el.icon} className="ui__ card box">
-									{emoji(el.illustration)}
+									<span css="font-size: 200%; ">{el.illustration}</span>
 
 									<div>
 										<Markdown>{el.text[currentLangAbrv]}</Markdown>

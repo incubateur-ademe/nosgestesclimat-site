@@ -17,6 +17,7 @@ export const getEmojiComponents = (text: string, title: string) => {
 			attributes: attributesCallback,
 			folder: 'svg',
 			ext: '.svg',
+			base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/',
 		})
 		.split('<img')
 		.map((el) => el && '<img' + el)
@@ -55,6 +56,7 @@ export const Twemoji = ({ text, label }: TwemojiProps) => {
 		attributes: attributesCallback,
 		folder: 'svg',
 		ext: '.svg',
+		base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/',
 	})
 
 	return parsed.includes('<img class="emoji"') ? (
