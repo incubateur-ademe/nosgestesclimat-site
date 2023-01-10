@@ -111,7 +111,9 @@ const EngineWrapper = ({ rules, children }) => {
 		if (shouldParse) {
 			console.log('⚙️ will parse the rules,  expensive operation')
 		}
+		console.time('⚙️ parsing the rules')
 		const engine = shouldParse && new Engine(rules, engineOptions)
+		console.timeEnd('⚙️ parsing the rules')
 
 		return engine
 	}, [engineRequested, branchData.deployURL, rules])
