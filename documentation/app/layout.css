@@ -1,0 +1,12 @@
+header {
+  display: flex;
+}
+
+img {
+  width: 3rem;
+  margin-right: 1rem;
+}
+
+h1 {
+  margin: 0;
+}

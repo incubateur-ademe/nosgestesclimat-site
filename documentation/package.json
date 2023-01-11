@@ -1,0 +1,26 @@
+{
+	"private": true,
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start"
+	},
+	"dependencies": {
+		"next": "^13.1.1",
+		"publicodes": "^1.0.0-beta.66",
+		"publicodes-react": "^1.0.0-beta.66",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"styled-components": "^5.3.6",
+		"use-local-storage-state": "^18.1.2",
+		"yaml": "^2.2.1"
+	},
+	"devDependencies": {
+		"@types/node": "^18.11.18",
+		"@types/react": "18.0.26",
+		"eslint": "8.31.0",
+		"eslint-config-next": "^13.1.1",
+		"eslint-config-prettier": "^8.6.0",
+		"typescript": "4.9.4"
+	}
+}
