@@ -9,7 +9,7 @@ export default () => {
 		if (!branchData.loaded) return
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			const req = require.context(
-				'raw-loader!../../nosgestesclimat/documentation/',
+				'raw-loader!../../nosgestesclimat/contenu-ecrit/',
 				true,
 				/\.(md)$/
 			)
