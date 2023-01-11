@@ -109,7 +109,9 @@ const EngineWrapper = ({ rules, children }) => {
 	const engine = useMemo(() => {
 		const shouldParse = engineRequested && rules
 		if (shouldParse) {
-			console.log('⚙️ will parse the rules,  expensive operation')
+			console.log(
+				`⚙️ will parse ${Object.keys(rules).length} rules,  expensive operation`
+			)
 		}
 		console.time('⚙️ parsing the rules')
 		const engine = shouldParse && new Engine(rules, engineOptions)
