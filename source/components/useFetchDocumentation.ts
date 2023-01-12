@@ -22,7 +22,7 @@ export default () => {
 
 			setData(fileData)
 		} else {
-			fetch(branchData.deployURL + '/documentation.json', {
+			fetch(branchData.deployURL + '/contenu-ecrit.json', {
 				mode: 'cors',
 			})
 				.then((response) => response.json())
