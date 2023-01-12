@@ -4,7 +4,7 @@ import Engine from 'publicodes'
 import { RulePage } from 'publicodes-react'
 import { DocumentationStyle } from './DocumentationStyles'
 
-const engine = new Engine({ a: 2, b: 'a + 10', 'b . c': 'a * b' })
+const engine = new Engine({ a: 2, b: 'a + 10', 'b . c': 'a * b', d: 'a * b' })
 
 export default function Page({ params: { dottedName } }) {
 	return (
