@@ -1,5 +1,4 @@
 import {
-	engineOptions,
 	EngineProvider,
 	SituationProvider,
 } from 'Components/utils/EngineContext'
@@ -108,11 +107,15 @@ const EngineWrapper = ({ rules, children }) => {
 	const engine = useMemo(() => {
 		const shouldParse = engineRequested && rules
 		if (shouldParse) {
-			console.log('⚙️ will parse the rules,  expensive operation')
+			console.log(
+				`⚙️ will parse ${Object.keys(rules).length} rules,  expensive operation`
+			)
+			console.time('⚙️ parsing rules')
+			const engine = new Engine(rules)
+			console.timeEnd('⚙️ parsing rules')
+			return engine
 		}
-		const engine = shouldParse && new Engine(rules, engineOptions)
-
-		return engine
+		return false
 	}, [engineRequested, branchData.deployURL, rules])
 
 	useEffect(() => {
