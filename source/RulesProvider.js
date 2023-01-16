@@ -44,6 +44,7 @@ export default ({ children }) => {
 		if (!branchData.loaded) return
 		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+			// TODO: find a way to use compressed models in dev mode
 			console.log(
 				'===== DEV MODE : the model is on your hard drive on ./nosgestesclimat ======='
 			)
@@ -79,7 +80,7 @@ export default ({ children }) => {
 			const url =
 				branchData.deployURL +
 				// TODO: find a better way to manage 'en'
-				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}.json`
+				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}-opti.json`
 			console.log('fetching:', url)
 			fetch(url, { mode: 'cors' })
 				.then((response) => response.json())
