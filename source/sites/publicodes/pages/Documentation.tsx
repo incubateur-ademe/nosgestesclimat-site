@@ -138,6 +138,18 @@ const QuickDocPage = ({ rule, dottedName, setLoadEngine }) => {
 						<blockquote>{JSON.stringify(rule.formule, null, 3)}</blockquote>
 					</div>
 				)}
+				{rule.note && (
+					<div>
+						<h2>Notes</h2>
+						<Markdown>{rule.note}</Markdown>
+					</div>
+				)}
+				{rule.références && (
+					<div>
+						<h2>Références</h2>
+						<References references={rule.références} />
+					</div>
+				)}
 			</DocumentationStyle>
 		</div>
 	)
