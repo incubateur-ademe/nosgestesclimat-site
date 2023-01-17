@@ -29,17 +29,17 @@ import {
 import Actions from './Actions'
 import Fin from './fin'
 import Landing from './Landing'
-import Model from './Model'
 import Navigation from './Navigation'
 import About from './pages/About'
 import Diffuser from './pages/Diffuser'
-import PetrogazLanding from './pages/PetrogazLanding'
-import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
 import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
 
+const PetrogazLanding = React.lazy(() => import('./pages/PetrogazLanding'))
+const Model = React.lazy(() => import('./Model'))
+const Personas = React.lazy(() => import('./Personas.tsx'))
 const Documentation = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
