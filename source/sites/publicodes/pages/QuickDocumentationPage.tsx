@@ -64,6 +64,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 									'couleur',
 									'icônes',
 									'résumé',
+									'abréviation',
 									'exposé',
 									'question',
 									'description',
