@@ -75,7 +75,10 @@ export default function () {
 			<div
 				css={`
 					display: flex;
-					justify-content: space-between;
+					justify-content: center;
+					> * {
+						margin-right: 2rem;
+					}
 				`}
 			>
 				{currentSimulation ? <BackToSimulation /> : <span />}

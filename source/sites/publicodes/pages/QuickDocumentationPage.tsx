@@ -22,7 +22,9 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				<Meta description={rule.description} title={title} />
 				<header>
 					<small>{parents}</small>
-					<h1>{title}</h1>
+					<h1>
+						{rule.icônes} {title}
+					</h1>
 				</header>
 				{rule.question && (
 					<section
@@ -59,6 +61,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 						<FriendlyObjectViewer
 							data={omit(
 								[
+									'icônes',
 									'résumé',
 									'exposé',
 									'question',
@@ -66,6 +69,9 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 									'note',
 									'titre',
 									'références',
+									// specific to NGC actions
+									'effort',
+									'inactive',
 								],
 								rule
 							)}
