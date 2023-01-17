@@ -13,8 +13,10 @@ export default ({ currentQuestion, categoryColor, value }) => {
 				animate={{ scale: 1 }}
 				css={`
 					width: 100%;
-					min-width: 40rem;
-					height: 100%;
+					padding: 1rem 0.2rem;
+					height: 50rem;
+					overflow-x: scroll;
+					margin: 0;
 				`}
 			>
 				<RavijenChart

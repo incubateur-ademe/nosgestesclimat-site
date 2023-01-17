@@ -61,18 +61,9 @@ export default ({ givenEngine }) => {
 
 	if (!inRespiration && specializedVisualisationShown)
 		return (
-			<div
-				css={`
-					padding: 1rem 0.2rem;
-					height: 50rem;
-					overflow: scroll;
-					margin: 0 auto;
-				`}
-			>
-				<SpecializedVisualisation
-					{...{ currentQuestion, categoryColor, value }}
-				/>
-			</div>
+			<SpecializedVisualisation
+				{...{ currentQuestion, categoryColor, value }}
+			/>
 		)
 
 	return (
