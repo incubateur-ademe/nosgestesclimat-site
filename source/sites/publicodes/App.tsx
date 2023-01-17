@@ -7,6 +7,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import AnimatedLoader from '../../AnimatedLoader'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import TranslationAlertBanner from '../../components/TranslationAlertBanner'
@@ -208,11 +209,7 @@ const Main = ({}) => {
 	)
 }
 
-export const Loading = () => (
-	<div>
-		<Trans>Chargement...</Trans>
-	</div>
-)
+export const Loading = AnimatedLoader
 
 const Router = ({}) => {
 	return (
@@ -222,7 +219,7 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<Loading />}>
-							<Documentation />
+						<Documentation />
 					</Suspense>
 				}
 			/>
