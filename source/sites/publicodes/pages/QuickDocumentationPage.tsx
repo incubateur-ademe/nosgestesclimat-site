@@ -4,6 +4,7 @@ import Meta from '../../../components/utils/Meta'
 import { capitalise0 } from '../../../utils'
 import References from '../DocumentationReferences'
 import DocumentationStyle from './DocumentationStyle'
+import FriendlyObjectViewer from './FriendlyObjectViewer'
 
 export default ({ rule, dottedName, setLoadEngine }) => {
 	const split = splitName(dottedName),
@@ -37,7 +38,7 @@ export default ({ rule, dottedName, setLoadEngine }) => {
 					<div>
 						<h2>Comment cette donnée est-elle calculée ?</h2>
 
-						<blockquote>{JSON.stringify(rule.formule, null, 3)}</blockquote>
+						<FriendlyObjectViewer data={rule.formule} />
 					</div>
 				)}
 				{rule.note && (
