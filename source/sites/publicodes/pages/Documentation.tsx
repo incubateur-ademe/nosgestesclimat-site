@@ -133,7 +133,7 @@ const DocPage = ({ engine: givenEngine }) => {
 									property="og:image"
 									content={`https://ogimager.osc-fr1.scalingo.io/capture/${encodeURIComponent(
 										window.location.href
-									)}/${encodeURIComponent('documentationRuleRoot header')}`}
+									)}/${encodeURIComponent('documentation-rule-root header')}`}
 								/>
 							</Helmet>
 							<Markdown children={children} />

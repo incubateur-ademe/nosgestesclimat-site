@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 export default styled.div`
 	padding: 0 0.6rem;
-	#documentationRuleRoot > p:first-of-type {
+	#documentation-rule-root > p:first-of-type {
 		display: inline-block;
 		background: var(--lighterColor);
 		padding: 0.4rem 0.6rem 0.2rem;
@@ -50,7 +50,7 @@ export default styled.div`
 			}
 		}
 	}
-	#documentationRuleRoot > article {
+	#documentation-rule-root > article {
 		max-width: 800px;
 	}
 `
