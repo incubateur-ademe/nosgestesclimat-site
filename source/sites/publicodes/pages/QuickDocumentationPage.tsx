@@ -61,6 +61,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 						<FriendlyObjectViewer
 							data={omit(
 								[
+									'couleur',
 									'icônes',
 									'résumé',
 									'exposé',
