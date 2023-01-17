@@ -1,7 +1,27 @@
+import { utils } from 'publicodes'
+import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../../utils'
 
-const FriendlyObjectViewer = ({ data, level = 0 }) => {
-	if (typeof data === 'string') return <span>{capitalise0(data)}</span>
+const FriendlyObjectViewer = ({ data, level = 0, context }) => {
+	if (typeof data === 'string') {
+		try {
+			const isRule = utils.disambiguateReference(
+				context.rules,
+				context.dottedName,
+				data
+			)
+
+			console.log(data, isRule)
+			return (
+				<Link to={`/documentation/${utils.encodeRuleName(isRule)}`}>
+					{capitalise0(data)}
+				</Link>
+			)
+		} catch (e) {
+			console.log(e)
+			return <span>{capitalise0(data)}</span>
+		}
+	}
 	if (typeof data === 'number') return <span>{data}</span>
 
 	const isArray = Object.keys(data).every((key) => Number.isInteger(+key))
@@ -14,7 +34,11 @@ const FriendlyObjectViewer = ({ data, level = 0 }) => {
 		>
 			{Object.entries(data).map(([key, value]) => (
 				<li>
-					<FriendlyObjectViewer data={value} level={level + 1} />
+					<FriendlyObjectViewer
+						data={value}
+						level={level + 1}
+						context={context}
+					/>
 				</li>
 			))}
 		</ol>
@@ -33,7 +57,11 @@ const FriendlyObjectViewer = ({ data, level = 0 }) => {
 								margin-left: 1rem;
 							`}
 						>
-							<FriendlyObjectViewer data={value} level={level + 1} />
+							<FriendlyObjectViewer
+								data={value}
+								level={level + 1}
+								context={context}
+							/>
 						</span>
 					</li>
 				) : (
@@ -44,7 +72,11 @@ const FriendlyObjectViewer = ({ data, level = 0 }) => {
 								margin-left: 1rem;
 							`}
 						>
-							<FriendlyObjectViewer data={value} level={level + 1} />
+							<FriendlyObjectViewer
+								data={value}
+								level={level + 1}
+								context={context}
+							/>
 						</div>
 					</li>
 				)

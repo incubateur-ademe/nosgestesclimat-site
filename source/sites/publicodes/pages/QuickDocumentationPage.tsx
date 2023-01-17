@@ -6,12 +6,11 @@ import References from '../DocumentationReferences'
 import DocumentationStyle from './DocumentationStyle'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
-export default ({ rule, dottedName, setLoadEngine }) => {
+export default ({ rule, dottedName, setLoadEngine, rules }) => {
 	const split = splitName(dottedName),
 		title = rule.titre || capitalise0(split[splitName.length - 1]),
 		parents = split.slice(0, -1).join(' > ')
 
-	console.log(split, title)
 	return (
 		<div
 			css={`
@@ -38,7 +37,10 @@ export default ({ rule, dottedName, setLoadEngine }) => {
 					<div>
 						<h2>Comment cette donnée est-elle calculée ?</h2>
 
-						<FriendlyObjectViewer data={rule.formule} />
+						<FriendlyObjectViewer
+							data={rule.formule}
+							context={{ dottedName, rules }}
+						/>
 					</div>
 				)}
 				{rule.note && (
