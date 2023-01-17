@@ -1,7 +1,7 @@
 import { Markdown } from 'Components/utils/markdown'
 import { splitName } from '../../../components/publicodesUtils'
 import Meta from '../../../components/utils/Meta'
-import { capitalise0 } from '../../../utils'
+import { capitalise0, omit } from '../../../utils'
 import References from '../DocumentationReferences'
 import DocumentationStyle from './DocumentationStyle'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
@@ -24,6 +24,25 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 					<small>{parents}</small>
 					<h1>{title}</h1>
 				</header>
+				{rule.question && (
+					<section
+						css={`
+							display: flex;
+							justify-content: center;
+							align-items: center;
+						`}
+					>
+						<small css="margin-right:1rem">Question utilisateur</small>
+						<q
+							css={`
+								font-size: 120%;
+								quotes: '«' '»' '‹' '›';
+							`}
+						>
+							{rule.question}
+						</q>
+					</section>
+				)}
 				<section>
 					{rule.description && <Markdown>{rule.description}</Markdown>}
 				</section>
@@ -33,16 +52,27 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				>
 					🧮 Lancer le calcul
 				</button>
-				{rule.formule && (
+				{
 					<div>
 						<h2>Comment cette donnée est-elle calculée ?</h2>
 
 						<FriendlyObjectViewer
-							data={rule.formule}
+							data={omit(
+								[
+									'résumé',
+									'exposé',
+									'question',
+									'description',
+									'note',
+									'titre',
+									'références',
+								],
+								rule
+							)}
 							context={{ dottedName, rules }}
 						/>
 					</div>
-				)}
+				}
 				{rule.note && (
 					<div>
 						<h2>Notes</h2>
