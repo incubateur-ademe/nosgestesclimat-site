@@ -26,21 +26,24 @@ import {
 	getLangInfos,
 	Lang,
 } from './../../locales/translation'
-import Actions from './Actions'
-import Fin from './fin'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
 import Diffuser from './pages/Diffuser'
 import Profil from './Profil.tsx'
-import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
 
-const PetrogazLanding = React.lazy(() => import('./pages/PetrogazLanding'))
-const Model = React.lazy(() => import('./Model'))
-const Personas = React.lazy(() => import('./Personas.tsx'))
-const Documentation = React.lazy(() => import('./pages/Documentation'))
+// All those lazy components, could be probably be handled another more consise way
+// Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
+
+const ActionsLazy = React.lazy(() => import('./Actions'))
+const FinLazy = React.lazy(() => import('./fin'))
+const SimulateurLazy = React.lazy(() => import('./Simulateur'))
+const PetrogazLandingLazy = React.lazy(() => import('./pages/PetrogazLanding'))
+const ModelLazy = React.lazy(() => import('./Model'))
+const PersonasLazy = React.lazy(() => import('./Personas.tsx'))
+const DocumentationLazy = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
@@ -219,7 +222,7 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<Loading />}>
-						<Documentation />
+						<DocumentationLazy />
 					</Suspense>
 				}
 			/>
@@ -228,7 +231,7 @@ const Router = ({}) => {
 				element={
 					<Suspense fallback={<Loading />}>
 						<WithEngine>
-							<Model />
+							<ModelLazy />
 						</WithEngine>
 					</Suspense>
 				}
@@ -236,9 +239,11 @@ const Router = ({}) => {
 			<Route
 				path="simulateur/*"
 				element={
-					<WithEngine>
-						<Simulateur />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<SimulateurLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
@@ -252,25 +257,31 @@ const Router = ({}) => {
 			<Route
 				path="/fin/*"
 				element={
-					<WithEngine>
-						<Fin />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<FinLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
 				path="/personas"
 				element={
-					<WithEngine>
-						<Personas />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<PersonasLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
 				path="/actions/*"
 				element={
-					<WithEngine>
-						<Actions />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<ActionsLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
@@ -402,7 +413,11 @@ const Router = ({}) => {
 			/>
 			<Route
 				path={`/${encodeURIComponent('pétrole-et-gaz')}`}
-				element={<PetrogazLanding />}
+				element={
+					<Suspense fallback={<Loading />}>
+						<PetrogazLandingLazy />
+					</Suspense>
+				}
 			/>
 			<Route path="*" element={<Route404 />} />
 		</Routes>
