@@ -50,4 +50,7 @@ export default styled.div`
 			}
 		}
 	}
+	#documentationRuleRoot > article {
+		max-width: 800px;
+	}
 `

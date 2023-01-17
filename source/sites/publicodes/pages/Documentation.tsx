@@ -112,7 +112,7 @@ const QuickDocPage = ({ rule, dottedName, setLoadEngine }) => {
 	return (
 		<div
 			css={`
-				width: 700px;
+				max-width: calc(800px + 1.2rem);
 				margin: 0 auto;
 			`}
 		>
