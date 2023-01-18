@@ -11,8 +11,7 @@
 		"node": ">=18"
 	},
 	"browserslist": [
-		"> 1% in FR",
-		"not ie < 11"
+		"> 1% in FR"
 	],
 	"devDependencies": {
 		"@babel/core": "^7.20.12",
