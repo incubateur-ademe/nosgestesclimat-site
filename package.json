@@ -15,12 +15,12 @@
 		"not ie < 11"
 	],
 	"devDependencies": {
-		"@babel/core": "^7.18.6",
+		"@babel/core": "^7.20.12",
 		"@babel/plugin-proposal-class-properties": "^7.18.6",
 		"@babel/plugin-proposal-nullish-coalescing-operator": "^7.18.6",
-		"@babel/plugin-proposal-object-rest-spread": "^7.18.6",
-		"@babel/plugin-proposal-optional-chaining": "^7.18.6",
-		"@babel/preset-env": "^7.18.6",
+		"@babel/plugin-proposal-object-rest-spread": "^7.20.7",
+		"@babel/plugin-proposal-optional-chaining": "^7.20.7",
+		"@babel/preset-env": "^7.20.2",
 		"@babel/preset-react": "^7.18.6",
 		"@babel/preset-typescript": "^7.18.6",
 		"@svgr/cli": "^6.3.1",
