@@ -20,7 +20,8 @@ import { getCurrentLangAbrv } from './locales/translation'
 /* This component gets the publicode rules from the good URL,
  * then gives them
  * to the engine to parse, and hence makes it available to the whole component tree
- * through the state (state.rules) as unparsed, or through the useEngine hook as parsed.
+ * through the state (state.rules) as unparsed, or through the useEngine hook as parsed, but only for component that are enclosed in WithEngine 
+ * to trigger the parsing only for components that need this heavy operation.
  *
  * This component triggers loading rules as soon as possible, BUT the components that use
  * the engine should wait for it to be available. Hence the use of the WithRules
