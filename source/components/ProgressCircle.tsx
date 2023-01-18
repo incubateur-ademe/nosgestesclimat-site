@@ -1,16 +1,14 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-import { WithEngine } from '../RulesProvider'
 import { configSelector } from '../selectors/simulationSelectors'
 import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default () => {
-	return (
-		<WithEngine fallback={<CircleSVG />}>
-			<Circle />
-		</WithEngine>
-	)
+	const engineState = useSelector((state) => state.engineState)
+
+	if (engineState === 'ready') return <Circle />
+	return <CircleSVG />
 }
 const Circle = ({}) => {
 	const config = useSelector(configSelector)
