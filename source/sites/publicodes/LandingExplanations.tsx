@@ -75,7 +75,7 @@ export default () => {
 					>
 						{avantages.map((el: Avantage) => {
 							return (
-								<div key={el.icon} className="ui__ card box">
+								<div key={el.illustration} className="ui__ card box">
 									<span css="font-size: 200%; ">{el.illustration}</span>
 
 									<div>
