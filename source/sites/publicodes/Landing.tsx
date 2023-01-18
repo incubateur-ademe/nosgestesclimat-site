@@ -197,6 +197,8 @@ export default () => {
 				<a href="https://datagir.ademe.fr">
 					<img
 						css="height: 3.4rem; width: auto;"
+						width="120"
+						height="60"
 						src="https://datagir.ademe.fr/logo.jpg"
 					/>
 				</a>
