@@ -166,7 +166,7 @@ const TextRenderer = ({ children }: { children: string }) => (
 
 const NewsSection = styled.section`
 	display: flex;
-	justify-content: space-between;
+	justify-content: flex-start;
 	align-items: flex-start;
 `
 
@@ -234,6 +234,7 @@ const MainBlock = styled.div`
 	h3:first-child {
 		margin-top: 0px;
 	}
+	max-width: 800px;
 `
 
 const NavigationButtons = styled.div`
