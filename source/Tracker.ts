@@ -23,6 +23,8 @@ const iOSSafari =
 	!!/WebKit/i.exec(ua) &&
 	!/CriOS/i.exec(ua)
 
+const groupExclusionRegexp = /\/(sondage|conférence)\//
+
 export default class Tracker {
 	push: PushType
 	debouncedPush: PushType
@@ -30,6 +32,7 @@ export default class Tracker {
 
 	constructor(
 		pushFunction: PushType = (args) => {
+			if (window.location.pathname.match(groupExclusionRegexp)) return
 			// There is an issue with the way Safari handle cookies in iframe, cf.
 			// https://gist.github.com/iansltx/18caf551baaa60b79206. We could probably
 			// do better but for now we don't track action of iOs Safari user in
@@ -46,7 +49,7 @@ export default class Tracker {
 
 	track(loc: Location) {
 		const currentPath = loc.pathname + loc.search
-
+		if (loc.pathname.match(groupExclusionRegexp)) return
 		if (this.previousPath === currentPath) {
 			return
 		}
