@@ -13,7 +13,7 @@ import { useEffect, useMemo } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { constantFolding } from 'publiopti'
+import { constantFolding, getRawNodes } from 'publiopti'
 import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import { getCurrentLangAbrv } from './locales/translation'
 
@@ -121,14 +121,17 @@ const EngineWrapper = ({ rules, children }) => {
 				// Optimizing the rules by applying a constant folding optimization pass
 				console.time('⚙️ folding rules')
 				const foldedRules = constantFolding(engine)
+				const sourceFoldedRules = getRawNodes(foldedRules)
+				console.log(sourceFoldedRules)
+				const engineFromFolded = new Engine(sourceFoldedRules)
 				console.timeEnd('⚙️ folding rules')
-				engine.setSituation(foldedRules)
 				console.log(
 					`⚙️ removed ${
 						Object.keys(rules).length -
 						Object.keys(engine.getParsedRules()).length
 					} rules`
 				)
+				return engineFromFolded
 			}
 			return engine
 		}
