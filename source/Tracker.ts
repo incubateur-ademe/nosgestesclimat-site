@@ -46,7 +46,7 @@ export default class Tracker {
 
 	track(loc: Location) {
 		const currentPath = loc.pathname + loc.search
-
+		if (loc.pathname.match(/\/(sondage|conférence)\//)) return
 		if (this.previousPath === currentPath) {
 			return
 		}
