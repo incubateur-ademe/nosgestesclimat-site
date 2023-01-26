@@ -4,18 +4,21 @@ import useBranchData from 'Components/useBranchData'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
+import Engine from 'publicodes'
+import { constantFolding, getRawNodes } from 'publiopti'
 import { addTranslationToBaseRules } from '../../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import { getCurrentLangAbrv } from '../locales/translation'
 
-/* This component gets the publicode rules from the good URL,
- * then gives them
- * to the engine to parse, and hence makes it available to the whole component tree
- * through the state (state.rules) as unparsed, or through the useEngine hook as parsed, but only for component that are enclosed in WithEngine
- * to trigger the parsing only for components that need this heavy operation.
+/* This hook gets the publicode rules from the good URL,
+ * and then makes it available to the whole component tree
+ * through the state (state.rules) as unparsed, or through the useEngine hook as parsed, but only for component that are enclosed in WithEngine to trigger the parsing only for components that need this (heavy) operation.
  *
- * This component triggers loading rules as soon as possible, BUT the components that use
- * the engine should wait for it to be available. Hence the use of the WithRules
- * component that returns null if rules are not ready in the state.
+ * Loading rules implies choosing one out of many options for 4 dimensions
+ * - language
+ * - i18n (localised footprint rules)
+ * - optimized (with publiopti) or the complete set
+ * - which model git branch to be able to show demos on an online netlify URL
+ *
  *
  * This logic is a handmade and basic implementation of react 18's Suspense for data loading
  * principles. Switching to this experimental feature could be great if we had concurrent
@@ -70,17 +73,29 @@ export default (options) => {
 				}
 			}
 
-			setRules(rules, branchData.deployURL)
+			if (optimized) {
+				console.time('⚙️ folding rules')
+				const engine = new Engine(rules)
+				const foldedRules = constantFolding(engine)
+				console.timeEnd('⚙️ folding rules')
+				console.time('⚙️ re-parsing rules')
+				const sourceFoldedRules = getRawNodes(foldedRules)
+				setRules(sourceFoldedRules)
+			}
+
+			setRules(rules)
 		} else {
 			const url =
 				branchData.deployURL +
 				// TODO: find a better way to manage 'en'
-				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}-opti.json`
+				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
+					optimized && '-opti'
+				}.json`
 			console.log('fetching:', url)
 			fetch(url, { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
-					setRules(json, branchData.deployURL)
+					setRules(json)
 				})
 		}
 	}, [

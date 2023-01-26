@@ -21,7 +21,7 @@ export default ({ children }) => {
 }
 
 const EngineWrapper = ({ children }) => {
-	const rules = useRules()
+	const rules = useRules({ optimized: true })
 	const engineState = useSelector((state) => state.engineState)
 	const dispatch = useDispatch()
 	const branchData = useBranchData()
