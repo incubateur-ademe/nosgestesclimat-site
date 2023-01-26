@@ -91,7 +91,7 @@ export default (options) => {
 				branchData.deployURL +
 				// TODO: find a better way to manage 'en'
 				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
-					optimized && '-opti'
+					optimized ? '-opti' : ''
 				}.json`
 			console.log('fetching:', url)
 			fetch(url, { mode: 'cors' })
