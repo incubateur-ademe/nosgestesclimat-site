@@ -13,15 +13,14 @@ import { useEffect, useMemo } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { constantFolding, getRawNodes } from 'publiopti'
 import useRules from './components/useRules'
 
 export default ({ children }) => {
 	return <EngineWrapper>{children}</EngineWrapper>
 }
 
-const EngineWrapper = ({ children }) => {
-	const rules = useRules({ optimized: true })
+const EngineWrapper = ({ options = { optimized: true }, children }) => {
+	const rules = useRules(options)
 	const engineState = useSelector((state) => state.engineState)
 	const dispatch = useDispatch()
 	const branchData = useBranchData()
@@ -38,27 +37,16 @@ const EngineWrapper = ({ children }) => {
 			const engine = new Engine(rules)
 			console.timeEnd('⚙️ parsing rules')
 
-			if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
-				// Optimizing the rules by applying a constant folding optimization pass
-				console.time('⚙️ folding rules')
-				const foldedRules = constantFolding(engine)
-				console.timeEnd('⚙️ folding rules')
-				console.time('⚙️ re-parsing rules')
-				const sourceFoldedRules = getRawNodes(foldedRules)
-				const engineFromFolded = new Engine(sourceFoldedRules)
-				console.timeEnd('⚙️ re-parsing rules')
-				console.log(
-					`⚙️ removed ${
-						Object.keys(rules).length -
-						Object.keys(engine.getParsedRules()).length
-					} rules`
-				)
-				return engineFromFolded
-			}
 			return engine
 		}
 		return false
-	}, [engineRequested, branchData.deployURL, rules])
+		// We rely on this useMemo hook to store multiple Engines.
+		// Say the test component requests the optimized parsed rules,
+		// then the documentation loads the complete rules, then the user
+		// goes back to the test component : the Engine shouldn't be parsed again
+		// but picked from the hook'e memo.
+		// TODO : test this : React says we shouldn't rely on this feature
+	}, [engineRequested, branchData.deployURL, rules, options.optimized])
 
 	useEffect(() => {
 		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
