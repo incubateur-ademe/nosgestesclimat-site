@@ -121,9 +121,11 @@ const EngineWrapper = ({ rules, children }) => {
 				// Optimizing the rules by applying a constant folding optimization pass
 				console.time('⚙️ folding rules')
 				const foldedRules = constantFolding(engine)
+				console.timeEnd('⚙️ folding rules')
+				console.time('⚙️ re-parsing rules')
 				const sourceFoldedRules = getRawNodes(foldedRules)
 				const engineFromFolded = new Engine(sourceFoldedRules)
-				console.timeEnd('⚙️ folding rules')
+				console.timeEnd('⚙️ re-parsing rules')
 				console.log(
 					`⚙️ removed ${
 						Object.keys(rules).length -
