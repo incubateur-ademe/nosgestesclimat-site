@@ -10,26 +10,26 @@
   catégorie: général
   id: ges
   réponse: |
-    Tous ce que nous consommons, utilisons, jetons a nécessité de la matière (qui a du être extraite), de l'énergie pour être assemblé, mis en forme ou bien encore conditionné.
+    Tout ce que nous consommons, utilisons, jetons a nécessité de la matière (qui a du être extraite), de l'énergie pour être assemblé, mis en forme ou bien encore conditionné.
 
     Ces biens sont transportés, stockés et quand ils arrivent en fin de vie (ou qu'on décide tout simplement de les jeter), deviennent des déchets qui doivent encore être collectés puis traités, et parfois recyclés.
 
-    C'est pourquoi, même si cela peut sembler contre intuitif tous nos gestes quotidiens participent à émettre des gaz à de serre. Certains énormément, d'autres très peu. Manger un kg de patates émet des gaz à effet de serre, rouler 10 000 km en voiture aussi, mais bien évidemment dans des proportions très différentes. Et nous n'avons naturellement pas ces chiffres en tête.
+    C'est pourquoi, même si cela peut sembler contre-intuitif, tous nos gestes quotidiens participent à émettre des gaz à effet de serre. Certains énormément, d'autres très peu. Manger un kg de patates émet des gaz à effet de serre, rouler 10 000 km en voiture aussi, mais bien évidemment dans des proportions très différentes. Et nous n'avons naturellement pas ces chiffres en tête.
 
-    Pour savoir combien émettent chacunes de nos actions, nous nous en remettons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'agence française de l'environnement) qui pour différentes données (km roulé, kg de viande, kWh consommé, une TV, etc.) permettent d'estimer la quantité de gaz à effet de serre émise.
+    Pour savoir combien émettent chacune de nos actions, nous nous en remettons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'agence française de l'environnement) qui pour différentes données (km roulé, kg de viande, kWh consommé, une TV, etc.) permet d'estimer la quantité de gaz à effet de serre émise.
 
-    Le but de nos Nos Gestes Climat est de manipuler ces chiffres pour questionner simplement notre mode de vie afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
+    Le but de Nos Gestes Climat est de manipuler ces chiffres pour questionner simplement notre mode de vie afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
 
     > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
 
-- question: Le calculateur est il destiné uniquement aux français ?
+- question: Le calculateur est-il destiné uniquement aux Français ?
   id: international
   catégorie: général
   réponse: |
 
-    Pour l'instant réservé aux français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
+    Pour l'instant réservé aux Français métropolitains, nous sommes en train d'ajouter les territoires d'outre-mer, puis les pays francophones. Le chantier de traduction est également lancé, en anglais d'abord, ce qui nous permettra d'ajouter tous les pays européens.
 
-    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO₂ₑ/kWh) influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
 
     Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 
@@ -65,7 +65,7 @@
   id: 2tonnes
   catégorie: général
   réponse: |
-    Cette réaction est normale ! Et soyons honnête, à l'heure actuelle, très peu de gens émettent moins 2 tonnes. Sachez pourtant que si votre empreinte se situe autour de 4 ou 5 tonnes vous avez déjà fait une grande partie du chemin.
+    Cette réaction est normale ! Et soyons honnête, à l'heure actuelle, très peu de gens émettent moins de 2 tonnes. Sachez pourtant que si votre empreinte se situe autour de 4 ou 5 tonnes vous avez déjà fait une grande partie du chemin.
 
     Il s'agit de progresser individuellement vers des modes de vies moins émetteurs de gaz à effet de serre, mais il est essentiel que des changements s'opèrent à plus large échelle pour faciliter l'émergence de ces mode de vies.
 
@@ -83,17 +83,17 @@
 
     L'exercice du bilan carbone peut aussi provoquer un découragement car nous comptons froidement les émissions du mode de vie qu'on connait, sans appréhender à ce stade toutes les possibilités d'une vie bas carbone.
 
-    Marcher dans la nature, jouer de la musique, faire du vélo, naviguer à la voile, profiter du train sur tout le territoire, passer du temps avec ses proches, faire la fête, lire, discuter, faire son potager, apprendre à cuisiner autrement... Une vie bas carbone, c'est plein d'expériences joyeuses, qui ne retrouvent pas forcément dans un bilan carbone individuel, mais qui seront au coeur des modes de vie que nous inventons en ce moment même.
+    Marcher dans la nature, jouer de la musique, faire du vélo, naviguer à la voile, profiter du train sur tout le territoire, passer du temps avec ses proches, faire la fête, lire, discuter, faire son potager, apprendre à cuisiner autrement... Une vie bas carbone, c'est plein d'expériences joyeuses, qui ne se retrouvent pas forcément dans un bilan carbone individuel, mais qui seront au coeur des modes de vie que nous inventons en ce moment même.
 
 - question: Pourquoi l'empreinte de départ du test est-elle inférieure à 10 tonnes ?
   id: défaut
   catégorie: général
   réponse: |
-    L'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, n'est qu'un point de départ ! Il vous permet tout au long du test de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
+    L'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, n'est qu'un point de départ ! Cela vous permet tout au long du test de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
 
     Si vous suivez attentivement les chiffres d'empreinte carbone nationale, vous remarquerez que ce chiffre est différent des `8,9 tonnes de CO₂ₑ`, [le dernier chiffre calculé par le Ministère de l'Environnement en novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
 
-    Cette différence est normale (tant que l'ordre de grandeur reste identique), car les deux approches de calcul sont différentes. En effet, cette moyenne englobe l'impact carbone de l’ensemble des activités de l’économie française qu'elle divise ensuite par les 67 millions de français, là où Nos Gestes Climat se base sur une approche de consommation réelle catégorisée en postes que nous savons significatifs et représentant la grande majorité de l’empreinte carbone d’un individu. 
+    Cette différence est normale (tant que l'ordre de grandeur reste identique), car les deux approches de calcul sont différentes. En effet, cette moyenne englobe l'impact carbone de l’ensemble des activités de l’économie française qu'elle divise ensuite par les 67 millions de Français, là où Nos Gestes Climat se base sur une approche de consommation réelle catégorisée en postes que nous savons significatifs et représentant la grande majorité de l’empreinte carbone d’un individu. 
 
     Ainsi, les périmètres des activités prises en compte ne sont pas parfaitement « juxtaposés » (par exemple : même si vous n'avez pas de bateau, l'empreinte moyenne française vous attribue une part des émissions liées à la fabrication, l'entretien et la réparation des bateaux ainsi qu'une part d'émissions liées aux services des marinas). 
 
@@ -103,18 +103,18 @@
 
     > Nous menons un travail de consolidation méthodologique afin d’améliorer l’exhaustivité des périmètres pris en compte par NGC : le modèle évolue très régulièrement pour devenir plus précis et complet.
 
-- question: À la fin de mon calcul il y a un poste « service public » ou « services sociétaux » , qu’est-ce que c’est ?
+- question: À la fin de mon calcul il y a un poste « service public » ou « services sociétaux », qu’est-ce que c’est ?
   id: services-publics
   catégorie: services publics
   réponse: |
 
-    Ces poste représentent l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 67 millions de français.
+    Ce poste représente l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact des services entre les 67 millions de Français.
 
     > 🔎 Lisez notre [article de blog "L'empreinte des services sociétaux"](https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22) pour aller plus loin.
 
     Tout le monde prend donc en quelque sorte « sa part » et ce pour plusieurs raisons.
 
-    Tout d’abord, il est extrêmement rare voire quasi impossible de vivre sans jamais utiliser un seul service public. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics. De plus, ces services et leur financement sont votés chaque année par l'assemblée et définis par un gouvernement élu régulièrement.
+    Tout d’abord, il est extrêmement rare voire quasi impossible de vivre sans jamais utiliser un seul service public. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics. De plus, ces services et leur financement sont votés chaque année par l'Assemblée et définis par un gouvernement élu régulièrement.
 
     Deuxièmement, essayer de comptabiliser la part de service public qu’un individu utilise « pour de vrai » n'est pas actuellement possible avec les données dont nous disposons sur l'empreinte de ce secteur.
 
@@ -139,13 +139,13 @@
   réponse: |
     C’est une remarque qui revient souvent quand il s’agit d’évaluer son empreinte carbone.
 
-    L’affichage du poids carbone de chaque produit, bien et service que nous consommons n’existant pas encore, nous devons donc approximer cet impact. Il faut ici arbitrer ente simplicité et précision.
+    L’affichage du poids carbone de chaque produit, bien et service que nous consommons n’existant pas encore, nous devons donc approximer cet impact. Il faut ici arbitrer entre simplicité et précision.
 
     NGC, étant un calculateur grand public, nous faisons le choix de la simplicité.
 
     Ainsi, cette approximation se fait par grande famille de produit. Plus concrètement, le calculateur NGC se base sur des ratios monétaires (X g de CO₂ₑ sont émis pour Y € de produits achetés), par type de produits, donnés par la [Base Carbone®](https://www.bilans-ges.ademe.fr/) de l’ADEME.
 
-    Ces ratios monétaires permettent d’estimer le contenu carbone d’un produit ou service acheté à partir de son prix. Pour se faire, un produit « moyen » standard est considéré. Il ne prend donc pas en compte les spécificités des produits moins impactant (occasion, durables, éco-conçus…), ce qui tend à majorer l’empreinte finale.
+    Ces ratios monétaires permettent d’estimer le contenu carbone d’un produit ou service acheté à partir de son prix. Pour ce faire, un produit « moyen » standard est considéré. Il ne prend donc pas en compte les spécificités des produits moins impactant (occasion, durables, éco-conçus…), ce qui tend à majorer l’empreinte finale.
 
     NGC a fait le choix de focaliser ses questions sur les produits achetés neufs car la différence d’impact avec les produits d’occasion est très significative. La phase de production du produit, qui représente très souvent la majorité des impacts, n’est pas prise en compte pour les produits d’occasion. Quant aux différences d’impacts entre les produits neufs (typiquement entre un jean issu de la fast-fashion et un jean éco-conçu), NGC choisit, une fois encore, de rester simple.
 
@@ -171,7 +171,7 @@
 
     Ce n’est simplement pas là que se situe l’enjeu fondamental du poste alimentation.
 
-    Le principal enjeu de ce poste est la consommation de viande et de produits issus des animaux (laits, fromages, etc.) qui représente, à eux deux, environ 75 % de l’empreinte carbone de l’alimentation d’un français moyen. Savoir que son navet est bio ou que le bœuf que je mange a été élevé avec une alimentation bio est donc secondaire, étant donné que l’enjeu se situe sur la réduction de la consommation de viande, notamment rouge.
+    Le principal enjeu de ce poste est la consommation de viande et de produits issus des animaux (laits, fromages, etc.) qui représentent, à eux deux, environ 75 % de l’empreinte carbone de l’alimentation d’un Français moyen. Savoir que son navet est bio ou que le bœuf que je mange a été élevé avec une alimentation bio est donc secondaire, étant donné que l’enjeu se situe sur la réduction de la consommation de viande, notamment rouge.
 
 - question: Pourquoi ne pose-t-on pas non plus de question sur l’alimentation locale ?
   id: alimentation-locale
@@ -263,7 +263,7 @@
   catégorie: logement
   réponse: |
 
-    À moins de posséder sa propre source d’électricité (panneaux photovoltaïque), l’électricité dite « verte » fournie par les producteurs d’énergie renouvelable ne peut vous être acheminée sans l’existence du **réseau électrique français, réseau unique et partagé par tous.**
+    À moins de posséder sa propre source d’électricité (panneaux photovoltaïques), l’électricité dite « verte » fournie par les producteurs d’énergie renouvelable ne peut vous être acheminée sans l’existence du **réseau électrique français, réseau unique et partagé par tous.**
 
     NGC utilise donc seulement le facteur d’émission de ce réseau, qui sera d’autant plus bas que des sources durables y seront connectées. Ce facteur d’émission est particulièrement [faible](https://www.electricitymap.org/ranking) grâce à la part importante de nucléaire et de barrages hydrauliques dans notre mix.
 
@@ -289,4 +289,4 @@
 
     Nous estimons au mieux l’empreinte numérique en nous basant sur les données de la [Base Carbone®](https://www.bilans-ges.ademe.fr/) mais certaines informations ou questionnements peuvent s’avérer manquant.
 
-    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le simulateur intéractif d'impactco2.fr](https://impactco2.fr/usagenumerique).
+    > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le simulateur interactif d'impactco2.fr](https://impactco2.fr/usagenumerique).
