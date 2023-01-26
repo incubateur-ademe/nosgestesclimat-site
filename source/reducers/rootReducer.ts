@@ -252,14 +252,17 @@ function thenRedirectTo(state = null, { type, to }) {
 		return to
 	} else return state
 }
-type EngineState = 'requested' | 'ready'
+type EngineState = {
+	parse: 'requested' | 'ready'
+	options: { optimized: Boolean }
+}
 type EngineAction = {
 	type: string
 	to: EngineState
 }
-function engineState(state = null, { type, to }: EngineAction) {
+function engineState(state = {}, { type, to }: EngineAction) {
 	if (type === 'SET_ENGINE') {
-		return to
+		return { ...state, ...to }
 	} else return state
 }
 

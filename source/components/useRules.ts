@@ -9,6 +9,8 @@ import { constantFolding, getRawNodes } from 'publiopti'
 import { addTranslationToBaseRules } from '../../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import { getCurrentLangAbrv } from '../locales/translation'
 
+export type UseRulesOptions = { optimized: Boolean }
+
 /* This hook gets the publicode rules from the good URL,
  * and then makes it available to the whole component tree
  * through the state (state.rules) as unparsed, or through the useEngine hook as parsed, but only for component that are enclosed in WithEngine to trigger the parsing only for components that need this (heavy) operation.
@@ -25,7 +27,7 @@ import { getCurrentLangAbrv } from '../locales/translation'
  * loading problems. Here, we only have one block of data (co2.json) at a time.
  * */
 export default (options) => {
-	const { optimized }: { optimized: Boolean } = options || {}
+	const { optimized }: UseRulesOptions = options || {}
 	const { i18n } = useTranslation()
 	const currLangAbrv = getCurrentLangAbrv(i18n)
 	const branchData = useBranchData()
