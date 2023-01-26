@@ -191,7 +191,7 @@
 
     Néanmoins, NGC est un outil libre d’accès où la contribution de tous est possible et souhaitée. N’hésitez donc pas à contribuer et à nous faire part de vos suggestions d’amélioration !
 
-    On vous explique comment [ici](https://github.com/betagouv/ecolab-data/issues/185).
+    On vous explique comment [ici](https://github.com/datagir/nosgestesclimat/issues/185).
 
 - catégorie: transport
   question: Dois-je renseigner mes déplacements pro ?
@@ -215,7 +215,7 @@
 
     Dès que vous renseignez un kilométrage parcouru en voiture plus grand que 0, l’outil cherche à vous « appliquer » une part de l'amortissement de la construction de la voiture que vous utilisez.
 
-    Si vous avez des suggestions à faire quant à cette limite et de manière générale sur l’outil, n’hésitez pas à contribuer. NGC est un outil libre d’accès où la contribution de tous est possible et souhaitée. On vous explique comment [ici](https://github.com/betagouv/ecolab-data/issues/185).
+    Si vous avez des suggestions à faire quant à cette limite et de manière générale sur l’outil, n’hésitez pas à contribuer. NGC est un outil libre d’accès où la contribution de tous est possible et souhaitée. On vous explique comment [ici](https://github.com/datagir/nosgestesclimat/issues/185).
 
     ### Mais qu’est-ce que l’amortissement ?
 
@@ -234,7 +234,7 @@
 
     NGC fait le choix de ne pas poser de question sur le type de carburant, tout simplement car **il n’y a pas beaucoup de différence entre eux.** Qu’il s’agisse d’essence, de gazole ou de GPL, les impacts sont très similaires. Nous nous concentrons donc sur les enjeux les plus importants (nombre de km parcourus, nombre d’occupants, utilisation des transports en commun, etc.).
 
-    A ce sujet, n’hésitez pas à consulter ce [simulateur](https://ecolab.ademe.fr/transport) pour comparer l’impact sur le climat de différents modes de transport pour un même trajet.
+    A ce sujet, n’hésitez pas à consulter ce [simulateur](https://impactco2.fr/transport) pour comparer l’impact sur le climat de différents modes de transport pour un même trajet.
 
 - question: J’utilise un combustible qui n’est pas renseigné dans l’outil. Comment faire ?
   catégorie: logement
