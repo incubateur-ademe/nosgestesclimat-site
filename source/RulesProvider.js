@@ -122,7 +122,6 @@ const EngineWrapper = ({ rules, children }) => {
 				console.time('⚙️ folding rules')
 				const foldedRules = constantFolding(engine)
 				const sourceFoldedRules = getRawNodes(foldedRules)
-				console.log(sourceFoldedRules)
 				const engineFromFolded = new Engine(sourceFoldedRules)
 				console.timeEnd('⚙️ folding rules')
 				console.log(
