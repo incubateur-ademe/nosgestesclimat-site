@@ -1,8 +1,10 @@
 import { Trans } from 'react-i18next'
 import useRules from '../../components/useRules'
 
+const Loading = () => <p>Chargement du modèle...</p>
 export default () => {
 	const rules = useRules({ optimized: false })
+	if (!rules) return <Loading />
 	const numberOfRules = Object.keys(rules).length
 	const numberOfQuestions = Object.values(rules).filter(
 		(el) => el && el.question

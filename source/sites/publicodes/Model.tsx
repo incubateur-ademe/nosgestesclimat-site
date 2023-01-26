@@ -1,7 +1,6 @@
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import ModelDemoBlock from './ModelDemoBlock'
 import ModelIssuePreviews from './ModelIssuePreviews'
 import ModelStatsBlock from './ModelStatsBlock'
 
@@ -53,7 +52,9 @@ export default ({}) => {
 					sur les résultats finaux.
 				</Trans>
 			</p>
+			{/*
 			<ModelDemoBlock />
+			*/}
 			<p>
 				🕵️
 				<Trans i18nKey="model.modern4">
@@ -70,6 +71,7 @@ export default ({}) => {
 			<h2>
 				📚️ <Trans>Un modèle complet</Trans>
 			</h2>
+
 			<ModelStatsBlock />
 			<p>
 				<Trans i18nKey={'model.stats2'}>
