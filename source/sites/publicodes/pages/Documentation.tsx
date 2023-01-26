@@ -29,7 +29,9 @@ export default function () {
 	const currentSimulation = useSelector(
 		(state: RootState) => !!state.simulation?.url
 	)
+	const engineState = useSelector((state) => state.engineState)
 	const engine = useEngine()
+
 	const documentationPath = '/documentation'
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)
@@ -80,7 +82,7 @@ export default function () {
 const DocPage = ({ documentationPath, engine }) => {
 	const url = useParams()['*']
 	const { i18n } = useTranslation()
-	console.log('engineParsedRules:', engine.context.parsedRules)
+	//console.log('engineParsedRules:', engine.context.parsedRules)
 	console.log('url:', url)
 	console.log('documentationPath:', documentationPath)
 
