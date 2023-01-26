@@ -27,7 +27,7 @@ export type UseRulesOptions = { optimized: Boolean }
  * loading problems. Here, we only have one block of data (co2.json) at a time.
  * */
 export default (options) => {
-	const { optimized }: UseRulesOptions = options || {}
+	const { optimized }: UseRulesOptions = options || { optimized: true }
 	const { i18n } = useTranslation()
 	const currLangAbrv = getCurrentLangAbrv(i18n)
 	const branchData = useBranchData()
@@ -83,9 +83,9 @@ export default (options) => {
 				console.time('⚙️ re-parsing rules')
 				const sourceFoldedRules = getRawNodes(foldedRules)
 				setRules(sourceFoldedRules)
+			} else {
+				setRules(rules)
 			}
-
-			setRules(rules)
 		} else {
 			const url =
 				branchData.deployURL +
