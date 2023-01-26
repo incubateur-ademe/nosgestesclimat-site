@@ -62,7 +62,7 @@ export default ({ newRoom, setNewRoom }) => {
 						i18nKey={`publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres`}
 					>
 						💡 Votre nom de salle ne peut que contenir des lettres, des
-						chifffres et des tirets
+						chiffres et des tirets
 					</Trans>
 				</p>
 			)}
