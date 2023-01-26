@@ -232,9 +232,7 @@ const Router = ({}) => {
 				path={encodeURIComponent('modèle')}
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine>
-							<Model />
-						</WithEngine>
+						<Model />
 					</Suspense>
 				}
 			/>
