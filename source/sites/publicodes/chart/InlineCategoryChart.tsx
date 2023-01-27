@@ -1,17 +1,21 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
-import { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
+import { WithEngine } from '../../../RulesProvider'
 import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
 import { useQuery } from '../../../utils'
+import { Loading } from '../App'
 import CategoryVisualisation from '../CategoryVisualisation'
 import Chart from './index.js'
-import SpecializedVisualisation, {
-	activatedSpecializedVisualisations,
-} from './SpecializedVisualisation'
+import { activatedSpecializedVisualisations } from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
+
+const SpecializedVisualisation = React.lazy(
+	() => import('./SpecializedVisualisation')
+)
 
 export default ({ givenEngine }) => {
 	// needed for this component to refresh on situation change :
@@ -69,9 +73,13 @@ export default ({ givenEngine }) => {
 					margin: 0 auto;
 				`}
 			>
-				<SpecializedVisualisation
-					{...{ currentQuestion, categoryColor, value }}
-				/>
+				<Suspense fallback={<Loading />}>
+					<WithEngine options={{ optimized: false }}>
+						<SpecializedVisualisation
+							{...{ currentQuestion, categoryColor, value }}
+						/>
+					</WithEngine>
+				</Suspense>
 			</div>
 		)
 
