@@ -23,7 +23,7 @@ export default ({ newRoom, setNewRoom }) => {
 								e.target.value.replace(specialCharaters, '')
 							} else {
 								setShowInvalidMessage(false)
-								setNewRoom(e.target.value)
+								setNewRoom(e.target.value.trim())
 							}
 						}}
 						css="width: 80% !important"
