@@ -152,7 +152,7 @@ function rules(state = null, { type, rules }) {
 }
 
 export type RulesOptions = { optimized: Boolean }
-export const defaultRulesOptions = { optimized: true }
+export const defaultRulesOptions = { optimized: false }
 
 function rulesOptions(
 	state = defaultRulesOptions,
