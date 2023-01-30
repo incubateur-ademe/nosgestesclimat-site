@@ -8,8 +8,7 @@ import Engine from 'publicodes'
 import { constantFolding, getRawNodes } from 'publiopti'
 import { addTranslationToBaseRules } from '../../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import { getCurrentLangAbrv } from '../locales/translation'
-
-export type UseRulesOptions = { optimized: Boolean }
+import { defaultRulesOptions, RulesOptions } from '../reducers/rootReducer'
 
 /* This hook gets the publicode rules from the good URL,
  * and then makes it available to the whole component tree
@@ -27,7 +26,7 @@ export type UseRulesOptions = { optimized: Boolean }
  * loading problems. Here, we only have one block of data (co2.json) at a time.
  * */
 export default (options) => {
-	const { optimized }: UseRulesOptions = options || { optimized: true }
+	const { optimized }: RulesOptions = options || defaultRulesOptions
 	if (optimized) console.log('🗜️  Optimized rules requested')
 	else console.log('💯 Complete rules requested')
 	const { i18n } = useTranslation()
@@ -37,7 +36,7 @@ export default (options) => {
 
 	const dispatch = useDispatch()
 
-	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules })
+	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules, options })
 	useEffect(() => {
 		if (!branchData.loaded) return
 		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable

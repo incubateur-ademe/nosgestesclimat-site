@@ -151,6 +151,21 @@ function rules(state = null, { type, rules }) {
 	} else return state
 }
 
+export type RulesOptions = { optimized: Boolean }
+export const defaultRulesOptions = { optimized: true }
+
+function rulesOptions(
+	state = defaultRulesOptions,
+	{
+		type,
+		options = defaultRulesOptions,
+	}: { type: string; options: RulesOptions }
+) {
+	if (type === 'SET_RULES') {
+		return options
+	} else return state
+}
+
 function actionChoices(state = {}, { type, action, choice }) {
 	if (type === 'SET_ACTION_CHOICE') {
 		return { ...state, [action]: choice }
@@ -252,17 +267,15 @@ function thenRedirectTo(state = null, { type, to }) {
 		return to
 	} else return state
 }
-type EngineState = {
-	parse: 'requested' | 'ready'
-	options: { optimized: Boolean }
-}
+type EngineState = 'requested' | 'ready'
+
 type EngineAction = {
 	type: string
 	to: EngineState
 }
 function engineState(state = {}, { type, to }: EngineAction) {
 	if (type === 'SET_ENGINE') {
-		return { ...state, ...to }
+		return to
 	} else return state
 }
 
@@ -300,6 +313,7 @@ const mainReducer = (state: any, action: Action) =>
 		previousSimulation: defaultToNull,
 		situationBranch,
 		rules,
+		rulesOptions,
 		actionChoices,
 		conference,
 		survey,
