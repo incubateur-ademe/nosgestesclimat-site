@@ -91,6 +91,15 @@ export const WithEngine = ({
 		return
 	}, [])
 
-	if (engineState.parse !== 'ready') return fallback
+	console.log(
+		'WithEngine rules options equality test',
+		engineState.options?.optimized,
+		options?.optimized
+	)
+	if (
+		engineState.parse !== 'ready' ||
+		(options?.optimized === false && engineState.options?.optimized)
+	)
+		return fallback
 	return children
 }
