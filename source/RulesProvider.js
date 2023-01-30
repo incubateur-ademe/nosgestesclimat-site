@@ -17,6 +17,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import { getCurrentLangAbrv } from './locales/translation'
 
+import { isSupportedRegion } from 'Components/localisation/useLocalisation'
+import { addRegionToBaseRules } from '../nosgestesclimat/scripts/i18n/addRegionToBaseRules'
+
 /* This component gets the publicode rules from the good URL,
  * then gives them
  * to the engine to parse, and hence makes it available to the whole component tree
@@ -36,6 +39,8 @@ export default ({ children }) => {
 	const currLangAbrv = getCurrentLangAbrv(i18n)
 	const branchData = useBranchData()
 	const rules = useSelector((state) => state.rules)
+	const localisation = useSelector((state) => state.localisation)
+	const currentRegionCode = localisation?.country?.code
 
 	const dispatch = useDispatch()
 
@@ -63,10 +68,23 @@ export default ({ children }) => {
 			var rules = baseRules
 
 			const currentLang = i18n.language === 'en' ? 'en-us' : i18n.language
+
 			if (currentLang !== 'fr') {
 				const translatedRulesAttrs =
 					require(`../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
 				rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
+				if (!rules) {
+					console.error(
+						'Error occured while recompiling translated rules for:',
+						currentLang
+					)
+				}
+			}
+
+			if (currentRegionCode !== 'FR' && isSupportedRegion(currentRegionCode)) {
+				const specificRegionAttrs =
+					require(`../nosgestesclimat/data/i18n/models/${currentRegionCode}.yaml`).default
+				rules = addRegionToBaseRules(baseRules, specificRegionAttrs)
 				if (!rules) {
 					console.error(
 						'Error occured while recompiling translated rules for:',
@@ -80,7 +98,9 @@ export default ({ children }) => {
 			const url =
 				branchData.deployURL +
 				// TODO: find a better way to manage 'en'
-				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}.json`
+				`/co2-model.${currentRegionCode}-lang.${
+					i18n.language === 'en' ? 'en-us' : currLangAbrv
+				}.json`
 			console.log('fetching:', url)
 			fetch(url, { mode: 'cors' })
 				.then((response) => response.json())
@@ -93,6 +113,7 @@ export default ({ children }) => {
 		branchData.loaded,
 		branchData.shouldUseLocalFiles,
 		i18n.language,
+		localisation,
 	])
 
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>

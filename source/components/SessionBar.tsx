@@ -14,12 +14,7 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
-import {
-	getFlagImgSrc,
-	getLocalisationPullRequest,
-	getSupportedFlag,
-	isRegionSupported,
-} from './localisation/useLocalisation'
+import { useFlag } from './localisation/useLocalisation'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
 
@@ -136,9 +131,7 @@ export default function SessionBar({
 	const dispatch = useDispatch()
 
 	const localisation = useLocalisation()
-	const flag = isRegionSupported(localisation)
-		? getSupportedFlag(localisation)
-		: getFlagImgSrc('FR')
+	const flag = useFlag(localisation)
 
 	const location = useLocation(),
 		path = location.pathname
@@ -161,10 +154,7 @@ export default function SessionBar({
 		// We only show the PR in the menu if it's set by the searchQuery,
 		// not by the localisation system
 		showPullRequestNumber =
-			pullRequestNumber &&
-			(!localisation ||
-				NODE_ENV === 'development' ||
-				!(pullRequestNumber === getLocalisationPullRequest(localisation)))
+			pullRequestNumber && (!localisation || NODE_ENV === 'development')
 
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 

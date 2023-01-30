@@ -6,7 +6,6 @@
 	whereas the translation is about the text displayed to the user.
 */
 
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
@@ -32,18 +31,9 @@ export default () => {
 	const dispatch = useDispatch()
 
 	const localisation = useSelector((state) => state.localisation)
-	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
-	const setPullRequestNumber = (number) =>
-		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })
 
 	useEffect(() => {
-		if (localisation != null) {
-			if (!pullRequestNumber) {
-				const localisationPR = getLocalisationPullRequest(localisation)
-				setPullRequestNumber(localisationPR)
-			}
-			return
-		}
+		if (localisation?.country != null) return
 
 		const asyncFecthAPI = async () => {
 			await fetch(API)
@@ -78,7 +68,7 @@ export default () => {
 
 		asyncFecthAPI()
 		return undefined
-	}, [localisation, pullRequestNumber])
+	}, [localisation])
 
 	return localisation
 }
@@ -117,14 +107,8 @@ export const getSupportedFlag = (localisation) => {
 	return getFlagImgSrc(code)
 }
 
-export const getLocalisationPullRequest = (localisation) => {
-	const supported = isRegionSupported(localisation)
-	if (!supported) return false // this will load the french model
-	return supported.PR
-}
-
-export const isRegionSupported = (localisation) => {
-	if (!localisation) {
+export const isSupportedRegion = (inputCode) => {
+	if (!inputCode) {
 		return undefined
 	}
 
