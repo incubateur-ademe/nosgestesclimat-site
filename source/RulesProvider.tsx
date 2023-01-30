@@ -90,8 +90,8 @@ export const WithEngine = ({
 	useRules(options)
 
 	useEffect(() => {
-		if (engineState && currentRulesOptions?.optimized === false) return // if the full set of rules is loaded, don't reload the optimzed set, since the former includes the latter
-		dispatch({ type: 'SET_ENGINE', to: 'requested' })
+		// We don't need to set `resquested` again in case of a change of options. The useRules hooks observe the options param
+		if (engineState == null) dispatch({ type: 'SET_ENGINE', to: 'requested' })
 		return
 	}, [])
 
