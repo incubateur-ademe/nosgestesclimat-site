@@ -87,7 +87,7 @@ export const WithEngine = ({
 	useRules(options)
 
 	useEffect(() => {
-		dispatch({ type: 'SET_ENGINE', to: { options } })
+		dispatch({ type: 'SET_ENGINE', to: { parse: 'requested', options } })
 		return
 	}, [])
 
