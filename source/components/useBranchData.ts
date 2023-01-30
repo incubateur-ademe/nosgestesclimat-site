@@ -20,8 +20,10 @@ export default () => {
 	}, [searchPR, pullRequestNumber])
 
 	const deployURL = `https://${
-		pullRequestNumber ? `deploy-preview-${pullRequestNumber}--` : ''
-	}ecolab-data.netlify.app`
+		pullRequestNumber
+			? `deploy-preview-${pullRequestNumber}--ecolab-data.netlify.app`
+			: `data.nosgestesclimat.fr`
+	}`
 	// rules are loaded from data.nosgestesclimat.fr since 26th february 2023, but PR cannot
 
 	// this enables loading files from the side ../nosgestesclimat directory,
