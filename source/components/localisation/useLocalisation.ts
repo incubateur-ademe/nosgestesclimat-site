@@ -6,6 +6,7 @@
 	whereas the translation is about the text displayed to the user.
 */
 
+import { useEffect, useMemo } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
@@ -73,6 +74,20 @@ export default () => {
 	return localisation
 }
 
+export const useFlag = (localisation) => {
+	const flag = useMemo(() => {
+		if (localisation?.country?.code != null) {
+			if (isSupportedRegion(localisation?.country?.code)) {
+				return getSupportedFlag(localisation?.country.code)
+			} else {
+				return getFlagImgSrc('FR')
+			}
+		}
+	}, [localisation])
+
+	return flag
+}
+
 export const getFlagImgSrc = (code) =>
 	//	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
 	//	was down 27/09
@@ -86,6 +101,7 @@ export const getCountryNameInFrench = (code) => {
 	if (!code) {
 		return undefined
 	}
+
 	const regionNamesInFrench = new Intl.DisplayNames(['fr'], { type: 'region' }),
 		countryNameAuto = regionNamesInFrench.of(code),
 		countryName =
@@ -95,14 +111,12 @@ export const getCountryNameInFrench = (code) => {
 	return `${preposition} ${countryName}`
 }
 
-export const getSupportedFlag = (localisation) => {
-	if (!localisation) return
+export const getSupportedFlag = (inputCode) => {
+	if (!inputCode) return
 
-	const supported = supportedRegions.find(
-		(c) => c.code === localisation.country.code
-	)
+	const supported = supportedRegions.find((c) => c.code === inputCode)
 
-	const code = supported?.drapeau || localisation?.country.code
+	const code = supported?.drapeau || inputCode
 
 	return getFlagImgSrc(code)
 }
@@ -112,9 +126,7 @@ export const isSupportedRegion = (inputCode) => {
 		return undefined
 	}
 
-	const supported = supportedRegions.find(
-		(c) => c.code === localisation.country.code
-	)
+	const supported = supportedRegions.find((c) => c.code === inputCode)
 	if (supported?.inactif === 'oui') {
 		return false
 	}

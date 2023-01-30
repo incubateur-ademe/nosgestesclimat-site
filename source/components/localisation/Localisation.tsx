@@ -1,20 +1,20 @@
 import supportedCountries from 'Components/localisation/supportedCountries.yaml'
 import useLocalisation, {
-	getFlagImgSrc,
 	getCountryNameInFrench,
-	isRegionSupported,
-	getLocalisationPullRequest,
+	getFlagImgSrc,
+	isSupportedRegion,
 } from 'Components/localisation/useLocalisation'
 import { Trans } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { setLocalisation, resetLocalisation } from '../../actions/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetLocalisation, setLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
+import { CardGrid } from '../../sites/publicodes/ListeActionPlus'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
 import { getSupportedFlag } from './useLocalisation'
 
-export default () => {
+export default ({ large = false }) => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
@@ -24,9 +24,13 @@ export default () => {
 		[]
 	)
 
-	const supported = isRegionSupported(localisation)
+	const supported = isSupportedRegion(localisation?.country?.code)
 
-	const countryName = getCountryNameInFrench(localisation?.country.code)
+	const currentLang = useSelector((state) => state.currentLang)
+	const countryName =
+		currentLang == 'Fr'
+			? getCountryNameInFrench(localisation?.country?.code)
+			: localisation?.country?.name
 
 	return (
 		<div>
@@ -36,7 +40,7 @@ export default () => {
 			{localisation != null ? (
 				supported ? (
 					<p>
-						{localisation.userChosen ? (
+						{localisation?.userChosen ? (
 							<span>
 								<Trans>Vous avez choisi</Trans>{' '}
 							</span>
@@ -49,7 +53,7 @@ export default () => {
 						)}
 						{countryName}
 						<img
-							src={getSupportedFlag(localisation)}
+							src={getSupportedFlag(localisation?.country?.code)}
 							aria-hidden="true"
 							css={`
 								height: 1rem;
@@ -58,11 +62,11 @@ export default () => {
 							`}
 						/>
 						.{' '}
-						{localisation.userChosen && (
+						{localisation?.userChosen && (
 							<button
 								className="ui__ dashed-button"
 								onClick={() => {
-									dispatch(resetLocalisation())
+									dispatch(setLocalisation(resetLocalisation))
 									dispatch({
 										type: 'SET_PULL_REQUEST_NUMBER',
 										number: null,
@@ -74,29 +78,31 @@ export default () => {
 						)}
 					</p>
 				) : (
-					<p>
-						<Trans>
-							Nous avons détecté que vous faites cette simulation depuis
-						</Trans>{' '}
-						{getCountryNameInFrench(localisation?.country.code)}
-						<img
-							src={
-								getSupportedFlag(localisation) ||
-								getFlagImgSrc(localisation?.country.code)
-							}
-							aria-hidden="true"
-							css={`
-								height: 1rem;
-								margin: 0 0.3rem;
-								vertical-align: sub;
-							`}
-						/>
-						.
-						<Trans i18nKey="components.localisation.Localisation.warnMessage">
-							Pour le moment, il n'existe pas de modèle de calcul pour{' '}
-							{{ countryName }}, vous utilisez le modèle Français par défault.
-						</Trans>
-					</p>
+					localisation?.country && (
+						<p>
+							<Trans>
+								Nous avons détecté que vous faites cette simulation depuis
+							</Trans>{' '}
+							{countryName}
+							<img
+								src={
+									getSupportedFlag(localisation?.country?.code) ||
+									getFlagImgSrc(localisation?.country?.code)
+								}
+								aria-hidden="true"
+								css={`
+									height: 1rem;
+									margin: 0 0.3rem;
+									vertical-align: sub;
+								`}
+							/>
+							.
+							<Trans i18nKey="components.localisation.Localisation.warnMessage">
+								Pour le moment, il n'existe pas de modèle de calcul pour{' '}
+								{{ countryName }}, vous utilisez le modèle Français par défault.
+							</Trans>
+						</p>
+					)
 				)
 			) : (
 				<p>
@@ -106,57 +112,101 @@ export default () => {
 					</Trans>{' '}
 				</p>
 			)}
-
-			<details>
-				<summary>
-					<Trans>Choisir une autre région</Trans>
-				</summary>
-				<ul>
-					{supportedCountries.map(
-						({ nom, code, inactif }) =>
+			{large ? (
+				<CardGrid css="padding: 0; justify-content: center">
+					{supportedCountries.map((country) => {
+						const { nom, code, inactif } = country
+						return (
 							(NODE_ENV === 'development' || !inactif) && (
-								<li
-									key={code}
-									onClick={() => {
-										const newLocalisation = {
-											country: { name: nom, code },
-											userChosen: true,
-										}
-										dispatch(setLocalisation(newLocalisation))
-										const localisationPR =
-											getLocalisationPullRequest(newLocalisation)
-										dispatch({
-											type: 'SET_PULL_REQUEST_NUMBER',
-											number: localisationPR,
-										})
-										setRead([])
-									}}
-								>
-									<button>{capitalise0(nom)}</button> {inactif && '[dev]'}
+								<li key={nom}>
+									<button
+										className="ui__ card box interactive light-border"
+										css={`
+											width: 7rem !important;
+											height: 6rem !important;
+											padding: 0.75rem 0.5rem 0.75rem 0.5rem !important;
+										`}
+										onClick={() => {
+											const newLocalisation = {
+												country: { name: nom, code },
+												userChosen: true,
+											}
+											dispatch(setLocalisation(newLocalisation))
+											setRead([])
+										}}
+									>
+										<img
+											src={getSupportedFlag(code) || getFlagImgSrc(code)}
+											aria-hidden="true"
+											css={`
+												height: 1rem;
+												margin: 0 0.3rem;
+												vertical-align: sub;
+											`}
+										/>
+										<div
+											css={`
+												color: var(--color);
+												font-size: 90%;
+											`}
+										>
+											<div>
+												{nom}
+												{inactif && '[dev]'}
+											</div>
+										</div>
+									</button>
 								</li>
 							)
-					)}
-				</ul>
-				<IllustratedMessage
-					emoji="🌐"
-					message={
-						<div>
-							<p>
-								<Trans>
-									Envie de contribuer à une version pour votre région ?
-								</Trans>{' '}
-								<a
-									target="_blank"
-									href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
-								>
-									<Trans>Suivez le guide !</Trans>
-									<NewTabSvg />
-								</a>
-							</p>
-						</div>
-					}
-				/>
-			</details>
+						)
+					})}
+				</CardGrid>
+			) : (
+				<details>
+					<summary>
+						<Trans>Choisir une autre région</Trans>
+					</summary>
+					<ul>
+						{supportedCountries.map(
+							({ nom, code, inactif }) =>
+								(NODE_ENV === 'development' || !inactif) && (
+									<li
+										key={code}
+										onClick={() => {
+											const newLocalisation = {
+												country: { name: nom, code },
+												userChosen: true,
+											}
+											dispatch(setLocalisation(newLocalisation))
+											setRead([])
+										}}
+									>
+										<button>{capitalise0(nom)}</button> {inactif && '[dev]'}
+									</li>
+								)
+						)}
+					</ul>
+					<IllustratedMessage
+						emoji="🌐"
+						message={
+							<div>
+								<p>
+									<Trans>
+										Envie de contribuer à une version pour votre région ?
+									</Trans>{' '}
+									<a
+										target="_blank"
+										href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
+									>
+										<Trans>Suivez le guide !</Trans>
+										<NewTabSvg />
+									</a>
+								</p>
+							</div>
+						}
+					/>
+				</details>
+			)}
 		</div>
 	)
 }

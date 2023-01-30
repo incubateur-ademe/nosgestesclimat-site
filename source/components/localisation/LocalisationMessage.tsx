@@ -4,7 +4,7 @@ import IllustratedMessage from '../ui/IllustratedMessage'
 import { usePersistingState } from '../utils/persistState'
 import useLocalisation, {
 	getSupportedFlag,
-	isRegionSupported,
+	isSupportedRegion,
 } from './useLocalisation'
 
 export default () => {
@@ -13,13 +13,13 @@ export default () => {
 		[]
 	)
 	const localisation = useLocalisation()
-	if (!localisation) return null
-	const supported = isRegionSupported(localisation)
+	if (!localisation?.country) return null
+	const supported = isSupportedRegion(localisation?.country?.code)
 	if (!supported) return null
 	const { code, gentilé, nom } = supported
 	if (code === 'FR') return null
 	if (messagesRead.includes(code)) return null
-	const flag = getSupportedFlag(localisation)
+	const flag = getSupportedFlag(localisation?.country.code)
 
 	const versionName = gentilé ?? nom
 

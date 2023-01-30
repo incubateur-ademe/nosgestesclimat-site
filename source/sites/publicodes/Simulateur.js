@@ -12,6 +12,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
 import { Link, useLocation, useParams } from 'react-router-dom'
+import Localisation from '../../components/localisation/Localisation'
 import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import BandeauContribuer from './BandeauContribuer'
@@ -41,6 +42,8 @@ const Simulateur = () => {
 	const tutorials = useSelector((state) => state.tutorials)
 	const url = useLocation().pathname
 
+	const localisation = useSelector((state) => state.localisation)
+
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
 			dispatch(setSimulationConfig(config, url))
@@ -57,42 +60,48 @@ const Simulateur = () => {
 			<Title>
 				<Trans>Le test</Trans>
 			</Title>
-			{tutorials.testIntro && (
-				<motion.div
-					initial={
-						tutorials.scoreExplanation ? false : { opacity: 0, scale: 0.8 }
-					}
-					animate={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.5 }}
-				>
-					<ScoreBar />
-				</motion.div>
-			)}
-			{!isMainSimulation && (
-				<h1>
-					{evaluation.rawNode.title || (
-						<FullName dottedName={evaluation.dottedName} />
-					)}
-				</h1>
-			)}
-			{tutorials.testIntro ? (
-				tutorials.scoreExplanation && (
-					<Simulation
-						orderByCategories={categories}
-						customEnd={
-							isMainSimulation ? (
-								<MainSimulationEnding {...{ rules, engine }} />
-							) : rule.description ? (
-								<Markdown children={rule.description} />
-							) : (
-								<EndingCongratulations />
-							)
-						}
-						explanations={<InlineCategoryChart />}
-					/>
-				)
+			{!localisation?.userChosen ? (
+				<Localisation large />
 			) : (
-				<TutorialRedirection />
+				<div>
+					{tutorials.testIntro && (
+						<motion.div
+							initial={
+								tutorials.scoreExplanation ? false : { opacity: 0, scale: 0.8 }
+							}
+							animate={{ opacity: 1, scale: 1 }}
+							transition={{ duration: 0.5 }}
+						>
+							<ScoreBar />
+						</motion.div>
+					)}
+					{!isMainSimulation && (
+						<h1>
+							{evaluation.rawNode.title || (
+								<FullName dottedName={evaluation.dottedName} />
+							)}
+						</h1>
+					)}
+					{tutorials.testIntro ? (
+						tutorials.scoreExplanation && (
+							<Simulation
+								orderByCategories={categories}
+								customEnd={
+									isMainSimulation ? (
+										<MainSimulationEnding {...{ rules, engine }} />
+									) : rule.description ? (
+										<Markdown children={rule.description} />
+									) : (
+										<EndingCongratulations />
+									)
+								}
+								explanations={<InlineCategoryChart />}
+							/>
+						)
+					) : (
+						<TutorialRedirection />
+					)}
+				</div>
 			)}
 			<BandeauContribuer />
 		</div>
