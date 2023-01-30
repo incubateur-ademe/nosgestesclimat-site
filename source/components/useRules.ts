@@ -26,6 +26,7 @@ import { defaultRulesOptions, RulesOptions } from '../reducers/rootReducer'
  * loading problems. Here, we only have one block of data (co2.json) at a time.
  * */
 export default (options) => {
+	const currentOptions = useSelector((state) => state.rulesOptions)
 	const { optimized }: RulesOptions = options || defaultRulesOptions
 	if (optimized) console.log('🗜️  Optimized rules requested')
 	else console.log('💯 Complete rules requested')
@@ -39,6 +40,7 @@ export default (options) => {
 	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules, options })
 	useEffect(() => {
 		if (!branchData.loaded) return
+		if (rules && options.optimized === currentOptions.optimized) return
 		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
 			// TODO: find a way to use compressed models in dev mode

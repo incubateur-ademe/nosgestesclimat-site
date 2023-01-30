@@ -1,13 +1,13 @@
 import { updateSituation } from 'Actions/actions'
 import emoji from 'react-easy-emoji'
+import { useTranslation } from 'react-i18next'
+import NumberFormat from 'react-number-format'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { useEngine } from '../../utils/EngineContext'
-import { Mosaic } from './UI'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
-import NumberFormat from 'react-number-format'
-import { useTranslation } from 'react-i18next'
+import { Mosaic } from './UI'
 
 export default function NumberedMosaic({
 	name,
