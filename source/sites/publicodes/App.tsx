@@ -223,7 +223,7 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine options={{ optimized: false }}>
+						<WithEngine options={{ optimized: false, parsed: true }}>
 							<Documentation />
 						</WithEngine>
 					</Suspense>

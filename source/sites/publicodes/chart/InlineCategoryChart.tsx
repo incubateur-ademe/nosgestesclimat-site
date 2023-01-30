@@ -74,7 +74,7 @@ export default ({ givenEngine }) => {
 				`}
 			>
 				<Suspense fallback={<Loading />}>
-					<WithEngine options={{ optimized: false }}>
+					<WithEngine options={{ optimized: false, parsed: true }}>
 						<SpecializedVisualisation
 							{...{ currentQuestion, categoryColor, value }}
 						/>

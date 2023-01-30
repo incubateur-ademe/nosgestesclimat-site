@@ -10,11 +10,14 @@ import {
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
 import { ReactNode, useEffect, useMemo } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import useRules from './components/useRules'
-import { RulesOptions } from './reducers/rootReducer'
+import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
+
+import { constantFolding, getRawNodes } from 'publiopti'
+import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
+import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
 	return <EngineWrapper>{children}</EngineWrapper>
@@ -22,13 +25,106 @@ export default ({ children }) => {
 
 const EngineWrapper = ({ children }) => {
 	const engineState = useSelector((state) => state.engineState)
-	const engineRequested = engineState !== null
+	const engineRequested = engineState.state !== null
 	const rules = useSelector((state) => state.rules)
 	const dispatch = useDispatch()
 	const branchData = useBranchData()
 
+	const optimized = engineState?.options?.optimized
+	const parsed = engineState?.options?.parsed
+
+	const { i18n } = useTranslation()
+	const currLangAbrv = getCurrentLangAbrv(i18n)
+
+	useEffect(() => {
+		let active = true
+
+		const fetchAndSetRules = () => {
+			if (!branchData.loaded) return
+			if (!engineRequested) return
+
+			//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
+			if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
+				// TODO: find a way to use compressed models in dev mode
+				console.log(
+					'===== DEV MODE : the model is on your hard drive on ./nosgestesclimat ======='
+				)
+				// Rules are stored in nested yaml files
+				const req = require.context(
+					'../nosgestesclimat/data/',
+					true,
+					/\.(yaml)$/
+				)
+
+				const baseRules = req.keys().reduce((acc, key) => {
+					if (key.match(/translated-rules-.*yaml/)) {
+						// ignoring translating files.
+						return acc
+					}
+					const jsonRuleSet = req(key).default || {}
+					return { ...acc, ...jsonRuleSet }
+				}, {})
+
+				var rules = baseRules
+
+				const currentLang = i18n.language === 'en' ? 'en-us' : i18n.language
+				if (currentLang !== 'fr') {
+					const translatedRulesAttrs =
+						require(`../../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
+					rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
+					if (!rules) {
+						console.error(
+							'Error occured while recompiling translated rules for:',
+							currentLang
+						)
+					}
+				}
+
+				if (optimized) {
+					console.time('⚙️ folding rules locally')
+					const engine = new Engine(rules)
+					const foldedRules = constantFolding(engine)
+					console.timeEnd('⚙️ folding rules locally')
+					console.time('⚙️ re-parsing folded rules')
+					const sourceFoldedRules = getRawNodes(foldedRules)
+					if (active) {
+						dispatch({ type: 'SET_RULES', rules: sourceFoldedRules })
+					}
+				} else {
+					console.log('will set rules though', rules == null)
+					if (active) dispatch({ type: 'SET_RULES', rules })
+				}
+			} else {
+				const url =
+					branchData.deployURL +
+					// TODO: find a better way to manage 'en'
+					`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
+						optimized ? '-opti' : ''
+					}.json`
+				console.log('fetching:', url)
+				fetch(url, { mode: 'cors' })
+					.then((response) => response.json())
+					.then((json) => {
+						if (active) dispatch({ type: 'SET_RULES', rules: json })
+					})
+			}
+		}
+		fetchAndSetRules()
+		return () => {
+			active = false
+		}
+	}, [
+		dispatch,
+		branchData.deployURL,
+		branchData.loaded,
+		branchData.shouldUseLocalFiles,
+		i18n.language,
+		optimized,
+		engineRequested,
+	])
+
 	const engine = useMemo(() => {
-		const shouldParse = engineRequested && rules
+		const shouldParse = engineRequested && rules && parsed
 		if (shouldParse) {
 			console.log(
 				`⚙️ will parse ${Object.keys(rules).length} rules,  expensive operation`
@@ -46,10 +142,11 @@ const EngineWrapper = ({ children }) => {
 		// goes back to the test component : the Engine shouldn't be parsed again
 		// but picked from the hook'e memo.
 		// TODO : test this : React says we shouldn't rely on this feature
-	}, [engineRequested, branchData.deployURL, rules])
+	}, [engineRequested, branchData.deployURL, rules, parsed])
 
 	useEffect(() => {
-		if (engine) dispatch({ type: 'SET_ENGINE', to: 'ready' })
+		if (engine)
+			dispatch({ type: 'SET_ENGINE', to: { ...engineState, state: 'ready' } })
 		return
 	}, [engine])
 
@@ -71,11 +168,11 @@ const EngineWrapper = ({ children }) => {
 }
 
 export const WithEngine = ({
-	options,
+	options = defaultRulesOptions,
 	children,
 	fallback = (
 		<div>
-			<Trans>Chargement du modèle de calcul...</Trans>
+			<Trans>Chargement du modèle de calcul via WithEngine...</Trans>
 		</div>
 	),
 }: {
@@ -85,18 +182,27 @@ export const WithEngine = ({
 }) => {
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)
-	const currentRulesOptions = useSelector((state) => state.rulesOptions)
-
-	useRules(options)
+	const currentRulesOptions = engineState?.options
 
 	useEffect(() => {
-		// We don't need to set `resquested` again in case of a change of options. The useRules hooks observe the options param
-		if (engineState == null) dispatch({ type: 'SET_ENGINE', to: 'requested' })
+		if (options?.optimized) console.log('🗜️  Optimized rules requested')
+		else console.log('💯 Complete rules requested')
+		if (
+			// This is a fixed point, no interest to go back to optimized at this point
+			engineState.state === 'ready' &&
+			currentRulesOptions.optimized === false
+		)
+			return
+		if (
+			engineState.state !== 'ready' ||
+			JSON.stringify(options) !== JSON.stringify(currentRulesOptions)
+		)
+			dispatch({ type: 'SET_ENGINE', to: { state: 'requested', options } })
 		return
 	}, [])
 
 	if (
-		engineState !== 'ready' ||
+		engineState.state !== 'ready' ||
 		(options?.optimized === false && currentRulesOptions?.optimized)
 	)
 		return fallback
