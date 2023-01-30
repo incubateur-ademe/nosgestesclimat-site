@@ -61,8 +61,8 @@ export default ({ newRoom, setNewRoom }) => {
 					<Trans
 						i18nKey={`publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres`}
 					>
-						💡 Votre nom de salle ne peut que contenir des lettres, des
-						chifffres et des tirets
+						💡 Votre nom de salle ne peut que contenir des lettres, des chiffres
+						et des tirets
 					</Trans>
 				</p>
 			)}
