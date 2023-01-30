@@ -28,6 +28,8 @@ export type UseRulesOptions = { optimized: Boolean }
  * */
 export default (options) => {
 	const { optimized }: UseRulesOptions = options || { optimized: true }
+	if (optimized) console.log('🗜️  Optimized rules requested')
+	else console.log('💯 Complete rules requested')
 	const { i18n } = useTranslation()
 	const currLangAbrv = getCurrentLangAbrv(i18n)
 	const branchData = useBranchData()
@@ -76,11 +78,11 @@ export default (options) => {
 			}
 
 			if (optimized) {
-				console.time('⚙️ folding rules')
+				console.time('⚙️ folding rules locally')
 				const engine = new Engine(rules)
 				const foldedRules = constantFolding(engine)
-				console.timeEnd('⚙️ folding rules')
-				console.time('⚙️ re-parsing rules')
+				console.timeEnd('⚙️ folding rules locally')
+				console.time('⚙️ re-parsing folded rules')
 				const sourceFoldedRules = getRawNodes(foldedRules)
 				setRules(sourceFoldedRules)
 			} else {
