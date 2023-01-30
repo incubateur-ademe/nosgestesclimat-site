@@ -113,7 +113,7 @@ export default ({ children }) => {
 		branchData.loaded,
 		branchData.shouldUseLocalFiles,
 		i18n.language,
-		localisation,
+		currentRegionCode,
 	])
 
 	return <EngineWrapper rules={rules}>{children}</EngineWrapper>
