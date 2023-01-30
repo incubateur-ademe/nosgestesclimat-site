@@ -71,7 +71,7 @@ export default ({ children }) => {
 
 			if (currentLang !== 'fr') {
 				const translatedRulesAttrs =
-					require(`../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
+					require(`../nosgestesclimat/data/i18n/t9n/translated-rules-${currentLang}.yaml`).default
 				rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
 				if (!rules) {
 					console.error(
