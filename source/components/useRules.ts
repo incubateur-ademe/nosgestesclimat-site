@@ -40,6 +40,8 @@ export default (options) => {
 	const setRules = (rules) => dispatch({ type: 'SET_RULES', rules, options })
 	useEffect(() => {
 		if (!branchData.loaded) return
+			// This is not optimized. We don't really need to reload the opti rules if the current rules are complete. See RulesProvider. 
+			// But whereas reparsing the rules is a problem, redownloading some data while navigating, without reparsing, is a secondary problem
 		if (rules && options.optimized === currentOptions.optimized) return
 		//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
