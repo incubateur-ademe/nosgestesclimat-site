@@ -145,10 +145,10 @@ const EngineWrapper = ({ children }) => {
 	}, [engineRequested, branchData.deployURL, rules, parsedOption])
 
 	useEffect(() => {
-		if (engine || (parsed === false && rules))
+		if (engine || (parsedOption === false && rules))
 			dispatch({ type: 'SET_ENGINE', to: { ...engineState, state: 'ready' } })
 		return
-	}, [engine, parsed, rules])
+	}, [engine, parsedOption, rules])
 
 	const userSituation = useSelector(situationSelector),
 		configSituation = useSelector(configSituationSelector),
