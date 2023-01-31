@@ -172,7 +172,7 @@ export const WithEngine = ({
 	children,
 	fallback = (
 		<div>
-			<Trans>Chargement du modèle de calcul via WithEngine...</Trans>
+			<Trans>Chargement du modèle de calcul...</Trans>
 		</div>
 	),
 }: {
