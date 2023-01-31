@@ -30,8 +30,8 @@ const EngineWrapper = ({ children }) => {
 	const dispatch = useDispatch()
 	const branchData = useBranchData()
 
-	const optimized = engineState?.options?.optimized
-	const parsed = engineState?.options?.parsed
+	const optimizedOption = engineState?.options?.optimized
+	const parsedOption = engineState?.options?.parsed
 
 	const { i18n } = useTranslation()
 	const currLangAbrv = getCurrentLangAbrv(i18n)
@@ -80,7 +80,7 @@ const EngineWrapper = ({ children }) => {
 					}
 				}
 
-				if (optimized) {
+				if (optimizedOption) {
 					console.time('⚙️ folding rules locally')
 					const engine = new Engine(rules)
 					const foldedRules = constantFolding(engine)
@@ -99,7 +99,7 @@ const EngineWrapper = ({ children }) => {
 					branchData.deployURL +
 					// TODO: find a better way to manage 'en'
 					`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
-						optimized ? '-opti' : ''
+						optimizedOption ? '-opti' : ''
 					}.json`
 				console.log('fetching:', url)
 				fetch(url, { mode: 'cors' })
@@ -119,12 +119,12 @@ const EngineWrapper = ({ children }) => {
 		branchData.loaded,
 		branchData.shouldUseLocalFiles,
 		i18n.language,
-		optimized,
+		optimizedOption,
 		engineRequested,
 	])
 
 	const engine = useMemo(() => {
-		const shouldParse = engineRequested && rules && parsed
+		const shouldParse = engineRequested && rules && parsedOption
 		if (shouldParse) {
 			console.log(
 				`⚙️ will parse ${Object.keys(rules).length} rules,  expensive operation`
@@ -142,7 +142,7 @@ const EngineWrapper = ({ children }) => {
 		// goes back to the test component : the Engine shouldn't be parsed again
 		// but picked from the hook'e memo.
 		// TODO : test this : React says we shouldn't rely on this feature
-	}, [engineRequested, branchData.deployURL, rules, parsed])
+	}, [engineRequested, branchData.deployURL, rules, parsedOption])
 
 	useEffect(() => {
 		if (engine || (parsed === false && rules))
