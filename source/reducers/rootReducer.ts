@@ -254,7 +254,7 @@ function thenRedirectTo(state = null, { type, to }) {
 }
 
 export type RulesOptions = { optimized: Boolean; parsed: Boolean }
-export const defaultRulesOptions = { optimized: true, parsed: true }
+export const defaultRulesOptions = { optimized: false, parsed: true }
 
 const defaultEngineState = { state: null, options: defaultRulesOptions }
 
