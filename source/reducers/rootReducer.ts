@@ -253,6 +253,8 @@ function thenRedirectTo(state = null, { type, to }) {
 	} else return state
 }
 
+// optimized=true will load optimized version of the rules, treated by publiopti
+// parsed=false will avoid the rules being parsed, which is a heavy operation
 export type RulesOptions = { optimized: Boolean; parsed: Boolean }
 export const defaultRulesOptions = { optimized: false, parsed: true }
 
