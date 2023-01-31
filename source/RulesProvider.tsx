@@ -195,7 +195,7 @@ export const WithEngine = ({
 			return
 		if (
 			engineState.state !== 'ready' ||
-			JSON.stringify(options) !== JSON.stringify(currentRulesOptions)
+			!sameOptions(options, currentRulesOptions)
 		)
 			dispatch({ type: 'SET_ENGINE', to: { state: 'requested', options } })
 		return
