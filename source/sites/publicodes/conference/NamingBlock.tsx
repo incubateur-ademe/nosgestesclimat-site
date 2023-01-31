@@ -6,7 +6,7 @@ import { generateRoomName } from './utils'
 export default ({ newRoom, setNewRoom }) => {
 	const inputRef = useRef(null)
 	const [showInvalidMessage, setShowInvalidMessage] = useState(true)
-	const specialCharaters = /[!@#$%&*()+\=\[\]{};':"\\|,.<>\/?]+/
+	const specialCharaters = /[\s!@#$%&*()+\=\[\]{};':"\\|,.<>\/?]+/
 	const { t } = useTranslation()
 
 	return (
@@ -23,7 +23,7 @@ export default ({ newRoom, setNewRoom }) => {
 								e.target.value.replace(specialCharaters, '')
 							} else {
 								setShowInvalidMessage(false)
-								setNewRoom(e.target.value.trim())
+								setNewRoom(e.target.value)
 							}
 						}}
 						css="width: 80% !important"
