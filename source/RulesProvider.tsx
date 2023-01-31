@@ -70,7 +70,7 @@ const EngineWrapper = ({ children }) => {
 				const currentLang = i18n.language === 'en' ? 'en-us' : i18n.language
 				if (currentLang !== 'fr') {
 					const translatedRulesAttrs =
-						require(`../../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
+						require(`../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
 					rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
 					if (!rules) {
 						console.error(
