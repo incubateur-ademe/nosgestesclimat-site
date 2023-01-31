@@ -1,16 +1,15 @@
 import { Trans } from 'react-i18next'
-import useRules from '../../components/useRules'
+import { useSelector } from 'react-redux'
 
 const Loading = () => <p>Chargement du modèle...</p>
 export default () => {
-	const rules = useRules({ optimized: false })
+	const rules = useSelector((state) => state.rules)
 	if (!rules) return <Loading />
 	const numberOfRules = Object.keys(rules).length
 	const numberOfQuestions = Object.values(rules).filter(
 		(el) => el && el.question
 	).length
 
-	console.log(rules, numberOfRules, numberOfQuestions)
 	const NumberOfRules = () => <span>{numberOfRules}</span>
 	const NumberOfQuestions = () => <span>{numberOfQuestions}</span>
 	return (

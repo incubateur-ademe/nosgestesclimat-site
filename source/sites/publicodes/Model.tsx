@@ -1,6 +1,7 @@
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
+import { WithEngine } from '../../RulesProvider'
 import ModelIssuePreviews from './ModelIssuePreviews'
 import ModelStatsBlock from './ModelStatsBlock'
 
@@ -72,7 +73,9 @@ export default ({}) => {
 				📚️ <Trans>Un modèle complet</Trans>
 			</h2>
 
-			<ModelStatsBlock />
+			<WithEngine options={{ optimized: false, parsed: false }}>
+				<ModelStatsBlock />
+			</WithEngine>
 			<p>
 				<Trans i18nKey={'model.stats2'}>
 					Il est constitué d'une combinaison de centaines de modèles micro

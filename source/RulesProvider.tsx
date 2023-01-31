@@ -145,10 +145,10 @@ const EngineWrapper = ({ children }) => {
 	}, [engineRequested, branchData.deployURL, rules, parsed])
 
 	useEffect(() => {
-		if (engine)
+		if (engine || (parsed === false && rules))
 			dispatch({ type: 'SET_ENGINE', to: { ...engineState, state: 'ready' } })
 		return
-	}, [engine])
+	}, [engine, parsed, rules])
 
 	const userSituation = useSelector(situationSelector),
 		configSituation = useSelector(configSituationSelector),
@@ -176,7 +176,7 @@ export const WithEngine = ({
 		</div>
 	),
 }: {
-	options?: RulesOptions
+	options: RulesOptions
 	children: ReactNode
 	fallback: ReactNode
 }) => {
@@ -190,7 +190,7 @@ export const WithEngine = ({
 		if (
 			// This is a fixed point, no interest to go back to optimized at this point
 			engineState.state === 'ready' &&
-			currentRulesOptions.optimized === false
+			sameOptions(currentRulesOptions, { optimized: false, parsed: true })
 		)
 			return
 		if (
@@ -203,8 +203,11 @@ export const WithEngine = ({
 
 	if (
 		engineState.state !== 'ready' ||
-		(options?.optimized === false && currentRulesOptions?.optimized)
+		(!sameOptions(options, currentRulesOptions) &&
+			!sameOptions({ parsed: true, optimized: false }, currentRulesOptions))
 	)
 		return fallback
 	return children
 }
+
+const sameOptions = (a, b) => Object.keys(a).every((k) => a[k] === b[k])
