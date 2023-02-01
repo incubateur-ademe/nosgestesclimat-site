@@ -26,7 +26,7 @@ export default ({ children }) => {
 
 const EngineWrapper = ({ children }) => {
 	const engineState = useSelector((state) => state.engineState)
-	const engineRequested = engineState.state !== null
+	const engineRequestedOnce = engineState.state !== null
 	const rules = useSelector((state) => state.rules)
 	const dispatch = useDispatch()
 	const branchData = useBranchData()
@@ -42,7 +42,7 @@ const EngineWrapper = ({ children }) => {
 
 		const fetchAndSetRules = () => {
 			if (!branchData.loaded) return
-			if (!engineRequested) return
+			if (!engineRequestedOnce) return
 
 			//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
 			if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
@@ -121,11 +121,11 @@ const EngineWrapper = ({ children }) => {
 		branchData.shouldUseLocalFiles,
 		i18n.language,
 		optimizedOption,
-		engineRequested,
+		engineRequestedOnce,
 	])
 
 	const engine = useMemo(() => {
-		const shouldParse = engineRequested && rules && parsedOption
+		const shouldParse = engineRequestedOnce && rules && parsedOption
 		if (shouldParse) {
 			console.log(
 				`⚙️ will parse ${Object.keys(rules).length} rules,  expensive operation`
@@ -143,7 +143,7 @@ const EngineWrapper = ({ children }) => {
 		// goes back to the test component : the Engine shouldn't be parsed again
 		// but picked from the hook'e memo.
 		// TODO : test this : React says we shouldn't rely on this feature
-	}, [engineRequested, branchData.deployURL, rules, parsedOption])
+	}, [engineRequestedOnce, branchData.deployURL, rules, parsedOption])
 
 	useEffect(() => {
 		if (engine || (parsedOption === false && rules))
