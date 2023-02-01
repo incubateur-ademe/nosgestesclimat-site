@@ -223,7 +223,7 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine>
+						<WithEngine options={{ optimized: false, parsed: true }}>
 							<Documentation />
 						</WithEngine>
 					</Suspense>
@@ -233,9 +233,7 @@ const Router = ({}) => {
 				path={encodeURIComponent('modèle')}
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine>
-							<Model />
-						</WithEngine>
+						<Model />
 					</Suspense>
 				}
 			/>

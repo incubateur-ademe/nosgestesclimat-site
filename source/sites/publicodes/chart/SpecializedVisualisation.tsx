@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import Inhabitants from './Inhabitants'
 import RavijenChart from './RavijenChart'
 
 export const activatedSpecializedVisualisations = [
