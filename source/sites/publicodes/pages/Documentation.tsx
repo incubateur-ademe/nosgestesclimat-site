@@ -99,17 +99,6 @@ export default function () {
 	)
 }
 
-// Not integratable yet, see https://github.com/betagouv/publicodes/issues/336
-const GithubContributionLink = ({ dottedName }) => (
-	<a
-		href={`https://github.com/search?q=${encodeURIComponent(
-			`repo:datagir/nosgestesclimat "${dottedName}:"`
-		)} path:data&type=code`}
-	>
-		✏️ Contribuer
-	</a>
-)
-
 function BackToSimulation() {
 	const url = useSelector(currentSimulationSelector)?.url
 	const navigate = useNavigate()

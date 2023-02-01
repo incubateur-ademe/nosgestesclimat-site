@@ -2,6 +2,7 @@ import styled from 'styled-components'
 
 export default styled.div`
 	padding: 0 0.6rem;
+	margin-bottom: 1rem;
 	#documentation-rule-root > p:first-of-type {
 		display: inline-block;
 		background: var(--lighterColor);

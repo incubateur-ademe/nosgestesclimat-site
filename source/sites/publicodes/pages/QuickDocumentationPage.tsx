@@ -95,7 +95,19 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 						<References references={rule.références} />
 					</div>
 				)}
+
+				<GithubContributionLink dottedName={dottedName} />
 			</DocumentationStyle>
 		</div>
 	)
 }
+// Not integratable yet, see https://github.com/betagouv/publicodes/issues/336
+const GithubContributionLink = ({ dottedName }) => (
+	<a
+		href={`https://github.com/search?q=${encodeURIComponent(
+			`repo:datagir/nosgestesclimat "${dottedName}:"`
+		)} path:data&type=code`}
+	>
+		✏️ Contribuer
+	</a>
+)
