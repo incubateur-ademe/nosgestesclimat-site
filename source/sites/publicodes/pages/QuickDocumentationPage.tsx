@@ -39,6 +39,27 @@ const Breadcrumb = ({ rules, dottedName }) => {
 		})
 }
 
+const QuestionRuleSection = ({ title, children }) => (
+	<section
+		css={`
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			@media (max-width: 800px) {
+				flex-wrap: wrap;
+			}
+			h3 {
+				font-size: 100%;
+				width: 16rem;
+				margin: 1rem;
+			}
+		`}
+	>
+		<h3 css="margin-right:1rem">{title}</h3>
+		{children}
+	</section>
+)
+
 export default ({ rule, dottedName, setLoadEngine, rules }) => {
 	const split = splitName(dottedName),
 		title = rule.titre || capitalise0(split[splitName.length - 1]),
@@ -62,27 +83,29 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 					</h1>
 				</header>
 				{rule.question && (
-					<section
-						css={`
-							display: flex;
-							justify-content: center;
-							align-items: center;
-						`}
-					>
-						<small css="margin-right:1rem">Question utilisateur</small>
-						<q
-							css={`
-								font-size: 120%;
-								quotes: '«' '»' '‹' '›';
-							`}
-						>
-							{rule.question}
-						</q>
+					<>
+						<QuestionRuleSection title="💬 Question pour l'utilisateur">
+							<q
+								css={`
+									font-size: 120%;
+									quotes: '«' '»' '‹' '›';
+								`}
+							>
+								{rule.question}
+							</q>
+						</QuestionRuleSection>
+						{rule.description && (
+							<QuestionRuleSection title="ℹ️ Aide à la saisie">
+								<Markdown>{rule.description}</Markdown>
+							</QuestionRuleSection>
+						)}
+					</>
+				)}
+				{!rule.question && (
+					<section>
+						{rule.description && <Markdown>{rule.description}</Markdown>}
 					</section>
 				)}
-				<section>
-					{rule.description && <Markdown>{rule.description}</Markdown>}
-				</section>
 				<button
 					onClick={() => setLoadEngine(true)}
 					className="ui__ button cta plain attention"
