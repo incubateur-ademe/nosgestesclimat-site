@@ -33,7 +33,7 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 			`}
 		>
 			{Object.entries(data).map(([key, value]) => (
-				<li>
+				<li key={key}>
 					<FriendlyObjectViewer
 						data={value}
 						level={level + 1}
@@ -50,7 +50,7 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 		>
 			{Object.entries(data).map(([key, value]) =>
 				typeof value === 'string' || typeof value === 'number' ? (
-					<li>
+					<li key={key}>
 						<span>{capitalise0(key)}:</span>
 						<span
 							css={`
@@ -65,7 +65,7 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 						</span>
 					</li>
 				) : (
-					<li>
+					<li key={key}>
 						<div>{capitalise0(key)}:</div>
 						<div
 							css={`

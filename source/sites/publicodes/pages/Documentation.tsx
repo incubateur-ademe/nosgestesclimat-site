@@ -29,7 +29,8 @@ export default function () {
 
 	const [loadEngine, setLoadEngine] = useState(false)
 
-	const engineReady = useSelector((state) => state.engineState) === 'ready'
+	const engineReady =
+		useSelector((state) => state.engineState.state) === 'ready'
 
 	if (!rules)
 		return (
@@ -86,7 +87,7 @@ export default function () {
 			)}
 			{(engineReady || loadEngine) && (
 				<WithEngine options={{ optimized: false, parsed: true }}>
-					<Suspense fallback={AnimatedLoader}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<DocumentationPageLazy dottedName={dottedName} />
 					</Suspense>
 				</WithEngine>

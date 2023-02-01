@@ -101,14 +101,14 @@ export default ({}) => {
 					</a>
 					.
 				</Trans>
-				<p>
-					<Trans i18nKey={'model.active'}>
-						Voici à titre d'exemple quelques <em>issues</em> importantes du
-						moment parmi la centaine de sujets documentés.
-					</Trans>
-				</p>
-				<ModelIssuePreviews />
 			</p>
+			<p>
+				<Trans i18nKey={'model.active'}>
+					Voici à titre d'exemple quelques <em>issues</em> importantes du moment
+					parmi la centaine de sujets documentés.
+				</Trans>
+			</p>
+			<ModelIssuePreviews />
 		</div>
 	)
 }
