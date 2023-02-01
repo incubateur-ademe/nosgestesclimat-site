@@ -16,11 +16,18 @@ import QuickDocumentationPage from './QuickDocumentationPage'
 const DocumentationPageLazy = React.lazy(() => import('./DocumentationPage'))
 
 export default function () {
-	console.log('Rendering Documentation')
 	const currentSimulation = useSelector(
 			(state: RootState) => !!state.simulation?.url
 		),
-		rules = useSelector((state) => state.rules)
+		rules = useSelector((state) => state.rules),
+		//This ensures the disambiguateReference function, which awaits RuleNodes, not RawNodes, doesn't judge some rules private for
+		//our parseless documentation page
+		allPublicRules = Object.fromEntries(
+			Object.entries(rules).map(([key, value]) => [
+				key,
+				{ ...value, private: false },
+			])
+		)
 
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)
@@ -32,13 +39,6 @@ export default function () {
 	const engineState = useSelector((state) => state.engineState),
 		parsedEngineReady =
 			engineState.state === 'ready' && engineState.options.parsed
-
-	if (!rules)
-		return (
-			<div css="height: 10vh; background: purple">
-				Chargement des règles page doc
-			</div>
-		)
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
@@ -82,7 +82,7 @@ export default function () {
 						rule={rule}
 						dottedName={dottedName}
 						setLoadEngine={setLoadEngine}
-						rules={rules}
+						rules={allPublicRules}
 					/>
 				</div>
 			)}
