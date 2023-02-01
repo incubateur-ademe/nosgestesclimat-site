@@ -1,15 +1,48 @@
 import { Markdown } from 'Components/utils/markdown'
-import { splitName } from '../../../components/publicodesUtils'
+import { utils } from 'publicodes'
+import { Link } from 'react-router-dom'
+import { splitName, title } from '../../../components/publicodesUtils'
 import Meta from '../../../components/utils/Meta'
 import { capitalise0, omit } from '../../../utils'
 import References from '../DocumentationReferences'
 import DocumentationStyle from './DocumentationStyle'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
+/*
+ * This page can be seen as a rewrite of publicodes-react's DocPage.
+ * The first purpose is to be able to display meaningful content to searche engines without parsing the rules.
+ * The second is that I'm not sure relying on the generic publicodes-react's page suffices for our needs here on nosgestesclimat.
+ * Publicodes-react could be the generic "getting started" doc package, then forked when projects go big.
+ * Hence, the solution could be to provide functions that enable lib users to create their custom pages.
+ * E.g. the Breadcrumb component hidden here not exposed https://github.com/betagouv/publicodes/blob/master/packages/react-ui/source/rule/Header.tsx
+ *
+ */
+
+const Breadcrumb = ({ rules, dottedName }) => {
+	return utils
+		.ruleParents(dottedName)
+		.reverse()
+		.map((parentDottedName) => {
+			const rule = rules[parentDottedName]
+			return (
+				<span key={parentDottedName}>
+					{rules[parentDottedName].icônes && (
+						<span>{rules[parentDottedName].icônes}</span>
+					)}
+					<Link to={utils.encodeRuleName(parentDottedName)}>
+						{title({ ...rule, dottedName: parentDottedName })}
+					</Link>
+
+					<span aria-hidden>{' › '}</span>
+				</span>
+			)
+		})
+}
+
 export default ({ rule, dottedName, setLoadEngine, rules }) => {
 	const split = splitName(dottedName),
 		title = rule.titre || capitalise0(split[splitName.length - 1]),
-		parents = split.slice(0, -1).join(' > ')
+		parents = split.slice(0, -1)
 
 	return (
 		<div
@@ -21,7 +54,9 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 			<DocumentationStyle>
 				<Meta description={rule.description} title={title} />
 				<header>
-					<small>{parents}</small>
+					<small>
+						<Breadcrumb dottedName={dottedName} rules={rules} />
+					</small>
 					<h1>
 						{rule.icônes} {title}
 					</h1>
