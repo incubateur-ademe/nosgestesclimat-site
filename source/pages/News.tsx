@@ -188,7 +188,6 @@ const Sidebar = styled.ul`
 	li {
 		list-style-type: none;
 		list-style-position: inside;
-		width: 150px;
 		padding: 0;
 		margin: 0;
 
