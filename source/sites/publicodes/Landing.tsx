@@ -3,7 +3,6 @@ import LogoADEME from 'Images/logoADEME.svg'
 import React, { Suspense, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import Footer from '../../components/Footer'
 import NewsBanner from '../../components/NewsBanner'
 import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
@@ -213,12 +212,6 @@ export default () => {
 			</div>
 
 			{!isIframe && <LandingExplanations />}
-
-			<Footer
-				displaySponsorLogos={
-					!isIframe // would be a repetition with header logos
-				}
-			/>
 		</div>
 	)
 }
