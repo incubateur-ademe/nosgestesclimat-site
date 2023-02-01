@@ -98,7 +98,7 @@ export default ({
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
 						<span role="status">
-							<Trans>Moyenne</Trans> : {humanMean}{' '}
+							<Trans>Moyenne du groupe</Trans> : {humanMean}{' '}
 						</span>
 						<small title={t('Moyenne française')}>
 							🇫🇷~10 {t('tonnes', { ns: 'units' })}
