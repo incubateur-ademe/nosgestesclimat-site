@@ -53,7 +53,7 @@ const QuestionRuleSection = ({ title, children }) => (
 			}
 			h3 {
 				font-size: 100%;
-				width: 16rem;
+				min-width: 14rem;
 				margin: 1rem;
 			}
 		`}
