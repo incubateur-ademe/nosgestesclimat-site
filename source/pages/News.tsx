@@ -1,4 +1,3 @@
-import { determinant } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
@@ -16,6 +15,7 @@ import { localStorageKey } from '../components/NewsBanner'
 import Meta from '../components/utils/Meta'
 import { usePersistingState } from '../components/utils/persistState'
 import { getCurrentLangInfos, Release } from '../locales/translation'
+import { capitalise0 } from '../utils'
 
 const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
@@ -80,26 +80,24 @@ export default function News() {
 		>
 			<Meta
 				description={t('Découvrez les nouveautés de Nos Gestes Climat')}
-				title={t(`Nouveautés - version `) + releaseName}
+				title={t(`Nouveautés - `) + capitalise0(releaseName)}
 				// image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
-			<h1>
-				<Trans>Les nouveautés ✨</Trans>
-			</h1>
-			<p>
+			<p
+				css={`
+					font-size: 120%;
+				`}
+			>
+				<strong>
+					<Trans>Les nouveautés ✨</Trans>
+				</strong>
+			</p>
+			<p css="max-width: 50rem">
 				<Trans i18nKey={`pages.News.premierParagraphe`}>
 					Nous améliorons le site en continu à partir de vos retours. Découvrez
-					ici les
-				</Trans>{' '}
-				{(selectedRelease === 0 ? t('dernières nouveautés') : t(`nouveautés`)) +
-					' ' +
-					`${
-						i18n.language === 'fr'
-							? determinant(releaseName)
-							: t('pages.News.determinant') + ' '
-					}`}
-				<strong>{releaseName}</strong>.
+					ici les dernières nouveautés.
+				</Trans>
 			</p>
 			<label title={t('titre de la version')}>
 				<SmallScreenSelect
@@ -133,6 +131,7 @@ export default function News() {
 					))}
 				</Sidebar>
 				<MainBlock>
+					<h1>{capitalise0(releaseName)}</h1>
 					<MarkdownWithAnchorLinks
 						children={body}
 						escapeHtml={false}
