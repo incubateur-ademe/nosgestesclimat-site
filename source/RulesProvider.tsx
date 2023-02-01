@@ -15,7 +15,8 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
-import { constantFolding, getRawNodes } from 'publiopti'
+//TODO Deactivated until https://github.com/EmileRolley/publiopti/issues/4 is fixed
+//import { constantFolding, getRawNodes } from 'publiopti'
 import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import { getCurrentLangAbrv } from './locales/translation'
 
