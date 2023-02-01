@@ -155,6 +155,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				)}
 
 				<GithubContributionLink dottedName={dottedName} />
+				<NamespaceRules {...{ rules, dottedName }} />
 			</DocumentationStyle>
 		</div>
 	)
@@ -169,3 +170,21 @@ const GithubContributionLink = ({ dottedName }) => (
 		✏️ Contribuer
 	</a>
 )
+
+const NamespaceRules = ({ rules, dottedName }) => {
+	const namespaceRules = Object.keys(rules).filter((key) =>
+		key.includes(dottedName)
+	)
+	return (
+		<section>
+			<h2>Pages proches</h2>
+			<ul>
+				{namespaceRules.map((ruleName) => (
+					<li key={ruleName}>
+						<Link to={utils.encodeRuleName(ruleName)}>{ruleName}</Link>
+					</li>
+				))}
+			</ul>
+		</section>
+	)
+}
