@@ -68,6 +68,27 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 		title = rule.titre || capitalise0(split[splitName.length - 1]),
 		parents = split.slice(0, -1)
 
+	const yamlAttributesToDisplay = omit(
+		[
+			'couleur',
+			'icônes',
+			'résumé',
+			'abréviation',
+			'exposé',
+			'question',
+			'description',
+			'note',
+			'titre',
+			'références',
+			// specific to NGC actions
+			'effort',
+			'inactive',
+			// specific to NGC form generation, could be cool to visualize, but in a <details> tag, since it's big
+			'mosaique',
+		],
+		rule
+	)
+
 	return (
 		<div
 			css={`
@@ -113,35 +134,16 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				>
 					🧮 Lancer le calcul
 				</button>
-				{
+				{Object.keys(yamlAttributesToDisplay).length > 0 && (
 					<div>
 						<h2>Comment cette donnée est-elle calculée ?</h2>
 
 						<FriendlyObjectViewer
-							data={omit(
-								[
-									'couleur',
-									'icônes',
-									'résumé',
-									'abréviation',
-									'exposé',
-									'question',
-									'description',
-									'note',
-									'titre',
-									'références',
-									// specific to NGC actions
-									'effort',
-									'inactive',
-									// specific to NGC form generation, could be cool to visualize, but in a <details> tag, since it's big
-									'mosaique',
-								],
-								rule
-							)}
+							data={yamlAttributesToDisplay}
 							context={{ dottedName, rules }}
 						/>
 					</div>
-				}
+				)}
 				{rule.note && (
 					<div>
 						<h2>Notes</h2>

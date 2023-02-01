@@ -45,6 +45,7 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 		<ul
 			css={`
 				list-style-type: none;
+				margin-bottom: 0;
 			`}
 		>
 			{Object.entries(data).map(([key, value]) =>
