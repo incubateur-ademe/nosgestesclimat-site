@@ -2,6 +2,7 @@ import { Markdown } from 'Components/utils/markdown'
 import { utils } from 'publicodes'
 import { Link } from 'react-router-dom'
 import { splitName, title } from '../../../components/publicodesUtils'
+import { RuleListItem } from '../../../components/SearchBar'
 import Meta from '../../../components/utils/Meta'
 import { capitalise0, omit } from '../../../utils'
 import References from '../DocumentationReferences'
@@ -162,28 +163,52 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 }
 // Not integratable yet, see https://github.com/betagouv/publicodes/issues/336
 const GithubContributionLink = ({ dottedName }) => (
-	<a
-		href={`https://github.com/search?q=${encodeURIComponent(
-			`repo:datagir/nosgestesclimat "${dottedName}:"`
-		)} path:data&type=code`}
+	<section
+		css={`
+			margin: 1rem 0;
+			display: block;
+			text-align: right;
+		`}
 	>
-		✏️ Contribuer
-	</a>
+		<a
+			href={`https://github.com/search?q=${encodeURIComponent(
+				`repo:datagir/nosgestesclimat "${dottedName}:"`
+			)} path:data&type=code`}
+		>
+			<button className="ui__ button small link-button">✏️ Contribuer</button>
+		</a>
+	</section>
 )
 
 const NamespaceRules = ({ rules, dottedName }) => {
-	const namespaceRules = Object.keys(rules).filter((key) =>
-		key.includes(dottedName)
+	const namespaceRules = Object.keys(rules).filter(
+		(key) => key.includes(dottedName) && key !== dottedName
 	)
+	if (!namespaceRules.length) return null
 	return (
 		<section>
 			<h2>Pages proches</h2>
-			<ul>
-				{namespaceRules.map((ruleName) => (
-					<li key={ruleName}>
-						<Link to={utils.encodeRuleName(ruleName)}>{ruleName}</Link>
-					</li>
-				))}
+			<ul
+				css={`
+					list-style: none;
+				`}
+			>
+				{namespaceRules.map((ruleName) => {
+					const item = {
+							...rules[ruleName],
+							dottedName: ruleName,
+							espace: ruleName.split(' . ').reverse(),
+						},
+						titledItem = { ...item, title: title(item) }
+					return (
+						<RuleListItem
+							{...{
+								rules,
+								item: titledItem,
+							}}
+						/>
+					)
+				})}
 			</ul>
 		</section>
 	)

@@ -113,54 +113,13 @@ export default function SearchBar({}: SearchBarProps) {
 							padding-left: 1rem;
 							margin: 0;
 							list-style: none;
-							li {
-								margin: 0.4rem 0;
-								padding: 0.6rem 0.6rem;
-								border-bottom: 1px solid var(--lighterColor);
-							}
-							small {
-								display: block;
-							}
 						`}
 					>
 						{(!results.length && !input.length
 							? searchIndex.map((item) => ({ item, matches: [] }))
 							: results
 						).map(({ item, matches }) => (
-							<li key={item.dottedName}>
-								<Link
-									to={`/documentation/${utils.encodeRuleName(item.dottedName)}`}
-								>
-									<small>
-										{item.espace
-											.slice(1)
-											.reverse()
-											.map((name) => (
-												<span key={name}>
-													{highlightMatches(
-														name,
-														matches.filter(
-															(m) => m.key === 'espace' && m.value === name
-														)
-													)}{' '}
-													›{' '}
-												</span>
-											))}
-										<br />
-									</small>
-									<span
-										css={`
-											margin-right: 0.6rem;
-										`}
-									>
-										{rules[item.dottedName]?.icônes}
-									</span>
-									{highlightMatches(
-										item.title,
-										matches.filter((m) => m.key === 'title')
-									)}
-								</Link>
-							</li>
+							<RuleListItem {...{ item, matches, rules }} />
 						))}
 					</ul>
 				)
@@ -168,3 +127,57 @@ export default function SearchBar({}: SearchBarProps) {
 		</>
 	)
 }
+
+export const RuleListItem = ({ rules, item, matches = null }) => (
+	<li
+		key={item.dottedName}
+		css={`
+			margin: 0.4rem 0;
+			padding: 0.6rem 0.6rem;
+			border-bottom: 1px solid var(--lighterColor);
+			small {
+				display: block;
+			}
+		`}
+	>
+		<Link
+			to={`/documentation/${utils.encodeRuleName(item.dottedName)}`}
+			css={`
+				text-decoration: none;
+			`}
+		>
+			<small>
+				{item.espace
+					.slice(1)
+					.reverse()
+					.map((name) => (
+						<span key={name}>
+							{matches
+								? highlightMatches(
+										name,
+										matches.filter(
+											(m) => m.key === 'espace' && m.value === name
+										)
+								  )
+								: name}{' '}
+							›{' '}
+						</span>
+					))}
+				<br />
+			</small>
+			<span
+				css={`
+					margin-right: 0.6rem;
+				`}
+			>
+				{rules[item.dottedName]?.icônes}
+			</span>
+			{matches
+				? highlightMatches(
+						item.title,
+						matches.filter((m) => m.key === 'title')
+				  )
+				: item.title}
+		</Link>
+	</li>
+)
