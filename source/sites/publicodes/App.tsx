@@ -180,6 +180,7 @@ const Main = ({}) => {
 				css={`
 					outline: none !important;
 					padding-left: 0rem;
+					overflow: auto;
 					@media (min-width: 800px) {
 						flex-grow: 1;
 						${!isHomePage ? 'padding-left: 0.6rem;' : ''}
@@ -221,18 +222,18 @@ const Router = ({}) => {
 			<Route
 				path="documentation/*"
 				element={
-					<Suspense fallback={<Loading />}>
-						<DocumentationLazy />
-					</Suspense>
+					<WithEngine options={{ parsed: false, optimized: false }}>
+						<Suspense fallback={<Loading />}>
+							<DocumentationLazy />
+						</Suspense>
+					</WithEngine>
 				}
 			/>
 			<Route
 				path={encodeURIComponent('modèle')}
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine>
-							<ModelLazy />
-						</WithEngine>
+						<ModelLazy />
 					</Suspense>
 				}
 			/>

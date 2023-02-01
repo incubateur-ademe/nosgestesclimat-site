@@ -85,7 +85,7 @@ export default function () {
 				</div>
 			)}
 			{(engineReady || loadEngine) && (
-				<WithEngine>
+				<WithEngine options={{ optimized: false, parsed: true }}>
 					<Suspense fallback={AnimatedLoader}>
 						<DocumentationPageLazy dottedName={dottedName} />
 					</Suspense>
