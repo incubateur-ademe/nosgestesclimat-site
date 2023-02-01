@@ -74,6 +74,7 @@ export default function News() {
 				@media (min-width: 800px) {
 					max-width: 80%;
 				}
+				padding: 0 0.6rem;
 				margin: 0 auto;
 			`}
 		>
