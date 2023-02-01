@@ -20,7 +20,7 @@ import FriendlyObjectViewer from './FriendlyObjectViewer'
  */
 
 const Breadcrumb = ({ rules, dottedName }) => {
-	return utils
+	const elements = utils
 		.ruleParents(dottedName)
 		.reverse()
 		.map((parentDottedName) => {
@@ -38,6 +38,8 @@ const Breadcrumb = ({ rules, dottedName }) => {
 				</span>
 			)
 		})
+	if (!elements.length) return null
+	return <small>{elements}</small>
 }
 
 const QuestionRuleSection = ({ title, children }) => (
@@ -76,9 +78,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 			<DocumentationStyle>
 				<Meta description={rule.description} title={title} />
 				<header>
-					<small>
-						<Breadcrumb dottedName={dottedName} rules={rules} />
-					</small>
+					<Breadcrumb dottedName={dottedName} rules={rules} />
 					<h1>
 						{rule.icônes} {title}
 					</h1>

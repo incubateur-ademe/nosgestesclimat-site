@@ -11,7 +11,6 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 				data
 			)
 
-			console.log(data, isRule)
 			return (
 				<Link to={`/documentation/${utils.encodeRuleName(isRule)}`}>
 					{capitalise0(data)}
