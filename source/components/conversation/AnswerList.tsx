@@ -62,6 +62,7 @@ export default function AnswerList() {
 			window.removeEventListener('keydown', handleKeyDown)
 		}
 	}, [situation])
+	const [everythingUnfolded, unfoldEverything] = useState(false)
 
 	return (
 		<div className="answer-list">
@@ -70,8 +71,16 @@ export default function AnswerList() {
 					<h2>
 						<Trans>📋 Mes réponses</Trans>
 					</h2>
+					<button onClick={() => unfoldEverything(!everythingUnfolded)}>
+						Tout déplier
+					</button>
 					<CategoryTable
-						{...{ steps: foldedStepsToDisplay, categories, engine }}
+						{...{
+							steps: foldedStepsToDisplay,
+							categories,
+							engine,
+							everythingUnfolded,
+						}}
 					/>
 				</div>
 			)}
@@ -79,7 +88,7 @@ export default function AnswerList() {
 	)
 }
 
-const CategoryTable = ({ steps, categories, engine }) =>
+const CategoryTable = ({ steps, categories, engine, everythingUnfolded }) =>
 	categories.map((category) => {
 		const categoryRules = steps.filter((question) =>
 			question.dottedName.includes(category.dottedName)
@@ -95,6 +104,7 @@ const CategoryTable = ({ steps, categories, engine }) =>
 					rule: category,
 					engine,
 					level: 1,
+					everythingUnfolded,
 				}}
 			/>
 		)
@@ -146,8 +156,9 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 	)
 }
 
-const SubCategory = ({ rule, rules, engine, level }) => {
-	const [open, setOpen] = useState(false)
+const SubCategory = ({ rule, rules, engine, level, everythingUnfolded }) => {
+	const [localOpen, setOpen] = useState(false),
+		open = everythingUnfolded || localOpen
 
 	return (
 		<div>
