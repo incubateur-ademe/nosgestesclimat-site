@@ -16,6 +16,7 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { safeGetRule, splitName } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
+import Checkbox from '../ui/Checkbox'
 import './AnswerList.css'
 import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
@@ -68,12 +69,37 @@ export default function AnswerList() {
 		<div className="answer-list">
 			{!!foldedStepsToDisplay.length && (
 				<div>
-					<h2>
-						<Trans>📋 Mes réponses</Trans>
-					</h2>
-					<button onClick={() => unfoldEverything(!everythingUnfolded)}>
-						Tout déplier
-					</button>
+					<div
+						css={`
+							margin: 3rem 1rem 1rem 0;
+							display: flex;
+							align-items: center;
+							h2 {
+								margin: 0;
+								margin-right: 3rem;
+							}
+						`}
+					>
+						<h2>
+							<Trans>📋 Mes réponses</Trans>
+						</h2>
+
+						<div
+							css={`
+								display: flex;
+								align-items: center;
+							`}
+						>
+							<Checkbox
+								name="unfoldAnswerList"
+								id="unfoldAnswerList"
+								label="Tout déplier"
+								showLabel
+								checked={everythingUnfolded}
+								onChange={() => unfoldEverything(!everythingUnfolded)}
+							/>
+						</div>
+					</div>
 					<CategoryTable
 						{...{
 							steps: foldedStepsToDisplay,
