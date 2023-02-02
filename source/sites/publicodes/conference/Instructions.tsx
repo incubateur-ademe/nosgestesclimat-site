@@ -213,6 +213,7 @@ export default ({
 						/>
 						<ShareButton
 							text={t("Faites un test d'empreinte climat avec moi")}
+							label={t('Partager le lien')}
 							url={shareURL}
 							title={t('Nos Gestes Climat Conférence')}
 						/>
