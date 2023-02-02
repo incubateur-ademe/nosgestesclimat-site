@@ -97,12 +97,20 @@ export default ({
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
-						<span role="status">
-							<Trans>Moyenne</Trans> : {humanMean}{' '}
-						</span>
-						<small title={t('Moyenne française')}>
-							🇫🇷~10 {t('tonnes', { ns: 'units' })}
-						</small>
+						<div role="status">
+							<Trans>Moyenne du groupe</Trans> : {humanMean}{' '}
+						</div>
+						<div
+							title={t('Moyenne française')}
+							css={`
+								margin: 0 auto;
+								text-align: center;
+							`}
+						>
+							<small>
+								<em>🇫🇷 ~9 {t('tonnes', { ns: 'units' })}</em>
+							</small>
+						</div>
 					</div>
 				</div>
 				{elements.length > 0 && (
@@ -167,36 +175,48 @@ export default ({
 							</small>
 							<small key="legendRight">{max}</small>
 						</div>
+						<div
+							css={`
+								text-align: center;
+								font-style: italic;
+								font-size: 90%;
+								p {
+									margin-bottom: 0rem;
+								}
+								margin: 1rem;
+							`}
+						>
+							<p>
+								Chaque bare verticale ☝️ est le score total d'un participant,
+								<br />
+								chaque disque 👇️ un score sur une catégorie.
+							</p>
+							{spotlightValue && spotlight === currentUser ? (
+								<span>
+									<Trans
+										i18nKey={'site.publicodes.conferences.Stats.explication1'}
+									>
+										<span role="status" css="background: #fff45f;">
+											En jaune
+										</span>{' '}
+										: ma simulation à {{ spotlightValue }} t.
+									</Trans>
+								</span>
+							) : (
+								<button
+									className="ui__ link-button"
+									onClick={() => setSpotlight(currentUser)}
+								>
+									<span css="background: #fff45f;">
+										<Trans>Afficher ma simulation</Trans>
+									</span>
+								</button>
+							)}
+						</div>
 
 						<CategoryStats
 							{...{ categories, maxCategory, spotlight, setSpotlight }}
 						/>
-
-						{spotlightValue && (
-							<div>
-								{spotlight === currentUser ? (
-									<span>
-										<Trans
-											i18nKey={'site.publicodes.conferences.Stats.explication1'}
-										>
-											<span role="status" css="background: #fff45f;">
-												En jaune
-											</span>{' '}
-											: ma simulation à {{ spotlightValue }} t.
-										</Trans>
-									</span>
-								) : (
-									<button
-										className="ui__ link-button"
-										onClick={() => setSpotlight(currentUser)}
-									>
-										<span css="background: #fff45f;">
-											<Trans>Afficher ma simulation</Trans>
-										</span>
-									</button>
-								)}
-							</div>
-						)}
 					</div>
 				)}
 			</div>

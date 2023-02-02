@@ -46,13 +46,15 @@ export default () => {
 
 	const [surveyContext] = usePersistingState('surveyContext', {})
 
-	const context = Object.keys(surveyContext[survey.room]).reduce(
-		(acc, key) => ({
-			...acc,
-			...{ [splitName(key)[1]]: surveyContext[survey.room][key] },
-		}),
-		{}
-	)
+	const context =
+		surveyContext[survey.room] &&
+		Object.keys(surveyContext[survey.room]).reduce(
+			(acc, key) => ({
+				...acc,
+				...{ [splitName(key)[1]]: surveyContext[survey.room][key] },
+			}),
+			{}
+		)
 
 	const data = {
 		total: Math.round(nodeValue),

@@ -150,6 +150,7 @@ entries:
   'Mon total :': 'Mon total :'
   Motif: Motif
   Moyenne: Moyenne
+  Moyenne du groupe: Moyenne du groupe
   Moyenne française: Moyenne française
   "N'afficher que les questions ": "N'afficher que les questions "
   Naviguez vers une question précise: Naviguez vers une question précise
@@ -177,6 +178,7 @@ entries:
   Page de fin de simulation principale: Page de fin de simulation principale
   Page de fin de simulation pétrole: Page de fin de simulation pétrole
   Page profil: Page profil
+  Partager le lien: Partager le lien
   Partager mes résultats: Partager mes résultats
   Participer au sondage: Participer au sondage
   'Participez au sondage ': 'Participez au sondage '
@@ -253,7 +255,7 @@ entries:
   Vous avez du temps pour nous aider à traduire: Vous avez du temps pour nous aider à traduire
   Vous avez juste 30 secondes pour nous aider: Vous avez juste 30 secondes pour nous aider
   Vous avez terminé le test 👏: Vous avez terminé le test 👏
-  Vous avez été invités à un sondage Nos Gestes Climat nommé: Vous avez été invités à un sondage Nos Gestes Climat nommé
+  Vous avez été invité à un sondage Nos Gestes Climat nommé: Vous avez été invité à un sondage Nos Gestes Climat nommé
   Vous n'avez pas encore fait le test.: Vous n'avez pas encore fait le test.
   Week-end: Week-end
   actions choisies: actions choisies
@@ -564,6 +566,10 @@ entries:
     fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de conférence
     sera indexé dans <2>les statistiques d'utilisation</2> de Nos Gestes Climat.
     </1>"
+  publicodes.conference.DataWarning.explanation:
+    'Le principe est simple : chacun
+    fait son test sur son appareil, et les résultats sont mis en commun en temps
+    réel avec les autres participants du sondage.'
   publicodes.conference.DataWarning.viePrivée: "🕵 En participant, vous acceptez
     la collecte <1>anonyme</1> de vos résultats agrégés de simulation sur notre
     serveur : l'empreinte climat totale et les catégories (transport, logement,

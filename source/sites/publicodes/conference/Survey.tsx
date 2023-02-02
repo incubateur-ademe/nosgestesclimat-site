@@ -5,19 +5,19 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
+import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
-import { ConferenceTitle } from './Conference'
-import DataWarning from './DataWarning'
-import Instructions from './Instructions'
-import Stats from './Stats'
-import { answersURL, surveysURL } from './useDatabase'
-import { defaultThreshold, defaultProgressMin } from './utils'
-import ContextConversation from './ContextConversation'
-import { useProfileData } from '../Profil'
-import NoTestMessage from './NoTestMessage'
 import Meta from '../../../components/utils/Meta'
 import Navigation from '../Navigation'
-import { Trans, useTranslation } from 'react-i18next'
+import { useProfileData } from '../Profil'
+import { ConferenceTitle } from './Conference'
+import ContextConversation from './ContextConversation'
+import DataWarning from './DataWarning'
+import Instructions from './Instructions'
+import NoTestMessage from './NoTestMessage'
+import Stats from './Stats'
+import { answersURL, surveysURL } from './useDatabase'
+import { defaultProgressMin, defaultThreshold } from './utils'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -115,7 +115,7 @@ export default () => {
 					)}
 				</div>
 			)}
-			{survey && (
+			{survey && survey.room === room && (
 				<>
 					<Instructions {...{ room, mode: 'sondage', started: true }} />
 					<div>
