@@ -97,12 +97,20 @@ export default ({
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
-						<span role="status">
+						<div role="status">
 							<Trans>Moyenne du groupe</Trans> : {humanMean}{' '}
-						</span>
-						<small title={t('Moyenne française')}>
-							🇫🇷~10 {t('tonnes', { ns: 'units' })}
-						</small>
+						</div>
+						<div
+							title={t('Moyenne française')}
+							css={`
+								margin: 0 auto;
+								text-align: center;
+							`}
+						>
+							<small>
+								<em>🇫🇷 ~9 {t('tonnes', { ns: 'units' })}</em>
+							</small>
+						</div>
 					</div>
 				</div>
 				{elements.length > 0 && (
