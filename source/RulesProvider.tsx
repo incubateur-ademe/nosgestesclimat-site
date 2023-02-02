@@ -10,7 +10,7 @@ import {
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
 import { ReactNode, useEffect, useMemo } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
@@ -18,6 +18,7 @@ import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 //TODO Deactivated until https://github.com/EmileRolley/publiopti/issues/4 is fixed
 //import { constantFolding, getRawNodes } from 'publiopti'
 import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
+import AnimatedLoader from './AnimatedLoader'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -171,11 +172,7 @@ const EngineWrapper = ({ children }) => {
 export const WithEngine = ({
 	options = defaultRulesOptions,
 	children,
-	fallback = (
-		<div>
-			<Trans>Chargement du modèle de calcul...</Trans>
-		</div>
-	),
+	fallback = <AnimatedLoader />,
 }: {
 	options: RulesOptions
 	children: ReactNode

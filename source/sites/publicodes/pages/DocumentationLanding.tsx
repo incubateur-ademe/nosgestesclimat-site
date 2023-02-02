@@ -88,10 +88,16 @@ export default function DocumentationLanding() {
 								}
 								text-decoration: none;
 							}
+							position: relative;
 							height: 12rem !important;
 							width: 11rem !important;
 							max-width: 12rem !important;
-							position: relative;
+							@media (max-width: 800px) {
+								width: 10rem !important;
+								height: 11rem !important;
+								padding: 0.6rem !important;
+								margin: 0.4rem !important;
+							}
 						`}
 					>
 						<Link to={'/documentation/' + utils.encodeRuleName(dottedName)}>

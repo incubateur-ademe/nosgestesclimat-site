@@ -1,4 +1,3 @@
-import { Location } from 'history'
 import { debounce, inIframe } from './utils'
 
 declare global {
@@ -47,7 +46,7 @@ export default class Tracker {
 		this.debouncedPush = debounce(200, pushFunction)
 	}
 
-	track(loc: Location) {
+	track(loc) {
 		const currentPath = loc.pathname + loc.search
 		if (loc.pathname.match(groupExclusionRegexp)) return
 		if (this.previousPath === currentPath) {

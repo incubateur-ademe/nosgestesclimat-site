@@ -2,10 +2,11 @@ import highlightMatches from 'Components/highlightMatches'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 import Worker from 'worker-loader!./SearchBar.worker.js'
-import RuleLink from './RuleLink'
+import { title } from './publicodesUtils'
 import './SearchBar.css'
-import { useEngine } from './utils/EngineContext'
 
 const worker = new Worker()
 
@@ -22,7 +23,7 @@ type Matches = Array<{
 }>
 
 export default function SearchBar({}: SearchBarProps) {
-	const rules = useEngine().getParsedRules()
+	const rules = useSelector((state) => state.rules)
 	const [input, setInput] = useState('')
 	const [results, setResults] = useState<
 		Array<{
@@ -31,14 +32,16 @@ export default function SearchBar({}: SearchBarProps) {
 		}>
 	>([])
 
+	const rulesList = Object.entries(rules).map(([dottedName, value]) => ({
+		...value,
+		dottedName,
+	}))
 	const searchIndex: Array<SearchItem> = useMemo(
 		() =>
-			Object.values(rules)
+			Object.values(rulesList)
 				.filter(utils.ruleWithDedicatedDocumentationPage)
 				.map((rule) => ({
-					title:
-						rule.title +
-						(rule.rawNode.acronyme ? ` (${rule.rawNode.acronyme})` : ''),
+					title: title(rule) + (rule.acronyme ? ` (${rule.acronyme})` : ''),
 					dottedName: rule.dottedName,
 					espace: rule.dottedName.split(' . ').reverse(),
 				})),
@@ -107,60 +110,16 @@ export default function SearchBar({}: SearchBarProps) {
 				input.length > 2 && (
 					<ul
 						css={`
-							padding: 0;
+							padding-left: 1rem;
 							margin: 0;
 							list-style: none;
-							li {
-								margin: 0.4rem 0;
-							}
-							small {
-								display: block;
-							}
 						`}
 					>
 						{(!results.length && !input.length
 							? searchIndex.map((item) => ({ item, matches: [] }))
 							: results
 						).map(({ item, matches }) => (
-							<li key={item.dottedName}>
-								<RuleLink
-									dottedName={item.dottedName}
-									style={{
-										width: '100%',
-										textDecoration: 'none',
-										lineHeight: '1.5rem',
-									}}
-								>
-									<small>
-										{item.espace
-											.slice(1)
-											.reverse()
-											.map((name) => (
-												<span key={name}>
-													{highlightMatches(
-														name,
-														matches.filter(
-															(m) => m.key === 'espace' && m.value === name
-														)
-													)}{' '}
-													›{' '}
-												</span>
-											))}
-										<br />
-									</small>
-									<span
-										css={`
-											margin-right: 0.6rem;
-										`}
-									>
-										{rules[item.dottedName].rawNode.icônes}
-									</span>
-									{highlightMatches(
-										item.title,
-										matches.filter((m) => m.key === 'title')
-									)}
-								</RuleLink>
-							</li>
+							<RuleListItem {...{ item, matches, rules }} />
 						))}
 					</ul>
 				)
@@ -168,3 +127,57 @@ export default function SearchBar({}: SearchBarProps) {
 		</>
 	)
 }
+
+export const RuleListItem = ({ rules, item, matches = null }) => (
+	<li
+		key={item.dottedName}
+		css={`
+			margin: 0.4rem 0;
+			padding: 0.6rem 0.6rem;
+			border-bottom: 1px solid var(--lighterColor);
+			small {
+				display: block;
+			}
+		`}
+	>
+		<Link
+			to={`/documentation/${utils.encodeRuleName(item.dottedName)}`}
+			css={`
+				text-decoration: none;
+			`}
+		>
+			<small>
+				{item.espace
+					.slice(1)
+					.reverse()
+					.map((name) => (
+						<span key={name}>
+							{matches
+								? highlightMatches(
+										name,
+										matches.filter(
+											(m) => m.key === 'espace' && m.value === name
+										)
+								  )
+								: name}{' '}
+							›{' '}
+						</span>
+					))}
+				<br />
+			</small>
+			<span
+				css={`
+					margin-right: 0.6rem;
+				`}
+			>
+				{rules[item.dottedName]?.icônes}
+			</span>
+			{matches
+				? highlightMatches(
+						item.title,
+						matches.filter((m) => m.key === 'title')
+				  )
+				: item.title}
+		</Link>
+	</li>
+)

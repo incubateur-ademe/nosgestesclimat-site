@@ -89,12 +89,12 @@ export default ({}) => {
 			<IframeDataShareModal data={rehydratedDetails} />
 			<Link to="/simulateur/bilan" css="display: block; text-align: center">
 				{!answeredQuestions.length ? (
-					<button class="ui__ button plain cta">
+					<button className="ui__ button plain cta">
 						{' '}
 						<Trans>Faire mon test</Trans>
 					</button>
 				) : nextQuestions.length > 1 ? (
-					<button class="ui__ button plain">
+					<button className="ui__ button plain">
 						{' '}
 						← <Trans>Revenir aux questions</Trans>
 					</button>
