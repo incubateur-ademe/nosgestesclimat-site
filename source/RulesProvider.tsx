@@ -87,6 +87,11 @@ const EngineWrapper = ({ children }) => {
 					console.timeEnd('⚙️ folding rules locally')
 					console.time('⚙️ re-parsing folded rules')
 					const sourceFoldedRules = getRawNodes(foldedRules)
+
+					console.log(
+						'alimentation . plats . végétalien . nombre:',
+						sourceFoldedRules['alimentation . plats . végétalien . nombre']
+					)
 					if (active) {
 						dispatch({ type: 'SET_RULES', rules: sourceFoldedRules })
 					}
