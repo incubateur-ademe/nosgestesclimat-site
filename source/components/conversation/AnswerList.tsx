@@ -190,6 +190,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 				`}
 			>
 				<SafeCategoryImage element={rule} whiteBackground={level > 1} />
+				{rule.title}
 				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.tile}</h3>}
 				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
 					<small>
