@@ -175,36 +175,54 @@ export default ({
 							</small>
 							<small key="legendRight">{max}</small>
 						</div>
+						<div
+							css={`
+								text-align: center;
+								font-style: italic;
+								font-size: 90%;
+								p {
+									margin-bottom: 0rem;
+								}
+								margin: 1rem;
+							`}
+						>
+							<p>
+								Chaque bare verticale ☝️ est le score total d'un participant,
+								<br />
+								chaque disque 👇️ un score sur une catégorie.
+							</p>
+							{spotlightValue && (
+								<div>
+									{spotlight === currentUser ? (
+										<span>
+											<Trans
+												i18nKey={
+													'site.publicodes.conferences.Stats.explication1'
+												}
+											>
+												<span role="status" css="background: #fff45f;">
+													En jaune
+												</span>{' '}
+												: ma simulation à {{ spotlightValue }} t.
+											</Trans>
+										</span>
+									) : (
+										<button
+											className="ui__ link-button"
+											onClick={() => setSpotlight(currentUser)}
+										>
+											<span css="background: #fff45f;">
+												<Trans>Afficher ma simulation</Trans>
+											</span>
+										</button>
+									)}
+								</div>
+							)}
+						</div>
 
 						<CategoryStats
 							{...{ categories, maxCategory, spotlight, setSpotlight }}
 						/>
-
-						{spotlightValue && (
-							<div>
-								{spotlight === currentUser ? (
-									<span>
-										<Trans
-											i18nKey={'site.publicodes.conferences.Stats.explication1'}
-										>
-											<span role="status" css="background: #fff45f;">
-												En jaune
-											</span>{' '}
-											: ma simulation à {{ spotlightValue }} t.
-										</Trans>
-									</span>
-								) : (
-									<button
-										className="ui__ link-button"
-										onClick={() => setSpotlight(currentUser)}
-									>
-										<span css="background: #fff45f;">
-											<Trans>Afficher ma simulation</Trans>
-										</span>
-									</button>
-								)}
-							</div>
-						)}
 					</div>
 				)}
 			</div>
