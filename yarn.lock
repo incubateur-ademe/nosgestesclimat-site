@@ -6764,10 +6764,10 @@ publicodes@^1.0.0-beta.66:
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.66.tgz#e8149733431268c764ea150dc82d3ce3709d20db"
   integrity sha512-9lnLnbMM8Mz2+WvNK3/DttRbu6UvpoRx/B9XrMWUSgsb760uwQEqdpkHbl1gPlz2WpYSRuKZVyuW8LdfxTFRXw==
 
-publiopti@^0.1.18:
-  version "0.1.18"
-  resolved "https://registry.yarnpkg.com/publiopti/-/publiopti-0.1.18.tgz#1dccccb792fca2076690c927d4b8805c42311770"
-  integrity sha512-SCHRu+1QRMWg2Druav3de/Cp3ZgOC9I/PSCu3BU2N7lDz93VJcXrHNDZiB1YlbMw4Bzess9swzJzQX9Wx+qLlg==
+publiopti@^0.1.19:
+  version "0.1.19"
+  resolved "https://registry.yarnpkg.com/publiopti/-/publiopti-0.1.19.tgz#2a7e30dc253608abb37e52e2ddb337a36ec605a1"
+  integrity sha512-/SoFiAs5pPocOAj10Ejw73G41LBlc9ig0J5+Am4Z+R4y9CmMK9gxZouYHzuLSB2hFDFnr82BGCysRFV+XqkveA==
   dependencies:
     "@types/node" "^18.11.18"
 
