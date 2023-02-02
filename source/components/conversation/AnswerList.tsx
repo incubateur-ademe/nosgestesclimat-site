@@ -136,7 +136,7 @@ const CategoryTable = ({ steps, categories, engine, everythingUnfolded }) =>
 		)
 	})
 
-const RecursiveStepsTable = ({ rules, engine, level }) => {
+const RecursiveStepsTable = ({ rules, engine, level, everythingUnfolded }) => {
 	const byParent = rules.reduce((memo, next) => {
 		const split = splitName(next.dottedName),
 			parent = split.slice(0, level + 1).join(' . ')
@@ -167,6 +167,7 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 								rule: engine.getRule(key),
 								engine,
 								level: level + 1,
+								everythingUnfolded,
 							}}
 						/>
 					)
@@ -241,6 +242,7 @@ const SubCategory = ({ rule, rules, engine, level, everythingUnfolded }) => {
 						rules,
 						engine,
 						level,
+						everythingUnfolded,
 					}}
 				/>
 			)}
