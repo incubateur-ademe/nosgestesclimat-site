@@ -26,8 +26,8 @@ export const computeHumanMean = ({ t, i18n }, simulationArray) => {
 }
 
 export default ({
-	totalElements,
-	elements: rawElements,
+	totalElements: totalElementsRaw,
+	elements: elementsRaw,
 	users = [],
 	username: currentUser,
 	threshold,
@@ -39,13 +39,14 @@ export default ({
 
 	const [contextFilter, setContextFilter] = useState({})
 
-	const elements = filterElements(rawElements, contextFilter)
+	const totalElements = filterElements(totalElementsRaw, contextFilter)
+	const elements = filterElements(elementsRaw, contextFilter)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	const values = elements.map((el) => el.total)
+	const values = totalElements.map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean({ t, i18n }, values)
 
@@ -55,7 +56,7 @@ export default ({
 	if (isNaN(mean)) return null
 
 	const categories = reduceCategories(
-			elements.map(({ byCategory, username }) => [username, byCategory])
+			totalElements.map(({ byCategory, username }) => [username, byCategory])
 		),
 		maxCategory = Object.values(categories).reduce(
 			(memo, next) => Math.max(memo, ...next.map((el) => el.value)),
@@ -71,10 +72,12 @@ export default ({
 		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 		})
-	const spotlightElement = elements.find((el) => el.username === spotlight),
+	const spotlightElement = totalElements.find(
+			(el) => el.username === spotlight
+		),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
-	const plural = elements.length > 1 ? 's' : ''
+	const plural = totalElements.length > 1 ? 's' : ''
 	return (
 		<div>
 			<div css=" text-align: center">
