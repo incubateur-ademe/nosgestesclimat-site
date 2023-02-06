@@ -13,6 +13,7 @@ entries:
   'Actions écartées :': 'Actions écartées :'
   Afficher l'explication du score: Afficher l'explication du score
   Afficher ma simulation: Afficher ma simulation
+  Afficher mon score: Afficher mon score
   Agir: Agir
   Aide à la saisie: Aide à la saisie
   Ajouter: Ajouter
@@ -31,6 +32,9 @@ entries:
   Ce guide n'existe pas encore: Ce guide n'existe pas encore
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
   Cette fiche détaillée n'existe pas encore: Cette fiche détaillée n'existe pas encore
+  Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.:
+    Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si
+    vous étiez l'un des profils types que nous avons listés.
   Chargement: Chargement
   Chargement du modèle de calcul...: Chargement du modèle de calcul...
   Chargement...: Chargement...
@@ -659,7 +663,7 @@ entries:
   simulation-end.title: 🌟 Vous avez complété cette simulation
   simulations: simulations
   simulations terminées depuis le lancement: simulations terminées depuis le lancement
-  site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
+  site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : mon score de {{spotlightValue}} t.'
   sites.publicodes.Landing.description: En 10 minutes, obtenez une estimation de
     votre empreinte carbone de consommation.
   sites.publicodes.LandingExplanations.faqLink: |-
