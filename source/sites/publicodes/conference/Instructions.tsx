@@ -47,8 +47,8 @@ export default ({
 						visualisera en temps réel les résultats des autres.
 					</p>
 					<p>
-						C'est l'occasion de se confronter aux autres et de réfléchir
-						ensemble aux enjeux de notre propre impact.
+						C'est l'occasion de réfléchir ensemble aux enjeux de notre propre
+						impact en comparant nos modes de vie.
 					</p>
 				</Trans>
 			)}
