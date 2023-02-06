@@ -3,11 +3,10 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
-import IllustratedMessage from '../../../components/ui/IllustratedMessage'
 import Meta from '../../../components/utils/Meta'
 import Navigation from '../Navigation'
 import { useProfileData } from '../Profil'
@@ -15,6 +14,7 @@ import { ConferenceTitle } from './Conference'
 import ContextConversation from './ContextConversation'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
+import NoSurveyCreatedWarning from './NoSurveyCreatedWarning'
 import NoTestMessage from './NoTestMessage'
 import Stats from './Stats'
 import { answersURL, surveysURL } from './useDatabase'
@@ -85,29 +85,9 @@ export default () => {
 			/>
 			<h1>Sondage</h1>
 			{isRegisteredSurvey == false && (
-				<IllustratedMessage
-					emoji="⚠️"
-					message={
-						<>
-							<p>
-								<Trans i18nKey="publicodes.conference.Survey.notCreatedWarning1">
-									Attention, il n'existe aucun ce sondage à cette adresse. Pour
-									lancer un sondage, l'organisateur doit d'abord le créer sur la
-									page du <Link to="/groupe">mode groupe</Link>.
-								</Trans>
-							</p>
-							<p>
-								💡{' '}
-								<Trans i18nKey="publicodes.conference.Survey.notCreatedWarning2">
-									Peut-être avez-vous fait une faute de frappe dans l'adresse du
-									sondage ? Pensez notamment à bien respecter les majuscules, à
-									copier coller l'adresse exacte ou à utiliser le QR code.
-								</Trans>
-							</p>
-						</>
-					}
-					backgroundcolor={'var(--lighterColor)'}
-				/>
+				<div css="margin-bottom: 3rem">
+					<NoSurveyCreatedWarning />
+				</div>
 			)}
 			<ConferenceTitle>
 				<img src={conferenceImg} alt="" />
