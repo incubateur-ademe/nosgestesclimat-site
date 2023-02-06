@@ -243,14 +243,6 @@ export default ({
 					</>
 				) : (
 					<>
-						<p>
-							<Trans
-								i18nKey={`publicodes.conference.Instructions.liensSimulationSondage`}
-							>
-								Les participants doivent venir faire leur simulation sur ce
-								lien.
-							</Trans>
-						</p>
 						<Link to={'/simulateur/bilan'}>
 							<button className="ui__ button plain">
 								{t(`Faites votre test`)}
