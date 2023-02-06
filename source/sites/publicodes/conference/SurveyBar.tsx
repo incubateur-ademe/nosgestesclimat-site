@@ -11,17 +11,18 @@ import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
+import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { computeHumanMean } from './Stats'
-import { getElements } from './Survey'
 import useDatabase, { answersURL } from './useDatabase'
-import { defaultProgressMin, defaultThreshold } from './utils'
+import { defaultProgressMin, defaultThreshold, getElements } from './utils'
 
 export default () => {
-	const translation = useTranslation()
+	const translation = useTranslation(),
+		t = translation.t
 	const situation = useSelector(situationSelector),
 		engine = useEngine(),
 		evaluation = engine.evaluate('bilan'),
@@ -129,14 +130,19 @@ export default () => {
 
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
-	const elements = getElements(
+	const rawNumber = getElements(
+		survey.answers,
+		defaultThreshold,
+		existContext,
+		0
+	).length
+
+	const completedTestNumber = getElements(
 		survey.answers,
 		defaultThreshold,
 		existContext,
 		defaultProgressMin
-	)
-
-	const answersCount = elements.length
+	).length
 
 	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 
@@ -173,26 +179,37 @@ export default () => {
 						{emoji('🧮')} {result}
 					</span>
 				)}
-				{answersCount != null && (
-					<span>
-						{emoji('👥')}{' '}
-						<span
-							css={`
-								background: #78b159;
-								width: 1.5rem;
-								height: 1.5rem;
-								border-radius: 2rem;
-								display: inline-block;
-								line-height: 1.5rem;
-								text-align: center;
-								color: var(--darkerColor);
-							`}
-						>
-							{answersCount}
+				<div
+					css={`
+						display: flex;
+						justify-content: space-between;
+						width: 100%;
+					`}
+				>
+					{rawNumber != null && (
+						<span title={t('Nombre total de participants')}>
+							{emoji('👥')} <CountDisc color="#55acee">{rawNumber}</CountDisc>
 						</span>
-					</span>
-				)}
+					)}
+					{completedTestNumber != null && (
+						<span title={t('Nombre de tests terminés')}>
+							{emoji('✅')}
+							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
+						</span>
+					)}
+				</div>
 			</div>
 		</Link>
 	)
 }
+
+const CountDisc = styled.span`
+	background: ${(props) => props.color};
+	width: 1.5rem;
+	height: 1.5rem;
+	border-radius: 2rem;
+	display: inline-block;
+	line-height: 1.5rem;
+	text-align: center;
+	color: var(--darkerColor);
+`

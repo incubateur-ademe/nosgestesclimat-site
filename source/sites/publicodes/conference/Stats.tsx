@@ -26,6 +26,7 @@ export const computeHumanMean = ({ t, i18n }, simulationArray) => {
 }
 
 export default ({
+	totalElements,
 	elements: rawElements,
 	users = [],
 	username: currentUser,
@@ -48,7 +49,7 @@ export default ({
 	const mean = computeMean(values),
 		humanMean = computeHumanMean({ t, i18n }, values)
 
-	const progressList = elements.map((el) => el.progress),
+	const progressList = totalElements.map((el) => el.progress),
 		meanProgress = computeMean(progressList)
 
 	if (isNaN(mean)) return null
@@ -73,14 +74,15 @@ export default ({
 	const spotlightElement = elements.find((el) => el.username === spotlight),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
+	const plural = elements.length > 1 ? 's' : ''
 	return (
 		<div>
 			<div css=" text-align: center">
 				<p role="heading" aria-level="2">
 					<Trans>Avancement du groupe</Trans>{' '}
 					<span role="status">
-						({elements.length} participant
-						{elements.length > 1 ? 's' : ''})
+						({elements.length} test{plural} complété{plural} sur{' '}
+						{totalElements.length})
 					</span>
 				</p>
 				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
@@ -253,6 +255,5 @@ const filterElements = (rawElements, contextFilter) =>
 				value === '' ||
 				el.context[key].toLowerCase().includes(value.toLowerCase())
 		)
-		console.log(matches)
 		return matches.every((bool) => bool === true)
 	})

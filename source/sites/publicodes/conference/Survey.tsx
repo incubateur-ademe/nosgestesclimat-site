@@ -227,6 +227,7 @@ const Results = ({ room, existContext, contextRules }) => {
 	if (!answerMap || !Object.values(answerMap) || !username) return null
 	return (
 		<Stats
+			totalElements={getElements(answerMap, threshold, existContext, 0)}
 			elements={getElements(
 				answerMap,
 				threshold,
@@ -256,7 +257,7 @@ export const getElements = (
 		username: el.id,
 	}))
 	const elementsWithinThreshold = rawElements.filter(
-		(el) => el.total > 0 && el.total < threshold && el.progress > progressMin
+		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
 	)
 	const elements = existContext
 		? elementsWithinThreshold.filter(
