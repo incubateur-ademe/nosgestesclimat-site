@@ -9,8 +9,8 @@ export default () => (
 			<>
 				<p>
 					<Trans i18nKey="publicodes.conference.Survey.notCreatedWarning1">
-						Attention, il n'existe aucun ce sondage à cette adresse. Pour lancer
-						un sondage, l'organisateur doit d'abord le créer sur la page du{' '}
+						Attention, il n'existe aucun sondage à cette adresse. Pour lancer un
+						sondage, l'organisateur doit d'abord le créer sur la page du{' '}
 						<Link to="/groupe">mode groupe</Link>.
 					</Trans>
 				</p>

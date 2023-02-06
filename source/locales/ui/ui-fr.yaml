@@ -602,7 +602,7 @@ entries:
     page
   publicodes.conference.Instructions.intro: <0>Le test d'empreinte climat est
     individuel, mais nous vous proposons ici de le faire à plusieurs. Chacun
-    sera derrière son écran, mais visualisera en temps-réel les résultats des
+    sera derrière son écran, mais visualisera en temps réel les résultats des
     autres.</0><1>C'est l'occasion de se confronter aux autres et de réfléchir
     ensemble aux enjeux de notre propre impact.</1>
   publicodes.conference.Instructions.liensSimulationConference:
@@ -626,8 +626,7 @@ entries:
     un tableur vide, puis Données > À partir d''un fichier texte / CSV.
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
-  publicodes.conference.Survey.notCreatedWarning1:
-    Attention, il n'existe aucun ce
+  publicodes.conference.Survey.notCreatedWarning1: Attention, il n'existe aucun
     sondage à cette adresse. Pour lancer un sondage, l'organisateur doit d'abord
     le créer sur la page du <2>mode groupe</2>.
   publicodes.conference.Survey.notCreatedWarning2: Peut-être avez-vous fait une

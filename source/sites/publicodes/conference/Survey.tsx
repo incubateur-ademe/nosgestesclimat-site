@@ -1,4 +1,3 @@
-import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'

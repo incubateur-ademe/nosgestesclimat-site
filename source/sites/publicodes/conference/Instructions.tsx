@@ -44,7 +44,7 @@ export default ({
 					<p>
 						Le test d'empreinte climat est individuel, mais nous vous proposons
 						ici de le faire à plusieurs. Chacun sera derrière son écran, mais
-						visualisera en temps-réel les résultats des autres.
+						visualisera en temps réel les résultats des autres.
 					</p>
 					<p>
 						C'est l'occasion de se confronter aux autres et de réfléchir
