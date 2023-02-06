@@ -936,6 +936,20 @@ entries:
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: To open it with <2>LibreOffice</2>, it is automatic.
   publicodes.conference.Survey.libreOffice.lock: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
+  publicodes.conference.Survey.notCreatedWarning1: Please note that there is no
+    such poll at this address. To launch a poll, the organizer must first create
+    it on the <2>group mode</2> page.
+  publicodes.conference.Survey.notCreatedWarning1.lock: Attention, il n'existe
+    aucun ce sondage à cette adresse. Pour lancer un sondage, l'organisateur
+    doit d'abord le créer sur la page du <2>mode groupe</2>.
+  publicodes.conference.Survey.notCreatedWarning2:
+    Perhaps you made a typo in the
+    survey address? Remember to use the correct capitalization, copy and paste
+    the exact address or use the QR code.
+  publicodes.conference.Survey.notCreatedWarning2.lock: Peut-être avez-vous fait
+    une faute de frappe dans l'adresse du sondage ? Pensez notamment à bien
+    respecter les majuscules, à copier coller l'adresse exacte ou à utiliser le
+    QR code.
   publicodes.conference.Survey.resultat:
     The results on the view page only include
     participants who completed <1>at least 10% of the test</1>. The CSV, on the
@@ -1001,6 +1015,11 @@ entries:
   simulation-end.title.lock: 🌟 Vous avez complété cette simulation
   simulations: simulations
   simulations terminées depuis le lancement: simulations completed since the launch
+  site.publicodes.conferences.Stats.explication0: Each vertical bar ☝️ is the
+    total score of a participant,<1></1>each disc 👇️ a score on a category.
+  site.publicodes.conferences.Stats.explication0.lock: Chaque barre verticale ☝️
+    est le score total d'un participant,<1></1>chaque disque 👇️ un score sur
+    une catégorie.
   site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my score of {{spotlightValue}} t.'
   site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : mon score de {{spotlightValue}} t.'
   sites.publicodes.Landing.description: In 10 minutes, get an estimate of your carbon footprint.

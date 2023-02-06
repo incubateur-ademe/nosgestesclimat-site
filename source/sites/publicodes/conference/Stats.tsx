@@ -192,9 +192,11 @@ export default ({
 							`}
 						>
 							<p>
-								Chaque bare verticale ☝️ est le score total d'un participant,
-								<br />
-								chaque disque 👇️ un score sur une catégorie.
+								<Trans i18nKey="site.publicodes.conferences.Stats.explication0">
+									Chaque barre verticale ☝️ est le score total d'un participant,
+									<br />
+									chaque disque 👇️ un score sur une catégorie.
+								</Trans>
 							</p>
 						</div>
 

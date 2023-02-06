@@ -626,6 +626,14 @@ entries:
     un tableur vide, puis Données > À partir d''un fichier texte / CSV.
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
+  publicodes.conference.Survey.notCreatedWarning1:
+    Attention, il n'existe aucun ce
+    sondage à cette adresse. Pour lancer un sondage, l'organisateur doit d'abord
+    le créer sur la page du <2>mode groupe</2>.
+  publicodes.conference.Survey.notCreatedWarning2: Peut-être avez-vous fait une
+    faute de frappe dans l'adresse du sondage ? Pensez notamment à bien
+    respecter les majuscules, à copier coller l'adresse exacte ou à utiliser le
+    QR code.
   publicodes.conference.Survey.resultat:
     Les résultats de la page de visualisation
     ne prennent en compte que les participants ayant rempli <1>au moins 10% du
@@ -665,6 +673,10 @@ entries:
   simulation-end.title: 🌟 Vous avez complété cette simulation
   simulations: simulations
   simulations terminées depuis le lancement: simulations terminées depuis le lancement
+  site.publicodes.conferences.Stats.explication0:
+    Chaque barre verticale ☝️ est le
+    score total d'un participant,<1></1>chaque disque 👇️ un score sur une
+    catégorie.
   site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : mon score de {{spotlightValue}} t.'
   sites.publicodes.Landing.description: En 10 minutes, obtenez une estimation de
     votre empreinte carbone de consommation.
