@@ -77,7 +77,7 @@ export default ({
 		),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
-	const plural = totalElements.length > 1 ? 's' : ''
+	const plural = elements.length > 1 ? 's' : ''
 	return (
 		<div>
 			<div css=" text-align: center">

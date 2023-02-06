@@ -218,6 +218,12 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 	)
 }
 
+export const surveyElementsAdapter = (items) =>
+	Object.values(items).map((el) => ({
+		...el.data,
+		username: el.id,
+	}))
+
 const Results = ({ room, existContext, contextRules }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
@@ -225,11 +231,12 @@ const Results = ({ room, existContext, contextRules }) => {
 	const answerMap = survey.answers
 	const username = cachedSurveyIds[survey.room]
 	if (!answerMap || !Object.values(answerMap) || !username) return null
+	const elements = surveyElementsAdapter(answerMap)
 	return (
 		<Stats
-			totalElements={getElements(answerMap, threshold, existContext, 0)}
+			totalElements={getElements(elements, threshold, existContext, 0)}
 			elements={getElements(
-				answerMap,
+				elements,
 				threshold,
 				existContext,
 				defaultProgressMin

@@ -17,6 +17,7 @@ import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { computeHumanMean } from './Stats'
+import { surveyElementsAdapter } from './Survey'
 import useDatabase, { answersURL } from './useDatabase'
 import { defaultProgressMin, defaultThreshold, getElements } from './utils'
 
@@ -130,15 +131,16 @@ export default () => {
 
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
+	const elements = surveyElementsAdapter(survey.answers)
 	const rawNumber = getElements(
-		survey.answers,
+		elements,
 		defaultThreshold,
 		existContext,
 		0
 	).length
 
 	const completedTestNumber = getElements(
-		survey.answers,
+		elements,
 		defaultThreshold,
 		existContext,
 		defaultProgressMin

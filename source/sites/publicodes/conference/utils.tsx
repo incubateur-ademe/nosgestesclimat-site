@@ -67,15 +67,11 @@ export const defaultProgressMin = 0.9
 // and by setting 100% we risk missing some people that unfolded their last question and didn't fold them again
 
 export const getElements = (
-	answerMap,
+	rawElements,
 	threshold,
 	existContext,
 	progressMin
 ) => {
-	const rawElements = Object.values(answerMap).map((el) => ({
-		...el.data,
-		username: el.id,
-	}))
 	const elementsWithinThreshold = rawElements.filter(
 		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
 	)
