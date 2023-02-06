@@ -15,8 +15,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
-import { constantFolding, getRawNodes } from 'publiopti'
 import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
+import {
+	constantFolding,
+	getRawNodes,
+} from '../nosgestesclimat/scripts/publiopti/index'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -67,6 +70,8 @@ const EngineWrapper = ({ children }) => {
 
 				var rules = baseRules
 
+				console.log('rules:', rules)
+
 				const currentLang = i18n.language === 'en' ? 'en-us' : i18n.language
 				if (currentLang !== 'fr') {
 					const translatedRulesAttrs =
@@ -88,10 +93,8 @@ const EngineWrapper = ({ children }) => {
 					console.time('⚙️ re-parsing folded rules')
 					const sourceFoldedRules = getRawNodes(foldedRules)
 
-					console.log(
-						'alimentation . plats . végétalien . nombre:',
-						sourceFoldedRules['alimentation . plats . végétalien . nombre']
-					)
+					console.log(sourceFoldedRules)
+
 					if (active) {
 						dispatch({ type: 'SET_RULES', rules: sourceFoldedRules })
 					}
@@ -110,6 +113,10 @@ const EngineWrapper = ({ children }) => {
 				fetch(url, { mode: 'cors' })
 					.then((response) => response.json())
 					.then((json) => {
+						console.log(
+							'alimentation . plats . végétalien . nombre:',
+							json['alimentation . plats . végétalien . nombre']
+						)
 						if (active) dispatch({ type: 'SET_RULES', rules: json })
 					})
 			}

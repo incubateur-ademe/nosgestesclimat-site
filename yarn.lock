@@ -1610,9 +1610,9 @@
   integrity sha512-CmR8+Tsy95hhwtZBKJBs0/FFq4XX7sDZHlGGf+0q+BRZfMbOTkzkj0AFAuTyXbObDIoanaBBW0+KEW+m3N16Wg==
 
 "@types/node@^18.11.18":
-  version "18.11.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
-  integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
+  version "18.11.19"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.19.tgz#35e26df9ec441ab99d73e99e9aca82935eea216d"
+  integrity sha512-YUgMWAQBWLObABqrvx8qKO1enAvBUdjZOAWQ5grBAkp5LQv45jBvYKZ3oFS9iKRCQyFjqw6iuEa1vmFqtxYLZw==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -6764,10 +6764,10 @@ publicodes@^1.0.0-beta.66:
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.66.tgz#e8149733431268c764ea150dc82d3ce3709d20db"
   integrity sha512-9lnLnbMM8Mz2+WvNK3/DttRbu6UvpoRx/B9XrMWUSgsb760uwQEqdpkHbl1gPlz2WpYSRuKZVyuW8LdfxTFRXw==
 
-publiopti@^0.1.19:
-  version "0.1.19"
-  resolved "https://registry.yarnpkg.com/publiopti/-/publiopti-0.1.19.tgz#2a7e30dc253608abb37e52e2ddb337a36ec605a1"
-  integrity sha512-/SoFiAs5pPocOAj10Ejw73G41LBlc9ig0J5+Am4Z+R4y9CmMK9gxZouYHzuLSB2hFDFnr82BGCysRFV+XqkveA==
+publiopti@^0.1.21:
+  version "0.1.21"
+  resolved "https://registry.yarnpkg.com/publiopti/-/publiopti-0.1.21.tgz#3c7d4fe6a4886abb1086317a5f7539964137ff28"
+  integrity sha512-VfGkT4v0sb0B4yr9EykBTsU8riTsLYWd2RUDgm6fIK8pEAL8JRof7ljwE8EsVyT7Z4vZDoSDBpZf5gRylfc3GQ==
   dependencies:
     "@types/node" "^18.11.18"
 
