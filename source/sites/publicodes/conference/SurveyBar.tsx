@@ -181,13 +181,7 @@ export default () => {
 						{emoji('🧮')} {result}
 					</span>
 				)}
-				<div
-					css={`
-						display: flex;
-						justify-content: space-between;
-						width: 100%;
-					`}
-				>
+				<CountSection>
 					{rawNumber != null && (
 						<span title={t('Nombre total de participants')}>
 							{emoji('👥')} <CountDisc color="#55acee">{rawNumber}</CountDisc>
@@ -199,13 +193,19 @@ export default () => {
 							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
 						</span>
 					)}
-				</div>
+				</CountSection>
 			</div>
 		</Link>
 	)
 }
 
-const CountDisc = styled.span`
+export const CountSection = styled.div`
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+`
+
+export const CountDisc = styled.span`
 	background: ${(props) => props.color};
 	width: 1.5rem;
 	height: 1.5rem;

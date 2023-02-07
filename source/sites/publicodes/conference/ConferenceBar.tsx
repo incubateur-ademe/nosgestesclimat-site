@@ -9,12 +9,16 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import * as Y from 'yjs'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
+import { conferenceElementsAdapter } from './Conference'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { computeHumanMean } from './Stats'
+import { CountDisc, CountSection } from './SurveyBar'
 import useYjs from './useYjs'
+import { defaultProgressMin, defaultThreshold, getElements } from './utils'
 
 export default () => {
-	const translation = useTranslation()
+	const translation = useTranslation(),
+		t = translation.t
 
 	const situation = useSelector(situationSelector),
 		engine = useEngine(),
@@ -50,6 +54,16 @@ export default () => {
 			simulationArray.map((el) => el.total)
 		)
 
+	const statElements = conferenceElementsAdapter(elements)
+	const rawNumber = getElements(statElements, defaultThreshold, null, 0).length
+
+	const completedTestNumber = getElements(
+		statElements,
+		defaultThreshold,
+		null,
+		defaultProgressMin
+	).length
+
 	return (
 		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
 			<div
@@ -83,23 +97,19 @@ export default () => {
 				<span>
 					{emoji('🧮')} {result}
 				</span>
-				<span>
-					{emoji('👥')}{' '}
-					<span
-						css={`
-							background: #78b159;
-							width: 1.5rem;
-							height: 1.5rem;
-							border-radius: 2rem;
-							display: inline-block;
-							line-height: 1.5rem;
-							color: var(--darkerColor);
-							text-align: center;
-						`}
-					>
-						{users.length}
-					</span>
-				</span>
+				<CountSection>
+					{rawNumber != null && (
+						<span title={t('Nombre total de participants')}>
+							{emoji('👥')} <CountDisc color="#55acee">{rawNumber}</CountDisc>
+						</span>
+					)}
+					{completedTestNumber != null && (
+						<span title={t('Nombre de tests terminés')}>
+							{emoji('✅')}
+							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
+						</span>
+					)}
+				</CountSection>
 			</div>
 		</Link>
 	)
