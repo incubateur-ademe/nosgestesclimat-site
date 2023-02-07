@@ -1,6 +1,7 @@
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import React, { Suspense, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
 import { WithEngine } from '../../../RulesProvider'
@@ -11,6 +12,7 @@ import {
 import { useQuery } from '../../../utils'
 import { Loading } from '../App'
 import CategoryVisualisation from '../CategoryVisualisation'
+import DetailedBarChartIcon from './DetailedBarChartIcon'
 import Chart from './index.js'
 import { activatedSpecializedVisualisations } from './SpecializedVisualisation'
 import SubCategoriesChart from './SubCategoriesChart'
@@ -21,6 +23,7 @@ const SpecializedVisualisation = React.lazy(
 )
 
 export default ({ givenEngine }) => {
+	const { t } = useTranslation()
 	const situation = useSelector(situationSelector) // needed for this component to refresh on situation change :
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
@@ -112,6 +115,20 @@ export default ({ givenEngine }) => {
 					onRestClick: () => showTraditionalChart(!traditionalChartShown),
 				}}
 			/>
+			<button
+				css={`
+					display: block;
+					margin: 0 auto;
+				`}
+				onClick={() => showTraditionalChart(!traditionalChartShown)}
+				title={
+					traditionalChartShown
+						? t('Cacher le graphique détaillé')
+						: t('Afficher le graphique détaillé')
+				}
+			>
+				<DetailedBarChartIcon />
+			</button>
 			{traditionalChartShown && <Chart />}
 		</div>
 	)
