@@ -1,7 +1,6 @@
 import { correctValue, extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useEffect } from 'react'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -12,7 +11,7 @@ import { useSimulationProgress } from '../../../components/utils/useNextQuestion
 import { conferenceElementsAdapter } from './Conference'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { computeHumanMean } from './Stats'
-import { CountDisc, CountSection } from './SurveyBar'
+import { CountDisc, CountSection, EmojiStyle } from './SurveyBar'
 import useYjs from './useYjs'
 import { defaultProgressMin, defaultThreshold, getElements } from './utils'
 
@@ -64,6 +63,7 @@ export default () => {
 		defaultProgressMin
 	).length
 
+	//TODO mutualise this display part with SurveyBar
 	return (
 		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
 			<div
@@ -95,17 +95,19 @@ export default () => {
 					«&nbsp;{conference.room}&nbsp;»
 				</span>
 				<span>
-					{emoji('🧮')} {result}
+					<EmojiStyle>🧮</EmojiStyle>
+					{result}
 				</span>
 				<CountSection>
 					{rawNumber != null && (
 						<span title={t('Nombre total de participants')}>
-							{emoji('👥')} <CountDisc color="#55acee">{rawNumber}</CountDisc>
+							<EmojiStyle>👥</EmojiStyle>
+							<CountDisc color="#55acee">{rawNumber}</CountDisc>
 						</span>
 					)}
 					{completedTestNumber != null && (
 						<span title={t('Nombre de tests terminés')}>
-							{emoji('✅')}
+							<EmojiStyle>✅</EmojiStyle>
 							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
 						</span>
 					)}

@@ -6,7 +6,6 @@ import {
 import { useEngine } from 'Components/utils/EngineContext'
 import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -176,20 +175,17 @@ export default () => {
 				`}
 			>
 				<span css="text-transform: uppercase">«&nbsp;{survey.room}&nbsp;»</span>
-				{result && (
-					<span>
-						{emoji('🧮')} {result}
-					</span>
-				)}
+				{result && <span>🧮 {result}</span>}
 				<CountSection>
 					{rawNumber != null && (
 						<span title={t('Nombre total de participants')}>
-							{emoji('👥')} <CountDisc color="#55acee">{rawNumber}</CountDisc>
+							<EmojiStyle>👥</EmojiStyle>
+							<CountDisc color="#55acee">{rawNumber}</CountDisc>
 						</span>
 					)}
 					{completedTestNumber != null && (
 						<span title={t('Nombre de tests terminés')}>
-							{emoji('✅')}
+							<EmojiStyle>✅</EmojiStyle>
 							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
 						</span>
 					)}
@@ -198,6 +194,11 @@ export default () => {
 		</Link>
 	)
 }
+
+export const EmojiStyle = styled.span`
+	font-size: 150%;
+	margin-right: 0.4rem;
+`
 
 export const CountSection = styled.div`
 	display: flex;
