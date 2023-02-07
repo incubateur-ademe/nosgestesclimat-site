@@ -19,7 +19,7 @@ import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTr
 import {
 	constantFolding,
 	getRawNodes,
-} from '../nosgestesclimat/scripts/publiopti/index'
+} from '../nosgestesclimat/scripts/publiopti'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -38,6 +38,15 @@ const EngineWrapper = ({ children }) => {
 
 	const { i18n } = useTranslation()
 	const currLangAbrv = getCurrentLangAbrv(i18n)
+
+	// TODO: add an attribute 'do not fold' to rules that should not be folded
+	const optimizedTarget = [
+		'bilan',
+		'actions',
+		'transport',
+		'pétrole . pleins',
+		'transport . voiture . thermique',
+	]
 
 	useEffect(() => {
 		let active = true
@@ -88,12 +97,14 @@ const EngineWrapper = ({ children }) => {
 				if (optimizedOption) {
 					console.time('⚙️ folding rules locally')
 					const engine = new Engine(rules)
-					const foldedRules = constantFolding(engine)
+					const foldedRules = constantFolding(engine, optimizedTarget)
 					console.timeEnd('⚙️ folding rules locally')
 					console.time('⚙️ re-parsing folded rules')
 					const sourceFoldedRules = getRawNodes(foldedRules)
+					// console.log(sourceFoldedRules)
 
-					console.log(sourceFoldedRules)
+					// NOTE: Pour tester la version compilée
+					// const sourceFoldedRules = require('../nosgestesclimat/public/co2-fr-opti.json')
 
 					if (active) {
 						dispatch({ type: 'SET_RULES', rules: sourceFoldedRules })
@@ -113,10 +124,7 @@ const EngineWrapper = ({ children }) => {
 				fetch(url, { mode: 'cors' })
 					.then((response) => response.json())
 					.then((json) => {
-						console.log(
-							'alimentation . plats . végétalien . nombre:',
-							json['alimentation . plats . végétalien . nombre']
-						)
+						console.log('publiopti', json['publiopti'])
 						if (active) dispatch({ type: 'SET_RULES', rules: json })
 					})
 			}
