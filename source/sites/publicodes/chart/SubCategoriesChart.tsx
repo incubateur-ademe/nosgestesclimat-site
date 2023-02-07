@@ -55,8 +55,9 @@ export default ({
 					exit={{ width: 0, opacity: 0 }}
 					transition={{ duration: 0.5, delay }}
 					title={
-						(onRestClick ? t('Voir le reste : ') : t('Le reste : ')) +
-						rest.labels.join(', ')
+						onRestClick
+							? t("Voir un graphique détaillé de l'ensemble des catégories")
+							: t('Le reste : ') + rest.labels.join(', ')
 					}
 					key="rest"
 					onClick={onRestClick}
