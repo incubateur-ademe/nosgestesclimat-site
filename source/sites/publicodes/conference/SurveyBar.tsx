@@ -14,7 +14,6 @@ import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
-import { backgroundConferenceAnimation } from './conferenceStyle'
 import { computeHumanMean } from './Stats'
 import { surveyElementsAdapter } from './Survey'
 import useDatabase, { answersURL } from './useDatabase'
@@ -151,7 +150,6 @@ export default () => {
 		<Link to={'/sondage/' + survey.room} css="text-decoration: none;">
 			<div
 				css={`
-					${backgroundConferenceAnimation}
 					color: white;
 					padding: 0.3rem 1rem;
 					display: flex;
