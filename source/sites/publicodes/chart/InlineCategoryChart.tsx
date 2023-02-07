@@ -4,7 +4,10 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
 import { WithEngine } from '../../../RulesProvider'
-import { currentQuestionSelector } from '../../../selectors/simulationSelectors'
+import {
+	currentQuestionSelector,
+	situationSelector,
+} from '../../../selectors/simulationSelectors'
 import { useQuery } from '../../../utils'
 import { Loading } from '../App'
 import CategoryVisualisation from '../CategoryVisualisation'
@@ -18,7 +21,7 @@ const SpecializedVisualisation = React.lazy(
 )
 
 export default ({ givenEngine }) => {
-	// needed for this component to refresh on situation change :
+	const situation = useSelector(situationSelector) // needed for this component to refresh on situation change :
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = givenEngine || useEngine(objectifs)
@@ -37,7 +40,7 @@ export default ({ givenEngine }) => {
 				abbreviation: rules[category.dottedName].abréviation,
 			}))
 		)
-	}, [rules])
+	}, [rules, situation])
 
 	const displayedCategory = useContinuousCategory(categories)
 
