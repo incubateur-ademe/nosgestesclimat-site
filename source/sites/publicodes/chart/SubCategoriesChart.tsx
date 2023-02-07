@@ -75,7 +75,7 @@ export default ({
 						}
 					`}
 				>
-					{restWidth > 5 && <div>...</div>}
+					{restWidth > 5 && <div>.</div>}
 				</motion.li>
 			</AnimatePresence>
 		</InlineBarChart>
