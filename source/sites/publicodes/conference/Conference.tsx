@@ -12,7 +12,12 @@ import Instructions from './Instructions'
 import Stats from './Stats'
 import { UserBlock } from './UserList'
 import useYjs from './useYjs'
-import { defaultThreshold, getExtremes } from './utils'
+import {
+	defaultProgressMin,
+	defaultThreshold,
+	getElements,
+	getExtremes,
+} from './utils'
 
 export const ConferenceTitle = styled.h2`
 	margin-top: 0.6rem;
@@ -26,6 +31,11 @@ export const ConferenceTitle = styled.h2`
 	align-items: center;
 	font-size: 120%;
 `
+export const conferenceElementsAdapter = (elements) =>
+	Object.entries(elements).map(([username, data]) => ({
+		...data,
+		username,
+	}))
 
 export default () => {
 	const { room } = useParams()
@@ -41,6 +51,15 @@ export default () => {
 	const extremes = getExtremes(elements, threshold)
 
 	const { t } = useTranslation()
+
+	const rawElements = conferenceElementsAdapter(elements)
+	const statsElements = getElements(
+		rawElements,
+		threshold,
+		null,
+		defaultProgressMin
+	)
+	const totalElements = getElements(rawElements, threshold, null, 0)
 
 	return (
 		<div>
@@ -64,10 +83,8 @@ export default () => {
 			</ConferenceTitle>
 			<Stats
 				{...{
-					elements: Object.entries(elements).map(([username, data]) => ({
-						...data,
-						username,
-					})),
+					totalElements,
+					elements: statsElements,
 					users,
 					username,
 					threshold,

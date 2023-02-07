@@ -26,7 +26,8 @@ export const computeHumanMean = ({ t, i18n }, simulationArray) => {
 }
 
 export default ({
-	elements: rawElements,
+	totalElements: totalElementsRaw,
+	elements: elementsRaw,
 	users = [],
 	username: currentUser,
 	threshold,
@@ -38,23 +39,24 @@ export default ({
 
 	const [contextFilter, setContextFilter] = useState({})
 
-	const elements = filterElements(rawElements, contextFilter)
+	const totalElements = filterElements(totalElementsRaw, contextFilter)
+	const elements = filterElements(elementsRaw, contextFilter)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	const values = elements.map((el) => el.total)
+	const values = totalElements.map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean({ t, i18n }, values)
 
-	const progressList = elements.map((el) => el.progress),
+	const progressList = totalElements.map((el) => el.progress),
 		meanProgress = computeMean(progressList)
 
 	if (isNaN(mean)) return null
 
 	const categories = reduceCategories(
-			elements.map(({ byCategory, username }) => [username, byCategory])
+			totalElements.map(({ byCategory, username }) => [username, byCategory])
 		),
 		maxCategory = Object.values(categories).reduce(
 			(memo, next) => Math.max(memo, ...next.map((el) => el.value)),
@@ -70,17 +72,20 @@ export default ({
 		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 		})
-	const spotlightElement = elements.find((el) => el.username === spotlight),
+	const spotlightElement = totalElements.find(
+			(el) => el.username === spotlight
+		),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
+	const plural = elements.length > 1 ? 's' : ''
 	return (
 		<div>
 			<div css=" text-align: center">
 				<p role="heading" aria-level="2">
 					<Trans>Avancement du groupe</Trans>{' '}
 					<span role="status">
-						({elements.length} participant
-						{elements.length > 1 ? 's' : ''})
+						({elements.length} test{plural} complété{plural} sur{' '}
+						{totalElements.length})
 					</span>
 				</p>
 				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
@@ -187,36 +192,38 @@ export default ({
 							`}
 						>
 							<p>
-								Chaque bare verticale ☝️ est le score total d'un participant,
-								<br />
-								chaque disque 👇️ un score sur une catégorie.
+								<Trans i18nKey="site.publicodes.conferences.Stats.explication0">
+									Chaque barre verticale ☝️ est le score total d'un participant,
+									<br />
+									chaque disque 👇️ un score sur une catégorie.
+								</Trans>
 							</p>
-							{spotlightValue && spotlight === currentUser ? (
-								<span>
-									<Trans
-										i18nKey={'site.publicodes.conferences.Stats.explication1'}
-									>
-										<span role="status" css="background: #fff45f;">
-											En jaune
-										</span>{' '}
-										: ma simulation à {{ spotlightValue }} t.
-									</Trans>
-								</span>
-							) : (
-								<button
-									className="ui__ link-button"
-									onClick={() => setSpotlight(currentUser)}
-								>
-									<span css="background: #fff45f;">
-										<Trans>Afficher ma simulation</Trans>
-									</span>
-								</button>
-							)}
 						</div>
 
 						<CategoryStats
 							{...{ categories, maxCategory, spotlight, setSpotlight }}
 						/>
+						{spotlightValue && spotlight === currentUser ? (
+							<span>
+								<Trans
+									i18nKey={'site.publicodes.conferences.Stats.explication1'}
+								>
+									<span role="status" css="background: #fff45f;">
+										En jaune
+									</span>{' '}
+									: mon score de {{ spotlightValue }} t.
+								</Trans>
+							</span>
+						) : (
+							<button
+								className="ui__ link-button"
+								onClick={() => setSpotlight(currentUser)}
+							>
+								<span css="background: #fff45f;">
+									<Trans>Afficher mon score</Trans>
+								</span>
+							</button>
+						)}
 					</div>
 				)}
 			</div>
@@ -253,6 +260,5 @@ const filterElements = (rawElements, contextFilter) =>
 				value === '' ||
 				el.context[key].toLowerCase().includes(value.toLowerCase())
 		)
-		console.log(matches)
 		return matches.every((bool) => bool === true)
 	})
