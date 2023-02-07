@@ -7,6 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
+import { usePersistingState } from '../../../components/utils/persistState'
 import Navigation from '../Navigation'
 import { useProfileData } from '../Profil'
 import { ConferenceTitle } from './Conference'
@@ -259,15 +260,11 @@ const Results = ({ room, existContext, contextRules }) => {
 // In case of survey with context, we only display result with context filled in.
 
 export const getElements = (
-	answerMap,
+	rawElements,
 	threshold,
 	existContext,
 	progressMin
 ) => {
-	const rawElements = Object.values(answerMap).map((el) => ({
-		...el.data,
-		username: el.id,
-	}))
 	const elementsWithinThreshold = rawElements.filter(
 		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
 	)
