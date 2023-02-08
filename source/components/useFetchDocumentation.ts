@@ -7,30 +7,14 @@ export default () => {
 
 	useEffect(() => {
 		if (!branchData.loaded) return
-		if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
-			const req = require.context(
-				'raw-loader!../../nosgestesclimat/contenu-ecrit/',
-				true,
-				/\.(md)$/
-			)
-
-			const fileData = Object.fromEntries(
-				req
-					.keys()
-					.map((path) => [path.replace(/(\.\/|\.md)/g, ''), req(path).default])
-			)
-
-			setData(fileData)
-		} else {
-			fetch(branchData.deployURL + '/contenu-ecrit.json', {
-				mode: 'cors',
+		fetch(branchData.deployURL + '/contenu-ecrit.json', {
+			mode: 'cors',
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				setData(json)
 			})
-				.then((response) => response.json())
-				.then((json) => {
-					setData(json)
-				})
-		}
-	}, [branchData.deployURL, branchData.loaded, branchData.shouldUseLocalFiles])
+	}, [branchData.deployURL, branchData.loaded])
 
 	return data
 }

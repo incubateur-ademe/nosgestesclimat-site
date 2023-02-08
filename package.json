@@ -12,7 +12,8 @@
 	},
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
-		"start": "webpack serve --mode development --config webpack.dev.js",
+		"start": "webpack serve --mode development --config webpack.dev.js & yarn run start:model",
+		"start:model": "yarn --cwd ./nosgestesclimat/ compile-watch & http-server ./nosgestesclimat/public/ -p 8081 --cors",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
@@ -73,6 +74,7 @@
 		"eslint-plugin-react": "^7.30.1",
 		"eslint-webpack-plugin": "^3.2.0",
 		"file-loader": "^6.2.0",
+		"http-server": "^14.1.1",
 		"i18next-parser": "^6.5.0",
 		"intl-locales-supported": "^1.0.0",
 		"mock-local-storage": "^1.1.23",

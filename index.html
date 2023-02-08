@@ -92,7 +92,7 @@
 				const urlParams = new URLSearchParams(queryString)
 				const isInIframe = urlParams.get('iframe')
 
-				if (isInIframe) {
+				if (isInIframe != null) {
 					document.write('<script type="text/javascript" src="iframeResizer.contentWindow.min.js"></' + 'script>');
 				} 
 		</script>
