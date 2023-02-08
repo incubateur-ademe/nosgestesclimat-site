@@ -19,24 +19,19 @@ export default () => {
 		}
 	}, [searchPR, pullRequestNumber])
 
-	const deployURL = `https://${
-		pullRequestNumber
-			? `deploy-preview-${pullRequestNumber}--ecolab-data.netlify.app`
-			: `data.nosgestesclimat.fr`
-	}`
+	const deployURL = pullRequestNumber
+		? `https://deploy-preview-${pullRequestNumber}--ecolab-data.netlify.app`
+		: NODE_ENV === 'development'
+		? 'http://localhost:8081'
+		: `data.nosgestesclimat.fr`
+
 	// rules are loaded from data.nosgestesclimat.fr since 26th february 2023, but PR cannot
 
-	// this enables loading files from the side ../nosgestesclimat directory,
-	// BUT with a priority if a PR is being tested locally
-	// it lets us test and use this PR loading functionnality in local mode
-	const shouldUseLocalFiles = NODE_ENV === 'development' && !pullRequestNumber
-
-	const loaded = pullRequestNumber != undefined || shouldUseLocalFiles
+	const loaded = pullRequestNumber !== undefined
 
 	return {
 		deployURL,
 		pullRequestNumber,
-		shouldUseLocalFiles,
 		loaded,
 	}
 }
