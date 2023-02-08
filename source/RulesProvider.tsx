@@ -147,6 +147,7 @@ const EngineWrapper = ({ children }) => {
 		branchData.loaded,
 		branchData.shouldUseLocalFiles,
 		i18n.language,
+		currentRegionCode,
 		optimizedOption,
 		engineRequestedOnce,
 	])
