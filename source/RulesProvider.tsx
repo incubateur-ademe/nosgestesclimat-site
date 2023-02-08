@@ -15,9 +15,6 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
-//TODO Deactivated until https://github.com/EmileRolley/publiopti/issues/4 is fixed
-//import { constantFolding, getRawNodes } from 'publiopti'
-import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTranslationToBaseRules'
 import AnimatedLoader from './AnimatedLoader'
 import { getCurrentLangAbrv } from './locales/translation'
 
@@ -45,71 +42,18 @@ const EngineWrapper = ({ children }) => {
 			if (!branchData.loaded) return
 			if (!engineRequestedOnce) return
 
-			//This NODE_ENV condition has to be repeated here, for webpack when compiling. It can't interpret shouldUseLocalFiles even if it contains the same variable
-			if (NODE_ENV === 'development' && branchData.shouldUseLocalFiles) {
-				// TODO: find a way to use compressed models in dev mode
-				console.log(
-					'===== DEV MODE : the model is on your hard drive on ./nosgestesclimat ======='
-				)
-				// Rules are stored in nested yaml files
-				const req = require.context(
-					'../nosgestesclimat/data/',
-					true,
-					/\.(yaml)$/
-				)
-
-				const baseRules = req.keys().reduce((acc, key) => {
-					if (key.match(/translated-rules-.*yaml/)) {
-						// ignoring translating files.
-						return acc
-					}
-					const jsonRuleSet = req(key).default || {}
-					return { ...acc, ...jsonRuleSet }
-				}, {})
-
-				var rules = baseRules
-
-				const currentLang = i18n.language === 'en' ? 'en-us' : i18n.language
-				if (currentLang !== 'fr') {
-					const translatedRulesAttrs =
-						require(`../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
-					rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
-					if (!rules) {
-						console.error(
-							'Error occured while recompiling translated rules for:',
-							currentLang
-						)
-					}
-				}
-
-				if (optimizedOption) {
-					console.time('⚙️ folding rules locally')
-					const engine = new Engine(rules)
-					const foldedRules = constantFolding(engine)
-					console.timeEnd('⚙️ folding rules locally')
-					console.time('⚙️ re-parsing folded rules')
-					const sourceFoldedRules = getRawNodes(foldedRules)
-					if (active) {
-						dispatch({ type: 'SET_RULES', rules: sourceFoldedRules })
-					}
-				} else {
-					console.log('will set rules though', rules == null)
-					if (active) dispatch({ type: 'SET_RULES', rules })
-				}
-			} else {
-				const url =
-					branchData.deployURL +
-					// TODO: find a better way to manage 'en'
-					`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
-						optimizedOption ? '-opti' : ''
-					}.json`
-				console.log('fetching:', url)
-				fetch(url, { mode: 'cors' })
-					.then((response) => response.json())
-					.then((json) => {
-						if (active) dispatch({ type: 'SET_RULES', rules: json })
-					})
-			}
+			const url =
+				branchData.deployURL +
+				// TODO: find a better way to manage 'en'
+				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
+					optimizedOption ? '-opti' : ''
+				}.json`
+			console.log('fetching:', url)
+			fetch(url, { mode: 'cors' })
+				.then((response) => response.json())
+				.then((json) => {
+					if (active) dispatch({ type: 'SET_RULES', rules: json })
+				})
 		}
 		fetchAndSetRules()
 		return () => {
