@@ -27,16 +27,20 @@ cli.printChecksResultTableHeader(markdown)
 destLangs.forEach((targetLang) => {
 	const targetEntries = utils.readYAML(paths.FAQ[targetLang].withLock)
 
-	const nbMissingTranslations = srcYAML.reduce((nbMissing, refEntry) => {
+	const missingTranslations = srcYAML.reduce((acc, refEntry) => {
 		const isUpToDate = targetEntryIsUpToDate(
 			refEntry,
 			targetEntries[getIndexOfId(refEntry.id, targetEntries)]
 		)
-		return nbMissing + (isUpToDate ? 0 : 1)
-	}, 0)
+		!isUpToDate && acc.push(refEntry.id)
+		return acc
+	}, [])
+
+	const nbMissingTranslations = missingTranslations.length
 
 	cli.printChecksResult(
 		nbMissingTranslations,
+		missingTranslations,
 		"FAQ's questions",
 		targetLang,
 		markdown
