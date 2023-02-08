@@ -126,9 +126,9 @@ const EngineWrapper = ({ children }) => {
 				const url =
 					branchData.deployURL +
 					// TODO: find a better way to manage 'en'
-					`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
-						optimizedOption ? '-opti' : ''
-					}.json`
+					`/co2-model.${currentRegionCode}-lang.${
+						i18n.language === 'en' ? 'en-us' : currLangAbrv
+					}${optimizedOption ? '-opti' : ''}.json`
 				console.log('fetching:', url)
 				fetch(url, { mode: 'cors' })
 					.then((response) => response.json())
