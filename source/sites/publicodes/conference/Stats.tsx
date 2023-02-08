@@ -118,7 +118,7 @@ export default ({
 						</div>
 					</div>
 				</div>
-				{elements.length > 0 && (
+				{totalElements.length > 0 && (
 					<div>
 						<ul
 							title={t('Empreinte totale')}
@@ -134,7 +134,7 @@ export default ({
 								}
 							`}
 						>
-							{elements.map(({ total: value, username }) => (
+							{totalElements.map(({ total: value, username }) => (
 								<li
 									key={username}
 									css={`
