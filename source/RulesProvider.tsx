@@ -63,7 +63,6 @@ const EngineWrapper = ({ children }) => {
 		dispatch,
 		branchData.deployURL,
 		branchData.loaded,
-		branchData.shouldUseLocalFiles,
 		i18n.language,
 		optimizedOption,
 		engineRequestedOnce,
