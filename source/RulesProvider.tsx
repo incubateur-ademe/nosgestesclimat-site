@@ -124,11 +124,13 @@ const EngineWrapper = ({ children }) => {
 				}
 			} else {
 				const url =
+					currentRegionCode &&
+					currLangAbrv &&
 					branchData.deployURL +
-					// TODO: find a better way to manage 'en'
-					`/co2-model.${currentRegionCode}-lang.${
-						i18n.language === 'en' ? 'en-us' : currLangAbrv
-					}${optimizedOption ? '-opti' : ''}.json`
+						// TODO: find a better way to manage 'en'
+						`/co2-model.${currentRegionCode}-lang.${
+							i18n.language === 'en' ? 'en-us' : currLangAbrv
+						}${optimizedOption ? '-opti' : ''}.json`
 				console.log('fetching:', url)
 				fetch(url, { mode: 'cors' })
 					.then((response) => response.json())
