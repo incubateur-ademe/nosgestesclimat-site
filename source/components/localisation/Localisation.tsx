@@ -8,7 +8,6 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetLocalisation, setLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
-import { CardGrid } from '../../sites/publicodes/ListeActionPlus'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
@@ -25,7 +24,6 @@ export default ({ large = false }) => {
 	)
 
 	const supported = isSupportedRegion(localisation?.country?.code)
-
 	const currentLang = useSelector((state) => state.currentLang)
 	const countryName =
 		currentLang == 'Fr'
@@ -112,101 +110,50 @@ export default ({ large = false }) => {
 					</Trans>{' '}
 				</p>
 			)}
-			{large ? (
-				<CardGrid css="padding: 0; justify-content: center">
-					{supportedCountries.map((country) => {
-						const { nom, code, inactif } = country
-						return (
+			<details>
+				<summary>
+					<Trans>Choisir une autre région</Trans>
+				</summary>
+				<ul>
+					{supportedCountries.map(
+						({ nom, code, inactif }) =>
 							(NODE_ENV === 'development' || !inactif) && (
-								<li key={nom}>
-									<button
-										className="ui__ card box interactive light-border"
-										css={`
-											width: 7rem !important;
-											height: 6rem !important;
-											padding: 0.75rem 0.5rem 0.75rem 0.5rem !important;
-										`}
-										onClick={() => {
-											const newLocalisation = {
-												country: { name: nom, code },
-												userChosen: true,
-											}
-											dispatch(setLocalisation(newLocalisation))
-											setRead([])
-										}}
-									>
-										<img
-											src={getSupportedFlag(code) || getFlagImgSrc(code)}
-											aria-hidden="true"
-											css={`
-												height: 1rem;
-												margin: 0 0.3rem;
-												vertical-align: sub;
-											`}
-										/>
-										<div
-											css={`
-												color: var(--color);
-												font-size: 90%;
-											`}
-										>
-											<div>
-												{nom}
-												{inactif && '[dev]'}
-											</div>
-										</div>
-									</button>
+								<li
+									key={code}
+									onClick={() => {
+										const newLocalisation = {
+											country: { name: nom, code },
+											userChosen: true,
+										}
+										dispatch(setLocalisation(newLocalisation))
+										setRead([])
+									}}
+								>
+									<button>{capitalise0(nom)}</button> {inactif && '[dev]'}
 								</li>
 							)
-						)
-					})}
-				</CardGrid>
-			) : (
-				<details>
-					<summary>
-						<Trans>Choisir une autre région</Trans>
-					</summary>
-					<ul>
-						{supportedCountries.map(
-							({ nom, code, inactif }) =>
-								(NODE_ENV === 'development' || !inactif) && (
-									<li
-										key={code}
-										onClick={() => {
-											const newLocalisation = {
-												country: { name: nom, code },
-												userChosen: true,
-											}
-											dispatch(setLocalisation(newLocalisation))
-											setRead([])
-										}}
-									>
-										<button>{capitalise0(nom)}</button> {inactif && '[dev]'}
-									</li>
-								)
-						)}
-					</ul>
-					<IllustratedMessage
-						emoji="🌐"
-						message={
-							<div>
-								<p>
-									<Trans>
-										Envie de contribuer à une version pour votre région ?
-									</Trans>{' '}
-									<a
-										target="_blank"
-										href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
-									>
-										<Trans>Suivez le guide !</Trans>
-										<NewTabSvg />
-									</a>
-								</p>
-							</div>
-						}
-					/>
-				</details>
-			)}
+					)}
+				</ul>
+				<IllustratedMessage
+					emoji="🌐"
+					message={
+						<div>
+							<p>
+								<Trans>
+									Envie de contribuer à une version pour votre région ?
+								</Trans>{' '}
+								<a
+									target="_blank"
+									href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
+								>
+									<Trans>Suivez le guide !</Trans>
+									<NewTabSvg />
+								</a>
+							</p>
+						</div>
+					}
+				/>
+			</details>
 		</div>
 	)
 }
