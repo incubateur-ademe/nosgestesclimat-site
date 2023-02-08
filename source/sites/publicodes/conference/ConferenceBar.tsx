@@ -1,7 +1,6 @@
 import { correctValue, extractCategories } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useEffect } from 'react'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -9,12 +8,16 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import * as Y from 'yjs'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
+import { conferenceElementsAdapter } from './Conference'
 import { backgroundConferenceAnimation } from './conferenceStyle'
 import { computeHumanMean } from './Stats'
+import { CountDisc, CountSection, EmojiStyle } from './SurveyBar'
 import useYjs from './useYjs'
+import { defaultProgressMin, defaultThreshold, getElements } from './utils'
 
 export default () => {
-	const translation = useTranslation()
+	const translation = useTranslation(),
+		t = translation.t
 
 	const situation = useSelector(situationSelector),
 		engine = useEngine(),
@@ -50,6 +53,17 @@ export default () => {
 			simulationArray.map((el) => el.total)
 		)
 
+	const statElements = conferenceElementsAdapter(elements)
+	const rawNumber = getElements(statElements, defaultThreshold, null, 0).length
+
+	const completedTestNumber = getElements(
+		statElements,
+		defaultThreshold,
+		null,
+		defaultProgressMin
+	).length
+
+	//TODO mutualise this display part with SurveyBar
 	return (
 		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
 			<div
@@ -81,25 +95,23 @@ export default () => {
 					«&nbsp;{conference.room}&nbsp;»
 				</span>
 				<span>
-					{emoji('🧮')} {result}
+					<EmojiStyle>🧮</EmojiStyle>
+					{result}
 				</span>
-				<span>
-					{emoji('👥')}{' '}
-					<span
-						css={`
-							background: #78b159;
-							width: 1.5rem;
-							height: 1.5rem;
-							border-radius: 2rem;
-							display: inline-block;
-							line-height: 1.5rem;
-							color: var(--darkerColor);
-							text-align: center;
-						`}
-					>
-						{users.length}
-					</span>
-				</span>
+				<CountSection>
+					{rawNumber != null && (
+						<span title={t('Nombre total de participants')}>
+							<EmojiStyle>👥</EmojiStyle>
+							<CountDisc color="#55acee">{rawNumber}</CountDisc>
+						</span>
+					)}
+					{completedTestNumber != null && (
+						<span title={t('Nombre de tests terminés')}>
+							<EmojiStyle>✅</EmojiStyle>
+							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
+						</span>
+					)}
+				</CountSection>
 			</div>
 		</Link>
 	)

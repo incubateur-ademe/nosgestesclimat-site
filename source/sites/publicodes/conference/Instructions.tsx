@@ -44,11 +44,11 @@ export default ({
 					<p>
 						Le test d'empreinte climat est individuel, mais nous vous proposons
 						ici de le faire à plusieurs. Chacun sera derrière son écran, mais
-						visualisera en temps-réel les résultats des autres.
+						visualisera en temps réel les résultats des autres.
 					</p>
 					<p>
-						C'est l'occasion de se confronter aux autres et de réfléchir
-						ensemble aux enjeux de notre propre impact.
+						C'est l'occasion de réfléchir ensemble aux enjeux de notre propre
+						impact en comparant nos modes de vie.
 					</p>
 				</Trans>
 			)}
@@ -213,6 +213,7 @@ export default ({
 						/>
 						<ShareButton
 							text={t("Faites un test d'empreinte climat avec moi")}
+							label={t('Partager le lien')}
 							url={shareURL}
 							title={t('Nos Gestes Climat Conférence')}
 						/>
@@ -242,14 +243,6 @@ export default ({
 					</>
 				) : (
 					<>
-						<p>
-							<Trans
-								i18nKey={`publicodes.conference.Instructions.liensSimulationSondage`}
-							>
-								Les participants doivent venir faire leur simulation sur ce
-								lien.
-							</Trans>
-						</p>
 						<Link to={'/simulateur/bilan'}>
 							<button className="ui__ button plain">
 								{t(`Faites votre test`)}

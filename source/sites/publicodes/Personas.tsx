@@ -51,6 +51,13 @@ export default ({}) => {
 			<ScrollToTop />
 			<h1>Personas</h1>
 			<p>
+				<Trans>
+					Cette page vous permet de naviguer les parcours Nos Gestes Climat
+					comme si vous étiez l'un des profils types que nous avons listés.
+				</Trans>
+			</p>
+			<p>
+				➡️{' '}
 				<em>
 					<Trans>
 						Sélectionnez un persona et éventuellement un graphique à afficher.
@@ -58,6 +65,7 @@ export default ({}) => {
 				</em>
 			</p>
 			<form>
+				🧮
 				{Object.keys(visualisationChoices).map((name) => (
 					<label>
 						<input

@@ -1,21 +1,12 @@
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import ModelDemoBlock from './ModelDemoBlock'
+import { WithEngine } from '../../RulesProvider'
 import ModelIssuePreviews from './ModelIssuePreviews'
+import ModelStatsBlock from './ModelStatsBlock'
 
 // I18N : I didn't write this page as a .md file, even if it's easier to translate and edit, because of its highly interactive nature
 export default ({}) => {
-	const rules = useSelector((state) => state.rules)
-	const numberOfRules = Object.keys(rules).length
-	const numberOfQuestions = Object.values(rules).filter(
-		(el) => el && el.question
-	).length
-
-	console.log(rules, numberOfRules, numberOfQuestions)
-	const NumberOfRules = () => <span>{numberOfRules}</span>
-	const NumberOfQuestions = () => <span>{numberOfQuestions}</span>
 	return (
 		<div>
 			<ScrollToTop />
@@ -62,7 +53,9 @@ export default ({}) => {
 					sur les résultats finaux.
 				</Trans>
 			</p>
+			{/*
 			<ModelDemoBlock />
+			*/}
 			<p>
 				🕵️
 				<Trans i18nKey="model.modern4">
@@ -79,13 +72,10 @@ export default ({}) => {
 			<h2>
 				📚️ <Trans>Un modèle complet</Trans>
 			</h2>
-			<p>
-				<Trans i18nKey={'model.stats'}>
-					Le modèle comprend aujourd'hui <NumberOfRules /> règles de calcul.
-					Parmi elles, <NumberOfQuestions /> règles sont des questions à poser à
-					l'utilisateur pour calculer un résultat précis.
-				</Trans>
-			</p>
+
+			<WithEngine options={{ optimized: false, parsed: false }}>
+				<ModelStatsBlock />
+			</WithEngine>
 			<p>
 				<Trans i18nKey={'model.stats2'}>
 					Il est constitué d'une combinaison de centaines de modèles micro
@@ -111,14 +101,14 @@ export default ({}) => {
 					</a>
 					.
 				</Trans>
-				<p>
-					<Trans i18nKey={'model.active'}>
-						Voici à titre d'exemple quelques <em>issues</em> importantes du
-						moment parmi la centaine de sujets documentés.
-					</Trans>
-				</p>
-				<ModelIssuePreviews />
 			</p>
+			<p>
+				<Trans i18nKey={'model.active'}>
+					Voici à titre d'exemple quelques <em>issues</em> importantes du moment
+					parmi la centaine de sujets documentés.
+				</Trans>
+			</p>
+			<ModelIssuePreviews />
 		</div>
 	)
 }

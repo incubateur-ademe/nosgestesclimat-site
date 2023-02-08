@@ -16,6 +16,7 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 import { safeGetRule, splitName } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
+import Checkbox from '../ui/Checkbox'
 import './AnswerList.css'
 import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
@@ -62,16 +63,50 @@ export default function AnswerList() {
 			window.removeEventListener('keydown', handleKeyDown)
 		}
 	}, [situation])
+	const [everythingUnfolded, unfoldEverything] = useState(false)
 
 	return (
 		<div className="answer-list">
 			{!!foldedStepsToDisplay.length && (
 				<div>
-					<h2>
-						<Trans>📋 Mes réponses</Trans>
-					</h2>
+					<div
+						css={`
+							margin: 3rem 1rem 1rem 0;
+							display: flex;
+							align-items: center;
+							h2 {
+								margin: 0;
+								margin-right: 3rem;
+							}
+						`}
+					>
+						<h2>
+							<Trans>📋 Mes réponses</Trans>
+						</h2>
+
+						<div
+							css={`
+								display: flex;
+								align-items: center;
+							`}
+						>
+							<Checkbox
+								name="unfoldAnswerList"
+								id="unfoldAnswerList"
+								label="Tout déplier"
+								showLabel
+								checked={everythingUnfolded}
+								onChange={() => unfoldEverything(!everythingUnfolded)}
+							/>
+						</div>
+					</div>
 					<CategoryTable
-						{...{ steps: foldedStepsToDisplay, categories, engine }}
+						{...{
+							steps: foldedStepsToDisplay,
+							categories,
+							engine,
+							everythingUnfolded,
+						}}
 					/>
 				</div>
 			)}
@@ -79,7 +114,7 @@ export default function AnswerList() {
 	)
 }
 
-const CategoryTable = ({ steps, categories, engine }) =>
+const CategoryTable = ({ steps, categories, engine, everythingUnfolded }) =>
 	categories.map((category) => {
 		const categoryRules = steps.filter((question) =>
 			question.dottedName.includes(category.dottedName)
@@ -95,12 +130,13 @@ const CategoryTable = ({ steps, categories, engine }) =>
 					rule: category,
 					engine,
 					level: 1,
+					everythingUnfolded,
 				}}
 			/>
 		)
 	})
 
-const RecursiveStepsTable = ({ rules, engine, level }) => {
+const RecursiveStepsTable = ({ rules, engine, level, everythingUnfolded }) => {
 	const byParent = rules.reduce((memo, next) => {
 		const split = splitName(next.dottedName),
 			parent = split.slice(0, level + 1).join(' . ')
@@ -131,6 +167,7 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 								rule: engine.getRule(key),
 								engine,
 								level: level + 1,
+								everythingUnfolded,
 							}}
 						/>
 					)
@@ -146,8 +183,9 @@ const RecursiveStepsTable = ({ rules, engine, level }) => {
 	)
 }
 
-const SubCategory = ({ rule, rules, engine, level }) => {
-	const [open, setOpen] = useState(false)
+const SubCategory = ({ rule, rules, engine, level, everythingUnfolded }) => {
+	const [localOpen, setOpen] = useState(false),
+		open = everythingUnfolded || localOpen
 
 	return (
 		<div>
@@ -190,7 +228,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 				`}
 			>
 				<SafeCategoryImage element={rule} whiteBackground={level > 1} />
-				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.tile}</h3>}
+				{level === 1 ? <h2>{rule.title}</h2> : <h3>{rule.title}</h3>}
 				<div css="margin-left: auto !important; > * {margin: 0 .4rem}; img {font-size: 100%}">
 					<small>
 						{rules.length} {level === 1 && emoji('💬')}
@@ -204,6 +242,7 @@ const SubCategory = ({ rule, rules, engine, level }) => {
 						rules,
 						engine,
 						level,
+						everythingUnfolded,
 					}}
 				/>
 			)}

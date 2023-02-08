@@ -7,6 +7,8 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import AnimatedLoader from '../../AnimatedLoader'
+import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import TranslationAlertBanner from '../../components/TranslationAlertBanner'
@@ -25,21 +27,24 @@ import {
 	getLangInfos,
 	Lang,
 } from './../../locales/translation'
-import Actions from './Actions'
-import Fin from './fin'
 import Landing from './Landing'
-import Model from './Model'
 import Navigation from './Navigation'
 import About from './pages/About'
 import Diffuser from './pages/Diffuser'
-import PetrogazLanding from './pages/PetrogazLanding'
-import Personas from './Personas.tsx'
 import Profil from './Profil.tsx'
-import Simulateur from './Simulateur'
 import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
 
-const Documentation = React.lazy(() => import('./pages/Documentation'))
+// All those lazy components, could be probably be handled another more consise way
+// Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
+
+const ActionsLazy = React.lazy(() => import('./Actions'))
+const FinLazy = React.lazy(() => import('./fin'))
+const SimulateurLazy = React.lazy(() => import('./Simulateur'))
+const PetrogazLandingLazy = React.lazy(() => import('./pages/PetrogazLanding'))
+const ModelLazy = React.lazy(() => import('./Model'))
+const PersonasLazy = React.lazy(() => import('./Personas'))
+const DocumentationLazy = React.lazy(() => import('./pages/Documentation'))
 const TutorialLazy = React.lazy(() => import('./Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
@@ -103,7 +108,7 @@ export default function Root({}) {
 	)
 }
 
-const isFluidLayout = (encodedPathname) => {
+export const isFluidLayout = (encodedPathname) => {
 	const pathname = decodeURIComponent(encodedPathname)
 
 	return (
@@ -151,68 +156,68 @@ const Main = ({}) => {
 	const fluidLayout = isFluidLayout(location.pathname)
 
 	return (
-		<div
-			css={`
-				@media (min-width: 800px) {
-					display: flex;
-					min-height: 100vh;
-					padding-top: 1rem;
-				}
+		<>
+			<div
+				css={`
+					@media (min-width: 800px) {
+						display: flex;
+						min-height: 100vh;
+						padding-top: 1rem;
+					}
 
-				@media (min-width: 1200px) {
-					${!fluidLayout &&
-					`
+					@media (min-width: 1200px) {
+						${!fluidLayout &&
+						`
 						transform: translateX(-4vw);
 						`}
-				}
-				${!fluidLayout && !isTuto && sessionBarMargin}
-			`}
-			className={fluidLayout ? '' : 'ui__ container'}
-		>
-			<Navigation fluidLayout={fluidLayout} />
-			<main
-				tabIndex="0"
-				id="mainContent"
-				css={`
-					outline: none !important;
-					padding-left: 0rem;
-					@media (min-width: 800px) {
-						flex-grow: 1;
-						${!isHomePage ? 'padding-left: 0.6rem;' : ''}
 					}
+					${!fluidLayout && !isTuto && sessionBarMargin}
 				`}
+				className={fluidLayout ? '' : 'ui__ container'}
 			>
-				{!isHomePage && !isTuto && <LocalisationMessage />}
+				<Navigation fluidLayout={fluidLayout} />
+				<main
+					tabIndex="0"
+					id="mainContent"
+					css={`
+						outline: none !important;
+						padding-left: 0rem;
+						overflow: auto;
+						@media (min-width: 800px) {
+							flex-grow: 1;
+							${!isHomePage ? 'padding-left: 0.6rem;' : ''}
+						}
+					`}
+				>
+					{!isHomePage && !isTuto && <LocalisationMessage />}
 
-				{fluidLayout && (
-					<div
-						css={`
-							margin: 0 auto;
-							@media (max-width: 800px) {
-								margin-top: 0.6rem;
-							}
-							@media (min-width: 1200px) {
-							}
-						`}
-					>
-						<Logo showText size={largeScreen ? 'large' : 'medium'} />
-					</div>
-				)}
-				{isHomePage && <LangSwitcher from="landing" />}
-				{Lang.Default !== currentLangState && (
-					<TranslationAlertBanner isBelow={isHomePage} />
-				)}
-				<Router />
-			</main>
-		</div>
+					{fluidLayout && (
+						<div
+							css={`
+								margin: 0 auto;
+								@media (max-width: 800px) {
+									margin-top: 0.6rem;
+								}
+								@media (min-width: 1200px) {
+								}
+							`}
+						>
+							<Logo showText size={largeScreen ? 'large' : 'medium'} />
+						</div>
+					)}
+					{isHomePage && <LangSwitcher from="landing" />}
+					{Lang.Default !== currentLangState && (
+						<TranslationAlertBanner isBelow={isHomePage} />
+					)}
+					<Router />
+				</main>
+			</div>
+			<Footer />
+		</>
 	)
 }
 
-export const Loading = () => (
-	<div>
-		<Trans>Chargement...</Trans>
-	</div>
-)
+export const Loading = AnimatedLoader
 
 const Router = ({}) => {
 	return (
@@ -221,29 +226,29 @@ const Router = ({}) => {
 			<Route
 				path="documentation/*"
 				element={
-					<Suspense fallback={<Loading />}>
-						<WithEngine>
-							<Documentation />
-						</WithEngine>
-					</Suspense>
+					<WithEngine options={{ parsed: false, optimized: false }}>
+						<Suspense fallback={<Loading />}>
+							<DocumentationLazy />
+						</Suspense>
+					</WithEngine>
 				}
 			/>
 			<Route
 				path={encodeURIComponent('modèle')}
 				element={
 					<Suspense fallback={<Loading />}>
-						<WithEngine>
-							<Model />
-						</WithEngine>
+						<ModelLazy />
 					</Suspense>
 				}
 			/>
 			<Route
 				path="simulateur/*"
 				element={
-					<WithEngine>
-						<Simulateur />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<SimulateurLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
@@ -257,25 +262,31 @@ const Router = ({}) => {
 			<Route
 				path="/fin/*"
 				element={
-					<WithEngine>
-						<Fin />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<FinLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
 				path="/personas"
 				element={
-					<WithEngine>
-						<Personas />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<PersonasLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
 				path="/actions/*"
 				element={
-					<WithEngine>
-						<Actions />
-					</WithEngine>
+					<Suspense fallback={<Loading />}>
+						<WithEngine>
+							<ActionsLazy />
+						</WithEngine>
+					</Suspense>
 				}
 			/>
 			<Route
@@ -407,7 +418,11 @@ const Router = ({}) => {
 			/>
 			<Route
 				path={`/${encodeURIComponent('pétrole-et-gaz')}`}
-				element={<PetrogazLanding />}
+				element={
+					<Suspense fallback={<Loading />}>
+						<PetrogazLandingLazy />
+					</Suspense>
+				}
 			/>
 			<Route path="*" element={<Route404 />} />
 		</Routes>

@@ -2,7 +2,7 @@ import React from 'react'
 import './index.css'
 
 export default function Checkbox(
-	props: React.ComponentProps<'input'> & { label?: string }
+	props: React.ComponentProps<'input'> & { label?: string; showLabel?: boolean }
 ) {
 	return (
 		<>
@@ -32,7 +32,17 @@ export default function Checkbox(
 						<polyline points="3 11 8 14 14 5" />
 					</svg>
 				</div>
-				{props.label && <span className="visually-hidden">{props.label}</span>}
+				{props.label && (
+					<span
+						className={!props.showLabel ? 'visually-hidden' : ''}
+						css={`
+							margin-left: 0.4rem;
+							cursor: pointer;
+						`}
+					>
+						{props.label}
+					</span>
+				)}
 			</label>
 		</>
 	)

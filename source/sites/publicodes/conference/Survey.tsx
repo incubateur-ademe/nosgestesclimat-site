@@ -1,23 +1,24 @@
-import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
+import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
+import Meta from '../../../components/utils/Meta'
+import { usePersistingState } from '../../../components/utils/persistState'
+import Navigation from '../Navigation'
+import { useProfileData } from '../Profil'
 import { ConferenceTitle } from './Conference'
+import ContextConversation from './ContextConversation'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
+import NoSurveyCreatedWarning from './NoSurveyCreatedWarning'
+import NoTestMessage from './NoTestMessage'
 import Stats from './Stats'
 import { answersURL, surveysURL } from './useDatabase'
-import { defaultThreshold, defaultProgressMin } from './utils'
-import ContextConversation from './ContextConversation'
-import { useProfileData } from '../Profil'
-import NoTestMessage from './NoTestMessage'
-import Meta from '../../../components/utils/Meta'
-import Navigation from '../Navigation'
-import { Trans, useTranslation } from 'react-i18next'
+import { defaultProgressMin, defaultThreshold } from './utils'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -26,7 +27,7 @@ export default () => {
 		{}
 	)
 	const [contextRules, setContextRules] = useState()
-	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(false)
+	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(null)
 	const dispatch = useDispatch()
 
 	const { room } = useParams()
@@ -83,6 +84,11 @@ export default () => {
 				}
 			/>
 			<h1>Sondage</h1>
+			{isRegisteredSurvey == false && (
+				<div css="margin-bottom: 3rem">
+					<NoSurveyCreatedWarning />
+				</div>
+			)}
 			<ConferenceTitle>
 				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
@@ -115,7 +121,7 @@ export default () => {
 					)}
 				</div>
 			)}
-			{survey && (
+			{survey && survey.room === room && (
 				<>
 					<Instructions {...{ room, mode: 'sondage', started: true }} />
 					<div>
@@ -218,6 +224,12 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 	)
 }
 
+export const surveyElementsAdapter = (items) =>
+	Object.values(items).map((el) => ({
+		...el.data,
+		username: el.id,
+	}))
+
 const Results = ({ room, existContext, contextRules }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
@@ -225,10 +237,12 @@ const Results = ({ room, existContext, contextRules }) => {
 	const answerMap = survey.answers
 	const username = cachedSurveyIds[survey.room]
 	if (!answerMap || !Object.values(answerMap) || !username) return null
+	const elements = surveyElementsAdapter(answerMap)
 	return (
 		<Stats
+			totalElements={getElements(elements, threshold, existContext, 0)}
 			elements={getElements(
-				answerMap,
+				elements,
 				threshold,
 				existContext,
 				defaultProgressMin
@@ -246,17 +260,13 @@ const Results = ({ room, existContext, contextRules }) => {
 // In case of survey with context, we only display result with context filled in.
 
 export const getElements = (
-	answerMap,
+	rawElements,
 	threshold,
 	existContext,
 	progressMin
 ) => {
-	const rawElements = Object.values(answerMap).map((el) => ({
-		...el.data,
-		username: el.id,
-	}))
 	const elementsWithinThreshold = rawElements.filter(
-		(el) => el.total > 0 && el.total < threshold && el.progress > progressMin
+		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
 	)
 	const elements = existContext
 		? elementsWithinThreshold.filter(

@@ -15,6 +15,7 @@ entries:
   'Actions écartées :': 'Discarded actions:'
   Afficher l'explication du score: Show score explanation
   Afficher ma simulation: Show my simulation
+  Afficher mon score: Show my score
   Agir: Act
   Aide à la saisie: Input help
   Ajouter: Add
@@ -33,6 +34,9 @@ entries:
   Ce guide n'existe pas encore: This guide does not exist yet
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'This contribution will be public: do not put sensitive information in it'
   Cette fiche détaillée n'existe pas encore: This detailed sheet does not exist yet
+  Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.:
+    This page allows you to navigate the Nos Gestes Climat paths as if you were
+    one of the typical profiles we have listed.
   Chargement: Loading
   Chargement du modèle de calcul...: Loading the calculation model...
   Chargement...: Loading...
@@ -154,14 +158,17 @@ entries:
   'Mon total :': 'My total:'
   Motif: Reason
   Moyenne: Average
+  Moyenne du groupe: Group average
   Moyenne française: French average
   "N'afficher que les questions ": 'Display only the questions '
   Naviguez vers une question précise: Navigate to a specific question
   Nbre de personnes: Number of people
   Nom de la salle: Name of the room
   Nombre de personnes: Number of people
+  Nombre de tests terminés: Number of completed tests
   Nombre de visites pour les: Number of visits for
   Nombre de visites pour les 60 derniers jours: Number of visits for the last 60 days
+  Nombre total de participants: Total number of participants
   Non: No
   Non applicable: Not applicable
   Nos Gestes Climat Conférence: Our Climate Action Conference
@@ -170,6 +177,7 @@ entries:
   Notre serveur semble indisponible: Our server seems to be unavailable
   Nous avons détecté que vous faites cette simulation depuis: We have detected that you are doing this simulation from
   Nouveautés: News
+  'Nouveautés - ': 'New products - '
   'Nouveautés - version ': "What's new - version "
   On la mesure comment ?: How is it measured?
   On vous propose une sélection graduelle de gestes.: We propose a gradual selection of gestures.
@@ -180,6 +188,7 @@ entries:
   Page de fin de simulation principale: Main simulation end page
   Page de fin de simulation pétrole: End of oil simulation page
   Page profil: Profile page
+  Partager le lien: Share the link
   Partager mes résultats: Share my results
   Participer au sondage: Participate in the survey
   'Participez au sondage ': 'Take the survey '
@@ -256,6 +265,7 @@ entries:
   Vous avez du temps pour nous aider à traduire: If you have some time to help us translate
   Vous avez juste 30 secondes pour nous aider: If you only have 30 seconds to help us
   Vous avez terminé le test 👏: You have completed the test 👏
+  Vous avez été invité à un sondage Nos Gestes Climat nommé: You have been invited to an Nos Gestes Climat survey called
   Vous avez été invités à un sondage Nos Gestes Climat nommé: You have been invited to an Our Climate Action survey called
   Vous n'avez pas encore fait le test.: You haven't taken the test yet.
   Week-end: Weekend
@@ -264,8 +274,8 @@ entries:
   catégorie complétée: completed category
   cet article: this article
   cette page: this page
-  components.NewsBanner.miseAJourDate: Last updated on {{date}}
-  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Last update {{date}}
+  components.NewsBanner.miseAJourDate.lock: Dernière mise à jour {{date}}
   components.ScoreExplanation.text.p1:
     🧮 This is your starting score, calculated
     from pre-assigned answers to each question! It will change with each new
@@ -587,8 +597,9 @@ entries:
   pages.News.determinant: of
   pages.News.determinant.lock: of
   pages.News.premierParagraphe: We are continuously improving the site based on
-    your feedback. Discover here the
-  pages.News.premierParagraphe.lock: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les
+    your feedback. Discover here the latest news.
+  pages.News.premierParagraphe.lock: Nous améliorons le site en continu à partir
+    de vos retours. Découvrez ici les dernières nouveautés.
   participant: participant
   pleins: full tanks
   pleins de pétrole: full tanks of oil
@@ -825,6 +836,12 @@ entries:
     cela fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de
     conférence sera indexé dans <2>les statistiques d'utilisation</2> de Nos
     Gestes Climat. </1>"
+  publicodes.conference.DataWarning.explanation: 'The principle is simple: each
+    person takes a test on his or her own device, and the results are shared in
+    real time with the other participants in the survey.'
+  publicodes.conference.DataWarning.explanation.lock: 'Le principe est simple :
+    chacun fait son test sur son appareil, et les résultats sont mis en commun
+    en temps réel avec les autres participants du sondage.'
   publicodes.conference.DataWarning.viePrivée:
     '🕵 By participating, you agree to
     the <1>anonymous</1> collection of your aggregated simulation results on our
@@ -901,7 +918,7 @@ entries:
     court, il y a un petit risque que des inconnus puissent le deviner
   publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres: 💡 Your room name can only contain letters, numbers and dashes
   publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres.lock:
-    💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
+    💡 Votre nom de salle ne peut que contenir des lettres, des chiffres et des
     tirets
   publicodes.conference.NoTestMessage.bienvenue:
     Welcome to the group mode of Our
@@ -919,6 +936,20 @@ entries:
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: To open it with <2>LibreOffice</2>, it is automatic.
   publicodes.conference.Survey.libreOffice.lock: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
+  publicodes.conference.Survey.notCreatedWarning1: Please note that there is no
+    such poll at this address. To launch a poll, the organizer must first create
+    it on the <2>group mode</2> page.
+  publicodes.conference.Survey.notCreatedWarning1.lock: Attention, il n'existe
+    aucun ce sondage à cette adresse. Pour lancer un sondage, l'organisateur
+    doit d'abord le créer sur la page du <2>mode groupe</2>.
+  publicodes.conference.Survey.notCreatedWarning2:
+    Perhaps you made a typo in the
+    survey address? Remember to use the correct capitalization, copy and paste
+    the exact address or use the QR code.
+  publicodes.conference.Survey.notCreatedWarning2.lock: Peut-être avez-vous fait
+    une faute de frappe dans l'adresse du sondage ? Pensez notamment à bien
+    respecter les majuscules, à copier coller l'adresse exacte ou à utiliser le
+    QR code.
   publicodes.conference.Survey.resultat:
     The results on the view page only include
     participants who completed <1>at least 10% of the test</1>. The CSV, on the
@@ -984,8 +1015,13 @@ entries:
   simulation-end.title.lock: 🌟 Vous avez complété cette simulation
   simulations: simulations
   simulations terminées depuis le lancement: simulations completed since the launch
-  site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my simulation at {{spotlightValue}} t.'
-  site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
+  site.publicodes.conferences.Stats.explication0: Each vertical bar ☝️ is the
+    total score of a participant,<1></1>each disc 👇️ a score on a category.
+  site.publicodes.conferences.Stats.explication0.lock: Chaque barre verticale ☝️
+    est le score total d'un participant,<1></1>chaque disque 👇️ un score sur
+    une catégorie.
+  site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my score of {{spotlightValue}} t.'
+  site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : mon score de {{spotlightValue}} t.'
   sites.publicodes.Landing.description: In 10 minutes, get an estimate of your carbon footprint.
   sites.publicodes.Landing.description.lock:
     En 10 minutes, obtenez une estimation

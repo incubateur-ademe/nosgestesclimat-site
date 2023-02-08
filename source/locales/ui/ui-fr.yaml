@@ -13,6 +13,7 @@ entries:
   'Actions écartées :': 'Actions écartées :'
   Afficher l'explication du score: Afficher l'explication du score
   Afficher ma simulation: Afficher ma simulation
+  Afficher mon score: Afficher mon score
   Agir: Agir
   Aide à la saisie: Aide à la saisie
   Ajouter: Ajouter
@@ -31,6 +32,9 @@ entries:
   Ce guide n'existe pas encore: Ce guide n'existe pas encore
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
   Cette fiche détaillée n'existe pas encore: Cette fiche détaillée n'existe pas encore
+  Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.:
+    Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si
+    vous étiez l'un des profils types que nous avons listés.
   Chargement: Chargement
   Chargement du modèle de calcul...: Chargement du modèle de calcul...
   Chargement...: Chargement...
@@ -150,14 +154,17 @@ entries:
   'Mon total :': 'Mon total :'
   Motif: Motif
   Moyenne: Moyenne
+  Moyenne du groupe: Moyenne du groupe
   Moyenne française: Moyenne française
   "N'afficher que les questions ": "N'afficher que les questions "
   Naviguez vers une question précise: Naviguez vers une question précise
   Nbre de personnes: Nbre de personnes
   Nom de la salle: Nom de la salle
   Nombre de personnes: Nombre de personnes
+  Nombre de tests terminés: Nombre de tests terminés
   Nombre de visites pour les: Nombre de visites pour les
   Nombre de visites pour les 60 derniers jours: Nombre de visites pour les 60 derniers jours
+  Nombre total de participants: Nombre total de participants
   Non: Non
   Non applicable: Non applicable
   Nos Gestes Climat Conférence: Nos Gestes Climat Conférence
@@ -166,6 +173,7 @@ entries:
   Notre serveur semble indisponible: Notre serveur semble indisponible
   Nous avons détecté que vous faites cette simulation depuis: Nous avons détecté que vous faites cette simulation depuis
   Nouveautés: Nouveautés
+  'Nouveautés - ': 'Nouveautés - '
   'Nouveautés - version ': 'Nouveautés - version '
   On la mesure comment ?: On la mesure comment ?
   On vous propose une sélection graduelle de gestes.: On vous propose une sélection graduelle de gestes.
@@ -176,6 +184,7 @@ entries:
   Page de fin de simulation principale: Page de fin de simulation principale
   Page de fin de simulation pétrole: Page de fin de simulation pétrole
   Page profil: Page profil
+  Partager le lien: Partager le lien
   Partager mes résultats: Partager mes résultats
   Participer au sondage: Participer au sondage
   'Participez au sondage ': 'Participez au sondage '
@@ -252,7 +261,7 @@ entries:
   Vous avez du temps pour nous aider à traduire: Vous avez du temps pour nous aider à traduire
   Vous avez juste 30 secondes pour nous aider: Vous avez juste 30 secondes pour nous aider
   Vous avez terminé le test 👏: Vous avez terminé le test 👏
-  Vous avez été invités à un sondage Nos Gestes Climat nommé: Vous avez été invités à un sondage Nos Gestes Climat nommé
+  Vous avez été invité à un sondage Nos Gestes Climat nommé: Vous avez été invité à un sondage Nos Gestes Climat nommé
   Vous n'avez pas encore fait le test.: Vous n'avez pas encore fait le test.
   Week-end: Week-end
   actions choisies: actions choisies
@@ -260,7 +269,7 @@ entries:
   catégorie complétée: catégorie complétée
   cet article: cet article
   cette page: cette page
-  components.NewsBanner.miseAJourDate: Dernière mise à jour le {{date}}
+  components.NewsBanner.miseAJourDate: Dernière mise à jour {{date}}
   components.ScoreExplanation.text.p1: 🧮 Voici votre score de départ, calculé à
     partir de réponses attribuées à l'avance à chaque question ! Il évoluera à
     chaque nouvelle réponse.
@@ -434,7 +443,9 @@ entries:
   ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
   ou: ou
   pages.News.determinant: of
-  pages.News.premierParagraphe: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les
+  pages.News.premierParagraphe:
+    Nous améliorons le site en continu à partir de vos
+    retours. Découvrez ici les dernières nouveautés.
   participant: participant
   pleins: pleins
   pleins de pétrole: pleins de pétrole
@@ -561,6 +572,10 @@ entries:
     fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de conférence
     sera indexé dans <2>les statistiques d'utilisation</2> de Nos Gestes Climat.
     </1>"
+  publicodes.conference.DataWarning.explanation:
+    'Le principe est simple : chacun
+    fait son test sur son appareil, et les résultats sont mis en commun en temps
+    réel avec les autres participants du sondage.'
   publicodes.conference.DataWarning.viePrivée: "🕵 En participant, vous acceptez
     la collecte <1>anonyme</1> de vos résultats agrégés de simulation sur notre
     serveur : l'empreinte climat totale et les catégories (transport, logement,
@@ -587,9 +602,9 @@ entries:
     page
   publicodes.conference.Instructions.intro: <0>Le test d'empreinte climat est
     individuel, mais nous vous proposons ici de le faire à plusieurs. Chacun
-    sera derrière son écran, mais visualisera en temps-réel les résultats des
-    autres.</0><1>C'est l'occasion de se confronter aux autres et de réfléchir
-    ensemble aux enjeux de notre propre impact.</1>
+    sera derrière son écran, mais visualisera en temps réel les résultats des
+    autres.</0><1>C'est l'occasion de réfléchir ensemble aux enjeux de notre
+    propre impact en comparant nos modes de vie.</1>
   publicodes.conference.Instructions.liensSimulationConference:
     Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
     votre côté votre simulation.
@@ -600,7 +615,7 @@ entries:
   publicodes.conference.NamingBlock.nomSalleCourt: ⚠️ Votre nom de salle est
     court, il y a un petit risque que des inconnus puissent le deviner
   publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres:
-    💡 Votre nom de salle ne peut que contenir des lettres, des chifffres et des
+    💡 Votre nom de salle ne peut que contenir des lettres, des chiffres et des
     tirets
   publicodes.conference.NoTestMessage.bienvenue:
     Bienvenue dans le mode groupe de
@@ -611,6 +626,13 @@ entries:
     un tableur vide, puis Données > À partir d''un fichier texte / CSV.
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
+  publicodes.conference.Survey.notCreatedWarning1: Attention, il n'existe aucun
+    sondage à cette adresse. Pour lancer un sondage, l'organisateur doit d'abord
+    le créer sur la page du <2>mode groupe</2>.
+  publicodes.conference.Survey.notCreatedWarning2: Peut-être avez-vous fait une
+    faute de frappe dans l'adresse du sondage ? Pensez notamment à bien
+    respecter les majuscules, à copier coller l'adresse exacte ou à utiliser le
+    QR code.
   publicodes.conference.Survey.resultat:
     Les résultats de la page de visualisation
     ne prennent en compte que les participants ayant rempli <1>au moins 10% du
@@ -650,7 +672,11 @@ entries:
   simulation-end.title: 🌟 Vous avez complété cette simulation
   simulations: simulations
   simulations terminées depuis le lancement: simulations terminées depuis le lancement
-  site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : ma simulation à {{spotlightValue}} t.'
+  site.publicodes.conferences.Stats.explication0:
+    Chaque barre verticale ☝️ est le
+    score total d'un participant,<1></1>chaque disque 👇️ un score sur une
+    catégorie.
+  site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : mon score de {{spotlightValue}} t.'
   sites.publicodes.Landing.description: En 10 minutes, obtenez une estimation de
     votre empreinte carbone de consommation.
   sites.publicodes.LandingExplanations.faqLink: |-

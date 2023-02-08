@@ -44,7 +44,7 @@ const newsURL = Object.values(data)
 fs.appendFileSync(destinationURL, newsURL + '\n', 'utf8')
 console.log('Sitemap mis à jour avec les dernières nouveautés :)')
 
-fetch('https://ecolab-data.netlify.app/co2-fr.json')
+fetch('https://data.nosgestesclimat.fr/co2-fr.json')
 	.then((res) => res.json())
 	.then((json) => {
 		const documentationLines = Object.keys(json).map(

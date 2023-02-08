@@ -15,12 +15,20 @@ export default ({ room }) => {
 					<div>
 						<p>
 							<Trans>
-								Vous avez été invités à un sondage Nos Gestes Climat nommé
+								Vous avez été invité à un sondage Nos Gestes Climat nommé
 							</Trans>{' '}
 							<span css="background: var(--color); color: var(--textColor); padding: 0 .2rem">
 								{room}
 							</span>
 							.
+						</p>
+						<p>
+							📘{' '}
+							<Trans i18nKey={'publicodes.conference.DataWarning.explanation'}>
+								Le principe est simple : chacun fait son test sur son appareil,
+								et les résultats sont mis en commun en temps réel avec les
+								autres participants du sondage.
+							</Trans>
 						</p>
 						<p>
 							<Trans i18nKey={'publicodes.conference.DataWarning.viePrivée'}>

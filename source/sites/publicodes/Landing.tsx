@@ -10,8 +10,6 @@ import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvid
 import Meta from '../../components/utils/Meta'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
-import DocumentationButton from './DocumentationButton'
-import LandingContent from './LandingContent'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 const LazyIllustration = React.lazy(
@@ -197,6 +195,8 @@ export default () => {
 				<a href="https://datagir.ademe.fr">
 					<img
 						css="height: 3.4rem; width: auto;"
+						width="120"
+						height="60"
 						src="https://datagir.ademe.fr/logo.jpg"
 					/>
 				</a>
@@ -212,93 +212,6 @@ export default () => {
 			</div>
 
 			{!isIframe && <LandingExplanations />}
-
-			<LandingContent background footer>
-				<footer>
-					{!isIframe && ( // would be a repetition with header logos
-						<div
-							css={`
-								background: var(--lightestColor);
-								display: flex;
-								align-items: center;
-								justify-content: center;
-								flex-wrap: wrap;
-								margin: 1rem;
-								img {
-									margin: 0 0.6rem;
-								}
-							`}
-						>
-							<img
-								src="/images/logo-france-relance.svg"
-								alt="Logo de France Relance"
-								css="width: 5rem; height: auto; margin-right: .6rem"
-								width="96"
-								height="86"
-							/>
-
-							<div
-								css={`
-									display: flex;
-									align-items: center;
-									flex-direction: column;
-									font-size: 90%;
-									font-weight: bold;
-								`}
-							>
-								<img
-									src="/images/union-européenne.svg"
-									alt="Logo de l'Union Européenne"
-									css="width: 5rem; height: auto; margin-right: .6rem;"
-									width="96"
-									height="86"
-								/>
-								<span>NextGenerationEU</span>
-							</div>
-						</div>
-					)}
-					<div
-						css={`
-							display: flex;
-							justify-content: center;
-							align-items: center;
-							flex-wrap: wrap;
-							> * {
-								margin: 0 0.6rem;
-							}
-							img {
-								font-size: 120%;
-							}
-						`}
-					>
-						<Link to="/à-propos">
-							<Trans>À propos</Trans>
-						</Link>
-						<DocumentationButton />
-						<Link to="/diffuser">
-							<Trans>Diffuser</Trans>
-						</Link>
-						<Link to="/nouveautés">
-							<Trans>Nouveautés</Trans>
-						</Link>
-					</div>
-					<div
-						css={`
-							display: flex;
-							justify-content: center;
-							align-items: center;
-							> * {
-								margin: 0 0.6rem;
-								font-size: 80%;
-							}
-						`}
-					>
-						<Link to="/accessibilite" style={{ textDecoration: 'none' }}>
-							<Trans>Accessibilité : partiellement conforme</Trans>
-						</Link>
-					</div>
-				</footer>
-			</LandingContent>
 		</div>
 	)
 }
