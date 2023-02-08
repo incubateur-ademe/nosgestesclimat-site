@@ -21,6 +21,9 @@ import { addTranslationToBaseRules } from '../nosgestesclimat/scripts/i18n/addTr
 import AnimatedLoader from './AnimatedLoader'
 import { getCurrentLangAbrv } from './locales/translation'
 
+import { isSupportedRegion } from 'Components/localisation/useLocalisation'
+import { addRegionToBaseRules } from '../nosgestesclimat/scripts/i18n/addRegionToBaseRules'
+
 export default ({ children }) => {
 	return <EngineWrapper>{children}</EngineWrapper>
 }
@@ -29,8 +32,12 @@ const EngineWrapper = ({ children }) => {
 	const engineState = useSelector((state) => state.engineState)
 	const engineRequestedOnce = engineState.state !== null
 	const rules = useSelector((state) => state.rules)
+
 	const dispatch = useDispatch()
+
 	const branchData = useBranchData()
+	const localisation = useSelector((state) => state.localisation)
+	const currentRegionCode = localisation?.country?.code
 
 	const optimizedOption = engineState?.options?.optimized
 	const parsedOption = engineState?.options?.parsed
@@ -59,7 +66,7 @@ const EngineWrapper = ({ children }) => {
 				)
 
 				const baseRules = req.keys().reduce((acc, key) => {
-					if (key.match(/translated-rules-.*yaml/)) {
+					if (key.match(/i18n\/*/)) {
 						// ignoring translating files.
 						return acc
 					}
@@ -74,6 +81,25 @@ const EngineWrapper = ({ children }) => {
 					const translatedRulesAttrs =
 						require(`../nosgestesclimat/data/translated-rules-${currentLang}.yaml`).default
 					rules = addTranslationToBaseRules(baseRules, translatedRulesAttrs)
+					if (!rules) {
+						console.error(
+							'Error occured while recompiling translated rules for:',
+							currentLang
+						)
+					}
+				}
+
+				if (
+					currentRegionCode !== 'FR' &&
+					isSupportedRegion(currentRegionCode)
+				) {
+					const specificRegionAttrs =
+						require(`../nosgestesclimat/data/i18n/models/${
+							currentLang === 'fr'
+								? currentRegionCode
+								: currentRegionCode + '-' + currentLang
+						}.yaml`).default
+					rules = addRegionToBaseRules(baseRules, specificRegionAttrs)
 					if (!rules) {
 						console.error(
 							'Error occured while recompiling translated rules for:',
