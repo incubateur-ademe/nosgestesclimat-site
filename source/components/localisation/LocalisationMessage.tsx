@@ -3,13 +3,13 @@ import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import { usePersistingState } from '../utils/persistState'
-import useLocalisation, {
+import useLocalisation from './useLocalisation'
+import {
 	getCountryNameInFrench,
 	getFlagImgSrc,
 	getSupportedFlag,
 	isSupportedRegion,
-} from './useLocalisation'
-
+} from './utils'
 export default () => {
 	const [messagesRead, setRead] = usePersistingState(
 		'localisationMessagesRead',

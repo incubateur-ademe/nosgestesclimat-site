@@ -16,7 +16,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
 import AnimatedLoader from './AnimatedLoader'
-import { isSupportedRegion } from './components/localisation/useLocalisation'
+import { isSupportedRegion } from './components/localisation/utils'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {

@@ -14,7 +14,7 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
-import { useFlag } from './localisation/useLocalisation'
+import { useFlag } from './localisation/utils'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
 

@@ -1,9 +1,11 @@
-import supportedCountries from 'Components/localisation/supportedCountries.yaml'
-import useLocalisation, {
+import useLocalisation from 'Components/localisation/useLocalisation'
+import {
 	getCountryNameInFrench,
 	getFlagImgSrc,
+	getSupportedFlag,
 	isSupportedRegion,
-} from 'Components/localisation/useLocalisation'
+	supportedRegions,
+} from 'Components/localisation/utils'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetLocalisation, setLocalisation } from '../../actions/actions'
@@ -11,9 +13,8 @@ import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
-import { getSupportedFlag } from './useLocalisation'
 
-export default ({ large = false }) => {
+export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
@@ -116,7 +117,7 @@ export default ({ large = false }) => {
 					<Trans>Choisir une autre région</Trans>
 				</summary>
 				<ul>
-					{supportedCountries.map(
+					{supportedRegions.map(
 						({ nom, code, inactif }) =>
 							(NODE_ENV === 'development' || !inactif) && (
 								<li
