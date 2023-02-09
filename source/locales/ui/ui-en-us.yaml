@@ -14,6 +14,7 @@ entries:
   Actions négatives: Negative actions
   'Actions écartées :': 'Discarded actions:'
   Afficher l'explication du score: Show score explanation
+  Afficher le graphique détaillé: View detailed chart
   Afficher ma simulation: Show my simulation
   Afficher mon score: Show my score
   Agir: Act
@@ -31,6 +32,7 @@ entries:
   C'est parti !: Let's go!
   Cacher: Hide
   Cacher l'objectif: Hide the lens
+  Cacher le graphique détaillé: Hide detailed graphic
   Ce guide n'existe pas encore: This guide does not exist yet
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": 'This contribution will be public: do not put sensitive information in it'
   Cette fiche détaillée n'existe pas encore: This detailed sheet does not exist yet
@@ -45,6 +47,7 @@ entries:
   Choisir une autre région: Choose another region
   Choisissez d'abord un nom: Choose a name first
   Choisissez la votre: Choose your own
+  Choisissez une région parmi celles disponibles !: Choose a region among those available!
   Cliquez pour partager le lien: Click to share the link
   Commencer: Start
   Comment créer un persona ?: How to create a persona?
@@ -257,6 +260,7 @@ entries:
   Voir ma situation: See my situation
   Voir mon résultat: See my result
   Voir toutes les actions: See all actions
+  Voir un graphique détaillé de l'ensemble des catégories: See a detailed chart of all categories
   Vos trajets apparaîtront dans ce tableau.: Your trips will appear in this table.
   'Votre mission : réduire votre empreinte.': 'Your mission: to reduce your footprint.'
   Votre part du logement: Your share of the housing
@@ -322,6 +326,10 @@ entries:
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> of the test.
   components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test.
+  components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, so you use the French model by default.
+  components.localisation.LocalisationMessage.warnMessage.lock:
+    Votre région n'est pas encore supportée, vous utilisez donc le modèle
+    Français par défault.
   components.stats.StatsContent.dureeDesVisites: <0>Learn more about this
     site</0><1>This section is generated from visits over the last 60 days.
     Visits with a time spent on the site of less than 1 minute have been
@@ -888,15 +896,15 @@ entries:
     sur cette page
   publicodes.conference.Instructions.intro: <0>The climate footprint test is an
     individual test, but here we suggest that you do it with others. Everyone
-    will be behind his or her own screen, but will be able to see the results of
-    the others in real time.</0><1>It is an opportunity to confront others and
-    to think together about the stakes of our own impact.</1>
+    will be behind his or her screen, but will be able to see the results of the
+    others in real time.</0><1>It is an opportunity to think together about the
+    stakes of our own impact by comparing our lifestyles.</1>
   publicodes.conference.Instructions.intro.lock:
     <0>Le test d'empreinte climat est
     individuel, mais nous vous proposons ici de le faire à plusieurs. Chacun
-    sera derrière son écran, mais visualisera en temps-réel les résultats des
-    autres.</0><1>C'est l'occasion de se confronter aux autres et de réfléchir
-    ensemble aux enjeux de notre propre impact.</1>
+    sera derrière son écran, mais visualisera en temps réel les résultats des
+    autres.</0><1>C'est l'occasion de réfléchir ensemble aux enjeux de notre
+    propre impact en comparant nos modes de vie.</1>
   publicodes.conference.Instructions.liensSimulationConference:
     At the agreed time, open this link all at the same time and do your own
     simulation.
@@ -936,12 +944,12 @@ entries:
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: To open it with <2>LibreOffice</2>, it is automatic.
   publicodes.conference.Survey.libreOffice.lock: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
-  publicodes.conference.Survey.notCreatedWarning1: Please note that there is no
-    such poll at this address. To launch a poll, the organizer must first create
-    it on the <2>group mode</2> page.
+  publicodes.conference.Survey.notCreatedWarning1: Please note that there are no
+    polls at this address. To launch a poll, the organizer must first create it
+    on the <2>group mode</2> page.
   publicodes.conference.Survey.notCreatedWarning1.lock: Attention, il n'existe
-    aucun ce sondage à cette adresse. Pour lancer un sondage, l'organisateur
-    doit d'abord le créer sur la page du <2>mode groupe</2>.
+    aucun sondage à cette adresse. Pour lancer un sondage, l'organisateur doit
+    d'abord le créer sur la page du <2>mode groupe</2>.
   publicodes.conference.Survey.notCreatedWarning2:
     Perhaps you made a typo in the
     survey address? Remember to use the correct capitalization, copy and paste
