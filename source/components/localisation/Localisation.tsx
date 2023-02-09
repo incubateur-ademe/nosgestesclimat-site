@@ -97,7 +97,8 @@ export default ({ large = false }) => {
 							.
 							<Trans i18nKey="components.localisation.Localisation.warnMessage">
 								Pour le moment, il n'existe pas de modèle de calcul pour{' '}
-								{{ countryName }}, vous utilisez le modèle Français par défault.
+								{{ countryName }}, le modèle Français vous est proposé par
+								défault.
 							</Trans>
 						</p>
 					)
@@ -105,8 +106,8 @@ export default ({ large = false }) => {
 			) : (
 				<p>
 					<Trans i18nKey="components.localisation.Localisation.warnMessage2">
-						Nous n'avons pas pu détecter votre pays de simulation. Vous utilisez
-						le modèle Français par défault.
+						Nous n'avons pas pu détecter votre pays de simulation, le modèle
+						Français vous est proposé par défaut.
 					</Trans>{' '}
 				</p>
 			)}

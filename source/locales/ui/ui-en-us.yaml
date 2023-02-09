@@ -313,23 +313,24 @@ entries:
   components.conversation.select.NumberedMosaic.choixEnTrop: You have made {{nbChoix}} too many choices!
   components.conversation.select.NumberedMosaic.choixEnTrop.lock: Vous avez fait {{nbChoix}} choix en trop !
   components.localisation.Localisation.warnMessage: For the moment, there is no
-    calculation model for {{countryName}}, you use the French model by default.
+    calculation model for {{countryName}}, the French model is proposed by
+    default.
   components.localisation.Localisation.warnMessage.lock: Pour le moment, il
-    n'existe pas de modèle de calcul pour {{countryName}}, vous utilisez le
-    modèle Français par défault.
+    n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français
+    vous est proposé par défault.
   components.localisation.Localisation.warnMessage2: We could not detect your
-    simulation country. You are using the French model by default.
+    country of simulation, the French model is proposed by default.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu
-    détecter votre pays de simulation. Vous utilisez le modèle Français par
-    défault.
+    détecter votre pays de simulation, le modèle Français vous est proposé par
+    défaut.
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> of the test.
   components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test.
-  components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, so you use the French model by default.
+  components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default.
   components.localisation.LocalisationMessage.warnMessage.lock:
-    Votre région n'est pas encore supportée, vous utilisez donc le modèle
-    Français par défault.
+    Votre région n'est pas encore supportée, le modèle Français vous est proposé
+    par défault.
   components.stats.StatsContent.dureeDesVisites: <0>Learn more about this
     site</0><1>This section is generated from visits over the last 60 days.
     Visits with a time spent on the site of less than 1 minute have been

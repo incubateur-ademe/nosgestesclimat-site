@@ -63,8 +63,8 @@ export default () => {
 						<p css="margin-top: 0.5rem">
 							<b>
 								<Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
-									Votre région n'est pas encore supportée, vous utilisez donc le
-									modèle Français par défault.
+									Votre région n'est pas encore supportée, le modèle Français
+									vous est proposé par défault.
 								</Trans>
 							</b>
 						</p>
