@@ -19,7 +19,6 @@ export default ({
 	demoMode,
 	noAnimation,
 }) => {
-	// needed for this component to refresh on situation change :
 	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine(objectifs)
