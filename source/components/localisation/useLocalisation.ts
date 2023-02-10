@@ -1,15 +1,6 @@
-/*
-	This module contains all types and functions related to the localisation of the model.
-
-	Important: the localisation is not the same as the translation!
-	The localisation is about which model to use (i.e. how to compute the quantity of CO2),
-	whereas the translation is about the text displayed to the user.
-*/
-
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
-import useBranchData from '../useBranchData'
 
 const API = '/geolocation'
 

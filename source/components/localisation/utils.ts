@@ -9,6 +9,7 @@
 import { useMemo } from 'react'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
 import supportedCountriesYAML from './supportedCountries.yaml'
+import useSupportedCountries from './useSupportedCountries'
 
 export type Region = {
 	PR: string
@@ -18,21 +19,18 @@ export type Region = {
 	drapeau: string
 }
 
-// Object.hasOwn(obj, idx)
-
 export const supportedRegions: Region[] = supportedCountriesYAML
 // Other alternatives :
 // https://positionstack.com/product
 // https://www.abstractapi.com/ip-geolocation-api?fpr=geekflare#pricing
 
 export const useFlag = (localisation) => {
+	const isSupported = supportedRegion(localisation?.country?.code)
 	const flag = useMemo(() => {
-		if (localisation?.country?.code != null) {
-			if (isSupportedRegion(localisation?.country?.code)) {
-				return getSupportedFlag(localisation?.country.code)
-			} else {
-				return getFlagImgSrc('FR')
-			}
+		if (isSupported) {
+			return getSupportedFlag(localisation?.country.code)
+		} else {
+			return getFlagImgSrc('FR')
 		}
 	}, [localisation])
 
@@ -63,7 +61,7 @@ export const getCountryNameInFrench = (code) => {
 }
 
 export const getSupportedFlag = (inputCode) => {
-	if (!inputCode) return
+	if (!inputCode) return undefined
 
 	const supported = supportedRegions.find((c) => c.code === inputCode)
 
@@ -72,14 +70,13 @@ export const getSupportedFlag = (inputCode) => {
 	return getFlagImgSrc(code)
 }
 
-export const isSupportedRegion = (inputCode) => {
+export const supportedRegion = (inputCode) => {
+	const supportedRegions = useSupportedCountries()
 	if (!inputCode) {
 		return undefined
 	}
-
-	const supported = supportedRegions.find((c) => c.code === inputCode)
-	if (supported?.inactif === 'oui') {
-		return false
+	if (inputCode === 'FR') {
+		return { nom: 'France métropolitaine', gentilé: 'française', code: 'FR' }
 	}
-	return supported
+	return supportedRegions[inputCode]
 }

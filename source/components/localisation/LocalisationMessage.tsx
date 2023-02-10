@@ -8,7 +8,7 @@ import {
 	getCountryNameInFrench,
 	getFlagImgSrc,
 	getSupportedFlag,
-	isSupportedRegion,
+	supportedRegion,
 } from './utils'
 export default () => {
 	const [messagesRead, setRead] = usePersistingState(
@@ -21,21 +21,20 @@ export default () => {
 	if (!localisation?.country) return
 	if (messagesRead.includes(localisation?.country.code)) return
 
-	const supported = isSupportedRegion(localisation?.country?.code)
+	const regionParams = supportedRegion(localisation?.country?.code)
 
-	if (supported && localisation?.country?.code === 'FR') return
-
-	const { code, gentilé, nom } = supported || isSupportedRegion('FR')
+	if (localisation?.country?.code === 'FR') return
 
 	const flag = getSupportedFlag(localisation?.country.code)
+
 	const countryName =
 		currentLang == 'Fr'
 			? getCountryNameInFrench(localisation?.country?.code)
 			: localisation?.country?.name
 
-	const versionName = gentilé ?? nom
+	const versionName = regionParams?.gentilé ?? regionParams?.nom
 
-	return !supported ? (
+	return !regionParams ? (
 		<IllustratedMessage
 			width="32rem"
 			direction="row"
@@ -107,7 +106,7 @@ export default () => {
 							Vous utilisez la version <strong>{{ versionName }}</strong> du
 							test.
 						</Trans>
-						{code !== 'FR' && (
+						{regionParams?.code !== 'FR' && (
 							<span>
 								{' '}
 								<Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">

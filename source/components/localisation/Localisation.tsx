@@ -3,8 +3,7 @@ import {
 	getCountryNameInFrench,
 	getFlagImgSrc,
 	getSupportedFlag,
-	isSupportedRegion,
-	supportedRegions,
+	supportedRegion,
 } from 'Components/localisation/utils'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -13,6 +12,7 @@ import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
+import useSupportedCountries from './useSupportedCountries'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
@@ -23,8 +23,8 @@ export default () => {
 		'localisationMessagesRead',
 		[]
 	)
-
-	const supported = isSupportedRegion(localisation?.country?.code)
+	const supportedRegions = useSupportedCountries()
+	const isSupported = supportedRegion(localisation?.country?.code)
 	const currentLang = useSelector((state) => state.currentLang)
 	const countryName =
 		currentLang == 'Fr'
@@ -37,7 +37,7 @@ export default () => {
 				<Trans>📍 Région de simulation</Trans>
 			</h2>
 			{localisation != null ? (
-				supported ? (
+				isSupported ? (
 					<p>
 						{localisation?.userChosen ? (
 							<span>
@@ -66,10 +66,6 @@ export default () => {
 								className="ui__ dashed-button"
 								onClick={() => {
 									dispatch(setLocalisation(resetLocalisation))
-									dispatch({
-										type: 'SET_PULL_REQUEST_NUMBER',
-										number: null,
-									})
 								}}
 							>
 								<Trans>Revenir chez moi 🔙</Trans>
@@ -117,24 +113,21 @@ export default () => {
 					<Trans>Choisir une autre région</Trans>
 				</summary>
 				<ul>
-					{supportedRegions.map(
-						({ nom, code, inactif }) =>
-							(NODE_ENV === 'development' || !inactif) && (
-								<li
-									key={code}
-									onClick={() => {
-										const newLocalisation = {
-											country: { name: nom, code },
-											userChosen: true,
-										}
-										dispatch(setLocalisation(newLocalisation))
-										setRead([])
-									}}
-								>
-									<button>{capitalise0(nom)}</button> {inactif && '[dev]'}
-								</li>
-							)
-					)}
+					{Object.values(supportedRegions).map(({ nom, code }) => (
+						<li
+							key={code}
+							onClick={() => {
+								const newLocalisation = {
+									country: { name: nom, code },
+									userChosen: true,
+								}
+								dispatch(setLocalisation(newLocalisation))
+								setRead([])
+							}}
+						>
+							<button>{capitalise0(nom)}</button>
+						</li>
+					))}
 				</ul>
 				<IllustratedMessage
 					emoji="🌐"

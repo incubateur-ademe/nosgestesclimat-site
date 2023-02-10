@@ -16,7 +16,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
 import AnimatedLoader from './AnimatedLoader'
-import { isSupportedRegion } from './components/localisation/utils'
+import useLocalisation from './components/localisation/useLocalisation'
+import { supportedRegion } from './components/localisation/utils'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -31,8 +32,9 @@ const EngineWrapper = ({ children }) => {
 	const dispatch = useDispatch()
 
 	const branchData = useBranchData()
-	const localisation = useSelector((state) => state.localisation)
-	const currentRegionCode = isSupportedRegion(localisation?.country?.code)
+	const localisation = useLocalisation()
+
+	const currentRegionCode = supportedRegion(localisation?.country?.code)
 		? localisation?.country?.code
 		: 'FR'
 	const optimizedOption = engineState?.options?.optimized
