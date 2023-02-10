@@ -45,7 +45,7 @@ const EngineWrapper = ({ children }) => {
 
 	useEffect(() => {
 		if (branchData.loaded) {
-			fetch(branchData.deployURL + '/supportedCountries.json', {
+			fetch(branchData.deployURL + '/supportedRegions.json', {
 				mode: 'cors',
 			})
 				.then((response) => response.json())
@@ -56,7 +56,7 @@ const EngineWrapper = ({ children }) => {
 					})
 				})
 				.catch((err) => {
-					console.log('url:', branchData.deployURL + '/supportedCountries.json')
+					console.log('url:', branchData.deployURL + '/supportedRegions.json')
 					console.log('err:', err)
 				})
 		}
