@@ -7,9 +7,9 @@
 */
 
 import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
 import supportedCountriesYAML from './supportedCountries.yaml'
-import useSupportedCountries from './useSupportedCountries'
 
 export type Region = {
 	PR: string
@@ -71,12 +71,6 @@ export const getSupportedFlag = (inputCode) => {
 }
 
 export const supportedRegion = (inputCode) => {
-	const supportedRegions = useSupportedCountries()
-	if (!inputCode) {
-		return undefined
-	}
-	if (inputCode === 'FR') {
-		return { nom: 'France métropolitaine', gentilé: 'française', code: 'FR' }
-	}
+	const supportedRegions = useSelector((state) => state.supportedRegions)
 	return supportedRegions[inputCode]
 }

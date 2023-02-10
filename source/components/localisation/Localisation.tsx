@@ -12,7 +12,6 @@ import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
-import useSupportedCountries from './useSupportedCountries'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
@@ -23,7 +22,8 @@ export default () => {
 		'localisationMessagesRead',
 		[]
 	)
-	const supportedRegions = useSupportedCountries()
+
+	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
 	const currentLang = useSelector((state) => state.currentLang)
 	const countryName =

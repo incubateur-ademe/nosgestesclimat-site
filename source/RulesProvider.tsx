@@ -44,6 +44,32 @@ const EngineWrapper = ({ children }) => {
 	const currLangAbrv = getCurrentLangAbrv(i18n)
 
 	useEffect(() => {
+		console.log(branchData.deployURL, branchData.loaded)
+		if (branchData.loaded) {
+			fetch(branchData.deployURL + '/supportedCountries.json', {
+				mode: 'cors',
+			})
+				.then((response) =>
+					response.ok
+						? response.json()
+						: {
+								FR: {
+									nom: 'France métropolitaine',
+									gentilé: 'française',
+									code: 'FR',
+								},
+						  }
+				)
+				.then((json) => {
+					dispatch({
+						type: 'SET_SUPPORTED_REGIONS',
+						supportedRegions: json,
+					})
+				})
+		}
+	}, [branchData.deployURL, branchData.loaded])
+
+	useEffect(() => {
 		let active = true
 
 		const fetchAndSetRules = () => {
