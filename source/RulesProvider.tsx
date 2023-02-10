@@ -44,27 +44,20 @@ const EngineWrapper = ({ children }) => {
 	const currLangAbrv = getCurrentLangAbrv(i18n)
 
 	useEffect(() => {
-		console.log(branchData.deployURL, branchData.loaded)
 		if (branchData.loaded) {
 			fetch(branchData.deployURL + '/supportedCountries.json', {
 				mode: 'cors',
 			})
-				.then((response) =>
-					response.ok
-						? response.json()
-						: {
-								FR: {
-									nom: 'France métropolitaine',
-									gentilé: 'française',
-									code: 'FR',
-								},
-						  }
-				)
+				.then((response) => response.json())
 				.then((json) => {
 					dispatch({
 						type: 'SET_SUPPORTED_REGIONS',
 						supportedRegions: json,
 					})
+				})
+				.catch((err) => {
+					console.log('url:', branchData.deployURL + '/supportedCountries.json')
+					console.log('err:', err)
 				})
 		}
 	}, [branchData.deployURL, branchData.loaded])
@@ -89,6 +82,10 @@ const EngineWrapper = ({ children }) => {
 				.then((response) => response.json())
 				.then((json) => {
 					if (active) dispatch({ type: 'SET_RULES', rules: json })
+				})
+				.catch((err) => {
+					console.log('url:', url)
+					console.log('err:', err)
 				})
 		}
 		fetchAndSetRules()
