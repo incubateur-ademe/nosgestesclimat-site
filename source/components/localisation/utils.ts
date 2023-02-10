@@ -6,42 +6,38 @@
 	whereas the translation is about the text displayed to the user.
 */
 
-import { useMemo } from 'react'
+import { useSelector } from 'react-redux'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
-import supportedCountriesYAML from './supportedCountries.yaml'
-import useSupportedCountries from './useSupportedCountries'
+import useSupportedCountries from './useSupportedRegions'
 
-export type Region = {
-	PR: string
-	nom: string
-	code: string
-	gentilé: string
-	drapeau: string
+export const supportedRegion = (inputCode) => {
+	const supportedRegions =
+		useSelector((state) => state.supportedRegions) ?? useSupportedCountries()
+	if (!inputCode) {
+		return undefined
+	}
+	return supportedRegions[inputCode]
 }
 
-export const supportedRegions: Region[] = supportedCountriesYAML
-// Other alternatives :
-// https://positionstack.com/product
-// https://www.abstractapi.com/ip-geolocation-api?fpr=geekflare#pricing
-
-export const useFlag = (localisation) => {
-	const isSupported = supportedRegion(localisation?.country?.code)
-	const flag = useMemo(() => {
-		if (isSupported) {
-			return getSupportedFlag(localisation?.country.code)
-		} else {
-			return getFlagImgSrc('FR')
-		}
-	}, [localisation])
-
-	return flag
+export const getFlag = (inputCode) => {
+	const regionParams = supportedRegion(inputCode)
+	const code = regionParams?.drapeau || inputCode
+	return getFlagImgSrc(code)
 }
 
-export const getFlagImgSrc = (code) =>
+export const getModelFlag = (inputCode) => {
+	const regionParams = supportedRegion(inputCode)
+	const code = supportedRegion(inputCode)
+		? regionParams?.drapeau || inputCode
+		: 'FR'
+	return getFlagImgSrc(code)
+}
+
+export const getFlagImgSrc = (inputCode) =>
 	//	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
 	//	was down 27/09
-	code &&
-	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${code.toLowerCase()}.svg`
+	inputCode &&
+	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
 
 export const getCountryNameInFrench = (code) => {
 	// For now, website is only available in French, this function enables to adapt message
@@ -58,25 +54,4 @@ export const getCountryNameInFrench = (code) => {
 		preposition = (countryName && frenchCountryPrepositions[countryName]) || ''
 
 	return `${preposition} ${countryName}`
-}
-
-export const getSupportedFlag = (inputCode) => {
-	if (!inputCode) return undefined
-
-	const supported = supportedRegions.find((c) => c.code === inputCode)
-
-	const code = supported?.drapeau || inputCode
-
-	return getFlagImgSrc(code)
-}
-
-export const supportedRegion = (inputCode) => {
-	const supportedRegions = useSupportedCountries()
-	if (!inputCode) {
-		return undefined
-	}
-	if (inputCode === 'FR') {
-		return { nom: 'France métropolitaine', gentilé: 'française', code: 'FR' }
-	}
-	return supportedRegions[inputCode]
 }

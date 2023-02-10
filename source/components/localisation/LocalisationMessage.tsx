@@ -6,8 +6,8 @@ import { usePersistingState } from '../utils/persistState'
 import useLocalisation from './useLocalisation'
 import {
 	getCountryNameInFrench,
+	getFlag,
 	getFlagImgSrc,
-	getSupportedFlag,
 	supportedRegion,
 } from './utils'
 export default () => {
@@ -17,15 +17,13 @@ export default () => {
 	)
 	const localisation = useLocalisation()
 	const currentLang = useSelector((state) => state.currentLang)
+	const regionParams = supportedRegion(localisation?.country?.code)
+	const flag = getFlag(localisation?.country?.code)
 
 	if (!localisation?.country) return
-	if (messagesRead.includes(localisation?.country.code)) return
-
-	const regionParams = supportedRegion(localisation?.country?.code)
+	if (messagesRead.includes(localisation?.country?.code)) return
 
 	if (localisation?.country?.code === 'FR') return
-
-	const flag = getSupportedFlag(localisation?.country.code)
 
 	const countryName =
 		currentLang == 'Fr'
@@ -47,10 +45,7 @@ export default () => {
 						</Trans>{' '}
 						{countryName}
 						<img
-							src={
-								getSupportedFlag(localisation?.country?.code) ||
-								getFlagImgSrc(localisation?.country?.code)
-							}
+							src={flag || getFlagImgSrc(localisation?.country?.code)}
 							aria-hidden="true"
 							css={`
 								height: 1rem;
@@ -63,7 +58,7 @@ export default () => {
 							<b>
 								<Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
 									Votre région n'est pas encore supportée, le modèle Français
-									vous est proposé par défault.
+									vous est proposé par défaut.
 								</Trans>
 							</b>
 						</p>
@@ -131,7 +126,7 @@ export default () => {
 							margin-right: 0rem;
 							display: block !important;
 						`}
-						onClick={() => setRead([...messagesRead, code])}
+						onClick={() => setRead([...messagesRead, regionParams?.code])}
 					>
 						<Trans>J'ai compris</Trans>
 					</button>
