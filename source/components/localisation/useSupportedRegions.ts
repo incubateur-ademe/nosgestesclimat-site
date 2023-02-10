@@ -10,7 +10,7 @@ export default () => {
 
 	useEffect(() => {
 		if (branchData.loaded && !Object.entries(supportedRegions).length) {
-			console.log('fetching: /supportedCountries.json')
+			console.log(`fetching: ${branchData.deployURL}/supportedCountries.json`)
 			fetch(branchData.deployURL + '/supportedCountries.json', {
 				mode: 'cors',
 			})
