@@ -14,7 +14,7 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
-import { useFlag } from './localisation/utils'
+import { getModelFlag } from './localisation/utils'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
 
@@ -131,7 +131,7 @@ export default function SessionBar({
 	const dispatch = useDispatch()
 
 	const localisation = useLocalisation()
-	const flag = useFlag(localisation)
+	const flag = getModelFlag(localisation?.country?.code)
 
 	const location = useLocation(),
 		path = location.pathname

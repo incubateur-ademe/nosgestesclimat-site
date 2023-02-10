@@ -1,8 +1,7 @@
 import useLocalisation from 'Components/localisation/useLocalisation'
 import {
 	getCountryNameInFrench,
-	getFlagImgSrc,
-	getSupportedFlag,
+	getFlag,
 	supportedRegion,
 } from 'Components/localisation/utils'
 import { Trans } from 'react-i18next'
@@ -25,6 +24,7 @@ export default () => {
 
 	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
+	const flag = getFlag(localisation?.country?.code)
 	const currentLang = useSelector((state) => state.currentLang)
 	const countryName =
 		currentLang == 'Fr'
@@ -52,7 +52,7 @@ export default () => {
 						)}
 						{countryName}
 						<img
-							src={getSupportedFlag(localisation?.country?.code)}
+							src={flag}
 							aria-hidden="true"
 							css={`
 								height: 1rem;
@@ -80,10 +80,7 @@ export default () => {
 							</Trans>{' '}
 							{countryName}
 							<img
-								src={
-									getSupportedFlag(localisation?.country?.code) ||
-									getFlagImgSrc(localisation?.country?.code)
-								}
+								src={flag}
 								aria-hidden="true"
 								css={`
 									height: 1rem;
