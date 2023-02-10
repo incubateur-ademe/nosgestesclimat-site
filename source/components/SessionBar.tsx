@@ -150,11 +150,7 @@ export default function SessionBar({
 
 	const [searchParams, setSearchParams] = useSearchParams()
 
-	const pullRequestNumber = useSelector((state) => state.pullRequestNumber),
-		// We only show the PR in the menu if it's set by the searchQuery,
-		// not by the localisation system
-		showPullRequestNumber =
-			pullRequestNumber && (!localisation || NODE_ENV === 'development')
+	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
 
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 
@@ -238,7 +234,7 @@ export default function SessionBar({
 				Personas
 			</Button>
 		),
-		showPullRequestNumber && (
+		pullRequestNumber && (
 			<MenuButton
 				key="pullRequest"
 				className="simple small"
