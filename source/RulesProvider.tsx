@@ -6,6 +6,7 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import LocalisationProvider from './components/localisation/LocalisationProvider'
 
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
@@ -42,25 +43,6 @@ const EngineWrapper = ({ children }) => {
 
 	const { i18n } = useTranslation()
 	const currLangAbrv = getCurrentLangAbrv(i18n)
-
-	useEffect(() => {
-		if (branchData.loaded) {
-			fetch(branchData.deployURL + '/supportedRegions.json', {
-				mode: 'cors',
-			})
-				.then((response) => response.json())
-				.then((json) => {
-					dispatch({
-						type: 'SET_SUPPORTED_REGIONS',
-						supportedRegions: json,
-					})
-				})
-				.catch((err) => {
-					console.log('url:', branchData.deployURL + '/supportedRegions.json')
-					console.log('err:', err)
-				})
-		}
-	}, [branchData.deployURL, branchData.loaded])
 
 	useEffect(() => {
 		let active = true
@@ -140,9 +122,11 @@ const EngineWrapper = ({ children }) => {
 		)
 
 	return (
-		<EngineProvider value={engine}>
-			<SituationProvider situation={situation}>{children}</SituationProvider>
-		</EngineProvider>
+		<LocalisationProvider>
+			<EngineProvider value={engine}>
+				<SituationProvider situation={situation}>{children}</SituationProvider>
+			</EngineProvider>
+		</LocalisationProvider>
 	)
 }
 
