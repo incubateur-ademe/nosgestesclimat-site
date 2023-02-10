@@ -34,7 +34,7 @@ export default function AnswerTrajetsTable({ trajets }) {
 				</thead>
 				<tbody>
 					{trajetsMotifTable.map((trajet) => (
-						<tr>
+						<tr key={trajet[0]}>
 							<td>{trajet[0]}</td>
 							<td>{trajet[1]}</td>
 						</tr>
