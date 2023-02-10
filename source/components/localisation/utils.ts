@@ -9,15 +9,6 @@
 import { useSelector } from 'react-redux'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
 
-export const supportedRegion = (inputCode) => {
-	const supportedRegions =
-		useSelector((state) => state.supportedRegions) ?? useSupportedCountries()
-	if (!inputCode) {
-		return undefined
-	}
-	return supportedRegions[inputCode]
-}
-
 export const getFlag = (inputCode) => {
 	const regionParams = supportedRegion(inputCode)
 	const code = regionParams?.drapeau || inputCode
