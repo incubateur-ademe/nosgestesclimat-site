@@ -6,7 +6,12 @@ import {
 import { useEngine } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { DottedName } from 'modele-social'
-import { EvaluatedNode, formatValue } from 'publicodes'
+import {
+	EvaluatedNode,
+	formatValue,
+	PublicodesError,
+	RuleNode,
+} from 'publicodes'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -296,11 +301,17 @@ const Answer = ({ rule, dispatch, level, engine }) => {
 		rule.unit.numerators = translateUnits(rule.unit.numerators)
 	}
 
-	const formattedValue =
-		rule.type === 'string'
-			? // Retrieve the translated title of the rule implicated to a suggestion
-			  engine.getRule(rule.dottedName + ' . ' + rule.nodeValue)?.title
-			: t(formatValue(rule) as string, { ns: 'units' })
+	let formattedValue: RuleNode<DottedName> | undefined
+
+	try {
+		formattedValue =
+			rule.type === 'string'
+				? // Retrieve the translated title of the rule implicated to a suggestion
+				  engine.getRule(rule.dottedName + ' . ' + rule.nodeValue)?.title
+				: t(formatValue(rule) as string, { ns: 'units' })
+	} catch (err) {
+		if (err instanceof PublicodesError && err.name === 'UnknownRule') return
+	}
 
 	return (
 		<tr
