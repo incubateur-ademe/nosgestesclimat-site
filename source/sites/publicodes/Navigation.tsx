@@ -30,7 +30,7 @@ export default ({ fluidLayout }) => {
 							width: 12rem;
 							height: 100vh;
 							${isIframe && `height: 100% !important;`}
-							overflow: auto;
+							overflow: none;
 							margin: 0 auto;
 							position: sticky;
 							top: 0;
