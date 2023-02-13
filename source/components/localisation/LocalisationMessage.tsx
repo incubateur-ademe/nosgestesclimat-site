@@ -31,7 +31,10 @@ export default () => {
 			? getCountryNameInFrench(localisation?.country?.code)
 			: localisation?.country?.name
 
-	const versionName = regionParams?.gentilé ?? regionParams?.nom
+	const versionName =
+		currentLang == 'Fr'
+			? regionParams?.gentilé ?? regionParams?.nom
+			: localisation?.country?.name
 
 	return !regionParams ? (
 		<IllustratedMessage
