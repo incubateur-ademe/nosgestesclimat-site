@@ -12,6 +12,7 @@ entries:
   Actions négatives: Actions négatives
   'Actions écartées :': 'Actions écartées :'
   Afficher l'explication du score: Afficher l'explication du score
+  Afficher le graphique détaillé: Afficher le graphique détaillé
   Afficher ma simulation: Afficher ma simulation
   Afficher mon score: Afficher mon score
   Agir: Agir
@@ -29,6 +30,7 @@ entries:
   C'est parti !: C'est parti !
   Cacher: Cacher
   Cacher l'objectif: Cacher l'objectif
+  Cacher le graphique détaillé: Cacher le graphique détaillé
   Ce guide n'existe pas encore: Ce guide n'existe pas encore
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
   Cette fiche détaillée n'existe pas encore: Cette fiche détaillée n'existe pas encore
@@ -253,6 +255,7 @@ entries:
   Voir ma situation: Voir ma situation
   Voir mon résultat: Voir mon résultat
   Voir toutes les actions: Voir toutes les actions
+  Voir un graphique détaillé de l'ensemble des catégories: Voir un graphique détaillé de l'ensemble des catégories
   Vos trajets apparaîtront dans ce tableau.: Vos trajets apparaîtront dans ce tableau.
   'Votre mission : réduire votre empreinte.': 'Votre mission : réduire votre empreinte.'
   Votre part du logement: Votre part du logement
