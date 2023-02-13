@@ -18,7 +18,7 @@ import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
 import AnimatedLoader from './AnimatedLoader'
 import useLocalisation from './components/localisation/useLocalisation'
-import { supportedRegion } from './components/localisation/utils'
+import { defaultModel, supportedRegion } from './components/localisation/utils'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -37,7 +37,7 @@ const EngineWrapper = ({ children }) => {
 
 	const currentRegionCode = supportedRegion(localisation?.country?.code)
 		? localisation?.country?.code
-		: 'FR'
+		: defaultModel
 	const optimizedOption = engineState?.options?.optimized
 	const parsedOption = engineState?.options?.parsed
 

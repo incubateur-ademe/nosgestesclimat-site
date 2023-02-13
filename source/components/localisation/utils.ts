@@ -9,17 +9,22 @@
 import { useSelector } from 'react-redux'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
 
+export const defaultModel = 'FR'
+
+export const supportedRegion = (inputCode) => {
+	const supportedRegions = useSelector((state) => state.supportedRegions)
+	return supportedRegions[inputCode]
+}
+
 export const getFlag = (inputCode) => {
 	const regionParams = supportedRegion(inputCode)
-	const code = regionParams?.drapeau || inputCode
+	const code = regionParams?.drapeau ?? inputCode
 	return getFlagImgSrc(code)
 }
 
 export const getModelFlag = (inputCode) => {
 	const regionParams = supportedRegion(inputCode)
-	const code = supportedRegion(inputCode)
-		? regionParams?.drapeau || inputCode
-		: 'FR'
+	const code = regionParams ? regionParams?.drapeau ?? inputCode : defaultModel
 	return getFlagImgSrc(code)
 }
 
@@ -30,9 +35,7 @@ export const getFlagImgSrc = (inputCode) =>
 	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
 
 export const getCountryNameInFrench = (code) => {
-	// For now, website is only available in French, this function enables to adapt message
-	// for French Language according to the country detected.
-	// Including French prepositions subtelties.
+	// this function enables to adapt messages written in French according to the country detected, including French prepositions subtelties.
 	if (!code) {
 		return undefined
 	}
@@ -41,22 +44,7 @@ export const getCountryNameInFrench = (code) => {
 		countryNameAuto = regionNamesInFrench.of(code),
 		countryName =
 			countryNameAuto === 'France' ? 'France métropolitaine' : countryNameAuto,
-		preposition = (countryName && frenchCountryPrepositions[countryName]) || ''
+		preposition = (countryName && frenchCountryPrepositions[countryName]) ?? ''
 
 	return `${preposition} ${countryName}`
-}
-
-export const getSupportedFlag = (inputCode) => {
-	if (!inputCode) return undefined
-
-	const supported = supportedRegions.find((c) => c.code === inputCode)
-
-	const code = supported?.drapeau || inputCode
-
-	return getFlagImgSrc(code)
-}
-
-export const supportedRegion = (inputCode) => {
-	const supportedRegions = useSelector((state) => state.supportedRegions)
-	return supportedRegions[inputCode]
 }

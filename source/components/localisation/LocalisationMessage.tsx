@@ -5,6 +5,7 @@ import IllustratedMessage from '../ui/IllustratedMessage'
 import { usePersistingState } from '../utils/persistState'
 import useLocalisation from './useLocalisation'
 import {
+	defaultModel,
 	getCountryNameInFrench,
 	getFlag,
 	getFlagImgSrc,
@@ -23,7 +24,7 @@ export default () => {
 	if (!localisation?.country) return
 	if (messagesRead.includes(localisation?.country?.code)) return
 
-	if (localisation?.country?.code === 'FR') return
+	if (localisation?.country?.code === defaultModel) return
 
 	const countryName =
 		currentLang == 'Fr'
@@ -45,7 +46,7 @@ export default () => {
 						</Trans>{' '}
 						{countryName}
 						<img
-							src={flag || getFlagImgSrc(localisation?.country?.code)}
+							src={flag ?? getFlagImgSrc(localisation?.country?.code)}
 							aria-hidden="true"
 							css={`
 								height: 1rem;
@@ -101,7 +102,7 @@ export default () => {
 							Vous utilisez la version <strong>{{ versionName }}</strong> du
 							test.
 						</Trans>
-						{regionParams?.code !== 'FR' && (
+						{regionParams?.code !== defaultModel && (
 							<span>
 								{' '}
 								<Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
