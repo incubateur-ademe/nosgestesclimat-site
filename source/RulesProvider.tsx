@@ -126,8 +126,9 @@ export const WithEngine = ({
 	const currentRulesOptions = engineState?.options
 
 	useEffect(() => {
-		if (options?.optimized) console.log('🗜️  Optimized rules requested')
-		else console.log('💯 Complete rules requested')
+		options?.optimized
+			? console.log('🗜️  Optimized rules requested')
+			: console.log('💯 Complete rules requested')
 		if (
 			// This is a fixed point, no interest to go back to optimized at this point
 			engineState.state === 'ready' &&
