@@ -9,8 +9,10 @@ export default function LocalisationProvider({ children }) {
 
 	useEffect(() => {
 		if (branchData.loaded) {
-			console.log('fetching:', branchData.deployURL + '/supportedRegions.json')
-			fetch(branchData.deployURL + '/supportedRegions.json', {
+			const supportedRegionsURL =
+				branchData.deployURL + '/supportedRegions.json'
+			console.log('fetching:', supportedRegionsURL)
+			fetch(supportedRegionsURL, {
 				mode: 'cors',
 			})
 				.then((response) => response.json())
@@ -21,7 +23,7 @@ export default function LocalisationProvider({ children }) {
 					})
 				})
 				.catch((err) => {
-					console.log('url:', branchData.deployURL + '/supportedRegions.json')
+					console.log('url:', supportedRegionsURL)
 					console.log('err:', err)
 				})
 		}
