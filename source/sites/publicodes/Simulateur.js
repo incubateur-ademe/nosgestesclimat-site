@@ -41,6 +41,8 @@ const Simulateur = () => {
 	const tutorials = useSelector((state) => state.tutorials)
 	const url = useLocation().pathname
 
+	const localisation = useSelector((state) => state.localisation)
+
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
 			dispatch(setSimulationConfig(config, url))
@@ -57,43 +59,45 @@ const Simulateur = () => {
 			<Title>
 				<Trans>Le test</Trans>
 			</Title>
-			{tutorials.testIntro && (
-				<motion.div
-					initial={
-						tutorials.scoreExplanation ? false : { opacity: 0, scale: 0.8 }
-					}
-					animate={{ opacity: 1, scale: 1 }}
-					transition={{ duration: 0.5 }}
-				>
-					<ScoreBar />
-				</motion.div>
-			)}
-			{!isMainSimulation && (
-				<h1>
-					{evaluation.rawNode.title || (
-						<FullName dottedName={evaluation.dottedName} />
-					)}
-				</h1>
-			)}
-			{tutorials.testIntro ? (
-				tutorials.scoreExplanation && (
-					<Simulation
-						orderByCategories={categories}
-						customEnd={
-							isMainSimulation ? (
-								<MainSimulationEnding {...{ rules, engine }} />
-							) : rule.description ? (
-								<Markdown children={rule.description} />
-							) : (
-								<EndingCongratulations />
-							)
+			<div>
+				{tutorials.testIntro && (
+					<motion.div
+						initial={
+							tutorials.scoreExplanation ? false : { opacity: 0, scale: 0.8 }
 						}
-						explanations={<InlineCategoryChart />}
-					/>
-				)
-			) : (
-				<TutorialRedirection />
-			)}
+						animate={{ opacity: 1, scale: 1 }}
+						transition={{ duration: 0.5 }}
+					>
+						<ScoreBar />
+					</motion.div>
+				)}
+				{!isMainSimulation && (
+					<h1>
+						{evaluation.rawNode.title || (
+							<FullName dottedName={evaluation.dottedName} />
+						)}
+					</h1>
+				)}
+				{tutorials.testIntro ? (
+					tutorials.scoreExplanation && (
+						<Simulation
+							orderByCategories={categories}
+							customEnd={
+								isMainSimulation ? (
+									<MainSimulationEnding {...{ rules, engine }} />
+								) : rule.description ? (
+									<Markdown children={rule.description} />
+								) : (
+									<EndingCongratulations />
+								)
+							}
+							explanations={<InlineCategoryChart />}
+						/>
+					)
+				) : (
+					<TutorialRedirection />
+				)}
+			</div>
 			<BandeauContribuer />
 		</div>
 	)
