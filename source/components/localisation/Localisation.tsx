@@ -1,18 +1,16 @@
-import supportedCountries from 'Components/localisation/supportedCountries.yaml'
-import useLocalisation, {
-	getFlagImgSrc,
+import useLocalisation from 'Components/localisation/useLocalisation'
+import {
 	getCountryNameInFrench,
-	isRegionSupported,
-	getLocalisationPullRequest,
-} from 'Components/localisation/useLocalisation'
+	getFlag,
+	supportedRegion,
+} from 'Components/localisation/utils'
 import { Trans } from 'react-i18next'
-import { useDispatch } from 'react-redux'
-import { setLocalisation, resetLocalisation } from '../../actions/actions'
+import { useDispatch, useSelector } from 'react-redux'
+import { resetLocalisation, setLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
-import { getSupportedFlag } from './useLocalisation'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
@@ -24,9 +22,14 @@ export default () => {
 		[]
 	)
 
-	const supported = isRegionSupported(localisation)
-
-	const countryName = getCountryNameInFrench(localisation?.country.code)
+	const supportedRegions = useSelector((state) => state.supportedRegions)
+	const isSupported = supportedRegion(localisation?.country?.code)
+	const flag = getFlag(localisation?.country?.code)
+	const currentLang = useSelector((state) => state.currentLang)
+	const countryName =
+		currentLang == 'Fr'
+			? getCountryNameInFrench(localisation?.country?.code)
+			: localisation?.country?.name
 
 	return (
 		<div>
@@ -34,9 +37,9 @@ export default () => {
 				<Trans>📍 Région de simulation</Trans>
 			</h2>
 			{localisation != null ? (
-				supported ? (
+				isSupported ? (
 					<p>
-						{localisation.userChosen ? (
+						{localisation?.userChosen ? (
 							<span>
 								<Trans>Vous avez choisi</Trans>{' '}
 							</span>
@@ -49,7 +52,7 @@ export default () => {
 						)}
 						{countryName}
 						<img
-							src={getSupportedFlag(localisation)}
+							src={flag}
 							aria-hidden="true"
 							css={`
 								height: 1rem;
@@ -58,15 +61,11 @@ export default () => {
 							`}
 						/>
 						.{' '}
-						{localisation.userChosen && (
+						{localisation?.userChosen && (
 							<button
 								className="ui__ dashed-button"
 								onClick={() => {
-									dispatch(resetLocalisation())
-									dispatch({
-										type: 'SET_PULL_REQUEST_NUMBER',
-										number: null,
-									})
+									dispatch(setLocalisation(resetLocalisation))
 								}}
 							>
 								<Trans>Revenir chez moi 🔙</Trans>
@@ -74,68 +73,58 @@ export default () => {
 						)}
 					</p>
 				) : (
-					<p>
-						<Trans>
-							Nous avons détecté que vous faites cette simulation depuis
-						</Trans>{' '}
-						{getCountryNameInFrench(localisation?.country.code)}
-						<img
-							src={
-								getSupportedFlag(localisation) ||
-								getFlagImgSrc(localisation?.country.code)
-							}
-							aria-hidden="true"
-							css={`
-								height: 1rem;
-								margin: 0 0.3rem;
-								vertical-align: sub;
-							`}
-						/>
-						.
-						<Trans i18nKey="components.localisation.Localisation.warnMessage">
-							Pour le moment, il n'existe pas de modèle de calcul pour{' '}
-							{{ countryName }}, vous utilisez le modèle Français par défault.
-						</Trans>
-					</p>
+					localisation?.country && (
+						<p>
+							<Trans>
+								Nous avons détecté que vous faites cette simulation depuis
+							</Trans>{' '}
+							{countryName}
+							<img
+								src={flag}
+								aria-hidden="true"
+								css={`
+									height: 1rem;
+									margin: 0 0.3rem;
+									vertical-align: sub;
+								`}
+							/>
+							.
+							<Trans i18nKey="components.localisation.Localisation.warnMessage">
+								Pour le moment, il n'existe pas de modèle de calcul pour{' '}
+								{{ countryName }}, le modèle Français vous est proposé par
+								défault.
+							</Trans>
+						</p>
+					)
 				)
 			) : (
 				<p>
 					<Trans i18nKey="components.localisation.Localisation.warnMessage2">
-						Nous n'avons pas pu détecter votre pays de simulation. Vous utilisez
-						le modèle Français par défault.
+						Nous n'avons pas pu détecter votre pays de simulation, le modèle
+						Français vous est proposé par défaut.
 					</Trans>{' '}
 				</p>
 			)}
-
 			<details>
 				<summary>
 					<Trans>Choisir une autre région</Trans>
 				</summary>
 				<ul>
-					{supportedCountries.map(
-						({ nom, code, inactif }) =>
-							(NODE_ENV === 'development' || !inactif) && (
-								<li
-									key={code}
-									onClick={() => {
-										const newLocalisation = {
-											country: { name: nom, code },
-											userChosen: true,
-										}
-										dispatch(setLocalisation(newLocalisation))
-										const localisationPR =
-											getLocalisationPullRequest(newLocalisation)
-										dispatch({
-											type: 'SET_PULL_REQUEST_NUMBER',
-											number: localisationPR,
-										})
-										setRead([])
-									}}
-								>
-									<button>{capitalise0(nom)}</button> {inactif && '[dev]'}
-								</li>
-							)
-					)}
+					{Object.values(supportedRegions).map(({ nom, code }) => (
+						<li
+							key={code}
+							onClick={() => {
+								const newLocalisation = {
+									country: { name: nom, code },
+									userChosen: true,
+								}
+								dispatch(setLocalisation(newLocalisation))
+								setRead([])
+							}}
+						>
+							<button>{capitalise0(nom)}</button>
+						</li>
+					))}
 				</ul>
 				<IllustratedMessage
 					emoji="🌐"

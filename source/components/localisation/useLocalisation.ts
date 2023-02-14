@@ -1,28 +1,8 @@
-/*
-	This module contains all types and functions related to the localisation of the model.
-
-	Important: the localisation is not the same as the translation!
-	The localisation is about which model to use (i.e. how to compute the quantity of CO2),
-	whereas the translation is about the text displayed to the user.
-*/
-
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
-import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
-import supportedCountriesYAML from './supportedCountries.yaml'
 
 const API = '/geolocation'
-
-export type Region = {
-	PR: string
-	nom: string
-	code: string
-	gentilé: string
-	drapeau: string
-}
-
-export const supportedRegions: Region[] = supportedCountriesYAML
 
 // Other alternatives :
 // https://positionstack.com/product
@@ -32,18 +12,9 @@ export default () => {
 	const dispatch = useDispatch()
 
 	const localisation = useSelector((state) => state.localisation)
-	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
-	const setPullRequestNumber = (number) =>
-		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })
 
 	useEffect(() => {
-		if (localisation != null) {
-			if (!pullRequestNumber) {
-				const localisationPR = getLocalisationPullRequest(localisation)
-				setPullRequestNumber(localisationPR)
-			}
-			return
-		}
+		if (localisation?.country != null) return
 
 		const asyncFecthAPI = async () => {
 			await fetch(API)
@@ -78,61 +49,7 @@ export default () => {
 
 		asyncFecthAPI()
 		return undefined
-	}, [localisation, pullRequestNumber])
+	}, [localisation])
 
 	return localisation
-}
-
-export const getFlagImgSrc = (code) =>
-	//	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
-	//	was down 27/09
-	code &&
-	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${code.toLowerCase()}.svg`
-
-export const getCountryNameInFrench = (code) => {
-	// For now, website is only available in French, this function enables to adapt message
-	// for French Language according to the country detected.
-	// Including French prepositions subtelties.
-	if (!code) {
-		return undefined
-	}
-	const regionNamesInFrench = new Intl.DisplayNames(['fr'], { type: 'region' }),
-		countryNameAuto = regionNamesInFrench.of(code),
-		countryName =
-			countryNameAuto === 'France' ? 'France métropolitaine' : countryNameAuto,
-		preposition = (countryName && frenchCountryPrepositions[countryName]) || ''
-
-	return `${preposition} ${countryName}`
-}
-
-export const getSupportedFlag = (localisation) => {
-	if (!localisation) return
-
-	const supported = supportedRegions.find(
-		(c) => c.code === localisation.country.code
-	)
-
-	const code = supported?.drapeau || localisation?.country.code
-
-	return getFlagImgSrc(code)
-}
-
-export const getLocalisationPullRequest = (localisation) => {
-	const supported = isRegionSupported(localisation)
-	if (!supported) return false // this will load the french model
-	return supported.PR
-}
-
-export const isRegionSupported = (localisation) => {
-	if (!localisation) {
-		return undefined
-	}
-
-	const supported = supportedRegions.find(
-		(c) => c.code === localisation.country.code
-	)
-	if (supported?.inactif === 'oui') {
-		return false
-	}
-	return supported
 }

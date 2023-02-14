@@ -14,12 +14,7 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
-import {
-	getFlagImgSrc,
-	getLocalisationPullRequest,
-	getSupportedFlag,
-	isRegionSupported,
-} from './localisation/useLocalisation'
+import { getModelFlag } from './localisation/utils'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
 
@@ -136,9 +131,7 @@ export default function SessionBar({
 	const dispatch = useDispatch()
 
 	const localisation = useLocalisation()
-	const flag = isRegionSupported(localisation)
-		? getSupportedFlag(localisation)
-		: getFlagImgSrc('FR')
+	const flag = getModelFlag(localisation?.country?.code)
 
 	const location = useLocation(),
 		path = location.pathname
@@ -157,14 +150,7 @@ export default function SessionBar({
 
 	const [searchParams, setSearchParams] = useSearchParams()
 
-	const pullRequestNumber = useSelector((state) => state.pullRequestNumber),
-		// We only show the PR in the menu if it's set by the searchQuery,
-		// not by the localisation system
-		showPullRequestNumber =
-			pullRequestNumber &&
-			(!localisation ||
-				NODE_ENV === 'development' ||
-				!(pullRequestNumber === getLocalisationPullRequest(localisation)))
+	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
 
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 
@@ -248,7 +234,7 @@ export default function SessionBar({
 				Personas
 			</Button>
 		),
-		showPullRequestNumber && (
+		pullRequestNumber && (
 			<MenuButton
 				key="pullRequest"
 				className="simple small"

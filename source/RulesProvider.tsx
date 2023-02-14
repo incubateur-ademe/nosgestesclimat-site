@@ -6,6 +6,7 @@ import {
 	configSituationSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
+import LocalisationProvider from './components/localisation/LocalisationProvider'
 
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
@@ -16,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
 import AnimatedLoader from './AnimatedLoader'
+import useLocalisation from './components/localisation/useLocalisation'
+import { defaultModel, supportedRegion } from './components/localisation/utils'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -26,9 +29,15 @@ const EngineWrapper = ({ children }) => {
 	const engineState = useSelector((state) => state.engineState)
 	const engineRequestedOnce = engineState.state !== null
 	const rules = useSelector((state) => state.rules)
-	const dispatch = useDispatch()
-	const branchData = useBranchData()
 
+	const dispatch = useDispatch()
+
+	const branchData = useBranchData()
+	const localisation = useLocalisation()
+
+	const currentRegionCode = supportedRegion(localisation?.country?.code)
+		? localisation?.country?.code
+		: defaultModel
 	const optimizedOption = engineState?.options?.optimized
 	const parsedOption = engineState?.options?.parsed
 
@@ -43,16 +52,22 @@ const EngineWrapper = ({ children }) => {
 			if (!engineRequestedOnce) return
 
 			const url =
+				currLangAbrv &&
+				currentRegionCode &&
 				branchData.deployURL +
-				// TODO: find a better way to manage 'en'
-				`/co2-${i18n.language === 'en' ? 'en-us' : currLangAbrv}${
-					optimizedOption ? '-opti' : ''
-				}.json`
+					// TODO: find a better way to manage 'en'
+					`/co2-model.${currentRegionCode}-lang.${
+						i18n.language === 'en' ? 'en-us' : currLangAbrv
+					}${optimizedOption ? '-opti' : ''}.json`
 			console.log('fetching:', url)
 			fetch(url, { mode: 'cors' })
 				.then((response) => response.json())
 				.then((json) => {
 					if (active) dispatch({ type: 'SET_RULES', rules: json })
+				})
+				.catch((err) => {
+					console.log('url:', url)
+					console.log('err:', err)
 				})
 		}
 		fetchAndSetRules()
@@ -64,6 +79,7 @@ const EngineWrapper = ({ children }) => {
 		branchData.deployURL,
 		branchData.loaded,
 		i18n.language,
+		currentRegionCode,
 		optimizedOption,
 		engineRequestedOnce,
 	])
@@ -106,9 +122,11 @@ const EngineWrapper = ({ children }) => {
 		)
 
 	return (
-		<EngineProvider value={engine}>
-			<SituationProvider situation={situation}>{children}</SituationProvider>
-		</EngineProvider>
+		<LocalisationProvider>
+			<EngineProvider value={engine}>
+				<SituationProvider situation={situation}>{children}</SituationProvider>
+			</EngineProvider>
+		</LocalisationProvider>
 	)
 }
 
