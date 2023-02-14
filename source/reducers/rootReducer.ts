@@ -164,6 +164,10 @@ function currentLang(state = {}, { type, currentLang }) {
 	return type === 'SET_LANGUAGE' ? currentLang : state
 }
 
+function supportedRegions(state = {}, { type, supportedRegions }) {
+	return type === 'SET_SUPPORTED_REGIONS' ? supportedRegions : state
+}
+
 function survey(state = null, { type, room, answers, contextFile }) {
 	if (type === 'UNSET_SURVEY') return {}
 	if (type === 'SET_SURVEY') {
@@ -321,6 +325,7 @@ const mainReducer = (state: any, action: Action) =>
 		pullRequestNumber,
 		engineState,
 		currentLang,
+		supportedRegions,
 	})(state, action)
 
 export default reduceReducers<RootState>(
