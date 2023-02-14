@@ -197,7 +197,7 @@ const slides = [
 						</Trans>
 					</summary>{' '}
 					<Trans i18nKey={`publicodes.Tutorial.slide2.blockquote`}>
-						D'autres gaz, surtout le méthane;
+						D'autres gaz, surtout le méthane{' '}
 						<img
 							alt=""
 							src="/images/methane.svg"
