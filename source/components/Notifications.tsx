@@ -69,8 +69,8 @@ export default function Notifications({ currentQuestion }) {
 			<ul style={{ margin: 0, padding: 0 }}>
 				{filteredMessages.map(({ sévérité, dottedName, description }) =>
 					hiddenNotifications?.includes(dottedName) ? null : (
-						<animate.fromTop key={dottedName}>
-							<li>
+						<animate.fromTop>
+							<li key={dottedName}>
 								<div role="alert" className="notification">
 									{emoji(
 										sévérité == 'avertissement'
