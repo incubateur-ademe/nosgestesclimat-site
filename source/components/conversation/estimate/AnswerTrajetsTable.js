@@ -36,8 +36,8 @@ export default function AnswerTrajetsTable({ trajets }) {
 					</tr>
 				</thead>
 				<tbody>
-					{trajetsMotifTable.map((trajet) => (
-						<tr key={trajet[0]}>
+					{trajetsMotifTable.map((trajet, index) => (
+						<tr key={index + '-' + trajet[0]}>
 							<td>{trajet[0]}</td>
 							<td>{trajet[1]}</td>
 						</tr>
