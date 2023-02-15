@@ -51,7 +51,7 @@ export default ({
 		)
 		if (!thresholdActions.length) return null
 		return (
-			<div>
+			<div key={label}>
 				<List
 					{...{
 						actions: thresholdActions,
@@ -192,9 +192,9 @@ const List = ({ actions, rules, bilan, focusedAction, focusAction }) => (
 						`}
 					>
 						<ActionListCard
+							key={evaluation.dottedName}
 							focusAction={focusAction}
 							focused={focusedAction === evaluation.dottedName}
-							key={evaluation.dottedName}
 							rule={rules[evaluation.dottedName]}
 							evaluation={evaluation}
 							total={bilan?.nodeValue}

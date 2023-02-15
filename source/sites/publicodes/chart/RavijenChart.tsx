@@ -163,7 +163,6 @@ const SubCategoriesVerticalBar = ({
 }) => {
 	const { t, i18n } = useTranslation()
 	const categories = getSubcategories(rules, category, engine, true)
-
 	const [barRef, { width, height }] = useElementSize()
 	const [detailsShown, showDetails] = useState(false)
 	const maximumBarHeightPixels = 30,
@@ -255,6 +254,7 @@ const SubCategoriesVerticalBar = ({
 				const titleWithoutPercent = getTitle(title)
 				return (
 					<ConditionalLink
+						key={dottedName}
 						active={!noLinks}
 						to={`/documentation/${utils.encodeRuleName(dottedName)}`}
 					>
