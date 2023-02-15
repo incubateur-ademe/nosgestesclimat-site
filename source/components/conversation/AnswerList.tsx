@@ -162,8 +162,8 @@ const RecursiveStepsTable = ({ rules, engine, level, everythingUnfolded }) => {
 				([key, values]) =>
 					values.length > 1 && (
 						<SubCategory
-							key={key}
 							{...{
+								key,
 								rules: values,
 								rule: engine.getRule(key),
 								engine,
@@ -264,8 +264,8 @@ function StepsTable({
 			<tbody>
 				{rules.map((rule) => (
 					<Answer
-						key={rule.dottedName}
 						{...{
+							key: rule.dottedName,
 							level,
 							rule,
 							dispatch,
