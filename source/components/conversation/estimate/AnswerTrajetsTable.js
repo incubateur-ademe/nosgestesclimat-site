@@ -1,9 +1,12 @@
+import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { freqList } from './dataHelp'
 
 export default function AnswerTrajetsTable({ trajets }) {
+	const { t } = useTranslation()
+
 	const trajetsMotif = trajets.reduce((memo, trajet) => {
-		const period = freqList.find((f) => f.name === trajet.periode)
+		const period = freqList(t).find((f) => f.name === trajet.periode)
 		const freqValue = period ? period.value * trajet.xfois : 0
 		const dist = (trajet.distance * freqValue) / trajet.personnes
 

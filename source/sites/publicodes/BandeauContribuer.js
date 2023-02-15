@@ -15,7 +15,7 @@ export default () => {
 	const [visible, setVisible] = useState(false)
 
 	useEffect(() => {
-		show && setTimeout(() => setVisible(true), 4000)
+		show && setTimeout(() => setVisible(true), 8000)
 	}, [show])
 
 	return (
