@@ -4,14 +4,8 @@ import {
 	sortCategories,
 } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { DottedName } from 'modele-social'
-import {
-	EvaluatedNode,
-	formatValue,
-	PublicodesError,
-	RuleNode,
-} from 'publicodes'
+import { EvaluatedNode, formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -45,9 +39,6 @@ export default function AnswerList() {
 			) == null,
 	}))
 
-	const nextSteps = useNextQuestions().map((dottedName) =>
-		engine.evaluate(engine.getRule(dottedName))
-	)
 	const rules = useSelector((state) => state.rules)
 	const categories = sortCategories(extractCategoriesNamespaces(rules, engine))
 
@@ -301,17 +292,11 @@ const Answer = ({ rule, dispatch, level, engine }) => {
 		rule.unit.numerators = translateUnits(rule.unit.numerators)
 	}
 
-	let formattedValue: RuleNode<DottedName> | undefined
-
-	try {
-		formattedValue =
-			rule.type === 'string'
-				? // Retrieve the translated title of the rule implicated to a suggestion
-				  engine.getRule(rule.dottedName + ' . ' + rule.nodeValue)?.title
-				: t(formatValue(rule) as string, { ns: 'units' })
-	} catch (err) {
-		if (err instanceof PublicodesError && err.name === 'UnknownRule') return
-	}
+	const formattedValue =
+		rule.type === 'string'
+			? // Retrieve the translated title of the rule implicated to a suggestion
+			  safeGetRule(engine, rule.dottedName + ' . ' + rule.nodeValue)?.title
+			: t(formatValue(rule) as string, { ns: 'units' })
 
 	return (
 		<tr
