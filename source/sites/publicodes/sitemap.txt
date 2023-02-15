@@ -185,8 +185,8 @@ https://nosgestesclimat.fr/documentation/alimentation/de-saison/consommation/sou
 https://nosgestesclimat.fr/documentation/alimentation/de-saison/consommation/oui-toujours
 https://nosgestesclimat.fr/documentation/alimentation/de-saison/niveau
 https://nosgestesclimat.fr/documentation/alimentation/de-saison/ratio
-https://nosgestesclimat.fr/documentation/alimentation/de-saison/part-saisonable
-https://nosgestesclimat.fr/documentation/alimentation/de-saison/pourcentage-saisonable
+https://nosgestesclimat.fr/documentation/alimentation/de-saison/part-de-saison
+https://nosgestesclimat.fr/documentation/alimentation/de-saison/pourcentage-de-saison
 https://nosgestesclimat.fr/documentation/alimentation/déchets
 https://nosgestesclimat.fr/documentation/alimentation/déchets/quantité-jetée
 https://nosgestesclimat.fr/documentation/alimentation/déchets/quantité-jetée/base
