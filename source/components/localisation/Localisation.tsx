@@ -92,7 +92,7 @@ export default () => {
 							<Trans i18nKey="components.localisation.Localisation.warnMessage">
 								Pour le moment, il n'existe pas de modèle de calcul pour{' '}
 								{{ countryName }}, le modèle Français vous est proposé par
-								défault.
+								défaut.
 							</Trans>
 						</p>
 					)

@@ -34,8 +34,7 @@ entries:
   Ce guide n'existe pas encore: Ce guide n'existe pas encore
   "Cette contribution sera publique : n'y mettez pas d'informations sensibles": "Cette contribution sera publique : n'y mettez pas d'informations sensibles"
   Cette fiche détaillée n'existe pas encore: Cette fiche détaillée n'existe pas encore
-  Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.:
-    Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si
+  Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Cette page vous permet de naviguer les parcours Nos Gestes Climat comme si
     vous étiez l'un des profils types que nous avons listés.
   Chargement: Chargement
   Chargement du modèle de calcul...: Chargement du modèle de calcul...
@@ -65,8 +64,7 @@ entries:
   Courses: Courses
   De quoi est faite mon empreinte ?: De quoi est faite mon empreinte ?
   Depuis la page: Depuis la page
-  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.":
-    Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat
+  "Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.": Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat
     individuelle de consommation de référence.
   Diffuser: Diffuser
   Distance: Distance
@@ -87,8 +85,7 @@ entries:
   En savoir +: En savoir +
   En savoir plus: En savoir plus
   'Enlever ': 'Enlever '
-  "Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un standard qui évolue régulièrement et qui peut être réutilisé librement par tout type d'acteur.":
-    Entièrement ouvert (open source) et contributif, chacun peut
+  "Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un standard qui évolue régulièrement et qui peut être réutilisé librement par tout type d'acteur.": Entièrement ouvert (open source) et contributif, chacun peut
     l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>. C'est un
     standard qui évolue régulièrement et qui peut être réutilisé librement par
     tout type d'acteur.
@@ -102,8 +99,7 @@ entries:
   Et mes données ?: Et mes données ?
   Explorer les catégories: Explorer les catégories
   Explorer notre documentation: Explorer notre documentation
-  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.:
-    Explorez et modifiez les informations que vous avez saisies dans le parcours
+  Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.: Explorez et modifiez les informations que vous avez saisies dans le parcours
     nosgestesclimat.
   Explorez nos modèles: Explorez nos modèles
   Explorez notre documentation: Explorez notre documentation
@@ -128,18 +124,15 @@ entries:
   La voiture en chiffres: La voiture en chiffres
   Label: Label
   Label (facultatif): Label (facultatif)
-  "Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
-    Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul.
+  "Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.": Le modèle comprend aujourd'hui <1>{numberOfRules}</1> règles de calcul.
     Parmi elles, {numberOfQuestions} règles sont des questions à poser à
     l'utilisateur pour calculer un résultat précis.
-  "Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.":
-    Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi
+  "Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur pour calculer un résultat précis.": Le modèle comprend aujourd'hui {numberOfRules} règles de calcul. Parmi
     elles, {numberOfQuestions} règles sont des questions à poser à l'utilisateur
     pour calculer un résultat précis.
   Le modèle d'empreinte carbone de référence: Le modèle d'empreinte carbone de référence
   'Le reste : ': 'Le reste : '
-  "Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.":
-    Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même
+  "Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.": Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même
     nom, composé d'un ensemble de briques. Sur cette documentation, vous avez
     accès en toute transparence à l'ensemble des variables du calcul.
   Le test: Le test
@@ -278,37 +271,32 @@ entries:
     partir de réponses attribuées à l'avance à chaque question ! Il évoluera à
     chaque nouvelle réponse.
   components.ScoreExplanation.text.p2: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
-  components.ScoreExplanation.text.p3:
-    '🤔 Si vous répondez "je ne sais pas" à une
+  components.ScoreExplanation.text.p3: '🤔 Si vous répondez "je ne sais pas" à une
     question, le score ne changera pas : une valeur par défaut vous est
     attribuée.'
   components.ScoreExplanation.text.p4: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: La traduction de cette page est en
     version <1>beta</1>. <4>Un problème, une suggestion ?</4>
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne:
-    Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
     dans la voiture.
   components.conversation.select.NumberedMosaic.choixAFaire: ' Il vous reste {{nbChoix}} choix à faire.'
   components.conversation.select.NumberedMosaic.choixEnTrop: Vous avez fait {{nbChoix}} choix en trop !
   components.localisation.Localisation.warnMessage: Pour le moment, il n'existe
     pas de modèle de calcul pour {{countryName}}, le modèle Français vous est
-    proposé par défault.
-  components.localisation.Localisation.warnMessage2:
-    Nous n'avons pas pu détecter
+    proposé par défaut.
+  components.localisation.Localisation.warnMessage2: Nous n'avons pas pu détecter
     votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: Elle est actuellement en version <1>bêta</1>.
   components.localisation.LocalisationMessage.version: Vous utilisez la version <1>{{versionName}}</1> du test.
-  components.localisation.LocalisationMessage.warnMessage:
-    Votre région n'est pas
-    encore supportée, le modèle Français vous est proposé par défault.
+  components.localisation.LocalisationMessage.warnMessage: Votre région n'est pas
+    encore supportée, le modèle Français vous est proposé par défaut.
   components.stats.StatsContent.dureeDesVisites: <0>En savoir plus</0><1>Cette
     section est générée à partir des visites des 60 derniers jours. Les visites
     dont le temps passé sur le site est inférieur à 1 minute ont été écartées.
     Pour éviter le biais de l'iframe qui peut générer des visiteurs inactifs
     dans les statistiques, le temps moyen sur le site a été calculé à partir des
     visites actives (l'utilisateur a cliqué sur "Faire le test").</1>
-  components.stats.StatsContent.integrationEtIframes:
-    <0>En savoir plus</0><1>Les
+  components.stats.StatsContent.integrationEtIframes: <0>En savoir plus</0><1>Les
     intégrations en iframe sont détéctées via le paramètre 'iframe' dans l'URL,
     ceci seulement si l'intégrateur a utilisé le <2>script dédié</2>. Ainsi, les
     visites via les iframes d'intégrateurs qui n'ont pas utilisé ce script sont
@@ -370,11 +358,9 @@ entries:
     "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation
     des services par l'Utilisateur.
   meta.publicodes.CGU.title: Conditions générales d'utilisation
-  meta.publicodes.Contribution.description:
-    Découvrez les questions fréquentes sur
+  meta.publicodes.Contribution.description: Découvrez les questions fréquentes sur
     Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
-  meta.publicodes.Diffuser.description:
-    Ce simulateur vous permet d'évaluer votre
+  meta.publicodes.Diffuser.description: Ce simulateur vous permet d'évaluer votre
     empreinte carbone individuelle annuelle totale et par grandes catégories
     (alimentation, transport, logement, divers, services publics, numérique), de
     la situer par rapport aux objectifs climatiques et surtout de passer à
@@ -384,8 +370,7 @@ entries:
   meta.publicodes.Landing.description: Testez votre empreinte carbone, tout seul
     ou en groupe. Découvrez la répartition de votre empreinte. Suivez le
     parcours de passage à l'action pour la réduire.
-  meta.publicodes.LandingExplanations.description:
-    Testez votre empreinte carbone,
+  meta.publicodes.LandingExplanations.description: Testez votre empreinte carbone,
     tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez
     le parcours de passage à l'action pour la réduire.
   meta.publicodes.Méthode.description: Notre modèle de calcul est entièrement
@@ -417,8 +402,7 @@ entries:
   minutes: minutes
   model.active: Voici à titre d'exemple quelques <1>issues</1> importantes du
     moment parmi la centaine de sujets documentés.
-  model.intro:
-    Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte
+  model.intro: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte
     climat individuelle de consommation de référence.
   model.intro2: Entièrement ouvert (open source) et contributif, chacun peut
     l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
@@ -450,8 +434,7 @@ entries:
   ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
   ou: ou
   pages.News.determinant: of
-  pages.News.premierParagraphe:
-    Nous améliorons le site en continu à partir de vos
+  pages.News.premierParagraphe: Nous améliorons le site en continu à partir de vos
     retours. Découvrez ici les dernières nouveautés.
   participant: participant
   pleins: pleins
@@ -484,8 +467,7 @@ entries:
     questions les plus fréquentes. S’il vous reste des interrogations ou si vous
     souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne
     lecture !
-  publicodes.Contribution.descriptionComplète:
-    <0>La description complète de votre
+  publicodes.Contribution.descriptionComplète: <0>La description complète de votre
     problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple
     Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme
     (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le
@@ -500,8 +482,7 @@ entries:
     d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de
     vos doutes quand à un problèm de traduction sur le site 😊. Nous le
     prendrons en compte rapidement.
-  publicodes.Contribution.translationWikiInvite:
-    'Suivez notre guide complet pour
+  publicodes.Contribution.translationWikiInvite: 'Suivez notre guide complet pour
     contribuer directement à la traduction du site : <2>rendez-vous sur notre
     wiki</2>.'
   publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?
@@ -518,11 +499,9 @@ entries:
     console (elle est un peu chargée...), puis copier le JSON affiché, le coller
     dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans
     personas.yaml.
-  publicodes.Personas.warningMsg:
-    'Attention, vous avez une simulation en cours :
+  publicodes.Personas.warningMsg: 'Attention, vous avez une simulation en cours :
     sélectionner un persona écrasera votre simulation.'
-  publicodes.Profil.locationDonnées:
-    <0>Où sont mes données ? </0>Vos données sont
+  publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0>Vos données sont
     stockées dans votre navigateur, vous avez donc le contrôle total sur elles.
     <2></2>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} %
@@ -530,25 +509,23 @@ entries:
     actions.
   publicodes.SimulationMissing.personnas: 💡 Vous pouvez aussi voir le parcours
     action comme si vous étiez l'un de ces profils types.
-  publicodes.SimulationMissing.simulationManquante:
-    Vous n'avez pas encore fait le
+  publicodes.SimulationMissing.simulationManquante: Vous n'avez pas encore fait le
     test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur
     votre mode de vie.
   publicodes.TranslationContribution.commentaireAugmenté: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
-  publicodes.TranslationContribution.remerciements:
-    Merci 😍! Suivez l'avancement
+  publicodes.TranslationContribution.remerciements: Merci 😍! Suivez l'avancement
     de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Tutorial.slide1.p1: <0>Pas de panique, on vous explique ce que
     c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à
     mesure des gaz à effet de serre que l'on émet.</1>
   publicodes.Tutorial.slide1.p2: <0>Ce test vous donne en ⏱️ 10 minutes chrono
     <2>une mesure de votre part </2> dans ce réchauffement.</0>
-  publicodes.Tutorial.slide2.blockquote: "D'autres gaz, surtout le
-    méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la
-    planète : on convertit leur potentiel de réchauffement en équivalent CO₂
-    pour simplifier la mesure. "
+  publicodes.Tutorial.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2>
+    et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit
+    leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure.
+    "
   publicodes.Tutorial.slide2.p1: "Avec une unité au nom barbare : l'équivalent
     CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on l'expire toute la
     journée, mais sans influence sur le climat."
@@ -563,8 +540,7 @@ entries:
     TV...</1><2><0><0></0></0></2><3>L'empreinte de notre consommation
     individuelle, c'est la somme de toutes ces activités qui font notre vie
     moderne. </3>
-  publicodes.Tutorial.slide7:
-    "<0>Alors, c'est parti ?</0><1>Quelques astuces pour
+  publicodes.Tutorial.slide7: "<0>Alors, c'est parti ?</0><1>Quelques astuces pour
     vous aider à compléter le test :</1><2>👤 Répondez aux questions en votre
     nom, pas au nom de votre foyer : c'est un test individuel.</2><3>💼 Répondez
     pour votre vie perso, pas pour votre boulot ou études. <2>Une seule
@@ -579,16 +555,14 @@ entries:
     fonctionne en P2P (pair à pair).</0><1>Seul le nom de la salle de conférence
     sera indexé dans <2>les statistiques d'utilisation</2> de Nos Gestes Climat.
     </1>"
-  publicodes.conference.DataWarning.explanation:
-    'Le principe est simple : chacun
+  publicodes.conference.DataWarning.explanation: 'Le principe est simple : chacun
     fait son test sur son appareil, et les résultats sont mis en commun en temps
     réel avec les autres participants du sondage.'
   publicodes.conference.DataWarning.viePrivée: "🕵 En participant, vous acceptez
     la collecte <1>anonyme</1> de vos résultats agrégés de simulation sur notre
     serveur : l'empreinte climat totale et les catégories (transport, logement,
     etc.). <3>En savoir plus</3>"
-  publicodes.conference.Instructions.avertissementModeConference:
-    "<0>Attention</0>, il est possible que votre organisation bloque le
+  publicodes.conference.Instructions.avertissementModeConference: "<0>Attention</0>, il est possible que votre organisation bloque le
     pair-à-pair, et donc l'utilisation du mode conférence. Faites le test au
     préalable sur site et en duo : en cas de problème, vous pouvez utiliser le
     mode sondage."
@@ -596,15 +570,13 @@ entries:
     ajouter des questions pour obtenir des informations supplémentaires sur les
     répondants ? <2>Découvrez la fonctionnalité "contextualisation de sondage !"
     </2>
-  publicodes.conference.Instructions.descriptionModeConference:
-    "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
+  publicodes.conference.Instructions.descriptionModeConference: "Mode éphémère : parfait pour l'animation d'un atelier, une présentation
     interactive ou entre amis. Les données restent entre les participants
     (pair-à-pair sans serveur), <2>juste le temps de la conférence</2>."
   publicodes.conference.Instructions.descriptionModeSondage: 'Mode persistant :
     les données des participants sont stockées sur notre serveur et restent
     accessibles et téléchargeables <2>pendant deux mois</2>.'
-  publicodes.conference.Instructions.guideLien:
-    Les résultats sont là, que faire ?
+  publicodes.conference.Instructions.guideLien: Les résultats sont là, que faire ?
     Notre guide vous accompagne dans vos réflexions et vos discussions sur cette
     page
   publicodes.conference.Instructions.intro: <0>Le test d'empreinte climat est
@@ -612,8 +584,7 @@ entries:
     sera derrière son écran, mais visualisera en temps réel les résultats des
     autres.</0><1>C'est l'occasion de réfléchir ensemble aux enjeux de notre
     propre impact en comparant nos modes de vie.</1>
-  publicodes.conference.Instructions.liensSimulationConference:
-    Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
+  publicodes.conference.Instructions.liensSimulationConference: Au moment convenu, ouvrez ce lien tous en même temps et faites chacun de
     votre côté votre simulation.
   publicodes.conference.Instructions.liensSimulationSondage: Les participants doivent venir faire leur simulation sur ce lien.
   publicodes.conference.Instructions.resultatInfos: "Les résultats pour chaque
@@ -621,15 +592,12 @@ entries:
     progressivement et en temps réel pour l'ensemble du groupe sur "
   publicodes.conference.NamingBlock.nomSalleCourt: ⚠️ Votre nom de salle est
     court, il y a un petit risque que des inconnus puissent le deviner
-  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres:
-    💡 Votre nom de salle ne peut que contenir des lettres, des chiffres et des
+  publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres: 💡 Votre nom de salle ne peut que contenir des lettres, des chiffres et des
     tirets
-  publicodes.conference.NoTestMessage.bienvenue:
-    Bienvenue dans le mode groupe de
+  publicodes.conference.NoTestMessage.bienvenue: Bienvenue dans le mode groupe de
     Nos Gestes Climat ! Vous n'avez pas encore débuté votre test, lancez-vous !
   publicodes.conference.Survey.csv: Vous pouvez récupérer les résultats du sondage dans le format .csv.
-  publicodes.conference.Survey.excel:
-    'Pour l''ouvrir avec Microsoft Excel, ouvrez
+  publicodes.conference.Survey.excel: 'Pour l''ouvrir avec Microsoft Excel, ouvrez
     un tableur vide, puis Données > À partir d''un fichier texte / CSV.
     Sélectionnez "Origine : Unicode UTF-8" et "Délimiteur : virgule".'
   publicodes.conference.Survey.libreOffice: Pour l'ouvrir avec <2>LibreOffice</2>, c'est automatique.
@@ -640,22 +608,18 @@ entries:
     faute de frappe dans l'adresse du sondage ? Pensez notamment à bien
     respecter les majuscules, à copier coller l'adresse exacte ou à utiliser le
     QR code.
-  publicodes.conference.Survey.resultat:
-    Les résultats de la page de visualisation
+  publicodes.conference.Survey.resultat: Les résultats de la page de visualisation
     ne prennent en compte que les participants ayant rempli <1>au moins 10% du
     test</1>. En revanche le CSV contient les simulations de toutes les
     personnes ayant participé au sondage en cliquant sur le lien. La colonne
     "progress" vous permet de filtrer les simulations à votre tour.
-  publicodes.fin.ActionTeaser.félicitations:
-    '{{displayedTotal}} tonnes !<2> Vous
+  publicodes.fin.ActionTeaser.félicitations: '{{displayedTotal}} tonnes !<2> Vous
     êtes très nettement en-dessous de la moyenne française.</2> '
-  publicodes.fin.ActionTeaser.messagePourConvaincre:
-    Il y a de grandes chances que
+  publicodes.fin.ActionTeaser.messagePourConvaincre: Il y a de grandes chances que
     votre temps soit plus efficace à convaincre et aider les autres qu'à
     chercher à gagner vos "tonnes en trop" (même s'il faudra le faire un jour).
   publicodes.fin.IframeDataShareModal.partageResultats: Partage de vos résultats à {{parent}} ?
-  publicodes.fin.IframeDataShareModal.text:
-    <0>En cliquant sur le bouton Accepter,
+  publicodes.fin.IframeDataShareModal.text: <0>En cliquant sur le bouton Accepter,
     vous autorisez {{parent}} à récupérer le bilan de votre empreinte
     climat.</0><1>Il s'agit de vos résultats sur les grandes catégories
     (transport, alimentation...), mais <1>pas</1> le détail question par
@@ -663,8 +627,7 @@ entries:
     logement...).</1><2>Nosgestesclimat.fr n'est pas affilié au site
     {{parent}}.</2>
   publicodes.fin.Petrogaz.equivalenceVolume: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
-  publicodes.fin.Petrogaz.explications:
-    <0>C'est une estimation <1>a minima</1> de
+  publicodes.fin.Petrogaz.explications: <0>C'est une estimation <1>a minima</1> de
     votre consommation de pétrole brut à l'année.</0><1>Estimée via vos trajets
     en voiture, en avion, en bus, consommation de fioul pour chauffage, elle ne
     prend pas (encore) en compte le pétrole utilisé pour acheminer vos achats,
@@ -679,8 +642,7 @@ entries:
   simulation-end.title: 🌟 Vous avez complété cette simulation
   simulations: simulations
   simulations terminées depuis le lancement: simulations terminées depuis le lancement
-  site.publicodes.conferences.Stats.explication0:
-    Chaque barre verticale ☝️ est le
+  site.publicodes.conferences.Stats.explication0: Chaque barre verticale ☝️ est le
     score total d'un participant,<1></1>chaque disque 👇️ un score sur une
     catégorie.
   site.publicodes.conferences.Stats.explication1: '<0>En jaune</0> : mon score de {{spotlightValue}} t.'
