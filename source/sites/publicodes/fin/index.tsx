@@ -54,7 +54,6 @@ export default ({}) => {
 		action: ActionSlide,
 		petrogaz: Petrogaz,
 	}
-	console.log('slideName:', slideName)
 	const componentKeys = Object.keys(componentCorrespondence)
 	const Component = componentCorrespondence[slideName] || Budget
 
