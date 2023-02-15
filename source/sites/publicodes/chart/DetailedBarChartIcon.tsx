@@ -14,6 +14,7 @@ export default () => (
 	>
 		{[10, 6, 3].map((score) => (
 			<li
+				key={score}
 				css={`
 					width: ${score * 10}%;
 				`}

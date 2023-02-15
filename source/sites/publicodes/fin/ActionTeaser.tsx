@@ -1,19 +1,19 @@
 import { correctValue, splitName } from 'Components/publicodesUtils'
 import { EngineContext } from 'Components/utils/EngineContext'
+import { motion } from 'framer-motion'
 import { partition } from 'ramda'
 import { useContext } from 'react'
-import { useSelector } from 'react-redux'
-import { extractCategoriesNamespaces } from '../../../components/publicodesUtils'
-import { sortBy } from '../../../utils'
-import { ActionValue, disabledAction } from '../ActionVignette'
 import emoji from 'react-easy-emoji'
-import CircledEmojis from '../../../components/CircledEmojis'
-import { motion } from 'framer-motion'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import CircledEmojis from '../../../components/CircledEmojis'
+import { extractCategoriesNamespaces } from '../../../components/publicodesUtils'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
 } from '../../../locales/translation'
+import { sortBy } from '../../../utils'
+import { ActionValue, disabledAction } from '../ActionVignette'
 
 export default ({}) => {
 	const { i18n } = useTranslation()
@@ -163,6 +163,7 @@ export default ({}) => {
 		>
 			{topActions.map(([category, action]) => (
 				<motion.li
+					key={action.dottedName}
 					variants={itemVariants}
 					css={`
 						padding: 0.4rem 1rem;
