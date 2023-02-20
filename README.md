@@ -26,20 +26,10 @@ The model YAML files will then be loaded locally (no installation needed, they a
 
 > The production version fetches the JSON compiled YAML rules deployed by datagir/nosgestesclimat.
 
-Then run each following commands from this repo :
+Then run this command from this repo:
 
 ```
-# Installing dependencies
-yarn install
-
-# Starting the compilation of the model in watch mode
-yarn model:watch
-
-# Serving the model files locally
-yarn model:serve
-
-# Starting the website in development mode
-yarn start
+yarn && yarn start
 ```
 
 If you want to run the automatic localisation, which depends on a Netlify Edge function, you must run `netlify dev`.
