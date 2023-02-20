@@ -13,7 +13,7 @@
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
 		"start": "webpack serve --mode development --config webpack.dev.js & yarn run start:model",
-		"start:model": "yarn --cwd ./nosgestesclimat/ compile-watch & http-server ./nosgestesclimat/public/ -p 8081 --cors",
+		"start:model": "yarn --cwd ./nosgestesclimat/ compile-watch & http-server ./nosgestesclimat/public/ -p 8081 --cors -c-1",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
