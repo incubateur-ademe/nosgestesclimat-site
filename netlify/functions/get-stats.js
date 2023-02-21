@@ -15,7 +15,19 @@ exports.handler = async (event, context) => {
 			'&token_auth=' +
 			MATOMO_TOKEN
 	)
-	const data = await response.json()
+	const json = await response.json()
 
-	return { statusCode: 200, body: JSON.stringify(data) }
+	//We have to filter the page URL data because of a security flaw that introduced secret data in some URLs
+	if (requestParams.includes('Page')) {
+		return success(
+			json.filter(
+				(el) =>
+					!el.label.includes('conférence/') && !el.label.includes('sondage/')
+			)
+		)
+	}
+
+	return success(json)
 }
+
+const success = (data) => ({ statusCode: 200, body: JSON.stringify(data) })
