@@ -2,6 +2,8 @@ import fetch from 'node-fetch'
 
 let { MATOMO_TOKEN } = process.env
 
+// This function authorizes requests made from our front-end to fetch stats properties
+// Our full stats data are now private, since they could expose sensitive informations
 exports.handler = async (event, context) => {
 	const requestParams = decodeURIComponent(
 		event.queryStringParameters.requestParams
