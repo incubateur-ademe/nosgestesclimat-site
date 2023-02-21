@@ -29,6 +29,7 @@ module.exports = {
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('development'),
 			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
+			MATOMO_TOKEN: JSON.stringify(process.env.MATOMO_TOKEN),
 		}),
 		new ReactRefreshWebpackPlugin(),
 		/*

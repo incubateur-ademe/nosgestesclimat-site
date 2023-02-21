@@ -39,6 +39,7 @@ const Text = styled.p`
 `
 
 export default function ScoreFromURL(props) {
+	if (!props.pages.length) return
 	const scores = props.pages && getScores(props.pages)
 	// we exclude high number of visits on same urls (corresponds to average test score ?)
 	// pb : if a user goes to end page, come back to test, change test score, come back to end page, 2 score values are taken into account instead of one.

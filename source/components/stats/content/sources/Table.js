@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { Trans } from 'react-i18next'
+import styled from 'styled-components'
 
 import Tile from '../../utils/Tile'
 
@@ -75,6 +75,7 @@ export default function Table(props) {
 							<th>%</th>
 						</tr>
 						{props.data &&
+							props.data.length > 0 &&
 							props.data.map(
 								(line, index) =>
 									(!props.limit || index < props.limit) && (
