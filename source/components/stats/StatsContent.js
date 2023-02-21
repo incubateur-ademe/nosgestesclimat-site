@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 
@@ -108,18 +107,6 @@ export default function Data() {
 	const simulationsfromhelp = useSimulationsfromKmHelp()
 	const ridesnumber = useRidesNumber()
 
-	const [statsData, setStatsData] = useState(null)
-
-	useEffect(async () => {
-		const response = await fetch(
-			`/.netlify/functions/get-stats?chartPeriod=${chartPeriod}&chartDate=${chartDate}`
-		)
-		const data = await response.json()
-		console.log('data', data)
-		setStatsData(data)
-		return undefined
-	}, [])
-
 	return (
 		<div>
 			<Section.TopTitle>
@@ -129,9 +116,6 @@ export default function Data() {
 				<Section.Title>
 					<Trans>Stats générales</Trans>
 				</Section.Title>
-				<div>
-					DATA FROM FUNCTION {statsData && statsData.simulations[0].nb_visits}
-				</div>
 				<UseQueryResultHandler
 					requestResults={[period, reference, allTime, simulations]}
 					toRenderWithRequestData={([

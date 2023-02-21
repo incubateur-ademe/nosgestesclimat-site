@@ -3,50 +3,40 @@ import { useQuery } from 'react-query'
 
 const idSite = 153
 
-const authToken = MATOMO_TOKEN
-
-export const useChart = ({ chartPeriod, chartDate }) =>
+export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
 	useQuery(
-		['chart', chartPeriod, chartDate],
+		queryName,
 		() =>
 			axios
 				.get(
-					`https://stats.data.gouv.fr/?module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=VisitsSummary.getVisits&token_auth=${authToken}`
+					'/.netlify/functions/get-stats?requestParams=' +
+						encodeURIComponent(urlQuery)
 				)
-				.then((res) => res.data),
-		{
-			keepPreviousData: true,
-		}
+				.then((res) => transformResult(res)),
+		{ keepPreviousData }
+	)
+
+export const useChart = ({ chartPeriod, chartDate }) =>
+	useX(
+		['chart', chartPeriod, chartDate],
+		`module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+		(res) => res.data,
+		true
 	)
 
 export const useSimulationsTerminees = () =>
-	useQuery(
+	useX(
 		['SimulationsTerminees'],
-		() =>
-			axios
-				.get(
-					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON&token_auth=${authToken}
-`
-				)
-				.then((res) =>
-					res.data.find((action) => action.label === 'A terminé la simulation')
-				),
-		{
-			keepPreviousData: true,
-		}
-	)
-
-export const useX = (queryName, urlQuery, transformResult) =>
-	useQuery(queryName, () =>
-		axios
-			.get('https://stats.data.gouv.fr/?' + urlQuery)
-			.then((res) => transformResult(res))
+		`module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON`,
+		(res) =>
+			res.data.find((action) => action.label === 'A terminé la simulation'),
+		true
 	)
 
 export const useVisitsDuration = () =>
 	useX(
 		'VisitsDuration',
-		`module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON&token_auth=${authToken}
+		`module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON
 `,
 		(res) => res.data
 	)
@@ -54,7 +44,7 @@ export const useVisitsDuration = () =>
 export const useVisitsAvgDuration = () =>
 	useX(
 		'VisitsAvgDuration',
-		`module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60&token_auth=${authToken}
+		`module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60
 `,
 		(res) => res.data.avg_time_on_site_new / 60
 	)
@@ -62,7 +52,7 @@ export const useVisitsAvgDuration = () =>
 export const useSimulationAvgDuration = () =>
 	useX(
 		'SimulationAvgDuration',
-		`module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60&token_auth=${authToken}
+		`module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60
 `,
 		(res) => res.data[0].sum_time_spent / res.data[0].nb_visits / 60
 	)
@@ -70,7 +60,7 @@ export const useSimulationAvgDuration = () =>
 export const useTotal = () =>
 	useX(
 		'total',
-		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits&token_auth=${authToken}
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits
 `,
 		(res) => res.data
 	)
