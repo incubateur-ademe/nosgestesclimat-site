@@ -1,7 +1,5 @@
 import fetch from 'node-fetch'
 
-const idSite = 153
-
 let { MATOMO_TOKEN } = process.env
 
 exports.handler = async (event, context) => {

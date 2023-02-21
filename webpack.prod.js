@@ -41,7 +41,6 @@ module.exports = {
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('production'),
 			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
-			MATOMO_TOKEN: JSON.stringify(process.env.MATOMO_TOKEN),
 		}),
 	],
 }

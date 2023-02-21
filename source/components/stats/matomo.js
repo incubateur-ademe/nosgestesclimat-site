@@ -36,32 +36,28 @@ export const useSimulationsTerminees = () =>
 export const useVisitsDuration = () =>
 	useX(
 		'VisitsDuration',
-		`module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON
-`,
+		`module=API&idSite=${idSite}&method=VisitorInterest.getNumberOfVisitsPerVisitDuration&segment=eventAction%3D%3DClic%252520CTA%252520accueil&period=range&date=last60&format=JSON`,
 		(res) => res.data
 	)
 
 export const useVisitsAvgDuration = () =>
 	useX(
 		'VisitsAvgDuration',
-		`module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60
-`,
+		`module=API&idSite=${idSite}&method=VisitFrequency.get&period=range&date=last60&format=JSON&segment=eventAction%3D%3DClic%252520CTA%252520accueil;visitDuration>=60`,
 		(res) => res.data.avg_time_on_site_new / 60
 	)
 
 export const useSimulationAvgDuration = () =>
 	useX(
 		'SimulationAvgDuration',
-		`module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60
-`,
+		`module=API&idSite=${idSite}&method=Actions.getPageUrl&pageUrl=simulateur/bilan&period=range&date=last60&format=JSON&segment=eventAction%3D%3DA%252520termin%2525C3%2525A9%252520la%252520simulation;visitDuration>=60`,
 		(res) => res.data[0].sum_time_spent / res.data[0].nb_visits / 60
 	)
 
 export const useTotal = () =>
 	useX(
 		'total',
-		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits
-`,
+		`module=API&date=last30&period=range&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
 		(res) => res.data
 	)
 
