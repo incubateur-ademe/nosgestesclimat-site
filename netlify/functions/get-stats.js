@@ -17,12 +17,13 @@ exports.handler = async (event, context) => {
 	)
 	const json = await response.json()
 
-	//We have to filter the page URL data because of a security flaw that introduced secret data in some URLs
+	// Remove secret pages that would reveal groupe names that should stay private
 	if (requestParams.includes('Page')) {
 		return success(
 			json.filter(
 				(el) =>
-					!el.label.includes('conférence/') && !el.label.includes('sondage/')
+					!isPrivate(el.label) &&
+					!(el.subtable && el.subtable.find((t) => isPrivate(t.url)))
 			)
 		)
 	}
@@ -30,4 +31,21 @@ exports.handler = async (event, context) => {
 	return success(json)
 }
 
-const success = (data) => ({ statusCode: 200, body: JSON.stringify(data) })
+const success = (data) => ({
+	statusCode: 200,
+	body: JSON.stringify(data),
+	headers: {
+		'Content-Type': 'application/json; charset=utf-8',
+		'Access-Control-Allow-Origin': '*',
+	},
+})
+
+const isPrivate = (rawString) => {
+	const string = decodeURIComponent(rawString)
+	return (
+		string != undefined &&
+		(string.includes('conférence/') ||
+			string.includes('conference/') ||
+			string.includes('sondage/'))
+	)
+}
