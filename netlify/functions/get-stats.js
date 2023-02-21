@@ -2,12 +2,34 @@ import fetch from 'node-fetch'
 
 let { MATOMO_TOKEN } = process.env
 
+const authorizedMethods = [
+	'VisitsSummary.getVisits',
+	'VisitsSummary.getVisits',
+	'VisitorInterest.getNumberOfVisitsPerVisitDuration',
+	'VisitFrequency.get',
+	'Actions.getPageUrl',
+	'Referrers.getWebsites',
+	'Referrers.getSocials',
+	'Referrers.getKeywords',
+	'Actions.getEntryPageUrls',
+	'Actions.getPageUrls',
+	'Events.getAction',
+]
+
 // This function authorizes requests made from our front-end to fetch stats properties
 // Our full stats data are now private, since they could expose sensitive informations
 exports.handler = async (event, context) => {
 	const requestParams = decodeURIComponent(
 		event.queryStringParameters.requestParams
 	)
+
+	const matomoMethod = new URLSearchParams(requestParams).get('method'),
+		authorizedMethod = authorizedMethods.includes(matomoMethod)
+
+	if (!authorizedMethod)
+		return {
+			statusCode: 401,
+		}
 
 	const response = await fetch(
 		'https://stats.data.gouv.fr/?' +
@@ -36,7 +58,6 @@ const success = (data) => ({
 	body: JSON.stringify(data),
 	headers: {
 		'Content-Type': 'application/json; charset=utf-8',
-		'Access-Control-Allow-Origin': '*',
 	},
 })
 
