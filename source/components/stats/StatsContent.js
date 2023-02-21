@@ -111,7 +111,9 @@ export default function Data() {
 	const [statsData, setStatsData] = useState(null)
 
 	useEffect(async () => {
-		const response = await fetch('/.netlify/functions/get-stats')
+		const response = await fetch(
+			`/.netlify/functions/get-stats?chartPeriod=${chartPeriod}&chartDate=${chartDate}`
+		)
 		const data = await response.json()
 		console.log('data', data)
 		setStatsData(data)
