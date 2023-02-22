@@ -26,8 +26,20 @@ export const Mosaic = styled.ul`
 	}
 
 	@media (max-width: 800px) {
+		display: flex;
+		flex-direction: column;
 		> li {
-			width: 10rem;
+			width: 100%;
+			display: flex;
+			flex-direction: row;
+			min-height: initial;
+			padding: 0.6rem;
+			margin: 0.6rem 0;
+		}
+		figure {
+			order: -1;
+			margin: 0;
+			font-size: 160%;
 		}
 	}
 

@@ -1,5 +1,4 @@
 import { updateSituation } from 'Actions/actions'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useDispatch, useSelector } from 'react-redux'
@@ -54,20 +53,32 @@ export default function NumberedMosaic({
 								className="ui__ card interactive"
 								key={question.dottedName}
 								id={`card - ${question.dottedName}`}
+								css={`
+									@media (max-width: 800px) {
+										display: flex;
+									}
+								`}
 							>
 								<MosaicLabel htmlFor={question.dottedName}>{title}</MosaicLabel>
 
-								<div
+								<figure
 									css={`
 										${!description ? 'font-size: 200%' : ''}
 									`}
 								>
-									{icônes && emoji(icônes)}
-								</div>
+									{icônes}
+								</figure>
 								<p id={'description ' + title}>
 									{description && description.split('\n')[0]}
 								</p>
-								<div css={' span {margin: .8rem; font-size: 120%}'}>
+								<div
+									css={`
+										span {
+											margin: 0.8rem;
+											font-size: 120%;
+										}
+									`}
+								>
 									<button
 										className={`ui__ button small plain ${
 											!value ? 'disabled' : ''
@@ -140,7 +151,7 @@ export default function NumberedMosaic({
 							})}
 						</p>
 					) : chipsCount === chipsTotal ? (
-						<p role="alert">{emoji('😋👍')}</p>
+						<p role="alert">😋👍</p>
 					) : (
 						<p
 							role="alert"
