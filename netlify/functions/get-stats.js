@@ -63,12 +63,13 @@ const success = (data) => ({
 	},
 })
 
+const privateURLs = [ 'conférence/', 'conference/', 'sondage/' ]
+
 const isPrivate = (rawString) => {
-	const string = decodeURIComponent(rawString)
-	return (
-		string != undefined &&
-		(string.includes('conférence/') ||
-			string.includes('conference/') ||
-			string.includes('sondage/'))
+	const uriComponents = decodeURIComponent(rawString)
+	
+	return privateURLs.string?.
+		uriComponents != undefined &&
+		privateURLs.some((url) => uriComponents.includes(url))
 	)
 }
