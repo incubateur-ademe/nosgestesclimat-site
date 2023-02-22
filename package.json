@@ -109,7 +109,6 @@
 		"fuse.js": "6.6.2",
 		"html-webpack-plugin": "^5.5.0",
 		"i18next": "^21.8.12",
-		"iframe-resizer": "^4.3.2",
 		"imports-loader": "^4.0.0",
 		"isomorphic-fetch": "^3.0.0",
 		"json-stable-stringify": "^1.0.1",

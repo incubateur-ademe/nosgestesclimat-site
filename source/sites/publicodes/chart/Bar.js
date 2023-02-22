@@ -45,7 +45,7 @@ export default ({
 				>
 					<SafeCategoryImage element={{ dottedName, icons }} />
 				</span>
-				<span class="visually-hidden">{title}</span>
+				<span className="visually-hidden">{title}</span>
 				<BarContent
 					noText={noText}
 					color={color}

@@ -4,7 +4,6 @@ import {
 	sortCategories,
 } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { DottedName } from 'modele-social'
 import { EvaluatedNode, formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'
@@ -40,9 +39,6 @@ export default function AnswerList() {
 			) == null,
 	}))
 
-	const nextSteps = useNextQuestions().map((dottedName) =>
-		engine.evaluate(engine.getRule(dottedName))
-	)
 	const rules = useSelector((state) => state.rules)
 	const categories = sortCategories(extractCategoriesNamespaces(rules, engine))
 
@@ -163,6 +159,7 @@ const RecursiveStepsTable = ({ rules, engine, level, everythingUnfolded }) => {
 					values.length > 1 && (
 						<SubCategory
 							{...{
+								key,
 								rules: values,
 								rule: engine.getRule(key),
 								engine,
@@ -264,6 +261,7 @@ function StepsTable({
 				{rules.map((rule) => (
 					<Answer
 						{...{
+							key: rule.dottedName,
 							level,
 							rule,
 							dispatch,
@@ -299,7 +297,7 @@ const Answer = ({ rule, dispatch, level, engine }) => {
 	const formattedValue =
 		rule.type === 'string'
 			? // Retrieve the translated title of the rule implicated to a suggestion
-			  engine.getRule(rule.dottedName + ' . ' + rule.nodeValue)?.title
+			  safeGetRule(engine, rule.dottedName + ' . ' + rule.nodeValue)?.title
 			: t(formatValue(rule) as string, { ns: 'units' })
 
 	return (

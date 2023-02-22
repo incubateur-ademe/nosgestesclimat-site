@@ -66,9 +66,9 @@ export default ({}) => {
 			<form>
 				🧮
 				{Object.keys(visualisationChoices).map((name) => (
-					<label>
+					<label key={name}>
 						<input
-							onClick={() => setSearchParams({ visualisation: name })}
+							onChange={() => setSearchParams({ visualisation: name })}
 							type="radio"
 							value={name}
 							checked={searchParams.get('visualisation') === name}

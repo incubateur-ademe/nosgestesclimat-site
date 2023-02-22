@@ -304,7 +304,7 @@ entries:
     default.
   components.localisation.Localisation.warnMessage.lock: Pour le moment, il
     n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français
-    vous est proposé par défault.
+    vous est proposé par défaut.
   components.localisation.Localisation.warnMessage2: We could not detect your
     country of simulation, the French model is proposed by default.
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu
@@ -316,7 +316,7 @@ entries:
   components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test.
   components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default.
   components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé
-    par défault.
+    par défaut.
   components.stats.StatsContent.dureeDesVisites: <0>Learn more about this
     site</0><1>This section is generated from visits over the last 60 days.
     Visits with a time spent on the site of less than 1 minute have been
@@ -735,13 +735,13 @@ entries:
     measure of your part </2> in this warming.</0>
   publicodes.Tutorial.slide1.p2.lock: <0>Ce test vous donne en ⏱️ 10 minutes
     chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>
-  publicodes.Tutorial.slide2.blockquote: 'Other gases, especially methane <1></1>
-    and nitrous oxide <5></5> also warm the planet: we convert their warming
-    potential to CO₂ equivalent to simplify the unit.'
-  publicodes.Tutorial.slide2.blockquote.lock: "D'autres gaz, surtout le
-    méthane&nbsp;<1></1> et le protoxyde d'azote <5></5> réchauffent aussi la
-    planète : on convertit leur potentiel de réchauffement en équivalent CO₂
-    pour simplifier la mesure. "
+  publicodes.Tutorial.slide2.blockquote: 'Other gases, especially methane <2></2>
+    and nitrous oxide <6></6> also warm the planet: we convert their warming
+    potential to CO₂ equivalent to simplify the measurement. '
+  publicodes.Tutorial.slide2.blockquote.lock: "D'autres gaz, surtout le méthane
+    <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on
+    convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier
+    la mesure. "
   publicodes.Tutorial.slide2.p1: |
     Through a unit with a barbaric name: the CO₂
     equivalent. You already know carbon dioxide<1></1>, it's what we breathe out all day,
