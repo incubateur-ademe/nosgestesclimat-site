@@ -25,12 +25,26 @@ const iframe = document.createElement('iframe')
 
 const iframeAttributes = {
 	src,
-	style:
-		'border: 8px solid #32337b; border-radius: 1rem; display: block; margin: 10px auto; height: 800px; width: 500px; max-width: 95%',
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true,
+	id: 'iframeNGC',
 }
+document.head.insertAdjacentHTML(
+	'beforeend',
+	`<style>
+	#iframeNGC {
+		border: 8px solid #32337b;
+		border-radius: 1rem;
+		display: block;
+		margin: 10px auto;
+		height: 800px;
+		width: 500px;
+		max-width: 95%;
+	}
+    </style>`
+)
+
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])
 }
