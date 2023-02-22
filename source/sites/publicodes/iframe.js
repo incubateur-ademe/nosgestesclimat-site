@@ -34,14 +34,20 @@ document.head.insertAdjacentHTML(
 	'beforeend',
 	`<style>
 	#iframeNGC {
-		border: 8px solid #32337b;
+	    border: none;
 		border-radius: 1rem;
 		display: block;
 		margin: 10px auto;
 		height: 800px;
-		width: 500px;
-		max-width: 95%;
+		max-height: 80vh; /* Small smartphone screens should'nt have to scroll too much. We estimate that the host's header takes 20vh */
+		width: 100%;
 	}
+	@media (min-width: 800px){
+	  #iframeNGC{
+	  max-width: 450px; /* On large monitors, the iframe should not extend too much, as to avoid confusion between the iframe (viewed as an app) and the rest of the content, e.g. when it's integrated in a blog article. Remember : the website is designed mobile first, so should work perfectly on this width */
+		border: 8px solid #32337b;
+		}
+    }
     </style>`
 )
 
