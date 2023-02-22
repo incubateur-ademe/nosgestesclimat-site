@@ -1,3 +1,8 @@
+
+> ⚠️ Attention, la dernière version de cette fiche est à consulter sur [le dépôt beta.gouv.fr](https://github.com/betagouv/beta.gouv.fr/blob/master/content/_startups/nosgestesclimat.md). 
+
+
+
 ## Le drame
 
 On ne présente plus le changement climatique. 1,5 degrés, 2 degrés, ce sont des objectifs aujourd'hui bien connus. Seulement, des faits et mécanismes physiques et des chiffres de réchauffement planétaires, comment se traduisent les objectifs de l'accord de Paris dans notre vie quotidienne ? Autrement dit, quelle est *mon* empreinte sur le climat, de quoi est-elle constituée ? Et comment puis-je agir dessus, efficacement ?
