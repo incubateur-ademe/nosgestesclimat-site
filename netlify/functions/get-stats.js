@@ -26,7 +26,9 @@ exports.handler = async (event, context) => {
 	const matomoMethod = new URLSearchParams(requestParams).get('method'),
 		authorizedMethod = authorizedMethods.includes(matomoMethod)
 
-	if (!authorizedMethod)
+	const authorizedSiteId = idSite === '153'
+
+	if (!authorizedMethod || !authorizedSiteId)
 		return {
 			statusCode: 401,
 		}
