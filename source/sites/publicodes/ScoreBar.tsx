@@ -65,7 +65,14 @@ export default ({ actionMode = false, demoMode = false }) => {
 					left: 0;
 					z-index: 10;
 					width: 100%;
-				}`}
+				}
+
+			@media (max-height: 700px) {
+			bottom: 2rem
+
+			}
+
+				`}
 
 					color: var(--textColor);
 					a {
