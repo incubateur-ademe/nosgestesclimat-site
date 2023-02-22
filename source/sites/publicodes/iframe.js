@@ -51,7 +51,7 @@ document.head.insertAdjacentHTML(
 		border: 8px solid ${color};
 		}
     }
-	#iframeNGC.fullscreen {
+	#iframeNGC:fullscreen {
 
     width: 100%;
     height: 100%;
@@ -87,6 +87,7 @@ Passer en mode plein écran
 
 `
 fullscreenButton.style.cssText = `
+cursor:pointer;
 display: block; margin: 0 auto;
 border: none;
 padding: .2rem .8rem;
@@ -97,11 +98,11 @@ color: white;
 
 `
 fullscreenButton.addEventListener('click', (event) => {
-	document.querySelector('#iframeNGC').classList.add('fullscreen')
+	iframe.requestFullscreen()
 })
 
 script.parentNode.insertBefore(link, script)
-// script.parentNode.insertBefore(fullscreenButton, script)
+script.parentNode.insertBefore(fullscreenButton, script)
 // TODO : works, but we need to let the user come back !
 
 script.parentNode.insertBefore(iframe, script)
