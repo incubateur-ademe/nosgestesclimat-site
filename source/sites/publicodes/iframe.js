@@ -17,7 +17,7 @@ const optionFragments = possibleOptions.map(({ key, legacy }) => {
 	return value != null ? `&${key}=${value}` : ''
 })
 
-const src = `http://${hostname}:8080/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
+const src = `https://${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
 	''
 )}`
 
