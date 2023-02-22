@@ -80,7 +80,7 @@ export default () => {
 							font-size: 180%;
 						}
 					}
-					@media (max-width: 320px) {
+					@media (max-height: 700px) {
 						/*target iPhone 5 SE */
 						h1 {
 							font-size: 160%;

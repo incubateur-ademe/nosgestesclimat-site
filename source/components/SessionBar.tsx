@@ -62,6 +62,12 @@ const MenuButton = styled.div`
 		}
 		height: auto;
 	}
+	@media (max-height: 700px) {
+		img,
+		svg {
+			display: none;
+		}
+	}
 `
 
 const Button = (props) => {
@@ -78,7 +84,7 @@ const Button = (props) => {
 				  }
 				: {})}
 		>
-			<MenuButton {...props} />{' '}
+			<MenuButton {...props} />
 		</Link>
 	)
 }
@@ -333,7 +339,7 @@ const NavBar = styled.ul`
 	list-style-type: none;
 	justify-content: space-evenly !important;
 	align-items: center;
-	height: 3.5rem;
+
 	margin: 0;
 	width: 100%;
 	height: 4rem;
@@ -351,6 +357,10 @@ const NavBar = styled.ul`
 		li {
 			width: 100%;
 		}
+	}
+
+	@media (max-height: 700px) {
+		height: 2rem;
 	}
 `
 
