@@ -1,5 +1,3 @@
-import { iframeResize } from 'iframe-resizer'
-
 const script =
 		document.getElementById('ecolab-climat') ||
 		document.getElementById('nosgestesclimat'),
@@ -19,7 +17,7 @@ const optionFragments = possibleOptions.map(({ key, legacy }) => {
 	return value != null ? `&${key}=${value}` : ''
 })
 
-const src = `https://${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
+const src = `http://${hostname}:8080/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
 	''
 )}`
 
@@ -28,7 +26,7 @@ const iframe = document.createElement('iframe')
 const iframeAttributes = {
 	src,
 	style:
-		'border: none; width: 100%; display: block; margin: 10px auto; min-height: 700px',
+		'border: 8px solid #32337b; border-radius: 1rem; display: block; margin: 10px auto; height: 800px; width: 500px; max-width: 95%',
 	allowfullscreen: true,
 	webkitallowfullscreen: true,
 	mozallowfullscreen: true,
@@ -36,7 +34,6 @@ const iframeAttributes = {
 for (var key in iframeAttributes) {
 	iframe.setAttribute(key, iframeAttributes[key])
 }
-iframeResize({}, iframe)
 
 const link = document.createElement('div')
 link.innerHTML = `
