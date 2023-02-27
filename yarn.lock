@@ -1948,11 +1948,6 @@
   resolved "https://registry.npmjs.org/@types/node/-/node-18.0.1.tgz"
   integrity sha512-CmR8+Tsy95hhwtZBKJBs0/FFq4XX7sDZHlGGf+0q+BRZfMbOTkzkj0AFAuTyXbObDIoanaBBW0+KEW+m3N16Wg==
 
-"@types/node@^18.11.18":
-  version "18.11.18"
-  resolved "https://registry.yarnpkg.com/@types/node/-/node-18.11.18.tgz#8dfb97f0da23c2293e554c5a50d61ef134d7697f"
-  integrity sha512-DHQpWGjyQKSHj3ebjFI/wRKcqQcdR+MoFBygntYOZytCqNfkd2ZC4ARDJ2DQqhjH5p85Nnd3jhUJIXrszFX/JA==
-
 "@types/parse-json@^4.0.0":
   version "4.0.0"
   resolved "https://registry.npmjs.org/@types/parse-json/-/parse-json-4.0.0.tgz"
@@ -7179,13 +7174,6 @@ publicodes@^1.0.0-beta.66:
   version "1.0.0-beta.66"
   resolved "https://registry.yarnpkg.com/publicodes/-/publicodes-1.0.0-beta.66.tgz#e8149733431268c764ea150dc82d3ce3709d20db"
   integrity sha512-9lnLnbMM8Mz2+WvNK3/DttRbu6UvpoRx/B9XrMWUSgsb760uwQEqdpkHbl1gPlz2WpYSRuKZVyuW8LdfxTFRXw==
-
-publiopti@^0.1.21:
-  version "0.1.21"
-  resolved "https://registry.yarnpkg.com/publiopti/-/publiopti-0.1.21.tgz#3c7d4fe6a4886abb1086317a5f7539964137ff28"
-  integrity sha512-VfGkT4v0sb0B4yr9EykBTsU8riTsLYWd2RUDgm6fIK8pEAL8JRof7ljwE8EsVyT7Z4vZDoSDBpZf5gRylfc3GQ==
-  dependencies:
-    "@types/node" "^18.11.18"
 
 pump@^2.0.0:
   version "2.0.1"

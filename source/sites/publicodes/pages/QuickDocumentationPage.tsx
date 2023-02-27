@@ -25,11 +25,9 @@ const Breadcrumb = ({ rules, dottedName }) => {
 		.reverse()
 		.map((parentDottedName) => {
 			const rule = rules[parentDottedName]
-			return (
+			return rule === undefined ? null : (
 				<span key={parentDottedName}>
-					{rules[parentDottedName].icônes && (
-						<span>{rules[parentDottedName].icônes}</span>
-					)}
+					{rule.icônes !== undefined && <span>{rule.icônes}</span>}
 					<Link to={utils.encodeRuleName(parentDottedName)}>
 						{title({ ...rule, dottedName: parentDottedName })}
 					</Link>
@@ -38,7 +36,9 @@ const Breadcrumb = ({ rules, dottedName }) => {
 				</span>
 			)
 		})
-	if (!elements.length) return null
+	if (!elements.length) {
+		return null
+	}
 	return <small>{elements}</small>
 }
 
