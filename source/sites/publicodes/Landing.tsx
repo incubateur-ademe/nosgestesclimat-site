@@ -12,6 +12,7 @@ import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
+
 const LazyIllustration = React.lazy(
 	() => import('Components/AnimatedIllustration')
 )
@@ -79,6 +80,15 @@ export default () => {
 							font-size: 180%;
 						}
 					}
+					@media (max-height: 700px) {
+						/*target iPhone 5 SE */
+						h1 {
+							font-size: 160%;
+						}
+						svg {
+							max-width: 12rem !important;
+						}
+					}
 				`}
 			>
 				<div
@@ -93,7 +103,7 @@ export default () => {
 							Connaissez-vous votre empreinte sur le climat ?
 						</Trans>
 					</h1>
-					{mobile && <Illustration small aira-hidden="true" />}
+					{mobile && <Illustration aira-hidden="true" />}
 					<p>
 						<Trans i18nKey={'sites.publicodes.Landing.description'}>
 							En 10 minutes, obtenez une estimation de votre empreinte carbone
