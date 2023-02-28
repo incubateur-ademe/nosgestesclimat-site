@@ -1,5 +1,3 @@
-import fetch from 'node-fetch'
-
 let { MATOMO_TOKEN } = process.env
 
 const authorizedMethods = [
