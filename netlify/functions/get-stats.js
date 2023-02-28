@@ -17,14 +17,15 @@ const authorizedMethods = [
 // This function authorizes requests made from our front-end to fetch stats properties
 // Our full stats data are now private, since they could expose sensitive informations
 exports.handler = async (event, context) => {
-	const requestParams = decodeURIComponent(
-		event.queryStringParameters.requestParams
-	)
+	const rawRequestParams = decodeURIComponent(
+			event.queryStringParameters.requestParams
+		),
+		requestParams = new URLSearchParams(rawRequestParams)
 
-	const matomoMethod = new URLSearchParams(requestParams).get('method'),
+	const matomoMethod = requestParams.get('method'),
 		authorizedMethod = authorizedMethods.includes(matomoMethod)
 
-	const authorizedSiteId = idSite === '153'
+	const authorizedSiteId = requestParams.get('idSite') === '153'
 
 	if (!authorizedMethod || !authorizedSiteId)
 		return {
@@ -40,7 +41,7 @@ exports.handler = async (event, context) => {
 	const json = await response.json()
 
 	// Remove secret pages that would reveal groupe names that should stay private
-	if (requestParams.includes('Page')) {
+	if (rawRequestParams.includes('Page')) {
 		return success(
 			json.filter(
 				(el) =>
@@ -61,12 +62,12 @@ const success = (data) => ({
 	},
 })
 
-const privateURLs = [ 'conférence/', 'conference/', 'sondage/' ]
+const privateURLs = ['conférence/', 'conference/', 'sondage/']
 
 const isPrivate = (rawString) => {
 	const uriComponents = decodeURIComponent(rawString)
-	
-	return privateURLs.string?.
+
+	return (
 		uriComponents != undefined &&
 		privateURLs.some((url) => uriComponents.includes(url))
 	)
