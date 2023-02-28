@@ -51,6 +51,7 @@ const MenuButton = styled.div`
 		justify-content: start;
 		padding: 0;
 		font-size: 100%;
+		width: auto;
 	}
 	img,
 	svg {
