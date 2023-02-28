@@ -1,5 +1,4 @@
 import { loadPreviousSimulation } from 'Actions/actions'
-import useLocalisation from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -14,7 +13,6 @@ import { backgroundConferenceAnimation } from '../sites/publicodes/conference/co
 import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
-import { getModelFlag } from './localisation/utils'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
 
@@ -138,9 +136,6 @@ export default function SessionBar({
 	const survey = useSelector((state) => state.survey)
 	const dispatch = useDispatch()
 
-	const localisation = useLocalisation()
-	const flag = getModelFlag(localisation?.country?.code)
-
 	const location = useLocation(),
 		path = location.pathname
 
@@ -196,19 +191,6 @@ export default function SessionBar({
 					width="1"
 					height="1"
 				/>
-				{flag && (
-					<img
-						src={flag}
-						css={`
-							position: absolute;
-							left: 1.45rem;
-							top: -0.15rem;
-							width: 1.2rem;
-							border-radius: 0.3rem !important;
-						`}
-						aria-hidden="true"
-					/>
-				)}
 			</div>
 			{!persona ? (
 				t('Profil')
