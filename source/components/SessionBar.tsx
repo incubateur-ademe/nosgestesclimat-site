@@ -30,7 +30,7 @@ const openmojis = {
 	conference: '1F3DF',
 	sondage: '1F4CA',
 	profile: 'silhouette',
-	groupe: 'silhouettes',
+	silhouettes: 'silhouettes',
 	personas: '1F465',
 	github: 'E045',
 }
@@ -47,6 +47,7 @@ const MenuButton = styled.div`
 	font-size: 110% !important;
 	color: var(--darkColor);
 	padding: 0 0.4rem !important;
+	width: 6rem;
 	@media (min-width: 800px) {
 		flex-direction: row;
 		justify-content: start;
@@ -210,7 +211,7 @@ export default function SessionBar({
 				)}
 			</div>
 			{!persona ? (
-				t('Mon profil')
+				t('Profil')
 			) : (
 				<span
 					css={`
@@ -266,6 +267,22 @@ export default function SessionBar({
 				</button>
 			</MenuButton>
 		),
+		<Button
+			className="simple small"
+			url="/groupe"
+			css={`
+				${buttonStyle('silhouettes')};
+			`}
+		>
+			<img
+				src={openmojiURL('silhouettes')}
+				css="width: 2rem"
+				aria-hidden="true"
+				width="1"
+				height="1"
+			/>
+			<Trans>Groupe</Trans>
+		</Button>,
 		conference?.room && (
 			<GroupModeMenuEntry
 				title="Conférence"
