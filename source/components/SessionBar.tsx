@@ -78,7 +78,17 @@ const Button = (props) => {
 	return (
 		<Link
 			to={props.url}
-			css="text-decoration: none"
+			css={`
+				text-decoration: none;
+				${isCurrent &&
+				`
+				font-weight: bold;
+				background: var(--lighterColor);
+				display: block;
+				@media (max-width: 800px){border-radius: 1.6rem}
+
+				`}
+			`}
 			{...(isCurrent
 				? {
 						'aria-current': 'page',
@@ -140,16 +150,6 @@ export default function SessionBar({
 	const location = useLocation(),
 		path = location.pathname
 
-	const buttonStyle = (pathTarget) =>
-		path.includes(pathTarget)
-			? `
-		font-weight: bold;
-		img, svg {
-		  background: var(--lighterColor);
-		  border-radius: 2rem;
-		}
-		`
-			: ''
 	const persona = useSelector((state) => state.simulation?.persona)
 
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -161,25 +161,15 @@ export default function SessionBar({
 	const { t } = useTranslation()
 
 	let elements = [
-		<Button
-			className="simple small"
-			url="/simulateur/bilan"
-			css={`
-				${buttonStyle('simulateur')};
-			`}
-		>
+		<Button className="simple small" url="/simulateur/bilan">
 			<ProgressCircle />
 			<Trans>Le test</Trans>
 		</Button>,
-		<Button
-			className="simple small"
-			url="/actions/liste"
-			css={buttonStyle('/actions')}
-		>
+		<Button className="simple small" url="/actions/liste">
 			<ActionsInteractiveIcon />
 			<Trans>Agir</Trans>
 		</Button>,
-		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
+		<Button className="simple small" url="/profil">
 			<div
 				css={`
 					position: relative;
@@ -209,11 +199,7 @@ export default function SessionBar({
 			)}
 		</Button>,
 		pullRequestNumber && (
-			<MenuButton
-				key="pullRequest"
-				className="simple small"
-				css={buttonStyle('github')}
-			>
+			<MenuButton key="pullRequest" className="simple small">
 				<a
 					href={
 						'https://github.com/datagir/nosgestesclimat/pull/' +
@@ -250,13 +236,7 @@ export default function SessionBar({
 				</button>
 			</MenuButton>
 		),
-		<Button
-			className="simple small"
-			url="/groupe"
-			css={`
-				${buttonStyle('silhouettes')};
-			`}
-		>
+		<Button className="simple small" url="/groupe">
 			<img
 				src={openmojiURL('silhouettes')}
 				css="width: 2rem"
@@ -271,7 +251,6 @@ export default function SessionBar({
 				title="Conférence"
 				icon={conferenceImg}
 				url={'/conférence/' + conference.room}
-				buttonStyle={buttonStyle}
 			>
 				<ConferenceBarLazy />
 			</GroupModeMenuEntry>
@@ -281,7 +260,6 @@ export default function SessionBar({
 				title="Sondage"
 				icon={openmojiURL('sondage')}
 				url={'/sondage/' + survey.room}
-				buttonStyle={buttonStyle}
 			>
 				<SurveyBarLazy />
 			</GroupModeMenuEntry>
@@ -348,7 +326,7 @@ const NavBar = styled.ul`
 	}
 `
 
-const GroupModeMenuEntry = ({ title, icon, url, children, buttonStyle }) => {
+const GroupModeMenuEntry = ({ title, icon, url, children }) => {
 	return (
 		<div
 			css={`
@@ -362,7 +340,6 @@ const GroupModeMenuEntry = ({ title, icon, url, children, buttonStyle }) => {
 				className="simple small"
 				url={url}
 				css={`
-					${buttonStyle('conf')}
 					padding: 0.4rem;
 					color: white;
 					img {
