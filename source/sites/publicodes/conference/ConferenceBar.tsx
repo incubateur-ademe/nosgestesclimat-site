@@ -74,6 +74,8 @@ export default () => {
 					display: flex;
 					justify-content: space-evenly;
 					align-items: center;
+					border-bottom-right-radius: 0.4rem;
+					border-bottom-left-radius: 0.4rem;
 					> span {
 						display: flex;
 						align-items: center;
