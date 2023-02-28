@@ -27,6 +27,7 @@ import {
 	getLangInfos,
 	Lang,
 } from './../../locales/translation'
+import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
@@ -189,6 +190,7 @@ const Main = ({}) => {
 						}
 					`}
 				>
+					<GroupModeSessionVignette />
 					{!isHomePage && !isTuto && <LocalisationMessage />}
 
 					{fluidLayout && (

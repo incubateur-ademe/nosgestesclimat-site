@@ -8,9 +8,6 @@ import { RootState } from 'Reducers/rootReducer'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { resetLocalisation } from '../actions/actions'
-import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
-import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
-import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
 import ProgressCircle from './ProgressCircle'
@@ -143,8 +140,6 @@ export default function SessionBar({
 }) {
 	useSafePreviousSimulation()
 
-	const conference = useSelector((state) => state.conference)
-	const survey = useSelector((state) => state.survey)
 	const dispatch = useDispatch()
 
 	const location = useLocation(),
@@ -246,24 +241,6 @@ export default function SessionBar({
 			/>
 			<Trans>Groupe</Trans>
 		</Button>,
-		conference?.room && (
-			<GroupModeMenuEntry
-				title="Conférence"
-				icon={conferenceImg}
-				url={'/conférence/' + conference.room}
-			>
-				<ConferenceBarLazy />
-			</GroupModeMenuEntry>
-		),
-		survey?.room && (
-			<GroupModeMenuEntry
-				title="Sondage"
-				icon={openmojiURL('sondage')}
-				url={'/sondage/' + survey.room}
-			>
-				<SurveyBarLazy />
-			</GroupModeMenuEntry>
-		),
 	]
 
 	if (path === '/tutoriel') return null
@@ -325,53 +302,3 @@ const NavBar = styled.ul`
 		height: 2rem;
 	}
 `
-
-const GroupModeMenuEntry = ({ title, icon, url, children }) => {
-	return (
-		<div
-			css={`
-				${backgroundConferenceAnimation}
-				color: white;
-				border-radius: 0.4rem;
-				margin-right: 0.6rem;
-			`}
-		>
-			<Button
-				className="simple small"
-				url={url}
-				css={`
-					padding: 0.4rem;
-					color: white;
-					img {
-						filter: invert(1);
-						background: none;
-						margin: 0 0.6rem 0 0 !important;
-					}
-					@media (max-width: 800px) {
-						img {
-							margin: 0 !important;
-						}
-					}
-				`}
-			>
-				<img
-					src={icon}
-					css="width: 2rem"
-					aria-hidden="true"
-					width="1"
-					height="1"
-				/>
-				{title}
-			</Button>
-			<div
-				css={`
-					@media (max-width: 800px) {
-						display: none;
-					}
-				`}
-			>
-				{children}
-			</div>
-		</div>
-	)
-}
