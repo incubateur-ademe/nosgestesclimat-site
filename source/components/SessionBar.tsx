@@ -30,6 +30,7 @@ const openmojis = {
 	conference: '1F3DF',
 	sondage: '1F4CA',
 	profile: 'silhouette',
+	groupe: 'silhouettes',
 	personas: '1F465',
 	github: 'E045',
 }
@@ -223,23 +224,6 @@ export default function SessionBar({
 				</span>
 			)}
 		</Button>,
-		NODE_ENV === 'development' && (
-			<Button
-				key="personas"
-				className="simple small"
-				url="/personas"
-				css={buttonStyle('personas')}
-			>
-				<img
-					src={openmojiURL('personas')}
-					css="width: 2rem"
-					aria-hidden="true"
-					width="1"
-					height="1"
-				/>
-				Personas
-			</Button>
-		),
 		pullRequestNumber && (
 			<MenuButton
 				key="pullRequest"
