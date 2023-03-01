@@ -9,7 +9,8 @@
 // "public repo" authorization when generating the access token.
 require('dotenv').config()
 require('isomorphic-fetch')
-var { createDataDir, writeInDataDir } = require('./utils.js')
+const path = require('path')
+const fs = require('fs')
 
 const repository = 'nosgestesclimat',
 	organization = 'datagir'
@@ -18,8 +19,8 @@ async function main() {
 	const dir = path.resolve(__dirname, '../source/locales/releases/')
 	const releases = await fetchReleases()
 	fs.writeFileSync(
-		path.join(dataDir, 'releases-fr.json'),
-		JSON.stringify(data, null, 2)
+		path.join(dir, 'releases-fr.json'),
+		JSON.stringify(releases, null, 2)
 	)
 
 	// The last release name is fetched on all pages (to display the banner)

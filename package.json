@@ -19,7 +19,7 @@
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
-		"clean": "rimraf dist node_modules source/data",
+		"clean": "rimraf dist node_modules",
 		"test:bundlesize": "bundlesize",
 		"generate:ui": "node scripts/i18n/generate-ui.js",
 		"translate:ui": "node scripts/i18n/translate-ui.js",
