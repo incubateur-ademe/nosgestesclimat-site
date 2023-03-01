@@ -71,6 +71,10 @@ export default () => {
 					padding: 0.3rem;
 					display: flex;
 					flex-direction: column;
+					@media (min-width: 800px) {
+						flex-direction: row;
+						padding: 0.3rem 3rem;
+					}
 
 					justify-content: space-evenly;
 					align-items: center;
@@ -82,8 +86,6 @@ export default () => {
 					img {
 						font-size: 150%;
 						margin-right: 0.4rem !important;
-					}
-					@media (min-width: 800px) {
 					}
 				`}
 			>
