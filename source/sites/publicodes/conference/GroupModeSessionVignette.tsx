@@ -40,7 +40,11 @@ const Button = styled.button``
 
 const GroupModeMenuEntry = ({ title, icon, url, children }) => {
 	return (
-		<div>
+		<div
+			css={`
+				margin-bottom: 1rem;
+			`}
+		>
 			<Button
 				className="simple small"
 				css={`
