@@ -1,10 +1,11 @@
-import Engine from 'publicodes'
-import { createContext, useState, useEffect } from 'react'
-import { useSelector } from 'react-redux'
+import 'Components/conversation/conversation.css'
 import RuleInput from 'Components/conversation/RuleInput'
-import { getNextQuestions } from 'Components/utils/useNextQuestion'
-import { Trans } from 'react-i18next'
 import { splitName } from 'Components/publicodesUtils'
+import { getNextQuestions } from 'Components/utils/useNextQuestion'
+import Engine from 'publicodes'
+import { createContext, useEffect, useState } from 'react'
+import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { contextURL } from './useDatabase'
 
 const SituationContext = createContext({})
@@ -115,7 +116,6 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 	const questions = nextQuestions
 
 	const onChange = (dottedName) => (value) => {
-			console.log(value, situation, dottedName)
 			const newSituation = (situation) => ({
 				...situation,
 				[dottedName]: value,
