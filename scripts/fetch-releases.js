@@ -15,9 +15,12 @@ const repository = 'nosgestesclimat',
 	organization = 'datagir'
 
 async function main() {
-	createDataDir()
+	const dir = path.resolve(__dirname, '../source/locales/releases/')
 	const releases = await fetchReleases()
-	writeInDataDir('releases.json', releases)
+	fs.writeFileSync(
+		path.join(dataDir, 'releases-fr.json'),
+		JSON.stringify(data, null, 2)
+	)
 
 	// The last release name is fetched on all pages (to display the banner)
 	// whereas the full release data is used only in the dedicated page.
