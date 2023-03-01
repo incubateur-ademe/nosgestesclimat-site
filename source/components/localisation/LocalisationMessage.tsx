@@ -118,7 +118,7 @@ export default () => {
 						<small>
 							<Trans>Pas votre région ?</Trans>{' '}
 							<Link to="/profil">
-								<Trans>Choisissez la votre</Trans>
+								<Trans>Choisissez la vôtre</Trans>
 							</Link>
 							.
 						</small>
