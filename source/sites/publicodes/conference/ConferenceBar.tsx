@@ -68,14 +68,12 @@ export default () => {
 			<div
 				css={`
 					color: white;
-					padding: 0.3rem 1rem;
+					padding: 0.3rem;
 					display: flex;
 					flex-direction: column;
 
 					justify-content: space-evenly;
 					align-items: center;
-					border-bottom-right-radius: 0.4rem;
-					border-bottom-left-radius: 0.4rem;
 					> span {
 						display: flex;
 						align-items: center;
@@ -89,9 +87,7 @@ export default () => {
 					}
 				`}
 			>
-				<span css="text-transform: uppercase">
-					«&nbsp;{conference.room}&nbsp;»
-				</span>
+				<span css="">«&nbsp;{conference.room}&nbsp;»</span>
 				<div
 					css={`
 						display: flex;
@@ -102,7 +98,7 @@ export default () => {
 				>
 					<span>
 						<EmojiStyle>🧮</EmojiStyle>
-						{result}
+						{result.replace(/tonnes?/, 't')}
 					</span>
 					<CountSection>
 						{rawNumber != null && (

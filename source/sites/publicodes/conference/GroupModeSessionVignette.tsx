@@ -37,41 +37,39 @@ const Button = styled.button``
 
 const GroupModeMenuEntry = ({ title, icon, url, children }) => {
 	return (
-		<div
-			css={`
-				${backgroundConferenceAnimation}
-				color: white;
-				border-radius: 0.4rem;
-				margin-right: 0.6rem;
-			`}
-		>
+		<div>
 			<Button
 				className="simple small"
 				css={`
-					padding: 0.4rem;
-					color: white;
-					img {
-						filter: invert(1);
-						background: none;
-						margin: 0 0.6rem 0 0 !important;
-					}
-					@media (max-width: 800px) {
-						img {
-							margin: 0 !important;
-						}
-					}
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					width: 100%;
 				`}
 			>
 				<img
 					src={icon}
-					css="width: 2rem"
+					css={`
+						width: 2rem;
+						height: 2rem;
+						margin: 0 0.6rem;
+					`}
 					aria-hidden="true"
 					width="1"
 					height="1"
 				/>
 				{title}
 			</Button>
-			<div css={``}>{children}</div>
+			<div
+				css={`
+					${backgroundConferenceAnimation}
+					color: white;
+					border-radius: 0.4rem;
+					margin-right: 0.6rem;
+				`}
+			>
+				{children}
+			</div>
 		</div>
 	)
 }
