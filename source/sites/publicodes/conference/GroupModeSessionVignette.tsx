@@ -8,7 +8,8 @@ import SurveyBarLazy from './SurveyBarLazy'
 
 export default () => {
 	const location = useLocation()
-	if (!['/simulateur/bilan', '/groupe'].includes(location.pathname)) return null
+	if (!['/simulateur/bilan', '/groupe', '/profil'].includes(location.pathname))
+		return null
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
 
