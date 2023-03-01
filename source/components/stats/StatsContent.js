@@ -28,6 +28,7 @@ import {
 	useVisitsDuration,
 	useWebsites,
 } from './matomo'
+
 import Section from './utils/Section'
 
 const Wrapper = styled.div`

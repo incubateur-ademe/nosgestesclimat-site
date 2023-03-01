@@ -34,6 +34,10 @@ Le simulateur est amélioré en continu.
 [✨️ Découvrez les dernières nouveautés et les notes de
 versions](/nouveautés).
 
+## Statistiques
+
+Une sélection de statistiques d'audience est disponible publiquement [sur notre page stats](/stats).
+
 ## Vie privée
 
 Nous collectons des données anonymisées uniquement pour améliorer ce

@@ -81,14 +81,16 @@ const Text = styled.p`
 `
 
 export default function IframeFigures(props) {
+	const { i18n } = useTranslation()
+	const currentLangInfos = getCurrentLangInfos(i18n)
+	if (!props.pages.length || !props.activePages.length) return
 	const [iframes, activeIframes] =
 		props.pages &&
 		props.activePages &&
 		getIframeRate(props.pages, props.activePages)
+
 	const [iframePages, totalIframe] =
 		props.pages && getIdentifiedIframes(props.pages)
-	const { i18n } = useTranslation()
-	const currentLangInfos = getCurrentLangInfos(i18n)
 
 	return (
 		<div>

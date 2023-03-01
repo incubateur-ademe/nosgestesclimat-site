@@ -1,43 +1,36 @@
-import { useQuery } from 'react-query'
 import axios from 'axios'
+import { useQuery } from 'react-query'
+import { serverURL } from '../../sites/publicodes/conference/useDatabase'
 
 const idSite = 153
 
-export const useChart = ({ chartPeriod, chartDate }) =>
+export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
 	useQuery(
-		['chart', chartPeriod, chartDate],
+		queryName,
 		() =>
 			axios
 				.get(
-					`https://stats.data.gouv.fr/?module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`
+					serverURL + '/get-stats?requestParams=' + encodeURIComponent(urlQuery)
 				)
-				.then((res) => res.data),
-		{
-			keepPreviousData: true,
-		}
+				.then((res) => transformResult(res)),
+		{ keepPreviousData }
+	)
+
+export const useChart = ({ chartPeriod, chartDate }) =>
+	useX(
+		['chart', chartPeriod, chartDate],
+		`module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+		(res) => res.data,
+		true
 	)
 
 export const useSimulationsTerminees = () =>
-	useQuery(
+	useX(
 		['SimulationsTerminees'],
-		() =>
-			axios
-				.get(
-					`https://stats.data.gouv.fr/?module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON`
-				)
-				.then((res) =>
-					res.data.find((action) => action.label === 'A terminé la simulation')
-				),
-		{
-			keepPreviousData: true,
-		}
-	)
-
-export const useX = (queryName, urlQuery, transformResult) =>
-	useQuery(queryName, () =>
-		axios
-			.get('https://stats.data.gouv.fr/?' + urlQuery)
-			.then((res) => transformResult(res))
+		`module=API&method=Events.getAction&idSite=${idSite}&period=range&date=last6000&format=JSON`,
+		(res) =>
+			res.data.find((action) => action.label === 'A terminé la simulation'),
+		true
 	)
 
 export const useVisitsDuration = () =>
