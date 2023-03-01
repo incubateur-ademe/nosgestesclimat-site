@@ -1,5 +1,6 @@
 import axios from 'axios'
 import { useQuery } from 'react-query'
+import { serverURL } from '../../sites/publicodes/conference/useDatabase'
 
 const idSite = 153
 
@@ -9,8 +10,7 @@ export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
 		() =>
 			axios
 				.get(
-					'/.netlify/functions/get-stats?requestParams=' +
-						encodeURIComponent(urlQuery)
+					serverURL + '/get-stats?requestParams=' + encodeURIComponent(urlQuery)
 				)
 				.then((res) => transformResult(res)),
 		{ keepPreviousData }

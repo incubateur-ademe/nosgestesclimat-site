@@ -3,12 +3,13 @@ import { io } from 'socket.io-client'
 
 const secure = NODE_ENV === 'development' ? '' : 's'
 const protocol = `http${secure}://`
+export const serverURL = protocol + SERVER_URL
 
-export const answersURL = protocol + SERVER_URL + '/answers/'
+export const answersURL = serverURL + '/answers/'
 
-export const surveysURL = protocol + SERVER_URL + '/surveys/'
+export const surveysURL = serverURL + '/surveys/'
 
-export const contextURL = protocol + SERVER_URL
+export const contextURL = serverURL
 
 export default () => {
 	const database = useMemo(
