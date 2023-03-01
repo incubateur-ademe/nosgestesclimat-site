@@ -159,10 +159,6 @@ export default () => {
 						display: flex;
 						align-items: center;
 					}
-					img {
-						font-size: 150%;
-						margin-right: 0.4rem !important;
-					}
 					@media (min-width: 800px) {
 						flex-direction: column;
 						align-items: start;
@@ -173,7 +169,11 @@ export default () => {
 				`}
 			>
 				<span css="text-transform: uppercase">«&nbsp;{survey.room}&nbsp;»</span>
-				{result && <span>🧮 {result}</span>}
+				{result && (
+					<span>
+						<EmojiStyle>🧮</EmojiStyle> {result}
+					</span>
+				)}
 				<CountSection>
 					{rawNumber != null && (
 						<span title={t('Nombre total de participants')}>
@@ -194,7 +194,7 @@ export default () => {
 }
 
 export const EmojiStyle = styled.span`
-	font-size: 150%;
+	font-size: 130%;
 	margin-right: 0.4rem;
 `
 
@@ -207,11 +207,11 @@ export const CountSection = styled.div`
 
 export const CountDisc = styled.span`
 	background: ${(props) => props.color};
-	width: 1.5rem;
-	height: 1.5rem;
+	width: 1.3rem;
+	height: 1.3rem;
 	border-radius: 2rem;
 	display: inline-block;
-	line-height: 1.5rem;
+	line-height: 1.3rem;
 	text-align: center;
 	color: var(--darkerColor);
 `
