@@ -9,7 +9,6 @@ import * as Y from 'yjs'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { conferenceElementsAdapter } from './Conference'
-import { backgroundConferenceAnimation } from './conferenceStyle'
 import { computeHumanMean } from './Stats'
 import { CountDisc, CountSection, EmojiStyle } from './SurveyBar'
 import useYjs from './useYjs'
@@ -68,10 +67,11 @@ export default () => {
 		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
 			<div
 				css={`
-					${backgroundConferenceAnimation}
 					color: white;
 					padding: 0.3rem 1rem;
 					display: flex;
+					flex-direction: column;
+
 					justify-content: space-evenly;
 					align-items: center;
 					border-bottom-right-radius: 0.4rem;
@@ -80,40 +80,45 @@ export default () => {
 						display: flex;
 						align-items: center;
 					}
+
 					img {
 						font-size: 150%;
 						margin-right: 0.4rem !important;
 					}
 					@media (min-width: 800px) {
-						flex-direction: column;
-						align-items: start;
-						> * {
-							margin: 0.3rem 0;
-						}
 					}
 				`}
 			>
 				<span css="text-transform: uppercase">
 					«&nbsp;{conference.room}&nbsp;»
 				</span>
-				<span>
-					<EmojiStyle>🧮</EmojiStyle>
-					{result}
-				</span>
-				<CountSection>
-					{rawNumber != null && (
-						<span title={t('Nombre total de participants')}>
-							<EmojiStyle>👥</EmojiStyle>
-							<CountDisc color="#55acee">{rawNumber}</CountDisc>
-						</span>
-					)}
-					{completedTestNumber != null && (
-						<span title={t('Nombre de tests terminés')}>
-							<EmojiStyle>✅</EmojiStyle>
-							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
-						</span>
-					)}
-				</CountSection>
+				<div
+					css={`
+						display: flex;
+						justify-content: space-evenly;
+						align-items: center;
+						width: 100%;
+					`}
+				>
+					<span>
+						<EmojiStyle>🧮</EmojiStyle>
+						{result}
+					</span>
+					<CountSection>
+						{rawNumber != null && (
+							<span title={t('Nombre total de participants')}>
+								<EmojiStyle>👥</EmojiStyle>
+								<CountDisc color="#55acee">{rawNumber}</CountDisc>
+							</span>
+						)}
+						{completedTestNumber != null && (
+							<span title={t('Nombre de tests terminés')}>
+								<EmojiStyle>✅</EmojiStyle>
+								<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
+							</span>
+						)}
+					</CountSection>
+				</div>
 			</div>
 		</Link>
 	)

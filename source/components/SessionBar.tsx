@@ -42,7 +42,7 @@ const MenuButton = styled.div`
 	font-size: 110% !important;
 	color: var(--darkColor);
 	padding: 0 0.4rem !important;
-	width: 6rem;
+	width: 5rem;
 	@media (min-width: 800px) {
 		flex-direction: row;
 		justify-content: start;

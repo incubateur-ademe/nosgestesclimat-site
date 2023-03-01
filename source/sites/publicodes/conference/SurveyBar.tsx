@@ -200,8 +200,9 @@ export const EmojiStyle = styled.span`
 
 export const CountSection = styled.div`
 	display: flex;
-	justify-content: space-between;
-	width: 100%;
+	> * {
+		margin: 0 0.6rem;
+	}
 `
 
 export const CountDisc = styled.span`
