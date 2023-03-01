@@ -1,7 +1,7 @@
 {
 	"name": "nosgestesclimat-site",
 	"license": "MIT",
-	"version": "2.4.0",
+	"version": "2.6.0",
 	"description": "The leading open source climate footprint calculator",
 	"repository": {
 		"type": "git",
@@ -14,7 +14,7 @@
 		"prepare": "node scripts/prepare.js",
 		"model:watch": "yarn --cwd ./nosgestesclimat/ compile-watch",
 		"model:serve": "http-server ./nosgestesclimat/public/ -p 8081 --cors -c-1",
-		"serve":"webpack serve --mode development --config webpack.dev.js",
+		"serve": "webpack serve --mode development --config webpack.dev.js",
 		"start": "yarn run serve & yarn run model:watch & yarn run model:serve",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
@@ -28,7 +28,7 @@
 		"check:ui": "node scripts/i18n/generate-ui.js && node scripts/i18n/check-ui.js",
 		"translate:pages": "node scripts/i18n/translate-pages.js",
 		"translate:releases": "node scripts/i18n/translate-release.js",
-		"check:releases": "node scripts/i18n/check-releases.js",
+		"check:releases": "node scripts/fetch-releases.js",
 		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr --ref > source/components/IllustrationSVG.tsx"
 	},
 	"browserslist": [
