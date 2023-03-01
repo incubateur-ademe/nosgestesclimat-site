@@ -1,4 +1,5 @@
 import { useSelector } from 'react-redux'
+import { useLocation } from 'react-router-dom'
 import styled from 'styled-components'
 import { openmojiURL } from '../../../components/SessionBar'
 import ConferenceBarLazy from './ConferenceBarLazy'
@@ -6,6 +7,8 @@ import { backgroundConferenceAnimation } from './conferenceStyle'
 import SurveyBarLazy from './SurveyBarLazy'
 
 export default () => {
+	const location = useLocation()
+	if (!['/simulateur/bilan', '/groupe'].includes(location.pathname)) return null
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
 
@@ -45,20 +48,21 @@ const GroupModeMenuEntry = ({ title, icon, url, children }) => {
 					align-items: center;
 					justify-content: center;
 					width: 100%;
+					font-style: italic;
 				`}
 			>
 				<img
 					src={icon}
 					css={`
-						width: 2rem;
-						height: 2rem;
+						width: 1.8rem;
+						height: auto;
 						margin: 0 0.6rem;
 					`}
 					aria-hidden="true"
 					width="1"
 					height="1"
 				/>
-				{title}
+				{title} en cours
 			</Button>
 			<div
 				css={`
