@@ -32,7 +32,10 @@ const encodeRuleName = (name) =>
 
 fs.writeFileSync(destinationURL, baseURLs, 'utf8')
 
-const releasePath = path.resolve(__dirname, '../source/data/releases.json')
+const releasePath = path.resolve(
+	__dirname,
+	'../source/locales/releases/releases-fr.json'
+)
 const rawdata = fs.readFileSync(releasePath)
 const data = JSON.parse(rawdata)
 const newsURL = Object.values(data)

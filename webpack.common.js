@@ -49,10 +49,6 @@ module.exports.default = {
 					from: './source/images',
 					to: 'images',
 				},
-				{
-					from: './source/data',
-					to: 'data',
-				},
 			],
 		}),
 		new NormalModuleReplacementPlugin(
