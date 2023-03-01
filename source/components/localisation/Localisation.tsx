@@ -17,11 +17,6 @@ export default () => {
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
 
-	const [messagesRead, setRead] = usePersistingState(
-		'localisationMessagesRead',
-		[]
-	)
-
 	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
@@ -119,7 +114,7 @@ export default () => {
 									userChosen: true,
 								}
 								dispatch(setLocalisation(newLocalisation))
-								setRead([])
+								dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })
 							}}
 						>
 							<button>{capitalise0(nom)}</button>

@@ -297,6 +297,11 @@ function localisation(
 		return null
 	} else return state
 }
+function sessionLocalisationBannersRead(state = [], { type, regions }) {
+	if (type === 'SET_LOCALISATION_BANNERS_READ') {
+		return regions
+	} else return state
+}
 
 function pullRequestNumber(state = null, { type, number }) {
 	if (type === 'SET_PULL_REQUEST_NUMBER') {
@@ -322,6 +327,7 @@ const mainReducer = (state: any, action: Action) =>
 		thenRedirectTo,
 		tracking,
 		localisation,
+		sessionLocalisationBannersRead,
 		pullRequestNumber,
 		engineState,
 		currentLang,
