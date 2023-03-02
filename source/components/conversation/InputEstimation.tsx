@@ -1,7 +1,7 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
-import { useEngine } from '../utils/EngineContext'
 import NumberFormat from 'react-number-format'
+import { useEngine } from '../utils/EngineContext'
 
 /* This component helps input a value that is not known by suggesting another input to the user. This new input will be multiplied by 12 (to convert from month to year) and then by the inputEstimation's formule attribute.
  *
@@ -55,7 +55,9 @@ export default function InputEstimation({ inputEstimation, setFinalValue }) {
 							value={value}
 							onChange={(e) => {
 								setValue(e.target.value)
-								setFinalValue(Math.round(12 * (+e.target.value / nodeValue)))
+								setFinalValue(
+									Math.round(12 * (+e.target.value / nodeValue) * 10) / 10
+								)
 							}}
 						/>
 					</label>
