@@ -102,6 +102,7 @@ export default function Root({}) {
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
 				currentLang,
 				localisation: persistedSimulation?.localisation,
+				conference: persistedSimulation?.conference,
 			}}
 		>
 			<Main />

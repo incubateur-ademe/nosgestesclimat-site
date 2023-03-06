@@ -32,7 +32,7 @@ export default () => {
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
 	useEffect(() => {
-		if (!conference?.ydoc) return null
+		if (!conference?.ydoc) return
 
 		const simulations = conference.ydoc.get('simulations', Y.Map)
 
