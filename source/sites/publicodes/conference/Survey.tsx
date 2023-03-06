@@ -225,10 +225,12 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 }
 
 export const surveyElementsAdapter = (items) =>
-	Object.values(items).map((el) => ({
-		...el.data,
-		username: el.id,
-	}))
+	items
+		? Object.values(items).map((el) => ({
+				...el.data,
+				username: el.id,
+		  }))
+		: []
 
 const Results = ({ room, existContext, contextRules }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})

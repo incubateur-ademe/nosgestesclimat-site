@@ -103,6 +103,7 @@ export default function Root({}) {
 				currentLang,
 				localisation: persistedSimulation?.localisation,
 				conference: persistedSimulation?.conference,
+				survey: persistedSimulation?.survey,
 			}}
 		>
 			<Main />
