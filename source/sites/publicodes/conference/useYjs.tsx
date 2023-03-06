@@ -28,7 +28,11 @@ export default (room, connectionType: 'p2p' | 'database') => {
 			const ydoc = new Y.Doc()
 			const provider =
 				connectionType === 'p2p'
-					? new WebrtcProvider(room, ydoc, {})
+					? new WebrtcProvider(room, ydoc, {
+							signaling: [
+								'wss://nosgestesclimat-conference.osc-fr1.scalingo.io/',
+							],
+					  })
 					: new WebsocketProvider(
 							'wss://nosgestesclimat-serveur.osc-fr1.scalingo.io', // Not used, was a test, replace by Survey.tsx mode
 							room,
