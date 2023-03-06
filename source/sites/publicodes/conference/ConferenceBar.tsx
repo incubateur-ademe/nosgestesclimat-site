@@ -9,8 +9,8 @@ import * as Y from 'yjs'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { conferenceElementsAdapter } from './Conference'
+import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
 import { computeHumanMean } from './Stats'
-import { CountDisc, CountSection, EmojiStyle } from './SurveyBar'
 import useYjs from './useYjs'
 import { defaultProgressMin, defaultThreshold, getElements } from './utils'
 
@@ -53,7 +53,12 @@ export default () => {
 		)
 
 	const statElements = conferenceElementsAdapter(elements)
-	const rawNumber = getElements(statElements, defaultThreshold, null, 0).length
+	const rawUserNumber = getElements(
+		statElements,
+		defaultThreshold,
+		null,
+		0
+	).length
 
 	const completedTestNumber = getElements(
 		statElements,
@@ -62,62 +67,15 @@ export default () => {
 		defaultProgressMin
 	).length
 
-	//TODO mutualise this display part with SurveyBar
 	return (
-		<Link to={'/conférence/' + conference.room} css="text-decoration: none;">
-			<div
-				css={`
-					color: white;
-					padding: 0.3rem;
-					display: flex;
-					flex-direction: column;
-					@media (min-width: 800px) {
-						flex-direction: row;
-						padding: 0.3rem 3rem;
-					}
-
-					justify-content: space-evenly;
-					align-items: center;
-					> span {
-						display: flex;
-						align-items: center;
-					}
-
-					img {
-						font-size: 150%;
-						margin-right: 0.4rem !important;
-					}
-				`}
-			>
-				<span css="">«&nbsp;{conference.room}&nbsp;»</span>
-				<div
-					css={`
-						display: flex;
-						justify-content: space-evenly;
-						align-items: center;
-						width: 100%;
-					`}
-				>
-					<span>
-						<EmojiStyle>🧮</EmojiStyle>
-						{result.replace(/tonnes?/, 't')}
-					</span>
-					<CountSection>
-						{rawNumber != null && (
-							<span title={t('Nombre total de participants')}>
-								<EmojiStyle>👥</EmojiStyle>
-								<CountDisc color="#55acee">{rawNumber}</CountDisc>
-							</span>
-						)}
-						{completedTestNumber != null && (
-							<span title={t('Nombre de tests terminés')}>
-								<EmojiStyle>✅</EmojiStyle>
-								<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
-							</span>
-						)}
-					</CountSection>
-				</div>
-			</div>
-		</Link>
+		<GroupModeMenuEntryContent
+			{...{
+				groupMode: 'conférence',
+				room: conference.room,
+				rawUserNumber,
+				completedTestNumber,
+				result,
+			}}
+		/>
 	)
 }
