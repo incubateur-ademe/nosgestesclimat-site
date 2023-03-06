@@ -28,7 +28,7 @@ export default () => {
 			{survey?.room && (
 				<GroupModeMenuEntry
 					title="Sondage"
-					icon={openmojiURL('sondage')}
+					icon={openmojiURL('conference')}
 					url={'/sondage/' + survey.room}
 				>
 					<SurveyBarLazy />
