@@ -34,6 +34,7 @@ async function fetchReleases() {
 			`https://api.github.com/repos/${organization}/${repository}/releases`
 		)
 		const data = await response.json()
+		if (!data) console.error('fetch release failed : no release returned')
 		return data.filter(Boolean)
 	} catch (e) {
 		console.log(e)
