@@ -43,6 +43,7 @@ export default ({ newRoom, setNewRoom }) => {
 			</form>
 
 			<button
+				css="margin-bottom:.4rem !important"
 				onClick={() => setNewRoom(generateRoomName())}
 				className="ui__ dashed-button"
 			>
