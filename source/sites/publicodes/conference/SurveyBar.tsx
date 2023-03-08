@@ -119,7 +119,6 @@ export default () => {
 
 	const simulationArray = [],
 		result =
-			null &&
 			computeHumanMean(
 				translation,
 				simulationArray.map((el) => el.total)
