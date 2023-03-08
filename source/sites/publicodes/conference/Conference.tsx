@@ -21,11 +21,9 @@ import {
 
 export const ConferenceTitle = styled.h2`
 	margin-top: 0.6rem;
-	@media (min-width: 800px) {
-		display: none;
-	}
 	> img {
-		width: 4rem;
+		width: 3rem;
+		margin-right: 1rem;
 	}
 	display: flex;
 	align-items: center;

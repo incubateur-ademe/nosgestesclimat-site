@@ -1,5 +1,4 @@
 import { loadPreviousSimulation } from 'Actions/actions'
-import useLocalisation from 'Components/localisation/useLocalisation'
 import { extractCategories } from 'Components/publicodesUtils'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -9,12 +8,8 @@ import { RootState } from 'Reducers/rootReducer'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { resetLocalisation } from '../actions/actions'
-import ConferenceBarLazy from '../sites/publicodes/conference/ConferenceBarLazy'
-import { backgroundConferenceAnimation } from '../sites/publicodes/conference/conferenceStyle'
-import SurveyBarLazy from '../sites/publicodes/conference/SurveyBarLazy'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
-import { getModelFlag } from './localisation/utils'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
 
@@ -30,6 +25,7 @@ const openmojis = {
 	conference: '1F3DF',
 	sondage: '1F4CA',
 	profile: 'silhouette',
+	silhouettes: 'silhouettes',
 	personas: '1F465',
 	github: 'E045',
 }
@@ -46,11 +42,13 @@ const MenuButton = styled.div`
 	font-size: 110% !important;
 	color: var(--darkColor);
 	padding: 0 0.4rem !important;
+	width: 5rem;
 	@media (min-width: 800px) {
 		flex-direction: row;
 		justify-content: start;
 		padding: 0;
 		font-size: 100%;
+		width: auto;
 	}
 	img,
 	svg {
@@ -62,7 +60,7 @@ const MenuButton = styled.div`
 		}
 		height: auto;
 	}
-	@media (max-height: 700px) {
+	@media (max-height: 600px) {
 		img,
 		svg {
 			display: none;
@@ -77,7 +75,17 @@ const Button = (props) => {
 	return (
 		<Link
 			to={props.url}
-			css="text-decoration: none"
+			css={`
+				text-decoration: none;
+				${isCurrent &&
+				`
+				font-weight: bold;
+				background: var(--lighterColor);
+				display: block;
+				@media (max-width: 800px){border-radius: 1.6rem}
+
+				`}
+			`}
 			{...(isCurrent
 				? {
 						'aria-current': 'page',
@@ -132,26 +140,11 @@ export default function SessionBar({
 }) {
 	useSafePreviousSimulation()
 
-	const conference = useSelector((state) => state.conference)
-	const survey = useSelector((state) => state.survey)
 	const dispatch = useDispatch()
-
-	const localisation = useLocalisation()
-	const flag = getModelFlag(localisation?.country?.code)
 
 	const location = useLocation(),
 		path = location.pathname
 
-	const buttonStyle = (pathTarget) =>
-		path.includes(pathTarget)
-			? `
-		font-weight: bold;
-		img, svg {
-		  background: var(--lighterColor);
-		  border-radius: 2rem;
-		}
-		`
-			: ''
 	const persona = useSelector((state) => state.simulation?.persona)
 
 	const [searchParams, setSearchParams] = useSearchParams()
@@ -163,25 +156,15 @@ export default function SessionBar({
 	const { t } = useTranslation()
 
 	let elements = [
-		<Button
-			className="simple small"
-			url="/simulateur/bilan"
-			css={`
-				${buttonStyle('simulateur')};
-			`}
-		>
+		<Button className="simple small" url="/simulateur/bilan">
 			<ProgressCircle />
 			<Trans>Le test</Trans>
 		</Button>,
-		<Button
-			className="simple small"
-			url="/actions/liste"
-			css={buttonStyle('/actions')}
-		>
+		<Button className="simple small" url="/actions/liste">
 			<ActionsInteractiveIcon />
 			<Trans>Agir</Trans>
 		</Button>,
-		<Button className="simple small" url="/profil" css={buttonStyle('profil')}>
+		<Button className="simple small" url="/profil">
 			<div
 				css={`
 					position: relative;
@@ -194,22 +177,9 @@ export default function SessionBar({
 					width="1"
 					height="1"
 				/>
-				{flag && (
-					<img
-						src={flag}
-						css={`
-							position: absolute;
-							left: 1.45rem;
-							top: -0.15rem;
-							width: 1.2rem;
-							border-radius: 0.3rem !important;
-						`}
-						aria-hidden="true"
-					/>
-				)}
 			</div>
 			{!persona ? (
-				t('Mon profil')
+				t('Profil')
 			) : (
 				<span
 					css={`
@@ -223,29 +193,8 @@ export default function SessionBar({
 				</span>
 			)}
 		</Button>,
-		NODE_ENV === 'development' && (
-			<Button
-				key="personas"
-				className="simple small"
-				url="/personas"
-				css={buttonStyle('personas')}
-			>
-				<img
-					src={openmojiURL('personas')}
-					css="width: 2rem"
-					aria-hidden="true"
-					width="1"
-					height="1"
-				/>
-				Personas
-			</Button>
-		),
 		pullRequestNumber && (
-			<MenuButton
-				key="pullRequest"
-				className="simple small"
-				css={buttonStyle('github')}
-			>
+			<MenuButton key="pullRequest" className="simple small">
 				<a
 					href={
 						'https://github.com/datagir/nosgestesclimat/pull/' +
@@ -282,26 +231,16 @@ export default function SessionBar({
 				</button>
 			</MenuButton>
 		),
-		conference?.room && (
-			<GroupModeMenuEntry
-				title="Conférence"
-				icon={conferenceImg}
-				url={'/conférence/' + conference.room}
-				buttonStyle={buttonStyle}
-			>
-				<ConferenceBarLazy />
-			</GroupModeMenuEntry>
-		),
-		survey?.room && (
-			<GroupModeMenuEntry
-				title="Sondage"
-				icon={openmojiURL('sondage')}
-				url={'/sondage/' + survey.room}
-				buttonStyle={buttonStyle}
-			>
-				<SurveyBarLazy />
-			</GroupModeMenuEntry>
-		),
+		<Button className="simple small" url="/groupe">
+			<img
+				src={openmojiURL('silhouettes')}
+				css="width: 2rem"
+				aria-hidden="true"
+				width="1"
+				height="1"
+			/>
+			<Trans>Groupe</Trans>
+		</Button>,
 	]
 
 	if (path === '/tutoriel') return null
@@ -359,58 +298,7 @@ const NavBar = styled.ul`
 		}
 	}
 
-	@media (max-height: 700px) {
+	@media (max-height: 600px) {
 		height: 2rem;
 	}
 `
-
-const GroupModeMenuEntry = ({ title, icon, url, children, buttonStyle }) => {
-	return (
-		<div
-			css={`
-				${backgroundConferenceAnimation}
-				color: white;
-				border-radius: 0.4rem;
-				margin-right: 0.6rem;
-			`}
-		>
-			<Button
-				className="simple small"
-				url={url}
-				css={`
-					${buttonStyle('conf')}
-					padding: 0.4rem;
-					color: white;
-					img {
-						filter: invert(1);
-						background: none;
-						margin: 0 0.6rem 0 0 !important;
-					}
-					@media (max-width: 800px) {
-						img {
-							margin: 0 !important;
-						}
-					}
-				`}
-			>
-				<img
-					src={icon}
-					css="width: 2rem"
-					aria-hidden="true"
-					width="1"
-					height="1"
-				/>
-				{title}
-			</Button>
-			<div
-				css={`
-					@media (max-width: 800px) {
-						display: none;
-					}
-				`}
-			>
-				{children}
-			</div>
-		</div>
-	)
-}

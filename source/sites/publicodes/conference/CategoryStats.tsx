@@ -1,9 +1,19 @@
 import { useTranslation } from 'react-i18next'
+import { sortBy } from '../../../utils'
 import { humanWeight } from '../HumanWeight'
 
-export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
+export default ({
+	categories: decreasingCategories,
+	maxCategory,
+	spotlight,
+	setSpotlight,
+}) => {
 	const { t, i18n } = useTranslation()
-	const values = Object.values(categories)
+
+	const categories = sortBy(([key, values]) =>
+		values.reduce((memo, next) => memo + next, 0)
+	)(Object.entries(decreasingCategories))
+	const values = Object.values(decreasingCategories)
 			.flat()
 			.map(({ value }) => value),
 		max = Math.max(...values),
@@ -43,7 +53,7 @@ export default ({ categories, maxCategory, spotlight, setSpotlight }) => {
 					}
 				`}
 			>
-				{Object.entries(categories).map(([name, values]) => (
+				{categories.map(([name, values]) => (
 					<li key={name}>
 						<span>{name}</span>
 						<ul>

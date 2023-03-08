@@ -8,12 +8,11 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import styled from 'styled-components'
 import { v4 as uuidv4 } from 'uuid'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
+import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
 import { computeHumanMean } from './Stats'
 import { surveyElementsAdapter } from './Survey'
 import useDatabase, { answersURL } from './useDatabase'
@@ -106,7 +105,6 @@ export default () => {
 
 	useEffect(() => {
 		const onReceived = (data) => {
-			console.log('YOYOOY', survey)
 			dispatch({
 				type: 'ADD_SURVEY_ANSWERS',
 				answers: [data.answer],
@@ -121,7 +119,6 @@ export default () => {
 
 	const simulationArray = [],
 		result =
-			null &&
 			computeHumanMean(
 				translation,
 				simulationArray.map((el) => el.total)
@@ -130,7 +127,7 @@ export default () => {
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
 	const elements = surveyElementsAdapter(survey.answers)
-	const rawNumber = getElements(
+	const rawUserNumber = getElements(
 		elements,
 		defaultThreshold,
 		existContext,
@@ -147,70 +144,14 @@ export default () => {
 	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 
 	return (
-		<Link to={'/sondage/' + survey.room} css="text-decoration: none;">
-			<div
-				css={`
-					color: white;
-					padding: 0.3rem 1rem;
-					display: flex;
-					justify-content: space-evenly;
-					align-items: center;
-					> span {
-						display: flex;
-						align-items: center;
-					}
-					img {
-						font-size: 150%;
-						margin-right: 0.4rem !important;
-					}
-					@media (min-width: 800px) {
-						flex-direction: column;
-						align-items: start;
-						> * {
-							margin: 0.3rem 0;
-						}
-					}
-				`}
-			>
-				<span css="text-transform: uppercase">«&nbsp;{survey.room}&nbsp;»</span>
-				{result && <span>🧮 {result}</span>}
-				<CountSection>
-					{rawNumber != null && (
-						<span title={t('Nombre total de participants')}>
-							<EmojiStyle>👥</EmojiStyle>
-							<CountDisc color="#55acee">{rawNumber}</CountDisc>
-						</span>
-					)}
-					{completedTestNumber != null && (
-						<span title={t('Nombre de tests terminés')}>
-							<EmojiStyle>✅</EmojiStyle>
-							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
-						</span>
-					)}
-				</CountSection>
-			</div>
-		</Link>
+		<GroupModeMenuEntryContent
+			{...{
+				room: survey.room,
+				rawUserNumber,
+				completedTestNumber,
+				result,
+				groupMode: 'sondage',
+			}}
+		/>
 	)
 }
-
-export const EmojiStyle = styled.span`
-	font-size: 150%;
-	margin-right: 0.4rem;
-`
-
-export const CountSection = styled.div`
-	display: flex;
-	justify-content: space-between;
-	width: 100%;
-`
-
-export const CountDisc = styled.span`
-	background: ${(props) => props.color};
-	width: 1.5rem;
-	height: 1.5rem;
-	border-radius: 2rem;
-	display: inline-block;
-	line-height: 1.5rem;
-	text-align: center;
-	color: var(--darkerColor);
-`

@@ -8,8 +8,10 @@ import { generateFruitName, stringToColour } from './utils'
 
 localStorage.log = 'y-webrtc'
 
-export default (room, connectionType: 'p2p' | 'database') => {
-	const conference = useSelector((state) => state.conference)
+export default (providedRoom, connectionType: 'p2p' | 'database') => {
+	const conference = useSelector((state) => state.conference),
+		stateRoom = conference && conference.room,
+		room = providedRoom || stateRoom
 
 	const dispatch = useDispatch()
 	const [rawElements, setElements] = useState([])
@@ -24,7 +26,8 @@ export default (room, connectionType: 'p2p' | 'database') => {
 
 	useEffect(() => {
 		if (!username || (!room && !conference)) return
-		if (!conference) {
+		if (!conference || !conference.ydoc) {
+			console.log('will create new ydoc for room ', room)
 			const ydoc = new Y.Doc()
 			const provider =
 				connectionType === 'p2p'

@@ -200,7 +200,6 @@ function survey(state = null, { type, room, answers, contextFile }) {
 function conference(state = null, { type, room, ydoc, provider }) {
 	if (type === 'UNSET_CONFERENCE') return null
 	if (type === 'SET_CONFERENCE') {
-		if (state?.room === room) return state
 		return {
 			room,
 			ydoc,
@@ -297,6 +296,11 @@ function localisation(
 		return null
 	} else return state
 }
+function sessionLocalisationBannersRead(state = [], { type, regions }) {
+	if (type === 'SET_LOCALISATION_BANNERS_READ') {
+		return regions
+	} else return state
+}
 
 function pullRequestNumber(state = null, { type, number }) {
 	if (type === 'SET_PULL_REQUEST_NUMBER') {
@@ -322,6 +326,7 @@ const mainReducer = (state: any, action: Action) =>
 		thenRedirectTo,
 		tracking,
 		localisation,
+		sessionLocalisationBannersRead,
 		pullRequestNumber,
 		engineState,
 		currentLang,

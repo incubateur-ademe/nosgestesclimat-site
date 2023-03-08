@@ -5,12 +5,10 @@ import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
 import { Trans, useTranslation } from 'react-i18next'
-import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
 import { usePersistingState } from '../../../components/utils/persistState'
 import Navigation from '../Navigation'
 import { useProfileData } from '../Profil'
-import { ConferenceTitle } from './Conference'
 import ContextConversation from './ContextConversation'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
@@ -89,10 +87,6 @@ export default () => {
 					<NoSurveyCreatedWarning />
 				</div>
 			)}
-			<ConferenceTitle>
-				<img src={conferenceImg} alt="" />
-				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
-			</ConferenceTitle>
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
@@ -123,7 +117,6 @@ export default () => {
 			)}
 			{survey && survey.room === room && (
 				<>
-					<Instructions {...{ room, mode: 'sondage', started: true }} />
 					<div>
 						<button
 							className="ui__ link-button"
@@ -136,6 +129,7 @@ export default () => {
 							{emoji('🚪')} Quitter le sondage
 						</button>
 					</div>
+					<Instructions {...{ room, mode: 'sondage', started: true }} />
 					<DownloadInteractiveButton
 						url={answersURL + room + '?format=csv'}
 						isRegisteredSurvey={isRegisteredSurvey}
@@ -225,10 +219,12 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 }
 
 export const surveyElementsAdapter = (items) =>
-	Object.values(items).map((el) => ({
-		...el.data,
-		username: el.id,
-	}))
+	items
+		? Object.values(items).map((el) => ({
+				...el.data,
+				username: el.id,
+		  }))
+		: []
 
 const Results = ({ room, existContext, contextRules }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})

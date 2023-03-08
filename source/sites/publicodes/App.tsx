@@ -27,6 +27,7 @@ import {
 	getLangInfos,
 	Lang,
 } from './../../locales/translation'
+import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
@@ -101,6 +102,8 @@ export default function Root({}) {
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
 				currentLang,
 				localisation: persistedSimulation?.localisation,
+				conference: persistedSimulation?.conference,
+				survey: persistedSimulation?.survey,
 			}}
 		>
 			<Main />
@@ -189,6 +192,7 @@ const Main = ({}) => {
 						}
 					`}
 				>
+					<GroupModeSessionVignette />
 					{!isHomePage && !isTuto && <LocalisationMessage />}
 
 					{fluidLayout && (

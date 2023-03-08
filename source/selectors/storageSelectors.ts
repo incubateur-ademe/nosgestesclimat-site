@@ -13,6 +13,8 @@ export type SavedSimulation = {
 	// Current language used for the UI translation -- not the model.
 	currentLang: Lang
 	localisation: Object | undefined
+	conference: { room: string } | null
+	survey: { room: string } | null
 }
 
 export const currentSimulationSelector = (
@@ -28,6 +30,8 @@ export const currentSimulationSelector = (
 		url: state.simulation?.url,
 		currentLang: state.currentLang,
 		localisation: state.localisation,
+		conference: state.conference && { room: state.conference.room },
+		survey: state.survey && { room: state.survey.room },
 	}
 }
 

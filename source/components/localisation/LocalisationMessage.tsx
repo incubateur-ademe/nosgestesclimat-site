@@ -1,8 +1,7 @@
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import IllustratedMessage from '../ui/IllustratedMessage'
-import { usePersistingState } from '../utils/persistState'
 import useLocalisation from './useLocalisation'
 import {
 	defaultModel,
@@ -12,10 +11,10 @@ import {
 	supportedRegion,
 } from './utils'
 export default () => {
-	const [messagesRead, setRead] = usePersistingState(
-		'localisationMessagesRead',
-		[]
+	const messagesRead = useSelector(
+		(state) => state.sessionLocalisationBannersRead
 	)
+	const dispatch = useDispatch()
 	const localisation = useLocalisation()
 	const currentLang = useSelector((state) => state.currentLang)
 	const regionParams = supportedRegion(localisation?.country?.code)
@@ -82,7 +81,10 @@ export default () => {
 							display: block !important;
 						`}
 						onClick={() =>
-							setRead([...messagesRead, localisation?.country?.code])
+							dispatch({
+								type: 'SET_LOCALISATION_BANNERS_READ',
+								regions: [...messagesRead, localisation?.country?.code],
+							})
 						}
 					>
 						<Trans>J'ai compris</Trans>
@@ -118,7 +120,7 @@ export default () => {
 						<small>
 							<Trans>Pas votre région ?</Trans>{' '}
 							<Link to="/profil">
-								<Trans>Choisissez la votre</Trans>
+								<Trans>Choisissez la vôtre</Trans>
 							</Link>
 							.
 						</small>
@@ -130,7 +132,12 @@ export default () => {
 							margin-right: 0rem;
 							display: block !important;
 						`}
-						onClick={() => setRead([...messagesRead, regionParams?.code])}
+						onClick={() =>
+							dispatch({
+								type: 'SET_LOCALISATION_BANNERS_READ',
+								regions: [...messagesRead, regionParams?.code],
+							})
+						}
 					>
 						<Trans>J'ai compris</Trans>
 					</button>
