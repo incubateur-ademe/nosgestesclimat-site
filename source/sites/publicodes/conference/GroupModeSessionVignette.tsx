@@ -19,18 +19,13 @@ export default () => {
 			{conference?.room && (
 				<GroupModeMenuEntry
 					title="Conférence"
-					icon={openmojiURL('conference')}
 					url={'/conférence/' + conference.room}
 				>
 					<ConferenceBarLazy />
 				</GroupModeMenuEntry>
 			)}
 			{survey?.room && (
-				<GroupModeMenuEntry
-					title="Sondage"
-					icon={openmojiURL('conference')}
-					url={'/sondage/' + survey.room}
-				>
+				<GroupModeMenuEntry title="Sondage" url={'/sondage/' + survey.room}>
 					<SurveyBarLazy />
 				</GroupModeMenuEntry>
 			)}
@@ -40,7 +35,7 @@ export default () => {
 
 const Button = styled.button``
 
-const GroupModeMenuEntry = ({ title, icon, url, children }) => {
+const GroupModeMenuEntry = ({ title, url, children }) => {
 	return (
 		<div
 			css={`
@@ -55,20 +50,11 @@ const GroupModeMenuEntry = ({ title, icon, url, children }) => {
 					justify-content: center;
 					width: 100%;
 					font-style: italic;
+					margin-bottom: 0.2rem;
 				`}
 			>
-				<img
-					src={icon}
-					css={`
-						width: 1.8rem;
-						height: auto;
-						margin: 0 0.6rem;
-					`}
-					aria-hidden="true"
-					width="1"
-					height="1"
-				/>
-				{title} en cours
+				⟵ revenir aux résultats{' '}
+				{title === 'sondage' ? 'du sondage' : 'de la conf.'}
 			</Button>
 			<div
 				css={`
@@ -117,7 +103,24 @@ export const GroupModeMenuEntryContent = ({
 					}
 				`}
 			>
-				<span css="">«&nbsp;{room}&nbsp;»</span>
+				<div
+					css={`
+						display: flex;
+					`}
+				>
+					<img
+						src={openmojiURL('conference')}
+						css={`
+							width: 1.8rem;
+							height: auto;
+							margin: 0 0.6rem;
+						`}
+						aria-hidden="true"
+						width="1"
+						height="1"
+					/>
+					<span css="">«&nbsp;{room}&nbsp;»</span>
+				</div>
 				<div
 					css={`
 						display: flex;
