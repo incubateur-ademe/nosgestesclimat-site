@@ -117,7 +117,6 @@ export default () => {
 			)}
 			{survey && survey.room === room && (
 				<>
-					<Instructions {...{ room, mode: 'sondage', started: true }} />
 					<div>
 						<button
 							className="ui__ link-button"
@@ -130,6 +129,7 @@ export default () => {
 							{emoji('🚪')} Quitter le sondage
 						</button>
 					</div>
+					<Instructions {...{ room, mode: 'sondage', started: true }} />
 					<DownloadInteractiveButton
 						url={answersURL + room + '?format=csv'}
 						isRegisteredSurvey={isRegisteredSurvey}
