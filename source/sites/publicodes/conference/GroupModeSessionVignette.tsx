@@ -17,15 +17,12 @@ export default () => {
 	return (
 		<>
 			{conference?.room && (
-				<GroupModeMenuEntry
-					title="Conférence"
-					url={'/conférence/' + conference.room}
-				>
+				<GroupModeMenuEntry groupMode="conférence" room={conference.room}>
 					<ConferenceBarLazy />
 				</GroupModeMenuEntry>
 			)}
 			{survey?.room && (
-				<GroupModeMenuEntry title="Sondage" url={'/sondage/' + survey.room}>
+				<GroupModeMenuEntry groupMode="sondage" room={survey.room}>
 					<SurveyBarLazy />
 				</GroupModeMenuEntry>
 			)}
@@ -35,42 +32,43 @@ export default () => {
 
 const Button = styled.button``
 
-const GroupModeMenuEntry = ({ title, url, children }) => {
+const GroupModeMenuEntry = ({ groupMode, room, children }) => {
 	return (
 		<div
 			css={`
 				margin-bottom: 1rem;
 			`}
 		>
-			<Button
-				className="simple small"
-				css={`
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					width: 100%;
-					font-style: italic;
-					margin-bottom: 0.2rem;
-				`}
-			>
-				⟵ revenir aux résultats{' '}
-				{title === 'sondage' ? 'du sondage' : 'de la conf.'}
-			</Button>
-			<div
-				css={`
-					${backgroundConferenceAnimation}
-					border-radius: 0.4rem;
-					margin-right: 0.6rem;
-				`}
-			>
-				{children}
-			</div>
+			<Link to={`/${groupMode}/${room}`} css="text-decoration: none;">
+				<Button
+					className="simple small"
+					css={`
+						display: flex;
+						align-items: center;
+						justify-content: center;
+						width: 100%;
+						font-style: italic;
+						margin-bottom: 0.2rem;
+					`}
+				>
+					⟵ revenir aux résultats{' '}
+					{groupMode === 'sondage' ? 'du sondage' : 'de la conf.'}
+				</Button>
+				<div
+					css={`
+						${backgroundConferenceAnimation}
+						border-radius: 0.4rem;
+						margin-right: 0.6rem;
+					`}
+				>
+					{children}
+				</div>
+			</Link>
 		</div>
 	)
 }
 
 export const GroupModeMenuEntryContent = ({
-	groupMode,
 	room,
 	result,
 	rawUserNumber,
@@ -78,80 +76,78 @@ export const GroupModeMenuEntryContent = ({
 }) => {
 	const { t } = useTranslation()
 	return (
-		<Link to={`/${groupMode}/${room}`} css="text-decoration: none;">
+		<div
+			css={`
+				color: white;
+				padding: 0.3rem;
+				display: flex;
+				flex-direction: column;
+				@media (min-width: 800px) {
+					flex-direction: row;
+					padding: 0.3rem 3rem;
+				}
+
+				justify-content: space-evenly;
+				align-items: center;
+				> span {
+					display: flex;
+					align-items: center;
+				}
+
+				img {
+					font-size: 150%;
+					margin-right: 0.4rem !important;
+				}
+			`}
+		>
 			<div
 				css={`
-					color: white;
-					padding: 0.3rem;
 					display: flex;
-					flex-direction: column;
-					@media (min-width: 800px) {
-						flex-direction: row;
-						padding: 0.3rem 3rem;
-					}
-
-					justify-content: space-evenly;
-					align-items: center;
-					> span {
-						display: flex;
-						align-items: center;
-					}
-
-					img {
-						font-size: 150%;
-						margin-right: 0.4rem !important;
-					}
 				`}
 			>
-				<div
+				<img
+					src={openmojiURL('conference')}
 					css={`
-						display: flex;
+						width: 1.8rem;
+						height: auto;
+						margin: 0 0.6rem;
 					`}
-				>
-					<img
-						src={openmojiURL('conference')}
-						css={`
-							width: 1.8rem;
-							height: auto;
-							margin: 0 0.6rem;
-						`}
-						aria-hidden="true"
-						width="1"
-						height="1"
-					/>
-					<span css="">«&nbsp;{room}&nbsp;»</span>
-				</div>
-				<div
-					css={`
-						display: flex;
-						justify-content: space-evenly;
-						align-items: center;
-						width: 100%;
-					`}
-				>
-					{result && (
-						<span>
-							<EmojiStyle>🧮</EmojiStyle>
-							{result.replace(/tonnes?/, 't')}
+					aria-hidden="true"
+					width="1"
+					height="1"
+				/>
+				<span css="">«&nbsp;{room}&nbsp;»</span>
+			</div>
+			<div
+				css={`
+					display: flex;
+					justify-content: space-evenly;
+					align-items: center;
+					width: 100%;
+				`}
+			>
+				{result && (
+					<span>
+						<EmojiStyle>🧮</EmojiStyle>
+						{result.replace(/tonnes?/, 't')}
+					</span>
+				)}
+				<CountSection>
+					{rawUserNumber != null && (
+						<span title={t('Nombre total de participants')}>
+							<EmojiStyle>👥</EmojiStyle>
+							<CountDisc color="#55acee">{rawUserNumber}</CountDisc>
 						</span>
 					)}
-					<CountSection>
-						{rawUserNumber != null && (
-							<span title={t('Nombre total de participants')}>
-								<EmojiStyle>👥</EmojiStyle>
-								<CountDisc color="#55acee">{rawUserNumber}</CountDisc>
-							</span>
-						)}
-						{completedTestNumber != null && (
-							<span title={t('Nombre de tests terminés')}>
-								<EmojiStyle>✅</EmojiStyle>
-								<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
-							</span>
-						)}
-					</CountSection>
-				</div>
+					{completedTestNumber != null && (
+						<span title={t('Nombre de tests terminés')}>
+							<EmojiStyle>✅</EmojiStyle>
+							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
+						</span>
+					)}
+				</CountSection>
 			</div>
-		</Link>
+		</div>
 	)
 }
 
