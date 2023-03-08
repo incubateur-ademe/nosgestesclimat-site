@@ -9,7 +9,11 @@ import SurveyBarLazy from './SurveyBarLazy'
 
 export default () => {
 	const location = useLocation()
-	if (!['/simulateur/bilan', '/groupe', '/profil'].includes(location.pathname))
+	if (
+		!['/simulateur/bilan', '/groupe', '/profil', '/sondage'].some((el) =>
+			location.pathname.includes(el)
+		)
+	)
 		return null
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
@@ -33,6 +37,7 @@ export default () => {
 const Button = styled.button``
 
 const GroupModeMenuEntry = ({ groupMode, room, children }) => {
+	const showBackButton = !useLocation().pathname.includes('/sondage/')
 	return (
 		<div
 			css={`
@@ -40,20 +45,22 @@ const GroupModeMenuEntry = ({ groupMode, room, children }) => {
 			`}
 		>
 			<Link to={`/${groupMode}/${room}`} css="text-decoration: none;">
-				<Button
-					className="simple small"
-					css={`
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						width: 100%;
-						font-style: italic;
-						margin-bottom: 0.2rem;
-					`}
-				>
-					⟵ revenir aux résultats{' '}
-					{groupMode === 'sondage' ? 'du sondage' : 'de la conf.'}
-				</Button>
+				{showBackButton && (
+					<Button
+						className="simple small"
+						css={`
+							display: flex;
+							align-items: center;
+							justify-content: center;
+							width: 100%;
+							font-style: italic;
+							margin-bottom: 0.2rem;
+						`}
+					>
+						⟵ revenir aux résultats{' '}
+						{groupMode === 'sondage' ? 'du sondage' : 'de la conf.'}
+					</Button>
+				)}
 				<div
 					css={`
 						${backgroundConferenceAnimation}

@@ -5,12 +5,10 @@ import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
 import { Trans, useTranslation } from 'react-i18next'
-import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
 import { usePersistingState } from '../../../components/utils/persistState'
 import Navigation from '../Navigation'
 import { useProfileData } from '../Profil'
-import { ConferenceTitle } from './Conference'
 import ContextConversation from './ContextConversation'
 import DataWarning from './DataWarning'
 import Instructions from './Instructions'
@@ -89,10 +87,6 @@ export default () => {
 					<NoSurveyCreatedWarning />
 				</div>
 			)}
-			<ConferenceTitle>
-				<img src={conferenceImg} alt="" />
-				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
-			</ConferenceTitle>
 			{!survey || survey.room !== room ? (
 				<DataWarning room={room} />
 			) : (
