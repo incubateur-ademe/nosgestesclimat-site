@@ -143,7 +143,7 @@ export const BigFigure = ({ primaryValue, secondaryValue, pleinVolume }) => (
 				width: 16rem;
 			`}
 		>
-			<div css="font-weight: bold; font-size: 280%;">
+			<div css="font-weight: bold; font-size: 280%; line-height: 85%;">
 				<span css="width: auto; text-align: right; display: inline-block">
 					{primaryValue}
 				</span>{' '}
