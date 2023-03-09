@@ -60,12 +60,6 @@ const MenuButton = styled.div`
 		}
 		height: auto;
 	}
-	@media (max-height: 600px) {
-		img,
-		svg {
-			display: none;
-		}
-	}
 `
 
 const Button = (props) => {
@@ -296,9 +290,5 @@ const NavBar = styled.ul`
 		li {
 			width: 100%;
 		}
-	}
-
-	@media (max-height: 600px) {
-		height: 2rem;
 	}
 `
