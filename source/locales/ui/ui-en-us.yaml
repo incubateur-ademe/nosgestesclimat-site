@@ -1,7 +1,7 @@
 entries:
   ' En savoir plus sur notre modèle': ' Learn more about our model'
   ' et visualisez les résultats du groupe': ' and view the results of the group'
-  (15 min de lecture): (15 min reading)
+  (15 min de lecture): (15 min read)
   (co-voiturage pris en compte): (carpooling taken into account)
   404.action: Return to a safe place
   404.action.lock: Revenir en lieu sûr
@@ -475,14 +475,14 @@ entries:
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
   publicodes.TranslationContribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <2>this link</2>.
   publicodes.TranslationContribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
-  publicodes.Tutorial.slide1.p1: <0>Do not worry, we'll briefly explain what it is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and more greenhouse gases.</1>
+  publicodes.Tutorial.slide1.p1: <0>Don't worry, we'll briefly explain what it is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and more greenhouse gases.</1>
   publicodes.Tutorial.slide1.p1.lock: <0>Pas de panique, on vous explique ce que c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à mesure des gaz à effet de serre que l'on émet.</1>
-  publicodes.Tutorial.slide1.p2: <0>This test gives you in ⏱️ 10 minutes flat <2>a measure of your part </2> in this warming.</0>
+  publicodes.Tutorial.slide1.p2: <0>This test gives a <2>measure of your part</2> in this warming in about ⏱️ 10 minutes.
   publicodes.Tutorial.slide1.p2.lock: <0>Ce test vous donne en ⏱️ 10 minutes chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>
   publicodes.Tutorial.slide2.blockquote: 'Other gases, especially methane <2></2> and nitrous oxide <6></6> also warm the planet: we convert their warming potential to CO₂ equivalent to simplify the measurement. '
   publicodes.Tutorial.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
   publicodes.Tutorial.slide2.p1: |
-    Through a unit with a barbaric name: the CO₂
+    Through a unit with an unusual name: the CO₂
     equivalent. You already know carbon dioxide<1></1>, it's what we breathe out all day,
     but without influence on the climate.
   publicodes.Tutorial.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
@@ -546,7 +546,7 @@ entries:
   publicodes.fin.IframeDataShareModal.partageResultats.lock: Partage de vos résultats à {{parent}} ?
   publicodes.fin.IframeDataShareModal.text: <0>By clicking on the Accept button, you authorize {{parent}} à récupérer le bilan de votre empreinte climat.</0><1>These are your results on the main categories (transport, food...), but <1>not</1> the details of each question (your car kilometers, the m² of your house...).</1><2>Nosgestesclimat.fr n'est pas affilié au site {{parent}}.</2>
   publicodes.fin.IframeDataShareModal.text.lock: <0>En cliquant sur le bouton Accepter, vous autorisez {{parent}} à récupérer le bilan de votre empreinte climat.</0><1>Il s'agit de vos résultats sur les grandes catégories (transport, alimentation...), mais <1>pas</1> le détail question par question (vos km en voiture, les m² de votre logement...).</1><2>Nosgestesclimat.fr n'est pas affilié au site {{parent}}.</2>
-  publicodes.fin.Petrogaz.equivalenceVolume: That is to say {{secondaryValue}} litres (plein de {{pleinVolume}} liters).
+  publicodes.fin.Petrogaz.equivalenceVolume: That is to say {{secondaryValue}} litres (a full tank is {{pleinVolume}} liters).
   publicodes.fin.Petrogaz.equivalenceVolume.lock: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
   publicodes.fin.Petrogaz.explications: <0>It is a <1>minimum</1> estimate of your crude oil consumption for the year.</0><1>Estimated via your car, plane, bus and heating oil consumption, it does not (yet) take into account the oil used to transport your purchases, and the grey energy of your various possessions.</1>
   publicodes.fin.Petrogaz.explications.lock: <0>C'est une estimation <1>a minima</1> de votre consommation de pétrole brut à l'année.</0><1>Estimée via vos trajets en voiture, en avion, en bus, consommation de fioul pour chauffage, elle ne prend pas (encore) en compte le pétrole utilisé pour acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
@@ -569,7 +569,7 @@ entries:
   site.publicodes.conferences.Stats.explication0.lock: Chaque barre verticale ☝️ est le score total d'un participant,<1></1>chaque disque 👇️ un score sur une catégorie.
   site.publicodes.conferences.Stats.explication1: '<0>In yellow</0>: my score of {{spotlightValue}} t.'
   site.publicodes.conferences.Stats.explication1.lock: '<0>En jaune</0> : mon score de {{spotlightValue}} t.'
-  sites.publicodes.Landing.description: In 10 minutes, get an estimate of your carbon footprint.
+  sites.publicodes.Landing.description: Get an estimate of your carbon footprint in about 10 minutes.
   sites.publicodes.Landing.description.lock: En 10 minutes, obtenez une estimation de votre empreinte carbone de consommation.
   sites.publicodes.LandingExplanations.faqLink: |-
     ## Any questions?
