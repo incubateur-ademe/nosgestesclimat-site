@@ -3,6 +3,7 @@ import { omit } from 'Source/utils'
 
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
+import { generateSimulationName } from 'Source/storage/persistSimulation'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import storageRootReducer from './storageReducer'
@@ -57,6 +58,9 @@ export type Simulation = {
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
+	persona?: string
+	date?: Date
+	name?: string
 }
 
 function simulation(
@@ -65,9 +69,11 @@ function simulation(
 ): Simulation | null {
 	if (action.type === 'SET_SIMULATION') {
 		const { config, url } = action
+
 		if (state && state.config && !action.situation === config) {
 			return state
 		}
+
 		return {
 			config,
 			url,
@@ -77,6 +83,7 @@ function simulation(
 			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
 			unfoldedStep: null,
 			persona: action.persona,
+			name: state?.name || generateSimulationName(new Date()),
 		}
 	}
 	if (state === null) {

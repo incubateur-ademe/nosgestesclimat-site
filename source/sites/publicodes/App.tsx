@@ -18,7 +18,7 @@ import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
 import {
 	persistSimulation,
-	retrievePersistedSimulation,
+	retrieveLastPersistedSimulation,
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
 import {
@@ -76,7 +76,7 @@ export default function Root({}) {
 		document?.location.search.substring(1)
 	).get('shareData')
 
-	const persistedSimulation = retrievePersistedSimulation()
+	const persistedSimulation = retrieveLastPersistedSimulation()
 
 	const currentLang =
 		persistedSimulation?.currentLang ??

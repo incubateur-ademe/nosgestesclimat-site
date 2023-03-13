@@ -6,20 +6,22 @@ export type SavedSimulation = {
 	situation: Simulation['situation']
 	foldedSteps: Array<DottedName> | undefined
 	actionChoices: Object
-	persona: string
+	persona?: string
 	tutorials: Object
 	storedTrajets: Object
-	url: string
+	url?: string
 	// Current language used for the UI translation -- not the model.
 	currentLang: Lang
 	localisation: Object | undefined
 	conference: { room: string } | null
 	survey: { room: string } | null
+	date?: Date
+	name?: string
 }
 
-export const currentSimulationSelector = (
-	state: RootState
-): SavedSimulation => {
+export type SavedSimulationList = SavedSimulation[]
+
+export const currentSimulationSelector = (state: RootState) => {
 	return {
 		situation: state.simulation?.situation ?? {},
 		foldedSteps: state.simulation?.foldedSteps,
@@ -32,6 +34,8 @@ export const currentSimulationSelector = (
 		localisation: state.localisation,
 		conference: state.conference && { room: state.conference.room },
 		survey: state.survey && { room: state.survey.room },
+		date: state.simulation?.date,
+		name: state.simulation?.name,
 	}
 }
 
@@ -46,6 +50,7 @@ export const createStateFromSavedSimulation = (
 			situation: state.previousSimulation.situation || {},
 			foldedSteps: state.previousSimulation.foldedSteps || [],
 			persona: state.previousSimulation.persona,
+			name: state.previousSimulation.name,
 		} as Simulation,
 		previousSimulation: null,
 	}

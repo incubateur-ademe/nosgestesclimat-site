@@ -1,4 +1,4 @@
-import { setSimulationConfig } from 'Actions/actions'
+import { loadPreviousSimulation, setSimulationConfig } from 'Actions/actions'
 import { extractCategories } from 'Components/publicodesUtils'
 import { buildEndURL } from 'Components/SessionBar'
 import Simulation from 'Components/Simulation'
@@ -42,6 +42,11 @@ const Simulateur = () => {
 	const url = useLocation().pathname
 
 	const localisation = useSelector((state) => state.localisation)
+
+	useEffect(() => {
+		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
+			dispatch(loadPreviousSimulation(config, url))
+	}, [])
 
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
