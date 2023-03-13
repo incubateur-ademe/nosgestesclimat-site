@@ -22,7 +22,7 @@ export default ({}) => {
 
 	return (
 		<a
-			href={`/enquête/${userID}${situationQueryString}${endQueryString}`}
+			href={`/enquête/${userID}${situationQueryString}${endQueryString}&login=${userID}`}
 			className="ui__ button cta"
 		>
 			Envoyer mes résultats

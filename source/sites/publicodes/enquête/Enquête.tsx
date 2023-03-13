@@ -35,7 +35,9 @@ export default () => {
 						<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/fin/index.tsx#L21">
 							rehydrateDetails
 						</a>
-						. Voici le résultat :
+						. Voici le résultat. Chaque variable est définie dans la
+						documentation intéractive du site, disponible{' '}
+						<Link to="/documentation">ici</Link>, avec un moteur de recherche.
 					</p>
 					<FriendlyObjectViewer
 						data={rehydrateDetails(searchParamsObject['details'])}
