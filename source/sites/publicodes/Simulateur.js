@@ -44,8 +44,7 @@ const Simulateur = () => {
 	const localisation = useSelector((state) => state.localisation)
 
 	useEffect(() => {
-		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
-			dispatch(loadPreviousSimulation(config, url))
+		dispatch(loadPreviousSimulation(config, url))
 	}, [])
 
 	useEffect(() => {
