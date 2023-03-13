@@ -239,7 +239,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={encodeURIComponent('modèle')}
+				path={'modèle'}
 				element={
 					<Suspense fallback={<Loading />}>
 						<ModelLazy />
