@@ -49,6 +49,11 @@ const Simulateur = () => {
 
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
+			dispatch(loadPreviousSimulation(config, url))
+	}, [])
+
+	useEffect(() => {
+		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
 			dispatch(setSimulationConfig(config, url))
 	}, [])
 
