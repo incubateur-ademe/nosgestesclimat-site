@@ -52,6 +52,7 @@ const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
 const SurveyLazy = React.lazy(() => import('./conference/Survey'))
+const EnquêteLazy = React.lazy(() => import('./enquête/Enquête'))
 const CGULazy = React.lazy(() => import('./pages/CGU'))
 const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
 const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
@@ -401,6 +402,14 @@ const Router = ({}) => {
 				element={
 					<Suspense fallback={<Loading />}>
 						<SurveyLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/enquête/:userID"
+				element={
+					<Suspense fallback={<Loading />}>
+						<EnquêteLazy />
 					</Suspense>
 				}
 			/>
