@@ -8,7 +8,7 @@ import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { TrackerContext } from 'Components/utils/withTracker'
 import { motion } from 'framer-motion'
-import React, { Suspense, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -32,8 +32,8 @@ import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
+import QuestionFinderWrapper from './QuestionFinderWrapper'
 import SimulationEnding from './SimulationEnding'
-const QuestionFinder = React.lazy(() => import('./QuestionFinder'))
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -376,49 +376,7 @@ export default function Conversation({
 			// This is a design idea, not really useful now
 			//border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 		>
-			{finder ? (
-				<Suspense fallback={<div>Chargement</div>}>
-					<QuestionFinder close={() => setFinder(false)} />
-				</Suspense>
-			) : (
-				<div
-					css={`
-						position: absolute;
-						top: 0;
-						right: 0;
-						line-height: 1rem;
-						button {
-							padding: 0;
-							display: flex;
-							align-items: center;
-							color: var(--color);
-						}
-						img {
-							width: 1.2rem;
-							padding-top: 0.1rem;
-						}
-						span {
-							display: none;
-							font-weight: bold;
-							font-size: 70%;
-							margin-right: 0.3rem;
-						}
-						@media (min-width: 800px) {
-							span {
-								display: inline;
-							}
-						}
-					`}
-				>
-					<button
-						onClick={() => setFinder(!finder)}
-						title="Recherche rapide de questions dans le formulaire"
-					>
-						<img src={`/images/1F50D.svg`} aria-hidden="true" />
-						<span>Ctrl-K</span>
-					</button>
-				</div>
-			)}
+			<QuestionFinderWrapper {...{ finder, setFinder }} />
 			{orderByCategories && (
 				<Meta
 					title={rules[objectifs[0]].title + ' - ' + questionCategory?.title}
