@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 export const Mosaic = styled.ul`
 	display: flex;
+	flex-direction: column;
 	justify-content: space-evenly;
 	flex-wrap: wrap;
 	padding: 0;
+
 	p {
 		text-align: center;
 	}
@@ -15,26 +17,22 @@ export const Mosaic = styled.ul`
 	}
 
 	> li {
-		width: 14rem;
-		min-height: 10rem;
-		margin: 1rem 0;
+		width: 100%;
+		min-height: initial;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		padding-bottom: 1rem;
+		padding: 0.3rem;
+		margin: 0.3rem 0;
 	}
 
-	@media (max-width: 800px) {
-		display: flex;
-		flex-direction: column;
+	@media (min-width: 600px) {
+		flex-direction: row;
 		> li {
-			width: 100%;
-			display: flex;
-			flex-direction: row;
-			min-height: initial;
+			width: 48%;
 			padding: 0.6rem;
-			margin: 0.6rem 0;
+			margin: 0.3rem 0;
 		}
 		figure {
 			order: -1;

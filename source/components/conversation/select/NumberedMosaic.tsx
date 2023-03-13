@@ -18,7 +18,6 @@ export default function NumberedMosaic({
 	options: { chipsTotal },
 	suggestions,
 }) {
-	const dispatch = useDispatch()
 	const situation = useSelector(situationSelector)
 	const engine = useEngine()
 
@@ -53,85 +52,43 @@ export default function NumberedMosaic({
 								className="ui__ card interactive"
 								key={question.dottedName}
 								id={`card - ${question.dottedName}`}
-								css={`
-									@media (max-width: 800px) {
-										display: flex;
-									}
-								`}
 							>
-								<MosaicLabel htmlFor={question.dottedName}>{title}</MosaicLabel>
-
-								<figure
-									css={`
-										${!description ? 'font-size: 200%' : ''}
-									`}
-								>
-									{icônes}
-								</figure>
-								<p id={'description ' + title}>
-									{description && description.split('\n')[0]}
-								</p>
 								<div
 									css={`
-										span {
-											margin: 0.8rem;
-											font-size: 120%;
-										}
+										display: flex;
+										flex-direction: column;
+										align-items: flex-start;
 									`}
 								>
-									<button
-										className={`ui__ button small plain ${
-											!value ? 'disabled' : ''
-										}`}
-										onClick={() =>
-											value > 0 &&
-											dispatch(updateSituation(question.dottedName, value - 1))
-										}
-										title={t(`Enlever `) + title.toLowerCase()}
-									>
-										-
-									</button>
-									<NumberFormat
-										inputMode="decimal"
-										allowNegative={false}
-										decimalScale={0}
-										aria-describedby={'description ' + title}
-										id={question.dottedName}
+									<MosaicLabel htmlFor={question.dottedName}>
+										<span
+											css={`
+												font-size: 100%;
+
+												@media (max-width: 800px) {
+												}
+											`}
+										>
+											{icônes}
+										</span>
+										{title}
+									</MosaicLabel>
+									<p
+										id={'description ' + title}
 										css={`
-											width: 1.5rem;
-											padding: 0; /* Necessary for iPhone Safari 7-12 at least */
-											height: 1.5rem;
-											font-size: 100%;
-											color: var(--darkColor);
-											margin: 0 0.6rem;
-											text-align: center;
-											border: none;
-											border-bottom: 2px dotted var(--color);
+											text-align: left !important;
 										`}
-										value={
-											situationValue == null
-												? undefined
-												: situationValue === 0 // if situation value is 0 (2 options : input is filled in with a 0 or input is empty), value become an empty string and placeholder (0) is visible..
-												? ''
-												: value
-										}
-										placeholder={value}
-										onChange={(e) =>
-											dispatch(
-												updateSituation(question.dottedName, +e.target.value)
-											)
-										}
-									/>
-									<button
-										className="ui__ button small plain"
-										onClick={() =>
-											dispatch(updateSituation(question.dottedName, value + 1))
-										}
-										title={t(`Ajouter `) + title.toLowerCase()}
 									>
-										+
-									</button>
+										{description && description.split('\n')[0]}
+									</p>
 								</div>
+								<NumericInputWithButtons
+									name={name}
+									question={question}
+									title={title}
+									value={value}
+									situationValue={situationValue}
+								/>
 							</li>
 						)
 					}
@@ -188,12 +145,104 @@ export default function NumberedMosaic({
 }
 
 export const mosaicLabelStyle = `
-	text-align: center;
+	text-align: left;
 	line-height: 1.2rem;
 	margin-top: 0.6rem;
 	margin-bottom: 0.4rem;
 	font-weight: bold;
+	white-space: nowrap;
 `
 const MosaicLabel = styled.label`
 	${mosaicLabelStyle}
 `
+const NumericButton = styled.button`
+	font-size: 100%;
+	font-weight: bold;
+	border: solid 1px var(--color);
+	border-radius: 0.2rem;
+	background-color: var(--color);
+	color: white;
+	padding: 0;
+	width: 90%;
+	height: fit;
+
+	&:not(:disabled):hover {
+		transform: scale(1.1, 1.1);
+	}
+
+	&:disabled {
+		color: gray;
+		background-color: transparent;
+	}
+`
+
+function NumericInputWithButtons({
+	name,
+	question,
+	title,
+	value,
+	situationValue,
+}) {
+	const dispatch = useDispatch()
+	const { t } = useTranslation()
+
+	return (
+		<div
+			css={`
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				margin: 0;
+			`}
+		>
+			<NumericButton
+				onClick={() =>
+					dispatch(updateSituation(question.dottedName, value + 1))
+				}
+				title={t(`Ajouter `) + title.toLowerCase()}
+			>
+				+
+			</NumericButton>
+			<NumberFormat
+				inputMode="decimal"
+				allowNegative={false}
+				decimalScale={0}
+				aria-describedby={'description ' + title}
+				id={question.dottedName}
+				css={`
+					width: 1.3rem;
+					padding: 0; /* Necessary for iPhone Safari 7-12 at least */
+					height: 1rem;
+					font-size: 100%;
+					color: var(--darkColor);
+					margin: 0.3rem 0.1rem;
+					text-align: center;
+					border: none;
+					color: var(--darkColor);
+				`}
+				value={
+					situationValue == null
+						? undefined
+						: situationValue === 0 // if situation value is 0 (2 options : input is filled in with a 0 or input is empty), value become an empty string and placeholder (0) is visible..
+						? ''
+						: value
+				}
+				placeholder={value}
+				onChange={(e) =>
+					dispatch(updateSituation(question.dottedName, +e.target.value))
+				}
+			/>
+			<NumericButton
+				className={!value ? 'disabled' : ''}
+				disabled={!value}
+				onClick={() =>
+					value > 0 && dispatch(updateSituation(question.dottedName, value - 1))
+				}
+				title={t(`Enlever `) + title.toLowerCase()}
+			>
+				-
+			</NumericButton>
+		</div>
+	)
+}
