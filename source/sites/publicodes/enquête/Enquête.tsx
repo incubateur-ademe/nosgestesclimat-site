@@ -24,7 +24,7 @@ export default () => {
 			<Link to="/simulateur/bilan">
 				<button className="ui__ button cta">Commencer le parcours</button>
 			</Link>
-			{searchParams && (
+			{searchParamsObject['details'] && (
 				<>
 					<h2 css="background: yellow">Phase de dev du parcours enquête</h2>
 					<FriendlyObjectViewer data={searchParamsObject} />
