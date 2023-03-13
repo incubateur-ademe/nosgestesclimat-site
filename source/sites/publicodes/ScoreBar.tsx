@@ -67,7 +67,8 @@ export default ({ actionMode = false, demoMode = false }) => {
 					width: 100%;
 				}
 
-			@media (max-height: 600px) {
+			@media (max-height: 600px) and (max-width: 800px) {
+
 			bottom: 2rem
 
 			}

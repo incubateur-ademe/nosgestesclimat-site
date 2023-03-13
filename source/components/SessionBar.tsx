@@ -60,7 +60,7 @@ const MenuButton = styled.div`
 		}
 		height: auto;
 	}
-	@media (max-height: 600px) {
+	@media (max-height: 600px) and (max-width: 800px) {
 		img,
 		svg {
 			display: none;
@@ -297,7 +297,7 @@ const NavBar = styled.ul`
 			width: 100%;
 		}
 	}
-	@media (max-height: 600px) {
+	@media (max-height: 600px) and (max-width: 800px) {
 		height: 2rem;
 	}
 `
