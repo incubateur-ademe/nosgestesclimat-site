@@ -51,3 +51,53 @@ export const Mosaic = styled.ul`
 		line-height: 1.2rem;
 	}
 `
+
+export function MosaicItemLabel({
+	question,
+	title,
+	icônes,
+	description,
+	isNotActive,
+}) {
+	return (
+		<div
+			css={`
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+			`}
+		>
+			<MosaicLabel htmlFor={question.dottedName} isNotActive={isNotActive}>
+				<span
+					css={`
+						font-size: 100%;
+						margin-right: 0.3rem;
+					`}
+				>
+					{icônes}
+				</span>
+				{title}
+			</MosaicLabel>
+			<p
+				id={'description ' + title}
+				css={`
+					text-align: left !important;
+				`}
+			>
+				{description && description.split('\n')[0]}
+			</p>
+		</div>
+	)
+}
+
+export const mosaicLabelStyle = `
+	text-align: left;
+	line-height: 1.2rem;
+	margin-top: 0.6rem;
+	margin-bottom: 0.4rem;
+	font-weight: bold;
+`
+const MosaicLabel = styled.label`
+	${({ isNotActive }) => (isNotActive ? 'opacity: 0.75;' : '')}
+	${mosaicLabelStyle}
+`

@@ -6,7 +6,7 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { useEngine } from '../../utils/EngineContext'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
-import { Mosaic } from './UI'
+import { Mosaic, MosaicItemLabel } from './UI'
 
 export default function NumberedMosaic({
 	name,
@@ -53,35 +53,12 @@ export default function NumberedMosaic({
 								key={question.dottedName}
 								id={`card - ${question.dottedName}`}
 							>
-								<div
-									css={`
-										display: flex;
-										flex-direction: column;
-										align-items: flex-start;
-									`}
-								>
-									<MosaicLabel htmlFor={question.dottedName}>
-										<span
-											css={`
-												font-size: 100%;
-
-												@media (max-width: 800px) {
-												}
-											`}
-										>
-											{icônes}
-										</span>
-										{title}
-									</MosaicLabel>
-									<p
-										id={'description ' + title}
-										css={`
-											text-align: left !important;
-										`}
-									>
-										{description && description.split('\n')[0]}
-									</p>
-								</div>
+								<MosaicItemLabel
+									question={question}
+									title={title}
+									icônes={icônes}
+									description={description}
+								/>
 								<NumericInputWithButtons
 									name={name}
 									question={question}

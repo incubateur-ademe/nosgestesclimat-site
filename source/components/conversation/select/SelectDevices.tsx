@@ -1,14 +1,13 @@
 import { updateSituation } from 'Actions/actions'
 import Checkbox from 'Components/ui/Checkbox'
-import emoji from 'react-easy-emoji'
+import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
-import { Mosaic } from './UI'
-import Stamp from '../../Stamp'
-import { mosaicLabelStyle } from './NumberedMosaic'
 import styled from 'styled-components'
+import Stamp from '../../Stamp'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
-import { Trans } from 'react-i18next'
+import { mosaicLabelStyle } from './NumberedMosaic'
+import { Mosaic, MosaicItemLabel } from './UI'
 
 const MosaicLabelDiv = styled.div`
 	${mosaicLabelStyle}
@@ -58,23 +57,22 @@ export default function SelectDevices({
 							isNotActive = question.rawNode['inactif']
 						return (
 							<li
-								css={`
-									padding: 2rem;
-									position: relative;
-									pointer-events: none;
-								`}
 								className={
 									isNotActive
-										? `ui__ card light-border inactive`
-										: `ui__ card interactive light-border ${
+										? `ui__ card interactive inactive`
+										: `ui__ card interactive ${
 												value === 'oui' ? `selected` : ''
 										  }`
 								}
 								key={name}
 							>
-								{icônes && <div css="font-size: 150%">{emoji(icônes)}</div>}
-								<MosaicLabelDiv>{title}</MosaicLabelDiv>
-								{false && description && <p>{description.split('\n')[0]}</p>}
+								<MosaicItemLabel
+									question={question}
+									title={title}
+									icônes={icônes}
+									description={false}
+									isNotActive={isNotActive}
+								/>
 								{!isNotActive && (
 									<div
 										css={`
@@ -101,16 +99,12 @@ export default function SelectDevices({
 								{isNotActive && (
 									<Stamp
 										css={`
-											z-index: 1;
+											z-index: 0;
 											max-width: 8rem;
 											text-align: center;
-											border: 2px solid var(--darkColor);
+											border: 3px solid var(--darkColor);
 											color: var(--darkColor);
-											font-size: 90%;
-											@media (min-width: 800px) {
-												left: 3rem;
-												top: 4rem;
-											}
+											font-size: 10%;
 										`}
 									>
 										<Trans>Bientôt disponible !</Trans>
