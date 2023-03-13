@@ -98,6 +98,8 @@ export default function Conversation({
 
 	const tracking = useSelector((state) => state.tracking)
 
+	const enquête = useSelector((state) => state.enquête)
+
 	useEffect(() => {
 		if (!tracking.firstQuestionEventFired && previousAnswers.length === 1) {
 			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
@@ -423,17 +425,19 @@ export default function Conversation({
 					</fieldset>
 				</div>
 				<div className="ui__ answer-group">
-					{previousAnswers.length > 0 && currentQuestionIndex !== 0 && (
-						<>
-							<button
-								onClick={goToPrevious}
-								type="button"
-								className="ui__ simple small push-left button"
-							>
-								← <Trans>Précédent</Trans>
-							</button>
-						</>
-					)}
+					{!enquête &&
+						previousAnswers.length > 0 &&
+						currentQuestionIndex !== 0 && (
+							<>
+								<button
+									onClick={goToPrevious}
+									type="button"
+									className="ui__ simple small push-left button"
+								>
+									← <Trans>Précédent</Trans>
+								</button>
+							</>
+						)}
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"
