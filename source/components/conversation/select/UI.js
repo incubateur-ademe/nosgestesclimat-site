@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const Mosaic = styled.ul`
 	display: flex;
 	flex-direction: column;
-	justify-content: space-evenly;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	padding: 0;
 
@@ -32,7 +32,7 @@ export const Mosaic = styled.ul`
 		> li {
 			width: 48%;
 			padding: 0.6rem;
-			margin: 0.3rem 0;
+			margin: 0.3rem 0.3rem;
 		}
 		figure {
 			order: -1;
