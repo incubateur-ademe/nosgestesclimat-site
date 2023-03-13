@@ -16,6 +16,7 @@ import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
+import SendResultButton from './enquête/SendResultButton'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
 
@@ -113,6 +114,7 @@ const TutorialRedirection = () => {
 }
 
 const MainSimulationEnding = ({ rules, engine }) => {
+	const enquête = useSelector((state) => state.enquête)
 	// Necessary to call 'buildEndURL' with the latest situation
 
 	return (
@@ -138,13 +140,21 @@ const MainSimulationEnding = ({ rules, engine }) => {
 			<p>
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
-			<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
-				<Trans>Voir mon résultat</Trans>
-			</Link>
-			<Trans>ou</Trans>
-			<Link to="/profil" css="">
-				<Trans>Modifier mes réponses</Trans>
-			</Link>
+			{!enquête ? (
+				<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
+					<Trans>Voir mon résultat</Trans>
+				</Link>
+			) : (
+				<SendResultButton />
+			)}
+			{!enquête && (
+				<>
+					<Trans>ou</Trans>
+					<Link to="/profil" css="">
+						<Trans>Modifier mes réponses</Trans>
+					</Link>
+				</>
+			)}
 		</div>
 	)
 }
