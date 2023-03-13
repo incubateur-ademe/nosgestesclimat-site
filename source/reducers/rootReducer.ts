@@ -308,6 +308,11 @@ function pullRequestNumber(state = null, { type, number }) {
 	} else return state
 }
 
+function enquête(state = null, { type, userID, date }) {
+	if (type === 'SET_ENQUÊTE') return { userID, date }
+	else return state
+}
+
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
@@ -331,6 +336,7 @@ const mainReducer = (state: any, action: Action) =>
 		engineState,
 		currentLang,
 		supportedRegions,
+		enquête,
 	})(state, action)
 
 export default reduceReducers<RootState>(

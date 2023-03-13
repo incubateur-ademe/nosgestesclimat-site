@@ -28,6 +28,7 @@ import {
 	Lang,
 } from './../../locales/translation'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
+import EnquêteBanner from './enquête/Banner'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
@@ -161,6 +162,7 @@ const Main = ({}) => {
 
 	return (
 		<>
+			<EnquêteBanner />
 			<div
 				css={`
 					@media (min-width: 800px) {
@@ -406,7 +408,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path="/enquête/:userID"
+				path="/enquête/:userID?"
 				element={
 					<Suspense fallback={<Loading />}>
 						<EnquêteLazy />
