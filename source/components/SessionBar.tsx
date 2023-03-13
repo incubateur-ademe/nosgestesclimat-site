@@ -97,7 +97,7 @@ export const sessionBarMargin = `
 		}
 `
 
-export const buildEndURL = (rules, engine, slide) => {
+export const buildEndURL = (rules, engine, slide = null) => {
 	const categories = extractCategories(rules, engine),
 		detailsString =
 			categories &&

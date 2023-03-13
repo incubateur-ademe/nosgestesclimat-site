@@ -3,6 +3,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { Markdown } from '../../../components/utils/markdown'
+import { rehydrateDetails } from '../fin'
 import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
 
 export default () => {
@@ -27,6 +28,25 @@ export default () => {
 				<>
 					<h2 css="background: yellow">Phase de dev du parcours enquête</h2>
 					<FriendlyObjectViewer data={searchParamsObject} />
+					<p>
+						Pour décoder le paramètre "details", qui représente le score de
+						simulation décliné sur chaque catégorie, il faut utiliser la
+						fonction{' '}
+						<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/fin/index.tsx#L21">
+							rehydrateDetails
+						</a>
+						. Voici le résultat :
+					</p>
+					<FriendlyObjectViewer
+						data={rehydrateDetails(searchParamsObject['details'])}
+					/>
+					<p>
+						Les lettres correspondent à la première lettre des catégories
+						listées{' '}
+						<Link to="/documentation/bilan">
+							ici sur la documentation de la variable bilan
+						</Link>
+					</p>
 				</>
 			)}
 		</div>
