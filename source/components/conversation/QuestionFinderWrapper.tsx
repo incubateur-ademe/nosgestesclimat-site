@@ -1,7 +1,11 @@
 import { Suspense } from 'react'
+import { useSelector } from 'react-redux'
 import QuestionFinder from './QuestionFinder'
 
 export default function QuestionFinderWrapper({ finder, setFinder }) {
+	const enquête = useSelector((state) => state.enquête)
+	if (enquête) return null
+
 	return finder ? (
 		<Suspense fallback={<div>Chargement</div>}>
 			<QuestionFinder close={() => setFinder(false)} />
