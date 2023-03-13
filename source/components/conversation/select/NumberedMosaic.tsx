@@ -121,17 +121,6 @@ export default function NumberedMosaic({
 	)
 }
 
-export const mosaicLabelStyle = `
-	text-align: left;
-	line-height: 1.2rem;
-	margin-top: 0.6rem;
-	margin-bottom: 0.4rem;
-	font-weight: bold;
-	white-space: nowrap;
-`
-const MosaicLabel = styled.label`
-	${mosaicLabelStyle}
-`
 const NumericButton = styled.button`
 	font-size: 100%;
 	font-weight: bold;
@@ -140,8 +129,8 @@ const NumericButton = styled.button`
 	background-color: var(--color);
 	color: white;
 	padding: 0;
-	width: 90%;
-	height: fit;
+	width: 2.3rem;
+	height: 1.6rem;
 
 	&:not(:disabled):hover {
 		transform: scale(1.1, 1.1);

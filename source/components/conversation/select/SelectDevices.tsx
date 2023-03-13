@@ -6,8 +6,7 @@ import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import Stamp from '../../Stamp'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
-import { mosaicLabelStyle } from './NumberedMosaic'
-import { Mosaic, MosaicItemLabel } from './UI'
+import { Mosaic, MosaicItemLabel, mosaicLabelStyle } from './UI'
 
 const MosaicLabelDiv = styled.div`
 	${mosaicLabelStyle}
