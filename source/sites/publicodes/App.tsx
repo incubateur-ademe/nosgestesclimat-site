@@ -106,6 +106,7 @@ export default function Root({}) {
 				localisation: persistedSimulation?.localisation,
 				conference: persistedSimulation?.conference,
 				survey: persistedSimulation?.survey,
+				enquête: persistedSimulation?.enquête,
 			}}
 		>
 			<Main />
@@ -320,7 +321,7 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path={encodeURIComponent('à-propos')} element={<About />} />
+			<Route path={'à-propos'} element={<About />} />
 			<Route
 				path="/cgu"
 				element={
@@ -338,7 +339,7 @@ const Router = ({}) => {
 			<Route path="/partenaires" element={<Diffuser />} />
 			<Route path="/diffuser" element={<Diffuser />} />
 			<Route
-				path={encodeURIComponent('vie-privée')}
+				path={'vie-privée'}
 				element={
 					<Suspense
 						fallback={
@@ -352,7 +353,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`${encodeURIComponent('nouveautés')}/*`}
+				path={`nouveautés/*`}
 				element={
 					<Suspense fallback={<Loading />}>
 						<News />
@@ -376,7 +377,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`${encodeURIComponent('conférence')}/:room`}
+				path={`conférence/:room`}
 				element={
 					<Suspense fallback={<Loading />}>
 						<ConferenceLazy />
@@ -432,7 +433,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`/${encodeURIComponent('pétrole-et-gaz')}`}
+				path={`/pétrole-et-gaz`}
 				element={
 					<Suspense fallback={<Loading />}>
 						<PetrogazLandingLazy />

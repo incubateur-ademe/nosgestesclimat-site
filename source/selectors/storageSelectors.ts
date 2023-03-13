@@ -15,6 +15,7 @@ export type SavedSimulation = {
 	localisation: Object | undefined
 	conference: { room: string } | null
 	survey: { room: string } | null
+	enquête: { userID: string; date: string } | null
 }
 
 export const currentSimulationSelector = (
@@ -32,6 +33,7 @@ export const currentSimulationSelector = (
 		localisation: state.localisation,
 		conference: state.conference && { room: state.conference.room },
 		survey: state.survey && { room: state.survey.room },
+		enquête: state.enquête,
 	}
 }
 
