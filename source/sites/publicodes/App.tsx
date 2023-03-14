@@ -41,6 +41,7 @@ import TranslationContribution from './TranslationContribution'
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
 
 const ActionsLazy = React.lazy(() => import('./Actions'))
+const QuestionList = React.lazy(() => import('./pages/QuestionList'))
 const FinLazy = React.lazy(() => import('./fin'))
 const SimulateurLazy = React.lazy(() => import('./Simulateur'))
 const PetrogazLandingLazy = React.lazy(() => import('./pages/PetrogazLanding'))
@@ -237,6 +238,16 @@ const Router = ({}) => {
 					<WithEngine options={{ parsed: false, optimized: false }}>
 						<Suspense fallback={<Loading />}>
 							<DocumentationLazy />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="questions"
+				element={
+					<WithEngine options={{ parsed: false, optimized: false }}>
+						<Suspense fallback={<Loading />}>
+							<QuestionList />
 						</Suspense>
 					</WithEngine>
 				}
