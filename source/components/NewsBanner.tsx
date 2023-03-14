@@ -24,6 +24,8 @@ export default function NewsBanner() {
 		null
 	)
 
+	if (!lastRelease) return null // Probably a problem fetching releases in the compilation step. It shouldn't happen, the build should fail, but just in case, this potential failure should not put the whole web site down for a side feature
+
 	// We only want to show the banner to returning visitors, so we initiate the
 	// local storage value with the last release.
 	if (lastViewedRelease === undefined) {
