@@ -2,7 +2,13 @@ import { utils } from 'publicodes'
 import { Link } from 'react-router-dom'
 import { capitalise0 } from '../../../utils'
 
-const FriendlyObjectViewer = ({ data, level = 0, context }) => {
+const FriendlyObjectViewer = ({
+	data,
+	level = 0,
+	context,
+	options = { capitalise0: true },
+}) => {
+	const capitaliseOrNot = options.capitalise0 ? capitalise0 : (s) => s
 	if (typeof data === 'string') {
 		try {
 			const isRule = utils.disambiguateReference(
@@ -13,12 +19,12 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 
 			return (
 				<Link to={`/documentation/${utils.encodeRuleName(isRule)}`}>
-					{capitalise0(data)}
+					{capitaliseOrNot(data)}
 				</Link>
 			)
 		} catch (e) {
 			console.log(e)
-			return <span>{capitalise0(data)}</span>
+			return <span>{capitaliseOrNot(data)}</span>
 		}
 	}
 	if (typeof data === 'number') return <span>{data}</span>
@@ -37,6 +43,7 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 						data={value}
 						level={level + 1}
 						context={context}
+						options={options}
 					/>
 				</li>
 			))}
@@ -51,7 +58,7 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 			{Object.entries(data).map(([key, value]) =>
 				typeof value === 'string' || typeof value === 'number' ? (
 					<li key={key}>
-						<span>{capitalise0(key)}:</span>
+						<span>{capitaliseOrNot(key)}:</span>
 						<span
 							css={`
 								margin-left: 1rem;
@@ -61,12 +68,13 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 								data={value}
 								level={level + 1}
 								context={context}
+								options={options}
 							/>
 						</span>
 					</li>
 				) : (
 					<li key={key}>
-						<div>{capitalise0(key)}:</div>
+						<div>{capitaliseOrNot(key)}:</div>
 						<div
 							css={`
 								margin-left: 1rem;
@@ -76,6 +84,7 @@ const FriendlyObjectViewer = ({ data, level = 0, context }) => {
 								data={value}
 								level={level + 1}
 								context={context}
+								options={options}
 							/>
 						</div>
 					</li>
