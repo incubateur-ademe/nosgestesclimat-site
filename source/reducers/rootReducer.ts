@@ -84,6 +84,7 @@ function simulation(
 			unfoldedStep: null,
 			persona: action.persona,
 			name: state?.name || generateSimulationName(new Date()),
+			date: state?.date || new Date(),
 		}
 	}
 	if (state === null) {

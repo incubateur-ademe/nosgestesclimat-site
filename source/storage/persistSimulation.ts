@@ -1,13 +1,13 @@
 import { Action } from 'Actions/actions'
 import { RootState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
+import { currentSimulationSelector } from 'Selectors/storageSelectors'
 import {
 	SavedSimulation,
 	SavedSimulationList,
 } from '../selectors/storageSelectors'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
-import { serializeSimulation } from './serializeSimulation'
 
 const VERSION = 2
 
@@ -26,7 +26,7 @@ export function persistSimulation(store: Store<RootState, Action>): void {
 			return
 		}
 
-		const simulationList = setSimulationList(serializeSimulation(state))
+		const simulationList = setSimulationList(currentSimulationSelector(state))
 		persistSimulationList(simulationList)
 	}
 	store.subscribe(debounce(1000, listener))
@@ -57,6 +57,7 @@ function updateSimulationInList(
 	const index = simulationList.findIndex(
 		(simulation) => simulation.name === savedSimulation.name
 	)
+	savedSimulation.date = new Date()
 	simulationList[index] = savedSimulation
 
 	return simulationList
@@ -66,7 +67,7 @@ function addSimulationToList(
 	savedSimulation: SavedSimulation,
 	simulationList: SavedSimulationList
 ): SavedSimulationList {
-	savedSimulation.date = new Date()
+	savedSimulation.date = savedSimulation.date || new Date()
 	savedSimulation.name =
 		savedSimulation.name || generateSimulationName(savedSimulation.date)
 	simulationList.push(savedSimulation)
@@ -88,21 +89,26 @@ function persistSimulationList(savedSimulationList: SavedSimulationList): void {
 export function retrievePersistedSimulations(): SavedSimulationList {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 	const deserializedState = serializedState ? JSON.parse(serializedState) : []
-	return Array.isArray(deserializedState)
-		? deserializedState
-		: [deserializedState]
+
+	if (Array.isArray(deserializedState)) {
+		return deserializedState
+	}
+	// cas ou l'utilisateur a l'ancienne simulation dans son local storage
+	deserializedState.date = new Date()
+	deserializedState.name = generateSimulationName(deserializedState.date)
+
+	return [deserializedState]
 }
 
 export function retrieveLastPersistedSimulation(): SavedSimulation {
 	const simulationlist = retrievePersistedSimulations()
 
-	// cas ou l'utilisateur a l'ancienne simulation dans son local storage
-	if (!Array.isArray(simulationlist)) return simulationlist
-
 	// on prends la simulation la plus récente
-	simulationlist.sort((a, b) =>
-		parseInt(a.name || '0') < parseInt(b.name || '0') ? 1 : -1
-	)
+	simulationlist.sort((a, b) => {
+		const dateA = a.date ? new Date(a.date) : new Date()
+		const dateB = b.date ? new Date(b.date) : new Date()
+		return dateA.getTime() - dateB.getTime() ? 1 : -1
+	})
 
 	return simulationlist[0]
 }
