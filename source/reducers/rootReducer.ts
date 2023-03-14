@@ -323,6 +323,7 @@ const mainReducer = (state: any, action: Action) =>
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
 			simulation(a, b),
 		previousSimulation: defaultToNull,
+		simulationList: defaultToNull,
 		situationBranch,
 		rules,
 		actionChoices,

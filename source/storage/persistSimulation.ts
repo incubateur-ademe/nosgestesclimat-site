@@ -129,3 +129,11 @@ export function retrieveLastPersistedSimulation(): SavedSimulation {
 export function deletePersistedSimulation(): void {
 	safeLocalStorage.removeItem(LOCAL_STORAGE_KEY)
 }
+
+export function deleteSimulation(name: string): void {
+	const simulationList = retrievePersistedSimulations()
+	const newList = simulationList.filter(
+		(simulation) => simulation.name !== name
+	)
+	persistSimulationList(newList)
+}

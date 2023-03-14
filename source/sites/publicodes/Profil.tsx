@@ -1,11 +1,14 @@
 import {
 	deletePreviousSimulation,
+	deleteSimulationByName,
+	loadSimulationList,
 	resetActionChoices,
 	resetIntroTutorial,
 	resetSimulation,
 	resetStoredTrajets,
 } from 'Actions/actions'
 import Localisation from 'Components/localisation/Localisation'
+import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -35,6 +38,14 @@ export default ({}) => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
+	useEffect(() => {
+		dispatch(loadSimulationList())
+	}, [])
+	const simulationList = useSelector(
+		(state) => state.simulationList
+	)
+	console.log(simulationList)
+
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
 		useProfileData()
 	const navigate = useNavigate()
@@ -85,6 +96,16 @@ export default ({}) => {
 							<code>{persona}</code>
 						</em>
 					</p>
+				)}
+				{simulationList && (
+					<div>
+						<p>
+							<em>
+								<Trans>👤 Voici la liste de vos simulations</Trans>{' '}
+							</em>
+						</p>
+						<SimulationList {...{ dispatch, list: simulationList }}/>
+					</div>
 				)}
 				{hasData ? (
 					<div
@@ -190,3 +211,27 @@ const TutorialLink = ({ tutorials, dispatch }) =>
 			</Link>
 		</div>
 	)
+
+const SimulationList = ( { dispatch, list} ) => {
+	return <ul>
+				{list.map(simulation => 
+						<li
+							key={simulation.name}
+							css={`
+								width: 12rem;
+								margin: 0.4rem;
+								@media (max-width: 800px) {
+									width: 11rem;
+								}
+							`}
+							onClick={() => {
+								dispatch(deleteSimulationByName(simulation.name))
+							}}
+						>
+							{simulation.name}
+						</li>
+				)}
+</ul>
+}
+	
+	

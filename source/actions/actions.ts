@@ -1,7 +1,10 @@
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
-import { deletePersistedSimulation } from '../storage/persistSimulation'
+import {
+	deletePersistedSimulation,
+	deleteSimulation,
+} from '../storage/persistSimulation'
 import { CompanyStatusAction } from './companyStatusActions'
 
 export type Action =
@@ -10,10 +13,12 @@ export type Action =
 	| UpdateAction
 	| SetSimulationConfigAction
 	| DeletePreviousSimulationAction
+	| DeleteSimulationByNameAction
 	| ExplainVariableAction
 	| UpdateSituationAction
 	| HideNotificationAction
 	| LoadPreviousSimulationAction
+	| LoadSimulationListAction
 	| SetSituationBranchAction
 	| UpdateTargetUnitAction
 	| SetActiveTargetAction
@@ -38,10 +43,15 @@ type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
 }
 
+type DeleteSimulationByNameAction = {
+	type: 'DELETE_SIMULATION'
+}
+
 type ResetSimulationAction = ReturnType<typeof resetSimulation>
 type UpdateAction = ReturnType<typeof updateSituation>
 type UpdateSituationAction = ReturnType<typeof updateSituation>
 type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
+type LoadSimulationListAction = ReturnType<typeof loadSimulationList>
 type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideNotificationAction = ReturnType<typeof hideNotification>
@@ -135,6 +145,13 @@ export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
 	deletePersistedSimulation()
 }
 
+export const deleteSimulationByName =
+	(name: string): ThunkResult<void> =>
+	() => {
+		console.log('nom', name)
+		deleteSimulation(name)
+	}
+
 export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
 		type: 'UPDATE_SITUATION',
@@ -163,6 +180,12 @@ export const updateUnit = (targetUnit: string) =>
 export function loadPreviousSimulation() {
 	return {
 		type: 'LOAD_PREVIOUS_SIMULATION',
+	} as const
+}
+
+export function loadSimulationList() {
+	return {
+		type: 'LOAD_SIMULATION_LIST',
 	} as const
 }
 
