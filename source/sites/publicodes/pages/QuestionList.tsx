@@ -11,15 +11,7 @@ export default () => {
 	return (
 		<div>
 			<h1>Les questions du modèle Nos Gestes Climat</h1>
-			<ul
-				css={`
-					h2 {
-						font-size: 110%;
-						margin: 0;
-						margin-left: 0.6rem;
-					}
-				`}
-			>
+			<ul>
 				{questionRules.map((rule) => (
 					<QuestionDescription rules={rules} rule={rule} />
 				))}
@@ -29,40 +21,69 @@ export default () => {
 }
 
 const QuestionDescription = ({ rule, rules }) => {
-	const questionType = rule.unité
-		? '🔢 Numérique'
-		: rule.mosaique
+	const questionType = rule.mosaique
 		? '🪟 Mosaïque'
+		: rule.unité
+		? '🔢 Numérique'
 		: '☑️ Oui/Non'
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
 	return (
-		<li>
-			<div
-				css={`
+		<li
+			css={`
+				details > summary {
 					display: flex;
-				`}
-			>
-				<span
-					css={`
-						text-transform: uppercase;
-						background: ${category.couleur};
-						color: white;
-						font-weight: bold;
-						width: 1.4rem;
-						height: 1.4rem;
-					`}
-					title={category.titre}
-				>
-					{categoryLetter}
-				</span>
-				<h2>{rule.question}</h2>
-			</div>
-			<div>
-				<span title="Type de question">{questionType}</span>
-			</div>
+				}
+				margin-top: 1rem;
+			`}
+		>
 			<details>
-				<summary title="Spécifications complètes">🔦</summary>
+				<summary>
+					<span
+						css={`
+							text-transform: uppercase;
+							background: ${category.couleur};
+							color: white;
+							font-weight: bold;
+							width: 1.4rem;
+							height: 1.4rem;
+						`}
+						title={category.titre}
+					>
+						{categoryLetter}
+					</span>
+					<div
+						css={`
+							margin-left: 0.6rem;
+							h2 {
+								font-size: 110%;
+								margin: 0;
+							}
+						`}
+					>
+						<h2>{rule.question}</h2>
+
+						<div
+							css={`
+								display: flex;
+								> * {
+									margin: 0 0.4rem;
+								}
+							`}
+						>
+							<span title="Type de question">{questionType}</span>
+							{rule.mosaique && (
+								<details>
+									<summary>C'est quoi ?</summary>
+									Une mosaïque ne sert qu'à regrouper plusieurs questions, soit
+									toutes numériques, soit toutes à cocher. Sa valeur n'est pas
+									saisie par l'utilisateur, c'est souvent une somme. Ses
+									questions sont chacunes dans cette liste.
+								</details>
+							)}
+						</div>
+					</div>
+				</summary>
 				<FriendlyObjectViewer data={rule} options={{ capitalise0: false }} />
 			</details>
 		</li>
