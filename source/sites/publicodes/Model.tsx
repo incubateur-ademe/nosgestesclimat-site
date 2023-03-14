@@ -93,7 +93,7 @@ export default ({}) => {
 				⏩️ <Trans>En développement actif</Trans>
 			</h2>
 			<p>
-				<Trans i18nKey={'model.active'}>
+				<Trans i18nKey={'model.active.documented'}>
 					La construction du modèle (pistes de travail, réflexions en cours,
 					feuille de route, etc.) est amplement{' '}
 					<a href="https://github.com/datagir/nosgestesclimat/issues">

@@ -371,6 +371,8 @@ entries:
   meta.publicodes.pages.Documentation.intro.lock: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
   minutes: minutes
   model.active: Here are some examples of important <1>issues</1> of the moment among the hundred or so documented topics.
+  model.active.documented: The construction of the model (tracks of work, ongoing reflections, roadmap, etc.) is amply <2>documented publicly</2>.
+  model.active.documented.lock: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.active.lock: Voici à titre d'exemple quelques <1>issues</1> importantes du moment parmi la centaine de sujets documentés.
   model.intro: Behind the nosgestesclimat.fr website, lies the individual climate footprint model of reference consumption.
   model.intro.lock: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.

@@ -11,8 +11,10 @@ export default () => {
 		)
 			.then((res) => res.json())
 			.then(setIssues)
+			.catch((e) => console.log(e))
 	}, [])
 
+	if (!issues.length) return <div>Chargement en cours...</div>
 	return (
 		<ul
 			css={`
