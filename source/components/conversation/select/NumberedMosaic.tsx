@@ -129,8 +129,8 @@ const NumericButton = styled.button`
 	background-color: var(--color);
 	color: white;
 	padding: 0;
-	width: 2.3rem;
-	height: 1.6rem;
+	width: 2rem;
+	height: 2rem;
 
 	&:not(:disabled):hover {
 		transform: scale(1.1, 1.1);
@@ -156,20 +156,22 @@ function NumericInputWithButtons({
 		<div
 			css={`
 				display: flex;
-				flex-direction: column;
+				flex-direction: row;
 				justify-content: center;
 				align-items: center;
 				margin: 0;
 			`}
 		>
-			<NumericButton
+			<button
+				className={'ui__ button small plain ' + (!value ? 'disabled' : '')}
+				disabled={!value}
 				onClick={() =>
-					dispatch(updateSituation(question.dottedName, value + 1))
+					value > 0 && dispatch(updateSituation(question.dottedName, value - 1))
 				}
-				title={t(`Ajouter `) + title.toLowerCase()}
+				title={t(`Enlever `) + title.toLowerCase()}
 			>
-				+
-			</NumericButton>
+				-
+			</button>
 			<NumberFormat
 				inputMode="decimal"
 				allowNegative={false}
@@ -182,7 +184,7 @@ function NumericInputWithButtons({
 					height: 1rem;
 					font-size: 100%;
 					color: var(--darkColor);
-					margin: 0.3rem 0.1rem;
+					margin: 0.3rem 0.3rem;
 					text-align: center;
 					border: none;
 					color: var(--darkColor);
@@ -199,16 +201,15 @@ function NumericInputWithButtons({
 					dispatch(updateSituation(question.dottedName, +e.target.value))
 				}
 			/>
-			<NumericButton
-				className={!value ? 'disabled' : ''}
-				disabled={!value}
+			<button
+				className="ui__ button small plain"
 				onClick={() =>
-					value > 0 && dispatch(updateSituation(question.dottedName, value - 1))
+					dispatch(updateSituation(question.dottedName, value + 1))
 				}
-				title={t(`Enlever `) + title.toLowerCase()}
+				title={t(`Ajouter `) + title.toLowerCase()}
 			>
-				-
-			</NumericButton>
+				+
+			</button>
 		</div>
 	)
 }
