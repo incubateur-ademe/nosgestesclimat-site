@@ -80,14 +80,22 @@ const getScores = (pages) => {
 		(page) => page.label.includes('fin') && page.label.includes('details=')
 	)
 
-	return endPagesWithDetailsParam.map((obj) => {
-		const encodedDetails = obj.label
-			.match(queryStringDetailsValuesRegexp)
-			.join()
-		const rehydratedDetails = rehydrateDetails(encodedDetails)
-		const score = sumFromDetails(rehydratedDetails)
-		return [score, obj.nb_visits]
-	})
+	return endPagesWithDetailsParam
+		.filter((obj) => {
+			// We've got strange end page details sometimes. Here we got /fin?diapo=cfgebtbm&details=y55.07g0.57b5.23f4.88e4.46
+			// No idea where it comes from
+			const match = obj.label.match(queryStringDetailsValuesRegexp)
+			if (!match) console.log('Problem with end page', obj)
+			return match
+		})
+		.map((obj) => {
+			const encodedDetails = obj.label
+				.match(queryStringDetailsValuesRegexp)
+				.join()
+			const rehydratedDetails = rehydrateDetails(encodedDetails)
+			const score = sumFromDetails(rehydratedDetails)
+			return [score, obj.nb_visits]
+		})
 }
 
 const weightedAverage = (score) => {
