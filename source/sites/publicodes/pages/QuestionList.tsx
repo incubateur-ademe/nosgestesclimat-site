@@ -11,6 +11,14 @@ export default () => {
 	return (
 		<div>
 			<h1>Les questions du modèle Nos Gestes Climat</h1>
+			<p>
+				Voici une liste des questions qui sont posées à l'utilisateur au cours
+				du test, et dans une moindre mesure au cours du parcours action. Le
+				format des questions est présenté, et l'intégralité des propriétés{' '}
+				<a href="https://publi.codes">publicodes</a> ainsi que les extensions
+				spécifiques à Nos Gestes Climat (comme la mosaïque) sont spécifiées au
+				clic. L'identifiant de la quesion est la propriété "dottedName".
+			</p>
 			<ul>
 				{questionRules.map((rule) => (
 					<QuestionDescription rules={rules} rule={rule} />
