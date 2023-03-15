@@ -83,7 +83,7 @@ function simulation(
 			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
 			unfoldedStep: null,
 			persona: action.persona,
-			name: state?.name || generateSimulationName(new Date()),
+			name: action.persona || state?.name || generateSimulationName(new Date()),
 			date: state?.date || new Date(),
 		}
 	}
