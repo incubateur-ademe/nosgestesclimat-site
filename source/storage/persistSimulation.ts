@@ -1,20 +1,13 @@
 import { Action } from 'Actions/actions'
 import { RootState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
-<<<<<<< HEAD
 import { currentSimulationSelector } from 'Selectors/storageSelectors'
-=======
->>>>>>> 960f2c789 (store array of objects simulation instead of one)
 import {
 	SavedSimulation,
 	SavedSimulationList,
 } from '../selectors/storageSelectors'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
-<<<<<<< HEAD
-=======
-import { serializeSimulation } from './serializeSimulation'
->>>>>>> 960f2c789 (store array of objects simulation instead of one)
 
 const VERSION = 2
 
@@ -33,11 +26,8 @@ export function persistSimulation(store: Store<RootState, Action>): void {
 			return
 		}
 
-<<<<<<< HEAD
 		const simulationList = setSimulationList(currentSimulationSelector(state))
-=======
-		const simulationList = setSimulationList(serializeSimulation(state))
->>>>>>> 960f2c789 (store array of objects simulation instead of one)
+
 		persistSimulationList(simulationList)
 	}
 	store.subscribe(debounce(1000, listener))
@@ -68,10 +58,7 @@ function updateSimulationInList(
 	const index = simulationList.findIndex(
 		(simulation) => simulation.name === savedSimulation.name
 	)
-<<<<<<< HEAD
 	savedSimulation.date = new Date()
-=======
->>>>>>> 960f2c789 (store array of objects simulation instead of one)
 	simulationList[index] = savedSimulation
 
 	return simulationList

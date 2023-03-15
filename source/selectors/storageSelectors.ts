@@ -13,11 +13,8 @@ export type SavedSimulation = {
 	// Current language used for the UI translation -- not the model.
 	currentLang: Lang
 	localisation: Object | undefined
-<<<<<<< HEAD
 	conference: { room: string } | null
 	survey: { room: string } | null
-=======
->>>>>>> 960f2c789 (store array of objects simulation instead of one)
 	date?: Date
 	name?: string
 }
