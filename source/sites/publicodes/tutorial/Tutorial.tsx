@@ -90,5 +90,5 @@ export default ({}) => {
 
 const createSlides = (noBias) => {
 	if (noBias) return [ClimateWarming, WarmingMeasure, Instructions]
-	else return [ClimateWarming, WarmingMeasure, Target, Categories, Instructions]
+	return [ClimateWarming, WarmingMeasure, Target, Categories, Instructions]
 }

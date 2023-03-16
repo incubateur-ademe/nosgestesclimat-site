@@ -2,6 +2,7 @@ import content from 'raw-loader!./texte.md'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { resetIntroTutorial, skipTutorial } from '../../../actions/actions'
 import { Markdown } from '../../../components/utils/markdown'
 import { rehydrateDetails } from '../fin'
 import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
@@ -15,8 +16,13 @@ export default () => {
 
 	console.log('SP', searchParamsObject, searchParams)
 	useEffect(() => {
-		if (!enquête)
+		if (!enquête) {
+			// TODO reset simulation, use the next PR to do so without erasing the old one
 			dispatch({ type: 'SET_ENQUÊTE', userID, date: new Date().toString() })
+			dispatch(skipTutorial('scoreAnimation', true))
+			dispatch(skipTutorial('scoreExplanation', true))
+			dispatch(resetIntroTutorial())
+		}
 	}, [])
 	return (
 		<div css="max-width: 750px">
