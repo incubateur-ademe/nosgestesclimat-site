@@ -8,10 +8,12 @@ import { RootState } from 'Reducers/rootReducer'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { resetLocalisation } from '../actions/actions'
+import { objectifsSelector } from '../selectors/simulationSelectors'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
 import ProgressCircle from './ProgressCircle'
 import { usePersistingState } from './utils/persistState'
+import { useNextQuestions } from './utils/useNextQuestion'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -66,10 +68,18 @@ const Button = (props) => {
 	const location = useLocation(),
 		path = location.pathname
 	const isCurrent = path.includes(props.url)
+	const { inactive } = props
 	return (
 		<Link
 			to={props.url}
 			css={`
+				${inactive &&
+				`
+				pointer-events: none;
+
+filter: grayscale(1);
+opacity: .5;
+				`}
 				text-decoration: none;
 				${isCurrent &&
 				`
@@ -77,6 +87,7 @@ const Button = (props) => {
 				background: var(--lighterColor);
 				display: block;
 				@media (max-width: 800px){border-radius: 1.6rem}
+				
 
 				`}
 			`}
@@ -140,6 +151,7 @@ export default function SessionBar({
 		path = location.pathname
 
 	const persona = useSelector((state) => state.simulation?.persona)
+	const enquête = useSelector((state) => state.enquête)
 
 	const [searchParams, setSearchParams] = useSearchParams()
 
@@ -149,44 +161,56 @@ export default function SessionBar({
 
 	const { t } = useTranslation()
 
+	const nextQuestions = useNextQuestions(),
+		objectives = useSelector(objectifsSelector)
+	console.log('NQ', nextQuestions, enquête)
+	const testCompleted = objectives.length > 0 && nextQuestions.length === 0
+
 	let elements = [
 		<Button className="simple small" url="/simulateur/bilan">
 			<ProgressCircle />
 			<Trans>Le test</Trans>
 		</Button>,
-		<Button className="simple small" url="/actions/liste">
+
+		<Button
+			className="simple small"
+			url="/actions/liste"
+			inactive={enquête && !testCompleted}
+		>
 			<ActionsInteractiveIcon />
 			<Trans>Agir</Trans>
 		</Button>,
-		<Button className="simple small" url="/profil">
-			<div
-				css={`
-					position: relative;
-				`}
-			>
-				<img
-					src={openmojiURL('profile')}
-					css="width: 2rem"
-					aria-hidden="true"
-					width="1"
-					height="1"
-				/>
-			</div>
-			{!persona ? (
-				t('Profil')
-			) : (
-				<span
+		!enquête && (
+			<Button className="simple small" url="/profil">
+				<div
 					css={`
-						background: var(--color);
-						color: var(--textColor);
-						padding: 0 0.4rem;
-						border-radius: 0.3rem;
+						position: relative;
 					`}
 				>
-					{persona}
-				</span>
-			)}
-		</Button>,
+					<img
+						src={openmojiURL('profile')}
+						css="width: 2rem"
+						aria-hidden="true"
+						width="1"
+						height="1"
+					/>
+				</div>
+				{!persona ? (
+					t('Profil')
+				) : (
+					<span
+						css={`
+							background: var(--color);
+							color: var(--textColor);
+							padding: 0 0.4rem;
+							border-radius: 0.3rem;
+						`}
+					>
+						{persona}
+					</span>
+				)}
+			</Button>
+		),
 		pullRequestNumber && (
 			<MenuButton key="pullRequest" className="simple small">
 				<a
@@ -225,17 +249,19 @@ export default function SessionBar({
 				</button>
 			</MenuButton>
 		),
-		<Button className="simple small" url="/groupe">
-			<img
-				src={openmojiURL('silhouettes')}
-				css="width: 2rem"
-				aria-hidden="true"
-				width="1"
-				height="1"
-			/>
-			<Trans>Groupe</Trans>
-		</Button>,
-	]
+		!enquête && (
+			<Button className="simple small" url="/groupe">
+				<img
+					src={openmojiURL('silhouettes')}
+					css="width: 2rem"
+					aria-hidden="true"
+					width="1"
+					height="1"
+				/>
+				<Trans>Groupe</Trans>
+			</Button>
+		),
+	].filter(Boolean)
 
 	if (path === '/tutoriel') return null
 
