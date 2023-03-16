@@ -41,7 +41,6 @@ const MenuButton = styled.div`
 	justify-content: center;
 	font-size: 110% !important;
 	color: var(--darkColor);
-	padding: 0 0.4rem !important;
 	width: auto;
 	@media (min-width: 800px) {
 		flex-direction: row;
@@ -82,8 +81,10 @@ const Button = (props) => {
 				font-weight: bold;
 				background: var(--lighterColor);
 				display: block;
-				@media (max-width: 800px){border-radius: 1.6rem}
 
+				@media (max-width: 800px) {
+					border-radius: 0.6rem;
+				}
 				`}
 			`}
 			{...(isCurrent
@@ -280,7 +281,6 @@ const NavBar = styled.ul<{ isUsingCustomPR: any }>`
 		${({ isUsingCustomPR }) => (isUsingCustomPR ? 5 : 4)},
 		1fr
 	);
-	gap: 0.5rem;
 	align-items: center;
 
 	margin: 0;
@@ -288,7 +288,7 @@ const NavBar = styled.ul<{ isUsingCustomPR: any }>`
 	height: 4rem;
 	background: white;
 	justify-content: center;
-	padding: 0;
+	padding: 0rem 0.3rem;
 
 	@media (min-width: 800px) {
 		display: flex;
@@ -298,6 +298,8 @@ const NavBar = styled.ul<{ isUsingCustomPR: any }>`
 		background: none;
 		justify-content: start;
 		box-shadow: none;
+		padding: 0;
+
 		li {
 			width: 100%;
 		}

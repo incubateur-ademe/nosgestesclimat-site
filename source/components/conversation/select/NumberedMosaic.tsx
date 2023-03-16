@@ -159,7 +159,7 @@ function NumericInputWithButtons({
 				flex-direction: row;
 				justify-content: center;
 				align-items: center;
-				margin: 0;
+				margin-left: 0.6rem;
 			`}
 		>
 			<button

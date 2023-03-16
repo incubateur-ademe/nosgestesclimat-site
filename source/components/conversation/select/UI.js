@@ -27,7 +27,7 @@ export const Mosaic = styled.ul`
 		margin: 0.3rem 0;
 	}
 
-	@media (min-width: 600px) {
+	@media (min-width: 800px) {
 		flex-direction: row;
 		> li {
 			width: 48%;
@@ -100,4 +100,6 @@ export const mosaicLabelStyle = `
 const MosaicLabel = styled.label`
 	${({ isNotActive }) => (isNotActive ? 'opacity: 0.75;' : '')}
 	${mosaicLabelStyle}
+	display: flex;
+	flex-wrap: wrap;
 `
