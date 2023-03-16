@@ -2,9 +2,11 @@ import styled from 'styled-components'
 
 export const Mosaic = styled.ul`
 	display: flex;
-	justify-content: space-evenly;
+	flex-direction: column;
+	justify-content: flex-start;
 	flex-wrap: wrap;
 	padding: 0;
+
 	p {
 		text-align: center;
 	}
@@ -15,19 +17,27 @@ export const Mosaic = styled.ul`
 	}
 
 	> li {
-		width: 14rem;
-		min-height: 10rem;
-		margin: 1rem 0;
+		width: 100%;
+		min-height: initial;
 		display: flex;
-		flex-direction: column;
+		flex-direction: row;
 		justify-content: space-between;
 		align-items: center;
-		padding-bottom: 1rem;
+		padding: 0.3rem;
+		margin: 0.3rem 0;
 	}
 
-	@media (max-width: 800px) {
+	@media (min-width: 800px) {
+		flex-direction: row;
 		> li {
-			width: 10rem;
+			width: 48%;
+			padding: 0.6rem;
+			margin: 0.3rem 0.3rem;
+		}
+		figure {
+			order: -1;
+			margin: 0;
+			font-size: 160%;
 		}
 	}
 
@@ -40,4 +50,56 @@ export const Mosaic = styled.ul`
 		font-size: 85%;
 		line-height: 1.2rem;
 	}
+`
+
+export function MosaicItemLabel({
+	question,
+	title,
+	icônes,
+	description,
+	isNotActive,
+}) {
+	return (
+		<div
+			css={`
+				display: flex;
+				flex-direction: column;
+				align-items: flex-start;
+			`}
+		>
+			<MosaicLabel htmlFor={question.dottedName} isNotActive={isNotActive}>
+				<span
+					css={`
+						font-size: 100%;
+						margin-right: 0.3rem;
+					`}
+				>
+					{icônes}
+				</span>
+				{title}
+			</MosaicLabel>
+			<p
+				id={'description ' + title}
+				css={`
+					text-align: left !important;
+				`}
+			>
+				{description && description.split('\n')[0]}
+			</p>
+		</div>
+	)
+}
+
+export const mosaicLabelStyle = `
+	text-align: left;
+	line-height: 1.2rem;
+	margin-top: 0.6rem;
+	margin-bottom: 0.4rem;
+	font-weight: bold;
+`
+const MosaicLabel = styled.label`
+	${({ isNotActive }) => (isNotActive ? 'opacity: 0.75;' : '')}
+	${mosaicLabelStyle}
+	display: flex;
+	flex-wrap: wrap;
 `
