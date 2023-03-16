@@ -38,13 +38,14 @@ export default ({}) => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
+	const currentSimulationName = useSelector((state) => state.simulation?.name)
+
 	useEffect(() => {
 		dispatch(loadSimulationList())
 	}, [])
 	const simulationList = useSelector(
 		(state) => state.simulationList
 	)
-	console.log(simulationList)
 
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
 		useProfileData()
@@ -104,7 +105,7 @@ export default ({}) => {
 								<Trans>👤 Voici la liste de vos simulations</Trans>{' '}
 							</em>
 						</p>
-						<SimulationList {...{ dispatch, list: simulationList }}/>
+						<SimulationList {...{ dispatch, list: simulationList, currentSimulationName }}/>
 					</div>
 				)}
 				{hasData ? (
@@ -212,23 +213,32 @@ const TutorialLink = ({ tutorials, dispatch }) =>
 		</div>
 	)
 
-const SimulationList = ( { dispatch, list} ) => {
+const SimulationList = ( { dispatch, list, currentSimulationName} ) => {
 	return <ul>
 				{list.map(simulation => 
 						<li
 							key={simulation.name}
-							css={`
-								width: 12rem;
-								margin: 0.4rem;
-								@media (max-width: 800px) {
-									width: 11rem;
-								}
-							`}
-							onClick={() => {
-								dispatch(deleteSimulationByName(simulation.name))
-							}}
 						>
-							{simulation.name}
+							Simulation : {simulation.name} {simulation.date}
+							
+							{ (currentSimulationName === simulation.name)?<span css="margin: 0 1rem"><Trans>Chargée</Trans></span>:<button
+								className={`ui__ button simple small`}
+								css="margin: 0 1rem"
+								onClick={() => {
+									dispatch(loadSimulationList(simulation.name))
+								}}
+							><Trans>Charger</Trans></button>
+							}
+							<button
+								className={`ui__ button simple small`}
+								css="margin: 0 1rem"
+								onClick={() => {
+									dispatch(deleteSimulationByName(simulation.name))
+									dispatch(loadSimulationList())
+								}}
+							>
+								<Trans>supprimer</Trans>
+							</button>
 						</li>
 				)}
 </ul>

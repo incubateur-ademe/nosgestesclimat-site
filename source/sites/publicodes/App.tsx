@@ -77,6 +77,8 @@ export default function Root({}) {
 	).get('shareData')
 
 	const persistedSimulation = retrieveLastPersistedSimulation()
+	console.log('persistedSimulation')
+	console.log(persistedSimulation)
 
 	const currentLang =
 		persistedSimulation?.currentLang ??
@@ -96,6 +98,7 @@ export default function Root({}) {
 			initialStore={{
 				//...retrievePersistedState(),
 				previousSimulation: persistedSimulation,
+				//simulation: persistedSimulation,
 				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices ?? {},
 				tutorials: persistedSimulation?.tutorials,

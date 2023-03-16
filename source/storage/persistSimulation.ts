@@ -16,6 +16,7 @@ const LOCAL_STORAGE_KEY = 'ecolab-climat::persisted-simulation::v' + VERSION
 export function persistSimulation(store: Store<RootState, Action>): void {
 	const listener = () => {
 		const state = store.getState()
+
 		if (
 			!state.simulation?.foldedSteps?.length &&
 			!Object.keys(state.actionChoices).length &&
@@ -40,25 +41,24 @@ function setSimulationList(
 
 	if (savedSimulation === null) return simulationList
 
-	if (
-		simulationList.find(
-			(simulation) => simulation.name === savedSimulation.name
-		)
-	) {
-		return updateSimulationInList(savedSimulation, simulationList)
-	} else {
-		return addSimulationToList(savedSimulation, simulationList)
-	}
+	return findIndexSimulationByName(simulationList, savedSimulation.name) >= 0
+		? updateSimulationInList(savedSimulation, simulationList)
+		: addSimulationToList(savedSimulation, simulationList)
+}
+
+function findIndexSimulationByName(
+	simulationList: SavedSimulationList,
+	name?: string
+) {
+	return simulationList.findIndex((simulation) => simulation.name === name)
 }
 
 function updateSimulationInList(
 	savedSimulation: SavedSimulation,
 	simulationList: SavedSimulationList
 ): SavedSimulationList {
-	const index = simulationList.findIndex(
-		(simulation) => simulation.name === savedSimulation.name
-	)
-	savedSimulation.date = new Date()
+	const index = findIndexSimulationByName(simulationList, savedSimulation.name)
+	console.log('update date', savedSimulation.date)
 	simulationList[index] = savedSimulation
 
 	return simulationList
@@ -69,6 +69,7 @@ function addSimulationToList(
 	simulationList: SavedSimulationList
 ): SavedSimulationList {
 	savedSimulation.date = savedSimulation.date || new Date()
+	console.log('add date', savedSimulation.date)
 	savedSimulation.name =
 		savedSimulation.name || generateSimulationName(savedSimulation.date)
 	simulationList.push(savedSimulation)
@@ -88,6 +89,17 @@ function persistSimulationList(savedSimulationList: SavedSimulationList): void {
 }
 
 export function retrievePersistedSimulations(): SavedSimulationList {
+	const simulations = fetchSimulation()
+	simulations.sort((a, b) => {
+		const dateA = a.date ? new Date(a.date) : new Date()
+		const dateB = b.date ? new Date(b.date) : new Date()
+		return dateA.getTime() - dateB.getTime() ? 1 : -1
+	})
+
+	return simulations
+}
+
+function fetchSimulation(): SavedSimulationList {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 	const deserializedState = serializedState ? JSON.parse(serializedState) : []
 	if (Array.isArray(deserializedState)) {
@@ -102,13 +114,6 @@ export function retrievePersistedSimulations(): SavedSimulationList {
 
 export function retrieveLastPersistedSimulation(): SavedSimulation {
 	const simulationlist = retrievePersistedSimulations()
-
-	// on prends la simulation la plus récente
-	simulationlist.sort((a, b) => {
-		const dateA = a.date ? new Date(a.date) : new Date()
-		const dateB = b.date ? new Date(b.date) : new Date()
-		return dateA.getTime() - dateB.getTime() ? 1 : -1
-	})
 
 	return simulationlist[0]
 }
