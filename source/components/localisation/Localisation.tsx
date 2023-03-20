@@ -1,6 +1,6 @@
 import useLocalisation from 'Components/localisation/useLocalisation'
 import {
-	getCountryNameInFrench,
+	getCountryNameInCurrentLang,
 	getFlag,
 	supportedRegion,
 } from 'Components/localisation/utils'
@@ -20,11 +20,9 @@ export default () => {
 	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
-	const currentLang = useSelector((state) => state.currentLang)
 	const countryName =
-		currentLang == 'Fr'
-			? getCountryNameInFrench(localisation?.country?.code)
-			: localisation?.country?.name
+		getCountryNameInCurrentLang(localisation?.country?.code) ??
+		localisation?.country?.name
 
 	return (
 		<div>

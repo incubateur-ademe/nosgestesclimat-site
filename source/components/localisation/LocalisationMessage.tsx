@@ -5,7 +5,7 @@ import IllustratedMessage from '../ui/IllustratedMessage'
 import useLocalisation from './useLocalisation'
 import {
 	defaultModel,
-	getCountryNameInFrench,
+	getCountryNameInCurrentLang,
 	getFlag,
 	getFlagImgSrc,
 	supportedRegion,
@@ -19,20 +19,20 @@ export default () => {
 	const currentLang = useSelector((state) => state.currentLang)
 	const regionParams = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
-
-	if (messagesRead.includes(localisation?.country?.code)) return
-
-	if (localisation?.country?.code === defaultModel) return
-
 	const countryName =
-		currentLang == 'Fr'
-			? getCountryNameInFrench(localisation?.country?.code)
-			: localisation?.country?.name
+		getCountryNameInCurrentLang(localisation?.country?.code) ??
+		localisation?.country?.name
 
 	const versionName =
 		currentLang == 'Fr'
 			? regionParams?.gentilé ?? regionParams?.nom
+			: currentLang == 'En'
+			? regionParams?.gentiléEN ?? regionParams?.nomEN
 			: localisation?.country?.name
+
+	if (messagesRead.includes(localisation?.country?.code)) return
+
+	if (localisation?.country?.code === defaultModel) return
 
 	return (
 		<IllustratedMessage
@@ -48,7 +48,7 @@ export default () => {
 								i18nKey={'components.localisation.LocalisationMessage.version'}
 							>
 								Vous utilisez la version <strong>{{ versionName }}</strong> du
-								test.
+								test
 							</Trans>
 							<img
 								src={flag}
@@ -59,6 +59,7 @@ export default () => {
 									vertical-align: sub;
 								`}
 							/>
+							.
 							{regionParams?.code !== defaultModel && (
 								<span>
 									{' '}
@@ -88,25 +89,26 @@ export default () => {
 								<b>
 									<Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
 										Votre région n'est pas encore supportée, le modèle Français
-										vous est proposé par défaut.
+										vous est proposé par défaut
 									</Trans>
 								</b>
+								<img
+									src={getFlagImgSrc(defaultModel)}
+									aria-hidden="true"
+									css={`
+										height: 1rem;
+										margin: 0 0.3rem;
+										vertical-align: sub;
+									`}
+								/>
+								<b>.</b>
 							</p>
-							<img
-								src={getFlagImgSrc(defaultModel)}
-								aria-hidden="true"
-								css={`
-									height: 1rem;
-									margin: 0 0.3rem;
-									vertical-align: sub;
-								`}
-							/>
 						</p>
 					) : (
 						<p>
 							<Trans i18nKey="components.localisation.LocalisationMessage.warnMessage2">
 								Nous n'avons pas pu détecter votre pays de simulation, le modèle
-								Français vous est proposé par défaut.
+								Français vous est proposé par défaut
 							</Trans>
 							<img
 								src={getFlagImgSrc(defaultModel)}
@@ -117,6 +119,7 @@ export default () => {
 									vertical-align: sub;
 								`}
 							/>
+							.
 						</p>
 					)}
 					<p>
