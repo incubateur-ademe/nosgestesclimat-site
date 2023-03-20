@@ -58,7 +58,6 @@ function updateSimulationInList(
 	simulationList: SavedSimulationList
 ): SavedSimulationList {
 	const index = findIndexSimulationByName(simulationList, savedSimulation.name)
-	console.log('update date', savedSimulation.date)
 	simulationList[index] = savedSimulation
 
 	return simulationList
@@ -69,7 +68,6 @@ function addSimulationToList(
 	simulationList: SavedSimulationList
 ): SavedSimulationList {
 	savedSimulation.date = savedSimulation.date || new Date()
-	console.log('add date', savedSimulation.date)
 	savedSimulation.name =
 		savedSimulation.name || generateSimulationName(savedSimulation.date)
 	simulationList.push(savedSimulation)
@@ -93,7 +91,7 @@ export function retrievePersistedSimulations(): SavedSimulationList {
 	simulations.sort((a, b) => {
 		const dateA = a.date ? new Date(a.date) : new Date()
 		const dateB = b.date ? new Date(b.date) : new Date()
-		return dateA.getTime() - dateB.getTime() ? 1 : -1
+		return dateB.getTime() - dateA.getTime()
 	})
 
 	return simulations

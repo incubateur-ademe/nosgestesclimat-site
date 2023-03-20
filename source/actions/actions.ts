@@ -1,6 +1,7 @@
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
+import { Simulation } from '../reducers/rootReducer'
 import {
 	deletePersistedSimulation,
 	deleteSimulation,
@@ -118,6 +119,11 @@ export const setDifferentSituation = ({
 	foldedSteps,
 })
 
+export const setCurrentSimulation = (simulation: Simulation) => ({
+	type: 'SET_CURRENT_SIMULATION',
+	simulation,
+})
+
 export const setSimulationConfig =
 	(config: Object, url): ThunkResult<void> =>
 	(dispatch, getState, {}): void => {
@@ -148,7 +154,6 @@ export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
 export const deleteSimulationByName =
 	(name: string): ThunkResult<void> =>
 	() => {
-		console.log('nom', name)
 		deleteSimulation(name)
 	}
 

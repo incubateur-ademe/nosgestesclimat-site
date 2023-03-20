@@ -67,6 +67,11 @@ function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
+	if (action.type === 'SET_CURRENT_SIMULATION') {
+		action.simulation.date = new Date()
+		return action.simulation
+	}
+
 	if (action.type === 'SET_SIMULATION') {
 		const { config, url } = action
 
@@ -87,6 +92,7 @@ function simulation(
 			date: !action.persona && state?.date ? state?.date : new Date(),
 		}
 	}
+
 	if (state === null) {
 		return state
 	}
@@ -104,7 +110,9 @@ function simulation(
 				situation: {},
 				foldedSteps: [],
 				unfoldedStep: null,
-				persona: null,
+				persona: undefined,
+				name: undefined,
+				date: undefined,
 			}
 		case 'UPDATE_SITUATION': {
 			const targets = objectifsSelector({ simulation: state } as RootState)

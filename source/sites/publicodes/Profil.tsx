@@ -12,7 +12,7 @@ import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { resetCategoryTutorials, skipTutorial } from '../../actions/actions'
+import { resetCategoryTutorials, setCurrentSimulation, skipTutorial } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
@@ -38,7 +38,7 @@ export default ({}) => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
-	const currentSimulationName = useSelector((state) => state.simulation?.name)
+	const currentSimulation = useSelector((state) => state.simulation)
 
 	useEffect(() => {
 		dispatch(loadSimulationList())
@@ -105,7 +105,7 @@ export default ({}) => {
 								<Trans>👤 Voici la liste de vos simulations</Trans>{' '}
 							</em>
 						</p>
-						<SimulationList {...{ dispatch, list: simulationList, currentSimulationName }}/>
+						<SimulationList {...{ dispatch, list: simulationList, currentSimulation }}/>
 					</div>
 				)}
 				{hasData ? (
@@ -213,7 +213,7 @@ const TutorialLink = ({ tutorials, dispatch }) =>
 		</div>
 	)
 
-const SimulationList = ( { dispatch, list, currentSimulationName} ) => {
+const SimulationList = ( { dispatch, list, currentSimulation} ) => {
 	return <ul>
 				{list.map(simulation => 
 						<li
@@ -221,18 +221,24 @@ const SimulationList = ( { dispatch, list, currentSimulationName} ) => {
 						>
 							Simulation : {simulation.name} {simulation.date}
 							
-							{ (currentSimulationName === simulation.name)?<span css="margin: 0 1rem"><Trans>Chargée</Trans></span>:<button
-								className={`ui__ button simple small`}
-								css="margin: 0 1rem"
-								onClick={() => {
-									dispatch(loadSimulationList(simulation.name))
-								}}
-							><Trans>Charger</Trans></button>
+							{ (currentSimulation.name === simulation.name)
+								?<span css="margin: 0 1rem"><Trans>Chargée</Trans></span>
+								:<button
+										className={`ui__ button simple small`}
+										css="margin: 0 1rem"
+										onClick={() => {
+											dispatch(setCurrentSimulation(simulation))
+											dispatch(loadSimulationList())
+										}}
+									><Trans>Charger</Trans></button>
 							}
 							<button
 								className={`ui__ button simple small`}
 								css="margin: 0 1rem"
 								onClick={() => {
+									if(simulation.name===currentSimulation.name){
+										dispatch(resetSimulation());
+									}
 									dispatch(deleteSimulationByName(simulation.name))
 									dispatch(loadSimulationList())
 								}}
