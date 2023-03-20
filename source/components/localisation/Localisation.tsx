@@ -60,7 +60,7 @@ export default () => {
 							<button
 								className="ui__ dashed-button"
 								onClick={() => {
-									dispatch(setLocalisation(resetLocalisation))
+									dispatch(resetLocalisation())
 								}}
 							>
 								<Trans>Revenir chez moi 🔙</Trans>
