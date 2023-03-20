@@ -36,6 +36,7 @@ export default () => {
 
 	return (
 		<IllustratedMessage
+			emoji="📍"
 			width="32rem"
 			direction="row"
 			backgroundcolor="#fff8d3"
