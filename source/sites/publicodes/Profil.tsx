@@ -98,16 +98,6 @@ export default ({}) => {
 						</em>
 					</p>
 				)}
-				{simulationList && (
-					<div>
-						<p>
-							<em>
-								<Trans>👤 Voici la liste de vos simulations</Trans>{' '}
-							</em>
-						</p>
-						<SimulationList {...{ dispatch, list: simulationList, currentSimulation }}/>
-					</div>
-				)}
 				{hasData ? (
 					<div
 						css={`
@@ -190,6 +180,16 @@ export default ({}) => {
 				)}
 				<Localisation />
 				<AnswerList />
+				{simulationList && (
+					<div>
+						<p>
+							<em>
+								<Trans>👤 Voici la liste de vos simulations</Trans>{' '}
+							</em>
+						</p>
+						<SimulationList {...{ dispatch, list: simulationList, currentSimulation }}/>
+					</div>
+				)}
 			</div>
 		</div>
 	)
@@ -219,7 +219,7 @@ const SimulationList = ( { dispatch, list, currentSimulation} ) => {
 						<li
 							key={simulation.name}
 						>
-							Simulation : {simulation.name} {simulation.date}
+						  "{simulation.name}" du {new Date(simulation.date).toLocaleDateString()}
 							
 							{ (currentSimulation.name === simulation.name)
 								?<span css="margin: 0 1rem"><Trans>Chargée</Trans></span>

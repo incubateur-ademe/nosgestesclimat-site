@@ -2,6 +2,7 @@ import { Action } from 'Actions/actions'
 import { RootState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
 import { currentSimulationSelector } from 'Selectors/storageSelectors'
+import { v4 as uuidv4 } from 'uuid'
 import {
 	SavedSimulation,
 	SavedSimulationList,
@@ -68,15 +69,14 @@ function addSimulationToList(
 	simulationList: SavedSimulationList
 ): SavedSimulationList {
 	savedSimulation.date = savedSimulation.date || new Date()
-	savedSimulation.name =
-		savedSimulation.name || generateSimulationName(savedSimulation.date)
+	savedSimulation.name = savedSimulation.name || generateSimulationName()
 	simulationList.push(savedSimulation)
 
 	return simulationList
 }
 
-export function generateSimulationName(date: Date): string {
-	return date.toISOString().substring(0, 10).replaceAll('-', '')
+export function generateSimulationName(): string {
+	return uuidv4()
 }
 
 function persistSimulationList(savedSimulationList: SavedSimulationList): void {
@@ -105,7 +105,7 @@ function fetchSimulation(): SavedSimulationList {
 	}
 	// cas ou l'utilisateur a l'ancienne simulation dans son local storage
 	deserializedState.date = new Date()
-	deserializedState.name = generateSimulationName(deserializedState.date)
+	deserializedState.name = generateSimulationName()
 
 	return [deserializedState]
 }
