@@ -106,6 +106,8 @@ function fetchSimulation(): SavedSimulationList {
 	// cas ou l'utilisateur a l'ancienne simulation dans son local storage
 	deserializedState.date = new Date()
 	deserializedState.name = generateSimulationName()
+	// je sauvegarde la nouvelle liste pour éviter les prochains conflits.
+	persistSimulationList([deserializedState])
 
 	return [deserializedState]
 }
