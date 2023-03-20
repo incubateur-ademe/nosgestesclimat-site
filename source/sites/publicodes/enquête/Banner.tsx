@@ -8,7 +8,6 @@ export default () => {
 	const enquête = useSelector((state) => state.enquête)
 	const situation = useSelector(situationSelector)
 	const [message, setMessage] = useState(null)
-	const { userID } = enquête
 	useEffect(() => {
 		if (!enquête) return
 		const postData = async () => {
@@ -37,6 +36,7 @@ export default () => {
 		return () => clearInterval(postDaemon)
 	}, [situation, enquête])
 	if (!enquête) return null
+	const { userID } = enquête
 	return (
 		<div
 			css={`
