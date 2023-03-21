@@ -174,7 +174,7 @@ export default function SessionBar({
 
 		<Button
 			className="simple small"
-			url="/actions/liste"
+			url="/actions"
 			inactive={enquête && !testCompleted}
 		>
 			<ActionsInteractiveIcon />
