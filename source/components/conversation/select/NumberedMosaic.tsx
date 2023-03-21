@@ -43,9 +43,7 @@ export default function NumberedMosaic({
 						const situationValue = situation[question.dottedName],
 							evaluation = engine.evaluate(question.dottedName),
 							value =
-								situationValue != null
-									? situationValue
-									: question.rawNode['par défaut']
+								situationValue != null ? situationValue : evaluation.nodeValue
 
 						return (
 							<li
