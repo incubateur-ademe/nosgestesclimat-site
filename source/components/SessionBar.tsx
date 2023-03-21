@@ -163,7 +163,7 @@ export default function SessionBar({
 
 	const nextQuestions = useNextQuestions(),
 		objectives = useSelector(objectifsSelector)
-	console.log('NQ', nextQuestions, enquête)
+
 	const testCompleted = objectives.length > 0 && nextQuestions.length === 0
 
 	let elements = [
