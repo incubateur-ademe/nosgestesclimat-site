@@ -8,6 +8,6 @@ En arrivant sur le site par ce lien, vous allez faire le test et le parcours Nos
 
 2️⃣ Vous ferez simplement votre test d'empreinte, qui prendra 5 à 10 minutes, puis vous pourrez découvrir les actions de réduction d'empreinte proposées
 
-3️⃣ Pendant votre parcours, vos réponses et les résultats du calcul sont automatiquement sauvegardées de façon anonyme, et communiquées à l'institut responsable de l'enquête. Elles ne seront pas utilisées pour autre chose que cette enquête.
+3️⃣ Pendant votre parcours, vos réponses et les résultats du calcul sont automatiquement sauvegardées de façon anonyme par nosgestesclimat.fr, et communiquées à l'institut responsable de l'enquête. Elles ne seront pas utilisées pour autre chose que cette enquête.
 
 4️⃣ À la fin du parcours, vous serez redirigé vers l'institut pour finir le parcours d'enquête.
