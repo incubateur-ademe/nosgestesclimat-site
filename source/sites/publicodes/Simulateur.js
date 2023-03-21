@@ -16,7 +16,6 @@ import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
-import SendResultButton from './enquête/SendResultButton'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
 
@@ -140,13 +139,9 @@ const MainSimulationEnding = ({ rules, engine }) => {
 			<p>
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
-			{!enquête ? (
-				<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
-					<Trans>Voir mon résultat</Trans>
-				</Link>
-			) : (
-				<SendResultButton />
-			)}
+			<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
+				<Trans>Voir mon résultat</Trans>
+			</Link>
 			{!enquête && (
 				<>
 					<Trans>ou</Trans>
