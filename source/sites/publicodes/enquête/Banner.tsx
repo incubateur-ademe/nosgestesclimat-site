@@ -12,6 +12,7 @@ import {
 	situationSelector,
 } from '../../../selectors/simulationSelectors'
 import { simulationURL } from '../conference/useDatabase'
+import useActions from '../useActions'
 
 export default () => {
 	return (
@@ -32,7 +33,14 @@ const BannerWithEngine = () => {
 	const categoriesRaw = extractCategories(rules, engine),
 		categories = minimalCategoryData(categoriesRaw)
 	const storedTrajets = useSelector((state) => state.storedTrajets)
-	const actionResults = []
+	const { interestingActions: actionResultsRaw } = useActions({
+			focusedAction: null,
+			rules,
+			radical: true,
+			engine,
+			metric: null,
+		}),
+		actionResults = minimalCategoryData(actionResultsRaw)
 
 	const data = {
 		situation,
