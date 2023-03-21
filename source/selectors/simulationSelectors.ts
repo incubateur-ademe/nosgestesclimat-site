@@ -1,6 +1,6 @@
-import { DottedName, Situation } from '../rules/index'
-import { createSelector } from 'reselect'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { createSelector } from 'reselect'
+import { DottedName, Situation } from '../rules/index'
 
 export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}

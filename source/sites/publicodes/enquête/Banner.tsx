@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { situationSelector } from '../../../selectors/simulationSelectors'
+import {
+	answeredQuestionsSelector,
+	situationSelector,
+} from '../../../selectors/simulationSelectors'
 import { simulationURL } from '../conference/useDatabase'
 
 export default () => {
@@ -9,7 +12,8 @@ export default () => {
 	const situation = useSelector(situationSelector)
 	const [message, setMessage] = useState(null)
 	const actionChoices = useSelector((state) => state.actionChoices)
-	const data = { situation, actionChoices }
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
+	const data = { situation, actionChoices, answeredQuestions }
 	useEffect(() => {
 		if (!enquête) return
 		const postData = async () => {
