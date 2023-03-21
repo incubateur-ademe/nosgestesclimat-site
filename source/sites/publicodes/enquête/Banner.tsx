@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { extractCategories } from '../../../components/publicodesUtils'
+import {
+	extractCategories,
+	minimalCategoryData,
+} from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
 import { WithEngine } from '../../../RulesProvider'
 import {
@@ -26,8 +29,15 @@ const BannerWithEngine = () => {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const rules = useSelector((state) => state.rules),
 		engine = useEngine()
-	const categories = extractCategories(rules, engine)
-	const data = { situation, actionChoices, answeredQuestions }
+	const categoriesRaw = extractCategories(rules, engine),
+		categories = minimalCategoryData(categoriesRaw)
+
+	const data = {
+		situation,
+		actionChoices,
+		answeredQuestions,
+		results: { categories },
+	}
 
 	useEffect(() => {
 		if (!enquête) return
