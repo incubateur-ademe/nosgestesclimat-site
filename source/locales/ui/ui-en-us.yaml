@@ -269,7 +269,7 @@ entries:
   components.ScoreExplanation.text.p2.lock: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
   components.ScoreExplanation.text.p3: '🤔 If you answer "I don''t know" to a question, the score will not change: you are assigned a default value.'
   components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
-  components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default valuesevery<1>month</1>!
+  components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default values every<1>month</1>!
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in <1>beta</1> version. <4>A problem, a suggestion?</4>
   components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est en version <1>beta</1>. <4>Un problème, une suggestion ?</4>
