@@ -8,10 +8,12 @@ export default () => {
 	const enquête = useSelector((state) => state.enquête)
 	const situation = useSelector(situationSelector)
 	const [message, setMessage] = useState(null)
+	const actionChoices = useSelector((state) => state.actionChoices)
+	const data = { situation, actionChoices }
 	useEffect(() => {
 		if (!enquête) return
 		const postData = async () => {
-			const body = { data: { situation }, id: enquête.userID }
+			const body = { data, id: enquête.userID }
 			console.log(body)
 			try {
 				const response = await fetch(simulationURL, {
@@ -34,7 +36,7 @@ export default () => {
 		}, 5000)
 
 		return () => clearInterval(postDaemon)
-	}, [situation, enquête])
+	}, [data, enquête])
 	if (!enquête) return null
 	const { userID } = enquête
 	return (
