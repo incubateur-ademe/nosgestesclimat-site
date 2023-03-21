@@ -49,7 +49,7 @@ export default () => {
 			`}
 		>
 			<Link to={`/enquête/${userID}`}>
-				<div>Vous participez à l'enquête avec l'id {userID}</div>
+				<div>Vous participez à l'enquête </div>
 			</Link>
 			{message && <div>{message.text}</div>}
 		</div>

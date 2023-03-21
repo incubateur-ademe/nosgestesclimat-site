@@ -10,4 +10,4 @@ En arrivant sur le site par ce lien, vous allez faire le test et le parcours Nos
 
 3️⃣ Pendant votre parcours, vos réponses et les résultats du calcul sont automatiquement sauvegardées de façon anonyme, et communiquées à l'institut responsable de l'enquête. Elles ne seront pas utilisées pour autre chose que cette enquête.
 
-4️⃣ À la fin du parcours, vous serez redirigés vers l'institut pour finir le parcours d'enquête.
+4️⃣ À la fin du parcours, vous serez redirigé vers l'institut pour finir le parcours d'enquête.

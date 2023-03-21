@@ -29,6 +29,17 @@ export default () => {
 	return (
 		<div css="max-width: 750px">
 			<Markdown>{content}</Markdown>
+			<div
+				css={`
+					display: flex;
+					align-items: center;
+				`}
+			>
+				Votre identifiant d'enquête est le{' '}
+				<textarea css={'margin-left: .6rem;width: 20rem; height: 1.5rem'}>
+					{enquête.userID}
+				</textarea>
+			</div>
 			<Link to="/simulateur/bilan">
 				<button className="ui__ button cta">Commencer le parcours</button>
 			</Link>
