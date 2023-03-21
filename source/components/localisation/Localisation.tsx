@@ -20,9 +20,7 @@ export default () => {
 	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
-	const countryName =
-		getCountryNameInCurrentLang(localisation?.country?.code) ??
-		localisation?.country?.name
+	const countryName = getCountryNameInCurrentLang(localisation)
 
 	return (
 		<div>

@@ -19,16 +19,11 @@ export default () => {
 	const currentLang = useSelector((state) => state.currentLang)
 	const regionParams = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
-	const countryName =
-		getCountryNameInCurrentLang(localisation?.country?.code) ??
-		localisation?.country?.name
+	const countryName = getCountryNameInCurrentLang(localisation)
 
-	const versionName =
-		currentLang == 'Fr'
-			? regionParams?.gentilé ?? regionParams?.nom
-			: currentLang == 'En'
-			? regionParams?.gentiléEN ?? regionParams?.nomEN
-			: localisation?.country?.name
+	const versionName = regionParams
+		? regionParams['gentilé' + currentLang] ?? regionParams['nom' + currentLang]
+		: localisation?.country?.name
 
 	if (messagesRead.includes(localisation?.country?.code)) return
 

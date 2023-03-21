@@ -34,21 +34,18 @@ export const getFlagImgSrc = (inputCode) =>
 	inputCode &&
 	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
 
-export const getCountryNameInCurrentLang = (code) => {
+export const getCountryNameInCurrentLang = (localisation) => {
 	// this function enables to adapt messages written in French according to the country detected, including French prepositions subtelties.
 	const currentLang = useSelector((state) => state.currentLang)
-	const regionParams = supportedRegion(code)
-	if (!regionParams) {
+	const regionParams = supportedRegion(localisation?.country?.code)
+	if (!localisation) {
 		return undefined
 	}
 	if (currentLang == 'Fr') {
-		const countryName = regionParams.nom
+		const countryName = regionParams?.nomFr ?? localisation?.country?.name
 		const preposition =
 			(countryName && frenchCountryPrepositions[countryName]) ?? ''
 		return `${preposition} ${countryName}`
 	}
-	if (currentLang == 'En') {
-		return regionParams.nomEN
-	}
-	return
+	return localisation['nom' + currentLang] ?? localisation?.country?.name
 }
