@@ -28,7 +28,7 @@ import {
 	Lang,
 } from './../../locales/translation'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
-import EnquêteBanner from './enquête/Banner'
+import EnquêteBanner from './enquête/BannerWrapper'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'

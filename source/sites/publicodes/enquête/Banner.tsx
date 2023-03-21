@@ -1,6 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { extractCategories } from '../../../components/publicodesUtils'
+import { useEngine } from '../../../components/utils/EngineContext'
+import { WithEngine } from '../../../RulesProvider'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -8,12 +11,24 @@ import {
 import { simulationURL } from '../conference/useDatabase'
 
 export default () => {
+	return (
+		<WithEngine options={{ parsed: true, optimized: true }}>
+			<BannerWithEngine />
+		</WithEngine>
+	)
+}
+
+const BannerWithEngine = () => {
 	const enquête = useSelector((state) => state.enquête)
 	const situation = useSelector(situationSelector)
 	const [message, setMessage] = useState(null)
 	const actionChoices = useSelector((state) => state.actionChoices)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
+	const rules = useSelector((state) => state.rules),
+		engine = useEngine()
+	const categories = extractCategories(rules, engine)
 	const data = { situation, actionChoices, answeredQuestions }
+
 	useEffect(() => {
 		if (!enquête) return
 		const postData = async () => {
