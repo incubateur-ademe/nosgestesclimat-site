@@ -3,20 +3,17 @@ import { EngineContext } from 'Components/utils/EngineContext'
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import {
-	correctValue,
-	extractCategoriesNamespaces,
-} from '../../components/publicodesUtils'
+import { extractCategoriesNamespaces } from '../../components/publicodesUtils'
 import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { sortBy, useQuery } from '../../utils'
+import { useQuery } from '../../utils'
 import ActionsOptionsBar from './ActionsOptionsBar'
 import ActionTutorial from './ActionTutorial'
-import { disabledAction, supersededAction } from './ActionVignette'
 import AllActions from './AllActions'
 import CategoryFilters from './CategoryFilters'
 import { humanWeight } from './HumanWeight'
 import MetricFilters from './MetricFilters'
 import SimulationMissing from './SimulationMissing'
+import useActions from './useActions'
 
 export default ({ display }) => {
 	const engine = useContext(EngineContext)
@@ -29,40 +26,26 @@ export default ({ display }) => {
 	const rules = useSelector((state) => state.rules)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
-	const flatActions = metric ? rules[`actions ${metric}`] : rules['actions']
-
 	const [radical, setRadical] = useState(true)
 
 	const tutorials = useSelector((state) => state.tutorials)
 
-	const objectifs = ['bilan', ...flatActions.formule.somme]
+	const [focusedAction, focusAction] = useState(null)
 
-	const targets = objectifs.map((o) => engine.evaluate(o))
+	const { targets, interestingActions } = useActions({
+		metric,
+		engine,
+		focusedAction,
+		rules,
+		radical,
+	})
 
-	const bilan = targets.find((t) => t.dottedName === 'bilan'),
-		actions = targets.filter((t) => t.dottedName !== 'bilan')
+	const bilan = targets.find((t) => t.dottedName === 'bilan')
 
 	const filterByCategory = (actions) =>
 		actions.filter((action) =>
 			category ? splitName(action.dottedName)[0] === category : true
 		)
-
-	const actionChoices = useSelector((state) => state.actionChoices)
-	const [focusedAction, focusAction] = useState(null)
-
-	const sortedActionsByImpact = sortBy(
-			(a) => (radical ? 1 : -1) * correctValue(a)
-		)(actions),
-		interestingActions = sortedActionsByImpact.filter((action) => {
-			const flatRule = rules[action.dottedName]
-			const superseded = supersededAction(
-				action.dottedName,
-				rules,
-				actionChoices
-			)
-			const disabled = disabledAction(flatRule, action.nodeValue)
-			return !superseded && (action.dottedName === focusedAction || !disabled)
-		})
 
 	const finalActions = filterByCategory(interestingActions)
 
