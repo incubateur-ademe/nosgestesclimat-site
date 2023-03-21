@@ -22,11 +22,11 @@ export const fromBottom = ({ children, delay = 0 }: Props) => (
 		{children}
 	</motion.div>
 )
-export const fromTop = ({ children, delay = 0 }: Props) => (
+export const fromTop = ({ children, delay = 0, duration }: Props) => (
 	<motion.div
 		initial={{ opacity: 0, y: -50, scale: 0.3 }}
 		animate={{ opacity: 1, y: 0, scale: 1 }}
-		transition={{ delay }}
+		transition={{ delay, duration }}
 		exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.2 } }}
 	>
 		{children}
