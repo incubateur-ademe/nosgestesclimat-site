@@ -31,12 +31,14 @@ const BannerWithEngine = () => {
 		engine = useEngine()
 	const categoriesRaw = extractCategories(rules, engine),
 		categories = minimalCategoryData(categoriesRaw)
+	const storedTrajets = useSelector((state) => state.storedTrajets)
+	const actionResults = []
 
 	const data = {
 		situation,
-		actionChoices,
+		extraSituation: { storedTrajets, actionChoices },
 		answeredQuestions,
-		results: { categories },
+		results: { categories, actionResults },
 	}
 
 	useEffect(() => {

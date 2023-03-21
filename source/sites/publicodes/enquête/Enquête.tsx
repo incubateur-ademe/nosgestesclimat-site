@@ -37,7 +37,7 @@ export default () => {
 			>
 				Votre identifiant d'enquête est le{' '}
 				<textarea css={'margin-left: .6rem;width: 20rem; height: 1.5rem'}>
-					{enquête.userID}
+					{enquête && enquête.userID}
 				</textarea>
 			</div>
 			<Link to="/simulateur/bilan">
