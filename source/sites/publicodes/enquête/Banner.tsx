@@ -1,18 +1,9 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import {
-	extractCategories,
-	minimalCategoryData,
-} from '../../../components/publicodesUtils'
-import { useEngine } from '../../../components/utils/EngineContext'
 import { WithEngine } from '../../../RulesProvider'
-import {
-	answeredQuestionsSelector,
-	situationSelector,
-} from '../../../selectors/simulationSelectors'
+import { useSimulationData } from '../../../selectors/simulationSelectors'
 import { simulationURL } from '../conference/useDatabase'
-import useActions from '../useActions'
 
 export default () => {
 	return (
@@ -24,30 +15,9 @@ export default () => {
 
 const BannerWithEngine = () => {
 	const enquête = useSelector((state) => state.enquête)
-	const situation = useSelector(situationSelector)
 	const [message, setMessage] = useState(null)
-	const actionChoices = useSelector((state) => state.actionChoices)
-	const answeredQuestions = useSelector(answeredQuestionsSelector)
-	const rules = useSelector((state) => state.rules),
-		engine = useEngine()
-	const categoriesRaw = extractCategories(rules, engine),
-		categories = minimalCategoryData(categoriesRaw)
-	const storedTrajets = useSelector((state) => state.storedTrajets)
-	const { interestingActions: actionResultsRaw } = useActions({
-			focusedAction: null,
-			rules,
-			radical: true,
-			engine,
-			metric: null,
-		}),
-		actionResults = minimalCategoryData(actionResultsRaw)
 
-	const data = {
-		situation,
-		extraSituation: { storedTrajets, actionChoices },
-		answeredQuestions,
-		results: { categories, actionResults },
-	}
+	const data = useSimulationData()
 
 	useEffect(() => {
 		if (!enquête) return
