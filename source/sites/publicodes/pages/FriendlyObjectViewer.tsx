@@ -8,6 +8,7 @@ const FriendlyObjectViewer = ({
 	context,
 	options = { capitalise0: true },
 }) => {
+	if (data == null) return null
 	const capitaliseOrNot = options.capitalise0 ? capitalise0 : (s) => s
 	if (typeof data === 'string') {
 		try {
