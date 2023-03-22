@@ -24,7 +24,7 @@ describe('check for test completion', () => {
 	})
 
 	it('can finish the test with personas values', () => {
-		cy.request('http://127.0.0.1/personas-fr.json').then((response) => {
+		cy.request('http://127.0.0.1:8081/personas-fr.json').then((response) => {
 			const personas = response.body
 			const personasName = Object.keys(personas)
 			personasName.map((name) => {
