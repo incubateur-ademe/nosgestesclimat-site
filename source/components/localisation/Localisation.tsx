@@ -119,10 +119,15 @@ export default () => {
 				<summary>
 					<Trans>Choisir une autre région</Trans>
 				</summary>
-				<ul>
+				<ul
+					css={`
+						columns: 3;
+						-webkit-columns: 3;
+						-moz-columns: 3;
+					`}
+				>
 					{Object.entries(orderedSupportedRegions).map(([code, params]) => (
 						<li
-							className="ui__"
 							key={code}
 							onClick={() => {
 								const newLocalisation = {
@@ -133,7 +138,15 @@ export default () => {
 								dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })
 							}}
 						>
-							<button>{capitalise0(params[currentLang]?.nom)}</button>
+							<button
+								css={`
+									padding: 0;
+									font-size: 0.75rem;
+									color: var(--darkColor);
+								`}
+							>
+								{capitalise0(params[currentLang]?.nom)}
+							</button>
 						</li>
 					))}
 				</ul>
