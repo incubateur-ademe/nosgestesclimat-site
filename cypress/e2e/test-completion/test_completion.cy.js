@@ -10,7 +10,7 @@ const categories = [
 
 describe('check for test completion', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8082')
+		cy.visit('http://localhost:8080')
 	})
 
 	it('can finish the test with the default values', () => {
@@ -29,7 +29,7 @@ describe('check for test completion', () => {
 			const personasName = Object.keys(personas)
 			personasName.map((name) => {
 				cy.session(name, () => {
-					cy.visit('http://localhost:8082')
+					cy.visit('http://localhost:8080')
 					cy.contains('Take the test').click()
 					cy.contains('Skip the tutorial').click()
 					cy.contains('I understand').click()

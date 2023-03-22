@@ -1,6 +1,6 @@
 describe('check for homepage status', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8082')
+		cy.visit('http://localhost:8080')
 	})
 
 	it('has a start button', () => {
