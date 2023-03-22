@@ -18,7 +18,7 @@ export const supportedRegion = (inputCode) => {
 
 export const getFlag = (inputCode) => {
 	const regionParams = supportedRegion(inputCode)
-	const code = regionParams?.drapeau ?? inputCode
+	const code = regionParams?.fr?.drapeau ?? inputCode
 	return getFlagImgSrc(code)
 }
 
