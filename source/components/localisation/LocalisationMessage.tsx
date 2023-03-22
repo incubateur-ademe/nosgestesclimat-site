@@ -16,13 +16,13 @@ export default () => {
 	)
 	const dispatch = useDispatch()
 	const localisation = useLocalisation()
-	const currentLang = useSelector((state) => state.currentLang)
+	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
 	const regionParams = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
 	const countryName = getCountryNameInCurrentLang(localisation)
 
 	const versionName = regionParams
-		? regionParams['gentilé' + currentLang] ?? regionParams['nom' + currentLang]
+		? regionParams[currentLang]['gentilé'] ?? regionParams[currentLang]['nom']
 		: localisation?.country?.name
 
 	if (messagesRead.includes(localisation?.country?.code)) return
@@ -55,7 +55,7 @@ export default () => {
 								`}
 							/>
 							.
-							{regionParams?.code !== defaultModel && (
+							{localisation?.country?.code !== defaultModel && (
 								<span>
 									{' '}
 									<Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">

@@ -16,6 +16,7 @@ export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
+	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
 
 	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
@@ -101,19 +102,20 @@ export default () => {
 					<Trans>Choisir une autre région</Trans>
 				</summary>
 				<ul>
-					{Object.values(supportedRegions).map(({ nom, code }) => (
+					{Object.entries(orderedSupportedRegions).map(([code, params]) => (
 						<li
+							className="ui__"
 							key={code}
 							onClick={() => {
 								const newLocalisation = {
-									country: { name: nom, code },
+									country: { name: params[currentLang]?.nom, code },
 									userChosen: true,
 								}
 								dispatch(setLocalisation(newLocalisation))
 								dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })
 							}}
 						>
-							<button>{capitalise0(nom)}</button>
+							<button>{capitalise0(params[currentLang]?.nom)}</button>
 						</li>
 					))}
 				</ul>

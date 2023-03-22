@@ -36,16 +36,20 @@ export const getFlagImgSrc = (inputCode) =>
 
 export const getCountryNameInCurrentLang = (localisation) => {
 	// this function enables to adapt messages written in French according to the country detected, including French prepositions subtelties.
-	const currentLang = useSelector((state) => state.currentLang)
+	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
 	const regionParams = supportedRegion(localisation?.country?.code)
 	if (!localisation) {
 		return undefined
 	}
-	if (currentLang == 'Fr') {
-		const countryName = regionParams?.nomFr ?? localisation?.country?.name
+	if (currentLang == 'fr') {
+		const countryName = regionParams
+			? regionParams[currentLang]['nom']
+			: localisation?.country?.name
 		const preposition =
 			(countryName && frenchCountryPrepositions[countryName]) ?? ''
 		return `${preposition} ${countryName}`
 	}
-	return localisation['nom' + currentLang] ?? localisation?.country?.name
+	return regionParams
+		? regionParams[currentLang]['nom']
+		: localisation?.country?.name
 }
