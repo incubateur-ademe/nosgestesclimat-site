@@ -21,7 +21,11 @@ export default () => {
 			</p>
 			<ul>
 				{questionRules.map((rule) => (
-					<QuestionDescription rules={rules} rule={rule} />
+					<QuestionDescription
+						rules={rules}
+						rule={rule}
+						key={rule.dottedName}
+					/>
 				))}
 			</ul>
 		</div>

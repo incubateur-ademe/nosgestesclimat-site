@@ -11,6 +11,7 @@ const FriendlyObjectViewer = ({
 	const capitaliseOrNot = options.capitalise0 ? capitalise0 : (s) => s
 	if (typeof data === 'string') {
 		try {
+			if (!context) return <span>{capitaliseOrNot(data)}</span>
 			const isRule = utils.disambiguateReference(
 				context.rules,
 				context.dottedName,
