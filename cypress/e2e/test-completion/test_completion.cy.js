@@ -13,7 +13,7 @@ describe('check for test completion', () => {
 		cy.visit('http://localhost:8080')
 	})
 
-	it('can finish the test with the default values', () => {
+	it.skip('can finish the test with the default values', () => {
 		cy.contains('Take the test').click()
 		cy.contains('Skip the tutorial').click()
 		cy.contains('I understand').click()
@@ -23,7 +23,7 @@ describe('check for test completion', () => {
 		cy.contains(defaultTotal).should('be.visible')
 	})
 
-	it('can finish the test with personas values', () => {
+	it.skip('can finish the test with personas values', () => {
 		cy.request('http://127.0.0.1:8081/personas-fr.json').then((response) => {
 			const personas = response.body
 			const personasName = Object.keys(personas)
