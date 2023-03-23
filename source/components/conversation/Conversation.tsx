@@ -219,9 +219,11 @@ export default function Conversation({
 				  previousAnswers[previousAnswers.length - 1]
 				: // mosaics are exceptionnal, since they are similar questions grouped for the UI
 				mosaicQuestion
-				? [...previousAnswers].reverse().find((el, index) => {
+				? // We'll explore the previous answers starting from the end, to find the first question that is not in the current mosaic
+				  [...previousAnswers].reverse().find((el, index) => {
 						return (
 							index > previousAnswers.length - currentQuestionIndex &&
+							// The previous question shouldn't be one of the current mosaic's questions
 							!questionsToSubmit.includes(el)
 						)
 				  })
