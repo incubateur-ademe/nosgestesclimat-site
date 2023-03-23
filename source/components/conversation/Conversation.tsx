@@ -216,12 +216,12 @@ export default function Conversation({
 			currentQuestionIndex < 0 && previousAnswers.length > 0
 				? previousAnswers[previousAnswers.length - 1]
 				: mosaicQuestion
-				? [...previousAnswers]
-						.reverse()
-						.find(
-							(el, index) =>
-								index < currentQuestionIndex && !questionsToSubmit.includes(el)
+				? [...previousAnswers].reverse().find((el, index) => {
+						return (
+							index > previousAnswers.length - currentQuestionIndex &&
+							!questionsToSubmit.includes(el)
 						)
+				  })
 				: previousAnswers[currentQuestionIndex - 1]
 
 	const isValidInput = (questionsToSubmit) => {
