@@ -212,10 +212,13 @@ export default function Conversation({
 	const currentQuestionIndex = previousAnswers.findIndex(
 			(a) => a === unfoldedStep
 		),
+		currentIsNew = currentQuestionIndex < 0,
 		previousQuestion =
-			currentQuestionIndex < 0 && previousAnswers.length > 0
-				? previousAnswers[previousAnswers.length - 1]
-				: mosaicQuestion
+			currentIsNew && previousAnswers.length > 0
+				? // it simply is the last answered question
+				  previousAnswers[previousAnswers.length - 1]
+				: // mosaics are exceptionnal, since they are similar questions grouped for the UI
+				mosaicQuestion
 				? [...previousAnswers].reverse().find((el, index) => {
 						return (
 							index > previousAnswers.length - currentQuestionIndex &&
