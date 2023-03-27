@@ -2,10 +2,6 @@ import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
 import { Simulation } from '../reducers/rootReducer'
-import {
-	deletePersistedSimulation,
-	deleteSimulation,
-} from '../storage/persistSimulation'
 import { CompanyStatusAction } from './companyStatusActions'
 
 export type Action =
@@ -14,12 +10,11 @@ export type Action =
 	| UpdateAction
 	| SetSimulationConfigAction
 	| DeletePreviousSimulationAction
-	| DeleteSimulationByNameAction
+	| DeleteSimulationByIdAction
 	| ExplainVariableAction
 	| UpdateSituationAction
 	| HideNotificationAction
 	| LoadPreviousSimulationAction
-	| LoadSimulationListAction
 	| SetSituationBranchAction
 	| UpdateTargetUnitAction
 	| SetActiveTargetAction
@@ -44,7 +39,7 @@ type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
 }
 
-type DeleteSimulationByNameAction = {
+type DeleteSimulationByIdAction = {
 	type: 'DELETE_SIMULATION'
 }
 
@@ -104,19 +99,30 @@ export const setSituationBranch = (id: number) =>
 		id,
 	} as const)
 
-export const setDifferentSituation = ({
-	situation,
-	config,
-	url,
-	persona,
-	foldedSteps,
-}: Object) => ({
-	type: 'SET_SIMULATION',
-	situation,
-	config,
-	url,
-	persona,
-	foldedSteps,
+export const setDifferentSituation =
+	({
+		situation,
+		config,
+		url,
+		persona,
+		foldedSteps,
+	}: Object): ThunkResult<void> =>
+	(dispatch, getState) => {
+		dispatch({
+			type: 'SET_SIMULATION',
+			situation,
+			config,
+			url,
+			persona,
+			foldedSteps,
+		})
+		dispatch(addSimulationToList(getState().simulation))
+		dispatch(setCurrentSimulation(getState().simulation))
+	}
+
+export const addSimulationToList = (simulation: Simulation) => ({
+	type: 'ADD_SIMULATION_TO_LIST',
+	simulation,
 })
 
 export const setCurrentSimulation = (simulation: Simulation) => ({
@@ -136,6 +142,8 @@ export const setSimulationConfig =
 			url,
 			config,
 		})
+		dispatch(addSimulationToList(getState().simulation))
+		dispatch(setCurrentSimulation(getState().simulation))
 	}
 
 export const setActiveTarget = (targetName: DottedName) =>
@@ -144,18 +152,11 @@ export const setActiveTarget = (targetName: DottedName) =>
 		name: targetName,
 	} as const)
 
-export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
-	dispatch({
-		type: 'DELETE_PREVIOUS_SIMULATION',
-	})
-	deletePersistedSimulation()
-}
-
-export const deleteSimulationByName =
-	(name: string): ThunkResult<void> =>
-	() => {
-		deleteSimulation(name)
-	}
+export const deleteSimulationById = (id: string) =>
+	({
+		type: 'DELETE_SIMULATION',
+		id,
+	} as const)
 
 export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
@@ -185,12 +186,6 @@ export const updateUnit = (targetUnit: string) =>
 export function loadPreviousSimulation() {
 	return {
 		type: 'LOAD_PREVIOUS_SIMULATION',
-	} as const
-}
-
-export function loadSimulationList() {
-	return {
-		type: 'LOAD_SIMULATION_LIST',
 	} as const
 }
 

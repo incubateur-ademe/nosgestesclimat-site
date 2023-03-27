@@ -7,36 +7,34 @@ export type SavedSimulation = {
 	foldedSteps: Array<DottedName> | undefined
 	actionChoices: Object
 	persona?: string
-	tutorials: Object
 	storedTrajets: Object
-	url?: string
-	// Current language used for the UI translation -- not the model.
-	currentLang: Lang
-	localisation: Object | undefined
 	conference: { room: string } | null
 	survey: { room: string } | null
+	url?: string
 	date?: Date
-	name?: string
+	id?: string
+}
+
+export type OldSavedSimulation = SavedSimulation & {
+	tutorials: Object
+	currentLang: Lang
+	localisation: Object | undefined
 }
 
 export type SavedSimulationList = SavedSimulation[]
 
+export type User = {
+	simulations: SavedSimulationList
+	currentSimulationId: string | undefined
+	tutorials: Object
+	currentLang: Lang
+	localisation: Object | undefined
+}
+
 export const currentSimulationSelector = (state: RootState) => {
-	return {
-		situation: state.simulation?.situation ?? {},
-		foldedSteps: state.simulation?.foldedSteps,
-		actionChoices: state.actionChoices,
-		persona: state.simulation?.persona,
-		tutorials: state.tutorials,
-		storedTrajets: state.storedTrajets,
-		url: state.simulation?.url,
-		currentLang: state.currentLang,
-		localisation: state.localisation,
-		conference: state.conference && { room: state.conference.room },
-		survey: state.survey && { room: state.survey.room },
-		date: state.simulation?.date,
-		name: state.simulation?.name,
-	}
+	return state.simulations.filter(
+		(simulation) => simulation.id === state.currentSimulationId
+	)[0]
 }
 
 export const createStateFromSavedSimulation = (

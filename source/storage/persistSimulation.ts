@@ -1,11 +1,12 @@
 import { Action } from 'Actions/actions'
 import { RootState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
-import { currentSimulationSelector } from 'Selectors/storageSelectors'
 import { v4 as uuidv4 } from 'uuid'
 import {
+	OldSavedSimulation,
 	SavedSimulation,
 	SavedSimulationList,
+	User,
 } from '../selectors/storageSelectors'
 import { debounce } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
@@ -14,80 +15,57 @@ const VERSION = 2
 
 const LOCAL_STORAGE_KEY = 'ecolab-climat::persisted-simulation::v' + VERSION
 
-export function persistSimulation(store: Store<RootState, Action>): void {
+export function persistUser(store: Store<RootState, Action>): void {
 	const listener = () => {
 		const state = store.getState()
 
 		if (
-			!state.simulation?.foldedSteps?.length &&
-			!Object.keys(state.actionChoices).length &&
-			!Object.values(state.tutorials) &&
-			!Object.keys(state.storedTrajets).length &&
-			!state.localisation
+			!state.simulation ||
+			(!state.simulation?.foldedSteps?.length &&
+				!Object.keys(state.actionChoices).length &&
+				!Object.values(state.tutorials) &&
+				!Object.keys(state.storedTrajets).length &&
+				!state.localisation)
 		) {
 			return
 		}
 
-		const simulationList = setSimulationList(currentSimulationSelector(state))
-
-		persistSimulationList(simulationList)
+		const userData: User = {
+			simulations: updateSimulationList(state.simulations, state.simulation),
+			currentSimulationId: state.currentSimulationId || state.simulation.id,
+			currentLang: state.currentLang,
+			tutorials: state.tutorials,
+			localisation: state.localisation,
+		}
+		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userData))
 	}
 	store.subscribe(debounce(1000, listener))
 }
 
-function setSimulationList(
-	savedSimulation: SavedSimulation | null
+function updateSimulationList(
+	list: SavedSimulationList,
+	simulation: SavedSimulation
 ): SavedSimulationList {
-	const simulationList = retrievePersistedSimulations()
+	const index = findIndexSimulationByName(list, simulation.id)
 
-	if (savedSimulation === null) return simulationList
+	list[index] = simulation
 
-	return findIndexSimulationByName(simulationList, savedSimulation.name) >= 0
-		? updateSimulationInList(savedSimulation, simulationList)
-		: addSimulationToList(savedSimulation, simulationList)
+	return list
 }
 
 function findIndexSimulationByName(
 	simulationList: SavedSimulationList,
-	name?: string
+	id?: string
 ) {
-	return simulationList.findIndex((simulation) => simulation.name === name)
+	return simulationList.findIndex((simulation) => simulation.id === id)
 }
 
-function updateSimulationInList(
-	savedSimulation: SavedSimulation,
-	simulationList: SavedSimulationList
-): SavedSimulationList {
-	const index = findIndexSimulationByName(simulationList, savedSimulation.name)
-	simulationList[index] = savedSimulation
-
-	return simulationList
-}
-
-function addSimulationToList(
-	savedSimulation: SavedSimulation,
-	simulationList: SavedSimulationList
-): SavedSimulationList {
-	savedSimulation.date = savedSimulation.date || new Date()
-	savedSimulation.name = savedSimulation.name || generateSimulationName()
-	simulationList.push(savedSimulation)
-
-	return simulationList
-}
-
-export function generateSimulationName(): string {
+export function generateSimulationId(): string {
 	return uuidv4()
 }
 
-function persistSimulationList(savedSimulationList: SavedSimulationList): void {
-	safeLocalStorage.setItem(
-		LOCAL_STORAGE_KEY,
-		JSON.stringify(savedSimulationList)
-	)
-}
-
 export function retrievePersistedSimulations(): SavedSimulationList {
-	const simulations = fetchSimulation()
+	const simulations = fetchUser().simulations
 	simulations.sort((a, b) => {
 		const dateA = a.date ? new Date(a.date) : new Date()
 		const dateB = b.date ? new Date(b.date) : new Date()
@@ -97,35 +75,32 @@ export function retrievePersistedSimulations(): SavedSimulationList {
 	return simulations
 }
 
-function fetchSimulation(): SavedSimulationList {
-	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
-	const deserializedState = serializedState ? JSON.parse(serializedState) : []
-	if (Array.isArray(deserializedState)) {
-		return deserializedState
+export function fetchUser(): User {
+	const serializedUser = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
+	const deserializedUser: User | OldSavedSimulation = serializedUser
+		? JSON.parse(serializedUser)
+		: {
+				simulations: [],
+		  }
+	if (deserializedUser.hasOwnProperty('simulations')) {
+		return deserializedUser as User
 	}
 	// cas ou l'utilisateur a l'ancienne simulation dans son local storage
-	deserializedState.date = new Date()
-	deserializedState.name = generateSimulationName()
-	// je sauvegarde la nouvelle liste pour éviter les prochains conflits.
-	persistSimulationList([deserializedState])
+	const deserializedSimulation = deserializedUser as OldSavedSimulation
+	deserializedSimulation.date = new Date()
+	deserializedSimulation.id = generateSimulationId()
 
-	return [deserializedState]
+	return {
+		simulations: [deserializedSimulation],
+		currentSimulationId: deserializedSimulation.id,
+		currentLang: deserializedSimulation.currentLang,
+		tutorials: deserializedSimulation.tutorials,
+		localisation: deserializedSimulation.localisation,
+	}
 }
 
 export function retrieveLastPersistedSimulation(): SavedSimulation {
 	const simulationlist = retrievePersistedSimulations()
 
 	return simulationlist[0]
-}
-
-export function deletePersistedSimulation(): void {
-	safeLocalStorage.removeItem(LOCAL_STORAGE_KEY)
-}
-
-export function deleteSimulation(name: string): void {
-	const simulationList = retrievePersistedSimulations()
-	const newList = simulationList.filter(
-		(simulation) => simulation.name !== name
-	)
-	persistSimulationList(newList)
 }

@@ -13,7 +13,7 @@ export default (state: RootState, action: Action): RootState => {
 		case 'LOAD_SIMULATION_LIST':
 			return {
 				...state,
-				simulationList: retrievePersistedSimulations(),
+				simulations: retrievePersistedSimulations(),
 			}
 		case 'DELETE_PREVIOUS_SIMULATION':
 			return {

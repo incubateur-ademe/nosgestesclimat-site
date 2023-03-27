@@ -3,9 +3,10 @@ import { omit } from 'Source/utils'
 
 import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
-import { generateSimulationName } from 'Source/storage/persistSimulation'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
+import { SavedSimulationList } from '../selectors/storageSelectors'
+import { generateSimulationId } from '../storage/persistSimulation'
 import storageRootReducer from './storageReducer'
 
 function explainedVariable(
@@ -60,13 +61,16 @@ export type Simulation = {
 	unfoldedStep?: DottedName | null
 	persona?: string
 	date?: Date
-	name?: string
+	id?: string
 }
 
 function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
+	if (action.type === 'DELETE_SIMULATION') {
+		return null
+	}
 	if (action.type === 'SET_CURRENT_SIMULATION') {
 		action.simulation.date = new Date()
 		return action.simulation
@@ -82,13 +86,13 @@ function simulation(
 		return {
 			config,
 			url,
-			hiddenNotifications: state?.hiddenControls || [],
+			hiddenNotifications: state?.hiddenNotifications || [],
 			situation: action.situation || state?.situation || {},
 			targetUnit: config['unité par défaut'] || '€/mois',
 			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
 			unfoldedStep: null,
 			persona: action.persona,
-			name: action.persona || state?.name || generateSimulationName(),
+			id: action.persona || state?.id || generateSimulationId(),
 			date: !action.persona && state?.date ? state?.date : new Date(),
 		}
 	}
@@ -111,8 +115,6 @@ function simulation(
 				foldedSteps: [],
 				unfoldedStep: null,
 				persona: undefined,
-				name: undefined,
-				date: undefined,
 			}
 		case 'UPDATE_SITUATION': {
 			const targets = objectifsSelector({ simulation: state } as RootState)
@@ -324,6 +326,35 @@ function pullRequestNumber(state = null, { type, number }) {
 	} else return state
 }
 
+function simulations(
+	state: SavedSimulationList = [],
+	action: Action
+): SavedSimulationList {
+	switch (action.type) {
+		case 'DELETE_SIMULATION':
+			return state.filter((simulation) => simulation.id !== action.id)
+		case 'ADD_SIMULATION_TO_LIST':
+			if (!state.find((simulation) => simulation.id === action.simulation.id)) {
+				return [...state, action.simulation]
+			}
+			return state
+		default:
+			return state
+	}
+}
+
+function currentSimulationId(
+	state: string | null = null,
+	action: Action
+): string | null {
+	switch (action.type) {
+		case 'SET_CURRENT_SIMULATION':
+			return action.simulation.id
+		default:
+			return state
+	}
+}
+
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
@@ -331,7 +362,8 @@ const mainReducer = (state: any, action: Action) =>
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
 			simulation(a, b),
 		previousSimulation: defaultToNull,
-		simulationList: defaultToNull,
+		simulations,
+		currentSimulationId,
 		situationBranch,
 		rules,
 		actionChoices,

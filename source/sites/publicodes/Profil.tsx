@@ -1,7 +1,5 @@
 import {
-	deletePreviousSimulation,
-	deleteSimulationByName,
-	loadSimulationList,
+	deleteSimulationById,
 	resetActionChoices,
 	resetIntroTutorial,
 	resetSimulation,
@@ -40,11 +38,8 @@ export default ({}) => {
 	const persona = useSelector((state) => state.simulation?.persona)
 	const currentSimulation = useSelector((state) => state.simulation)
 
-	useEffect(() => {
-		dispatch(loadSimulationList())
-	}, [])
 	const simulationList = useSelector(
-		(state) => state.simulationList
+		(state) => state.simulations
 	)
 
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
@@ -152,7 +147,6 @@ export default ({}) => {
 								onClick={() => {
 									dispatch(resetSimulation())
 									dispatch(resetActionChoices())
-									dispatch(deletePreviousSimulation())
 									dispatch(resetStoredTrajets())
 									dispatch(resetCategoryTutorials())
 									dispatch(skipTutorial('scoreAnimation', true))
@@ -181,7 +175,7 @@ export default ({}) => {
 				<Localisation />
 				<AnswerList />
 				{simulationList && (
-					<div>
+					<div css="margin-top: 2rem">
 						<p>
 							<em>
 								<Trans>👤 Voici la liste de vos simulations</Trans>{' '}
@@ -219,32 +213,32 @@ const SimulationList = ( { dispatch, list, currentSimulation} ) => {
 						<li
 							key={simulation.name}
 						>
-						  "{simulation.name}" du {new Date(simulation.date).toLocaleDateString()}
+						  "{simulation.id}" du {new Date(simulation.date).toLocaleDateString()}
 							
-							{ (currentSimulation.name === simulation.name)
+							{ (currentSimulation.id === simulation.id)
 								?<span css="margin: 0 1rem"><Trans>Chargée</Trans></span>
-								:<button
+								:<span>
+									<button
 										className={`ui__ button simple small`}
 										css="margin: 0 1rem"
 										onClick={() => {
 											dispatch(setCurrentSimulation(simulation))
-											dispatch(loadSimulationList())
 										}}
 									><Trans>Charger</Trans></button>
+									<button
+										className={`ui__ button simple small`}
+										css="margin: 0 1rem"
+										onClick={() => {
+											if(simulation.id===currentSimulation.id){
+												//dispatch(resetSimulation());
+											}
+											dispatch(deleteSimulationById(simulation.id))
+										}}
+									><Trans>supprimer</Trans>
+									</button>
+							</span>
 							}
-							<button
-								className={`ui__ button simple small`}
-								css="margin: 0 1rem"
-								onClick={() => {
-									if(simulation.name===currentSimulation.name){
-										dispatch(resetSimulation());
-									}
-									dispatch(deleteSimulationByName(simulation.name))
-									dispatch(loadSimulationList())
-								}}
-							>
-								<Trans>supprimer</Trans>
-							</button>
+							
 						</li>
 				)}
 </ul>
