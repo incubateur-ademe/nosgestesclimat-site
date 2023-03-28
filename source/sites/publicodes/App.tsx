@@ -195,7 +195,11 @@ const Main = ({}) => {
 					`}
 				>
 					<GroupModeSessionVignette />
-					{!isHomePage && !isTuto && <LocalisationMessage />}
+					{!isHomePage &&
+						!isTuto &&
+						!location.pathname.startsWith('/international') && (
+							<LocalisationMessage />
+						)}
 
 					{fluidLayout && (
 						<div
