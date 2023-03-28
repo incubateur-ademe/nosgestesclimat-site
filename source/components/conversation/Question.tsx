@@ -4,7 +4,6 @@ import { Markdown } from 'Components/utils/markdown'
 import { ASTNode } from 'publicodes'
 import { Rule } from 'publicodes/dist/types/rule'
 import React, { Suspense, useCallback, useEffect, useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { Loading } from '../../sites/publicodes/App'
 import {
@@ -229,16 +228,16 @@ export const RadioLabel = (props: RadioLabelProps) => {
 			{props.description && (
 				<>
 					<button
-						className="ui__ link-button"
 						type="button"
 						onClick={() => setIsOpen(!isOpen)}
 						css={`
-							margin-left: 0.3rem !important;
 							vertical-align: middle;
 							font-size: 110% !important;
+							padding: 0;
+							padding-left: 0.6rem;
 						`}
 					>
-						{emoji('ℹ️')}
+						ℹ️
 					</button>
 					{isOpen && (
 						<animate.appear>
@@ -314,7 +313,7 @@ function RadioLabelContent({
 			/>
 			<span>
 				<span className="radioText">{label}</span>
-				{icônes && <span css="margin-left: .6rem">{emoji(icônes)}</span>}
+				{icônes && <span css="margin-left: .6rem">{icônes}</span>}
 			</span>
 		</label>
 	)
