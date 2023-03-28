@@ -221,8 +221,10 @@ export default function Conversation({
 				mosaicQuestion
 				? // We'll explore the previous answers starting from the end, to find the first question that is not in the current mosaic
 				  [...previousAnswers].reverse().find((el, index) => {
+						const currentQuestionReversedIndex =
+							previousAnswers.length - currentQuestionIndex
 						return (
-							index > previousAnswers.length - currentQuestionIndex &&
+							index > currentQuestionReversedIndex &&
 							// The previous question shouldn't be one of the current mosaic's questions
 							!questionsToSubmit.includes(el)
 						)
