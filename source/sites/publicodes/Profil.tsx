@@ -229,9 +229,6 @@ const SimulationList = ( { dispatch, list, currentSimulation} ) => {
 										className={`ui__ button simple small`}
 										css="margin: 0 1rem"
 										onClick={() => {
-											if(simulation.id===currentSimulation.id){
-												//dispatch(resetSimulation());
-											}
 											dispatch(deleteSimulationById(simulation.id))
 										}}
 									><Trans>supprimer</Trans>

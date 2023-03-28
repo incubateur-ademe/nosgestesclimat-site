@@ -76,7 +76,9 @@ export default function Root({}) {
 		document?.location.search.substring(1)
 	).get('shareData')
 
+	// We retrieve the User object from local storage to initialize the store.
 	const persistedUser = fetchUser();
+	// We use the 'currentSimulationId' pointer to retrieve the latest simulation in the list.
 	const persistedSimulation = persistedUser.simulations.filter(
 		(simulation) => simulation.id === persistedUser.currentSimulationId
 	)[0]

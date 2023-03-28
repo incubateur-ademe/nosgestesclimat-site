@@ -15,6 +15,7 @@ export type SavedSimulation = {
 	id?: string
 }
 
+// This type is used to describe the old format of the simulation stored in users' local storage.
 export type OldSavedSimulation = SavedSimulation & {
 	tutorials: Object
 	currentLang: Lang
@@ -23,6 +24,9 @@ export type OldSavedSimulation = SavedSimulation & {
 
 export type SavedSimulationList = SavedSimulation[]
 
+// This type describes the object stored in local storage.
+// We store the list of simulations and a pointer
+// that will allow us to initialize the store with the last used simulation.
 export type User = {
 	simulations: SavedSimulationList
 	currentSimulationId: string | undefined
@@ -31,6 +35,7 @@ export type User = {
 	localisation: Object | undefined
 }
 
+// In the end, this selector will allow to retrieve the simulation from the list
 export const currentSimulationSelector = (state: RootState) => {
 	return state.simulations.filter(
 		(simulation) => simulation.id === state.currentSimulationId

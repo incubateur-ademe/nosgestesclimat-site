@@ -15,9 +15,8 @@ const VERSION = 2
 
 const LOCAL_STORAGE_KEY = 'ecolab-climat::persisted-simulation::v' + VERSION
 
-// cette fonction est appelée après la création du strore
-// elle permet de sauvegarder les données utilisateur à chaque modification du state
-// avec une "latence" de 1 seconde
+// This function is called after creating the store.
+// It allows to save user data on every state change with a 1-second "delay".
 export function persistUser(store: Store<RootState, Action>): void {
 	const listener = () => {
 		const state = store.getState()
@@ -33,10 +32,10 @@ export function persistUser(store: Store<RootState, Action>): void {
 			return
 		}
 
-		// idéalement la liste simulations devrait être à jour dans le state
-		// et contenir la simulation courante
-		// ce sera l'objet d'une prochaine évolution
-		// TODO : supprimer updateSimulationList quand ce sera possible.
+		// Ideally, the 'simulations' list should be up to date in the state
+		// and contain the current simulation.
+		// This will be the subject of a future update.
+		// TODO: Remove 'updateSimulationList' when possible.
 		const userData: User = {
 			simulations: updateSimulationList(state.simulations, state.simulation),
 			currentSimulationId: state.currentSimulationId || state.simulation.id,
@@ -71,8 +70,8 @@ export function generateSimulationId(): string {
 	return uuidv4()
 }
 
-// fonction qui permet de récupérer la ou les simulations
-// elle doit pouvoir gérer le nouveau et l'ancien format
+// Function that allows to retrieve one or more simulations.
+// It should be able to handle both the new and old format.
 export function fetchUser(): User {
 	const serializedUser = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 	const deserializedUser: User | OldSavedSimulation = serializedUser
@@ -81,12 +80,12 @@ export function fetchUser(): User {
 				simulations: [],
 		  }
 
-	// cas du nouveau format
+	// Case of the new format.
 	if (deserializedUser.hasOwnProperty('simulations')) {
 		return deserializedUser as User
 	}
-	// cas ou l'utilisateur a l'ancienne simulation dans son local storage
-	// on transforme cette simulation pour lui donner le nouveau format
+	// Case where the user has the old simulation format in their local storage.
+	// We transform this simulation to give it the new format.
 	const deserializedSimulation = deserializedUser as OldSavedSimulation
 	deserializedSimulation.date = new Date()
 	deserializedSimulation.id = generateSimulationId()

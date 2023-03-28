@@ -2,7 +2,7 @@ import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
 import { Simulation } from '../reducers/rootReducer'
-import { CompanyStatusAction } from './companyStatusActions' // todo : à supprimer
+import { CompanyStatusAction } from './companyStatusActions' // todo : delete
 
 export type Action =
 	| ResetSimulationAction

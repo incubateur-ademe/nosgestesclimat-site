@@ -72,6 +72,8 @@ function simulation(
 		return null
 	}
 	if (action.type === 'SET_CURRENT_SIMULATION') {
+		// Update the date when loading the simulation.
+		// Also triggers an update of the 'simulationsList' component when changing simulations.
 		action.simulation.date = new Date()
 		return action.simulation
 	}
@@ -86,13 +88,13 @@ function simulation(
 		return {
 			config,
 			url,
-			hiddenNotifications: state?.hiddenNotifications || [],
+			hiddenNotifications: state?.hiddenControls || [], // todo : hiddenControls ?
 			situation: action.situation || state?.situation || {},
 			targetUnit: config['unité par défaut'] || '€/mois',
 			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
 			unfoldedStep: null,
 			persona: action.persona,
-			id: action.persona || state?.id || generateSimulationId(),
+			id: action.persona || state?.id || generateSimulationId(), // Unique identifier of the simulation, used for the 'currentSimulationId' pointer.
 			date: !action.persona && state?.date ? state?.date : new Date(),
 		}
 	}
@@ -326,6 +328,8 @@ function pullRequestNumber(state = null, { type, number }) {
 	} else return state
 }
 
+// This reducer updates the list of simulations that will be stored in local storage
+// Ideally, it will replace the 'simulation' reducer
 function simulations(
 	state: SavedSimulationList = [],
 	action: Action
@@ -343,6 +347,7 @@ function simulations(
 	}
 }
 
+// Pointer to the current simulation in the 'simulations' list
 function currentSimulationId(
 	state: string | null = null,
 	action: Action
@@ -361,7 +366,7 @@ const mainReducer = (state: any, action: Action) =>
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
 			simulation(a, b),
-		previousSimulation: defaultToNull,
+		previousSimulation: defaultToNull, // TODO : delete
 		simulations,
 		currentSimulationId,
 		situationBranch,
