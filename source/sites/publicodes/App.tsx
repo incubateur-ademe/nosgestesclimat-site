@@ -56,6 +56,7 @@ const CGULazy = React.lazy(() => import('./pages/CGU'))
 const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
 const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
 const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
+const International = React.lazy(() => import('./pages/International'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
@@ -425,6 +426,14 @@ const Router = ({}) => {
 				element={
 					<Suspense fallback={<Loading />}>
 						<PetrogazLandingLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={`/international`}
+				element={
+					<Suspense fallback={<Loading />}>
+						<International />
 					</Suspense>
 				}
 			/>
