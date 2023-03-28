@@ -15,6 +15,9 @@ const VERSION = 2
 
 const LOCAL_STORAGE_KEY = 'ecolab-climat::persisted-simulation::v' + VERSION
 
+// cette fonction est appelée après la création du strore
+// elle permet de sauvegarder les données utilisateur à chaque modification du state
+// avec une "latence" de 1 seconde
 export function persistUser(store: Store<RootState, Action>): void {
 	const listener = () => {
 		const state = store.getState()
@@ -30,6 +33,10 @@ export function persistUser(store: Store<RootState, Action>): void {
 			return
 		}
 
+		// idéalement la liste simulations devrait être à jour dans le state
+		// et contenir la simulation courante
+		// ce sera l'objet d'une prochaine évolution
+		// TODO : supprimer updateSimulationList quand ce sera possible.
 		const userData: User = {
 			simulations: updateSimulationList(state.simulations, state.simulation),
 			currentSimulationId: state.currentSimulationId || state.simulation.id,
@@ -64,17 +71,8 @@ export function generateSimulationId(): string {
 	return uuidv4()
 }
 
-export function retrievePersistedSimulations(): SavedSimulationList {
-	const simulations = fetchUser().simulations
-	simulations.sort((a, b) => {
-		const dateA = a.date ? new Date(a.date) : new Date()
-		const dateB = b.date ? new Date(b.date) : new Date()
-		return dateB.getTime() - dateA.getTime()
-	})
-
-	return simulations
-}
-
+// fonction qui permet de récupérer la ou les simulations
+// elle doit pouvoir gérer le nouveau et l'ancien format
 export function fetchUser(): User {
 	const serializedUser = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 	const deserializedUser: User | OldSavedSimulation = serializedUser
@@ -82,10 +80,13 @@ export function fetchUser(): User {
 		: {
 				simulations: [],
 		  }
+
+	// cas du nouveau format
 	if (deserializedUser.hasOwnProperty('simulations')) {
 		return deserializedUser as User
 	}
 	// cas ou l'utilisateur a l'ancienne simulation dans son local storage
+	// on transforme cette simulation pour lui donner le nouveau format
 	const deserializedSimulation = deserializedUser as OldSavedSimulation
 	deserializedSimulation.date = new Date()
 	deserializedSimulation.id = generateSimulationId()
@@ -97,10 +98,4 @@ export function fetchUser(): User {
 		tutorials: deserializedSimulation.tutorials,
 		localisation: deserializedSimulation.localisation,
 	}
-}
-
-export function retrieveLastPersistedSimulation(): SavedSimulation {
-	const simulationlist = retrievePersistedSimulations()
-
-	return simulationlist[0]
 }

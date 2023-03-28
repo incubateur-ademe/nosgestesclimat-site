@@ -2,7 +2,7 @@ import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
 import { Simulation } from '../reducers/rootReducer'
-import { CompanyStatusAction } from './companyStatusActions'
+import { CompanyStatusAction } from './companyStatusActions' // todo : à supprimer
 
 export type Action =
 	| ResetSimulationAction
@@ -47,7 +47,6 @@ type ResetSimulationAction = ReturnType<typeof resetSimulation>
 type UpdateAction = ReturnType<typeof updateSituation>
 type UpdateSituationAction = ReturnType<typeof updateSituation>
 type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
-type LoadSimulationListAction = ReturnType<typeof loadSimulationList>
 type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
 type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideNotificationAction = ReturnType<typeof hideNotification>
