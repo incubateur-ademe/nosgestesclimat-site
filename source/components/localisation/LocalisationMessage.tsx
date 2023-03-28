@@ -1,6 +1,8 @@
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { TrackerContext } from '../../components/utils/withTracker'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import useLocalisation from './useLocalisation'
 import {
@@ -11,6 +13,7 @@ import {
 	supportedRegion,
 } from './utils'
 export default () => {
+	const tracker = useContext(TrackerContext)
 	const messagesRead = useSelector(
 		(state) => state.sessionLocalisationBannersRead
 	)
@@ -143,12 +146,18 @@ export default () => {
 							margin-right: 0rem;
 							display: block !important;
 						`}
-						onClick={() =>
+						onClick={() => {
 							dispatch({
 								type: 'SET_LOCALISATION_BANNERS_READ',
 								regions: [...messagesRead, localisation?.country?.code],
 							})
-						}
+							tracker.push([
+								'trackEvent',
+								'I18N',
+								'Clic bannière localisation',
+								localisation?.country?.code,
+							])
+						}}
 					>
 						<Trans>J'ai compris</Trans>
 					</button>
