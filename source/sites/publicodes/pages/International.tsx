@@ -5,7 +5,6 @@ import {
 	LandingLayout,
 } from 'Components/LandingLayout'
 import Meta from 'Components/utils/Meta'
-import React, { Suspense } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
@@ -13,14 +12,11 @@ import { fluidLayoutMinWidth } from '../../../components/LandingLayout'
 import Localisation from '../../../components/localisation/Localisation'
 import LandingContent from '../LandingContent'
 
-const LazyIllustration = React.lazy(
-	() => import('Components/AnimatedIllustration')
-)
-
 const Illustration = () => (
-	<Suspense fallback={null}>
-		<LazyIllustration />
-	</Suspense>
+	<img
+		src="/images/international-illustration.jpeg"
+		css="max-height: 50vh; padding: 2rem"
+	/>
 )
 
 export default () => {
