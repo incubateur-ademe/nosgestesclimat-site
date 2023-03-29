@@ -198,7 +198,7 @@ export const PersonaGrid = ({
 						<p>
 							<Trans i18nKey={'publicodes.Personas.warningMsg'}>
 								Sélectionner un persona releguera votre simulation en cours dans
-								votre historique de simulations, accessible sur votre{' '}
+								votre historique de simulations, accessible en bas de votre{' '}
 								<Link to="/profil">page profil</Link>.
 							</Trans>
 						</p>
