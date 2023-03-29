@@ -4,7 +4,7 @@ import {
 	getFlag,
 	supportedRegion,
 } from 'Components/localisation/utils'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetLocalisation, setLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
@@ -12,7 +12,7 @@ import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
 
-export default () => {
+export default ({ title = 'Ma région de simulation' }) => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
@@ -25,12 +25,11 @@ export default () => {
 		currentLang == 'Fr'
 			? getCountryNameInFrench(localisation?.country?.code)
 			: localisation?.country?.name
+	const { t } = useTranslation()
 
 	return (
 		<div>
-			<h2>
-				<Trans>📍 Région de simulation</Trans>
-			</h2>
+			<h2>📍 {t(title)}</h2>
 			{localisation != null ? (
 				isSupported ? (
 					<p>

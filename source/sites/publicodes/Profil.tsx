@@ -178,7 +178,7 @@ export default ({}) => {
 				{simulationList && (
 					<div css="margin-top: 2rem">
 						<h2>
-							💾 <Trans>Historique des simulations</Trans>
+							💾 <Trans>Mon historique des simulations</Trans>
 						</h2>
 						<p>
 							<Trans i18nKey={`publicodes.Profil.simulations`}>
