@@ -6,11 +6,14 @@ import {
 	resetStoredTrajets,
 } from 'Actions/actions'
 import Localisation from 'Components/localisation/Localisation'
-import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { resetCategoryTutorials, setCurrentSimulation, skipTutorial } from '../../actions/actions'
+import {
+	resetCategoryTutorials,
+	setCurrentSimulation,
+	skipTutorial,
+} from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
@@ -38,9 +41,7 @@ export default ({}) => {
 	const persona = useSelector((state) => state.simulation?.persona)
 	const currentSimulation = useSelector((state) => state.simulation)
 
-	const simulationList = useSelector(
-		(state) => state.simulations
-	)
+	const simulationList = useSelector((state) => state.simulations)
 
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
 		useProfileData()
@@ -176,12 +177,18 @@ export default ({}) => {
 				<AnswerList />
 				{simulationList && (
 					<div css="margin-top: 2rem">
+						<h2>
+							💾 <Trans>Historique des simulations</Trans>
+						</h2>
 						<p>
-							<em>
-								<Trans>👤 Voici la liste de vos simulations</Trans>{' '}
-							</em>
+							<Trans i18nKey={`publicodes.Profil.simulations`}>
+								Chaque simulation que vous faite est sauvegardée dans votre
+								navigateur Web. Vous êtes le seul à y avoir accès.
+							</Trans>
 						</p>
-						<SimulationList {...{ dispatch, list: simulationList, currentSimulation }}/>
+						<SimulationList
+							{...{ dispatch, list: simulationList, currentSimulation }}
+						/>
 					</div>
 				)}
 			</div>
@@ -207,38 +214,40 @@ const TutorialLink = ({ tutorials, dispatch }) =>
 		</div>
 	)
 
-const SimulationList = ( { dispatch, list, currentSimulation} ) => {
-	return <ul>
-				{list.map(simulation => 
-						<li
-							key={simulation.name}
-						>
-						  "{simulation.id}" du {new Date(simulation.date).toLocaleDateString()}
-							
-							{ (currentSimulation.id === simulation.id)
-								?<span css="margin: 0 1rem"><Trans>Chargée</Trans></span>
-								:<span>
-									<button
-										className={`ui__ button simple small`}
-										css="margin: 0 1rem"
-										onClick={() => {
-											dispatch(setCurrentSimulation(simulation))
-										}}
-									><Trans>Charger</Trans></button>
-									<button
-										className={`ui__ button simple small`}
-										css="margin: 0 1rem"
-										onClick={() => {
-											dispatch(deleteSimulationById(simulation.id))
-										}}
-									><Trans>supprimer</Trans>
-									</button>
-							</span>
-							}
-							
-						</li>
-				)}
-</ul>
+const SimulationList = ({ dispatch, list, currentSimulation }) => {
+	return (
+		<ul>
+			{list.map((simulation) => (
+				<li key={simulation.name}>
+					"{simulation.id}" du {new Date(simulation.date).toLocaleDateString()}
+					{currentSimulation.id === simulation.id ? (
+						<span css="margin: 0 1rem">
+							<Trans>Chargée</Trans>
+						</span>
+					) : (
+						<span>
+							<button
+								className={`ui__ button simple small`}
+								css="margin: 0 1rem"
+								onClick={() => {
+									dispatch(setCurrentSimulation(simulation))
+								}}
+							>
+								<Trans>Charger</Trans>
+							</button>
+							<button
+								className={`ui__ button simple small`}
+								css="margin: 0 1rem"
+								onClick={() => {
+									dispatch(deleteSimulationById(simulation.id))
+								}}
+							>
+								<Trans>supprimer</Trans>
+							</button>
+						</span>
+					)}
+				</li>
+			))}
+		</ul>
+	)
 }
-	
-	
