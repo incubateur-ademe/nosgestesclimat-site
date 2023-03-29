@@ -1,5 +1,4 @@
 import {
-	deleteSimulationById,
 	resetActionChoices,
 	resetIntroTutorial,
 	resetSimulation,
@@ -9,11 +8,7 @@ import Localisation from 'Components/localisation/Localisation'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import {
-	resetCategoryTutorials,
-	setCurrentSimulation,
-	skipTutorial,
-} from '../../actions/actions'
+import { resetCategoryTutorials, skipTutorial } from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
@@ -25,6 +20,7 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
+import SimulationList from './SimulationList'
 
 export const useProfileData = () => {
 	const answeredQuestions = useSelector(answeredQuestionsSelector),
@@ -213,41 +209,3 @@ const TutorialLink = ({ tutorials, dispatch }) =>
 			</Link>
 		</div>
 	)
-
-const SimulationList = ({ dispatch, list, currentSimulation }) => {
-	return (
-		<ul>
-			{list.map((simulation) => (
-				<li key={simulation.name}>
-					"{simulation.id}" du {new Date(simulation.date).toLocaleDateString()}
-					{currentSimulation.id === simulation.id ? (
-						<span css="margin: 0 1rem">
-							<Trans>Chargée</Trans>
-						</span>
-					) : (
-						<span>
-							<button
-								className={`ui__ button simple small`}
-								css="margin: 0 1rem"
-								onClick={() => {
-									dispatch(setCurrentSimulation(simulation))
-								}}
-							>
-								<Trans>Charger</Trans>
-							</button>
-							<button
-								className={`ui__ button simple small`}
-								css="margin: 0 1rem"
-								onClick={() => {
-									dispatch(deleteSimulationById(simulation.id))
-								}}
-							>
-								<Trans>supprimer</Trans>
-							</button>
-						</span>
-					)}
-				</li>
-			))}
-		</ul>
-	)
-}
