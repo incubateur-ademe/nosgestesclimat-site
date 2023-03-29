@@ -5,7 +5,7 @@ export default ({ dispatch, list, currentSimulation }) => {
 	return (
 		<ul>
 			{list.map((simulation) => (
-				<li key={simulation.name}>
+				<li key={simulation.id}>
 					"{simulation.id}" du {new Date(simulation.date).toLocaleDateString()}
 					{currentSimulation.id === simulation.id ? (
 						<span css="margin: 0 1rem">
