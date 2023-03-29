@@ -138,7 +138,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			`}
 		>
 			<KmHelpButton
-				text={t('Aide à la saisie')}
+				text={t('Je veux être plus précis')}
 				openmojiURL={openmojiURL}
 				onHandleClick={() => {
 					setIsOpen(true)
