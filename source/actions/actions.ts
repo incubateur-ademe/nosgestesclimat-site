@@ -2,7 +2,6 @@ import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
 import { Simulation } from '../reducers/rootReducer'
-import { CompanyStatusAction } from './companyStatusActions' // todo : delete
 
 export type Action =
 	| ResetSimulationAction
@@ -18,7 +17,6 @@ export type Action =
 	| SetSituationBranchAction
 	| UpdateTargetUnitAction
 	| SetActiveTargetAction
-	| CompanyStatusAction
 
 export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
 
@@ -32,7 +30,6 @@ type SetSimulationConfigAction = {
 	type: 'SET_SIMULATION'
 	url: string
 	config: SimulationConfig
-	useCompanyDetails: boolean
 }
 
 type DeletePreviousSimulationAction = {
