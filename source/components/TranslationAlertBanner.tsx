@@ -2,6 +2,10 @@ import { Trans } from 'react-i18next'
 import styled from 'styled-components'
 import animate from './ui/animate'
 
+// This banner was displayed from the first version of english translation (~11/2022) until march 2022.
+// We consider now, english translation to be reviewed by users (contributions to correct some mistakes and no feedback to complain about wrong translations).
+// We keep this component in the repo as it could be useful for other langages.
+
 export default ({ isBelow }) => {
 	return (
 		<animate.appear>
