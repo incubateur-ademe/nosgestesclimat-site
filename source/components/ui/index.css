@@ -92,6 +92,11 @@ blockquote {
 	border-radius: 0.3rem;
 }
 
+.ui__.transparent-border {
+	border: 4px solid transparent;
+	border-radius: 0.3rem;
+}
+
 .ui__.center-flex {
 	display: flex;
 	justify-content: center;

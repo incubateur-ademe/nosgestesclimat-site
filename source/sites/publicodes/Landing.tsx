@@ -81,7 +81,7 @@ export default () => {
 						}
 					}
 					@media (max-height: 600px) {
-						/*target iPhone 5 SE */
+						/*target iPhone 5 SE and vertically short screens */
 						h1 {
 							font-size: 160%;
 						}

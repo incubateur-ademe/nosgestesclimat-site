@@ -1,6 +1,6 @@
 import useLocalisation from 'Components/localisation/useLocalisation'
 import {
-	getCountryNameInFrench,
+	getCountryNameInCurrentLang,
 	getFlag,
 	supportedRegion,
 } from 'Components/localisation/utils'
@@ -16,15 +16,30 @@ export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
+	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
 
 	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
-	const currentLang = useSelector((state) => state.currentLang)
-	const countryName =
-		currentLang == 'Fr'
-			? getCountryNameInFrench(localisation?.country?.code)
-			: localisation?.country?.name
+	const countryName = getCountryNameInCurrentLang(localisation)
+
+	// Regions displayed sorted alphabetically
+	const orderedSupportedRegions = Object.fromEntries(
+		Object.entries(supportedRegions)
+			// sort function from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
+			.sort((a, b) => {
+				const nameA = a[1][currentLang].nom.toUpperCase() // ignore upper and lowercase
+				const nameB = b[1][currentLang].nom.toUpperCase() // ignore upper and lowercase
+				if (nameA < nameB) {
+					return -1
+				}
+				if (nameA > nameB) {
+					return 1
+				}
+				// names must be equal
+				return 0
+			})
+	)
 
 	return (
 		<div>
@@ -60,7 +75,7 @@ export default () => {
 							<button
 								className="ui__ dashed-button"
 								onClick={() => {
-									dispatch(setLocalisation(resetLocalisation))
+									dispatch(resetLocalisation())
 								}}
 							>
 								<Trans>Revenir chez moi 🔙</Trans>
@@ -104,20 +119,34 @@ export default () => {
 				<summary>
 					<Trans>Choisir une autre région</Trans>
 				</summary>
-				<ul>
-					{Object.values(supportedRegions).map(({ nom, code }) => (
+				<ul
+					css={`
+						columns: 3;
+						-webkit-columns: 3;
+						-moz-columns: 3;
+					`}
+				>
+					{Object.entries(orderedSupportedRegions).map(([code, params]) => (
 						<li
 							key={code}
 							onClick={() => {
 								const newLocalisation = {
-									country: { name: nom, code },
+									country: { name: params[currentLang]?.nom, code },
 									userChosen: true,
 								}
 								dispatch(setLocalisation(newLocalisation))
 								dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })
 							}}
 						>
-							<button>{capitalise0(nom)}</button>
+							<button
+								css={`
+									padding: 0;
+									font-size: 0.75rem;
+									color: var(--darkColor);
+								`}
+							>
+								{capitalise0(params[currentLang]?.nom)}
+							</button>
 						</li>
 					))}
 				</ul>

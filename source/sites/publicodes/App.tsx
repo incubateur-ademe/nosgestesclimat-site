@@ -406,7 +406,7 @@ const Router = ({}) => {
 			<Route
 				path="/groupe/documentation-contexte"
 				element={
-					<Suspense fallback={<div>Chargement</div>}>
+					<Suspense fallback={<Loading />}>
 						<DocumentationContexteLazy />
 					</Suspense>
 				}
