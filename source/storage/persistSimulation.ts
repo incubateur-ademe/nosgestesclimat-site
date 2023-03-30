@@ -41,6 +41,8 @@ export function persistUser(store: Store<RootState, Action>): void {
 				...state.simulation,
 				actionChoices: state.actionChoices,
 				storedTrajets: state.storedTrajets,
+				survey: state.survey && { room: state.survey.room },
+				conference: state.conference && { room: state.conference.room },
 			}),
 			currentSimulationId: state.currentSimulationId || state.simulation.id,
 			currentLang: state.currentLang,
