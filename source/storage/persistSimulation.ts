@@ -37,7 +37,11 @@ export function persistUser(store: Store<RootState, Action>): void {
 		// This will be the subject of a future update.
 		// TODO: Remove 'updateSimulationList' when possible.
 		const userData: User = {
-			simulations: updateSimulationList(state.simulations, state.simulation),
+			simulations: updateSimulationList(state.simulations, {
+				...state.simulation,
+				actionChoices: state.actionChoices,
+				storedTrajets: state.storedTrajets,
+			}),
 			currentSimulationId: state.currentSimulationId || state.simulation.id,
 			currentLang: state.currentLang,
 			tutorials: state.tutorials,
