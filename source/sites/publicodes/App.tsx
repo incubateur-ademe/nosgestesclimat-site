@@ -11,7 +11,6 @@ import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
-import TranslationAlertBanner from '../../components/TranslationAlertBanner'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
@@ -25,7 +24,6 @@ import {
 	changeLangTo,
 	getLangFromAbreviation,
 	getLangInfos,
-	Lang,
 } from './../../locales/translation'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import Landing from './Landing'
@@ -210,9 +208,6 @@ const Main = ({}) => {
 						</div>
 					)}
 					{isHomePage && <LangSwitcher from="landing" />}
-					{Lang.Default !== currentLangState && (
-						<TranslationAlertBanner isBelow={isHomePage} />
-					)}
 					<Router />
 				</main>
 			</div>
