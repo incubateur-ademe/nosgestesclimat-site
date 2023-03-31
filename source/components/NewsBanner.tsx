@@ -48,7 +48,7 @@ export default function NewsBanner() {
 	return showBanner ? (
 		<div
 			css={`
-				margin: 2rem auto !important;
+				margin: 1rem auto !important;
 				position: relative;
 				text-align: left !important;
 				h2 {
