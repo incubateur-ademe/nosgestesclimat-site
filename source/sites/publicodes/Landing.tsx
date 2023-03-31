@@ -168,8 +168,17 @@ export default () => {
 							</Link>
 							<ProfileLink />
 						</div>
-						<PartnerBanner />
-						<NewsBanner />
+						<div
+							css={`
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								flex-wrap: wrap;
+							`}
+						>
+							<PartnerBanner />
+							<NewsBanner />
+						</div>
 					</div>
 				</div>
 				{!mobile && <Illustration aira-hidden="true" />}
