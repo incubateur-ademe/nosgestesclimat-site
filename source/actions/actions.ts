@@ -17,6 +17,8 @@ export type Action =
 	| SetSituationBranchAction
 	| UpdateTargetUnitAction
 	| SetActiveTargetAction
+	| AddSimulationToListAction
+	| SetCurrentSimulationAction
 
 export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
 
@@ -30,6 +32,16 @@ type SetSimulationConfigAction = {
 	type: 'SET_SIMULATION'
 	url: string
 	config: SimulationConfig
+}
+
+type SetCurrentSimulationAction = {
+	type: 'SET_CURRENT_SIMULATION'
+	simulation: Simulation
+}
+
+type AddSimulationToListAction = {
+	type: 'ADD_SIMULATION_TO_LIST'
+	simulation
 }
 
 type DeletePreviousSimulationAction = {
@@ -102,7 +114,7 @@ export const setDifferentSituation =
 		url,
 		persona,
 		foldedSteps,
-	}: Object): ThunkResult<void> =>
+	}: Simulation): ThunkResult<void> =>
 	(dispatch, getState) => {
 		dispatch({
 			type: 'SET_SIMULATION',
@@ -116,12 +128,12 @@ export const setDifferentSituation =
 		dispatch(setCurrentSimulation(getState().simulation))
 	}
 
-export const addSimulationToList = (simulation: Simulation) => ({
+export const addSimulationToList = (simulation: Simulation): Action => ({
 	type: 'ADD_SIMULATION_TO_LIST',
 	simulation,
 })
 
-export const setCurrentSimulation = (simulation: Simulation) => ({
+export const setCurrentSimulation = (simulation: Simulation): Action => ({
 	type: 'SET_CURRENT_SIMULATION',
 	simulation,
 })
@@ -129,7 +141,8 @@ export const setCurrentSimulation = (simulation: Simulation) => ({
 export const setSimulationConfig =
 	(config: Object, url): ThunkResult<void> =>
 	(dispatch, getState, {}): void => {
-		const pastSimulationConfig = getState().simulation?.config
+		const simulation = getState().simulation
+		const pastSimulationConfig = simulation?.config
 		if (pastSimulationConfig === config) {
 			return
 		}
@@ -138,8 +151,8 @@ export const setSimulationConfig =
 			url,
 			config,
 		})
-		dispatch(addSimulationToList(getState().simulation))
-		dispatch(setCurrentSimulation(getState().simulation))
+		dispatch(addSimulationToList(simulation))
+		dispatch(setCurrentSimulation(simulation))
 	}
 
 export const setActiveTarget = (targetName: DottedName) =>
