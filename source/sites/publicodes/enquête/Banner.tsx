@@ -4,7 +4,10 @@ import { Link } from 'react-router-dom'
 import animate from '../../../components/ui/animate'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import { WithEngine } from '../../../RulesProvider'
-import { useSimulationData } from '../../../selectors/simulationSelectors'
+import {
+	useSimulationData,
+	useTestCompleted,
+} from '../../../selectors/simulationSelectors'
 import { simulationURL } from '../conference/useDatabase'
 
 export default () => {
@@ -15,7 +18,7 @@ export default () => {
 	)
 }
 
-const minutes = 3
+const minutes = 1 / 5
 
 const BannerWithEngine = () => {
 	const enquête = useSelector((state) => state.enquête)
@@ -63,12 +66,15 @@ const BannerWithEngine = () => {
 
 	if (!enquête) return null
 	const { userID } = enquête
+	const testCompleted = useTestCompleted()
+	const shouldDisplayTimeMessage = testCompleted && timeMessage
+
 	return (
 		<div
 			css={`
 				width: 100vw;
 				height: 1.8rem;
-				${timeMessage && `height: 90vh;`}
+				${shouldDisplayTimeMessage && `height: 90vh;`}
 				text-align: center;
 			`}
 		>
@@ -82,7 +88,7 @@ const BannerWithEngine = () => {
 				</Link>
 			</div>
 			{message && <div>{message.text}</div>}
-			{timeMessage && (
+			{shouldDisplayTimeMessage && (
 				<animate.fromTop duration=".6">
 					<div
 						css={`
