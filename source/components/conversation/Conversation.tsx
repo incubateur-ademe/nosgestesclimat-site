@@ -360,9 +360,11 @@ export default function Conversation({
 				<Trans>Vous avez complété la catégorie</Trans>{' '}
 				<i>{focusedCategoryTitle}</i>
 			</p>
-			<Link to="/profil">
-				<Trans>Modifier mes réponses</Trans>
-			</Link>
+			{!enquête && (
+				<Link to="/profil">
+					<Trans>Modifier mes réponses</Trans>
+				</Link>
+			)}
 		</div>
 	) : displayRespiration ? (
 		<CategoryRespiration
