@@ -15,7 +15,7 @@ export default () => {
 	)
 }
 
-const minutes = 1
+const minutes = 3
 
 const BannerWithEngine = () => {
 	const enquête = useSelector((state) => state.enquête)
