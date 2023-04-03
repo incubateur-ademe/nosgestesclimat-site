@@ -117,14 +117,14 @@ const BannerWithEngine = () => {
 									to="/simulateur/bilan"
 									onClick={() => setTimeMessage(false)}
 								>
-									le test Nos Gestes Climat
+									le test
 								</Link>{' '}
 								terminé, explorez le{' '}
 								<Link to="/actions" onClick={() => setTimeMessage(false)}>
 									parcours action
 								</Link>
-								, qui vous propose diverses propositions concrètes pour réduire
-								votre empreinte climat.
+								, qui vous propose diverses façons concrètes pour réduire votre
+								empreinte climat.
 							</p>
 							<p>
 								Vous pourrez les mettre dans votre panier et visualiser la
@@ -143,9 +143,7 @@ const BannerWithEngine = () => {
 								⏳️ Je n'ai pas terminé
 							</button>
 							<a href="https://opinion-way.fr">
-								<button className="ui__ button ">
-									✅ Revenir au questionnaire d'enquête
-								</button>
+								<button className="ui__ button ">✅ Revenir à l'enquête</button>
 							</a>
 						</div>
 					</div>
