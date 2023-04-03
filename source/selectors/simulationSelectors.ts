@@ -81,6 +81,9 @@ export const useSimulationData = () => {
 		}),
 		actionResults = minimalCategoryData(actionResultsRaw)
 
+	const totalRule = engine.evaluate('bilan'),
+		total = totalRule && Math.round(totalRule.nodeValue || -1)
+
 	const data = {
 		// The situation is a key, value object, keys being the ids of the publicode variables that are questions, called "dottedNames".
 		// Questions are all listed and detailed here at the URL /questions. Their possible values and units are also given.
@@ -103,6 +106,8 @@ export const useSimulationData = () => {
 		results: {
 			//A key value object for the main categories of nosgestesclimat. There are 5 of them in march 2023. The value is a figure in kgCO2e.
 			categories,
+			//The total value. Can be viewed as a control check of the sum of `categories`
+			total,
 			// The value of each of the actions available in nosgestesclimat. Either a value in kgCO2e, or null if not applicable.
 			// Beware, it doesn't mean the user saw all of these actions.
 			actionResults,
