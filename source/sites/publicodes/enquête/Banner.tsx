@@ -1,7 +1,7 @@
+import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import animate from '../../../components/ui/animate'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import { WithEngine } from '../../../RulesProvider'
 import {
@@ -18,7 +18,7 @@ export default () => {
 	)
 }
 
-const minutes = 1 / 5
+const minutes = 3
 
 const BannerWithEngine = () => {
 	const enquête = useSelector((state) => state.enquête)
@@ -70,12 +70,18 @@ const BannerWithEngine = () => {
 	const testCompleted = useTestCompleted()
 	const shouldDisplayTimeMessage = testCompleted && timeMessage
 
+	const animationVariants = {
+		mini: { height: '2rem' },
+		large: { height: '56vh' },
+	}
 	return (
-		<div
+		<motion.div
+			animate={shouldDisplayTimeMessage ? 'large' : 'mini'}
+			variants={animationVariants}
+			transition={{ delay: 0, duration: 1 }}
 			css={`
 				width: 100vw;
 				height: 2rem;
-				${shouldDisplayTimeMessage && `height: 90vh;`}
 				text-align: center;
 			`}
 		>
@@ -94,67 +100,70 @@ const BannerWithEngine = () => {
 				{message && <div>{message.text}</div>}
 			</div>
 			{shouldDisplayTimeMessage && (
-				<animate.fromTop duration=".6">
+				<motion.div
+					initial={{ opacity: 0 }}
+					animate={{ opacity: 1 }}
+					exit={{ opacity: 0 }}
+					transition={{ delay: 0.4 }}
+					css={`
+						background: #ffff0040; /*J'étais pas très inspiré là */
+						height: 55vh;
+						padding: 0 0.6rem;
+					`}
+				>
+					<ScrollToTop />
+
 					<div
 						css={`
-							background: #ffff0040; /*J'étais pas très inspiré là */
-							height: 80vh;
+							padding-top: 4vh;
+							max-width: 650px;
+							margin: 0 auto;
+							p {
+								margin-bottom: 1rem;
+							}
+							button {
+								margin: 1rem;
+							}
 						`}
 					>
-						<ScrollToTop />
-
-						<div
-							css={`
-								padding-top: 4vh;
-								max-width: 650px;
-								margin: 0 auto;
-								p {
-									margin-bottom: 1rem;
-								}
-								button {
-									margin: 1rem;
-								}
-							`}
-						>
-							<p>
-								Une fois{' '}
-								<Link
-									to="/simulateur/bilan"
-									onClick={() => setTimeMessage(false)}
-								>
-									le test
-								</Link>{' '}
-								terminé, explorez le{' '}
-								<Link to="/actions" onClick={() => setTimeMessage(false)}>
-									parcours action
-								</Link>
-								, qui vous propose diverses façons concrètes pour réduire votre
-								empreinte climat.
-							</p>
-							<p>
-								Vous pourrez les mettre dans votre panier et visualiser la
-								réduction d'empreinte ainsi gagnée.
-							</p>
-							<p>
-								<strong>N'oubliez pas</strong>, une fois le parcours action
-								terminé, de retourner sur le questionnaire d'enquête OpinionWay
-								avec le deuxième bouton ci-dessous. Nous vous le rappelerons
-								dans {minutes} minutes.
-							</p>
-							<button
-								className="ui__ button "
+						<p>
+							Une fois{' '}
+							<Link
+								to="/simulateur/bilan"
 								onClick={() => setTimeMessage(false)}
 							>
-								⏳️ Je n'ai pas terminé
-							</button>
-							<a href="https://opinion-way.fr">
-								<button className="ui__ button ">✅ Revenir à l'enquête</button>
-							</a>
-						</div>
+								le test
+							</Link>{' '}
+							terminé, explorez le{' '}
+							<Link to="/actions" onClick={() => setTimeMessage(false)}>
+								parcours&nbsp;action
+							</Link>
+							, qui vous propose diverses façons concrètes pour réduire votre
+							empreinte climat.
+						</p>
+						<p>
+							Vous pourrez les mettre dans votre panier et visualiser la
+							réduction d'empreinte ainsi gagnée.
+						</p>
+						<p>
+							<strong>N'oubliez pas</strong>, une fois le parcours action
+							terminé, de retourner sur le questionnaire d'enquête OpinionWay
+							avec le deuxième bouton ci-dessous. Nous vous le rappelerons dans{' '}
+							{minutes} minutes.
+						</p>
+						<button
+							className="ui__ button "
+							onClick={() => setTimeMessage(false)}
+						>
+							⏳️ Je n'ai pas terminé
+						</button>
+						<a href="https://opinion-way.fr">
+							<button className="ui__ button ">✅ Revenir à l'enquête</button>
+						</a>
 					</div>
-				</animate.fromTop>
+				</motion.div>
 			)}
-		</div>
+		</motion.div>
 	)
 }
 
