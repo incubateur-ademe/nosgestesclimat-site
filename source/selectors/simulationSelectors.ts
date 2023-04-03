@@ -6,6 +6,7 @@ import {
 	minimalCategoryData,
 } from '../components/publicodesUtils'
 import { useEngine } from '../components/utils/EngineContext'
+import { useNextQuestions } from '../components/utils/useNextQuestion'
 import { DottedName, Situation } from '../rules/index'
 import useActions from '../sites/publicodes/useActions'
 
@@ -51,6 +52,14 @@ export const currentQuestionSelector = (state: RootState) =>
 
 export const answeredQuestionsSelector = (state: RootState) =>
 	state.simulation?.foldedSteps ?? []
+
+export const useTestCompleted = () => {
+	const nextQuestions = useNextQuestions(),
+		objectives = useSelector(objectifsSelector)
+
+	const testCompleted = objectives.length > 0 && nextQuestions.length === 0
+	return testCompleted
+}
 
 // Designed to store simulation data in a DB, for the purpose of the survey
 export const useSimulationData = () => {
