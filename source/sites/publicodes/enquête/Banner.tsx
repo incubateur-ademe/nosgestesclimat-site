@@ -40,15 +40,16 @@ const BannerWithEngine = () => {
 					},
 					body: JSON.stringify(body), // body data type must match "Content-Type" header
 				})
+				await sleep(1000)
 				const json = await response.json()
-				setMessage({ text: '✅ Simulation sauvegardée' })
+				setMessage({ text: '✅ Sauvegardée' })
 			} catch (e) {
 				setMessage({ text: '❌ Erreur' })
 				console.log(e)
 			}
 		}
 		const postDaemon = setInterval(() => {
-			setMessage({ text: '⌛️ Sauvegarde en cours...' })
+			setMessage({ text: '⌛️ Sauvegarde..' })
 			postData()
 		}, 5 * 1000)
 
@@ -73,7 +74,7 @@ const BannerWithEngine = () => {
 		<div
 			css={`
 				width: 100vw;
-				height: 1.8rem;
+				height: 2rem;
 				${shouldDisplayTimeMessage && `height: 90vh;`}
 				text-align: center;
 			`}
@@ -81,13 +82,17 @@ const BannerWithEngine = () => {
 			<div
 				css={`
 					background: yellow;
+					display: flex;
+					justify-content: space-evenly;
+					align-items: center;
 				`}
 			>
 				<Link to={`/enquête/${userID}`}>
 					<div>Vous participez à l'enquête </div>
 				</Link>
+
+				{message && <div>{message.text}</div>}
 			</div>
-			{message && <div>{message.text}</div>}
 			{shouldDisplayTimeMessage && (
 				<animate.fromTop duration=".6">
 					<div
@@ -152,3 +157,5 @@ const BannerWithEngine = () => {
 		</div>
 	)
 }
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms))
