@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import { WithEngine } from '../../../RulesProvider'
@@ -9,6 +9,7 @@ import {
 	useTestCompleted,
 } from '../../../selectors/simulationSelectors'
 import { simulationURL } from '../conference/useDatabase'
+import ReturnToEnquêteButton from './ReturnToEnquêteButton'
 
 export default () => {
 	return (
@@ -26,6 +27,7 @@ const BannerWithEngine = () => {
 	const [timeMessage, setTimeMessage] = useState(false)
 
 	const data = useSimulationData()
+	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if (!enquête) return
@@ -157,9 +159,7 @@ const BannerWithEngine = () => {
 						>
 							⏳️ Je n'ai pas terminé
 						</button>
-						<a href="https://opinion-way.fr">
-							<button className="ui__ button ">✅ Revenir à l'enquête</button>
-						</a>
+						<ReturnToEnquêteButton />
 					</div>
 				</motion.div>
 			)}

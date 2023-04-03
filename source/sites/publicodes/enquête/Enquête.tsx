@@ -7,6 +7,7 @@ import { resetIntroTutorial, skipTutorial } from '../../../actions/actions'
 import { Markdown } from '../../../components/utils/markdown'
 import { rehydrateDetails } from '../fin'
 import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
+import ReturnToEnquêteButton from './ReturnToEnquêteButton'
 
 export default () => {
 	const dispatch = useDispatch()
@@ -29,8 +30,11 @@ export default () => {
 	return (
 		<div css="max-width: 750px">
 			<Markdown>{content}</Markdown>
+			<ReturnToEnquêteButton />
+
 			<div
 				css={`
+					margin-top: 2rem;
 					display: flex;
 					align-items: center;
 				`}

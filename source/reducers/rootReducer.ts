@@ -310,6 +310,7 @@ function pullRequestNumber(state = null, { type, number }) {
 
 function enquête(state = null, { type, userID, date }) {
 	if (type === 'SET_ENQUÊTE') return { userID, date }
+	if (type === 'QUIT_ENQUÊTE') return null
 	else return state
 }
 
