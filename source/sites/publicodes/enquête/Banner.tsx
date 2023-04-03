@@ -42,7 +42,7 @@ const BannerWithEngine = () => {
 				})
 				await sleep(1000)
 				const json = await response.json()
-				setMessage({ text: '✅ Sauvegardée' })
+				setMessage({ text: '✔️  Sauvegardée' })
 			} catch (e) {
 				setMessage({ text: '❌ Erreur' })
 				console.log(e)
