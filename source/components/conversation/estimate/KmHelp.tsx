@@ -131,184 +131,209 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	return !isOpen ? (
-		<div
-			css={`
-				text-align: right;
-			`}
-		>
-			<KmHelpButton
-				text={t('Je veux être plus précis')}
-				openmojiURL={openmojiURL}
-				onHandleClick={() => {
-					setIsOpen(true)
-					setFinalValue(Math.round(+sum))
-					tracker.push([
-						'trackEvent',
-						'Aide saisie km',
-						'Ouvre aide à la saisie km voiture',
-					])
-				}}
-			/>
-		</div>
-	) : (
-		<animate.fromTop>
-			{trajets.length != 0 && (
-				<div
-					css={`
-						display: flex;
-						justify-content: flex-end;
-					`}
-				>
-					<div
-						id="explicationResultatAideKm"
-						css={`
-							font-size: 80%;
-							font-style: italic;
-							max-width: 15rem;
-							line-height: 1rem;
-							margin-bottom: 0.5rem;
-							text-align: right;
-						`}
-					>
-						{t(
-							'components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne',
-							{
-								kmParcouru: rawSum.toLocaleString(currentLangInfos.abrvLocale),
-								nbPersonnes: covoitAvg.toLocaleString(
-									currentLangInfos.abrvLocale,
-									{
-										minimumFractionDigits: 1,
-										maximumFractionDigits: 1,
-									}
-								),
-							}
-						)}
-					</div>
-				</div>
-			)}
+	return (
+		<>
 			<div
-				className="ui__ card content"
 				css={`
-					margin-bottom: 1rem;
+					text-align: right;
 				`}
 			>
-				<div
-					css={`
-						text-align: right;
-					`}
-				>
-					<button
-						className="ui__ simple small button"
-						onClick={() => {
-							setIsOpen(false)
-							tracker.push([
-								'trackEvent',
-								'Aide saisie km',
-								'Ferme aide à la saisie km voiture',
-							])
-						}}
-					>
-						<Trans>Fermer</Trans>
-					</button>
-				</div>
-				<KmForm
-					trajets={trajets}
-					setTrajets={setTrajets}
-					openmojiURL={openmojiURL}
-					tracker={tracker}
+				<KmHelpButton
+					text={
+						isOpen ? (
+							<>{t('Fermer')}</>
+						) : (
+							<>
+								{' '}
+								<span
+									css={`
+										margin-right: 0.25rem;
+									`}
+								>
+									{emoji('🎯')}
+								</span>
+								{t('Je veux être plus précis')}
+							</>
+						)
+					}
+					onHandleClick={
+						isOpen
+							? () => {
+									setIsOpen(false)
+									tracker.push([
+										'trackEvent',
+										'Aide saisie km',
+										'Ferme aide à la saisie km voiture',
+									])
+							  }
+							: () => {
+									setIsOpen(true)
+									setFinalValue(Math.round(+sum))
+									tracker.push([
+										'trackEvent',
+										'Aide saisie km',
+										'Ouvre aide à la saisie km voiture',
+									])
+							  }
+					}
 				/>
-				<div
-					css={`
-						overflow: auto;
-						padding: 0.5rem 0.5rem 0rem 0.5rem;
-					`}
-				>
-					<form id="tableTrajets" onSubmit={handleEditFormSubmit} ref={formRef}>
-						<TableTrajets>
-							<thead>
-								<tr>
-									<th scope="col">Motif</th>
-									<th scope="col" css="width: 20%">
-										{t('Label')}
-									</th>
-									<th scope="col" css="width: 3rem">
-										{t('KM', { ns: 'units' })}
-									</th>
-									<th scope="col" css="width: 25%">
-										{t('Fréquence')}
-									</th>
-									<th
-										scope="col"
-										css="width: 10%; color: transparent; text-shadow: 0 0 0 white;"
-									>
-										{emoji('👥', t('Nombre de personnes'))}
-									</th>
-									<th scope="col" css="width: 5.5rem">
-										{t('Modifier')}
-									</th>
-								</tr>
-							</thead>
-							{sum != null && (
-								<tbody>
-									{trajets.map((trajet) => (
-										<Fragment>
-											{editTrajetId === trajet.id ? (
-												<EditableRow
-													editFormData={editFormData}
-													setEditFormData={setEditFormData}
-													setEditTrajetId={setEditTrajetId}
-													openmojiURL={openmojiURL}
-													handleEditFormSubmit={handleEditFormSubmit}
-												/>
-											) : (
-												<ReadOnlyRow
-													trajet={trajet}
-													trajets={trajets}
-													setEditFormData={setEditFormData}
-													setEditTrajetId={setEditTrajetId}
-													setTrajets={setTrajets}
-													openmojiURL={openmojiURL}
-												/>
-											)}
-										</Fragment>
-									))}
-									{sum > 0 && (
-										<td colspan="6">
-											<span
-												css={`
-													display: flex;
-													justify-content: right;
-												`}
-											>
-												<Trans>Mon total :</Trans>{' '}
-												<strong>
-													&nbsp;
-													{sum.toLocaleString(currentLangInfos.abrvLocale)}{' '}
-													km&nbsp;
-												</strong>{' '}
-												<Trans>(co-voiturage pris en compte)</Trans>
-											</span>
-										</td>
-									)}
-								</tbody>
-							)}
-						</TableTrajets>
-						{!sum && (
-							<small
+			</div>
+			{isOpen && (
+				<animate.fromTop>
+					{trajets.length != 0 && (
+						<div
+							css={`
+								display: flex;
+								justify-content: flex-end;
+							`}
+						>
+							<div
+								id="explicationResultatAideKm"
 								css={`
-									text-align: center;
+									font-size: 80%;
 									font-style: italic;
-									display: block;
+									max-width: 15rem;
+									line-height: 1rem;
+									margin-bottom: 0.5rem;
+									text-align: right;
 								`}
 							>
-								<Trans>Vos trajets apparaîtront dans ce tableau.</Trans>{' '}
-							</small>
-						)}
-					</form>
-				</div>
-			</div>
-		</animate.fromTop>
+								{t(
+									'components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne',
+									{
+										kmParcouru: rawSum.toLocaleString(
+											currentLangInfos.abrvLocale
+										),
+										nbPersonnes: covoitAvg.toLocaleString(
+											currentLangInfos.abrvLocale,
+											{
+												minimumFractionDigits: 1,
+												maximumFractionDigits: 1,
+											}
+										),
+									}
+								)}
+							</div>
+						</div>
+					)}
+					<div
+						className="ui__ card content"
+						css={`
+							margin-bottom: 1rem;
+						`}
+					>
+						<h3
+							css={`
+								margin-bottom: 0.5rem;
+							`}
+						>
+							{t('Détail de mes trajets')}
+						</h3>
+
+						<div
+							css={`
+								overflow: auto;
+							`}
+						>
+							<form
+								id="tableTrajets"
+								onSubmit={handleEditFormSubmit}
+								ref={formRef}
+							>
+								<TableTrajets>
+									<thead>
+										<tr>
+											<th scope="col">Motif</th>
+											<th scope="col" css="width: 20%">
+												{t('Label')}
+											</th>
+											<th scope="col" css="width: 3rem">
+												{t('KM', { ns: 'units' })}
+											</th>
+											<th scope="col" css="width: 25%">
+												{t('Fréquence')}
+											</th>
+											<th
+												scope="col"
+												css="width: 10%; color: transparent; text-shadow: 0 0 0 white;"
+											>
+												{emoji('👥', t('Nombre de personnes'))}
+											</th>
+											<th scope="col" css="width: 5.5rem">
+												{t('Modifier')}
+											</th>
+										</tr>
+									</thead>
+									{sum != null && (
+										<tbody>
+											{trajets.map((trajet) => (
+												<Fragment>
+													{editTrajetId === trajet.id ? (
+														<EditableRow
+															editFormData={editFormData}
+															setEditFormData={setEditFormData}
+															setEditTrajetId={setEditTrajetId}
+															openmojiURL={openmojiURL}
+															handleEditFormSubmit={handleEditFormSubmit}
+														/>
+													) : (
+														<ReadOnlyRow
+															trajet={trajet}
+															trajets={trajets}
+															setEditFormData={setEditFormData}
+															setEditTrajetId={setEditTrajetId}
+															setTrajets={setTrajets}
+															openmojiURL={openmojiURL}
+														/>
+													)}
+												</Fragment>
+											))}
+											{sum > 0 && (
+												<td colspan="6">
+													<span
+														css={`
+															display: flex;
+															justify-content: right;
+														`}
+													>
+														<Trans>Mon total :</Trans>{' '}
+														<strong>
+															&nbsp;
+															{sum.toLocaleString(
+																currentLangInfos.abrvLocale
+															)}{' '}
+															km&nbsp;
+														</strong>{' '}
+														<Trans>(co-voiturage pris en compte)</Trans>
+													</span>
+												</td>
+											)}
+										</tbody>
+									)}
+								</TableTrajets>
+								{!sum && (
+									<small
+										css={`
+											text-align: center;
+											font-style: italic;
+											display: block;
+										`}
+									>
+										<Trans>Vos trajets apparaîtront dans ce tableau.</Trans>{' '}
+									</small>
+								)}
+							</form>
+							<KmForm
+								trajets={trajets}
+								setTrajets={setTrajets}
+								openmojiURL={openmojiURL}
+								tracker={tracker}
+							/>
+						</div>
+					</div>
+				</animate.fromTop>
+			)}
+		</>
 	)
 }
 

@@ -1,4 +1,3 @@
-import emoji from 'Components/emoji'
 import { useState } from 'react'
 import styled from 'styled-components'
 
@@ -19,13 +18,6 @@ export default function KmHelpButton({ text, onHandleClick }) {
 					width: 100%;
 				`}
 			>
-				<span
-					css={`
-						margin-right: 0.25rem;
-					`}
-				>
-					{emoji('⬇️')}
-				</span>
 				{text}
 			</div>
 		</StyledButton>
@@ -33,10 +25,22 @@ export default function KmHelpButton({ text, onHandleClick }) {
 }
 
 const StyledButton = styled.button`
-	font-size: 1rem;
+	font-size: 0.875rem;
 	background-color: rgb(253 230 138);
 	padding: 0.5rem;
 	border-radius: 0.25rem;
-	margin-bottom: 1rem;
+	margin-bottom: 0.5rem;
 	line-height: 1;
+	transition: background-color 0.2s;
+	background-size: 280%;
+	&:hover {
+		background-color: #fcdb54;
+		background-position-x: 0%;
+		border-color: white !important;
+		background-image: linear-gradient(
+			50deg,
+			var(--darkestColor) -50%,
+			#fcdb54 10%
+		);
+	}
 `
