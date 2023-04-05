@@ -108,13 +108,14 @@ export default () => {
 						<Trans is18nKey="international.comment.2">
 							Explorez en détail les spécificités de chaque pays.
 						</Trans>
+						&nbsp;
 						<span
 							css={`
 								background: var(--lighterColor);
 								border-radius: 0.4rem;
 								padding: 0.1rem 0.4rem;
-								margin-left: 1rem;
 								white-space: nowrap;
+								margin-left: 0.4rem;
 							`}
 						>
 							⏳️ <Trans>À venir !</Trans>
