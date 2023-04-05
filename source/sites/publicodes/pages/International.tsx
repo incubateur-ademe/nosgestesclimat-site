@@ -72,6 +72,8 @@ export default () => {
 						électrique influence fortement le calcul d'empreinte climat.
 					</Trans>
 				</p>
+			</LandingContent>
+			<LandingContent>
 				<h2>
 					<Trans i18nKey="international.comment.titre">
 						Comment ça marche ?
@@ -101,12 +103,12 @@ export default () => {
 					</p>
 				</p>
 			</LandingContent>
-			<LandingContent>
+			<LandingContent background>
 				<div css=" margin: 0 auto">
 					<RegionGrid open={true} />
 				</div>
 			</LandingContent>
-			<LandingContent background>
+			<LandingContent>
 				<h2>
 					<Trans i18nKey="international.ensuite.titre">
 						Vous ne trouvez pas votre pays ?
