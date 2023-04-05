@@ -6,12 +6,12 @@ La contextualisation d'un sondage permet de sauvegarder des informations
 supplémentaires à la simulation classique : chaque sondé se voit poser quelques
 questions avant d'accéder à son test.
 
-Ainsi, une organisation peut envoyer un seul lien de sondage et receuillir des
+Ainsi, une organisation peut envoyer un seul lien de sondage et recueillir des
 informations différenciant les utilisateurs (des questions qui ne sont pas
 liées au test Nos Gestes Climat : par exemple leur âge, leur métier, etc. ou
 bien un sous-groupe).
 
-Pour le moment les éléments de contexte sont dispnibles dans le CSV téléchargé
+Pour le moment les éléments de contexte sont disponibles dans le CSV téléchargé
 (pas de filtre possible sur l'écran de visualisation).
 
 > ⚠️ Les questions ne doivent pas permettre d'identifier les utilisateurs ! On
