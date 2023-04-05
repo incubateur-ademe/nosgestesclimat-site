@@ -26,6 +26,7 @@ export default () => {
 				return 0
 			})
 	)
+	const numberOfRegions = Object.entries(orderedSupportedRegions).length
 	return (
 		<>
 			<details
@@ -41,6 +42,8 @@ export default () => {
 			>
 				<summary>
 					🗺️ <Trans>Choisir une autre région</Trans>
+					&nbsp;
+					<small title={`${numberOfRegions} régions`}>{numberOfRegions}</small>
 				</summary>
 				<ul
 					css={`
