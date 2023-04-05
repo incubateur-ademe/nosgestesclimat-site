@@ -31,17 +31,14 @@ le dossier
 Les questions sont écrites dans le langage [publicodes](https://publi.codes/)
 au format 'yaml'.
 
-**Nous avons fait le choix de garder la main sur les contextes de sondage
-publiés, l'équipe Datagir joue donc un rôle d'administrateur et vous accompagne
-pour créer votre contexte et le publier pour votre sondage.**
+**Nous avons fait le choix de garder la main sur les contextes de sondage publiés, l'équipe Datagir joue donc un rôle d'administrateur et vous accompagne pour créer votre contexte et le publier pour votre sondage.**
 
 Un
 [template](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml)
 vous permet d'écrire votre propre formulaire de contexte. Vous pouvez également
 vous aider du [bac à sable publicodes](https://vu.fr/szYP). N'hésitez pas à
 nous contacter avec une première ébauche pour contextualiser votre sondage !
-Attention, **le nom du fichier créé doit être différent du nom du nom envisagé
-pour le sondage** (cf point suivant).
+Attention, **le nom du fichier créé doit être différent du nom du nom envisagé pour le sondage** (cf point suivant).
 
 ## Et d'un point de vue tech ?
 
