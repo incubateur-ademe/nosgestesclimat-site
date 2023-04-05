@@ -28,9 +28,19 @@ export default () => {
 	)
 	return (
 		<>
-			<details>
+			<details
+				css={`
+					summary {
+						text-align: center;
+						border-radius: 0.8rem;
+						padding: 0.1rem 0.8rem;
+						background: var(--lightestColor);
+						width: auto;
+					}
+				`}
+			>
 				<summary>
-					<Trans>Choisir une autre région</Trans>
+					🗺️ <Trans>Choisir une autre région</Trans>
 				</summary>
 				<ul
 					css={`
