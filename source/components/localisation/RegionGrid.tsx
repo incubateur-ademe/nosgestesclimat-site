@@ -48,9 +48,12 @@ export default ({ open = false }) => {
 				</summary>
 				<ul
 					css={`
+						margin-top: 1rem;
 						columns: 3;
 						-webkit-columns: 3;
 						-moz-columns: 3;
+						li {
+						}
 					`}
 				>
 					{Object.entries(orderedSupportedRegions).map(([code, params]) => (
