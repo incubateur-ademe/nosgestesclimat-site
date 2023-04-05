@@ -124,7 +124,7 @@ export default () => {
 			</LandingContent>
 			<LandingContent background>
 				<div css=" margin: 0 auto">
-					<RegionGrid open={true} />
+					<RegionGrid noButton />
 				</div>
 			</LandingContent>
 			<LandingContent>
