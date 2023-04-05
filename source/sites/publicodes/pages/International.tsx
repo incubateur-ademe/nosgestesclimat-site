@@ -19,7 +19,6 @@ const Illustration = () => (
 			padding: 2rem;
 			max-width: 40vh;
 			margin: 0 auto;
-
 		`}
 	/>
 )
@@ -75,6 +74,20 @@ export default () => {
 						Au fur et à mesure que l'électricité prend une place très importante
 						grâce à la transition énergétique, l'empreinte carbone du mix
 						électrique influence fortement le calcul d'empreinte climat.
+					</Trans>
+				</p>
+				<p>
+					<Trans i18nKey="international.pourquoi.3">
+						Nous utilisons, quand disponible, l'empreinte du mix électrique
+						fournie par{' '}
+						<a href="https://app.electricitymaps.com/map" target="_blank">
+							<img
+								alt="Electricity Maps"
+								src="/images/electricitymaps.svg"
+								css="margin-left: .6rem; height: 1rem; vertical-align: sub"
+							/>
+						</a>
+						.
 					</Trans>
 				</p>
 			</LandingContent>
