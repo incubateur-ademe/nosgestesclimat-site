@@ -36,8 +36,4 @@ If you want to run the automatic localisation, which depends on a Netlify Edge f
 
 ## Réutilisations de ce code
 
--   [L'Empreinte Carbone de vos activités à Centrale Nantes](https://github.com/SustainabilityCN/nosgestesclimat-site-ECN)
--   [Mon Match Carbone](https://github.com/pascalbes/monmatchcarbone-site)
--   [Mon Empreinte Pro](https://github.com/WeCount-io/nosgestesclimat-WC-site)
-
 Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md)
