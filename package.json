@@ -73,7 +73,6 @@
 		"eslint-plugin-react": "^7.30.1",
 		"eslint-webpack-plugin": "^3.2.0",
 		"file-loader": "^6.2.0",
-		"http-server": "^14.1.1",
 		"i18next-parser": "^6.5.0",
 		"intl-locales-supported": "^1.0.0",
 		"mock-local-storage": "^1.1.23",
