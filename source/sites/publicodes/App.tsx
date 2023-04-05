@@ -420,7 +420,7 @@ const Router = ({}) => {
 			<Route
 				path={`/international`}
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<International />
 					</Suspense>
 				}

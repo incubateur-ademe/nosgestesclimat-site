@@ -22,16 +22,16 @@ const Illustration = () => (
 export default () => {
 	const { t } = useTranslation()
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
-	const title = t('The international climate footprint calculator'),
+	const title = t("Le calculateur d'empreinte climat international"),
 		description = t(
-			'Anywhere you live, compute your personal carbon footprint with the particularities of your country.'
+			'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.'
 		)
 	return (
 		<LandingLayout>
 			<Meta
 				title={title}
 				description={description}
-				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
+				image="https://nosgestesclimat.fr/images/international-illustration.jpeg"
 			/>
 
 			<LandingHeaderWrapper>
@@ -82,8 +82,23 @@ export default () => {
 						Pour proposer un modèle pour chaque pays, il nous faut forcément une
 						base. Nos Gestes Climat s'est construit sur le cas de la France. À
 						partir de là, chaque pays décrit ses différences par rapport à la
-						base. Explorez en détail les spécificités de chaque pays TODO.
+						base.
 					</Trans>
+					<p>
+						<Trans is18nKey="international.comment.2">
+							Explorez en détail les spécificités de chaque pays.
+						</Trans>
+						<span
+							css={`
+								background: var(--lighterColor);
+								border-radius: 0.4rem;
+								padding: 0.1rem 0.4rem;
+								margin-left: 1rem;
+							`}
+						>
+							⏳️ <Trans>À venir !</Trans>
+						</span>
+					</p>
 				</p>
 			</LandingContent>
 			<LandingContent>
