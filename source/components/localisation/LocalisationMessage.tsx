@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TrackerContext } from '../../components/utils/withTracker'
 import IllustratedMessage from '../ui/IllustratedMessage'
+import CountryFlag from './CountryFlag'
 import useLocalisation from './useLocalisation'
 import {
 	defaultModel,
@@ -21,7 +22,7 @@ export default () => {
 	const localisation = useLocalisation()
 	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
 	const regionParams = supportedRegion(localisation?.country?.code)
-	const flag = getFlag(localisation?.country?.code)
+	const code = localisation?.country?.code
 	const countryName = getCountryNameInCurrentLang(localisation)
 
 	const versionName = regionParams
@@ -48,16 +49,7 @@ export default () => {
 								Vous utilisez la version <strong>{{ versionName }}</strong> du
 								test
 							</Trans>
-							<img
-								src={flag}
-								aria-hidden="true"
-								css={`
-									height: 1rem;
-									margin: 0 0.3rem;
-									vertical-align: sub;
-								`}
-							/>
-							.
+							<CountryFlag code={code} />.
 							{localisation?.country?.code !== defaultModel && (
 								<span>
 									{' '}
@@ -73,14 +65,10 @@ export default () => {
 								Nous avons détecté que vous faites cette simulation depuis
 							</Trans>{' '}
 							{countryName}
-							<img
-								src={flag ?? getFlagImgSrc(localisation?.country?.code)}
-								aria-hidden="true"
-								css={`
-									height: 1rem;
-									margin: 0 0.3rem;
-									vertical-align: sub;
-								`}
+							<CountryFlag
+								src={
+									getFlag(code) ?? getFlagImgSrc(localisation?.country?.code)
+								}
 							/>
 							.
 							<p css="margin-top: 0.5rem">
@@ -90,15 +78,7 @@ export default () => {
 										vous est proposé par défaut
 									</Trans>
 								</b>
-								<img
-									src={getFlagImgSrc(defaultModel)}
-									aria-hidden="true"
-									css={`
-										height: 1rem;
-										margin: 0 0.3rem;
-										vertical-align: sub;
-									`}
-								/>
+								<CountryFlag src={getFlagImgSrc(defaultModel)} />
 								<b>.</b>
 							</p>
 						</p>
@@ -108,16 +88,7 @@ export default () => {
 								Nous n'avons pas pu détecter votre pays de simulation, le modèle
 								Français vous est proposé par défaut
 							</Trans>
-							<img
-								src={getFlagImgSrc(defaultModel)}
-								aria-hidden="true"
-								css={`
-									height: 1rem;
-									margin: 0 0.3rem;
-									vertical-align: sub;
-								`}
-							/>
-							.
+							<CountryFlag src={getFlagImgSrc(defaultModel)} />.
 						</p>
 					)}
 					<p>
@@ -163,6 +134,8 @@ export default () => {
 					</button>
 				</div>
 			}
+			inline={undefined}
+			image={undefined}
 		/>
 	)
 }

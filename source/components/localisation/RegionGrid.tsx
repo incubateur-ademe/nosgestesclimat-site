@@ -1,11 +1,13 @@
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
+import CountryFlag from './CountryFlag'
 
 export default ({ open = false }) => {
+	const dispatch = useDispatch()
 	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
 
 	const supportedRegions = useSelector((state) => state.supportedRegions)
@@ -49,10 +51,12 @@ export default ({ open = false }) => {
 				<ul
 					css={`
 						margin-top: 1rem;
-						columns: 3;
-						-webkit-columns: 3;
-						-moz-columns: 3;
+						display: flex;
+						flex-wrap: wrap;
+						justify-content: space-evenly;
 						li {
+							margin: 0.4rem 0.6rem;
+							list-style-type: none;
 						}
 					`}
 				>
@@ -69,12 +73,23 @@ export default ({ open = false }) => {
 							}}
 						>
 							<button
+								className="ui__ card"
 								css={`
+									display: flex;
+									width: 8rem !important;
+									height: 3rem;
+									justify-content: start;
+									align-items: center;
 									padding: 0;
 									font-size: 0.75rem;
 									color: var(--darkColor);
+									text-align: left;
+									img {
+										margin-right: 0.6rem;
+									}
 								`}
 							>
+								<CountryFlag code={code} />
 								{capitalise0(params[currentLang]?.nom)}
 							</button>
 						</li>
@@ -98,6 +113,11 @@ export default ({ open = false }) => {
 							</p>
 						</div>
 					}
+					inline={undefined}
+					image={undefined}
+					width={undefined}
+					direction={undefined}
+					backgroundcolor={undefined}
 				/>
 			</details>
 		</>
