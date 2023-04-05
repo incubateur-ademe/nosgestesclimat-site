@@ -203,7 +203,7 @@ const Main = ({}) => {
 							<Logo showText size={largeScreen ? 'large' : 'medium'} />
 						</div>
 					)}
-					{isHomePage && <LangSwitcher from="landing" />}
+					{fluidLayout && <LangSwitcher from="landing" />}
 					<Router />
 				</main>
 			</div>
