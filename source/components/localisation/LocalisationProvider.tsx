@@ -9,23 +9,31 @@ export default function LocalisationProvider({ children }) {
 
 	useEffect(() => {
 		if (branchData.loaded) {
-			const supportedRegionsURL =
-				branchData.deployURL + '/supportedRegions.json'
-			console.log('fetching:', supportedRegionsURL)
-			fetch(supportedRegionsURL, {
-				mode: 'cors',
-			})
-				.then((response) => response.json())
-				.then((json) => {
-					dispatch({
-						type: 'SET_SUPPORTED_REGIONS',
-						supportedRegions: json,
+			if (process.env.NODE_ENV === 'development') {
+				const supportedRegions = require('../../../nosgestesclimat/public/supportedRegions.json')
+				dispatch({
+					type: 'SET_SUPPORTED_REGIONS',
+					supportedRegions,
+				})
+			} else {
+				const supportedRegionsURL =
+					branchData.deployURL + '/supportedRegions.json'
+				console.log('fetching:', supportedRegionsURL)
+				fetch(supportedRegionsURL, {
+					mode: 'cors',
+				})
+					.then((response) => response.json())
+					.then((json) => {
+						dispatch({
+							type: 'SET_SUPPORTED_REGIONS',
+							supportedRegions: json,
+						})
 					})
-				})
-				.catch((err) => {
-					console.log('url:', supportedRegionsURL)
-					console.log('err:', err)
-				})
+					.catch((err) => {
+						console.log('url:', supportedRegionsURL)
+						console.log('err:', err)
+					})
+			}
 		}
 	}, [branchData.deployURL, branchData.loaded])
 

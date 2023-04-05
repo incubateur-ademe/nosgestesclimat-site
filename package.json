@@ -13,9 +13,9 @@
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
 		"model:watch": "yarn --cwd ./nosgestesclimat/ compile-watch",
-		"model:serve": "http-server ./nosgestesclimat/public/ -p 8081 --cors -c-1",
+		"model:rules-watch": "yarn --cwd ./nosgestesclimat/ compile:rules-watch",
 		"serve": "webpack serve --mode development --config webpack.dev.js",
-		"start": "yarn run model:watch & yarn run model:serve & yarn run serve",
+		"start": "yarn run serve & yarn run model:watch",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
