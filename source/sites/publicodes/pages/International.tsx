@@ -37,7 +37,6 @@ export default () => {
 			<LandingHeaderWrapper>
 				<HeaderContent>
 					<h1>{title}</h1>
-					<RegionGrid open />
 					{mobile && <Illustration aira-hidden="true" />}
 					<p>{description}</p>
 					<div>

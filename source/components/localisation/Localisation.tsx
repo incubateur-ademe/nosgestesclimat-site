@@ -8,7 +8,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { resetLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
-import RegionGrid from './RegionGrid'
+import RegionSelector from './RegionSelector'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
@@ -92,7 +92,7 @@ export default () => {
 					</Trans>{' '}
 				</p>
 			)}
-			<RegionGrid />
+			<RegionSelector />
 		</div>
 	)
 }
