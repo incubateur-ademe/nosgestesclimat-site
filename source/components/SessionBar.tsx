@@ -41,8 +41,7 @@ const MenuButton = styled.div`
 	justify-content: center;
 	font-size: 110% !important;
 	color: var(--darkColor);
-	padding: 0 0.4rem !important;
-	width: 5rem;
+	width: auto;
 	@media (min-width: 800px) {
 		flex-direction: row;
 		justify-content: start;
@@ -82,8 +81,10 @@ const Button = (props) => {
 				font-weight: bold;
 				background: var(--lighterColor);
 				display: block;
-				@media (max-width: 800px){border-radius: 1.6rem}
 
+				@media (max-width: 800px) {
+					border-radius: 0.6rem;
+				}
 				`}
 			`}
 			{...(isCurrent
@@ -193,6 +194,16 @@ export default function SessionBar({
 				</span>
 			)}
 		</Button>,
+		<Button className="simple small" url="/groupe">
+			<img
+				src={openmojiURL('silhouettes')}
+				css="width: 2rem"
+				aria-hidden="true"
+				width="1"
+				height="1"
+			/>
+			<Trans>Groupe</Trans>
+		</Button>,
 		pullRequestNumber && (
 			<MenuButton key="pullRequest" className="simple small">
 				<a
@@ -231,16 +242,6 @@ export default function SessionBar({
 				</button>
 			</MenuButton>
 		),
-		<Button className="simple small" url="/groupe">
-			<img
-				src={openmojiURL('silhouettes')}
-				css="width: 2rem"
-				aria-hidden="true"
-				width="1"
-				height="1"
-			/>
-			<Trans>Groupe</Trans>
-		</Button>,
 	]
 
 	if (path === '/tutoriel') return null
@@ -262,7 +263,7 @@ export default function SessionBar({
 			`}
 		>
 			{elements.filter(Boolean).length > 0 && (
-				<NavBar>
+				<NavBar isUsingCustomPR={pullRequestNumber != undefined}>
 					{elements.filter(Boolean).map((Comp, i) => (
 						<li key={i}>{Comp}</li>
 					))}
@@ -272,11 +273,14 @@ export default function SessionBar({
 	)
 }
 
-const NavBar = styled.ul`
-	display: flex;
+const NavBar = styled.ul<{ isUsingCustomPR: any }>`
 	box-shadow: rgb(187 187 187) 2px 2px 10px;
 	list-style-type: none;
-	justify-content: space-evenly !important;
+	display: grid;
+	grid-template-columns: repeat(
+		${({ isUsingCustomPR }) => (isUsingCustomPR ? 5 : 4)},
+		1fr
+	);
 	align-items: center;
 
 	margin: 0;
@@ -284,15 +288,18 @@ const NavBar = styled.ul`
 	height: 4rem;
 	background: white;
 	justify-content: center;
-	padding: 0;
+	padding: 0rem 0.3rem;
 
 	@media (min-width: 800px) {
+		display: flex;
 		margin-top: 1rem;
 		flex-direction: column;
 		height: auto;
 		background: none;
 		justify-content: start;
 		box-shadow: none;
+		padding: 0;
+
 		li {
 			width: 100%;
 		}

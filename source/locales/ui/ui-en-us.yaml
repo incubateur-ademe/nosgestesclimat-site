@@ -272,7 +272,7 @@ entries:
   components.ScoreExplanation.text.p2.lock: 🧮 Voici votre score provisoire, il évolue à chaque nouvelle réponse !
   components.ScoreExplanation.text.p3: '🤔 If you answer "I don''t know" to a question, the score will not change: you are assigned a default value.'
   components.ScoreExplanation.text.p3.lock: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
-  components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default valuesevery<1>month</1>!
+  components.ScoreExplanation.text.p4: 💡 We improve the calculation and its default values every<1>month</1>!
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in <1>beta</1> version. <4>A problem, a suggestion?</4>
   components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est en version <1>beta</1>. <4>Un problème, une suggestion ?</4>
@@ -288,10 +288,10 @@ entries:
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
-  components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> version of the test.
-  components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test.
-  components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default.
-  components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut.
+  components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> version of the test
+  components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test
+  components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default
+  components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
   components.stats.StatsContent.dureeDesVisites: <0>Learn more about this site</0><1>This section is generated from visits over the last 60 days. Visits with a time spent on the site of less than 1 minute have been discarded. To avoid the iframe bias that can generate inactive visitors in the statistics, the average time on the site has been calculated from active visits (the user has clicked on "Take the test").</1>
   components.stats.StatsContent.dureeDesVisites.lock: <0>En savoir plus</0><1>Cette section est générée à partir des visites des 60 derniers jours. Les visites dont le temps passé sur le site est inférieur à 1 minute ont été écartées. Pour éviter le biais de l'iframe qui peut générer des visiteurs inactifs dans les statistiques, le temps moyen sur le site a été calculé à partir des visites actives (l'utilisateur a cliqué sur "Faire le test").</1>
   components.stats.StatsContent.integrationEtIframes: <0>Learn more about iframe integrations</0><1>Iframe integrations are detected via the 'iframe' parameter in the URL, only if the integrator has used the <2>dedicated script</2>. Thus, the visits via iframes of integrators who did not use this script are scattered in the general visits of Nos Gestes Climat. Pending more precise figures, this rate is therefore potentially underestimated compared to reality. <5>(Data valid for the last 30 days)</5></1>
@@ -636,3 +636,5 @@ entries:
   🧮 Visualisez à tout moment les résultats de votre groupe: 🧮 View your group's results at any time
   🧮 Voir le geste climat correspondant: 🧮 See the corresponding climate action
   🧮 Voir les réponses: 🧮 See answers
+  components.localisation.LocalisationMessage.warnMessage2: We could not detect your country of simulation, the French model is proposed by default
+  components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut

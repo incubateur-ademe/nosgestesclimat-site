@@ -10,14 +10,17 @@ const Stamp = styled.button`
 	font-family: 'Courier';
 	mix-blend-mode: multiply;
 	border: 3px solid var(--color);
-	color: var(--color);
+	color: grey;
 	mask-position: 13rem 6rem;
 	transform: rotate(-10deg);
 	border-radius: 4px;
-	top: 2.5rem;
-	left: 1em;
+	right: 2.5rem;
 	line-height: 1rem;
 	${({ clickable }) => clickable && `cursor: pointer`}
+
+	@media (min-width: 600px) {
+		right: 0%;
+	}
 `
 
 export default Stamp

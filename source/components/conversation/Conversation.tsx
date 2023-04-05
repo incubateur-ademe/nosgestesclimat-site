@@ -212,16 +212,23 @@ export default function Conversation({
 	const currentQuestionIndex = previousAnswers.findIndex(
 			(a) => a === unfoldedStep
 		),
+		currentIsNew = currentQuestionIndex < 0,
 		previousQuestion =
-			currentQuestionIndex < 0 && previousAnswers.length > 0
-				? previousAnswers[previousAnswers.length - 1]
-				: mosaicQuestion
-				? [...previousAnswers]
-						.reverse()
-						.find(
-							(el, index) =>
-								index < currentQuestionIndex && !questionsToSubmit.includes(el)
+			currentIsNew && previousAnswers.length > 0
+				? // it simply is the last answered question
+				  previousAnswers[previousAnswers.length - 1]
+				: // mosaics are exceptionnal, since they are similar questions grouped for the UI
+				mosaicQuestion
+				? // We'll explore the previous answers starting from the end, to find the first question that is not in the current mosaic
+				  [...previousAnswers].reverse().find((el, index) => {
+						const currentQuestionReversedIndex =
+							previousAnswers.length - currentQuestionIndex
+						return (
+							index > currentQuestionReversedIndex &&
+							// The previous question shouldn't be one of the current mosaic's questions
+							!questionsToSubmit.includes(el)
 						)
+				  })
 				: previousAnswers[currentQuestionIndex - 1]
 
 	const isValidInput = (questionsToSubmit) => {
@@ -465,17 +472,21 @@ export default function Conversation({
 					</fieldset>
 				</div>
 				<div className="ui__ answer-group">
-					{previousAnswers.length > 0 && currentQuestionIndex !== 0 && (
-						<>
-							<button
-								onClick={goToPrevious}
-								type="button"
-								className="ui__ simple small push-left button"
-							>
-								← <Trans>Précédent</Trans>
-							</button>
-						</>
-					)}
+					{previousAnswers.length > 0 &&
+						// We check that the question is not the first question
+						currentQuestionIndex !== 0 &&
+						// We check that previousQuestion found is in the rules (as the model evolves, the question found can be out of the new rules)
+						rules[previousQuestion] && (
+							<>
+								<button
+									onClick={goToPrevious}
+									type="button"
+									className="ui__ simple small push-left button"
+								>
+									← <Trans>Précédent</Trans>
+								</button>
+							</>
+						)}
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"

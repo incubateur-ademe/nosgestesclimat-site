@@ -6,12 +6,12 @@ La contextualisation d'un sondage permet de sauvegarder des informations
 supplémentaires à la simulation classique : chaque sondé se voit poser quelques
 questions avant d'accéder à son test.
 
-Ainsi, une organisation peut envoyer un seul lien de sondage et receuillir des
+Ainsi, une organisation peut envoyer un seul lien de sondage et recueillir des
 informations différenciant les utilisateurs (des questions qui ne sont pas
 liées au test Nos Gestes Climat : par exemple leur âge, leur métier, etc. ou
 bien un sous-groupe).
 
-Pour le moment les éléments de contexte sont dispnibles dans le CSV téléchargé
+Pour le moment les éléments de contexte sont disponibles dans le CSV téléchargé
 (pas de filtre possible sur l'écran de visualisation).
 
 > ⚠️ Les questions ne doivent pas permettre d'identifier les utilisateurs ! On
@@ -31,17 +31,14 @@ le dossier
 Les questions sont écrites dans le langage [publicodes](https://publi.codes/)
 au format 'yaml'.
 
-**Nous avons fait le choix de garder la main sur les contextes de sondage
-publiés, l'équipe Datagir joue donc un rôle d'administrateur et vous accompagne
-pour créer votre contexte et le publier pour votre sondage.**
+**Nous avons fait le choix de garder la main sur les contextes de sondage publiés, l'équipe Datagir joue donc un rôle d'administrateur et vous accompagne pour créer votre contexte et le publier pour votre sondage.**
 
 Un
 [template](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml)
 vous permet d'écrire votre propre formulaire de contexte. Vous pouvez également
 vous aider du [bac à sable publicodes](https://vu.fr/szYP). N'hésitez pas à
 nous contacter avec une première ébauche pour contextualiser votre sondage !
-Attention, **le nom du fichier créé doit être différent du nom du nom envisagé
-pour le sondage** (cf point suivant).
+Attention, **le nom du fichier créé doit être différent du nom du nom envisagé pour le sondage** (cf point suivant).
 
 ## Et d'un point de vue tech ?
 

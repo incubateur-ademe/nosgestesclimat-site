@@ -18,7 +18,7 @@ export const supportedRegion = (inputCode) => {
 
 export const getFlag = (inputCode) => {
 	const regionParams = supportedRegion(inputCode)
-	const code = regionParams?.drapeau ?? inputCode
+	const code = regionParams?.fr?.drapeau ?? inputCode
 	return getFlagImgSrc(code)
 }
 
@@ -34,17 +34,22 @@ export const getFlagImgSrc = (inputCode) =>
 	inputCode &&
 	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
 
-export const getCountryNameInFrench = (code) => {
+export const getCountryNameInCurrentLang = (localisation) => {
 	// this function enables to adapt messages written in French according to the country detected, including French prepositions subtelties.
-	if (!code) {
+	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
+	const regionParams = supportedRegion(localisation?.country?.code)
+	if (!localisation) {
 		return undefined
 	}
-
-	const regionNamesInFrench = new Intl.DisplayNames(['fr'], { type: 'region' }),
-		countryNameAuto = regionNamesInFrench.of(code),
-		countryName =
-			countryNameAuto === 'France' ? 'France métropolitaine' : countryNameAuto,
-		preposition = (countryName && frenchCountryPrepositions[countryName]) ?? ''
-
-	return `${preposition} ${countryName}`
+	if (currentLang == 'fr') {
+		const countryName = regionParams
+			? regionParams[currentLang]['nom']
+			: localisation?.country?.name
+		const preposition =
+			(countryName && frenchCountryPrepositions[countryName]) ?? ''
+		return `${preposition} ${countryName}`
+	}
+	return regionParams
+		? regionParams[currentLang]['nom']
+		: localisation?.country?.name
 }
