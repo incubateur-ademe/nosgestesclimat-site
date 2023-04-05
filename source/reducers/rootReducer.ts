@@ -171,13 +171,19 @@ function rules(state = null, { type, rules }) {
 	} else return state
 }
 
-function actionChoices(state = {}, { type, action, choice }) {
-	if (type === 'SET_ACTION_CHOICE') {
-		return { ...state, [action]: choice }
+function actionChoices(state = {}, { type, action, choice, actionsChoices }) {
+	switch (type) {
+		case 'SET_ACTIONS_CHOICES':
+			return actionsChoices
+		case 'SET_ACTION_CHOICE': {
+			return { ...state, [action]: choice }
+		}
+		case 'RESET_ACTION_CHOICES': {
+			return {}
+		}
+		default:
+			return state
 	}
-	if (type === 'RESET_ACTION_CHOICES') {
-		return {}
-	} else return state
 }
 
 function currentLang(state = {}, { type, currentLang }) {
@@ -262,12 +268,18 @@ function tracking(
 	} else return state
 }
 
-function storedTrajets(state = {}, { type, vehicule, trajets }) {
-	if (type === 'SET_TRAJETS') {
-		return { ...state, [vehicule]: trajets }
-	} else if (type === 'RESET_TRAJETS') {
-		return {}
-	} else return state
+function storedTrajets(state = {}, { type, vehicule, trajets, allTrajets }) {
+	switch (type) {
+		case 'SET_ALL_TRAJETS':
+			console.log(allTrajets)
+			return allTrajets
+		case 'SET_TRAJETS':
+			return { ...state, [vehicule]: trajets }
+		case 'RESET_TRAJETS':
+			return {}
+		default:
+			return state
+	}
 }
 
 function thenRedirectTo(state = null, { type, to }) {

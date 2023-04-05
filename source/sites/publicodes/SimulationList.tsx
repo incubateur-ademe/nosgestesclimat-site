@@ -1,6 +1,6 @@
 import { deleteSimulationById } from 'Actions/actions'
 import { Trans } from 'react-i18next'
-import { setActionChoice, setCurrentSimulation, setStoredTrajets } from '../../actions/actions'
+import { setActionChoice, setActionsChoices, setAllStoredTrajets, setCurrentSimulation, setStoredTrajets } from '../../actions/actions'
 export default ({ dispatch, list, currentSimulation }) => {
 	return (
 		<ul>
@@ -18,12 +18,8 @@ export default ({ dispatch, list, currentSimulation }) => {
 								css="margin: 0 1rem"
 								onClick={() => {
 									dispatch(setCurrentSimulation(simulation))
-									for (const choice in simulation.actionChoices) {
-										dispatch(setActionChoice(choice, simulation.actionChoices[choice]))
-									}
-									for (const trajet in simulation.storedTrajets) {
-										dispatch(setStoredTrajets(trajet, simulation.storedTrajets[trajet]))
-									}
+									dispatch(setActionsChoices(simulation.actionChoices))
+									dispatch(setAllStoredTrajets(simulation.storedTrajets))
 								}}
 							>
 								<Trans>Charger</Trans>

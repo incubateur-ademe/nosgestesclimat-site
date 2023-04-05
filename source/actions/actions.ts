@@ -141,8 +141,7 @@ export const setCurrentSimulation = (simulation: Simulation): Action => ({
 export const setSimulationConfig =
 	(config: Object, url): ThunkResult<void> =>
 	(dispatch, getState, {}): void => {
-		const simulation = getState().simulation
-		const pastSimulationConfig = simulation?.config
+		const pastSimulationConfig = getState().simulation?.config
 		if (pastSimulationConfig === config) {
 			return
 		}
@@ -151,8 +150,8 @@ export const setSimulationConfig =
 			url,
 			config,
 		})
-		dispatch(addSimulationToList(simulation))
-		dispatch(setCurrentSimulation(simulation))
+		dispatch(addSimulationToList(getState().simulation))
+		dispatch(setCurrentSimulation(getState().simulation))
 	}
 
 export const setActiveTarget = (targetName: DottedName) =>
@@ -213,6 +212,18 @@ export const setActionChoice = (action: string, choice: boolean) =>
 		type: 'SET_ACTION_CHOICE',
 		action,
 		choice,
+	} as const)
+
+export const setActionsChoices = (actionsChoices: Object) =>
+	({
+		type: 'SET_ACTIONS_CHOICES',
+		actionsChoices,
+	} as const)
+
+export const setAllStoredTrajets = (allTrajets: Object) =>
+	({
+		type: 'SET_ALL_TRAJETS',
+		allTrajets,
 	} as const)
 
 export const setStoredTrajets = (vehicule: string, trajets: object) =>
