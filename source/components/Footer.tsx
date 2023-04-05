@@ -2,9 +2,9 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { Link, useLocation } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
-import { isFluidLayout } from '../sites/publicodes/App'
 import DocumentationButton from '../sites/publicodes/DocumentationButton'
 import LandingContent from '../sites/publicodes/LandingContent'
+import { isFluidLayout } from '../sites/publicodes/utils'
 import { IframeOptionsContext } from './utils/IframeOptionsProvider'
 
 export default ({}) => {

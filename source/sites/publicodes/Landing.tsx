@@ -11,6 +11,7 @@ import {
 	LandingLayout,
 } from '../../components/LandingLayout'
 import NewsBanner from '../../components/NewsBanner'
+import PartnerBanner from '../../components/PartnerBanner'
 import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
@@ -102,7 +103,17 @@ export default () => {
 							</Link>
 							<ProfileLink />
 						</HeaderCTAs>
-						<NewsBanner />
+						<div
+							css={`
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								flex-wrap: wrap;
+							`}
+						>
+							<PartnerBanner />
+							<NewsBanner />
+						</div>
 					</div>
 				</HeaderContent>
 				{!mobile && <Illustration aira-hidden="true" />}
