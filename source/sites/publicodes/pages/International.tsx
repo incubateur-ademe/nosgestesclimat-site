@@ -96,6 +96,7 @@ export default () => {
 								border-radius: 0.4rem;
 								padding: 0.1rem 0.4rem;
 								margin-left: 1rem;
+								white-space: nowrap;
 							`}
 						>
 							⏳️ <Trans>À venir !</Trans>
