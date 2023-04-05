@@ -650,3 +650,6 @@ entries:
   international.pourquoi.1.lock: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
   international.comment.1: In order to propose a model for each country, we necessarily need a base. Nos Gestes Climat was built on the case of France. From there, each country describes its differences from the base.
   international.comment.1.lock: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
+  International: International
+  international.pourquoi.3: We use, when available, the electrical mix footprint provided by <2><0></0></2>.
+  international.pourquoi.3.lock: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.

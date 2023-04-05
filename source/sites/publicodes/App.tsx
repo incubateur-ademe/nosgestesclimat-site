@@ -178,7 +178,7 @@ const Main = ({}) => {
 						overflow: auto;
 						@media (min-width: 800px) {
 							flex-grow: 1;
-							${!isHomePage ? 'padding-left: 0.6rem;' : ''}
+							${!fluidLayout ? 'padding-left: 0.6rem;' : ''}
 						}
 					`}
 				>
