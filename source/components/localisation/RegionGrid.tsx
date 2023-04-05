@@ -5,7 +5,7 @@ import { capitalise0 } from '../../utils'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import NewTabSvg from '../utils/NewTabSvg'
 
-export default () => {
+export default ({ open = false }) => {
 	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
 
 	const supportedRegions = useSelector((state) => state.supportedRegions)
@@ -30,6 +30,7 @@ export default () => {
 	return (
 		<>
 			<details
+				open={open}
 				css={`
 					summary {
 						text-align: center;

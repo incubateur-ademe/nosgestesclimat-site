@@ -9,7 +9,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
 import { fluidLayoutMinWidth } from '../../../components/LandingLayout'
-import Localisation from '../../../components/localisation/Localisation'
+import RegionGrid from '../../../components/localisation/RegionGrid'
 import LandingContent from '../LandingContent'
 
 const Illustration = () => (
@@ -103,7 +103,7 @@ export default () => {
 			</LandingContent>
 			<LandingContent>
 				<div css=" margin: 0 auto">
-					<Localisation />
+					<RegionGrid open={true} />
 				</div>
 			</LandingContent>
 			<LandingContent background>
