@@ -472,17 +472,21 @@ export default function Conversation({
 					</fieldset>
 				</div>
 				<div className="ui__ answer-group">
-					{previousAnswers.length > 0 && currentQuestionIndex !== 0 && (
-						<>
-							<button
-								onClick={goToPrevious}
-								type="button"
-								className="ui__ simple small push-left button"
-							>
-								← <Trans>Précédent</Trans>
-							</button>
-						</>
-					)}
+					{previousAnswers.length > 0 &&
+						// We check that the question is not the first question
+						currentQuestionIndex !== 0 &&
+						// We check that previousQuestion found is in the rules (as the model evolves, the question found can be out of the new rules)
+						rules[previousQuestion] && (
+							<>
+								<button
+									onClick={goToPrevious}
+									type="button"
+									className="ui__ simple small push-left button"
+								>
+									← <Trans>Précédent</Trans>
+								</button>
+							</>
+						)}
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"
