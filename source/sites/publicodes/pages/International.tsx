@@ -15,7 +15,12 @@ import LandingContent from '../LandingContent'
 const Illustration = () => (
 	<img
 		src="/images/international-illustration.jpeg"
-		css="max-height: 50vh; padding: 2rem"
+		css={`
+			padding: 2rem;
+			max-width: 40vh;
+			margin: 0 auto;
+
+		`}
 	/>
 )
 

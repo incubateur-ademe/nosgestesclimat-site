@@ -12,6 +12,7 @@ export default ({ open = false }) => {
 	return (
 		<ul
 			css={`
+				padding: 0;
 				margin-top: 1rem;
 				display: flex;
 				flex-wrap: wrap;
@@ -48,6 +49,14 @@ export default ({ open = false }) => {
 							text-align: left;
 							img {
 								margin-right: 0.6rem;
+							}
+							@media (max-width: 400px) {
+								width: 6rem !important;
+								flex-direction: column;
+								padding: 0.4rem 0 !important;
+								text-align: center;
+								justify-content: center;
+								height: 4rem;
 							}
 						`}
 					>
