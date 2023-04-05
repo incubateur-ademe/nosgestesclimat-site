@@ -1,6 +1,6 @@
 import { Evaluation, formatValue, serializeUnit, Unit } from 'publicodes'
 import { useCallback } from 'react'
-import { useTranslation } from 'react-i18next'
+import { ReactI18NextChild, useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { getCurrentLangInfos } from '../../locales/translation'
 import { currencyFormat, debounce } from '../../utils'
@@ -22,11 +22,15 @@ export default function Input({
 	inputEstimation,
 	idDescription,
 	showAnimation,
+	isDisabled,
 }: InputCommonProps & {
 	onSubmit: (source: string) => void
 	unit: Unit | undefined
 	value: Evaluation<number>
-	inputEstimation: Object | void
+	inputEstimation: ReactI18NextChild | Iterable<ReactI18NextChild>
+	idDescription: string
+	showAnimation: boolean
+	isDisabled: boolean
 }) {
 	const debouncedOnChange = useCallback(debounce(550, onChange), [])
 	const unité = serializeUnit(unit)
@@ -64,6 +68,7 @@ export default function Input({
 									floatValue != undefined ? { valeur: floatValue, unité } : {}
 								)
 							}}
+							disabled={isDisabled}
 							autoComplete="off"
 							{...(missing
 								? {

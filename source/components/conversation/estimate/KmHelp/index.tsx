@@ -5,12 +5,13 @@ import { Fragment, useContext, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { setStoredTrajets, updateSituation } from '../../../actions/actions'
+import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
-} from '../../../locales/translation'
-import { TrackerContext } from '../../utils/withTracker'
+} from '../../../../locales/translation'
+import { TrackerContext } from '../../../utils/withTracker'
+import { FormOpenStateContext } from '../contexts/FormOpenStateContext'
 import { freqList } from './dataHelp'
 import EditableRow from './EditableRow'
 import KmForm from './KmForm'
@@ -33,10 +34,10 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 
 	const tracker = useContext(TrackerContext)
 
+	const { isOpen, setIsFormOpen } = useContext(FormOpenStateContext)
+
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
-
-	const [isOpen, setIsOpen] = useState(false)
 
 	const [trajets, setTrajets] = useState(storedTrajets[dottedName] || [])
 
@@ -150,7 +151,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 										margin-right: 0.25rem;
 									`}
 								>
-									{emoji('🎯')}
+									{emoji('⏱️')}
 								</span>
 								{t('Je veux être plus précis')}
 							</>
@@ -159,7 +160,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 					onHandleClick={
 						isOpen
 							? () => {
-									setIsOpen(false)
+									setIsFormOpen(false)
 									tracker.push([
 										'trackEvent',
 										'Aide saisie km',
@@ -167,7 +168,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 									])
 							  }
 							: () => {
-									setIsOpen(true)
+									setIsFormOpen(true)
 									setFinalValue(Math.round(+sum))
 									tracker.push([
 										'trackEvent',
@@ -192,7 +193,6 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 								css={`
 									font-size: 80%;
 									font-style: italic;
-									max-width: 15rem;
 									line-height: 1rem;
 									margin-bottom: 0.5rem;
 									text-align: right;

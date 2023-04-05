@@ -263,7 +263,7 @@ entries:
   components.ScoreExplanation.text.p3: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
   components.ScoreExplanation.text.p4: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: La traduction de cette page est en version <1>beta</1>. <4>Un problème, une suggestion ?</4>
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes dans la voiture.
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: '{{kmParcouru}} km avec en moyenne {{nbPersonnes}} voyageurs.'
   components.conversation.select.NumberedMosaic.choixAFaire: ' Il vous reste {{nbChoix}} choix à faire.'
   components.conversation.select.NumberedMosaic.choixEnTrop: Vous avez fait {{nbChoix}} choix en trop !
   components.localisation.Localisation.warnMessage: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
