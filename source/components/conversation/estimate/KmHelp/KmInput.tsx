@@ -4,6 +4,8 @@ import styled from 'styled-components'
 import Input from '../../Input'
 import { FormOpenStateContext } from '../contexts/FormOpenStateContext'
 
+const helperId = 'km-helper-id'
+
 const KmInput = (props) => {
 	const { isOpen } = useContext(FormOpenStateContext)
 	const { t } = useTranslation()
@@ -15,9 +17,10 @@ const KmInput = (props) => {
 				showAnimation
 				idDescription={'explicationResultatAideKm'}
 				isDisabled={isOpen}
+				aria-describedby={helperId}
 			/>
 			{isOpen && (
-				<StyledSpan aria-hidden={!isOpen}>
+				<StyledSpan aria-hidden={!isOpen} id={helperId}>
 					{t(
 						'Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.'
 					)}
