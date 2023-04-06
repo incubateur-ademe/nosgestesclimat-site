@@ -1,5 +1,6 @@
 import { explainVariable } from 'Actions/actions'
 import { useContext } from 'react'
+import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import { TrackerContext } from '../utils/withTracker'
@@ -15,6 +16,7 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 
 	return (
 		<button
+			className="ui__ link-button"
 			type="button"
 			onClick={(e) => {
 				tracker.push(['trackEvent', 'help', dottedName])
@@ -27,12 +29,11 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 			}}
 			css={`
 				margin-left: 0.3rem !important;
+				vertical-align: middle;
 				font-size: 110% !important;
-				padding-left: 0.6rem;
-				padding: 0;
 			`}
 		>
-			ℹ️
+			{emoji('ℹ️')}
 		</button>
 	)
 }
