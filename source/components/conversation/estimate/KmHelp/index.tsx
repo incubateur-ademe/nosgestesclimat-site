@@ -149,9 +149,10 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 								<span
 									css={`
 										margin-right: 0.25rem;
+										filter: grayscale(1);
 									`}
 								>
-									{emoji('⏱️')}
+									{emoji('📏')}
 								</span>
 								{t('Je veux être plus précis')}
 							</>
