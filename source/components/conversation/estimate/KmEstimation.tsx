@@ -1,6 +1,18 @@
-import { useState } from 'react'
+import { Evaluation } from 'publicodes'
+import { InputHTMLAttributes, useState } from 'react'
+import { DottedName } from 'Rules'
 import KmHelp from './KmHelp'
 import KmInput from './KmHelp/KmInput'
+
+interface Props {
+	commonProps: InputHTMLAttributes<HTMLInputElement> & {
+		dottedName: DottedName
+	}
+	evaluation: Evaluation<DottedName>
+	onSubmit: (value: string) => void
+	setFinalValue: (value: string) => void
+	value: string
+}
 
 export default function KmEstimation({
 	commonProps,
@@ -8,7 +20,7 @@ export default function KmEstimation({
 	onSubmit,
 	setFinalValue,
 	value,
-}) {
+}: Props) {
 	const [isFormOpen, setIsFormOpen] = useState(false)
 	return (
 		<div>

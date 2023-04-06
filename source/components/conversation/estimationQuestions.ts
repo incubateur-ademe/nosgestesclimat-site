@@ -12,6 +12,12 @@ const estimationQuestions: Array<{
 			dottedName.includes('transport . voiture . km'),
 		component: KmEstimation,
 	},
+	{
+		dottedName: 'transport . avion . court courrier . heures de vol',
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . avion . court courrier . heures de vol'),
+		component: KmEstimation,
+	},
 ]
 
 export default estimationQuestions
