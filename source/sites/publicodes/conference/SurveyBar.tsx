@@ -117,13 +117,6 @@ export default () => {
 		return () => socket.off('received', onReceived)
 	}, [])
 
-	const simulationArray = [],
-		result =
-			computeHumanMean(
-				translation,
-				simulationArray.map((el) => el.total)
-			)
-
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
 	const elements = surveyElementsAdapter(survey.answers)
@@ -134,13 +127,20 @@ export default () => {
 		0
 	).length
 
-	const completedTestNumber = getElements(
+	const completedTests = getElements(
 		elements,
 		defaultThreshold,
 		existContext,
 		defaultProgressMin
-	).length
+	)
 
+	const completedTestsNumber = completedTests.length
+
+	const simulationArray = completedTests && Object.values(completedTests),
+		result = computeHumanMean(
+			translation,
+			simulationArray.map((el) => el.total)
+		)
 	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 
 	return (
@@ -148,7 +148,7 @@ export default () => {
 			{...{
 				room: survey.room,
 				rawUserNumber,
-				completedTestNumber,
+				completedTestsNumber,
 				result,
 				groupMode: 'sondage',
 			}}

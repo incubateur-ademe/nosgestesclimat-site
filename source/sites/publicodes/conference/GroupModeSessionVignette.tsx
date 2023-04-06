@@ -79,7 +79,7 @@ export const GroupModeMenuEntryContent = ({
 	room,
 	result,
 	rawUserNumber,
-	completedTestNumber,
+	completedTestsNumber,
 }) => {
 	const { t } = useTranslation()
 	return (
@@ -146,10 +146,10 @@ export const GroupModeMenuEntryContent = ({
 							<CountDisc color="#55acee">{rawUserNumber}</CountDisc>
 						</span>
 					)}
-					{completedTestNumber != null && (
+					{completedTestsNumber != null && (
 						<span title={t('Nombre de tests terminés')}>
 							<EmojiStyle>✅</EmojiStyle>
-							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
+							<CountDisc color="#78b159">{completedTestsNumber}</CountDisc>
 						</span>
 					)}
 				</CountSection>

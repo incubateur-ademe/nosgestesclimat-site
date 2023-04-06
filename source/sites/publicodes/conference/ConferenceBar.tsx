@@ -46,12 +46,6 @@ export default () => {
 	if (!conference?.ydoc)
 		return <Link to="/conférence">Lancer une conférence</Link>
 
-	const simulationArray = elements && Object.values(elements),
-		result = computeHumanMean(
-			translation,
-			simulationArray.map((el) => el.total)
-		)
-
 	const statElements = conferenceElementsAdapter(elements)
 	const rawUserNumber = getElements(
 		statElements,
@@ -60,12 +54,20 @@ export default () => {
 		0
 	).length
 
-	const completedTestNumber = getElements(
+	const completedTests = getElements(
 		statElements,
 		defaultThreshold,
 		null,
 		defaultProgressMin
-	).length
+	)
+
+	const completedTestsNumber = completedTests.length
+
+	const simulationArray = completedTests && Object.values(completedTests),
+		result = computeHumanMean(
+			translation,
+			simulationArray.map((el) => el.total)
+		)
 
 	return (
 		<GroupModeMenuEntryContent
@@ -73,7 +75,7 @@ export default () => {
 				groupMode: 'conférence',
 				room: conference.room,
 				rawUserNumber,
-				completedTestNumber,
+				completedTestsNumber,
 				result,
 			}}
 		/>
