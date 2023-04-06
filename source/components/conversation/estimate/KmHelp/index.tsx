@@ -1,12 +1,20 @@
 import emoji from 'Components/emoji'
 import animate from 'Components/ui/animate'
 import { motion } from 'framer-motion'
-import { Fragment, useContext, useEffect, useRef, useState } from 'react'
+import {
+	Dispatch,
+	Fragment,
+	SetStateAction,
+	useContext,
+	useEffect,
+	useRef,
+	useState,
+} from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
-import { FormOpenStateContext } from '../../../../contexts/FormOpenStateContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -29,12 +37,22 @@ const openmojis = {
 }
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
-export default function KmHelp({ setFinalValue, dottedName }) {
+interface KmHelpProps {
+	setFinalValue: () => {}
+	dottedName: DottedName
+	isFormOpen: boolean
+	setIsFormOpen: Dispatch<SetStateAction<boolean>>
+}
+
+export default function KmHelp({
+	setFinalValue,
+	dottedName,
+	isFormOpen,
+	setIsFormOpen,
+}: KmHelpProps) {
 	const { t, i18n } = useTranslation()
 
 	const tracker = useContext(TrackerContext)
-
-	const { isOpen, setIsFormOpen } = useContext(FormOpenStateContext)
 
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
@@ -141,7 +159,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 			>
 				<KmHelpButton
 					text={
-						isOpen ? (
+						isFormOpen ? (
 							<>{t('Fermer')}</>
 						) : (
 							<>
@@ -159,7 +177,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 						)
 					}
 					onHandleClick={
-						isOpen
+						isFormOpen
 							? () => {
 									setIsFormOpen(false)
 									tracker.push([
@@ -180,7 +198,7 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 					}
 				/>
 			</div>
-			{isOpen && (
+			{isFormOpen && (
 				<animate.fromTop>
 					{trajets.length != 0 && (
 						<div

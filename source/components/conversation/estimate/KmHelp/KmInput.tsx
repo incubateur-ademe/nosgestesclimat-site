@@ -1,25 +1,23 @@
-import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { FormOpenStateContext } from '../../../../contexts/FormOpenStateContext'
 import Input from '../../Input'
 
 const helperId = 'km-helper-id'
 
 const KmInput = (props) => {
-	const { isOpen } = useContext(FormOpenStateContext)
 	const { t } = useTranslation()
+	const { isFormOpen } = props
 	return (
 		<>
 			<Input
 				{...props}
 				showAnimation
 				idDescription={helperId}
-				isDisabled={isOpen}
+				isDisabled={isFormOpen}
 				aria-describedby={helperId}
 			/>
-			{isOpen && (
-				<StyledSpan aria-hidden={!isOpen} id={helperId}>
+			{isFormOpen && (
+				<StyledSpan aria-hidden={!isFormOpen} id={helperId}>
 					{t(
 						'Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.'
 					)}

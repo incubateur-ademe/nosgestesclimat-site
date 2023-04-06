@@ -1,4 +1,4 @@
-import { FormOpenStateProvider } from '../../../contexts/FormOpenStateContext'
+import { useState } from 'react'
 import KmHelp from './KmHelp'
 import KmInput from './KmHelp/KmInput'
 
@@ -9,22 +9,24 @@ export default function KmEstimation({
 	setFinalValue,
 	value,
 }) {
+	const [isFormOpen, setIsFormOpen] = useState(false)
 	return (
 		<div>
-			<FormOpenStateProvider>
-				<KmInput
-					{...commonProps}
-					onSubmit={onSubmit}
-					unit={evaluation.unit}
-					value={value}
+			<KmInput
+				{...commonProps}
+				onSubmit={onSubmit}
+				unit={evaluation.unit}
+				value={value}
+				isFormOpen={isFormOpen}
+			/>
+			<div>
+				<KmHelp
+					setFinalValue={setFinalValue}
+					dottedName={commonProps.dottedName}
+					isFormOpen={isFormOpen}
+					setIsFormOpen={setIsFormOpen}
 				/>
-				<div>
-					<KmHelp
-						setFinalValue={setFinalValue}
-						dottedName={commonProps.dottedName}
-					/>
-				</div>
-			</FormOpenStateProvider>
+			</div>
 		</div>
 	)
 }
