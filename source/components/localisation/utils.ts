@@ -54,3 +54,9 @@ export const getCountryNameInCurrentLang = (localisation) => {
 		? regionParams[currentLang]['nom']
 		: localisation?.country?.name
 }
+
+export const getCurrentRegionCode = (localisation) => {
+	return supportedRegion(localisation?.country?.code)
+		? localisation?.country?.code
+		: defaultModel
+}
