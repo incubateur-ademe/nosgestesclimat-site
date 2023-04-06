@@ -13,9 +13,8 @@ const KmInput = (props) => {
 		<>
 			<Input
 				{...props}
-				disabled={isOpen}
 				showAnimation
-				idDescription={'explicationResultatAideKm'}
+				idDescription={helperId}
 				isDisabled={isOpen}
 				aria-describedby={helperId}
 			/>

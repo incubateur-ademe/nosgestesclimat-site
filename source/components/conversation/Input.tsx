@@ -68,7 +68,7 @@ export default function Input({
 									floatValue != undefined ? { valeur: floatValue, unité } : {}
 								)
 							}}
-							disabled={isDisabled}
+							readOnly={isDisabled}
 							autoComplete="off"
 							{...(missing
 								? {
