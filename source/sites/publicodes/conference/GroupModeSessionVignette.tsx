@@ -146,7 +146,7 @@ export const GroupModeMenuEntryContent = ({
 							<CountDisc color="#55acee">{rawUserNumber}</CountDisc>
 						</span>
 					)}
-					{completedTestsNumber ?? (
+					{completedTestsNumber != null && (
 						<span title={t('Nombre de tests terminés')}>
 							<EmojiStyle>✅</EmojiStyle>
 							<CountDisc color="#78b159">{completedTestsNumber}</CountDisc>
