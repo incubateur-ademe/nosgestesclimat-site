@@ -42,9 +42,10 @@ export const getCountryNameInCurrentLang = (localisation) => {
 		return undefined
 	}
 	if (currentLang == 'fr') {
-		const countryName = regionParams
-			? regionParams[currentLang]['nom']
-			: localisation?.country?.name
+		const countryName =
+			regionParams && regionParams[currentLang]
+				? regionParams[currentLang].nom
+				: localisation?.country?.name
 		const preposition =
 			(countryName && frenchCountryPrepositions[countryName]) ?? ''
 		return `${preposition} ${countryName}`
