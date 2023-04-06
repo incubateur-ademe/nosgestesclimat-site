@@ -16,7 +16,7 @@ import NoSurveyCreatedWarning from './NoSurveyCreatedWarning'
 import NoTestMessage from './NoTestMessage'
 import Stats from './SurveyStats'
 import { answersURL, surveysURL } from './useDatabase'
-import { defaultProgressMin, defaultThreshold } from './utils'
+import { defaultThreshold } from './utils'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -236,39 +236,11 @@ const Results = ({ room, existContext, contextRules }) => {
 	const elements = surveyElementsAdapter(answerMap)
 	return (
 		<Stats
-			totalElements={getElements(elements, threshold, existContext, 0)}
-			elements={getElements(
-				elements,
-				threshold,
-				existContext,
-				defaultProgressMin
-			)}
+			rawElements={elements}
 			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
 			contextRules={contextRules}
 		/>
 	)
-}
-
-// Simulations with less than 10% progress are excluded, in order to avoid a perturbation of the mean group value by people
-// that did connect to the conference, but did not seriously start the test, hence resulting in multiple default value simulations.
-// In case of survey with context, we only display result with context filled in.
-
-export const getElements = (
-	rawElements,
-	threshold,
-	existContext,
-	progressMin
-) => {
-	const elementsWithinThreshold = rawElements.filter(
-		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
-	)
-	const elements = existContext
-		? elementsWithinThreshold.filter(
-				(el) => Object.keys(el.context).length !== 0
-		  )
-		: elementsWithinThreshold
-
-	return elements
 }

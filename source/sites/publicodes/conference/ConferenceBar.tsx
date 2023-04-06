@@ -12,7 +12,7 @@ import { conferenceElementsAdapter } from './Conference'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
 import { computeHumanMean } from './SurveyStats'
 import useYjs from './useYjs'
-import { defaultProgressMin, defaultThreshold, getElements } from './utils'
+import { getAllTests, getCompletedTests } from './utils'
 
 export default () => {
 	const translation = useTranslation(),
@@ -47,20 +47,10 @@ export default () => {
 		return <Link to="/conférence">Lancer une conférence</Link>
 
 	const statElements = conferenceElementsAdapter(elements)
-	const rawUserNumber = getElements(
-		statElements,
-		defaultThreshold,
-		null,
-		0
-	).length
 
-	const completedTests = getElements(
-		statElements,
-		defaultThreshold,
-		null,
-		defaultProgressMin
-	)
+	const rawUserNumber = getAllTests(statElements, null).length
 
+	const completedTests = getCompletedTests(statElements, null)
 	const completedTestsNumber = completedTests.length
 
 	const simulationArray = completedTests && Object.values(completedTests),

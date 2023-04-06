@@ -11,6 +11,7 @@ import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
+import { getAllTests, getCompletedTests } from './utils'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -26,8 +27,7 @@ export const computeHumanMean = ({ t, i18n }, simulationArray) => {
 }
 
 export default ({
-	totalElements: totalElementsRaw,
-	elements: elementsRaw,
+	rawElements,
 	users = [],
 	username: currentUser,
 	threshold,
@@ -37,10 +37,13 @@ export default ({
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
+	const statsElements = getCompletedTests(rawElements, null)
+	const totalStatsElements = getAllTests(rawElements, null)
+
 	const [contextFilter, setContextFilter] = useState({})
 
-	const totalElements = filterElements(totalElementsRaw, contextFilter)
-	const elements = filterElements(elementsRaw, contextFilter)
+	const elements = filterElements(statsElements, contextFilter)
+	const totalElements = filterElements(totalStatsElements, contextFilter)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 

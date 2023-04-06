@@ -12,12 +12,7 @@ import Instructions from './Instructions'
 import Stats from './SurveyStats'
 import { UserBlock } from './UserList'
 import useYjs from './useYjs'
-import {
-	defaultProgressMin,
-	defaultThreshold,
-	getElements,
-	getExtremes,
-} from './utils'
+import { defaultThreshold, getExtremes } from './utils'
 
 export const ConferenceTitle = styled.h2`
 	margin-top: 0.6rem;
@@ -51,13 +46,6 @@ export default () => {
 	const { t } = useTranslation()
 
 	const rawElements = conferenceElementsAdapter(elements)
-	const statsElements = getElements(
-		rawElements,
-		threshold,
-		null,
-		defaultProgressMin
-	)
-	const totalElements = getElements(rawElements, threshold, null, 0)
 
 	return (
 		<div>
@@ -81,8 +69,7 @@ export default () => {
 			</ConferenceTitle>
 			<Stats
 				{...{
-					totalElements,
-					elements: statsElements,
+					rawElements,
 					users,
 					username,
 					threshold,
