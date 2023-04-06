@@ -1,4 +1,5 @@
 import { DottedName } from 'Rules'
+import EstimationAvion from './amortissement-avion/KmEstimation'
 import KmEstimation from './estimate/KmEstimation'
 
 const estimationQuestions: Array<{
@@ -16,7 +17,19 @@ const estimationQuestions: Array<{
 		dottedName: 'transport . avion . court courrier . heures de vol',
 		isApplicable: (dottedName: DottedName) =>
 			dottedName.includes('transport . avion . court courrier . heures de vol'),
-		component: KmEstimation,
+		component: EstimationAvion,
+	},
+	{
+		dottedName: 'transport . avion . moyen courrier . heures de vol',
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . avion . moyen courrier . heures de vol'),
+		component: EstimationAvion,
+	},
+	{
+		dottedName: 'transport . avion . long courrier . heures de vol',
+		isApplicable: (dottedName: DottedName) =>
+			dottedName.includes('transport . avion . long courrier . heures de vol'),
+		component: EstimationAvion,
 	},
 ]
 
