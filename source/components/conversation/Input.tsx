@@ -45,6 +45,7 @@ export default function Input({
 				<div>
 					<InputSuggestions
 						suggestions={suggestions}
+						isDisabled={isDisabled}
 						onFirstClick={(value) => {
 							onChange(value)
 						}}
