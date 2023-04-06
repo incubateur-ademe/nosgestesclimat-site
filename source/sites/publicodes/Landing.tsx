@@ -3,7 +3,15 @@ import LogoADEME from 'Images/logoADEME.svg'
 import React, { Suspense, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import {
+	fluidLayoutMinWidth,
+	HeaderContent,
+	HeaderCTAs,
+	LandingHeaderWrapper,
+	LandingLayout,
+} from '../../components/LandingLayout'
 import NewsBanner from '../../components/NewsBanner'
+import PartnerBanner from '../../components/PartnerBanner'
 import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
@@ -16,8 +24,6 @@ import { useProfileData } from './Profil'
 const LazyIllustration = React.lazy(
 	() => import('Components/AnimatedIllustration')
 )
-
-const fluidLayoutMinWidth = '1200px'
 
 const Illustration = () => (
 	<Suspense fallback={null}>
@@ -32,72 +38,15 @@ export default () => {
 	const { isIframe } = useContext(IframeOptionsContext)
 
 	return (
-		<div
-			css={`
-				margin: 0 auto;
-				border-radius: 1rem;
-				> div > a {
-				}
-				display: flex;
-				flex-direction: column;
-				justify-content: space-evenly;
-				align-items: center;
-				min-height: 85vh;
-				footer {
-					margin-top: auto;
-				}
-			`}
-		>
+		<LandingLayout>
 			<Meta
 				title={t('Connaissez-vous votre empreinte climat ?')}
 				description={t('meta.publicodes.Landing.description')}
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
-			<div
-				css={`
-					display: flex;
-					flex-direction: row;
-					align-items: center;
-					justify-content: center;
-					flex-wrap: wrap;
-					margin-top: 4rem;
-					padding: 0.6rem;
-					h1 {
-						margin-top: 0.3rem;
-						font-size: 220%;
-						line-height: 1.1em;
-						font-weight: bold;
 
-						color: var(--darkColor);
-					}
-					p {
-						font-size: 110%;
-					}
-					@media (max-width: ${fluidLayoutMinWidth}) {
-						margin-top: 2rem;
-						text-align: center;
-						h1 {
-							font-size: 180%;
-						}
-					}
-					@media (max-height: 600px) {
-						/*target iPhone 5 SE and vertically short screens */
-						h1 {
-							font-size: 160%;
-						}
-						svg {
-							max-width: 12rem !important;
-						}
-					}
-				`}
-			>
-				<div
-					css={`
-						display: flex;
-						flex-direction: column;
-						max-width: 35rem;
-					`}
-				>
+			<LandingHeaderWrapper>
+				<HeaderContent>
 					<h1>
 						<Trans i18nKey={'publicodes.Landing.question'}>
 							Connaissez-vous votre empreinte sur le climat ?
@@ -111,20 +60,7 @@ export default () => {
 						</Trans>
 					</p>
 					<div>
-						<div
-							css={`
-								margin-top: 1rem;
-								> a {
-									margin: 0.6rem 1rem 0.6rem 0 !important;
-									display: inline-flex !important;
-									align-items: center !important;
-									> svg,
-									img {
-										margin-right: 0.4rem;
-									}
-								}
-							`}
-						>
+						<HeaderCTAs>
 							<Link
 								to="/simulateur/bilan"
 								className="ui__ plain button cta"
@@ -166,12 +102,22 @@ export default () => {
 								</span>
 							</Link>
 							<ProfileLink />
+						</HeaderCTAs>
+						<div
+							css={`
+								display: flex;
+								align-items: center;
+								justify-content: center;
+								flex-wrap: wrap;
+							`}
+						>
+							<PartnerBanner />
+							<NewsBanner />
 						</div>
-						<NewsBanner />
 					</div>
-				</div>
+				</HeaderContent>
 				{!mobile && <Illustration aira-hidden="true" />}
-			</div>
+			</LandingHeaderWrapper>
 
 			<div
 				css={`
@@ -222,7 +168,7 @@ export default () => {
 			</div>
 
 			{!isIframe && <LandingExplanations />}
-		</div>
+		</LandingLayout>
 	)
 }
 

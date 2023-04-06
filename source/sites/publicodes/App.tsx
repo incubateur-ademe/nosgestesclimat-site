@@ -11,7 +11,6 @@ import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
-import TranslationAlertBanner from '../../components/TranslationAlertBanner'
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
@@ -25,7 +24,6 @@ import {
 	changeLangTo,
 	getLangFromAbreviation,
 	getLangInfos,
-	Lang,
 } from './../../locales/translation'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import Landing from './Landing'
@@ -35,6 +33,7 @@ import Diffuser from './pages/Diffuser'
 import Profil from './Profil.tsx'
 import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
+import { isFluidLayout } from './utils'
 
 // All those lazy components, could be probably be handled another more consise way
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
@@ -56,6 +55,7 @@ const CGULazy = React.lazy(() => import('./pages/CGU'))
 const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
 const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
 const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
+const International = React.lazy(() => import('./pages/International'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
@@ -108,16 +108,6 @@ export default function Root({}) {
 		>
 			<Main />
 		</Provider>
-	)
-}
-
-export const isFluidLayout = (encodedPathname) => {
-	const pathname = decodeURIComponent(encodedPathname)
-
-	return (
-		pathname === '/' ||
-		pathname.startsWith('/nouveautés') ||
-		pathname.startsWith('/documentation')
 	)
 }
 
@@ -188,12 +178,16 @@ const Main = ({}) => {
 						overflow: auto;
 						@media (min-width: 800px) {
 							flex-grow: 1;
-							${!isHomePage ? 'padding-left: 0.6rem;' : ''}
+							${!fluidLayout ? 'padding-left: 0.6rem;' : ''}
 						}
 					`}
 				>
 					<GroupModeSessionVignette />
-					{!isHomePage && !isTuto && <LocalisationMessage />}
+					{!isHomePage &&
+						!isTuto &&
+						!location.pathname.startsWith('/international') && (
+							<LocalisationMessage />
+						)}
 
 					{fluidLayout && (
 						<div
@@ -209,10 +203,7 @@ const Main = ({}) => {
 							<Logo showText size={largeScreen ? 'large' : 'medium'} />
 						</div>
 					)}
-					{isHomePage && <LangSwitcher from="landing" />}
-					{Lang.Default !== currentLangState && (
-						<TranslationAlertBanner isBelow={isHomePage} />
-					)}
+					{fluidLayout && <LangSwitcher from="landing" />}
 					<Router />
 				</main>
 			</div>
@@ -220,8 +211,6 @@ const Main = ({}) => {
 		</>
 	)
 }
-
-export const Loading = AnimatedLoader
 
 const Router = ({}) => {
 	return (
@@ -231,7 +220,7 @@ const Router = ({}) => {
 				path="documentation/*"
 				element={
 					<WithEngine options={{ parsed: false, optimized: false }}>
-						<Suspense fallback={<Loading />}>
+						<Suspense fallback={<AnimatedLoader />}>
 							<DocumentationLazy />
 						</Suspense>
 					</WithEngine>
@@ -240,7 +229,7 @@ const Router = ({}) => {
 			<Route
 				path={encodeURIComponent('modèle')}
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<ModelLazy />
 					</Suspense>
 				}
@@ -248,7 +237,7 @@ const Router = ({}) => {
 			<Route
 				path="simulateur/*"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<WithEngine>
 							<SimulateurLazy />
 						</WithEngine>
@@ -258,7 +247,7 @@ const Router = ({}) => {
 			<Route
 				path="/stats"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<StatsLazy />
 					</Suspense>
 				}
@@ -266,7 +255,7 @@ const Router = ({}) => {
 			<Route
 				path="/fin/*"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<WithEngine>
 							<FinLazy />
 						</WithEngine>
@@ -276,7 +265,7 @@ const Router = ({}) => {
 			<Route
 				path="/personas"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<WithEngine>
 							<PersonasLazy />
 						</WithEngine>
@@ -286,7 +275,7 @@ const Router = ({}) => {
 			<Route
 				path="/actions/*"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<WithEngine>
 							<ActionsLazy />
 						</WithEngine>
@@ -304,7 +293,7 @@ const Router = ({}) => {
 			<Route
 				path="/contribuer/*"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<ContributionLazy />
 					</Suspense>
 				}
@@ -312,7 +301,7 @@ const Router = ({}) => {
 			<Route
 				path="/contribuer-traduction"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<TranslationContribution />
 					</Suspense>
 				}
@@ -351,7 +340,7 @@ const Router = ({}) => {
 			<Route
 				path={`${encodeURIComponent('nouveautés')}/*`}
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<News />
 					</Suspense>
 				}
@@ -359,7 +348,7 @@ const Router = ({}) => {
 			<Route
 				path="/guide"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<GuideGroupeLazy />
 					</Suspense>
 				}
@@ -367,7 +356,7 @@ const Router = ({}) => {
 			<Route
 				path="/guide/:encodedName"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<GuideGroupeLazy />
 					</Suspense>
 				}
@@ -375,7 +364,7 @@ const Router = ({}) => {
 			<Route
 				path={`${encodeURIComponent('conférence')}/:room`}
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<ConferenceLazy />
 					</Suspense>
 				}
@@ -383,7 +372,7 @@ const Router = ({}) => {
 			<Route
 				path="/groupe"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<GroupSwitchLazy />
 					</Suspense>
 				}
@@ -391,7 +380,7 @@ const Router = ({}) => {
 			<Route
 				path="/groupe/documentation-contexte"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<DocumentationContexteLazy />
 					</Suspense>
 				}
@@ -399,7 +388,7 @@ const Router = ({}) => {
 			<Route
 				path="/sondage/:room"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<SurveyLazy />
 					</Suspense>
 				}
@@ -407,7 +396,7 @@ const Router = ({}) => {
 			<Route
 				path="/accessibilite"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<AccessibilityLazy />
 					</Suspense>
 				}
@@ -415,7 +404,7 @@ const Router = ({}) => {
 			<Route
 				path="/tutoriel"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<TutorialLazy />
 					</Suspense>
 				}
@@ -423,8 +412,16 @@ const Router = ({}) => {
 			<Route
 				path={`/${encodeURIComponent('pétrole-et-gaz')}`}
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<PetrogazLandingLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={`/international`}
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<International />
 					</Suspense>
 				}
 			/>

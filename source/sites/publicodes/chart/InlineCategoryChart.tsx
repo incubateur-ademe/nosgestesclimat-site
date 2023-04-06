@@ -4,13 +4,13 @@ import React, { Suspense, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
+import AnimatedLoader from '../../../AnimatedLoader'
 import { WithEngine } from '../../../RulesProvider'
 import {
 	currentQuestionSelector,
 	situationSelector,
 } from '../../../selectors/simulationSelectors'
 import { useQuery } from '../../../utils'
-import { Loading } from '../App'
 import CategoryVisualisation from '../CategoryVisualisation'
 import DetailedBarChartIcon from './DetailedBarChartIcon'
 import Chart from './index.js'
@@ -79,7 +79,7 @@ export default ({ givenEngine }) => {
 					margin: 0 auto;
 				`}
 			>
-				<Suspense fallback={<Loading />}>
+				<Suspense fallback={<AnimatedLoader />}>
 					<WithEngine options={{ optimized: false, parsed: true }}>
 						<SpecializedVisualisation
 							{...{ currentQuestion, categoryColor, value }}

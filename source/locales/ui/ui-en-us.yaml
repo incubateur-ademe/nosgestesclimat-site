@@ -285,10 +285,10 @@ entries:
   components.localisation.Localisation.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: It is currently in <1>beta</1> version.
   components.localisation.LocalisationMessage.betaMsg.lock: Elle est actuellement en version <1>bêta</1>.
-  components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> version of the test.
-  components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test.
-  components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default.
-  components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut.
+  components.localisation.LocalisationMessage.version: You are using the <1>{{versionName}}</1> version of the test
+  components.localisation.LocalisationMessage.version.lock: Vous utilisez la version <1>{{versionName}}</1> du test
+  components.localisation.LocalisationMessage.warnMessage: Your region is not yet supported, the French model is proposed by default
+  components.localisation.LocalisationMessage.warnMessage.lock: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
   components.stats.StatsContent.dureeDesVisites: <0>Learn more about this site</0><1>This section is generated from visits over the last 60 days. Visits with a time spent on the site of less than 1 minute have been discarded. To avoid the iframe bias that can generate inactive visitors in the statistics, the average time on the site has been calculated from active visits (the user has clicked on "Take the test").</1>
   components.stats.StatsContent.dureeDesVisites.lock: <0>En savoir plus</0><1>Cette section est générée à partir des visites des 60 derniers jours. Les visites dont le temps passé sur le site est inférieur à 1 minute ont été écartées. Pour éviter le biais de l'iframe qui peut générer des visiteurs inactifs dans les statistiques, le temps moyen sur le site a été calculé à partir des visites actives (l'utilisateur a cliqué sur "Faire le test").</1>
   components.stats.StatsContent.integrationEtIframes: <0>Learn more about iframe integrations</0><1>Iframe integrations are detected via the 'iframe' parameter in the URL, only if the integrator has used the <2>dedicated script</2>. Thus, the visits via iframes of integrators who did not use this script are scattered in the general visits of Nos Gestes Climat. Pending more precise figures, this rate is therefore potentially underestimated compared to reality. <5>(Data valid for the last 30 days)</5></1>
@@ -630,3 +630,26 @@ entries:
   🧮 Visualisez à tout moment les résultats de votre groupe: 🧮 View your group's results at any time
   🧮 Voir le geste climat correspondant: 🧮 See the corresponding climate action
   🧮 Voir les réponses: 🧮 See answers
+  components.localisation.LocalisationMessage.warnMessage2: We could not detect your country of simulation, the French model is proposed by default
+  components.localisation.LocalisationMessage.warnMessage2.lock: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
+  international.comment.titre: How does it work?
+  international.comment.titre.lock: Comment ça marche ?
+  À venir !: Coming soon !
+  international.ensuite.titre: Can't find your country?
+  international.ensuite.titre.lock: Vous ne trouvez pas votre pays ?
+  Le calculateur d'empreinte climat international: The international climate footprint calculator
+  'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.': Wherever you live, calculate your personal carbon footprint with the specifics of your country.
+  international.pourquoi.titre: Adapted to your country
+  international.pourquoi.titre.lock: Adapté à votre pays
+  Explorez en détail les spécificités de chaque pays.: Explore the specifics of each country in detail.
+  international.pourquoi.2: As electricity becomes more important due to the energy transition, the carbon footprint of the electricity mix strongly influences the climate footprint calculation.
+  international.pourquoi.2.lock: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
+  international.ensuite.1: We have launched a first version of internationalization that includes a dozen countries. We are doing it step by step, to consolidate the particularities of each country. Is yours not included? <2>Contact us!</2>
+  international.ensuite.1.lock: Nous avons lancé une première version de l'internationalisation qui comprend une douzaine de pays. Nous le faisons pas à pas, pour consolider les particularités de chaque pays. Le votre n'y est pas ? <2>Écrivez-nous !</2>
+  international.pourquoi.1: Lifestyles are not the same depending on the country you live in. Some countries have a highly developed rail network, others are insular and therefore rely more on ferry and air travel.
+  international.pourquoi.1.lock: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
+  international.comment.1: In order to propose a model for each country, we necessarily need a base. Nos Gestes Climat was built on the case of France. From there, each country describes its differences from the base.
+  international.comment.1.lock: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
+  International: International
+  international.pourquoi.3: We use, when available, the electrical mix footprint provided by <2><0></0></2>.
+  international.pourquoi.3.lock: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.

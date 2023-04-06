@@ -6,7 +6,7 @@ import { Rule } from 'publicodes/dist/types/rule'
 import React, { Suspense, useCallback, useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
-import { Loading } from '../../sites/publicodes/App'
+import AnimatedLoader from '../../AnimatedLoader'
 import {
 	BinaryQuestionType,
 	InputCommonProps,
@@ -258,7 +258,7 @@ export const RadioLabel = (props: RadioLabelProps) => {
 										<h3>
 											<Trans>En savoir plus</Trans>
 										</h3>
-										<Suspense fallback={<Loading />}>
+										<Suspense fallback={<AnimatedLoader />}>
 											<ReferencesLazy refs={props.références} />
 										</Suspense>
 									</>

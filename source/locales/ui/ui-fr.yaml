@@ -269,8 +269,8 @@ entries:
   components.localisation.Localisation.warnMessage: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
   components.localisation.Localisation.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut.
   components.localisation.LocalisationMessage.betaMsg: Elle est actuellement en version <1>bêta</1>.
-  components.localisation.LocalisationMessage.version: Vous utilisez la version <1>{{versionName}}</1> du test.
-  components.localisation.LocalisationMessage.warnMessage: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut.
+  components.localisation.LocalisationMessage.version: Vous utilisez la version <1>{{versionName}}</1> du test
+  components.localisation.LocalisationMessage.warnMessage: Votre région n'est pas encore supportée, le modèle Français vous est proposé par défaut
   components.stats.StatsContent.dureeDesVisites: <0>En savoir plus</0><1>Cette section est générée à partir des visites des 60 derniers jours. Les visites dont le temps passé sur le site est inférieur à 1 minute ont été écartées. Pour éviter le biais de l'iframe qui peut générer des visiteurs inactifs dans les statistiques, le temps moyen sur le site a été calculé à partir des visites actives (l'utilisateur a cliqué sur "Faire le test").</1>
   components.stats.StatsContent.integrationEtIframes: <0>En savoir plus</0><1>Les intégrations en iframe sont détéctées via le paramètre 'iframe' dans l'URL, ceci seulement si l'intégrateur a utilisé le <2>script dédié</2>. Ainsi, les visites via les iframes d'intégrateurs qui n'ont pas utilisé ce script sont dispersées dans les visites générales de Nos Gestes Climat. Dans l'attente de chiffres plus précis, ce taux est donc potentiellement sous-estimé par rapport à la réalité. <5>(Données valables pour les 30 derniers jours)</5></1>
   components.stats.StatsContent.scoreUtilisateurs: "<0>En savoir plus</0><1>Bien sûr, nous ne collectons pas <2>les données utlisateurs</2>. Néanmoins, le score total ainsi que l'empreinte par catégorie est présente dans l'URL de fin de test. Dans cette section, nous agrégeons cees informations pour avoir une idée de l'empreinte carbone moyenne de nos utilisateurs et de distribution du score afin d'analyser ces résultats dans le contexte des évolutions du modèle.</1> <3>L'objectif ici n'est pas d'évaluer l'empreinte carbone des Français : à priori, les utilisateurs du tests de sont pas représentatifs des Français. De plus, ces données peuvent être biaisées par des utilisateurs qui reviendraient à plusieurs reprises sur la page de fin, en changeant ses réponses au test (ce qui crée de nouveaux url de fin).</3>"
@@ -483,3 +483,17 @@ entries:
   🧮 Visualisez à tout moment les résultats de votre groupe: 🧮 Visualisez à tout moment les résultats de votre groupe
   🧮 Voir le geste climat correspondant: 🧮 Voir le geste climat correspondant
   🧮 Voir les réponses: 🧮 Voir les réponses
+  components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
+  À venir !: À venir !
+  Explorez en détail les spécificités de chaque pays.: Explorez en détail les spécificités de chaque pays.
+  international.comment.1: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
+  international.comment.titre: Comment ça marche ?
+  international.ensuite.1: Nous avons lancé une première version de l'internationalisation qui comprend une douzaine de pays. Nous le faisons pas à pas, pour consolider les particularités de chaque pays. Le votre n'y est pas ? <2>Écrivez-nous !</2>
+  international.ensuite.titre: Vous ne trouvez pas votre pays ?
+  international.pourquoi.1: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
+  international.pourquoi.2: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
+  international.pourquoi.titre: Adapté à votre pays
+  Le calculateur d'empreinte climat international: Le calculateur d'empreinte climat international
+  'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.': Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.
+  International: International
+  international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.

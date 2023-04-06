@@ -1,30 +1,22 @@
 import useLocalisation from 'Components/localisation/useLocalisation'
 import {
-	getCountryNameInFrench,
+	getCountryNameInCurrentLang,
 	getFlag,
 	supportedRegion,
 } from 'Components/localisation/utils'
 import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { resetLocalisation, setLocalisation } from '../../actions/actions'
+import { useDispatch } from 'react-redux'
+import { resetLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
-import { capitalise0 } from '../../utils'
-import IllustratedMessage from '../ui/IllustratedMessage'
-import NewTabSvg from '../utils/NewTabSvg'
+import RegionSelector from './RegionSelector'
 
 export default () => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
-
-	const supportedRegions = useSelector((state) => state.supportedRegions)
 	const isSupported = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
-	const currentLang = useSelector((state) => state.currentLang)
-	const countryName =
-		currentLang == 'Fr'
-			? getCountryNameInFrench(localisation?.country?.code)
-			: localisation?.country?.name
+	const countryName = getCountryNameInCurrentLang(localisation)
 
 	return (
 		<div>
@@ -60,7 +52,7 @@ export default () => {
 							<button
 								className="ui__ dashed-button"
 								onClick={() => {
-									dispatch(setLocalisation(resetLocalisation))
+									dispatch(resetLocalisation())
 								}}
 							>
 								<Trans>Revenir chez moi 🔙</Trans>
@@ -100,47 +92,7 @@ export default () => {
 					</Trans>{' '}
 				</p>
 			)}
-			<details>
-				<summary>
-					<Trans>Choisir une autre région</Trans>
-				</summary>
-				<ul>
-					{Object.values(supportedRegions).map(({ nom, code }) => (
-						<li
-							key={code}
-							onClick={() => {
-								const newLocalisation = {
-									country: { name: nom, code },
-									userChosen: true,
-								}
-								dispatch(setLocalisation(newLocalisation))
-								dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })
-							}}
-						>
-							<button>{capitalise0(nom)}</button>
-						</li>
-					))}
-				</ul>
-				<IllustratedMessage
-					emoji="🌐"
-					message={
-						<div>
-							<p>
-								<Trans>
-									Envie de contribuer à une version pour votre région ?
-								</Trans>{' '}
-								<a
-									target="_blank"
-									href="https://github.com/datagir/nosgestesclimat/blob/master/INTERNATIONAL.md"
-								>
-									<Trans>Suivez le guide !</Trans>
-									<NewTabSvg />
-								</a>
-							</p>
-						</div>
-					}
-				/>
-			</details>
+			<RegionSelector />
 		</div>
 	)
 }
