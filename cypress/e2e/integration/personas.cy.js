@@ -1,6 +1,6 @@
 describe('check for about page status', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8080/personas')
+		cy.visit('http://localhost:8080/personas?lang=en')
 	})
 
 	it('has an average persona', () => {
