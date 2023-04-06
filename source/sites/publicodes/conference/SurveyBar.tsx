@@ -16,7 +16,7 @@ import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
 import { computeHumanMean } from './GroupStats'
 import { surveyElementsAdapter } from './Survey'
 import useDatabase, { answersURL } from './useDatabase'
-import { getAllTests, getCompletedTests } from './utils'
+import { getAllParticipants, getCompletedTests } from './utils'
 
 export default () => {
 	const translation = useTranslation(),
@@ -120,7 +120,7 @@ export default () => {
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
 	const elements = surveyElementsAdapter(survey.answers)
-	const rawUserNumber = getAllTests(elements, existContext).length
+	const rawUserNumber = getAllParticipants(elements, existContext).length
 	const completedTests = getCompletedTests(elements, existContext)
 	const completedTestsNumber = completedTests.length
 

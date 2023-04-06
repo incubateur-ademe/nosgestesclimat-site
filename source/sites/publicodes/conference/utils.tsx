@@ -84,8 +84,8 @@ export const getElements = (
 	return elements
 }
 
-export const getAllTests = (rawElements, existContext) => {
-	return getElements(rawElements, defaultThreshold, existContext, 0)
+export const getAllParticipants = (rawElements) => {
+	return getElements(rawElements, defaultThreshold, null, 0)
 }
 
 export const getCompletedTests = (rawElements, existContext) => {

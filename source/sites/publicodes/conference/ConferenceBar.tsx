@@ -12,7 +12,7 @@ import { conferenceElementsAdapter } from './Conference'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
 import { computeHumanMean } from './GroupStats'
 import useYjs from './useYjs'
-import { getAllTests, getCompletedTests } from './utils'
+import { getAllParticipants, getCompletedTests } from './utils'
 
 export default () => {
 	const translation = useTranslation(),
@@ -48,7 +48,7 @@ export default () => {
 
 	const statElements = conferenceElementsAdapter(elements)
 
-	const rawUserNumber = getAllTests(statElements, null).length
+	const rawUserNumber = getAllParticipants(statElements, null).length
 
 	const completedTests = getCompletedTests(statElements, null)
 	const completedTestsNumber = completedTests.length
