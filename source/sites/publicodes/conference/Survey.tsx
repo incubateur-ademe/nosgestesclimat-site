@@ -14,7 +14,7 @@ import DataWarning from './DataWarning'
 import Instructions from './Instructions'
 import NoSurveyCreatedWarning from './NoSurveyCreatedWarning'
 import NoTestMessage from './NoTestMessage'
-import Stats from './Stats'
+import Stats from './SurveyStats'
 import { answersURL, surveysURL } from './useDatabase'
 import { defaultProgressMin, defaultThreshold } from './utils'
 

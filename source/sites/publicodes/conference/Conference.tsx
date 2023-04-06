@@ -9,7 +9,7 @@ import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import Instructions from './Instructions'
-import Stats from './Stats'
+import Stats from './SurveyStats'
 import { UserBlock } from './UserList'
 import useYjs from './useYjs'
 import {
