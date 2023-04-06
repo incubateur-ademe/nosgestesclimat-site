@@ -13,6 +13,8 @@ export default ({ noButton }) => {
 	return (
 		<ul
 			css={`
+				max-width: 760px;
+				margin: 0 auto;
 				padding: 0;
 				margin-top: 1rem;
 				display: grid;
