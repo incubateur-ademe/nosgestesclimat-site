@@ -1,4 +1,5 @@
 const defaultTotal = '8,3'
+const url = 'http://localhost:8080'
 
 const categories = [
 	{ name: 'Transport', questions: 18 },
@@ -10,32 +11,32 @@ const categories = [
 
 describe('check for test completion', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8080')
+		cy.visit(url)
 	})
 
-	it.skip('can finish the test with the default values', () => {
-		cy.contains('Take the test').click()
-		cy.contains('Skip the tutorial').click()
-		cy.contains('I understand').click()
-		cy.contains('Start').click()
+	it('can finish the test with the default values', () => {
+		cy.get('[data-cypress-id="do-the-test-link"]').click()
+		cy.get('[data-cypress-id="skip-tuto-button"]').click()
+		cy.get('[data-cypress-id="understood-button"]').click()
+		cy.get('[data-cypress-id="start-button"]').click()
 		walkthroughTest({})
-		cy.contains('See my result').click()
+		cy.get('[data-cypress-id="see-results-link"]').click()
 		cy.contains(defaultTotal).should('be.visible')
 	})
 
-	it.skip('can finish the test with personas values', () => {
+	it('can finish the test with personas values', () => {
 		cy.request('http://127.0.0.1:8081/personas-fr.json').then((response) => {
 			const personas = response.body
 			const personasName = Object.keys(personas)
 			personasName.map((name) => {
 				cy.session(name, () => {
-					cy.visit('http://localhost:8080')
-					cy.contains('Take the test').click()
-					cy.contains('Skip the tutorial').click()
-					cy.contains('I understand').click()
-					cy.contains('Start').click()
+					cy.visit(url)
+					cy.get('[data-cypress-id="do-the-test-link"]').click()
+					cy.get('[data-cypress-id="skip-tuto-button"]').click()
+					cy.get('[data-cypress-id="understood-button"]').click()
+					cy.get('[data-cypress-id="start-button"]').click()
 					walkthroughTest(personas[name].data)
-					cy.contains('See my result').click()
+					cy.get('[data-cypress-id="see-results-link"]').click()
 				})
 			})
 		})

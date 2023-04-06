@@ -4,9 +4,9 @@ describe('check for group page status', () => {
 	})
 
 	it('has a start button', () => {
-		cy.contains(`Let's go!`).should('be.visible')
+		cy.get('[data-cypress-id="group-start-button"]').should('be.visible')
 	})
 	it('has a title', () => {
-		cy.contains('Group mode').should('be.visible')
+		cy.get('[data-cypress-id="group-title"]').should('be.visible')
 	})
 })

@@ -4,6 +4,6 @@ describe('check for about page status', () => {
 	})
 
 	it('has a title', () => {
-		cy.contains(`What's new`).should('be.visible')
+		cy.get('[data-cypress-id="news-title"]').should('be.visible')
 	})
 })

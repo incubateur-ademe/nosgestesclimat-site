@@ -40,6 +40,7 @@ export default ({ children, last, skip }) => {
 					<button
 						className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
 						onClick={() => skip('testIntro')}
+						data-cypress-id="skip-tuto-button"
 					>
 						{!last ? t('Passer le tutoriel') : t("C'est parti !")}
 					</button>

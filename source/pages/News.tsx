@@ -88,6 +88,7 @@ export default function News() {
 				css={`
 					font-size: 120%;
 				`}
+				data-cypress-id="news-title"
 			>
 				<strong>
 					<Trans>Les nouveautés ✨</Trans>

@@ -3,7 +3,7 @@ describe('check for about page status', () => {
 		cy.visit('http://localhost:8080/personas?lang=en')
 	})
 
-	it('has an average persona', () => {
-		cy.contains('Average').should('be.visible')
+	it('has a title', () => {
+		cy.get('[data-cypress-id="personas-title"]').should('be.visible')
 	})
 })

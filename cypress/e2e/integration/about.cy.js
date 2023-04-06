@@ -4,6 +4,6 @@ describe('check for about page status', () => {
 	})
 
 	it('has a title', () => {
-		cy.contains('About us').should('be.visible')
+		cy.get('[data-cypress-id="about-us-title"]').should('be.visible')
 	})
 })
