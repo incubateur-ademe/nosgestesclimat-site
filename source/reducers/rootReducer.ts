@@ -271,7 +271,6 @@ function tracking(
 function storedTrajets(state = {}, { type, vehicule, trajets, allTrajets }) {
 	switch (type) {
 		case 'SET_ALL_TRAJETS':
-			console.log(allTrajets)
 			return allTrajets
 		case 'SET_TRAJETS':
 			return { ...state, [vehicule]: trajets }
