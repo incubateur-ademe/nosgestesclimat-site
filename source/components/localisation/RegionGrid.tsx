@@ -13,14 +13,21 @@ export default ({ noButton }) => {
 	return (
 		<ul
 			css={`
+				max-width: 760px;
+				margin: 0 auto;
 				padding: 0;
 				margin-top: 1rem;
-				display: flex;
-				flex-wrap: wrap;
-				justify-content: space-evenly;
+				display: grid;
+				grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+				gap: 1rem;
 				li {
-					margin: 0.4rem 0.6rem;
+					margin: 0.4rem 0;
+					display: flex;
+					justify-content: center;
 					list-style-type: none;
+				}
+				@media (max-width: 400px) {
+					grid-template-columns: repeat(auto-fit, minmax(6rem, 1fr));
 				}
 			`}
 		>
@@ -60,9 +67,12 @@ const listItemStyle = `
 	font-size: 0.75rem;
 	color: var(--darkColor);
 	text-align: left;
+	line-height: 1;
+	
 	img {
 		margin-right: 0.6rem;
 	}
+
 	@media (max-width: 400px) {
 		width: 6rem !important;
 		flex-direction: column;
@@ -70,6 +80,10 @@ const listItemStyle = `
 		text-align: center;
 		justify-content: center;
 		height: 4rem;
+
+		img {
+			margin-bottom: 0.5rem;
+		}
 	}
 `
 const ListItemComponent = ({ code, noButton, label }) =>
