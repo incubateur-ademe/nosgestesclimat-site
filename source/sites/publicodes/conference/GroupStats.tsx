@@ -11,7 +11,7 @@ import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
-import { getAllTests, getCompletedTests } from './utils'
+import { getAllParticipants, getCompletedTests } from './utils'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -37,29 +37,34 @@ export default ({
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	const statsElements = getCompletedTests(rawElements, null)
-	const totalStatsElements = getAllTests(rawElements, null)
-
 	const [contextFilter, setContextFilter] = useState({})
 
-	const elements = filterElements(statsElements, contextFilter)
-	const totalElements = filterElements(totalStatsElements, contextFilter)
+	const completedTests = getCompletedTests(rawElements, contextFilter) // have to be getElement because treshold have to be a param
+	const participants = getAllParticipants(rawElements)
+
+	const filteredCompletedTests = filterElements(completedTests, contextFilter)
+	const filteredRawTests = filterElements(participants, contextFilter)
+
+	console.log(filteredRawTests)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	const values = elements.map((el) => el.total)
+	const values = filteredCompletedTests.map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean({ t, i18n }, values)
 
-	const progressList = totalElements.map((el) => el.progress),
+	const progressList = filteredRawTests.map((el) => el.progress), // have to check if context is completed
 		meanProgress = computeMean(progressList)
 
 	if (isNaN(mean)) return null
 
 	const categories = reduceCategories(
-			elements.map(({ byCategory, username }) => [username, byCategory])
+			filteredCompletedTests.map(({ byCategory, username }) => [
+				username,
+				byCategory,
+			])
 		),
 		maxCategory = Object.values(categories).reduce(
 			(memo, next) => Math.max(memo, ...next.map((el) => el.value)),
@@ -75,18 +80,20 @@ export default ({
 		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 		})
-	const spotlightElement = elements.find((el) => el.username === spotlight),
+	const spotlightElement = filteredCompletedTests.find(
+			(el) => el.username === spotlight
+		),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
-	const plural = elements.length > 1 ? 's' : ''
+	const plural = filteredCompletedTests.length > 1 ? 's' : ''
 	return (
 		<div>
 			<div css=" text-align: center">
 				<p role="heading" aria-level="2">
 					<Trans>Avancement du groupe</Trans>{' '}
 					<span role="status">
-						({elements.length} test{plural} complété{plural} sur{' '}
-						{totalElements.length})
+						({filteredCompletedTests.length} test{plural} complété{plural} sur{' '}
+						{filteredRawTests.length})
 					</span>
 				</p>
 				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
@@ -119,7 +126,7 @@ export default ({
 						</div>
 					</div>
 				</div>
-				{elements.length > 0 && (
+				{filteredCompletedTests.length > 0 && (
 					<div>
 						<ul
 							title={t('Empreinte totale')}
@@ -135,7 +142,7 @@ export default ({
 								}
 							`}
 						>
-							{elements.map(({ total: value, username }) => (
+							{filteredCompletedTests.map(({ total: value, username }) => (
 								<li
 									key={username}
 									css={`
