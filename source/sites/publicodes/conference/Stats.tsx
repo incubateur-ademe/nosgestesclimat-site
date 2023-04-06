@@ -46,7 +46,7 @@ export default ({
 
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	const values = totalElements.map((el) => el.total)
+	const values = elements.map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean({ t, i18n }, values)
 
@@ -56,7 +56,7 @@ export default ({
 	if (isNaN(mean)) return null
 
 	const categories = reduceCategories(
-			totalElements.map(({ byCategory, username }) => [username, byCategory])
+			elements.map(({ byCategory, username }) => [username, byCategory])
 		),
 		maxCategory = Object.values(categories).reduce(
 			(memo, next) => Math.max(memo, ...next.map((el) => el.value)),
@@ -72,9 +72,7 @@ export default ({
 		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 		})
-	const spotlightElement = totalElements.find(
-			(el) => el.username === spotlight
-		),
+	const spotlightElement = elements.find((el) => el.username === spotlight),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
 	const plural = elements.length > 1 ? 's' : ''
@@ -118,7 +116,7 @@ export default ({
 						</div>
 					</div>
 				</div>
-				{totalElements.length > 0 && (
+				{elements.length > 0 && (
 					<div>
 						<ul
 							title={t('Empreinte totale')}
@@ -134,7 +132,7 @@ export default ({
 								}
 							`}
 						>
-							{totalElements.map(({ total: value, username }) => (
+							{elements.map(({ total: value, username }) => (
 								<li
 									key={username}
 									css={`
