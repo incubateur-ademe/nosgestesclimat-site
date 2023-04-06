@@ -10,7 +10,7 @@ import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { conferenceElementsAdapter } from './Conference'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
-import { computeHumanMean } from './SurveyStats'
+import { computeHumanMean } from './GroupStats'
 import useYjs from './useYjs'
 import { getAllTests, getCompletedTests } from './utils'
 
