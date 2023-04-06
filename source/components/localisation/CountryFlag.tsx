@@ -1,6 +1,6 @@
 import { getFlag } from './utils'
 
-export default ({ code, src }: { code?: string; src?: string }) => {
+export default ({ code }: { code?: string }) => {
 	const flagSrc = getFlag(code)
 
 	return (
