@@ -6,12 +6,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
+import { FormOpenStateContext } from '../../../../contexts/FormOpenStateContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
 } from '../../../../locales/translation'
 import { TrackerContext } from '../../../utils/withTracker'
-import { FormOpenStateContext } from '../contexts/FormOpenStateContext'
 import { freqList } from './dataHelp'
 import EditableRow from './EditableRow'
 import KmForm from './KmForm'

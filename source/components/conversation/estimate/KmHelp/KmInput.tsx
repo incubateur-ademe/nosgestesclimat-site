@@ -1,8 +1,8 @@
 import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
+import { FormOpenStateContext } from '../../../../contexts/FormOpenStateContext'
 import Input from '../../Input'
-import { FormOpenStateContext } from '../contexts/FormOpenStateContext'
 
 const helperId = 'km-helper-id'
 
