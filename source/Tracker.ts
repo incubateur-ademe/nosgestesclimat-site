@@ -3,6 +3,7 @@ import { debounce, inIframe } from './utils'
 declare global {
 	interface Window {
 		_paq: any
+		plausible: any
 	}
 }
 
@@ -38,6 +39,18 @@ export default class Tracker {
 			// iFrame -- to avoid errors in the number of visitors in our stats.
 			if (!(iOSSafari && inIframe)) {
 				window._paq.push(args)
+
+				// pour plausible, je n'envoie que les events
+				// les pages vues sont gérées de base
+				const [typeTracking, eventName, subEvent] = args
+				if (typeTracking === 'trackEvent') {
+					console.log(eventName, subEvent)
+					var subEventName = `Details : ${eventName}`
+					window.plausible(eventName, {
+						props: { [subEventName]: subEvent },
+						callback: () => console.log('event enregistré'),
+					})
+				}
 			}
 		}
 	) {
