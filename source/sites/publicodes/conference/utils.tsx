@@ -70,29 +70,34 @@ export const getElements = (
 	rawElements,
 	threshold,
 	existContext,
+	contextRules,
 	progressMin
 ) => {
 	const elementsWithinThreshold = rawElements.filter(
 		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
 	)
-	const elements = existContext
-		? elementsWithinThreshold.filter(
-				(el) => Object.keys(el.context).length !== 0
-		  )
-		: elementsWithinThreshold
+	const elements =
+		existContext && contextRules
+			? elementsWithinThreshold.filter(
+					(el) =>
+						Object.keys(el.context).length ===
+						Object.values(contextRules).filter((rule) => rule?.question).length
+			  )
+			: elementsWithinThreshold
 
 	return elements
 }
 
 export const getAllParticipants = (rawElements) => {
-	return getElements(rawElements, defaultThreshold, null, 0)
+	return getElements(rawElements, defaultThreshold, null, null, 0)
 }
 
-export const getCompletedTests = (rawElements, existContext) => {
+export const getCompletedTests = (rawElements, existContext, contextRules) => {
 	return getElements(
 		rawElements,
 		defaultThreshold,
 		existContext,
+		contextRules,
 		defaultProgressMin
 	)
 }

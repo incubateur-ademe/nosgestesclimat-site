@@ -120,8 +120,8 @@ export default () => {
 	const existContext = survey ? !(survey['contextFile'] == null) : false
 
 	const elements = surveyElementsAdapter(survey.answers)
-	const rawUserNumber = getAllParticipants(elements, existContext).length
-	const completedTests = getCompletedTests(elements, existContext)
+	const rawUserNumber = getAllParticipants(elements).length
+	const completedTests = getCompletedTests(elements, existContext, 0)
 	const completedTestsNumber = completedTests.length
 
 	const simulationArray = completedTests && Object.values(completedTests),

@@ -240,6 +240,7 @@ const Results = ({ room, existContext, contextRules }) => {
 			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
+			existContext={existContext}
 			contextRules={contextRules}
 		/>
 	)

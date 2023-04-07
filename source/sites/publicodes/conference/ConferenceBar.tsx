@@ -48,9 +48,9 @@ export default () => {
 
 	const statElements = conferenceElementsAdapter(elements)
 
-	const rawUserNumber = getAllParticipants(statElements, null).length
+	const rawUserNumber = getAllParticipants(statElements).length
 
-	const completedTests = getCompletedTests(statElements, null)
+	const completedTests = getCompletedTests(statElements, null, null)
 	const completedTestsNumber = completedTests.length
 
 	const simulationArray = completedTests && Object.values(completedTests),

@@ -11,7 +11,7 @@ import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
-import { getAllParticipants, getCompletedTests } from './utils'
+import { defaultProgressMin, getElements } from './utils'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -32,20 +32,23 @@ export default ({
 	username: currentUser,
 	threshold,
 	setThreshold,
+	existContext,
 	contextRules,
 }) => {
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+	const completedTests = getElements(
+		rawElements,
+		threshold,
+		existContext,
+		contextRules,
+		defaultProgressMin
+	)
+	const participants = getElements(rawElements, threshold, null, null, 0)
 
 	const [contextFilter, setContextFilter] = useState({})
-
-	const completedTests = getCompletedTests(rawElements, contextFilter) // have to be getElement because treshold have to be a param
-	const participants = getAllParticipants(rawElements)
-
 	const filteredCompletedTests = filterElements(completedTests, contextFilter)
 	const filteredRawTests = filterElements(participants, contextFilter)
-
-	console.log(filteredRawTests)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 
@@ -55,7 +58,16 @@ export default ({
 	const mean = computeMean(values),
 		humanMean = computeHumanMean({ t, i18n }, values)
 
-	const progressList = filteredRawTests.map((el) => el.progress), // have to check if context is completed
+	const progressList = filteredRawTests.map((el) => {
+			const contextCompleted =
+				existContext &&
+				contextRules &&
+				Object.keys(el.context).length ===
+					Object.values(contextRules).filter((rule) => rule?.question).length
+					? 1
+					: 0
+			return el.progress * contextCompleted
+		}),
 		meanProgress = computeMean(progressList)
 
 	if (isNaN(mean)) return null
@@ -98,15 +110,17 @@ export default ({
 				</p>
 				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
 			</div>
-			<WithEngine>
-				<FilterBar
-					threshold={threshold}
-					setThreshold={setThreshold}
-					contextFilter={contextFilter}
-					setContextFilter={setContextFilter}
-					contextRules={contextRules}
-				/>
-			</WithEngine>
+			{completedTests.length > 0 && (
+				<WithEngine>
+					<FilterBar
+						threshold={threshold}
+						setThreshold={setThreshold}
+						contextFilter={contextFilter}
+						setContextFilter={setContextFilter}
+						contextRules={contextRules}
+					/>
+				</WithEngine>
+			)}
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
@@ -266,7 +280,7 @@ const filterElements = (rawElements, contextFilter) =>
 			([key, value]) =>
 				!value ||
 				value === '' ||
-				el.context[key].toLowerCase().includes(value.toLowerCase())
+				el.context[key]?.toLowerCase().includes(value.toLowerCase())
 		)
 		return matches.every((bool) => bool === true)
 	})
