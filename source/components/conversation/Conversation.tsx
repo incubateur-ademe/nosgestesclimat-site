@@ -436,7 +436,10 @@ export default function Conversation({
 				<div className="ui__ answer-group">
 					{!enquête &&
 						previousAnswers.length > 0 &&
-						currentQuestionIndex !== 0 && (
+						// We check that the question is not the first question
+						currentQuestionIndex !== 0 &&
+						// We check that previousQuestion found is in the rules (as the model evolves, the question found can be out of the new rules)
+						rules[previousQuestion] && (
 							<>
 								<button
 									onClick={goToPrevious}

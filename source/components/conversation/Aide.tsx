@@ -5,12 +5,12 @@ import React, { Suspense } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootState } from 'Reducers/rootReducer'
-import { Loading } from '../../sites/publicodes/App'
+import AnimatedLoader from '../../AnimatedLoader'
+import './Aide.css'
 
 const ReferencesLazy = React.lazy(
 	() => import('../../sites/publicodes/DocumentationReferences')
 )
-import './Aide.css'
 
 export default function Aide() {
 	const explained = useSelector((state: RootState) => state.explainedVariable)
@@ -44,7 +44,7 @@ export default function Aide() {
 						<h3>
 							<Trans>En savoir plus</Trans>
 						</h3>
-						<Suspense fallback={<Loading />}>
+						<Suspense fallback={<AnimatedLoader />}>
 							<ReferencesLazy refs={refs} />
 						</Suspense>
 					</>

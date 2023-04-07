@@ -485,3 +485,16 @@ entries:
   🧮 Voir le geste climat correspondant: 🧮 Voir le geste climat correspondant
   🧮 Voir les réponses: 🧮 Voir les réponses
   components.localisation.LocalisationMessage.warnMessage2: Nous n'avons pas pu détecter votre pays de simulation, le modèle Français vous est proposé par défaut
+  À venir !: À venir !
+  Explorez en détail les spécificités de chaque pays.: Explorez en détail les spécificités de chaque pays.
+  international.comment.1: Pour proposer un modèle pour chaque pays, il nous faut forcément une base. Nos Gestes Climat s'est construit sur le cas de la France. À partir de là, chaque pays décrit ses différences par rapport à la base.
+  international.comment.titre: Comment ça marche ?
+  international.ensuite.1: Nous avons lancé une première version de l'internationalisation qui comprend une douzaine de pays. Nous le faisons pas à pas, pour consolider les particularités de chaque pays. Le votre n'y est pas ? <2>Écrivez-nous !</2>
+  international.ensuite.titre: Vous ne trouvez pas votre pays ?
+  international.pourquoi.1: Les modes de vies ne sont pas les mêmes en fonction du pays dans lequel on vit. Certains pays ont un réseau ferré très développé, d'autres sont insulaires et donc reposent davantage sur le ferry et l'avion.
+  international.pourquoi.2: Au fur et à mesure que l'électricité prend une place très importante grâce à la transition énergétique, l'empreinte carbone du mix électrique influence fortement le calcul d'empreinte climat.
+  international.pourquoi.titre: Adapté à votre pays
+  Le calculateur d'empreinte climat international: Le calculateur d'empreinte climat international
+  'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.': Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.
+  International: International
+  international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
