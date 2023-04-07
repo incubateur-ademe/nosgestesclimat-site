@@ -235,7 +235,7 @@ const Router = ({}) => {
 				path="questions"
 				element={
 					<WithEngine options={{ parsed: false, optimized: false }}>
-						<Suspense fallback={<Loading />}>
+						<Suspense fallback={<AnimatedLoader />}>
 							<QuestionList />
 						</Suspense>
 					</WithEngine>
@@ -411,7 +411,7 @@ const Router = ({}) => {
 			<Route
 				path="/enquête/:userID?"
 				element={
-					<Suspense fallback={<Loading />}>
+					<Suspense fallback={<AnimatedLoader />}>
 						<EnquêteLazy />
 					</Suspense>
 				}
