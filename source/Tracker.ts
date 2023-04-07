@@ -22,7 +22,7 @@ const iOSSafari =
 	!!/WebKit/i.exec(ua) &&
 	!/CriOS/i.exec(ua)
 
-const groupExclusionRegexp = /\/(sondage|conférence)\//
+const groupExclusionRegexp = /\/(sondage|conférence|enquête)\//
 
 export default class Tracker {
 	push: PushType
