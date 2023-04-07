@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 export default () => {
 	const dispatch = useDispatch()
@@ -7,7 +7,8 @@ export default () => {
 
 	const searchPR = urlParams.get('PR')
 
-	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
+	//	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
+	const pullRequestNumber = 1809
 	const setPullRequestNumber = (number) =>
 		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })
 
