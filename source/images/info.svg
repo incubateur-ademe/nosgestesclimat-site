@@ -4,7 +4,7 @@
    viewBox="0 0 72 72"
    version="1.1"
    sodipodi:docname="info.svg"
-   inkscape:version="1.1.1 (1:1.1+202109281954+c3084ef5ed)"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -20,26 +20,28 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      showgrid="false"
-     inkscape:zoom="8.43825"
-     inkscape:cx="47.521702"
-     inkscape:cy="34.959855"
+     inkscape:zoom="3.6585706"
+     inkscape:cx="16.536513"
+     inkscape:cy="18.449828"
      inkscape:window-width="1920"
-     inkscape:window-height="1200"
+     inkscape:window-height="1175"
      inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="1"
-     inkscape:current-layer="line" />
+     inkscape:current-layer="line"
+     inkscape:showpageshadow="2"
+     inkscape:deskcolor="#d1d1d1" />
   <g
      id="line">
     <g
        id="color"
-       transform="matrix(1.9664,0,0,1.9664,-53.714467,-7.805469)" />
+       transform="matrix(2.1825243,0,0,2.1825243,-64.977958,-8.1095984)" />
     <circle
-       style="fill:#fcea2b;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:4;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       style="fill:#5a5bbc;fill-opacity:1;fill-rule:evenodd;stroke:none;stroke-width:4.43963;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
        id="path2372"
-       cy="32.658627"
-       cx="37.212349"
-       r="27.573122" />
+       cy="36.801853"
+       cx="35.942497"
+       r="30.603645" />
     <polyline
        fill="none"
        stroke="#000000"
@@ -48,23 +50,25 @@
        stroke-width="2.5"
        points="46.892 26.339 46.892 20.594 43.989 20.594"
        id="polyline17"
-       transform="matrix(1.9664,0,0,1.9664,-53.714467,-7.805469)" />
+       transform="matrix(2.1825243,0,0,2.1825243,-64.977958,-8.1095984)"
+       style="stroke:#ffffff;stroke-opacity:1" />
     <line
-       x1="43.920441"
-       x2="32.655327"
-       y1="43.98735"
-       y2="43.98735"
+       x1="43.387867"
+       x2="30.884621"
+       y1="49.375702"
+       y2="49.375702"
        fill="none"
        stroke="#000000"
        stroke-linecap="round"
        stroke-linejoin="round"
-       stroke-width="4.916"
-       id="line19" />
+       stroke-width="5.45631"
+       id="line19"
+       style="stroke:#ffffff;stroke-opacity:1" />
     <circle
-       cx="37.897552"
-       cy="22.874306"
-       r="3.7544475"
+       cx="36.703011"
+       cy="25.942146"
+       r="4.1670938"
        id="circle21"
-       style="stroke-width:1.9664" />
+       style="stroke-width:2.18252;fill:#ffffff;fill-opacity:1" />
   </g>
 </svg>
