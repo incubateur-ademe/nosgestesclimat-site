@@ -140,16 +140,16 @@ export const GroupModeMenuEntryContent = ({
 					</span>
 				)}
 				<CountSection>
-					{rawUserNumber != null && (
-						<span title={t('Nombre total de participants')}>
-							<EmojiStyle>👥</EmojiStyle>
-							<CountDisc color="#55acee">{rawUserNumber}</CountDisc>
-						</span>
-					)}
 					{completedTestsNumber != null && (
 						<span title={t('Nombre de tests terminés')}>
 							<EmojiStyle>✅</EmojiStyle>
 							<CountDisc color="#78b159">{completedTestsNumber}</CountDisc>
+						</span>
+					)}
+					{rawUserNumber != null && (
+						<span title={t('Nombre total de participants')}>
+							<EmojiStyle>👥</EmojiStyle>
+							<CountDisc color="#55acee">{rawUserNumber}</CountDisc>
 						</span>
 					)}
 				</CountSection>
