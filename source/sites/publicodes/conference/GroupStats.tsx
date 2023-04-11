@@ -64,10 +64,12 @@ export default ({
 			const contextCompleted =
 				existContext &&
 				contextRules &&
-				Object.keys(el.context).length ===
+				!(
+					Object.keys(el.context).length ===
 					Object.values(contextRules).filter((rule) => rule?.question).length
-					? 1
-					: 0
+				)
+					? 0
+					: 1
 			return el.progress * contextCompleted
 		}),
 		meanProgress = computeMean(progressList)
