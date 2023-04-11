@@ -1,24 +1,18 @@
-import { RefObject, useRef, useState } from 'react'
+import { RefObject, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
 
 interface Props {
-	amortissementValues: object[]
-	setAmortissementValues: (value: object[]) => void
+	amortissementAvion: object
+	setAmortissementAvion: (value: object) => void
 }
 
 export default function KmForm({
-	amortissementValues,
-	setAmortissementValues,
+	amortissementAvion,
+	setAmortissementAvion,
 }: Props) {
 	const { t } = useTranslation()
-
-	const [addFormData, setAddFormData] = useState(
-		{} as {
-			[key: string]: string | number | undefined
-		}
-	)
 
 	const formRef = useRef<
 		RefObject<HTMLFormElement> & {
@@ -30,13 +24,6 @@ export default function KmForm({
 	const handleAddFormChange = (event) => {
 		event.preventDefault()
 
-		const fieldName = event.target.getAttribute('name')
-		const fieldValue = event.target.value
-		const newFormData = { ...addFormData }
-		newFormData[fieldName] = fieldValue
-
-		setAddFormData(newFormData)
-
 		// we have to check the form validity if we want 'required' attribute to be taken into account with preventDefault function
 		const formToCheck = formRef.current
 
@@ -46,17 +33,23 @@ export default function KmForm({
 			formToCheck.reportValidity()
 			return null
 		}
-		const inputs = formToCheck?.querySelectorAll('input')
-
-		setAmortissementValues(
-			inputs.map((input) => ({ [input.name]: input.value }))
-		)
+		const inputs = Array.from(formToCheck?.querySelectorAll('input'))
+		const amortissementAvionValue = {}
+		inputs.forEach((input: HTMLInputElement) => {
+			amortissementAvionValue[input.name] = input.value
+		})
+		setAmortissementAvion(amortissementAvionValue)
 	}
 
 	const currentYearRef = useRef(new Date().getFullYear())
 
 	// Get an array of the last 3 years
 	const years = Array.from({ length: 3 }, (_, i) => currentYearRef.current - i)
+
+	const total = Object.entries(amortissementAvion).reduce(
+		(sum, [key, value]) => sum + (parseInt(value || '0', 10) || 0),
+		0
+	)
 
 	return (
 		<form
@@ -100,9 +93,10 @@ export default function KmForm({
 							htmlFor={String(year)}
 							css={`
 								display: inline-block;
+								cursor: pointer;
 							`}
 						>
-							{t('Année {{year}}', { year })}
+							{t('Année {{year}} :', { year })}
 						</label>
 						<div
 							css={`
@@ -121,15 +115,44 @@ export default function KmForm({
 								inputMode="decimal"
 								allowNegative={false}
 								name={String(year)}
+								id={String(year)}
 								placeholder="0"
 								onChange={handleAddFormChange}
 								required
 							/>
-							<InputSuffix id="unitéDistance">km (A/R)</InputSuffix>
+							<InputSuffix id="unitéDistance">h (A/R)</InputSuffix>
 						</div>
 					</div>
 				))}
 			</fieldset>
+
+			<div
+				css={`
+					text-align: left;
+					margin-top: 1.5rem;
+					background: var(--lighterColor);
+					padding: 0.75rem 0.5rem;
+					border-radius: 0.5rem;
+				`}
+			>
+				<p
+					css={`
+						font-weight: bold;
+					`}
+				>
+					<span>Total :</span> <span>{total}</span>{' '}
+					<InputSuffix id="unitéDistance">h</InputSuffix>
+				</p>
+				<p
+					css={`
+						font-weight: bold;
+					`}
+				>
+					<span>Total par an :</span> <span>{total ? total / 3 : 0}</span>{' '}
+					<InputSuffix id="unitéDistance">h</InputSuffix>
+				</p>
+			</div>
+
 			{/*
 			<div
 				css={`

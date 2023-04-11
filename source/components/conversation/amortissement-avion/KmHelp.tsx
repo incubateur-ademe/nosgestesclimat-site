@@ -2,11 +2,7 @@ import animate from 'Components/ui/animate'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { setStoredTrajets, updateSituation } from '../../../actions/actions'
-import {
-	getLangFromAbreviation,
-	getLangInfos,
-} from '../../../locales/translation'
+import { updateSituation } from '../../../actions/actions'
 import emoji from '../../emoji'
 import { TrackerContext } from '../../utils/withTracker'
 import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
@@ -36,70 +32,35 @@ export default function KmHelp({
 	isFormOpen,
 	setIsFormOpen,
 }: Props) {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	const tracker = useContext(TrackerContext)
 
 	const dispatch = useDispatch()
-	const storedTrajets = useSelector((state) => state.storedTrajets)
 
-	const [isOpen, setIsOpen] = useState(false)
+	const storedAmortissementAvion = useSelector(
+		(state) => state.storedAmortissementAvion
+	)
 
-	const [trajets, setTrajets] = useState(storedTrajets[dottedName] || [])
-
-	const [editFormData, setEditFormData] = useState({
-		motif: '',
-		label: '',
-		distance: 0,
-		xfois: '',
-		periode: '',
-		personnes: 0,
-	})
-
-	const [editTrajetId, setEditTrajetId] = useState(null)
+	const [amortissementAvion, setAmortissementAvion] = useState(
+		storedAmortissementAvion || {}
+	)
 
 	const firstRender = useRef(true)
 
-	useEffect(
-		() => {
-			if (firstRender.current) {
-				firstRender.current = false
-				return
-			}
-			// setFinalValue(Math.round(+sum))
-			dispatch(setStoredTrajets(dottedName, trajets))
+	useEffect(() => {
+		if (firstRender.current) {
+			firstRender.current = false
+			return
+		}
 
-			dispatch(updateSituation('transport . voiture . aide km', 'oui'))
-		},
-		[
-			/*sum*/
-		]
-	)
+		// Set default value
+		// dispatch(setAmortissementAvion(storedAmortissementAvion))
+
+		dispatch(updateSituation('transport . avion . aide km', 'oui'))
+	}, [])
 
 	const formRef = useRef()
-
-	const handleEditFormSubmit = (event) => {
-		event.preventDefault()
-
-		const formToCheck = formRef.current
-		/*const isValidForm = formToCheck.checkValidity()
-		if (!isValidForm) {
-			// formToCheck.reportValidity()
-		} else {
-			const editedTrajet = { ...editFormData, id: editTrajetId }
-
-			const newTrajets = [...trajets]
-
-			const index = trajets.findIndex((trajet) => trajet.id === editTrajetId)
-
-			newTrajets[index] = editedTrajet
-
-			setTrajets(newTrajets)
-			setEditTrajetId(null)
-		}*/
-	}
-
-	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
 	return (
 		<div
@@ -137,7 +98,6 @@ export default function KmHelp({
 						  }
 						: () => {
 								setIsFormOpen(true)
-								setFinalValue('toto')
 								tracker.push([
 									'trackEvent',
 									'Aide saisie km',
@@ -155,10 +115,19 @@ export default function KmHelp({
 						`}
 					>
 						<KmForm
-							trajets={trajets}
-							setTrajets={setTrajets}
-							openmojiURL={openmojiURL}
-							tracker={tracker}
+							amortissementAvion={amortissementAvion}
+							setAmortissementAvion={(amortissementObject) => {
+								setAmortissementAvion(amortissementObject)
+								setFinalValue(
+									String(
+										Object.entries(amortissementAvion).reduce(
+											(sum, [key, value]) =>
+												sum + (parseInt(value || '0', 10) || 0),
+											0
+										) / 3
+									)
+								)
+							}}
 						/>
 					</div>
 				</animate.fromTop>

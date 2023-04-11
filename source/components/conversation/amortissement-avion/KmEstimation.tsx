@@ -30,6 +30,7 @@ export default function KmEstimation({
 				unit={evaluation.unit}
 				value={value}
 				isFormOpen={isFormOpen}
+				isDisabled={isFormOpen}
 			/>
 			<div>
 				<KmHelp

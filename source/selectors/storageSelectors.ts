@@ -8,6 +8,10 @@ export type SavedSimulation = {
 	actionChoices: Object
 	persona?: string
 	storedTrajets: Object
+	storedAmortissementAvion: { [key: string]: number }
+	// Current language used for the UI translation -- not the model.
+	currentLang: Lang
+	localisation: Object | undefined
 	conference: { room: string } | null
 	survey: { room: string } | null
 	url?: string
