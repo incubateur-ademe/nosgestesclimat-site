@@ -17,7 +17,7 @@ const KmInput = (props) => {
 				aria-describedby={helperId}
 			/>
 			{isFormOpen && (
-				<StyledSpan aria-hidden={!isFormOpen} id={helperId}>
+				<StyledSpan className="sr-only" aria-hidden={!isFormOpen} id={helperId}>
 					{t(
 						'Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.'
 					)}
