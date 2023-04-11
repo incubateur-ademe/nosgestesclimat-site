@@ -15,7 +15,7 @@
 		"model:watch": "yarn --cwd ./nosgestesclimat/ compile-watch",
 		"model:serve": "http-server ./nosgestesclimat/public/ -p 8081 --cors -c-1",
 		"serve": "webpack serve --mode development --config webpack.dev.js",
-		"start": "yarn run serve & yarn run model:watch & yarn run model:serve",
+		"start": "yarn run model:watch & yarn run model:serve & yarn run serve",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
 		"analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",

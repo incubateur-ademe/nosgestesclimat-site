@@ -7,12 +7,14 @@ type InputSuggestionsProps = {
 	suggestions?: Record<string, ASTNode>
 	onFirstClick: (val: ASTNode) => void
 	onSecondClick?: (val: ASTNode) => void
+	isDisabled?: boolean
 }
 
 export default function InputSuggestions({
 	suggestions = {},
 	onSecondClick = (x) => x,
 	onFirstClick,
+	isDisabled,
 }: InputSuggestionsProps) {
 	const [suggestion, setSuggestion] = useState<ASTNode>()
 	const { t } = useTranslation()
@@ -46,18 +48,31 @@ export default function InputSuggestions({
 						className="ui__ suggestion plain button"
 						type="button"
 						key={text}
+						aria-disabled={isDisabled}
 						css={`
 							margin: 0.2rem 0.4rem !important;
 							:first-child {
 								margin-left: 0rem !important;
 							}
+							&[aria-disabled='true'] {
+								opacity: 0.7;
+								cursor: not-allowed;
+							}
 						`}
 						onClick={() => {
+							if (isDisabled) {
+								return
+							}
+
 							onFirstClick(value)
 							if (suggestion !== value) setSuggestion(value)
 							else onSecondClick && onSecondClick(value)
 						}}
-						title={t('Insérer cette suggestion')}
+						title={
+							isDisabled
+								? t('Désactivé lors du remplissage du détail des trajets.')
+								: t('Insérer cette suggestion')
+						}
 					>
 						{emoji(text)}
 					</button>
