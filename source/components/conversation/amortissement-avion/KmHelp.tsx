@@ -1,15 +1,23 @@
 import animate from 'Components/ui/animate'
 import { useContext, useEffect, useRef, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { setStoredTrajets, updateSituation } from '../../../actions/actions'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
 } from '../../../locales/translation'
+import emoji from '../../emoji'
 import { TrackerContext } from '../../utils/withTracker'
+import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
 import KmForm from './KmForm'
-import KmHelpButton from './KmHelpButton'
+
+interface Props {
+	setFinalValue: (value: string) => void
+	dottedName: string
+	isFormOpen: boolean
+	setIsFormOpen: (value: boolean) => void
+}
 
 const openmojis = {
 	calendrier: '1F4C5',
@@ -22,7 +30,12 @@ const openmojis = {
 }
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
-export default function KmHelp({ setFinalValue, dottedName }) {
+export default function KmHelp({
+	setFinalValue,
+	dottedName,
+	isFormOpen,
+	setIsFormOpen,
+}: Props) {
 	const { t, i18n } = useTranslation()
 
 	const tracker = useContext(TrackerContext)
@@ -88,60 +101,68 @@ export default function KmHelp({ setFinalValue, dottedName }) {
 
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	return !isOpen ? (
+	return (
 		<div
 			css={`
 				text-align: right;
 			`}
 		>
 			<KmHelpButton
-				text={t('Je souhaite répondre sur plusieurs années')}
-				openmojiURL={openmojiURL}
-				onHandleClick={() => {
-					setIsOpen(true)
-					// setFinalValue(Math.round(+sum))
-					tracker.push([
-						'trackEvent',
-						'Aide saisie km',
-						'Ouvre aide à la saisie km voiture',
-					])
-				}}
+				text={
+					isFormOpen ? (
+						<>{t('Fermer')}</>
+					) : (
+						<>
+							{' '}
+							<span
+								css={`
+									margin-right: 0.25rem;
+								`}
+							>
+								{emoji('📅', 'Calendar')}
+							</span>
+							{t('Je souhaite répondre sur les 3 dernières années')}
+						</>
+					)
+				}
+				onHandleClick={
+					isFormOpen
+						? () => {
+								setIsFormOpen(false)
+								tracker.push([
+									'trackEvent',
+									'Aide saisie km',
+									'Ferme aide à la saisie km voiture',
+								])
+						  }
+						: () => {
+								setIsFormOpen(true)
+								setFinalValue('toto')
+								tracker.push([
+									'trackEvent',
+									'Aide saisie km',
+									'Ouvre aide à la saisie km voiture',
+								])
+						  }
+				}
 			/>
-		</div>
-	) : (
-		<animate.fromTop>
-			<div
-				className="ui__ card content"
-				css={`
-					margin-bottom: 1rem;
-				`}
-			>
-				<div
-					css={`
-						text-align: right;
-					`}
-				>
-					<button
-						className="ui__ simple small button"
-						onClick={() => {
-							setIsOpen(false)
-							tracker.push([
-								'trackEvent',
-								'Aide saisie km',
-								'Ferme aide à la saisie km voiture',
-							])
-						}}
+			{isFormOpen && (
+				<animate.fromTop>
+					<div
+						className="ui__ card content"
+						css={`
+							margin-bottom: 1rem;
+						`}
 					>
-						<Trans>Fermer</Trans>
-					</button>
-				</div>
-				<KmForm
-					trajets={trajets}
-					setTrajets={setTrajets}
-					openmojiURL={openmojiURL}
-					tracker={tracker}
-				/>
-			</div>
-		</animate.fromTop>
+						<KmForm
+							trajets={trajets}
+							setTrajets={setTrajets}
+							openmojiURL={openmojiURL}
+							tracker={tracker}
+						/>
+					</div>
+				</animate.fromTop>
+			)}
+		</div>
 	)
 }
