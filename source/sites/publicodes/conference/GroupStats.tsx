@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import Progress from '../../../components/ui/Progress'
 import {
 	getLangFromAbreviation,
@@ -33,10 +34,11 @@ export default ({
 	threshold,
 	setThreshold,
 	existContext,
-	contextRules,
 }) => {
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
+	const contextRules =
+		existContext && useSelector((state) => state.survey?.contextRules)
 	const completedTests = getElements(
 		rawElements,
 		threshold,
@@ -115,9 +117,7 @@ export default ({
 					<FilterBar
 						threshold={threshold}
 						setThreshold={setThreshold}
-						contextFilter={contextFilter}
 						setContextFilter={setContextFilter}
-						contextRules={contextRules}
 					/>
 				</WithEngine>
 			)}

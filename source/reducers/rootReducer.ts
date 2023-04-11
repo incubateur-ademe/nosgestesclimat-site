@@ -191,7 +191,10 @@ function supportedRegions(state = {}, { type, supportedRegions }) {
 	return type === 'SET_SUPPORTED_REGIONS' ? supportedRegions : state
 }
 
-function survey(state = null, { type, room, answers, contextFile }) {
+function survey(
+	state = null,
+	{ type, room, answers, contextFile, contextRules }
+) {
 	if (type === 'UNSET_SURVEY') return {}
 	if (type === 'SET_SURVEY') {
 		if (state?.room === room) return state
@@ -199,6 +202,7 @@ function survey(state = null, { type, room, answers, contextFile }) {
 			room,
 			answers: {},
 			contextFile: state?.contextFile,
+			contextRules: state?.contextRules,
 		}
 	}
 	if (type === 'ADD_SURVEY_CONTEXT') {
@@ -206,6 +210,15 @@ function survey(state = null, { type, room, answers, contextFile }) {
 			room: state?.room,
 			answers: state?.answers,
 			contextFile,
+			contextRules: state?.contextRules,
+		}
+	}
+	if (type === 'ADD_CONTEXT_RULES') {
+		return {
+			room: state?.room,
+			answers: state?.answers,
+			contextFile: state?.contextFile,
+			contextRules,
 		}
 	}
 	if (type === 'ADD_SURVEY_ANSWERS') {
@@ -216,6 +229,7 @@ function survey(state = null, { type, room, answers, contextFile }) {
 				state.answers
 			),
 			contextFile: state?.contextFile,
+			contextRules: state?.contextRules,
 		}
 	} else return state
 }

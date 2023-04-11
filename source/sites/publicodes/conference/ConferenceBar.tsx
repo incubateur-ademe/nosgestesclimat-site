@@ -50,7 +50,7 @@ export default () => {
 
 	const rawUserNumber = getAllParticipants(statElements).length
 
-	const completedTests = getCompletedTests(statElements, null, null)
+	const completedTests = getCompletedTests(statElements, false, null)
 	const completedTestsNumber = completedTests.length
 
 	const simulationArray = completedTests && Object.values(completedTests),

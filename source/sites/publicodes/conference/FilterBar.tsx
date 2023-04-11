@@ -1,20 +1,16 @@
-import { useState } from 'react'
+import { buildVariantTree } from 'Components/conversation/RuleInput'
 import emoji from 'Components/emoji'
-import Engine from 'publicodes'
 import { splitName } from 'Components/publicodesUtils'
+import Engine from 'publicodes'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
-import { buildVariantTree } from 'Components/conversation/RuleInput'
-import { useTranslation } from 'react-i18next'
 
-export default ({
-	threshold,
-	setThreshold,
-	setContextFilter,
-	contextRules,
-}) => {
+export default ({ threshold, setThreshold, setContextFilter }) => {
 	const [visible, setVisible] = useState(false)
 	const survey = useSelector((state) => state.survey)
+	const contextRules = survey.contextRules
 	const { t } = useTranslation()
 
 	if (!visible)

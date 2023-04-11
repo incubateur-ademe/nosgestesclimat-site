@@ -24,7 +24,6 @@ export default () => {
 		'surveyContext',
 		{}
 	)
-	const [contextRules, setContextRules] = useState()
 	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(null)
 	const dispatch = useDispatch()
 
@@ -100,18 +99,12 @@ export default () => {
 						<ContextConversation
 							surveyContext={surveyContext}
 							setSurveyContext={setSurveyContext}
-							contextRules={contextRules}
-							setContextRules={setContextRules}
 						/>
 					)}
 					{!hasDataState ? (
 						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
 					) : (
-						<Results
-							room={survey.room}
-							existContext={existContext}
-							contextRules={contextRules}
-						/>
+						<Results room={survey.room} existContext={existContext} />
 					)}
 				</div>
 			)}
@@ -226,7 +219,7 @@ export const surveyElementsAdapter = (items) =>
 		  }))
 		: []
 
-const Results = ({ room, existContext, contextRules }) => {
+const Results = ({ room, existContext }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
@@ -241,7 +234,6 @@ const Results = ({ room, existContext, contextRules }) => {
 			threshold={threshold}
 			setThreshold={setThreshold}
 			existContext={existContext}
-			contextRules={contextRules}
 		/>
 	)
 }

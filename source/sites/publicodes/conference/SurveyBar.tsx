@@ -117,11 +117,12 @@ export default () => {
 		return () => socket.off('received', onReceived)
 	}, [])
 
-	const existContext = survey ? !(survey['contextFile'] == null) : false
+	const existContext = survey ? !(survey.contextFile == null) : false
+	const contextRules = existContext && survey.contextRules
 
 	const elements = surveyElementsAdapter(survey.answers)
 	const rawUserNumber = getAllParticipants(elements).length
-	const completedTests = getCompletedTests(elements, existContext, 0)
+	const completedTests = getCompletedTests(elements, existContext, contextRules)
 	const completedTestsNumber = completedTests.length
 
 	const simulationArray = completedTests && Object.values(completedTests),
