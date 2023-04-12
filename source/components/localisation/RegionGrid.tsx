@@ -2,12 +2,15 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import { capitalise0 } from '../../utils'
 import CountryFlag from './CountryFlag'
+import useLocalisation from './useLocalisation'
 import useOrderedSupportedRegions from './useOrderedSupportedRegions'
+import { getCurrentRegionCode } from './utils'
 
 export default ({ noButton }) => {
 	const dispatch = useDispatch()
 	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
-
+	const localisation = useLocalisation()
+	const currentRegionCode = getCurrentRegionCode(localisation)
 	const orderedSupportedRegions = useOrderedSupportedRegions()
 
 	return (
@@ -31,28 +34,32 @@ export default ({ noButton }) => {
 				}
 			`}
 		>
-			{Object.entries(orderedSupportedRegions).map(([code, params]) => (
-				<li
-					key={code}
-					onClick={() => {
-						if (noButton) return
-						const newLocalisation = {
-							country: { name: params[currentLang]?.nom, code },
-							userChosen: true,
-						}
-						dispatch(setLocalisation(newLocalisation))
-						dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })
-					}}
-				>
-					<ListItemComponent
-						{...{
-							code,
-							noButton,
-							label: capitalise0(params[currentLang]?.nom),
+			{Object.entries(orderedSupportedRegions).map(([code, params]) => {
+				console.log('code', code, 'isCurrent', code === currentRegionCode)
+				return (
+					<li
+						key={code}
+						onClick={() => {
+							if (noButton) return
+							const newLocalisation = {
+								country: { name: params[currentLang]?.nom, code },
+								userChosen: true,
+							}
+							dispatch(setLocalisation(newLocalisation))
+							dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })
 						}}
-					/>
-				</li>
-			))}
+					>
+						<ListItemComponent
+							{...{
+								code,
+								noButton,
+								label: capitalise0(params[currentLang]?.nom),
+								isSelected: code === currentRegionCode,
+							}}
+						/>
+					</li>
+				)
+			})}
 		</ul>
 	)
 }
@@ -86,13 +93,16 @@ const listItemStyle = `
 		}
 	}
 `
-const ListItemComponent = ({ code, noButton, label }) =>
+const ListItemComponent = ({ code, noButton, label, isSelected }) =>
 	noButton ? (
 		<span className="ui__ card" css={listItemStyle}>
 			<ListItemComponentContent code={code} label={label} />
 		</span>
 	) : (
-		<button className="ui__ card" css={listItemStyle}>
+		<button
+			className={`ui__ card ${isSelected ? 'light' : ''}`}
+			css={listItemStyle}
+		>
 			<ListItemComponentContent code={code} label={label} />
 		</button>
 	)

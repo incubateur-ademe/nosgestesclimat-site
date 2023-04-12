@@ -63,12 +63,12 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 
 	return (
 		<form
+			aria-labelledby="trip-title"
 			id="kmForm"
-			css={`
-				padding: 0rem 0.5rem 0rem 0.5rem;
-			`}
 			ref={formRef}
+			key={trajets?.length || undefined}
 		>
+			<h4 id="trip-title">{t('Ajouter un trajet')}</h4>
 			<fieldset>
 				<div
 					css={`
@@ -77,12 +77,14 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 						flex-wrap: wrap;
 						gap: 0.5rem;
 						margin-top: 0.5rem;
-						padding: 0rem 0.5rem 0rem 0.5rem;
 						input,
 						select {
 							height: 2rem;
 							border: none !important;
 							outline: none !important;
+						}
+						select {
+							transform: translateY(1px);
 						}
 					`}
 				>

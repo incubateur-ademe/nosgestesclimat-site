@@ -18,7 +18,7 @@ import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
 
 import AnimatedLoader from './AnimatedLoader'
 import useLocalisation from './components/localisation/useLocalisation'
-import { defaultModel, supportedRegion } from './components/localisation/utils'
+import { getCurrentRegionCode } from './components/localisation/utils'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -35,9 +35,7 @@ const EngineWrapper = ({ children }) => {
 	const branchData = useBranchData()
 	const localisation = useLocalisation()
 
-	const currentRegionCode = supportedRegion(localisation?.country?.code)
-		? localisation?.country?.code
-		: defaultModel
+	const currentRegionCode = getCurrentRegionCode(localisation)
 	const optimizedOption = engineState?.options?.optimized
 	const parsedOption = engineState?.options?.parsed
 
@@ -51,24 +49,29 @@ const EngineWrapper = ({ children }) => {
 			if (!branchData.loaded) return
 			if (!engineRequestedOnce) return
 
-			const url =
-				currLangAbrv &&
-				currentRegionCode &&
-				branchData.deployURL +
-					// TODO: find a better way to manage 'en'
-					`/co2-model.${currentRegionCode}-lang.${
-						i18n.language === 'en' ? 'en-us' : currLangAbrv
-					}${optimizedOption ? '-opti' : ''}.json`
-			console.log('fetching:', url)
-			fetch(url, { mode: 'cors' })
-				.then((response) => response.json())
-				.then((json) => {
-					if (active) dispatch({ type: 'SET_RULES', rules: json })
-				})
-				.catch((err) => {
-					console.log('url:', url)
-					console.log('err:', err)
-				})
+			const fileName =
+				// TODO: find a better way to manage 'en'
+				`/co2-model.${currentRegionCode}-lang.${
+					i18n.language === 'en' ? 'en-us' : currLangAbrv
+				}${optimizedOption ? '-opti' : ''}.json`
+
+			if (process.env.NODE_ENV === 'development') {
+				const rules = require('../nosgestesclimat/public' + fileName)
+				if (active) dispatch({ type: 'SET_RULES', rules })
+			} else {
+				const url =
+					currLangAbrv && currentRegionCode && branchData.deployURL + fileName
+				console.log('fetching:', url)
+				fetch(url, { mode: 'cors' })
+					.then((response) => response.json())
+					.then((json) => {
+						if (active) dispatch({ type: 'SET_RULES', rules: json })
+					})
+					.catch((err) => {
+						console.log('url:', url)
+						console.log('err:', err)
+					})
+			}
 		}
 		fetchAndSetRules()
 		return () => {

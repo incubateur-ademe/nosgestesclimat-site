@@ -1,6 +1,6 @@
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { freqList } from './dataHelp'
+import { freqList } from './KmHelp/dataHelp'
 
 export default function AnswerTrajetsTable({ trajets }) {
 	const { t } = useTranslation()

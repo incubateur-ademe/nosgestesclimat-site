@@ -150,18 +150,24 @@ export const PersonaGrid = ({
 
 	useEffect(() => {
 		if (!branchData.loaded) return
+		const fileName = `/personas-${lang}.json`
 
-		fetch(branchData.deployURL + `/personas-${lang}.json`, {
-			mode: 'cors',
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				setData(json)
+		if (process.env.NODE_ENV === 'development') {
+			const json = require('../../../nosgestesclimat/public' + fileName)
+			setData(json)
+		} else {
+			fetch(branchData.deployURL + fileName, {
+				mode: 'cors',
 			})
-			.catch((err) => {
-				console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
-				console.log('err:', err)
-			})
+				.then((response) => response.json())
+				.then((json) => {
+					setData(json)
+				})
+				.catch((err) => {
+					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
+					console.log('err:', err)
+				})
+		}
 	}, [branchData.deployURL, branchData.loaded, lang])
 
 	if (!data) return null
