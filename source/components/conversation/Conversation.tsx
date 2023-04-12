@@ -99,7 +99,7 @@ export default function Conversation({
 	const tracking = useSelector((state) => state.tracking)
 
 	useEffect(() => {
-		if (!tracking.firstQuestionEventFired && previousAnswers.length === 1) {
+		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
 			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
 			dispatch(setTrackingVariable('firstQuestionEventFired', true))
 		}
