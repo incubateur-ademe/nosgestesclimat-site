@@ -44,11 +44,9 @@ export default class Tracker {
 				// les pages vues sont gérées de base
 				const [typeTracking, eventName, subEvent] = args
 				if (typeTracking === 'trackEvent') {
-					console.log(eventName, subEvent)
 					var subEventName = `Details : ${eventName}`
 					window.plausible(eventName, {
 						props: { [subEventName]: subEvent },
-						callback: () => console.log('event enregistré'),
 					})
 				}
 			}
