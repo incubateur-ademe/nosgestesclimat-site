@@ -1,6 +1,6 @@
 # Enquête
 
-Bienvenue dans l'enquête Nos Gestes Climat.
+Bienvenue !
 
 En arrivant sur le site par ce lien, vous allez faire le test et le parcours Nos Gestes Climat dans un mode adapté pour une enquête représentative de l'empreinte carbone de la population française.
 
