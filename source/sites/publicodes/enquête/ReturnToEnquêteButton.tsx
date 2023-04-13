@@ -18,7 +18,7 @@ export default () => {
 				className={'ui__ button ' + (!testCompleted ? 'disabled' : '')}
 				onClick={() => dispatch({ type: 'QUIT_ENQUÊTE' })}
 			>
-				✅ Revenir à l'enquête
+				✅ Continuer l'enquête
 			</button>
 		</a>
 	)
