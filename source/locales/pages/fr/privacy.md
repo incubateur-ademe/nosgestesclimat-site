@@ -20,6 +20,9 @@ css="border: 2px dashed var(--color); max-height: 200px; width: 600px;"
 src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
 ></iframe>
 
+Dans les jours à venir, nous allons tester un nouvel outil de suivi, dans l'objectif d'améliorer le service. 
+Celui-ci est respectueux de votre vie privé, les informations collectées sont les mêmes qu'à l'heure actuelle et sont totalement anonymes.
+
 Les modes de simulation en groupe, conférence et sondage, font eux appel à nos serveurs pour aggréger les multiples simulations et les communiquer entre les participants.
 
 ## Traitement des données à caractère personnel
