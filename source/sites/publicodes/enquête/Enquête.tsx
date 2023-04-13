@@ -3,7 +3,11 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
 import { v4 as uuidv4 } from 'uuid'
-import { resetIntroTutorial, skipTutorial } from '../../../actions/actions'
+import {
+	resetIntroTutorial,
+	resetSimulation,
+	skipTutorial,
+} from '../../../actions/actions'
 import { Markdown } from '../../../components/utils/markdown'
 import { rehydrateDetails } from '../fin'
 import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
@@ -22,6 +26,7 @@ export default () => {
 			// TODO reset simulation, use the next PR to do so without erasing the old one
 			const userID = paramUserID || uuidv4()
 			dispatch({ type: 'SET_ENQUÊTE', userID, date: new Date().toString() })
+			dispatch(resetSimulation())
 			dispatch(skipTutorial('scoreAnimation', true))
 			dispatch(skipTutorial('scoreExplanation', true))
 			dispatch(resetIntroTutorial())
