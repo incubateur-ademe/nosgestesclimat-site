@@ -37,23 +37,11 @@ export default () => {
 			<Markdown>{content}</Markdown>
 			<ReturnToEnquêteButton />
 
-			<div
-				css={`
-					margin-top: 2rem;
-					display: flex;
-					align-items: center;
-				`}
-			>
-				Votre identifiant d'enquête est le{' '}
-				<textarea
-					readOnly
-					css={'margin-left: .6rem;width: 20rem; height: 1.5rem'}
-					value={enquête && enquête.userID}
-				/>
+			<div>
+				<Link to="/simulateur/bilan">
+					<button className="ui__ button cta">Commencer le parcours</button>
+				</Link>
 			</div>
-			<Link to="/simulateur/bilan">
-				<button className="ui__ button cta">Commencer le parcours</button>
-			</Link>
 			{searchParamsObject['details'] && (
 				<>
 					<h2 css="background: yellow">Phase de dev du parcours enquête</h2>
