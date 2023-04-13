@@ -10,4 +10,4 @@ En arrivant sur le site par ce lien, vous allez faire le test et le parcours Nos
 
 3️⃣ Pendant votre parcours, vos réponses et les résultats du calcul sont automatiquement sauvegardées de façon anonyme par nosgestesclimat.fr, et communiquées à l'institut responsable de l'enquête. Elles ne seront pas utilisées pour autre chose que cette enquête.
 
-4️⃣ À la fin du parcours, quand vous avez fini le test et la découverte des actions proposées, n'oubliez pas de revenir à l'enquête.
+4️⃣ À la fin du parcours, quand vous avez fini le test et la découverte des actions proposées, le bouton présenté ci-dessous vous permettra de revenir sur la plateforme Opinion Way pour terminer le sondage et récupérer vos points.
