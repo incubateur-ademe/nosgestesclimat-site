@@ -24,7 +24,7 @@ describe('check for test completion', () => {
 		cy.contains(defaultTotal).should('be.visible')
 	})
 
-	/*it.skip('can finish the test with personas values', () => {
+	it('can finish the test with personas values', () => {
 		cy.request('https://data.nosgestesclimat.fr/personas-fr.json').then((response) => {
 			const personas = response.body
 			const personasName = Object.keys(personas)
@@ -40,7 +40,7 @@ describe('check for test completion', () => {
 				})
 			})
 		})
-	})*/
+	})
 })
 
 function walkthroughTest(persona) {
