@@ -24,8 +24,8 @@ describe('check for test completion', () => {
 		cy.contains(defaultTotal).should('be.visible')
 	})
 
-	it.skip('can finish the test with personas values', () => {
-		cy.request('http://127.0.0.1:8081/personas-fr.json').then((response) => {
+	/*it.skip('can finish the test with personas values', () => {
+		cy.request('https://data.nosgestesclimat.fr/personas-fr.json').then((response) => {
 			const personas = response.body
 			const personasName = Object.keys(personas)
 			personasName.map((name) => {
@@ -40,7 +40,7 @@ describe('check for test completion', () => {
 				})
 			})
 		})
-	})
+	})*/
 })
 
 function walkthroughTest(persona) {
