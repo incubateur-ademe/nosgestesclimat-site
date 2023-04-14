@@ -2,6 +2,7 @@ import animate from 'Components/ui/animate'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { AnyAction } from 'redux'
 import { updateSituation } from '../../../actions/actions'
 import emoji from '../../emoji'
 import { TrackerContext } from '../../utils/withTracker'
@@ -9,10 +10,26 @@ import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
 import KmForm from './KmForm'
 
 interface Props {
-	setFinalValue: (value: string) => void
+	setFinalValue: (value: string) => AnyAction
 	dottedName: string
 	isFormOpen: boolean
 	setIsFormOpen: (value: boolean) => void
+}
+
+export type AmortissementObject = {
+	[year: string]: string
+}
+
+const formatAmortissementValue = (amortissementAvion: AmortissementObject) => {
+	const valueSummed =
+		Object.entries(amortissementAvion).reduce(
+			(sum, [key, value]) => sum + (parseInt(value || '0', 10) || 0),
+			0
+		) / 3
+	if (valueSummed) {
+		return valueSummed.toFixed(1)
+	}
+	return ''
 }
 
 const openmojis = {
@@ -38,8 +55,8 @@ export default function KmHelp({
 
 	const dispatch = useDispatch()
 
-	const storedAmortissementAvion = useSelector(
-		(state) => state.storedAmortissementAvion
+	const storedAmortissementAvion: AmortissementObject = useSelector(
+		(state: any) => state.storedAmortissementAvion
 	)
 
 	const [amortissementAvion, setAmortissementAvion] = useState(
@@ -55,12 +72,10 @@ export default function KmHelp({
 		}
 
 		// Set default value
-		// dispatch(setAmortissementAvion(storedAmortissementAvion))
+		dispatch(setFinalValue(formatAmortissementValue(storedAmortissementAvion)))
 
 		dispatch(updateSituation('transport . avion . aide km', 'oui'))
 	}, [])
-
-	const formRef = useRef()
 
 	return (
 		<div
@@ -118,15 +133,7 @@ export default function KmHelp({
 							amortissementAvion={amortissementAvion}
 							setAmortissementAvion={(amortissementObject) => {
 								setAmortissementAvion(amortissementObject)
-								setFinalValue(
-									String(
-										Object.entries(amortissementAvion).reduce(
-											(sum, [key, value]) =>
-												sum + (parseInt(value || '0', 10) || 0),
-											0
-										) / 3
-									)
-								)
+								setFinalValue(formatAmortissementValue(amortissementObject))
 							}}
 						/>
 					</div>

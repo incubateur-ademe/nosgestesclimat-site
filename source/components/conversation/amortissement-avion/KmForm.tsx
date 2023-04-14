@@ -2,10 +2,11 @@ import { RefObject, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
+import { AmortissementObject } from './KmHelp'
 
 interface Props {
 	amortissementAvion: object
-	setAmortissementAvion: (value: object) => void
+	setAmortissementAvion: (amortissementObject: AmortissementObject) => void
 }
 
 export default function KmForm({
@@ -14,18 +15,21 @@ export default function KmForm({
 }: Props) {
 	const { t } = useTranslation()
 
-	const formRef = useRef<
-		RefObject<HTMLFormElement> & {
-			checkValidity: () => boolean
-			reportValidity: () => boolean
-		}
-	>(null)
+	const formRef = useRef<HTMLFormElement>(null)
 
 	const handleAddFormChange = (event) => {
 		event.preventDefault()
-
 		// we have to check the form validity if we want 'required' attribute to be taken into account with preventDefault function
 		const formToCheck = formRef.current
+		const inputs = Array.from(formToCheck?.querySelectorAll('input') || [])
+
+		const allInputsAnswered = inputs.every(
+			(input: HTMLInputElement) => input.value !== ''
+		)
+
+		if (!allInputsAnswered) {
+			return null
+		}
 
 		const isValidForm = formToCheck && formToCheck.checkValidity()
 
@@ -33,7 +37,7 @@ export default function KmForm({
 			formToCheck.reportValidity()
 			return null
 		}
-		const inputs = Array.from(formToCheck?.querySelectorAll('input'))
+
 		const amortissementAvionValue = {}
 		inputs.forEach((input: HTMLInputElement) => {
 			amortissementAvionValue[input.name] = input.value
@@ -44,13 +48,15 @@ export default function KmForm({
 	const currentYearRef = useRef(new Date().getFullYear())
 
 	// Get an array of the last 3 years
-	const years = Array.from({ length: 3 }, (_, i) => currentYearRef.current - i)
-
-	const total = Object.entries(amortissementAvion).reduce(
-		(sum, [key, value]) => sum + (parseInt(value || '0', 10) || 0),
-		0
+	const years = useRef(
+		Array.from({ length: 3 }, (_, i) => currentYearRef.current - i)
 	)
 
+	const total = Object.entries(amortissementAvion).reduce(
+		(sum, [key, value]) => sum + (parseFloat(value || '0') || 0),
+		0
+	)
+	console.log('RERENDER')
 	return (
 		<form
 			id="amortissementAvionForm"
@@ -66,7 +72,7 @@ export default function KmForm({
 			>
 				{t('Vos trajets en avion sur les 3 dernières années')}
 			</h3>
-			<fieldset
+			<div
 				css={`
 					display: flex;
 					flex-direction: column;
@@ -80,7 +86,7 @@ export default function KmForm({
 					}
 				`}
 			>
-				{years.map((year) => (
+				{years.current.map((year) => (
 					<div
 						css={`
 							display: flex;
@@ -88,6 +94,7 @@ export default function KmForm({
 							gap: 3rem;
 							align-items: baseline;
 						`}
+						key={`input-amortissement-${year}`}
 					>
 						<label
 							htmlFor={String(year)}
@@ -118,13 +125,15 @@ export default function KmForm({
 								id={String(year)}
 								placeholder="0"
 								onChange={handleAddFormChange}
+								value={amortissementAvion[year] || ''}
 								required
+								decimalSeparator=","
 							/>
 							<InputSuffix id="unitéDistance">h (A/R)</InputSuffix>
 						</div>
 					</div>
 				))}
-			</fieldset>
+			</div>
 
 			<div
 				css={`
@@ -148,55 +157,14 @@ export default function KmForm({
 						font-weight: bold;
 					`}
 				>
-					<span>Total par an :</span> <span>{total ? total / 3 : 0}</span>{' '}
+					<span>Total par an :</span>{' '}
+					<span>{total ? (total / 3).toFixed(1).replace('.', ',') : 0}</span>{' '}
 					<InputSuffix id="unitéDistance">h</InputSuffix>
 				</p>
 			</div>
-
-			{/*
-			<div
-				css={`
-					text-align: right;
-				`}
-			>
-				<button
-					form="kmForm"
-					type="submit"
-					className="ui__ plain small button"
-					css="max-height: 2rem"
-					onClick={(event) => {
-						handleAddFormSubmit(event)
-						tracker.push([
-							'trackEvent',
-							'Amortissement avion',
-							'Ajout amortissement avion',
-						])
-					}}
-				>
-					<Trans>Ajouter</Trans>
-				</button>
-			</div>
-			*/}
 		</form>
 	)
 }
-
-const InputWrapper = styled.span`
-	display: flex;
-	margin: 0rem 0.4rem 0.6rem 0rem;
-	background-color: white;
-	color: inherit;
-	font-size: inherit;
-	transition: border-color 0.1s;
-	position: relative;
-	font-family: inherit;
-	height: 2.2rem;
-	border: 1px solid var(--lighterTextColor);
-	border-radius: 0.3rem;
-	:focus-within {
-		outline: 1px solid var(--color);
-	}
-`
 
 const WrappedInput = styled(NumberFormat)`
 	position: relative;
@@ -207,35 +175,4 @@ const WrappedInput = styled(NumberFormat)`
 const InputSuffix = styled.span`
 	position: relative;
 	padding: 0.2rem 0.5rem 0rem 0rem !important;
-`
-
-const SelectWrapper = styled.span`
-	display: flex;
-	margin: 0rem 0.4rem 0.6rem 0rem;
-	background-color: white;
-	color: inherit;
-	font-size: inherit;
-	transition: border-color 0.1s;
-	position: relative;
-	font-family: inherit;
-	height: 2.2rem;
-	border: 1px solid var(--lighterTextColor);
-	border-radius: 0.3rem;
-	:focus-within {
-		outline: 1px solid var(--color);
-	}
-`
-
-const WrappedSelect = styled.select`
-	appearance: none;
-	padding-right: 1.5rem !important;
-	background-image: url('/images/arrow.svg');
-	background-repeat: no-repeat;
-	background-position: calc(100% - 0.2rem) 0.55rem;
-	background-size: 1rem;
-`
-
-const SelectSuffix = styled.span`
-	position: relative;
-	padding: 0.2rem 0.5rem 0rem 0.2rem;
 `
