@@ -244,7 +244,7 @@ export const resetLocalisation = () =>
 		type: 'RESET_LOCALISATION',
 	} as const)
 
-export const updateAmortissementAvion = (amortissementAvion: Object) => ({
+export const updateAmortissementAvion = (amortissementAvionObject: Object) => ({
 	type: 'SET_AMORTISSEMENT',
-	amortissementAvion,
+	amortissementAvionObject,
 })

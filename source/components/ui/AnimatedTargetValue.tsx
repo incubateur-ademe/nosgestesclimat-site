@@ -71,7 +71,7 @@ const evaporateAnimation = (sign) => keyframes`
 	}
 `
 
-const StyledEvaporate = styled.div`
+const StyledEvaporate = styled.div<{ sign: string }>`
 	opacity: 0;
 	color: var(--color);
 	animation: ${(props) => evaporateAnimation(props.sign)} 2.5s linear;

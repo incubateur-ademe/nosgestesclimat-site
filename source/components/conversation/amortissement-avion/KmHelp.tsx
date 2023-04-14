@@ -48,6 +48,7 @@ const openmojis = {
 export default function KmHelp({
 	setFinalValue,
 	isFormOpen,
+	dottedName,
 	setIsFormOpen,
 }: Props) {
 	const { t } = useTranslation()
@@ -56,12 +57,13 @@ export default function KmHelp({
 
 	const dispatch = useDispatch()
 
-	const storedAmortissementAvion: AmortissementObject = useSelector(
+	const storedAmortissementsAvion: AmortissementObject = useSelector(
 		(state: any) => state.storedAmortissementAvion
 	)
+	const amortissementCurrentDottedName = storedAmortissementsAvion?.[dottedName]
 
 	const [amortissementAvion, setAmortissementAvion] = useState(
-		storedAmortissementAvion?.amortissementAvion || {}
+		amortissementCurrentDottedName || {}
 	)
 
 	const firstRender = useRef(true)
@@ -73,7 +75,9 @@ export default function KmHelp({
 		}
 
 		// Set default value
-		dispatch(setFinalValue(formatAmortissementValue(storedAmortissementAvion)))
+		dispatch(
+			setFinalValue(formatAmortissementValue(amortissementCurrentDottedName))
+		)
 
 		dispatch(updateSituation('transport . avion . aide km', 'oui'))
 	}, [])
@@ -81,7 +85,7 @@ export default function KmHelp({
 	const handleUpdateAmortissementAvion = (amortissementObject) => {
 		setAmortissementAvion(amortissementObject)
 		setFinalValue(formatAmortissementValue(amortissementObject))
-		dispatch(updateAmortissementAvion(amortissementObject))
+		dispatch(updateAmortissementAvion({ dottedName, amortissementObject }))
 	}
 
 	return (

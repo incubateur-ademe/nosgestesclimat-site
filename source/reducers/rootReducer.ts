@@ -278,9 +278,19 @@ function storedTrajets(state = {}, { type, vehicule, trajets, allTrajets }) {
 	}
 }
 
-function storedAmortissementAvion(state = {}, { type, amortissementAvion }) {
+function storedAmortissementAvion(
+	state = {},
+	{ type, amortissementAvionObject }
+) {
 	if (type === 'SET_AMORTISSEMENT') {
-		return { ...state, amortissementAvion }
+		return {
+			...state,
+			storedAmortissementAvion: {
+				...state.storedAmortissementAvion,
+				[amortissementAvionObject.dottedName]:
+					amortissementAvionObject.amortissementObjet,
+			},
+		}
 	} else if (type === 'RESET_AMORTISSEMENT') {
 		return {}
 	} else return state
