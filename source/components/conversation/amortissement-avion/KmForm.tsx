@@ -56,7 +56,7 @@ export default function KmForm({
 		(sum, [key, value]) => sum + (parseFloat(value || '0') || 0),
 		0
 	)
-	console.log('RERENDER')
+
 	return (
 		<form
 			id="amortissementAvionForm"

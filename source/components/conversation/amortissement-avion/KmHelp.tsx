@@ -3,7 +3,10 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { AnyAction } from 'redux'
-import { updateSituation } from '../../../actions/actions'
+import {
+	updateAmortissementAvion,
+	updateSituation,
+} from '../../../actions/actions'
 import emoji from '../../emoji'
 import { TrackerContext } from '../../utils/withTracker'
 import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
@@ -41,11 +44,9 @@ const openmojis = {
 	aide: '2699',
 	sauvegarder: '1F4BE',
 }
-const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 export default function KmHelp({
 	setFinalValue,
-	dottedName,
 	isFormOpen,
 	setIsFormOpen,
 }: Props) {
@@ -60,7 +61,7 @@ export default function KmHelp({
 	)
 
 	const [amortissementAvion, setAmortissementAvion] = useState(
-		storedAmortissementAvion || {}
+		storedAmortissementAvion?.amortissementAvion || {}
 	)
 
 	const firstRender = useRef(true)
@@ -76,6 +77,12 @@ export default function KmHelp({
 
 		dispatch(updateSituation('transport . avion . aide km', 'oui'))
 	}, [])
+
+	const handleUpdateAmortissementAvion = (amortissementObject) => {
+		setAmortissementAvion(amortissementObject)
+		setFinalValue(formatAmortissementValue(amortissementObject))
+		dispatch(updateAmortissementAvion(amortissementObject))
+	}
 
 	return (
 		<div
@@ -131,10 +138,7 @@ export default function KmHelp({
 					>
 						<KmForm
 							amortissementAvion={amortissementAvion}
-							setAmortissementAvion={(amortissementObject) => {
-								setAmortissementAvion(amortissementObject)
-								setFinalValue(formatAmortissementValue(amortissementObject))
-							}}
+							setAmortissementAvion={handleUpdateAmortissementAvion}
 						/>
 					</div>
 				</animate.fromTop>

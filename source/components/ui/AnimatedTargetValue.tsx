@@ -9,7 +9,7 @@ type AnimatedTargetValueProps = {
 
 const formatDifference = (difference: number, unit: string) => {
 	const prefix = difference > 0 ? '+' : ''
-	return prefix + difference + ' ' + unit
+	return prefix + difference.toFixed(1) + ' ' + unit
 }
 
 export default function AnimatedTargetValue({
