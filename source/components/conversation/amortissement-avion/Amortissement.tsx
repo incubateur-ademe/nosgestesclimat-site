@@ -86,10 +86,9 @@ export default function Amortissement({
 			<KmHelpButton
 				text={
 					isFormOpen ? (
-						<>{t('Fermer')}</>
+						t('Fermer')
 					) : (
 						<>
-							{' '}
 							<span
 								css={`
 									margin-right: 0.25rem;
@@ -101,25 +100,14 @@ export default function Amortissement({
 						</>
 					)
 				}
-				onHandleClick={
-					isFormOpen
-						? () => {
-								setIsFormOpen(false)
-								tracker.push([
-									'trackEvent',
-									'Aide saisie km',
-									'Ferme aide à la saisie km voiture',
-								])
-						  }
-						: () => {
-								setIsFormOpen(true)
-								tracker.push([
-									'trackEvent',
-									'Aide saisie km',
-									'Ouvre aide à la saisie km voiture',
-								])
-						  }
-				}
+				onHandleClick={() => {
+					setIsFormOpen(isFormOpen ? false : true)
+					tracker.push([
+						'trackEvent',
+						'Aide saisie km',
+						'Ferme aide à la saisie km voiture',
+					])
+				}}
 			/>
 			{isFormOpen && (
 				<animate.fromTop>

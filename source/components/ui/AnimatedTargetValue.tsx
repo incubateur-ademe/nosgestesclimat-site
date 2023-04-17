@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import styled, { keyframes } from 'styled-components'
+import { formatFloat } from '../utils/formatFloat'
 
 type AnimatedTargetValueProps = {
 	value?: number
@@ -9,7 +10,7 @@ type AnimatedTargetValueProps = {
 
 const formatDifference = (difference: number, unit: string) => {
 	const prefix = difference > 0 ? '+' : ''
-	return prefix + difference.toFixed(1) + ' ' + unit
+	return prefix + formatFloat({ number: difference }) + ' ' + unit
 }
 
 export default function AnimatedTargetValue({

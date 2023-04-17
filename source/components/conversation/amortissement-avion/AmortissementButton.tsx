@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import emoji from '../../emoji'
 
-export default function KmHelpButton({ text, onHandleClick }) {
+export default function AmortissementButton({ text, onHandleClick }) {
 	const [hover, setHover] = useState(false)
 	return (
 		<button

@@ -46,11 +46,9 @@ export default function Form({
 		setAmortissementAvion(amortissementAvionValue)
 	}
 
-	const currentYearRef = useRef(new Date().getFullYear())
-
 	// Get an array of the last 3 years
 	const years = useRef(
-		Array.from({ length: 3 }, (_, i) => currentYearRef.current - i)
+		Array.from({ length: 3 }, (_, i) => new Date().getFullYear() - i)
 	)
 
 	const total = Object.entries(amortissementAvion).reduce(
