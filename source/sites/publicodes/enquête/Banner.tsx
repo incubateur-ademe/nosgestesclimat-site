@@ -13,7 +13,7 @@ import ReturnToEnquêteButton from './ReturnToEnquêteButton'
 
 export default () => {
 	return (
-		<WithEngine options={{ parsed: true, optimized: true }}>
+		<WithEngine options={{ parsed: true, optimized: false }}>
 			<BannerWithEngine />
 		</WithEngine>
 	)

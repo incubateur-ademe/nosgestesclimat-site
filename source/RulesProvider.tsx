@@ -137,6 +137,7 @@ export const WithEngine = ({
 	children: ReactNode
 	fallback: ReactNode
 }) => {
+	console.log('calling WithEngine with options', options)
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)
 	const currentRulesOptions = engineState?.options
