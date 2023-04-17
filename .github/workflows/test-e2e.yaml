@@ -5,11 +5,11 @@ on: [push]
 jobs:
   e2e:
     name: Testing e2e
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v3.5.2
       - name: Cypress run
-        uses: cypress-io/github-action@v5
+        uses: cypress-io/github-action@v5.6.1
         with:
-          start: yarn start
+          start: yarn dev
