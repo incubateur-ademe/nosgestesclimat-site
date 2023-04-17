@@ -1,9 +1,12 @@
 import { useSelector } from 'react-redux'
+import { getRelatedMosaicInfosIfExists } from '../../../components/conversation/RuleInput'
 import { parentName } from '../../../components/publicodesUtils'
+import { useEngine } from '../../../components/utils/EngineContext'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
 export default () => {
 	const rules = useSelector((state) => state.rules)
+	const engine = useEngine()
 	const questionRules = Object.entries(rules)
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
 		.filter((el) => el && el.question)
@@ -22,6 +25,7 @@ export default () => {
 			<ul>
 				{questionRules.map((rule) => (
 					<QuestionDescription
+						engine={engine}
 						rules={rules}
 						rule={rule}
 						key={rule.dottedName}
@@ -32,10 +36,19 @@ export default () => {
 	)
 }
 
-const QuestionDescription = ({ rule, rules }) => {
+const QuestionDescription = ({ engine, rule, rules }) => {
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
+		engine,
+		rules,
+		rule.dottedName
+	)
+	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
+
 	const questionType = rule.mosaique
-		? '🪟 Mosaïque'
-		: rule.unité || typeof rule['par défaut'] === 'number'
+		? `🪟 Mosaïque de type ${rule.mosaique.type}`
+		: rule.unité ||
+		  typeof rule['par défaut'] === 'number' ||
+		  mosaicType === 'nombre'
 		? '🔢 Numérique'
 		: '☑️ Oui/Non'
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
