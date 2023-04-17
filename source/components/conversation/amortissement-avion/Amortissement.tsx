@@ -8,6 +8,7 @@ import {
 	updateSituation,
 } from '../../../actions/actions'
 import emoji from '../../emoji'
+import { formatFloat } from '../../utils/formatFloat'
 import { TrackerContext } from '../../utils/withTracker'
 import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
 import { AmortissementObject } from './FieldTravelDuration'
@@ -25,23 +26,14 @@ const formatAmortissementValue = (amortissementAvion: AmortissementObject) => {
 	if (!amortissementAvion) return ''
 	const valueSummed =
 		Object.entries(amortissementAvion).reduce(
-			(sum, [key, value]) => sum + (parseInt(value || '0', 10) || 0),
+			(sum, [key, value]) =>
+				sum + (parseFloat(value.replace(',', '.') || '0') || 0),
 			0
 		) / 3
 	if (valueSummed) {
-		return valueSummed.toFixed(1)
+		return formatFloat({ number: valueSummed }).replace(',', '.') || ''
 	}
 	return ''
-}
-
-const openmojis = {
-	calendrier: '1F4C5',
-	silhouette: '1F465',
-	pointer: '1F447',
-	modifier: '270F',
-	supprimer: 'E262',
-	aide: '2699',
-	sauvegarder: '1F4BE',
 }
 
 export default function Amortissement({

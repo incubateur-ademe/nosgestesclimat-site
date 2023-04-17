@@ -2,6 +2,7 @@ import { RefObject, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
+import { formatFloat } from '../../utils/formatFloat'
 import { AmortissementObject } from './FieldTravelDuration'
 
 interface Props {
@@ -53,7 +54,8 @@ export default function Form({
 	)
 
 	const total = Object.entries(amortissementAvion).reduce(
-		(sum, [key, value]) => sum + (parseFloat(value || '0') || 0),
+		(sum, [key, value]) =>
+			sum + (parseFloat(value.replace(',', '.') || '0') || 0),
 		0
 	)
 
@@ -149,7 +151,7 @@ export default function Form({
 						font-weight: bold;
 					`}
 				>
-					<span>Total :</span> <span>{total}</span>{' '}
+					<span>Total :</span> <span>{formatFloat({ number: total })}</span>{' '}
 					<InputSuffix id="unitéDistance">h</InputSuffix>
 				</p>
 				<p
@@ -158,7 +160,7 @@ export default function Form({
 					`}
 				>
 					<span>Total par an :</span>{' '}
-					<span>{total ? (total / 3).toFixed(1).replace('.', ',') : 0}</span>{' '}
+					<span>{formatFloat({ number: total / 3 })}</span>{' '}
 					<InputSuffix id="unitéDistance">h</InputSuffix>
 				</p>
 			</div>
