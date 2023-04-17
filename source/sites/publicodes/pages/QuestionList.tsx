@@ -35,7 +35,7 @@ export default () => {
 const QuestionDescription = ({ rule, rules }) => {
 	const questionType = rule.mosaique
 		? '🪟 Mosaïque'
-		: rule.unité
+		: rule.unité || typeof rule['par défaut'] === 'number'
 		? '🔢 Numérique'
 		: '☑️ Oui/Non'
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
