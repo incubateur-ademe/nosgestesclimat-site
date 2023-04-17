@@ -42,6 +42,7 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 		rules,
 		rule.dottedName
 	)
+	console.log(ruleMosaicInfos)
 	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
 
 	const questionType = rule.mosaique
@@ -50,6 +51,8 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 		  typeof rule['par défaut'] === 'number' ||
 		  mosaicType === 'nombre'
 		? '🔢 Numérique'
+		: rule.formule && rule.formule['une possibilité']
+		? '🔠 plusieurs possibilités'
 		: '☑️ Oui/Non'
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
