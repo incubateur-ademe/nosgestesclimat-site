@@ -286,9 +286,9 @@ function storedAmortissementAvion(
 		return {
 			...state,
 			storedAmortissementAvion: {
-				...state.storedAmortissementAvion,
+				...(state?.storedAmortissementAvion || {}),
 				[amortissementAvionObject.dottedName]:
-					amortissementAvionObject.amortissementObjet,
+					amortissementAvionObject.amortissementObject,
 			},
 		}
 	} else if (type === 'RESET_AMORTISSEMENT') {

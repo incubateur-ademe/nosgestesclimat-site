@@ -2,14 +2,14 @@ import { RefObject, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
-import { AmortissementObject } from './KmHelp'
+import { AmortissementObject } from './FieldTravelDuration'
 
 interface Props {
 	amortissementAvion: object
 	setAmortissementAvion: (amortissementObject: AmortissementObject) => void
 }
 
-export default function KmForm({
+export default function Form({
 	amortissementAvion,
 	setAmortissementAvion,
 }: Props) {

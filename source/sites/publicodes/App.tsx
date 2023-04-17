@@ -15,10 +15,7 @@ import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
-import {
-	persistUser,
-	fetchUser,
-} from '../../storage/persistSimulation'
+import { fetchUser, persistUser } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
 import {
 	changeLangTo,
@@ -77,14 +74,14 @@ export default function Root({}) {
 	).get('shareData')
 
 	// We retrieve the User object from local storage to initialize the store.
-	const persistedUser = fetchUser();
+	const persistedUser = fetchUser()
 	// We use the 'currentSimulationId' pointer to retrieve the latest simulation in the list.
 	const persistedSimulation = persistedUser.simulations.filter(
 		(simulation) => simulation.id === persistedUser.currentSimulationId
 	)[0]
 
 	const currentLang =
-	persistedUser?.currentLang ??
+		persistedUser?.currentLang ??
 		getLangFromAbreviation(
 			window.FORCE_LANGUAGE || window.navigator.language.toLowerCase()
 		)
@@ -107,6 +104,8 @@ export default function Root({}) {
 				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices ?? {},
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
+				storedAmortissementAvion:
+					persistedSimulation?.storedAmortissementAvion ?? {},
 				conference: persistedSimulation?.conference,
 				survey: persistedSimulation?.survey,
 			}}

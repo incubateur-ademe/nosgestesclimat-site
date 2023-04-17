@@ -8,7 +8,11 @@ import Localisation from 'Components/localisation/Localisation'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
-import { resetCategoryTutorials, skipTutorial } from '../../actions/actions'
+import {
+	resetCategoryTutorials,
+	resetStoredAmortissementAvion,
+	skipTutorial,
+} from '../../actions/actions'
 import AnswerList from '../../components/conversation/AnswerList'
 import Title from '../../components/Title'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
@@ -145,6 +149,7 @@ export default ({}) => {
 									dispatch(resetSimulation())
 									dispatch(resetActionChoices())
 									dispatch(resetStoredTrajets())
+									dispatch(resetStoredAmortissementAvion())
 									dispatch(resetCategoryTutorials())
 									dispatch(skipTutorial('scoreAnimation', true))
 									dispatch(skipTutorial('scoreExplanation', true))

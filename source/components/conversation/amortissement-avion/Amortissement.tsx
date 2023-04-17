@@ -1,7 +1,7 @@
 import animate from 'Components/ui/animate'
 import { useContext, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { AnyAction } from 'redux'
 import {
 	updateAmortissementAvion,
@@ -10,20 +10,19 @@ import {
 import emoji from '../../emoji'
 import { TrackerContext } from '../../utils/withTracker'
 import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
-import KmForm from './KmForm'
+import { AmortissementObject } from './FieldTravelDuration'
+import Form from './Form'
 
 interface Props {
+	amortissementAvion: AmortissementObject
 	setFinalValue: (value: string) => AnyAction
 	dottedName: string
 	isFormOpen: boolean
 	setIsFormOpen: (value: boolean) => void
 }
 
-export type AmortissementObject = {
-	[year: string]: string
-}
-
 const formatAmortissementValue = (amortissementAvion: AmortissementObject) => {
+	if (!amortissementAvion) return ''
 	const valueSummed =
 		Object.entries(amortissementAvion).reduce(
 			(sum, [key, value]) => sum + (parseInt(value || '0', 10) || 0),
@@ -45,7 +44,8 @@ const openmojis = {
 	sauvegarder: '1F4BE',
 }
 
-export default function KmHelp({
+export default function Amortissement({
+	amortissementAvion: amortissementCurrent,
 	setFinalValue,
 	isFormOpen,
 	dottedName,
@@ -57,13 +57,8 @@ export default function KmHelp({
 
 	const dispatch = useDispatch()
 
-	const storedAmortissementsAvion: AmortissementObject = useSelector(
-		(state: any) => state.storedAmortissementAvion
-	)
-	const amortissementCurrentDottedName = storedAmortissementsAvion?.[dottedName]
-
 	const [amortissementAvion, setAmortissementAvion] = useState(
-		amortissementCurrentDottedName || {}
+		amortissementCurrent || {}
 	)
 
 	const firstRender = useRef(true)
@@ -76,7 +71,9 @@ export default function KmHelp({
 
 		// Set default value
 		dispatch(
-			setFinalValue(formatAmortissementValue(amortissementCurrentDottedName))
+			setFinalValue(
+				formatAmortissementValue(amortissementCurrent)
+			) as unknown as AnyAction
 		)
 
 		dispatch(updateSituation('transport . avion . aide km', 'oui'))
@@ -140,7 +137,7 @@ export default function KmHelp({
 							margin-bottom: 1rem;
 						`}
 					>
-						<KmForm
+						<Form
 							amortissementAvion={amortissementAvion}
 							setAmortissementAvion={handleUpdateAmortissementAvion}
 						/>

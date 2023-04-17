@@ -19,7 +19,7 @@ export default function KmHelpButton({ text, onHandleClick }) {
 					width: 100%;
 				`}
 			>
-				{emoji('✋')}
+				{emoji('✋', '')}
 				{text}
 			</div>
 		</button>

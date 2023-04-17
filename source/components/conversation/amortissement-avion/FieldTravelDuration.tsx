@@ -1,8 +1,10 @@
 import { Evaluation } from 'publicodes'
-import { InputHTMLAttributes, useState } from 'react'
+import { InputHTMLAttributes, useEffect, useState } from 'react'
+import { useSelector } from 'react-redux'
+import { AnyAction } from 'redux'
 import { DottedName } from 'Rules'
 import KmInput from '../estimate/KmHelp/KmInput'
-import KmHelp from './KmHelp'
+import Amortissement from './Amortissement'
 
 interface Props {
 	commonProps: InputHTMLAttributes<HTMLInputElement> & {
@@ -10,11 +12,15 @@ interface Props {
 	}
 	evaluation: Evaluation<DottedName>
 	onSubmit: (value: string) => void
-	setFinalValue: (value: string) => void
+	setFinalValue: (value: string) => AnyAction
 	value: string
 }
 
-export default function KmEstimation({
+export type AmortissementObject = {
+	[year: string]: string
+}
+
+export default function FieldTravelDuration({
 	commonProps,
 	evaluation,
 	onSubmit,
@@ -22,6 +28,18 @@ export default function KmEstimation({
 	value,
 }: Props) {
 	const [isFormOpen, setIsFormOpen] = useState(false)
+	const { storedAmortissementAvion } =
+		useSelector((state: any) => state.storedAmortissementAvion) || {}
+
+	const amortissementCurrent: AmortissementObject =
+		storedAmortissementAvion?.[commonProps.dottedName]
+
+	useEffect(() => {
+		if (amortissementCurrent) {
+			setIsFormOpen(true)
+		}
+	}, [amortissementCurrent])
+
 	return (
 		<div>
 			<KmInput
@@ -33,7 +51,8 @@ export default function KmEstimation({
 				isDisabled={isFormOpen}
 			/>
 			<div>
-				<KmHelp
+				<Amortissement
+					amortissementAvion={amortissementCurrent}
 					setFinalValue={setFinalValue}
 					dottedName={commonProps.dottedName}
 					isFormOpen={isFormOpen}
