@@ -7,5 +7,18 @@
 	"files.exclude": {
 		"**/node_modules": true
 	},
-	"eslint.enable": true
+	"eslint.enable": true,
+
+	"deno.enable": true,
+  "deno.lint": true,
+  "deno.unstable": true,
+  "deno.enablePaths": [
+    "./netlify",
+  ],
+	"deno.config": "./deno.jsonc",
+	"i18n-ally.localesPaths": [
+		"scripts/i18n",
+		"source/locales"
+	]
+
 }

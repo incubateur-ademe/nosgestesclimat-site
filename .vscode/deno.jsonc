@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "jsx": "react-jsx",
+    "jsxFactory": "React.createElement",
+    "jsxFragmentFactory": "React.Fragment",
+    "jsxImportSource": "https://esm.sh/react",
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true
+  },
+  "lint": {
+
+  }
+}
