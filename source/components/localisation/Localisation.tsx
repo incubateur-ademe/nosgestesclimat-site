@@ -4,25 +4,25 @@ import {
 	getFlag,
 	supportedRegion,
 } from 'Components/localisation/utils'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { resetLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
 import RegionSelector from './RegionSelector'
 
-export default () => {
+export default ({ title = 'Ma région de simulation' }) => {
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 	const localisation = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
 	const isSupported = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
+
 	const countryName = getCountryNameInCurrentLang(localisation)
+	const { t } = useTranslation()
 
 	return (
 		<div>
-			<h2>
-				<Trans>📍 Région de simulation</Trans>
-			</h2>
+			<h2>📍 {t(title)}</h2>
 			{localisation != null ? (
 				isSupported ? (
 					<p>

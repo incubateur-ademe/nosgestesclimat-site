@@ -1,5 +1,4 @@
 import {
-	deletePreviousSimulation,
 	resetActionChoices,
 	resetIntroTutorial,
 	resetSimulation,
@@ -21,6 +20,7 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '../../selectors/simulationSelectors'
+import SimulationList from './SimulationList'
 
 export const useProfileData = () => {
 	const answeredQuestions = useSelector(answeredQuestionsSelector),
@@ -35,6 +35,10 @@ export default ({}) => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
+	const currentSimulationId = useSelector((state) => state.currentSimulationId)
+
+	const simulationList = useSelector((state) => state.simulations)
+
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
 		useProfileData()
 	const navigate = useNavigate()
@@ -140,7 +144,6 @@ export default ({}) => {
 								onClick={() => {
 									dispatch(resetSimulation())
 									dispatch(resetActionChoices())
-									dispatch(deletePreviousSimulation())
 									dispatch(resetStoredTrajets())
 									dispatch(resetCategoryTutorials())
 									dispatch(skipTutorial('scoreAnimation', true))
@@ -168,6 +171,22 @@ export default ({}) => {
 				)}
 				<Localisation />
 				<AnswerList />
+				{simulationList && (
+					<div css="margin-top: 2rem">
+						<h2>
+							💾 <Trans>Mon historique des simulations</Trans>
+						</h2>
+						<p>
+							<Trans i18nKey={`publicodes.Profil.simulations`}>
+								Chaque simulation que vous faite est sauvegardée dans votre
+								navigateur Web. Vous êtes le seul à y avoir accès.
+							</Trans>
+						</p>
+						<SimulationList
+							{...{ dispatch, list: simulationList, currentSimulationId }}
+						/>
+					</div>
+				)}
 			</div>
 		</div>
 	)
