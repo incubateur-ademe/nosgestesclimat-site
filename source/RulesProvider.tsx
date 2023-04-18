@@ -49,24 +49,29 @@ const EngineWrapper = ({ children }) => {
 			if (!branchData.loaded) return
 			if (!engineRequestedOnce) return
 
-			const url =
-				currLangAbrv &&
-				currentRegionCode &&
-				branchData.deployURL +
-					// TODO: find a better way to manage 'en'
-					`/co2-model.${currentRegionCode}-lang.${
-						i18n.language === 'en' ? 'en-us' : currLangAbrv
-					}${optimizedOption ? '-opti' : ''}.json`
-			console.log('fetching:', url)
-			fetch(url, { mode: 'cors' })
-				.then((response) => response.json())
-				.then((json) => {
-					if (active) dispatch({ type: 'SET_RULES', rules: json })
-				})
-				.catch((err) => {
-					console.log('url:', url)
-					console.log('err:', err)
-				})
+			const fileName =
+				// TODO: find a better way to manage 'en'
+				`/co2-model.${currentRegionCode}-lang.${
+					i18n.language === 'en' ? 'en-us' : currLangAbrv
+				}${optimizedOption ? '-opti' : ''}.json`
+
+			if (process.env.NODE_ENV === 'development') {
+				const rules = require('../nosgestesclimat/public' + fileName)
+				if (active) dispatch({ type: 'SET_RULES', rules })
+			} else {
+				const url =
+					currLangAbrv && currentRegionCode && branchData.deployURL + fileName
+				console.log('fetching:', url)
+				fetch(url, { mode: 'cors' })
+					.then((response) => response.json())
+					.then((json) => {
+						if (active) dispatch({ type: 'SET_RULES', rules: json })
+					})
+					.catch((err) => {
+						console.log('url:', url)
+						console.log('err:', err)
+					})
+			}
 		}
 		fetchAndSetRules()
 		return () => {

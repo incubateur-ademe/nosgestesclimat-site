@@ -273,8 +273,8 @@ entries:
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in <1>beta</1> version. <4>A problem, a suggestion?</4>
   components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est en version <1>beta</1>. <4>Un problème, une suggestion ?</4>
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the car.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes dans la voiture.
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: '{{kmParcouru}} km with a mean of {{nbPersonnes}} travelers.'
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: '{{kmParcouru}} km avec en moyenne {{nbPersonnes}} voyageurs.'
   components.conversation.select.NumberedMosaic.choixAFaire: ' You still have {{nbChoix}} to choose from.'
   components.conversation.select.NumberedMosaic.choixAFaire.lock: ' Il vous reste {{nbChoix}} choix à faire.'
   components.conversation.select.NumberedMosaic.choixEnTrop: You have made {{nbChoix}} too many choices!
@@ -655,3 +655,7 @@ entries:
   International: International
   international.pourquoi.3: We use, when available, the electrical mix footprint provided by <2><0></0></2>.
   international.pourquoi.3.lock: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
+  Ajouter un trajet: Add a trip
+  Détail de mes trajets: Details of my journeys
+  Je veux être plus précis: I want to be more precise
+  Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.: Field disabled during detail filling; will update automatically.
