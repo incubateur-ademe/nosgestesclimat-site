@@ -1,4 +1,4 @@
-# About us
+<h1 data-cypress-id="about-us-title">About us</h1>
 
 ## What is it?
 

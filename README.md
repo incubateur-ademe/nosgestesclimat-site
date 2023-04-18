@@ -32,6 +32,9 @@ Then run this command from this repo:
 yarn && yarn start
 ```
 
+> Note: recompiling the model in all supported regions and languages could significantly slow down your dev process.
+> Therefore, instead of running `yarn start` you can run webpack in dev mode with `yarn serve` and watch the compilation of the model in a specified language and region with `yarn model:rules-watch -t fr -o FR`.
+
 If you want to run the automatic localisation, which depends on a Netlify Edge function, you must run `netlify dev`.
 
 ## Réutilisations de ce code

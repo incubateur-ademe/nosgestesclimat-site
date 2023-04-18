@@ -38,6 +38,8 @@ entries:
   Chargement: Chargement
   Chargement du modèle de calcul...: Chargement du modèle de calcul...
   Chargement...: Chargement...
+  Charger: Charger
+  Chargée: Chargée
   Choisir l'action: Choisir l'action
   Choisir le type de tri des actions: Choisir le type de tri des actions
   Choisir une autre région: Choisir une autre région
@@ -136,6 +138,7 @@ entries:
   Modifier mes réponses: Modifier mes réponses
   Mon empreinte climat: Mon empreinte climat
   Mon empreinte climat 😶‍🌫️: Mon empreinte climat 😶‍🌫️
+  Mon historique des simulations: Mon historique des simulations
   Mon profil: Mon profil
   'Mon total :': 'Mon total :'
   Motif: Motif
@@ -263,7 +266,7 @@ entries:
   components.ScoreExplanation.text.p3: '🤔 Si vous répondez "je ne sais pas" à une question, le score ne changera pas : une valeur par défaut vous est attribuée.'
   components.ScoreExplanation.text.p4: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: La traduction de cette page est en version <1>beta</1>. <4>Un problème, une suggestion ?</4>
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes dans la voiture.
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: '{{kmParcouru}} km avec en moyenne {{nbPersonnes}} voyageurs.'
   components.conversation.select.NumberedMosaic.choixAFaire: ' Il vous reste {{nbChoix}} choix à faire.'
   components.conversation.select.NumberedMosaic.choixEnTrop: Vous avez fait {{nbChoix}} choix en trop !
   components.localisation.Localisation.warnMessage: Pour le moment, il n'existe pas de modèle de calcul pour {{countryName}}, le modèle Français vous est proposé par défaut.
@@ -372,9 +375,10 @@ entries:
   publicodes.Personas.description: Les personas nous permettront de prendre le parti d'une diversité d'utilisateurs quand ils voient notamment notre écran "passer à l'action".
   publicodes.Personas.lienGenerateur: Pour les prénoms, on peut utiliser <2>ce générateur</2>
   publicodes.Personas.tuto: que ça se passe. On peut soit copier coller les données d'un autre persona et les modifier, soit en créer un de zéro depuis la simulation. Une fois la simulation satisfaisante, cliquer sur "Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du navigateur (F12), vérifiez bien que vous êtes dans l'onglet "Console", allez tout en bas de la console (elle est un peu chargée...), puis copier le JSON affiché, le coller dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans personas.yaml.
-  publicodes.Personas.warningMsg: 'Attention, vous avez une simulation en cours : sélectionner un persona écrasera votre simulation.'
+  publicodes.Personas.warningMsg: Sélectionner un persona releguera votre simulation en cours dans votre historique de simulations, accessible en bas de votre <2>page profil</2>.
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles. <2></2>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
+  publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: 💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un de ces profils types.
   publicodes.SimulationMissing.simulationManquante: Vous n'avez pas encore fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur votre mode de vie.
   publicodes.TranslationContribution.commentaireAugmenté: |-
@@ -437,6 +441,7 @@ entries:
     Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
+  supprimer: supprimer
   sélectionnées: sélectionnées
   titre de la version: titre de la version
   tonne: tonne
@@ -497,3 +502,7 @@ entries:
   'Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.': Où que vous vivez, calculez votre empreinte carbone personnelle avec les particularités de votre pays.
   International: International
   international.pourquoi.3: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
+  Ajouter un trajet: Ajouter un trajet
+  Détail de mes trajets: Détail de mes trajets
+  Je veux être plus précis: Je veux être plus précis
+  Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.: Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.

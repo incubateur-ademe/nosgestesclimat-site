@@ -252,10 +252,8 @@ entries:
   components.TranslationAlertBanner.wikiLink.lock:
     La traduction de cette page est
     en version <1>beta</1>.<3>Un problème, une suggestion ?</3>.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: Viaja {{kmParcouru}} km avec en moyenne {{nbPersonnes}} en el coche.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock:
-    Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes
-    dans la voiture.
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: '{{kmParcouru}} km con en promedio {{nbPersonnes}} viajeros.'
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: '{{kmParcouru}} km avec en moyenne {{nbPersonnes}} voyageurs.'
   components.conversation.select.NumberedMosaic.choixAFaire: ' Todavía tienes {{nbChoix}} para elegir.'
   components.conversation.select.NumberedMosaic.choixAFaire.lock: ' Il vous reste {{nbChoix}} choix à faire.'
   components.conversation.select.NumberedMosaic.choixEnTrop: Has hecho {{nbChoix}} ¡demasiadas elecciones!

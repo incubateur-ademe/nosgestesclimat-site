@@ -40,6 +40,8 @@ entries:
   Chargement: Loading
   Chargement du modèle de calcul...: Loading the calculation model...
   Chargement...: Loading...
+  Charger: Load
+  Chargée: In charge
   Choisir l'action: Choose the action
   Choisir le type de tri des actions: Choose the type of stock sorting
   Choisir une autre région: Choose another region
@@ -139,6 +141,7 @@ entries:
   Modifier mes réponses: Edit my answers
   Mon empreinte climat: My climate footprint
   Mon empreinte climat 😶‍🌫️: My climate footprint 😶‍🌫️
+  Mon historique des simulations: My simulation history
   Mon profil: My profile
   'Mon total :': 'My total:'
   Motif: Reason
@@ -273,8 +276,8 @@ entries:
   components.ScoreExplanation.text.p4.lock: 💡 Nous améliorons le calcul et ses valeurs par défaut<1>tous les mois</1>!
   components.TranslationAlertBanner.wikiLink: The translation of this page is in <1>beta</1> version. <4>A problem, a suggestion?</4>
   components.TranslationAlertBanner.wikiLink.lock: La traduction de cette page est en version <1>beta</1>. <4>Un problème, une suggestion ?</4>
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: You travel {{kmParcouru}} km avec en moyenne {{nbPersonnes}} people in the car.
-  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: Vous parcourez {{kmParcouru}} km avec en moyenne {{nbPersonnes}} personnes dans la voiture.
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne: '{{kmParcouru}} km with a mean of {{nbPersonnes}} travelers.'
+  components.conversation.estimate.KmHelp.resultatKmParcouruMoyenne.lock: '{{kmParcouru}} km avec en moyenne {{nbPersonnes}} voyageurs.'
   components.conversation.select.NumberedMosaic.choixAFaire: ' You still have {{nbChoix}} to choose from.'
   components.conversation.select.NumberedMosaic.choixAFaire.lock: ' Il vous reste {{nbChoix}} choix à faire.'
   components.conversation.select.NumberedMosaic.choixEnTrop: You have made {{nbChoix}} too many choices!
@@ -457,12 +460,14 @@ entries:
   publicodes.Personas.lienGenerateur.lock: Pour les prénoms, on peut utiliser <2>ce générateur</2>
   publicodes.Personas.tuto: that it happens. You can either copy and paste data from another persona and modify it, or create one from scratch from the simulation. Once the simulation is satisfactory, click on "Modify my answers" then type Ctrl-C, open the browser console (F12), make sure you are in the "Console" tab, go to the very bottom of the console (it is a bit busy...), then copy the JSON displayed, paste it into <2>this tool</2> to generate a YAML, then insert it into personas.yaml.
   publicodes.Personas.tuto.lock: que ça se passe. On peut soit copier coller les données d'un autre persona et les modifier, soit en créer un de zéro depuis la simulation. Une fois la simulation satisfaisante, cliquer sur "Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du navigateur (F12), vérifiez bien que vous êtes dans l'onglet "Console", allez tout en bas de la console (elle est un peu chargée...), puis copier le JSON affiché, le coller dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans personas.yaml.
-  publicodes.Personas.warningMsg: 'Be careful, you have a simulation in progress: selecting a persona will overwrite your simulation.'
-  publicodes.Personas.warningMsg.lock: 'Attention, vous avez une simulation en cours : sélectionner un persona écrasera votre simulation.'
+  publicodes.Personas.warningMsg: Selecting a persona will relegate your current simulation to your simulation history, accessible at the bottom of your <2>profile page</2>.
+  publicodes.Personas.warningMsg.lock: Sélectionner un persona releguera votre simulation en cours dans votre historique de simulations, accessible en bas de votre <2>page profil</2>.
   publicodes.Profil.locationDonnées: <0>Where is my data? </0>Your data is stored in your browser, so you have full control over it <2></2>
   publicodes.Profil.locationDonnées.lock: <0>Où sont mes données ? </0>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles. <2></2>
   publicodes.Profil.recap: You have completed {{percentFinished}}% of the test ({{answeredQuestionsLength}} questions) and chosen {{actionChoicesLength}} actions.
   publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
+  publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
+  publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
   publicodes.SimulationMissing.personnas: 💡 You can also see the action course as if you were one of these sample profiles.
   publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un de ces profils types.
   publicodes.SimulationMissing.simulationManquante: You haven't taken the test yet. To unlock this course, you need to tell us a little more about your lifestyle.
@@ -585,6 +590,7 @@ entries:
   sites.publicodes.Profile.TutorialLink.text.lock: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
   sites.publicodes.Tutorial.questionE.lock: 💡 Mais que veut dire ce petit <1>e</1> ?
+  supprimer: delete
   sélectionnées: selected
   titre de la version: title of the version
   tonne: tonne
@@ -653,3 +659,7 @@ entries:
   International: International
   international.pourquoi.3: We use, when available, the electrical mix footprint provided by <2><0></0></2>.
   international.pourquoi.3.lock: Nous utilisons, quand disponible, l'empreinte du mix électrique fournie par <2><0></0></2>.
+  Ajouter un trajet: Add a trip
+  Détail de mes trajets: Details of my journeys
+  Je veux être plus précis: I want to be more precise
+  Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.: Field disabled during detail filling; will update automatically.

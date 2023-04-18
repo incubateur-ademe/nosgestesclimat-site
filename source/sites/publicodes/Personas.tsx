@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { Link, useSearchParams } from 'react-router-dom'
 import { setDifferentSituation } from '../../actions/actions'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import useBranchData from '../../components/useBranchData'
@@ -48,7 +48,7 @@ export default ({}) => {
 	return (
 		<div>
 			<ScrollToTop />
-			<h1>Personas</h1>
+			<h1 data-cypress-id="personas-title">Personas</h1>
 			<p>
 				<Trans>
 					Cette page vous permet de naviguer les parcours Nos Gestes Climat
@@ -150,18 +150,24 @@ export const PersonaGrid = ({
 
 	useEffect(() => {
 		if (!branchData.loaded) return
+		const fileName = `/personas-${lang}.json`
 
-		fetch(branchData.deployURL + `/personas-${lang}.json`, {
-			mode: 'cors',
-		})
-			.then((response) => response.json())
-			.then((json) => {
-				setData(json)
+		if (process.env.NODE_ENV === 'development') {
+			const json = require('../../../nosgestesclimat/public' + fileName)
+			setData(json)
+		} else {
+			fetch(branchData.deployURL + fileName, {
+				mode: 'cors',
 			})
-			.catch((err) => {
-				console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
-				console.log('err:', err)
-			})
+				.then((response) => response.json())
+				.then((json) => {
+					setData(json)
+				})
+				.catch((err) => {
+					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
+					console.log('err:', err)
+				})
+		}
 	}, [branchData.deployURL, branchData.loaded, lang])
 
 	if (!data) return null
@@ -192,15 +198,16 @@ export const PersonaGrid = ({
 	if (warning)
 		return (
 			<IllustratedMessage
-				emoji="⚠️"
+				emoji="ℹ️"
 				message={
 					<div>
 						<p>
 							<Trans i18nKey={'publicodes.Personas.warningMsg'}>
-								Attention, vous avez une simulation en cours : sélectionner un
-								persona écrasera votre simulation.
-							</Trans>{' '}
-						</p>{' '}
+								Sélectionner un persona releguera votre simulation en cours dans
+								votre historique de simulations, accessible en bas de votre{' '}
+								<Link to="/profil">page profil</Link>.
+							</Trans>
+						</p>
 						<button
 							className="ui__ button simple"
 							onClick={() => {
@@ -209,7 +216,7 @@ export const PersonaGrid = ({
 								setWarning(false)
 							}}
 						>
-							<Trans>Continuer</Trans>
+							<Trans>J'ai compris</Trans>
 						</button>
 						<button
 							className="ui__ button simple"

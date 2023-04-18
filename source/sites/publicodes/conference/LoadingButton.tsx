@@ -19,6 +19,7 @@ export default ({ mode, URLPath, room }) => {
 			<button
 				type="submit"
 				className="ui__ button plain cta"
+				data-cypress-id="group-start-button"
 				onClick={async () => {
 					setClicked(true)
 

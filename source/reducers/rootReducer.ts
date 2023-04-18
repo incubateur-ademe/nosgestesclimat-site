@@ -5,6 +5,8 @@ import reduceReducers from 'reduce-reducers'
 import { combineReducers, Reducer } from 'redux'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
+import { SavedSimulationList } from '../selectors/storageSelectors'
+import { generateSimulationId } from '../storage/persistSimulation'
 import storageRootReducer from './storageReducer'
 
 function explainedVariable(
@@ -57,28 +59,43 @@ export type Simulation = {
 	targetUnit: string
 	foldedSteps: Array<DottedName>
 	unfoldedStep?: DottedName | null
+	persona?: string
+	date?: Date
+	id?: string
 }
 
 function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
+	if (action.type === 'SET_CURRENT_SIMULATION') {
+		// Update the date when loading the simulation.
+		// Also triggers an update of the 'simulationsList' component when changing simulations.
+		action.simulation.date = new Date()
+		return action.simulation
+	}
+
 	if (action.type === 'SET_SIMULATION') {
 		const { config, url } = action
+
 		if (state && state.config && !action.situation === config) {
 			return state
 		}
+
 		return {
 			config,
 			url,
-			hiddenNotifications: state?.hiddenControls || [],
+			hiddenNotifications: state?.hiddenControls || [], // todo : hiddenControls ?
 			situation: action.situation || state?.situation || {},
 			targetUnit: config['unité par défaut'] || '€/mois',
 			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
 			unfoldedStep: null,
 			persona: action.persona,
+			id: action.persona || state?.id || generateSimulationId(), // Unique identifier of the simulation, used for the 'currentSimulationId' pointer.
+			date: !action.persona && state?.date ? state?.date : new Date(),
 		}
 	}
+
 	if (state === null) {
 		return state
 	}
@@ -96,7 +113,7 @@ function simulation(
 				situation: {},
 				foldedSteps: [],
 				unfoldedStep: null,
-				persona: null,
+				persona: undefined,
 			}
 		case 'UPDATE_SITUATION': {
 			const targets = objectifsSelector({ simulation: state } as RootState)
@@ -151,13 +168,19 @@ function rules(state = null, { type, rules }) {
 	} else return state
 }
 
-function actionChoices(state = {}, { type, action, choice }) {
-	if (type === 'SET_ACTION_CHOICE') {
-		return { ...state, [action]: choice }
+function actionChoices(state = {}, { type, action, choice, actionsChoices }) {
+	switch (type) {
+		case 'SET_ACTIONS_CHOICES':
+			return actionsChoices
+		case 'SET_ACTION_CHOICE': {
+			return { ...state, [action]: choice }
+		}
+		case 'RESET_ACTION_CHOICES': {
+			return {}
+		}
+		default:
+			return state
 	}
-	if (type === 'RESET_ACTION_CHOICES') {
-		return {}
-	} else return state
 }
 
 function currentLang(state = {}, { type, currentLang }) {
@@ -242,12 +265,17 @@ function tracking(
 	} else return state
 }
 
-function storedTrajets(state = {}, { type, vehicule, trajets }) {
-	if (type === 'SET_TRAJETS') {
-		return { ...state, [vehicule]: trajets }
-	} else if (type === 'RESET_TRAJETS') {
-		return {}
-	} else return state
+function storedTrajets(state = {}, { type, vehicule, trajets, allTrajets }) {
+	switch (type) {
+		case 'SET_ALL_TRAJETS':
+			return allTrajets
+		case 'SET_TRAJETS':
+			return { ...state, [vehicule]: trajets }
+		case 'RESET_TRAJETS':
+			return {}
+		default:
+			return state
+	}
 }
 
 function thenRedirectTo(state = null, { type, to }) {
@@ -308,13 +336,47 @@ function pullRequestNumber(state = null, { type, number }) {
 	} else return state
 }
 
+// This reducer updates the list of simulations that will be stored in local storage
+// Ideally, it will replace the 'simulation' reducer
+function simulations(
+	state: SavedSimulationList = [],
+	action: Action
+): SavedSimulationList {
+	switch (action.type) {
+		case 'DELETE_SIMULATION':
+			return state.filter((simulation) => simulation.id !== action.id)
+		case 'ADD_SIMULATION_TO_LIST':
+			if (!state.find((simulation) => simulation.id === action.simulation.id)) {
+				return [...state, action.simulation]
+			}
+			return state
+		default:
+			return state
+	}
+}
+
+// Pointer to the current simulation in the 'simulations' list
+function currentSimulationId(
+	state: string | null = null,
+	action: Action
+): string | null {
+	switch (action.type) {
+		case 'SET_CURRENT_SIMULATION':
+			return action.simulation.id
+		default:
+			return state
+	}
+}
+
 const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
 		simulation: (a: Simulation | null = null, b: Action): Simulation | null =>
 			simulation(a, b),
-		previousSimulation: defaultToNull,
+		previousSimulation: defaultToNull, // TODO : delete
+		simulations,
+		currentSimulationId,
 		situationBranch,
 		rules,
 		actionChoices,

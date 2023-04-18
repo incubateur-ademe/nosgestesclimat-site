@@ -16,8 +16,8 @@ import { TrackerContext } from '../../components/utils/withTracker'
 import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
 import {
-	persistSimulation,
-	retrievePersistedSimulation,
+	persistUser,
+	fetchUser,
 } from '../../storage/persistSimulation'
 import Tracker, { devTracker } from '../../Tracker'
 import {
@@ -76,10 +76,15 @@ export default function Root({}) {
 		document?.location.search.substring(1)
 	).get('shareData')
 
-	const persistedSimulation = retrievePersistedSimulation()
+	// We retrieve the User object from local storage to initialize the store.
+	const persistedUser = fetchUser();
+	// We use the 'currentSimulationId' pointer to retrieve the latest simulation in the list.
+	const persistedSimulation = persistedUser.simulations.filter(
+		(simulation) => simulation.id === persistedUser.currentSimulationId
+	)[0]
 
 	const currentLang =
-		persistedSimulation?.currentLang ??
+	persistedUser?.currentLang ??
 		getLangFromAbreviation(
 			window.FORCE_LANGUAGE || window.navigator.language.toLowerCase()
 		)
@@ -90,18 +95,18 @@ export default function Root({}) {
 			sitePaths={paths}
 			reduxMiddlewares={[]}
 			onStoreCreated={(store) => {
-				//persistEverything({ except: ['simulation'] })(store)
-				persistSimulation(store)
+				persistUser(store)
 			}}
 			initialStore={{
-				//...retrievePersistedState(),
-				previousSimulation: persistedSimulation,
+				simulation: persistedSimulation,
+				simulations: persistedUser.simulations,
+				currentSimulationId: persistedUser.currentSimulationId,
+				tutorials: persistedUser.tutorials,
+				localisation: persistedUser.localisation,
+				currentLang,
 				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices ?? {},
-				tutorials: persistedSimulation?.tutorials,
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
-				currentLang,
-				localisation: persistedSimulation?.localisation,
 				conference: persistedSimulation?.conference,
 				survey: persistedSimulation?.survey,
 			}}
