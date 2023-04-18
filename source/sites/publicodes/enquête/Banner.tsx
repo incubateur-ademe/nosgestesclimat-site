@@ -22,6 +22,8 @@ export default () => {
 
 export const minutes = 3
 
+const uglyBannerContentColor = '#ffffbf' // Cannot make it work as an import in BannerContent, dunno why
+
 const BannerWithEngine = () => {
 	const enquête = useSelector((state) => state.enquête)
 	const [message, setMessage] = useState(null)
@@ -118,12 +120,11 @@ const BannerWithEngine = () => {
 					exit={{ opacity: 0 }}
 					transition={{ delay: 0.4 }}
 					css={`
-						background: #ffff0040; /*J'étais pas très inspiré là */
+						background: ${uglyBannerContentColor}; /*J'étais pas très inspiré là */
 						height: ${height - 1}vh;
 						@media (max-width: 380) {
 							height: 100vh;
 						}
-						padding: 0 0.6rem;
 					`}
 				>
 					<ScrollToTop />

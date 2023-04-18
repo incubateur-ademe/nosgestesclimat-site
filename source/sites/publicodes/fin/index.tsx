@@ -9,6 +9,7 @@ import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import SlidesLayout from '../../../components/SlidesLayout'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import { arrayLoopIteration } from '../../../utils'
+import EnqueteBannerContent from '../enquête/BannerContent'
 import HorizontalSwipe from '../HorizontalSwipe'
 import ActionSlide from './ActionSlide'
 import Budget from './Budget'
@@ -32,6 +33,7 @@ export const rehydrateDetails = (encodedDetails) =>
 export const sumFromDetails = (details) =>
 	details.reduce((memo, [name, value]) => memo + value, 0)
 
+const EnqueteReminder = () => <EnqueteBannerContent noFirstButton={true} />
 export default ({}) => {
 	const [searchParams, setSearchParams] = useSearchParams()
 	const encodedDetails = searchParams.get('details')
@@ -47,13 +49,18 @@ export default ({}) => {
 		answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	const tracker = useContext(TrackerContext)
+	const enquête = useSelector((state) => state.enquête)
 
-	const componentCorrespondence = {
+	const componentCorrespondenceBasis = {
 		bilan: Budget,
 		categories: Catégories,
 		action: ActionSlide,
 		petrogaz: Petrogaz,
 	}
+	const componentCorrespondence = enquête
+		? { ...componentCorrespondenceBasis, enquete: EnqueteReminder }
+		: componentCorrespondenceBasis
+
 	const componentKeys = Object.keys(componentCorrespondence)
 	const Component = componentCorrespondence[slideName] || Budget
 

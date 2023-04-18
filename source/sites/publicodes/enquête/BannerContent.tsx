@@ -3,9 +3,10 @@ import { minutes } from './Banner'
 import ReturnToEnquêteButton from './ReturnToEnquêteButton'
 
 const nothing = () => null
-export default ({ setTimeMessage = nothing }) => (
+export default ({ setTimeMessage = nothing, noFirstButton }) => (
 	<div
 		css={`
+			padding: 0 0.6rem;
 			padding-top: 4vh;
 			max-width: 650px;
 			margin: 0 auto;
@@ -15,6 +16,7 @@ export default ({ setTimeMessage = nothing }) => (
 			button {
 				margin: 1rem;
 			}
+			background: #ffffbf;
 		`}
 	>
 		<p>
@@ -38,9 +40,11 @@ export default ({ setTimeMessage = nothing }) => (
 			retourner sur le questionnaire d'enquête OpinionWay avec le deuxième
 			bouton ci-dessous. Nous vous le rappelerons dans {minutes} minutes.
 		</p>
-		<button className="ui__ button " onClick={() => setTimeMessage(false)}>
-			⏳️ Je n'ai pas terminé
-		</button>
+		{!noFirstButton && (
+			<button className="ui__ button " onClick={() => setTimeMessage(false)}>
+				⏳️ Je n'ai pas terminé
+			</button>
+		)}
 		<ReturnToEnquêteButton />
 	</div>
 )
