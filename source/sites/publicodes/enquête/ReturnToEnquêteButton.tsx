@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useTestCompleted } from '../../../selectors/simulationSelectors'
 
-export default () => {
+export default ({ simple }) => {
 	const dispatch = useDispatch()
 	const enquête = useSelector((state) => state.enquête)
 	const testCompleted = useTestCompleted()
@@ -15,7 +15,9 @@ export default () => {
 			css={!testCompleted ? 'pointer-events: none;' : ''}
 		>
 			<button
-				className={'ui__ button ' + (!testCompleted ? 'disabled' : '')}
+				className={
+					simple ? '' : 'ui__ button ' + (!testCompleted ? 'disabled' : '')
+				}
 				onClick={() => dispatch({ type: 'QUIT_ENQUÊTE' })}
 			>
 				✅ Continuer l'enquête

@@ -76,6 +76,7 @@ const BannerWithEngine = () => {
 		mini: { height: '2rem' },
 		large: { height: '56vh' },
 	}
+
 	return (
 		<motion.div
 			animate={shouldDisplayTimeMessage ? 'large' : 'mini'}
@@ -95,9 +96,13 @@ const BannerWithEngine = () => {
 					align-items: center;
 				`}
 			>
-				<Link to={`/enquête/${userID}`}>
-					<div>Vous participez à l'enquête </div>
-				</Link>
+				<div>
+					{testCompleted ? (
+						<ReturnToEnquêteButton simple />
+					) : (
+						<Link to={`/enquête/${userID}`}>Vous participez à l'enquête</Link>
+					)}
+				</div>
 
 				{message && <div>{message.text}</div>}
 			</div>
