@@ -4,12 +4,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TrackerContext } from '../../components/utils/withTracker'
 import IllustratedMessage from '../ui/IllustratedMessage'
+import CountryFlag from './CountryFlag'
 import useLocalisation from './useLocalisation'
 import {
 	defaultModel,
 	getCountryNameInCurrentLang,
-	getFlag,
-	getFlagImgSrc,
 	supportedRegion,
 } from './utils'
 export default () => {
@@ -20,17 +19,17 @@ export default () => {
 	const dispatch = useDispatch()
 	const localisation = useLocalisation()
 	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
-	const regionParams = supportedRegion(localisation?.country?.code)
-	const flag = getFlag(localisation?.country?.code)
+	const code = localisation?.country?.code
+	const regionParams = supportedRegion(code)
 	const countryName = getCountryNameInCurrentLang(localisation)
 
 	const versionName = regionParams
 		? regionParams[currentLang]['gentilé'] ?? regionParams[currentLang]['nom']
 		: localisation?.country?.name
 
-	if (messagesRead.includes(localisation?.country?.code)) return
+	if (messagesRead.includes(code)) return
 
-	if (localisation?.country?.code === defaultModel) return
+	if (code === defaultModel) return
 
 	return (
 		<IllustratedMessage
@@ -48,17 +47,8 @@ export default () => {
 								Vous utilisez la version <strong>{{ versionName }}</strong> du
 								test
 							</Trans>
-							<img
-								src={flag}
-								aria-hidden="true"
-								css={`
-									height: 1rem;
-									margin: 0 0.3rem;
-									vertical-align: sub;
-								`}
-							/>
-							.
-							{localisation?.country?.code !== defaultModel && (
+							<CountryFlag code={code} />.
+							{code !== defaultModel && (
 								<span>
 									{' '}
 									<Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
@@ -73,16 +63,7 @@ export default () => {
 								Nous avons détecté que vous faites cette simulation depuis
 							</Trans>{' '}
 							{countryName}
-							<img
-								src={flag ?? getFlagImgSrc(localisation?.country?.code)}
-								aria-hidden="true"
-								css={`
-									height: 1rem;
-									margin: 0 0.3rem;
-									vertical-align: sub;
-								`}
-							/>
-							.
+							<CountryFlag code={code} />.
 							<p css="margin-top: 0.5rem">
 								<b>
 									<Trans i18nKey="components.localisation.LocalisationMessage.warnMessage">
@@ -90,15 +71,7 @@ export default () => {
 										vous est proposé par défaut
 									</Trans>
 								</b>
-								<img
-									src={getFlagImgSrc(defaultModel)}
-									aria-hidden="true"
-									css={`
-										height: 1rem;
-										margin: 0 0.3rem;
-										vertical-align: sub;
-									`}
-								/>
+								<CountryFlag code={defaultModel} />
 								<b>.</b>
 							</p>
 						</p>
@@ -108,16 +81,7 @@ export default () => {
 								Nous n'avons pas pu détecter votre pays de simulation, le modèle
 								Français vous est proposé par défaut
 							</Trans>
-							<img
-								src={getFlagImgSrc(defaultModel)}
-								aria-hidden="true"
-								css={`
-									height: 1rem;
-									margin: 0 0.3rem;
-									vertical-align: sub;
-								`}
-							/>
-							.
+							<CountryFlag code={defaultModel} />.
 						</p>
 					)}
 					<p>
@@ -149,13 +113,13 @@ export default () => {
 						onClick={() => {
 							dispatch({
 								type: 'SET_LOCALISATION_BANNERS_READ',
-								regions: [...messagesRead, localisation?.country?.code],
+								regions: [...messagesRead, code],
 							})
 							tracker.push([
 								'trackEvent',
 								'I18N',
 								'Clic bannière localisation',
-								localisation?.country?.code,
+								code,
 							])
 						}}
 					>
@@ -163,6 +127,8 @@ export default () => {
 					</button>
 				</div>
 			}
+			inline={undefined}
+			image={undefined}
 		/>
 	)
 }

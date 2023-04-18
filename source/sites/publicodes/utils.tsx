@@ -4,6 +4,7 @@ export const isFluidLayout = (encodedPathname) => {
 	return (
 		pathname === '/' ||
 		pathname.startsWith('/nouveautés') ||
-		pathname.startsWith('/documentation')
+		pathname.startsWith('/documentation') ||
+		pathname.startsWith('/international')
 	)
 }

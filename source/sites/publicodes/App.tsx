@@ -55,6 +55,7 @@ const CGULazy = React.lazy(() => import('./pages/CGU'))
 const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
 const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
 const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
+const International = React.lazy(() => import('./pages/International'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
@@ -182,12 +183,16 @@ const Main = ({}) => {
 						overflow: auto;
 						@media (min-width: 800px) {
 							flex-grow: 1;
-							${!isHomePage ? 'padding-left: 0.6rem;' : ''}
+							${!fluidLayout ? 'padding-left: 0.6rem;' : ''}
 						}
 					`}
 				>
 					<GroupModeSessionVignette />
-					{!isHomePage && !isTuto && <LocalisationMessage />}
+					{!isHomePage &&
+						!isTuto &&
+						!location.pathname.startsWith('/international') && (
+							<LocalisationMessage />
+						)}
 
 					{fluidLayout && (
 						<div
@@ -203,7 +208,7 @@ const Main = ({}) => {
 							<Logo showText size={largeScreen ? 'large' : 'medium'} />
 						</div>
 					)}
-					{isHomePage && <LangSwitcher from="landing" />}
+					{fluidLayout && <LangSwitcher from="landing" />}
 					<Router />
 				</main>
 			</div>
@@ -414,6 +419,14 @@ const Router = ({}) => {
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<PetrogazLandingLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={`/international`}
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<International />
 					</Suspense>
 				}
 			/>
