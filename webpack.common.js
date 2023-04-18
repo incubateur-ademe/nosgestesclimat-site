@@ -116,7 +116,11 @@ module.exports.commonLoaders = (mode = 'production') => {
 			exclude: /node_modules|dist/,
 		},
 		{
-			test: /\.(jpe?g|png)$/,
+			test: /\.md/,
+			type: 'asset/source',
+		},
+		{
+			test: /\.(jpe?g|png|gif)$/i,
 			type: 'asset/resource',
 		},
 		{
