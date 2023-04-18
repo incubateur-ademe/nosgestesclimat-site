@@ -6,14 +6,16 @@ import {
 	setCurrentSimulation,
 } from '../../actions/actions'
 export default ({ dispatch, list, currentSimulation }) => {
+	
 	return (
 		<ul>
-			{list.map((simulation) => (
-				<li key={simulation.id} css="list-style-type: none">
+			{list.map((simulation) => {
+				const dateSimu = new Date(simulation.date);
+				return (<li key={simulation.id} css="list-style-type: none">
 					<details css="display: inline-block;">
-						<summary>{new Date(simulation.date).toLocaleDateString()}</summary>
+						<summary>{dateSimu.toLocaleDateString()}</summary>
 						<ul>
-							<li>Date complète : {simulation.date}.</li>
+							<li>Date complète : {dateSimu.toLocaleDateString()} {dateSimu.toLocaleTimeString()}.</li>
 							<li>Identifiant : {simulation.id}.</li>
 						</ul>
 					</details>
@@ -45,8 +47,9 @@ export default ({ dispatch, list, currentSimulation }) => {
 							</button>
 						</span>
 					)}
-				</li>
-			))}
+				</li>)
+			}
+			)}
 		</ul>
 	)
 }
