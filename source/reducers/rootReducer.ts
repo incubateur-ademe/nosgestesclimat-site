@@ -68,9 +68,6 @@ function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation | null {
-	if (action.type === 'DELETE_SIMULATION') {
-		return null
-	}
 	if (action.type === 'SET_CURRENT_SIMULATION') {
 		// Update the date when loading the simulation.
 		// Also triggers an update of the 'simulationsList' component when changing simulations.
