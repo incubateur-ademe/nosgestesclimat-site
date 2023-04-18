@@ -1,4 +1,3 @@
-import content from 'raw-loader!./texte.md'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useParams, useSearchParams } from 'react-router-dom'
@@ -12,6 +11,7 @@ import { Markdown } from '../../../components/utils/markdown'
 import { rehydrateDetails } from '../fin'
 import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
 import ReturnToEnquêteButton from './ReturnToEnquêteButton'
+import content from './texte.md'
 
 export default () => {
 	const dispatch = useDispatch()
