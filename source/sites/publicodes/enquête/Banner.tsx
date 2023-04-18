@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { useMediaQuery } from 'usehooks-ts'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import { WithEngine } from '../../../RulesProvider'
 import {
@@ -66,15 +67,17 @@ const BannerWithEngine = () => {
 
 		return () => clearInterval(endEnquêteDaemon)
 	}, [enquête, minutes, setTimeMessage])
+	const thinScreen = useMediaQuery('(max-width: 400px)')
 
 	if (!enquête) return null
 	const { userID } = enquête
 	const testCompleted = useTestCompleted()
 	const shouldDisplayTimeMessage = testCompleted && timeMessage
 
+	const height = thinScreen ? 100 : 56
 	const animationVariants = {
 		mini: { height: '2rem' },
-		large: { height: '56vh' },
+		large: { height: height + 'vh' },
 	}
 
 	return (
@@ -98,7 +101,9 @@ const BannerWithEngine = () => {
 			>
 				<div>
 					{testCompleted ? (
-						<ReturnToEnquêteButton simple />
+						<button onClick={() => setTimeMessage(true)}>
+							⌛️ Vous avez terminé ?
+						</button>
 					) : (
 						<Link to={`/enquête/${userID}`}>Vous participez à l'enquête</Link>
 					)}
@@ -114,7 +119,10 @@ const BannerWithEngine = () => {
 					transition={{ delay: 0.4 }}
 					css={`
 						background: #ffff0040; /*J'étais pas très inspiré là */
-						height: 55vh;
+						height: ${height - 1}vh;
+						@media (max-width: 380) {
+							height: 100vh;
+						}
 						padding: 0 0.6rem;
 					`}
 				>
