@@ -9,6 +9,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
+        with:
+          submodules: recursive
       - name: Cypress run
         uses: cypress-io/github-action@v5.6.1
         with:
