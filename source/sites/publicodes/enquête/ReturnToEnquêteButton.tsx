@@ -13,15 +13,12 @@ export default ({ simple }) => {
 			href={url}
 			target="_blank"
 			css={!testCompleted ? 'pointer-events: none;' : ''}
+			className={
+				simple ? '' : 'ui__ button ' + (!testCompleted ? 'disabled' : '')
+			}
+			onClick={() => dispatch({ type: 'QUIT_ENQUÊTE' })}
 		>
-			<button
-				className={
-					simple ? '' : 'ui__ button ' + (!testCompleted ? 'disabled' : '')
-				}
-				onClick={() => dispatch({ type: 'QUIT_ENQUÊTE' })}
-			>
-				✅ Continuer l'enquête
-			</button>
+			✅ Continuer l'enquête
 		</a>
 	)
 }
