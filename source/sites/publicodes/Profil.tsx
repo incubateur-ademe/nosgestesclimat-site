@@ -35,7 +35,7 @@ export default ({}) => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
-	const currentSimulation = useSelector((state) => state.simulation)
+	const currentSimulationId = useSelector((state) => state.currentSimulationId)
 
 	const simulationList = useSelector((state) => state.simulations)
 
@@ -183,7 +183,7 @@ export default ({}) => {
 							</Trans>
 						</p>
 						<SimulationList
-							{...{ dispatch, list: simulationList, currentSimulation }}
+							{...{ dispatch, list: simulationList, currentSimulationId }}
 						/>
 					</div>
 				)}
