@@ -13,18 +13,7 @@ const {
 module.exports = {
 	...common,
 	module: {
-		rules: [
-			...commonLoaders('development'),
-			styleLoader('style-loader'),
-			{
-				test: /\.(png|jpe?g|gif|md)$/i,
-				use: [
-					{
-						loader: 'file-loader',
-					},
-				],
-			},
-		],
+		rules: [...commonLoaders('development'), styleLoader('style-loader')],
 	},
 	devServer: {
 		historyApiFallback: true,

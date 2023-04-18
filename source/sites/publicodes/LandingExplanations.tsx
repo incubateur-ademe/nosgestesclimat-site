@@ -6,10 +6,10 @@ import avantages from './avantages.yaml'
 import LandingContent from './LandingContent'
 import MarkdownPage from './pages/MarkdownPage'
 
-import contentEn from 'raw-loader!../../locales/pages/en-us/landing.md'
-import contentEs from 'raw-loader!../../locales/pages/es/landing.md'
-import contentFr from 'raw-loader!../../locales/pages/fr/landing.md'
-import contentIt from 'raw-loader!../../locales/pages/it/landing.md'
+import contentEn from '../../locales/pages/en-us/landing.md'
+import contentEs from '../../locales/pages/es/landing.md'
+import contentFr from '../../locales/pages/fr/landing.md'
+import contentIt from '../../locales/pages/it/landing.md'
 
 const fluidLayoutMinWidth = '1200px'
 
