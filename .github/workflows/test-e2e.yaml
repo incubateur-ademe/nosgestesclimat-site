@@ -11,12 +11,10 @@ jobs:
         uses: actions/checkout@v3.5.2
         with:
           submodules: recursive
-      - uses: actions/setup-node@v2
-        with:
-          node-version: '18'
-          cache: 'yarn'
-      - run: yarn --cwd ./nosgestesclimat install --immutable
       - name: Cypress run
         uses: cypress-io/github-action@v5.6.1
         with:
-          start: yarn dev
+          install-command: yarn --immutable && yarn --cwd ./nosgestesclimat install --immutable
+          build: yarn run model:compile
+          start: yarn run server
+          wait-on: 'http://localhost:8080'

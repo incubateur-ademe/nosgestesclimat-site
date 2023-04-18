@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"prepare": "node scripts/prepare.js",
-		"model:compile": "yarn --cwd ./nosgestesclimat/ compile",
+		"model:compile": "yarn --cwd ./nosgestesclimat/ compile:fr",
 		"model:rules-watch": "yarn --cwd ./nosgestesclimat/ compile:rules-watch",
 		"model:serve": "http-server ./nosgestesclimat/public/ -p 8081 --cors -c-1",
 		"serve": "webpack serve --mode development --config webpack.dev.js",
