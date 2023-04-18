@@ -103,7 +103,7 @@ export default function Form({
 								cursor: pointer;
 							`}
 						>
-							{t('Année {{year}} :', { year })}
+							{year} :
 						</label>
 						<div
 							css={`
@@ -175,4 +175,5 @@ const WrappedInput = styled(NumberFormat)`
 const InputSuffix = styled.span`
 	position: relative;
 	padding: 0.2rem 0.5rem 0rem 0rem !important;
+	white-space: nowrap;
 `
