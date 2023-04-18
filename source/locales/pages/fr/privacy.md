@@ -7,21 +7,22 @@ questions restent chez vous, nous n'en collectons aucune.
 
 Cependant, nous suivons quelques informations sur votre utilisation de ce
 simulateur, telles que les pages consultées et le temps passé, dans
-l'unique but de l'améliorer.
+l'unique but de l'améliorer. 
 
 En particulier, nous suivons l'adresse de la page de fin de simulation,
 qui contient le total de votre empreinte et sa répartition en grande
 catégories (transport, logement, ...).
 
-Vous pouvez en savoir plus et désactiver ce suivi ci-dessous.
+Vous pouvez en savoir plus et désactiver ce suivi, qui est fait via une instance étatique du logiciel ouvert Matomo, ci-dessous.
 
 <iframe
 css="border: 2px dashed var(--color); max-height: 200px; width: 600px;"
 src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
 ></iframe>
 
-Dans les jours à venir, nous allons tester un nouvel outil de suivi, dans l'objectif d'améliorer le service. 
-Celui-ci est respectueux de votre vie privé, les informations collectées sont les mêmes qu'à l'heure actuelle et sont totalement anonymes.
+> À partir du 18 avril 2023, nous testons un nouvel outil de suivi, lui aussi open source, Plausible, dans l'objectif d'améliorer le service. 
+
+> Plausible [est respectueux de votre vie privé](https://plausible.io/data-policy), les informations collectées sont les mêmes qu'à l'heure actuelle et sont totalement anonymes. Vous pouvez refuser ce suivi via [les instructions sur cette page](https://plausible.io/docs/excluding), qui peuvent se résumer à l'[installation du blockeur de publicités uBlock Origin sur le navigateur Firefox](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/).
 
 Les modes de simulation en groupe, conférence et sondage, font eux appel à nos serveurs pour aggréger les multiples simulations et les communiquer entre les participants.
 
