@@ -6,7 +6,7 @@ export type RegionAuthor = {
 }
 
 export const DEFAULT_REGION_MODEL_AUTHOR: RegionAuthor = {
-	nom: 'L’équipe de nosgestesclimat.fr',
+	nom: 'l’équipe de nosgestesclimat.fr',
 	url: 'https://nosgestesclimat.fr/à-propos',
 }
 
