@@ -53,6 +53,10 @@ const Simulateur = () => {
 		return null
 	}
 
+	const displayScoreExplanation =
+			isMainSimulation && !tutorials.scoreExplanation,
+		displayTutorial = isMainSimulation && !tutorials.testIntro
+
 	return (
 		<div>
 			<Meta title={evaluation.title} />
@@ -60,10 +64,10 @@ const Simulateur = () => {
 				<Trans>Le test</Trans>
 			</Title>
 			<div>
-				{tutorials.testIntro && (
+				{!displayTutorial && (
 					<motion.div
 						initial={
-							tutorials.scoreExplanation ? false : { opacity: 0, scale: 0.8 }
+							!displayScoreExplanation ? false : { opacity: 0, scale: 0.8 }
 						}
 						animate={{ opacity: 1, scale: 1 }}
 						transition={{ duration: 0.5 }}
@@ -78,8 +82,8 @@ const Simulateur = () => {
 						)}
 					</h1>
 				)}
-				{tutorials.testIntro ? (
-					tutorials.scoreExplanation && (
+				{!displayTutorial ? (
+					!displayScoreExplanation && (
 						<Simulation
 							orderByCategories={categories}
 							customEnd={
@@ -104,8 +108,6 @@ const Simulateur = () => {
 }
 
 const TutorialRedirection = () => {
-	const dispatch = useDispatch(),
-		to = useLocation().pathname
 	return <Navigate to="/tutoriel" replace />
 }
 

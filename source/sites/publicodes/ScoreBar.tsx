@@ -46,7 +46,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const situationLength = Object.keys(situation).length
 
 	useEffect(() => {
-		if (!tutorials['scoreExplanation']) {
+		if (objectif === 'bilan' && !tutorials['scoreExplanation']) {
 			setTimeout(() => setOpenExplanation(true), 1200)
 		}
 	}, [tutorials])
