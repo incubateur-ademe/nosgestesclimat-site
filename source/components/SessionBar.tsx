@@ -77,6 +77,7 @@ const Button = (props) => {
 		<Link
 			to={props.url}
 			css={`
+				display: block;
 				${inactive &&
 				`
 				pointer-events: none;
@@ -89,7 +90,6 @@ opacity: .5;
 				`
 				font-weight: bold;
 				background: var(--lighterColor);
-				display: block;
 
 				@media (max-width: 800px) {
 					border-radius: 0.6rem;
