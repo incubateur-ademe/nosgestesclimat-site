@@ -2,8 +2,7 @@ import type { Context } from "https://edge.netlify.com";
 
 export default async (req: Request, ctx: Context) => {
     const res:Response = await ctx.next();
-    console.log(res);
-    if (res.headers.get("content-type") != "text/html") return res;
+    if (!res.headers.get("content-type")?.includes("text/html")) return res;
     const url = new URL(req.url);
 
     const ogUrl = url.origin+"/og/fin"+url.search;
