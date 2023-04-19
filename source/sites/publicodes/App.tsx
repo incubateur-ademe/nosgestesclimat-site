@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react'
 import Logo from 'Components/Logo'
 import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
@@ -33,6 +34,13 @@ import { isFluidLayout } from './utils'
 
 // All those lazy components, could be probably be handled another more consise way
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
+
+Sentry.init({
+	dsn: 'https://d134af84d6db41eea0331919c58865b9@o4505041038606336.ingest.sentry.io/4505041042014208',
+	integrations: [new Sentry.BrowserTracing()],
+	// NOTE(@EmileRoley): in the future, we may want to set this to a lower value
+	tracesSampleRate: 1.0,
+})
 
 const ActionsLazy = React.lazy(() => import('./Actions'))
 const FinLazy = React.lazy(() => import('./fin'))
