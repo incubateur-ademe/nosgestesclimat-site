@@ -37,8 +37,7 @@ export const correctValue = (evaluated) => {
 const ruleSumNode = (rules, rule) => {
 	const formula = rule.rawNode.formule
 
-	if (!formula.somme) return null
-	return formula.somme.map((name) =>
+	return formula.somme?.map((name) =>
 		coreUtils.disambiguateReference(rules, rule.dottedName, name)
 	)
 }
@@ -50,6 +49,12 @@ export const extractCategoriesNamespaces = (
 ) => {
 	const rule = engine.getRule(parentRule),
 		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
+
+	if (sumNodes == undefined) {
+		// NOTE(@EmileRolley): needed to handle custom 'services sociétaux' rule that is not a sum
+		// in international models.
+		return []
+	}
 
 	const categories = sumNodes.map((dottedName) => {
 		const categoryName = splitName(dottedName)[0]
@@ -94,6 +99,10 @@ export const extractCategories = (
 ) => {
 	const rule = engine.getRule(parentRule),
 		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
+
+	if (sumNodes === undefined) {
+		return []
+	}
 
 	const categories = sumNodes.map((dottedName) => {
 		const node = engine.evaluate(dottedName)
