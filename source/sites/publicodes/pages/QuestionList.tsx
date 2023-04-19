@@ -15,13 +15,24 @@ export default () => {
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
 		.filter((el) => el && el.question)
 
-	const jsonList = questionRules.map((rule) => ({
-		dottedName: rule.dottedName,
-		question: rule.question,
-		type: getQuestionType(engine, rules, rule).type,
-		catégorie: questionCategoryName(rule.dottedName),
-	}))
-	const header = ['dottedName', 'question', 'type', 'catégorie']
+	const jsonList = questionRules.map((rule) => {
+		const { type, mosaic } = getQuestionType(engine, rules, rule)
+
+		return {
+			dottedName: rule.dottedName,
+			question: rule.question,
+			type,
+			catégorie: questionCategoryName(rule.dottedName),
+			'dans mosaïque': mosaic != null,
+		}
+	})
+	const header = [
+		'dottedName',
+		'question',
+		'type',
+		'catégorie',
+		'dans mosaïque',
+	]
 	const csv = toCSV(header, jsonList)
 	return (
 		<div>
