@@ -4,10 +4,12 @@ import Tracker, { instantiateDevTracker } from './Tracker'
 export const TrackerContext = createContext<Tracker | undefined>(undefined)
 
 export const TrackerProvider = ({ children }) => {
-	const tracker =
-		process.env.NODE_ENV === 'development'
-			? instantiateDevTracker()
-			: new Tracker()
+	console.log({ context: CONTEXT, env: NODE_ENV })
+	const shouldUseDevTracker =
+		NODE_ENV === 'development' || CONTEXT === 'deploy-preview'
+
+	const tracker = shouldUseDevTracker ? instantiateDevTracker() : new Tracker()
+
 	return (
 		<TrackerContext.Provider value={tracker}>
 			{children}
