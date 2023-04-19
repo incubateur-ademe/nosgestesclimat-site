@@ -1,7 +1,11 @@
 import { useSelector } from 'react-redux'
 import { getRelatedMosaicInfosIfExists } from '../../../components/conversation/RuleInput'
-import { parentName } from '../../../components/publicodesUtils'
+import {
+	parentName,
+	questionCategoryName,
+} from '../../../components/publicodesUtils'
 import { useEngine } from '../../../components/utils/EngineContext'
+import toCSV from '../../../components/utils/toCSV'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
 export default () => {
@@ -11,6 +15,14 @@ export default () => {
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
 		.filter((el) => el && el.question)
 
+	const jsonList = questionRules.map((rule) => ({
+		dottedName: rule.dottedName,
+		question: rule.question,
+		type: getQuestionType(engine, rules, rule),
+		catégorie: questionCategoryName(rule.dottedName),
+	}))
+	const header = ['dottedName', 'question', 'type', 'catégorie']
+	const csv = toCSV(header, jsonList)
 	return (
 		<div>
 			<h1>Les questions du modèle Nos Gestes Climat</h1>
@@ -22,6 +34,20 @@ export default () => {
 				spécifiques à Nos Gestes Climat (comme la mosaïque) sont spécifiées au
 				clic. L'identifiant de la quesion est la propriété "dottedName".
 			</p>
+			<textarea
+				value={csv}
+				css={`
+					width: 90%;
+				`}
+			/>
+			<button
+				className="ui__ button small"
+				onClick={() => {
+					navigator.clipboard.writeText(csv)
+				}}
+			>
+				Copier le CSV
+			</button>
 			<ul>
 				{questionRules.map((rule) => (
 					<QuestionDescription
@@ -36,7 +62,7 @@ export default () => {
 	)
 }
 
-const QuestionDescription = ({ engine, rule, rules }) => {
+const getQuestionType = (engine, rules, rule) => {
 	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
 		engine,
 		rules,
@@ -45,7 +71,7 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 	console.log(ruleMosaicInfos)
 	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
 
-	const questionType = rule.mosaique
+	return rule.mosaique
 		? `🪟 Mosaïque de type ${rule.mosaique.type}`
 		: rule.unité ||
 		  typeof rule['par défaut'] === 'number' ||
@@ -54,6 +80,9 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 		: rule.formule && rule.formule['une possibilité']
 		? '🔠 plusieurs possibilités'
 		: '☑️ Oui/Non'
+}
+const QuestionDescription = ({ engine, rule, rules }) => {
+	const questionType = getQuestionType(engine, rules, rule)
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
 	return (
