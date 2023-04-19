@@ -118,6 +118,7 @@ export default function Amortissement({
 						`}
 					>
 						<Form
+							dottedName={dottedName}
 							amortissementAvion={amortissementAvion}
 							setAmortissementAvion={handleUpdateAmortissementAvion}
 						/>

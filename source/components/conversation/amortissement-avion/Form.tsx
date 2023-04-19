@@ -1,4 +1,4 @@
-import { RefObject, useRef } from 'react'
+import { RefObject, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
@@ -6,14 +6,35 @@ import { formatFloat } from '../../utils/formatFloat'
 import { AmortissementObject } from './FieldTravelDuration'
 
 interface Props {
+	dottedName: string
 	amortissementAvion: object
 	setAmortissementAvion: (amortissementObject: AmortissementObject) => void
 }
 
+const getDuration = (dottedName) => {
+	switch (dottedName) {
+		case 'transport . avion . court courrier . heures de vol':
+			return 'de moins de 2h'
+		case 'transport . avion . moyen courrier . heures de vol':
+			return 'entre 2h et 6h'
+		case 'transport . avion . long courrier . heures de vol':
+			return 'de plus de 6h'
+	}
+}
+
 export default function Form({
+	dottedName,
 	amortissementAvion,
 	setAmortissementAvion,
 }: Props) {
+	const [localAmortissementAvion, setLocalAmortissementAvion] = useState({})
+	console.log(dottedName)
+
+	useEffect(() => {
+		if (!localAmortissementAvion && amortissementAvion) {
+			setLocalAmortissementAvion(amortissementAvion)
+		}
+	}, [])
 	const { t } = useTranslation()
 
 	const formRef = useRef<HTMLFormElement>(null)
@@ -23,14 +44,6 @@ export default function Form({
 		// we have to check the form validity if we want 'required' attribute to be taken into account with preventDefault function
 		const formToCheck = formRef.current
 		const inputs = Array.from(formToCheck?.querySelectorAll('input') || [])
-
-		const allInputsAnswered = inputs.every(
-			(input: HTMLInputElement) => input.value !== ''
-		)
-
-		if (!allInputsAnswered) {
-			return null
-		}
 
 		const isValidForm = formToCheck && formToCheck.checkValidity()
 
@@ -67,11 +80,21 @@ export default function Form({
 				css={`
 					text-align: left;
 					margin-top: 1rem;
-					margin-bottom: 1.5rem;
+					margin-bottom: 0.25rem;
 				`}
 			>
 				{t('Vos trajets en avion sur les 3 dernières années')}
 			</h3>
+			<p
+				css={`
+					text-align: left;
+					margin-bottom: 1.5rem;
+					color: #908e8e;
+					font-size: 1rem;
+				`}
+			>
+				{t('Trajets {{duration}}', { duration: getDuration(dottedName) })}
+			</p>
 			<div
 				css={`
 					display: flex;
@@ -112,12 +135,6 @@ export default function Form({
 							`}
 						>
 							<WrappedInput
-								css={`
-									display: inline-block;
-									@media (max-width: 600px) {
-										max-width: 5rem !important;
-									}
-								`}
 								className="ui__"
 								inputMode="decimal"
 								allowNegative={false}
@@ -126,8 +143,8 @@ export default function Form({
 								placeholder="0"
 								onChange={handleAddFormChange}
 								value={amortissementAvion[year] || ''}
-								required
 								decimalSeparator=","
+								allowLeadingZeros={false}
 							/>
 							<InputSuffix id="unitéDistance">h (A/R)</InputSuffix>
 						</div>
@@ -170,6 +187,8 @@ const WrappedInput = styled(NumberFormat)`
 	position: relative;
 	padding: 0.3rem !important;
 	margin-bottom: 0rem !important;
+	display: inline-block;
+	max-width: 5rem !important;
 `
 
 const InputSuffix = styled.span`
