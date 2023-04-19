@@ -8,6 +8,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetLocalisation } from '../../actions/actions'
 import { usePersistingState } from '../../components/utils/persistState'
+import RegionModelAuthors, {
+	DEFAULT_REGION_MODEL_AUTHOR,
+	RegionAuthor,
+} from './RegionModelAuthors'
 import RegionSelector from './RegionSelector'
 
 export default ({ title = 'Ma région de simulation' }) => {
@@ -18,7 +22,9 @@ export default ({ title = 'Ma région de simulation' }) => {
 	const dispatch = useDispatch()
 	const regionParams = supportedRegion(localisation?.country?.code)
 	const flag = getFlag(localisation?.country?.code)
-	const authors = regionParams?.[currentLang]?.authors ?? []
+	const authors: RegionAuthor[] = regionParams?.[currentLang]?.authors ?? [
+		DEFAULT_REGION_MODEL_AUTHOR,
+	]
 	const countryName = getCountryNameInCurrentLang(localisation)
 
 	return (
@@ -61,18 +67,7 @@ export default ({ title = 'Ma région de simulation' }) => {
 								</button>
 							)}
 						</p>
-						<small>
-							{authors.length > 0 && (
-								<p>
-									{t('Ce modèle a été conçu par')}{' '}
-									{authors.map((author) => (
-										<a href={author?.url ?? '#'} target="_blank">
-											{author.nom}
-										</a>
-									))}
-								</p>
-							)}
-						</small>
+						<RegionModelAuthors authors={authors} />
 					</>
 				) : (
 					localisation?.country && (
