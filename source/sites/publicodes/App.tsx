@@ -234,7 +234,7 @@ const Router = ({}) => {
 			<Route
 				path="questions"
 				element={
-					<WithEngine options={{ parsed: false, optimized: false }}>
+					<WithEngine options={{ parsed: true, optimized: false }}>
 						<Suspense fallback={<AnimatedLoader />}>
 							<QuestionList />
 						</Suspense>
