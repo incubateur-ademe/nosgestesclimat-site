@@ -4,9 +4,14 @@ import Tracker, { instantiateDevTracker } from './Tracker'
 export const TrackerContext = createContext<Tracker | undefined>(undefined)
 
 export const TrackerProvider = ({ children }) => {
-	console.log({ context: CONTEXT, env: NODE_ENV })
 	const shouldUseDevTracker =
 		NODE_ENV === 'development' || CONTEXT === 'deploy-preview'
+
+	if (!shouldUseDevTracker) {
+		console.warn(
+			'Tracking is disabled in development and deploy-preview contexts.'
+		)
+	}
 
 	const tracker = shouldUseDevTracker ? instantiateDevTracker() : new Tracker()
 
