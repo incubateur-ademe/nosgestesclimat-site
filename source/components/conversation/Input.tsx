@@ -52,7 +52,7 @@ export default function Input({
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
 					<div css="display: block">
-						{showAnimation && (
+						{showAnimation && !isDisabled && (
 							<AnimatedTargetValue value={value} unit={unité} />
 						)}
 						<NumberFormat
