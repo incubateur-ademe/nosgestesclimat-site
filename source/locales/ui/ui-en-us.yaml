@@ -664,4 +664,8 @@ entries:
   Je veux être plus précis: I want to be more precise
   Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.: Field disabled during detail filling; will update automatically.
   Ce modèle a été conçu par: This model was designed by
+  'Année {{year}} :': 'Year {{year}}:'
+  Vos trajets en avion sur les 3 dernières années: Your air travel over the last 3 years
+  Je souhaite répondre sur les 3 dernières années: I would like to answer for the last 3 years
   Désactivé lors du remplissage du détail des trajets.: Disabled when filling in the trip details.
+  'Trajets {{duration}}': Journeys {{duration}}

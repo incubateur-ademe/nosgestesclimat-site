@@ -278,6 +278,24 @@ function storedTrajets(state = {}, { type, vehicule, trajets, allTrajets }) {
 	}
 }
 
+function storedAmortissementAvion(
+	state = {},
+	{ type, amortissementAvionObject }
+) {
+	if (type === 'SET_AMORTISSEMENT') {
+		return {
+			...state,
+			storedAmortissementAvion: {
+				...(state?.storedAmortissementAvion || {}),
+				[amortissementAvionObject.dottedName]:
+					amortissementAvionObject.amortissementObject,
+			},
+		}
+	} else if (type === 'RESET_AMORTISSEMENT') {
+		return {}
+	} else return state
+}
+
 function thenRedirectTo(state = null, { type, to }) {
 	if (type === 'SET_THEN_REDIRECT_TO') {
 		return to
@@ -385,6 +403,7 @@ const mainReducer = (state: any, action: Action) =>
 		iframeOptions: defaultToNull,
 		tutorials,
 		storedTrajets,
+		storedAmortissementAvion,
 		thenRedirectTo,
 		tracking,
 		localisation,

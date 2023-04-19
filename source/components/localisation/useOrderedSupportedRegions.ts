@@ -9,8 +9,8 @@ export default () => {
 		Object.entries(supportedRegions)
 			// sort function from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/sort
 			.sort((a, b) => {
-				const nameA = a[1][currentLang].nom.toUpperCase() // ignore upper and lowercase
-				const nameB = b[1][currentLang].nom.toUpperCase() // ignore upper and lowercase
+				const nameA = a[1][currentLang]?.nom.toUpperCase() // ignore upper and lowercase
+				const nameB = b[1][currentLang]?.nom.toUpperCase() // ignore upper and lowercase
 				if (nameA < nameB) {
 					return -1
 				}

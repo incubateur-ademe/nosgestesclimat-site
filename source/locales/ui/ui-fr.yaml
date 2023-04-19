@@ -508,3 +508,7 @@ entries:
   Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.: Champ désactivé durant le remplissage du détail ; se mettra à jour automatiquement.
   Ce modèle a été conçu par: Ce modèle a été conçu par
   Désactivé lors du remplissage du détail des trajets.: Désactivé lors du remplissage du détail des trajets.
+  'Année {{year}} :': 'Année {{year}} :'
+  Je souhaite répondre sur les 3 dernières années: Je souhaite répondre sur les 3 dernières années
+  Vos trajets en avion sur les 3 dernières années: Vos trajets en avion sur les 3 dernières années
+  'Trajets {{duration}}': Trajets {{duration}}

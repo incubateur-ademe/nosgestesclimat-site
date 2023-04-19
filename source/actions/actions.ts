@@ -83,6 +83,10 @@ export const resetStoredTrajets = () =>
 		type: 'RESET_TRAJETS',
 	} as const)
 
+export const resetStoredAmortissementAvion = () => ({
+	type: 'RESET_AMORTISSEMENT',
+})
+
 export const goToQuestion = (question: DottedName) =>
 	({
 		type: 'STEP_ACTION',
@@ -243,3 +247,8 @@ export const resetLocalisation = () =>
 	({
 		type: 'RESET_LOCALISATION',
 	} as const)
+
+export const updateAmortissementAvion = (amortissementAvionObject: Object) => ({
+	type: 'SET_AMORTISSEMENT',
+	amortissementAvionObject,
+})
