@@ -18,7 +18,7 @@ export default () => {
 	const jsonList = questionRules.map((rule) => ({
 		dottedName: rule.dottedName,
 		question: rule.question,
-		type: getQuestionType(engine, rules, rule),
+		type: getQuestionType(engine, rules, rule).type,
 		catégorie: questionCategoryName(rule.dottedName),
 	}))
 	const header = ['dottedName', 'question', 'type', 'catégorie']
@@ -31,8 +31,9 @@ export default () => {
 				du test, et dans une moindre mesure au cours du parcours action. Le
 				format des questions est présenté, et l'intégralité des propriétés{' '}
 				<a href="https://publi.codes">publicodes</a> ainsi que les extensions
-				spécifiques à Nos Gestes Climat (comme la mosaïque) sont spécifiées au
-				clic. L'identifiant de la quesion est la propriété "dottedName".
+				spécifiques à Nos Gestes Climat (comme la mosaïque) sont spécifiées{' '}
+				<strong>au clic</strong>. L'identifiant de la quesion est la propriété
+				"dottedName".
 			</p>
 			<textarea
 				value={csv}
@@ -71,7 +72,7 @@ const getQuestionType = (engine, rules, rule) => {
 	console.log(ruleMosaicInfos)
 	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
 
-	return rule.mosaique
+	const type = rule.mosaique
 		? `🪟 Mosaïque de type ${rule.mosaique.type}`
 		: rule.unité ||
 		  typeof rule['par défaut'] === 'number' ||
@@ -80,9 +81,10 @@ const getQuestionType = (engine, rules, rule) => {
 		: rule.formule && rule.formule['une possibilité']
 		? '🔠 plusieurs possibilités'
 		: '☑️ Oui/Non'
+	return { type, mosaic: ruleMosaicInfos }
 }
 const QuestionDescription = ({ engine, rule, rules }) => {
-	const questionType = getQuestionType(engine, rules, rule)
+	const { type, mosaic } = getQuestionType(engine, rules, rule)
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
 	return (
@@ -128,10 +130,11 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 								}
 							`}
 						>
-							<span title="Type de question">{questionType}</span>
+							<span title="Type de question">{type}</span>
+							{!rule.mosaique && mosaic && <span>Dans mosaïque</span>}
 							{rule.mosaique && (
 								<details>
-									<summary>C'est quoi ?</summary>
+									<summary className="ui__ dashed-button">C'est quoi ?</summary>
 									Une mosaïque ne sert qu'à regrouper plusieurs questions, soit
 									toutes numériques, soit toutes à cocher. Sa valeur n'est pas
 									saisie par l'utilisateur, c'est souvent une somme. Ses
