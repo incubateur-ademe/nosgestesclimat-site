@@ -106,9 +106,6 @@ const Simulateur = () => {
 const TutorialRedirection = () => {
 	const dispatch = useDispatch(),
 		to = useLocation().pathname
-	useEffect(() => {
-		dispatch({ type: 'SET_THEN_REDIRECT_TO', to })
-	}, [to])
 	return <Navigate to="/tutoriel" replace />
 }
 
