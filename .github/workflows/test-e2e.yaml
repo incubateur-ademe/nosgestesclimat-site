@@ -3,18 +3,64 @@ name: Cypress Tests
 on: [push]
 
 jobs:
-  e2e:
-    name: Testing e2e
+  install:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
         with:
           submodules: recursive
-      - run: yarn --immutable && yarn --cwd ./nosgestesclimat install --immutable
-      - name: Cypress run
+
+      - name: Install dependencies
+        run: yarn --immutable && yarn --cwd ./nosgestesclimat install --immutable
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v5
+        with:
+          runTests: false
+          build: yarn run model:compile:fr
+
+      - name: Save build folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: nosgestesclimat-public
+          if-no-files-found: error
+          path: nosgestesclimat/public
+    
+  e2e:
+    name: Testing e2e
+    runs-on: ubuntu-latest
+    container: cypress/browsers:node16.17.0-chrome106
+    needs: install
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3, 4, 5]
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.2
+        with:
+          submodules: recursive
+     
+      #   # Needs to be cached?
+      # - name: Install dependencies
+      #   run: yarn --immutable && yarn --cwd ./nosgestesclimat install --immutable
+
+      - name: Download the build folders
+        uses: actions/download-artifact@v3
+        with:
+          name: nosgestesclimat-public
+          path: nosgestesclimat/public
+
+      - name: Test - Integration
         uses: cypress-io/github-action@v5.6.1
         with:
-          build: yarn run model:compile:fr
+          install: false
           start: yarn run serve
           wait-on: 'http://localhost:8080'
+          wait-on-timeout: 120
+          parallel: true
+          group: 'Test - Integration'
+          spec: cypress/e2e/*
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
