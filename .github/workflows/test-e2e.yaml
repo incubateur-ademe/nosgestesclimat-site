@@ -36,18 +36,27 @@ jobs:
         uses: cypress-io/github-action@v5
         with:
           runTests: false
-          build: yarn run model:compile:fr
+          build: yarn run ci
      
-      - name: Save build folder
+      - name: Save nosgestesclimat/public folder
         uses: actions/upload-artifact@v3
         with:
           name: nosgestesclimat-public
           if-no-files-found: error
           path: nosgestesclimat/public
+      
+      - name: Save Cypress personas specs folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: personas-specs
+          if-no-files-found: error
+          path: cypress/e2e/test-completion
     
   e2e:
     runs-on: ubuntu-latest
-    container: cypress/browsers:node18.12.0-chrome107
+    container: 
+      image: cypress/browsers:node18.12.0-chrome107
+      options: --user 1001
     needs: install
     strategy:
       fail-fast: false
@@ -64,17 +73,21 @@ jobs:
         # if: steps.yarn-cache-model.outputs.cache-hit != 'true'
         # run: yarn --cwd ./nosgestesclimat install --frozen-lockfile
 
-      - name: Download the build folders
+      - name: Download the nosgestesclimat/public folders
         uses: actions/download-artifact@v3
         with:
           name: nosgestesclimat-public
           path: nosgestesclimat/public
+      
+      - name: Download the Cypress personas specs folders
+        uses: actions/download-artifact@v3
+        with:
+          name: personas-specs
+          path: cypress/e2e/test-completion
 
       - name: Test - e2e
         uses: cypress-io/github-action@v5.6.1
         with:
-          install: false
-          build: yarn run e2e:generate:personas
           start: yarn run serve
           wait-on: ${{ env.CYPRESS_baseUrl }}
           wait-on-timeout: 120
