@@ -11,8 +11,14 @@ jobs:
         with:
           submodules: recursive
 
+      - name: Setup node v18.12.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.0
+          cache: 'yarn'
+
       - name: Install dependencies
-        run: yarn --immutable && yarn --cwd ./nosgestesclimat install --immutable
+        run: yarn --frozen-lockfile && yarn --cwd ./nosgestesclimat install --frozen-lockfile
 
       - name: Cypress install
         uses: cypress-io/github-action@v5
@@ -28,7 +34,6 @@ jobs:
           path: nosgestesclimat/public
     
   e2e:
-    name: Testing e2e
     runs-on: ubuntu-latest
     container: cypress/browsers:node18.12.0-chrome107
     needs: install
@@ -36,15 +41,22 @@ jobs:
       fail-fast: false
       matrix:
         containers: [1, 2, 3, 4, 5]
+    name: Testing e2e in worker ${{ matrix.containers }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3.5.2
         with:
           submodules: recursive
+
+      - name: Setup node v18.12.0
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.12.0
+          cache: 'yarn'
      
         # Needs to be cached?
-      - name: Install dependencies
-        run: yarn --immutable 
+      # - name: Install dependencies
+      #   run: yarn --immutable 
 
       - name: Download the build folders
         uses: actions/download-artifact@v3
@@ -56,7 +68,8 @@ jobs:
         uses: cypress-io/github-action@v5.6.1
         with:
           install: false
-          start: yarn run e2e:generate:personas && yarn run serve
+          build: yarn run e2e:generate:personas
+          start: yarn run serve
           wait-on: 'http://localhost:8080'
           wait-on-timeout: 120
           browser: chrome
