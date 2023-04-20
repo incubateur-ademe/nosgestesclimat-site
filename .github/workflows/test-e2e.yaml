@@ -2,6 +2,13 @@ name: Cypress Tests
 
 on: [push]
 
+concurrency:
+  # For pull requests, cancel all currently-running jobs for this workflow
+  # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+
 jobs:
   install:
     runs-on: ubuntu-latest
@@ -17,7 +24,21 @@ jobs:
           node-version: 18.12.0
           cache: 'yarn'
 
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        id: yarn-cache 
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - name: Install dependencies
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile && yarn --cwd ./nosgestesclimat install --frozen-lockfile
 
       - name: Cypress install
@@ -54,9 +75,13 @@ jobs:
           node-version: 18.12.0
           cache: 'yarn'
      
-        # Needs to be cached?
-      # - name: Install dependencies
-      #   run: yarn --immutable 
+      - name: Cache Yarn dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
 
       - name: Download the build folders
         uses: actions/download-artifact@v3
