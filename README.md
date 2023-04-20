@@ -40,8 +40,9 @@ If you want to run the automatic localisation, which depends on a Netlify Edge f
 ### 🇬🇧 Tests
 
 You can run e2e tests (Cypress) by firt starting a local server with `yarn run
-serve`, then, compiles [personas spec files](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution#tests) and run cypress tests with `yarn run
-test` (or `yarn run e2e` to open the Cypress GUI).
+serve`, then, run cypress tests with `yarn run test` (or `yarn run e2e` to open
+the Cypress GUI) -- it will generate [personas spec
+files](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution#tests).
 
 ## Réutilisations de ce code
 
