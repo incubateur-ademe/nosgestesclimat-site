@@ -1,6 +1,6 @@
 describe('check for about page status', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8080/à-propos?lang=en')
+		cy.visit('/à-propos')
 	})
 
 	it('has a title', () => {
