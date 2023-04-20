@@ -85,11 +85,23 @@ jobs:
         uses: jwalton/gh-find-current-pr@v1
         id: current-pr
 
-      - name: Test - e2e
+      - name: Setup baseUrl to deploy-preview 
+        if: ${{ success() && steps.current-pr.outputs.number }}
+        run: |
+            echo "CYPRESS_baseUrl='https://deploy-preview-${{ steps.current-pr.outputs.pr }}--nosgestesclimat.netlify.app'" >> "$GITHUB_ENV";
+            echo "MODE=preview" >> "$GITHUB_ENV";
+      
+      - name: Setup baseUrl to nosgestesclimat.fr
+        if: ${{ !success() || !steps.current-pr.outputs.number }}
+        run: |
+            echo "CYPRESS_baseUrl='https://nosgestesclimat.fr'" >> "$GITHUB_ENV"
+            echo "MODE=production" >> "$GITHUB_ENV"
+
+      - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
         with:
           install: false
-          # start: yarn run serve
+          start: echo "start"
           wait-on: ${{ env.CYPRESS_baseUrl }}
           wait-on-timeout: 120
           browser: chrome
@@ -98,6 +110,5 @@ jobs:
           group: 'Test - e2e'
           spec: cypress/e2e/**/*.cy.js
         env:
-          CYPRESS_baseUrl: 'https://deploy-preview-${{ steps.current-pr.outputs.number }}--nosgestesclimat.netlify.app'
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
