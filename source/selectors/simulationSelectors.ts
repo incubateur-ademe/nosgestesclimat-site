@@ -72,6 +72,9 @@ export const useSimulationData = () => {
 	const categoriesRaw = extractCategories(rules, engine),
 		categories = minimalCategoryData(categoriesRaw)
 	const storedTrajets = useSelector((state) => state.storedTrajets)
+	const storedAmortissementAvion = useSelector(
+		(state) => state.storedAmortissementAvion
+	)
 	const { interestingActions: actionResultsRaw } = useActions({
 			focusedAction: null,
 			rules,
@@ -98,6 +101,7 @@ export const useSimulationData = () => {
 			// Action choices are the user's boolean choice on actions, an object with the key being a dottedName, and the value true | false
 			// Ignored actions are not listed here
 			actionChoices,
+			storedAmortissementAvion,
 		},
 		// This is a simple list of answered questions.
 		// What's the use, given the situation object above ? It lets you know which questions were viewed and answered by the user, answered being either an explicit answer, or a click on "I don't know".
