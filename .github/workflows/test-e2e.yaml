@@ -42,9 +42,9 @@ jobs:
         with:
           submodules: recursive
      
-      #   # Needs to be cached?
-      # - name: Install dependencies
-      #   run: yarn --immutable && yarn --cwd ./nosgestesclimat install --immutable
+        # Needs to be cached?
+      - name: Install dependencies
+        run: yarn --immutable 
 
       - name: Download the build folders
         uses: actions/download-artifact@v3
