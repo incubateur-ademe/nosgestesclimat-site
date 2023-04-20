@@ -2,6 +2,7 @@ import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
 import {
 	getLangFromAbreviation,
@@ -53,7 +54,7 @@ export default ({
 	const filteredRawTests = filterElements(participants, contextFilter)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
-	const [realTimeMode, setRealTimeModer] = useState(false)
+	const [realTimeMode, setRealTimeMode] = useState(false)
 
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
@@ -79,8 +80,6 @@ export default ({
 			return el.progress * contextCompleted
 		}),
 		meanProgress = computeMean(progressList)
-
-	console.log('tests affichés', displayedTests)
 
 	if (isNaN(mean)) return null
 
@@ -129,6 +128,16 @@ export default ({
 				</WithEngine>
 			)}
 			<div css="margin: 1.6rem 0">
+				<div>
+					<Checkbox
+						name="setRealTimeMode"
+						id="setRealTimeMode"
+						label="Mode temps réel : afficher les simulations encore en cours"
+						showLabel
+						checked={realTimeMode}
+						onChange={() => setRealTimeMode(!realTimeMode)}
+					/>
+				</div>
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
 						<div role="status">
@@ -228,7 +237,6 @@ export default ({
 								</Trans>
 							</p>
 						</div>
-
 						<CategoryStats
 							{...{ categories, maxCategory, spotlight, setSpotlight }}
 						/>
