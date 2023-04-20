@@ -23,34 +23,34 @@ jobs:
           node-version: 18.12.0
           cache: 'yarn'
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
-
-      - name: Cache Yarn dependencies (nosgestesclimat-site)
-        uses: actions/cache@v3
-        id: yarn-cache-site
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Cache Yarn dependencies (nosgestesclimat)
-        uses: actions/cache@v3
-        id: yarn-cache-model
-        with:
-          path: nosgestesclimat/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('nosgestesclimat/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
+      # - name: Get yarn cache directory path
+      #   id: yarn-cache-dir-path
+      #   run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
+      #
+      # - name: Cache Yarn dependencies (nosgestesclimat-site)
+      #   uses: actions/cache@v3
+      #   id: yarn-cache-site
+      #   with:
+      #     path: node_modules
+      #     key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-yarn-
+      #
+      # - name: Cache Yarn dependencies (nosgestesclimat)
+      #   uses: actions/cache@v3
+      #   id: yarn-cache-model
+      #   with:
+      #     path: nosgestesclimat/node_modules
+      #     key: ${{ runner.os }}-node-${{ hashFiles('nosgestesclimat/yarn.lock') }}
+      #     restore-keys: |
+      #       ${{ runner.os }}-yarn-
+      #
       - name: Install dependencies (nosgestesclimat-site)
-        if: steps.yarn-cache-site.outputs.cache-hit != 'true'
+        # if: steps.yarn-cache-site.outputs.cache-hit != 'true'
         run: yarn --frozen-lockfile # && yarn --cwd ./nosgestesclimat install --frozen-lockfile
       
       - name: Install dependencies (nosgestesclimat)
-        if: steps.yarn-cache-model.outputs.cache-hit != 'true'
+        # if: steps.yarn-cache-model.outputs.cache-hit != 'true'
         run: yarn --cwd ./nosgestesclimat install --frozen-lockfile
 
       - name: Cypress install
@@ -58,6 +58,20 @@ jobs:
         with:
           runTests: false
           build: yarn run model:compile:fr
+      
+      - name: Save node_modules
+        uses: actions/upload-artifact@v3
+        with:
+          name: site-node_modules
+          if-no-files-found: error
+          path: node_modules
+      
+      - name: Save nosgestesclimat/node_modules
+        uses: actions/upload-artifact@v3
+        with:
+          name: model-node_modules
+          if-no-files-found: error
+          path: nosgestesclimat/node_modules
 
       - name: Save build folder
         uses: actions/upload-artifact@v3
@@ -87,27 +101,39 @@ jobs:
           node-version: 18.12.0
           cache: 'yarn'
 
-      - name: Get yarn cache directory path
-        id: yarn-cache-dir-path
-        run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
-     
-      - name: Cache Yarn dependencies (nosgestesclimat-site)
-        uses: actions/cache@v3
-        id: yarn-cache-site
+     #  - name: Get yarn cache directory path
+     #    id: yarn-cache-dir-path
+     #    run: echo "YARN_CACHE_DIR=$(yarn cache dir)" >> $GITHUB_ENV
+     # 
+     #  - name: Cache Yarn dependencies (nosgestesclimat-site)
+     #    uses: actions/cache@v3
+     #    id: yarn-cache-site
+     #    with:
+     #      path: node_modules
+     #      key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
+     #      restore-keys: |
+     #        ${{ runner.os }}-yarn-
+     #
+     #  - name: Cache Yarn dependencies (nosgestesclimat)
+     #    uses: actions/cache@v3
+     #    id: yarn-cache-model
+     #    with:
+     #      path: nosgestesclimat/node_modules
+     #      key: ${{ runner.os }}-node-${{ hashFiles('nosgestesclimat/yarn.lock') }}
+     #      restore-keys: |
+     #        ${{ runner.os }}-yarn-
+     #
+      - name: Download the node_modules folder
+        uses: actions/download-artifact@v3
         with:
+          name: site-node_modules
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-
-      - name: Cache Yarn dependencies (nosgestesclimat)
-        uses: actions/cache@v3
-        id: yarn-cache-model
+      
+      - name: Download the nosgestesclimat/node_modules folder
+        uses: actions/download-artifact@v3
         with:
+          name: model-node_modules
           path: nosgestesclimat/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('nosgestesclimat/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
 
       - name: Download the build folders
         uses: actions/download-artifact@v3
