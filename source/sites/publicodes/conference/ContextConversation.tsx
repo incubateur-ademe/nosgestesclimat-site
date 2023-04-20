@@ -28,7 +28,7 @@ export default ({ surveyContext, setSurveyContext }) => {
 			.catch((error) => console.log('error:', error))
 	}, [contextFileURL])
 
-	const contextRules = survey.contextRules
+	const contextRules = survey?.contextRules
 	// we evaluate missing variable related to context parent rule and we pass it to getNextQuestion with a specific engine.
 	const engine = new Engine(contextRules)
 	const [situation, setSituation] = useState(surveyContext[survey.room])

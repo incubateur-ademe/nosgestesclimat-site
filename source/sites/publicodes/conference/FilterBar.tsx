@@ -10,7 +10,6 @@ import { useSelector } from 'react-redux'
 export default ({ threshold, setThreshold, setContextFilter }) => {
 	const [visible, setVisible] = useState(false)
 	const survey = useSelector((state) => state.survey)
-	const contextRules = survey.contextRules
 	const { t } = useTranslation()
 
 	if (!visible)
@@ -25,7 +24,8 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 			</div>
 		)
 
-	const surveyRule = survey['contextFile']
+	const contextRules = survey?.contextRules
+	const surveyRule = survey?.contextFile
 	const engine = contextRules && new Engine(contextRules)
 	const rulesToFilter =
 		contextRules && engine.evaluate(surveyRule).missingVariables
