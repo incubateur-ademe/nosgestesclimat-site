@@ -7,7 +7,7 @@ import { useSimulationProgress } from './utils/useNextQuestion'
 export default () => {
 	const engineState = useSelector((state) => state.engineState)
 
-	if (engineState === 'ready') return <Circle />
+	if (engineState.state === 'ready') return <Circle />
 	return <CircleSVG />
 }
 const Circle = ({}) => {
