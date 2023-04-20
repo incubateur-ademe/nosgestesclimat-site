@@ -59,8 +59,11 @@ jobs:
           start: yarn run serve
           wait-on: 'http://localhost:8080'
           wait-on-timeout: 120
+          browser: chrome
           parallel: true
+          record: true
           group: 'Test - Integration'
           spec: cypress/e2e/*
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
