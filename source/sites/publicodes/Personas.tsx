@@ -84,7 +84,7 @@ export default ({}) => {
 						margin: 0 auto;
 						${visualisationParam === 'ravijen' &&
 						`
-						height: 45rem; 
+						height: 45rem;
 						max-width: none;
 						`}
 					`}
@@ -178,11 +178,8 @@ export const PersonaGrid = ({
 		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
 		const { nom, icônes, data, description } = persona
 		const missingVariables = engine.evaluate(objectif).missingVariables ?? {}
-		const defaultMissingVariables = Object.entries(missingVariables).map(
-			(arr) => {
-				return arr[0]
-			}
-		)
+		const defaultMissingVariables = Object.keys(missingVariables)
+
 		dispatch(
 			setDifferentSituation({
 				config: { objectifs: [objectif] },
@@ -190,7 +187,9 @@ export const PersonaGrid = ({
 				// the schema of peronas is not fixed yet
 				situation: data.situation || data,
 				persona: nom,
-				foldedSteps: defaultMissingVariables, // If not specified, act as if all questions were answered : all that is not in the situation object is a validated default value
+				// If not specified, act as if all questions were answered : all that is not in
+				// the situation object is a validated default value
+				foldedSteps: defaultMissingVariables,
 			})
 		)
 	}
