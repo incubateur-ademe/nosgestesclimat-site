@@ -1,17 +1,39 @@
 export const defaultTotalValue = '8,4'
 
-export const categories = [
-	{ name: 'Transport', questions: 18 },
-	{ name: 'Alimentation', questions: 10 },
-	{ name: 'Logement', questions: 9 },
-	{ name: 'Divers', questions: 8 },
-	{ name: 'Services Public', questions: 1 },
+export const categoriesToWaitFor = [
+	'Societal services', 'Services sociétaux'
 ]
 
-export function walkthroughTest(persona) {
+export async function walkthroughTest(persona, wait) {
+	let needToWait = wait
+	if (needToWait) {
+		// Wait for parsing complete rules
+		// cy.wait(100)
+		needToWait = false
+	}
 	cy.wait(100)
-	cy.get('body').then((body) => {
+	cy.get('body').then(async (body) => {
+			if (body.find('[data-cypress-id="see-result-link"]').length > 0) {
+				cy.log('See result link')
+				return
+			}
+
 		if (body.find('section').length > 0) {
+
+			if (body.find('[data-cypress-id="category-title"]').length > 0) {
+				const category = await new Cypress.Promise<string>((resolve) => {
+					cy.get('[data-cypress-id="category-title"]').then((category) => {
+						resolve( category.text())
+						// if (categoriesToWaitFor.includes(category.innerText)) {
+						// 	needToWait = true
+						// 	// cy.get('section button').last().click()
+						// 	// walkthroughTest(persona, true)
+						// 	// return
+						// }
+					})
+				})
+			cy.log('Category: ' + category)
+			}
 			if (body.find('input').length > 0) {
 				cy.get('input').then((input) => {
 					const id = input.attr('id')
@@ -30,8 +52,9 @@ export function walkthroughTest(persona) {
 					}
 				})
 			}
+			cy.log('Need to wait: ' + needToWait)
 			cy.get('section button').last().click()
-			walkthroughTest(persona)
+			walkthroughTest(persona, needToWait)
 		}
 	})
 }

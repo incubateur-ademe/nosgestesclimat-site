@@ -1,5 +1,6 @@
 export default () => (
 	<div
+		data-cypress-id="loader"
 		css={`
 			margin-top: 10vh;
 			text-align: center;
