@@ -6,35 +6,45 @@ export type SavedSimulation = {
 	situation: Simulation['situation']
 	foldedSteps: Array<DottedName> | undefined
 	actionChoices: Object
-	persona: string
-	tutorials: Object
+	persona?: string
 	storedTrajets: Object
-	url: string
+	storedAmortissementAvion: { [key: string]: number }
 	// Current language used for the UI translation -- not the model.
 	currentLang: Lang
 	localisation: Object | undefined
 	conference: { room: string } | null
 	survey: { room: string } | null
 	enquête: { userID: string; date: string } | null
+	url?: string
+	date?: Date
+	id?: string
 }
 
-export const currentSimulationSelector = (
-	state: RootState
-): SavedSimulation => {
-	return {
-		situation: state.simulation?.situation ?? {},
-		foldedSteps: state.simulation?.foldedSteps,
-		actionChoices: state.actionChoices,
-		persona: state.simulation?.persona,
-		tutorials: state.tutorials,
-		storedTrajets: state.storedTrajets,
-		url: state.simulation?.url,
-		currentLang: state.currentLang,
-		localisation: state.localisation,
-		conference: state.conference && { room: state.conference.room },
-		survey: state.survey && { room: state.survey.room },
-		enquête: state.enquête,
-	}
+// This type is used to describe the old format of the simulation stored in users' local storage.
+export type OldSavedSimulation = SavedSimulation & {
+	tutorials: Object
+	currentLang: Lang
+	localisation: Object | undefined
+}
+
+export type SavedSimulationList = SavedSimulation[]
+
+// This type describes the object stored in local storage.
+// We store the list of simulations and a pointer
+// that will allow us to initialize the store with the last used simulation.
+export type User = {
+	simulations: SavedSimulationList
+	currentSimulationId: string | undefined
+	tutorials: Object
+	currentLang: Lang
+	localisation: Object | undefined
+}
+
+// In the end, this selector will allow to retrieve the simulation from the list
+export const currentSimulationSelector = (state: RootState) => {
+	return state.simulations.filter(
+		(simulation) => simulation.id === state.currentSimulationId
+	)[0]
 }
 
 export const createStateFromSavedSimulation = (
@@ -48,6 +58,7 @@ export const createStateFromSavedSimulation = (
 			situation: state.previousSimulation.situation || {},
 			foldedSteps: state.previousSimulation.foldedSteps || [],
 			persona: state.previousSimulation.persona,
+			name: state.previousSimulation.name,
 		} as Simulation,
 		previousSimulation: null,
 	}

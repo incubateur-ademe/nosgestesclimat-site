@@ -3,6 +3,7 @@ import { debounce, inIframe } from './utils'
 declare global {
 	interface Window {
 		_paq: any
+		plausible: any
 	}
 }
 
@@ -36,8 +37,21 @@ export default class Tracker {
 			// https://gist.github.com/iansltx/18caf551baaa60b79206. We could probably
 			// do better but for now we don't track action of iOs Safari user in
 			// iFrame -- to avoid errors in the number of visitors in our stats.
-			if (!(iOSSafari && inIframe)) {
-				window._paq.push(args)
+			if (iOSSafari && inIframe()) return
+
+			// Could be due to an adblocker not allowing the script to set this global attribute
+			if (!window.plausible) return
+
+			window._paq.push(args)
+
+			// pour plausible, je n'envoie que les events
+			// les pages vues sont gérées de base
+			const [typeTracking, eventName, subEvent] = args
+			if (typeTracking === 'trackEvent') {
+				var subEventName = `Details : ${eventName}`
+				window.plausible(eventName, {
+					props: { [subEventName]: subEvent },
+				})
 			}
 		}
 	) {

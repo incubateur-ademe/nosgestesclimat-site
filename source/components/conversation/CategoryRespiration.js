@@ -97,7 +97,11 @@ export default ({ dismiss, questionCategory }) => {
 			>
 				<h2>{questionCategory.title}</h2>
 				<SafeCategoryImage element={questionCategory} />
-				<button className="ui__ plain button attention" onClick={dismiss}>
+				<button
+					className="ui__ plain button attention"
+					data-cypress-id="start-button"
+					onClick={dismiss}
+				>
 					<Trans>Commencer</Trans>
 				</button>
 			</motion.div>

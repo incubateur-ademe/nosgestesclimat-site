@@ -1,8 +1,7 @@
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
-import { deletePersistedSimulation } from '../storage/persistSimulation'
-import { CompanyStatusAction } from './companyStatusActions'
+import { Simulation } from '../reducers/rootReducer'
 
 export type Action =
 	| ResetSimulationAction
@@ -10,6 +9,7 @@ export type Action =
 	| UpdateAction
 	| SetSimulationConfigAction
 	| DeletePreviousSimulationAction
+	| DeleteSimulationByIdAction
 	| ExplainVariableAction
 	| UpdateSituationAction
 	| HideNotificationAction
@@ -17,7 +17,8 @@ export type Action =
 	| SetSituationBranchAction
 	| UpdateTargetUnitAction
 	| SetActiveTargetAction
-	| CompanyStatusAction
+	| AddSimulationToListAction
+	| SetCurrentSimulationAction
 
 export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
 
@@ -31,11 +32,24 @@ type SetSimulationConfigAction = {
 	type: 'SET_SIMULATION'
 	url: string
 	config: SimulationConfig
-	useCompanyDetails: boolean
+}
+
+type SetCurrentSimulationAction = {
+	type: 'SET_CURRENT_SIMULATION'
+	simulation: Simulation
+}
+
+type AddSimulationToListAction = {
+	type: 'ADD_SIMULATION_TO_LIST'
+	simulation
 }
 
 type DeletePreviousSimulationAction = {
 	type: 'DELETE_PREVIOUS_SIMULATION'
+}
+
+type DeleteSimulationByIdAction = {
+	type: 'DELETE_SIMULATION'
 }
 
 type ResetSimulationAction = ReturnType<typeof resetSimulation>
@@ -69,6 +83,10 @@ export const resetStoredTrajets = () =>
 		type: 'RESET_TRAJETS',
 	} as const)
 
+export const resetStoredAmortissementAvion = () => ({
+	type: 'RESET_AMORTISSEMENT',
+})
+
 export const goToQuestion = (question: DottedName) =>
 	({
 		type: 'STEP_ACTION',
@@ -93,19 +111,35 @@ export const setSituationBranch = (id: number) =>
 		id,
 	} as const)
 
-export const setDifferentSituation = ({
-	situation,
-	config,
-	url,
-	persona,
-	foldedSteps,
-}: Object) => ({
-	type: 'SET_SIMULATION',
-	situation,
-	config,
-	url,
-	persona,
-	foldedSteps,
+export const setDifferentSituation =
+	({
+		situation,
+		config,
+		url,
+		persona,
+		foldedSteps,
+	}: Simulation): ThunkResult<void> =>
+	(dispatch, getState) => {
+		dispatch({
+			type: 'SET_SIMULATION',
+			situation,
+			config,
+			url,
+			persona,
+			foldedSteps,
+		})
+		dispatch(addSimulationToList(getState().simulation))
+		dispatch(setCurrentSimulation(getState().simulation))
+	}
+
+export const addSimulationToList = (simulation: Simulation): Action => ({
+	type: 'ADD_SIMULATION_TO_LIST',
+	simulation,
+})
+
+export const setCurrentSimulation = (simulation: Simulation): Action => ({
+	type: 'SET_CURRENT_SIMULATION',
+	simulation,
 })
 
 export const setSimulationConfig =
@@ -120,6 +154,8 @@ export const setSimulationConfig =
 			url,
 			config,
 		})
+		dispatch(addSimulationToList(getState().simulation))
+		dispatch(setCurrentSimulation(getState().simulation))
 	}
 
 export const setActiveTarget = (targetName: DottedName) =>
@@ -128,12 +164,11 @@ export const setActiveTarget = (targetName: DottedName) =>
 		name: targetName,
 	} as const)
 
-export const deletePreviousSimulation = (): ThunkResult<void> => (dispatch) => {
-	dispatch({
-		type: 'DELETE_PREVIOUS_SIMULATION',
-	})
-	deletePersistedSimulation()
-}
+export const deleteSimulationById = (id: string) =>
+	({
+		type: 'DELETE_SIMULATION',
+		id,
+	} as const)
 
 export const updateSituation = (fieldName: DottedName, value: unknown) =>
 	({
@@ -183,6 +218,18 @@ export const setActionChoice = (action: string, choice: boolean) =>
 		choice,
 	} as const)
 
+export const setActionsChoices = (actionsChoices: Object) =>
+	({
+		type: 'SET_ACTIONS_CHOICES',
+		actionsChoices,
+	} as const)
+
+export const setAllStoredTrajets = (allTrajets: Object) =>
+	({
+		type: 'SET_ALL_TRAJETS',
+		allTrajets,
+	} as const)
+
 export const setStoredTrajets = (vehicule: string, trajets: object) =>
 	({
 		type: 'SET_TRAJETS',
@@ -200,3 +247,8 @@ export const resetLocalisation = () =>
 	({
 		type: 'RESET_LOCALISATION',
 	} as const)
+
+export const updateAmortissementAvion = (amortissementAvionObject: Object) => ({
+	type: 'SET_AMORTISSEMENT',
+	amortissementAvionObject,
+})

@@ -156,6 +156,7 @@ export default function KmHelp({
 				css={`
 					text-align: right;
 				`}
+				key={dottedName}
 			>
 				<KmHelpButton
 					text={

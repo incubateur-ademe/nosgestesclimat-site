@@ -139,7 +139,11 @@ const MainSimulationEnding = ({ rules, engine }) => {
 			<p>
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
-			<Link to={buildEndURL(rules, engine)} className="ui__ button cta plain">
+			<Link
+				to={buildEndURL(rules, engine)}
+				className="ui__ button cta plain"
+				data-cypress-id="see-results-link"
+			>
 				<Trans>Voir mon résultat</Trans>
 			</Link>
 			{!enquête && (

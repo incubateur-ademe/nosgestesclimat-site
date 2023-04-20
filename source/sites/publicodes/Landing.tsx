@@ -65,6 +65,7 @@ export default () => {
 								to="/simulateur/bilan"
 								className="ui__ plain button cta"
 								css={``}
+								data-cypress-id="do-the-test-link"
 								onClick={() =>
 									tracker.push([
 										'trackEvent',
@@ -90,6 +91,7 @@ export default () => {
 										'Faire le test à plusieurs',
 									])
 								}
+								data-cypress-id="as-a-group-link"
 							>
 								<img
 									src="/images/silhouettes.svg"

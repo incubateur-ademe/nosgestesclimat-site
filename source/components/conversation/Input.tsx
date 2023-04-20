@@ -52,7 +52,9 @@ export default function Input({
 						onSecondClick={() => onSubmit?.('suggestion')}
 					/>
 					<div css="display: block">
-						{showAnimation && <AnimatedTargetValue value={value} unit="km" />}
+						{showAnimation && !isDisabled && (
+							<AnimatedTargetValue value={value} unit={unité} />
+						)}
 						<NumberFormat
 							autoFocus={autoFocus}
 							className="suffixed ui__"

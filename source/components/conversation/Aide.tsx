@@ -39,16 +39,6 @@ export default function Aide() {
 			>
 				{rule.title && <h2>{rule.title}</h2>}
 				<Markdown>{text}</Markdown>
-				{refs && (
-					<>
-						<h3>
-							<Trans>En savoir plus</Trans>
-						</h3>
-						<Suspense fallback={<AnimatedLoader />}>
-							<ReferencesLazy refs={refs} />
-						</Suspense>
-					</>
-				)}
 				<button onClick={stopExplaining} className="ui__ button simple">
 					<Trans>Refermer</Trans>
 				</button>

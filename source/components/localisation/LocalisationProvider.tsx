@@ -10,11 +10,15 @@ export default function LocalisationProvider({ children }) {
 	useEffect(() => {
 		if (branchData.loaded) {
 			if (process.env.NODE_ENV === 'development') {
-				const supportedRegions = require('../../../nosgestesclimat/public/supportedRegions.json')
-				dispatch({
-					type: 'SET_SUPPORTED_REGIONS',
-					supportedRegions,
-				})
+				try {
+					const supportedRegions = require('../../../nosgestesclimat/public/supportedRegions.json')
+					dispatch({
+						type: 'SET_SUPPORTED_REGIONS',
+						supportedRegions,
+					})
+				} catch (e) {
+					console.log('err:', e)
+				}
 			} else {
 				const supportedRegionsURL =
 					branchData.deployURL + '/supportedRegions.json'

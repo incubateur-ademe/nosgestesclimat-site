@@ -1,4 +1,4 @@
-# Accessibility statement
+<h1 data-cypress-id="accessibility-statement-title">Accessibility statement</h1>
 
 ADEME is committed to making its websites accessible in accordance with
 Article 47 of Law No. 2005-102 of 11 February 2005. This accessibility
