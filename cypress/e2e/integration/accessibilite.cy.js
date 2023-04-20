@@ -1,6 +1,6 @@
 describe('check for about page status', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8080/accessibilite?lang=en')
+		cy.visit(Cypress.env('base_url') + '/accessibilite')
 	})
 
 	it('has a title', () => {

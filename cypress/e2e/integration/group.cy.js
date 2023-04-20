@@ -1,6 +1,6 @@
 describe('check for group page status', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8080/groupe?lang=en')
+		cy.visit(Cypress.env('base_url') + '/groupe')
 	})
 
 	it('has a start button', () => {

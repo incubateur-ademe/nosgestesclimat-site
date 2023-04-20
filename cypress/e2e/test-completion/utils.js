@@ -1,7 +1,5 @@
 export const defaultTotalValue = '8,3'
 
-export const localServerUrl = 'http://localhost:8080'
-
 export const categories = [
 	{ name: 'Transport', questions: 18 },
 	{ name: 'Alimentation', questions: 10 },

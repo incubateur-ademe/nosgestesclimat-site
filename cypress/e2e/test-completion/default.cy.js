@@ -1,8 +1,8 @@
-import { walkthroughTest, defaultTotalValue, localServerUrl } from './utils'
+import { walkthroughTest, defaultTotalValue } from './utils'
 
 describe('check for test completion', () => {
 	beforeEach(() => {
-		cy.visit(localServerUrl)
+		cy.visit(Cypress.env('base_url'))
 	})
 
 	it('can finish the test with the default values', () => {

@@ -1,6 +1,6 @@
 describe('check for homepage status', () => {
 	beforeEach(() => {
-		cy.visit('http://localhost:8080?lang=en')
+		cy.visit(Cypress.env('base_url'))
 	})
 
 	it('has a start button', () => {
