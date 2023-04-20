@@ -2,10 +2,10 @@ import { useTranslation } from 'react-i18next'
 import { Lang } from '../../../locales/translation'
 import MarkdownPage from './MarkdownPage'
 
-import contentEn from 'raw-loader!../../../locales/pages/en-us/about.md'
-// import contentEs from 'raw-loader!../../../locales/pages/es/about.md'
-import contentFr from 'raw-loader!../../../locales/pages/fr/about.md'
-// import contentIt from 'raw-loader!../../../locales/pages/it/about.md'
+import contentEn from '../../../locales/pages/en-us/about.md'
+// import contentEs from '../../../locales/pages/es/about.md'
+import contentFr from '../../../locales/pages/fr/about.md'
+// import contentIt from '../../../locales/pages/it/about.md'
 
 export default () => {
 	const { t } = useTranslation()

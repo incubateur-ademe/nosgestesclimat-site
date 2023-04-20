@@ -13,18 +13,7 @@ const {
 module.exports = {
 	...common,
 	module: {
-		rules: [
-			...commonLoaders('development'),
-			styleLoader('style-loader'),
-			{
-				test: /\.(png|jpe?g|gif|md)$/i,
-				use: [
-					{
-						loader: 'file-loader',
-					},
-				],
-			},
-		],
+		rules: [...commonLoaders('development'), styleLoader('style-loader')],
 	},
 	devServer: {
 		historyApiFallback: true,
@@ -40,6 +29,7 @@ module.exports = {
 		new webpack.DefinePlugin({
 			NODE_ENV: JSON.stringify('development'),
 			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
+			CONTEXT: JSON.stringify(process.env.CONTEXT),
 		}),
 		new ReactRefreshWebpackPlugin(),
 		/*

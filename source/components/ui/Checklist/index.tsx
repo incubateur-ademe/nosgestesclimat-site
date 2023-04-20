@@ -1,11 +1,12 @@
 import classnames from 'classnames'
 import { Markdown } from 'Components/utils/markdown'
 import { ScrollToElement } from 'Components/utils/Scroll'
-import { TrackerContext } from 'Components/utils/withTracker'
+
 import React, { useContext, useEffect, useState } from 'react'
 import Animate from 'Components/ui/animate'
 import Checkbox from '../Checkbox'
 import './index.css'
+import { TrackerContext } from "../../../contexts/TrackerContext"
 
 type CheckItemProps = {
 	title: React.ReactNode

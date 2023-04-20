@@ -115,7 +115,11 @@ export default ({ openExplanation, setOpenExplanation, situationLength }) => {
 							justify-content: flex-end;
 						`}
 					>
-						<button className="ui__ button plain small" onClick={close}>
+						<button
+							className="ui__ button plain small"
+							data-cypress-id="understood-button"
+							onClick={close}
+						>
 							<Trans>J'ai compris</Trans>
 						</button>
 					</div>

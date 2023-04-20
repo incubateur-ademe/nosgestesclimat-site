@@ -6,10 +6,10 @@ import { Link } from 'react-router-dom'
 
 import { getLangInfos, Lang } from '../../../locales/translation'
 
-import contentEn from 'raw-loader!../../../locales/pages/en-us/documentation.md'
-// import contentEs from 'raw-loader!../../../locales/pages/es/documentation.md'
-import contentFr from 'raw-loader!../../../locales/pages/fr/documentation.md'
-// import contentIt from 'raw-loader!../../../locales/pages/it/documentation.md'
+import contentEn from '../../../locales/pages/en-us/documentation.md'
+// import contentEs from '../../../locales/pages/es/documentation.md'
+import contentFr from '../../../locales/pages/fr/documentation.md'
+// import contentIt from '../../../locales/pages/it/documentation.md'
 
 export default () => {
 	const { t, i18n } = useTranslation()

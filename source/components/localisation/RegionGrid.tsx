@@ -35,7 +35,6 @@ export default ({ noButton }) => {
 			`}
 		>
 			{Object.entries(orderedSupportedRegions).map(([code, params]) => {
-				console.log('code', code, 'isCurrent', code === currentRegionCode)
 				return (
 					<li
 						key={code}
@@ -75,7 +74,7 @@ const listItemStyle = `
 	color: var(--darkColor);
 	text-align: left;
 	line-height: 1;
-	
+
 	img {
 		margin-right: 0.6rem;
 	}

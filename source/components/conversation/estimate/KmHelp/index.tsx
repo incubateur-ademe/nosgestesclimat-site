@@ -15,11 +15,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
+import { TrackerContext } from '../../../../contexts/TrackerContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
 } from '../../../../locales/translation'
-import { TrackerContext } from '../../../utils/withTracker'
 import { freqList } from './dataHelp'
 import EditableRow from './EditableRow'
 import KmForm from './KmForm'
@@ -156,6 +156,7 @@ export default function KmHelp({
 				css={`
 					text-align: right;
 				`}
+				key={dottedName}
 			>
 				<KmHelpButton
 					text={

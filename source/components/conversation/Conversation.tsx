@@ -6,12 +6,11 @@ import RuleInput, {
 import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { TrackerContext } from 'Components/utils/withTracker'
 import { motion } from 'framer-motion'
 import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -22,6 +21,7 @@ import {
 	validateWithDefaultValue,
 } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
@@ -68,7 +68,8 @@ export default function Conversation({
 				return value
 		  })(nextQuestions)
 		: nextQuestions
-	const focusedCategory = useQuery().get('catégorie')
+	const focusedCategory = useQuery().get('catégorie'),
+		pathname = useLocation().pathname
 	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
 
 	const focusByCategory = (questions) => {
@@ -364,6 +365,11 @@ export default function Conversation({
 			<Link to="/profil">
 				<Trans>Modifier mes réponses</Trans>
 			</Link>
+			<div css="margin-top: 1rem">
+				<Link to={pathname}>
+					<button className="ui__ button plain small">Continuer le test</button>
+				</Link>
+			</div>
 		</div>
 	) : displayRespiration ? (
 		<CategoryRespiration

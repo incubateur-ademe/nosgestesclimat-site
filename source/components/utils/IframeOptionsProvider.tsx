@@ -1,13 +1,16 @@
-import { createContext } from 'react'
+import { createContext, useContext } from 'react'
+import { TrackerContext } from '../../contexts/TrackerContext'
 
 export const IframeOptionsContext = createContext({})
 
 const nullDecode = (string) =>
 	string == null ? string : decodeURIComponent(string)
 
-export default function IframeOptionsProvider({ children, tracker }) {
+export default function IframeOptionsProvider({ children }) {
 	const urlParams = new URLSearchParams(window.location.search)
 	const isIframeWithScript = urlParams.get('iframe') != null
+
+	const tracker = useContext(TrackerContext)
 
 	if (!isIframeWithScript && window.self !== window.top) {
 		urlParams.set('iframe', '')
@@ -23,7 +26,7 @@ export default function IframeOptionsProvider({ children, tracker }) {
 			'trackEvent',
 			'iframe',
 			'visites via iframe',
-			!isIframe ? 'non' : integratorUrl,
+			isIframe ? integratorUrl : 'non',
 		])
 
 	const iframeIntegratorOptions = Object.fromEntries(

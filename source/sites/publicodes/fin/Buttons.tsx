@@ -1,9 +1,10 @@
 import { actionImg } from 'Components/SessionBar'
 import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
-import { TrackerContext } from 'Components/utils/withTracker'
+
 import { motion } from 'framer-motion'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
+import { TrackerContext } from '../../../contexts/TrackerContext'
 
 export const ActionButton = ({
 	text,

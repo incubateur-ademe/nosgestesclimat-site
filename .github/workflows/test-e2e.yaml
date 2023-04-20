@@ -1,0 +1,98 @@
+name: Cypress Tests
+
+on: [push]
+
+concurrency:
+  # For pull requests, cancel all currently-running jobs for this workflow
+  # https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#concurrency
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  install:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.2
+        with:
+          submodules: recursive
+
+      - name: Cache Yarn dependencies (nosgestesclimat-model)
+        uses: actions/cache@v3
+        id: yarn-cache-model
+        with:
+          path: | 
+            ${{ env.YARN_CACHE_DIR }}
+            nosgestesclimat/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('nosgestesclimat/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      
+      - name: Install dependencies (nosgestesclimat)
+        if: steps.yarn-cache-model.outputs.cache-hit != 'true'
+        run: yarn --cwd ./nosgestesclimat install --frozen-lockfile
+
+      - name: Cypress install
+        uses: cypress-io/github-action@v5
+        with:
+          runTests: false
+          build: yarn run ci
+     
+      - name: Save nosgestesclimat/public folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: nosgestesclimat-public
+          if-no-files-found: error
+          path: nosgestesclimat/public
+      
+      - name: Save Cypress personas specs folder
+        uses: actions/upload-artifact@v3
+        with:
+          name: personas-specs
+          if-no-files-found: error
+          path: cypress/e2e/test-completion
+    
+  e2e:
+    runs-on: ubuntu-latest
+    container: 
+      image: cypress/browsers:node18.12.0-chrome107
+      options: --user 1001
+    needs: install
+    strategy:
+      fail-fast: false
+      matrix:
+        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+    name: Testing e2e in worker ${{ matrix.containers }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3.5.2
+        with:
+          submodules: recursive
+
+      - name: Download the nosgestesclimat/public folders
+        uses: actions/download-artifact@v3
+        with:
+          name: nosgestesclimat-public
+          path: nosgestesclimat/public
+      
+      - name: Download the Cypress personas specs folders
+        uses: actions/download-artifact@v3
+        with:
+          name: personas-specs
+          path: cypress/e2e/test-completion
+
+      - name: Test - e2e
+        uses: cypress-io/github-action@v5.6.1
+        with:
+          start: yarn run serve
+          wait-on: ${{ env.CYPRESS_baseUrl }}
+          wait-on-timeout: 120
+          browser: chrome
+          parallel: true
+          record: true
+          group: 'Test - e2e'
+          spec: cypress/e2e/**/*.cy.js
+        env:
+          CYPRESS_baseUrl: 'http://localhost:8080' # 'https://deploy-preview-${{ github.event.pull_request.number }}--nosgestesclimat.netlify.app'
+          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
