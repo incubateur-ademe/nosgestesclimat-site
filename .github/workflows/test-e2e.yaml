@@ -9,55 +9,55 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  install:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3.5.2
-        with:
-          submodules: recursive
-
-      - name: Cache Yarn dependencies (nosgestesclimat-model)
-        uses: actions/cache@v3
-        id: yarn-cache-model
-        with:
-          path: | 
-            ${{ env.YARN_CACHE_DIR }}
-            nosgestesclimat/node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('nosgestesclimat/yarn.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-yarn-
-      
-      - name: Install dependencies (nosgestesclimat)
-        if: steps.yarn-cache-model.outputs.cache-hit != 'true'
-        run: yarn --cwd ./nosgestesclimat install --frozen-lockfile
-
-      - name: Cypress install
-        uses: cypress-io/github-action@v5
-        with:
-          runTests: false
-          build: yarn run ci
-     
-      - name: Save nosgestesclimat/public folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: nosgestesclimat-public
-          if-no-files-found: error
-          path: nosgestesclimat/public
-      
-      - name: Save Cypress personas specs folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: personas-specs
-          if-no-files-found: error
-          path: cypress/e2e/test-completion
+  # install:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout repository
+  #       uses: actions/checkout@v3.5.2
+  #       # with:
+  #       #   submodules: recursive
+  #
+  #     # - name: Cache Yarn dependencies (nosgestesclimat-model)
+  #     #   uses: actions/cache@v3
+  #     #   id: yarn-cache-model
+  #     #   with:
+  #     #     path: | 
+  #     #       ${{ env.YARN_CACHE_DIR }}
+  #     #       nosgestesclimat/node_modules
+  #     #     key: ${{ runner.os }}-node-${{ hashFiles('nosgestesclimat/yarn.lock') }}
+  #     #     restore-keys: |
+  #     #       ${{ runner.os }}-yarn-
+  #     # 
+  #     # - name: Install dependencies (nosgestesclimat)
+  #     #   if: steps.yarn-cache-model.outputs.cache-hit != 'true'
+  #     #   run: yarn --cwd ./nosgestesclimat install --frozen-lockfile
+  #
+  #     - name: Cypress install
+  #       uses: cypress-io/github-action@v5
+  #       with:
+  #         runTests: false
+  #         build: yarn run ci
+  #    
+  #     # - name: Save nosgestesclimat/public folder
+  #     #   uses: actions/upload-artifact@v3
+  #     #   with:
+  #     #     name: nosgestesclimat-public
+  #     #     if-no-files-found: error
+  #     #     path: nosgestesclimat/public
+  #     
+  #     - name: Save Cypress personas specs folder
+  #       uses: actions/upload-artifact@v3
+  #       with:
+  #         name: personas-specs
+  #         if-no-files-found: error
+  #         path: cypress/e2e/test-completion
     
   e2e:
     runs-on: ubuntu-latest
     container: 
       image: cypress/browsers:node18.12.0-chrome107
       options: --user 1001
-    needs: install
+    # needs: install
     strategy:
       fail-fast: false
       matrix:
@@ -69,17 +69,17 @@ jobs:
         with:
           submodules: recursive
 
-      - name: Download the nosgestesclimat/public folders
-        uses: actions/download-artifact@v3
-        with:
-          name: nosgestesclimat-public
-          path: nosgestesclimat/public
-      
-      - name: Download the Cypress personas specs folders
-        uses: actions/download-artifact@v3
-        with:
-          name: personas-specs
-          path: cypress/e2e/test-completion
+      # - name: Download the nosgestesclimat/public folders
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: nosgestesclimat-public
+      #     path: nosgestesclimat/public
+      # 
+      # - name: Download the Cypress personas specs folders
+      #   uses: actions/download-artifact@v3
+      #   with:
+      #     name: personas-specs
+      #     path: cypress/e2e/test-completion
 
       - name: Get current PR number
         uses: jwalton/gh-find-current-pr@v1
@@ -88,22 +88,19 @@ jobs:
       - name: Setup baseUrl to deploy-preview 
         if: ${{ success() && steps.current-pr.outputs.number }}
         run: |
-            echo "CYPRESS_baseUrl='https://deploy-preview-${{ steps.current-pr.outputs.pr }}--nosgestesclimat.netlify.app'" >> "$GITHUB_ENV";
+            echo "CYPRESS_baseUrl=https://deploy-preview-${{ steps.current-pr.outputs.pr }}--nosgestesclimat.netlify.app" >> "$GITHUB_ENV";
             echo "MODE=preview" >> "$GITHUB_ENV";
       
       - name: Setup baseUrl to nosgestesclimat.fr
         if: ${{ !success() || !steps.current-pr.outputs.number }}
         run: |
-            echo "CYPRESS_baseUrl='https://nosgestesclimat.fr'" >> "$GITHUB_ENV"
+            echo "CYPRESS_baseUrl=https://nosgestesclimat.fr" >> "$GITHUB_ENV"
             echo "MODE=production" >> "$GITHUB_ENV"
 
       - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
         with:
-          install: false
-          start: echo "start"
-          # wait-on: ${{ env.CYPRESS_baseUrl }}
-          # wait-on-timeout: 120
+          build: yarn run e2e:generate:personas
           browser: chrome
           parallel: true
           record: true
