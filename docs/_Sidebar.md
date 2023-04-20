@@ -11,6 +11,7 @@
 2. [**Contribution**](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution)
    * [How to start?](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution#how-to-start)
    * [Installation](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution#installation)
+   * [Tests](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution#tests)
 3. [**Documentation**](https://github.com/datagir/nosgestesclimat-site/wiki/Documentation)
    * [Updating the wiki](https://github.com/datagir/nosgestesclimat-site/wiki/Documentation#updating-the-wiki)
 4. [**Customisation**](https://github.com/datagir/nosgestesclimat-site/wiki/Customisation)

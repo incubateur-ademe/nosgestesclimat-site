@@ -37,6 +37,12 @@ yarn && yarn start
 
 If you want to run the automatic localisation, which depends on a Netlify Edge function, you must run `netlify dev`.
 
+## 🇬 Tests
+
+You can run e2e tests (Cypress) by firt starting a local server with `yarn run
+serve`, then, compiles [personas spec files](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution#tests) and run cypress tests with `yarn run
+test` (or `yarn run e2e` to open the Cypress GUI).
+
 ## Réutilisations de ce code
 
 Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md)
