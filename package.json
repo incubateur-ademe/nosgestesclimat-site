@@ -105,6 +105,7 @@
 	"dependencies": {
 		"@babel/runtime": "^7.20.7",
 		"@pmmmwh/react-refresh-webpack-plugin": "^0.5.7",
+		"@sentry/react": "^7.48.0",
 		"@svgr/webpack": "6.2.1",
 		"babel-plugin-webpack-alias": "^2.1.2",
 		"buffer": "^6.0.3",
