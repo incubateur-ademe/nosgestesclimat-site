@@ -102,8 +102,8 @@ jobs:
         with:
           install: false
           start: echo "start"
-          wait-on: ${{ env.CYPRESS_baseUrl }}
-          wait-on-timeout: 120
+          # wait-on: ${{ env.CYPRESS_baseUrl }}
+          # wait-on-timeout: 120
           browser: chrome
           parallel: true
           record: true
