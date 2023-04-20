@@ -4,11 +4,11 @@ const { parse } = require('yaml')
 const personas = parse(readFileSync('./nosgestesclimat/personas/personas-fr.yaml', 'utf8'))
 
 const getFileContent = (name, data) => `
-import { walkthroughTest, localServerUrl } from './utils'
+import { walkthroughTest } from './utils'
 describe('check for test completion', () => {
 	it("can finish the test with persona '${name}' values", () => {
 		cy.session('${name}', () => {
-			cy.visit(Cypress.env('base_url'))
+			cy.visit("/")
 			cy.get('[data-cypress-id="do-the-test-link"]').click()
 			cy.get('[data-cypress-id="skip-tuto-button"]').click()
 			cy.get('[data-cypress-id="understood-button"]').click()

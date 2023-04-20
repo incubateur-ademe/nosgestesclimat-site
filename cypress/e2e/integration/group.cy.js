@@ -1,6 +1,6 @@
 describe('check for group page status', () => {
 	beforeEach(() => {
-		cy.visit(Cypress.env('base_url') + '/groupe')
+		cy.visit('/groupe')
 	})
 
 	it('has a start button', () => {

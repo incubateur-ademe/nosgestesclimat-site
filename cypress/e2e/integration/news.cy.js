@@ -1,6 +1,6 @@
 describe('check for about page status', () => {
 	beforeEach(() => {
-		cy.visit(Cypress.env('base_url') + '/nouveautés')
+		cy.visit('/nouveautés')
 	})
 
 	it('has a title', () => {

@@ -150,8 +150,7 @@ jobs:
         with:
           install: false
           build: yarn run e2e:generate:personas
-          start: yarn run serve
-          wait-on: 'http://localhost:8080'
+          wait-on: ${{ env.CYPRESS_baseUrl }}
           wait-on-timeout: 120
           browser: chrome
           parallel: true
@@ -159,5 +158,6 @@ jobs:
           group: 'Test - Integration'
           spec: cypress/e2e/**/*.cy.js
         env:
+          CYPRESS_baseUrl: 'https://deploy-preview-${{ github.event.number }}--nosgestesclimat.netlify.app'
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}

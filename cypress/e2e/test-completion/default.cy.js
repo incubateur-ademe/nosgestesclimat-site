@@ -2,7 +2,7 @@ import { walkthroughTest, defaultTotalValue } from './utils'
 
 describe('check for test completion', () => {
 	beforeEach(() => {
-		cy.visit(Cypress.env('base_url'))
+		cy.visit("/")
 	})
 
 	it('can finish the test with the default values', () => {
