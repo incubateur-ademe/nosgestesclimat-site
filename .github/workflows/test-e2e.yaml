@@ -93,6 +93,6 @@ jobs:
           group: 'Test - e2e'
           spec: cypress/e2e/**/*.cy.js
         env:
-          CYPRESS_baseUrl: 'http://localhost:8080' # 'https://deploy-preview-${{ github.event.pull_request.number }}--nosgestesclimat.netlify.app'
+          CYPRESS_baseUrl: 'https://deploy-preview-${{ github.event.pull_request.number }}--nosgestesclimat.netlify.app'
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
