@@ -12,11 +12,10 @@ import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import useMediaQuery from '../../components/utils/useMediaQuery'
-import { TrackerContext } from '../../components/utils/withTracker'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import Provider from '../../Provider'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
-import Tracker, { devTracker } from '../../Tracker'
 import {
 	changeLangTo,
 	getLangFromAbreviation,
@@ -58,12 +57,6 @@ const DocumentationContexteLazy = React.lazy(
 )
 const News = React.lazy(() => import('Pages/News'))
 
-let tracker = devTracker
-
-if (NODE_ENV === 'production') {
-	tracker = new Tracker()
-}
-
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 export default function Root({}) {
@@ -88,7 +81,6 @@ export default function Root({}) {
 
 	return (
 		<Provider
-			tracker={tracker}
 			sitePaths={paths}
 			reduxMiddlewares={[]}
 			onStoreCreated={(store) => {
@@ -127,7 +119,7 @@ const Main = ({}) => {
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {
-		tracker.track(location)
+		tracker?.track(location)
 	}, [location])
 
 	const currentLangState = useSelector((state) => state.currentLang)

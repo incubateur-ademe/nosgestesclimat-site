@@ -17,7 +17,7 @@ import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Meta from '../../components/utils/Meta'
 import useMediaQuery from '../../components/utils/useMediaQuery'
-import { TrackerContext } from '../../components/utils/withTracker'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 

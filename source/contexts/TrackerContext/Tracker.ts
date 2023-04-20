@@ -1,4 +1,4 @@
-import { debounce, inIframe } from './utils'
+import { debounce, inIframe } from '../../utils'
 
 declare global {
 	interface Window {
@@ -13,7 +13,7 @@ type MatomoAction =
 	| 'setReferrerUrl'
 	| 'setCustomUrl'
 	| 'setCustomVariable'
-type PushArgs = [MatomoAction, ...Array<string | number>]
+type PushArgs = [MatomoAction, ...Array<string | number | boolean | null>]
 type PushType = (args: PushArgs) => void
 
 const ua = window.navigator.userAgent
@@ -77,6 +77,7 @@ export default class Tracker {
 	}
 }
 
-export const devTracker = new Tracker(
-	console?.debug?.bind(console) ?? (() => {}) // eslint-disable-line no-console
-)
+export const instantiateDevTracker = () =>
+	new Tracker(
+		console?.debug?.bind(console) ?? (() => {}) // eslint-disable-line no-console
+	)

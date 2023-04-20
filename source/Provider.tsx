@@ -1,7 +1,6 @@
 import { ThemeColorsProvider } from 'Components/utils/colors'
 import IframeOptionsProvider from 'Components/utils/IframeOptionsProvider'
 import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
-import { TrackerProvider } from 'Components/utils/withTracker'
 import i18next from 'i18next'
 import { useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
@@ -10,8 +9,8 @@ import { BrowserRouter } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
+import { TrackerProvider } from './contexts/TrackerContext'
 import RulesProvider from './RulesProvider'
-import Tracker from './Tracker'
 import { inIframe } from './utils'
 
 declare global {
@@ -39,7 +38,6 @@ if (NODE_ENV === 'production' && 'serviceWorker' in navigator && !inIframe()) {
 
 export type ProviderProps = {
 	children: React.ReactNode
-	tracker?: Tracker
 	sitePaths?: SitePaths
 	initialStore?: RootState
 	onStoreCreated?: (store: Store) => void
@@ -47,7 +45,6 @@ export type ProviderProps = {
 }
 
 export default function Provider({
-	tracker = new Tracker(),
 	reduxMiddlewares,
 	initialStore,
 	onStoreCreated,
@@ -77,13 +74,13 @@ export default function Provider({
 
 	return (
 		// If IE < 11 display nothing
-		<ReduxProvider store={store}>
-			<RulesProvider>
-				<ThemeColorsProvider
-					color={iframeCouleur && decodeURIComponent(iframeCouleur)}
-				>
-					<IframeOptionsProvider tracker={tracker}>
-						<TrackerProvider value={tracker}>
+		<TrackerProvider>
+			<ReduxProvider store={store}>
+				<RulesProvider>
+					<ThemeColorsProvider
+						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
+					>
+						<IframeOptionsProvider>
 							<SitePathProvider value={sitePaths}>
 								<I18nextProvider i18n={i18next}>
 									<BrowserRouter>
@@ -91,10 +88,10 @@ export default function Provider({
 									</BrowserRouter>
 								</I18nextProvider>
 							</SitePathProvider>
-						</TrackerProvider>
-					</IframeOptionsProvider>
-				</ThemeColorsProvider>
-			</RulesProvider>
-		</ReduxProvider>
+						</IframeOptionsProvider>
+					</ThemeColorsProvider>
+				</RulesProvider>
+			</ReduxProvider>
+		</TrackerProvider>
 	)
 }

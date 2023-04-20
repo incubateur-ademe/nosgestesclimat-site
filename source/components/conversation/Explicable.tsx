@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
-import { TrackerContext } from '../utils/withTracker'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
