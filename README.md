@@ -16,7 +16,7 @@ C'est un un _fork_ d'un outil de vulgarisation de l'empreinte climat [futur.eco]
 
 Le code est en Javascript / Typescript / React / styled-components / Webpack, Yjs, entre autres.
 
-### 🇬🇧Installation
+### 🇬🇧 Installation
 
 The footprint model is stored in the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) `nosgestesclimat/` pointing to the corresponding GitHub [repository](https://github.com/datagir/nosgestesclimat).
 
@@ -37,7 +37,7 @@ yarn && yarn start
 
 If you want to run the automatic localisation, which depends on a Netlify Edge function, you must run `netlify dev`.
 
-## 🇬 Tests
+### 🇬🇧 Tests
 
 You can run e2e tests (Cypress) by firt starting a local server with `yarn run
 serve`, then, compiles [personas spec files](https://github.com/datagir/nosgestesclimat-site/wiki/Contribution#tests) and run cypress tests with `yarn run
