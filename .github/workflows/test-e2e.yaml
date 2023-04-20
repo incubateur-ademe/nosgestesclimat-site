@@ -58,27 +58,30 @@ jobs:
         with:
           runTests: false
           build: yarn run model:compile:fr
-      
+     
+      - name: Compress node_modules
+        run: tar -cvf node_modules.tar node_modules
+
       - name: Save node_modules
         uses: actions/upload-artifact@v3
         with:
           name: site-node_modules
           if-no-files-found: error
-          path: node_modules
+          path: node_modules.tar
       
-      - name: Save nosgestesclimat/node_modules
-        uses: actions/upload-artifact@v3
-        with:
-          name: model-node_modules
-          if-no-files-found: error
-          path: nosgestesclimat/node_modules
-
-      - name: Save build folder
-        uses: actions/upload-artifact@v3
-        with:
-          name: nosgestesclimat-public
-          if-no-files-found: error
-          path: nosgestesclimat/public
+      # - name: Save nosgestesclimat/node_modules
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: model-node_modules
+      #     if-no-files-found: error
+      #     path: nosgestesclimat/node_modules
+      #
+      # - name: Save build folder
+      #   uses: actions/upload-artifact@v3
+      #   with:
+      #     name: nosgestesclimat-public
+      #     if-no-files-found: error
+      #     path: nosgestesclimat/public
     
   e2e:
     runs-on: ubuntu-latest
@@ -128,12 +131,13 @@ jobs:
         with:
           name: site-node_modules
           path: node_modules
-      
-      - name: Download the nosgestesclimat/node_modules folder
-        uses: actions/download-artifact@v3
-        with:
-          name: model-node_modules
-          path: nosgestesclimat/node_modules
+
+      - name: Uncompress the node_modules folder
+        run: tar -xvf node_modules.tar node_modules
+
+      - name: Install dependencies (nosgestesclimat)
+        # if: steps.yarn-cache-model.outputs.cache-hit != 'true'
+        run: yarn --cwd ./nosgestesclimat install --frozen-lockfile
 
       - name: Download the build folders
         uses: actions/download-artifact@v3
