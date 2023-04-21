@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+   ***************************************************************************
+   Bundesanstalt fuer Strassenwesen
+   RWB-Symbol Nr.: 9
+   Bezeichnung:
+   Hafen, Faehrhafen, Faehre
+   Ausdehnung in cm:
+         X_min     X_max     Y_min     Y_max
+         0.00000  15.00000   0.00000  15.00000
+-->
+
+<svg
+   width="140"
+   height="140"
+   version="1.0"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="1.2.2 (732a01da63, 2022-12-09, custom)"
+   sodipodi:docname="transport . ferry.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   sodipodi:modified="true"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <metadata
+     id="metadata17">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs15" />
+  <sodipodi:namedview
+     inkscape:window-height="1055"
+     inkscape:window-width="1920"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     borderopacity="1.0"
+     bordercolor="#666666"
+     pagecolor="#ffffff"
+     id="base"
+     inkscape:zoom="5.3733334"
+     inkscape:cx="43.455334"
+     inkscape:cy="69.696029"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:current-layer="svg2"
+     width="140px"
+     height="80px"
+     inkscape:showpageshadow="2"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:window-maximized="0" />
+  <!--
+   ***************************************************************************
+-->
+  <!--
+      INHALT
+-->
+  <path
+     d="m 137.12385,93.869132 -2,0.8333 -2.14285,0.89283 c -4.57143,1.904756 -9.71427,1.904756 -14.28569,0 l -4.28572,-1.78566 c -4.57142,-1.90476 -9.71426,-1.90476 -14.28568,0 l -4.285803,1.78566 c -4.571426,1.904756 -9.714274,1.904756 -14.285695,0 l -4.28571,-1.78566 c -2.2633,-0.94304 -4.690938,-1.42857 -7.142845,-1.42857 -2.451907,0 -4.879545,0.48553 -7.142845,1.42857 l -4.28571,1.78566 c -4.571421,1.904756 -9.714269,1.904756 -14.285685,0 l -4.28582,-1.78566 c -4.57142,-1.90476 -9.71426,-1.90476 -14.28568,0 l -4.28572,1.78566 c -4.57142,1.904756 -9.71426,1.904756 -14.2856805,0 l -2.14286,-0.89283 -2,-0.8333 v 7.999998 l 2,0.8333 2.14286,0.89283 c 4.5714205,1.90476 9.7142605,1.90476 14.2856805,0 l 4.28572,-1.78566 c 4.57142,-1.904758 9.71426,-1.904758 14.28568,0 l 4.28582,1.78566 c 4.571416,1.90476 9.714264,1.90476 14.285685,0 l 4.28571,-1.78566 c 2.2633,-0.94304 4.690938,-1.42857 7.142845,-1.42857 2.451907,0 4.879545,0.48553 7.142845,1.42857 l 4.28571,1.78566 c 4.571421,1.90476 9.714269,1.90476 14.285695,0 l 4.285803,-1.78566 c 4.57142,-1.904758 9.71426,-1.904758 14.28568,0 l 4.28572,1.78566 c 4.57142,1.90476 9.71426,1.90476 14.28569,0 l 2.14285,-0.89283 2,-0.8333 z"
+     id="path6"
+     style="fill:#000080;fill-rule:evenodd;stroke:none" />
+  <!--
+       OBERE WASSERWELLE
+       UNTERE WASSERWELLE
+-->
+  <!--
+      SCHIFF
+-->
+  <path
+     d="m 128.78984,88.700622 c 2.49148,-10.239537 5.60756,-26.765219 7.54041,-37.027219 0,0 -21.14393,-0.294477 -34.75656,-0.294477 l -0.12087,-8.985392 H 73.119524 L 79.337157,26.334823 55.381805,26.468267 49.119524,42.393534 45.279079,51.684115 28.786224,51.378926 H 3.6474233 l 2.1351,6.783459 2e-5,1.8e-5 c 1.27757,4.058926 3.04487,7.834441 5.2370407,11.187947 l 4e-5,4e-6 3.4883,4.681903 -3e-5,-4.5e-5 c 3.08089,4.713048 5.42934,10.140537 6.91821,15.988622 l 2e-5,3.1e-5 4.40766,-2.516977 c 4.57142,-2.445001 9.71426,-2.445001 14.28568,0 l 4.28582,2.292125 c 4.571416,2.445002 9.714264,2.445002 14.285685,0 l 4.28571,-2.292125 c 2.2633,-1.210514 4.690938,-1.83375 7.142845,-1.83375 2.451907,0 4.879545,0.623236 7.142845,1.83375 l 4.28571,2.292125 c 4.571421,2.445002 9.714269,2.445002 14.285695,0 l 4.285806,-2.292125 c 4.57142,-2.445001 9.71426,-2.445001 14.28568,0 l 4.28572,2.292125 c 2.2633,1.210511 4.69093,1.833751 7.14284,1.833751 h 0.27952 c 1.07181,-0.668051 1.99304,-1.676234 2.67644,-2.929065 z"
+     id="path10"
+     style="fill:#800000;fill-rule:evenodd;stroke:none;stroke-width:1.13297"
+     sodipodi:nodetypes="ccccccccccccccccccccccccscccccccccc" />
+  <!--
+      HECK
+      AUFBAU
+      SCHORNSTEIN UNTERTEIL
+      VORDECK
+      BUG
+      GEWELLTE WASSERLINIE
+      SCHORNSTEIN
+-->
+</svg>
