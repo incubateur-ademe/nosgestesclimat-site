@@ -20,6 +20,7 @@ export type Action =
 	| SetActiveTargetAction
 	| AddSimulationToListAction
 	| SetCurrentSimulationAction
+	| SetRatings
 
 export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
 
@@ -43,6 +44,11 @@ type SetCurrentSimulationAction = {
 type AddSimulationToListAction = {
 	type: 'ADD_SIMULATION_TO_LIST'
 	simulation
+}
+
+type SetRatings = {
+	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
+	value: string
 }
 
 type DeletePreviousSimulationAction = {
@@ -242,6 +248,12 @@ export const setLocalisation = (localisationData: Localisation) =>
 	({
 		type: 'SET_LOCALISATION',
 		...localisationData,
+	} as const)
+
+export const setRatings = (type: string, value: number) =>
+	({
+		type,
+		value,
 	} as const)
 
 export const resetLocalisation = () =>

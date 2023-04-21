@@ -106,6 +106,7 @@ export default function Root({}) {
 				conference: persistedSimulation?.conference,
 				survey: persistedSimulation?.survey,
 				enquête: persistedSimulation?.enquête,
+				ratings: persistedSimulation?.ratings,
 			}}
 		>
 			<Main />

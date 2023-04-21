@@ -385,6 +385,18 @@ function simulations(
 	}
 }
 
+// for northstar ratings
+function ratings(state = { learned: null, action: null }, { type, value }) {
+	switch (type) {
+		case 'SET_RATING_LEARNED':
+			return { ...state, learned: value }
+		case 'SET_RATING_ACTION':
+			return { ...state, action: value }
+		default:
+			return state
+	}
+}
+
 // Pointer to the current simulation in the 'simulations' list
 function currentSimulationId(
 	state: string | null = null,
@@ -428,7 +440,7 @@ export type AppState = CombinedState<{
 	supportedRegions: SupportedRegions
 }>
 
-const mainReducer = (state: AppState, action: Action) =>
+const mainReducer = (state: any, action: Action) =>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer
@@ -454,6 +466,7 @@ const mainReducer = (state: AppState, action: Action) =>
 		currentLang,
 		supportedRegions,
 		enquête,
+		ratings,
 	})(state, action)
 
 export default reduceReducers<RootState>(

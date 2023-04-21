@@ -15,6 +15,7 @@ export type SavedSimulation = {
 	conference: { room: string } | null
 	survey: { room: string } | null
 	enquête: { userID: string; date: string } | null
+	ratings: { learned: number; action: number }
 	url?: string
 	date?: Date
 	id?: string
