@@ -1,6 +1,5 @@
 import { explainVariable } from 'Actions/actions'
 import { useContext } from 'react'
-import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import { TrackerContext } from '../../contexts/TrackerContext'
@@ -16,7 +15,6 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 
 	return (
 		<button
-			className="ui__ link-button"
 			type="button"
 			onClick={(e) => {
 				tracker.push(['trackEvent', 'help', dottedName])
@@ -29,11 +27,23 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 			}}
 			css={`
 				margin-left: 0.3rem !important;
-				vertical-align: middle;
 				font-size: 110% !important;
+				padding-left: 0.6rem;
+				padding: 0;
 			`}
 		>
-			{emoji('ℹ️')}
+			<img
+				src="/images/info.svg"
+				width="10"
+				height="10"
+				css={`
+					width: 2rem;
+					height: auto;
+					vertical-align: middle;
+					margin-bottom: 0.2rem;
+				`}
+				alt="Obtenir de l'aide pour cette saisie"
+			/>
 		</button>
 	)
 }
