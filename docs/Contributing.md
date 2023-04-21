@@ -16,6 +16,9 @@
 
 * [How to start?](#how-to-start)
 * [Installation](#installation)
+* [Tests](#tests)
+   * [Run "End to End" tests](#run-end-to-end-tests)
+   * [Persona specification files](#persona-specification-files)
 * [Documentation](#documentation)
 * [Translation](#translation)
 * [Publicodes](#publicodes)
@@ -53,6 +56,18 @@ yarn start
 ```
 
 The application will be available at https://localhost:8080.
+
+## Tests
+
+### Run "End to End" tests
+
+See the corresponding readme [section](#https://github.com/datagir/nosgestesclimat-site#tests).
+
+### Persona specification files
+
+With Cypress, it only possible to parallelize at the spec file level.
+Consequently, spec files for test completion on personas are automatically
+generated with the `cypress/scripts/generateSpecsFromPersonas.js` script.
 
 ## Documentation
 

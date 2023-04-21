@@ -13,7 +13,7 @@ import {
 } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
 import { getNextQuestions } from '../../components/utils/useNextQuestion'
-import { TrackerContext } from '../../components/utils/withTracker'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import {
 	answeredQuestionsSelector,
 	situationSelector,

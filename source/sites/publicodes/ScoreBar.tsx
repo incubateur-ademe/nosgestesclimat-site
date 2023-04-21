@@ -7,7 +7,7 @@ import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
-import { TrackerContext } from '../../components/utils/withTracker'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import {
 	objectifsSelector,
 	situationSelector,
@@ -46,7 +46,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const situationLength = Object.keys(situation).length
 
 	useEffect(() => {
-		if (!tutorials['scoreExplanation']) {
+		if (objectif === 'bilan' && !tutorials['scoreExplanation']) {
 			setTimeout(() => setOpenExplanation(true), 1200)
 		}
 	}, [tutorials])

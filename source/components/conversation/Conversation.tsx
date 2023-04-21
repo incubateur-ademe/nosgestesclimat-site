@@ -6,7 +6,6 @@ import RuleInput, {
 import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
-import { TrackerContext } from 'Components/utils/withTracker'
 import { motion } from 'framer-motion'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -22,6 +21,7 @@ import {
 	validateWithDefaultValue,
 } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'

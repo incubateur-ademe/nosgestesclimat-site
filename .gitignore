@@ -15,4 +15,6 @@ node_modules/
 
 /cypress/videos/*
 /cypress/screenshots/*
+# They are automatically generated when running cypress in CI
+/cypress/e2e/test-completion/persona-*.cy.js
 dist
