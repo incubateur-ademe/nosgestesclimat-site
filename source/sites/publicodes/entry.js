@@ -8,8 +8,8 @@ import App from './App'
 Sentry.init({
 	dsn: 'https://d134af84d6db41eea0331919c58865b9@o4505041038606336.ingest.sentry.io/4505041042014208',
 	integrations: [new Sentry.BrowserTracing()],
-	// NOTE(@EmileRoley): in the future, we may want to set this to a lower value
-	tracesSampleRate: 1.0,
+	// NOTE(@EmileRoley): Quite an arbitrary value
+	tracesSampleRate: 0.25,
 })
 
 Object.keys(Lang).forEach((lang) => {
