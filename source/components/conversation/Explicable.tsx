@@ -32,7 +32,17 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 				padding: 0;
 			`}
 		>
-			ℹ️
+			<img
+				src="/images/info.svg"
+				width="10"
+				height="10"
+				css={`
+					width: 2rem;
+					height: auto;
+					vertical-align: middle;
+				`}
+				alt="Obtenir de l'aide pour cette saisie"
+			/>
 		</button>
 	)
 }
