@@ -40,6 +40,7 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 					width: 2rem;
 					height: auto;
 					vertical-align: middle;
+					margin-bottom: 0.2rem;
 				`}
 				alt="Obtenir de l'aide pour cette saisie"
 			/>
