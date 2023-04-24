@@ -63,7 +63,7 @@ export default () => {
 	}, [])
 
 	const survey = useSelector((state) => state.survey)
-	const existContext = survey ? !(survey['contextFile'] == null) : false
+	const existContext = !!survey?.contextFile
 	const navigate = useNavigate()
 	const { t } = useTranslation()
 

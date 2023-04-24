@@ -38,23 +38,25 @@ export default ({
 }) => {
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
-	const contextRules =
-		existContext && useSelector((state) => state.survey?.contextRules)
+
+	const survey = useSelector((state) => state.survey)
+	const contextRules = existContext && survey.contextRules
+
 	const completedTests = getElements(
 		rawElements,
 		threshold,
-		existContext,
 		contextRules,
 		defaultProgressMin
 	)
-	const participants = getElements(rawElements, threshold, null, null, 0)
 
+	const participants = getElements(rawElements, threshold, null, 0)
+
+	const [realTimeMode, setRealTimeMode] = useState(false)
 	const [contextFilter, setContextFilter] = useState({})
 	const filteredCompletedTests = filterElements(completedTests, contextFilter)
 	const filteredRawTests = filterElements(participants, contextFilter)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
-	const [realTimeMode, setRealTimeMode] = useState(false)
 
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
@@ -69,7 +71,6 @@ export default ({
 
 	const progressList = filteredRawTests.map((el) => {
 			const contextCompleted =
-				existContext &&
 				contextRules &&
 				!(
 					Object.keys(el.context).length ===

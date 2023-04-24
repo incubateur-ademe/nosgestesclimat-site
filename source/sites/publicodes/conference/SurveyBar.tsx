@@ -122,7 +122,7 @@ export default () => {
 
 	const elements = surveyElementsAdapter(survey.answers)
 	const rawUserNumber = getAllParticipants(elements).length
-	const completedTests = getCompletedTests(elements, existContext, contextRules)
+	const completedTests = getCompletedTests(elements, contextRules)
 	const completedTestsNumber = completedTests.length
 
 	const simulationArray = completedTests && Object.values(completedTests),
