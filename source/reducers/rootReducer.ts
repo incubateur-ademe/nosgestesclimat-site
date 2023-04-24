@@ -2,7 +2,11 @@ import { Action } from 'Actions/actions'
 import { omit } from 'Source/utils'
 
 import reduceReducers from 'reduce-reducers'
-import { combineReducers, Reducer } from 'redux'
+import { CombinedState, combineReducers, Reducer } from 'redux'
+import {
+	Localisation,
+	SupportedRegions,
+} from '../components/localisation/utils'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import { SavedSimulationList } from '../selectors/storageSelectors'
@@ -377,7 +381,37 @@ function currentSimulationId(
 	}
 }
 
-const mainReducer = (state: any, action: Action) =>
+export type AppState = CombinedState<{
+	explainedVariable: any
+	simulation: Simulation | null
+	previousSimulation: any
+	simulations: SavedSimulationList
+	currentSimulationId: string | null
+	situationBranch: any
+	rules: any
+	actionChoices: any
+	conference: never
+	survey: never
+	iframeOptions: any
+	tutorials: {}
+	storedTrajets: any
+	storedAmortissementAvion: {}
+	thenRedirectTo: any
+	tracking: {
+		endEventFired: boolean
+		firstQuestionEventFired: boolean
+		progress50EventFired: boolean
+		progress90EventFired: boolean
+	}
+	localisation: Localisation | undefined
+	sessionLocalisationBannersRead: any
+	pullRequestNumber: any
+	engineState: never
+	currentLang: any
+	supportedRegions: SupportedRegions
+}>
+
+const mainReducer = (state: AppState, action: Action) =>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer

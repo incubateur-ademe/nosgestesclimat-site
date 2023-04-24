@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
+import { AppState } from '../../reducers/rootReducer'
 
 const API = '/geolocation'
 
@@ -10,11 +11,12 @@ const API = '/geolocation'
 
 export default () => {
 	const dispatch = useDispatch()
-
-	const localisation = useSelector((state) => state.localisation)
+	const localisation = useSelector((state: AppState) => state.localisation)
 
 	useEffect(() => {
-		if (localisation?.country != null) return
+		if (localisation?.country != null) {
+			return undefined
+		}
 
 		const asyncFecthAPI = async () => {
 			await fetch(API)
