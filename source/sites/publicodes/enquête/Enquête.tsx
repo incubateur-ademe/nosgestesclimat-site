@@ -41,7 +41,9 @@ export default () => {
 
 			<div>
 				<Link to="/simulateur/bilan">
-					<button className="ui__ button cta">Commencer le parcours</button>
+					<button className="ui__ button cta plain">
+						Commencer le parcours
+					</button>
 				</Link>
 			</div>
 			{searchParamsObject['details'] && (
