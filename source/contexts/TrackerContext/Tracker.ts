@@ -1,3 +1,4 @@
+import posthog from 'posthog-js'
 import { debounce, inIframe } from '../../utils'
 
 declare global {
@@ -51,6 +52,10 @@ export default class Tracker {
 				var subEventName = `Details : ${eventName}`
 				window.plausible(eventName, {
 					props: { [subEventName]: subEvent },
+				})
+
+				posthog.capture(String(eventName), {
+					property: { [subEventName]: subEvent },
 				})
 			}
 		}
