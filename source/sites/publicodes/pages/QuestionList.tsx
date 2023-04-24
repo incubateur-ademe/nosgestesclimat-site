@@ -17,6 +17,7 @@ export default () => {
 
 	const jsonList = questionRules.map((rule) => {
 		const { type, mosaic } = getQuestionType(engine, rules, rule)
+		const dependenciesData = computeDependencies(engine, rule)
 
 		return {
 			dottedName: rule.dottedName,
@@ -24,6 +25,7 @@ export default () => {
 			type,
 			catégorie: questionCategoryName(rule.dottedName),
 			'dans mosaïque': mosaic != null,
+			dépendances: dependenciesData.map(([k, v]) => k),
 		}
 	})
 	const header = [
@@ -32,6 +34,7 @@ export default () => {
 		'type',
 		'catégorie',
 		'dans mosaïque',
+		'dépendances',
 	]
 	const csv = toCSV(header, jsonList)
 	return (
@@ -50,7 +53,9 @@ export default () => {
 				Le questionnaire est dynamique : chaque question est susceptible d'être
 				conditionnée à la réponse à une autre question. Les dépendances d'une
 				question sont listées avec l'icône 🗜️. Dans le cas des questions
-				mosaïques, l'icône liste les questions qui constituent la mosaïque.
+				mosaïques, l'icône liste les questions qui constituent la mosaïque. Le
+				chiffre en face des dépendances est le poids de la question évalué par
+				le moteur : son ordre de priorité.
 			</p>
 			<textarea
 				value={csv}
@@ -100,12 +105,19 @@ const getQuestionType = (engine, rules, rule) => {
 		: '☑️ Oui/Non'
 	return { type, mosaic: ruleMosaicInfos }
 }
+const computeDependencies = (engine, rule) => {
+	const { missingVariables } = engine.evaluate(rule.dottedName)
+	const entries = Object.entries(missingVariables).filter(
+		([k]) => k !== rule.dottedName
+	)
+	return entries
+}
 const QuestionDescription = ({ engine, rule, rules }) => {
 	const { type, mosaic } = getQuestionType(engine, rules, rule)
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
 
-	const { missingVariables } = engine.evaluate(rule.dottedName)
+	const dependenciesData = computeDependencies(engine, rule)
 	return (
 		<li
 			css={`
@@ -161,10 +173,7 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 								</details>
 							)}
 						</div>
-						<MissingVariables
-							data={missingVariables}
-							dottedName={rule.dottedName}
-						/>
+						<MissingVariables data={dependenciesData} />
 					</div>
 				</summary>
 				<FriendlyObjectViewer data={rule} options={{ capitalise0: false }} />
@@ -173,17 +182,16 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 	)
 }
 
-const MissingVariables = ({ data, dottedName }) => {
-	const entries = Object.entries(data).filter(([k]) => k !== dottedName)
-	if (!entries.length) return null
+const MissingVariables = ({ data }) => {
+	if (!data.length) return null
 	return (
 		<div css="margin-left: .4rem">
 			🗜️&nbsp;
 			<details css="display: inline-block">
-				<summary>{entries.length} dépendances</summary>
+				<summary>{data.length} dépendances</summary>
 
 				<ul>
-					{entries.map(([k, v]) => (
+					{data.map(([k, v]) => (
 						<li key={k}>
 							{k} : {v}
 						</li>
