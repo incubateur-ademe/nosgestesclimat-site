@@ -1,4 +1,4 @@
-export const defaultTotalValue = '8,3'
+export const defaultTotalValue = '8,4'
 
 export const categories = [
 	{ name: 'Transport', questions: 18 },
