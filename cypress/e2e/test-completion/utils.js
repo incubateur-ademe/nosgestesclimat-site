@@ -1,13 +1,14 @@
 // TODO: should be in the same file as the test
 export const defaultTotalValue = '8,4'
 
-export async function walkthroughTest(persona, needToWait) {
+export async function walkthroughTest(persona) {
 	cy.wait(100)
 
 	cy.get('body').then((body) => {
+
 		if (body.find('[data-cypress-id="loader"]').length > 0) {
 			cy.log('Waiting for complete rules parsing')
-			cy.wait(3000)
+			cy.wait(4000)
 		}
 
 		if (body.find('section').length > 0) {
