@@ -21,6 +21,20 @@ export function persistUser(store: Store<RootState, Action>): void {
 	const listener = () => {
 		const state = store.getState()
 
+		// This condition is quite dirty. It's needed for this scenario :
+		// - the user opens /enquête/ID
+		// - since no simulation is created yet in the current state of the logic that I don't want to correct now for the enquête,
+		// no localStorage is created
+		// - the user opens "Faire le test" in a new tab. The new tab has no enquête set, because of the above
+		// Should be cleaned : the second if is historical, it shouldn't be needed, an empty simulation should be created if necessary,
+		// as defined in the redux store
+		// TODO
+		if (state.enquête)
+			safeLocalStorage.setItem(
+				LOCAL_STORAGE_KEY,
+				JSON.stringify({ enquête: state.enquête })
+			)
+
 		if (
 			!state.simulation ||
 			(!state.simulation?.foldedSteps?.length &&
