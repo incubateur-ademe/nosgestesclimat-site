@@ -14,7 +14,11 @@ import { ReactNode, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
-import { defaultRulesOptions, RulesOptions } from './reducers/rootReducer'
+import {
+	AppState,
+	defaultRulesOptions,
+	RulesOptions,
+} from './reducers/rootReducer'
 
 import AnimatedLoader from './AnimatedLoader'
 import useLocalisation from './components/localisation/useLocalisation'
@@ -26,10 +30,9 @@ export default ({ children }) => {
 }
 
 const EngineWrapper = ({ children }) => {
-	const engineState = useSelector((state) => state.engineState)
+	const engineState = useSelector((state: AppState) => state.engineState)
 	const engineRequestedOnce = engineState.state !== null
-	const rules = useSelector((state) => state.rules)
-
+	const rules = useSelector((state: AppState) => state.rules)
 	const dispatch = useDispatch()
 
 	const branchData = useBranchData()

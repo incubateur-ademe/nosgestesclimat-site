@@ -23,7 +23,7 @@ export default () => {
 	const currentLang = useSelector(
 		(state: AppState) => state.currentLang
 	).toLowerCase()
-	const code = localisation?.country.code
+	const code = localisation?.country?.code
 	const regionParams: Region | undefined = code
 		? getSupportedRegion(code)
 		: undefined

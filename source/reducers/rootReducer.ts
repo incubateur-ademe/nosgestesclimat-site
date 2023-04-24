@@ -321,21 +321,19 @@ function engineState(state = defaultEngineState, { type, to }: EngineAction) {
 
 const defaultToNull = (arg) => arg ?? null
 
-type LocalisationAction = {
-	type: string
-	country: object
-	userChosen: boolean
-}
+type LocalisationAction = { type: string } & Localisation
 
 function localisation(
 	state = null,
-	{ type, localisationData }: LocalisationAction
-) {
+	{ type, country, userChosen }: LocalisationAction
+): Localisation | null {
 	if (type === 'SET_LOCALISATION') {
-		return localisationData
+		return { country, userChosen }
 	} else if (type === 'RESET_LOCALISATION') {
 		return null
-	} else return state
+	} else {
+		return state
+	}
 }
 function sessionLocalisationBannersRead(state = [], { type, regions }) {
 	if (type === 'SET_LOCALISATION_BANNERS_READ') {
