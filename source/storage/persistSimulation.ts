@@ -39,6 +39,8 @@ export function persistUser(store: Store<RootState, Action>): void {
 		const userData: User = {
 			simulations: updateSimulationList(state.simulations, {
 				...state.simulation,
+				// TODO it looks to me that this is wrong. It makes these attributes shared among simulations. Editing the "trajets" of a second simulation will erase the first
+				// See the TODO just above, it's linked.
 				actionChoices: state.actionChoices,
 				storedTrajets: state.storedTrajets,
 				survey: state.survey && { room: state.survey.room },
