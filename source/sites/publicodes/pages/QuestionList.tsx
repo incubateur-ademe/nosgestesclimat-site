@@ -46,6 +46,12 @@ export default () => {
 				<strong>au clic</strong>. L'identifiant de la quesion est la propriété
 				"dottedName".
 			</p>
+			<p>
+				Le questionnaire est dynamique : chaque question est susceptible d'être
+				conditionnée à la réponse à une autre question. Les dépendances d'une
+				question sont listées avec l'icône 🗜️. Dans le cas des questions
+				mosaïques, l'icône liste les questions qui constituent la mosaïque.
+			</p>
 			<textarea
 				value={csv}
 				css={`
@@ -98,6 +104,8 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 	const { type, mosaic } = getQuestionType(engine, rules, rule)
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
+
+	const { missingVariables } = engine.evaluate(rule.dottedName)
 	return (
 		<li
 			css={`
@@ -153,10 +161,35 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 								</details>
 							)}
 						</div>
+						<MissingVariables
+							data={missingVariables}
+							dottedName={rule.dottedName}
+						/>
 					</div>
 				</summary>
 				<FriendlyObjectViewer data={rule} options={{ capitalise0: false }} />
 			</details>
 		</li>
+	)
+}
+
+const MissingVariables = ({ data, dottedName }) => {
+	const entries = Object.entries(data).filter(([k]) => k !== dottedName)
+	if (!entries.length) return null
+	return (
+		<div css="margin-left: .4rem">
+			🗜️&nbsp;
+			<details css="display: inline-block">
+				<summary>{entries.length} dépendances</summary>
+
+				<ul>
+					{entries.map(([k, v]) => (
+						<li key={k}>
+							{k} : {v}
+						</li>
+					))}
+				</ul>
+			</details>
+		</div>
 	)
 }
