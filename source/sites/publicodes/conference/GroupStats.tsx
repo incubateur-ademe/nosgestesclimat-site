@@ -2,7 +2,6 @@ import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
 import {
 	getLangFromAbreviation,
@@ -125,20 +124,12 @@ export default ({
 						threshold={threshold}
 						setThreshold={setThreshold}
 						setContextFilter={setContextFilter}
+						realTimeMode={realTimeMode}
+						setRealTimeMode={setRealTimeMode}
 					/>
 				</WithEngine>
 			)}
 			<div css="margin: 1.6rem 0">
-				<div>
-					<Checkbox
-						name="setRealTimeMode"
-						id="setRealTimeMode"
-						label="Mode temps réel : afficher les simulations encore en cours"
-						showLabel
-						checked={realTimeMode}
-						onChange={() => setRealTimeMode(!realTimeMode)}
-					/>
-				</div>
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
 						<div role="status">
@@ -211,7 +202,6 @@ export default ({
 								></li>
 							))}
 						</ul>
-
 						<div css="display: flex; justify-content: space-between; width: 100%">
 							<small key="legendLeft">
 								{emoji('🎯 ')}
@@ -219,6 +209,7 @@ export default ({
 							</small>
 							<small key="legendRight">{max}</small>
 						</div>
+
 						<div
 							css={`
 								text-align: center;

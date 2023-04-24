@@ -2,27 +2,25 @@ import { buildVariantTree } from 'Components/conversation/RuleInput'
 import emoji from 'Components/emoji'
 import { splitName } from 'Components/publicodesUtils'
 import Engine from 'publicodes'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
+import Checkbox from '../../../components/ui/Checkbox'
+import { TrackerContext } from '../../../contexts/TrackerContext'
 
-export default ({ threshold, setThreshold, setContextFilter }) => {
+export default ({
+	threshold,
+	setThreshold,
+	setContextFilter,
+	realTimeMode,
+	setRealTimeMode,
+}) => {
+	const tracker = useContext(TrackerContext)
+
 	const [visible, setVisible] = useState(false)
 	const survey = useSelector((state) => state.survey)
 	const { t } = useTranslation()
-
-	if (!visible)
-		return (
-			<div css="text-align: right; position: absolute;right: 0; button {font-size: 100%}">
-				<button
-					title={t('Ouvrir les options de tri')}
-					onClick={() => setVisible(true)}
-				>
-					{emoji('⚙️')}
-				</button>
-			</div>
-		)
 
 	const contextRules = survey?.contextRules
 	const surveyRule = survey?.contextFile
@@ -30,7 +28,29 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 	const rulesToFilter =
 		contextRules && engine.evaluate(surveyRule).missingVariables
 
-	return (
+	return !visible ? (
+		<div css="text-align: right; position: absolute;right: 0; button {font-size: 100%}">
+			<button
+				title={t('Ouvrir les options de tri')}
+				onClick={() => {
+					setVisible(true)
+					tracker.push(['trackEvent', 'Mode Groupe', 'Ouvre filtres'])
+				}}
+			>
+				<img
+					src="/images/filtre.svg"
+					width="10"
+					height="10"
+					css={`
+						width: 1.5rem;
+						height: auto;
+						margin-top: 0.5rem;
+					`}
+					alt="Filtrer les données"
+				/>
+			</button>
+		</div>
+	) : (
 		<div
 			css={`
 				display: block;
@@ -38,11 +58,15 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 				justify-content: center;
 			`}
 		>
-			<div
-				css={`
-					margin-top: 1rem;
-				`}
-			>
+			<div>
+				<button
+					title={t('Fermer les options de tri')}
+					onClick={() => setVisible(false)}
+				>
+					{emoji('❌')}
+				</button>
+			</div>
+			<div>
 				<small>
 					<label>
 						Exclure au-dessus de{' '}
@@ -61,15 +85,21 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 							inputMode="decimal"
 							allowNegative={false}
 						/>{' '}
-						tonnes.
+						tonnes
 					</label>
 				</small>
-				<button
-					title={t('Fermer les options de tri')}
-					onClick={() => setVisible(false)}
-				>
-					{emoji('❌')}
-				</button>
+			</div>
+			<div>
+				<small>
+					<Checkbox
+						name="setRealTimeMode"
+						id="setRealTimeMode"
+						label="Afficher seulement les simulations terminées"
+						showLabel
+						checked={!realTimeMode}
+						onChange={() => setRealTimeMode(!realTimeMode)}
+					/>
+				</small>
 			</div>
 			{rulesToFilter && (
 				<div
