@@ -44,6 +44,9 @@ const BannerWithEngine = () => {
 		// When the simulation is started though, it's ok : it's stored and will be retrieved, even on F5 on the about page
 
 		if (!answeredQuestions.length) return
+		// This is a second check : if the user has an idle open tab, it shouldn't keep sending the server POST requests
+		// could also be problematic in an unknown edge case
+		if (!document.hasFocus()) return
 
 		const postData = async () => {
 			const body = { data, id: enquête.userID }
