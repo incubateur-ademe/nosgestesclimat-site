@@ -21,13 +21,9 @@ export default function IframeOptionsProvider({ children }) {
 
 	const integratorUrl = isIframe && urlParams.get('integratorUrl')
 
-	tracker &&
-		tracker.push([
-			'trackEvent',
-			'iframe',
-			'visites via iframe',
-			isIframe ? integratorUrl : 'non',
-		])
+	if (isIframe && tracker) {
+		tracker.push(['trackEvent', 'iframe', 'visites via iframe', integratorUrl])
+	}
 
 	const iframeIntegratorOptions = Object.fromEntries(
 		[
