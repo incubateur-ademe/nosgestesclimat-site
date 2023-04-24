@@ -2,7 +2,7 @@ import { walkthroughTest, defaultTotalValue } from './utils'
 
 describe('check for test completion', () => {
 	beforeEach(() => {
-		cy.visit("/")
+		cy.visit(`/?loc=${Cypress.env('localisation_param')}&lang=${Cypress.env('language_param')}`)
 	})
 
 	it('can finish the test with the default values', () => {

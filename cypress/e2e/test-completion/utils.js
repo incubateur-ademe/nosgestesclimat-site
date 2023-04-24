@@ -5,7 +5,6 @@ export async function walkthroughTest(persona) {
 	cy.wait(100)
 
 	cy.get('body').then((body) => {
-
 		if (body.find('[data-cypress-id="loader"]').length > 0) {
 			cy.log('Waiting for complete rules parsing')
 			cy.wait(4000)
