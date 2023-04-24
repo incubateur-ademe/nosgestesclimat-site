@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next'
-import { sortBy } from '../../../utils'
+import { capitalise0, sortBy } from '../../../utils'
 import { humanWeight } from '../HumanWeight'
 
 export default ({
@@ -55,11 +55,11 @@ export default ({
 			>
 				{categories.map(([name, values]) => (
 					<li key={name}>
-						<span>{name}</span>
+						<span>{capitalise0(name)}</span>
 						<ul>
 							{values.map(({ username, value }) => (
 								<li
-									key={value}
+									key={username + '-' + value}
 									css={`
 										left: ${(value / maxCategory) * 100}%;
 										cursor: pointer;
