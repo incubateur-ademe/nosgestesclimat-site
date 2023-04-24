@@ -6,6 +6,7 @@ import { useMediaQuery } from 'usehooks-ts'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import { WithEngine } from '../../../RulesProvider'
 import {
+	answeredQuestionsSelector,
 	useSimulationData,
 	useTestCompleted,
 } from '../../../selectors/simulationSelectors'
@@ -31,9 +32,19 @@ const BannerWithEngine = () => {
 	const [timeMessage, setTimeMessage] = useState(false)
 
 	const data = useSimulationData()
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	useEffect(() => {
 		if (!enquête) return
+		// Say the user opened the enquête on two tabs
+		// the first tab, where the test is not started yet, on the /enquête page for instance
+		// could send a payload that overrides the simulation
+		// with an empty simulation in parallel of the working tab, whose results
+		// are regularly erased
+		// When the simulation is started though, it's ok : it's stored and will be retrieved, even on F5 on the about page
+
+		if (!answeredQuestions.length) return
+
 		const postData = async () => {
 			const body = { data, id: enquête.userID }
 			console.log(body)
