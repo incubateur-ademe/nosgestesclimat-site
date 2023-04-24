@@ -16,6 +16,7 @@ import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
+import { enquêteSelector } from './enquête/enquêteSelector'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
 
