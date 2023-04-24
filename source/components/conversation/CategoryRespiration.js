@@ -95,7 +95,7 @@ export default ({ dismiss, questionCategory }) => {
 					},
 				}}
 			>
-				<h2 data-cypress-id="category-title">{questionCategory.title}</h2>
+				<h2>{questionCategory.title}</h2>
 				<SafeCategoryImage element={questionCategory} />
 				<button
 					className="ui__ plain button attention"

@@ -69,18 +69,6 @@ jobs:
         with:
           submodules: recursive
 
-      # - name: Download the nosgestesclimat/public folders
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: nosgestesclimat-public
-      #     path: nosgestesclimat/public
-      # 
-      # - name: Download the Cypress personas specs folders
-      #   uses: actions/download-artifact@v3
-      #   with:
-      #     name: personas-specs
-      #     path: cypress/e2e/test-completion
-
       - name: Get current PR number
         uses: jwalton/gh-find-current-pr@v1
         id: current-pr

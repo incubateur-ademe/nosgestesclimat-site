@@ -1,39 +1,16 @@
+// TODO: should be in the same file as the test
 export const defaultTotalValue = '8,4'
 
-export const categoriesToWaitFor = [
-	'Societal services', 'Services sociétaux'
-]
-
-export async function walkthroughTest(persona, wait) {
-	let needToWait = wait
-	if (needToWait) {
-		// Wait for parsing complete rules
-		// cy.wait(100)
-		needToWait = false
-	}
+export async function walkthroughTest(persona, needToWait) {
 	cy.wait(100)
-	cy.get('body').then(async (body) => {
-			if (body.find('[data-cypress-id="see-result-link"]').length > 0) {
-				cy.log('See result link')
-				return
-			}
+
+	cy.get('body').then((body) => {
+		if (body.find('[data-cypress-id="loader"]').length > 0) {
+			cy.log('Waiting for complete rules parsing')
+			cy.wait(3000)
+		}
 
 		if (body.find('section').length > 0) {
-
-			if (body.find('[data-cypress-id="category-title"]').length > 0) {
-				const category = await new Cypress.Promise<string>((resolve) => {
-					cy.get('[data-cypress-id="category-title"]').then((category) => {
-						resolve( category.text())
-						// if (categoriesToWaitFor.includes(category.innerText)) {
-						// 	needToWait = true
-						// 	// cy.get('section button').last().click()
-						// 	// walkthroughTest(persona, true)
-						// 	// return
-						// }
-					})
-				})
-			cy.log('Category: ' + category)
-			}
 			if (body.find('input').length > 0) {
 				cy.get('input').then((input) => {
 					const id = input.attr('id')
@@ -52,9 +29,9 @@ export async function walkthroughTest(persona, wait) {
 					}
 				})
 			}
-			cy.log('Need to wait: ' + needToWait)
+
 			cy.get('section button').last().click()
-			walkthroughTest(persona, needToWait)
+			walkthroughTest(persona)
 		}
 	})
 }
