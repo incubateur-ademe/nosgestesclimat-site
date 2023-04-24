@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
+import { useSearchParams } from 'react-router-dom'
 import { setLocalisation } from '../../actions/actions'
 import { capitalise0 } from '../../utils'
 import CountryFlag from './CountryFlag'
@@ -12,6 +13,7 @@ export default ({ noButton }) => {
 	const localisation = useLocalisation()
 	const currentRegionCode = getCurrentRegionCode(localisation)
 	const orderedSupportedRegions = useOrderedSupportedRegions()
+	const [searchParams, setSearchParams] = useSearchParams()
 
 	return (
 		<ul
@@ -43,6 +45,9 @@ export default ({ noButton }) => {
 							const newLocalisation = {
 								country: { name: params[currentLang]?.nom, code },
 								userChosen: true,
+							}
+							if (searchParams.get('loc')) {
+								setSearchParams({ loc: code })
 							}
 							dispatch(setLocalisation(newLocalisation))
 							dispatch({ type: 'SET_LOCALISATION_BANNERS_READ', regions: [] })

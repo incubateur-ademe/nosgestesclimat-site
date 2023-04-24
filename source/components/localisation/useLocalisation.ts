@@ -36,6 +36,7 @@ export default () => {
 									code,
 									name,
 								},
+								userChosen: false,
 							})
 						)
 					}
