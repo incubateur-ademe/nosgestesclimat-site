@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
 import { ScrollToTop } from '../../../components/utils/Scroll'
@@ -30,7 +30,6 @@ const BannerWithEngine = () => {
 	const [timeMessage, setTimeMessage] = useState(false)
 
 	const data = useSimulationData()
-	const dispatch = useDispatch()
 
 	useEffect(() => {
 		if (!enquête) return
