@@ -9,6 +9,7 @@ import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { resetLocalisation } from '../actions/actions'
 import { useTestCompleted } from '../selectors/simulationSelectors'
+import { enquêteSelector } from '../sites/publicodes/enquête/enquêteSelector'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
 import ProgressCircle from './ProgressCircle'
@@ -156,7 +157,8 @@ export default function SessionBar({
 		path = location.pathname
 
 	const persona = useSelector((state) => state.simulation?.persona)
-	const enquête = useSelector((state) => state.enquête)
+
+	const enquête = useSelector(enquêteSelector)
 
 	const [searchParams, setSearchParams] = useSearchParams()
 

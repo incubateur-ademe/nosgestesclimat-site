@@ -2,9 +2,10 @@ import { useSelector } from 'react-redux'
 import { buildEndURL } from '../../../components/SessionBar'
 import { useEngine } from '../../../components/utils/EngineContext'
 import { situationSelector } from '../../../selectors/simulationSelectors'
+import { enquêteSelector } from './enquêteSelector'
 
 export default ({}) => {
-	const { userID } = useSelector((state) => state.enquête)
+	const { userID } = useSelector(enquêteSelector)
 	const situation = useSelector(situationSelector),
 		situationQueryString = Object.entries(situation).reduce(
 			(memo, [k, v]) =>

@@ -23,6 +23,7 @@ import {
 import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../contexts/TrackerContext'
 import { objectifsSelector } from '../../selectors/simulationSelectors'
+import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelector'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
@@ -99,7 +100,7 @@ export default function Conversation({
 
 	const tracking = useSelector((state) => state.tracking)
 
-	const enquête = useSelector((state) => state.enquête)
+	const enquête = useSelector(enquêteSelector)
 
 	useEffect(() => {
 		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {

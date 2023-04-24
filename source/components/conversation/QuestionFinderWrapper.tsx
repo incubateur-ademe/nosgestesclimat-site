@@ -1,9 +1,10 @@
 import { Suspense } from 'react'
 import { useSelector } from 'react-redux'
+import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelector'
 import QuestionFinder from './QuestionFinder'
 
 export default function QuestionFinderWrapper({ finder, setFinder }) {
-	const enquête = useSelector((state) => state.enquête)
+	const enquête = useSelector(enquêteSelector)
 	if (enquête) return null
 
 	return finder ? (

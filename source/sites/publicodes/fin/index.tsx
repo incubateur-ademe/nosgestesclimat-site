@@ -10,6 +10,7 @@ import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import { TrackerContext } from '../../../contexts/TrackerContext'
 import { arrayLoopIteration } from '../../../utils'
 import EnqueteBannerContent from '../enquête/BannerContent'
+import { enquêteSelector } from '../enquête/enquêteSelector'
 import HorizontalSwipe from '../HorizontalSwipe'
 import ActionSlide from './ActionSlide'
 import Budget from './Budget'
@@ -49,7 +50,8 @@ export default ({}) => {
 		answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	const tracker = useContext(TrackerContext)
-	const enquête = useSelector((state) => state.enquête)
+
+	const enquête = useSelector(enquêteSelector)
 
 	const componentCorrespondenceBasis = {
 		bilan: Budget,

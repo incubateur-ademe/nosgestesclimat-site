@@ -112,7 +112,7 @@ const TutorialRedirection = () => {
 }
 
 const MainSimulationEnding = ({ rules, engine }) => {
-	const enquête = useSelector((state) => state.enquête)
+	const enquête = useSelector(enquêteSelector)
 	// Necessary to call 'buildEndURL' with the latest situation
 
 	return (

@@ -10,12 +10,14 @@ import {
 import { Markdown } from '../../../components/utils/markdown'
 import { rehydrateDetails } from '../fin'
 import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
+import { enquêteSelector } from './enquêteSelector'
 import ReturnToEnquêteButton from './ReturnToEnquêteButton'
 import content from './texte.md'
 
 export default () => {
 	const dispatch = useDispatch()
-	const enquête = useSelector((state) => state.enquête)
+
+	const enquête = useSelector(enquêteSelector)
 	const paramUserID = useParams().userID
 	const [searchParams] = useSearchParams(),
 		searchParamsObject = Object.fromEntries(searchParams)

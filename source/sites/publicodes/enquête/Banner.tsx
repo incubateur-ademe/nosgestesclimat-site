@@ -11,6 +11,7 @@ import {
 } from '../../../selectors/simulationSelectors'
 import { simulationURL } from '../conference/useDatabase'
 import BannerContent from './BannerContent'
+import { enquêteSelector } from './enquêteSelector'
 
 export default () => {
 	return (
@@ -25,7 +26,7 @@ export const minutes = 3
 const uglyBannerContentColor = '#ffffbf' // Cannot make it work as an import in BannerContent, dunno why
 
 const BannerWithEngine = () => {
-	const enquête = useSelector((state) => state.enquête)
+	const enquête = useSelector(enquêteSelector)
 	const [message, setMessage] = useState(null)
 	const [timeMessage, setTimeMessage] = useState(false)
 

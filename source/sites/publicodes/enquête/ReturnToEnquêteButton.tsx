@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useTestCompleted } from '../../../selectors/simulationSelectors'
+import { enquêteSelector } from './enquêteSelector'
 
 export default ({ simple }) => {
 	const dispatch = useDispatch()
-	const enquête = useSelector((state) => state.enquête)
+	const enquête = useSelector(enquêteSelector)
 	const testCompleted = useTestCompleted()
 	if (!enquête) return null
 	const id = enquête.userID

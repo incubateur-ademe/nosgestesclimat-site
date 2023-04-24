@@ -1,8 +1,9 @@
 import React, { Suspense } from 'react'
 import { useSelector } from 'react-redux'
+import { enquêteSelector } from './enquêteSelector'
 
 export default () => {
-	const enquête = useSelector((state) => state.enquête)
+	const enquête = useSelector(enquêteSelector)
 
 	if (!enquête) return
 	return (

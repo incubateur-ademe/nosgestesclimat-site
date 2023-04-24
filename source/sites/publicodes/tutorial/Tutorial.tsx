@@ -6,6 +6,7 @@ import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { TrackerContext } from '../../../contexts/TrackerContext'
+import { enquêteSelector } from '../enquête/enquêteSelector'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Categories from './Categories'
 import ClimateWarming from './ClimateWarming'
@@ -22,7 +23,7 @@ export default ({}) => {
 		.map(([k, v]) => v != null && k.split('testIntro')[1])
 		.filter(Boolean)
 
-	const enquête = useSelector((state) => state.enquête)
+	const enquête = useSelector(enquêteSelector)
 	const slides = createSlides(enquête)
 	const index = tutos.length
 
