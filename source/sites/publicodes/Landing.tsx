@@ -204,6 +204,10 @@ const ProfileLink = () => {
 			<div
 				css={`
 					margin-top: 0.25rem;
+					@media (max-width: 800px) {
+						display: flex;
+						justify-content: center;
+					}
 				`}
 			>
 				<Link
