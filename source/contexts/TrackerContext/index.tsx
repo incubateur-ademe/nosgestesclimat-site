@@ -25,6 +25,7 @@ export const TrackerProvider = ({ children }) => {
 		if (!shouldUseDevTracker && currentSimulationId) {
 			posthog.init('phc_XZx1t672SA98ffOol1wQsNzRfyVX9uull53Y8lXqdg9', {
 				api_host: 'https://eu.posthog.com',
+				autocapture: false,
 				persistence: 'memory',
 				bootstrap: {
 					distinctID: currentSimulationId,
