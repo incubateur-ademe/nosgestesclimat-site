@@ -8,8 +8,8 @@ export async function walkthroughTest(persona) {
 		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
 			cy.log('Waiting for complete rules parsing')
 			cy.wait(4000)
-		}
-
+		}})
+	cy.get('body').then((body) => {
 		if (body.find('section').length > 0) {
 			if (body.find('input').length > 0) {
 				cy.get('input').then((input) => {
