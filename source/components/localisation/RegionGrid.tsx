@@ -1,17 +1,20 @@
 import { useDispatch, useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import { setLocalisation } from '../../actions/actions'
+import { AppState } from '../../reducers/rootReducer'
 import { capitalise0 } from '../../utils'
 import CountryFlag from './CountryFlag'
 import useLocalisation from './useLocalisation'
 import useOrderedSupportedRegions from './useOrderedSupportedRegions'
-import { getCurrentRegionCode } from './utils'
+import { useCurrentRegionCode } from './utils'
 
 export default ({ noButton }) => {
 	const dispatch = useDispatch()
-	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
+	const currentLang = useSelector(
+		(state: AppState) => state.currentLang
+	).toLowerCase()
 	const localisation = useLocalisation()
-	const currentRegionCode = getCurrentRegionCode(localisation)
+	const currentRegionCode = useCurrentRegionCode(localisation)
 	const orderedSupportedRegions = useOrderedSupportedRegions()
 	const [searchParams, setSearchParams] = useSearchParams()
 

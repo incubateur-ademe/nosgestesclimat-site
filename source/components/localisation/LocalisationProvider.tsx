@@ -6,7 +6,7 @@ import { useDispatch } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import { getCurrentLangAbrv } from '../../locales/translation'
 import useLocalisation from './useLocalisation'
-import { getCurrentRegionCode, SupportedRegions } from './utils'
+import { SupportedRegions, useCurrentRegionCode } from './utils'
 
 export default function LocalisationProvider({ children }) {
 	const dispatch = useDispatch()
@@ -16,7 +16,7 @@ export default function LocalisationProvider({ children }) {
 	const { i18n } = useTranslation()
 	const currLangAbrv = getCurrentLangAbrv(i18n)
 	const localisation = useLocalisation()
-	const currentRegionCode = getCurrentRegionCode(localisation)
+	const currentRegionCode = useCurrentRegionCode(localisation)
 	const localisationCodeParam = urlParams.get('loc')
 
 	const updateLocalisation = (supportedRegions: SupportedRegions) => {

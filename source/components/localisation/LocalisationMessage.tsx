@@ -9,9 +9,9 @@ import CountryFlag from './CountryFlag'
 import useLocalisation from './useLocalisation'
 import {
 	defaultModelRegionCode,
-	getCountryNameInCurrentLang,
-	getSupportedRegion,
 	Region,
+	useCountryNameInCurrentLang,
+	useSupportedRegion,
 } from './utils'
 
 export default () => {
@@ -25,8 +25,8 @@ export default () => {
 		(state: AppState) => state.currentLang
 	).toLowerCase()
 	const code = localisation?.country?.code
-	const regionParams: Region | undefined = getSupportedRegion(code)
-	const countryName = getCountryNameInCurrentLang(localisation)
+	const regionParams: Region | undefined = useSupportedRegion(code)
+	const countryName = useCountryNameInCurrentLang(localisation)
 
 	const versionName = regionParams
 		? regionParams[currentLang]['gentilé'] ?? regionParams[currentLang]['nom']

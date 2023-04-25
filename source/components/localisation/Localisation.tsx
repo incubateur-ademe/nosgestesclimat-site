@@ -1,8 +1,8 @@
 import useLocalisation from 'Components/localisation/useLocalisation'
 import {
-	getCountryNameInCurrentLang,
-	getFlag,
-	getSupportedRegion,
+	useCountryNameInCurrentLang,
+	useFlag,
+	useSupportedRegion,
 } from 'Components/localisation/utils'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -24,14 +24,14 @@ export default ({ title = 'Ma région de simulation' }) => {
 	const [chosenIp, _] = usePersistingState('IP', undefined)
 	const localisation: Localisation | undefined = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
-	const regionParams: Region | undefined = getSupportedRegion(
+	const regionParams: Region | undefined = useSupportedRegion(
 		localisation?.country?.code
 	)
-	const flag = getFlag(localisation?.country?.code)
+	const flag = useFlag(localisation?.country?.code)
 	const authors: RegionAuthor[] = regionParams?.[currentLang]?.authors ?? [
 		DEFAULT_REGION_MODEL_AUTHOR,
 	]
-	const countryName = getCountryNameInCurrentLang(localisation)
+	const countryName = useCountryNameInCurrentLang(localisation)
 
 	return (
 		<div>

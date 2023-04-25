@@ -1,7 +1,7 @@
-import { getFlag, RegionCode } from './utils'
+import { RegionCode, useFlag } from './utils'
 
 export default ({ code }: { code?: RegionCode }) => {
-	const flagSrc = getFlag(code)
+	const flagSrc = useFlag(code)
 
 	return (
 		<img

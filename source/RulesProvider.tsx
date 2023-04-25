@@ -22,7 +22,7 @@ import {
 
 import AnimatedLoader from './AnimatedLoader'
 import useLocalisation from './components/localisation/useLocalisation'
-import { getCurrentRegionCode } from './components/localisation/utils'
+import { useCurrentRegionCode } from './components/localisation/utils'
 import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
@@ -38,7 +38,7 @@ const EngineWrapper = ({ children }) => {
 	const branchData = useBranchData()
 	const localisation = useLocalisation()
 
-	const currentRegionCode = getCurrentRegionCode(localisation)
+	const currentRegionCode = useCurrentRegionCode(localisation)
 	const optimizedOption = engineState?.options?.optimized
 	const parsedOption = engineState?.options?.parsed
 

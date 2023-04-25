@@ -45,7 +45,7 @@ export const defaultModelRegionCode = 'FR'
  * This function is not pure, it uses useSelector, dont't call it
  * conditionally !!
  */
-export function getSupportedRegion(
+export function useSupportedRegion(
 	inputCode: RegionCode | undefined
 ): Region | undefined {
 	const supportedRegions: SupportedRegions = useSelector(
@@ -64,8 +64,8 @@ export function getSupportedRegion(
  * This function is not pure, it uses useSelector, dont't call it
  * conditionally !!
  */
-export function getFlag(inputCode: RegionCode | undefined): string | undefined {
-	const regionParams = getSupportedRegion(inputCode)
+export function useFlag(inputCode: RegionCode | undefined): string | undefined {
+	const regionParams = useSupportedRegion(inputCode)
 	const code = regionParams?.fr.drapeau ?? inputCode
 	return getFlagImgSrc(code)
 }
@@ -85,7 +85,7 @@ export function getFlagImgSrc(
  * This function is not pure, it uses useSelector, dont't call it
  * conditionally !!
  */
-export function getCountryNameInCurrentLang(
+export function useCountryNameInCurrentLang(
 	localisation: Localisation | undefined
 ): string | undefined {
 	// this function enables to adapt messages written in French according to the country detected, including French prepositions subtelties.
@@ -93,7 +93,7 @@ export function getCountryNameInCurrentLang(
 		(state: AppState) => state.currentLang
 	).toLowerCase()
 
-	const regionParams = getSupportedRegion(localisation?.country?.code)
+	const regionParams = useSupportedRegion(localisation?.country?.code)
 	if (!localisation) {
 		return undefined
 	}
@@ -115,11 +115,11 @@ export function getCountryNameInCurrentLang(
  * This function is not pure, it uses useSelector, dont't call it
  * conditionally !!
  */
-export function getCurrentRegionCode(
+export function useCurrentRegionCode(
 	localisation: Localisation | undefined
 ): RegionCode {
 	const code = localisation?.country?.code
-	if (getSupportedRegion(code)) {
+	if (useSupportedRegion(code)) {
 		return code ?? defaultModelRegionCode
 	}
 	return defaultModelRegionCode
