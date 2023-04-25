@@ -28,7 +28,6 @@ export default function Form({
 	setAmortissementAvion,
 }: Props) {
 	const [localAmortissementAvion, setLocalAmortissementAvion] = useState({})
-	console.log(dottedName)
 
 	useEffect(() => {
 		if (!localAmortissementAvion && amortissementAvion) {

@@ -1,6 +1,7 @@
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
+import { Localisation } from '../components/localisation/utils'
 import { Simulation } from '../reducers/rootReducer'
 
 export type Action =
@@ -237,10 +238,10 @@ export const setStoredTrajets = (vehicule: string, trajets: object) =>
 		trajets,
 	} as const)
 
-export const setLocalisation = (localisationData: Object) =>
+export const setLocalisation = (localisationData: Localisation) =>
 	({
 		type: 'SET_LOCALISATION',
-		localisationData,
+		...localisationData,
 	} as const)
 
 export const resetLocalisation = () =>

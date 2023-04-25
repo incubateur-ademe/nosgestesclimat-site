@@ -3,25 +3,30 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { TrackerContext } from '../../contexts/TrackerContext'
+import { AppState } from '../../reducers/rootReducer'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import CountryFlag from './CountryFlag'
 import useLocalisation from './useLocalisation'
 import {
-	defaultModel,
-	getCountryNameInCurrentLang,
-	supportedRegion,
+	defaultModelRegionCode,
+	Region,
+	useCountryNameInCurrentLang,
+	useSupportedRegion,
 } from './utils'
+
 export default () => {
 	const tracker = useContext(TrackerContext)
 	const messagesRead = useSelector(
-		(state) => state.sessionLocalisationBannersRead
+		(state: AppState) => state.sessionLocalisationBannersRead
 	)
 	const dispatch = useDispatch()
 	const localisation = useLocalisation()
-	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
+	const currentLang = useSelector(
+		(state: AppState) => state.currentLang
+	).toLowerCase()
 	const code = localisation?.country?.code
-	const regionParams = supportedRegion(code)
-	const countryName = getCountryNameInCurrentLang(localisation)
+	const regionParams: Region | undefined = useSupportedRegion(code)
+	const countryName = useCountryNameInCurrentLang(localisation)
 
 	const versionName = regionParams
 		? regionParams[currentLang]['gentilé'] ?? regionParams[currentLang]['nom']
@@ -29,7 +34,7 @@ export default () => {
 
 	if (messagesRead.includes(code)) return
 
-	if (code === defaultModel) return
+	if (code === defaultModelRegionCode) return
 
 	return (
 		<IllustratedMessage
@@ -48,7 +53,7 @@ export default () => {
 								test
 							</Trans>
 							<CountryFlag code={code} />.
-							{code !== defaultModel && (
+							{code !== defaultModelRegionCode && (
 								<span>
 									{' '}
 									<Trans i18nKey="components.localisation.LocalisationMessage.betaMsg">
@@ -71,7 +76,7 @@ export default () => {
 										vous est proposé par défaut
 									</Trans>
 								</b>
-								<CountryFlag code={defaultModel} />
+								<CountryFlag code={defaultModelRegionCode} />
 								<b>.</b>
 							</p>
 						</p>
@@ -81,7 +86,7 @@ export default () => {
 								Nous n'avons pas pu détecter votre pays de simulation, le modèle
 								Français vous est proposé par défaut
 							</Trans>
-							<CountryFlag code={defaultModel} />.
+							<CountryFlag code={defaultModelRegionCode} />.
 						</p>
 					)}
 					<p>
