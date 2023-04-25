@@ -1,4 +1,3 @@
-import posthog from 'posthog-js'
 import { debounce, inIframe } from '../../utils'
 
 declare global {
@@ -53,10 +52,15 @@ export default class Tracker {
 				window.plausible(eventName, {
 					props: { [subEventName]: subEvent },
 				})
-
+				// Désactivé pendant les recherches sur les
+				// implications en termes de cookies
+				/*
 				posthog.capture(String(eventName), {
 					property: { [subEventName]: subEvent },
+					name: 'toto',
+					adresse: '1 rue du boulanger'
 				})
+				*/
 			}
 		}
 	) {
