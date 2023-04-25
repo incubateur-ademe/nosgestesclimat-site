@@ -1,7 +1,7 @@
 import { createContext, useContext } from 'react'
 import { TrackerContext } from '../../contexts/TrackerContext'
 
-export const IframeOptionsContext = createContext({})
+export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
 
 const nullDecode = (string) =>
 	string == null ? string : decodeURIComponent(string)

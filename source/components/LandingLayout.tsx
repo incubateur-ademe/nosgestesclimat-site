@@ -23,8 +23,9 @@ export const LandingHeaderWrapper = styled.div`
 	align-items: center;
 	justify-content: center;
 	flex-wrap: wrap;
-	margin-top: 4rem;
+	margin-top: 3rem;
 	padding: 0.6rem;
+	gap: 1rem;
 	h1 {
 		margin-top: 0.3rem;
 		font-size: 220%;
@@ -55,7 +56,7 @@ export const LandingHeaderWrapper = styled.div`
 `
 
 export const HeaderCTAs = styled.div`
-	margin-top: 1rem;
+	margin: 1rem 0;
 	> a {
 		margin: 0.6rem 1rem 0.6rem 0 !important;
 		display: inline-flex !important;
@@ -70,5 +71,5 @@ export const HeaderCTAs = styled.div`
 export const HeaderContent = styled.div`
 	display: flex;
 	flex-direction: column;
-	max-width: 35rem;
+	max-width: 36rem;
 `
