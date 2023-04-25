@@ -15,6 +15,7 @@ import LocalisationMessage from '../../components/localisation/LocalisationMessa
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../contexts/TrackerContext'
 import Provider from '../../Provider'
+import { AppState } from '../../reducers/rootReducer'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
 import {
@@ -110,8 +111,8 @@ export default function Root({}) {
 
 const Main = ({}) => {
 	const dispatch = useDispatch()
-	const { i18n, t } = useTranslation()
 	const location = useLocation()
+	const { i18n } = useTranslation()
 	const [searchParams, _] = useSearchParams()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
@@ -123,14 +124,14 @@ const Main = ({}) => {
 		tracker?.track(location)
 	}, [location])
 
-	const currentLangState = useSelector((state) => state.currentLang)
+	// Manage the language change from the URL search param
+	const currentLangState = useSelector((state: AppState) => state.currentLang)
 	const currentLangParam = searchParams.get('lang')
 
 	if (i18n.language !== getLangInfos(currentLangState).abrv) {
 		// sync up the [i18n.language] with the current lang stored in the persisiting state.
 		changeLangTo(i18n, currentLangState)
 	}
-
 	useEffect(() => {
 		if (currentLangParam && currentLangParam !== i18n.language) {
 			// The 'lang' search param has been modified.

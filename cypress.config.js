@@ -6,6 +6,8 @@ export default defineConfig({
 	env: {
 		// This is the URL of the local server that will be used for testing
 		personas_fr_url: 'https://data.nosgestesclimat.fr/personas-fr.json',
+		localisation_param: 'FR',
+		language_param: 'fr',
 	},
 	e2e: {
 		baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:8080',
