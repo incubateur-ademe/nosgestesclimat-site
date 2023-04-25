@@ -28,9 +28,16 @@ async function main() {
 	// But since translation, releases are directly downloaded in the main bundle, making this optimization useless...
 }
 
+let { GITHUB_TOKEN } = process.env
 async function fetchReleases() {
+	const headers = {
+		Authorization: `token ${GITHUB_TOKEN}`,
+		Accept: 'Accept: application/vnd.github+json',
+		'X-GitHub-Api-Version': '2022-11-28',
+	}
 	const response = await fetch(
-		`https://api.github.com/repos/${organization}/${repository}/releases`
+		`https://api.github.com/repos/${organization}/${repository}/releases`,
+		{ headers }
 	)
 	const data = await response.json()
 	if (!data) throw Error('fetch release failed : no releases returned')
