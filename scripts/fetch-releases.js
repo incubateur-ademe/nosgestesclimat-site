@@ -49,7 +49,7 @@ async function fetchReleases() {
 		console.log(data)
 		throw Error('fetch release failed, releases are not an array')
 	}
-	const filtered = data.filter(Boolean)
+	const filtered = data.filter(Boolean).filter((release) => !release.draft)
 	console.log(`✅ Correctly downloaded ${filtered.length} releases`)
 	return filtered
 }

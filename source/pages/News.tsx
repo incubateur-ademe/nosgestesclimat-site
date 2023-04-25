@@ -26,10 +26,12 @@ const dateCool = (date: Date, abrvLocale: string) =>
 const slugify = (name: string) => name.toLowerCase().replace(' ', '-')
 
 export const sortReleases = (releases) =>
-	releases?.sort(
-		(r1: Release, r2: Release) =>
-			-1 * r1.published_at.localeCompare(r2.published_at)
-	)
+	releases
+		?.filter((release) => release.published_at)
+		.sort(
+			(r1: Release, r2: Release) =>
+				-1 * r1.published_at.localeCompare(r2.published_at)
+		)
 
 export default function News() {
 	const { t, i18n } = useTranslation()
