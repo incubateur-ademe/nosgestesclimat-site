@@ -97,7 +97,10 @@ export default ({
 						label="Afficher seulement les simulations terminées"
 						showLabel
 						checked={!realTimeMode}
-						onChange={() => setRealTimeMode(!realTimeMode)}
+						onChange={() => {
+						  tracker.push(['trackEvent', 'Mode groupe', realTimeMode ? 'Désactivation du mode temps réel' : 'Activation du mode temps réel' ])
+						  setRealTimeMode(!realTimeMode)
+						}}
 					/>
 				</small>
 			</div>
