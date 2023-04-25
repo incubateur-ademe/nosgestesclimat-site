@@ -28,7 +28,8 @@ export default function FieldTravelDuration({
 	value,
 }: Props) {
 	const [isFormOpen, setIsFormOpen] = useState(false)
-	const { storedAmortissementAvion } =
+
+	const storedAmortissementAvion =
 		useSelector((state: any) => state.storedAmortissementAvion) || {}
 
 	const amortissementCurrent: AmortissementObject =
