@@ -31,7 +31,11 @@ async function main() {
 let { GITHUB_TOKEN } = process.env
 async function fetchReleases() {
 	const headers = {
-		Authorization: `token ${GITHUB_TOKEN}`,
+		...(GITHUB_TOKEN
+			? {
+					Authorization: `token ${GITHUB_TOKEN}`,
+			  }
+			: {}),
 		Accept: 'Accept: application/vnd.github+json',
 		'X-GitHub-Api-Version': '2022-11-28',
 	}
