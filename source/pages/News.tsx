@@ -42,6 +42,8 @@ export default function News() {
 	const data = sortReleases(currentLangInfos.releases),
 		lastRelease = data && data[0]
 
+	console.log(data)
+
 	useEffect(() => {
 		setLastViewedRelease(lastRelease.name)
 	}, [])
