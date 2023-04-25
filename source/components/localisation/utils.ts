@@ -41,14 +41,30 @@ export type Localisation = {
 
 export const defaultModelRegionCode = 'FR'
 
-export function getSupportedRegion(inputCode: RegionCode): Region | undefined {
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
+export function getSupportedRegion(
+	inputCode: RegionCode | undefined
+): Region | undefined {
 	const supportedRegions: SupportedRegions = useSelector(
 		(state: AppState) => state.supportedRegions
 	)
+
+	// Check for undefined AFTER useSelector, because hooks can't be called conditionally
+	if (inputCode === undefined) {
+		return undefined
+	}
+
 	return supportedRegions[inputCode]
 }
 
-export function getFlag(inputCode: RegionCode): string | undefined {
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
+export function getFlag(inputCode: RegionCode | undefined): string | undefined {
 	const regionParams = getSupportedRegion(inputCode)
 	const code = regionParams?.fr.drapeau ?? inputCode
 	return getFlagImgSrc(code)
@@ -65,6 +81,10 @@ export function getFlagImgSrc(
 	return `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
 }
 
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
 export function getCountryNameInCurrentLang(
 	localisation: Localisation | undefined
 ): string | undefined {
@@ -73,12 +93,7 @@ export function getCountryNameInCurrentLang(
 		(state: AppState) => state.currentLang
 	).toLowerCase()
 
-	const code = localisation?.country?.code
-	if (!code) {
-		return undefined
-	}
-
-	const regionParams = getSupportedRegion(code)
+	const regionParams = getSupportedRegion(localisation?.country?.code)
 	if (!localisation) {
 		return undefined
 	}
@@ -96,12 +111,16 @@ export function getCountryNameInCurrentLang(
 		: localisation?.country?.name
 }
 
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
 export function getCurrentRegionCode(
 	localisation: Localisation | undefined
 ): RegionCode {
 	const code = localisation?.country?.code
-	if (code && getSupportedRegion(code)) {
-		return code
+	if (getSupportedRegion(code)) {
+		return code ?? defaultModelRegionCode
 	}
 	return defaultModelRegionCode
 }

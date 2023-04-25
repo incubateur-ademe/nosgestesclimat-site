@@ -13,6 +13,7 @@ import {
 	getSupportedRegion,
 	Region,
 } from './utils'
+
 export default () => {
 	const tracker = useContext(TrackerContext)
 	const messagesRead = useSelector(
@@ -24,9 +25,7 @@ export default () => {
 		(state: AppState) => state.currentLang
 	).toLowerCase()
 	const code = localisation?.country?.code
-	const regionParams: Region | undefined = code
-		? getSupportedRegion(code)
-		: undefined
+	const regionParams: Region | undefined = getSupportedRegion(code)
 	const countryName = getCountryNameInCurrentLang(localisation)
 
 	const versionName = regionParams

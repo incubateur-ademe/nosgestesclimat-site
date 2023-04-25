@@ -1,9 +1,6 @@
 import { getFlag, RegionCode } from './utils'
 
 export default ({ code }: { code?: RegionCode }) => {
-	if (!code) {
-		return null
-	}
 	const flagSrc = getFlag(code)
 
 	return (
