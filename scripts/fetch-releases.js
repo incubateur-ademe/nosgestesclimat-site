@@ -29,17 +29,14 @@ async function main() {
 }
 
 async function fetchReleases() {
-	try {
-		const response = await fetch(
-			`https://api.github.com/repos/${organization}/${repository}/releases`
-		)
-		const data = await response.json()
-		if (!data) console.error('fetch release failed : no release returned')
-		return data.filter(Boolean)
-	} catch (e) {
-		console.log(e)
-		return []
-	}
+	const response = await fetch(
+		`https://api.github.com/repos/${organization}/${repository}/releases`
+	)
+	const data = await response.json()
+	if (!data) throw Error('fetch release failed : no releases returned')
+	if (!Array.isArray(data))
+		throw Error('fetch release failed, releases are not an array', data)
+	return data.filter(Boolean)
 }
 
 main()
