@@ -6,9 +6,10 @@ export async function walkthroughTest(persona) {
 
 	cy.get('body').then((body) => {
 		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
-			cy.log('Waiting for complete rules parsing')
+			// Waiting for complete rules parsing
 			cy.wait(4000)
-		}})
+	}})
+
 	cy.get('body').then((body) => {
 		if (body.find('section').length > 0) {
 			if (body.find('input').length > 0) {
@@ -21,7 +22,7 @@ export async function walkthroughTest(persona) {
 						} else {
 							if (type === 'text') {
 								cy.get(`input[id="${id}"]`).type(persona[id])
-							} else {
+						} else {
 								cy.get(`input[name="${id}"]`).check(persona[id])
 							}
 						}
