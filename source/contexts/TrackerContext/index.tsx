@@ -22,11 +22,7 @@ export const TrackerProvider = ({ children }) => {
 	const tracker = shouldUseDevTracker ? instantiateDevTracker() : new Tracker()
 
 	useEffect(() => {
-		if (/*!shouldUseDevTracker && */ currentSimulationId) {
-			console.log(
-				'Reinitializing Posthog tracker with simulation ID',
-				currentSimulationId
-			)
+		if (!shouldUseDevTracker && currentSimulationId) {
 			posthog.init('phc_XZx1t672SA98ffOol1wQsNzRfyVX9uull53Y8lXqdg9', {
 				api_host: 'https://eu.posthog.com',
 				persistence: 'memory',

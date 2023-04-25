@@ -54,11 +54,10 @@ export default class Tracker {
 					props: { [subEventName]: subEvent },
 				})
 
-				posthog.capture(String(eventName), {
-					property: { [subEventName]: subEvent },
-					name: 'toto',
-					adresse: '1 rue du boulanger',
-				})
+				posthog.capture(String(eventName))
+				if (subEvent) {
+					posthog.capture(String(subEvent))
+				}
 			}
 		}
 	) {
