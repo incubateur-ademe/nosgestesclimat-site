@@ -41,6 +41,7 @@ export function persistUser(store: Store<RootState, Action>): void {
 				...state.simulation,
 				actionChoices: state.actionChoices,
 				storedTrajets: state.storedTrajets,
+				storedAmortissementAvion: state.storedAmortissementAvion,
 				survey: state.survey && { room: state.survey.room },
 				conference: state.conference && { room: state.conference.room },
 			}),
