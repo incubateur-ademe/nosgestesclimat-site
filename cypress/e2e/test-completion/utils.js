@@ -5,7 +5,7 @@ export async function walkthroughTest(persona) {
 	cy.wait(100)
 
 	cy.get('body').then((body) => {
-		if (body.find('[data-cypress-id="loader"]').length > 0) {
+		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
 			cy.log('Waiting for complete rules parsing')
 			cy.wait(4000)
 		}
@@ -26,6 +26,10 @@ export async function walkthroughTest(persona) {
 							}
 						}
 						cy.wait(100)
+						if (body.find('.hide')?.length > 0) {
+							// Close the notification window
+							cy.get('.hide').last().click()
+						}
 					}
 				})
 			}
