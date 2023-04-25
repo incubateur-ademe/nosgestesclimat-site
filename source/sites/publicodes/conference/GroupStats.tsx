@@ -1,8 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
+import { TrackerContext } from '../../../contexts/TrackerContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -35,6 +37,7 @@ export default ({
 	setThreshold,
 	existContext,
 }) => {
+	const tracker = useContext(TrackerContext)
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
@@ -50,7 +53,7 @@ export default ({
 
 	const participants = getElements(rawElements, threshold, null, 0)
 
-	const [realTimeMode, setRealTimeMode] = useState(false)
+	const [realTimeMode, setRealTimeMode] = useState(true)
 	const [contextFilter, setContextFilter] = useState({})
 	const filteredCompletedTests = filterElements(completedTests, contextFilter)
 	const filteredRawTests = filterElements(participants, contextFilter)
@@ -118,17 +121,6 @@ export default ({
 				</p>
 				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
 			</div>
-			{completedTests.length > 0 && (
-				<WithEngine>
-					<FilterBar
-						threshold={threshold}
-						setThreshold={setThreshold}
-						setContextFilter={setContextFilter}
-						realTimeMode={realTimeMode}
-						setRealTimeMode={setRealTimeMode}
-					/>
-				</WithEngine>
-			)}
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
@@ -148,6 +140,34 @@ export default ({
 						</div>
 					</div>
 				</div>
+				<small>
+					<Checkbox
+						name="setRealTimeMode"
+						id="setRealTimeMode"
+						label="Afficher seulement les simulations terminées"
+						showLabel
+						checked={!realTimeMode}
+						onChange={() => {
+							tracker.push([
+								'trackEvent',
+								'Mode groupe',
+								realTimeMode
+									? 'Désactivation du mode temps réel'
+									: 'Activation du mode temps réel',
+							])
+							setRealTimeMode(!realTimeMode)
+						}}
+					/>
+				</small>
+				{completedTests.length > 0 && (
+					<WithEngine>
+						<FilterBar
+							threshold={threshold}
+							setThreshold={setThreshold}
+							setContextFilter={setContextFilter}
+						/>
+					</WithEngine>
+				)}
 				{displayedTests.length > 0 && (
 					<div>
 						<ul
