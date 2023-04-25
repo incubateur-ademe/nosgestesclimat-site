@@ -1,4 +1,6 @@
-import { createContext } from 'react'
+import { posthog } from 'posthog-js'
+import { createContext, useEffect } from 'react'
+import { useSelector } from 'react-redux'
 import Tracker, { instantiateDevTracker } from './Tracker'
 
 export const TrackerContext = createContext<Tracker | undefined>(undefined)
@@ -13,17 +15,27 @@ export const TrackerProvider = ({ children }) => {
 		)
 	}
 
+	const currentSimulationId = useSelector(
+		(state: { currentSimulationId: string }) => state.currentSimulationId
+	)
+
 	const tracker = shouldUseDevTracker ? instantiateDevTracker() : new Tracker()
 
-	// Désactivé pendant les recherches sur les
-	// implications en termes de cookies
-	/*
-	if (!shouldUseDevTracker) {
-		posthog.init('phc_XZx1t672SA98ffOol1wQsNzRfyVX9uull53Y8lXqdg9', {
-			api_host: 'https://eu.posthog.com',
-		})
-	}
-	*/
+	useEffect(() => {
+		if (/*!shouldUseDevTracker && */ currentSimulationId) {
+			console.log(
+				'Reinitializing Posthog tracker with simulation ID',
+				currentSimulationId
+			)
+			posthog.init('phc_XZx1t672SA98ffOol1wQsNzRfyVX9uull53Y8lXqdg9', {
+				api_host: 'https://eu.posthog.com',
+				persistence: 'memory',
+				bootstrap: {
+					distinctID: currentSimulationId,
+				},
+			})
+		}
+	}, [currentSimulationId, shouldUseDevTracker])
 
 	return (
 		<TrackerContext.Provider value={tracker}>
