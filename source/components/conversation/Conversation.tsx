@@ -14,11 +14,7 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import {
-	setTrackingVariable,
-	skipTutorial,
-	validateWithDefaultValue,
-} from '../../actions/actions'
+import { skipTutorial, validateWithDefaultValue } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
 import { TrackingContext } from '../../contexts/TrackingContext'
 import useKeypress from '../../hooks/useKeyPress'
@@ -294,7 +290,7 @@ export default function Conversation({
 		'keydown',
 		[]
 	)
-	const endEventFired = tracking.endEventFired
+
 	const noQuestionsLeft = !nextQuestions.length
 
 	const bilan = Math.round(engine.evaluate('bilan').nodeValue)
