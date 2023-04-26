@@ -112,7 +112,7 @@ export default function Root({}) {
 const Main = ({}) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const { i18n } = useTranslation()
+	const { i18n, t } = useTranslation()
 	const [searchParams, _] = useSearchParams()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
