@@ -69,9 +69,9 @@ export default function NewsItem() {
 	const releaseName = data[selectedRelease].name.toLowerCase()
 	const body = data[selectedRelease].body
 
-	// FIXME: doesn't work anymore with the translation...
-	// image = body.match(/!\[.*?\]\((.*?)\)/)[1] || undefined
+	const image = body.match(/!\[.*?\]\((.*?)\)/)[1] || undefined
 
+	console.log('I', image)
 	return (
 		<div
 			css={`
