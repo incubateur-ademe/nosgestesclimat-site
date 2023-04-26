@@ -9,7 +9,7 @@ import {
 	getSubcategories,
 	relegateCommonCategories,
 } from '../../../components/publicodesUtils'
-import useMediaQuery from '../../../components/utils/useMediaQuery'
+import useMediaQuery from '../../../hooks/useMediaQuery'
 import { ObjectiveExplanation } from '../fin/ClimateTargetChart'
 import SquaresGrid from './SquaresGrid'
 

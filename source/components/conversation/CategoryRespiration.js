@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { Trans } from 'react-i18next'
+import useKeypress from '../../hooks/useKeyPress'
 import SafeCategoryImage from '../SafeCategoryImage'
-import useKeypress from '../utils/useKeyPress'
 
 // Naive implementation - in reality would want to attach
 // a window or resize listener. Also use state/layoutEffect instead of ref/effect

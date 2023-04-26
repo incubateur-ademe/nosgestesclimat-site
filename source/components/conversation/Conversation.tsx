@@ -5,7 +5,6 @@ import RuleInput, {
 } from 'Components/conversation/RuleInput'
 import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { motion } from 'framer-motion'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -22,6 +21,11 @@ import {
 } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../contexts/TrackerContext'
+import useKeypress from '../../hooks/useKeyPress'
+import {
+	useNextQuestions,
+	useSimulationProgress,
+} from '../../hooks/useNextQuestion'
 import {
 	isPersonaSelector,
 	objectifsSelector,
@@ -30,8 +34,6 @@ import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelect
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
-import useKeypress from '../utils/useKeyPress'
-import { useSimulationProgress } from '../utils/useNextQuestion'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'

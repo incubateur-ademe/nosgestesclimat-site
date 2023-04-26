@@ -1,11 +1,11 @@
 import 'Components/conversation/conversation.css'
 import RuleInput from 'Components/conversation/RuleInput'
 import { splitName } from 'Components/publicodesUtils'
-import { getNextQuestions } from 'Components/utils/useNextQuestion'
 import Engine from 'publicodes'
 import { createContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
+import { getNextQuestions } from '../../../hooks/useNextQuestion'
 import { contextURL } from './useDatabase'
 
 const SituationContext = createContext({})

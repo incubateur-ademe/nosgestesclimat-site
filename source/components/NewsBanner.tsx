@@ -2,9 +2,9 @@ import { sortReleases } from 'Pages/news/NewsItem'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { usePersistingState } from '../hooks/usePersistState'
 import { getCurrentLangInfos } from '../locales/translation'
 import { capitalise0 } from '../utils'
-import { usePersistingState } from './utils/persistState'
 
 export const localStorageKey = 'last-viewed-release'
 

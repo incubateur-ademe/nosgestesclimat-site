@@ -1,8 +1,8 @@
 import { setSimulationConfig } from 'Actions/actions'
 import Simulation from 'Components/Simulation'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { useNextQuestions } from '../../hooks/useNextQuestion'
 import { questionConfig } from './questionConfig'
 
 export default ({ dottedName }) => {

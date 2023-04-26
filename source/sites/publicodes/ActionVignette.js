@@ -12,8 +12,8 @@ import {
 	splitName,
 } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
-import { getNextQuestions } from '../../components/utils/useNextQuestion'
 import { TrackerContext } from '../../contexts/TrackerContext'
+import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,

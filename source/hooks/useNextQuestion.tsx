@@ -30,7 +30,7 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { EngineContext } from './EngineContext'
+import { EngineContext } from '../components/utils/EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(
@@ -153,6 +153,10 @@ export const useNextQuestions = function (): Array<DottedName> {
 export function useSimulationProgress(): number {
 	const numberQuestionAnswered = useSelector(answeredQuestionsSelector).length
 	const numberQuestionLeft = useNextQuestions().length
+
+	if (!numberQuestionAnswered) {
+		return 0
+	}
 
 	return (
 		numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft) || 0

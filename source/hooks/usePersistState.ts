@@ -1,4 +1,4 @@
-import safeLocalStorage from '../../storage/safeLocalStorage'
+import safeLocalStorage from '../storage/safeLocalStorage'
 
 import {
 	Dispatch,
