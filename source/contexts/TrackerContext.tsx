@@ -1,6 +1,7 @@
-import { createContext, useEffect, useRef, useState } from 'react'
+import { createContext, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Location as ReactRouterLocation } from 'react-router-dom'
+import { useSimulationProgress } from '../hooks/useNextQuestion'
 import { inIframe } from '../utils'
 
 const groupExclusionRegexp = /\/(sondage|conférence)\//
@@ -61,21 +62,27 @@ export const TrackerProvider = ({ children }) => {
 	}, [currentSimulationId])
 
 	// Call before sending an event
-	const checkIfEventAlreadySent = (event) => {
-		return eventsSent[`${event.toString()}`]
-	}
+	const checkIfEventAlreadySent = useCallback(
+		(event) => {
+			return eventsSent[`${event.toString()}`]
+		},
+		[eventsSent]
+	)
 
 	// Call after an event is sent, concerns only "trackEvent" typed events
-	const updateEventsSent = (event) => {
-		if (currentSimulationId) {
-			const newEventsSent = { ...eventsSent, [`${event.toString()}`]: true }
-			localStorage.setItem(
-				`events-sent-${currentSimulationId}`,
-				JSON.stringify(newEventsSent)
-			)
-			setEventsSent(newEventsSent)
-		}
-	}
+	const updateEventsSent = useCallback(
+		(event) => {
+			if (currentSimulationId) {
+				const newEventsSent = { ...eventsSent, [`${event.toString()}`]: true }
+				localStorage.setItem(
+					`events-sent-${currentSimulationId}`,
+					JSON.stringify(newEventsSent)
+				)
+				setEventsSent(newEventsSent)
+			}
+		},
+		[currentSimulationId, eventsSent]
+	)
 
 	if (!shouldUseDevTracker) {
 		console.warn(
@@ -85,45 +92,48 @@ export const TrackerProvider = ({ children }) => {
 
 	const previousPath = useRef('')
 
-	const trackEvent = (args) => {
-		// Send only if not already sent
-		const shouldSendEvent = !checkIfEventAlreadySent(args)
-		console.log({ args, shouldSendEvent })
-		if (!shouldSendEvent) return
+	const trackEvent = useCallback(
+		(args) => {
+			// Send only if not already sent
+			const shouldSendEvent = !checkIfEventAlreadySent(args)
+			console.log({ args, shouldSendEvent })
+			if (!shouldSendEvent) return
 
-		/*
+			/*
 		if (shouldUseDevTracker) {
 			console?.debug(args)
 			return
 		}
 		*/
 
-		if (window.location.pathname.match(groupExclusionRegexp)) return
-		// There is an issue with the way Safari handle cookies in iframe, cf.
-		// https://gist.github.com/iansltx/18caf551baaa60b79206. We could probably
-		// do better but for now we don't track action of iOs Safari user in
-		// iFrame -- to avoid errors in the number of visitors in our stats.
-		if (iOSSafari && inIframe()) return
+			if (window.location.pathname.match(groupExclusionRegexp)) return
+			// There is an issue with the way Safari handle cookies in iframe, cf.
+			// https://gist.github.com/iansltx/18caf551baaa60b79206. We could probably
+			// do better but for now we don't track action of iOs Safari user in
+			// iFrame -- to avoid errors in the number of visitors in our stats.
+			if (iOSSafari && inIframe()) return
 
-		// Pass a copy of the array to avoid mutation
-		window._paq.push([...args])
+			// Pass a copy of the array to avoid mutation
+			window._paq.push([...args])
 
-		// pour plausible, je n'envoie que les events
-		// les pages vues sont gérées de base
-		const [typeTracking, eventName, subEvent] = args
+			// pour plausible, je n'envoie que les events
+			// les pages vues sont gérées de base
+			const [typeTracking, eventName, subEvent] = args
 
-		if (typeTracking === 'trackEvent') {
-			// Mise à jour du state local et du localStorage
-			updateEventsSent(args)
+			if (typeTracking === 'trackEvent') {
+				// Mise à jour du state local et du localStorage
+				updateEventsSent(args)
 
-			// Could be due to an adblocker not allowing the script to set this global attribute
-			if (!window.plausible) return
-			const subEventName = `Details : ${eventName}`
-			window.plausible(eventName, {
-				props: { [subEventName]: subEvent },
-			})
-		}
-	}
+				// Could be due to an adblocker not allowing the script to set this global attribute
+				if (!window.plausible) return
+				const subEventName = `Details : ${eventName}`
+				window.plausible(eventName, {
+					props: { [subEventName]: subEvent },
+				})
+			}
+		},
+		[checkIfEventAlreadySent, updateEventsSent]
+	)
 
 	const trackPageView = (loc: ReactRouterLocation) => {
 		const currentPath = loc.pathname + loc.search
@@ -140,6 +150,19 @@ export const TrackerProvider = ({ children }) => {
 		trackEvent(['trackPageView'])
 		previousPath.current = currentPath
 	}
+
+	// Centralize the tracking of the progress of the simulation
+	const progress = useSimulationProgress()
+
+	useEffect(() => {
+		if (progress > 0.9) {
+			trackEvent(['trackEvent', 'NGC', 'Progress > 90%'])
+		}
+
+		if (progress > 0.5) {
+			trackEvent(['trackEvent', 'NGC', 'Progress > 50%'])
+		}
+	}, [progress, trackEvent])
 
 	return (
 		<TrackerContext.Provider

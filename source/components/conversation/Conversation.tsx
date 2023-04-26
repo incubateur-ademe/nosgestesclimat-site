@@ -109,9 +109,7 @@ export default function Conversation({
 
 	useEffect(() => {
 		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
-			console.log('1ère réponse au bilan')
 			trackEvent(['trackEvent', 'NGC', '1ère réponse au bilan'])
-			dispatch(setTrackingVariable('firstQuestionEventFired', true))
 		}
 	}, [trackEvent, previousAnswers])
 
@@ -131,7 +129,7 @@ export default function Conversation({
 			trackEvent(['trackEvent', 'NGC', 'Progress > 50%'])
 			dispatch(setTrackingVariable('progress50EventFired', true))
 		}
-	}, [trackEvent, progress])
+	}, [previousAnswers.length, trackEvent, tracking.firstQuestionEventFired])
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.

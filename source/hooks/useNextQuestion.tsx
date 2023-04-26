@@ -143,7 +143,8 @@ export const useNextQuestions = function (): Array<DottedName> {
 					engine
 			  )
 			: []
-	}, [missingVariables, questionsConfig, answeredQuestions, situation])
+	}, [missingVariables, questionsConfig, answeredQuestions, situation, engine])
+
 	if (currentQuestion && currentQuestion !== nextQuestions[0]) {
 		return [currentQuestion, ...nextQuestions]
 	}
