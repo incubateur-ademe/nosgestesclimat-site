@@ -98,7 +98,7 @@ export function getNextQuestions(
 	)
 
 	const nextQuestions = nextSteps.filter((name) => {
-		const rule = engine.getRule(name)
+		const rule = engine?.getRule(name)
 		return rule.rawNode.question != null
 	})
 	const lastStep = last(answeredQuestions)
@@ -133,6 +133,7 @@ export const useNextQuestions = function (): Array<DottedName> {
 	const missingVariables = objectifs.map((node) =>
 		!engine ? {} : engine.evaluate(node).missingVariables ?? {}
 	)
+
 	const nextQuestions = useMemo(() => {
 		return engine
 			? getNextQuestions(
