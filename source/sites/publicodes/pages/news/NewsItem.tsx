@@ -1,4 +1,7 @@
+import { localStorageKey } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
+import Meta from 'Components/utils/Meta'
+import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
@@ -10,12 +13,9 @@ import {
 	useMatch,
 	useNavigate,
 } from 'react-router-dom'
+import { getCurrentLangInfos, Release } from 'Source/locales/translation'
+import { capitalise0 } from 'Source/utils'
 import styled from 'styled-components'
-import { localStorageKey } from '../components/NewsBanner'
-import Meta from '../components/utils/Meta'
-import { usePersistingState } from '../components/utils/persistState'
-import { getCurrentLangInfos, Release } from '../locales/translation'
-import { capitalise0 } from '../utils'
 
 const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
@@ -33,7 +33,7 @@ export const sortReleases = (releases) =>
 				-1 * r1.published_at.localeCompare(r2.published_at)
 		)
 
-export default function News() {
+export default function NewsItem() {
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getCurrentLangInfos(i18n)
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)

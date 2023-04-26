@@ -1,8 +1,8 @@
+import { sortReleases } from 'Pages/news/NewsItem'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { getCurrentLangInfos } from '../locales/translation'
-import { sortReleases } from '../pages/News'
 import { capitalise0 } from '../utils'
 import { usePersistingState } from './utils/persistState'
 
