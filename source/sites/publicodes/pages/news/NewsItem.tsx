@@ -84,7 +84,7 @@ export default function NewsItem() {
 		>
 			<Meta
 				title={t(`Nouveautés - `) + capitalise0(releaseName)}
-				// image={image}
+				image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
 			<label title={t('titre de la version')}>
