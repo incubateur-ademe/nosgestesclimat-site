@@ -6,7 +6,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Animate from 'Components/ui/animate'
 import Checkbox from '../Checkbox'
 import './index.css'
-import { TrackerContext } from "../../../contexts/TrackerContext"
+import { TrackingContext } from "../../../contexts/TrackingContext"
 
 type CheckItemProps = {
 	title: React.ReactNode
@@ -23,7 +23,7 @@ export function CheckItem({
 	onChange,
 	defaultChecked
 }: CheckItemProps) {
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 	const [displayExplanations, setDisplayExplanations] = useState(false)
 
 	const handleChecked = (e: React.ChangeEvent<HTMLInputElement>) => {

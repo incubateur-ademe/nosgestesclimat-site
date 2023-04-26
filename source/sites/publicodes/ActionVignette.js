@@ -12,7 +12,7 @@ import {
 	splitName,
 } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { TrackingContext } from '../../contexts/TrackingContext'
 import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
@@ -51,7 +51,7 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 
 	const dispatch = useDispatch()
 	const rules = useSelector((state) => state.rules),

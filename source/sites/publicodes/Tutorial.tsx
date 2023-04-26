@@ -8,7 +8,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { TrackingContext } from '../../contexts/TrackingContext'
 import useKeypress from '../../hooks/useKeyPress'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
@@ -46,7 +46,7 @@ export default ({}) => {
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache

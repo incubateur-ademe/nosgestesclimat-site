@@ -20,7 +20,7 @@ import {
 	validateWithDefaultValue,
 } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { TrackingContext } from '../../contexts/TrackingContext'
 import useKeypress from '../../hooks/useKeyPress'
 import {
 	useNextQuestions,
@@ -58,7 +58,7 @@ export default function Conversation({
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 	const objectifs = useSelector(objectifsSelector)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue

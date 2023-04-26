@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { TrackingContext } from '../../contexts/TrackingContext'
 
 export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
 
@@ -11,7 +11,7 @@ export default function IframeOptionsProvider({ children }) {
 	const isIframe = window.self !== window.top
 	const isIframeParameterDefined = urlParams.get('iframe') !== null
 
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 
 	// Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
 	// on essaie de récupérer l'URL du referrer

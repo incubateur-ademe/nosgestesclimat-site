@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import SlidesLayout from '../../../components/SlidesLayout'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { TrackingContext } from '../../../contexts/TrackingContext'
 import { useNextQuestions } from '../../../hooks/useNextQuestion'
 import { arrayLoopIteration } from '../../../utils'
 import EnqueteBannerContent from '../enquête/BannerContent'
@@ -48,7 +48,7 @@ export default ({}) => {
 
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 
 	const enquête = useSelector(enquêteSelector)
 

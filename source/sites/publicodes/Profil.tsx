@@ -20,7 +20,7 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { useEngine } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { TrackingContext } from '../../contexts/TrackingContext'
 import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
@@ -48,7 +48,7 @@ export default () => {
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
 		useProfileData()
 	const navigate = useNavigate()
-	const { resetEventState } = useContext(TrackerContext)
+	const { resetEventState } = useContext(TrackingContext)
 	const actionChoicesLength = Object.keys(
 			useSelector((state) => state.actionChoices)
 		).length,

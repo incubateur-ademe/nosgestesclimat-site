@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
-import { TrackerContext } from '../../../../contexts/TrackerContext'
+import { TrackingContext } from '../../../../contexts/TrackingContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -52,7 +52,7 @@ export default function KmHelp({
 }: KmHelpProps) {
 	const { t, i18n } = useTranslation()
 
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)

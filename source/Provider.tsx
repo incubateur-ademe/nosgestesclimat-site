@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
-import { TrackerProvider } from './contexts/TrackerContext'
+import { TrackingProvider } from './contexts/TrackingContext'
 import RulesProvider from './RulesProvider'
 import { inIframe } from './utils'
 
@@ -74,9 +74,8 @@ export default function Provider({
 
 	return (
 		// If IE < 11 display nothing
-
 		<ReduxProvider store={store}>
-			<TrackerProvider>
+			<TrackingProvider>
 				<RulesProvider>
 					<ThemeColorsProvider
 						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
@@ -92,7 +91,7 @@ export default function Provider({
 						</IframeOptionsProvider>
 					</ThemeColorsProvider>
 				</RulesProvider>
-			</TrackerProvider>
+			</TrackingProvider>
 		</ReduxProvider>
 	)
 }

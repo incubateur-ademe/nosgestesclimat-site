@@ -2,11 +2,11 @@ import { motion } from 'framer-motion'
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { TrackingContext } from '../../../contexts/TrackingContext'
 import { surveysURL } from './useDatabase'
 
 export default ({ mode, URLPath, room }) => {
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 
 	const [clicked, setClicked] = useState(false)
 	const [text, setText] = useState(null)

@@ -2,7 +2,7 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { TrackingContext } from '../../contexts/TrackingContext'
 import { AppState } from '../../reducers/rootReducer'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import CountryFlag from './CountryFlag'
@@ -15,7 +15,7 @@ import {
 } from './utils'
 
 export default () => {
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 	const messagesRead = useSelector(
 		(state: AppState) => state.sessionLocalisationBannersRead
 	)

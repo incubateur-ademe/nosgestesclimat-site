@@ -1,7 +1,6 @@
 import { createContext, useCallback, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Location as ReactRouterLocation } from 'react-router-dom'
-import { useSimulationProgress } from '../hooks/useNextQuestion'
 import { inIframe } from '../utils'
 
 const groupExclusionRegexp = /\/(sondage|conférence)\//
@@ -15,7 +14,7 @@ const iOSSafari =
 	(!!/iPad/i.exec(ua) || !!/iPhone/i.exec(ua)) &&
 	!!/WebKit/i.exec(ua) &&
 	!/CriOS/i.exec(ua)
-interface TrackerContextType {
+interface TrackingContextType {
 	trackEvent: (args: any[]) => void
 	trackPageView: (location: ReactRouterLocation) => void
 	resetEventState: () => void
@@ -32,13 +31,13 @@ declare global {
 	}
 }
 
-export const TrackerContext = createContext<TrackerContextType>({
+export const TrackingContext = createContext<TrackingContextType>({
 	trackEvent: () => {},
 	trackPageView: () => {},
 	resetEventState: () => {},
 })
 
-export const TrackerProvider = ({ children }) => {
+export const TrackingProvider = ({ children }) => {
 	const [eventsSent, setEventsSent] = useState({})
 
 	// Get the user simulation id
@@ -158,21 +157,8 @@ export const TrackerProvider = ({ children }) => {
 		previousPath.current = currentPath
 	}
 
-	// Centralize the tracking of the progress of the simulation
-	const progress = useSimulationProgress()
-
-	useEffect(() => {
-		if (progress > 0.9) {
-			trackEvent(['trackEvent', 'NGC', 'Progress > 90%'])
-		}
-
-		if (progress > 0.5) {
-			trackEvent(['trackEvent', 'NGC', 'Progress > 50%'])
-		}
-	}, [progress, trackEvent])
-
 	return (
-		<TrackerContext.Provider
+		<TrackingContext.Provider
 			value={{
 				trackEvent,
 				trackPageView,
@@ -180,6 +166,6 @@ export const TrackerProvider = ({ children }) => {
 			}}
 		>
 			{children}
-		</TrackerContext.Provider>
+		</TrackingContext.Provider>
 	)
 }

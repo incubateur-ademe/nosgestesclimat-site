@@ -12,7 +12,8 @@ import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { TrackingContext } from '../../contexts/TrackingContext'
+import { useFunnel } from '../../hooks/useFunnel'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
 import { AppState } from '../../reducers/rootReducer'
@@ -113,7 +114,7 @@ export default function Root({}) {
 	)
 }
 
-const Main = ({}) => {
+const Main = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const { i18n, t } = useTranslation()
@@ -121,12 +122,15 @@ const Main = ({}) => {
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
-	const { trackPageView } = useContext(TrackerContext)
+	const { trackPageView } = useContext(TrackingContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
+
+	// Analytics
+	useFunnel()
 
 	useEffect(() => {
 		trackPageView(location)
-	}, [location])
+	}, [location, trackPageView])
 
 	// Manage the language change from the URL search param
 	const currentLangState = useSelector((state: AppState) => state.currentLang)

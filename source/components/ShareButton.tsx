@@ -1,12 +1,12 @@
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { TrackerContext } from '../contexts/TrackerContext'
+import { TrackingContext } from '../contexts/TrackingContext'
 import ShareButtonIcon from './ShareButtonIcon'
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
 
 export default ({ text, url, title, color, label, score }) => {
-	const { trackEvent } = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 	const { t } = useTranslation()
 
 	return navigator.share ? (
