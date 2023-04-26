@@ -1,7 +1,7 @@
 import { createContext, useEffect, useRef, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Location as ReactRouterLocation } from 'react-router-dom'
-import { inIframe } from '../../utils'
+import { inIframe } from '../utils'
 
 const groupExclusionRegexp = /\/(sondage|conférence)\//
 
@@ -86,15 +86,17 @@ export const TrackerProvider = ({ children }) => {
 	const previousPath = useRef('')
 
 	const trackEvent = (args) => {
+		// Send only if not already sent
+		const shouldSendEvent = !checkIfEventAlreadySent(args)
+		console.log({ args, shouldSendEvent })
+		if (!shouldSendEvent) return
+
+		/*
 		if (shouldUseDevTracker) {
 			console?.debug(args)
 			return
 		}
-
-		// Send only if not already sent
-		const shouldSendEvent = !checkIfEventAlreadySent(args)
-
-		if (!shouldSendEvent) return
+		*/
 
 		if (window.location.pathname.match(groupExclusionRegexp)) return
 		// There is an issue with the way Safari handle cookies in iframe, cf.
@@ -103,10 +105,8 @@ export const TrackerProvider = ({ children }) => {
 		// iFrame -- to avoid errors in the number of visitors in our stats.
 		if (iOSSafari && inIframe()) return
 
-		// Could be due to an adblocker not allowing the script to set this global attribute
-		if (!window.plausible) return
-
-		window._paq.push(args)
+		// Pass a copy of the array to avoid mutation
+		window._paq.push([...args])
 
 		// pour plausible, je n'envoie que les events
 		// les pages vues sont gérées de base
@@ -115,6 +115,9 @@ export const TrackerProvider = ({ children }) => {
 		if (typeTracking === 'trackEvent') {
 			// Mise à jour du state local et du localStorage
 			updateEventsSent(args)
+
+			// Could be due to an adblocker not allowing the script to set this global attribute
+			if (!window.plausible) return
 			const subEventName = `Details : ${eventName}`
 			window.plausible(eventName, {
 				props: { [subEventName]: subEvent },
