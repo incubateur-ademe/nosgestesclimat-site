@@ -6,7 +6,7 @@ import { TrackerContext } from '../../contexts/TrackerContext'
 import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 	const explained = useSelector((state: RootState) => state.explainedVariable)
 	const dispatch = useDispatch()
 
@@ -17,7 +17,7 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 		<button
 			type="button"
 			onClick={(e) => {
-				tracker.push(['trackEvent', 'help', dottedName])
+				trackEvent(['trackEvent', 'help', dottedName])
 				if (explained === dottedName) {
 					return dispatch(explainVariable(null))
 				}

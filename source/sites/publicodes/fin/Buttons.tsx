@@ -14,14 +14,14 @@ export const ActionButton = ({
 	url = '/actions',
 	large,
 }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 
 	return (
 		<Link
 			to={url}
 			className="ui__ button plain cta"
 			onClick={() =>
-				tracker.push([
+				trackEvent([
 					'trackEvent',
 					'NGC',
 					'Clic bouton action page /fin',

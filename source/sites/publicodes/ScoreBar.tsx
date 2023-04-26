@@ -40,7 +40,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const { t } = useTranslation()
 	const [openExplanation, setOpenExplanation] = useState(false)
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const situationLength = Object.keys(situation).length
@@ -139,7 +139,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 								title={t("Afficher l'explication du score")}
 								onClick={() => {
 									setOpenExplanation(!openExplanation)
-									tracker.push(['trackEvent', 'NGC', 'Clic explication score'])
+									trackEvent(['trackEvent', 'NGC', 'Clic explication score'])
 								}}
 								css={`
 									position: relative;

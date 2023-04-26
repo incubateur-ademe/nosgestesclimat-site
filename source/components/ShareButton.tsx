@@ -6,7 +6,7 @@ import ShareButtonIcon from './ShareButtonIcon'
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
 
 export default ({ text, url, title, color, label, score }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 	const { t } = useTranslation()
 
 	return navigator.share ? (
@@ -14,7 +14,7 @@ export default ({ text, url, title, color, label, score }) => {
 			color={color}
 			title={t('Cliquez pour partager le lien')}
 			onClick={() => {
-				tracker.push([...eventData, 'mobile', score])
+				trackEvent([...eventData, 'mobile', score])
 				navigator
 					.share({ text, url, title, color, label })
 					.then(() => console.log('Successful share'))
@@ -32,7 +32,7 @@ export default ({ text, url, title, color, label, score }) => {
 				color,
 				text,
 				url,
-				trackEvent: () => tracker.push([...eventData, 'bureau', score]),
+				trackEvent: () => trackEvent([...eventData, 'bureau', score]),
 			}}
 		/>
 	)

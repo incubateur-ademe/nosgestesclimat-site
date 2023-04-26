@@ -31,7 +31,7 @@ const Illustration = () => (
 )
 
 export default () => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 	const { t } = useTranslation()
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 	const { isIframe } = useContext(IframeOptionsContext)
@@ -69,14 +69,14 @@ export default () => {
 								data-cypress-id="do-the-test-link"
 								onClick={() => {
 									if (hasData) {
-										tracker?.push([
+										trackEvent([
 											'trackEvent',
 											'NGC',
 											'Clic CTA accueil',
 											'Reprendre mon test',
 										])
 									} else {
-										tracker?.push([
+										trackEvent([
 											'trackEvent',
 											'NGC',
 											'Clic CTA accueil',
@@ -98,7 +98,7 @@ export default () => {
 								to="/groupe"
 								className="ui__ button cta"
 								onClick={() =>
-									tracker?.push([
+									trackEvent([
 										'trackEvent',
 										'NGC',
 										'Clic CTA accueil',

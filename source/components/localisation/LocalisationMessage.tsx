@@ -15,7 +15,7 @@ import {
 } from './utils'
 
 export default () => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 	const messagesRead = useSelector(
 		(state: AppState) => state.sessionLocalisationBannersRead
 	)
@@ -120,7 +120,7 @@ export default () => {
 								type: 'SET_LOCALISATION_BANNERS_READ',
 								regions: [...messagesRead, code],
 							})
-							tracker.push([
+							trackEvent([
 								'trackEvent',
 								'I18N',
 								'Clic bannière localisation',

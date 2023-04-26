@@ -51,7 +51,7 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 
 	const dispatch = useDispatch()
 	const rules = useSelector((state) => state.rules),
@@ -241,7 +241,7 @@ export const ActionListCard = ({
 									dottedName,
 									nodeValue,
 								]
-								tracker.push(eventData)
+								trackEvent(eventData)
 							}
 							e.stopPropagation()
 							e.preventDefault()
@@ -259,7 +259,7 @@ export const ActionListCard = ({
 									actionChoices[dottedName] === false ? null : false
 								)
 							)
-							tracker.push([
+							trackEvent([
 								'trackEvent',
 								'/actions',
 								'Action rejetée',

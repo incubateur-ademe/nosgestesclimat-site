@@ -6,7 +6,7 @@ import { TrackerContext } from '../../../contexts/TrackerContext'
 import { surveysURL } from './useDatabase'
 
 export default ({ mode, URLPath, room }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 
 	const [clicked, setClicked] = useState(false)
 	const [text, setText] = useState(null)
@@ -27,7 +27,7 @@ export default ({ mode, URLPath, room }) => {
 					setClicked(true)
 
 					if (mode === 'conférence') {
-						tracker.push(['trackEvent', 'Mode Groupe', 'Création salle', mode])
+						trackEvent(['trackEvent', 'Mode Groupe', 'Création salle', mode])
 						return setTimeout(() => navigate(URLPath), 3000)
 					}
 					const request = await fetch(surveysURL, {
@@ -58,7 +58,7 @@ export default ({ mode, URLPath, room }) => {
 
 					setText(t('Sondage créé'))
 
-					tracker.push(['trackEvent', 'Mode Groupe', 'Création salle', mode])
+					trackEvent(['trackEvent', 'Mode Groupe', 'Création salle', mode])
 
 					return setTimeout(() => {
 						navigate(URLPath)

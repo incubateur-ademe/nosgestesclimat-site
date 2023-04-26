@@ -33,7 +33,7 @@ export default function PageFeedback({
 	customEventName,
 }: PageFeedbackProps) {
 	const location = useLocation()
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 	const [state, setState] = useState({
 		showForm: false,
 		showThanks: false,
@@ -44,7 +44,7 @@ export default function PageFeedback({
 	})
 
 	const handleFeedback = useCallback(({ useful }: { useful: boolean }) => {
-		tracker.push([
+		trackEvent([
 			'trackEvent',
 			'Feedback',
 			useful ? 'positive rating' : 'negative rating',
@@ -55,7 +55,7 @@ export default function PageFeedback({
 			location.pathname,
 			useful ? 10 : 0.1,
 		] as [string, string, number]
-		tracker.push(['trackEvent', 'Feedback', ...feedback])
+		trackEvent(['trackEvent', 'Feedback', ...feedback])
 		saveFeedbackOccurrenceInLocalStorage(feedback)
 		setState({
 			showThanks: useful,
@@ -65,7 +65,7 @@ export default function PageFeedback({
 	}, [])
 
 	const handleErrorReporting = useCallback(() => {
-		tracker.push(['trackEvent', 'Feedback', 'report error', location.pathname])
+		trackEvent(['trackEvent', 'Feedback', 'report error', location.pathname])
 		setState({ ...state, showForm: true })
 	}, [])
 

@@ -45,7 +45,7 @@ export default function Amortissement({
 }: Props) {
 	const { t } = useTranslation()
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 
 	const dispatch = useDispatch()
 
@@ -102,7 +102,7 @@ export default function Amortissement({
 				}
 				onHandleClick={() => {
 					setIsFormOpen(isFormOpen ? false : true)
-					tracker.push([
+					trackEvent([
 						'trackEvent',
 						'Aide saisie km',
 						'Ferme aide à la saisie km voiture',

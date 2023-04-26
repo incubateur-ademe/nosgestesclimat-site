@@ -121,11 +121,11 @@ const Main = ({}) => {
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
-	const tracker = useContext(TrackerContext)
+	const { trackPageView } = useContext(TrackerContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {
-		tracker?.track(location)
+		trackPageView(location)
 	}, [location])
 
 	// Manage the language change from the URL search param

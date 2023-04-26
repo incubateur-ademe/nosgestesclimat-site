@@ -28,7 +28,7 @@ export default ({}) => {
 	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
 		last = index === slides.length - 1,
 		next = () => {
-			tracker.push([
+			trackEvent([
 				'trackEvent',
 				'testIntro',
 				last ? `tuto passé` : `diapo ${index} passée`,
@@ -46,7 +46,7 @@ export default ({}) => {
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache

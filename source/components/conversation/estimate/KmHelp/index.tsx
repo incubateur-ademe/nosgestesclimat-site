@@ -52,7 +52,7 @@ export default function KmHelp({
 }: KmHelpProps) {
 	const { t, i18n } = useTranslation()
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
@@ -181,7 +181,7 @@ export default function KmHelp({
 						isFormOpen
 							? () => {
 									setIsFormOpen(false)
-									tracker.push([
+									trackEvent([
 										'trackEvent',
 										'Aide saisie km',
 										'Ferme aide à la saisie km voiture',
@@ -190,7 +190,7 @@ export default function KmHelp({
 							: () => {
 									setIsFormOpen(true)
 									setFinalValue(Math.round(+sum))
-									tracker.push([
+									trackEvent([
 										'trackEvent',
 										'Aide saisie km',
 										'Ouvre aide à la saisie km voiture',
@@ -347,7 +347,6 @@ export default function KmHelp({
 								trajets={trajets}
 								setTrajets={setTrajets}
 								openmojiURL={openmojiURL}
-								tracker={tracker}
 							/>
 						</div>
 					</div>

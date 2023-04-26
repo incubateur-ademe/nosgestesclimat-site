@@ -11,7 +11,7 @@ export default function IframeOptionsProvider({ children }) {
 	const isIframe = window.self !== window.top
 	const isIframeParameterDefined = urlParams.get('iframe') !== null
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 
 	// Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
 	// on essaie de récupérer l'URL du referrer
@@ -20,8 +20,8 @@ export default function IframeOptionsProvider({ children }) {
 		urlParams.set('integratorUrl', document.referrer)
 	}
 
-	if (isIframe && tracker) {
-		tracker.push([
+	if (isIframe && trackEvent) {
+		trackEvent([
 			'trackEvent',
 			'iframe',
 			'visites via iframe',

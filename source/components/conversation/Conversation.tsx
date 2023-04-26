@@ -58,7 +58,7 @@ export default function Conversation({
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackerContext)
 	const objectifs = useSelector(objectifsSelector)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
@@ -110,10 +110,10 @@ export default function Conversation({
 	useEffect(() => {
 		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
 			console.log('1ère réponse au bilan')
-			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
+			trackEvent(['trackEvent', 'NGC', '1ère réponse au bilan'])
 			dispatch(setTrackingVariable('firstQuestionEventFired', true))
 		}
-	}, [tracker, previousAnswers])
+	}, [trackEvent, previousAnswers])
 
 	const progress = useSimulationProgress()
 	const isPersona = useSelector(isPersonaSelector)
@@ -122,16 +122,16 @@ export default function Conversation({
 		// This will help you judge if the "A terminé la simulation" event has good numbers
 		if (!tracking.progress90EventFired && progress > 0.9 && !isPersona) {
 			console.log('90% réponse au bilan')
-			tracker.push(['trackEvent', 'NGC', 'Progress > 90%'])
+			trackEvent(['trackEvent', 'NGC', 'Progress > 90%'])
 			dispatch(setTrackingVariable('progress90EventFired', true))
 		}
 
 		if (!tracking.progress50EventFired && progress > 0.5 && !isPersona) {
 			console.log('50% réponse au bilan')
-			tracker.push(['trackEvent', 'NGC', 'Progress > 50%'])
+			trackEvent(['trackEvent', 'NGC', 'Progress > 50%'])
 			dispatch(setTrackingVariable('progress50EventFired', true))
 		}
-	}, [tracker, progress])
+	}, [trackEvent, progress])
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
@@ -303,7 +303,7 @@ export default function Conversation({
 
 	useEffect(() => {
 		if (!endEventFired && noQuestionsLeft && !isPersona) {
-			tracker.push([
+			trackEvent([
 				'trackEvent',
 				'NGC',
 				'A terminé la simulation',
@@ -478,7 +478,7 @@ export default function Conversation({
 					) : (
 						<button
 							onClick={() => {
-								tracker.push(['trackEvent', 'je ne sais pas', currentQuestion])
+								trackEvent(['trackEvent', 'je ne sais pas', currentQuestion])
 								setDefault()
 							}}
 							type="button"

@@ -5,7 +5,7 @@ import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
 import { freqList, motifList } from './dataHelp'
 
-export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
+export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 	const { t } = useTranslation()
 
 	const [addFormData, setAddFormData] = useState({
@@ -241,7 +241,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 					css="max-height: 2rem"
 					onClick={(event) => {
 						handleAddFormSubmit(event)
-						tracker.push([
+						trackEvent([
 							'trackEvent',
 							'Aide saisie km',
 							'Ajout trajet km voiture',

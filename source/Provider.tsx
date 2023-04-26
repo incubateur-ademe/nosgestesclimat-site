@@ -74,8 +74,9 @@ export default function Provider({
 
 	return (
 		// If IE < 11 display nothing
-		<TrackerProvider>
-			<ReduxProvider store={store}>
+
+		<ReduxProvider store={store}>
+			<TrackerProvider>
 				<RulesProvider>
 					<ThemeColorsProvider
 						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
@@ -91,7 +92,7 @@ export default function Provider({
 						</IframeOptionsProvider>
 					</ThemeColorsProvider>
 				</RulesProvider>
-			</ReduxProvider>
-		</TrackerProvider>
+			</TrackerProvider>
+		</ReduxProvider>
 	)
 }
