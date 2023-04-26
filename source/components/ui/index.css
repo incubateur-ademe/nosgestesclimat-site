@@ -126,6 +126,11 @@ section {
 	padding-right: 0.6rem;
 	padding-left: 0.6rem;
 }
+.ui__.container.fluid {
+	max-width: calc(
+		850px
+	); /* accomodate for the left navigation bar and margin on desktop */
+}
 .ui__.container .ui__.full-width {
 	--margin: calc((850px - 100vw - 0.6rem) / 2);
 	margin-right: var(--margin);
@@ -297,11 +302,11 @@ details > summary {
 
 .sr-only {
 	position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0,0,0,0);
-  border: 0;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
 }

@@ -1,8 +1,11 @@
+import { localStorageKey } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
+import Meta from 'Components/utils/Meta'
+import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import {
 	Link,
 	Navigate,
@@ -10,14 +13,11 @@ import {
 	useMatch,
 	useNavigate,
 } from 'react-router-dom'
+import { getCurrentLangInfos, Release } from 'Source/locales/translation'
+import { capitalise0 } from 'Source/utils'
 import styled from 'styled-components'
-import { localStorageKey } from '../components/NewsBanner'
-import Meta from '../components/utils/Meta'
-import { usePersistingState } from '../components/utils/persistState'
-import { getCurrentLangInfos, Release } from '../locales/translation'
-import { capitalise0 } from '../utils'
 
-const dateCool = (date: Date, abrvLocale: string) =>
+export const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
 		year: 'numeric',
 		month: 'long',
@@ -33,7 +33,14 @@ export const sortReleases = (releases) =>
 				-1 * r1.published_at.localeCompare(r2.published_at)
 		)
 
-export default function News() {
+export const getPath = (index: number, data: Array<Object>) => {
+	return `${'/nouveautés'}/${slugify(data[index]?.name)}`
+}
+
+export const extractImage = (body) =>
+	body.match(/!\[.*?\]\((.*?)\)/)[1] || '/images/petit-logo@2x.png'
+
+export default function NewsItem() {
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getCurrentLangInfos(i18n)
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
@@ -58,59 +65,35 @@ export default function News() {
 
 	console.log('selectedRelease: ', selectedRelease)
 
-	const getPath = (index: number) => {
-		return `${'/nouveautés'}/${slugify(data[index]?.name)}`
-	}
-
 	if (!slug || selectedRelease === -1) {
-		return <Navigate to={getPath(0)} replace />
+		return <Navigate to={getPath(0, data)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
 	const body = data[selectedRelease].body
 
-	// FIXME: doesn't work anymore with the translation...
-	// image = body.match(/!\[.*?\]\((.*?)\)/)[1] || undefined
+	const image = extractImage(body)
 
+	console.log('I', image)
 	return (
 		<div
 			css={`
-				@media (min-width: 800px) {
-					max-width: 80%;
-				}
 				padding: 0 0.6rem;
 				margin: 0 auto;
 			`}
 		>
 			<Meta
-				description={t('Découvrez les nouveautés de Nos Gestes Climat')}
 				title={t(`Nouveautés - `) + capitalise0(releaseName)}
-				// image={image}
+				image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
-			<p
-				css={`
-					font-size: 120%;
-				`}
-				data-cypress-id="news-title"
-			>
-				<strong>
-					<Trans>Les nouveautés ✨</Trans>
-				</strong>
-			</p>
-			<p css="max-width: 50rem">
-				<Trans i18nKey={`pages.News.premierParagraphe`}>
-					Nous améliorons le site en continu à partir de vos retours. Découvrez
-					ici les dernières nouveautés.
-				</Trans>
-			</p>
 			<label title={t('titre de la version')}>
 				<SmallScreenSelect
 					value={selectedRelease}
 					onChange={(evt) => {
 						console.log('evt:', evt)
 						console.log('target:', evt.target)
-						navigate(getPath(Number(evt.target.value)))
+						navigate(getPath(Number(evt.target.value), data))
 					}}
 				>
 					{data.map(({ name }, index) => (
@@ -124,7 +107,7 @@ export default function News() {
 				<Sidebar>
 					{data.map(({ name, published_at: date }, index) => (
 						<li key={name}>
-							<NavLink activeClassName="active" to={getPath(index)}>
+							<NavLink activeClassName="active" to={getPath(index, data)}>
 								{name}
 								<div>
 									<small>
@@ -144,14 +127,14 @@ export default function News() {
 					/>
 					<NavigationButtons>
 						{selectedRelease + 1 < data.length ? (
-							<Link to={getPath(selectedRelease + 1)}>
+							<Link to={getPath(selectedRelease + 1, data)}>
 								← {data[selectedRelease + 1].name}
 							</Link>
 						) : (
 							<span /> // For spacing
 						)}
 						{selectedRelease > 0 && (
-							<Link to={getPath(selectedRelease - 1)}>
+							<Link to={getPath(selectedRelease - 1, data)}>
 								{data[selectedRelease - 1].name} →
 							</Link>
 						)}

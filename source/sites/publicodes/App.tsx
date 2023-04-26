@@ -57,7 +57,7 @@ const International = React.lazy(() => import('./pages/International'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
-const News = React.lazy(() => import('Pages/News'))
+const News = React.lazy(() => import('Pages/news/News'))
 
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
