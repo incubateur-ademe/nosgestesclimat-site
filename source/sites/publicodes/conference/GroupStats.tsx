@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { TrackingContext } from '../../../contexts/TrackingContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -37,7 +37,7 @@ export default ({
 	setThreshold,
 	existContext,
 }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(TrackingContext)
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
@@ -149,7 +149,7 @@ export default ({
 							showLabel
 							checked={!realTimeMode}
 							onChange={() => {
-								tracker.push([
+								trackEvent([
 									'trackEvent',
 									'Mode groupe',
 									realTimeMode
