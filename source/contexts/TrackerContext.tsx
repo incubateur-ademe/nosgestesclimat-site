@@ -18,6 +18,7 @@ const iOSSafari =
 interface TrackerContextType {
 	trackEvent: (args: any[]) => void
 	trackPageView: (location: ReactRouterLocation) => void
+	resetEventState: () => void
 }
 
 interface EventObjectType {
@@ -34,6 +35,7 @@ declare global {
 export const TrackerContext = createContext<TrackerContextType>({
 	trackEvent: () => {},
 	trackPageView: () => {},
+	resetEventState: () => {},
 })
 
 export const TrackerProvider = ({ children }) => {
@@ -88,6 +90,11 @@ export const TrackerProvider = ({ children }) => {
 		console.warn(
 			'Tracking is disabled in development and deploy-preview contexts.'
 		)
+	}
+
+	const resetEventState = () => {
+		localStorage.removeItem(`events-sent-${currentSimulationId}`)
+		setEventsSent({})
 	}
 
 	const previousPath = useRef('')
@@ -169,6 +176,7 @@ export const TrackerProvider = ({ children }) => {
 			value={{
 				trackEvent,
 				trackPageView,
+				resetEventState,
 			}}
 		>
 			{children}

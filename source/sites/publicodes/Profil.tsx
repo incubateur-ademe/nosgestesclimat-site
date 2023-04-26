@@ -5,6 +5,7 @@ import {
 	resetStoredTrajets,
 } from 'Actions/actions'
 import Localisation from 'Components/localisation/Localisation'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -19,6 +20,7 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { useEngine } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
+import { TrackerContext } from '../../contexts/TrackerContext'
 import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
@@ -35,7 +37,7 @@ export const useProfileData = () => {
 	return { hasData, tutorials, answeredQuestionsLength, answeredQuestions }
 }
 
-export default ({}) => {
+export default () => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)
@@ -46,6 +48,7 @@ export default ({}) => {
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
 		useProfileData()
 	const navigate = useNavigate()
+	const { resetEventState } = useContext(TrackerContext)
 	const actionChoicesLength = Object.keys(
 			useSelector((state) => state.actionChoices)
 		).length,
@@ -153,6 +156,7 @@ export default ({}) => {
 									dispatch(resetCategoryTutorials())
 									dispatch(skipTutorial('scoreAnimation', true))
 									dispatch(skipTutorial('scoreExplanation', true))
+									resetEventState()
 									navigate('/simulateur/bilan')
 								}}
 							>
