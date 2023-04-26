@@ -148,6 +148,10 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 							justify-content: start;
 							align-items: flex-start;
 							margin: 0 0.25rem 0rem 0.25rem;
+							font-size: 85%;
+							span {
+								font-size: 85%;
+							}
 							img {
 								font-size: 300%;
 								margin-right: 1rem;
