@@ -1,5 +1,6 @@
 import { localStorageKey } from 'Components/NewsBanner'
 import { usePersistingState } from 'Components/utils/persistState'
+import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -26,6 +27,7 @@ export default () => {
 
 	return (
 		<div>
+			<ScrollToTop />
 			<ul
 				css={`
 					display: flex;
