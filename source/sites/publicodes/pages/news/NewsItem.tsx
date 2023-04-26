@@ -63,8 +63,6 @@ export default function NewsItem() {
 
 	const selectedRelease = data.findIndex(({ name }) => slugify(name) === slug)
 
-	console.log('selectedRelease: ', selectedRelease)
-
 	if (!slug || selectedRelease === -1) {
 		return <Navigate to={getPath(0, data)} replace />
 	}
@@ -74,7 +72,10 @@ export default function NewsItem() {
 
 	const image = extractImage(body)
 
-	console.log('I', image)
+	const releaseDateCool = dateCool(
+		new Date(data[selectedRelease].published_at),
+		currentLangInfos.abrvLocale
+	)
 	return (
 		<div
 			css={`
@@ -83,7 +84,9 @@ export default function NewsItem() {
 			`}
 		>
 			<Meta
-				title={t(`Nouveautés - `) + capitalise0(releaseName)}
+				title={`${t(`Nouveautés`)} ${t(releaseDateCool)} - ${capitalise0(
+					releaseName
+				)}`}
 				image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
