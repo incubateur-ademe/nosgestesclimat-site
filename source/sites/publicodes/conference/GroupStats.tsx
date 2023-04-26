@@ -140,26 +140,28 @@ export default ({
 						</div>
 					</div>
 				</div>
-				<small>
-					<Checkbox
-						name="setRealTimeMode"
-						id="setRealTimeMode"
-						label="Afficher seulement les simulations terminées"
-						showLabel
-						checked={!realTimeMode}
-						onChange={() => {
-							tracker.push([
-								'trackEvent',
-								'Mode groupe',
-								realTimeMode
-									? 'Désactivation du mode temps réel'
-									: 'Activation du mode temps réel',
-							])
-							setRealTimeMode(!realTimeMode)
-						}}
-					/>
-				</small>
-				{completedTests.length > 0 && (
+				{filteredRawTests.length > 0 && (
+					<small>
+						<Checkbox
+							name="setRealTimeMode"
+							id="setRealTimeMode"
+							label="Afficher seulement les simulations terminées"
+							showLabel
+							checked={!realTimeMode}
+							onChange={() => {
+								tracker.push([
+									'trackEvent',
+									'Mode groupe',
+									realTimeMode
+										? 'Désactivation du mode temps réel'
+										: 'Activation du mode temps réel',
+								])
+								setRealTimeMode(!realTimeMode)
+							}}
+						/>
+					</small>
+				)}
+				{displayedTests.length > 0 && (
 					<WithEngine>
 						<FilterBar
 							threshold={threshold}
