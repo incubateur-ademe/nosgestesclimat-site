@@ -48,12 +48,13 @@ export default () => {
 
 	const statElements = conferenceElementsAdapter(elements)
 
-	const rawUserNumber = getAllParticipants(statElements).length
+	const rawUsers = getAllParticipants(statElements)
+	const rawUsersNumber = rawUsers.length
 
 	const completedTests = getCompletedTests(statElements, null)
 	const completedTestsNumber = completedTests.length
 
-	const simulationArray = completedTests && Object.values(completedTests),
+	const simulationArray = rawUsers && Object.values(rawUsers),
 		result = computeHumanMean(
 			translation,
 			simulationArray.map((el) => el.total)
@@ -64,7 +65,7 @@ export default () => {
 			{...{
 				groupMode: 'conférence',
 				room: conference.room,
-				rawUserNumber,
+				rawUsersNumber,
 				completedTestsNumber,
 				result,
 			}}

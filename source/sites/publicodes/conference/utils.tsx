@@ -87,7 +87,7 @@ export const getElements = (
 }
 
 export const getAllParticipants = (rawElements) => {
-	return getElements(rawElements, defaultThreshold, null, null, 0)
+	return getElements(rawElements, defaultThreshold, null, 0)
 }
 
 export const getCompletedTests = (rawElements, contextRules) => {

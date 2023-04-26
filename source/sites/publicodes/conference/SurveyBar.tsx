@@ -121,11 +121,12 @@ export default () => {
 	const contextRules = existContext && survey.contextRules
 
 	const elements = surveyElementsAdapter(survey.answers)
-	const rawUserNumber = getAllParticipants(elements).length
+	const rawUsers = getAllParticipants(elements)
+	const rawUsersNumber = rawUsers.length
 	const completedTests = getCompletedTests(elements, contextRules)
 	const completedTestsNumber = completedTests.length
 
-	const simulationArray = completedTests && Object.values(completedTests),
+	const simulationArray = rawUsers && Object.values(rawUsers),
 		result = computeHumanMean(
 			translation,
 			simulationArray.map((el) => el.total)
@@ -136,7 +137,7 @@ export default () => {
 		<GroupModeMenuEntryContent
 			{...{
 				room: survey.room,
-				rawUserNumber,
+				rawUsersNumber,
 				completedTestsNumber,
 				result,
 				groupMode: 'sondage',
