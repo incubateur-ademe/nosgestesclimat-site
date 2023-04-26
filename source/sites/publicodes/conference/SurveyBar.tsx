@@ -13,10 +13,10 @@ import { v4 as uuidv4 } from 'uuid'
 import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
-import { computeHumanMean } from './Stats'
+import { computeHumanMean } from './GroupStats'
 import { surveyElementsAdapter } from './Survey'
 import useDatabase, { answersURL } from './useDatabase'
-import { defaultProgressMin, defaultThreshold, getElements } from './utils'
+import { getAllParticipants, getCompletedTests } from './utils'
 
 export default () => {
 	const translation = useTranslation(),
@@ -117,38 +117,28 @@ export default () => {
 		return () => socket.off('received', onReceived)
 	}, [])
 
-	const simulationArray = [],
-		result =
-			computeHumanMean(
-				translation,
-				simulationArray.map((el) => el.total)
-			)
-
-	const existContext = survey ? !(survey['contextFile'] == null) : false
+	const existContext = survey ? !(survey.contextFile == null) : false
+	const contextRules = existContext && survey.contextRules
 
 	const elements = surveyElementsAdapter(survey.answers)
-	const rawUserNumber = getElements(
-		elements,
-		defaultThreshold,
-		existContext,
-		0
-	).length
+	const rawUsers = getAllParticipants(elements)
+	const rawUsersNumber = rawUsers.length
+	const completedTests = getCompletedTests(elements, contextRules)
+	const completedTestsNumber = completedTests.length
 
-	const completedTestNumber = getElements(
-		elements,
-		defaultThreshold,
-		existContext,
-		defaultProgressMin
-	).length
-
+	const simulationArray = rawUsers && Object.values(rawUsers),
+		result = computeHumanMean(
+			translation,
+			simulationArray.map((el) => el.total)
+		)
 	if (DBError) return <div className="ui__ card plain">{DBError}</div>
 
 	return (
 		<GroupModeMenuEntryContent
 			{...{
 				room: survey.room,
-				rawUserNumber,
-				completedTestNumber,
+				rawUsersNumber,
+				completedTestsNumber,
 				result,
 				groupMode: 'sondage',
 			}}

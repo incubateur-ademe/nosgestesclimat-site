@@ -5,30 +5,30 @@ import { getNextQuestions } from 'Components/utils/useNextQuestion'
 import Engine from 'publicodes'
 import { createContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { contextURL } from './useDatabase'
 
 const SituationContext = createContext({})
 
-export default ({
-	surveyContext,
-	setSurveyContext,
-	contextRules,
-	setContextRules,
-}) => {
+export default ({ surveyContext, setSurveyContext }) => {
 	const survey = useSelector((state) => state.survey)
 	const surveyRule = survey['contextFile']
 
 	const contextFileURL = `${contextURL}/${surveyRule}.yaml`
 	const yaml = require('yaml')
 
+	const dispatch = useDispatch()
+
 	useEffect(() => {
 		fetch(contextFileURL)
 			.then((response) => response.text())
-			.then((text) => setContextRules(yaml.parse(text)))
+			.then((text) =>
+				dispatch({ type: 'ADD_CONTEXT_RULES', contextRules: yaml.parse(text) })
+			)
 			.catch((error) => console.log('error:', error))
 	}, [contextFileURL])
 
+	const contextRules = survey?.contextRules
 	// we evaluate missing variable related to context parent rule and we pass it to getNextQuestion with a specific engine.
 	const engine = new Engine(contextRules)
 	const [situation, setSituation] = useState(surveyContext[survey.room])
@@ -202,7 +202,7 @@ const SituationDetails = ({
 			<summary>Mon profil</summary>
 			<ul css="text-transform: capitalize">
 				{Object.entries(situation).map(([k, v]) => (
-					<li>{`${splitName(k)[1]} : ${v?.nodeValue || v}`}</li>
+					<li key={k}>{`${splitName(k)[1]} : ${v?.nodeValue || v}`}</li>
 				))}
 			</ul>
 			<div css="text-align: center">

@@ -5,18 +5,20 @@ import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
 import { Trans, useTranslation } from 'react-i18next'
+import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
 import { usePersistingState } from '../../../components/utils/persistState'
 import Navigation from '../Navigation'
 import { useProfileData } from '../Profil'
+import { ConferenceTitle } from './Conference'
 import ContextConversation from './ContextConversation'
 import DataWarning from './DataWarning'
+import Stats from './GroupStats'
 import Instructions from './Instructions'
 import NoSurveyCreatedWarning from './NoSurveyCreatedWarning'
 import NoTestMessage from './NoTestMessage'
-import Stats from './Stats'
 import { answersURL, surveysURL } from './useDatabase'
-import { defaultProgressMin, defaultThreshold } from './utils'
+import { defaultThreshold } from './utils'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -24,7 +26,6 @@ export default () => {
 		'surveyContext',
 		{}
 	)
-	const [contextRules, setContextRules] = useState()
 	const [isRegisteredSurvey, setIsRegisteredSurvey] = useState(null)
 	const dispatch = useDispatch()
 
@@ -64,7 +65,7 @@ export default () => {
 	}, [])
 
 	const survey = useSelector((state) => state.survey)
-	const existContext = survey ? !(survey['contextFile'] == null) : false
+	const existContext = !!survey?.contextFile
 	const navigate = useNavigate()
 	const { t } = useTranslation()
 
@@ -96,22 +97,21 @@ export default () => {
 						flex-direction: column;
 					`}
 				>
+					{' '}
+					<ConferenceTitle>
+						<img src={conferenceImg} alt="" />
+						<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
+					</ConferenceTitle>
 					{existContext && (
 						<ContextConversation
 							surveyContext={surveyContext}
 							setSurveyContext={setSurveyContext}
-							contextRules={contextRules}
-							setContextRules={setContextRules}
 						/>
 					)}
 					{!hasDataState ? (
 						<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
 					) : (
-						<Results
-							room={survey.room}
-							existContext={existContext}
-							contextRules={contextRules}
-						/>
+						<Results room={survey.room} existContext={existContext} />
 					)}
 				</div>
 			)}
@@ -226,7 +226,7 @@ export const surveyElementsAdapter = (items) =>
 		  }))
 		: []
 
-const Results = ({ room, existContext, contextRules }) => {
+const Results = ({ room, existContext }) => {
 	const [cachedSurveyIds] = usePersistingState('surveyIds', {})
 	const survey = useSelector((state) => state.survey)
 	const [threshold, setThreshold] = useState(defaultThreshold)
@@ -236,39 +236,11 @@ const Results = ({ room, existContext, contextRules }) => {
 	const elements = surveyElementsAdapter(answerMap)
 	return (
 		<Stats
-			totalElements={getElements(elements, threshold, existContext, 0)}
-			elements={getElements(
-				elements,
-				threshold,
-				existContext,
-				defaultProgressMin
-			)}
+			rawElements={elements}
 			username={username}
 			threshold={threshold}
 			setThreshold={setThreshold}
-			contextRules={contextRules}
+			existContext={existContext}
 		/>
 	)
-}
-
-// Simulations with less than 10% progress are excluded, in order to avoid a perturbation of the mean group value by people
-// that did connect to the conference, but did not seriously start the test, hence resulting in multiple default value simulations.
-// In case of survey with context, we only display result with context filled in.
-
-export const getElements = (
-	rawElements,
-	threshold,
-	existContext,
-	progressMin
-) => {
-	const elementsWithinThreshold = rawElements.filter(
-		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
-	)
-	const elements = existContext
-		? elementsWithinThreshold.filter(
-				(el) => Object.keys(el.context).length !== 0
-		  )
-		: elementsWithinThreshold
-
-	return elements
 }
