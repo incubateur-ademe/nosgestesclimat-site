@@ -8,8 +8,10 @@ import styled from 'styled-components'
 import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
 import { ScrollToTop } from '../../../components/utils/Scroll'
+import { useProfileData } from '../Profil'
 import Stats from './GroupStats'
 import Instructions from './Instructions'
+import NoTestMessage from './NoTestMessage'
 import { UserBlock } from './UserList'
 import useYjs from './useYjs'
 import { defaultThreshold, getExtremes } from './utils'
@@ -37,6 +39,9 @@ export default () => {
 	const [threshold, setThreshold] = useState(defaultThreshold)
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+
+	const { hasData } = useProfileData()
+	const [hasDataState, setHasDataState] = useState(hasData)
 
 	if (!room || room === '') {
 		return <Navigate to="/groupe" replace />
@@ -67,15 +72,19 @@ export default () => {
 				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
-			<Stats
-				{...{
-					rawElements,
-					users,
-					username,
-					threshold,
-					setThreshold,
-				}}
-			/>
+			{!hasDataState ? (
+				<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
+			) : (
+				<Stats
+					{...{
+						rawElements,
+						users,
+						username,
+						threshold,
+						setThreshold,
+					}}
+				/>
+			)}
 			{room && (
 				<div>
 					<UserBlock {...{ users, extremes, username, room }} />
