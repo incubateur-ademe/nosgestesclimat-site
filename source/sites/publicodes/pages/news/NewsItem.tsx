@@ -37,6 +37,9 @@ export const getPath = (index: number, data: Array<Object>) => {
 	return `${'/nouveautés'}/${slugify(data[index]?.name)}`
 }
 
+export const extractImage = (body) =>
+	body.match(/!\[.*?\]\((.*?)\)/)[1] || '/images/petit-logo@2x.png'
+
 export default function NewsItem() {
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getCurrentLangInfos(i18n)
@@ -69,7 +72,7 @@ export default function NewsItem() {
 	const releaseName = data[selectedRelease].name.toLowerCase()
 	const body = data[selectedRelease].body
 
-	const image = body.match(/!\[.*?\]\((.*?)\)/)[1] || undefined
+	const image = extractImage(body)
 
 	console.log('I', image)
 	return (
