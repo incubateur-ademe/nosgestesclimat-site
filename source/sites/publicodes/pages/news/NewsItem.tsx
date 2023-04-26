@@ -17,7 +17,7 @@ import { getCurrentLangInfos, Release } from 'Source/locales/translation'
 import { capitalise0 } from 'Source/utils'
 import styled from 'styled-components'
 
-const dateCool = (date: Date, abrvLocale: string) =>
+export const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
 		year: 'numeric',
 		month: 'long',
@@ -32,6 +32,10 @@ export const sortReleases = (releases) =>
 			(r1: Release, r2: Release) =>
 				-1 * r1.published_at.localeCompare(r2.published_at)
 		)
+
+export const getPath = (index: number, data: Array<Object>) => {
+	return `${'/nouveautés'}/${slugify(data[index]?.name)}`
+}
 
 export default function NewsItem() {
 	const { t, i18n } = useTranslation()
@@ -58,12 +62,8 @@ export default function NewsItem() {
 
 	console.log('selectedRelease: ', selectedRelease)
 
-	const getPath = (index: number) => {
-		return `${'/nouveautés'}/${slugify(data[index]?.name)}`
-	}
-
 	if (!slug || selectedRelease === -1) {
-		return <Navigate to={getPath(0)} replace />
+		return <Navigate to={getPath(0, data)} replace />
 	}
 
 	const releaseName = data[selectedRelease].name.toLowerCase()
@@ -110,7 +110,7 @@ export default function NewsItem() {
 					onChange={(evt) => {
 						console.log('evt:', evt)
 						console.log('target:', evt.target)
-						navigate(getPath(Number(evt.target.value)))
+						navigate(getPath(Number(evt.target.value), data))
 					}}
 				>
 					{data.map(({ name }, index) => (
@@ -124,7 +124,7 @@ export default function NewsItem() {
 				<Sidebar>
 					{data.map(({ name, published_at: date }, index) => (
 						<li key={name}>
-							<NavLink activeClassName="active" to={getPath(index)}>
+							<NavLink activeClassName="active" to={getPath(index, data)}>
 								{name}
 								<div>
 									<small>
