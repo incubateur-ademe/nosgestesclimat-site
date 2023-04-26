@@ -126,7 +126,7 @@ section {
 	padding-right: 0.6rem;
 	padding-left: 0.6rem;
 }
-.ui__.container {
+.ui__.container.fluid {
 	max-width: calc(
 		850px
 	); /* accomodate for the left navigation bar and margin on desktop */

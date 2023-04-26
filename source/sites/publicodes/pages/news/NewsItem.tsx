@@ -5,7 +5,7 @@ import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import {
 	Link,
 	Navigate,
@@ -75,35 +75,15 @@ export default function NewsItem() {
 	return (
 		<div
 			css={`
-				@media (min-width: 800px) {
-					max-width: 80%;
-				}
 				padding: 0 0.6rem;
 				margin: 0 auto;
 			`}
 		>
 			<Meta
-				description={t('Découvrez les nouveautés de Nos Gestes Climat')}
 				title={t(`Nouveautés - `) + capitalise0(releaseName)}
 				// image={image}
 			/>
 			<ScrollToTop key={selectedRelease} />
-			<p
-				css={`
-					font-size: 120%;
-				`}
-				data-cypress-id="news-title"
-			>
-				<strong>
-					<Trans>Les nouveautés ✨</Trans>
-				</strong>
-			</p>
-			<p css="max-width: 50rem">
-				<Trans i18nKey={`pages.News.premierParagraphe`}>
-					Nous améliorons le site en continu à partir de vos retours. Découvrez
-					ici les dernières nouveautés.
-				</Trans>
-			</p>
 			<label title={t('titre de la version')}>
 				<SmallScreenSelect
 					value={selectedRelease}
@@ -144,14 +124,14 @@ export default function NewsItem() {
 					/>
 					<NavigationButtons>
 						{selectedRelease + 1 < data.length ? (
-							<Link to={getPath(selectedRelease + 1)}>
+							<Link to={getPath(selectedRelease + 1, data)}>
 								← {data[selectedRelease + 1].name}
 							</Link>
 						) : (
 							<span /> // For spacing
 						)}
 						{selectedRelease > 0 && (
-							<Link to={getPath(selectedRelease - 1)}>
+							<Link to={getPath(selectedRelease - 1, data)}>
 								{data[selectedRelease - 1].name} →
 							</Link>
 						)}
