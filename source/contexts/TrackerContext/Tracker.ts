@@ -42,13 +42,14 @@ export default class Tracker {
 			// Could be due to an adblocker not allowing the script to set this global attribute
 			if (!window.plausible) return
 
-			window._paq.push(args)
+			// Create new array to avoid mutating original
+			window._paq.push([...args])
 
 			// pour plausible, je n'envoie que les events
 			// les pages vues sont gérées de base
 			const [typeTracking, eventName, subEvent] = args
 			if (typeTracking === 'trackEvent') {
-				var subEventName = `Details : ${eventName}`
+				const subEventName = `Details : ${eventName}`
 				window.plausible(eventName, {
 					props: { [subEventName]: subEvent },
 				})
