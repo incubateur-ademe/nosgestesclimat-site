@@ -28,6 +28,7 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 				button {
 					position: relative;
 					top: -1rem;
+					padding: 0;
 				}
 			`}
 		>
@@ -41,7 +42,7 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 				>
 					<div
 						css={`
-							font-size: 120%;
+							font-size: 150%;
 							margin-top: 0.5rem;
 						`}
 					>
