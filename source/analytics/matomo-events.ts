@@ -59,7 +59,13 @@ export const getMatomoEventAmortissement = (dottedName: DottedName) => [
 	dottedName,
 ]
 
-// TODO : Change language
+// Change Region
+export const getMatomoEventChangeRegion = (code: string) => [
+	'trackEvent',
+	'I18N',
+	'Clic bannière localisation',
+	code,
+]
 
 // Iframe
 export const getMatomoEventVisitViaIframe = (url: string) => [
