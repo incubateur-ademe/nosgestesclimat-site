@@ -139,7 +139,12 @@ export default ({ actionMode = false, demoMode = false }) => {
 								title={t("Afficher l'explication du score")}
 								onClick={() => {
 									setOpenExplanation(!openExplanation)
+									// Pas nécessaire dans le cadre de la mise en place d'une nouvelle
+									// strat de tracking à mon sens, on pourra ajouter dans le détail des trackers
+									// par la suite au besoin
+									/*
 									trackEvent(['trackEvent', 'NGC', 'Clic explication score'])
+									*/
 								}}
 								css={`
 									position: relative;

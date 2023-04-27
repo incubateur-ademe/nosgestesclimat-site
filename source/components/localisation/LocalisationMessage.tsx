@@ -120,6 +120,7 @@ export default () => {
 								type: 'SET_LOCALISATION_BANNERS_READ',
 								regions: [...messagesRead, code],
 							})
+							// Nécéssaire ?
 							trackEvent([
 								'trackEvent',
 								'I18N',

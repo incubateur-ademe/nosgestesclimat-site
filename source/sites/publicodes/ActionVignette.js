@@ -234,6 +234,8 @@ export const ActionListCard = ({
 								)
 							)
 							if (!actionChoices[dottedName]) {
+								// TODO : revoir la stratégie de tracking des actions
+								/*
 								const eventData = [
 									'trackEvent',
 									'/actions',
@@ -242,6 +244,7 @@ export const ActionListCard = ({
 									nodeValue,
 								]
 								trackEvent(eventData)
+								*/
 							}
 							e.stopPropagation()
 							e.preventDefault()
@@ -259,6 +262,8 @@ export const ActionListCard = ({
 									actionChoices[dottedName] === false ? null : false
 								)
 							)
+							// TODO : revoir la stratégie de tracking des actions
+							/*
 							trackEvent([
 								'trackEvent',
 								'/actions',
@@ -266,6 +271,7 @@ export const ActionListCard = ({
 								dottedName,
 								nodeValue,
 							])
+							*/
 							e.stopPropagation()
 							e.preventDefault()
 						}}

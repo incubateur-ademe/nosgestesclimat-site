@@ -6,6 +6,7 @@ import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
+import { matomoEventModeGroupeFiltres } from '../../../analytics/matomo-events'
 import { TrackingContext } from '../../../contexts/MatomoContext'
 
 export default ({ threshold, setThreshold, setContextFilter }) => {
@@ -37,7 +38,7 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 					title={t('Ouvrir les options de tri')}
 					onClick={() => {
 						setVisible(true)
-						trackEvent(['trackEvent', 'Mode Groupe', 'Ouvre filtres'])
+						trackEvent(matomoEventModeGroupeFiltres)
 					}}
 				>
 					<div

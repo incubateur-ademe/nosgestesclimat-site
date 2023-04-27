@@ -1,4 +1,5 @@
 import { createContext, useContext } from 'react'
+import { getMatomoEventVisitViaIframe } from '../../analytics/matomo-events'
 import { TrackingContext } from '../../contexts/MatomoContext'
 
 export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
@@ -21,12 +22,11 @@ export default function IframeOptionsProvider({ children }) {
 	}
 
 	if (isIframe && trackEvent) {
-		trackEvent([
-			'trackEvent',
-			'iframe',
-			'visites via iframe',
-			urlParams.get('integratorUrl') || "Pas d'URL d'intégration",
-		])
+		trackEvent(
+			getMatomoEventVisitViaIframe(
+				urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
+			)
+		)
 	}
 
 	const iframeIntegratorOptions = Object.fromEntries(

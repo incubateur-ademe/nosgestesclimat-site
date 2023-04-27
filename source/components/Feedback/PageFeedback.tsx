@@ -44,18 +44,11 @@ export default function PageFeedback({
 	})
 
 	const handleFeedback = useCallback(({ useful }: { useful: boolean }) => {
-		trackEvent([
-			'trackEvent',
-			'Feedback',
-			useful ? 'positive rating' : 'negative rating',
-			location.pathname,
-		])
 		const feedback = [
 			customEventName || 'rate page usefulness',
 			location.pathname,
 			useful ? 10 : 0.1,
 		] as [string, string, number]
-		trackEvent(['trackEvent', 'Feedback', ...feedback])
 		saveFeedbackOccurrenceInLocalStorage(feedback)
 		setState({
 			showThanks: useful,
@@ -65,7 +58,6 @@ export default function PageFeedback({
 	}, [])
 
 	const handleErrorReporting = useCallback(() => {
-		trackEvent(['trackEvent', 'Feedback', 'report error', location.pathname])
 		setState({ ...state, showForm: true })
 	}, [])
 

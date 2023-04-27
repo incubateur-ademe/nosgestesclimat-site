@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { TrackingContext } from '../contexts/MatomoContext'
 import ShareButtonIcon from './ShareButtonIcon'
+import { getMatomoEventShareDesktop, getMatomoEventShareMobile } from "../analytics/matomo-events"
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
 
 export default ({ text, url, title, color, label, score }) => {
@@ -14,7 +15,7 @@ export default ({ text, url, title, color, label, score }) => {
 			color={color}
 			title={t('Cliquez pour partager le lien')}
 			onClick={() => {
-				trackEvent([...eventData, 'mobile', score])
+				trackEvent(getMatomoEventShareMobile(score)
 				navigator
 					.share({ text, url, title, color, label })
 					.then(() => console.log('Successful share'))
@@ -32,7 +33,7 @@ export default ({ text, url, title, color, label, score }) => {
 				color,
 				text,
 				url,
-				trackEvent: () => trackEvent([...eventData, 'bureau', score]),
+				trackEvent: () => trackEvent(getMatomoEventShareDesktop(score)),
 			}}
 		/>
 	)

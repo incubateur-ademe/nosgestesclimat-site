@@ -181,20 +181,10 @@ export default function KmHelp({
 						isFormOpen
 							? () => {
 									setIsFormOpen(false)
-									trackEvent([
-										'trackEvent',
-										'Aide saisie km',
-										'Ferme aide à la saisie km voiture',
-									])
 							  }
 							: () => {
 									setIsFormOpen(true)
 									setFinalValue(Math.round(+sum))
-									trackEvent([
-										'trackEvent',
-										'Aide saisie km',
-										'Ouvre aide à la saisie km voiture',
-									])
 							  }
 					}
 				/>

@@ -15,6 +15,7 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { skipTutorial, validateWithDefaultValue } from '../../actions/actions'
+import { getMatomoEventClickDontKnow } from '../../analytics/matomo-events'
 import Meta from '../../components/utils/Meta'
 import { TrackingContext } from '../../contexts/MatomoContext'
 import useKeypress from '../../hooks/useKeyPress'
@@ -90,7 +91,7 @@ export default function Conversation({
 
 	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
-		currentQuestion = !isMainSimulation
+		currentQuestion: string = !isMainSimulation
 			? nextQuestions[0]
 			: focusedCategory
 			? sortedQuestions[0]
@@ -472,7 +473,7 @@ export default function Conversation({
 					) : (
 						<button
 							onClick={() => {
-								trackEvent(['trackEvent', 'je ne sais pas', currentQuestion])
+								trackEvent(getMatomoEventClickDontKnow(currentQuestion))
 								setDefault()
 							}}
 							type="button"

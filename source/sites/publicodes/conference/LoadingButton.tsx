@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
+import { getMatomoEventModeGroupeRoomCreation } from '../../../analytics/matomo-events'
 import { TrackingContext } from '../../../contexts/MatomoContext'
 import { surveysURL } from './useDatabase'
 
@@ -27,7 +28,7 @@ export default ({ mode, URLPath, room }) => {
 					setClicked(true)
 
 					if (mode === 'conférence') {
-						trackEvent(['trackEvent', 'Mode Groupe', 'Création salle', mode])
+						trackEvent(getMatomoEventModeGroupeRoomCreation(mode))
 						return setTimeout(() => navigate(URLPath), 3000)
 					}
 					const request = await fetch(surveysURL, {
@@ -58,7 +59,7 @@ export default ({ mode, URLPath, room }) => {
 
 					setText(t('Sondage créé'))
 
-					trackEvent(['trackEvent', 'Mode Groupe', 'Création salle', mode])
+					trackEvent(getMatomoEventModeGroupeRoomCreation(mode))
 
 					return setTimeout(() => {
 						navigate(URLPath)

@@ -3,6 +3,7 @@ import { useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
+import { matomoEventKilometerHelp } from '../../../../analytics/matomo-events'
 import { freqList, motifList } from './dataHelp'
 
 export default function KmForm({ trajets, setTrajets, openmojiURL }) {
@@ -241,11 +242,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 					css="max-height: 2rem"
 					onClick={(event) => {
 						handleAddFormSubmit(event)
-						trackEvent([
-							'trackEvent',
-							'Aide saisie km',
-							'Ajout trajet km voiture',
-						])
+						trackEvent(matomoEventKilometerHelp)
 					}}
 				>
 					<Trans>Ajouter</Trans>
