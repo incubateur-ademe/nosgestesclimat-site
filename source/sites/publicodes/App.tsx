@@ -64,7 +64,7 @@ const News = React.lazy(() => import('Pages/news/News'))
 
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
-export default function Root({}) {
+export default function Root() {
 	const paths = sitePaths()
 
 	const iframeShareData = new URLSearchParams(

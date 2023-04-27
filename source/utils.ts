@@ -20,7 +20,7 @@ export const debounce = <F extends (...args: any[]) => void>(
 
 export const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 
-export function inIframe(): boolean {
+export function getIsIframe(): boolean {
 	try {
 		return window.self !== window.top
 	} catch (e) {
@@ -143,5 +143,3 @@ export const pick = (obj, keys) =>
 	Object.fromEntries(
 		keys.filter((key) => key in obj).map((key) => [key, obj[key]])
 	)
-
-export const getIsIframe = () => window.self !== window.top

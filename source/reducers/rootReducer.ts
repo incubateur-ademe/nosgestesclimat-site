@@ -66,6 +66,7 @@ export type Simulation = {
 	persona?: string
 	date?: Date
 	id?: string
+	eventsSent?: Record<string, boolean>
 }
 
 function simulation(
@@ -97,11 +98,12 @@ function simulation(
 			persona: action.persona,
 			id: action.persona || state?.id || generateSimulationId(), // Unique identifier of the simulation, used for the 'currentSimulationId' pointer.
 			date: !action.persona && state?.date ? state?.date : new Date(),
+			eventsSent: state?.eventsSent || {},
 		}
 	}
 
 	if (state === null) {
-		return state
+		return { ...(state || {}), eventsSent: {} }
 	}
 
 	switch (action.type) {
@@ -118,6 +120,7 @@ function simulation(
 				foldedSteps: [],
 				unfoldedStep: null,
 				persona: undefined,
+				eventsSent: {},
 			}
 		case 'UPDATE_SITUATION': {
 			const targets = objectifsSelector({ simulation: state } as RootState)
@@ -161,6 +164,14 @@ function simulation(
 			return {
 				...state,
 				targetUnit: action.targetUnit,
+			}
+		case 'UPDATE_EVENTS_SENT':
+			return {
+				...state,
+				eventsSent: {
+					...state.eventsSent,
+					...action.eventSent,
+				},
 			}
 	}
 	return state

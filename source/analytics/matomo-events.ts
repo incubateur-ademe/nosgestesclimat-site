@@ -122,14 +122,20 @@ export const matomoEventParcoursTestReprendre = [
 	'Clic CTA accueil',
 	'Reprendre mon test',
 ]
-export const getMatomoEventParcoursTestTutorial = (
+export const getMatomoEventParcoursTestTutorialProgress = (
 	last: boolean,
 	index: number
 ) => [
 	'trackEvent',
 	'Parcours test',
 	'Tutoriel',
-	last ? 'Passer' : `Étape ${index} passée`,
+	last ? 'Terminer' : `Étape ${index} passée`,
+]
+export const matomoEventParcoursTestSkipTutorial = [
+	'trackEvent',
+	'Parcours test',
+	'Tutoriel',
+	'Passer',
 ]
 export const getMatomoEventParcoursTestCategoryStarted = (category: string) => [
 	'trackEvent',

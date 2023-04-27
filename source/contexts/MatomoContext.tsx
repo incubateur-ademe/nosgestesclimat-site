@@ -1,7 +1,9 @@
-import { createContext, useCallback, useEffect, useRef, useState } from 'react'
-import { useSelector } from 'react-redux'
+import { createContext, useCallback, useRef } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Location as ReactRouterLocation } from 'react-router-dom'
-import { inIframe } from '../utils'
+import { updateEventsSent } from '../actions/actions'
+import { matomoEventParcoursTestReprendre } from '../analytics/matomo-events'
+import { getIsIframe } from '../utils'
 
 const groupExclusionRegexp = /\/(sondage|conférence)\//
 
@@ -17,7 +19,6 @@ const iOSSafari =
 interface TrackingContextType {
 	trackEvent: (args: any[]) => void
 	trackPageView: (location: ReactRouterLocation) => void
-	resetEventState: () => void
 }
 
 interface EventObjectType {
@@ -31,58 +32,39 @@ declare global {
 	}
 }
 
+const allowedMultipleCallsEvents = [matomoEventParcoursTestReprendre.toString()]
+
 export const TrackingContext = createContext<TrackingContextType>({
 	trackEvent: () => {},
 	trackPageView: () => {},
-	resetEventState: () => {},
 })
 
 export const TrackingProvider = ({ children }) => {
-	const [eventsSent, setEventsSent] = useState({})
+	const dispatch = useDispatch()
 
-	// Get the user simulation id
-	const currentSimulationId = useSelector(
-		(state: { currentSimulationId: string }) => state.currentSimulationId
+	const simulation = useSelector(
+		(state: { eventsSent: EventObjectType }) => state.simulation
 	)
 
-	// Get events sents from localStorage
-	useEffect(() => {
-		if (currentSimulationId) {
-			const eventsSentString =
-				localStorage.getItem(`events-sent-${currentSimulationId}`) || ''
-
-			const eventsSentObject: EventObjectType | undefined = eventsSentString
-				? JSON.parse(eventsSentString)
-				: undefined
-
-			// Imbricated ifs, not ideal but no better way to do this to my knowledge
-			if (eventsSentObject) {
-				setEventsSent(eventsSentObject)
-			}
-		}
-	}, [currentSimulationId])
+	const { eventsSent } = simulation || {}
 
 	// Call before sending an event
 	const checkIfEventAlreadySent = useCallback(
-		(event) => {
-			return eventsSent[`${event.toString()}`]
+		(event: string[]) => {
+			// Allow multiple calls for some events
+			if (allowedMultipleCallsEvents.includes(event.toString())) return false
+			console.log(eventsSent, event.toString())
+			return eventsSent?.[`${event.toString()}`]
 		},
 		[eventsSent]
 	)
 
 	// Call after an event is sent, concerns only "trackEvent" typed events
-	const updateEventsSent = useCallback(
+	const handleUpdateEventsSent = useCallback(
 		(event) => {
-			if (currentSimulationId) {
-				const newEventsSent = { ...eventsSent, [`${event.toString()}`]: true }
-				localStorage.setItem(
-					`events-sent-${currentSimulationId}`,
-					JSON.stringify(newEventsSent)
-				)
-				setEventsSent(newEventsSent)
-			}
+			dispatch(updateEventsSent({ [`${event.toString()}`]: true }))
 		},
-		[currentSimulationId, eventsSent]
+		[dispatch]
 	)
 
 	if (!shouldUseDevTracker) {
@@ -91,15 +73,10 @@ export const TrackingProvider = ({ children }) => {
 		)
 	}
 
-	const resetEventState = () => {
-		localStorage.removeItem(`events-sent-${currentSimulationId}`)
-		setEventsSent({})
-	}
-
 	const previousPath = useRef('')
 
 	const trackEvent = useCallback(
-		(args) => {
+		(args: string[]) => {
 			// Send only if not already sent
 			const shouldSendEvent = !checkIfEventAlreadySent(args)
 			console.log({ args, shouldSendEvent })
@@ -117,7 +94,7 @@ export const TrackingProvider = ({ children }) => {
 			// https://gist.github.com/iansltx/18caf551baaa60b79206. We could probably
 			// do better but for now we don't track action of iOs Safari user in
 			// iFrame -- to avoid errors in the number of visitors in our stats.
-			if (iOSSafari && inIframe()) return
+			if (iOSSafari && getIsIframe()) return
 
 			// Pass a copy of the array to avoid mutation
 			window._paq.push([...args])
@@ -128,7 +105,7 @@ export const TrackingProvider = ({ children }) => {
 
 			if (typeTracking === 'trackEvent') {
 				// Mise à jour du state local et du localStorage
-				updateEventsSent(args)
+				handleUpdateEventsSent(args)
 
 				// Could be due to an adblocker not allowing the script to set this global attribute
 				if (!window.plausible) return
@@ -138,7 +115,7 @@ export const TrackingProvider = ({ children }) => {
 				})
 			}
 		},
-		[checkIfEventAlreadySent, updateEventsSent]
+		[checkIfEventAlreadySent, handleUpdateEventsSent]
 	)
 
 	const trackPageView = (loc: ReactRouterLocation) => {
@@ -162,7 +139,6 @@ export const TrackingProvider = ({ children }) => {
 			value={{
 				trackEvent,
 				trackPageView,
-				resetEventState,
 			}}
 		>
 			{children}
