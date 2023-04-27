@@ -12,7 +12,7 @@ import { DottedName } from 'Rules'
  * ]
  */
 
-// Mobile partage fin de score
+// Partage
 export const getMatomoEventShareMobile = (score: number) => [
 	'trackEvent',
 	'Partage',
@@ -20,8 +20,6 @@ export const getMatomoEventShareMobile = (score: number) => [
 	'Clic bouton "Partager mes résultats" sur mobile',
 	score,
 ]
-
-// Desktop partage fin de score
 export const getMatomoEventShareDesktop = (score: number) => [
 	'trackEvent',
 	'Partage',
@@ -30,38 +28,30 @@ export const getMatomoEventShareDesktop = (score: number) => [
 	score,
 ]
 
-// Click bouton je ne sais pas
+// Formulaire
 export const getMatomoEventClickNextQuestion = (currentQuestion: string) => [
 	'trackEvent',
 	'Formulaire',
 	'Clic bouton "Suivant"',
 	currentQuestion,
 ]
-
-// Click bouton je ne sais pas
 export const getMatomoEventClickDontKnow = (currentQuestion: string) => [
 	'trackEvent',
 	'Formulaire',
 	'Clic bouton "Je ne sais pas"',
 	currentQuestion,
 ]
-
-// Click help button in form
 export const getMatomoEventClickHelp = (dottedName: DottedName) => [
 	'trackEvent',
 	'Formulaire',
 	'Clic bouton "Aide" (?)',
 	dottedName,
 ]
-
-// Use Kilometer help
 export const matomoEventKilometerHelp = [
 	'trackEvent',
 	'Formulaire',
 	'Utilisation aide à la saisie km voiture',
 ]
-
-// Use amortissement avion
 export const getMatomoEventAmortissement = (dottedName: DottedName) => [
 	'trackEvent',
 	'Formulaire',
@@ -71,7 +61,7 @@ export const getMatomoEventAmortissement = (dottedName: DottedName) => [
 
 // TODO : Change language
 
-// Visites via iframe
+// Iframe
 export const getMatomoEventVisitViaIframe = (url: string) => [
 	'trackEvent',
 	'Iframe',
