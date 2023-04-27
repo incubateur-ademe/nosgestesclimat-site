@@ -71,8 +71,13 @@ export const getMatomoEventChangeRegion = (code: string) => [
 export const getMatomoEventVisitViaIframe = (url: string) => [
 	'trackEvent',
 	'Iframe',
-	'Visites via iframe',
+	'Visite via iframe',
 	url,
+]
+export const matomoEventInteractionIframe = [
+	'trackEvent',
+	'Iframe',
+	'Interaction avec iframe',
 ]
 
 // TODO : revoir la stratégie de tracking des actions

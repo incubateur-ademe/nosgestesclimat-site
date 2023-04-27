@@ -4,6 +4,7 @@ import React, { Suspense, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
+	matomoEventInteractionIframe,
 	matomoEventModeGroupeCTAStart,
 	matomoEventParcoursTestReprendre,
 	matomoEventParcoursTestStart,
@@ -22,6 +23,7 @@ import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvid
 import Meta from '../../components/utils/Meta'
 import { TrackingContext } from '../../contexts/MatomoContext'
 import useMediaQuery from '../../hooks/useMediaQuery'
+import { getIsIframe } from '../../utils'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 
@@ -75,9 +77,14 @@ export default () => {
 								onClick={() => {
 									if (hasData) {
 										trackEvent(matomoEventParcoursTestReprendre)
-									} else {
-										trackEvent(matomoEventParcoursTestStart)
+										return
 									}
+									// Envoi un évènement pour permettre de discriminer les iframes "fantômes"
+									// des iframes avec lesquelles il y a eu interaction
+									if (getIsIframe()) {
+										trackEvent(matomoEventInteractionIframe)
+									}
+									trackEvent(matomoEventParcoursTestStart)
 								}}
 							>
 								<CircleSVG progress={0} white />
@@ -92,7 +99,14 @@ export default () => {
 							<Link
 								to="/groupe"
 								className="ui__ button cta"
-								onClick={() => trackEvent(matomoEventModeGroupeCTAStart)}
+								onClick={() => {
+									// Envoi un évènement pour permettre de discriminer les iframes "fantômes"
+									// des iframes avec lesquelles il y a eu interaction
+									if (getIsIframe()) {
+										trackEvent(matomoEventInteractionIframe)
+									}
+									trackEvent(matomoEventModeGroupeCTAStart)
+								}}
 								data-cypress-id="as-a-group-link"
 							>
 								<img

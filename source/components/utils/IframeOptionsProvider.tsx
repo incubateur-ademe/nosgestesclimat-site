@@ -1,6 +1,7 @@
 import { createContext, useContext } from 'react'
 import { getMatomoEventVisitViaIframe } from '../../analytics/matomo-events'
 import { TrackingContext } from '../../contexts/MatomoContext'
+import { getIsIframe } from '../../utils'
 
 export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
 
@@ -9,7 +10,7 @@ const nullDecode = (string) =>
 
 export default function IframeOptionsProvider({ children }) {
 	const urlParams = new URLSearchParams(window.location.search)
-	const isIframe = window.self !== window.top
+	const isIframe = getIsIframe()
 	const isIframeParameterDefined = urlParams.get('iframe') !== null
 
 	const { trackEvent } = useContext(TrackingContext)
