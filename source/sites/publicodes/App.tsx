@@ -13,7 +13,6 @@ import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import { TrackingContext } from '../../contexts/MatomoContext'
-import { useFunnel } from '../../hooks/useFunnel'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
 import { AppState } from '../../reducers/rootReducer'
@@ -124,9 +123,6 @@ const Main = () => {
 
 	const { trackPageView } = useContext(TrackingContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
-
-	// Analytics
-	useFunnel()
 
 	useEffect(() => {
 		trackPageView(location)

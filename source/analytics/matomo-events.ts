@@ -102,3 +102,44 @@ export const getMatomoEventModeGroupeRoomCreation = (mode: string) => [
 	'Création salle',
 	mode,
 ]
+export const matomoEventModeGroupeCTAStart = [
+	'trackEvent',
+	'Mode Groupe',
+	'Clic CTA accueil',
+]
+
+// Parcours test
+export const matomoEventParcoursTestStart = [
+	'trackEvent',
+	'Parcours test',
+	'Clic CTA accueil',
+	'Faire le test',
+]
+export const matomoEventParcoursTestReprendre = [
+	'trackEvent',
+	'Parcours test',
+	'Clic CTA accueil',
+	'Reprendre mon test',
+]
+export const getMatomoEventParcoursTestTutorial = (
+	last: boolean,
+	index: number
+) => [
+	'trackEvent',
+	'Parcours test',
+	'Tutoriel',
+	last ? 'Passer' : `Étape ${index} passée`,
+]
+export const getMatomoEventParcoursTestCategoryStarted = (category: string) => [
+	'trackEvent',
+	'Parcours test',
+	'Catégorie démarrée',
+	category,
+]
+export const getMatomoEventParcoursTestOver = (bilan: number | undefined) => [
+	'trackEvent',
+	'Parcours test',
+	'Test terminé',
+	'Bilan carbone',
+	bilan || '',
+]

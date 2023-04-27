@@ -15,7 +15,11 @@ import {
 	situationSelector,
 } from 'Selectors/simulationSelectors'
 import { skipTutorial, validateWithDefaultValue } from '../../actions/actions'
-import { getMatomoEventClickDontKnow } from '../../analytics/matomo-events'
+import {
+	getMatomoEventClickDontKnow,
+	getMatomoEventParcoursTestCategoryStarted,
+	getMatomoEventParcoursTestOver,
+} from '../../analytics/matomo-events'
 import Meta from '../../components/utils/Meta'
 import { TrackingContext } from '../../contexts/MatomoContext'
 import useKeypress from '../../hooks/useKeyPress'
@@ -318,6 +322,35 @@ export default function Conversation({
 		orderByCategories.find(
 			({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
 		)
+
+	// We track the start of a new category
+	useEffect(() => {
+		if (questionCategory?.title) {
+			// Can get called only once for each category
+			trackEvent(
+				getMatomoEventParcoursTestCategoryStarted(
+					questionCategory?.title as string
+				)
+			)
+		}
+	}, [questionCategory?.title, trackEvent])
+
+	const bilan = engine
+		? Math.round(
+				parseFloat((engine?.evaluate('bilan')?.nodeValue as string) || '')
+		  )
+		: undefined
+
+	useEffect(() => {
+		if (noQuestionsLeft) {
+			// Cannot be sent several times, trackEvent filters duplicates
+			trackEvent(getMatomoEventParcoursTestOver(bilan))
+		}
+	}, [noQuestionsLeft, bilan, trackEvent])
+
+	if (noQuestionsLeft) {
+		return <SimulationEnding {...{ customEnd, customEndMessages }} />
+	}
 
 	const isCategoryFirstQuestion =
 		questionCategory &&

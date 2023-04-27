@@ -4,6 +4,11 @@ import React, { Suspense, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
+	matomoEventModeGroupeCTAStart,
+	matomoEventParcoursTestReprendre,
+	matomoEventParcoursTestStart,
+} from '../../analytics/matomo-events'
+import {
 	fluidLayoutMinWidth,
 	HeaderContent,
 	HeaderCTAs,
@@ -69,19 +74,9 @@ export default () => {
 								data-cypress-id="do-the-test-link"
 								onClick={() => {
 									if (hasData) {
-										trackEvent([
-											'trackEvent',
-											'NGC',
-											'Clic CTA accueil',
-											'Reprendre mon test',
-										])
+										trackEvent(matomoEventParcoursTestReprendre)
 									} else {
-										trackEvent([
-											'trackEvent',
-											'NGC',
-											'Clic CTA accueil',
-											'Faire le test',
-										])
+										trackEvent(matomoEventParcoursTestStart)
 									}
 								}}
 							>
@@ -97,14 +92,7 @@ export default () => {
 							<Link
 								to="/groupe"
 								className="ui__ button cta"
-								onClick={() =>
-									trackEvent([
-										'trackEvent',
-										'NGC',
-										'Clic CTA accueil',
-										'Faire le test à plusieurs',
-									])
-								}
+								onClick={() => trackEvent(matomoEventModeGroupeCTAStart)}
 								data-cypress-id="as-a-group-link"
 							>
 								<img

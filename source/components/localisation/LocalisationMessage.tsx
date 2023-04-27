@@ -121,12 +121,14 @@ export default () => {
 								regions: [...messagesRead, code],
 							})
 							// Nécéssaire ?
+							/*
 							trackEvent([
 								'trackEvent',
 								'I18N',
 								'Clic bannière localisation',
 								code,
 							])
+							*/
 						}}
 					>
 						<Trans>J'ai compris</Trans>
