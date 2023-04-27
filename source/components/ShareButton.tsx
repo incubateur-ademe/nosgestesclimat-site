@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { TrackingContext } from '../contexts/TrackingContext'
+import { TrackingContext } from '../contexts/MatomoContext'
 import ShareButtonIcon from './ShareButtonIcon'
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
 

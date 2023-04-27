@@ -15,7 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
-import { TrackingContext } from '../../../../contexts/TrackingContext'
+import { TrackingContext } from '../../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,

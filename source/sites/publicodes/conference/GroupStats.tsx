@@ -4,7 +4,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
-import { TrackingContext } from '../../../contexts/TrackingContext'
+import { TrackingContext } from '../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,

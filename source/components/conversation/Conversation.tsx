@@ -16,7 +16,7 @@ import {
 } from 'Selectors/simulationSelectors'
 import { skipTutorial, validateWithDefaultValue } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
-import { TrackingContext } from '../../contexts/TrackingContext'
+import { TrackingContext } from '../../contexts/MatomoContext'
 import useKeypress from '../../hooks/useKeyPress'
 import {
 	useNextQuestions,

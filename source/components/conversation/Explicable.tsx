@@ -2,7 +2,7 @@ import { explainVariable } from 'Actions/actions'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
-import { TrackingContext } from '../../contexts/TrackingContext'
+import { TrackingContext } from '../../contexts/MatomoContext'
 import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {

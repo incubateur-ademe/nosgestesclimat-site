@@ -1,7 +1,7 @@
 import { useContext, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import { useEngine } from '../components/utils/EngineContext'
-import { TrackingContext } from '../contexts/TrackingContext'
+import { TrackingContext } from '../contexts/MatomoContext'
 import { answeredQuestionsSelector } from '../selectors/simulationSelectors'
 import { useNextQuestions, useSimulationProgress } from './useNextQuestion'
 

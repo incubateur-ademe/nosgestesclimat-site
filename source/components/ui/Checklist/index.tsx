@@ -6,7 +6,7 @@ import React, { useContext, useEffect, useState } from 'react'
 import Animate from 'Components/ui/animate'
 import Checkbox from '../Checkbox'
 import './index.css'
-import { TrackingContext } from "../../../contexts/TrackingContext"
+import { TrackingContext } from "../../../contexts/MatomoContext"
 
 type CheckItemProps = {
 	title: React.ReactNode

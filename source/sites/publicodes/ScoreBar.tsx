@@ -7,7 +7,7 @@ import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
-import { TrackingContext } from '../../contexts/TrackingContext'
+import { TrackingContext } from '../../contexts/MatomoContext'
 import {
 	objectifsSelector,
 	situationSelector,

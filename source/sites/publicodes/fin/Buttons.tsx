@@ -4,7 +4,7 @@ import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 import { motion } from 'framer-motion'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { TrackingContext } from '../../../contexts/TrackingContext'
+import { TrackingContext } from '../../../contexts/MatomoContext'
 
 export const ActionButton = ({
 	text,

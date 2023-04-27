@@ -9,7 +9,7 @@ import { BrowserRouter } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
-import { TrackingProvider } from './contexts/TrackingContext'
+import { TrackingProvider } from './contexts/MatomoContext'
 import RulesProvider from './RulesProvider'
 import { inIframe } from './utils'
 

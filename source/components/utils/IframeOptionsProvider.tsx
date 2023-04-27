@@ -1,5 +1,5 @@
 import { createContext, useContext } from 'react'
-import { TrackingContext } from '../../contexts/TrackingContext'
+import { TrackingContext } from '../../contexts/MatomoContext'
 
 export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
 

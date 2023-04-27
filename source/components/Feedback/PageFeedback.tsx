@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import { TrackingContext } from '../../contexts/TrackingContext'
+import { TrackingContext } from '../../contexts/MatomoContext'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 import './Feedback.css'
 import Form from './FeedbackForm'

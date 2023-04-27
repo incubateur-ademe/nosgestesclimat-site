@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
-import { TrackingContext } from '../../../contexts/TrackingContext'
+import { TrackingContext } from '../../../contexts/MatomoContext'
 import { surveysURL } from './useDatabase'
 
 export default ({ mode, URLPath, room }) => {

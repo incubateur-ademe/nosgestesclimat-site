@@ -12,7 +12,7 @@ import {
 	splitName,
 } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
-import { TrackingContext } from '../../contexts/TrackingContext'
+import { TrackingContext } from '../../contexts/MatomoContext'
 import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
