@@ -1,15 +1,17 @@
+import { Trans, useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
 import Title from '../../components/Title'
 import Meta from '../../components/utils/Meta'
+import useScrollToTop from '../../hooks/useScrollToTop'
 import Action from './Action'
 import ActionPlus from './ActionPlus'
 import ActionsList from './ActionsList'
-import ScoreBar from './ScoreBar'
 import ListeActionPlus from './ListeActionPlus'
-import { Trans, useTranslation } from 'react-i18next'
+import ScoreBar from './ScoreBar'
 
 export default () => {
 	const { t } = useTranslation()
+	useScrollToTop()
 	return (
 		<>
 			<Meta
