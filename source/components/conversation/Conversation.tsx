@@ -37,7 +37,6 @@ import {
 	isPersonaSelector,
 	objectifsSelector,
 } from '../../selectors/simulationSelectors'
-import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelector'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
@@ -111,32 +110,8 @@ export default function Conversation({
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const tracking = useSelector((state) => state.tracking)
-
-	const enquête = useSelector(enquêteSelector)
-
-	useEffect(() => {
-		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
-			trackEvent(['trackEvent', 'NGC', '1ère réponse au bilan'])
-		}
-	}, [trackEvent, previousAnswers])
-
 	const progress = useSimulationProgress()
 	const isPersona = useSelector(isPersonaSelector)
-
-	useEffect(() => {
-		// This will help you judge if the "A terminé la simulation" event has good numbers
-		if (!tracking.progress90EventFired && progress > 0.9 && !isPersona) {
-			console.log('90% réponse au bilan')
-			trackEvent(['trackEvent', 'NGC', 'Progress > 90%'])
-			dispatch(setTrackingVariable('progress90EventFired', true))
-		}
-
-		if (!tracking.progress50EventFired && progress > 0.5 && !isPersona) {
-			console.log('50% réponse au bilan')
-			trackEvent(['trackEvent', 'NGC', 'Progress > 50%'])
-			dispatch(setTrackingVariable('progress50EventFired', true))
-		}
-	}, [previousAnswers.length, trackEvent, tracking.firstQuestionEventFired])
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
@@ -321,12 +296,12 @@ export default function Conversation({
 
 	useEffect(() => {
 		// This will help you judge if the "A terminé la simulation" event has good numbers
-		if (!tracking.progress90EventFired && progress > 0.9) {
+		if (!tracking.progress90EventFired && progress > 0.9 && !isPersona) {
 			trackEvent(matomoEvent90PercentProgress)
 			dispatch(setTrackingVariable('progress90EventFired', true))
 		}
 
-		if (!tracking.progress50EventFired && progress > 0.5) {
+		if (!tracking.progress50EventFired && progress > 0.5 && !isPersona) {
 			trackEvent(matomoEvent50PercentProgress)
 			dispatch(setTrackingVariable('progress50EventFired', true))
 		}
@@ -336,6 +311,7 @@ export default function Conversation({
 		trackEvent,
 		tracking.progress50EventFired,
 		tracking.progress90EventFired,
+		isPersona,
 	])
 
 	const bilan = engine
