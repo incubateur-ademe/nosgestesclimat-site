@@ -15,6 +15,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
+import {
+	matomoEventKilometerHelpClickClose,
+	matomoEventKilometerHelpClickOpen,
+} from '../../../../analytics/matomo-events'
 import { MatomoContext } from '../../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
@@ -181,10 +185,12 @@ export default function KmHelp({
 						isFormOpen
 							? () => {
 									setIsFormOpen(false)
+									trackEvent(matomoEventKilometerHelpClickOpen)
 							  }
 							: () => {
 									setIsFormOpen(true)
 									setFinalValue(Math.round(+sum))
+									trackEvent(matomoEventKilometerHelpClickClose)
 							  }
 					}
 				/>

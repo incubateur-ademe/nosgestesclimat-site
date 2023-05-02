@@ -52,6 +52,16 @@ export const matomoEventKilometerHelp = [
 	'Formulaire',
 	'Utilisation aide à la saisie km voiture',
 ]
+export const matomoEventKilometerHelpClickOpen = [
+	'trackEvent',
+	'Aide saisie km',
+	'Ouvre aide à la saisie km voiture',
+]
+export const matomoEventKilometerHelpClickClose = [
+	'trackEvent',
+	'Aide saisie km',
+	'Ferme aide à la saisie km voiture',
+]
 export const getMatomoEventAmortissement = (dottedName: DottedName) => [
 	'trackEvent',
 	'Formulaire',
