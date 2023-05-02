@@ -39,7 +39,7 @@ export const MatomoContext = createContext<MatomoContextType>({
 	trackPageView: () => {},
 })
 
-export const TrackingProvider = ({ children }) => {
+export const MatomoProvider = ({ children }) => {
 	const dispatch = useDispatch()
 
 	const simulation = useSelector(
