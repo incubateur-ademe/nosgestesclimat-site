@@ -21,7 +21,6 @@ import {
 } from '../../actions/actions'
 import {
 	getMatomoEventClickDontKnow,
-	getMatomoEventParcoursTestCategoryStarted,
 	getMatomoEventParcoursTestOver,
 	matomoEvent50PercentProgress,
 	matomoEvent90PercentProgress,
@@ -305,45 +304,13 @@ export default function Conversation({
 
 	const noQuestionsLeft = !nextQuestions.length
 
-	const bilan = Math.round(engine.evaluate('bilan').nodeValue)
-
-	useEffect(() => {
-		if (!endEventFired && noQuestionsLeft && !isPersona) {
-			trackEvent([
-				'trackEvent',
-				'NGC',
-				'A terminé la simulation',
-				'bilan',
-				bilan,
-			])
-			dispatch(setTrackingVariable('endEventFired', true))
-		}
-	}, [endEventFired, noQuestionsLeft])
-
-	if (noQuestionsLeft) {
-		return <SimulationEnding {...{ customEnd, customEndMessages }} />
-	}
+	const endEventFired = tracking.endEventFired
 
 	const questionCategory =
 		orderByCategories &&
 		orderByCategories.find(
 			({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
 		)
-
-	// We track the start of a new category
-	useEffect(() => {
-		if (questionCategory?.title) {
-			// Can get called only once for each category
-			trackEvent(
-				getMatomoEventParcoursTestCategoryStarted(
-					questionCategory?.title as string
-				)
-			)
-		}
-	}, [questionCategory?.title, trackEvent])
-
-	const tracking = useSelector((state) => state.tracking)
-	const progress = useSimulationProgress()
 
 	useEffect(() => {
 		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
@@ -378,11 +345,15 @@ export default function Conversation({
 		: undefined
 
 	useEffect(() => {
-		if (noQuestionsLeft) {
+		if (!endEventFired && noQuestionsLeft && !isPersona) {
 			// Cannot be sent several times, trackEvent filters duplicates
 			trackEvent(getMatomoEventParcoursTestOver(bilan))
 		}
-	}, [noQuestionsLeft, bilan, trackEvent])
+	}, [noQuestionsLeft, bilan, trackEvent, endEventFired, isPersona])
+
+	if (noQuestionsLeft) {
+		return <SimulationEnding {...{ customEnd, customEndMessages }} />
+	}
 
 	if (noQuestionsLeft) {
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />

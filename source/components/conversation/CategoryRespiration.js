@@ -1,6 +1,8 @@
 import { motion } from 'framer-motion'
-import { useEffect, useRef } from 'react'
+import { useContext, useEffect, useRef } from 'react'
 import { Trans } from 'react-i18next'
+import { getMatomoEventParcoursTestCategoryStarted } from '../../analytics/matomo-events'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import useKeypress from '../../hooks/useKeyPress'
 import SafeCategoryImage from '../SafeCategoryImage'
 
@@ -42,6 +44,8 @@ const sidebar = {
 export default ({ dismiss, questionCategory }) => {
 	const containerRef = useRef(null)
 	const { width } = useDimensions(containerRef)
+
+	const { trackEvent } = useContext(MatomoContext)
 
 	useKeypress('Enter', false, dismiss, 'keyup', [])
 
@@ -100,7 +104,14 @@ export default ({ dismiss, questionCategory }) => {
 				<button
 					className="ui__ plain button attention"
 					data-cypress-id="start-button"
-					onClick={dismiss}
+					onClick={(e) => {
+						// We track the start of a new category
+						// Can get called only once for each category
+						trackEvent(
+							getMatomoEventParcoursTestCategoryStarted(questionCategory?.title)
+						)
+						dismiss(e)
+					}}
 				>
 					<Trans>Commencer</Trans>
 				</button>

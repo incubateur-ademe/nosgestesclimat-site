@@ -43,7 +43,7 @@ export const TrackingProvider = ({ children }) => {
 	const dispatch = useDispatch()
 
 	const simulation = useSelector(
-		(state: { eventsSent: EventObjectType }) => state.simulation
+		(state: { simulation: EventObjectType }) => state.simulation
 	)
 
 	const { eventsSent } = simulation || {}
@@ -53,7 +53,6 @@ export const TrackingProvider = ({ children }) => {
 		(event: string[]) => {
 			// Allow multiple calls for some events
 			if (allowedMultipleCallsEvents.includes(event.toString())) return false
-			console.log(eventsSent, event.toString())
 			return eventsSent?.[`${event.toString()}`]
 		},
 		[eventsSent]
