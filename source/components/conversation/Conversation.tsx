@@ -288,11 +288,21 @@ export default function Conversation({
 		)
 
 	useEffect(() => {
-		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
+		if (
+			!tracking.firstQuestionEventFired &&
+			previousAnswers.length >= 1 &&
+			!isPersona
+		) {
 			trackEvent(matomoEventFirstAnswer)
 			dispatch(setTrackingVariable('firstQuestionEventFired', true))
 		}
-	}, [dispatch, previousAnswers, trackEvent, tracking.firstQuestionEventFired])
+	}, [
+		dispatch,
+		previousAnswers,
+		trackEvent,
+		tracking.firstQuestionEventFired,
+		isPersona,
+	])
 
 	useEffect(() => {
 		// This will help you judge if the "A terminé la simulation" event has good numbers
