@@ -3,11 +3,11 @@ import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import { getMatomoEventClickHelp } from '../../analytics/matomo-events'
-import { TrackingContext } from '../../contexts/MatomoContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const explained = useSelector((state: RootState) => state.explainedVariable)
 	const dispatch = useDispatch()
 

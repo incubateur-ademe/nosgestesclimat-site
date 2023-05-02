@@ -16,7 +16,7 @@ const iOSSafari =
 	(!!/iPad/i.exec(ua) || !!/iPhone/i.exec(ua)) &&
 	!!/WebKit/i.exec(ua) &&
 	!/CriOS/i.exec(ua)
-interface TrackingContextType {
+interface MatomoContextType {
 	trackEvent: (args: any[]) => void
 	trackPageView: (location: ReactRouterLocation) => void
 }
@@ -34,7 +34,7 @@ declare global {
 
 const allowedMultipleCallsEvents = [matomoEventParcoursTestReprendre.toString()]
 
-export const TrackingContext = createContext<TrackingContextType>({
+export const MatomoContext = createContext<MatomoContextType>({
 	trackEvent: () => {},
 	trackPageView: () => {},
 })
@@ -135,13 +135,13 @@ export const TrackingProvider = ({ children }) => {
 	}
 
 	return (
-		<TrackingContext.Provider
+		<MatomoContext.Provider
 			value={{
 				trackEvent,
 				trackPageView,
 			}}
 		>
 			{children}
-		</TrackingContext.Provider>
+		</MatomoContext.Provider>
 	)
 }

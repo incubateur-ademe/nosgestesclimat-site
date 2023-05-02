@@ -21,7 +21,7 @@ import {
 	getMatomoEventParcoursTestOver,
 } from '../../analytics/matomo-events'
 import Meta from '../../components/utils/Meta'
-import { TrackingContext } from '../../contexts/MatomoContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import useKeypress from '../../hooks/useKeyPress'
 import {
 	useNextQuestions,
@@ -59,7 +59,7 @@ export default function Conversation({
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const objectifs = useSelector(objectifsSelector)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue

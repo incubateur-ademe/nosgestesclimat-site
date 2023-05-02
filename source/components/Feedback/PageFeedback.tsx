@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import { TrackingContext } from '../../contexts/MatomoContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 import './Feedback.css'
 import Form from './FeedbackForm'
@@ -33,7 +33,7 @@ export default function PageFeedback({
 	customEventName,
 }: PageFeedbackProps) {
 	const location = useLocation()
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const [state, setState] = useState({
 		showForm: false,
 		showThanks: false,

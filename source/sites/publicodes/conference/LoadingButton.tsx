@@ -3,11 +3,11 @@ import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { getMatomoEventModeGroupeRoomCreation } from '../../../analytics/matomo-events'
-import { TrackingContext } from '../../../contexts/MatomoContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 import { surveysURL } from './useDatabase'
 
 export default ({ mode, URLPath, room }) => {
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const [clicked, setClicked] = useState(false)
 	const [text, setText] = useState(null)

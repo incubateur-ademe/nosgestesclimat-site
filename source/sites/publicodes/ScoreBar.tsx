@@ -7,7 +7,7 @@ import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
-import { TrackingContext } from '../../contexts/MatomoContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import {
 	objectifsSelector,
 	situationSelector,
@@ -40,7 +40,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const { t } = useTranslation()
 	const [openExplanation, setOpenExplanation] = useState(false)
 
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const situationLength = Object.keys(situation).length

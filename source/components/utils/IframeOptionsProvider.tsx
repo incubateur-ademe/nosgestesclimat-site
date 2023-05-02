@@ -1,6 +1,6 @@
 import { createContext, useContext } from 'react'
 import { getMatomoEventVisitViaIframe } from '../../analytics/matomo-events'
-import { TrackingContext } from '../../contexts/MatomoContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import { getIsIframe } from '../../utils'
 
 export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
@@ -13,7 +13,7 @@ export default function IframeOptionsProvider({ children }) {
 	const isIframe = getIsIframe()
 	const isIframeParameterDefined = urlParams.get('iframe') !== null
 
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	// Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
 	// on essaie de récupérer l'URL du referrer

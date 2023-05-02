@@ -4,7 +4,7 @@ import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 import { motion } from 'framer-motion'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { TrackingContext } from '../../../contexts/MatomoContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 
 export const ActionButton = ({
 	text,
@@ -14,7 +14,7 @@ export const ActionButton = ({
 	url = '/actions',
 	large,
 }) => {
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	return (
 		<Link

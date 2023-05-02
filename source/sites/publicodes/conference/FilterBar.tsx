@@ -7,10 +7,10 @@ import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
 import { matomoEventModeGroupeFiltres } from '../../../analytics/matomo-events'
-import { TrackingContext } from '../../../contexts/MatomoContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 
 export default ({ threshold, setThreshold, setContextFilter }) => {
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const [visible, setVisible] = useState(false)
 	const survey = useSelector((state) => state.survey)

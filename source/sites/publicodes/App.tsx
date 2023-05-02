@@ -12,7 +12,7 @@ import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
-import { TrackingContext } from '../../contexts/MatomoContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
 import { AppState } from '../../reducers/rootReducer'
@@ -121,7 +121,7 @@ const Main = () => {
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
-	const { trackPageView } = useContext(TrackingContext)
+	const { trackPageView } = useContext(MatomoContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {

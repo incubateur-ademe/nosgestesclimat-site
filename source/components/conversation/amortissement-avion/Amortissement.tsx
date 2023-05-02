@@ -8,7 +8,7 @@ import {
 	updateSituation,
 } from '../../../actions/actions'
 import { getMatomoEventAmortissement } from '../../../analytics/matomo-events'
-import { TrackingContext } from '../../../contexts/MatomoContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 import emoji from '../../emoji'
 import { formatFloat } from '../../utils/formatFloat'
 import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
@@ -46,7 +46,7 @@ export default function Amortissement({
 }: Props) {
 	const { t } = useTranslation()
 
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const dispatch = useDispatch()
 

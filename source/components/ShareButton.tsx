@@ -5,7 +5,7 @@ import {
 	getMatomoEventShareDesktop,
 	getMatomoEventShareMobile,
 } from '../analytics/matomo-events'
-import { TrackingContext } from '../contexts/MatomoContext'
+import { MatomoContext } from '../contexts/MatomoContext'
 import ShareButtonIcon from './ShareButtonIcon'
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
 
@@ -24,7 +24,7 @@ export default ({
 	label: string
 	score: number
 }) => {
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const { t } = useTranslation()
 
 	return navigator.share ? (

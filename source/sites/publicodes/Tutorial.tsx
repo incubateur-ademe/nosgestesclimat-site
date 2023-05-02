@@ -12,7 +12,7 @@ import {
 } from '../../analytics/matomo-events'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
-import { TrackingContext } from '../../contexts/MatomoContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import useKeypress from '../../hooks/useKeyPress'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
@@ -50,7 +50,7 @@ export default ({}) => {
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache

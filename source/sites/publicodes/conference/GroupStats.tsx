@@ -5,7 +5,7 @@ import { useSelector } from 'react-redux'
 import { getMatomoEventModeGroupeRealtimeActivation } from '../../../analytics/matomo-events'
 import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
-import { TrackingContext } from '../../../contexts/MatomoContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -38,7 +38,7 @@ export default ({
 	setThreshold,
 	existContext,
 }) => {
-	const { trackEvent } = useContext(TrackingContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
