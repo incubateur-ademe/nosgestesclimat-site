@@ -9,14 +9,23 @@ import SurveyBarLazy from './SurveyBarLazy'
 
 export default () => {
 	const location = useLocation()
-	if (
-		!['/simulateur/bilan', '/groupe', '/profil', '/sondage'].some((el) =>
-			location.pathname.includes(el)
-		)
-	)
-		return null
+
 	const conference = useSelector((state) => state.conference)
 	const survey = useSelector((state) => state.survey)
+
+	if (
+		![
+			'/simulateur/bilan',
+			'/groupe',
+			'/profil',
+			'/sondage',
+			'/conf%C3%A9rence',
+		].some((el) => {
+			return location.pathname.includes(el)
+		})
+	) {
+		return null
+	}
 
 	return (
 		<>
@@ -78,8 +87,8 @@ const GroupModeMenuEntry = ({ groupMode, room, children }) => {
 export const GroupModeMenuEntryContent = ({
 	room,
 	result,
-	rawUserNumber,
-	completedTestNumber,
+	rawUsersNumber,
+	completedTestsNumber,
 }) => {
 	const { t } = useTranslation()
 	return (
@@ -140,16 +149,16 @@ export const GroupModeMenuEntryContent = ({
 					</span>
 				)}
 				<CountSection>
-					{rawUserNumber != null && (
-						<span title={t('Nombre total de participants')}>
-							<EmojiStyle>👥</EmojiStyle>
-							<CountDisc color="#55acee">{rawUserNumber}</CountDisc>
-						</span>
-					)}
-					{completedTestNumber != null && (
+					{completedTestsNumber != null && (
 						<span title={t('Nombre de tests terminés')}>
 							<EmojiStyle>✅</EmojiStyle>
-							<CountDisc color="#78b159">{completedTestNumber}</CountDisc>
+							<CountDisc color="#78b159">{completedTestsNumber}</CountDisc>
+						</span>
+					)}
+					{rawUsersNumber != null && (
+						<span title={t('Nombre total de participants')}>
+							<EmojiStyle>👥</EmojiStyle>
+							<CountDisc color="#55acee">{rawUsersNumber}</CountDisc>
 						</span>
 					)}
 				</CountSection>

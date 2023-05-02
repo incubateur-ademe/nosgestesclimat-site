@@ -1,15 +1,15 @@
-export const defaultTotalValue = '8,3'
+// TODO: should be in the same file as the test
+export const defaultTotalValue = '8,4'
 
-export const categories = [
-	{ name: 'Transport', questions: 18 },
-	{ name: 'Alimentation', questions: 10 },
-	{ name: 'Logement', questions: 9 },
-	{ name: 'Divers', questions: 8 },
-	{ name: 'Services Public', questions: 1 },
-]
-
-export function walkthroughTest(persona) {
+export async function walkthroughTest(persona) {
 	cy.wait(100)
+
+	cy.get('body').then((body) => {
+		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
+			// Waiting for complete rules parsing
+			cy.wait(4000)
+	}})
+
 	cy.get('body').then((body) => {
 		if (body.find('section').length > 0) {
 			if (body.find('input').length > 0) {
@@ -22,14 +22,19 @@ export function walkthroughTest(persona) {
 						} else {
 							if (type === 'text') {
 								cy.get(`input[id="${id}"]`).type(persona[id])
-							} else {
+						} else {
 								cy.get(`input[name="${id}"]`).check(persona[id])
 							}
 						}
 						cy.wait(100)
+						if (body.find('.hide')?.length > 0) {
+							// Close the notification window
+							cy.get('.hide').last().click()
+						}
 					}
 				})
 			}
+
 			cy.get('section button').last().click()
 			walkthroughTest(persona)
 		}

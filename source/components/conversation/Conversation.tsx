@@ -22,7 +22,10 @@ import {
 } from '../../actions/actions'
 import Meta from '../../components/utils/Meta'
 import { TrackerContext } from '../../contexts/TrackerContext'
-import { objectifsSelector } from '../../selectors/simulationSelectors'
+import {
+	isPersonaSelector,
+	objectifsSelector,
+} from '../../selectors/simulationSelectors'
 import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelector'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
@@ -111,16 +114,17 @@ export default function Conversation({
 	}, [tracker, previousAnswers])
 
 	const progress = useSimulationProgress()
+	const isPersona = useSelector(isPersonaSelector)
 
 	useEffect(() => {
 		// This will help you judge if the "A terminé la simulation" event has good numbers
-		if (!tracking.progress90EventFired && progress > 0.9) {
+		if (!tracking.progress90EventFired && progress > 0.9 && !isPersona) {
 			console.log('90% réponse au bilan')
 			tracker.push(['trackEvent', 'NGC', 'Progress > 90%'])
 			dispatch(setTrackingVariable('progress90EventFired', true))
 		}
 
-		if (!tracking.progress50EventFired && progress > 0.5) {
+		if (!tracking.progress50EventFired && progress > 0.5 && !isPersona) {
 			console.log('50% réponse au bilan')
 			tracker.push(['trackEvent', 'NGC', 'Progress > 50%'])
 			dispatch(setTrackingVariable('progress50EventFired', true))
@@ -296,7 +300,7 @@ export default function Conversation({
 	const bilan = Math.round(engine.evaluate('bilan').nodeValue)
 
 	useEffect(() => {
-		if (!endEventFired && noQuestionsLeft) {
+		if (!endEventFired && noQuestionsLeft && !isPersona) {
 			tracker.push([
 				'trackEvent',
 				'NGC',

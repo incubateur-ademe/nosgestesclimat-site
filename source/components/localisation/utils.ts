@@ -7,37 +7,93 @@
 */
 
 import { useSelector } from 'react-redux'
+import { AppState } from '../../reducers/rootReducer'
 import frenchCountryPrepositions from './frenchCountryPrepositions.yaml'
 
-export const defaultModel = 'FR'
+export type RegionCode = string
 
-export const supportedRegion = (inputCode) => {
-	const supportedRegions = useSelector((state) => state.supportedRegions)
+export type RegionAuthor = {
+	nom: string
+	url?: string
+}
+
+export type RegionParams = {
+	code: RegionCode
+	nom: string
+	gentilé: string
+	authors?: RegionAuthor[]
+	drapeau?: string
+}
+
+export type Region = {
+	fr: RegionParams
+	en: RegionParams
+}
+
+export type SupportedRegions = {
+	[code: RegionCode]: Region
+}
+
+export type Localisation = {
+	country: { code: RegionCode; name: string }
+	userChosen: boolean
+}
+
+export const defaultModelRegionCode = 'FR'
+
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
+export function useSupportedRegion(
+	inputCode: RegionCode | undefined
+): Region | undefined {
+	const supportedRegions: SupportedRegions = useSelector(
+		(state: AppState) => state.supportedRegions
+	)
+
+	// Check for undefined AFTER useSelector, because hooks can't be called conditionally
+	if (inputCode === undefined) {
+		return undefined
+	}
+
 	return supportedRegions[inputCode]
 }
 
-export const getFlag = (inputCode) => {
-	const regionParams = supportedRegion(inputCode)
-	const code = regionParams?.fr?.drapeau ?? inputCode
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
+export function useFlag(inputCode: RegionCode | undefined): string | undefined {
+	const regionParams = useSupportedRegion(inputCode)
+	const code = regionParams?.fr.drapeau ?? inputCode
 	return getFlagImgSrc(code)
 }
 
-export const getModelFlag = (inputCode) => {
-	const regionParams = supportedRegion(inputCode)
-	const code = regionParams ? regionParams?.drapeau ?? inputCode : defaultModel
-	return getFlagImgSrc(code)
-}
-
-export const getFlagImgSrc = (inputCode) =>
+export function getFlagImgSrc(
+	inputCode: RegionCode | undefined
+): string | undefined {
 	//	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
 	//	was down 27/09
-	inputCode &&
-	`https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
+	if (!inputCode) {
+		return undefined
+	}
+	return `https://cdn.jsdelivr.net/npm/svg-country-flags@1.2.10/svg/${inputCode.toLowerCase()}.svg`
+}
 
-export const getCountryNameInCurrentLang = (localisation) => {
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
+export function useCountryNameInCurrentLang(
+	localisation: Localisation | undefined
+): string | undefined {
 	// this function enables to adapt messages written in French according to the country detected, including French prepositions subtelties.
-	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
-	const regionParams = supportedRegion(localisation?.country?.code)
+	const currentLang = useSelector(
+		(state: AppState) => state.currentLang
+	).toLowerCase()
+
+	const regionParams = useSupportedRegion(localisation?.country?.code)
 	if (!localisation) {
 		return undefined
 	}
@@ -55,8 +111,16 @@ export const getCountryNameInCurrentLang = (localisation) => {
 		: localisation?.country?.name
 }
 
-export const getCurrentRegionCode = (localisation) => {
-	return supportedRegion(localisation?.country?.code)
-		? localisation?.country?.code
-		: defaultModel
+/**
+ * This function is not pure, it uses useSelector, dont't call it
+ * conditionally !!
+ */
+export function useCurrentRegionCode(
+	localisation: Localisation | undefined
+): RegionCode {
+	const code = localisation?.country?.code
+	if (useSupportedRegion(code)) {
+		return code ?? defaultModelRegionCode
+	}
+	return defaultModelRegionCode
 }

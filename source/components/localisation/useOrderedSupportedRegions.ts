@@ -1,9 +1,14 @@
 import { useSelector } from 'react-redux'
+import { AppState } from '../../reducers/rootReducer'
 
 export default () => {
-	const currentLang = useSelector((state) => state.currentLang).toLowerCase()
+	const currentLang = useSelector(
+		(state: AppState) => state.currentLang
+	).toLowerCase()
 
-	const supportedRegions = useSelector((state) => state.supportedRegions)
+	const supportedRegions = useSelector(
+		(state: AppState) => state.supportedRegions
+	)
 	// Regions displayed sorted alphabetically
 	const orderedSupportedRegions = Object.fromEntries(
 		Object.entries(supportedRegions)

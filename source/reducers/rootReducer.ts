@@ -2,7 +2,11 @@ import { Action } from 'Actions/actions'
 import { omit } from 'Source/utils'
 
 import reduceReducers from 'reduce-reducers'
-import { combineReducers, Reducer } from 'redux'
+import { CombinedState, combineReducers, Reducer } from 'redux'
+import {
+	Localisation,
+	SupportedRegions,
+} from '../components/localisation/utils'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
 import { SavedSimulationList } from '../selectors/storageSelectors'
@@ -191,7 +195,10 @@ function supportedRegions(state = {}, { type, supportedRegions }) {
 	return type === 'SET_SUPPORTED_REGIONS' ? supportedRegions : state
 }
 
-function survey(state = null, { type, room, answers, contextFile }) {
+function survey(
+	state = null,
+	{ type, room, answers, contextFile, contextRules }
+) {
 	if (type === 'UNSET_SURVEY') return {}
 	if (type === 'SET_SURVEY') {
 		if (state?.room === room) return state
@@ -199,6 +206,7 @@ function survey(state = null, { type, room, answers, contextFile }) {
 			room,
 			answers: {},
 			contextFile: state?.contextFile,
+			contextRules: state?.contextRules,
 		}
 	}
 	if (type === 'ADD_SURVEY_CONTEXT') {
@@ -206,6 +214,15 @@ function survey(state = null, { type, room, answers, contextFile }) {
 			room: state?.room,
 			answers: state?.answers,
 			contextFile,
+			contextRules: state?.contextRules,
+		}
+	}
+	if (type === 'ADD_CONTEXT_RULES') {
+		return {
+			room: state?.room,
+			answers: state?.answers,
+			contextFile: state?.contextFile,
+			contextRules,
 		}
 	}
 	if (type === 'ADD_SURVEY_ANSWERS') {
@@ -216,6 +233,7 @@ function survey(state = null, { type, room, answers, contextFile }) {
 				state.answers
 			),
 			contextFile: state?.contextFile,
+			contextRules: state?.contextRules,
 		}
 	} else return state
 }
@@ -284,12 +302,9 @@ function storedAmortissementAvion(
 ) {
 	if (type === 'SET_AMORTISSEMENT') {
 		return {
-			...state,
-			storedAmortissementAvion: {
-				...(state?.storedAmortissementAvion || {}),
-				[amortissementAvionObject.dottedName]:
-					amortissementAvionObject.amortissementObject,
-			},
+			...(state || {}),
+			[amortissementAvionObject.dottedName]:
+				amortissementAvionObject.amortissementObject,
 		}
 	} else if (type === 'RESET_AMORTISSEMENT') {
 		return {}
@@ -320,21 +335,19 @@ function engineState(state = defaultEngineState, { type, to }: EngineAction) {
 
 const defaultToNull = (arg) => arg ?? null
 
-type LocalisationAction = {
-	type: string
-	country: object
-	userChosen: boolean
-}
+type LocalisationAction = { type: string } & Localisation
 
 function localisation(
 	state = null,
-	{ type, localisationData }: LocalisationAction
-) {
+	{ type, country, userChosen }: LocalisationAction
+): Localisation | null {
 	if (type === 'SET_LOCALISATION') {
-		return localisationData
+		return { country, userChosen }
 	} else if (type === 'RESET_LOCALISATION') {
 		return null
-	} else return state
+	} else {
+		return state
+	}
 }
 function sessionLocalisationBannersRead(state = [], { type, regions }) {
 	if (type === 'SET_LOCALISATION_BANNERS_READ') {
@@ -385,7 +398,37 @@ function currentSimulationId(
 	}
 }
 
-const mainReducer = (state: any, action: Action) =>
+export type AppState = CombinedState<{
+	explainedVariable: any
+	simulation: Simulation | null
+	previousSimulation: any
+	simulations: SavedSimulationList
+	currentSimulationId: string | null
+	situationBranch: any
+	rules: any
+	actionChoices: any
+	conference: never
+	survey: never
+	iframeOptions: any
+	tutorials: {}
+	storedTrajets: any
+	storedAmortissementAvion: {}
+	thenRedirectTo: any
+	tracking: {
+		endEventFired: boolean
+		firstQuestionEventFired: boolean
+		progress50EventFired: boolean
+		progress90EventFired: boolean
+	}
+	localisation: Localisation | undefined
+	sessionLocalisationBannersRead: any
+	pullRequestNumber: any
+	engineState: never
+	currentLang: any
+	supportedRegions: SupportedRegions
+}>
+
+const mainReducer = (state: AppState, action: Action) =>
 	combineReducers({
 		explainedVariable,
 		// We need to access the `rules` in the simulation reducer

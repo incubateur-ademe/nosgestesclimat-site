@@ -23,7 +23,7 @@ module.exports.default = {
 			Source: path.resolve('source/'),
 			Actions: path.resolve('source/actions/'),
 			Components: path.resolve('source/components/'),
-			Pages: path.resolve('source/pages/'),
+			Pages: path.resolve('source/sites/publicodes/pages/'),
 			Selectors: path.resolve('source/selectors/'),
 			Reducers: path.resolve('source/reducers/'),
 			Types: path.resolve('source/types/'),

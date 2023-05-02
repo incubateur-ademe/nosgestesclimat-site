@@ -11,7 +11,6 @@ import {
 	LandingLayout,
 } from '../../components/LandingLayout'
 import NewsBanner from '../../components/NewsBanner'
-import PartnerBanner from '../../components/PartnerBanner'
 import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
@@ -37,6 +36,8 @@ export default () => {
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 	const { isIframe } = useContext(IframeOptionsContext)
 
+	const { hasData } = useProfileData()
+
 	return (
 		<LandingLayout>
 			<Meta
@@ -52,7 +53,7 @@ export default () => {
 							Connaissez-vous votre empreinte sur le climat ?
 						</Trans>
 					</h1>
-					{mobile && <Illustration aira-hidden="true" />}
+					{mobile && <Illustration aria-hidden="true" />}
 					<p>
 						<Trans i18nKey={'sites.publicodes.Landing.description'}>
 							En 10 minutes, obtenez une estimation de votre empreinte carbone
@@ -64,27 +65,40 @@ export default () => {
 							<Link
 								to="/simulateur/bilan"
 								className="ui__ plain button cta"
-								css={``}
+								css={hasData ? `padding: 1rem!important;` : ``}
 								data-cypress-id="do-the-test-link"
-								onClick={() =>
-									tracker.push([
-										'trackEvent',
-										'NGC',
-										'Clic CTA accueil',
-										'Faire le test',
-									])
-								}
+								onClick={() => {
+									if (hasData) {
+										tracker?.push([
+											'trackEvent',
+											'NGC',
+											'Clic CTA accueil',
+											'Reprendre mon test',
+										])
+									} else {
+										tracker?.push([
+											'trackEvent',
+											'NGC',
+											'Clic CTA accueil',
+											'Faire le test',
+										])
+									}
+								}}
 							>
 								<CircleSVG progress={0} white />
 								<span>
-									<Trans>Faire le test</Trans>
+									{hasData ? (
+										<Trans>Reprendre mon test</Trans>
+									) : (
+										<Trans>Faire le test</Trans>
+									)}
 								</span>
 							</Link>
 							<Link
 								to="/groupe"
 								className="ui__ button cta"
 								onClick={() =>
-									tracker.push([
+									tracker?.push([
 										'trackEvent',
 										'NGC',
 										'Clic CTA accueil',
@@ -95,6 +109,7 @@ export default () => {
 							>
 								<img
 									src="/images/silhouettes.svg"
+									alt=""
 									width="100"
 									height="100"
 									css="width: 2rem; height: auto"
@@ -109,16 +124,15 @@ export default () => {
 							css={`
 								display: flex;
 								align-items: center;
-								justify-content: center;
+								justify-content: space-between;
 								flex-wrap: wrap;
 							`}
 						>
-							<PartnerBanner />
 							<NewsBanner />
 						</div>
 					</div>
 				</HeaderContent>
-				{!mobile && <Illustration aira-hidden="true" />}
+				{!mobile && <Illustration aria-hidden="true" />}
 			</LandingHeaderWrapper>
 
 			<div
@@ -156,6 +170,7 @@ export default () => {
 						width="120"
 						height="60"
 						src="https://datagir.ademe.fr/logo.jpg"
+						alt="Logo de Datagir"
 					/>
 				</a>
 				<a href="https://abc-transitionbascarbone.fr">
@@ -186,9 +201,11 @@ const ProfileLink = () => {
 		<animate.appear delay="1">
 			<div
 				css={`
-					display: flex;
-					justify-content: center;
-					margin-top: 1rem;
+					margin-top: 0.25rem;
+					@media (max-width: 800px) {
+						display: flex;
+						justify-content: center;
+					}
 				`}
 			>
 				<Link
@@ -202,16 +219,18 @@ const ProfileLink = () => {
 					`}
 				>
 					<img
-						aria-hidden="true"
+						alt=""
 						src={openmojiURL('profile')}
-						css="width: 1.5rem"
+						css={`
+							width: 1.5rem;
+						`}
 					/>
 					<span
 						css={`
 							margin-left: 0.5rem;
 						`}
 					>
-						<Trans>Retrouver ma simulation</Trans>
+						<Trans>Voir le détail de ma simulation</Trans>
 					</span>
 				</Link>
 			</div>

@@ -8,16 +8,13 @@ import styled from 'styled-components'
 import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
 import { ScrollToTop } from '../../../components/utils/Scroll'
+import { useProfileData } from '../Profil'
+import Stats from './GroupStats'
 import Instructions from './Instructions'
-import Stats from './Stats'
+import NoTestMessage from './NoTestMessage'
 import { UserBlock } from './UserList'
 import useYjs from './useYjs'
-import {
-	defaultProgressMin,
-	defaultThreshold,
-	getElements,
-	getExtremes,
-} from './utils'
+import { defaultThreshold, getExtremes } from './utils'
 
 export const ConferenceTitle = styled.h2`
 	margin-top: 0.6rem;
@@ -43,6 +40,9 @@ export default () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 
+	const { hasData } = useProfileData()
+	const [hasDataState, setHasDataState] = useState(hasData)
+
 	if (!room || room === '') {
 		return <Navigate to="/groupe" replace />
 	}
@@ -51,13 +51,6 @@ export default () => {
 	const { t } = useTranslation()
 
 	const rawElements = conferenceElementsAdapter(elements)
-	const statsElements = getElements(
-		rawElements,
-		threshold,
-		null,
-		defaultProgressMin
-	)
-	const totalElements = getElements(rawElements, threshold, null, 0)
 
 	return (
 		<div>
@@ -79,16 +72,19 @@ export default () => {
 				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
 			</ConferenceTitle>
-			<Stats
-				{...{
-					totalElements,
-					elements: statsElements,
-					users,
-					username,
-					threshold,
-					setThreshold,
-				}}
-			/>
+			{!hasDataState ? (
+				<NoTestMessage setHasDataState={setHasDataState}></NoTestMessage>
+			) : (
+				<Stats
+					{...{
+						rawElements,
+						users,
+						username,
+						threshold,
+						setThreshold,
+					}}
+				/>
+			)}
 			{room && (
 				<div>
 					<UserBlock {...{ users, extremes, username, room }} />

@@ -9,6 +9,7 @@ import { useEngine } from '../components/utils/EngineContext'
 import { useNextQuestions } from '../components/utils/useNextQuestion'
 import { DottedName, Situation } from '../rules/index'
 import useActions from '../sites/publicodes/useActions'
+import { currentSimulationSelector } from './storageSelectors'
 
 export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}
@@ -119,3 +120,7 @@ export const useSimulationData = () => {
 	}
 	return data
 }
+export const isPersonaSelector = createSelector(
+	[currentSimulationSelector],
+	(simulation) => simulation?.persona != null
+)

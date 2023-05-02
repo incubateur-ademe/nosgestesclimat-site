@@ -15,6 +15,16 @@ export const TrackerProvider = ({ children }) => {
 
 	const tracker = shouldUseDevTracker ? instantiateDevTracker() : new Tracker()
 
+	// Désactivé pendant les recherches sur les
+	// implications en termes de cookies
+	/*
+	if (!shouldUseDevTracker) {
+		posthog.init('phc_XZx1t672SA98ffOol1wQsNzRfyVX9uull53Y8lXqdg9', {
+			api_host: 'https://eu.posthog.com',
+		})
+	}
+	*/
+
 	return (
 		<TrackerContext.Provider value={tracker}>
 			{children}

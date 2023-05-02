@@ -1,33 +1,33 @@
 import { createContext, useContext } from 'react'
 import { TrackerContext } from '../../contexts/TrackerContext'
 
-export const IframeOptionsContext = createContext({})
+export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
 
 const nullDecode = (string) =>
 	string == null ? string : decodeURIComponent(string)
 
 export default function IframeOptionsProvider({ children }) {
 	const urlParams = new URLSearchParams(window.location.search)
-	const isIframeWithScript = urlParams.get('iframe') != null
+	const isIframe = window.self !== window.top
+	const isIframeParameterDefined = urlParams.get('iframe') !== null
 
 	const tracker = useContext(TrackerContext)
 
-	if (!isIframeWithScript && window.self !== window.top) {
+	// Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
+	// on essaie de récupérer l'URL du referrer
+	if (isIframe && !isIframeParameterDefined) {
 		urlParams.set('iframe', '')
 		urlParams.set('integratorUrl', document.referrer)
 	}
 
-	const isIframe = urlParams.get('iframe') != null
-
-	const integratorUrl = isIframe && urlParams.get('integratorUrl')
-
-	tracker &&
+	if (isIframe && tracker) {
 		tracker.push([
 			'trackEvent',
 			'iframe',
 			'visites via iframe',
-			isIframe ? integratorUrl : 'non',
+			urlParams.get('integratorUrl') || "Pas d'URL d'intégration",
 		])
+	}
 
 	const iframeIntegratorOptions = Object.fromEntries(
 		[

@@ -1,7 +1,7 @@
 {
 	"name": "nosgestesclimat-site",
 	"license": "MIT",
-	"version": "2.6.0",
+	"version": "3.0.0",
 	"description": "The leading open source climate footprint calculator",
 	"repository": {
 		"type": "git",
@@ -20,8 +20,7 @@
 		"dev": "yarn run model:compile:fr && yarn run serve",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",
 		"stats": "webpack --config webpack.prod.js --profile --json > stats.json",
-		"ci": "yarn run model:compile:fr && yarn run e2e:generate:personas",
-		"e2e": "yarn run e2e:generate:personas cypress open",
+		"e2e": "yarn run e2e:generate:personas && cypress open",
 		"test": "yarn run e2e:generate:personas && cypress run",
 		"e2e:generate:personas": "node cypress/scripts/generateSpecsFromPersonas.js",
 		"analyze-bundle": "ANALYZE_BUNDLE=1 yarn run build",
@@ -126,6 +125,7 @@
 		"mini-css-extract-plugin": "^2.6.1",
 		"node-fetch": "^3.2.10",
 		"path-browserify": "^1.0.1",
+		"posthog-js": "^1.53.4",
 		"process": "^0.11.10",
 		"publicodes": "1.0.0-beta.67",
 		"publicodes-react": "^1.0.0-beta.66",

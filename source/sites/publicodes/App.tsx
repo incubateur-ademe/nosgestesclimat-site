@@ -1,3 +1,4 @@
+import * as Sentry from '@sentry/react'
 import Logo from 'Components/Logo'
 import Route404 from 'Components/Route404'
 import { sessionBarMargin } from 'Components/SessionBar'
@@ -14,6 +15,7 @@ import LocalisationMessage from '../../components/localisation/LocalisationMessa
 import useMediaQuery from '../../components/utils/useMediaQuery'
 import { TrackerContext } from '../../contexts/TrackerContext'
 import Provider from '../../Provider'
+import { AppState } from '../../reducers/rootReducer'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
 import {
@@ -58,7 +60,7 @@ const International = React.lazy(() => import('./pages/International'))
 const DocumentationContexteLazy = React.lazy(
 	() => import('./pages/DocumentationContexte')
 )
-const News = React.lazy(() => import('Pages/News'))
+const News = React.lazy(() => import('Pages/news/News'))
 
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
@@ -113,8 +115,8 @@ export default function Root({}) {
 
 const Main = ({}) => {
 	const dispatch = useDispatch()
-	const { i18n } = useTranslation()
 	const location = useLocation()
+	const { i18n, t } = useTranslation()
 	const [searchParams, _] = useSearchParams()
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
@@ -126,14 +128,14 @@ const Main = ({}) => {
 		tracker?.track(location)
 	}, [location])
 
-	const currentLangState = useSelector((state) => state.currentLang)
+	// Manage the language change from the URL search param
+	const currentLangState = useSelector((state: AppState) => state.currentLang)
 	const currentLangParam = searchParams.get('lang')
 
 	if (i18n.language !== getLangInfos(currentLangState).abrv) {
 		// sync up the [i18n.language] with the current lang stored in the persisiting state.
 		changeLangTo(i18n, currentLangState)
 	}
-
 	useEffect(() => {
 		if (currentLangParam && currentLangParam !== i18n.language) {
 			// The 'lang' search param has been modified.
@@ -149,67 +151,98 @@ const Main = ({}) => {
 	const fluidLayout = isFluidLayout(location.pathname)
 
 	return (
-		<>
-			<EnquêteBanner />
-			<div
-				css={`
-					@media (min-width: 800px) {
-						display: flex;
-						min-height: 100vh;
-						padding-top: 1rem;
-					}
-
-					@media (min-width: 1200px) {
-						${!fluidLayout &&
-						`
-						transform: translateX(-4vw);
-						`}
-					}
-					${!fluidLayout && !isTuto && sessionBarMargin}
-				`}
-				className={fluidLayout ? '' : 'ui__ container'}
-			>
-				<Navigation fluidLayout={fluidLayout} />
-				<main
-					tabIndex="0"
-					id="mainContent"
+		<Sentry.ErrorBoundary
+			showDialog
+			fallback={() => (
+				<div
 					css={`
-						outline: none !important;
-						padding-left: 0rem;
-						overflow: auto;
-						@media (min-width: 800px) {
-							flex-grow: 1;
-							${!fluidLayout ? 'padding-left: 0.6rem;' : ''}
-						}
+						text-align: center;
 					`}
 				>
-					<GroupModeSessionVignette />
-					{!isHomePage &&
-						!isTuto &&
-						!location.pathname.startsWith('/international') && (
-							<LocalisationMessage />
+					<Logo showText size={largeScreen ? 'large' : 'medium'} />
+					<h1>{t("Une erreur s'est produite")}</h1>
+					<p
+						css={`
+							margin-bottom: 2rem;
+						`}
+					>
+						{t(
+							'Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.'
 						)}
+					</p>
+					<button
+						className="ui__ button plain"
+						onClick={() => {
+							window.location.reload()
+						}}
+					>
+						{t('Recharger la page')}
+					</button>
+				</div>
+			)}
+		>
+			<>
+				<EnquêteBanner />
+				<div
+					css={`
+						@media (min-width: 800px) {
+							display: flex;
+							min-height: 100vh;
+							padding-top: 1rem;
+						}
 
-					{fluidLayout && (
-						<div
-							css={`
-								margin: 0 auto;
-								@media (max-width: 800px) {
-									margin-top: 0.6rem;
-								}
-								@media (min-width: 1200px) {
-								}
-							`}
-						>
-							<Logo showText size={largeScreen ? 'large' : 'medium'} />
-						</div>
-					)}
-					{fluidLayout && <LangSwitcher from="landing" />}
-					<Router />
-				</main>
-			</div>
-			<Footer />
-		</>
+						@media (min-width: 1200px) {
+							${!fluidLayout &&
+							`
+						transform: translateX(-4vw);
+						`}
+						}
+						${!fluidLayout && !isTuto && sessionBarMargin}
+					`}
+					className={fluidLayout ? '' : 'ui__ container'}
+				>
+					<Navigation fluidLayout={fluidLayout} />
+					<main
+						tabIndex="0"
+						id="mainContent"
+						css={`
+							outline: none !important;
+							padding-left: 0rem;
+							overflow: auto;
+							@media (min-width: 800px) {
+								flex-grow: 1;
+								${!fluidLayout ? 'padding-left: 0.6rem;' : ''}
+							}
+						`}
+					>
+						<GroupModeSessionVignette />
+						{!isHomePage &&
+							!isTuto &&
+							!location.pathname.startsWith('/international') && (
+								<LocalisationMessage />
+							)}
+
+						{fluidLayout && (
+							<div
+								css={`
+									margin: 0 auto;
+									@media (max-width: 800px) {
+										margin-top: 0.6rem;
+									}
+									@media (min-width: 1200px) {
+									}
+								`}
+							>
+								<Logo showText size={largeScreen ? 'large' : 'medium'} />
+							</div>
+						)}
+						{fluidLayout && <LangSwitcher from="landing" />}
+						<Router />
+					</main>
+				</div>
+				<Footer />
+			</>
+		</Sentry.ErrorBoundary>
 	)
 }
 

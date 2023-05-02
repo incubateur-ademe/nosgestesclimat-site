@@ -10,9 +10,9 @@ import { minimalCategoryData } from '../../../components/publicodesUtils'
 import { useSimulationProgress } from '../../../components/utils/useNextQuestion'
 import { conferenceElementsAdapter } from './Conference'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
-import { computeHumanMean } from './Stats'
+import { computeHumanMean } from './GroupStats'
 import useYjs from './useYjs'
-import { defaultProgressMin, defaultThreshold, getElements } from './utils'
+import { getAllParticipants, getCompletedTests } from './utils'
 
 export default () => {
 	const translation = useTranslation(),
@@ -46,34 +46,27 @@ export default () => {
 	if (!conference?.ydoc)
 		return <Link to="/conférence">Lancer une conférence</Link>
 
-	const simulationArray = elements && Object.values(elements),
+	const statElements = conferenceElementsAdapter(elements)
+
+	const rawUsers = getAllParticipants(statElements)
+	const rawUsersNumber = rawUsers.length
+
+	const completedTests = getCompletedTests(statElements, null)
+	const completedTestsNumber = completedTests.length
+
+	const simulationArray = rawUsers && Object.values(rawUsers),
 		result = computeHumanMean(
 			translation,
 			simulationArray.map((el) => el.total)
 		)
-
-	const statElements = conferenceElementsAdapter(elements)
-	const rawUserNumber = getElements(
-		statElements,
-		defaultThreshold,
-		null,
-		0
-	).length
-
-	const completedTestNumber = getElements(
-		statElements,
-		defaultThreshold,
-		null,
-		defaultProgressMin
-	).length
 
 	return (
 		<GroupModeMenuEntryContent
 			{...{
 				groupMode: 'conférence',
 				room: conference.room,
-				rawUserNumber,
-				completedTestNumber,
+				rawUsersNumber,
+				completedTestsNumber,
 				result,
 			}}
 		/>

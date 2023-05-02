@@ -1,7 +1,10 @@
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
+import { TrackerContext } from '../../../contexts/TrackerContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -11,6 +14,7 @@ import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'
 import FilterBar from './FilterBar'
+import { defaultProgressMin, getElements } from './utils'
 
 export const computeMean = (simulationArray) =>
 	simulationArray &&
@@ -26,37 +30,64 @@ export const computeHumanMean = ({ t, i18n }, simulationArray) => {
 }
 
 export default ({
-	totalElements: totalElementsRaw,
-	elements: elementsRaw,
+	rawElements,
 	users = [],
 	username: currentUser,
 	threshold,
 	setThreshold,
-	contextRules,
+	existContext,
 }) => {
+	const tracker = useContext(TrackerContext)
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	const [contextFilter, setContextFilter] = useState({})
+	const survey = useSelector((state) => state.survey)
+	const contextRules = existContext && survey.contextRules
 
-	const totalElements = filterElements(totalElementsRaw, contextFilter)
-	const elements = filterElements(elementsRaw, contextFilter)
+	const completedTests = getElements(
+		rawElements,
+		threshold,
+		contextRules,
+		defaultProgressMin
+	)
+
+	const participants = getElements(rawElements, threshold, null, 0)
+
+	const [realTimeMode, setRealTimeMode] = useState(true)
+	const [contextFilter, setContextFilter] = useState({})
+	const filteredCompletedTests = filterElements(completedTests, contextFilter)
+	const filteredRawTests = filterElements(participants, contextFilter)
 
 	const [spotlight, setSpotlightRaw] = useState(currentUser)
 
 	const setSpotlight = (username) =>
 		spotlight === username ? setSpotlightRaw(null) : setSpotlightRaw(username)
-	const values = totalElements.map((el) => el.total)
+
+	const displayedTests = realTimeMode
+		? filteredRawTests
+		: filteredCompletedTests
+
+	const values = displayedTests.map((el) => el.total)
 	const mean = computeMean(values),
 		humanMean = computeHumanMean({ t, i18n }, values)
 
-	const progressList = totalElements.map((el) => el.progress),
+	const progressList = filteredRawTests.map((el) => {
+			const contextCompleted =
+				contextRules &&
+				!(
+					Object.keys(el.context).length ===
+					Object.values(contextRules).filter((rule) => rule?.question).length
+				)
+					? 0
+					: 1
+			return el.progress * contextCompleted
+		}),
 		meanProgress = computeMean(progressList)
 
 	if (isNaN(mean)) return null
 
 	const categories = reduceCategories(
-			totalElements.map(({ byCategory, username }) => [username, byCategory])
+			displayedTests.map(({ byCategory, username }) => [username, byCategory])
 		),
 		maxCategory = Object.values(categories).reduce(
 			(memo, next) => Math.max(memo, ...next.map((el) => el.value)),
@@ -72,33 +103,24 @@ export default ({
 		(total / 1000).toLocaleString(currentLangInfos.abrvLocale, {
 			maximumSignificantDigits: 2,
 		})
-	const spotlightElement = totalElements.find(
+	const spotlightElement = displayedTests.find(
 			(el) => el.username === spotlight
 		),
 		spotlightValue = spotlightElement && formatTotal(spotlightElement.total)
 
-	const plural = elements.length > 1 ? 's' : ''
+	const plural = filteredCompletedTests.length > 1 ? 's' : ''
 	return (
 		<div>
 			<div css=" text-align: center">
 				<p role="heading" aria-level="2">
 					<Trans>Avancement du groupe</Trans>{' '}
 					<span role="status">
-						({elements.length} test{plural} complété{plural} sur{' '}
-						{totalElements.length})
+						({filteredCompletedTests.length} test{plural} complété{plural} sur{' '}
+						{filteredRawTests.length})
 					</span>
 				</p>
 				<Progress progress={meanProgress} label={t('Avancement du groupe')} />
 			</div>
-			<WithEngine>
-				<FilterBar
-					threshold={threshold}
-					setThreshold={setThreshold}
-					contextFilter={contextFilter}
-					setContextFilter={setContextFilter}
-					contextRules={contextRules}
-				/>
-			</WithEngine>
 			<div css="margin: 1.6rem 0">
 				<div css="display: flex; flex-direction: column; align-items: center; margin-bottom: .6rem">
 					<div>
@@ -118,7 +140,37 @@ export default ({
 						</div>
 					</div>
 				</div>
-				{totalElements.length > 0 && (
+				{filteredRawTests.length > 0 && (
+					<small>
+						<Checkbox
+							name="setRealTimeMode"
+							id="setRealTimeMode"
+							label="Afficher seulement les simulations terminées"
+							showLabel
+							checked={!realTimeMode}
+							onChange={() => {
+								tracker.push([
+									'trackEvent',
+									'Mode groupe',
+									realTimeMode
+										? 'Désactivation du mode temps réel'
+										: 'Activation du mode temps réel',
+								])
+								setRealTimeMode(!realTimeMode)
+							}}
+						/>
+					</small>
+				)}
+				{displayedTests.length > 0 && (
+					<WithEngine>
+						<FilterBar
+							threshold={threshold}
+							setThreshold={setThreshold}
+							setContextFilter={setContextFilter}
+						/>
+					</WithEngine>
+				)}
+				{displayedTests.length > 0 && (
 					<div>
 						<ul
 							title={t('Empreinte totale')}
@@ -134,7 +186,7 @@ export default ({
 								}
 							`}
 						>
-							{totalElements.map(({ total: value, username }) => (
+							{displayedTests.map(({ total: value, username }) => (
 								<li
 									key={username}
 									css={`
@@ -172,7 +224,6 @@ export default ({
 								></li>
 							))}
 						</ul>
-
 						<div css="display: flex; justify-content: space-between; width: 100%">
 							<small key="legendLeft">
 								{emoji('🎯 ')}
@@ -180,6 +231,7 @@ export default ({
 							</small>
 							<small key="legendRight">{max}</small>
 						</div>
+
 						<div
 							css={`
 								text-align: center;
@@ -199,7 +251,6 @@ export default ({
 								</Trans>
 							</p>
 						</div>
-
 						<CategoryStats
 							{...{ categories, maxCategory, spotlight, setSpotlight }}
 						/>
@@ -258,7 +309,7 @@ const filterElements = (rawElements, contextFilter) =>
 			([key, value]) =>
 				!value ||
 				value === '' ||
-				el.context[key].toLowerCase().includes(value.toLowerCase())
+				el.context[key]?.toLowerCase().includes(value.toLowerCase())
 		)
 		return matches.every((bool) => bool === true)
 	})
