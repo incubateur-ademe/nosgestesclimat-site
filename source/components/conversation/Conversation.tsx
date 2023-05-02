@@ -25,6 +25,7 @@ import {
 	getMatomoEventParcoursTestOver,
 	matomoEvent50PercentProgress,
 	matomoEvent90PercentProgress,
+	matomoEventFirstAnswer,
 } from '../../analytics/matomo-events'
 import Meta from '../../components/utils/Meta'
 import { MatomoContext } from '../../contexts/MatomoContext'
@@ -345,19 +346,30 @@ export default function Conversation({
 	const progress = useSimulationProgress()
 
 	useEffect(() => {
+		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
+			trackEvent(matomoEventFirstAnswer)
+			dispatch(setTrackingVariable('firstQuestionEventFired', true))
+		}
+	}, [dispatch, previousAnswers, trackEvent, tracking.firstQuestionEventFired])
+
+	useEffect(() => {
 		// This will help you judge if the "A terminé la simulation" event has good numbers
 		if (!tracking.progress90EventFired && progress > 0.9) {
-			console.log('90% réponse au bilan')
 			trackEvent(matomoEvent90PercentProgress)
 			dispatch(setTrackingVariable('progress90EventFired', true))
 		}
 
 		if (!tracking.progress50EventFired && progress > 0.5) {
-			console.log('50% réponse au bilan')
 			trackEvent(matomoEvent50PercentProgress)
 			dispatch(setTrackingVariable('progress50EventFired', true))
 		}
-	}, [progress])
+	}, [
+		dispatch,
+		progress,
+		trackEvent,
+		tracking.progress50EventFired,
+		tracking.progress90EventFired,
+	])
 
 	const bilan = engine
 		? Math.round(

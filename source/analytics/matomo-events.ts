@@ -137,6 +137,11 @@ export const matomoEventParcoursTestSkipTutorial = [
 	'Tutoriel',
 	'Passer',
 ]
+export const matomoEventFirstAnswer = [
+	'trackEvent',
+	'NGC',
+	'1ère réponse au bilan',
+]
 export const getMatomoEventParcoursTestCategoryStarted = (category: string) => [
 	'trackEvent',
 	'Parcours test',
