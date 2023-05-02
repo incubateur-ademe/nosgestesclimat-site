@@ -45,6 +45,7 @@ export const currentQuestionSelector = (state: RootState) =>
 
 export const answeredQuestionsSelector = (state: RootState) =>
 	state.simulation?.foldedSteps ?? []
+
 export const isPersonaSelector = createSelector(
 	[currentSimulationSelector],
 	(simulation) => simulation.persona != null
