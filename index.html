@@ -1,23 +1,36 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<script defer data-domain="nosgestesclimat.fr" src="https://plausible.io/js/script.js"></script>
+		<script
+			defer
+			data-domain="nosgestesclimat.fr"
+			src="https://plausible.io/js/script.js"
+		></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="initial-scale=1" />
 
-		<link
-			rel="icon"
-			href="/images/favicon.png"
-		/>
+		<link rel="icon" href="/images/favicon.png" />
 
 		<meta
 			name="description"
 			content="<%= htmlWebpackPlugin.options.description %>"
 			data-react-helmet="true"
 		/>
-		 <link rel="alternate" hreflang="en" href="https://nosgestesclimat.fr/?lang=en" />
-		 <link rel="alternate" hreflang="fr" href="https://nosgestesclimat.fr/?lang=fr" />
-		 <link rel="alternate" hreflang="x-default" href="https://nosgestesclimat.fr" />
+		<link
+			rel="alternate"
+			hreflang="en"
+			href="https://nosgestesclimat.fr/?lang=en"
+		/>
+		<link
+			rel="alternate"
+			hreflang="fr"
+			href="https://nosgestesclimat.fr/?lang=fr"
+		/>
+		<link
+			rel="alternate"
+			hreflang="x-default"
+			href="https://nosgestesclimat.fr"
+		/>
 
 		<meta property="og:type" content="website" />
 		<meta
@@ -31,19 +44,20 @@
 			content="<%= htmlWebpackPlugin.options.description %>"
 		/>
 
-		<meta property="og:image" content="<%= htmlWebpackPlugin.options.logo %>" data-react-helmet="true"	/>
+		<meta
+			property="og:image"
+			content="<%= htmlWebpackPlugin.options.logo %>"
+			data-react-helmet="true"
+		/>
 		<meta
 			name="google-site-verification"
 			content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
 		/>
 
-
 		<meta property="twitter:card" content="summary_large_image" />
 
 		<link rel="manifest" href="/manifest.webmanifest" />
-		<title>
-			<%= htmlWebpackPlugin.options.title %>
-		</title>
+		<title><%= htmlWebpackPlugin.options.title %></title>
 
 		<style>
 			html[data-useragent*='MSIE'] #outdated-browser,
@@ -61,14 +75,11 @@
 			html[data-useragent*='Trident'] #js {
 				display: none !important;
 			}
-
-
 		</style>
 		<meta name="theme-color" content="#5758BB" />
 	</head>
 
 	<body>
-
 		<!-- USER AGENT DATA ATTRIBUTE  -->
 
 		<script>
@@ -76,13 +87,16 @@
 			b.setAttribute('data-useragent', navigator.userAgent)
 		</script>
 		<script>
-				if(typeof navigator != 'undefined' && /prerender/i.test(navigator.userAgent)) {
-										// This is needed because of an incompatibility between styled components and prerender.io
-										SC_DISABLE_SPEEDY = true
+			if (
+				typeof navigator != 'undefined' &&
+				/prerender/i.test(navigator.userAgent)
+			) {
+				// This is needed because of an incompatibility between styled components and prerender.io
+				SC_DISABLE_SPEEDY = true
 
-										FORCE_LANGUAGE = 'fr'
-
-}</script>
+				FORCE_LANGUAGE = 'fr'
+			}
+		</script>
 
 		<!-- APP  -->
 		<div id="js"></div>
@@ -90,14 +104,26 @@
 		<!-- OUTDATED BROWSER WARNING -->
 		<div
 			id="outdated-browser"
-			style="position: fixed; top: 0; left: 0; bottom: 0; right: 0; display: none; background-color: white"
+			style="
+				position: fixed;
+				top: 0;
+				left: 0;
+				bottom: 0;
+				right: 0;
+				display: none;
+				background-color: white;
+			"
 		>
 			<div
-				style="margin: 100px auto; max-width: 800px; text-align: center; font-family: sans-serif; font-weight: 300;"
+				style="
+					margin: 100px auto;
+					max-width: 800px;
+					text-align: center;
+					font-family: sans-serif;
+					font-weight: 300;
+				"
 			>
-				<h1>
-					Votre navigateur n'est plus supporté.
-				</h1>
+				<h1>Votre navigateur n'est plus supporté.</h1>
 				<h2>
 					Nous vous invitons à réessayer avec un autre, ou depuis un mobile
 					récent.
@@ -116,7 +142,9 @@
 					var b = document.documentElement;
 					b.setAttribute('data-useragent',  'force-navigation-anyway');
 				"
-						>Continuer quand même vers le site</button>
+					>
+						Continuer quand même vers le site
+					</button>
 				</h3>
 			</div>
 		</div>
@@ -126,18 +154,25 @@
 
 		<!-- Matomo -->
 		<script type="text/javascript">
-		  var _paq = window._paq || [];
-		  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
-			if (!window.location.pathname.match(/\/(sondage|conférence)\//))
-				{_paq.push(['trackPageView']);}
-		_paq.push(['enableLinkTracking']);
-		  (function() {
-			var u="//stats.data.gouv.fr/";
-			_paq.push(['setTrackerUrl', u+'matomo.php']);
-			_paq.push(['setSiteId', '153']);
-			var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-			g.type='text/javascript'; g.async=true; g.defer=true; g.src=u+'matomo.js'; s.parentNode.insertBefore(g,s);
-		  })();
+			var _paq = window._paq || []
+			/* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+			if (!window.location.pathname.match(/\/(sondage|conférence)\//)) {
+				_paq.push(['trackPageView'])
+			}
+			_paq.push(['enableLinkTracking'])
+			;(function () {
+				var u = '//stats.data.gouv.fr/'
+				_paq.push(['setTrackerUrl', u + 'matomo.php'])
+				_paq.push(['setSiteId', '153'])
+				var d = document,
+					g = d.createElement('script'),
+					s = d.getElementsByTagName('script')[0]
+				g.type = 'text/javascript'
+				g.async = true
+				g.defer = true
+				g.src = u + 'matomo.js'
+				s.parentNode.insertBefore(g, s)
+			})()
 		</script>
 		<% } %>
 		<!-- End Matomo Code -->

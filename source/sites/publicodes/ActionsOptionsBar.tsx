@@ -10,7 +10,18 @@ export default ({ finalActions, setRadical, radical }) => {
 
 	if (!visible) {
 		return (
-			<div css="text-align: right; position: absolute;right: 0; button {font-size: 100%}">
+			<div
+				css={`
+					text-align: right;
+					right: 0;
+					button {
+						font-size: 100%;
+						padding: 0 !important;
+						margin-right: 0.25rem;
+					}
+					height: 2rem;
+				`}
+			>
 				<button
 					title={t('Ouvrir les options de tri')}
 					onClick={() => setVisible(true)}
@@ -25,6 +36,7 @@ export default ({ finalActions, setRadical, radical }) => {
 			css={`
 				display: block;
 				text-align: center;
+				height: 2rem;
 			`}
 		>
 			<small role="status">
@@ -42,7 +54,10 @@ export default ({ finalActions, setRadical, radical }) => {
 			<button
 				onClick={() => setRadical(!radical)}
 				className="ui__ dashed-button"
-				css="color: var(--lighterTextColor); font-size: 85% !important"
+				css={`
+					color: var(--lighterTextColor);
+					font-size: 85% !important;
+				`}
 				title={t('Choisir le type de tri des actions')}
 			>
 				{radical ? (
@@ -59,6 +74,11 @@ export default ({ finalActions, setRadical, radical }) => {
 			<button
 				title={t('Fermer les options de tri')}
 				onClick={() => setVisible(false)}
+				css={`
+					padding: 0;
+					padding-left: 1rem;
+					margin-right: 0.25rem;
+				`}
 			>
 				{emoji('❌')}
 			</button>

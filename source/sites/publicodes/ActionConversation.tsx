@@ -2,10 +2,12 @@ import { setSimulationConfig } from 'Actions/actions'
 import Simulation from 'Components/Simulation'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { questionConfig } from './questionConfig'
 
 export default ({ dottedName }) => {
+	const { t } = useTranslation()
 	const nextQuestions = useNextQuestions()
 	const configSet = useSelector((state) => state.simulation?.config)
 
@@ -25,13 +27,16 @@ export default ({ dottedName }) => {
 	if (!configSet) return null
 
 	return nextQuestions.length > 0 ? (
-		<Simulation
-			showConversation
-			customEnd={<div />}
-			targets={<div />}
-			explanations={null}
-			animation="fromBottom"
-			questionHeadingLevel="3"
-		/>
+		<>
+			<h2>{t('Veuillez répondre aux questions suivantes pour continuer :')}</h2>
+			<Simulation
+				showConversation
+				customEnd={<div />}
+				targets={<div />}
+				explanations={null}
+				animation="fromBottom"
+				questionHeadingLevel="3"
+			/>
+		</>
 	) : null
 }

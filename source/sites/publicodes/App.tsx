@@ -205,7 +205,7 @@ const Main = ({}) => {
 							padding-left: 0rem;
 							@media (min-width: 800px) {
 								flex-grow: 1;
-								${!fluidLayout ? 'padding-left: 0.6rem;' : ''}
+								${!fluidLayout ? 'padding-left: 2rem;' : ''}
 							}
 						`}
 					>

@@ -13,6 +13,7 @@ import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
 import { EngineContext } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
+import ActionConversation from './ActionConversation'
 import { questionConfig } from './questionConfig'
 
 const { decodeRuleName, encodeRuleName } = utils
@@ -73,6 +74,9 @@ export default ({}) => {
 					<Trans>◀ Retour à la liste</Trans>
 				</button>
 			</Link>
+
+			<ActionConversation key={dottedName} dottedName={dottedName} />
+
 			<div className="ui__ card" css={'padding: .1rem; margin: .8rem 0'}>
 				<header
 					css={`

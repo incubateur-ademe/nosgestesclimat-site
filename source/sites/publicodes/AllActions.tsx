@@ -5,8 +5,6 @@ import { useSelector } from 'react-redux'
 import styled from 'styled-components'
 import IllustratedButton from '../../components/IllustratedButton'
 import { correctValue } from '../../components/publicodesUtils'
-import { ScrollToElement } from '../../components/utils/Scroll'
-import ActionConversation from './ActionConversation'
 import { ActionListCard } from './ActionVignette'
 
 export default ({
@@ -165,12 +163,18 @@ export default ({
 const List = ({ actions, rules, bilan, focusedAction, focusAction }) => (
 	<ul
 		css={`
-			display: flex;
-			justify-content: center;
-			align-items: center;
-			flex-wrap: wrap;
+			display: grid;
+			grid-template-columns: 15rem 15rem 15rem;
+			justify-content: space-between;
+			@media (max-width: 800px) {
+				grid-template-columns: minmax(auto, 1fr) minmax(auto, 1fr);
+			}
+			gap: 0.5rem;
 			list-style-type: none;
 			padding-left: 0;
+			@media (max-width: 800px) {
+				padding: 0 !important;
+			}
 		`}
 	>
 		<AnimatePresence>
@@ -184,11 +188,8 @@ const List = ({ actions, rules, bilan, focusedAction, focusAction }) => (
 						exit={{ scale: 0.2 }}
 						transition={{ duration: 1 }}
 						css={`
-							width: 12rem;
+							width: 100%;
 							margin: 0.4rem;
-							@media (max-width: 800px) {
-								width: 11rem;
-							}
 						`}
 					>
 						<ActionListCard
@@ -201,33 +202,6 @@ const List = ({ actions, rules, bilan, focusedAction, focusAction }) => (
 						/>
 					</motion.li>
 				)
-				if (focusedAction === evaluation.dottedName) {
-					const convId = 'conv'
-					return (
-						<>
-							<motion.li
-								key={convId}
-								layoutId={convId}
-								animate={{ scale: 1 }}
-								initial={{ scale: 0.8 }}
-								exit={{ scale: 0.2 }}
-								transition={{ duration: 0.5 }}
-								css={`
-									margin-top: 1.6rem 1rem 1rem;
-									width: 100%;
-									height: auto;
-								`}
-							>
-								<ActionConversation
-									key={focusedAction}
-									dottedName={focusedAction}
-								/>
-								<ScrollToElement delay={1000} center />
-							</motion.li>
-							{cardComponent}
-						</>
-					)
-				}
 				return cardComponent
 			})}
 		</AnimatePresence>

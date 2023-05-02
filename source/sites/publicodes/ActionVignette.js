@@ -103,12 +103,12 @@ export const ActionListCard = ({
 				flex-direction: column;
 				justify-content: center;
 				align-items: center;
-				height: 14.5rem;
-				${noFormula && 'height: 13rem;'}
+				height: 16rem;
+				${noFormula && 'height: 15rem;'}
 				${hasRemainingQuestions && `background: #eee !important; `}
 				position: relative;
 				> div {
-					padding: 0.4rem !important;
+					padding: 0.5rem !important;
 				}
 				color: white;
 				border: 4px solid ${categoryColor};
@@ -129,6 +129,7 @@ export const ActionListCard = ({
 					background: ${categoryColor} !important;
 					height: 6rem;
 					width: 100%;
+					justify-content: center;
 					display: flex;
 					align-items: center;
 				`}
@@ -194,11 +195,21 @@ export const ActionListCard = ({
 							clickable
 							title={remainingQuestionsText}
 							number={remainingQuestions.length}
+							css={`
+								right: -2rem !important;
+							`}
 						></NotificationBubble>
 					)}
 					{hasRemainingQuestions && (
 						<p
-							css="color: var(--color); height: 0; cursor: pointer"
+							css={`
+								color: var(--color);
+								height: 0;
+								cursor: pointer;
+								font-size: 0.5rem;
+								text-align: right;
+								margin: 0 !important;
+							`}
 							onClick={() => focusAction(dottedName)}
 						>
 							{remainingQuestionsText}
@@ -208,7 +219,9 @@ export const ActionListCard = ({
 				<div
 					css={`
 						display: flex;
+						flex-direction: column;
 						justify-content: space-evenly;
+						margin-top: 1rem;
 						button img {
 							font-size: 200%;
 						}
@@ -219,8 +232,19 @@ export const ActionListCard = ({
 						title={t("Choisir l'action")}
 						aria-pressed={actionChoices[dottedName]}
 						css={`
-							${hasRemainingQuestions && 'filter: grayscale(1)'}
+							display: flex !important;
+							flex-wrap: wrap;
+							align-items: center !important;
+							justify-content: center !important;
+							text-transform: initial !important;
+							font-size: 0.75rem !important;
+							padding: 0.5rem 0.75rem !important;
+							margin-bottom: 0.5rem;
+							@media (max-width: 800px) {
+								font-size: 1rem !important;
+							}
 						`}
+						className="ui__ button"
 						onClick={(e) => {
 							if (hasRemainingQuestions) {
 								focusAction(dottedName)
@@ -247,10 +271,27 @@ export const ActionListCard = ({
 							e.preventDefault()
 						}}
 					>
-						<img src="/images/2714.svg" css="width: 3rem" />
+						<img
+							src="/images/2714.svg"
+							css={`
+								width: 1rem;
+								margin-right: 0.25rem;
+							`}
+						/>
+						Ça m'intéresse
 					</button>
 					<button
-						title={t("Rejeter l'action")}
+						title={t('Pas intéressé')}
+						className="ui__ button"
+						css={`
+							display: flex !important;
+							align-items: center !important;
+							justify-content: center !important;
+							text-transform: initial !important;
+							font-size: 0.75rem !important;
+							border: none !important;
+							background: none !important;
+						`}
 						onClick={(e) => {
 							dispatch(
 								setActionChoice(
@@ -270,7 +311,14 @@ export const ActionListCard = ({
 							e.preventDefault()
 						}}
 					>
-						<img src="/images/274C.svg" css="width: 1.8rem" />
+						<img
+							src="/images/274C.svg"
+							css={`
+								width: 0.75rem;
+								margin-right: 0.25rem;
+							`}
+						/>
+						Pas intéressé
 					</button>
 				</div>
 			</div>
