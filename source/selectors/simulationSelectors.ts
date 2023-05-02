@@ -48,5 +48,5 @@ export const answeredQuestionsSelector = (state: RootState) =>
 
 export const isPersonaSelector = createSelector(
 	[currentSimulationSelector],
-	(simulation) => simulation.persona != null
+	(simulation) => simulation?.persona != null
 )
