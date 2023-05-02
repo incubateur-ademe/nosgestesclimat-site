@@ -19,7 +19,7 @@ import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 
-export default ({}) => {
+export default () => {
 	const navigate = useNavigate()
 	const tutorials = useSelector((state) => state.tutorials)
 
@@ -30,7 +30,6 @@ export default ({}) => {
 	const index = tutos.length
 
 	const skip = (name, unskip) => {
-		console.log('SKIP')
 		dispatch(skipTutorial(name, unskip))
 		trackEvent(matomoEventParcoursTestSkipTutorial)
 	}

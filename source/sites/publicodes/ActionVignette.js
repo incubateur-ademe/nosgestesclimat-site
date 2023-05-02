@@ -5,6 +5,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
+import { getMatomoEventActionAccepted } from '../../analytics/matomo-events'
 import NotificationBubble from '../../components/NotificationBubble'
 import {
 	correctValue,
@@ -234,17 +235,7 @@ export const ActionListCard = ({
 								)
 							)
 							if (!actionChoices[dottedName]) {
-								// TODO : revoir la stratégie de tracking des actions
-								/*
-								const eventData = [
-									'trackEvent',
-									'/actions',
-									'Action sélectionnée',
-									dottedName,
-									nodeValue,
-								]
-								trackEvent(eventData)
-								*/
+								trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
 							}
 							e.stopPropagation()
 							e.preventDefault()
@@ -262,16 +253,7 @@ export const ActionListCard = ({
 									actionChoices[dottedName] === false ? null : false
 								)
 							)
-							// TODO : revoir la stratégie de tracking des actions
-							/*
-							trackEvent([
-								'trackEvent',
-								'/actions',
-								'Action rejetée',
-								dottedName,
-								nodeValue,
-							])
-							*/
+							trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
 							e.stopPropagation()
 							e.preventDefault()
 						}}

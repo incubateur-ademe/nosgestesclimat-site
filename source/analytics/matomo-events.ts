@@ -143,6 +143,16 @@ export const getMatomoEventParcoursTestCategoryStarted = (category: string) => [
 	'Catégorie démarrée',
 	category,
 ]
+export const matomoEvent50PercentProgress = [
+	'trackEvent',
+	'NGC',
+	'Progress > 50%',
+]
+export const matomoEvent90PercentProgress = [
+	'trackEvent',
+	'NGC',
+	'Progress > 90%',
+]
 export const getMatomoEventParcoursTestOver = (bilan: number | undefined) => [
 	'trackEvent',
 	'Parcours test',
@@ -150,3 +160,19 @@ export const getMatomoEventParcoursTestOver = (bilan: number | undefined) => [
 	'Bilan carbone',
 	bilan || '',
 ]
+export const matomoEventClickBanner = [
+	'trackEvent',
+	'NGC',
+	'Clic explication score',
+]
+
+// Actions
+export const getMatomoEventActionRejected = (
+	dottedName: DottedName,
+	nodeValue: string
+) => ['trackEvent', '/actions', 'Action rejetée', dottedName, nodeValue]
+
+export const getMatomoEventActionAccepted = (
+	dottedName: DottedName,
+	nodeValue: string
+) => ['trackEvent', '/actions', 'Action sélectionnée', dottedName, nodeValue]

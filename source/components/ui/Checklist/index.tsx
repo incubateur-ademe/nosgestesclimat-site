@@ -31,24 +31,9 @@ export function CheckItem({
 			setDisplayExplanations(false)
 		}
 		onChange?.(e)
-		// Je me demande si ces events sont vraiments utiles à l'heure actuelle
-		// ça peut rajouter du bruit inutile
-		/*
-		tracker.debouncedPush([
-			'trackEvent',
-			'CheckItem',
-			e.target.checked ? 'check' : 'uncheck',
-			name
-		])
-		*/
 	}
 
 	const handleClick = () => {
-		// Je me demande si ces events sont vraiments utiles à l'heure actuelle
-		// ça peut rajouter du bruit inutile
-		/*
-			tracker.debouncedPush(['trackEvent', 'CheckItem', 'click', name])
-		*/
 		setDisplayExplanations(!displayExplanations)
 	}
 

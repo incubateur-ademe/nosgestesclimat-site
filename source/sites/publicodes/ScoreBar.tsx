@@ -3,6 +3,7 @@ import { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { matomoEventClickBanner } from '../../analytics/matomo-events'
 import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
@@ -139,12 +140,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 								title={t("Afficher l'explication du score")}
 								onClick={() => {
 									setOpenExplanation(!openExplanation)
-									// Pas nécessaire dans le cadre de la mise en place d'une nouvelle
-									// strat de tracking à mon sens, on pourra ajouter dans le détail des trackers
-									// par la suite au besoin
-									/*
-									trackEvent(['trackEvent', 'NGC', 'Clic explication score'])
-									*/
+									trackEvent(matomoEventClickBanner)
 								}}
 								css={`
 									position: relative;
