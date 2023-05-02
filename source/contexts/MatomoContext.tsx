@@ -78,15 +78,13 @@ export const MatomoProvider = ({ children }) => {
 		(args: string[]) => {
 			// Send only if not already sent
 			const shouldSendEvent = !checkIfEventAlreadySent(args)
-			console.log({ args, shouldSendEvent })
+
 			if (!shouldSendEvent) return
 
-			/*
-		if (shouldUseDevTracker) {
-			console?.debug(args)
-			return
-		}
-		*/
+			if (shouldUseDevTracker) {
+				console?.debug(args)
+				return
+			}
 
 			if (window.location.pathname.match(groupExclusionRegexp)) return
 			// There is an issue with the way Safari handle cookies in iframe, cf.
