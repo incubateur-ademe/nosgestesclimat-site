@@ -1,6 +1,7 @@
-import { DottedName, Situation } from '../rules/index'
-import { createSelector } from 'reselect'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { createSelector } from 'reselect'
+import { DottedName, Situation } from '../rules/index'
+import { currentSimulationSelector } from './storageSelectors'
 
 export const configSelector = (state: RootState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}
@@ -44,3 +45,7 @@ export const currentQuestionSelector = (state: RootState) =>
 
 export const answeredQuestionsSelector = (state: RootState) =>
 	state.simulation?.foldedSteps ?? []
+export const isPersonaSelector = createSelector(
+	[currentSimulationSelector],
+	(simulation) => simulation.persona != null
+)
