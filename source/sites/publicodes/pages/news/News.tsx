@@ -19,7 +19,7 @@ export default () => {
 			<Meta title={title} description={description} />
 			{isReleasePage ? (
 				<Link to="/nouveautés">
-					<strong>{title}</strong>
+					<strong data-cypress-id="news-title">{title}</strong>
 				</Link>
 			) : (
 				<h1 data-cypress-id="news-title">{title}</h1>
