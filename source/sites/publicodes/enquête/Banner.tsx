@@ -169,7 +169,13 @@ const BannerWithEngine = () => {
 					`}
 				>
 					<ScrollToTop />
-					<p>
+					<p
+						css={`
+							padding: 20px;
+							max-width: 420px;
+							margin: auto;
+						`}
+					>
 						<span>
 							Dans quelle mesure Nos Gestes Climat vous donne envie d'agir pour
 							réduire votre empreinte carbone ?

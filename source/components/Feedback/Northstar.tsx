@@ -27,28 +27,33 @@ export default ({
 	}
 
 	return (
-		<div
-			style={{
-				display: 'flex',
-				flexWrap: 'wrap',
-				justifyContent: 'center',
-			}}
-			role="list"
-		>
+		<RatingContainer role="list">
 			<FeedbackButton rating={1} />
 			<FeedbackButton rating={2} />
 			<FeedbackButton rating={3} />
 			<FeedbackButton rating={4} />
-		</div>
+		</RatingContainer>
 	)
 }
 
 const EmojiButton = styled.button`
 	font-size: 1.5em;
+	margin: 0;
 	padding: 0.2em;
 	transition: transform 0.05s;
 	will-change: transform;
 	:hover {
 		transform: scale(1.3);
+	}
+`
+const RatingContainer = styled.div`
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	& > * {
+		filter: grayscale(0);
+	}
+	& > *:hover ~ * {
+		filter: grayscale(1);
 	}
 `
