@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+import { Link } from 'react-router-dom'
 import { skipTutorial } from '../actions/actions'
 import TriangleShape from '../sites/publicodes/chart/TriangleShape'
 
@@ -88,10 +89,7 @@ export default ({ openExplanation, setOpenExplanation, situationLength }) => {
 					<p>
 						<Trans i18nKey={'components.ScoreExplanation.text.p4'}>
 							💡 Nous améliorons le calcul et ses valeurs par défaut
-							<a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/">
-								tous les mois
-							</a>
-							!
+							<Link to="/nouveautés/">tous les mois</Link>!
 						</Trans>
 					</p>
 					<button

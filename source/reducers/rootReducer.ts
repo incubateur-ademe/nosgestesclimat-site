@@ -361,6 +361,11 @@ function pullRequestNumber(state = null, { type, number }) {
 	} else return state
 }
 
+function enquête(state = null, { type, userID, date }) {
+	if (type === 'SET_ENQUÊTE') return { userID, date }
+	if (type === 'QUIT_ENQUÊTE') return null
+	else return state
+}
 // This reducer updates the list of simulations that will be stored in local storage
 // Ideally, it will replace the 'simulation' reducer
 function simulations(
@@ -448,6 +453,7 @@ const mainReducer = (state: AppState, action: Action) =>
 		engineState,
 		currentLang,
 		supportedRegions,
+		enquête,
 	})(state, action)
 
 export default reduceReducers<RootState>(

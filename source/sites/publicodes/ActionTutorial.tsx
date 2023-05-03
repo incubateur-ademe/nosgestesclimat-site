@@ -1,12 +1,15 @@
-import { useDispatch } from 'react-redux'
-import { actionImg } from '../../components/SessionBar'
-import { skipTutorial } from '../../actions/actions'
 import { Trans } from 'react-i18next'
+import { useDispatch } from 'react-redux'
+import { skipTutorial } from '../../actions/actions'
+import { actionImg } from '../../components/SessionBar'
 
 export default ({ value, unit }) => {
 	const dispatch = useDispatch()
 	return (
-		<div className="ui__ card light colored content" css="margin-top: 1.6rem">
+		<div
+			className="ui__ card light colored content"
+			css="margin: 1.6rem .6rem "
+		>
 			<h1 css="display: flex; align-items: center">
 				<img src={actionImg} css="width: 2rem" />
 				<Trans>Passer à l'action !</Trans>

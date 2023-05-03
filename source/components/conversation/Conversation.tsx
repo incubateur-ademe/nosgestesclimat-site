@@ -7,7 +7,7 @@ import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { motion } from 'framer-motion'
-import React, { Suspense, useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
@@ -26,6 +26,7 @@ import {
 	isPersonaSelector,
 	objectifsSelector,
 } from '../../selectors/simulationSelectors'
+import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelector'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
@@ -35,8 +36,8 @@ import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import { ExplicableRule } from './Explicable'
+import QuestionFinderWrapper from './QuestionFinderWrapper'
 import SimulationEnding from './SimulationEnding'
-const QuestionFinder = React.lazy(() => import('./QuestionFinder'))
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -101,6 +102,8 @@ export default function Conversation({
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const tracking = useSelector((state) => state.tracking)
+
+	const enquête = useSelector(enquêteSelector)
 
 	useEffect(() => {
 		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
@@ -366,9 +369,11 @@ export default function Conversation({
 				<Trans>Vous avez complété la catégorie</Trans>{' '}
 				<i>{focusedCategoryTitle}</i>
 			</p>
-			<Link to="/profil">
-				<Trans>Modifier mes réponses</Trans>
-			</Link>
+			{!enquête && (
+				<Link to="/profil">
+					<Trans>Modifier mes réponses</Trans>
+				</Link>
+			)}
 			<div css="margin-top: 1rem">
 				<Link to={pathname}>
 					<button className="ui__ button plain small">Continuer le test</button>
@@ -396,49 +401,7 @@ export default function Conversation({
 			// This is a design idea, not really useful now
 			//border-bottom: 0.6rem solid ${questionCategory.color || 'transparent'};
 		>
-			{finder ? (
-				<Suspense fallback={<div>Chargement</div>}>
-					<QuestionFinder close={() => setFinder(false)} />
-				</Suspense>
-			) : (
-				<div
-					css={`
-						position: absolute;
-						top: 0;
-						right: 0;
-						line-height: 1rem;
-						button {
-							padding: 0;
-							display: flex;
-							align-items: center;
-							color: var(--color);
-						}
-						img {
-							width: 1.2rem;
-							padding-top: 0.1rem;
-						}
-						span {
-							display: none;
-							font-weight: bold;
-							font-size: 70%;
-							margin-right: 0.3rem;
-						}
-						@media (min-width: 800px) {
-							span {
-								display: inline;
-							}
-						}
-					`}
-				>
-					<button
-						onClick={() => setFinder(!finder)}
-						title="Recherche rapide de questions dans le formulaire"
-					>
-						<img src={`/images/1F50D.svg`} aria-hidden="true" />
-						<span>Ctrl-K</span>
-					</button>
-				</div>
-			)}
+			<QuestionFinderWrapper {...{ finder, setFinder }} />
 			{orderByCategories && (
 				<Meta
 					title={rules[objectifs[0]].title + ' - ' + questionCategory?.title}
@@ -485,7 +448,8 @@ export default function Conversation({
 					</fieldset>
 				</div>
 				<div className="ui__ answer-group">
-					{previousAnswers.length > 0 &&
+					{!enquête &&
+						previousAnswers.length > 0 &&
 						// We check that the question is not the first question
 						currentQuestionIndex !== 0 &&
 						// We check that previousQuestion found is in the rules (as the model evolves, the question found can be out of the new rules)

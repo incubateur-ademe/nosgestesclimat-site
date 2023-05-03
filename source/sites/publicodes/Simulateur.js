@@ -16,6 +16,7 @@ import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
+import { enquêteSelector } from './enquête/enquêteSelector'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
 
@@ -112,6 +113,7 @@ const TutorialRedirection = () => {
 }
 
 const MainSimulationEnding = ({ rules, engine }) => {
+	const enquête = useSelector(enquêteSelector)
 	// Necessary to call 'buildEndURL' with the latest situation
 
 	return (
@@ -144,10 +146,14 @@ const MainSimulationEnding = ({ rules, engine }) => {
 			>
 				<Trans>Voir mon résultat</Trans>
 			</Link>
-			<Trans>ou</Trans>
-			<Link to="/profil" css="">
-				<Trans>Modifier mes réponses</Trans>
-			</Link>
+			{!enquête && (
+				<>
+					<Trans>ou</Trans>
+					<Link to="/profil" css="">
+						<Trans>Modifier mes réponses</Trans>
+					</Link>
+				</>
+			)}
 		</div>
 	)
 }

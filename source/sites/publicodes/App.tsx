@@ -24,6 +24,7 @@ import {
 	getLangInfos,
 } from './../../locales/translation'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
+import EnquêteBanner from './enquête/BannerWrapper'
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
@@ -37,18 +38,20 @@ import { isFluidLayout } from './utils'
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
 
 const ActionsLazy = React.lazy(() => import('./Actions'))
+const QuestionList = React.lazy(() => import('./pages/QuestionList'))
 const FinLazy = React.lazy(() => import('./fin'))
 const SimulateurLazy = React.lazy(() => import('./Simulateur'))
 const PetrogazLandingLazy = React.lazy(() => import('./pages/PetrogazLanding'))
 const ModelLazy = React.lazy(() => import('./Model'))
 const PersonasLazy = React.lazy(() => import('./Personas'))
 const DocumentationLazy = React.lazy(() => import('./pages/Documentation'))
-const TutorialLazy = React.lazy(() => import('./Tutorial'))
+const TutorialLazy = React.lazy(() => import('./tutorial/Tutorial'))
 const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
 const ContributionLazy = React.lazy(() => import('./Contribution'))
 const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
 const StatsLazy = React.lazy(() => import('./pages/Stats'))
 const SurveyLazy = React.lazy(() => import('./conference/Survey'))
+const EnquêteLazy = React.lazy(() => import('./enquête/Enquête'))
 const CGULazy = React.lazy(() => import('./pages/CGU'))
 const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
 const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
@@ -102,6 +105,7 @@ export default function Root({}) {
 					persistedSimulation?.storedAmortissementAvion ?? {},
 				conference: persistedSimulation?.conference,
 				survey: persistedSimulation?.survey,
+				enquête: persistedSimulation?.enquête,
 			}}
 		>
 			<Main />
@@ -178,6 +182,7 @@ const Main = ({}) => {
 			)}
 		>
 			<>
+				<EnquêteBanner />
 				<div
 					css={`
 						@media (min-width: 800px) {
@@ -256,7 +261,17 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={encodeURIComponent('modèle')}
+				path="questions"
+				element={
+					<WithEngine options={{ parsed: true, optimized: false }}>
+						<Suspense fallback={<AnimatedLoader />}>
+							<QuestionList />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+			<Route
+				path={'modèle'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<ModelLazy />
@@ -335,7 +350,7 @@ const Router = ({}) => {
 					</Suspense>
 				}
 			/>
-			<Route path={encodeURIComponent('à-propos')} element={<About />} />
+			<Route path={'à-propos'} element={<About />} />
 			<Route
 				path="/cgu"
 				element={
@@ -353,7 +368,7 @@ const Router = ({}) => {
 			<Route path="/partenaires" element={<Diffuser />} />
 			<Route path="/diffuser" element={<Diffuser />} />
 			<Route
-				path={encodeURIComponent('vie-privée')}
+				path={'vie-privée'}
 				element={
 					<Suspense
 						fallback={
@@ -367,7 +382,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`${encodeURIComponent('nouveautés')}/*`}
+				path={`nouveautés/*`}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<News />
@@ -391,7 +406,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`${encodeURIComponent('conférence')}/:room`}
+				path={`conférence/:room`}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<ConferenceLazy />
@@ -423,6 +438,14 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
+				path="/enquête/:userID?"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<EnquêteLazy />
+					</Suspense>
+				}
+			/>
+			<Route
 				path="/accessibilite"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
@@ -439,7 +462,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`/${encodeURIComponent('pétrole-et-gaz')}`}
+				path={`/pétrole-et-gaz`}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<PetrogazLandingLazy />

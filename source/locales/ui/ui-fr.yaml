@@ -325,6 +325,7 @@ entries:
   meta.publicodes.pages.Documentation.intro: Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du même nom, composé d'un ensemble de briques. Sur cette documentation, vous avez accès en toute transparence à l'ensemble des variables du calcul.
   minutes: minutes
   model.active: Voici à titre d'exemple quelques <1>issues</1> importantes du moment parmi la centaine de sujets documentés.
+  model.active.documented: La construction du modèle (pistes de travail, réflexions en cours, feuille de route, etc.) est amplement <2>documentée publiquement</2>.
   model.intro: Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte climat individuelle de consommation de référence.
   model.intro2: Entièrement ouvert (open source) et contributif, chacun peut l'<1>explorer</1>, <4>donner son avis</4>, <7>l'améliorer</7>.
   model.modern: Le modèle est basé sur <1>publicodes</1>, un langage conçu par l'État pour exprimer des algorithmes d'intérêt public.

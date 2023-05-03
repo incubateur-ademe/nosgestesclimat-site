@@ -14,6 +14,7 @@ export type SavedSimulation = {
 	localisation: Object | undefined
 	conference: { room: string } | null
 	survey: { room: string } | null
+	enquête: { userID: string; date: string } | null
 	url?: string
 	date?: Date
 	id?: string
