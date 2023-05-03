@@ -1,6 +1,4 @@
 import { Link } from 'react-router-dom'
-import { minutes } from './Banner'
-import ReturnToEnquêteButton from './ReturnToEnquêteButton'
 
 const nothing = () => null
 export default ({ setTimeMessage = nothing, noFirstButton }) => (
@@ -35,16 +33,21 @@ export default ({ setTimeMessage = nothing, noFirstButton }) => (
 			Vous pourrez les mettre dans votre panier et visualiser la réduction
 			d'empreinte ainsi gagnée.
 		</p>
+		{/*
 		<p>
 			<strong>N'oubliez pas</strong>, une fois le parcours action terminé, de
 			retourner sur le questionnaire d'enquête OpinionWay avec le deuxième
 			bouton ci-dessous. Nous vous le rappelerons dans {minutes} minutes.
 		</p>
+		*/}
 		{!noFirstButton && (
 			<button className="ui__ button " onClick={() => setTimeMessage(false)}>
 				⏳️ Je n'ai pas terminé
 			</button>
 		)}
+		{/*
+
 		<ReturnToEnquêteButton />
+		*/}
 	</div>
 )

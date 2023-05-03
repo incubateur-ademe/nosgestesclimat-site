@@ -8,7 +8,7 @@ export default ({ simple }) => {
 	const testCompleted = useTestCompleted()
 	if (!enquête) return null
 	const id = enquête.userID
-	const url = `https://ow3.cawi.fr/cgi-bin/xcawi2/Q/bj25398/bj25398.pl?CW_start=${id}&ret=1`
+	const url = `https://nosgestesclimat.fr`
 	return (
 		<a
 			href={url}

@@ -11,7 +11,6 @@ import { Markdown } from '../../../components/utils/markdown'
 import { rehydrateDetails } from '../fin'
 import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
 import { enquêteSelector } from './enquêteSelector'
-import ReturnToEnquêteButton from './ReturnToEnquêteButton'
 import content from './texte.md'
 
 export default () => {
@@ -37,7 +36,9 @@ export default () => {
 	return (
 		<div css="max-width: 750px">
 			<Markdown>{content}</Markdown>
+			{/*
 			<ReturnToEnquêteButton />
+			*/}
 
 			<div>
 				<Link to="/simulateur/bilan">
