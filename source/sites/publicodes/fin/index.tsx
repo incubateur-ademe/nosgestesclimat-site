@@ -128,10 +128,9 @@ export default ({}) => {
 }
 
 export const generateImageLink = (location) =>
-	'https://aejkrqosjq.cloudimg.io/v7/' +
-	location.origin +
-	'/.netlify/functions/ending-screenshot?pageToScreenshot=' +
-	encodeURIComponent(location)
+	`https://ogimager.osc-fr1.scalingo.io/capture/${encodeURIComponent(
+		location
+	)}/shareImage?timeout=5000`
 
 export const DocumentationEndButton = ({ ruleName, color }) => (
 	<div
