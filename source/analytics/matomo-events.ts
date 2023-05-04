@@ -50,7 +50,7 @@ export const getMatomoEventClickHelp = (dottedName: DottedName) => [
 export const matomoEventKilometerHelp = [
 	'trackEvent',
 	'Formulaire',
-	'Utilisation aide à la saisie km voiture',
+	'Ajout trajet km voiture',
 ]
 export const matomoEventKilometerHelpClickOpen = [
 	'trackEvent',
@@ -80,27 +80,27 @@ export const getMatomoEventChangeRegion = (code: string) => [
 // Iframe
 export const getMatomoEventVisitViaIframe = (url: string) => [
 	'trackEvent',
-	'Iframe',
-	'Visite via iframe',
+	'iframe',
+	'visites via iframe',
 	url,
 ]
 export const matomoEventInteractionIframe = [
 	'trackEvent',
-	'Iframe',
-	'Interaction avec iframe',
+	'iframe',
+	'interaction avec iframe',
 ]
 
 // Mode groupe
 export const matomoEventModeGroupeFiltres = [
 	'trackEvent',
 	'Mode Groupe',
-	'Ouverture filtres',
+	'Ouvre filtres',
 ]
 export const getMatomoEventModeGroupeRealtimeActivation = (
 	isRealTime: boolean
 ) => [
 	'trackEvent',
-	'Mode groupe',
+	'Mode Groupe',
 	isRealTime
 		? 'Désactivation du mode temps réel'
 		: 'Activation du mode temps réel',
@@ -117,33 +117,25 @@ export const matomoEventModeGroupeCTAStart = [
 	'Clic CTA accueil',
 ]
 
-// Parcours test
+// Funnel
 export const matomoEventParcoursTestStart = [
 	'trackEvent',
-	'Parcours test',
+	'NGC',
 	'Clic CTA accueil',
-	'Faire le test',
 ]
 export const matomoEventParcoursTestReprendre = [
 	'trackEvent',
-	'Parcours test',
-	'Clic CTA accueil',
-	'Reprendre mon test',
+	'NGC',
+	'Clic CTA accueil : Reprendre mon test',
 ]
 export const getMatomoEventParcoursTestTutorialProgress = (
 	last: boolean,
 	index: number
-) => [
-	'trackEvent',
-	'Parcours test',
-	'Tutoriel',
-	last ? 'Terminer' : `Étape ${index} passée`,
-]
+) => ['trackEvent', 'testIntro', last ? 'Terminer' : `diapo ${index} passée`]
 export const matomoEventParcoursTestSkipTutorial = [
 	'trackEvent',
-	'Parcours test',
-	'Tutoriel',
-	'Passer',
+	'testIntro',
+	'tuto passé',
 ]
 export const matomoEventFirstAnswer = [
 	'trackEvent',
@@ -152,9 +144,8 @@ export const matomoEventFirstAnswer = [
 ]
 export const getMatomoEventParcoursTestCategoryStarted = (category: string) => [
 	'trackEvent',
-	'Parcours test',
-	'Catégorie démarrée',
-	category,
+	'NGC',
+	`Catégorie démarrée : ${category}`,
 ]
 export const matomoEvent50PercentProgress = [
 	'trackEvent',
@@ -168,9 +159,8 @@ export const matomoEvent90PercentProgress = [
 ]
 export const getMatomoEventParcoursTestOver = (bilan: number | undefined) => [
 	'trackEvent',
-	'Parcours test',
-	'Test terminé',
-	'Bilan carbone',
+	'NGC',
+	'A terminé la simulation',
 	bilan || '',
 ]
 export const matomoEventClickBanner = [
@@ -178,6 +168,14 @@ export const matomoEventClickBanner = [
 	'NGC',
 	'Clic explication score',
 ]
+export const matomoEventSwipeEndPage = [
+	'trackEvent',
+	'NGC',
+	'Swipe page de fin',
+]
+export const getMatomoEventClickActionButtonEndPage = (
+	score: string | number
+) => ['trackEvent', 'NGC', 'Clic bouton action page /fin', null, score]
 
 // Actions
 export const getMatomoEventActionRejected = (

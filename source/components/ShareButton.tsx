@@ -50,7 +50,7 @@ export default ({
 				color,
 				text,
 				url,
-				trackEvent: () => trackEvent(getMatomoEventShareDesktop(score)),
+				trackEventDesktop: () => trackEvent(getMatomoEventShareDesktop(score)),
 			}}
 		/>
 	)
@@ -62,7 +62,19 @@ const copyToClipboardAsync = (str) => {
 	return Promise.reject('The Clipboard API is not available.')
 }
 
-export const DesktopShareButton = ({ label, text, color, url, trackEvent }) => {
+export const DesktopShareButton = ({
+	label,
+	text,
+	color,
+	url,
+	trackEventDesktop,
+}: {
+	label: string
+	text: string
+	color: string
+	url: string
+	trackEventDesktop: () => void
+}) => {
 	const [copySuccess, setCopySuccess] = useState(false)
 	const { t } = useTranslation()
 
@@ -75,7 +87,7 @@ ${decodeURIComponent(url)}`
 			title={t('Cliquez pour partager le lien')}
 			color={color}
 			onClick={() => {
-				trackEvent()
+				trackEventDesktop()
 				copyToClipboardAsync(clipboardText).then(
 					() => {
 						/* clipboard successfully set */
