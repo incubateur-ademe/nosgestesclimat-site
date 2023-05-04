@@ -39,11 +39,15 @@ export default class Tracker {
 			// iFrame -- to avoid errors in the number of visitors in our stats.
 			if (iOSSafari && inIframe()) return
 
-			// Could be due to an adblocker not allowing the script to set this global attribute
-			if (!window.plausible) return
+			if (inIframe()) {
+				window._paq.push(['setCookieSameSite', 'None'])
+			}
 
 			// Create new array to avoid mutating original
 			window._paq.push([...args])
+
+			// Could be due to an adblocker not allowing the script to set this global attribute
+			if (!window.plausible) return
 
 			// pour plausible, je n'envoie que les events
 			// les pages vues sont gérées de base
