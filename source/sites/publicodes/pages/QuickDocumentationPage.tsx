@@ -97,8 +97,14 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 			`}
 		>
 			<DocumentationStyle>
-				<Meta description={rule.description} title={title} />
-				<header>
+				<Meta
+					description={rule.description}
+					title={title}
+					image={`https://ogimager.osc-fr1.scalingo.io/capture/${encodeURIComponent(
+						window.location
+					)}/shareImage?timeout=5000`}
+				/>
+				<header id="shareImage">
 					<Breadcrumb dottedName={dottedName} rules={rules} />
 					<h1>
 						{rule.icônes} {title}
