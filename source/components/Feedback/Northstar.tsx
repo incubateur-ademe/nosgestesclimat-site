@@ -1,34 +1,46 @@
-import { setRatings } from 'Actions/actions'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
+import { setRatings } from '../../actions/actions'
 
 export default ({
 	type,
 }: {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
 }) => {
+	const [selectedRating, setSelectedRating] = useState(false)
+	const dispatch = useDispatch()
+	const submitFeedback = (rating: number) => {
+		setSelectedRating(true)
+		setTimeout(() => {
+			dispatch(setRatings(type, rating))
+		}, 3000)
+	}
+	if (selectedRating) {
+		return (
+			<p
+				css={`
+					margin: 10px;
+				`}
+			>
+				Merci pour votre retour !
+			</p>
+		)
+	}
 	return (
 		<RatingContainer role="list">
-			<FeedbackButton rating={1} type={type} />
-			<FeedbackButton rating={2} type={type} />
-			<FeedbackButton rating={3} type={type} />
-			<FeedbackButton rating={4} type={type} />
+			<FeedbackButton rating={1} onClick={() => submitFeedback(1)} />
+			<FeedbackButton rating={2} onClick={() => submitFeedback(2)} />
+			<FeedbackButton rating={3} onClick={() => submitFeedback(3)} />
+			<FeedbackButton rating={4} onClick={() => submitFeedback(4)} />
 		</RatingContainer>
 	)
 }
 
-const FeedbackButton = ({ rating, type }) => {
-	const dispatch = useDispatch()
-	const submitFeedback = () => {
-		dispatch(setRatings(type, rating))
-	}
-
+const FeedbackButton = ({ rating, onClick }) => {
 	return (
 		<div role="listitem">
-			<EmojiButton
-				onClick={submitFeedback}
-				aria-label={`Satisfaction ${rating}`}
-			>
+			<EmojiButton onClick={onClick} aria-label={`Satisfaction ${rating}`}>
 				⭐
 			</EmojiButton>
 		</div>
