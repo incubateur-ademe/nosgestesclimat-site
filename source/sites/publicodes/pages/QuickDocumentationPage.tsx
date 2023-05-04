@@ -6,6 +6,7 @@ import { RuleListItem } from '../../../components/SearchBar'
 import Meta from '../../../components/utils/Meta'
 import { capitalise0, omit } from '../../../utils'
 import References from '../DocumentationReferences'
+import { generateImageLink } from '../fin'
 import DocumentationStyle from './DocumentationStyle'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
@@ -100,9 +101,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				<Meta
 					description={rule.description}
 					title={title}
-					image={`https://ogimager.osc-fr1.scalingo.io/capture/${encodeURIComponent(
-						window.location
-					)}/shareImage?timeout=5000`}
+					image={generateImageLink(window.location)}
 				/>
 				<header id="shareImage">
 					<Breadcrumb dottedName={dottedName} rules={rules} />

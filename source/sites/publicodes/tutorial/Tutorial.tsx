@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { TrackerContext } from '../../../contexts/TrackerContext'
 import { enquêteSelector } from '../enquête/enquêteSelector'
+import { generateImageLink } from '../fin'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Categories from './Categories'
 import ClimateWarming from './ClimateWarming'
@@ -72,7 +73,11 @@ export default ({}) => {
 
 	return (
 		<>
-			<Meta title={title} description={description} />
+			<Meta
+				title={title}
+				description={description}
+				image={generateImageLink(window.location)}
+			/>
 			<SlidesLayout length={slides.length} active={index}>
 				<HorizontalSwipe {...{ next, previous }}>
 					<Slide
