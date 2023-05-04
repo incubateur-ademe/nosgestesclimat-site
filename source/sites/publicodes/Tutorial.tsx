@@ -6,10 +6,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
-import {
-	getMatomoEventParcoursTestTutorialProgress,
-	matomoEventParcoursTestSkipTutorial,
-} from '../../analytics/matomo-events'
+import { getMatomoEventParcoursTestTutorialProgress } from '../../analytics/matomo-events'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
 import { MatomoContext } from '../../contexts/MatomoContext'
@@ -31,7 +28,6 @@ export default () => {
 
 	const skip = (name, unskip) => {
 		dispatch(skipTutorial(name, unskip))
-		trackEvent(matomoEventParcoursTestSkipTutorial)
 	}
 	const last = index === slides.length - 1
 	const next = () => {

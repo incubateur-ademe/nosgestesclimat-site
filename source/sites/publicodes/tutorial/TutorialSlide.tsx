@@ -1,9 +1,12 @@
+import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
+import { matomoEventParcoursTestSkipTutorial } from '../../../analytics/matomo-events'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 
 export default ({ children, last, skip }) => {
 	const { t } = useTranslation()
-
+	const { trackEvent } = useContext(MatomoContext)
 	return (
 		<div
 			className="ui__ card light colored content"
@@ -39,7 +42,11 @@ export default ({ children, last, skip }) => {
 				<Link to="/simulateur/bilan">
 					<button
 						className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
-						onClick={() => skip('testIntro')}
+						onClick={() => {
+							trackEvent(matomoEventParcoursTestSkipTutorial)
+
+							skip('testIntro')
+						}}
 						data-cypress-id="skip-tuto-button"
 					>
 						{!last ? t('Passer le tutoriel') : t("C'est parti !")}
