@@ -1,11 +1,11 @@
 import { skipTutorial } from 'Actions/actions'
 import SlidesLayout from 'Components/SlidesLayout'
 import Meta from 'Components/utils/Meta'
-import useKeypress from 'Components/utils/useKeyPress'
 import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
+import useKeypress from '../../../hooks/useKeyPress'
 import { enquêteSelector } from '../enquête/enquêteSelector'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Categories from './Categories'
@@ -48,7 +48,7 @@ export default ({}) => {
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
-	const tracker = useContext(TrackerContext)
+	const tracker = useContext(MatomoContext)
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache
