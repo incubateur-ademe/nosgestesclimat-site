@@ -15,16 +15,16 @@ import { DottedName } from 'Rules'
 // Partage
 export const getMatomoEventShareMobile = (score: number) => [
 	'trackEvent',
-	'Partage',
 	'Partage page de fin',
 	'Clic bouton "Partager mes résultats" sur mobile',
+	null,
 	score,
 ]
 export const getMatomoEventShareDesktop = (score: number) => [
 	'trackEvent',
-	'Partage',
 	'Partage page de fin',
 	'Clic bouton "Partager mes résultats" sur desktop',
+	null,
 	score,
 ]
 
@@ -144,7 +144,8 @@ export const matomoEventFirstAnswer = [
 export const getMatomoEventParcoursTestCategoryStarted = (category: string) => [
 	'trackEvent',
 	'NGC',
-	`Catégorie démarrée : ${category}`,
+	'Catégorie démarrée',
+	category,
 ]
 export const matomoEvent50PercentProgress = [
 	'trackEvent',
@@ -160,6 +161,7 @@ export const getMatomoEventParcoursTestOver = (bilan: number | undefined) => [
 	'trackEvent',
 	'NGC',
 	'A terminé la simulation',
+	null,
 	bilan || '',
 ]
 export const matomoEventClickBanner = [
