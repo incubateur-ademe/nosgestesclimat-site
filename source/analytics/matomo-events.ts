@@ -90,8 +90,6 @@ export const matomoEventInteractionIframe = [
 	'Interaction avec iframe',
 ]
 
-// TODO : revoir la stratégie de tracking des actions
-
 // Mode groupe
 export const matomoEventModeGroupeFiltres = [
 	'trackEvent',

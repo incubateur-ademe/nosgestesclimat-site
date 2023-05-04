@@ -8,6 +8,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import { matomoEventInteractionIframe } from '../../analytics/matomo-events'
 import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
@@ -18,6 +19,7 @@ import Provider from '../../Provider'
 import { AppState } from '../../reducers/rootReducer'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
+import { getIsIframe } from '../../utils'
 import {
 	changeLangTo,
 	getLangFromAbreviation,
@@ -67,6 +69,8 @@ const News = React.lazy(() => import('Pages/news/News'))
 export default function Root() {
 	const paths = sitePaths()
 
+	const { trackEvent } = useContext(MatomoContext)
+
 	const iframeShareData = new URLSearchParams(
 		document?.location.search.substring(1)
 	).get('shareData')
@@ -83,6 +87,22 @@ export default function Root() {
 		getLangFromAbreviation(
 			window.FORCE_LANGUAGE || window.navigator.language.toLowerCase()
 		)
+
+	const isIframe = getIsIframe()
+
+	const handleClickIframe = () => {
+		// Envoi un évènement pour permettre de discriminer les iframes "fantômes"
+		// des iframes avec lesquelles il y a eu interaction
+		trackEvent(matomoEventInteractionIframe)
+		document.body.removeEventListener('click', handleClickIframe)
+	}
+
+	useEffect(() => {
+		if (!isIframe) {
+			document.body.addEventListener('click', handleClickIframe)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<Provider
