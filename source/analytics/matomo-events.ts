@@ -43,13 +43,12 @@ export const getMatomoEventClickDontKnow = (currentQuestion: string) => [
 ]
 export const getMatomoEventClickHelp = (dottedName: DottedName) => [
 	'trackEvent',
-	'Formulaire',
-	'Clic bouton "Aide" (?)',
+	'help',
 	dottedName,
 ]
 export const matomoEventKilometerHelp = [
 	'trackEvent',
-	'Formulaire',
+	'Aide saisie km',
 	'Ajout trajet km voiture',
 ]
 export const matomoEventKilometerHelpClickOpen = [
