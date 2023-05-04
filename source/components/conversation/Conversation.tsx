@@ -37,6 +37,7 @@ import {
 	isPersonaSelector,
 	objectifsSelector,
 } from '../../selectors/simulationSelectors'
+import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelector'
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
@@ -112,6 +113,8 @@ export default function Conversation({
 	const tracking = useSelector((state) => state.tracking)
 	const progress = useSimulationProgress()
 	const isPersona = useSelector(isPersonaSelector)
+
+	const enquête = useSelector(enquêteSelector)
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
