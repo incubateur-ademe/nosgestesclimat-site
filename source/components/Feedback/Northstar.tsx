@@ -7,32 +7,31 @@ export default ({
 }: {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
 }) => {
+	return (
+		<RatingContainer role="list">
+			<FeedbackButton rating={1} type={type} />
+			<FeedbackButton rating={2} type={type} />
+			<FeedbackButton rating={3} type={type} />
+			<FeedbackButton rating={4} type={type} />
+		</RatingContainer>
+	)
+}
+
+const FeedbackButton = ({ rating, type }) => {
 	const dispatch = useDispatch()
-
-	const FeedbackButton = ({ rating }) => {
-		const submitFeedback = () => {
-			dispatch(setRatings(type, rating))
-		}
-
-		return (
-			<div role="listitem">
-				<EmojiButton
-					onClick={submitFeedback}
-					aria-label={`Satisfaction ${rating}`}
-				>
-					⭐
-				</EmojiButton>
-			</div>
-		)
+	const submitFeedback = () => {
+		dispatch(setRatings(type, rating))
 	}
 
 	return (
-		<RatingContainer role="list">
-			<FeedbackButton rating={1} />
-			<FeedbackButton rating={2} />
-			<FeedbackButton rating={3} />
-			<FeedbackButton rating={4} />
-		</RatingContainer>
+		<div role="listitem">
+			<EmojiButton
+				onClick={submitFeedback}
+				aria-label={`Satisfaction ${rating}`}
+			>
+				⭐
+			</EmojiButton>
+		</div>
 	)
 }
 
