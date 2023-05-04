@@ -678,3 +678,5 @@ entries:
   Reprendre mon test: Resume my test
   Découvrez les actions de la campagne Printemps pour la planète: Discover the actions of the Spring for the Planet campaign
   Le logo vert et bleu de la campagne Printemps pour la planète: The green and blue logo of the Spring for the Planet campaign
+  model.questions: Discover the <2>list of questions available in the template</2>.
+  model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
