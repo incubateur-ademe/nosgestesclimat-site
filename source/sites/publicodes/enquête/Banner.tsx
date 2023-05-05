@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
@@ -176,10 +177,11 @@ const BannerWithEngine = () => {
 							margin: auto;
 						`}
 					>
-						<span>
+						<Trans i18nKey={`publicodes.northstar.action`}>
 							Dans quelle mesure Nos Gestes Climat vous donne envie d'agir pour
 							réduire votre empreinte carbone ?
-						</span>
+						</Trans>
+
 						<Northstar type="SET_RATING_ACTION"></Northstar>
 					</p>
 				</motion.div>

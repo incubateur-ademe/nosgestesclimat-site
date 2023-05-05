@@ -1,3 +1,4 @@
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Northstar from '../../../components/Feedback/Northstar'
@@ -48,9 +49,9 @@ export default ({ setTimeMessage = nothing, noFirstButton }) => {
 						margin: auto;
 					`}
 				>
-					<span>
+					<Trans i18nKey={`publicodes.northstar.learned`}>
 						Dans quelle mesure Nos Gestes Climat vous a appris quelque chose ?
-					</span>
+					</Trans>
 					<Northstar type="SET_RATING_LEARNED"></Northstar>
 				</p>
 			)}

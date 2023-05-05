@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
 import { setRatings } from '../../actions/actions'
@@ -23,7 +24,9 @@ export default ({
 					margin: 10px;
 				`}
 			>
-				Merci pour votre retour !
+				<Trans i18nKey={`publicodes.northstar.thankyou`}>
+					Merci pour votre retour !
+				</Trans>
 			</p>
 		)
 	}
