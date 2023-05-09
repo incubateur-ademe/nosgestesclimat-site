@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import { matomoEventSwipeEndPage } from '../../../analytics/matomo-events'
+import { NewsletterForm } from '../../../components/emailing/NewsletterForm'
 import NorthstarBanner from '../../../components/Feedback/NorthstarBanner'
 import SlidesLayout from '../../../components/SlidesLayout'
 import { MatomoContext } from '../../../contexts/MatomoContext'
@@ -125,6 +126,7 @@ export default ({}) => {
 					</HorizontalSwipe>
 				</SlidesLayout>
 			</animate.appear>
+			<NewsletterForm />
 		</div>
 	)
 }

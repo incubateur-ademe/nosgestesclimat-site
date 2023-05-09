@@ -128,6 +128,7 @@
 		"imports-loader": "^4.0.0",
 		"isomorphic-fetch": "^3.0.0",
 		"json-stable-stringify": "^1.0.1",
+		"lz-string": "^1.5.0",
 		"markdown-to-jsx": "^7.1.8",
 		"mini-css-extract-plugin": "^2.6.1",
 		"node-fetch": "^3.2.10",
