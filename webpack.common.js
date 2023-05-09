@@ -13,21 +13,22 @@ module.exports.default = {
 	resolveLoader: {
 		modules: ['node_modules', path.resolve('loaders/')],
 	},
-
 	resolve: {
 		fallback: {
 			path: 'path-browserify',
 			buffer: 'buffer',
 		},
 		alias: {
-			Source: path.resolve('source/'),
-			Actions: path.resolve('source/actions/'),
-			Components: path.resolve('source/components/'),
-			Pages: path.resolve('source/sites/publicodes/pages/'),
-			Selectors: path.resolve('source/selectors/'),
-			Reducers: path.resolve('source/reducers/'),
-			Types: path.resolve('source/types/'),
-			Images: path.resolve('source/images/'),
+			'@': path.resolve(__dirname, 'source/'),
+			Source: path.resolve(__dirname, 'source/'),
+			Actions: path.resolve(__dirname, 'source/actions/'),
+			Components: path.resolve(__dirname, 'source/components/'),
+			Pages: path.resolve(__dirname, 'source/sites/publicodes/pages/'),
+			Enquête: path.resolve(__dirname, 'source/sites/publicodes/enquête/'),
+			Selectors: path.resolve(__dirname, 'source/selectors/'),
+			Reducers: path.resolve(__dirname, 'source/reducers/'),
+			Types: path.resolve(__dirname, 'source/types/'),
+			Images: path.resolve(__dirname, 'source/images/'),
 		},
 		extensions: ['.js', '.ts', '.tsx'],
 	},
