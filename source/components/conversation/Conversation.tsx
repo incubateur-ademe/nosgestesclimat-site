@@ -21,6 +21,7 @@ import {
 } from '../../actions/actions'
 import {
 	getMatomoEventClickDontKnow,
+	getMatomoEventClickNextQuestion,
 	getMatomoEventParcoursTestOver,
 	matomoEvent50PercentProgress,
 	matomoEvent90PercentProgress,
@@ -493,7 +494,10 @@ export default function Conversation({
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"
-							onClick={() => submit('accept')}
+							onClick={() => {
+								trackEvent(getMatomoEventClickNextQuestion(currentQuestion))
+								submit('accept')
+							}}
 						>
 							<span className="text">
 								<Trans>Suivant</Trans> →
