@@ -1,46 +1,51 @@
-import { goToQuestion, updateSituation } from 'Actions/actions'
-import RuleInput, {
-	getRelatedMosaicInfosIfExists,
-	RuleInputProps,
-} from 'Components/conversation/RuleInput'
-import Notifications, { getCurrentNotification } from 'Components/Notifications'
-import { EngineContext } from 'Components/utils/EngineContext'
-import { motion } from 'framer-motion'
-import React, { useContext, useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
 import {
-	answeredQuestionsSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
-import {
+	goToQuestion,
 	setTrackingVariable,
 	skipTutorial,
+	updateSituation,
 	validateWithDefaultValue,
-} from '../../actions/actions'
+} from '@/actions/actions'
 import {
 	getMatomoEventClickDontKnow,
 	getMatomoEventParcoursTestOver,
 	matomoEvent50PercentProgress,
 	matomoEvent90PercentProgress,
 	matomoEventFirstAnswer,
-} from '../../analytics/matomo-events'
-import Meta from '../../components/utils/Meta'
-import { MatomoContext } from '../../contexts/MatomoContext'
-import useKeypress from '../../hooks/useKeyPress'
+} from '@/analytics/matomo-events'
+import RuleInput, {
+	getRelatedMosaicInfosIfExists,
+	RuleInputProps,
+} from '@/components/conversation/RuleInput'
+import Notifications, {
+	getCurrentNotification,
+} from '@/components/Notifications'
+import {
+	questionCategoryName,
+	splitName,
+	title,
+} from '@/components/publicodesUtils'
+import SafeCategoryImage from '@/components/SafeCategoryImage'
+import { EngineContext } from '@/components/utils/EngineContext'
+import Meta from '@/components/utils/Meta'
+import { MatomoContext } from '@/contexts/MatomoContext'
+import useKeypress from '@/hooks/useKeyPress'
 import {
 	useNextQuestions,
 	useSimulationProgress,
-} from '../../hooks/useNextQuestion'
+} from '@/hooks/useNextQuestion'
 import {
+	answeredQuestionsSelector,
 	isPersonaSelector,
 	objectifsSelector,
-} from '../../selectors/simulationSelectors'
-import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelector'
-import { sortBy, useQuery } from '../../utils'
-import { questionCategoryName, splitName, title } from '../publicodesUtils'
-import SafeCategoryImage from '../SafeCategoryImage'
+	situationSelector,
+} from '@/selectors/simulationSelectors'
+import { sortBy, useQuery } from '@/utils'
+import { enquêteSelector } from 'Enquête/enquêteSelector'
+import { motion } from 'framer-motion'
+import React, { useContext, useEffect, useState } from 'react'
+import { Trans } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useLocation } from 'react-router-dom'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
