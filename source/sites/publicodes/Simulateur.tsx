@@ -14,6 +14,7 @@ import { Navigate } from 'react-router'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import { FullName } from '../../components/publicodesUtils'
 import Meta from '../../components/utils/Meta'
+import { AppState } from '../../reducers/rootReducer'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
 import { enquêteSelector } from './enquête/enquêteSelector'
@@ -26,9 +27,14 @@ const equivalentTargetArrays = (array1, array2) =>
 
 const Simulateur = () => {
 	const urlParams = useParams()
-	const objectif = urlParams['*'],
-		decoded = utils.decodeRuleName(objectif),
-		rules = useSelector((state) => state.rules),
+	const objectif = urlParams['*']
+
+	if (!objectif) {
+		return <Navigate to="/simulateur/bilan" replace />
+	}
+
+	const decoded = utils.decodeRuleName(objectif),
+		rules = useSelector((state: AppState) => state.rules),
 		rule = rules[decoded],
 		engine = useEngine(),
 		evaluation = engine.evaluate(decoded),
@@ -37,12 +43,10 @@ const Simulateur = () => {
 			objectifs: [decoded],
 			questions: questionConfig,
 		},
-		configSet = useSelector((state) => state.simulation?.config),
+		configSet = useSelector((state: AppState) => state.simulation?.config),
 		categories = decoded === 'bilan' && extractCategories(rules, engine)
-	const tutorials = useSelector((state) => state.tutorials)
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 	const url = useLocation().pathname
-
-	const localisation = useSelector((state) => state.localisation)
 
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
@@ -50,6 +54,7 @@ const Simulateur = () => {
 	}, [])
 
 	const isMainSimulation = decoded === 'bilan'
+
 	if (!configSet) {
 		return null
 	}
