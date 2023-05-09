@@ -442,9 +442,9 @@ export type AppState = CombinedState<{
 	conference: never
 	survey: never
 	iframeOptions: any
-	tutorials: {}
+	tutorials: any
 	storedTrajets: any
-	storedAmortissementAvion: {}
+	storedAmortissementAvion: any
 	thenRedirectTo: any
 	tracking: {
 		endEventFired: boolean
