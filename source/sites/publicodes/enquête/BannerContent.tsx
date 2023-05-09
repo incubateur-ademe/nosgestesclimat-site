@@ -1,14 +1,7 @@
-import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import Northstar from '../../../components/Feedback/Northstar'
-import { RootState } from '../../../reducers/rootReducer'
 
 const nothing = () => null
 export default ({ setTimeMessage = nothing, noFirstButton }) => {
-	const hasRatedLearning = useSelector(
-		(state: RootState) => state.ratings.learned
-	)
 	return (
 		<div
 			css={`
@@ -41,20 +34,6 @@ export default ({ setTimeMessage = nothing, noFirstButton }) => {
 				Vous pourrez les mettre dans votre panier et visualiser la réduction
 				d'empreinte ainsi gagnée.
 			</p>
-			{!hasRatedLearning && (
-				<p
-					css={`
-						padding: 20px;
-						max-width: 420px;
-						margin: auto;
-					`}
-				>
-					<Trans i18nKey={`publicodes.northstar.learned`}>
-						Dans quelle mesure Nos Gestes Climat vous a appris quelque chose ?
-					</Trans>
-					<Northstar type="SET_RATING_LEARNED"></Northstar>
-				</p>
-			)}
 			{/*
 			<p>
 				<strong>N'oubliez pas</strong>, une fois le parcours action terminé, de

@@ -1,10 +1,8 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
-import Northstar from '../../../components/Feedback/Northstar'
 import { ScrollToTop } from '../../../components/utils/Scroll'
 import { WithEngine } from '../../../RulesProvider'
 import {
@@ -32,11 +30,6 @@ const BannerWithEngine = () => {
 	const enquête = useSelector(enquêteSelector)
 	const [message, setMessage] = useState(null)
 	const [timeMessage, setTimeMessage] = useState(false)
-
-	const actionChoicesLength = Object.keys(
-		useSelector((state) => state.actionChoices)
-	).length
-	const hasRatedAction = useSelector((state) => state.ratings.action)
 
 	const data = useSimulationData()
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
@@ -152,38 +145,6 @@ const BannerWithEngine = () => {
 					<ScrollToTop />
 
 					<BannerContent setTimeMessage={setTimeMessage} />
-				</motion.div>
-			)}
-
-			{!hasRatedAction && actionChoicesLength > 2 && (
-				<motion.div
-					initial={{ opacity: 0 }}
-					animate={{ opacity: 1 }}
-					exit={{ opacity: 0 }}
-					transition={{ delay: 0.4 }}
-					css={`
-						background: ${uglyBannerContentColor}; /*J'étais pas très inspiré là */
-						height: ${height - 1}vh;
-						@media (max-width: 380) {
-							height: 100vh;
-						}
-					`}
-				>
-					<ScrollToTop />
-					<p
-						css={`
-							padding: 20px;
-							max-width: 420px;
-							margin: auto;
-						`}
-					>
-						<Trans i18nKey={`publicodes.northstar.action`}>
-							Dans quelle mesure Nos Gestes Climat vous donne envie d'agir pour
-							réduire votre empreinte carbone ?
-						</Trans>
-
-						<Northstar type="SET_RATING_ACTION"></Northstar>
-					</p>
 				</motion.div>
 			)}
 		</motion.div>

@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import AnimatedLoader from '../../AnimatedLoader'
+import NorthStarBannerWrapper from '../../components/Feedback/NorthStarBannerWrapper'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
@@ -184,6 +185,7 @@ const Main = ({}) => {
 		>
 			<>
 				<EnquêteBanner />
+				<NorthStarBannerWrapper />
 				<div
 					css={`
 						@media (min-width: 800px) {

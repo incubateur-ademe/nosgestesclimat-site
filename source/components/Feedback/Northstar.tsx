@@ -1,8 +1,11 @@
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { setRatings } from '../../actions/actions'
+import { RootState } from '../../reducers/rootReducer'
+import { useSimulationData } from '../../selectors/simulationSelectors'
+import { simulationURL } from '../../sites/publicodes/conference/useDatabase'
 
 export default ({
 	type,
@@ -11,12 +14,27 @@ export default ({
 }) => {
 	const [selectedRating, setSelectedRating] = useState(false)
 	const dispatch = useDispatch()
+
+	const ratings = useSelector((state: RootState) => state.ratings)
+
+	const data = useSimulationData()
+	const simulationId = useSelector(
+		(state: RootState) => state.currentSimulationId
+	)
+
 	const submitFeedback = (rating: number) => {
 		setSelectedRating(true)
 		setTimeout(() => {
 			dispatch(setRatings(type, rating))
-		}, 3000)
+			let newRatings
+			if (type === 'SET_RATING_LEARNED')
+				newRatings = { ...ratings, learned: rating }
+			else newRatings = { ...ratings, action: rating }
+
+			postData(data, simulationId, newRatings)
+		}, 1000)
 	}
+
 	if (selectedRating) {
 		return (
 			<p
@@ -40,6 +58,31 @@ export default ({
 	)
 }
 
+const postData = async (data, id, ratings) => {
+	data.situation = {}
+	data.extraSituation = {
+		storedTrajets: {},
+		actionChoices: {},
+		storedAmortissementAvion: {},
+	}
+	data.answeredQuestions = {}
+	data.ratings = ratings
+
+	const body = { data, id }
+	console.log(body)
+	try {
+		const response = await fetch(simulationURL, {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(body),
+		})
+	} catch (e) {
+		console.log(e)
+	}
+}
+
 const FeedbackButton = ({ rating, onClick }) => {
 	return (
 		<div role="listitem">
@@ -60,6 +103,7 @@ const EmojiButton = styled.button`
 		transform: scale(1.3);
 	}
 `
+
 const RatingContainer = styled.div`
 	display: flex;
 	flex-wrap: wrap;
