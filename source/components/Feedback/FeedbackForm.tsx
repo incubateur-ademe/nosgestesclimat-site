@@ -60,7 +60,6 @@ export default function FeedbackForm({ onCancel }: Props) {
 			script.src = 'https://mon-entreprise.zammad.com/assets/form/form.js'
 			document.body.appendChild(script)
 		}, 100)
-		// tracker.push(['trackEvent', 'Feedback', 'written feedback submitted'])
 	}, [])
 
 	return (

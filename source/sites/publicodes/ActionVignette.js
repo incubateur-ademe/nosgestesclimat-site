@@ -5,6 +5,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
+import { getMatomoEventActionAccepted } from '../../analytics/matomo-events'
 import NotificationBubble from '../../components/NotificationBubble'
 import {
 	correctValue,
@@ -12,8 +13,8 @@ import {
 	splitName,
 } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
-import { getNextQuestions } from '../../components/utils/useNextQuestion'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -51,7 +52,7 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const dispatch = useDispatch()
 	const rules = useSelector((state) => state.rules),
@@ -234,14 +235,7 @@ export const ActionListCard = ({
 								)
 							)
 							if (!actionChoices[dottedName]) {
-								const eventData = [
-									'trackEvent',
-									'/actions',
-									'Action sélectionnée',
-									dottedName,
-									nodeValue,
-								]
-								tracker.push(eventData)
+								trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
 							}
 							e.stopPropagation()
 							e.preventDefault()
@@ -259,13 +253,7 @@ export const ActionListCard = ({
 									actionChoices[dottedName] === false ? null : false
 								)
 							)
-							tracker.push([
-								'trackEvent',
-								'/actions',
-								'Action rejetée',
-								dottedName,
-								nodeValue,
-							])
+							trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
 							e.stopPropagation()
 							e.preventDefault()
 						}}

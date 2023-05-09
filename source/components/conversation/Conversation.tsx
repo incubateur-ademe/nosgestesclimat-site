@@ -5,7 +5,6 @@ import RuleInput, {
 } from 'Components/conversation/RuleInput'
 import Notifications, { getCurrentNotification } from 'Components/Notifications'
 import { EngineContext } from 'Components/utils/EngineContext'
-import { useNextQuestions } from 'Components/utils/useNextQuestion'
 import { motion } from 'framer-motion'
 import React, { useContext, useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -20,8 +19,20 @@ import {
 	skipTutorial,
 	validateWithDefaultValue,
 } from '../../actions/actions'
+import {
+	getMatomoEventClickDontKnow,
+	getMatomoEventParcoursTestOver,
+	matomoEvent50PercentProgress,
+	matomoEvent90PercentProgress,
+	matomoEventFirstAnswer,
+} from '../../analytics/matomo-events'
 import Meta from '../../components/utils/Meta'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import useKeypress from '../../hooks/useKeyPress'
+import {
+	useNextQuestions,
+	useSimulationProgress,
+} from '../../hooks/useNextQuestion'
 import {
 	isPersonaSelector,
 	objectifsSelector,
@@ -30,8 +41,6 @@ import { enquêteSelector } from '../../sites/publicodes/enquête/enquêteSelect
 import { sortBy, useQuery } from '../../utils'
 import { questionCategoryName, splitName, title } from '../publicodesUtils'
 import SafeCategoryImage from '../SafeCategoryImage'
-import useKeypress from '../utils/useKeyPress'
-import { useSimulationProgress } from '../utils/useNextQuestion'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
@@ -56,7 +65,7 @@ export default function Conversation({
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const objectifs = useSelector(objectifsSelector)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
 	// orderByCategories is the list of categories, ordered by decreasing nodeValue
@@ -92,7 +101,7 @@ export default function Conversation({
 
 	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
-		currentQuestion = !isMainSimulation
+		currentQuestion: string = !isMainSimulation
 			? nextQuestions[0]
 			: focusedCategory
 			? sortedQuestions[0]
@@ -102,34 +111,10 @@ export default function Conversation({
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const tracking = useSelector((state) => state.tracking)
-
-	const enquête = useSelector(enquêteSelector)
-
-	useEffect(() => {
-		if (!tracking.firstQuestionEventFired && previousAnswers.length >= 1) {
-			console.log('1ère réponse au bilan')
-			tracker.push(['trackEvent', 'NGC', '1ère réponse au bilan'])
-			dispatch(setTrackingVariable('firstQuestionEventFired', true))
-		}
-	}, [tracker, previousAnswers])
-
 	const progress = useSimulationProgress()
 	const isPersona = useSelector(isPersonaSelector)
 
-	useEffect(() => {
-		// This will help you judge if the "A terminé la simulation" event has good numbers
-		if (!tracking.progress90EventFired && progress > 0.9 && !isPersona) {
-			console.log('90% réponse au bilan')
-			tracker.push(['trackEvent', 'NGC', 'Progress > 90%'])
-			dispatch(setTrackingVariable('progress90EventFired', true))
-		}
-
-		if (!tracking.progress50EventFired && progress > 0.5 && !isPersona) {
-			console.log('50% réponse au bilan')
-			tracker.push(['trackEvent', 'NGC', 'Progress > 50%'])
-			dispatch(setTrackingVariable('progress50EventFired', true))
-		}
-	}, [tracker, progress])
+	const enquête = useSelector(enquêteSelector)
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
@@ -294,33 +279,74 @@ export default function Conversation({
 		'keydown',
 		[]
 	)
-	const endEventFired = tracking.endEventFired
+
 	const noQuestionsLeft = !nextQuestions.length
 
-	const bilan = Math.round(engine.evaluate('bilan').nodeValue)
-
-	useEffect(() => {
-		if (!endEventFired && noQuestionsLeft && !isPersona) {
-			tracker.push([
-				'trackEvent',
-				'NGC',
-				'A terminé la simulation',
-				'bilan',
-				bilan,
-			])
-			dispatch(setTrackingVariable('endEventFired', true))
-		}
-	}, [endEventFired, noQuestionsLeft])
-
-	if (noQuestionsLeft) {
-		return <SimulationEnding {...{ customEnd, customEndMessages }} />
-	}
+	const endEventFired = tracking.endEventFired
 
 	const questionCategory =
 		orderByCategories &&
 		orderByCategories.find(
 			({ dottedName }) => dottedName === questionCategoryName(currentQuestion)
 		)
+
+	useEffect(() => {
+		if (
+			!tracking.firstQuestionEventFired &&
+			previousAnswers.length >= 1 &&
+			!isPersona
+		) {
+			trackEvent(matomoEventFirstAnswer)
+			dispatch(setTrackingVariable('firstQuestionEventFired', true))
+		}
+	}, [
+		dispatch,
+		previousAnswers,
+		trackEvent,
+		tracking.firstQuestionEventFired,
+		isPersona,
+	])
+
+	useEffect(() => {
+		// This will help you judge if the "A terminé la simulation" event has good numbers
+		if (!tracking.progress90EventFired && progress > 0.9 && !isPersona) {
+			trackEvent(matomoEvent90PercentProgress)
+			dispatch(setTrackingVariable('progress90EventFired', true))
+		}
+
+		if (!tracking.progress50EventFired && progress > 0.5 && !isPersona) {
+			trackEvent(matomoEvent50PercentProgress)
+			dispatch(setTrackingVariable('progress50EventFired', true))
+		}
+	}, [
+		dispatch,
+		progress,
+		trackEvent,
+		tracking.progress50EventFired,
+		tracking.progress90EventFired,
+		isPersona,
+	])
+
+	const bilan = engine
+		? Math.round(
+				parseFloat((engine?.evaluate('bilan')?.nodeValue as string) || '')
+		  )
+		: undefined
+
+	useEffect(() => {
+		if (!endEventFired && noQuestionsLeft && !isPersona) {
+			// Cannot be sent several times, trackEvent filters duplicates
+			trackEvent(getMatomoEventParcoursTestOver(bilan))
+		}
+	}, [noQuestionsLeft, bilan, trackEvent, endEventFired, isPersona])
+
+	if (noQuestionsLeft) {
+		return <SimulationEnding {...{ customEnd, customEndMessages }} />
+	}
+
+	if (noQuestionsLeft) {
+		return <SimulationEnding {...{ customEnd, customEndMessages }} />
+	}
 
 	const isCategoryFirstQuestion =
 		questionCategory &&
@@ -476,7 +502,7 @@ export default function Conversation({
 					) : (
 						<button
 							onClick={() => {
-								tracker.push(['trackEvent', 'je ne sais pas', currentQuestion])
+								trackEvent(getMatomoEventClickDontKnow(currentQuestion))
 								setDefault()
 							}}
 							type="button"

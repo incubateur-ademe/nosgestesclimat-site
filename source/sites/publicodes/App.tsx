@@ -8,16 +8,18 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import { matomoEventInteractionIframe } from '../../analytics/matomo-events'
 import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
-import useMediaQuery from '../../components/utils/useMediaQuery'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
 import { AppState } from '../../reducers/rootReducer'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
+import { getIsIframe } from '../../utils'
 import {
 	changeLangTo,
 	getLangFromAbreviation,
@@ -64,8 +66,10 @@ const News = React.lazy(() => import('Pages/news/News'))
 
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
-export default function Root({}) {
+export default function Root() {
 	const paths = sitePaths()
+
+	const { trackEvent } = useContext(MatomoContext)
 
 	const iframeShareData = new URLSearchParams(
 		document?.location.search.substring(1)
@@ -83,6 +87,22 @@ export default function Root({}) {
 		getLangFromAbreviation(
 			window.FORCE_LANGUAGE || window.navigator.language.toLowerCase()
 		)
+
+	const isIframe = getIsIframe()
+
+	const handleClickIframe = () => {
+		// Envoi un évènement pour permettre de discriminer les iframes "fantômes"
+		// des iframes avec lesquelles il y a eu interaction
+		trackEvent(matomoEventInteractionIframe)
+		document.body.removeEventListener('click', handleClickIframe)
+	}
+
+	useEffect(() => {
+		if (!isIframe) {
+			document.body.addEventListener('click', handleClickIframe)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<Provider
@@ -113,7 +133,7 @@ export default function Root({}) {
 	)
 }
 
-const Main = ({}) => {
+const Main = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const { i18n, t } = useTranslation()
@@ -121,12 +141,12 @@ const Main = ({}) => {
 	const isHomePage = location.pathname === '/',
 		isTuto = location.pathname.indexOf('/tutoriel') === 0
 
-	const tracker = useContext(TrackerContext)
+	const { trackPageView } = useContext(MatomoContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {
-		tracker?.track(location)
-	}, [location])
+		trackPageView(location)
+	}, [location, trackPageView])
 
 	// Manage the language change from the URL search param
 	const currentLangState = useSelector((state: AppState) => state.currentLang)

@@ -1,7 +1,6 @@
 import { localStorageKey } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
-import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
@@ -13,9 +12,10 @@ import {
 	useMatch,
 	useNavigate,
 } from 'react-router-dom'
-import { getCurrentLangInfos, Release } from 'Source/locales/translation'
-import { capitalise0 } from 'Source/utils'
 import styled from 'styled-components'
+import { usePersistingState } from '../../../../hooks/usePersistState'
+import { getCurrentLangInfos, Release } from '../../../../locales/translation'
+import { capitalise0 } from '../../../../utils'
 
 export const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
@@ -50,8 +50,6 @@ export default function NewsItem() {
 
 	const data = sortReleases(currentLangInfos.releases),
 		lastRelease = data && data[0]
-
-	console.log(data)
 
 	useEffect(() => {
 		setLastViewedRelease(lastRelease.name)

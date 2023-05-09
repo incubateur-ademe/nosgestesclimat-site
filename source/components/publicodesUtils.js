@@ -8,7 +8,7 @@ export const parentName = (
 	degree = 1
 ) => splitName(dottedName).slice(shift, -degree).join(outputSeparator)
 
-export const splitName = (dottedName) => dottedName.split(' . ')
+export const splitName = (dottedName) => dottedName?.split(' . ')
 
 export const FullName = ({ dottedName }) => (
 	<span>
@@ -166,7 +166,7 @@ export const safeGetRule = (engine, dottedName) => {
 	}
 }
 
-export const questionCategoryName = (dottedName) => splitName(dottedName)[0]
+export const questionCategoryName = (dottedName) => splitName(dottedName)?.[0]
 
 export function relegate(keys, array) {
 	const categories = keys.reduce((memo, key) => {

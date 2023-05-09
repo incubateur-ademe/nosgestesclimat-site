@@ -1,8 +1,8 @@
 import { motion, useMotionValue, useSpring } from 'framer-motion'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
+import { useSimulationProgress } from '../hooks/useNextQuestion'
 import { configSelector } from '../selectors/simulationSelectors'
-import { useSimulationProgress } from './utils/useNextQuestion'
 
 export default () => {
 	const engineState = useSelector((state) => state.engineState)

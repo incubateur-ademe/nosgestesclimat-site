@@ -19,7 +19,7 @@ import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import { useEngine } from '../../components/utils/EngineContext'
 import Meta from '../../components/utils/Meta'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import { getNextQuestions } from '../../components/utils/useNextQuestion'
+import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -35,7 +35,7 @@ export const useProfileData = () => {
 	return { hasData, tutorials, answeredQuestionsLength, answeredQuestions }
 }
 
-export default ({}) => {
+export default () => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const persona = useSelector((state) => state.simulation?.persona)

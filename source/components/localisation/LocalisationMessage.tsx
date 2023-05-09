@@ -2,7 +2,8 @@ import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { getMatomoEventChangeRegion } from '../../analytics/matomo-events'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import { AppState } from '../../reducers/rootReducer'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import CountryFlag from './CountryFlag'
@@ -15,7 +16,7 @@ import {
 } from './utils'
 
 export default () => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const messagesRead = useSelector(
 		(state: AppState) => state.sessionLocalisationBannersRead
 	)
@@ -120,12 +121,8 @@ export default () => {
 								type: 'SET_LOCALISATION_BANNERS_READ',
 								regions: [...messagesRead, code],
 							})
-							tracker.push([
-								'trackEvent',
-								'I18N',
-								'Clic bannière localisation',
-								code,
-							])
+
+							trackEvent(getMatomoEventChangeRegion(code))
 						}}
 					>
 						<Trans>J'ai compris</Trans>

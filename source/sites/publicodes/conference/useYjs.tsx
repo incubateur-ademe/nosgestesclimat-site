@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { WebrtcProvider } from 'y-webrtc'
 import { WebsocketProvider } from 'y-websocket'
 import * as Y from 'yjs'
-import { usePersistingState } from '../../../components/utils/persistState'
+import { usePersistingState } from '../../../hooks/usePersistState'
 import { generateFruitName, stringToColour } from './utils'
 
 localStorage.log = 'y-webrtc'

@@ -6,7 +6,7 @@ import {
 	minimalCategoryData,
 } from '../components/publicodesUtils'
 import { useEngine } from '../components/utils/EngineContext'
-import { useNextQuestions } from '../components/utils/useNextQuestion'
+import { useNextQuestions } from '../hooks/useNextQuestion'
 import { DottedName, Situation } from '../rules/index'
 import useActions from '../sites/publicodes/useActions'
 import { currentSimulationSelector } from './storageSelectors'

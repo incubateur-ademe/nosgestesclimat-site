@@ -7,7 +7,8 @@ import {
 	updateAmortissementAvion,
 	updateSituation,
 } from '../../../actions/actions'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { getMatomoEventAmortissement } from '../../../analytics/matomo-events'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 import emoji from '../../emoji'
 import { formatFloat } from '../../utils/formatFloat'
 import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
@@ -45,7 +46,7 @@ export default function Amortissement({
 }: Props) {
 	const { t } = useTranslation()
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const dispatch = useDispatch()
 
@@ -72,6 +73,9 @@ export default function Amortissement({
 	}, [])
 
 	const handleUpdateAmortissementAvion = (amortissementObject) => {
+		// On tracke l'utilisation de l'amortissement et non plus le clic sur le bouton
+		trackEvent(getMatomoEventAmortissement(dottedName))
+
 		setAmortissementAvion(amortissementObject)
 		setFinalValue(formatAmortissementValue(amortissementObject))
 		dispatch(updateAmortissementAvion({ dottedName, amortissementObject }))
@@ -102,11 +106,6 @@ export default function Amortissement({
 				}
 				onHandleClick={() => {
 					setIsFormOpen(isFormOpen ? false : true)
-					tracker.push([
-						'trackEvent',
-						'Aide saisie km',
-						'Ferme aide à la saisie km voiture',
-					])
 				}}
 			/>
 			{isFormOpen && (

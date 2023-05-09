@@ -6,16 +6,17 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
+import { getMatomoEventParcoursTestTutorialProgress } from '../../analytics/matomo-events'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
-import useKeypress from '../../components/utils/useKeyPress'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import useKeypress from '../../hooks/useKeyPress'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 
-export default ({}) => {
+export default () => {
 	const navigate = useNavigate()
 	const tutorials = useSelector((state) => state.tutorials)
 
@@ -25,28 +26,26 @@ export default ({}) => {
 
 	const index = tutos.length
 
-	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
-		last = index === slides.length - 1,
-		next = () => {
-			tracker.push([
-				'trackEvent',
-				'testIntro',
-				last ? `tuto passé` : `diapo ${index} passée`,
-			])
+	const skip = (name, unskip) => {
+		dispatch(skipTutorial(name, unskip))
+	}
+	const last = index === slides.length - 1
+	const next = () => {
+		trackEvent(getMatomoEventParcoursTestTutorialProgress(last, index + 1))
 
-			skip(last ? 'testIntro' : 'testIntro' + index)
-			if (last) {
-				navigate('/simulateur/bilan')
-			}
-		},
-		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
+		skip(last ? 'testIntro' : 'testIntro' + index)
+		if (last) {
+			navigate('/simulateur/bilan')
+		}
+	}
+	const previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
 	useKeypress('Escape', false, () => skip('testIntro'), 'keyup', [])
 
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache

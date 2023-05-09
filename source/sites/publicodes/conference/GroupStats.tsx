@@ -2,9 +2,10 @@ import { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
+import { getMatomoEventModeGroupeRealtimeActivation } from '../../../analytics/matomo-events'
 import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -37,7 +38,7 @@ export default ({
 	setThreshold,
 	existContext,
 }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
@@ -149,13 +150,9 @@ export default ({
 							showLabel
 							checked={!realTimeMode}
 							onChange={() => {
-								tracker.push([
-									'trackEvent',
-									'Mode groupe',
-									realTimeMode
-										? 'Désactivation du mode temps réel'
-										: 'Activation du mode temps réel',
-								])
+								trackEvent(
+									getMatomoEventModeGroupeRealtimeActivation(realTimeMode)
+								)
 								setRealTimeMode(!realTimeMode)
 							}}
 						/>

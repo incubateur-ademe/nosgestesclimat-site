@@ -2,11 +2,12 @@ import { explainVariable } from 'Actions/actions'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { getMatomoEventClickHelp } from '../../analytics/matomo-events'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const explained = useSelector((state: RootState) => state.explainedVariable)
 	const dispatch = useDispatch()
 
@@ -17,7 +18,7 @@ export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 		<button
 			type="button"
 			onClick={(e) => {
-				tracker.push(['trackEvent', 'help', dottedName])
+				trackEvent(getMatomoEventClickHelp(dottedName))
 				if (explained === dottedName) {
 					return dispatch(explainVariable(null))
 				}

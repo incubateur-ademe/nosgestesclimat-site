@@ -1,7 +1,7 @@
 import React, { useCallback, useContext, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useLocation } from 'react-router-dom'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import safeLocalStorage from '../../storage/safeLocalStorage'
 import './Feedback.css'
 import Form from './FeedbackForm'
@@ -33,7 +33,7 @@ export default function PageFeedback({
 	customEventName,
 }: PageFeedbackProps) {
 	const location = useLocation()
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const [state, setState] = useState({
 		showForm: false,
 		showThanks: false,
@@ -44,18 +44,11 @@ export default function PageFeedback({
 	})
 
 	const handleFeedback = useCallback(({ useful }: { useful: boolean }) => {
-		tracker.push([
-			'trackEvent',
-			'Feedback',
-			useful ? 'positive rating' : 'negative rating',
-			location.pathname,
-		])
 		const feedback = [
 			customEventName || 'rate page usefulness',
 			location.pathname,
 			useful ? 10 : 0.1,
 		] as [string, string, number]
-		tracker.push(['trackEvent', 'Feedback', ...feedback])
 		saveFeedbackOccurrenceInLocalStorage(feedback)
 		setState({
 			showThanks: useful,
@@ -65,7 +58,6 @@ export default function PageFeedback({
 	}, [])
 
 	const handleErrorReporting = useCallback(() => {
-		tracker.push(['trackEvent', 'Feedback', 'report error', location.pathname])
 		setState({ ...state, showForm: true })
 	}, [])
 

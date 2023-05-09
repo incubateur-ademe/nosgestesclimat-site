@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { inIframe } from 'Source/utils'
+import { getIsIframe } from 'Source/utils'
 
 // We let iframe integrators ask the user if he wants to share its simulation data to the parent window
 const shareDataPopupTimeout = 3500
@@ -37,7 +37,7 @@ export default ({ data }) => {
 		setIsOpen(false)
 	}
 
-	if (!inIframe() || !document.referrer || !iframeOptions?.iframeShareData) {
+	if (!getIsIframe() || !document.referrer || !iframeOptions?.iframeShareData) {
 		return null
 	}
 

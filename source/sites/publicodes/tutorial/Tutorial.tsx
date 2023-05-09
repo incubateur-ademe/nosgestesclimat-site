@@ -1,11 +1,12 @@
 import { skipTutorial } from 'Actions/actions'
 import SlidesLayout from 'Components/SlidesLayout'
 import Meta from 'Components/utils/Meta'
-import useKeypress from 'Components/utils/useKeyPress'
 import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { getMatomoEventParcoursTestTutorialProgress } from '../../../analytics/matomo-events'
+import { MatomoContext } from '../../../contexts/MatomoContext'
+import useKeypress from '../../../hooks/useKeyPress'
 import { enquêteSelector } from '../enquête/enquêteSelector'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Categories from './Categories'
@@ -27,28 +28,26 @@ export default ({}) => {
 	const slides = createSlides(enquête)
 	const index = tutos.length
 
-	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
-		last = index === slides.length - 1,
-		next = () => {
-			tracker.push([
-				'trackEvent',
-				'testIntro',
-				last ? `tuto passé` : `diapo ${index} passée`,
-			])
+	const { trackEvent } = useContext(MatomoContext)
 
-			skip(last ? 'testIntro' : 'testIntro' + index)
-			if (last) {
-				navigate('/simulateur/bilan')
-			}
-		},
-		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
+	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip))
+
+	const last = index === slides.length - 1
+	const next = () => {
+		trackEvent(getMatomoEventParcoursTestTutorialProgress(last, index + 1))
+
+		skip(last ? 'testIntro' : 'testIntro' + index)
+		if (last) {
+			navigate('/simulateur/bilan')
+		}
+	}
+	const previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
 	useKeypress('Escape', false, () => skip('testIntro'), 'keyup', [])
 
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
-	const tracker = useContext(TrackerContext)
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache

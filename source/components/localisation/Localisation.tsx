@@ -7,7 +7,7 @@ import {
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { resetLocalisation } from '../../actions/actions'
-import { usePersistingState } from '../../components/utils/persistState'
+import { usePersistingState } from '../../hooks/usePersistState'
 import { AppState } from '../../reducers/rootReducer'
 import RegionModelAuthors, {
 	DEFAULT_REGION_MODEL_AUTHOR,

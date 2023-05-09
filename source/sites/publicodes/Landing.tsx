@@ -4,6 +4,11 @@ import React, { Suspense, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
+	matomoEventModeGroupeCTAStart,
+	matomoEventParcoursTestReprendre,
+	matomoEventParcoursTestStart,
+} from '../../analytics/matomo-events'
+import {
 	fluidLayoutMinWidth,
 	HeaderContent,
 	HeaderCTAs,
@@ -15,8 +20,8 @@ import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Meta from '../../components/utils/Meta'
-import useMediaQuery from '../../components/utils/useMediaQuery'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 
@@ -31,7 +36,7 @@ const Illustration = () => (
 )
 
 export default () => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const { t } = useTranslation()
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 	const { isIframe } = useContext(IframeOptionsContext)
@@ -69,20 +74,11 @@ export default () => {
 								data-cypress-id="do-the-test-link"
 								onClick={() => {
 									if (hasData) {
-										tracker?.push([
-											'trackEvent',
-											'NGC',
-											'Clic CTA accueil',
-											'Reprendre mon test',
-										])
-									} else {
-										tracker?.push([
-											'trackEvent',
-											'NGC',
-											'Clic CTA accueil',
-											'Faire le test',
-										])
+										trackEvent(matomoEventParcoursTestReprendre)
+										return
 									}
+
+									trackEvent(matomoEventParcoursTestStart)
 								}}
 							>
 								<CircleSVG progress={0} white />
@@ -97,14 +93,9 @@ export default () => {
 							<Link
 								to="/groupe"
 								className="ui__ button cta"
-								onClick={() =>
-									tracker?.push([
-										'trackEvent',
-										'NGC',
-										'Clic CTA accueil',
-										'Faire le test à plusieurs',
-									])
-								}
+								onClick={() => {
+									trackEvent(matomoEventModeGroupeCTAStart)
+								}}
 								data-cypress-id="as-a-group-link"
 							>
 								<img

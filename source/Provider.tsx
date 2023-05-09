@@ -9,9 +9,9 @@ import { BrowserRouter } from 'react-router-dom'
 import reducers, { RootState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
-import { TrackerProvider } from './contexts/TrackerContext'
+import { MatomoProvider } from './contexts/MatomoContext'
 import RulesProvider from './RulesProvider'
-import { inIframe } from './utils'
+import { getIsIframe } from './utils'
 
 declare global {
 	interface Window {
@@ -21,7 +21,11 @@ declare global {
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-if (NODE_ENV === 'production' && 'serviceWorker' in navigator && !inIframe()) {
+if (
+	NODE_ENV === 'production' &&
+	'serviceWorker' in navigator &&
+	!getIsIframe()
+) {
 	window.addEventListener('load', () => {
 		navigator.serviceWorker
 			.register('/sw.js')
@@ -74,9 +78,9 @@ export default function Provider({
 
 	return (
 		// If IE < 11 display nothing
-		<TrackerProvider>
-			<ReduxProvider store={store}>
-				<RulesProvider>
+		<ReduxProvider store={store}>
+			<RulesProvider>
+				<MatomoProvider>
 					<ThemeColorsProvider
 						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 					>
@@ -90,8 +94,8 @@ export default function Provider({
 							</SitePathProvider>
 						</IframeOptionsProvider>
 					</ThemeColorsProvider>
-				</RulesProvider>
-			</ReduxProvider>
-		</TrackerProvider>
+				</MatomoProvider>
+			</RulesProvider>
+		</ReduxProvider>
 	)
 }
