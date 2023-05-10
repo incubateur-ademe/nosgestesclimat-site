@@ -1,4 +1,4 @@
-import { setSimulationConfig } from '@/actions/actions'
+import { goToQuestion, setSimulationConfig } from '@/actions/actions'
 import {
 	Category,
 	extractCategories,
@@ -29,43 +29,90 @@ const equivalentTargetArrays = (array1, array2) =>
 	array1.length === array2.length &&
 	array1.every((value, index) => value === array2[index])
 
+/*
+ * Here the URL specs:
+
+```
+URL := /simulateur/<category>/<dotted-name>
+
+<category> := 'bilan' // main simulator
+            | 'transport'
+            | 'alimentation'
+            | 'logement'
+            | 'service-sociétaux'
+            | 'divers'
+
+<dotted-name> := // dotted-name with ' . ' replaced by '/' and whitespaces by '-'
+```
+
+Examples:
+
+* The URL corresponding to the question `logement . saisie habitants`
+	of the main simulator is `/simulateur/bilan/logement/saisie-habitants`
+* The URL corresponding to the question  `logement . électricité . consommation`
+  of the sub-simulator `logement` is `/simulateur/logement/électricité/consommation`. Indeed, we only want to access to the sub rules corresponding to the category of the sub-simulator.
+*/
+const subSimulators = [
+	'bilan',
+	'transport',
+	'alimentation',
+	'logement',
+	'services-sociétaux',
+	'divers',
+]
+
 const Simulateur = () => {
 	const urlParams = useParams()
-	const objectif = urlParams['*']
+	const path = urlParams['*']?.split('/')
+	if (!path) {
+		return <Navigate to="/simulateur/bilan" replace />
+	}
+	const category = path[0]
+	const isMainSimulation = isRootRule(category)
+	const selectedRuleName = path.slice(1)
 
-	if (!objectif) {
+	if (!subSimulators.includes(category)) {
 		return <Navigate to="/simulateur/bilan" replace />
 	}
 
-	const decoded = utils.decodeRuleName(objectif),
-		rules = useSelector((state: AppState) => state.rules),
-		rule = rules[decoded],
+	const decodedSelectedRuleName = utils.decodeRuleName(
+		selectedRuleName.join('/')
+	)
+
+	console.log('category', category)
+	console.log('decoded', decodedSelectedRuleName)
+
+	const currentSimulation = useSelector((state: AppState) => state.simulation)
+	const rules = useSelector((state: AppState) => state.rules),
+		rule = rules[category],
 		engine = useEngine(),
-		evaluation = engine.evaluate(decoded),
+		evaluation = engine.evaluate(category),
 		dispatch = useDispatch(),
 		config = {
-			objectifs: [decoded],
+			objectifs: [category],
 			questions: questionConfig,
 		},
-		configSet = useSelector((state: AppState) => state.simulation?.config),
-		categories: Category[] = isRootRule(decoded)
+		configSet = currentSimulation?.config,
+		categories: Category[] = isMainSimulation
 			? extractCategories(rules, engine)
 			: []
 	const tutorials = useSelector((state: AppState) => state.tutorials)
 	const url = useLocation().pathname
 
 	useEffect(() => {
-		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
+		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
 			dispatch(
 				// @ts-ignore : TODO fix types
 				setSimulationConfig(config, url)
 			)
+		}
 	}, [])
 
-	const isMainSimulation = isRootRule(decoded)
-	if (!configSet) {
-		return null
-	}
+	useEffect(() => {
+		if (decodedSelectedRuleName != undefined) {
+			dispatch(goToQuestion(decodedSelectedRuleName))
+		}
+	}, [decodedSelectedRuleName])
 
 	const displayScoreExplanation =
 			isMainSimulation && !tutorials.scoreExplanation,
