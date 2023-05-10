@@ -42,7 +42,7 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { sortBy, useQuery } from '@/utils'
+import { useQuery } from '@/utils'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
 import React, { useContext, useEffect, useRef, useState } from 'react'
@@ -52,6 +52,7 @@ import { Link, useLocation } from 'react-router-dom'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
+import { sortQuestionsByCategory } from './conversationUtils'
 import { ExplicableRule } from './Explicable'
 import QuestionFinderWrapper from './QuestionFinderWrapper'
 import SimulationEnding from './SimulationEnding'
@@ -77,28 +78,21 @@ export default function Conversation({
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	const { trackEvent } = useContext(MatomoContext)
 	const objectifs = useSelector(objectifsSelector)
-	const previousSimulation = useSelector((state) => state.previousSimulation)
 
 	// We want to get the initial order category to avoid reordering the questions
 	const initialOrderByCategories = useRef(orderByCategories).current
+	const previousSimulation = useSelector(
+		(state: AppState) => state.previousSimulation
+	)
 
+	// [initialOrderByCategories] is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = initialOrderByCategories
-		? sortBy((question) => {
-				const category = initialOrderByCategories.find(
-					(c) => question.indexOf(c.dottedName) === 0
-				)
-				if (!category) {
-					return 1000000
-				}
-				// We artificially put this category (since it has no actionable question) at the end
-				if (category.name === 'services sociétaux') {
-					return 100000
-				}
-				return -(category?.nodeValue ?? 0)
-		  })(nextQuestions)
+		? sortQuestionsByCategory(nextQuestions, initialOrderByCategories)
 		: nextQuestions
+
 	const focusedCategory = useQuery().get('catégorie') ?? '',
 		pathname = useLocation().pathname
+
 	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
 
 	const focusByCategory = (questions) => {
