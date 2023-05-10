@@ -5,7 +5,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
-import { getMatomoEventActionAccepted } from '../../analytics/matomo-events'
+import {
+	getMatomoEventActionAccepted,
+	getMatomoEventActionRejected,
+} from '../../analytics/matomo-events'
 import NotificationBubble from '../../components/NotificationBubble'
 import {
 	correctValue,
