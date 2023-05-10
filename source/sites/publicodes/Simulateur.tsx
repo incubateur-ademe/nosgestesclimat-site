@@ -1,10 +1,15 @@
-import { setSimulationConfig } from 'Actions/actions'
-import { extractCategories } from 'Components/publicodesUtils'
-import { buildEndURL } from 'Components/SessionBar'
-import Simulation from 'Components/Simulation'
-import Title from 'Components/Title'
-import { useEngine } from 'Components/utils/EngineContext'
-import { Markdown } from 'Components/utils/markdown'
+import { setSimulationConfig } from '@/actions/actions'
+import {
+	extractCategories,
+	FullName,
+	MODEL_ROOT_RULE_NAME,
+} from '@/components/publicodesUtils'
+import { buildEndURL } from '@/components/SessionBar'
+import Simulation from '@/components/Simulation'
+import Title from '@/components/Title'
+import { useEngine } from '@/components/utils/EngineContext'
+import { Markdown } from '@/components/utils/markdown'
+import Meta from '@/components/utils/Meta'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -12,9 +17,6 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate } from 'react-router'
 import { Link, useLocation, useParams } from 'react-router-dom'
-import { FullName } from '../../components/publicodesUtils'
-import Meta from '../../components/utils/Meta'
-import { AppState } from '../../reducers/rootReducer'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
 import { enquêteSelector } from './enquête/enquêteSelector'
@@ -43,9 +45,10 @@ const Simulateur = () => {
 			objectifs: [decoded],
 			questions: questionConfig,
 		},
-		configSet = useSelector((state: AppState) => state.simulation?.config),
-		categories = decoded === 'bilan' && extractCategories(rules, engine)
-	const tutorials = useSelector((state: AppState) => state.tutorials)
+		configSet = useSelector((state) => state.simulation?.config),
+		categories =
+			decoded === MODEL_ROOT_RULE_NAME && extractCategories(rules, engine)
+	const tutorials = useSelector((state) => state.tutorials)
 	const url = useLocation().pathname
 
 	useEffect(() => {
@@ -53,8 +56,7 @@ const Simulateur = () => {
 			dispatch(setSimulationConfig(config, url))
 	}, [])
 
-	const isMainSimulation = decoded === 'bilan'
-
+	const isMainSimulation = decoded === MODEL_ROOT_RULE_NAME
 	if (!configSet) {
 		return null
 	}

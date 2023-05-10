@@ -1,6 +1,8 @@
 import { utils as coreUtils } from 'publicodes'
 import { capitalise0, sortBy } from '../utils'
 
+export const MODEL_ROOT_RULE_NAME = 'bilan'
+
 export const parentName = (
 	dottedName,
 	outputSeparator = ' . ',
@@ -45,7 +47,7 @@ const ruleSumNode = (rules, rule) => {
 export const extractCategoriesNamespaces = (
 	rules,
 	engine,
-	parentRule = 'bilan'
+	parentRule = MODEL_ROOT_RULE_NAME
 ) => {
 	const rule = engine.getRule(parentRule),
 		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
@@ -94,7 +96,7 @@ export const extractCategories = (
 	rules,
 	engine,
 	valuesFromURL,
-	parentRule = 'bilan',
+	parentRule = MODEL_ROOT_RULE_NAME,
 	sort = true
 ) => {
 	const rule = engine.getRule(parentRule),
@@ -118,10 +120,13 @@ export const extractCategories = (
 				couleur ||
 				rules[parent].couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,
-			dottedName: (parentRule === 'bilan' && parent) || node.dottedName,
+			dottedName:
+				(parentRule === MODEL_ROOT_RULE_NAME && parent) || node.dottedName,
 			documentationDottedName: node.dottedName,
 			title:
-				parentRule === 'bilan' && parent ? rules[parent].titre : node.title,
+				parentRule === MODEL_ROOT_RULE_NAME && parent
+					? rules[parent].titre
+					: node.title,
 			abbreviation: abréviation,
 		}
 	})
