@@ -10,6 +10,7 @@ const worker = new Worker()
 
 type SearchBarProps = {
 	showListByDefault?: boolean
+	close: () => void
 }
 
 type SearchItem = {
