@@ -7,7 +7,7 @@ questions restent chez vous, nous n'en collectons aucune.
 
 Cependant, nous suivons quelques informations sur votre utilisation de ce
 simulateur, telles que les pages consultées et le temps passé, dans
-l'unique but de l'améliorer. 
+l'unique but de l'améliorer.
 
 En particulier, nous suivons l'adresse de la page de fin de simulation,
 qui contient le total de votre empreinte et sa répartition en grande
@@ -20,7 +20,7 @@ css="border: 2px dashed var(--color); max-height: 200px; width: 600px;"
 src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
 ></iframe>
 
-> À partir du 18 avril 2023, nous testons un nouvel outil de suivi, lui aussi open source, Plausible, dans l'objectif d'améliorer le service. 
+> À partir du 18 avril 2023, nous testons un nouvel outil de suivi, lui aussi open source, Plausible, dans l'objectif d'améliorer le service.
 
 > Plausible [est respectueux de votre vie privé](https://plausible.io/data-policy), les informations collectées sont les mêmes qu'à l'heure actuelle et sont totalement anonymes. Vous pouvez refuser ce suivi via [les instructions sur cette page](https://plausible.io/docs/excluding), qui peuvent se résumer à l'[installation du blockeur de publicités uBlock Origin sur le navigateur Firefox](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/).
 
@@ -46,7 +46,7 @@ En particulier, nous suivons l'adresse de la page de fin de simulation, le nom d
 
 ### c) Données relatives aux résultats de la simulation en groupe
 
-Dans le cadre de la simulation en groupe, les résultats des participants sont agrégés avec ceux des autres participants de la conférence : le total et les catégories (transport, logement, etc.). Sont aussi partagés l'avancment de la simulation de 0 à 1.
+Dans le cadre de la simulation en groupe, les résultats des participants sont agrégés avec ceux des autres participants de la conférence : le total et les catégories (transport, logement, etc.). Sont aussi partagés l'avancement de la simulation de 0 à 1.
 
 #### Mode conférence
 
@@ -67,6 +67,11 @@ L'utilisateur a la possibilité de quitter le sondage via le bouton "Quitter le 
 ### d) Cookies
 
 Des cookies sont utilisés afin de suivre l’utilisation du simulateur, telles que les pages consultées et le temps passé, dans un objectif d’amélioration de la plateforme.
+
+### e) Questions d'évaluation
+
+Afin de mieux comprendre vos attentes, nous avons ajouter deux questions d'évaluation : à la fin du test, et lors du parcours action.
+Vos réponses sont enregistrées anonymement sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code est ouvert et disponible [sur github](https://github.com/datagir/nosgestesclimat-server) avec le résultat de la simulation.
 
 ## Bases juridiques des traitements de données
 

@@ -1,26 +1,16 @@
 import { motion } from 'framer-motion'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import { useMediaQuery } from 'usehooks-ts'
+import { useDispatch, useSelector } from 'react-redux'
+import { setRatings } from '../../actions/actions'
 import { RootState } from '../../reducers/rootReducer'
-import { useTestCompleted } from '../../selectors/simulationSelectors'
-import { ScrollToTop } from '../utils/Scroll'
 import Northstar from './Northstar'
 
-export default () => {
-	const uglyBannerContentColor = '#ffffbf'
-
-	const thinScreen = useMediaQuery('(max-width: 400px)')
-
-	const testCompleted = useTestCompleted()
-	const shouldDisplayTimeMessage = testCompleted //&& timeMessage
-
-	const height = thinScreen ? 100 : 56
-	const animationVariants = {
-		mini: { height: '2rem' },
-		large: { height: height + 'vh' },
-	}
-
+export default ({
+	type,
+}: {
+	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
+}) => {
+	const dispatch = useDispatch()
 	const hasRatedAction = useSelector((state: RootState) => state.ratings.action)
 	const hasRatedLearning = useSelector(
 		(state: RootState) => state.ratings.learned
@@ -29,38 +19,58 @@ export default () => {
 		useSelector((state: RootState) => state.actionChoices)
 	).filter(([key, value]) => value).length
 
-	const displayActionRating = !hasRatedAction && actionChoicesLength > 2
-	const displayLearnedRating = !hasRatedLearning
+	const displayActionRating =
+		type === 'SET_RATING_ACTION' &&
+		hasRatedAction == null &&
+		actionChoicesLength > 2
+	const displayLearnedRating =
+		type === 'SET_RATING_LEARNED' && hasRatedLearning == null
+
+	const closeFeedback = () => {
+		setTimeout(() => {
+			dispatch(setRatings(type, 0))
+		}, 1000)
+	}
+
+	if (!displayActionRating && !displayLearnedRating) return
 
 	return (
 		<motion.div
-			animate={shouldDisplayTimeMessage ? 'large' : 'mini'}
-			variants={animationVariants}
-			transition={{ delay: 0, duration: 1 }}
+			initial={{ opacity: 0 }}
+			animate={{ opacity: 1 }}
+			exit={{ opacity: 0 }}
+			transition={{ delay: 0.4 }}
 			css={`
-				width: 100vw;
-				height: 2rem;
-				text-align: center;
-				z-index: 1;
+				width: auto;
+				background: #fff;
+				border-radius: 5px;
+				height: auto;
+				position: relative;
+				margin: 0 10px;
+				box-shadow: rgb(187, 187, 187) 2px 2px 10px;
 			`}
 		>
-			<motion.div
-				initial={{ opacity: 0 }}
-				animate={{ opacity: 1 }}
-				exit={{ opacity: 0 }}
-				transition={{ delay: 0.4 }}
+			<button
 				css={`
-					background: ${uglyBannerContentColor}; /*J'étais pas très inspiré là */
-					height: ${height - 1}vh;
-					@media (max-width: 380) {
-						height: 100vh;
+					position: absolute;
+					top: 10px;
+					right: 10px;
+					padding: 0;
+					img {
+						width: 1.2rem;
 					}
+				`}
+				onClick={closeFeedback}
+			>
+				<img src={`/images/274C.svg`} />
+			</button>
+			<div
+				css={`
 					display: flex;
 					align-items: center;
 					justify-content: center;
 				`}
 			>
-				<ScrollToTop />
 				<div
 					css={`
 						padding: 20px;
@@ -70,24 +80,31 @@ export default () => {
 				>
 					{displayActionRating && (
 						<div>
+							<Trans i18nKey={`publicodes.northstar.title`}>
+								<b>Petite question entre nous...</b>
+							</Trans>
+							<br />
 							<Trans i18nKey={`publicodes.northstar.action`}>
-								Dans quelle mesure Nos Gestes Climat vous donne envie d'agir
-								pour réduire votre empreinte carbone ?
+								Nos Gestes Climat vous donne envie d'agir pour réduire votre
+								empreinte carbone ?
 							</Trans>
 							<Northstar type="SET_RATING_ACTION"></Northstar>
 						</div>
 					)}
 					{displayLearnedRating && (
 						<div>
+							<Trans i18nKey={`publicodes.northstar.title`}>
+								<b>Petite question entre nous...</b>
+							</Trans>
+							<br />
 							<Trans i18nKey={`publicodes.northstar.learned`}>
-								Dans quelle mesure Nos Gestes Climat vous a appris quelque chose
-								?
+								Nos Gestes Climat vous a appris quelque chose ?
 							</Trans>
 							<Northstar type="SET_RATING_LEARNED"></Northstar>
 						</div>
 					)}
 				</div>
-			</motion.div>
+			</div>
 		</motion.div>
 	)
 }

@@ -5,6 +5,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
+import NorthstarBanner from '../../../components/Feedback/NorthstarBanner'
 import SlidesLayout from '../../../components/SlidesLayout'
 import { useNextQuestions } from '../../../components/utils/useNextQuestion'
 import { TrackerContext } from '../../../contexts/TrackerContext'
@@ -113,6 +114,7 @@ export default ({}) => {
 					</button>
 				)}
 			</Link>
+			<NorthstarBanner type="SET_RATING_ACTION" />
 			<animate.appear>
 				<SlidesLayout
 					length={componentKeys.length}

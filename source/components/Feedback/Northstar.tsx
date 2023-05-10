@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
 import { setRatings } from '../../actions/actions'
@@ -12,6 +12,7 @@ export default ({
 }: {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
 }) => {
+	const { t, i18n } = useTranslation()
 	const [selectedRating, setSelectedRating] = useState(false)
 	const dispatch = useDispatch()
 
@@ -49,12 +50,55 @@ export default ({
 		)
 	}
 	return (
-		<RatingContainer role="list">
-			<FeedbackButton rating={1} onClick={() => submitFeedback(1)} />
-			<FeedbackButton rating={2} onClick={() => submitFeedback(2)} />
-			<FeedbackButton rating={3} onClick={() => submitFeedback(3)} />
-			<FeedbackButton rating={4} onClick={() => submitFeedback(4)} />
-		</RatingContainer>
+		<div
+			style={{
+				display: 'flex',
+				flexWrap: 'wrap',
+				justifyContent: 'center',
+			}}
+			role="list"
+		>
+			<div role="listitem">
+				<EmojiButton
+					onClick={() => submitFeedback(1)}
+					aria-label={t('Pas vraiment, envoyer cette réponse')}
+					title={t('Pas vraiment, envoyer cette réponse')}
+					aria-hidden={false}
+				>
+					🙁
+				</EmojiButton>
+			</div>
+			<div role="listitem">
+				<EmojiButton
+					onClick={() => submitFeedback(2)}
+					aria-label={t('Moyennement, envoyer cette réponse')}
+					title={t('Moyennement, envoyer cette réponse')}
+					aria-hidden={false}
+				>
+					😐
+				</EmojiButton>
+			</div>
+			<div role="listitem">
+				<EmojiButton
+					onClick={() => submitFeedback(3)}
+					aria-label={t('Oui plutôt, envoyer cette réponse')}
+					title={t('Oui plutôt, envoyer cette réponse')}
+					aria-hidden={false}
+				>
+					🙂
+				</EmojiButton>
+			</div>
+			<div role="listitem">
+				<EmojiButton
+					onClick={() => submitFeedback(4)}
+					aria-label={t('Tout à fait, envoyer cette réponse')}
+					title={t('Tout à fait, envoyer cette réponse')}
+					aria-hidden={false}
+				>
+					😀
+				</EmojiButton>
+			</div>
+		</div>
 	)
 }
 
@@ -83,16 +127,6 @@ const postData = async (data, id, ratings) => {
 	}
 }
 
-const FeedbackButton = ({ rating, onClick }) => {
-	return (
-		<div role="listitem">
-			<EmojiButton onClick={onClick} aria-label={`Satisfaction ${rating}`}>
-				⭐
-			</EmojiButton>
-		</div>
-	)
-}
-
 const EmojiButton = styled.button`
 	font-size: 1.5em;
 	margin: 0;
@@ -101,17 +135,5 @@ const EmojiButton = styled.button`
 	will-change: transform;
 	:hover {
 		transform: scale(1.3);
-	}
-`
-
-const RatingContainer = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-	& > * {
-		filter: grayscale(0);
-	}
-	& > *:hover ~ * {
-		filter: grayscale(1);
 	}
 `
