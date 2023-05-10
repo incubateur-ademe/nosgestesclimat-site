@@ -21,6 +21,7 @@ import Notifications, {
 	getCurrentNotification,
 } from '@/components/Notifications'
 import {
+	Category,
 	questionCategoryName,
 	splitName,
 	title,
@@ -34,6 +35,7 @@ import {
 	useNextQuestions,
 	useSimulationProgress,
 } from '@/hooks/useNextQuestion'
+import { AppState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	isPersonaSelector,
@@ -57,6 +59,8 @@ import SimulationEnding from './SimulationEnding'
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 	customEnd?: React.ReactNode
+	orderByCategories?: Category[]
+	questionHeadingLevel?: number
 }
 
 export default function Conversation({
@@ -83,27 +87,33 @@ export default function Conversation({
 				const category = initialOrderByCategories.find(
 					(c) => question.indexOf(c.dottedName) === 0
 				)
-				if (!category) return 1000000
+				if (!category) {
+					return 1000000
+				}
 				// We artificially put this category (since it has no actionable question) at the end
-				if (category.name === 'services sociétaux') return 100000
-				const value = -category?.nodeValue
-				return value
+				if (category.name === 'services sociétaux') {
+					return 100000
+				}
+				return -(category?.nodeValue ?? 0)
 		  })(nextQuestions)
 		: nextQuestions
-
-	const focusedCategory = useQuery().get('catégorie'),
+	const focusedCategory = useQuery().get('catégorie') ?? '',
 		pathname = useLocation().pathname
 	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
 
 	const focusByCategory = (questions) => {
-		if (!focusedCategory) return questions
+		if (!focusedCategory) {
+			return questions
+		}
 		const filtered = questionsSortedByCategory.filter(
 			(q) => q.indexOf(focusedCategory) === 0
 		)
 		//this is important : if all questions of a focus have been answered
 		// then don't triggered the end screen, just ask the other questions
 		// as if no focus
-		if (!filtered.length) return questions
+		if (!filtered.length) {
+			return questions
+		}
 		return filtered
 	}
 
@@ -118,9 +128,9 @@ export default function Conversation({
 			: unfoldedStep || sortedQuestions[0]
 
 	const [finder, setFinder] = useState(false)
-	const tutorials = useSelector((state) => state.tutorials)
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 
-	const tracking = useSelector((state) => state.tracking)
+	const tracking = useSelector((state: AppState) => state.tracking)
 	const progress = useSimulationProgress()
 	const isPersona = useSelector(isPersonaSelector)
 

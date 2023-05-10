@@ -25,7 +25,7 @@ export default ({
 	const categories = extractCategories(rules, engine, details).map(
 		(category) => ({
 			...category,
-			abbreviation: rules[category.dottedName].abréviation,
+			abbreviation: rules[category.dottedName]?.abréviation,
 		})
 	)
 	const { pathname } = useLocation(),

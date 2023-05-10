@@ -1,16 +1,21 @@
 import Conversation, {
 	ConversationProps,
-} from 'Components/conversation/Conversation'
-import * as animate from 'Components/ui/animate'
+} from '@/components/conversation/Conversation'
+import { Category } from '@/components/publicodesUtils'
+import * as animate from '@/components/ui/animate'
+
 import React from 'react'
 
 type SimulationProps = {
+	orderByCategories: Category[]
 	explanations?: React.ReactNode
 	results?: React.ReactNode
 	customEndMessages?: ConversationProps['customEndMessages']
+	customEnd?: ConversationProps['customEnd']
 	showPeriodSwitch?: boolean
 	showLinkToForm?: boolean
-	orderByCategories: Array<Object>
+	animation?: keyof typeof animate
+	questionHeadingLevel?: number
 }
 
 export default function Simulation({
@@ -19,7 +24,6 @@ export default function Simulation({
 	customEndMessages,
 	customEnd,
 	orderByCategories,
-	showPeriodSwitch,
 	animation = 'appear',
 	questionHeadingLevel,
 }: SimulationProps) {
@@ -45,10 +49,7 @@ function Questions({
 	customEnd,
 	orderByCategories,
 	questionHeadingLevel,
-}: {
-	customEndMessages?: ConversationProps['customEndMessages']
-	orderByCategories: Array<Object>
-}) {
+}: SimulationProps) {
 	return (
 		<>
 			<div

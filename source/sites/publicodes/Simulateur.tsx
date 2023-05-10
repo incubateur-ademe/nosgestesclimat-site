@@ -1,8 +1,9 @@
 import { setSimulationConfig } from '@/actions/actions'
 import {
+	Category,
 	extractCategories,
 	FullName,
-	MODEL_ROOT_RULE_NAME,
+	isRootRule,
 } from '@/components/publicodesUtils'
 import { buildEndURL } from '@/components/SessionBar'
 import Simulation from '@/components/Simulation'
@@ -10,6 +11,7 @@ import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
+import { AppState } from '@/reducers/rootReducer'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -45,18 +47,22 @@ const Simulateur = () => {
 			objectifs: [decoded],
 			questions: questionConfig,
 		},
-		configSet = useSelector((state) => state.simulation?.config),
-		categories =
-			decoded === MODEL_ROOT_RULE_NAME && extractCategories(rules, engine)
-	const tutorials = useSelector((state) => state.tutorials)
+		configSet = useSelector((state: AppState) => state.simulation?.config),
+		categories: Category[] = isRootRule(decoded)
+			? extractCategories(rules, engine)
+			: []
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 	const url = useLocation().pathname
 
 	useEffect(() => {
 		!equivalentTargetArrays(config.objectifs, configSet?.objectifs || []) &&
-			dispatch(setSimulationConfig(config, url))
+			dispatch(
+				// @ts-ignore : TODO fix types
+				setSimulationConfig(config, url)
+			)
 	}, [])
 
-	const isMainSimulation = decoded === MODEL_ROOT_RULE_NAME
+	const isMainSimulation = isRootRule(decoded)
 	if (!configSet) {
 		return null
 	}
@@ -67,7 +73,10 @@ const Simulateur = () => {
 
 	return (
 		<div>
-			<Meta title={evaluation.title} />
+			<Meta
+				title={evaluation.rawNode?.title}
+				description={evaluation.rawNode?.description}
+			/>
 			<Title>
 				<Trans>Le test</Trans>
 			</Title>
@@ -86,7 +95,7 @@ const Simulateur = () => {
 				{!isMainSimulation && (
 					<h1>
 						{evaluation.rawNode.title || (
-							<FullName dottedName={evaluation.dottedName} />
+							<FullName dottedName={evaluation.rawNode.dottedName} />
 						)}
 					</h1>
 				)}
@@ -98,12 +107,12 @@ const Simulateur = () => {
 								isMainSimulation ? (
 									<MainSimulationEnding {...{ rules, engine }} />
 								) : rule.description ? (
-									<Markdown children={rule.description} />
+									<Markdown children={rule.description} noRouter={false} />
 								) : (
 									<EndingCongratulations />
 								)
 							}
-							explanations={<InlineCategoryChart />}
+							explanations={<InlineCategoryChart givenEngine={undefined} />}
 						/>
 					)
 				) : (
@@ -147,7 +156,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
 			<Link
-				to={buildEndURL(rules, engine)}
+				to={buildEndURL(rules, engine) ?? ''}
 				className="ui__ button cta plain"
 				data-cypress-id="see-results-link"
 			>

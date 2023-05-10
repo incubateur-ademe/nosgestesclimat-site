@@ -1,7 +1,8 @@
+import { Category } from '@/components/publicodesUtils'
 import { capitalise0 } from 'publicodes'
 
 export const groupTooSmallCategories = (
-	categories,
+	categories: Category[],
 	hideSmallerThanRatio = 0.1
 ) => {
 	const total = categories.reduce((memo, next) => memo + next.nodeValue, 0)
