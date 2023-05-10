@@ -209,6 +209,7 @@ export const ActionListCard = ({
 									focusAction(dottedName)
 								}
 							}}
+							tabIndex="0"
 						>
 							{remainingQuestionsText}
 						</p>
