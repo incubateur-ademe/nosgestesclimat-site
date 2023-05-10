@@ -1,5 +1,4 @@
 import {
-	goToQuestion,
 	setTrackingVariable,
 	skipTutorial,
 	updateSituation,
@@ -45,10 +44,11 @@ import {
 import { useQuery } from '@/utils'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
+import { utils } from 'publicodes'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
@@ -131,17 +131,23 @@ export default function Conversation({
 	const isPersona = useSelector(isPersonaSelector)
 
 	const enquête = useSelector(enquêteSelector)
+	const navigate = useNavigate()
 
 	useEffect(() => {
-		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
+		// This hook lets the user click on the "next" button. Without it, the conversation
+		// switches to the next question as soon as an answer is provided.
 		// It introduces a state
-		// It is important to test for "previousSimulation" : if it exists, it's not loaded yet. Then currentQuestion could be the wrong one, already answered, don't put it as the unfoldedStep
+		// It is important to test for "previousSimulation" : if it exists, it's not loaded yet.
+		// Then currentQuestion could be the wrong one, already answered,
+		// don't put it as the unfoldedStep
 		if (
 			currentQuestion &&
 			!previousSimulation &&
 			currentQuestion !== unfoldedStep
 		) {
-			dispatch(goToQuestion(currentQuestion))
+			// TODO: should be aware of the simulator used
+			navigate(`/simulateur/bilan/${utils.encodeRuleName(currentQuestion)}`)
+			//dispatch(goToQuestion(currentQuestion))
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
@@ -154,7 +160,10 @@ export default function Conversation({
 	}, [currentQuestion])
 
 	const goToPrevious = () => {
-		return dispatch(goToQuestion(previousQuestion))
+		return navigate(
+			`/simulateur/bilan/${utils.encodeRuleName(previousQuestion)}`
+		)
+		// return dispatch(goToQuestion(previousQuestion))
 	}
 
 	// Some questions are grouped in an artifical questions, called mosaic questions,  not present in publicodes
