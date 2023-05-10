@@ -113,7 +113,9 @@ export default function Conversation({
 
 	const sortedQuestions = focusByCategory(questionsSortedByCategory)
 
-	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
+	const unfoldedStep = useSelector(
+		(state: AppState) => state.simulation?.unfoldedStep
+	)
 	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
 		currentQuestion: string = !isMainSimulation
 			? nextQuestions[0]
