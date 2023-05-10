@@ -58,12 +58,12 @@ export const ActionListCard = ({
 	const { trackEvent } = useContext(MatomoContext)
 
 	const dispatch = useDispatch()
-	const rules = useSelector((state) => state.rules),
-		{ nodeValue, dottedName, title } = evaluation,
-		{ icônes: icons } = rule
-	const actionChoices = useSelector((state) => state.actionChoices),
-		situation = useSelector(situationSelector),
-		answeredQuestions = useSelector(answeredQuestionsSelector)
+	const rules = useSelector((state) => state.rules)
+	const { nodeValue, dottedName, title } = evaluation
+	const { icônes: icons } = rule
+	const actionChoices = useSelector((state) => state.actionChoices)
+	const situation = useSelector(situationSelector)
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	const engine = useEngine()
 
@@ -72,21 +72,21 @@ export const ActionListCard = ({
 		disabled = disabledAction(flatRule, nodeValue)
 
 	const remainingQuestions = getNextQuestions(
-			[evaluation.missingVariables],
-			questionConfig,
-			answeredQuestions,
-			situation,
-			engine
-		),
-		nbRemainingQuestions = remainingQuestions.length,
-		hasRemainingQuestions = nbRemainingQuestions > 0,
-		pluralSuffix = nbRemainingQuestions > 1 ? 's' : '',
-		remainingQuestionsText = (
-			<Trans i18nKey={'publicodes.ActionVignette.questionsRestantesText'}>
-				{{ nbRemainingQuestions }} question{{ pluralSuffix }} restante
-				{{ pluralSuffix }}
-			</Trans>
-		)
+		[evaluation.missingVariables],
+		questionConfig,
+		answeredQuestions,
+		situation,
+		engine
+	)
+	const nbRemainingQuestions = remainingQuestions.length
+	const hasRemainingQuestions = nbRemainingQuestions > 0
+	const pluralSuffix = nbRemainingQuestions > 1 ? 's' : ''
+	const remainingQuestionsText = (
+		<Trans i18nKey={'publicodes.ActionVignette.questionsRestantesText'}>
+			{{ nbRemainingQuestions }} question{{ pluralSuffix }} restante
+			{{ pluralSuffix }}
+		</Trans>
+	)
 	const categories = extractCategoriesNamespaces(rules, engine)
 	const foundCategory = categories.find(
 		(cat) => cat.dottedName === splitName(dottedName)[0]
@@ -186,7 +186,7 @@ export const ActionListCard = ({
 					`}
 				>
 					<div
-						css={hasRemainingQuestions ? `filter: blur(1px) grayscale(1)` : ''}
+						css={hasRemainingQuestions ? 'filter: blur(1px) grayscale(1)' : ''}
 					>
 						<ActionValue
 							{...{ dottedName, total, disabled, noFormula, engine }}
@@ -204,6 +204,11 @@ export const ActionListCard = ({
 						<p
 							css="color: var(--color); height: 0; cursor: pointer"
 							onClick={() => focusAction(dottedName)}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter') {
+									focusAction(dottedName)
+								}
+							}}
 						>
 							{remainingQuestionsText}
 						</p>
@@ -244,7 +249,7 @@ export const ActionListCard = ({
 							e.preventDefault()
 						}}
 					>
-						<img src="/images/2714.svg" css="width: 3rem" />
+						<img src="/images/2714.svg" css="width: 3rem" alt="" />
 					</button>
 					<button
 						title={t("Rejeter l'action")}
@@ -261,7 +266,7 @@ export const ActionListCard = ({
 							e.preventDefault()
 						}}
 					>
-						<img src="/images/274C.svg" css="width: 1.8rem" />
+						<img src="/images/274C.svg" css="width: 1.8rem" alt="" />
 					</button>
 				</div>
 			</div>
@@ -352,7 +357,7 @@ export const ActionValue = ({
 							padding-right: 0;
 							border: 2px solid var(--color);
 							border-radius: 0.3rem;
-							${correctedValue < 0 && `background: #e33e3e`};
+							${correctedValue < 0 && 'background: #e33e3e'};
 						`}
 					>
 						<strong>{stringValue}</strong>&nbsp;
