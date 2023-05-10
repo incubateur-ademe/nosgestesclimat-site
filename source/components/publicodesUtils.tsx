@@ -1,16 +1,33 @@
-import { utils as coreUtils } from 'publicodes'
+import Engine, { EvaluatedNode, RuleNode, utils as coreUtils } from 'publicodes'
 import { capitalise0, sortBy } from '../utils'
+
+export type DottedName = string
+
+export type Category = EvaluatedNode & {
+	dottedName: DottedName
+	title: string
+	name: string
+	rawNode: RuleNode
+	documentationDottedName: DottedName
+	icons?: string[]
+	color?: string
+	abbreviation: string
+}
 
 export const MODEL_ROOT_RULE_NAME = 'bilan'
 
+export function isRootRule(dottedName: DottedName) {
+	return dottedName === MODEL_ROOT_RULE_NAME
+}
+
 export const parentName = (
-	dottedName,
+	dottedName: DottedName,
 	outputSeparator = ' . ',
 	shift = 0,
 	degree = 1
 ) => splitName(dottedName).slice(shift, -degree).join(outputSeparator)
 
-export const splitName = (dottedName) => dottedName?.split(' . ')
+export const splitName = (dottedName: DottedName) => dottedName?.split(' . ')
 
 export const FullName = ({ dottedName }) => (
 	<span>
@@ -26,27 +43,36 @@ export const FullName = ({ dottedName }) => (
 export const title = (rule) =>
 	rule.titre ||
 	capitalise0(splitName(rule.dottedName)[splitName(rule.dottedName).length - 1])
+
 // Publicodes's % unit is strangely handlded
 // the nodeValue is * 100 to account for the unit
 // hence we divide it by 100 and drop the unit
-export const correctValue = (evaluated) => {
+export function correctValue(evaluated: EvaluatedNode): number | undefined {
 	const { nodeValue, unit } = evaluated
+
+	if (nodeValue == undefined || typeof nodeValue !== 'number') {
+		return undefined
+	}
 
 	const result = unit?.numerators.includes('%') ? nodeValue / 100 : nodeValue
 	return result
 }
 
-const ruleSumNode = (rules, rule) => {
+function ruleSumNode(rules: any, rule: RuleNode): string[] | undefined {
 	const formula = rule.rawNode.formule
 
-	return formula.somme?.map((name) =>
+	if (!formula || !formula['somme']) {
+		return undefined
+	}
+
+	return formula['somme'].map((name: string) =>
 		coreUtils.disambiguateReference(rules, rule.dottedName, name)
 	)
 }
 
 export const extractCategoriesNamespaces = (
-	rules,
-	engine,
+	rules: { [x: string]: { icônes: any; couleur: any } },
+	engine: Engine,
 	parentRule = MODEL_ROOT_RULE_NAME
 ) => {
 	const rule = engine.getRule(parentRule),
@@ -92,13 +118,13 @@ const categoryColorOverride = {
 	// numérique: '#B534AD',
 }
 
-export const extractCategories = (
-	rules,
-	engine,
-	valuesFromURL,
+export function extractCategories(
+	rules: any,
+	engine: Engine,
+	valuesFromURL?: any,
 	parentRule = MODEL_ROOT_RULE_NAME,
 	sort = true
-) => {
+): Category[] {
 	const rule = engine.getRule(parentRule),
 		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
 
@@ -107,10 +133,10 @@ export const extractCategories = (
 	}
 
 	const categories = sumNodes.map((dottedName) => {
-		const node = engine.evaluate(dottedName)
+		const node = engine.evaluate(dottedName) as Category
 		const { icônes, couleur, abréviation } = rules[dottedName]
 		const split = splitName(dottedName),
-			parent = split.length > 1 && split[0]
+			parent = split.length > 1 ? split[0] : ''
 		return {
 			...node,
 			icons: icônes || rules[parent].icônes,
@@ -120,13 +146,10 @@ export const extractCategories = (
 				couleur ||
 				rules[parent].couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,
-			dottedName:
-				(parentRule === MODEL_ROOT_RULE_NAME && parent) || node.dottedName,
+			dottedName: (isRootRule(parentRule) && parent) || node.dottedName,
 			documentationDottedName: node.dottedName,
 			title:
-				parentRule === MODEL_ROOT_RULE_NAME && parent
-					? rules[parent].titre
-					: node.title,
+				isRootRule(parentRule) && parent ? rules[parent].titre : node.title,
 			abbreviation: abréviation,
 		}
 	})
@@ -134,7 +157,12 @@ export const extractCategories = (
 	return sort ? sortCategories(categories) : categories
 }
 
-export const getSubcategories = (rules, category, engine, sort) => {
+export function getSubcategories(
+	rules: any,
+	category: Category,
+	engine: Engine,
+	sort: boolean
+): Category[] {
 	const sumToDisplay =
 		category.name === 'logement' ? 'logement . impact' : category.name
 
@@ -153,7 +181,10 @@ export const getSubcategories = (rules, category, engine, sort) => {
 			? subCategories.map((el) => ({
 					...el,
 					nodeValue:
-						el.nodeValue / engine.evaluate('logement . habitants').nodeValue,
+						typeof el.nodeValue === 'number'
+							? el.nodeValue /
+							  (engine.evaluate('logement . habitants').nodeValue as number)
+							: el.nodeValue,
 			  }))
 			: subCategories
 
