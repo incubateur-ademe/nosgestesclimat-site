@@ -46,7 +46,7 @@ const MainContent = styled.div`
 	align-items: center;
 `
 
-const Container = styled.div`
+const Container = styled.div<{ isIframe?: boolean }>`
 	height: 70vh;
 	@media (max-width: 800px) {
 		height: 95vh;
@@ -56,13 +56,10 @@ const Container = styled.div`
 	}
 	${(props) => props.isIframe && 'height: 45rem !important;'}
 	position: relative;
-	> ol {
-		@media (min-height: 800px) {
-			display: flex;
-		}
 
-		margin-top: 1rem;
-		display: none;
+	> ol {
+		padding: 1rem;
+		display: flex;
 		list-style-type: none;
 		justify-content: center;
 	}

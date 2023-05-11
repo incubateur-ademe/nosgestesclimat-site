@@ -64,7 +64,11 @@ export default ({
 		useContext(IframeOptionsContext)
 
 	return (
-		<div>
+		<div
+			css={`
+				width: 100%;
+			`}
+		>
 			<Meta
 				title={t('Mon empreinte climat')}
 				description={t('meta.publicodes.fin.Budget.description', {
@@ -94,9 +98,17 @@ export default ({
 
 					text-align: center;
 					font-size: 110%;
+					width: 100%;
 				`}
 			>
-				<div id="shareImage" css="padding: 2rem 0 .6rem ">
+				<div id="shareImage" css="padding: 2rem 0 .6rem;">
+					<p
+						css={`
+							margin-bottom: 1rem;
+						`}
+					>
+						Mon empreinte carbone est de :
+					</p>
 					<ClimateTargetChart
 						value={value}
 						details={details}

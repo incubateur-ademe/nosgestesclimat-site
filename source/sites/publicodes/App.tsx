@@ -15,6 +15,7 @@ import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import { MatomoContext } from '../../contexts/MatomoContext'
+import { useLoadSimulationFromURL } from '../../hooks/useLoadSimulationFromURL'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
 import { AppState } from '../../reducers/rootReducer'
@@ -139,6 +140,9 @@ export default function Root() {
 
 	// We retrieve the User object from local storage to initialize the store.
 	const persistedUser = fetchUser()
+	// Or we retrive the simulation from the URL
+	const simulationFromURL = useLoadSimulationFromURL()
+	console.log(simulationFromURL)
 	// We use the 'currentSimulationId' pointer to retrieve the latest simulation in the list.
 	const persistedSimulation = persistedUser.simulations.filter(
 		(simulation) => simulation.id === persistedUser.currentSimulationId

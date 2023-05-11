@@ -13,7 +13,8 @@ import safeLocalStorage from './safeLocalStorage'
 
 const VERSION = 2
 
-const LOCAL_STORAGE_KEY = 'ecolab-climat::persisted-simulation::v' + VERSION
+export const LOCAL_STORAGE_KEY =
+	'ecolab-climat::persisted-simulation::v' + VERSION
 
 // This function is called after creating the store.
 // It allows to save user data on every state change with a 1-second "delay".

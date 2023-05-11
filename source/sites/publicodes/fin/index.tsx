@@ -95,9 +95,16 @@ export default ({}) => {
 	}
 
 	return (
-		<div>
+		<div
+			css={`
+				position: relative;
+			`}
+		>
 			<IframeDataShareModal data={rehydratedDetails} />
-			<Link to="/simulateur/bilan" css="display: block; text-align: center">
+			<Link
+				to="/simulateur/bilan"
+				css="display: block; position: absolute; top: 0; left: 0;margin-top: 1rem;"
+			>
 				{!answeredQuestions.length ? (
 					<button className="ui__ button plain cta">
 						{' '}
@@ -109,7 +116,13 @@ export default ({}) => {
 						← <Trans>Revenir aux questions</Trans>
 					</button>
 				) : (
-					<button className="ui__ simple small push-left button">
+					<button
+						className="ui__ simple small push-left button"
+						css={`
+							text-transform: none !important;
+							padding: 0 !important;
+						`}
+					>
 						{' '}
 						← <Trans>Revenir au test</Trans>
 					</button>

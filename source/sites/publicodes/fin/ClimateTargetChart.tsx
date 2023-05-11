@@ -82,7 +82,7 @@ export default ({ details, color, value, score, nextSlide }) => {
 				display: flex;
 				justify-content: space-evenly;
 				align-items: flex-end;
-				height: 50vh;
+				height: 360px;
 				h2 {
 					margin: 0.6rem 0 0.1rem;
 					font-size: 140%;
