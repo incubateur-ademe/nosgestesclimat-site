@@ -1,6 +1,6 @@
 import Fuse from 'fuse.js'
 
-let searchWeights = [
+const searchWeights = [
 	{
 		name: 'espace',
 		weight: 0.2,
@@ -32,7 +32,7 @@ onmessage = function (event) {
 		})
 
 	if (event.data.input) {
-		let results = [
+		const results = [
 			...fuse.search(
 				event.data.input + '|' + event.data.input.replace(/ /g, '|')
 			),

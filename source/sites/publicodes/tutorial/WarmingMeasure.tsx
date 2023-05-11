@@ -7,7 +7,7 @@ export default () => (
 			<Trans>On la mesure comment ?</Trans>
 		</h1>
 		<p>
-			<Trans i18nKey={`publicodes.Tutorial.slide2.p1`}>
+			<Trans i18nKey={'publicodes.Tutorial.slide2.p1'}>
 				Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone
 				<img
 					alt=""
@@ -74,7 +74,7 @@ export default () => (
 			<CO2e />
 		</div>
 		<p>
-			<Trans i18nKey={`publicodes.Tutorial.slide2.p2`}>
+			<Trans i18nKey={'publicodes.Tutorial.slide2.p2'}>
 				Ce sont les machines qui font notre confort moderne qui en rejettent
 				massivement, à tel point qu'on le compte en milliers de kilos par an et
 				par personne, donc en <strong>tonnes</strong> de CO₂e !
@@ -87,7 +87,7 @@ export default () => (
 						💡 Mais que veut dire ce petit <em>e</em> ?
 					</Trans>
 				</summary>{' '}
-				<Trans i18nKey={`publicodes.Tutorial.slide2.blockquote`}>
+				<Trans i18nKey={'publicodes.Tutorial.slide2.blockquote'}>
 					D'autres gaz, surtout le méthane{' '}
 					<img
 						alt=""

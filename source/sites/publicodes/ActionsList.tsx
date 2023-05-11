@@ -20,8 +20,8 @@ export default ({ display }) => {
 
 	const { t, i18n } = useTranslation()
 
-	let metric = useQuery().get('métrique')
-	let category = useQuery().get('catégorie')
+	const metric = useQuery().get('métrique')
+	const category = useQuery().get('catégorie')
 
 	const rules = useSelector((state) => state.rules)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
@@ -75,7 +75,7 @@ export default ({ display }) => {
 		<div
 			css={`
 				padding: 0 0 1rem;
-				${display !== 'list' && `max-width: 600px;`}
+				${display !== 'list' && 'max-width: 600px;'}
 				margin: 1rem auto;
 			`}
 		>

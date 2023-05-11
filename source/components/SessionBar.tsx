@@ -170,7 +170,7 @@ export default function SessionBar({
 
 	const testCompleted = useTestCompleted()
 
-	let elements = [
+	const elements = [
 		<Button className="simple small" url="/simulateur/bilan">
 			<ProgressCircle />
 			<Trans>Le test</Trans>

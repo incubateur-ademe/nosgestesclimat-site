@@ -29,7 +29,7 @@ export default ({ fluidLayout }) => {
 							flex-shrink: 0;
 							width: 12rem;
 							height: 100vh;
-							${isIframe && `height: 100% !important;`}
+							${isIframe && 'height: 100% !important;'}
 							overflow: none;
 							margin: 0 auto;
 							position: sticky;

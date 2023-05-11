@@ -49,7 +49,7 @@ export default ({ headlessMode }) => {
 		<div>
 			<Meta
 				title={t('Mon empreinte climat')}
-				description={t(`meta.publicodes.fin.Petrogaz.description`, {
+				description={t('meta.publicodes.fin.Petrogaz.description', {
 					empreinte: primaryValue,
 				})}
 				image={shareImage}
@@ -85,7 +85,7 @@ export default ({ headlessMode }) => {
 				<div id="shareImage" css="padding: 2rem 0 0">
 					<BigFigure {...{ primaryValue, secondaryValue, pleinVolume }} />
 					<div css="padding: 1rem; max-width: 30rem; margin: 0 auto; font-size: 90%">
-						<Trans i18nKey={`publicodes.fin.Petrogaz.explications`}>
+						<Trans i18nKey={'publicodes.fin.Petrogaz.explications'}>
 							<p>
 								C'est une estimation <em>a minima</em> de votre consommation de
 								pétrole brut à l'année.

@@ -67,7 +67,7 @@ export default ({
 						cursor: pointer;`}
 						${uniqueColor
 							? `background: ${uniqueColor}; color: white`
-							: `background:white; color: #666`};
+							: 'background:white; color: #666'};
 						font-size: 200%;
 						div {
 							height: 100%;
@@ -93,7 +93,7 @@ export const InlineBarChart = styled.ul`
 		display: inline-block;
 		text-align: center;
 		list-style-type: none;
-		height: ${(props) => (props.clicked ? `5rem` : `1.9rem`)};
+		height: ${(props) => (props.clicked ? '5rem' : '1.9rem')};
 		line-height: 1.4rem;
 	}
 

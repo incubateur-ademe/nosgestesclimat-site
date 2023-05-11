@@ -2,7 +2,7 @@ import { walkthroughTest } from './utils'
 
 describe('check for test completion', () => {
 	beforeEach(() => {
-		cy.visit(`/`)
+		cy.visit('/')
 	})
 
 	it('can finish the test with the default values with unspecified search params', () => {

@@ -42,7 +42,7 @@ export default ({ surveyContext, setSurveyContext }) => {
 		engine
 	)
 	return (
-		<div className="ui__ container" css={``}>
+		<div className="ui__ container">
 			<SituationContext.Provider value={[situation, setSituation]}>
 				<Main
 					nextQuestions={nextQuestions}

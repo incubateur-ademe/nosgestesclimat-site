@@ -83,7 +83,7 @@ export default ({ mode, URLPath, room }) => {
 					/>
 				)}
 				<span>
-					{text || (clicked ? t(`Initialisation...`) : t(`C'est parti !`))}
+					{text || (clicked ? t('Initialisation...') : t('C\'est parti !'))}
 				</span>
 			</button>
 		</div>

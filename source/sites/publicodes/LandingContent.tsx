@@ -21,8 +21,8 @@ export default ({ children, background = false, footer = false }) => (
 				max-width: 40rem;
 				margin: 1rem auto;
 			}
-			background: ${background ? `var(--lightestColor)` : `none`};
-			${footer && `margin-bottom: 0`}
+			background: ${background ? 'var(--lightestColor)' : 'none'};
+			${footer && 'margin-bottom: 0'}
 		`}
 	>
 		<div>{children} </div>

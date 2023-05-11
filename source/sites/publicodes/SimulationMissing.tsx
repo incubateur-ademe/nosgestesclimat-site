@@ -17,7 +17,7 @@ export default ({}) => {
 				emoji="⏳"
 				message={
 					<p>
-						<Trans i18nKey={`publicodes.SimulationMissing.simulationManquante`}>
+						<Trans i18nKey={'publicodes.SimulationMissing.simulationManquante'}>
 							Vous n'avez pas encore fait le test. Pour débloquer ce parcours,
 							vous devez nous en dire un peu plus sur votre mode de vie.
 						</Trans>
@@ -30,7 +30,7 @@ export default ({}) => {
 				</Link>
 			</div>
 			<p css="text-align: center; max-width: 26rem; margin: 0 auto;">
-				<Trans i18nKey={`publicodes.SimulationMissing.personnas`}>
+				<Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
 					💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un
 					de ces profils types.
 				</Trans>

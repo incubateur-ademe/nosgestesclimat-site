@@ -138,8 +138,8 @@ const Main = () => {
 	const location = useLocation()
 	const { i18n, t } = useTranslation()
 	const [searchParams, _] = useSearchParams()
-	const isHomePage = location.pathname === '/',
-		isTuto = location.pathname.indexOf('/tutoriel') === 0
+	const isHomePage = location.pathname === '/'
+	const isTuto = location.pathname.startsWith('/tutoriel')
 
 	const { trackPageView } = useContext(MatomoContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
@@ -402,7 +402,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`nouveautés/*`}
+				path={'nouveautés/*'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<News />
@@ -426,7 +426,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`conférence/:room`}
+				path={'conférence/:room'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<ConferenceLazy />
@@ -482,7 +482,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`/pétrole-et-gaz`}
+				path={'/pétrole-et-gaz'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<PetrogazLandingLazy />
@@ -490,7 +490,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`/international`}
+				path={'/international'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<International />

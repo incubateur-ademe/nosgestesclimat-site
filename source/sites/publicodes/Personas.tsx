@@ -94,7 +94,7 @@ export default ({}) => {
 			)}
 			<PersonaGrid />
 			<p>
-				<Trans i18nKey={`publicodes.Personas.description`}>
+				<Trans i18nKey={'publicodes.Personas.description'}>
 					Les personas nous permettront de prendre le parti d'une diversité
 					d'utilisateurs quand ils voient notamment notre écran "passer à
 					l'action".
@@ -108,7 +108,7 @@ export default ({}) => {
 				<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/personas.yaml">
 					personas.yaml
 				</a>{' '}
-				<Trans i18nKey={`publicodes.Personas.tuto`}>
+				<Trans i18nKey={'publicodes.Personas.tuto'}>
 					que ça se passe. On peut soit copier coller les données d'un autre
 					persona et les modifier, soit en créer un de zéro depuis la
 					simulation. Une fois la simulation satisfaisante, cliquer sur
@@ -121,7 +121,7 @@ export default ({}) => {
 				</Trans>
 			</p>
 			<p>
-				<Trans i18nKey={`publicodes.Personas.lienGenerateur`}>
+				<Trans i18nKey={'publicodes.Personas.lienGenerateur'}>
 					Pour les prénoms, on peut utiliser{' '}
 					<a href="https://lorraine-hipseau.me">ce générateur</a>
 				</Trans>
@@ -243,8 +243,8 @@ export const PersonaGrid = ({
 								height: 15rem !important;
 								padding: 1rem 0.75rem 1rem 0.75rem !important;
 								${nom === persona
-									? `border: 2px solid var(--color) !important`
-									: ``};
+									? 'border: 2px solid var(--color) !important'
+									: ''};
 							`}
 							onClick={() =>
 								warningIfSituationExists && hasSituation

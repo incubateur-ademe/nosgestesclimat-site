@@ -30,7 +30,8 @@ export default ({ currentQuestion, categoryColor, value }) => {
 
 	// Not ready yet. Animation should start from the bottom
 	// Should be iterated
-	if (false && currentQuestion === 'logement . habitants')
+	/*
+	if (false && currentQuestion === 'logement . habitants') {
 		return (
 			<motion.div initial={{ scale: 0 }} animate={{ scale: 1 }}>
 				<Inhabitants
@@ -42,5 +43,8 @@ export default ({ currentQuestion, categoryColor, value }) => {
 				/>
 			</motion.div>
 		)
+	}
+	*/
+
 	return null
 }

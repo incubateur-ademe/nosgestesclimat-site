@@ -135,7 +135,7 @@ export function isIterable<T>(obj: unknown): obj is Iterable<T> {
 
 //https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
 export function intersect(a, b) {
-	var setB = new Set(b)
+	const setB = new Set(b)
 	return [...new Set(a)].filter((x) => setB.has(x))
 }
 

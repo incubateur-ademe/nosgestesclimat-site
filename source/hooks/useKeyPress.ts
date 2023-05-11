@@ -8,7 +8,7 @@ export default function useKeypress(
 	key: string,
 	control: boolean,
 	action: Function,
-	eventType: string = 'keyup',
+	eventType = 'keyup',
 	hookConditions
 ) {
 	useEffect(() => {

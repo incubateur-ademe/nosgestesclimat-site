@@ -1,6 +1,6 @@
 describe('check for homepage status', () => {
 	beforeEach(() => {
-		cy.visit("/")
+		cy.visit('/')
 	})
 
 	it('has a start button', () => {

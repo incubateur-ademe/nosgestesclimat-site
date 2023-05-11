@@ -112,7 +112,7 @@ export default ({
 												cursor: pointer;
 											`}
 											title={
-												t(`N'afficher que les questions `) + category.dottedName
+												t('N\'afficher que les questions ') + category.dottedName
 											}
 											onClick={() =>
 												navigate(`${pathname}?catégorie=${category.dottedName}`)

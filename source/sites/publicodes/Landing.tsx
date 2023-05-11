@@ -70,7 +70,7 @@ export default () => {
 							<Link
 								to="/simulateur/bilan"
 								className="ui__ plain button cta"
-								css={hasData ? `padding: 1rem!important;` : ``}
+								css={hasData ? 'padding: 1rem!important;' : ''}
 								data-cypress-id="do-the-test-link"
 								onClick={() => {
 									if (hasData) {

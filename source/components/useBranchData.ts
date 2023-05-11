@@ -24,7 +24,7 @@ export default () => {
 		? `https://deploy-preview-${pullRequestNumber}--ecolab-data.netlify.app`
 		: NODE_ENV === 'development'
 		? 'http://localhost:8081'
-		: `https://data.nosgestesclimat.fr`
+		: 'https://data.nosgestesclimat.fr'
 
 	// rules are loaded from data.nosgestesclimat.fr since 26th february 2023, but PR cannot
 
