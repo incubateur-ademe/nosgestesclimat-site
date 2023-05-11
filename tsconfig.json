@@ -4,6 +4,7 @@
 		"module": "esnext",
 		"target": "esnext",
 		"jsx": "react-jsx",
+		"allowJs": true,
 		"allowSyntheticDefaultImports": true,
 		"forceConsistentCasingInFileNames": true,
 		"resolveJsonModule": true,
@@ -25,5 +26,8 @@
 			"Types/*": ["types/*"],
 			"Images/*": ["images/*"]
 		},
-	}
+		"outDir": "build",
+	},
+	"include": ["source/**/*"],
+  "exclude": ["node_modules", "build/**/*"]
 }

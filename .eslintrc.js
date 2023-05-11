@@ -44,7 +44,14 @@ module.exports = {
 			rules: {
 				'no-undef': 'error',
 			},
-			excludedFiles: ['./.eslintrc.js', './babel.config.js', 'webpack.dev.js'],
+			excludedFiles: [
+				'./.eslintrc.js',
+				'./babel.config.js',
+				'webpack.dev.js',
+				'webpack.prod.js',
+				'webpack.common.js',
+				'cypress.config.js',
+			],
 		},
 		{
 			files: ['**/*.{ts,tsx}'],
@@ -101,5 +108,13 @@ module.exports = {
 		'plugin:react-hooks/recommended',
 		'plugin:import/errors',
 		'plugin:import/typescript',
+	],
+	excludedFiles: [
+		'./.eslintrc.js',
+		'./babel.config.js',
+		'webpack.dev.js',
+		'webpack.prod.js',
+		'webpack.common.js',
+		'cypress.config.js',
 	],
 }
