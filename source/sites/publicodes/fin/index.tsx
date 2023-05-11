@@ -114,7 +114,7 @@ export default ({}) => {
 					</button>
 				)}
 			</Link>
-			<NorthstarBanner type="SET_RATING_ACTION" />
+			<NorthstarBanner type="SET_RATING_LEARNED" />
 			<animate.appear>
 				<SlidesLayout
 					length={componentKeys.length}
