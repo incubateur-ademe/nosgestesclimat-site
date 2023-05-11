@@ -13,7 +13,7 @@ const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, force, remove } = cli.getArgs(
-	`Calls the DeepL API to translate the UI from the French one.`,
+	'Calls the DeepL API to translate the UI from the French one.',
 	{ source: true, force: true, target: true, remove: true }
 )
 
@@ -69,7 +69,7 @@ const translateTo = async (targetLang, targetPath) => {
 				.map(([key, value]) => [key, value === 'NO_TRANSLATION' ? key : value])
 				.map(async ([key, refValue]) => {
 					try {
-						valueWithIgnoreTags = refValue.replace(
+						const valueWithIgnoreTags = refValue.replace(
 							interpolatedValueRegexp,
 							'<ignore>$1</ignore>'
 						)
@@ -108,13 +108,11 @@ const translateTo = async (targetLang, targetPath) => {
 			key + utils.LOCK_KEY_EXT,
 		])
 
-		const entriesToKeep = Object.entries(translatedEntries).filter(
-			([key, _]) => {
-				return (
-					srcEntriesKeys.includes(key) || srcEntriesKeysWithLock.includes(key)
-				)
-			}
-		)
+		const entriesToKeep = Object.entries(translatedEntries).filter(([key]) => {
+			return (
+				srcEntriesKeys.includes(key) || srcEntriesKeysWithLock.includes(key)
+			)
+		})
 
 		const nbEntriesToRemove =
 			Object.keys(translatedEntries).length - entriesToKeep.length

@@ -88,7 +88,7 @@ export default function QuestionFinder({
 				`}
 				onClick={close}
 			>
-				<img src={`/images/274C.svg`} />
+				<img src={'/images/274C.svg'} />
 			</button>
 			<label title="Naviguez vers une question précise">
 				<input

@@ -324,7 +324,7 @@ function storedAmortissementAvion(
 
 // optimized=true will load optimized version of the rules, treated by publiopti
 // parsed=false will avoid the rules being parsed, which is a heavy operation
-export type RulesOptions = { optimized: Boolean; parsed: Boolean }
+export type RulesOptions = { optimized: boolean; parsed: boolean }
 
 //TODO set to false by default in order to go to production. Forced until this error is fixed and tests are run
 // https://github.com/EmileRolley/publiopti/issues/4

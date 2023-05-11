@@ -78,7 +78,7 @@ export default function NumberedMosaic({
 							role="alert"
 							css="text-decoration: underline; text-decoration-color: red;   text-decoration-thickness: 0.2rem;"
 						>
-							{t(`components.conversation.select.NumberedMosaic.choixEnTrop`, {
+							{t('components.conversation.select.NumberedMosaic.choixEnTrop', {
 								nbChoix: chipsCount - chipsTotal,
 							})}
 						</p>
@@ -89,7 +89,7 @@ export default function NumberedMosaic({
 							role="alert"
 							css="text-decoration: underline; text-decoration-color: yellow; text-decoration-thickness: 0.2rem;"
 						>
-							{t(`components.conversation.select.NumberedMosaic.choixAFaire`, {
+							{t('components.conversation.select.NumberedMosaic.choixAFaire', {
 								nbChoix: chipsTotal - chipsCount,
 							})}
 						</p>
@@ -166,7 +166,7 @@ function NumericInputWithButtons({
 				onClick={() =>
 					value > 0 && dispatch(updateSituation(question.dottedName, value - 1))
 				}
-				title={t(`Enlever `) + title.toLowerCase()}
+				title={t('Enlever ') + title.toLowerCase()}
 			>
 				-
 			</button>
@@ -204,7 +204,7 @@ function NumericInputWithButtons({
 				onClick={() =>
 					dispatch(updateSituation(question.dottedName, value + 1))
 				}
-				title={t(`Ajouter `) + title.toLowerCase()}
+				title={t('Ajouter ') + title.toLowerCase()}
 			>
 				+
 			</button>

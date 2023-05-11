@@ -46,7 +46,7 @@ export default ({ score, headlessMode }) => {
 		<div>
 			<Meta
 				title={t('Nosgestesclimat - le top 3 de mes actions')}
-				description={t(`meta.publicodes.fin.actionslide.description`, {
+				description={t('meta.publicodes.fin.actionslide.description', {
 					roundedValue: roundedValue,
 				})}
 				image={shareImage}

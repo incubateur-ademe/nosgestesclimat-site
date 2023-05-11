@@ -73,7 +73,7 @@ export function ScrollToElement({
 		}
 	}
 	useEffect(() => {
-		let timer = setTimeout(scrollIfNeeded, delay)
+		const timer = setTimeout(scrollIfNeeded, delay)
 		return () => {
 			clearTimeout(timer)
 		}

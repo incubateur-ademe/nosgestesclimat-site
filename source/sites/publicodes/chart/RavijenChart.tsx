@@ -111,7 +111,7 @@ export default ({
 						<ConditionalLink
 							active={!noLinks}
 							css={`
-								${verticalReverse && ` order: -1;`}
+								${verticalReverse && ' order: -1;'}
 							`}
 							to={`/documentation/${utils.encodeRuleName(category.dottedName)}`}
 						>
@@ -339,7 +339,7 @@ const VerticalBarFragment = ({
 		<li
 			onClick={expandOtherOnClick}
 			css={`
-				${expandOtherOnClick && `cursor: pointer;`}
+				${expandOtherOnClick && 'cursor: pointer;'}
 				text-align: center;
 				margin: 0;
 				height: ${heightPercentage}%;
@@ -369,7 +369,7 @@ const VerticalBarFragment = ({
 				justify-content: center;
 				img {
 					width: 2rem;
-					${hidden.largeImage && `width: 1.6rem`};
+					${hidden.largeImage && 'width: 1.6rem'};
 					${compact ? 'height: 1rem' : 'height: auto'}
 				}
 			`}

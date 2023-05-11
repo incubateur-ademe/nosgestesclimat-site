@@ -3,7 +3,7 @@ const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, markdown } = cli.getArgs(
-	`Check missing translations for FAQs.`,
+	'Check missing translations for FAQs.',
 	{ source: true, target: true, markdown: true }
 )
 

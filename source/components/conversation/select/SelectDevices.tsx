@@ -61,9 +61,9 @@ export default function SelectDevices({
 							<li
 								className={
 									isNotActive
-										? `ui__ card interactive inactive`
+										? 'ui__ card interactive inactive'
 										: `ui__ card interactive transparent-border ${
-												value === 'oui' ? `selected` : ''
+												value === 'oui' ? 'selected' : ''
 										  }`
 								}
 								key={name}

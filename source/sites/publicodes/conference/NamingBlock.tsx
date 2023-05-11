@@ -51,7 +51,7 @@ export default ({ newRoom, setNewRoom }) => {
 			</button>
 			{newRoom && newRoom.length < 12 && (
 				<p>
-					<Trans i18nKey={`publicodes.conference.NamingBlock.nomSalleCourt`}>
+					<Trans i18nKey={'publicodes.conference.NamingBlock.nomSalleCourt'}>
 						⚠️ Votre nom de salle est court, il y a un petit risque que des
 						inconnus puissent le deviner
 					</Trans>
@@ -60,7 +60,7 @@ export default ({ newRoom, setNewRoom }) => {
 			{newRoom && showInvalidMessage && (
 				<p>
 					<Trans
-						i18nKey={`publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres`}
+						i18nKey={'publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres'}
 					>
 						💡 Votre nom de salle ne peut que contenir des lettres, des chiffres
 						et des tirets

@@ -29,7 +29,7 @@ export default ({ children, length, active }) => {
 								background: lightgray;
 								border-radius: 1rem;
 								margin: 0.1rem;
-								${i === active && `background: var(--color)`}
+								${i === active && 'background: var(--color)'}
 							`}
 						></li>
 					))}
@@ -54,7 +54,7 @@ const Container = styled.div`
 	@media (min-aspect-ratio: 1280/700) {
 		height: 95vh;
 	}
-	${(props) => props.isIframe && `height: 45rem !important;`}
+	${(props) => props.isIframe && 'height: 45rem !important;'}
 	position: relative;
 	> ol {
 		@media (min-height: 800px) {

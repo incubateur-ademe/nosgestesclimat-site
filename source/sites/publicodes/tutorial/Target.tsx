@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 
 export default () => (
 	<>
-		<Trans i18nKey={`publicodes.Tutorial.slide5.p1`}>
+		<Trans i18nKey={'publicodes.Tutorial.slide5.p1'}>
 			<h1>Et l'objectif ?</h1>
 			<p>Nous devons diminuer notre empreinte climat au plus vite.</p>
 			<p>

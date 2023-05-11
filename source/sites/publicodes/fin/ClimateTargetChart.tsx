@@ -147,7 +147,7 @@ export default ({ details, color, value, score, nextSlide }) => {
 				</div>
 				<div
 					css=" height: 3rem"
-					title={t(`{{res}} tonnes de CO₂e`, {
+					title={t('{{res}} tonnes de CO₂e', {
 						res: formatValue(score, currentLangInfos.abrvLocale),
 					})}
 					aria-describedby="myFootprint"

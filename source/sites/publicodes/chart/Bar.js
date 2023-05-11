@@ -100,7 +100,7 @@ const BarContent = ({ noText, text, shortText, widthPercentage, color }) => {
 						color: white;
 						font-size: 110%;
 						line-height: 2rem;
-						${!show && `display: none`}
+						${!show && 'display: none'}
 					`}
 				>
 					<span aria-hidden="true">{usedText}</span>

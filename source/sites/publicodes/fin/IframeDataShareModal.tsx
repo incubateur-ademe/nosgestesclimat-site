@@ -8,7 +8,7 @@ const shareDataPopupTimeout = 3500
 
 export default ({ data }) => {
 	const { t } = useTranslation()
-	var [isOpen, setIsOpen] = useState(false)
+	const [isOpen, setIsOpen] = useState(false)
 	//To delay the dialog show in to let the animation play
 	const timeoutRef = useRef(null)
 	const iframeOptions = useSelector((state) => state.iframeOptions)

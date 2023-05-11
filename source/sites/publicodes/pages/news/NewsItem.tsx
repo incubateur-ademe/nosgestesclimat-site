@@ -82,7 +82,7 @@ export default function NewsItem() {
 			`}
 		>
 			<Meta
-				title={`${t(`Nouveautés`)} ${releaseDateCool} - ${capitalise0(
+				title={`${t('Nouveautés')} ${releaseDateCool} - ${capitalise0(
 					releaseName
 				)}`}
 				image={image}

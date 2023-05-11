@@ -30,7 +30,7 @@ export default ({ onVote, actions, total }) => {
 
 	const handleVote = (item, vote) => {
 		// update the stack
-		let newStack = pop(stack)
+		const newStack = pop(stack)
 		setStack(newStack)
 
 		// run function from onVote prop, passing the current item and value of vote
@@ -139,7 +139,7 @@ const Item = styled(motion.div)`
 	border-radius: 8px;
 	padding: 1rem 0.4rem;
 	transform: ${({ keyString }) => {
-		let rotation = cachedRandom(keyString) * 10 + -5
+		const rotation = cachedRandom(keyString) * 10 + -5
 		return `rotate(${rotation}deg)`
 	}};
 `

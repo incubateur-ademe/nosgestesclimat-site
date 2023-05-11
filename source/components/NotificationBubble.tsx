@@ -5,7 +5,7 @@ const NotificationBubbleStyle = styled.button`
 	border-radius: 1rem;
 	right: 0.5rem;
 	top: -2em;
-	${({ clickable }) => clickable && `cursor: pointer`}
+	${({ clickable }) => clickable && 'cursor: pointer'}
 `
 
 export default ({ number, ...props }) => (

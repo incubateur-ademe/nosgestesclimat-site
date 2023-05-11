@@ -8,7 +8,7 @@ export default ({ simple }) => {
 	const testCompleted = useTestCompleted()
 	if (!enquête) return null
 	const id = enquête.userID
-	const url = `https://nosgestesclimat.fr`
+	const url = 'https://nosgestesclimat.fr'
 	return (
 		<a
 			href={url}

@@ -305,7 +305,7 @@ export default function KmHelp({
 												</Fragment>
 											))}
 											{sum > 0 && (
-												<td colspan="6">
+												<td colSpan="6">
 													<span
 														css={`
 															display: flex;

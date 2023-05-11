@@ -25,7 +25,7 @@ module.exports = {
 		...common.output,
 	},
 	optimization: {
-		minimizer: [`...`, new CssMinimizerPlugin()],
+		minimizer: ['...', new CssMinimizerPlugin()],
 	},
 	plugins: [
 		...(common.plugins || []),

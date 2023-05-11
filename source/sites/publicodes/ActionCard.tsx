@@ -30,7 +30,7 @@ export const Card = ({ children, style, onVote, id, ...props }) => {
 	const getVote = (childNode, parentNode) => {
 		const childRect = childNode?.getBoundingClientRect()
 		const parentRect = parentNode.getBoundingClientRect()
-		let result =
+		const result =
 			parentRect.left >= childRect.right
 				? false
 				: parentRect.right <= childRect.left

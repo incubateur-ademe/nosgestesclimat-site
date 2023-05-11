@@ -10,7 +10,7 @@ const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, force } = cli.getArgs(
-	`Calls the DeepL API to translate the FAQ Yaml files.`,
+	'Calls the DeepL API to translate the FAQ Yaml files.',
 	{ source: true, target: true, force: true }
 )
 
@@ -97,7 +97,7 @@ const translateTo = async (srcYAML, destPath, destLang) => {
 const srcYAML = utils.readYAML(srcPath)
 
 const run = async () => {
-	for (destLang of destLangs) {
+	for (let destLang of destLangs) {
 		console.log(
 			`Translating the FAQ files from ${cli.yellow(srcLang)} to ${cli.yellow(
 				destLang

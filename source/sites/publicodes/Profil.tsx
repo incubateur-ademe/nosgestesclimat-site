@@ -108,7 +108,7 @@ export default () => {
 						>
 							{answeredQuestionsLength > 0 && (
 								<p>
-									<Trans i18nKey={`publicodes.Profil.recap`}>
+									<Trans i18nKey={'publicodes.Profil.recap'}>
 										Vous avez terminé le test à {{ percentFinished }} % (
 										{{ answeredQuestionsLength }} questions) et choisi{' '}
 										{{ actionChoicesLength }} actions.
@@ -116,7 +116,7 @@ export default () => {
 								</p>
 							)}
 							<details>
-								<Trans i18nKey={`publicodes.Profil.locationDonnées`}>
+								<Trans i18nKey={'publicodes.Profil.locationDonnées'}>
 									<summary>Où sont mes données ? </summary>
 									Vos données sont stockées dans votre navigateur, vous avez
 									donc le contrôle total sur elles. <br />
@@ -182,7 +182,7 @@ export default () => {
 							💾 <Trans>Mon historique des simulations</Trans>
 						</h2>
 						<p>
-							<Trans i18nKey={`publicodes.Profil.simulations`}>
+							<Trans i18nKey={'publicodes.Profil.simulations'}>
 								Chaque simulation que vous faite est sauvegardée dans votre
 								navigateur Web. Vous êtes le seul à y avoir accès.
 							</Trans>

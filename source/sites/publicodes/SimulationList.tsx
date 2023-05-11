@@ -29,7 +29,7 @@ export default ({ dispatch, list, currentSimulationId }) => {
 						) : (
 							<span>
 								<button
-									className={`ui__ button simple small`}
+									className={'ui__ button simple small'}
 									css="margin: 0 1rem"
 									onClick={() => {
 										dispatch(setCurrentSimulation(simulation))
@@ -40,7 +40,7 @@ export default ({ dispatch, list, currentSimulationId }) => {
 									<Trans>Charger</Trans>
 								</button>
 								<button
-									className={`ui__ button simple small`}
+									className={'ui__ button simple small'}
 									css="margin: 0 1rem"
 									onClick={() => {
 										dispatch(deleteSimulationById(simulation.id))

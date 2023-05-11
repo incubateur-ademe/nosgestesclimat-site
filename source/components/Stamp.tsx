@@ -16,7 +16,7 @@ const Stamp = styled.button`
 	border-radius: 4px;
 	right: 2.5rem;
 	line-height: 1rem;
-	${({ clickable }) => clickable && `cursor: pointer`}
+	${({ clickable }) => clickable && 'cursor: pointer'}
 
 	@media (min-width: 600px) {
 		right: 0%;

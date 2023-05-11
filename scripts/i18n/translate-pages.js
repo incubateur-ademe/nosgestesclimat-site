@@ -12,7 +12,7 @@ const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
 const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 
 const { srcLang, destLangs, srcFile, force } = cli.getArgs(
-	`Calls the DeepL API to translate the Markdown files.`,
+	'Calls the DeepL API to translate the Markdown files.',
 	{
 		file: true,
 		source: true,
@@ -38,7 +38,7 @@ console.log(
 	)}...`
 )
 glob(`source/locales/pages/${srcLang}/${srcFile}`, (err, files) => {
-	cli.exitIfError(err, `ERROR: an error occured while fetching the files:`)
+	cli.exitIfError(err, 'ERROR: an error occured while fetching the files:')
 	console.log(
 		`Found ${cli.withStyle(
 			cli.colors.fgGreen,

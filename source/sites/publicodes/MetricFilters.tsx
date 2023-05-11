@@ -40,7 +40,7 @@ export default ({ selected }) => {
 					vertical-align: middle;
 				}
 
-				${selected && `border: 4px solid gold`}
+				${selected && 'border: 4px solid gold'}
 			`}
 			onClick={() =>
 				setSearchParams({

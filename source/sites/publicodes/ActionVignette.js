@@ -109,7 +109,7 @@ export const ActionListCard = ({
 				align-items: center;
 				height: 14.5rem;
 				${noFormula && 'height: 13rem;'}
-				${hasRemainingQuestions && `background: #eee !important; `}
+				${hasRemainingQuestions && 'background: #eee !important; '}
 				position: relative;
 				> div {
 					padding: 0.4rem !important;
@@ -120,7 +120,7 @@ export const ActionListCard = ({
 				box-shadow: 2px 2px 10px #bbb;
 
 				${disabled ? disabledStyle : ''}
-				${focused && `border: 4px solid var(--color) !important;`}
+				${focused && 'border: 4px solid var(--color) !important;'}
 				${actionChoices[evaluation.dottedName] &&
 				`
 				  border: 6px solid #2da44e;
@@ -293,9 +293,9 @@ export const ActionGameCard = ({ evaluation, total, rule }) => {
 			`}
 			to={'/actions/' + utils.encodeRuleName(dottedName)}
 		>
-			<div css={``}>
+			<div css={''}>
 				<h2>{title}</h2>
-				<div css={``}>
+				<div css={''}>
 					{icons && (
 						<div
 							css={`

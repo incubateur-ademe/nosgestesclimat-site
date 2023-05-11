@@ -45,7 +45,7 @@ export default function QuestionFinderWrapper({ finder, setFinder }) {
 				onClick={() => setFinder(!finder)}
 				title="Recherche rapide de questions dans le formulaire"
 			>
-				<img src={`/images/1F50D.svg`} aria-hidden="true" />
+				<img src={'/images/1F50D.svg'} aria-hidden="true" />
 				<span>Ctrl-K</span>
 			</button>
 		</div>

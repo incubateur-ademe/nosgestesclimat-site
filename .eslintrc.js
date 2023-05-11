@@ -44,7 +44,7 @@ module.exports = {
 			rules: {
 				'no-undef': 'error',
 			},
-			excludedFiles: ['./.eslintrc.js', './babel.config.js'],
+			excludedFiles: ['./.eslintrc.js', './babel.config.js', 'webpack.dev.js'],
 		},
 		{
 			files: ['**/*.{ts,tsx}'],
