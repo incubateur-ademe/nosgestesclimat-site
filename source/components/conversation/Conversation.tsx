@@ -503,6 +503,7 @@ export default function Conversation({
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"
+							data-cypress-id="next-question-button"
 							onClick={() => {
 								trackEvent(getMatomoEventClickNextQuestion(currentQuestion))
 								submit('accept')
@@ -520,6 +521,7 @@ export default function Conversation({
 							}}
 							type="button"
 							className="ui__ simple small push-right button"
+							data-cypress-id="dont-know-button"
 						>
 							<Trans>Je ne sais pas</Trans> →
 						</button>
