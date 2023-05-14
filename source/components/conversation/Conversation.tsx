@@ -43,7 +43,7 @@ import {
 import { sortBy, useQuery } from '@/utils'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
@@ -74,10 +74,13 @@ export default function Conversation({
 	const { trackEvent } = useContext(MatomoContext)
 	const objectifs = useSelector(objectifsSelector)
 	const previousSimulation = useSelector((state) => state.previousSimulation)
-	// orderByCategories is the list of categories, ordered by decreasing nodeValue
-	const questionsSortedByCategory = orderByCategories
+
+	// We want to get the initial order category to avoid reordering the questions
+	const initialOrderByCategories = useRef(orderByCategories).current
+
+	const questionsSortedByCategory = initialOrderByCategories
 		? sortBy((question) => {
-				const category = orderByCategories.find(
+				const category = initialOrderByCategories.find(
 					(c) => question.indexOf(c.dottedName) === 0
 				)
 				if (!category) return 1000000
@@ -87,6 +90,7 @@ export default function Conversation({
 				return value
 		  })(nextQuestions)
 		: nextQuestions
+
 	const focusedCategory = useQuery().get('catégorie'),
 		pathname = useLocation().pathname
 	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
@@ -499,6 +503,7 @@ export default function Conversation({
 					{currentQuestionIsAnswered ? (
 						<button
 							className="ui__ plain small button"
+							data-cypress-id="next-question-button"
 							onClick={() => {
 								trackEvent(getMatomoEventClickNextQuestion(currentQuestion))
 								submit('accept')
@@ -516,6 +521,7 @@ export default function Conversation({
 							}}
 							type="button"
 							className="ui__ simple small push-right button"
+							data-cypress-id="dont-know-button"
 						>
 							<Trans>Je ne sais pas</Trans> →
 						</button>
