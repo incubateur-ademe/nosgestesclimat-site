@@ -51,8 +51,13 @@ const Container = styled.div<{ isIframe?: boolean }>`
 	position: relative;
 
 	> ol {
+		@media (min-height: 800px) {
+			display: flex;
+		}
+
+		margin-top: 0.5rem;
+		display: none;
 		padding: 1rem;
-		display: flex;
 		list-style-type: none;
 		justify-content: center;
 	}

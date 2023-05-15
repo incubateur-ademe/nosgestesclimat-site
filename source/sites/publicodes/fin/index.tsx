@@ -103,10 +103,21 @@ export default ({}) => {
 			<IframeDataShareModal data={rehydratedDetails} />
 			<Link
 				to="/simulateur/bilan"
-				css="display: block; position: absolute; top: 0; left: 0;margin-top: 1rem;"
+				css={`
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin-bottom: 0.5rem;
+				`}
 			>
 				{!answeredQuestions.length ? (
-					<button className="ui__ button plain cta">
+					<button
+						className="ui__ button plain small cta"
+						css={`
+							text-transform: none !important;
+							margin: 0 !important;
+						`}
+					>
 						{' '}
 						<Trans>Faire mon test</Trans>
 					</button>
