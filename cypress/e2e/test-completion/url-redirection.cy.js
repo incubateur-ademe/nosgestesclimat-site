@@ -38,9 +38,20 @@ describe('check question redirection from the URL', () => {
 		goToQuestionAndGet('transport/vacances/camping-car/propriétaire')
 		goToQuestionAndGet('transport/vacances/caravane/propriétaire')
 	})
-	//
-	// skip(`should go to root if the URL doesn't correspond to a parsed rule`, () => {
-	// })
+
+	it(`should go to the first existing parent rule if the URL doesn't correspond to a parsed rule`, () => {
+		cy.visit(`/simulateur/bilan/logement/appartement/unknown-rule`)
+		cy.url().should('eq', Cypress.config().baseUrl + '/simulateur/bilan/logement/appartement')
+		cy.wait(100)
+
+		cy.visit(`/simulateur/bilan/logement/appartement/unknown-rule/adaf/adf`)
+		cy.url().should('eq', Cypress.config().baseUrl + '/simulateur/bilan/logement/appartement')
+		cy.wait(100)
+
+		cy.visit(`/simulateur/bilan/asdf/appartement/unknown-rule/adaf/adf`)
+		cy.url().should('eq', Cypress.config().baseUrl + '/simulateur/bilan')
+	})
+
 	//
 	// skip(`should go to root if the URL doesn't correspond to a parsed rule with a question`, () => {
 	// })

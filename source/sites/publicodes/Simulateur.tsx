@@ -1,6 +1,7 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
 import {
 	Category,
+	DottedName,
 	extractCategories,
 	FullName,
 	isRootRule,
@@ -17,7 +18,7 @@ import { utils } from 'publicodes'
 import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate } from 'react-router'
+import { Navigate, useNavigate } from 'react-router'
 import { Link, useLocation, useParams } from 'react-router-dom'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
@@ -72,30 +73,36 @@ const Simulateur = () => {
 	const selectedRuleName = path.slice(1)
 
 	if (!subSimulators.includes(category)) {
+		console.log(
+			`Unknown category ${category}, redirecting to /simulateur/bilan...`
+		)
 		return <Navigate to="/simulateur/bilan" replace />
 	}
 
-	const decodedSelectedRuleName = utils.decodeRuleName(
-		selectedRuleName.join('/')
+	const currentSimulation = useSelector((state: AppState) => state.simulation)
+	const rules = useSelector((state: AppState) => state.rules)
+
+	const decodedSelectedRuleName = getValidDecodedSelectedRuleName(
+		utils.decodeRuleName(selectedRuleName.join('/')),
+		category,
+		rules
 	)
 
-	console.log('category', category)
-	console.log('decoded', decodedSelectedRuleName)
+	const categoryRule = rules[category]
+	const engine = useEngine()
+	const evaluation = engine.evaluate(category)
+	const dispatch = useDispatch()
 
-	const currentSimulation = useSelector((state: AppState) => state.simulation)
-	const rules = useSelector((state: AppState) => state.rules),
-		rule = rules[category],
-		engine = useEngine(),
-		evaluation = engine.evaluate(category),
-		dispatch = useDispatch(),
-		config = {
-			objectifs: [category],
-			questions: questionConfig,
-		},
-		configSet = currentSimulation?.config,
-		categories: Category[] = isMainSimulation
-			? extractCategories(rules, engine)
-			: []
+	const config = {
+		objectifs: [category],
+		questions: questionConfig,
+	}
+	const configSet = currentSimulation?.config
+
+	const categories: Category[] = isMainSimulation
+		? extractCategories(rules, engine)
+		: []
+
 	const tutorials = useSelector((state: AppState) => state.tutorials)
 	const url = useLocation().pathname
 
@@ -110,6 +117,7 @@ const Simulateur = () => {
 
 	useEffect(() => {
 		if (decodedSelectedRuleName != undefined) {
+			console.log('GOTOQUESTIOn:', decodedSelectedRuleName)
 			dispatch(goToQuestion(decodedSelectedRuleName))
 		}
 	}, [decodedSelectedRuleName])
@@ -153,8 +161,11 @@ const Simulateur = () => {
 							customEnd={
 								isMainSimulation ? (
 									<MainSimulationEnding {...{ rules, engine }} />
-								) : rule.description ? (
-									<Markdown children={rule.description} noRouter={false} />
+								) : categoryRule.description ? (
+									<Markdown
+										children={categoryRule.description}
+										noRouter={false}
+									/>
 								) : (
 									<EndingCongratulations />
 								)
@@ -169,6 +180,49 @@ const Simulateur = () => {
 			<BandeauContribuer />
 		</div>
 	)
+}
+
+function getValidDecodedSelectedRuleName(
+	decodedSelectedRuleName: DottedName,
+	categoryName: string,
+	rules: any
+): DottedName {
+	const navigate = useNavigate()
+
+	// TODO: factorize
+	if (decodedSelectedRuleName != '' && !(decodedSelectedRuleName in rules)) {
+		do {
+			const parentRuleName = utils.ruleParent(decodedSelectedRuleName)
+			console.log(
+				`Unknown rule ${decodedSelectedRuleName}, trying ${parentRuleName}...`
+			)
+			decodedSelectedRuleName = parentRuleName
+		} while (
+			decodedSelectedRuleName != '' &&
+			!(decodedSelectedRuleName in rules)
+		)
+
+		if (decodedSelectedRuleName == '') {
+			console.log(
+				`Cannot find parent rule for ${decodedSelectedRuleName}, redirecting to /simulateur/bilan...`
+			)
+			decodedSelectedRuleName = 'bilan'
+			navigate(`/simulateur/bilan`, {
+				replace: true,
+			})
+		} else {
+			const encodedParentRuleName = utils.encodeRuleName(
+				decodedSelectedRuleName
+			)
+			console.log(
+				`Found parent rule for ${decodedSelectedRuleName}, redirecting to /simulateur/${categoryName}/${encodedParentRuleName}...`
+			)
+			navigate(`/simulateur/${categoryName}/${encodedParentRuleName}`, {
+				replace: true,
+			})
+		}
+	}
+	return decodedSelectedRuleName
 }
 
 const TutorialRedirection = () => {
