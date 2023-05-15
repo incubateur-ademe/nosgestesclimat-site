@@ -6,6 +6,7 @@ import { getLangInfos, Lang } from '../../locales/translation'
 import App from './App'
 
 Sentry.init({
+	dsn: SENTRY_DSN,
 	integrations: [new Sentry.BrowserTracing()],
 	// NOTE(@EmileRoley): Quite an arbitrary value
 	tracesSampleRate: 0.25,
