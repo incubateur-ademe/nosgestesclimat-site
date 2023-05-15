@@ -10,6 +10,7 @@ Sentry.init({
 	integrations: [new Sentry.BrowserTracing()],
 	// NOTE(@EmileRoley): Quite an arbitrary value
 	tracesSampleRate: 0.25,
+	enabled: process.env.NODE_ENV !== 'development',
 })
 
 Object.keys(Lang).forEach((lang) => {
