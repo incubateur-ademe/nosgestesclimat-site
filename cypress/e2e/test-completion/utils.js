@@ -1,21 +1,49 @@
 // TODO: should be in the same file as the test
 export const defaultTotalValue = '8,4'
 
+export async function clickUnderstoodButton() {
+	cy.get('[data-cypress-id="understood-button"]').click()
+}
+
+export async function clickCategoryStartButton() {
+	cy.get('[data-cypress-id="start-button"]').click()
+}
+
+export async function clickSkipTutoButton() {
+	cy.get('[data-cypress-id="skip-tuto-button"]').click()
+}
+
+export async function skipTutoIfExists(body) {
+	if (body.find('[data-cypress-id="skip-tuto-button"]').length > 0) {
+		clickSkipTutoButton()
+	}
+}
+
+export async function clickUnderstoodButtonIfExist(body) {
+	if (body.find('[data-cypress-id="understood-button"]').length > 0) {
+		clickUnderstoodButton()
+	}
+}
+
 export async function startTestAndSkipTutorial() {
 	cy.get('[data-cypress-id="do-the-test-link"]').click()
-	cy.get('[data-cypress-id="skip-tuto-button"]').click()
-	cy.get('[data-cypress-id="understood-button"]').click()
-	cy.get('[data-cypress-id="start-button"]').click()
+	clickSkipTutoButton()
+	clickUnderstoodButton()
+	clickCategoryStartButton()
+}
+
+export async function waitWhileLoading() {
+	cy.get('body').then((body) => {
+		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
+			// Waiting for rules parsing
+			cy.wait(4000)
+	}})
 }
 
 export async function walkthroughTest(persona) {
 	cy.wait(100)
 
-	cy.get('body').then((body) => {
-		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
-			// Waiting for complete rules parsing
-			cy.wait(4000)
-	}})
+	waitWhileLoading()
 
 	cy.get('body').then((body) => {
 		if (body.find('section').length > 0) {
