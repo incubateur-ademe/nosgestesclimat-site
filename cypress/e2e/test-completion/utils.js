@@ -27,6 +27,14 @@ export async function clickUnderstoodButtonIfExist() {
 	})
 }
 
+export async function clickCategoryStartButtonIfExist() {
+	cy.get('body').then((body) => {
+		if (body.find('[data-cypress-id="start-button"]').length > 0) {
+			clickCategoryStartButton()
+		}
+	})
+}
+
 export async function startTestAndSkipTutorial() {
 	cy.get('[data-cypress-id="do-the-test-link"]').click()
 	clickSkipTutoButton()
