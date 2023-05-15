@@ -148,15 +148,6 @@ const List = styled.ul`
 	li {
 		margin-bottom: 10px;
 	}
-
-	a {
-		color: #666;
-		text-decoration: none;
-
-		&:hover {
-			text-decoration: underline;
-		}
-	}
 `
 
 export default PlanDuSite
