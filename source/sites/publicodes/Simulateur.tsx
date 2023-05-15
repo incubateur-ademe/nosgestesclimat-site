@@ -193,20 +193,16 @@ function getValidDecodedSelectedRuleName(
 
 	// TODO: factorize
 	if (decodedSelectedRuleName != '' && !isValidRule(decodedSelectedRuleName)) {
-		do {
+		while (
+			decodedSelectedRuleName != '' &&
+			!isValidRule(decodedSelectedRuleName)
+		) {
 			const parentRuleName = utils.ruleParent(decodedSelectedRuleName)
 			console.log(
 				`Unknown question ${decodedSelectedRuleName}, trying ${parentRuleName}...`
 			)
 			decodedSelectedRuleName = parentRuleName
-			console.log(
-				`isValidRule(${decodedSelectedRuleName}):`,
-				isValidRule(decodedSelectedRuleName)
-			)
-		} while (
-			decodedSelectedRuleName != '' &&
-			!isValidRule(decodedSelectedRuleName)
-		)
+		}
 
 		if (decodedSelectedRuleName == '') {
 			console.log(
