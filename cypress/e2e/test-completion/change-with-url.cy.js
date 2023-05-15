@@ -1,5 +1,15 @@
 import {startTestAndSkipTutorial, clickUnderstoodButton, clickCategoryStartButton, waitWhileLoading} from './utils'
 
+function goToQuestionAndGet(questionURL) {
+		cy.visit(`/simulateur/bilan/${questionURL}`)
+
+		waitWhileLoading()
+		clickUnderstoodButton()
+		clickCategoryStartButton()
+
+		cy.get(`[id="id-question-${questionURL}"]`)
+}
+
 describe('check question redirection from the URL', () => {
 	beforeEach(() => {
 		cy.visit(`/?loc=${Cypress.env('localisation_param')}&lang=${Cypress.env('language_param')}`)
@@ -9,31 +19,23 @@ describe('check question redirection from the URL', () => {
 	})
 
 	it(`should go to a question without space in the name`, () => {
-		cy.visit(`/simulateur/bilan/logement/surface`)
-
-		waitWhileLoading()
-
-		clickUnderstoodButton()
-		clickCategoryStartButton()
-		cy.get('#id-question-Surface')
-
-		cy.wait(2000)
-
-		// closeExplanationButton()
-		//
-		// cy.get('body').then((body) => {
-		// 	if (body.find("#")
-		// 	cy.contains("#id-question-Surface")
-		// })
+		goToQuestionAndGet('logement/surface')
 	})
 
-	// it(`should go to a question without space in the name`, () => {
-	// 	cy.visit(`/simulateur/bilan/transport/empreinte`)
+	it(`should go to a question with space in the name`, () => {
+		goToQuestionAndGet('logement/saisie-habitants')
+	})
+
+	it(`should go to a question with more than 2 depth in the name + space in it`, () => {
+		goToQuestionAndGet('transport/avion/court-courrier/heures-de-vol')
+	})
+
+	// skip(`should go to a question within a mosaïc`, () => {
+	// })
 	//
-	// 	cy.wait(2000)
-	// 	cy.get('body').then((body) => {
-	// 		clickUnderstoodButtonIfExist(body)
-	// 	})
-	// 	cy.wait(2000)
+	// skip(`should go to root if the URL doesn't correspond to a parsed rule`, () => {
+	// })
+	//
+	// skip(`should go to root if the URL doesn't correspond to a parsed rule with a question`, () => {
 	// })
 })
