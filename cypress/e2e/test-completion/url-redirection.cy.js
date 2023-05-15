@@ -1,13 +1,11 @@
-import {startTestAndSkipTutorial, clickUnderstoodButton, clickCategoryStartButton, waitWhileLoading} from './utils'
+import {startTestAndSkipTutorial, clickUnderstoodButton, clickCategoryStartButton} from './utils'
 
 function goToQuestionAndGet(questionURL, category = 'bilan') {
-		cy.visit(`/simulateur/${category}/${questionURL}`)
-
+	cy.visit(`/simulateur/${category}/${questionURL}`)
 	cy.wait(500)
-		clickUnderstoodButton()
-		clickCategoryStartButton()
-
-		cy.get(`[id="id-question-${questionURL}"]`)
+	clickUnderstoodButton()
+	clickCategoryStartButton()
+	cy.get(`[id="id-question-${questionURL}"]`)
 }
 
 function shouldRedirectTo(entryPoint, expectedURL, category = 'bilan') {
@@ -25,33 +23,34 @@ describe('check question redirection from the URL', () => {
 		startTestAndSkipTutorial()
 	})
 
-	it(`should go to a question without space in the name`, () => {
+	it(`should redirect to a question without space in the name`, () => {
 		goToQuestionAndGet('logement/surface')
 	})
 
-	it(`should go to a question with space in the name`, () => {
+	it(`should redirect to a question with space in the name`, () => {
 		goToQuestionAndGet('logement/saisie-habitants')
 	})
 
-	it(`should go to a question with more than 2 depth in the name + space in it`, () => {
+	it(`should redirect to a question with more than 2 depth in the name + space in it`, () => {
 		goToQuestionAndGet('transport/avion/court-courrier/heures-de-vol')
 	})
 
-	it(`should go to a mosaic question`, () => {
+	it(`should redirect to a mosaic question`, () => {
 		goToQuestionAndGet('transport/vacances')
 	})
 
-	it(`should go to a question within a mosaic`, () => {
+	it(`should redirect to a question within a mosaic`, () => {
 		goToQuestionAndGet('transport/vacances/camping-car/propriétaire')
 		goToQuestionAndGet('transport/vacances/caravane/propriétaire')
 	})
 
-	it(`should go to the first existing parent rule if the URL doesn't correspond to a parsed rule`, () => {
-		shouldRedirectTo('logement/unknown-rule', 'logement')
+	it(`should redirect to the first existing parent rule if the URL doesn't correspond to a parsed rule`, () => {
+		shouldRedirectTo('logement/unknown-rule', '')
 		shouldRedirectTo('logement/appartement/unknown-rule/adaf/adf', 'logement/appartement')
 		shouldRedirectTo('asdfs/logement/appartement/unknown-rule/adaf/adf', '')
 	})
 
-	// skip(`should go to the first existing parent rule if the URL doesn't correspond to a parsed rule`, () => {
-	// })
+	it(`should redirect to the first existing parent rule if the URL doesn't correspond to a parsed rule with a question`, () => {
+		shouldRedirectTo('transport/voiture/motorisation/thermique', 'transport/voiture/motorisation')
+	})
 })

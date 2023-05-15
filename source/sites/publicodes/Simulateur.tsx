@@ -82,6 +82,7 @@ const Simulateur = () => {
 	const currentSimulation = useSelector((state: AppState) => state.simulation)
 	const rules = useSelector((state: AppState) => state.rules)
 
+	// A rule is valid if it exists and has a question
 	const decodedSelectedRuleName = getValidDecodedSelectedRuleName(
 		utils.decodeRuleName(selectedRuleName.join('/')),
 		category,
@@ -187,18 +188,24 @@ function getValidDecodedSelectedRuleName(
 	rules: any
 ): DottedName {
 	const navigate = useNavigate()
+	const isValidRule = (ruleName: DottedName) =>
+		ruleName in rules && 'question' in rules[ruleName]
 
 	// TODO: factorize
-	if (decodedSelectedRuleName != '' && !(decodedSelectedRuleName in rules)) {
+	if (decodedSelectedRuleName != '' && !isValidRule(decodedSelectedRuleName)) {
 		do {
 			const parentRuleName = utils.ruleParent(decodedSelectedRuleName)
 			console.log(
-				`Unknown rule ${decodedSelectedRuleName}, trying ${parentRuleName}...`
+				`Unknown question ${decodedSelectedRuleName}, trying ${parentRuleName}...`
 			)
 			decodedSelectedRuleName = parentRuleName
+			console.log(
+				`isValidRule(${decodedSelectedRuleName}):`,
+				isValidRule(decodedSelectedRuleName)
+			)
 		} while (
 			decodedSelectedRuleName != '' &&
-			!(decodedSelectedRuleName in rules)
+			!isValidRule(decodedSelectedRuleName)
 		)
 
 		if (decodedSelectedRuleName == '') {
