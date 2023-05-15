@@ -30,8 +30,14 @@ describe('check question redirection from the URL', () => {
 		goToQuestionAndGet('transport/avion/court-courrier/heures-de-vol')
 	})
 
-	// skip(`should go to a question within a mosaïc`, () => {
-	// })
+	it(`should go to a mosaic question`, () => {
+		goToQuestionAndGet('transport/vacances')
+	})
+
+	it(`should go to a question within a mosaic`, () => {
+		goToQuestionAndGet('transport/vacances/camping-car/propriétaire')
+		goToQuestionAndGet('transport/vacances/caravane/propriétaire')
+	})
 	//
 	// skip(`should go to root if the URL doesn't correspond to a parsed rule`, () => {
 	// })
