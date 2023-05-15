@@ -5,6 +5,8 @@ import i18next from '../../locales/i18n'
 import { getLangInfos, Lang } from '../../locales/translation'
 import App from './App'
 
+console.log(CONTEXT)
+
 Sentry.init({
 	dsn: SENTRY_DSN,
 	integrations: [new Sentry.BrowserTracing()],

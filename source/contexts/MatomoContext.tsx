@@ -10,8 +10,6 @@ const groupExclusionRegexp = /\/(sondage|conférence)\//
 const shouldUseDevTracker =
 	NODE_ENV === 'development' || CONTEXT === 'deploy-preview'
 
-console.log(CONTEXT)
-
 const ua = window.navigator.userAgent
 // https://chromium.googlesource.com/chromium/src.git/+/master/docs/ios/user_agent.md
 const iOSSafari =
