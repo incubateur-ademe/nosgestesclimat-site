@@ -6,10 +6,12 @@ import { getLangInfos, Lang } from '../../locales/translation'
 import App from './App'
 
 Sentry.init({
-	dsn: 'https://d134af84d6db41eea0331919c58865b9@o4505041038606336.ingest.sentry.io/4505041042014208',
+	dsn: SENTRY_DSN,
 	integrations: [new Sentry.BrowserTracing()],
 	// NOTE(@EmileRoley): Quite an arbitrary value
 	tracesSampleRate: 0.25,
+	enabled: process.env.NODE_ENV !== 'development',
+	environment: CONTEXT,
 })
 
 Object.keys(Lang).forEach((lang) => {
