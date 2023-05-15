@@ -55,7 +55,7 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 				`https://nosgestesclimat.fr/actions/${encodeRuleName(dottedName)}`
 		)
 		const textAction = actionLines.join('\n')
-		fs.appendFileSync(destinationURL, textAction, 'utf8')
+		fs.appendFileSync(destinationURL, textAction + '\n', 'utf8')
 
 		const documentationLines = Object.keys(json).map(
 			(dottedName) =>
