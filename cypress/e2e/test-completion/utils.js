@@ -1,6 +1,13 @@
 // TODO: should be in the same file as the test
 export const defaultTotalValue = '8,4'
 
+export async function startTestAndSkipTutorial() {
+	cy.get('[data-cypress-id="do-the-test-link"]').click()
+	cy.get('[data-cypress-id="skip-tuto-button"]').click()
+	cy.get('[data-cypress-id="understood-button"]').click()
+	cy.get('[data-cypress-id="start-button"]').click()
+}
+
 export async function walkthroughTest(persona) {
 	cy.wait(100)
 
