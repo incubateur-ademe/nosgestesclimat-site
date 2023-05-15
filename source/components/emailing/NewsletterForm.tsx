@@ -254,6 +254,14 @@ export const NewsletterForm = () => {
 										: ''
 								}
 							/>
+							<input
+								type="hidden"
+								name="PROFESSION"
+								id="PROFESSION"
+								value={location
+									.toString()
+									.replace('/simulateur/fin', '/mon-empreinte-carbone/partage')}
+							/>
 						</form>
 					)}
 				</div>

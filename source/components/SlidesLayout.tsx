@@ -47,13 +47,6 @@ const MainContent = styled.div`
 `
 
 const Container = styled.div<{ isIframe?: boolean }>`
-	height: 70vh;
-	@media (max-width: 800px) {
-		height: 95vh;
-	}
-	@media (min-aspect-ratio: 1280/700) {
-		height: 95vh;
-	}
 	${(props) => props.isIframe && 'height: 45rem !important;'}
 	position: relative;
 
