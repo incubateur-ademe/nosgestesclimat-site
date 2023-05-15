@@ -109,12 +109,4 @@ module.exports = {
 		'plugin:import/errors',
 		'plugin:import/typescript',
 	],
-	excludedFiles: [
-		'./.eslintrc.js',
-		'./babel.config.js',
-		'webpack.dev.js',
-		'webpack.prod.js',
-		'webpack.common.js',
-		'cypress.config.js',
-	],
 }
