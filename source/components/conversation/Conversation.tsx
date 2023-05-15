@@ -475,7 +475,13 @@ export default function Conversation({
 							font-size: 120%;
 						`}
 					>
-						<span tabIndex="0" id={'id-question-' + currentQuestionId}>
+						<span
+							tabIndex="0"
+							id={'id-question-' + currentQuestionId}
+							data-cypress-id={
+								mosaicQuestion ? 'mosaic-question' : 'simple-question'
+							}
+						>
 							{questionText}{' '}
 						</span>
 						{hasDescription && (

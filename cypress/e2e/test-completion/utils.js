@@ -40,6 +40,17 @@ export async function waitWhileLoading() {
 	}})
 }
 
+function encodeRuleName(ruleName) {
+	return encodeURI(ruleName
+		?.replace(/\s\.\s/g, '/')
+		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
+		.replace(/\s/g, '-'))
+}
+
+function isMosaicQuestion(body) {
+	return body.find('[data-cypress-id="mosaic-question"]')?.length > 0
+}
+
 export async function walkthroughTest(persona) {
 	cy.wait(100)
 
@@ -51,6 +62,13 @@ export async function walkthroughTest(persona) {
 				cy.get('input').then((input) => {
 					const id = input.attr('id')
 					const type = input.attr('type')
+
+					if (id != undefined && !isMosaicQuestion(body)) {
+						// TODO(@EmileRolley): need to specify the behavior for mosaic questions
+						cy.log(type)
+						cy.url().should('include', encodeRuleName(id))
+					}
+
 					if (persona[id]) {
 						if (persona[id].valeur || persona[id].valeur === 0) {
 							cy.get(`input[id="${id}"]`).type(persona[id].valeur)
