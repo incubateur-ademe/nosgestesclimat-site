@@ -19,10 +19,12 @@ export async function skipTutoIfExists(body) {
 	}
 }
 
-export async function clickUnderstoodButtonIfExist(body) {
-	if (body.find('[data-cypress-id="understood-button"]').length > 0) {
-		clickUnderstoodButton()
-	}
+export async function clickUnderstoodButtonIfExist() {
+	cy.get('body').then((body) => {
+		if (body.find('[data-cypress-id="understood-button"]').length > 0) {
+			clickUnderstoodButton()
+		}
+	})
 }
 
 export async function startTestAndSkipTutorial() {

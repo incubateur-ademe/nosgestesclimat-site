@@ -1,4 +1,4 @@
-import {startTestAndSkipTutorial, clickUnderstoodButton, clickCategoryStartButton} from './utils'
+import {startTestAndSkipTutorial, clickUnderstoodButton, clickCategoryStartButton, clickUnderstoodButtonIfExist} from './utils'
 
 function goToQuestionAndGet(questionURL, category = 'bilan') {
 	cy.visit(`/simulateur/${category}/${questionURL}`)
@@ -9,6 +9,7 @@ function goToQuestionAndGet(questionURL, category = 'bilan') {
 }
 
 function shouldRedirectTo(entryPoint, expectedURL, category = 'bilan') {
+	clickUnderstoodButtonIfExist()
 	cy.visit(`/simulateur/${category}/${entryPoint}`)
 	cy.url().should('eq',
 		Cypress.config().baseUrl + `/simulateur/${category}${expectedURL ? `/${expectedURL}` : ''}`
