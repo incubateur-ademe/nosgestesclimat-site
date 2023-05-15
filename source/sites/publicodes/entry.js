@@ -5,14 +5,13 @@ import i18next from '../../locales/i18n'
 import { getLangInfos, Lang } from '../../locales/translation'
 import App from './App'
 
-console.log(CONTEXT)
-
 Sentry.init({
 	dsn: SENTRY_DSN,
 	integrations: [new Sentry.BrowserTracing()],
 	// NOTE(@EmileRoley): Quite an arbitrary value
 	tracesSampleRate: 0.25,
 	enabled: process.env.NODE_ENV !== 'development',
+	environment: CONTEXT,
 })
 
 Object.keys(Lang).forEach((lang) => {
