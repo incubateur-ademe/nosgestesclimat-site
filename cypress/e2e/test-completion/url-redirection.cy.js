@@ -1,13 +1,20 @@
 import {startTestAndSkipTutorial, clickUnderstoodButton, clickCategoryStartButton, waitWhileLoading} from './utils'
 
-function goToQuestionAndGet(questionURL) {
-		cy.visit(`/simulateur/bilan/${questionURL}`)
+function goToQuestionAndGet(questionURL, category = 'bilan') {
+		cy.visit(`/simulateur/${category}/${questionURL}`)
 
-		waitWhileLoading()
+	cy.wait(500)
 		clickUnderstoodButton()
 		clickCategoryStartButton()
 
 		cy.get(`[id="id-question-${questionURL}"]`)
+}
+
+function shouldRedirectTo(entryPoint, expectedURL, category = 'bilan') {
+	cy.visit(`/simulateur/${category}/${entryPoint}`)
+	cy.url().should('eq',
+		Cypress.config().baseUrl + `/simulateur/${category}${expectedURL ? `/${expectedURL}` : ''}`
+	)
 }
 
 describe('check question redirection from the URL', () => {
@@ -40,19 +47,11 @@ describe('check question redirection from the URL', () => {
 	})
 
 	it(`should go to the first existing parent rule if the URL doesn't correspond to a parsed rule`, () => {
-		cy.visit(`/simulateur/bilan/logement/appartement/unknown-rule`)
-		cy.url().should('eq', Cypress.config().baseUrl + '/simulateur/bilan/logement/appartement')
-		cy.wait(100)
-
-		cy.visit(`/simulateur/bilan/logement/appartement/unknown-rule/adaf/adf`)
-		cy.url().should('eq', Cypress.config().baseUrl + '/simulateur/bilan/logement/appartement')
-		cy.wait(100)
-
-		cy.visit(`/simulateur/bilan/asdf/appartement/unknown-rule/adaf/adf`)
-		cy.url().should('eq', Cypress.config().baseUrl + '/simulateur/bilan')
+		shouldRedirectTo('logement/unknown-rule', 'logement')
+		shouldRedirectTo('logement/appartement/unknown-rule/adaf/adf', 'logement/appartement')
+		shouldRedirectTo('asdfs/logement/appartement/unknown-rule/adaf/adf', '')
 	})
 
-	//
-	// skip(`should go to root if the URL doesn't correspond to a parsed rule with a question`, () => {
+	// skip(`should go to the first existing parent rule if the URL doesn't correspond to a parsed rule`, () => {
 	// })
 })

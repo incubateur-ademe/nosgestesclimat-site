@@ -117,7 +117,6 @@ const Simulateur = () => {
 
 	useEffect(() => {
 		if (decodedSelectedRuleName != undefined) {
-			console.log('GOTOQUESTIOn:', decodedSelectedRuleName)
 			dispatch(goToQuestion(decodedSelectedRuleName))
 		}
 	}, [decodedSelectedRuleName])
