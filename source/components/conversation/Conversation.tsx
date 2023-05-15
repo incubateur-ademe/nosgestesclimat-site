@@ -23,7 +23,6 @@ import {
 	Category,
 	questionCategoryName,
 	splitName,
-	title,
 } from '@/components/publicodesUtils'
 import SafeCategoryImage from '@/components/SafeCategoryImage'
 import { EngineContext } from '@/components/utils/EngineContext'
@@ -151,11 +150,13 @@ export default function Conversation({
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
+	const currentQuestionId = utils.encodeRuleName(currentQuestion)
+
 	useEffect(() => {
 		// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question
 		const questionElement =
 			rules[currentQuestion] &&
-			document.getElementById('id-question-' + title(rules[currentQuestion]))
+			document.getElementById('id-question-' + currentQuestionId)
 		questionElement?.focus()
 	}, [currentQuestion])
 
@@ -474,10 +475,7 @@ export default function Conversation({
 							font-size: 120%;
 						`}
 					>
-						<span
-							tabIndex="0"
-							id={'id-question-' + title(rules[currentQuestion])}
-						>
+						<span tabIndex="0" id={'id-question-' + currentQuestionId}>
 							{questionText}{' '}
 						</span>
 						{hasDescription && (
