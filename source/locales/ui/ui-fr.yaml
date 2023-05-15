@@ -432,6 +432,25 @@ entries:
   'Oui plutôt, envoyer cette réponse': Oui plutôt, envoyer cette réponse
   'Moyennement, envoyer cette réponse': Moyennement, envoyer cette réponse
   'Tout à fait, envoyer cette réponse': Tout à fait, envoyer cette réponse
+  publicodes.planDuSite.title: Plan du site
+  publicodes.planDuSite.outils: Outils
+  publicodes.planDuSite.bilan: Le simulateur
+  publicodes.planDuSite.groupe: La simulation en groupe
+  publicodes.planDuSite.profil: Votre simulation
+  publicodes.planDuSite.personas: Les simulations types
+  publicodes.planDuSite.actions: Vos actions
+  publicodes.planDuSite.actionsPlus: La liste de actions
+  publicodes.planDuSite.informations: Informations
+  publicodes.planDuSite.nouveautes: Nouveautés
+  publicodes.planDuSite.aPropos: À propos
+  publicodes.planDuSite.viePrivee: Vie privée
+  publicodes.planDuSite.partenaires: Pour les partenaires
+  publicodes.planDuSite.contribuer: Contribuer
+  publicodes.planDuSite.stats: Page des Statistiques
+  publicodes.planDuSite.documentation: Documentation
+  publicodes.planDuSite.methodologie: Méthodologie
+  publicodes.planDuSite.modele: Modèle
+  publicodes.planDuSite.petroleEtGaz: Pétrole et gaz
   période: période
   semaine: semaine
   semaines: semaines

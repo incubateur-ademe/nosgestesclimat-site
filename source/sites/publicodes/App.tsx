@@ -37,6 +37,7 @@ import Navigation from './Navigation'
 import About from './pages/About'
 import Diffuser from './pages/Diffuser'
 import Profil from './Profil'
+import PlanDuSite from './pages/Plan'
 import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
 import { isFluidLayout } from './utils'
@@ -584,6 +585,14 @@ const Router = () => {
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<International />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={'/plan'}
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<PlanDuSite />
 					</Suspense>
 				}
 			/>
