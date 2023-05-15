@@ -97,6 +97,9 @@ export default ({}) => {
 					<Link to="/blog">
 						<Trans>Blog</Trans>
 					</Link>
+					<Link to="/plan">
+						<Trans i18nKey="publicodes.planDuSite.title">plan du site</Trans>
+					</Link>
 				</div>
 				<div
 					css={`
