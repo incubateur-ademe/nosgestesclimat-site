@@ -1,14 +1,15 @@
-import { skipTutorial } from 'Actions/actions'
-import SlidesLayout from 'Components/SlidesLayout'
-import Meta from 'Components/utils/Meta'
+import { skipTutorial } from '@/actions/actions'
+import { getMatomoEventParcoursTestTutorialProgress } from '@/analytics/matomo-events'
+import { MODEL_ROOT_RULE_NAME } from '@/components/publicodesUtils'
+import SlidesLayout from '@/components/SlidesLayout'
+import Meta from '@/components/utils/Meta'
+import { MatomoContext } from '@/contexts/MatomoContext'
+import useKeypress from '@/hooks/useKeyPress'
+import { AppState } from '@/reducers/rootReducer'
+import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { getMatomoEventParcoursTestTutorialProgress } from '../../../analytics/matomo-events'
-import { MatomoContext } from '../../../contexts/MatomoContext'
-import useKeypress from '../../../hooks/useKeyPress'
-import { enquêteSelector } from '../enquête/enquêteSelector'
-import { generateImageLink } from '../fin'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Categories from './Categories'
 import ClimateWarming from './ClimateWarming'
@@ -19,7 +20,7 @@ import WarmingMeasure from './WarmingMeasure'
 
 export default ({}) => {
 	const navigate = useNavigate()
-	const tutorials = useSelector((state) => state.tutorials)
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 
 	const tutos = Object.entries(tutorials)
 		.map(([k, v]) => v != null && k.split('testIntro')[1])
@@ -39,7 +40,7 @@ export default ({}) => {
 
 		skip(last ? 'testIntro' : 'testIntro' + index)
 		if (last) {
-			navigate('/simulateur/bilan')
+			navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`)
 		}
 	}
 	const previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
@@ -53,8 +54,9 @@ export default ({}) => {
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache
 	useEffect(() => {
-		if (Object.keys(tutorials).includes('testIntro5'))
+		if (Object.keys(tutorials).includes('testIntro5')) {
 			dispatch(skipTutorial('testIntro'))
+		}
 	}, [tutorials])
 
 	// This results from a bug that introduced "slide5" in users' cache :/
@@ -94,6 +96,8 @@ export default ({}) => {
 }
 
 const createSlides = (noBias) => {
-	if (noBias) return [ClimateWarming, WarmingMeasure, Instructions]
+	if (noBias) {
+		return [ClimateWarming, WarmingMeasure, Instructions]
+	}
 	return [ClimateWarming, WarmingMeasure, Target, Categories, Instructions]
 }
