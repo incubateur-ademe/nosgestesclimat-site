@@ -24,6 +24,9 @@ const links = {
 		'publicodes.planDuSite.stats': 'https://nosgestesclimat.fr/stats',
 	},
 	Documentations: {
+		'publicodes.planDuSite.guide': 'https://nosgestesclimat.fr/guide',
+		'publicodes.planDuSite.sondageDoc':
+			'https://nosgestesclimat.fr/groupe/documentation-contexte',
 		'publicodes.planDuSite.methodologie':
 			'https://nosgestesclimat.fr/methodologie',
 		'publicodes.planDuSite.modele': 'https://nosgestesclimat.fr/modele',
