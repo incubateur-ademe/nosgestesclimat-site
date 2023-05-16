@@ -22,6 +22,7 @@ import Notifications, {
 import {
 	Category,
 	isRootRule,
+	MODEL_ROOT_RULE_NAME,
 	questionCategoryName,
 	splitName,
 } from '@/components/publicodesUtils'
@@ -146,8 +147,11 @@ export default function Conversation({
 			currentQuestion !== unfoldedStep
 		) {
 			// TODO: should be aware of the simulator used
-			navigate(`/simulateur/bilan/${utils.encodeRuleName(currentQuestion)}`)
-			//dispatch(goToQuestion(currentQuestion))
+			navigate(
+				`/simulateur/${MODEL_ROOT_RULE_NAME}/${utils.encodeRuleName(
+					currentQuestion
+				)}`
+			)
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
@@ -162,10 +166,13 @@ export default function Conversation({
 	}, [currentQuestion])
 
 	const goToPrevious = () => {
+		// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
+		// could be a reason of the 'previous button bug'?
 		return navigate(
-			`/simulateur/bilan/${utils.encodeRuleName(previousQuestion)}`
+			`/simulateur/${MODEL_ROOT_RULE_NAME}/${utils.encodeRuleName(
+				previousQuestion
+			)}`
 		)
-		// return dispatch(goToQuestion(previousQuestion))
 	}
 
 	// Some questions are grouped in an artifical questions, called mosaic questions,  not present in publicodes
