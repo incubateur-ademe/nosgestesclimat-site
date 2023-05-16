@@ -54,6 +54,12 @@ describe('check question redirection from the URL for the category "bilan"', () 
 		clickSkipTutoButton()
 	})
 
+	it(`tutorial should be displayed when going to root after having visited a specific rule URL`, () => {
+		goToQuestionAndGet('logement/surface')
+		cy.visit(`/simulateur/bilan?${params}`)
+		clickSkipTutoButton()
+	})
+
 	it(`should redirect to a question with space in the name`, () => {
 		goToQuestionAndGet('logement.saisie-habitants')
 	})

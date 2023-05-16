@@ -108,6 +108,8 @@ const Simulateur = () => {
 		return null
 	}
 
+	const tutorials = useSelector((state: AppState) => state.tutorials)
+
 	const displayScoreExplanation =
 		isMainSimulation && !tutorials.scoreExplanation
 
