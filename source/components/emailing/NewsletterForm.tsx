@@ -1,8 +1,15 @@
+import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { LOCAL_STORAGE_KEY } from '@/storage/persistSimulation'
 import safeLocalStorage from '@/storage/safeLocalStorage'
 import LZString from 'lz-string'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+
+const appURL =
+	process.env.NODE_ENV === 'development'
+		? 'http://localhost:8080'
+		: 'https://nosgestesclimat.fr'
+
 export const NewsletterForm = () => {
 	const [isSent, setIsSent] = useState(false)
 	const [compressedSimulation, setCompressedSimulation] = useState<
@@ -10,27 +17,29 @@ export const NewsletterForm = () => {
 	>(undefined)
 	const { t } = useTranslation()
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault()
 
 		const form: HTMLFormElement = e.target
 		// Send using XHR
 		const data = new FormData(form)
 
-		const xhr = new XMLHttpRequest()
-		xhr.open(form.method, form.action)
-		xhr.setRequestHeader('Accept', 'application/xxx-form-urlencoded')
-		xhr.onreadystatechange = () => {
-			console.log(xhr)
-			if (xhr.readyState !== XMLHttpRequest.DONE) return
-			if (xhr.status === 200 || xhr.readyState === XMLHttpRequest.DONE) {
-				form.reset()
-				setIsSent(true)
-			} else {
-				console.log('Error')
-			}
+		try {
+			await fetch(`${NETLIFY_FUNCTIONS_URL}/email-service`, {
+				method: 'POST',
+				body: JSON.stringify({
+					email: data.get('EMAIL'),
+					optIn: data.get('OPT_IN'),
+					simulationURL: `${appURL}?sc=${compressedSimulation}`,
+					shareURL: location
+						.toString()
+						.replace('/simulateur/fin', '/mon-empreinte-carbone/partage'),
+				}),
+			})
+			setIsSent(true)
+		} catch (e) {
+			console.log(e)
 		}
-		xhr.send(data)
 	}
 
 	useEffect(() => {
@@ -71,10 +80,6 @@ export const NewsletterForm = () => {
 				position: relative;
 			`}
 		>
-			<script
-				defer
-				src="https://sibforms.com/forms/end-form/build/main.js"
-			></script>
 			<div id="sib-form-container" className="sib-form-container">
 				<div
 					id="sib-container"
@@ -100,8 +105,6 @@ export const NewsletterForm = () => {
 					) : (
 						<form
 							id="sib-form"
-							method="POST"
-							action="https://981c5932.sibforms.com/serve/MUIEAK-yyOUncCUxLV98mPvpgnvUYXKvfRdgb2m0g3ShYDdMN_zkTc0S9opPolKEeYzyaL2kY6Qe_AzmYpVIo8wCeVKjOAM-VgJT1QzaQfs8bjw4cIK3CJvipxNbDXa1thV9p9aRPo07mcePw-h4XYZFTjcrlE-ngNI5gO9RV-83N_jJZ37pekm7SpDW4_GqGf1hA5ZVGgeXRlmd"
 							onSubmit={handleSubmit}
 							css={`
 								margin: 0 auto;
@@ -244,24 +247,6 @@ export const NewsletterForm = () => {
 							/>
 							<input type="hidden" name="locale" value="en" />
 							<input type="hidden" name="html_type" value="simple" />
-							<input
-								type="hidden"
-								name="DOMAINE"
-								id="DOMAINE"
-								value={
-									compressedSimulation
-										? `http://localhost:8080?sc=${compressedSimulation}`
-										: ''
-								}
-							/>
-							<input
-								type="hidden"
-								name="PROFESSION"
-								id="PROFESSION"
-								value={location
-									.toString()
-									.replace('/simulateur/fin', '/mon-empreinte-carbone/partage')}
-							/>
 						</form>
 					)}
 				</div>
