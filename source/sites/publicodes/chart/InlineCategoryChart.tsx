@@ -40,7 +40,6 @@ export default ({ givenEngine }) => {
 	const situation = useSelector(situationSelector) // needed for this component to refresh on situation change :
 	const rules = useSelector((state: AppState) => state.rules)
 	const engine = givenEngine ?? useEngine()
-	console.log('rules', rules)
 	const [categories, setCategories] = useState(mapAbreviation(rules, engine))
 	const tutorials = useSelector((state: AppState) => state.tutorials)
 
