@@ -198,7 +198,7 @@ function getValidDecodedSelectedRuleName(
 ): DottedName {
 	const navigate = useNavigate()
 	const isValidRule = (ruleName: DottedName) =>
-		ruleName in rules && 'question' in rules[ruleName]
+		rules != undefined && ruleName in rules && 'question' in rules[ruleName]
 
 	if (decodedSelectedRuleName != '' && !isValidRule(decodedSelectedRuleName)) {
 		while (
