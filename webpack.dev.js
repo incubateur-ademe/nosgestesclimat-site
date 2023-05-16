@@ -12,6 +12,7 @@ const {
 
 module.exports = {
 	...common,
+	devtool: 'eval-source-map',
 	module: {
 		rules: [...commonLoaders('development'), styleLoader('style-loader')],
 	},
