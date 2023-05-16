@@ -9,7 +9,7 @@ import { AppState } from '@/reducers/rootReducer'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { Navigate, useNavigate } from 'react-router-dom'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Categories from './Categories'
 import ClimateWarming from './ClimateWarming'
@@ -20,8 +20,23 @@ import WarmingMeasure from './WarmingMeasure'
 
 export default ({}) => {
 	const navigate = useNavigate()
-	const tutorials = useSelector((state: AppState) => state.tutorials)
+	const dispatch = useDispatch()
+	const urlParams = new URLSearchParams(window.location.search)
 
+	const fromRuleParam = urlParams.get('fromRule')
+	const targetUrl = `/simulateur/${MODEL_ROOT_RULE_NAME}${
+		fromRuleParam ? `/${fromRuleParam}` : ''
+	}`
+
+	if (fromRuleParam) {
+		// The tutorial is skipped when redirected from a specific rule URL
+		// (e.g. /simulateur/bilan/logement/chauffage)
+		// [tutorials.fromRule = 'skip']
+		dispatch(skipTutorial('testIntro', false, 'skip'))
+		return <Navigate to={targetUrl} replace />
+	}
+
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 	const tutos = Object.entries(tutorials)
 		.map(([k, v]) => v != null && k.split('testIntro')[1])
 		.filter(Boolean)
@@ -32,30 +47,38 @@ export default ({}) => {
 
 	const { trackEvent } = useContext(MatomoContext)
 
-	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip))
+	const skip = (name: string, unskip = false) =>
+		dispatch(
+			skipTutorial(
+				name,
+				unskip,
+				tutorials.fromRule == 'skip'
+					? // Returning to 'simulateur/bilan' after skipping the tutorial from a
+					  // specific rule URL
+					  'done'
+					: tutorials.fromRule
+			)
+		)
 
 	const last = index === slides.length - 1
 	const next = () => {
 		trackEvent(getMatomoEventParcoursTestTutorialProgress(last, index + 1))
-
 		skip(last ? 'testIntro' : 'testIntro' + index)
 		if (last) {
-			navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`)
+			navigate(targetUrl, { replace: true })
 		}
 	}
-	const previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
+	const previous = () => skip('testIntro' + (index - 1), true)
 
 	useKeypress('Escape', false, () => skip('testIntro'), 'keyup', [])
 
 	const Component = slides[index]
 
-	const dispatch = useDispatch()
-
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache
 	useEffect(() => {
 		if (Object.keys(tutorials).includes('testIntro5')) {
-			dispatch(skipTutorial('testIntro'))
+			skip('testIntro')
 		}
 	}, [tutorials])
 
@@ -85,6 +108,7 @@ export default ({}) => {
 						{...{
 							last,
 							skip,
+							targetUrl,
 						}}
 					>
 						<Component />

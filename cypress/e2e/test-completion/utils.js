@@ -13,10 +13,12 @@ export async function clickSkipTutoButton() {
 	cy.get('[data-cypress-id="skip-tuto-button"]').click()
 }
 
-export async function skipTutoIfExists(body) {
-	if (body.find('[data-cypress-id="skip-tuto-button"]').length > 0) {
-		clickSkipTutoButton()
-	}
+export async function skipTutoIfExists() {
+	cy.get('body').then((body) => {
+		if (body.find('[data-cypress-id="skip-tuto-button"]').length > 0) {
+			clickSkipTutoButton()
+		}
+	})
 }
 
 export async function clickUnderstoodButtonIfExist() {

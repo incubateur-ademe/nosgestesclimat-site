@@ -257,22 +257,34 @@ function conference(state = null, { type, room, ydoc, provider }) {
 	} else return state
 }
 
+export type TutorialStateStatus = 'skip' | 'done' | undefined
+export type TutorialState = {
+	[id: string]: TutorialStateStatus
+	/** fromRule is used to know if the tutorial was triggered by a specific rule
+	 (appart from 'bilan') and if so, to know if it was skipped or not.*/
+	fromRule?: TutorialStateStatus
+}
+
 // Tutorials are the main tutorial for the /simulateur/bilan simulation,
 // but also the small category pages displayed before starting the category,
 // as a pause for the user
-function tutorials(state = {}, { type, id, unskip }) {
+function tutorials(state: TutorialState = {}, { type, id, unskip, fromRule }) {
 	if (type === 'SKIP_TUTORIAL') {
-		return { ...state, [id]: unskip ? undefined : 'skip' }
+		return {
+			...state,
+			[id]: unskip ? undefined : 'skip',
+			fromRule: !fromRule ? state.fromRule : fromRule,
+		}
 	} else if (type === 'RESET_INTRO_TUTORIAL') {
 		return Object.fromEntries(
 			Object.entries(state)
-				.map(([k, v]) => (k.includes('testIntro') ? null : [k, v]))
+				.map(([k, v]) => (k.includes('testIntro') ? undefined : [k, v]))
 				.filter(Boolean)
 		)
 	} else if (type === 'RESET_CATEGORY_TUTORIALS') {
 		return Object.fromEntries(
 			Object.entries(state)
-				.map(([k, v]) => (k.includes('testCategory') ? null : [k, v]))
+				.map(([k, v]) => (k.includes('testCategory') ? undefined : [k, v]))
 				.filter(Boolean)
 		)
 	} else return state
@@ -435,7 +447,7 @@ export type AppState = CombinedState<{
 	conference: never
 	survey: never
 	iframeOptions: any
-	tutorials: any
+	tutorials: TutorialState
 	storedTrajets: any
 	storedAmortissementAvion: any
 	thenRedirectTo: any

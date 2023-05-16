@@ -5,6 +5,7 @@ import {
 	extractCategories,
 	FullName,
 	isRootRule,
+	MODEL_ROOT_RULE_NAME,
 } from '@/components/publicodesUtils'
 import { buildEndURL } from '@/components/SessionBar'
 import Simulation from '@/components/Simulation'
@@ -53,7 +54,7 @@ Examples:
 * The URL corresponding to the question  `logement . électricité . consommation`
   of the sub-simulator `logement` is `/simulateur/logement/électricité/consommation`. Indeed, we only want to access to the sub rules corresponding to the category of the sub-simulator.
 */
-const subSimulators = [
+const availableCategories = [
 	'bilan',
 	'transport',
 	'alimentation',
@@ -63,20 +64,22 @@ const subSimulators = [
 ]
 
 const Simulateur = () => {
+	const dispatch = useDispatch()
 	const urlParams = useParams()
 	const path = urlParams['*']?.split('/')
 	if (!path) {
-		return <Navigate to="/simulateur/bilan" replace />
+		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
+
 	const category = path[0]
 	const isMainSimulation = isRootRule(category)
 	const selectedRuleName = path.slice(1)
 
-	if (!subSimulators.includes(category)) {
+	if (!availableCategories.includes(category)) {
 		console.log(
 			`Unknown category ${category}, redirecting to /simulateur/bilan...`
 		)
-		return <Navigate to="/simulateur/bilan" replace />
+		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
 
 	const currentSimulation = useSelector((state: AppState) => state.simulation)
@@ -92,8 +95,6 @@ const Simulateur = () => {
 	const categoryRule = rules[category]
 	const engine = useEngine()
 	const evaluation = engine.evaluate(category)
-	const dispatch = useDispatch()
-
 	const config = {
 		objectifs: [category],
 		questions: questionConfig,
@@ -104,17 +105,13 @@ const Simulateur = () => {
 		? extractCategories(rules, engine)
 		: []
 
-	const tutorials = useSelector((state: AppState) => state.tutorials)
 	const url = useLocation().pathname
 
 	useEffect(() => {
 		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
-			dispatch(
-				// @ts-ignore : TODO fix types
-				setSimulationConfig(config, url)
-			)
+			dispatch(setSimulationConfig(config, url))
 		}
-	}, [])
+	}, [config, url, configSet])
 
 	useEffect(() => {
 		if (decodedSelectedRuleName != undefined) {
@@ -122,9 +119,19 @@ const Simulateur = () => {
 		}
 	}, [decodedSelectedRuleName])
 
+	const tutorials = useSelector((state: AppState) => state.tutorials)
+
 	const displayScoreExplanation =
-			isMainSimulation && !tutorials.scoreExplanation,
-		displayTutorial = isMainSimulation && !tutorials.testIntro
+		isMainSimulation && !tutorials.scoreExplanation
+
+	const displayTutorial =
+		isMainSimulation &&
+		(!tutorials.testIntro ||
+			// Case where we previously visited a specific rule URL and we come back
+			// (the tutorial was skipped) to the simulator root URL,
+			// we want to display the tutorial
+			(!isSpecificRuleURL(decodedSelectedRuleName) &&
+				tutorials.fromRule == 'skip'))
 
 	return (
 		<div>
@@ -174,7 +181,9 @@ const Simulateur = () => {
 						/>
 					)
 				) : (
-					<TutorialRedirection />
+					<TutorialRedirection
+						decodedSelectedRuleName={decodedSelectedRuleName}
+					/>
 				)}
 			</div>
 			<BandeauContribuer />
@@ -191,7 +200,6 @@ function getValidDecodedSelectedRuleName(
 	const isValidRule = (ruleName: DottedName) =>
 		ruleName in rules && 'question' in rules[ruleName]
 
-	// TODO: factorize
 	if (decodedSelectedRuleName != '' && !isValidRule(decodedSelectedRuleName)) {
 		while (
 			decodedSelectedRuleName != '' &&
@@ -206,10 +214,10 @@ function getValidDecodedSelectedRuleName(
 
 		if (decodedSelectedRuleName == '') {
 			console.log(
-				`Cannot find parent rule for ${decodedSelectedRuleName}, redirecting to /simulateur/bilan...`
+				`Cannot find parent rule for ${decodedSelectedRuleName}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
 			)
-			decodedSelectedRuleName = 'bilan'
-			navigate(`/simulateur/bilan`, {
+			decodedSelectedRuleName = MODEL_ROOT_RULE_NAME
+			navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, {
 				replace: true,
 			})
 		} else {
@@ -227,8 +235,22 @@ function getValidDecodedSelectedRuleName(
 	return decodedSelectedRuleName
 }
 
-const TutorialRedirection = () => {
-	return <Navigate to="/tutoriel" replace />
+function isSpecificRuleURL(decodedSelectedRuleName: DottedName) {
+	return decodedSelectedRuleName != ''
+}
+
+const TutorialRedirection = ({ decodedSelectedRuleName }) => {
+	const searchParams = new URLSearchParams({
+		fromRule: utils.encodeRuleName(decodedSelectedRuleName),
+	})
+	return (
+		<Navigate
+			to={`/tutoriel${
+				isSpecificRuleURL(decodedSelectedRuleName) ? `?${searchParams}` : ''
+			}`}
+			replace
+		/>
+	)
 }
 
 const MainSimulationEnding = ({ rules, engine }) => {

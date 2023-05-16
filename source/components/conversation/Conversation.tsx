@@ -21,6 +21,7 @@ import Notifications, {
 } from '@/components/Notifications'
 import {
 	Category,
+	isRootRule,
 	questionCategoryName,
 	splitName,
 } from '@/components/publicodesUtils'
@@ -115,12 +116,12 @@ export default function Conversation({
 	const unfoldedStep = useSelector(
 		(state: AppState) => state.simulation?.unfoldedStep
 	)
-	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
-		currentQuestion: string = !isMainSimulation
-			? nextQuestions[0]
-			: focusedCategory
-			? sortedQuestions[0]
-			: unfoldedStep || sortedQuestions[0]
+	const isMainSimulation = objectifs.length === 1 && isRootRule(objectifs[0])
+	const currentQuestion: string = !isMainSimulation
+		? nextQuestions[0]
+		: focusedCategory
+		? sortedQuestions[0]
+		: unfoldedStep || sortedQuestions[0]
 
 	const [finder, setFinder] = useState(false)
 	const tutorials = useSelector((state: AppState) => state.tutorials)
