@@ -46,6 +46,7 @@ module.exports.default = {
 				'./manifest.webmanifest',
 				'./source/sites/publicodes/sitemap.txt',
 				'./source/sites/publicodes/robots.txt',
+				'./4dc3300c431ca82c00785768559ea871.html',
 				{
 					from: './source/images',
 					to: 'images',
