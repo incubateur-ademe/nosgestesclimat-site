@@ -102,7 +102,7 @@ const EngineWrapper = ({ children }) => {
 
 			return engine
 		}
-		return false
+		return undefined
 		// We rely on this useMemo hook to store multiple Engines.
 		// Say the test component requests the optimized parsed rules,
 		// then the documentation loads the complete rules, then the user
@@ -112,7 +112,7 @@ const EngineWrapper = ({ children }) => {
 	}, [engineRequestedOnce, branchData.deployURL, rules, parsedOption])
 
 	useEffect(() => {
-		if (engine || (parsedOption === false && rules))
+		if (engine != undefined || (parsedOption === false && rules))
 			dispatch({ type: 'SET_ENGINE', to: { ...engineState, state: 'ready' } })
 		return
 	}, [engine, parsedOption, rules])
@@ -129,7 +129,7 @@ const EngineWrapper = ({ children }) => {
 
 	return (
 		<LocalisationProvider>
-			<EngineProvider value={engine}>
+			<EngineProvider value={engine ?? new Engine({})}>
 				<SituationProvider situation={situation}>{children}</SituationProvider>
 			</EngineProvider>
 		</LocalisationProvider>
@@ -151,8 +151,8 @@ export const WithEngine = ({
 }): JSX.Element => {
 	console.log('calling WithEngine with options', options)
 	const dispatch = useDispatch()
-	const engineState = useSelector((state: any) => state.engineState)
-	const currentRulesOptions: AnyObjectType[] = engineState?.options
+	const engineState = useSelector((state: AppState) => state.engineState)
+	const currentRulesOptions = engineState?.options
 
 	useEffect(() => {
 		options?.optimized

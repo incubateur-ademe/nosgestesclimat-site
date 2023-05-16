@@ -1,19 +1,13 @@
-import { Action } from 'Actions/actions'
-import { omit } from 'Source/utils'
+import { Action } from '@/actions/actions'
+import { omit } from '@/utils'
 
+import { Localisation, SupportedRegions } from '@/components/localisation/utils'
+import { DottedName } from '@/components/publicodesUtils'
+import { objectifsSelector } from '@/selectors/simulationSelectors'
+import { SavedSimulationList } from '@/selectors/storageSelectors'
+import { generateSimulationId } from '@/storage/persistSimulation'
 import reduceReducers from 'reduce-reducers'
 import { CombinedState, combineReducers, Reducer } from 'redux'
-import {
-	Localisation,
-	SupportedRegions,
-} from '../components/localisation/utils'
-import { DottedName } from '../rules/index'
-import { objectifsSelector } from '../selectors/simulationSelectors'
-import {
-	SavedSimulation,
-	SavedSimulationList,
-} from '../selectors/storageSelectors'
-import { generateSimulationId } from '../storage/persistSimulation'
 import storageRootReducer from './storageReducer'
 
 function explainedVariable(
@@ -329,8 +323,6 @@ function storedAmortissementAvion(
 // parsed=false will avoid the rules being parsed, which is a heavy operation
 export type RulesOptions = { optimized: boolean; parsed: boolean }
 
-//TODO set to false by default in order to go to production. Forced until this error is fixed and tests are run
-// https://github.com/EmileRolley/publiopti/issues/4
 export const defaultRulesOptions = { optimized: true, parsed: true }
 
 const defaultEngineState = { state: null, options: defaultRulesOptions }
@@ -421,7 +413,7 @@ function ratings(
 function currentSimulationId(
 	state: string | null = null,
 	action: Action
-): string | null {
+): string | undefined {
 	switch (action.type) {
 		case 'SET_CURRENT_SIMULATION':
 			return action.simulation.id
@@ -452,10 +444,10 @@ export type AppState = CombinedState<{
 		progress50EventFired: boolean
 		progress90EventFired: boolean
 	}
-	localisation: Localisation | undefined
+	localisation?: Localisation
 	sessionLocalisationBannersRead: any
 	pullRequestNumber: any
-	engineState: never
+	engineState: EngineState
 	currentLang: any
 	supportedRegions: SupportedRegions
 	ratings: SavedSimulation['ratings']
