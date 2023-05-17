@@ -1,4 +1,9 @@
-import Engine, { EvaluatedNode, RuleNode, utils as coreUtils } from 'publicodes'
+import Engine, {
+	ASTNode,
+	EvaluatedNode,
+	RuleNode,
+	utils as coreUtils,
+} from 'publicodes'
 import { capitalise0, sortBy } from '../utils'
 
 export type DottedName = string
@@ -14,11 +19,13 @@ export type Category = EvaluatedNode & {
 	abbreviation: string
 }
 
+export type SuggestionsNode = Record<string, ASTNode>
+
 export type MosaiqueNode = {
 	type: string
 	clé: string
 	total?: number
-	suggestions?: Record<string, any>
+	suggestions?: SuggestionsNode
 }
 
 export type NGCRule = RuleNode & {

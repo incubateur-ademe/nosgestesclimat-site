@@ -2,7 +2,12 @@ import Input from '@/components/conversation/Input'
 import Question, { Choice } from '@/components/conversation/Question'
 import CurrencyInput from '@/components/CurrencyInput/CurrencyInput'
 import PercentageField from '@/components/PercentageField'
-import { DottedName, parentName, Rules } from '@/components/publicodesUtils'
+import {
+	DottedName,
+	parentName,
+	Rules,
+	SuggestionsNode,
+} from '@/components/publicodesUtils'
 import ToggleSwitch from '@/components/ui/ToggleSwitch'
 import { EngineContext } from '@/components/utils/EngineContext'
 import Engine, {
@@ -24,8 +29,8 @@ import SelectDevices from './select/SelectDevices'
 import TextInput from './TextInput'
 
 type Value = any
-export type RuleInputProps<Name extends string = DottedName> = {
-	dottedName: Name
+export type RuleInputProps = {
+	dottedName: DottedName
 	onChange: (value: Value | null) => void
 	useSwitch?: boolean
 	isTarget?: boolean
@@ -33,16 +38,18 @@ export type RuleInputProps<Name extends string = DottedName> = {
 	id?: string
 	className?: string
 	onSubmit?: (source: string) => void
+	engine?: Engine
+	noSuggestions: boolean
 }
 
-export type InputCommonProps<Name extends string = string> = Pick<
-	RuleInputProps<Name>,
+export type InputCommonProps = Pick<
+	RuleInputProps,
 	'dottedName' | 'onChange' | 'autoFocus' | 'className'
 > &
-	Pick<EvaluatedNode<Name>, 'nodeValue'> & {
+	Pick<EvaluatedNode, 'nodeValue'> & {
 		title: string
-		question: string
-		suggestions: string
+		question?: string
+		suggestions: SuggestionsNode
 		key: string
 		id: string
 		missing: boolean
@@ -112,11 +119,13 @@ export function getRelatedMosaicInfosIfExists(
 export const isTransportEstimation = (dottedName) =>
 	estimationQuestions.find(({ isApplicable }) => isApplicable(dottedName))
 
-// This function takes the unknown rule and finds which React component should
-// be displayed to get a user input through successive if statements
-// That's not great, but we won't invest more time until we have more diverse
-// input components and a better type system.
-export default function RuleInput<Name extends string = DottedName>({
+/**
+ * This function takes the unknown rule and finds which React component should
+ * be displayed to get a user input through successive if statements
+ * That's not great, but we won't invest more time until we have more diverse
+ * input components and a better type system.
+ */
+export default function RuleInput({
 	dottedName,
 	onChange,
 	useSwitch = false,
@@ -127,7 +136,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	onSubmit = () => null,
 	engine: givenEngine,
 	noSuggestions = false,
-}: RuleInputProps<Name>) {
+}: RuleInputProps) {
 	const { t } = useTranslation()
 	const engine = givenEngine || useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
 	const rule = engine.getRule(dottedName)
@@ -137,7 +146,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
 
-	const commonProps: InputCommonProps<Name> = {
+	const commonProps: InputCommonProps = {
 		key: dottedName,
 		dottedName,
 		nodeValue: value,
@@ -177,7 +186,10 @@ export default function RuleInput<Name extends string = DottedName>({
 						...commonProps,
 						dottedName: question.dottedName,
 						selectedRules,
-						options: question.options || {},
+						options:
+							// NOTE(@EmileRolley): where this options come from? And what is it?
+							// @ts-ignore
+							question.options ?? {},
 						suggestions: mosaicParams['suggestions'] || {},
 					}}
 				/>
