@@ -180,11 +180,7 @@ export default function Conversation({
 	// Here we need to submit all of them when the one that triggered the UI
 	// (we don't care which) is submitted, in order to see them in the response
 	// list and to avoid repeating the same n times
-	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
-		engine,
-		rules,
-		currentQuestion
-	)
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, currentQuestion)
 	const { mosaicRule, mosaicParams, mosaicDottedNames } =
 		(currentQuestion && ruleMosaicInfos) || {}
 

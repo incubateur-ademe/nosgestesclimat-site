@@ -79,7 +79,6 @@ export type MosaicInfos = {
  * We take into account if the evaluated rule is already a mosaic.
  */
 export function getRelatedMosaicInfosIfExists(
-	engine: Engine,
 	rules: Rules,
 	dottedName: DottedName
 ): MosaicInfos | undefined {
@@ -87,30 +86,30 @@ export function getRelatedMosaicInfosIfExists(
 		return undefined
 	}
 
-	const potentialMosaicRule = engine.getRule(dottedName).rawNode['mosaique']
+	const potentialMosaicRule = rules[dottedName].rawNode['mosaique']
 		? dottedName
 		: parentName(dottedName, ' . ', 0, 2)
 
 	const mosaicParams =
-		potentialMosaicRule &&
-		engine.getRule(potentialMosaicRule).rawNode['mosaique']
+		potentialMosaicRule && rules[potentialMosaicRule].rawNode['mosaique']
 
-	if (!mosaicParams) {
+	if (
+		!mosaicParams ||
+		(dottedName !== potentialMosaicRule &&
+			!dottedName.includes(` . ${mosaicParams['clé']}`))
+	) {
 		return undefined
 	}
-	if (
-		dottedName !== potentialMosaicRule &&
-		!dottedName.includes(` . ${mosaicParams['clé']}`)
-	)
-		return
+
 	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
 		return (
 			rule.includes(potentialMosaicRule) &&
 			rule.includes(` . ${mosaicParams['clé']}`)
 		)
 	})
+
 	return {
-		mosaicRule: engine.getRule(potentialMosaicRule),
+		mosaicRule: rules[potentialMosaicRule],
 		mosaicParams,
 		mosaicDottedNames,
 	}
@@ -161,12 +160,7 @@ export default function RuleInput({
 		required: true,
 	}
 
-	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
-		engine,
-		rules,
-		rule.dottedName
-	)
-
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.dottedName)
 	if (ruleMosaicInfos) {
 		const {
 			mosaicRule: question,

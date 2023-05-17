@@ -20,7 +20,7 @@ export default () => {
 		.filter((el) => el && el.question)
 
 	const jsonList = questionRules.map((rule) => {
-		const { type, mosaic } = getQuestionType(engine, rules, rule)
+		const { type, mosaic } = getQuestionType(rules, rule)
 		const dependenciesData = computeDependencies(engine, rule)
 
 		return {
@@ -89,12 +89,8 @@ export default () => {
 	)
 }
 
-const getQuestionType = (engine: Engine, rules: Rules, rule: NGCRule) => {
-	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
-		engine,
-		rules,
-		rule.dottedName
-	)
+const getQuestionType = (rules: Rules, rule: NGCRule) => {
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.dottedName)
 	console.log(ruleMosaicInfos)
 	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
 
@@ -119,7 +115,7 @@ const computeDependencies = (engine: Engine, rule: NGCRule) => {
 }
 
 const QuestionDescription = ({ engine, rule, rules }) => {
-	const { type, mosaic } = getQuestionType(engine, rules, rule)
+	const { type, mosaic } = getQuestionType(rules, rule)
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
 
