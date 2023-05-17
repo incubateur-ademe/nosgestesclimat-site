@@ -1,15 +1,19 @@
-import { useSelector } from 'react-redux'
-import { getRelatedMosaicInfosIfExists } from '../../../components/conversation/RuleInput'
+import { getRelatedMosaicInfosIfExists } from '@/components/conversation/RuleInput'
 import {
+	NGCRule,
 	parentName,
 	questionCategoryName,
-} from '../../../components/publicodesUtils'
-import { useEngine } from '../../../components/utils/EngineContext'
-import toCSV from '../../../components/utils/toCSV'
+	Rules,
+} from '@/components/publicodesUtils'
+import { useEngine } from '@/components/utils/EngineContext'
+import toCSV from '@/components/utils/toCSV'
+import { AppState } from '@/reducers/rootReducer'
+import Engine from 'publicodes'
+import { useSelector } from 'react-redux'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
 export default () => {
-	const rules = useSelector((state) => state.rules)
+	const rules: Rules = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
 	const questionRules = Object.entries(rules)
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
@@ -85,7 +89,7 @@ export default () => {
 	)
 }
 
-const getQuestionType = (engine, rules, rule) => {
+const getQuestionType = (engine: Engine, rules: Rules, rule: NGCRule) => {
 	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
 		engine,
 		rules,
@@ -105,13 +109,15 @@ const getQuestionType = (engine, rules, rule) => {
 		: '☑️ Oui/Non'
 	return { type, mosaic: ruleMosaicInfos }
 }
-const computeDependencies = (engine, rule) => {
+
+const computeDependencies = (engine: Engine, rule: NGCRule) => {
 	const { missingVariables } = engine.evaluate(rule.dottedName)
 	const entries = Object.entries(missingVariables).filter(
 		([k]) => k !== rule.dottedName
 	)
 	return entries
 }
+
 const QuestionDescription = ({ engine, rule, rules }) => {
 	const { type, mosaic } = getQuestionType(engine, rules, rule)
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],

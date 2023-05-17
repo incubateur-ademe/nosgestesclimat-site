@@ -1,20 +1,19 @@
-import Input from 'Components/conversation/Input'
-import Question, { Choice } from 'Components/conversation/Question'
-import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
-import PercentageField from 'Components/PercentageField'
-import { parentName } from 'Components/publicodesUtils'
-import ToggleSwitch from 'Components/ui/ToggleSwitch'
-import { EngineContext } from 'Components/utils/EngineContext'
-import { DottedName } from 'modele-social'
-import {
+import Input from '@/components/conversation/Input'
+import Question, { Choice } from '@/components/conversation/Question'
+import CurrencyInput from '@/components/CurrencyInput/CurrencyInput'
+import PercentageField from '@/components/PercentageField'
+import { DottedName, parentName, Rules } from '@/components/publicodesUtils'
+import ToggleSwitch from '@/components/ui/ToggleSwitch'
+import { EngineContext } from '@/components/utils/EngineContext'
+import Engine, {
 	ASTNode,
-	EvaluatedRule,
+	EvaluatedNode,
 	formatValue,
 	reduceAST,
+	RuleNode,
 	serializeUnit,
 	utils,
 } from 'publicodes'
-import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
@@ -40,10 +39,12 @@ export type InputCommonProps<Name extends string = string> = Pick<
 	RuleInputProps<Name>,
 	'dottedName' | 'onChange' | 'autoFocus' | 'className'
 > &
-	Pick<EvaluatedRule<Name>, 'title' | 'question' | 'suggestions'> & {
+	Pick<EvaluatedNode<Name>, 'nodeValue'> & {
+		title: string
+		question: string
+		suggestions: string
 		key: string
 		id: string
-		value: any //TODO EvaluatedRule['nodeValue']
 		missing: boolean
 		required: boolean
 	}
@@ -53,21 +54,43 @@ export type BinaryQuestionType = [
 	{ value: string; label: string }
 ]
 
-/* function to detect if the question evaluated should be displayed as a child of a mosaic
-We only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
-If parent of degree 2 doesn't contain mosaic, return empty array
-If parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
-We take into account if the evaluated rule is already a mosaic
-*/
-export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
-	if (!dottedName) return
+export type MosaicInfos = {
+	mosaicRule: RuleNode
+	mosaicParams: any
+	mosaicDottedNames: any
+}
+
+/**
+ * Function to detect if the question evaluated should be displayed as a child of a mosaic.
+ *
+ * We only test parent of degree 2 and not all the parents of each rules:
+ * this requires to be careful on model side.
+ * If parent of degree 2 doesn't contain mosaic, returns empty array.
+ * If parent of degree 2 contains mosaic but rule is a child not included in the mosaic,
+ * returns undefined.
+ *
+ * We take into account if the evaluated rule is already a mosaic.
+ */
+export function getRelatedMosaicInfosIfExists(
+	engine: Engine,
+	rules: Rules,
+	dottedName: DottedName
+): MosaicInfos | undefined {
+	if (!dottedName) {
+		return undefined
+	}
+
 	const potentialMosaicRule = engine.getRule(dottedName).rawNode['mosaique']
 		? dottedName
 		: parentName(dottedName, ' . ', 0, 2)
+
 	const mosaicParams =
 		potentialMosaicRule &&
 		engine.getRule(potentialMosaicRule).rawNode['mosaique']
-	if (!mosaicParams) return
+
+	if (!mosaicParams) {
+		return undefined
+	}
 	if (
 		dottedName !== potentialMosaicRule &&
 		!dottedName.includes(` . ${mosaicParams['clé']}`)
@@ -79,7 +102,11 @@ export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
 			rule.includes(` . ${mosaicParams['clé']}`)
 		)
 	})
-	return [engine.getRule(potentialMosaicRule), mosaicParams, mosaicDottedNames]
+	return {
+		mosaicRule: engine.getRule(potentialMosaicRule),
+		mosaicParams,
+		mosaicDottedNames,
+	}
 }
 
 export const isTransportEstimation = (dottedName) =>
@@ -113,7 +140,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	const commonProps: InputCommonProps<Name> = {
 		key: dottedName,
 		dottedName,
-		value,
+		nodeValue: value,
 		missing: !!evaluation.missingVariables[dottedName],
 		onChange,
 		autoFocus,
@@ -130,8 +157,13 @@ export default function RuleInput<Name extends string = DottedName>({
 		rules,
 		rule.dottedName
 	)
+
 	if (ruleMosaicInfos) {
-		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
+		const {
+			mosaicRule: question,
+			mosaicParams,
+			mosaicDottedNames,
+		} = ruleMosaicInfos
 		const selectedRules = mosaicDottedNames.map(
 			([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
@@ -193,7 +225,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		return (
 			<DateInput
 				{...commonProps}
-				value={commonProps.value}
+				value={commonProps.nodeValue}
 				onChange={commonProps.onChange}
 				onSubmit={onSubmit}
 				suggestions={commonProps.suggestions}
@@ -250,11 +282,16 @@ export default function RuleInput<Name extends string = DottedName>({
 		return <PercentageField {...commonProps} debounce={600} />
 	}
 	if (rule.rawNode.type === 'texte') {
-		return <TextInput {...commonProps} value={value as Evaluation<string>} />
+		return (
+			<TextInput {...commonProps} nodeValue={value as Evaluation<string>} />
+		)
 	}
 	if (rule.rawNode.type === 'paragraphe') {
 		return (
-			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
+			<ParagrapheInput
+				{...commonProps}
+				nodeValue={value as Evaluation<string>}
+			/>
 		)
 	}
 
@@ -263,7 +300,7 @@ export default function RuleInput<Name extends string = DottedName>({
 			{...commonProps}
 			onSubmit={onSubmit}
 			unit={evaluation.unit}
-			value={value as Evaluation<number>}
+			nodeValue={value as Evaluation<number>}
 			noSuggestions={noSuggestions}
 			inputEstimation={
 				rule.rawNode.aide &&

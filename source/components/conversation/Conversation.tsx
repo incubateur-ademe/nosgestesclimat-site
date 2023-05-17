@@ -175,27 +175,30 @@ export default function Conversation({
 		)
 	}
 
-	// Some questions are grouped in an artifical questions, called mosaic questions,  not present in publicodes
-	// here we need to submit all of them when the one that triggered the UI (we don't care which) is submitted, in order to see them in the response list and to avoid repeating the same n times
+	// Some questions are grouped in an artifical questions, called mosaic questions,
+	// not present in publicodes.
+	// Here we need to submit all of them when the one that triggered the UI
+	// (we don't care which) is submitted, in order to see them in the response
+	// list and to avoid repeating the same n times
 	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
 		engine,
 		rules,
 		currentQuestion
 	)
-	const [mosaicQuestion, mosaicParams, mosaicDottedNames] =
-		(currentQuestion && ruleMosaicInfos) || []
+	const { mosaicRule, mosaicParams, mosaicDottedNames } =
+		(currentQuestion && ruleMosaicInfos) || {}
 
-	const questionText = mosaicQuestion
-		? mosaicQuestion.rawNode?.question
+	const questionText = mosaicRule
+		? mosaicRule.rawNode?.question
 		: rules[currentQuestion]?.rawNode?.question
 
-	const questionsToSubmit = mosaicQuestion
+	const questionsToSubmit = mosaicRule
 		? mosaicDottedNames.map(([dottedName]) => dottedName)
 		: [currentQuestion]
 
 	const isAnsweredMosaic =
 		currentQuestion &&
-		mosaicQuestion &&
+		mosaicRule &&
 		questionsToSubmit
 			.map((question) => situation[question] != null)
 			.some((bool) => bool === true)
@@ -225,17 +228,17 @@ export default function Conversation({
 			isAnsweredMosaic &&
 			mosaicParams['type'] === 'selection' &&
 			!oneIsChecked &&
-			situation[mosaicQuestion.dottedName] !== 0
+			situation[mosaicRule.dottedName] !== 0
 		) {
-			dispatch(updateSituation(mosaicQuestion.dottedName, 0))
+			dispatch(updateSituation(mosaicRule.dottedName, 0))
 		}
 		if (
 			isAnsweredMosaic &&
 			mosaicParams['type'] === 'selection' &&
 			oneIsChecked &&
-			situation[mosaicQuestion.dottedName] === 0
+			situation[mosaicRule.dottedName] === 0
 		) {
-			dispatch(updateSituation(mosaicQuestion.dottedName, undefined))
+			dispatch(updateSituation(mosaicRule.dottedName, undefined))
 		}
 	}, [isAnsweredMosaic, questionsToSubmit, situation])
 
@@ -248,7 +251,7 @@ export default function Conversation({
 				? // it simply is the last answered question
 				  previousAnswers[previousAnswers.length - 1]
 				: // mosaics are exceptionnal, since they are similar questions grouped for the UI
-				mosaicQuestion
+				mosaicRule
 				? // We'll explore the previous answers starting from the end, to find the first question that is not in the current mosaic
 				  [...previousAnswers].reverse().find((el, index) => {
 						const currentQuestionReversedIndex =
@@ -389,9 +392,9 @@ export default function Conversation({
 		) === undefined
 
 	const hasDescription =
-		((mosaicQuestion &&
-			(mosaicQuestion.description ||
-				rules[mosaicQuestion.dottedName].rawNode.description)) ||
+		((mosaicRule &&
+			(mosaicRule.description ||
+				rules[mosaicRule.dottedName].rawNode.description)) ||
 			rules[currentQuestion]?.rawNode.description) != null
 
 	const displayRespiration =
@@ -487,7 +490,7 @@ export default function Conversation({
 							tabIndex="0"
 							id={'id-question-' + currentQuestionId}
 							data-cypress-id={
-								mosaicQuestion ? 'mosaic-question' : 'simple-question'
+								mosaicRule ? 'mosaic-question' : 'simple-question'
 							}
 						>
 							{questionText}{' '}
@@ -495,8 +498,7 @@ export default function Conversation({
 						{hasDescription && (
 							<ExplicableRule
 								dottedName={
-									(mosaicQuestion && mosaicQuestion.dottedName) ||
-									currentQuestion
+									(mosaicRule && mosaicRule.dottedName) || currentQuestion
 								}
 							/>
 						)}

@@ -14,6 +14,20 @@ export type Category = EvaluatedNode & {
 	abbreviation: string
 }
 
+export type MosaiqueNode = {
+	type: string
+	clé: string
+	total?: number
+	suggestions?: Record<string, any>
+}
+
+export type NGCRule = RuleNode & {
+	dottedName: DottedName
+	mosaique?: MosaiqueNode
+}
+
+export type Rules = Record<string, NGCRule>
+
 export const MODEL_ROOT_RULE_NAME = 'bilan'
 
 export function isRootRule(dottedName: DottedName) {
@@ -99,11 +113,11 @@ export const extractCategoriesNamespaces = (
 	return categories
 }
 
-export const minimalCategoryData = (categories) =>
+export const minimalCategoryData = (categories: Category[]) =>
 	Object.fromEntries(
 		categories.map(({ dottedName, nodeValue }) => [
 			dottedName,
-			Math.round(nodeValue),
+			Math.round(nodeValue as number),
 		])
 	)
 
