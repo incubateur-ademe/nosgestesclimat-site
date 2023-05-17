@@ -5,6 +5,7 @@ import Engine, {
 	utils as coreUtils,
 } from 'publicodes'
 import { capitalise0, sortBy } from '../utils'
+import { getRelatedMosaicInfosIfExists } from './conversation/RuleInput'
 
 export type DottedName = string
 
@@ -28,17 +29,36 @@ export type MosaiqueNode = {
 	suggestions?: SuggestionsNode
 }
 
-export type NGCRule = RuleNode & {
+export type NGCRuleNode = RuleNode & {
 	dottedName: DottedName
 	mosaique?: MosaiqueNode
 }
 
-export type Rules = Record<string, NGCRule>
+export type RulesNodes = Record<string, NGCRuleNode>
 
 export const MODEL_ROOT_RULE_NAME = 'bilan'
 
-export function isRootRule(dottedName: DottedName) {
+export function isRootRule(dottedName: DottedName): boolean {
 	return dottedName === MODEL_ROOT_RULE_NAME
+}
+
+export function isMosaicChild(
+	rules: RulesNodes,
+	dottedName: DottedName
+): boolean {
+	const { mosaicRule, mosaicDottedNames } =
+		getRelatedMosaicInfosIfExists(rules, dottedName) ?? {}
+
+	if (!mosaicRule || !mosaicDottedNames) {
+		return false
+	}
+
+	return (
+		mosaicRule.dottedName !== dottedName &&
+		mosaicDottedNames.some(
+			([mosaicChildName]) => dottedName === mosaicChildName
+		)
+	)
 }
 
 export const parentName = (

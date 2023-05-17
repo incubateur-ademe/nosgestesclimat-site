@@ -1,9 +1,9 @@
 import { getRelatedMosaicInfosIfExists } from '@/components/conversation/RuleInput'
 import {
-	NGCRule,
+	NGCRuleNode,
 	parentName,
 	questionCategoryName,
-	Rules,
+	RulesNodes,
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
 import toCSV from '@/components/utils/toCSV'
@@ -13,7 +13,7 @@ import { useSelector } from 'react-redux'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
 export default () => {
-	const rules: Rules = useSelector((state: AppState) => state.rules)
+	const rules: RulesNodes = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
 	const questionRules = Object.entries(rules)
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
@@ -89,7 +89,7 @@ export default () => {
 	)
 }
 
-const getQuestionType = (rules: Rules, rule: NGCRule) => {
+const getQuestionType = (rules: RulesNodes, rule: NGCRuleNode) => {
 	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.dottedName)
 	console.log(ruleMosaicInfos)
 	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
@@ -106,7 +106,7 @@ const getQuestionType = (rules: Rules, rule: NGCRule) => {
 	return { type, mosaic: ruleMosaicInfos }
 }
 
-const computeDependencies = (engine: Engine, rule: NGCRule) => {
+const computeDependencies = (engine: Engine, rule: NGCRuleNode) => {
 	const { missingVariables } = engine.evaluate(rule.dottedName)
 	const entries = Object.entries(missingVariables).filter(
 		([k]) => k !== rule.dottedName

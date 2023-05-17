@@ -4,8 +4,10 @@ import {
 	DottedName,
 	extractCategories,
 	FullName,
+	isMosaicChild,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
+	RulesNodes,
 } from '@/components/publicodesUtils'
 import { buildEndURL } from '@/components/SessionBar'
 import Simulation from '@/components/Simulation'
@@ -84,16 +86,16 @@ const Simulateur = () => {
 
 	const currentSimulation = useSelector((state: AppState) => state.simulation)
 	const rules = useSelector((state: AppState) => state.rules)
+	const engine = useEngine()
 
 	// A rule is valid if it exists and has a question
 	const decodedSelectedRuleName = getValidDecodedSelectedRuleName(
 		utils.decodeRuleName(selectedRuleName.join('/')),
 		category,
-		rules
+		engine.getParsedRules()
 	)
 
 	const categoryRule = rules[category]
-	const engine = useEngine()
 	const evaluation = engine.evaluate(category)
 	const config = {
 		objectifs: [category],
@@ -194,11 +196,20 @@ const Simulateur = () => {
 function getValidDecodedSelectedRuleName(
 	decodedSelectedRuleName: DottedName,
 	categoryName: string,
-	rules: any
+	rules: RulesNodes
 ): DottedName {
 	const navigate = useNavigate()
-	const isValidRule = (ruleName: DottedName) =>
-		rules != undefined && ruleName in rules && 'question' in rules[ruleName]
+	const isValidRule = (ruleName: DottedName) => {
+		if (rules == undefined) {
+			return false
+		}
+		const rule = rules[ruleName]
+		const isAQuestion =
+			rule != undefined && 'rawNode' in rule && 'question' in rule.rawNode
+		const isAMosaicChild = rule != undefined && isMosaicChild(rules, ruleName)
+
+		return isAQuestion && !isAMosaicChild
+	}
 
 	if (decodedSelectedRuleName != '' && !isValidRule(decodedSelectedRuleName)) {
 		while (

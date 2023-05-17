@@ -4,8 +4,10 @@ import CurrencyInput from '@/components/CurrencyInput/CurrencyInput'
 import PercentageField from '@/components/PercentageField'
 import {
 	DottedName,
+	MosaiqueNode,
+	NGCRuleNode,
 	parentName,
-	Rules,
+	RulesNodes,
 	SuggestionsNode,
 } from '@/components/publicodesUtils'
 import ToggleSwitch from '@/components/ui/ToggleSwitch'
@@ -63,8 +65,8 @@ export type BinaryQuestionType = [
 
 export type MosaicInfos = {
 	mosaicRule: RuleNode
-	mosaicParams: any
-	mosaicDottedNames: any
+	mosaicParams: MosaiqueNode
+	mosaicDottedNames: [string, NGCRuleNode][]
 }
 
 /**
@@ -79,7 +81,7 @@ export type MosaicInfos = {
  * We take into account if the evaluated rule is already a mosaic.
  */
 export function getRelatedMosaicInfosIfExists(
-	rules: Rules,
+	rules: RulesNodes,
 	dottedName: DottedName
 ): MosaicInfos | undefined {
 	if (!dottedName) {
