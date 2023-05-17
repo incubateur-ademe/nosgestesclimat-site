@@ -1,7 +1,7 @@
 import * as Sentry from '@sentry/react'
 import 'core-js/stable'
 import { createRoot } from 'react-dom/client'
-import Workbox from 'workbox-window'
+import { Workbox } from 'workbox-window'
 import i18next from '../../locales/i18n'
 import { getLangInfos, Lang } from '../../locales/translation'
 import App from './App'
