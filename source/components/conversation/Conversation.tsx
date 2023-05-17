@@ -53,7 +53,10 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
-import { sortQuestionsByCategory } from './conversationUtils'
+import {
+	getPreviousQuestion,
+	sortQuestionsByCategory,
+} from './conversationUtils'
 import { ExplicableRule } from './Explicable'
 import QuestionFinderWrapper from './QuestionFinderWrapper'
 import SimulationEnding from './SimulationEnding'
@@ -239,26 +242,14 @@ export default function Conversation({
 	}, [isAnsweredMosaic, questionsToSubmit, situation])
 
 	const currentQuestionIndex = previousAnswers.findIndex(
-			(a) => a === unfoldedStep
-		),
-		currentIsNew = currentQuestionIndex < 0,
-		previousQuestion =
-			currentIsNew && previousAnswers.length > 0
-				? // it simply is the last answered question
-				  previousAnswers[previousAnswers.length - 1]
-				: // mosaics are exceptionnal, since they are similar questions grouped for the UI
-				mosaicRule
-				? // We'll explore the previous answers starting from the end, to find the first question that is not in the current mosaic
-				  [...previousAnswers].reverse().find((el, index) => {
-						const currentQuestionReversedIndex =
-							previousAnswers.length - currentQuestionIndex
-						return (
-							index > currentQuestionReversedIndex &&
-							// The previous question shouldn't be one of the current mosaic's questions
-							!questionsToSubmit.includes(el)
-						)
-				  })
-				: previousAnswers[currentQuestionIndex - 1]
+		(a) => a === unfoldedStep
+	)
+	const previousQuestion = getPreviousQuestion(
+		currentQuestionIndex,
+		previousAnswers,
+		mosaicRule != undefined,
+		questionsToSubmit
+	)
 
 	const isValidInput = (questionsToSubmit) => {
 		// we want this validation function to work for mosaic questions (we check that all the questions anwsers of a mosaic are valid)

@@ -20,3 +20,35 @@ export function sortQuestionsByCategory(
 	})
 	return sort(nextQuestions)
 }
+
+export function getPreviousQuestion(
+	currentQuestionIndex: number,
+	previousAnswers: DottedName[],
+	isMosaic: boolean,
+	questionsToSubmit: DottedName[] | undefined
+): DottedName | undefined {
+	const currentIsNew = currentQuestionIndex < 0
+
+	debugger
+
+	if (currentIsNew && previousAnswers.length > 0) {
+		return previousAnswers[previousAnswers.length - 1]
+	}
+
+	if (isMosaic) {
+		const res = [...previousAnswers].reverse().find((el, index) => {
+			const currentQuestionReversedIndex =
+				previousAnswers.length - currentQuestionIndex
+			return (
+				index > currentQuestionReversedIndex &&
+				// The previous question shouldn't be one of the current mosaic's questions
+				!questionsToSubmit?.includes(el)
+			)
+		})
+		return res
+	}
+
+	// We'll explore the previous answers starting from the end,
+	// to find the first question that is not in the current mosaic
+	return previousAnswers[currentQuestionIndex - 1]
+}
