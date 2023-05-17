@@ -41,9 +41,6 @@ module.exports.default = {
 		globalObject: 'self',
 		chunkFilename: '[name].[contenthash].chunk.js',
 	},
-	optimization: {
-		namedChunks: true,
-	},
 	plugins: [
 		new CopyPlugin({
 			patterns: [
