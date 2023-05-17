@@ -141,10 +141,10 @@ export const WithEngine = ({
 	children,
 	fallback = <AnimatedLoader />,
 }: {
-	options: RulesOptions
+	options?: RulesOptions
 	children: ReactNode
-	fallback: ReactNode
-}) => {
+	fallback?: ReactNode
+}): JSX.Element => {
 	console.log('calling WithEngine with options', options)
 	const dispatch = useDispatch()
 	const engineState = useSelector((state) => state.engineState)
@@ -173,8 +173,8 @@ export const WithEngine = ({
 		(!sameOptions(options, currentRulesOptions) &&
 			!sameOptions({ parsed: true, optimized: false }, currentRulesOptions))
 	)
-		return fallback
-	return children
+		return fallback || null
+	return children || null
 }
 
 const sameOptions = (a, b) => Object.keys(a).every((k) => a[k] === b[k])

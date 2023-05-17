@@ -1,5 +1,5 @@
 import MarkdownToJsx, { MarkdownToJSX } from 'markdown-to-jsx'
-import React, { useEffect } from 'react'
+import React, { ElementType, ReactNode, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { Link, useLocation } from 'react-router-dom'
 import { isIterable } from '../../utils'
@@ -51,7 +51,7 @@ export function LinkRenderer({
 
 const TextRenderer = ({ children }: { children: string }) => {
 	// I do not understand why children is an array of strings in the case of Diffuser.md for exemple
-	const textChild = Array.isArray(children) ? children[0] : children
+	const textChild: ReactNode = Array.isArray(children) ? children[0] : children
 	return <>{emoji(textChild)}</>
 }
 
@@ -59,13 +59,13 @@ type MarkdownProps = React.ComponentProps<typeof MarkdownToJsx> & {
 	className?: string
 	components?: MarkdownToJSX.Overrides
 	renderers?: Record<string, unknown>
-	noRouter: boolean
+	noRouter?: boolean
 }
 
 export const Markdown = ({
 	children,
 	components = {},
-	noRouter,
+	noRouter = false,
 	...otherProps
 }: MarkdownProps) => (
 	<MarkdownToJsx
@@ -74,7 +74,7 @@ export const Markdown = ({
 			...otherProps.options,
 			forceBlock: true,
 			overrides: {
-				a: noRouter ? undefined : LinkRenderer,
+				a: (noRouter ? undefined : LinkRenderer) as ElementType,
 				span: TextRenderer,
 				...components,
 			},
@@ -127,7 +127,6 @@ export function useScrollToHash() {
 }
 
 export function HeadingWithAnchorLink({
-	level,
 	children,
 }: {
 	level: number

@@ -1,9 +1,8 @@
-import { extractCategories } from 'Components/publicodesUtils'
-import { useEngine } from 'Components/utils/EngineContext'
+import { extractCategories } from '@/components/publicodesUtils'
+import { useEngine } from '@/components/utils/EngineContext'
 import React, { Suspense, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { objectifsSelector } from 'Selectors/simulationSelectors'
 import AnimatedLoader from '../../../AnimatedLoader'
 import { WithEngine } from '../../../RulesProvider'
 import {
@@ -19,15 +18,17 @@ import SubCategoriesChart from './SubCategoriesChart'
 import useContinuousCategory from './useContinuousCategory'
 
 const SpecializedVisualisation = React.lazy(
-	() => import('./SpecializedVisualisation')
+	() =>
+		import(
+			/* webpackChunkName: 'SpecializedVisualisation' */ './SpecializedVisualisation'
+		)
 )
 
 export default ({ givenEngine }) => {
 	const { t } = useTranslation()
 	const situation = useSelector(situationSelector) // needed for this component to refresh on situation change :
-	const objectifs = useSelector(objectifsSelector)
 	const rules = useSelector((state) => state.rules)
-	const engine = givenEngine || useEngine(objectifs)
+	const engine = givenEngine || useEngine()
 	const [categories, setCategories] = useState(
 		extractCategories(rules, engine).map((category) => ({
 			...category,

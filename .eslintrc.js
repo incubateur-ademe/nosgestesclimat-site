@@ -37,6 +37,14 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'react/no-unknown-property': ['error', { ignore: ['css'] }],
 	},
+	settings: {
+		'import/resolver': {
+			alias: {
+				map: [['@', './source']],
+				extensions: ['.tsx', '.ts', '.js', '.jsx', '.svg'],
+			},
+		},
+	},
 	overrides: [
 		{
 			files: ['**/*.js?(x)'],

@@ -1,16 +1,11 @@
-import { explainVariable } from 'Actions/actions'
-import animate from 'Components/ui/animate'
-import { Markdown } from 'Components/utils/markdown'
-import React, { Suspense } from 'react'
+import { explainVariable } from '@/actions/actions'
+import animate from '@/components/ui/animate'
+import { Markdown } from '@/components/utils/markdown'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
-import AnimatedLoader from '../../AnimatedLoader'
-import './Aide.css'
 
-const ReferencesLazy = React.lazy(
-	() => import('../../sites/publicodes/DocumentationReferences')
-)
+import { RootState } from '@/reducers/rootReducer'
+import './Aide.css'
 
 export default function Aide() {
 	const explained = useSelector((state: RootState) => state.explainedVariable)
@@ -22,9 +17,8 @@ export default function Aide() {
 
 	if (!explained) return null
 
-	const rule = rules[explained],
-		text = rule.description,
-		refs = rule.références
+	const rule = rules[explained]
+	const text = rule.description
 
 	return (
 		<animate.fromTop>
