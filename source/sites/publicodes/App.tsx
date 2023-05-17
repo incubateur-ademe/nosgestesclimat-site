@@ -1,3 +1,4 @@
+import { ErrorFallback } from '@/components/ErrorFallback'
 import Logo from '@/components/Logo'
 import Route404 from '@/components/Route404'
 import { sessionBarMargin } from '@/components/SessionBar'
@@ -226,32 +227,8 @@ const Main = () => {
 	return (
 		<Sentry.ErrorBoundary
 			showDialog
-			fallback={() => (
-				<div
-					css={`
-						text-align: center;
-					`}
-				>
-					<Logo showText size={largeScreen ? 'large' : 'medium'} />
-					<h1>{t("Une erreur s'est produite")}</h1>
-					<p
-						css={`
-							margin-bottom: 2rem;
-						`}
-					>
-						{t(
-							'Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.'
-						)}
-					</p>
-					<button
-						className="ui__ button plain"
-						onClick={() => {
-							window.location.reload()
-						}}
-					>
-						{t('Recharger la page')}
-					</button>
-				</div>
+			fallback={({ error }) => (
+				<ErrorFallback error={error} largeScreen={largeScreen} />
 			)}
 		>
 			<>
