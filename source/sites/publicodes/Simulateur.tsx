@@ -1,4 +1,5 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
+import { getRelatedMosaicInfosIfExists } from '@/components/conversation/RuleInput'
 import {
 	Category,
 	DottedName,
@@ -22,7 +23,7 @@ import { useEffect } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router'
-import { Link, useLocation, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
 import { enquêteSelector } from './enquête/enquêteSelector'
@@ -75,7 +76,7 @@ const Simulateur = () => {
 
 	const category = path[0]
 	const isMainSimulation = isRootRule(category)
-	const selectedRuleName = path.slice(1)
+	const selectedRuleNameURLPath = path.slice(1)
 
 	if (!availableCategories.includes(category)) {
 		console.log(
@@ -87,12 +88,13 @@ const Simulateur = () => {
 	const currentSimulation = useSelector((state: AppState) => state.simulation)
 	const rules = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
+	const parsedRules = engine.getParsedRules()
 
 	// A rule is valid if it exists and has a question
-	const decodedSelectedRuleName = getValidDecodedSelectedRuleName(
-		utils.decodeRuleName(selectedRuleName.join('/')),
+	const { selectedRuleDottedName, selectedRuleURL } = getValidSelectedRuleInfos(
+		utils.decodeRuleName(selectedRuleNameURLPath.join('/')),
 		category,
-		engine.getParsedRules()
+		parsedRules
 	)
 
 	const categoryRule = rules[category]
@@ -107,19 +109,17 @@ const Simulateur = () => {
 		? extractCategories(rules, engine)
 		: []
 
-	const url = useLocation().pathname
-
 	useEffect(() => {
 		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
-			dispatch(setSimulationConfig(config, url))
+			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
-	}, [config, url, configSet])
+	}, [config, selectedRuleURL, configSet])
 
 	useEffect(() => {
-		if (decodedSelectedRuleName != undefined) {
-			dispatch(goToQuestion(decodedSelectedRuleName))
+		if (selectedRuleDottedName != undefined) {
+			dispatch(goToQuestion(selectedRuleDottedName))
 		}
-	}, [decodedSelectedRuleName])
+	}, [selectedRuleDottedName])
 
 	const tutorials = useSelector((state: AppState) => state.tutorials)
 
@@ -132,8 +132,7 @@ const Simulateur = () => {
 			// Case where we previously visited a specific rule URL and we come back
 			// (the tutorial was skipped) to the simulator root URL,
 			// we want to display the tutorial
-			(!isSpecificRuleURL(decodedSelectedRuleName) &&
-				tutorials.fromRule == 'skip'))
+			(!isSpecificRule(selectedRuleDottedName) && tutorials.fromRule == 'skip'))
 
 	return (
 		<div>
@@ -184,7 +183,8 @@ const Simulateur = () => {
 					)
 				) : (
 					<TutorialRedirection
-						decodedSelectedRuleName={decodedSelectedRuleName}
+						selectedRuleDottedName={selectedRuleDottedName}
+						selectedRuleURL={selectedRuleURL}
 					/>
 				)}
 			</div>
@@ -193,11 +193,16 @@ const Simulateur = () => {
 	)
 }
 
-function getValidDecodedSelectedRuleName(
-	decodedSelectedRuleName: DottedName,
+type SelectedRuleInfos = {
+	selectedRuleDottedName?: DottedName
+	selectedRuleURL?: string
+}
+
+function getValidSelectedRuleInfos(
+	selectedRuleName: DottedName,
 	categoryName: string,
 	rules: RulesNodes
-): DottedName {
+): SelectedRuleInfos {
 	const navigate = useNavigate()
 	const isValidRule = (ruleName: DottedName) => {
 		if (rules == undefined) {
@@ -211,53 +216,62 @@ function getValidDecodedSelectedRuleName(
 		return isAQuestion && !isAMosaicChild
 	}
 
-	if (decodedSelectedRuleName != '' && !isValidRule(decodedSelectedRuleName)) {
-		while (
-			decodedSelectedRuleName != '' &&
-			!isValidRule(decodedSelectedRuleName)
-		) {
-			const parentRuleName = utils.ruleParent(decodedSelectedRuleName)
+	if (selectedRuleName != '' && !isValidRule(selectedRuleName)) {
+		while (selectedRuleName != '' && !isValidRule(selectedRuleName)) {
+			const parentRuleName = utils.ruleParent(selectedRuleName)
 			console.log(
-				`Unknown question ${decodedSelectedRuleName}, trying ${parentRuleName}...`
+				`Unknown question ${selectedRuleName}, trying ${parentRuleName}...`
 			)
-			decodedSelectedRuleName = parentRuleName
+			selectedRuleName = parentRuleName
 		}
 
-		if (decodedSelectedRuleName == '') {
+		if (selectedRuleName == '') {
 			console.log(
-				`Cannot find parent rule for ${decodedSelectedRuleName}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
+				`Cannot find parent rule for ${selectedRuleName}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
 			)
-			decodedSelectedRuleName = MODEL_ROOT_RULE_NAME
+			selectedRuleName = MODEL_ROOT_RULE_NAME
 			navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, {
 				replace: true,
 			})
 		} else {
-			const encodedParentRuleName = utils.encodeRuleName(
-				decodedSelectedRuleName
-			)
+			const encodedParentRuleName = utils.encodeRuleName(selectedRuleName)
 			console.log(
-				`Found parent rule for ${decodedSelectedRuleName}, redirecting to /simulateur/${categoryName}/${encodedParentRuleName}...`
+				`Found parent rule for ${selectedRuleName}, redirecting to /simulateur/${categoryName}/${encodedParentRuleName}...`
 			)
 			navigate(`/simulateur/${categoryName}/${encodedParentRuleName}`, {
 				replace: true,
 			})
 		}
 	}
-	return decodedSelectedRuleName
+
+	const { mosaicRule, mosaicDottedNames } =
+		getRelatedMosaicInfosIfExists(rules, selectedRuleName) ?? {}
+
+	const isMosaic =
+		mosaicRule && mosaicDottedNames && mosaicRule.dottedName == selectedRuleName
+
+	return {
+		selectedRuleDottedName: isMosaic
+			? mosaicDottedNames[0][1].dottedName
+			: selectedRuleName,
+		selectedRuleURL: `/simulateur/${categoryName}/${utils.encodeRuleName(
+			selectedRuleName
+		)}`,
+	}
 }
 
-function isSpecificRuleURL(decodedSelectedRuleName: DottedName) {
-	return decodedSelectedRuleName != ''
+function isSpecificRule(selectedRuleName: DottedName) {
+	return selectedRuleName != ''
 }
 
-const TutorialRedirection = ({ decodedSelectedRuleName }) => {
+const TutorialRedirection = ({ selectedRuleDottedName, selectedRuleURL }) => {
 	const searchParams = new URLSearchParams({
-		fromRule: utils.encodeRuleName(decodedSelectedRuleName),
+		fromRuleURL: selectedRuleURL,
 	})
 	return (
 		<Navigate
 			to={`/tutoriel${
-				isSpecificRuleURL(decodedSelectedRuleName) ? `?${searchParams}` : ''
+				isSpecificRule(selectedRuleDottedName) ? `?${searchParams}` : ''
 			}`}
 			replace
 		/>

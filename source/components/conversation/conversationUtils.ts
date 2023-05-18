@@ -29,8 +29,6 @@ export function getPreviousQuestion(
 ): DottedName | undefined {
 	const currentIsNew = currentQuestionIndex < 0
 
-	debugger
-
 	if (currentIsNew && previousAnswers.length > 0) {
 		return previousAnswers[previousAnswers.length - 1]
 	}

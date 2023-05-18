@@ -37,6 +37,18 @@ export async function clickCategoryStartButtonIfExist() {
 	})
 }
 
+export async function clickDontKnowButton() {
+	cy.get('[data-cypress-id="dont-know-button"]').click()
+}
+
+export async function clickPreviousButton() {
+	cy.get('[data-cypress-id="previous-question-button"]').click()
+}
+
+export async function clickNextButton() {
+	cy.get('[data-cypress-id="next-question-button"]').click()
+}
+
 export async function startTestAndSkipTutorial() {
 	cy.get('[data-cypress-id="do-the-test-link"]').click()
 	waitWhileLoading()

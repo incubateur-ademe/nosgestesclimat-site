@@ -21,6 +21,7 @@ import Notifications, {
 } from '@/components/Notifications'
 import {
 	Category,
+	DottedName,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
 	questionCategoryName,
@@ -121,11 +122,13 @@ export default function Conversation({
 		(state: AppState) => state.simulation?.unfoldedStep
 	)
 	const isMainSimulation = objectifs.length === 1 && isRootRule(objectifs[0])
-	const currentQuestion: string = !isMainSimulation
+	const currentQuestion: DottedName = !isMainSimulation
 		? nextQuestions[0]
 		: focusedCategory
 		? sortedQuestions[0]
 		: unfoldedStep || sortedQuestions[0]
+
+	debugger
 
 	const [finder, setFinder] = useState(false)
 	const tutorials = useSelector((state: AppState) => state.tutorials)
@@ -187,29 +190,34 @@ export default function Conversation({
 	const { mosaicRule, mosaicParams, mosaicDottedNames } =
 		(currentQuestion && ruleMosaicInfos) || {}
 
-	const questionText = mosaicRule
+	const isMosaic = mosaicRule && mosaicParams && mosaicDottedNames
+
+	const questionText = isMosaic
 		? mosaicRule.rawNode?.question
 		: rules[currentQuestion]?.rawNode?.question
 
-	const questionsToSubmit = mosaicRule
-		? mosaicDottedNames.map(([dottedName]) => dottedName)
+	const questionsToSubmit = isMosaic
+		? mosaicDottedNames?.map(([dottedName]) => dottedName)
 		: [currentQuestion]
 
 	const isAnsweredMosaic =
+		isMosaic &&
 		currentQuestion &&
-		mosaicRule &&
 		questionsToSubmit
-			.map((question) => situation[question] != null)
+			?.map((question) => situation[question] != null)
 			.some((bool) => bool === true)
 
 	const currentQuestionIsAnswered = isAnsweredMosaic
 		? true
 		: situation[currentQuestion] != null
 
+	const isMosaicSelection =
+		isAnsweredMosaic && mosaicParams['type'] === 'selection'
+
 	useEffect(() => {
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
-		if (isAnsweredMosaic && mosaicParams['type'] === 'selection') {
-			questionsToSubmit.map((question) =>
+		if (isMosaicSelection) {
+			questionsToSubmit?.map((question) =>
 				dispatch(updateSituation(question, situation[question] || 'non'))
 			)
 		}
@@ -217,29 +225,32 @@ export default function Conversation({
 
 	useEffect(() => {
 		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disappear. However, if the user deselect the button, without this hook,
-		// the default value is set back to the question value, but the user doesn't know as there is no "je ne sais pas" button anymore and nothing is selected
-		// This hook enables to set 0 to mosaic question if the mosaic has been answered and nothing is checked.
+		// the default value is set back to the question value,
+		// but the user doesn't know as there is no "je ne sais pas" button anymore and nothing
+		// is selected
+		// This hook enables to set 0 to mosaic question if the mosaic has been answered and
+		// nothing is checked.
 		const oneIsChecked = questionsToSubmit
-			.map((question) => situation[question] === 'oui')
+			?.map((question) => situation[question] === 'oui')
 			.some((bool) => bool === true)
 
 		if (
-			isAnsweredMosaic &&
-			mosaicParams['type'] === 'selection' &&
+			isMosaicSelection &&
 			!oneIsChecked &&
 			situation[mosaicRule.dottedName] !== 0
 		) {
 			dispatch(updateSituation(mosaicRule.dottedName, 0))
 		}
 		if (
-			isAnsweredMosaic &&
-			mosaicParams['type'] === 'selection' &&
+			isMosaicSelection &&
 			oneIsChecked &&
 			situation[mosaicRule.dottedName] === 0
 		) {
 			dispatch(updateSituation(mosaicRule.dottedName, undefined))
 		}
 	}, [isAnsweredMosaic, questionsToSubmit, situation])
+
+	console.log(unfoldedStep)
 
 	const currentQuestionIndex = previousAnswers.findIndex(
 		(a) => a === unfoldedStep
@@ -252,7 +263,8 @@ export default function Conversation({
 	)
 
 	const isValidInput = (questionsToSubmit) => {
-		// we want this validation function to work for mosaic questions (we check that all the questions anwsers of a mosaic are valid)
+		// we want this validation function to work for mosaic questions
+		// (we check that all the questions anwsers of a mosaic are valid)
 		// we also want it work for questions with multiple notifications
 		const questionMatches = questionsToSubmit.map((question) => {
 			const notifications = getCurrentNotification(engine, question)
@@ -264,27 +276,30 @@ export default function Conversation({
 	}
 
 	const submit = (source: string) => {
-		// This piece of code enables to set all the checkbox of a mosaic to false when "Next" button is pressed (chen the question is submitted)
-		// It's important in case of someone arrives at the mosaic question, does not select anything and wants to submit "nothing".
-
-		// we don't check question validation status in the same map as the dispatch because we want all answers in mosaic question
+		// This piece of code enables to set all the checkbox of a mosaic to
+		// false when "Next" button is pressed (chen the question is submitted)
+		// It's important in case of someone arrives at the mosaic question,
+		// does not select anything and wants to submit "nothing".
+		// we don't check question validation status in the same map
+		// as the dispatch because we want all answers in mosaic question
 		// to be valid before any dispatch
-		if (!isValidInput(questionsToSubmit)) return null
-
-		questionsToSubmit.map((question) => {
-			dispatch({
-				type: 'STEP_ACTION',
-				name: 'fold',
-				step: question,
-				source,
+		if (isValidInput(questionsToSubmit)) {
+			questionsToSubmit?.map((question) => {
+				dispatch({
+					type: 'STEP_ACTION',
+					name: 'fold',
+					step: question,
+					source,
+				})
 			})
-		})
+		}
 	}
 	const setDefault = () =>
 		// TODO: Skiping a question shouldn't be equivalent to answering the
 		// default value (for instance the question shouldn't appear in the
 		// answered questions).
-		questionsToSubmit.map((question) =>
+		//
+		questionsToSubmit?.map((question) =>
 			dispatch(validateWithDefaultValue(question))
 		)
 
@@ -511,6 +526,7 @@ export default function Conversation({
 									onClick={goToPrevious}
 									type="button"
 									className="ui__ simple small push-left button"
+									data-cypress-id="previous-question-button"
 								>
 									← <Trans>Précédent</Trans>
 								</button>

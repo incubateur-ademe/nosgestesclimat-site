@@ -23,12 +23,12 @@ export default ({}) => {
 	const dispatch = useDispatch()
 	const urlParams = new URLSearchParams(window.location.search)
 
-	const fromRuleParam = urlParams.get('fromRule')
-	const targetUrl = `/simulateur/${MODEL_ROOT_RULE_NAME}${
-		fromRuleParam ? `/${fromRuleParam}` : ''
-	}`
+	const fromRuleURLParam = urlParams.get('fromRuleURL')
+	const targetUrl = fromRuleURLParam
+		? fromRuleURLParam
+		: `/simulateur/${MODEL_ROOT_RULE_NAME}`
 
-	if (fromRuleParam) {
+	if (fromRuleURLParam) {
 		// The tutorial is skipped when redirected from a specific rule URL
 		// (e.g. /simulateur/bilan/logement/chauffage)
 		// [tutorials.fromRule = 'skip']
