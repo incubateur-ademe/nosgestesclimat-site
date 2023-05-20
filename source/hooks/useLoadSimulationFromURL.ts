@@ -1,38 +1,64 @@
-import LZString from 'lz-string'
+import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
+import { Simulation } from '@/reducers/rootReducer'
+import { encryptedSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import { useEffect, useState } from 'react'
 
 export const useLoadSimulationFromURL = () => {
+	const [simulation, setSimulation] = useState<Simulation | undefined>(
+		undefined
+	)
 	// Get search params from URL
 	const searchParams = new URL(window.location).searchParams
 
-	const slzc = searchParams.getAll('sc')
+	const idSimulation = searchParams.get('sid')
 
-	if (!slzc.length) return null
+	useEffect(() => {
+		const loadSimulation = async (id) => {
+			try {
+				const response = await fetch(`${encryptedSimulationURL}/${id}`, {
+					method: 'GET',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+				})
 
-	const decompressedSimulation = LZString.decompressFromUTF16(slzc[0] || '')
-	console.log(decompressedSimulation)
-	const simulation = JSON.parse(decompressedSimulation || '')
+				const encryptedSimulation = await response.json()
+
+				const responseDecryption = await fetch(
+					`${NETLIFY_FUNCTIONS_URL}/encrypt-data`,
+					{
+						method: 'POST',
+						body: JSON.stringify(encryptedSimulation),
+					}
+				)
+
+				const decryptedSimulation = await responseDecryption.text()
+
+				return JSON.parse(decryptedSimulation)
+			} catch (e) {
+				console.log(e)
+			}
+		}
+		if (idSimulation) {
+			loadSimulation(idSimulation)
+				.then((simulation: Simulation) => {
+					setSimulation(simulation)
+				})
+				.catch((e) => {
+					console.log(e)
+				})
+		}
+	}, [idSimulation])
+
+	window.history.replaceState({}, document.title, window.location.pathname)
+
 	return {
-		currentSimulationId: simulation?.id,
-		simulations: [
-			{
-				...simulation,
-				storedAmortissementAvion: {},
-				storedTrajets: {},
-				survey: null,
-				targetUnit: '€/mois',
-				unfoldedStep: null,
-				url: '/simulateur/bilan',
-			},
-		],
-		tutorial: {
-			scoreExplanation: 'skip',
-			'testCategory-alimentation': 'skip',
-			'testCategory-divers': 'skip',
-			'testCategory-logement': 'skip',
-			'testCategory-services sociétaux': 'skip',
-			'testCategory-transport': 'skip',
-			testIntro: 'skip',
-		},
-		localisation: null,
+		...simulation,
+		storedAmortissementAvion: {},
+		storedTrajets: {},
+		survey: null,
+		targetUnit: '€/mois',
+		unfoldedStep: null,
+		url: '/simulateur/bilan',
 	}
 }

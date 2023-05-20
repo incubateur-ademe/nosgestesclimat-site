@@ -142,7 +142,7 @@ export default function Root() {
 	const persistedUser = fetchUser()
 	// Or we retrive the simulation from the URL
 	const simulationFromURL = useLoadSimulationFromURL()
-	console.log(simulationFromURL)
+
 	// We use the 'currentSimulationId' pointer to retrieve the latest simulation in the list.
 	const persistedSimulation = persistedUser.simulations.filter(
 		(simulation) => simulation.id === persistedUser.currentSimulationId
@@ -178,9 +178,15 @@ export default function Root() {
 				persistUser(store)
 			}}
 			initialStore={{
-				simulation: persistedSimulation,
-				simulations: persistedUser.simulations,
-				currentSimulationId: persistedUser.currentSimulationId,
+				// If a simulation is loaded via URL, we use it as the current simulation
+				simulation: simulationFromURL ?? persistedSimulation,
+				simulations: [
+					...(simulationFromURL ? [simulationFromURL] : []),
+					...persistedUser.simulations,
+				],
+				currentSimulationId: simulationFromURL
+					? simulationFromURL.id
+					: persistedUser.currentSimulationId,
 				tutorials: persistedUser.tutorials,
 				localisation: persistedUser.localisation,
 				currentLang,

@@ -1,9 +1,10 @@
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
-import { LOCAL_STORAGE_KEY } from '@/storage/persistSimulation'
-import safeLocalStorage from '@/storage/safeLocalStorage'
-import LZString from 'lz-string'
-import { useEffect, useState } from 'react'
+import { currentSimulationSelector } from '@/selectors/storageSelectors'
+import { encryptedSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import { v4 as uuid } from 'uuid'
 
 const appURL =
 	process.env.NODE_ENV === 'development'
@@ -12,25 +13,61 @@ const appURL =
 
 export const NewsletterForm = () => {
 	const [isSent, setIsSent] = useState(false)
-	const [compressedSimulation, setCompressedSimulation] = useState<
-		string | undefined
-	>(undefined)
+
 	const { t } = useTranslation()
+
+	const currentSimulation = useSelector(currentSimulationSelector)
+
+	const saveSimulationInDB = async (encryptedData) => {
+		try {
+			const response = await fetch(encryptedSimulationURL, {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify({
+					id: uuid(),
+					data: encryptedData,
+				}),
+			})
+
+			const simulationSaved = await response.json()
+			return simulationSaved.id
+		} catch (e) {
+			console.log(e)
+		}
+	}
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 
-		const form: HTMLFormElement = e.target
-		// Send using XHR
-		const data = new FormData(form)
-
 		try {
+			if (!currentSimulation) return
+
+			// Encrypt simulation data
+			const encryptedSimulation = await fetch(
+				`${NETLIFY_FUNCTIONS_URL}/encrypt-data`,
+				{
+					method: 'POST',
+					body: JSON.stringify({
+						...currentSimulation,
+					}),
+				}
+			)
+
+			// Save simulation in DB
+			const idEncryptedSimulationSaved =
+				(await saveSimulationInDB(encryptedSimulation)) || {}
+			const form: HTMLFormElement = e.target
+
+			const data = new FormData(form)
+
 			await fetch(`${NETLIFY_FUNCTIONS_URL}/email-service`, {
 				method: 'POST',
 				body: JSON.stringify({
 					email: data.get('EMAIL'),
 					optIn: data.get('OPT_IN'),
-					simulationURL: `${appURL}?sc=${compressedSimulation}`,
+					simulationURL: `${appURL}?sid=${idEncryptedSimulationSaved}`,
 					shareURL: location
 						.toString()
 						.replace('/simulateur/fin', '/mon-empreinte-carbone/partage'),
@@ -42,34 +79,8 @@ export const NewsletterForm = () => {
 		}
 	}
 
-	useEffect(() => {
-		const serializedUser = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
-
-		if (serializedUser == null || compressedSimulation) return
-
-		const deserializedUser = serializedUser
-			? JSON.parse(serializedUser)
-			: {
-					simulations: [],
-			  }
-
-		if (!deserializedUser.simulations.length) return
-
-		const simulation = deserializedUser?.simulations?.[0]
-
-		const compressed = LZString.compressToUTF16(
-			JSON.stringify({
-				currentSimulationId: simulation.id,
-				simulations: [simulation],
-			}) || ''
-		)
-
-		setCompressedSimulation(compressed)
-	}, [compressedSimulation])
-
 	return (
 		<div
-			className="sib-form"
 			css={`
 				text-align: center;
 				border-radius: 0.5rem;
@@ -80,23 +91,17 @@ export const NewsletterForm = () => {
 				position: relative;
 			`}
 		>
-			<div id="sib-form-container" className="sib-form-container">
-				<div
-					id="sib-container"
-					className="sib-container--large sib-container--vertical"
-					css="text-align:center; max-width:540px; margin: 0 auto;"
-				>
+			<div>
+				<div css="text-align:center; max-width:540px; margin: 0 auto;">
 					{isSent ? (
 						<div css="padding: 8px 0;">
-							<div
-								className="sib-form-block"
-								css="font-size:1.5rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left"
-							>
+							<div css="font-size:1.5rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left">
 								<p>Merci pour votre inscription ! 🌱</p>
 							</div>
 							<p
 								css={`
 									text-align: left;
+									margin-top: 1rem;
 								`}
 							>
 								Vous allez recevoir un email de notre part sous peu.
@@ -104,7 +109,7 @@ export const NewsletterForm = () => {
 						</div>
 					) : (
 						<form
-							id="sib-form"
+							id="newsletter-form"
 							onSubmit={handleSubmit}
 							css={`
 								margin: 0 auto;
@@ -124,19 +129,13 @@ export const NewsletterForm = () => {
 								`}
 							></div>
 							<div css="padding: 8px 0;">
-								<div
-									className="sib-form-block"
-									css="font-size:1.25rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left"
-								>
+								<div css="font-size:1.25rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left">
 									<p>Bravo pour ce premier pas ! 👏</p>
 								</div>
 							</div>
 							<div css="padding: 8px 0;">
-								<div
-									className="sib-form-block"
-									css="font-size:16px; text-align:left; color:#3C4858; background-color:transparent; text-align:left"
-								>
-									<div className="sib-text-form-block">
+								<div css="font-size:16px; text-align:left; color:#3C4858; background-color:transparent; text-align:left">
+									<div>
 										<p>Vous souhaitez continuer sur votre lancée ?</p>
 										<p>
 											Laissez-nous votre email pour recevoir{' '}
@@ -148,11 +147,10 @@ export const NewsletterForm = () => {
 								</div>
 							</div>
 							<div css="padding: 8px 0; text-align: left;">
-								<div className="sib-input sib-form-block">
-									<div className="form__entry entry_block">
-										<div className="form__label-row ">
+								<div>
+									<div>
+										<div>
 											<label
-												className="entry__label"
 												css="font-weight: 700; text-align:left; font-size:16px; text-align:left; font-weight:700; color:#3c4858;"
 												data-required="*"
 												htmlFor="EMAIL"
@@ -160,7 +158,7 @@ export const NewsletterForm = () => {
 												Entrez votre adresse email
 											</label>
 
-											<div className="entry__field">
+											<div>
 												<input
 													className="input ui__ field"
 													type="text"
@@ -172,32 +170,23 @@ export const NewsletterForm = () => {
 												/>
 											</div>
 										</div>
-
-										<label
-											className="entry__error entry__error--primary"
-											css="font-size:16px; text-align:left; color:#661d1d; background-color:#ffeded; border-radius:3px; border-color:#ff4949;"
-										></label>
 									</div>
 								</div>
 							</div>
 							<div css="padding: 8px 0;">
-								<div className="sib-optin sib-form-block">
-									<div className="form__entry entry_mcq">
-										<div className="form__label-row ">
-											<div className="entry__choice">
+								<div>
+									<div>
+										<div>
+											<div>
 												<label css="display: flex; gap: 0.15rem; align-items: flex-start;">
 													<input
 														type="checkbox"
-														className="input_replaced"
 														value="1"
 														id="OPT_IN"
 														name="OPT_IN"
 														required
 													/>
-													<span
-														className="checkbox checkbox_tick_positive"
-														css="margin-left:"
-													></span>
+													<span css="margin-left:"></span>
 													<span css="font-size:14px; text-align:left; color:#3C4858; background-color:transparent;">
 														<p>
 															J'accepte de recevoir des informations de la part
@@ -216,21 +205,18 @@ export const NewsletterForm = () => {
 												</label>
 											</div>
 										</div>
-										<label
-											className="entry__specification"
-											css="font-size:12px; color:#8390A4; line-height: 1rem; display: flex; justify-content: flex-start; align-items: flex-start; text-align: left;"
-										>
+										<p css="font-size:12px; color:#8390A4; line-height: 1rem; display: flex; justify-content: flex-start; align-items: flex-start; text-align: left;">
 											Vous pourrez choisir de ne plus recevoir nos emails à tout
 											moment
-										</label>
+										</p>
 									</div>
 								</div>
 							</div>
 							<div css="padding: 8px 0;">
-								<div className="sib-form-block" css="text-align: left">
+								<div css="text-align: left">
 									<button
-										className="sib-form-block__button sib-form-block__button-with-loader  ui__ button plain small"
-										form="sib-form"
+										className="ui__ button plain small"
+										form="newsletter-form"
 										type="submit"
 									>
 										Envoyer
