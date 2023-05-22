@@ -13,6 +13,7 @@ const appURL =
 
 export const NewsletterForm = () => {
 	const [isSent, setIsSent] = useState(false)
+	const [isSending, setIsSending] = useState(false)
 
 	const { t } = useTranslation()
 
@@ -40,7 +41,7 @@ export const NewsletterForm = () => {
 
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-
+		setIsSending(true)
 		try {
 			if (!currentSimulation) return
 
@@ -76,6 +77,8 @@ export const NewsletterForm = () => {
 			setIsSent(true)
 		} catch (e) {
 			console.log(e)
+		} finally {
+			setIsSending(false)
 		}
 	}
 
@@ -167,6 +170,7 @@ export const NewsletterForm = () => {
 													placeholder="Email"
 													data-required="true"
 													required
+													disabled={isSending}
 												/>
 											</div>
 										</div>
@@ -185,6 +189,7 @@ export const NewsletterForm = () => {
 														id="OPT_IN"
 														name="OPT_IN"
 														required
+														disabled={isSending}
 													/>
 													<span css="margin-left:"></span>
 													<span css="font-size:14px; text-align:left; color:#3C4858; background-color:transparent;">
@@ -218,6 +223,7 @@ export const NewsletterForm = () => {
 										className="ui__ button plain small"
 										form="newsletter-form"
 										type="submit"
+										disabled={isSending}
 									>
 										Envoyer
 									</button>

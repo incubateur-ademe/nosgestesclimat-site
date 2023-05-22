@@ -50,8 +50,6 @@ export const useLoadSimulationFromURL = () => {
 		}
 	}, [idSimulation])
 
-	window.history.replaceState({}, document.title, window.location.pathname)
-
 	return {
 		...simulation,
 		storedAmortissementAvion: {},

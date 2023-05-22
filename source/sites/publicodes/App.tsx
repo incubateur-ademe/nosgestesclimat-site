@@ -378,6 +378,16 @@ const Router = () => {
 				}
 			/>
 			<Route
+				path="/mon-empreinte-carbone"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<WithEngine>
+							<FinLazy />
+						</WithEngine>
+					</Suspense>
+				}
+			/>
+			<Route
 				path="/personas"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>

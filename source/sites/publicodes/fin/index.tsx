@@ -1,7 +1,8 @@
+import Meta from '@/components/utils/Meta'
 import animate from 'Components/ui/animate'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
@@ -93,6 +94,7 @@ export default ({}) => {
 		nextSlide: next,
 		noQuestionsLeft: !nextQuestions.length,
 	}
+	const { t } = useTranslation()
 
 	return (
 		<div
@@ -100,6 +102,15 @@ export default ({}) => {
 				position: relative;
 			`}
 		>
+			{window.location.href.includes('fin') && (
+				<Meta title={t('Mon empreinte carbone')}>
+					<link
+						rel="canonical"
+						href="https://nosgestesclimat.fr/mon-empreinte-carbone"
+					/>
+				</Meta>
+			)}
+
 			<IframeDataShareModal data={rehydratedDetails} />
 			<Link
 				to="/simulateur/bilan"
