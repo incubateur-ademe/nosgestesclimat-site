@@ -56,6 +56,7 @@ import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import {
 	getPreviousQuestion,
+	goToQuestionOrNavigate,
 	sortQuestionsByCategory,
 } from './conversationUtils'
 import { ExplicableRule } from './Explicable'
@@ -67,6 +68,7 @@ export type ConversationProps = {
 	customEnd?: React.ReactNode
 	orderByCategories?: Category[]
 	questionHeadingLevel?: number
+	isFromActionCard?: boolean
 }
 
 export default function Conversation({
@@ -74,6 +76,7 @@ export default function Conversation({
 	customEnd,
 	orderByCategories,
 	questionHeadingLevel,
+	isFromActionCard,
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext),
@@ -153,10 +156,12 @@ export default function Conversation({
 			currentQuestion !== unfoldedStep
 		) {
 			// TODO: should be aware of the simulator used
-			navigate(
-				`/simulateur/${MODEL_ROOT_RULE_NAME}/${utils.encodeRuleName(
-					currentQuestion
-				)}`
+			goToQuestionOrNavigate(
+				currentQuestion,
+				// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
+				// to trigger the [navigate] (or we must add url for action questions
+				// which add not needed complexity for now).
+				isFromActionCard ? { dispatch } : { navigate }
 			)
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
@@ -172,12 +177,14 @@ export default function Conversation({
 	}, [currentQuestion])
 
 	const goToPrevious = () => {
-		// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
-		// could be a reason of the 'previous button bug'?
-		return navigate(
-			`/simulateur/${MODEL_ROOT_RULE_NAME}/${utils.encodeRuleName(
-				previousQuestion
-			)}`
+		goToQuestionOrNavigate(
+			// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
+			// could be a reason of the 'previous button bug'?
+			previousQuestion,
+			// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
+			// to trigger the [navigate] (or we must add url for action questions
+			// which add not needed complexity for now).
+			isFromActionCard ? { dispatch } : { navigate }
 		)
 	}
 
@@ -250,7 +257,7 @@ export default function Conversation({
 		}
 	}, [isAnsweredMosaic, questionsToSubmit, situation])
 
-	console.log(unfoldedStep)
+	console.log('unfoldedStep:', unfoldedStep)
 
 	const currentQuestionIndex = previousAnswers.findIndex(
 		(a) => a === unfoldedStep
@@ -368,7 +375,9 @@ export default function Conversation({
 
 	const bilan = engine
 		? Math.round(
-				parseFloat((engine?.evaluate('bilan')?.nodeValue as string) || '')
+				parseFloat(
+					(engine?.evaluate(MODEL_ROOT_RULE_NAME)?.nodeValue as string) || ''
+				)
 		  )
 		: undefined
 

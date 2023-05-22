@@ -7,7 +7,6 @@ import {
 } from '@/reducers/rootReducer'
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { DottedName } from 'Rules'
 
 export type Action =
 	| ResetSimulationAction

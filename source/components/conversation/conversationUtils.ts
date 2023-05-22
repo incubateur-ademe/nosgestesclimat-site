@@ -1,5 +1,14 @@
-import { Category, DottedName } from '@/components/publicodesUtils'
+import {
+	Category,
+	DottedName,
+	MODEL_ROOT_RULE_NAME,
+} from '@/components/publicodesUtils'
 import { sortBy } from '@/utils'
+import { utils } from 'publicodes'
+import { Dispatch } from 'react'
+import { NavigateFunction } from 'react-router'
+import { AnyAction } from 'redux'
+import { goToQuestion } from '../../actions/actions'
 
 export function sortQuestionsByCategory(
 	nextQuestions: DottedName[],
@@ -49,4 +58,17 @@ export function getPreviousQuestion(
 	// We'll explore the previous answers starting from the end,
 	// to find the first question that is not in the current mosaic
 	return previousAnswers[currentQuestionIndex - 1]
+}
+
+export function goToQuestionOrNavigate(
+	question: DottedName,
+	toUse: { dispatch: Dispatch<AnyAction> } | { navigate: NavigateFunction }
+): void {
+	if (toUse['navigate'] != undefined) {
+		toUse['navigate'](
+			`/simulateur/${MODEL_ROOT_RULE_NAME}/${utils.encodeRuleName(question)}`
+		)
+	} else {
+		toUse['dispatch'](goToQuestion(question))
+	}
 }
