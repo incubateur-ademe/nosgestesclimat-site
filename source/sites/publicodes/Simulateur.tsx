@@ -164,9 +164,9 @@ const Simulateur = () => {
 				{!displayTutorial ? (
 					!displayScoreExplanation && (
 						<Simulation
-							orderByCategories={categories}
-							customEnd={
-								isMainSimulation ? (
+							conversationProps={{
+								orderByCategories: categories,
+								customEnd: isMainSimulation ? (
 									<MainSimulationEnding {...{ rules, engine }} />
 								) : categoryRule.description ? (
 									<Markdown
@@ -175,8 +175,8 @@ const Simulateur = () => {
 									/>
 								) : (
 									<EndingCongratulations />
-								)
-							}
+								),
+							}}
 							explanations={<InlineCategoryChart givenEngine={undefined} />}
 						/>
 					)

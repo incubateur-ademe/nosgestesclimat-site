@@ -116,11 +116,11 @@ export default ({}) => {
 						<Trans>Personnalisez cette estimation</Trans>
 					</h3>
 					<Simulation
-						showConversation
-						customEnd={<div />}
-						targets={<div />}
 						explanations={null}
-						questionHeadingLevel="4"
+						conversationProps={{
+							customEnd: <div />,
+							questionHeadingLevel: 4,
+						}}
 					/>
 				</>
 			)}
