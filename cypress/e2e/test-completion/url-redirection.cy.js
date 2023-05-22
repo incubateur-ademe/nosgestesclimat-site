@@ -59,16 +59,6 @@ describe('check question redirection from the URL', () => {
 		shouldRedirectTo('transport/vacances/caravane/propriétaire', 'transport/vacances')
 	})
 
-	// it(`should go to previous question of a mosaic when visiting a specific question URL`, () => {
-	//  FIXME: there is no previous button in the mosaic (because considered as a
-	//  root question)
-	// 	goToQuestionAndGet('transport/vacances')
-	// 	clickDontKnowButton()
-	// 	clickPreviousButton()
-	// 	clickPreviousButton()
-	// 	cy.url().should('not.eq', Cypress.config().baseUrl + `/simulateur/bilan/transport/vacances`)
-	// })
-
 	it(`should redirect to the first existing parent rule if the URL doesn't correspond to a parsed rule`, () => {
 		shouldRedirectTo('logement/unknown-rule', '')
 		shouldRedirectTo('logement/appartement/unknown-rule/adaf/adf', 'logement/appartement')
