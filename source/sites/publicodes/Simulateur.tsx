@@ -90,7 +90,6 @@ const Simulateur = () => {
 	const engine = useEngine()
 	const parsedRules = engine.getParsedRules()
 
-	// A rule is valid if it exists and has a question
 	const { selectedRuleDottedName, selectedRuleURL } = getValidSelectedRuleInfos(
 		utils.decodeRuleName(selectedRuleNameURLPath.join('/')),
 		category,
@@ -198,6 +197,13 @@ type SelectedRuleInfos = {
 	selectedRuleURL?: string
 }
 
+/**
+ * A rule is valid if it exists, is a question and is not a mosaic child.
+ *
+ * However, if the rule is a mosaic question the returned [selectedRuleDottedName] will
+ * be its first mosaic child rule while the [selectedRuleURL] will be the one
+ * corresponding to the mosaic question rule.
+ */
 function getValidSelectedRuleInfos(
 	selectedRuleName: DottedName,
 	categoryName: string,
