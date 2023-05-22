@@ -1,18 +1,19 @@
-import Crypto from 'crypto-js'
+import CryptoJS from 'crypto-js'
 
+// eslint-disable-next-line @typescript-eslint/require-await
 exports.handler = async (event) => {
-	const data = JSON.parse(event.body)
+	const data = String(event.body)
 
-	const decryptedData = Crypto.AES.decrypt(
+	const decryptedData = CryptoJS.AES.decrypt(
 		data,
 		process.env.ENCRYPTION_KEY
-	).toString()
+	).toString(CryptoJS.enc.Utf8)
 
 	return {
 		statusCode: 200,
 		headers: {
 			'Content-Type': 'application/json;charset=utf-8',
 		},
-		body: decryptedData,
+		body: JSON.stringify(decryptedData),
 	}
 }

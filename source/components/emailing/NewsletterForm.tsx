@@ -1,10 +1,10 @@
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { currentSimulationSelector } from '@/selectors/storageSelectors'
-import { encryptedSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { v4 as uuid } from 'uuid'
+import { formatDataForDB } from '../utils/formatDataForDB'
 
 const appURL =
 	process.env.NODE_ENV === 'development'
@@ -19,21 +19,26 @@ export const NewsletterForm = () => {
 
 	const currentSimulation = useSelector(currentSimulationSelector)
 
-	const saveSimulationInDB = async (encryptedData) => {
+	const saveSimulationInDB = async (data) => {
+		const dataFormatted = { ...data }
+
+		if (dataFormatted.situation) {
+			dataFormatted.situation = formatDataForDB(dataFormatted)
+		}
+
 		try {
-			const response = await fetch(encryptedSimulationURL, {
+			const response = await fetch(emailSimulationURL, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
 				},
 				body: JSON.stringify({
-					id: uuid(),
-					data: encryptedData,
+					data: dataFormatted,
 				}),
 			})
 
 			const simulationSaved = await response.json()
-			return simulationSaved.id
+			return simulationSaved
 		} catch (e) {
 			console.log(e)
 		}
@@ -45,35 +50,37 @@ export const NewsletterForm = () => {
 		try {
 			if (!currentSimulation) return
 
-			// Encrypt simulation data
-			const encryptedSimulation = await fetch(
+			// Save simulation in DB
+			const idSimulationSaved = await saveSimulationInDB(currentSimulation)
+
+			// Encrypt simulation id
+			const encryptedIdSimulationResponse = await fetch(
 				`${NETLIFY_FUNCTIONS_URL}/encrypt-data`,
 				{
 					method: 'POST',
-					body: JSON.stringify({
-						...currentSimulation,
-					}),
+					body: JSON.stringify(idSimulationSaved),
 				}
 			)
-
-			// Save simulation in DB
-			const idEncryptedSimulationSaved =
-				(await saveSimulationInDB(encryptedSimulation)) || {}
-			const form: HTMLFormElement = e.target
-
-			const data = new FormData(form)
+			const encryptedIdSimulation: string =
+				await encryptedIdSimulationResponse.json()
 
 			await fetch(`${NETLIFY_FUNCTIONS_URL}/email-service`, {
 				method: 'POST',
 				body: JSON.stringify({
-					email: data.get('EMAIL'),
-					optIn: data.get('OPT_IN'),
-					simulationURL: `${appURL}?sid=${idEncryptedSimulationSaved}`,
+					email: (document.getElementById('EMAIL') as HTMLInputElement).value,
+					optIn: (document.getElementById('OPT_IN') as HTMLInputElement).value,
+					simulationURL: `${appURL}?sid=${encodeURIComponent(
+						encryptedIdSimulation
+					)}&mtm_campaign=retrouver-ma-simulation`,
 					shareURL: location
 						.toString()
-						.replace('/simulateur/fin', '/mon-empreinte-carbone/partage'),
+						.replace(
+							'/fin',
+							'/mon-empreinte-carbone/partage&mtm_campaign=partage-email'
+						),
 				}),
 			})
+
 			setIsSent(true)
 		} catch (e) {
 			console.log(e)

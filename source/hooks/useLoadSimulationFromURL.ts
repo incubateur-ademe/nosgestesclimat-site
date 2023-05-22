@@ -1,6 +1,6 @@
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { Simulation } from '@/reducers/rootReducer'
-import { encryptedSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import { useEffect, useState } from 'react'
 
 export const useLoadSimulationFromURL = () => {
@@ -8,39 +8,42 @@ export const useLoadSimulationFromURL = () => {
 		undefined
 	)
 	// Get search params from URL
-	const searchParams = new URL(window.location).searchParams
+	const searchParams = new URL(window.location.toString()).searchParams
 
 	const idSimulation = searchParams.get('sid')
 
+	const idSimulationDecoded = decodeURIComponent(idSimulation || '')
+
 	useEffect(() => {
-		const loadSimulation = async (id) => {
+		const loadSimulation = async (id: string) => {
 			try {
-				const response = await fetch(`${encryptedSimulationURL}/${id}`, {
+				const responseDecryption = await fetch(
+					`${NETLIFY_FUNCTIONS_URL}/decrypt-data`,
+					{
+						method: 'POST',
+						body: id,
+					}
+				)
+
+				const decryptedId = await responseDecryption.json()
+
+				const response = await fetch(`${emailSimulationURL}${decryptedId}`, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
 					},
 				})
 
-				const encryptedSimulation = await response.json()
+				const simulation = await response.json()
 
-				const responseDecryption = await fetch(
-					`${NETLIFY_FUNCTIONS_URL}/encrypt-data`,
-					{
-						method: 'POST',
-						body: JSON.stringify(encryptedSimulation),
-					}
-				)
-
-				const decryptedSimulation = await responseDecryption.text()
-
-				return JSON.parse(decryptedSimulation)
+				return simulation
 			} catch (e) {
 				console.log(e)
 			}
 		}
-		if (idSimulation) {
-			loadSimulation(idSimulation)
+
+		if (idSimulationDecoded) {
+			loadSimulation(idSimulationDecoded)
 				.then((simulation: Simulation) => {
 					setSimulation(simulation)
 				})
@@ -48,7 +51,7 @@ export const useLoadSimulationFromURL = () => {
 					console.log(e)
 				})
 		}
-	}, [idSimulation])
+	}, [idSimulationDecoded])
 
 	return {
 		...simulation,

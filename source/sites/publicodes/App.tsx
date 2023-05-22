@@ -378,7 +378,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/mon-empreinte-carbone"
+				path="/mon-empreinte-carbone/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<WithEngine>

@@ -11,7 +11,7 @@ export const surveysURL = serverURL + '/surveys/'
 
 export const simulationURL = serverURL + '/simulation/'
 
-export const encryptedSimulationURL = serverURL + '/encrypted-simulation/'
+export const emailSimulationURL = serverURL + '/email-simulation/'
 
 export const contextURL = serverURL
 
