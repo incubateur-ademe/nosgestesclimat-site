@@ -1,5 +1,5 @@
-import animate from 'Components/ui/animate'
-import LogoADEME from 'Images/logoADEME.svg'
+import animate from '@/components/ui/animate'
+import LogoADEME from '@/images/logoADEME.svg'
 import React, { Suspense, useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
@@ -26,7 +26,10 @@ import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 
 const LazyIllustration = React.lazy(
-	() => import('Components/AnimatedIllustration')
+	() =>
+		import(
+			/* webpackChunkName: 'AnimatedIllustration' */ '@/components/AnimatedIllustration'
+		)
 )
 
 const Illustration = () => (

@@ -1,8 +1,8 @@
 import { useEffect, useRef, useState } from 'react'
-import IllustrationSVG from './IllustrationSVG.tsx'
+import IllustrationSVG from './IllustrationSVG'
 
 const windowAnimationDuration = '60s'
-export default ({ small }) => {
+export default ({ small }: { small?: boolean }) => {
 	const [cycling, pleaseCycle] = useState(false)
 	const svgRef = useRef(null)
 	useEffect(() => {

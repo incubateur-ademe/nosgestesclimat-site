@@ -15,7 +15,7 @@ import {
 	useSupportedRegion,
 } from './utils'
 
-export default () => {
+export default (): JSX.Element => {
 	const { trackEvent } = useContext(MatomoContext)
 	const messagesRead = useSelector(
 		(state: AppState) => state.sessionLocalisationBannersRead
