@@ -55,6 +55,7 @@ import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
 import {
+	focusByCategory,
 	getPreviousQuestion,
 	goToQuestionOrNavigate,
 	sortQuestionsByCategory,
@@ -98,28 +99,18 @@ export default function Conversation({
 		? sortQuestionsByCategory(nextQuestions, initialOrderByCategories)
 		: nextQuestions
 
-	const focusedCategory = useQuery().get('catégorie') ?? '',
-		pathname = useLocation().pathname
+	const focusedCategory = useQuery().get('catégorie')
+	const pathname = useLocation().pathname
 
-	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
+	const focusedCategoryTitle =
+		focusedCategory !== null
+			? rules[focusedCategory]?.title ?? focusedCategory
+			: null
 
-	const focusByCategory = (questions) => {
-		if (!focusedCategory) {
-			return questions
-		}
-		const filtered = questionsSortedByCategory.filter(
-			(q) => q.indexOf(focusedCategory) === 0
-		)
-		//this is important : if all questions of a focus have been answered
-		// then don't triggered the end screen, just ask the other questions
-		// as if no focus
-		if (!filtered.length) {
-			return questions
-		}
-		return filtered
-	}
-
-	const sortedQuestions = focusByCategory(questionsSortedByCategory)
+	const sortedQuestions = focusByCategory(
+		questionsSortedByCategory,
+		focusedCategory
+	)
 
 	const unfoldedStep = useSelector(
 		(state: AppState) => state.simulation?.unfoldedStep
@@ -158,6 +149,7 @@ export default function Conversation({
 			// TODO: should be aware of the simulator used
 			goToQuestionOrNavigate(
 				currentQuestion,
+				focusedCategory,
 				// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
 				// to trigger the [navigate] (or we must add url for action questions
 				// which add not needed complexity for now).
@@ -181,6 +173,7 @@ export default function Conversation({
 			// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
 			// could be a reason of the 'previous button bug'?
 			previousQuestion,
+			focusedCategory,
 			// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
 			// to trigger the [navigate] (or we must add url for action questions
 			// which add not needed complexity for now).

@@ -1,8 +1,9 @@
-import { findContrastedTextColor } from 'Components/utils/colors'
+import SafeCategoryImage from '@/components/SafeCategoryImage'
+import { findContrastedTextColor } from '@/components/utils/colors'
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom'
-import SafeCategoryImage from '../../../components/SafeCategoryImage'
+import { getFocusedCategoryURLParams } from '../utils'
 import TriangleShape from './TriangleShape'
 
 export default ({
@@ -18,8 +19,8 @@ export default ({
 	click,
 	clicked,
 }) => {
-	const { pathname } = useLocation(),
-		navigate = useNavigate()
+	const { pathname } = useLocation()
+	const navigate = useNavigate()
 	const percent = (nodeValue / total) * 100
 
 	return (
@@ -37,7 +38,7 @@ export default ({
 			title={title}
 			onClick={() =>
 				filterSimulationOnClick
-					? navigate(`${pathname}?catégorie=${dottedName}`)
+					? navigate(`${pathname}${getFocusedCategoryURLParams(dottedName)}`)
 					: click(dottedName)
 			}
 		>
