@@ -10,13 +10,14 @@ import LocalisationProvider from './components/localisation/LocalisationProvider
 
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
-import { ReactNode, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
 	AppState,
 	defaultRulesOptions,
+	RootState,
 	RulesOptions,
 } from './reducers/rootReducer'
 
@@ -140,14 +141,14 @@ export const WithEngine = ({
 	options = defaultRulesOptions,
 	children,
 	fallback = <AnimatedLoader />,
-}: {
+}: React.PropsWithChildren & {
 	options?: RulesOptions
-	children: ReactNode
-	fallback?: ReactNode
+	children: JSX.Element
+	fallback?: JSX.Element
 }): JSX.Element => {
 	console.log('calling WithEngine with options', options)
 	const dispatch = useDispatch()
-	const engineState = useSelector((state) => state.engineState)
+	const engineState = useSelector((state: RootState) => state.engineState)
 	const currentRulesOptions = engineState?.options
 
 	useEffect(() => {
@@ -172,9 +173,11 @@ export const WithEngine = ({
 		engineState.state !== 'ready' ||
 		(!sameOptions(options, currentRulesOptions) &&
 			!sameOptions({ parsed: true, optimized: false }, currentRulesOptions))
-	)
-		return fallback || null
-	return children || null
+	) {
+		return fallback
+	}
+
+	return children
 }
 
 const sameOptions = (a, b) => Object.keys(a).every((k) => a[k] === b[k])
