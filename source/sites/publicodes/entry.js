@@ -1,7 +1,6 @@
 import * as Sentry from '@sentry/react'
 import 'core-js/stable'
 import { createRoot } from 'react-dom/client'
-import { Workbox } from 'workbox-window'
 import i18next from '../../locales/i18n'
 import { getLangInfos, Lang } from '../../locales/translation'
 import App from './App'
@@ -22,13 +21,6 @@ Object.keys(Lang).forEach((lang) => {
 		i18next.addResourceBundle(infos.abrv, 'translation', infos.uiTrad)
 	}
 })
-
-// Register the service worker
-if ('serviceWorker' in navigator) {
-	const wb = new Workbox('/sw.js')
-	wb.register()
-	console.log('[SW] Registered')
-}
 
 let anchor = document.querySelector('#js')
 

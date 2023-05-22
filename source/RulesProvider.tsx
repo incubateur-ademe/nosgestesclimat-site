@@ -17,7 +17,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import {
 	AppState,
 	defaultRulesOptions,
-	RootState,
 	RulesOptions,
 } from './reducers/rootReducer'
 
@@ -137,6 +136,10 @@ const EngineWrapper = ({ children }) => {
 	)
 }
 
+type AnyObjectType = {
+	[key: string]: any
+}
+
 export const WithEngine = ({
 	options = defaultRulesOptions,
 	children,
@@ -148,8 +151,8 @@ export const WithEngine = ({
 }): JSX.Element => {
 	console.log('calling WithEngine with options', options)
 	const dispatch = useDispatch()
-	const engineState = useSelector((state: RootState) => state.engineState)
-	const currentRulesOptions = engineState?.options
+	const engineState = useSelector((state: any) => state.engineState)
+	const currentRulesOptions: AnyObjectType[] = engineState?.options
 
 	useEffect(() => {
 		options?.optimized
@@ -180,4 +183,5 @@ export const WithEngine = ({
 	return children
 }
 
-const sameOptions = (a, b) => Object.keys(a).every((k) => a[k] === b[k])
+const sameOptions = (a: AnyObjectType, b: AnyObjectType) =>
+	Object.keys(a).every((k) => a[k] === b[k])
