@@ -93,6 +93,7 @@ export default ({ small }: { small?: boolean }) => {
 			`}
 			`}
 		>
+			<p>toto</p>
 			<IllustrationSVG ref={svgRef} />
 		</div>
 	)

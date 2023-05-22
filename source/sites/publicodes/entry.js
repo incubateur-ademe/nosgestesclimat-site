@@ -27,6 +27,7 @@ Object.keys(Lang).forEach((lang) => {
 if ('serviceWorker' in navigator) {
 	const wb = new Workbox('/sw.js')
 	wb.register()
+	console.log('[SW] Registered')
 }
 
 let anchor = document.querySelector('#js')
