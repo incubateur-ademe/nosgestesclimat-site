@@ -6,7 +6,6 @@ const {
 } = require('./webpack.common.js')
 const webpack = require('webpack')
 const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
-const { GenerateSW } = require('workbox-webpack-plugin')
 
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
@@ -44,9 +43,6 @@ module.exports = {
 			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
 			CONTEXT: JSON.stringify(process.env.CONTEXT),
 			SENTRY_DSN: JSON.stringify(process.env.SENTRY_DSN),
-		}),
-		new GenerateSW({
-			swDest: './sw.js',
 		}),
 	],
 }

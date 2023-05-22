@@ -39,7 +39,7 @@ module.exports.default = {
 	output: {
 		path: path.resolve('./dist/'),
 		globalObject: 'self',
-		chunkFilename: '[name].[contenthash].chunk.js',
+		chunkFilename: '[name].chunk.js',
 	},
 	plugins: [
 		new CopyPlugin({

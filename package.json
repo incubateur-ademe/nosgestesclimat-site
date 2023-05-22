@@ -104,8 +104,6 @@
 		"webpack-bundle-analyzer": "^4.5.0",
 		"webpack-cli": "^5.1.1",
 		"webpack-env": "^0.8.0",
-		"workbox-cli": "^6.5.4",
-		"workbox-webpack-plugin": "^6.5.4",
 		"worker-loader": "^3.0.8",
 		"yaml-loader": "^0.8.0",
 		"yargs": "^17.5.1"
@@ -170,7 +168,6 @@
 		"usehooks-ts": "^2.9.1",
 		"uuid": "^8.3.2",
 		"webpack-dev-server": "^4.9.3",
-		"workbox-window": "^6.5.4",
 		"y-webrtc": "^10.2.3",
 		"y-websocket": "^1.4.3",
 		"yaml": "^2.2.2",
