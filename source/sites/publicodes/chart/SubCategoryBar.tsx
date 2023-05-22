@@ -36,6 +36,7 @@ export default ({
 				position: relative;
 			`}
 			title={title}
+			data-cypress-id={`sub-category-bar-${dottedName}`}
 			onClick={() =>
 				filterSimulationOnClick
 					? navigate(`${pathname}${getFocusedCategoryURLParams(dottedName)}`)
