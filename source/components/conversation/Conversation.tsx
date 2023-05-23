@@ -250,8 +250,6 @@ export default function Conversation({
 		}
 	}, [isAnsweredMosaic, questionsToSubmit, situation])
 
-	console.log('unfoldedStep:', unfoldedStep)
-
 	const currentQuestionIndex = previousAnswers.findIndex(
 		(a) => a === unfoldedStep
 	)
@@ -471,7 +469,8 @@ export default function Conversation({
 			<QuestionFinderWrapper {...{ finder, setFinder }} />
 			{orderByCategories && (
 				<Meta
-					title={rules[objectifs[0]].title + ' - ' + questionCategory?.title}
+					title={`${rules[objectifs[0]].title} - ${questionCategory?.title}`}
+					description={questionText}
 				/>
 			)}
 			<form
