@@ -36,7 +36,8 @@
 		"check:releases": "node scripts/fetch-releases.js",
 		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr --ref > source/components/IllustrationSVG.tsx",
 		"lint": "eslint . --ext .js,.ts,.tsx",
-		"lint:fix": "eslint . --ext .js,.ts,.tsx --fix"
+		"lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
+		"sitemap": "node ./scripts/generateSitemap.js "
 	},
 	"browserslist": [
 		"> 1% in FR"

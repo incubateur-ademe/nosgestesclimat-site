@@ -45,16 +45,37 @@ const newsURL = Object.values(data)
 	)
 	.join('\n')
 fs.appendFileSync(destinationURL, newsURL + '\n', 'utf8')
+
 console.log('Sitemap mis à jour avec les dernières nouveautés :)')
 
 fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 	.then((res) => res.json())
 	.then((json) => {
-		const documentationLines = Object.keys(json).map(
-			(dottedName) =>
-				`https://nosgestesclimat.fr/documentation/${encodeRuleName(dottedName)}`
+		const ruleNames = Object.keys(json)
+		const documentationURLs = ruleNames
+			.map(
+				(dottedName) =>
+					`https://nosgestesclimat.fr/documentation/${encodeRuleName(
+						dottedName
+					)}`
+			)
+			.join('\n')
+		const questionURLs = ruleNames
+			.filter((dottedName) => {
+				const rule = json[dottedName]
+				return (
+					rule != undefined && typeof rule === 'object' && 'question' in rule
+				)
+			})
+			.map(
+				(dottedName) =>
+					`http://localhost:8080/simulateur/bilan/${encodeRuleName(dottedName)}`
+			)
+			.join('\n')
+		fs.appendFileSync(
+			destinationURL,
+			documentationURLs + '\n' + questionURLs,
+			'utf8'
 		)
-		const text = documentationLines.join('\n')
-		fs.appendFileSync(destinationURL, text, 'utf8')
 		console.log('Sitemap mis à jour avec les dernières règles publicodes :)')
 	})
