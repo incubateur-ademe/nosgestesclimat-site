@@ -206,8 +206,8 @@ export const FullName = ({ dottedName }) => (
 	</span>
 )
 
-export const getTitle = (rule) =>
-	rule.title ||
+export const title = (rule: NGCRule & { dottedName: DottedName }) =>
+	rule.titre ??
 	capitalise0(splitName(rule.dottedName)[splitName(rule.dottedName).length - 1])
 
 // Publicodes's % unit is strangely handlded
@@ -240,12 +240,12 @@ function ruleSumNode(
 }
 
 export const extractCategoriesNamespaces = (
-	rules: { [key: string]: { icônes: any; couleur: any } },
+	rules: NGCRules,
 	engine: Engine,
 	parentRule = MODEL_ROOT_RULE_NAME
 ) => {
-	const rule = engine.getRule(parentRule)
-	const sumNodes = ruleSumNode(engine.getParsedRules(), rule)
+	const rule = engine.getRule(parentRule) as NGCRuleNode
+	const sumNodes = ruleSumNode(engine.getParsedRules() as NGCRulesNodes, rule)
 
 	if (sumNodes == undefined) {
 		// NOTE(@EmileRolley): needed to handle custom 'services sociétaux' rule that is not a sum

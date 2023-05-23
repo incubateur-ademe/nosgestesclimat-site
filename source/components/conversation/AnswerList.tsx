@@ -1,23 +1,25 @@
-import { AppState } from '@/reducers/rootReducer'
-import { getFocusedCategoryURLSearchParams } from '@/sites/publicodes/utils'
+import { goToQuestion } from '@/actions/actions'
 import {
 	encodeRuleNameToSearchParam,
 	extractCategoriesNamespaces,
+	safeGetRule,
 	sortCategories,
-} from 'Components/publicodesUtils'
-import { useEngine } from 'Components/utils/EngineContext'
-import { DottedName } from 'modele-social'
-import Engine, { EvaluatedNode, formatValue, RuleNode } from 'publicodes'
+	splitName,
+} from '@/components/publicodesUtils'
+import SafeCategoryImage from '@/components/SafeCategoryImage'
+import Checkbox from '@/components/ui/Checkbox'
+import { useEngine } from '@/components/utils/EngineContext'
+import { AppState } from '@/reducers/rootReducer'
+import {
+	answeredQuestionsSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
+import { EvaluatedNode, formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { situationSelector } from 'Selectors/simulationSelectors'
-import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { safeGetRule, splitName } from '../publicodesUtils'
-import SafeCategoryImage from '../SafeCategoryImage'
-import Checkbox from '../ui/Checkbox'
 import './AnswerList.css'
 import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
 
@@ -41,7 +43,7 @@ export default function AnswerList() {
 			) == null,
 	}))
 
-	const rules = useSelector((state) => state.rules)
+	const rules = useSelector((state: AppState) => state.rules)
 	const categories = sortCategories(extractCategoriesNamespaces(rules, engine))
 
 	useEffect(() => {
