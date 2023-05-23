@@ -39,10 +39,10 @@ export default ({
 
 	return (
 		<motion.div
-			initial={{ opacity: 0 }}
-			animate={{ opacity: 1 }}
-			exit={{ opacity: 0 }}
-			transition={{ delay: 0.4 }}
+			initial={{ opacity: 0, y: 100, scale: 0, display: 'none' }}
+			animate={{ opacity: 1, y: 0, scale: 1, display: 'block' }}
+			exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.8 } }}
+			transition={{ delay: 10, duration: 0.8 }}
 			css={`
 				width: auto;
 				background: #fff;
