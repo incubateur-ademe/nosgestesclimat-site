@@ -3,6 +3,7 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { setRatings } from '../../actions/actions'
 import { RootState } from '../../reducers/rootReducer'
+import { useTestCompleted } from '../../selectors/simulationSelectors'
 import Northstar from './Northstar'
 
 export default ({
@@ -11,6 +12,7 @@ export default ({
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
 }) => {
 	const dispatch = useDispatch()
+	const testCompleted = useSelector(useTestCompleted)
 	const hasRatedAction = useSelector((state: RootState) => state.ratings.action)
 	const hasRatedLearning = useSelector(
 		(state: RootState) => state.ratings.learned
@@ -32,7 +34,7 @@ export default ({
 		}, 1000)
 	}
 
-	if (!displayActionRating && !displayLearnedRating) return
+	if (!testCompleted || (!displayActionRating && !displayLearnedRating)) return
 
 	return (
 		<motion.div
