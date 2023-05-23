@@ -2,7 +2,7 @@ import { Action } from '@/actions/actions'
 import { omit } from '@/utils'
 
 import { Localisation, SupportedRegions } from '@/components/localisation/utils'
-import { DottedName } from '@/components/publicodesUtils'
+import { DottedName, NGCRules } from '@/components/publicodesUtils'
 import { objectifsSelector } from '@/selectors/simulationSelectors'
 import {
 	SavedSimulation,
@@ -434,7 +434,7 @@ function ratings(
 function currentSimulationId(
 	state: string | null = null,
 	action: Action
-): string | undefined {
+): string | null {
 	switch (action.type) {
 		case 'SET_CURRENT_SIMULATION':
 			return action.simulation.id
@@ -450,7 +450,7 @@ export type AppState = CombinedState<{
 	simulations: SavedSimulationList
 	currentSimulationId: string | null
 	situationBranch: any
-	rules: any
+	rules: NGCRules
 	actionChoices: any
 	conference: never
 	survey: never
@@ -465,7 +465,7 @@ export type AppState = CombinedState<{
 		progress50EventFired: boolean
 		progress90EventFired: boolean
 	}
-	localisation?: Localisation
+	localisation: Localisation | null
 	sessionLocalisationBannersRead: any
 	pullRequestNumber: any
 	engineState: EngineState

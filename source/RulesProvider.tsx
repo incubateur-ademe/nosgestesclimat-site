@@ -60,7 +60,9 @@ const EngineWrapper = ({ children }) => {
 
 			if (process.env.NODE_ENV === 'development') {
 				const rules = require('../nosgestesclimat/public' + fileName)
-				if (active) dispatch({ type: 'SET_RULES', rules })
+				if (active) {
+					dispatch({ type: 'SET_RULES', rules })
+				}
 			} else {
 				const url =
 					currLangAbrv && currentRegionCode && branchData.deployURL + fileName
@@ -68,7 +70,9 @@ const EngineWrapper = ({ children }) => {
 				fetch(url, { mode: 'cors' })
 					.then((response) => response.json())
 					.then((json) => {
-						if (active) dispatch({ type: 'SET_RULES', rules: json })
+						if (active) {
+							dispatch({ type: 'SET_RULES', rules: json })
+						}
 					})
 					.catch((err) => {
 						console.log('url:', url)
