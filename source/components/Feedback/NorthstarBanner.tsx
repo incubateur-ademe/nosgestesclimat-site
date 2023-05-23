@@ -12,14 +12,15 @@ export default ({
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
 }) => {
 	const dispatch = useDispatch()
-	const testCompleted = useSelector(useTestCompleted)
+	const testCompleted = useTestCompleted()
 	const hasRatedAction = useSelector((state: RootState) => state.ratings.action)
 	const hasRatedLearning = useSelector(
 		(state: RootState) => state.ratings.learned
 	)
-	const actionChoicesLength = Object.entries(
-		useSelector((state: RootState) => state.actionChoices)
-	).filter(([key, value]) => value).length
+	const actionChoices = useSelector((state: RootState) => state.actionChoices)
+	const actionChoicesLength = Object.entries(actionChoices).filter(
+		([key, value]) => value
+	).length
 
 	const displayActionRating =
 		type === 'SET_RATING_ACTION' &&
