@@ -132,7 +132,6 @@
 		"mini-css-extract-plugin": "^2.6.1",
 		"node-fetch": "^3.2.10",
 		"path-browserify": "^1.0.1",
-		"posthog-js": "^1.53.4",
 		"process": "^0.11.10",
 		"publicodes": "1.0.0-beta.67",
 		"publicodes-react": "^1.0.0-beta.66",
