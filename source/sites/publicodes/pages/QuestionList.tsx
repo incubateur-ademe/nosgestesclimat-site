@@ -91,7 +91,6 @@ export default () => {
 
 const getQuestionType = (rules: NGCRulesNodes, rule: NGCRuleNode) => {
 	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.dottedName)
-	console.log(ruleMosaicInfos)
 	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
 
 	const type = rule.mosaique
