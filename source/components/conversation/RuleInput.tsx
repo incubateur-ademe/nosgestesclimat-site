@@ -6,8 +6,8 @@ import {
 	DottedName,
 	MosaiqueNode,
 	NGCRuleNode,
+	NGCRulesNodes,
 	parentName,
-	RulesNodes,
 	SuggestionsNode,
 } from '@/components/publicodesUtils'
 import ToggleSwitch from '@/components/ui/ToggleSwitch'
@@ -81,7 +81,7 @@ export type MosaicInfos = {
  * We take into account if the evaluated rule is already a mosaic.
  */
 export function getRelatedMosaicInfosIfExists(
-	rules: RulesNodes,
+	rules: NGCRulesNodes,
 	dottedName: DottedName
 ): MosaicInfos | undefined {
 	if (!dottedName) {

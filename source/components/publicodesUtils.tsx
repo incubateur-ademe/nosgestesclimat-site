@@ -29,12 +29,16 @@ export type MosaiqueNode = {
 	suggestions?: SuggestionsNode
 }
 
+/**
+ * NOTE(@EmileRolley): prefixing with NGC to avoid conflicts with publicodes,
+ * and to make it clear that this is a specific type for the NGC model.
+ */
 export type NGCRuleNode = RuleNode & {
 	dottedName: DottedName
 	mosaique?: MosaiqueNode
 }
 
-export type RulesNodes = Record<string, NGCRuleNode>
+export type NGCRulesNodes = Record<string, NGCRuleNode>
 
 export const MODEL_ROOT_RULE_NAME = 'bilan'
 
@@ -43,7 +47,7 @@ export function isRootRule(dottedName: DottedName): boolean {
 }
 
 export function isMosaicChild(
-	rules: RulesNodes,
+	rules: NGCRulesNodes,
 	dottedName: DottedName
 ): boolean {
 	const { mosaicRule, mosaicDottedNames } =
@@ -99,7 +103,10 @@ export function correctValue(evaluated: EvaluatedNode): number | undefined {
 	return result
 }
 
-function ruleSumNode(rules: any, rule: RuleNode): string[] | undefined {
+function ruleSumNode(
+	rules: NGCRulesNodes,
+	rule: NGCRuleNode
+): string[] | undefined {
 	const formula = rule.rawNode.formule
 
 	if (!formula || !formula['somme']) {
@@ -112,12 +119,12 @@ function ruleSumNode(rules: any, rule: RuleNode): string[] | undefined {
 }
 
 export const extractCategoriesNamespaces = (
-	rules: { [x: string]: { icônes: any; couleur: any } },
+	rules: { [key: string]: { icônes: any; couleur: any } },
 	engine: Engine,
 	parentRule = MODEL_ROOT_RULE_NAME
 ) => {
-	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
+	const rule = engine.getRule(parentRule)
+	const sumNodes = ruleSumNode(engine.getParsedRules(), rule)
 
 	if (sumNodes == undefined) {
 		// NOTE(@EmileRolley): needed to handle custom 'services sociétaux' rule that is not a sum

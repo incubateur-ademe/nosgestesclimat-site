@@ -8,7 +8,7 @@ import {
 	isMosaicChild,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
-	RulesNodes,
+	NGCRulesNodes,
 } from '@/components/publicodesUtils'
 import { buildEndURL } from '@/components/SessionBar'
 import Simulation from '@/components/Simulation'
@@ -207,7 +207,7 @@ type SelectedRuleInfos = {
 function getValidSelectedRuleInfos(
 	selectedRuleName: DottedName,
 	categoryName: string,
-	rules: RulesNodes
+	rules: NGCRulesNodes
 ): SelectedRuleInfos {
 	const navigate = useNavigate()
 	const isValidRule = (ruleName: DottedName) => {
