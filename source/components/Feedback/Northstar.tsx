@@ -25,6 +25,9 @@ export default ({
 
 	const submitFeedback = (rating: number) => {
 		setSelectedRating(true)
+		// TODO ici on devrait inverser la logique : informer l'utilisateur de la prise en compte après que le serveur a répondu Oui
+		// ou à défaut gérer avec une logique optimiste mais un message d'erreur à posteriori en cas de problème
+
 		setTimeout(() => {
 			dispatch(setRatings(type, rating))
 			let newRatings
@@ -104,7 +107,10 @@ export default ({
 
 const postData = async (data, id, ratings) => {
 	const selectedData = {
-		results: { categories: data.results.categories, total: data.results.total },
+		results: data?.results && {
+			categories: data.results.categories,
+			total: data.results.total,
+		},
 		ratings,
 	}
 
