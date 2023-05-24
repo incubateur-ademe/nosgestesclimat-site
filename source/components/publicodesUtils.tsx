@@ -7,6 +7,7 @@ import Engine, {
 import { capitalise0, sortBy } from '../utils'
 
 //---- Extends publicodes types to handle Nos Gestes Climat (NGC) model rules.
+
 export type Color = `#${string}`
 
 export type SuggestionsNode = Record<
@@ -79,7 +80,7 @@ export type Category = EvaluatedNode & {
 	dottedName: DottedName
 	title: string
 	name: string
-	rawNode: RuleNode
+	rawNode: NGCRuleNode
 	documentationDottedName: DottedName
 	icons?: string[]
 	color?: Color
@@ -294,8 +295,11 @@ export function extractCategories(
 	parentRule = MODEL_ROOT_RULE_NAME,
 	sort = true
 ): Category[] {
-	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
+	const rule = engine.getRule(parentRule)
+	const sumNodes = ruleSumNode(
+		engine.getParsedRules() as NGCRulesNodes,
+		rule as NGCRuleNode
+	)
 
 	if (sumNodes === undefined) {
 		return []
@@ -327,15 +331,17 @@ export function extractCategories(
 }
 
 export function getSubcategories(
-	rules: any,
+	rules: NGCRules,
 	category: Category,
 	engine: Engine,
-	sort: boolean
+	sort: boolean = false
 ): Category[] {
 	const sumToDisplay =
 		category.name === 'logement' ? 'logement . impact' : category.name
 
-	if (!sumToDisplay) return [category]
+	if (!sumToDisplay) {
+		return [category]
+	}
 
 	const subCategories = extractCategories(
 		rules,
@@ -362,7 +368,7 @@ export function getSubcategories(
 
 export const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
 
-export const safeGetRule = (engine, dottedName) => {
+export const safeGetRule = (engine: Engine, dottedName: DottedName) => {
 	try {
 		const rule = engine.evaluate(engine.getRule(dottedName))
 		return rule
@@ -371,22 +377,30 @@ export const safeGetRule = (engine, dottedName) => {
 	}
 }
 
-export const questionCategoryName = (dottedName) => splitName(dottedName)?.[0]
+export const questionCategoryName = (dottedName: DottedName) =>
+	splitName(dottedName)?.[0]
 
-export function relegate(keys, array) {
-	const categories = keys.reduce((memo, key) => {
-		const isKey = (a) => a.dottedName === key
+function relegate(keys: string[], categories: Category[]) {
+	return keys.reduce((memo: Category[], key: string) => {
+		const isKey = (c: Category) => c.dottedName === key
 		const arrayWithoutKey = memo.filter((a) => !isKey(a))
-		if (arrayWithoutKey.length === array.length)
+
+		if (arrayWithoutKey.length === categories.length) {
 			throw Error('Make sure the key you want to relegate is in array')
-		return [...arrayWithoutKey, memo.find(isKey)]
-	}, array)
-	return categories
+		}
+
+		let elementToRelegate = memo.find(isKey)
+		if (elementToRelegate !== undefined) {
+			arrayWithoutKey.push(categories.find(isKey)!)
+		}
+
+		return arrayWithoutKey
+	}, categories)
 }
 
-export function relegateCommonCategories(array) {
+export function relegateCommonCategories(categories: Category[]) {
 	const keys = ['services sociétaux']
-	return relegate(keys, array)
+	return relegate(keys, categories)
 }
 
 /** Like publicodes's encodeRuleName function but use '.' instead of '/' */
