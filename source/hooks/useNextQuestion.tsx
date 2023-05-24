@@ -118,7 +118,11 @@ export function getNextQuestions(
 			notPriority.findIndex((name) => question.startsWith(name)) + 1
 		const indexPriority =
 			priority.findIndex((name) => question.startsWith(name)) === -1 ? 0 : -1
-		const differenceCoeff = questionDifference(question, lastStepWithAnswer)
+
+		const differenceCoeff = questionDifference(
+			question,
+			lastStepWithAnswer || '' // fix an error when lastStepWithAnswer is null
+		)
 		return indexList + indexNotPriority + indexPriority + differenceCoeff
 	}, nextQuestions)
 }

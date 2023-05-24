@@ -105,6 +105,7 @@ const BannerWithEngine = () => {
 				width: 100vw;
 				height: 2rem;
 				text-align: center;
+				z-index: 1;
 			`}
 		>
 			<div

@@ -6,6 +6,7 @@ import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import { matomoEventSwipeEndPage } from '../../../analytics/matomo-events'
+import NorthstarBanner from '../../../components/Feedback/NorthstarBanner'
 import SlidesLayout from '../../../components/SlidesLayout'
 import { MatomoContext } from '../../../contexts/MatomoContext'
 import { useNextQuestions } from '../../../hooks/useNextQuestion'
@@ -113,6 +114,7 @@ export default ({}) => {
 					</button>
 				)}
 			</Link>
+			<NorthstarBanner type="SET_RATING_LEARNED" />
 			<animate.appear>
 				<SlidesLayout
 					length={componentKeys.length}

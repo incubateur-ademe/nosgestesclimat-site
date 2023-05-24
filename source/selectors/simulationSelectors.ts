@@ -66,6 +66,8 @@ export const useTestCompleted = () => {
 export const useSimulationData = () => {
 	const situation = useSelector(situationSelector)
 
+	const ratings = useSelector((state: RootState) => state.ratings)
+
 	const actionChoices = useSelector((state) => state.actionChoices)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const rules = useSelector((state) => state.rules),
@@ -117,6 +119,7 @@ export const useSimulationData = () => {
 			// Beware, it doesn't mean the user saw all of these actions.
 			actionResults,
 		},
+		ratings,
 	}
 	return data
 }
