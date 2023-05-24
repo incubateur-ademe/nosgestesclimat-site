@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
@@ -7,6 +7,10 @@ import { RootState } from '../../reducers/rootReducer'
 import { useSimulationData } from '../../selectors/simulationSelectors'
 import { simulationURL } from '../../sites/publicodes/conference/useDatabase'
 
+const ratingKeys = {
+	SET_RATING_ACTION: 'action',
+	SET_RATING_LEARNED: 'learned',
+}
 export default ({
 	type,
 }: {
@@ -30,14 +34,17 @@ export default ({
 
 		setTimeout(() => {
 			dispatch(setRatings(type, rating))
-			let newRatings
-			if (type === 'SET_RATING_LEARNED')
-				newRatings = { ...ratings, learned: rating }
-			else newRatings = { ...ratings, action: rating }
-
+			const newRatings = { ...ratings, [ratingKeys[type]]: rating }
 			postData(data, simulationId, newRatings)
 		}, 1000)
 	}
+	useEffect(() => {
+		if (ratings[ratingKeys[type]] != null) return
+		postData(null, simulationId, {
+			...ratings,
+			[ratingKeys[type]]: null,
+		})
+	}, [ratings, type, simulationId])
 
 	if (selectedRating) {
 		return (

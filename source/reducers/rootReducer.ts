@@ -386,7 +386,10 @@ function simulations(
 }
 
 // for northstar ratings
-function ratings(state = { learned: null, action: null }, { type, value }) {
+function ratings(
+	state = { learned: undefined, action: undefined },
+	{ type, value }
+) {
 	switch (type) {
 		case 'SET_RATING_LEARNED':
 			return { ...state, learned: value }
