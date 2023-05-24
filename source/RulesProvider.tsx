@@ -1,29 +1,26 @@
+import LocalisationProvider from '@/components/localisation/LocalisationProvider'
+import useLocalisation from '@/components/localisation/useLocalisation'
+import { useCurrentRegionCode } from '@/components/localisation/utils'
+import useBranchData from '@/components/useBranchData'
 import {
 	EngineProvider,
 	SituationProvider,
-} from 'Components/utils/EngineContext'
-import {
-	configSituationSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
-import LocalisationProvider from './components/localisation/LocalisationProvider'
-
-import useBranchData from 'Components/useBranchData'
-import Engine from 'publicodes'
-import { useEffect, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-
+} from '@/components/utils/EngineContext'
+import { getCurrentLangAbrv } from '@/locales/translation'
 import {
 	AppState,
 	defaultRulesOptions,
 	RulesOptions,
-} from './reducers/rootReducer'
-
+} from '@/reducers/rootReducer'
+import {
+	configSituationSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
+import Engine from 'publicodes'
+import { useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import AnimatedLoader from './AnimatedLoader'
-import useLocalisation from './components/localisation/useLocalisation'
-import { useCurrentRegionCode } from './components/localisation/utils'
-import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
 	return <EngineWrapper>{children}</EngineWrapper>
