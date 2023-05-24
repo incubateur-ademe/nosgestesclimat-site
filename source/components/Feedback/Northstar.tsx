@@ -52,8 +52,8 @@ export default ({
 		if (!animationComplete) return
 		if (ratings[ratingKeys[type]] != null) return
 		const newRatings = setRating(ratings, type, null, text)
-		postData(null, simulationId, newRatings)
-	}, [ratings, type, simulationId, animationComplete, text])
+		postData(data, simulationId, newRatings)
+	}, [ratings, type, simulationId, animationComplete, text, data])
 
 	if (selectedRating) {
 		return (
