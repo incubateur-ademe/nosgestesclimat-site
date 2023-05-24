@@ -6,6 +6,7 @@ import { RuleListItem } from '../../../components/SearchBar'
 import Meta from '../../../components/utils/Meta'
 import { capitalise0, omit } from '../../../utils'
 import References from '../DocumentationReferences'
+import { generateImageLink } from '../fin'
 import DocumentationStyle from './DocumentationStyle'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
@@ -97,8 +98,12 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 			`}
 		>
 			<DocumentationStyle>
-				<Meta description={rule.description} title={title} />
-				<header>
+				<Meta
+					description={rule.description}
+					title={title}
+					image={generateImageLink(window.location)}
+				/>
+				<header id="shareImage">
 					<Breadcrumb dottedName={dottedName} rules={rules} />
 					<h1>
 						{rule.icônes} {title}

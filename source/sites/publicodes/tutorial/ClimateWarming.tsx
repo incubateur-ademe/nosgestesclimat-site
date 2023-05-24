@@ -2,7 +2,7 @@ import GreenhouseEffect from 'Images/greenhouse-effect.svg'
 import { Trans } from 'react-i18next'
 
 export default () => (
-	<>
+	<div id="shareImage">
 		<h1>
 			<Trans>Mon empreinte climat 😶‍🌫️</Trans> ?
 		</h1>
@@ -20,5 +20,5 @@ export default () => (
 				<strong>une mesure de votre part </strong> dans ce réchauffement.
 			</p>
 		</Trans>
-	</>
+	</div>
 )
