@@ -9,7 +9,10 @@ import {
 } from '../components/localisation/utils'
 import { DottedName } from '../rules/index'
 import { objectifsSelector } from '../selectors/simulationSelectors'
-import { SavedSimulationList } from '../selectors/storageSelectors'
+import {
+	SavedSimulation,
+	SavedSimulationList,
+} from '../selectors/storageSelectors'
 import { generateSimulationId } from '../storage/persistSimulation'
 import storageRootReducer from './storageReducer'
 
@@ -396,9 +399,12 @@ function simulations(
 	}
 }
 
-// for northstar ratings
+// for northstar ratings Pick<Person, "address.postalCode">
 function ratings(
-	state = { learned: undefined, action: undefined },
+	state: SavedSimulation['ratings'] = {
+		learned: 'no_answer',
+		action: 'no_answer',
+	},
 	{ type, value }
 ) {
 	switch (type) {
@@ -452,6 +458,7 @@ export type AppState = CombinedState<{
 	engineState: never
 	currentLang: any
 	supportedRegions: SupportedRegions
+	ratings: SavedSimulation['ratings']
 }>
 
 const mainReducer = (state: any, action: Action) =>

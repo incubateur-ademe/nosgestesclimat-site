@@ -27,14 +27,14 @@ export default ({
 
 	const displayActionRating =
 		type === 'SET_RATING_ACTION' &&
-		hasRatedAction == null &&
+		hasRatedAction == 'no_answer' &&
 		actionChoicesLength > 2
 	const displayLearnedRating =
-		type === 'SET_RATING_LEARNED' && hasRatedLearning == null
+		type === 'SET_RATING_LEARNED' && hasRatedLearning == 'no_answer'
 
 	const closeFeedback = () => {
 		setTimeout(() => {
-			dispatch(setRatings(type, 0))
+			dispatch(setRatings(type, 'refuse'))
 		}, 1000)
 	}
 

@@ -1,3 +1,4 @@
+import { Rating } from '@/selectors/storageSelectors'
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
@@ -251,7 +252,7 @@ export const setLocalisation = (localisationData: Localisation) =>
 		...localisationData,
 	} as const)
 
-export const setRatings = (type: string, value: number) =>
+export const setRatings = (type: string, value: Rating) =>
 	({
 		type,
 		value,

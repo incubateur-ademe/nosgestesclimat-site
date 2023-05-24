@@ -36,7 +36,7 @@ export default ({
 		(state: RootState) => state.currentSimulationId
 	)
 
-	const submitFeedback = (rating: number) => {
+	const submitFeedback = (rating: 0 | 1 | 2 | 3) => {
 		setSelectedRating(true)
 		// TODO ici on devrait inverser la logique : informer l'utilisateur de la prise en compte après que le serveur a répondu Oui
 		// ou à défaut gérer avec une logique optimiste mais un message d'erreur à posteriori en cas de problème
@@ -51,9 +51,17 @@ export default ({
 		console.log('ratings', ratings)
 		if (!animationComplete) return
 		if (ratings[ratingKeys[type]] != null) return
-		const newRatings = setRating(ratings, type, null, text)
-		postData(null, simulationId, newRatings)
-	}, [ratings, type, simulationId, animationComplete, text])
+		const newRatings = setRating(ratings, type, 'display', text)
+		if (
+			[0, 1, 2, 3].includes(ratings.learned) ||
+			[0, 1, 2, 3].includes(ratings.action)
+		) {
+			// cas ou l'utilisateur a déjà envoyé une note, pour ne pas écraser les résultats en base
+			postData(data, simulationId, newRatings)
+		} else {
+			postData(null, simulationId, newRatings)
+		}
+	}, [ratings, type, simulationId, animationComplete, text, data])
 
 	if (selectedRating) {
 		return (
@@ -79,7 +87,7 @@ export default ({
 		>
 			<div role="listitem">
 				<EmojiButton
-					onClick={() => submitFeedback(1)}
+					onClick={() => submitFeedback(0)}
 					aria-label={t('Pas vraiment, envoyer cette réponse')}
 					title={t('Pas vraiment, envoyer cette réponse')}
 					aria-hidden={false}
@@ -89,7 +97,7 @@ export default ({
 			</div>
 			<div role="listitem">
 				<EmojiButton
-					onClick={() => submitFeedback(2)}
+					onClick={() => submitFeedback(1)}
 					aria-label={t('Moyennement, envoyer cette réponse')}
 					title={t('Moyennement, envoyer cette réponse')}
 					aria-hidden={false}
@@ -99,7 +107,7 @@ export default ({
 			</div>
 			<div role="listitem">
 				<EmojiButton
-					onClick={() => submitFeedback(3)}
+					onClick={() => submitFeedback(2)}
 					aria-label={t('Oui plutôt, envoyer cette réponse')}
 					title={t('Oui plutôt, envoyer cette réponse')}
 					aria-hidden={false}
@@ -109,7 +117,7 @@ export default ({
 			</div>
 			<div role="listitem">
 				<EmojiButton
-					onClick={() => submitFeedback(4)}
+					onClick={() => submitFeedback(3)}
 					aria-label={t('Tout à fait, envoyer cette réponse')}
 					title={t('Tout à fait, envoyer cette réponse')}
 					aria-hidden={false}
