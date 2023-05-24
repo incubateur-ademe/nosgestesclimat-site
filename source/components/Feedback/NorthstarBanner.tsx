@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { setRatings } from '../../actions/actions'
 import { RootState } from '../../reducers/rootReducer'
@@ -12,6 +12,7 @@ export default ({
 }: {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
 }) => {
+	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const testCompleted = useTestCompleted()
 	const hasRatedAction = useSelector((state: RootState) => state.ratings.action)
@@ -101,6 +102,7 @@ export default ({
 							<Northstar
 								type="SET_RATING_ACTION"
 								animationComplete={animationComplete}
+								text={t('publicodes.northstar.action')}
 							/>
 						</div>
 					)}
@@ -116,6 +118,7 @@ export default ({
 							<Northstar
 								type="SET_RATING_LEARNED"
 								animationComplete={animationComplete}
+								text={t('publicodes.northstar.learned')}
 							/>
 						</div>
 					)}

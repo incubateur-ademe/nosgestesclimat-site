@@ -11,12 +11,19 @@ const ratingKeys = {
 	SET_RATING_ACTION: 'action',
 	SET_RATING_LEARNED: 'learned',
 }
+
+const setRating = (ratings, reduxKey, value, text) => {
+	const key = ratingKeys[reduxKey]
+	return { ...ratings, [key]: value, [key + '_text']: text }
+}
 export default ({
 	type,
 	animationComplete,
+	text,
 }: {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
 	animationComplete: boolean
+	text: string
 }) => {
 	const { t, i18n } = useTranslation()
 	const [selectedRating, setSelectedRating] = useState(false)
@@ -36,7 +43,7 @@ export default ({
 
 		setTimeout(() => {
 			dispatch(setRatings(type, rating))
-			const newRatings = { ...ratings, [ratingKeys[type]]: rating }
+			const newRatings = setRating(ratings, type, rating, text)
 			postData(data, simulationId, newRatings)
 		}, 1000)
 	}
@@ -44,11 +51,9 @@ export default ({
 		console.log('ratings', ratings)
 		if (!animationComplete) return
 		if (ratings[ratingKeys[type]] != null) return
-		postData(null, simulationId, {
-			...ratings,
-			[ratingKeys[type]]: null,
-		})
-	}, [ratings, type, simulationId, animationComplete])
+		const newRatings = setRating(ratings, type, null, text)
+		postData(null, simulationId, newRatings)
+	}, [ratings, type, simulationId, animationComplete, text])
 
 	if (selectedRating) {
 		return (
