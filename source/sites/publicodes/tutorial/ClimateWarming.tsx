@@ -13,7 +13,7 @@ export default () => (
 				mesure des gaz à effet de serre que l'on émet.
 			</p>
 		</Trans>
-		<GreenhouseEffect css="width: 60%; max-height: 20rem" />
+		<GreenhouseEffect css="width: 60%; max-height: 20rem; margin: 0 auto 1rem; display: block;" />
 		<Trans i18nKey={'publicodes.Tutorial.slide1.p2'}>
 			<p>
 				Ce test vous donne en ⏱️ 10 minutes chrono{' '}
