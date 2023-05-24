@@ -1,6 +1,12 @@
 import { formatValue } from 'publicodes'
 import { useLocation } from 'react-router'
 
+export function assert(condition: any, message?: string): asserts condition {
+	if (!condition) {
+		throw new Error(message ?? 'Assertion failed')
+	}
+}
+
 export function capitalise0(name: undefined): undefined
 export function capitalise0(name: string): string
 export function capitalise0(name?: string) {

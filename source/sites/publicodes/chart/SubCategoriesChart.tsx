@@ -1,5 +1,6 @@
+import { Category, DottedName } from '@/components/publicodesUtils'
 import { AnimatePresence, motion } from 'framer-motion'
-import { useState } from 'react'
+import { Dispatch, SetStateAction, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import { groupTooSmallCategories } from './chartUtils'
@@ -7,6 +8,16 @@ import SubCategoryBar from './SubCategoryBar'
 
 const shadowStyle =
 	'box-shadow: 0px 2px 4px -1px var(--lighterColor), 0px 4px 5px 0px var(--lighterColor), 0px 1px 10px 0px var(--lighterColor)'
+
+export type SubCategoriesChartProps = {
+	color?: string
+	categories: Category[]
+	delay?: number
+	indicator?: string
+	questionCategory?: Category
+	filterSimulationOnClick?: boolean
+	onRestClick?: () => void
+}
 
 export default ({
 	color: uniqueColor,
@@ -16,10 +27,13 @@ export default ({
 	questionCategory,
 	filterSimulationOnClick,
 	onRestClick,
-}) => {
-	const [clicked, setClick] = useState(false)
-	const click = (dottedName) =>
-		clicked ? setClick(null) : setClick(dottedName)
+}: SubCategoriesChartProps) => {
+	const [clicked, setClick] = useState(undefined) as [
+		DottedName | undefined,
+		Dispatch<SetStateAction<DottedName | undefined>>
+	]
+	const click = (dottedName: DottedName) =>
+		clicked !== undefined ? setClick(undefined) : setClick(dottedName)
 
 	const { rest, restWidth, bigEnough, total } =
 		groupTooSmallCategories(categories)

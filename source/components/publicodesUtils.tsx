@@ -76,7 +76,7 @@ export type NGCRulesNodes = Record<DottedName, NGCRuleNode>
  */
 export type NGCRules = Record<DottedName, NGCRule>
 
-export type Category = EvaluatedNode & {
+export type Category = EvaluatedNode<number> & {
 	dottedName: DottedName
 	title: string
 	name: string
