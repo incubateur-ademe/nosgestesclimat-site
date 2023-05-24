@@ -12,7 +12,6 @@ const estimationQuestions: Array<{
 		evaluation,
 		onSubmit,
 		setFinalValue,
-		value,
 	}: {
 		dottedName: DottedName
 		commonProps: InputHTMLAttributes<HTMLInputElement> & {
@@ -21,7 +20,6 @@ const estimationQuestions: Array<{
 		evaluation: Evaluation
 		onSubmit: () => void
 		setFinalValue: () => void
-		value: string
 	}) => JSX.Element
 	dottedName: DottedName
 }> = [

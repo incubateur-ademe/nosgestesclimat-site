@@ -1,7 +1,10 @@
 import { goToQuestion } from '@/actions/actions'
 import {
 	encodeRuleNameToSearchParam,
+	Category,
 	extractCategoriesNamespaces,
+	NGCEvaluatedRuleNode,
+	NGCRuleNode,
 	safeGetRule,
 	sortCategories,
 	splitName,
@@ -14,7 +17,7 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { EvaluatedNode, formatValue } from 'publicodes'
+import Engine, { formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -22,6 +25,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import './AnswerList.css'
 import AnswerTrajetsTable from './estimate/AnswerTrajetsTable'
+
+type FoldedStep = NGCEvaluatedRuleNode & {
+	passedQuestion: boolean
+}
 
 export default function AnswerList() {
 	const engine = useEngine()
@@ -34,12 +41,12 @@ export default function AnswerList() {
 
 			return rule && engine.evaluate(rule)
 		})
-		.filter(Boolean)
-	const foldedStepsToDisplay = foldedQuestions.map((node) => ({
+		.filter((node) => node != undefined) as NGCEvaluatedRuleNode[]
+	const foldedStepsToDisplay: FoldedStep[] = foldedQuestions.map((node) => ({
 		...node,
 		passedQuestion:
 			answeredQuestionNames.find(
-				(dottedName) => node.dottedName === dottedName
+				(dottedName) => (node as NGCRuleNode).dottedName === dottedName
 			) == null,
 	}))
 
@@ -114,8 +121,18 @@ export default function AnswerList() {
 	)
 }
 
-const CategoryTable = ({ steps, categories, engine, everythingUnfolded }) =>
-	categories.map((category) => {
+const CategoryTable = ({
+	steps,
+	categories,
+	engine,
+	everythingUnfolded,
+}: {
+	steps: FoldedStep[]
+	categories: Category[]
+	engine: Engine
+	everythingUnfolded: boolean
+}) =>
+	categories.map((category: Category) => {
 		const categoryRules = steps.filter((question) =>
 			question.dottedName.includes(category.dottedName)
 		)
@@ -136,7 +153,17 @@ const CategoryTable = ({ steps, categories, engine, everythingUnfolded }) =>
 		)
 	})
 
-const RecursiveStepsTable = ({ rules, engine, level, everythingUnfolded }) => {
+const RecursiveStepsTable = ({
+	rules,
+	engine,
+	level,
+	everythingUnfolded,
+}: {
+	rules: FoldedStep[]
+	engine: Engine
+	level: number
+	everythingUnfolded: boolean
+}) => {
 	const byParent = rules.reduce((memo, next) => {
 		const split = splitName(next.dottedName),
 			parent = split.slice(0, level + 1).join(' . ')
@@ -255,7 +282,9 @@ function StepsTable({
 	level,
 	engine,
 }: {
-	rules: Array<EvaluatedNode & { nodeKind: 'rule'; dottedName: DottedName }>
+	rules: FoldedStep[]
+	level: number
+	engine: Engine
 }) {
 	const dispatch = useDispatch()
 

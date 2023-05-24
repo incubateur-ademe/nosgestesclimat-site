@@ -23,6 +23,7 @@ import {
 	getRelatedMosaicInfosIfExists,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
+	NGCRulesNodes,
 	questionCategoryName,
 	splitName,
 } from '@/components/publicodesUtils'
@@ -80,7 +81,7 @@ export default function Conversation({
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
-	const rules = engine.getParsedRules()
+	const rules = engine.getParsedRules() as NGCRulesNodes
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
@@ -278,7 +279,7 @@ export default function Conversation({
 		questionsToSubmit
 	)
 
-	const isValidInput = (questionsToSubmit) => {
+	const isValidInput = (questionsToSubmit: string[]) => {
 		// we want this validation function to work for mosaic questions
 		// (we check that all the questions anwsers of a mosaic are valid)
 		// we also want it work for questions with multiple notifications
@@ -327,7 +328,7 @@ export default function Conversation({
 	useKeypress(
 		'k',
 		true,
-		(e) => {
+		(e: KeyboardEvent) => {
 			e.preventDefault()
 			setFinder((finder) => !finder)
 		},
@@ -441,7 +442,7 @@ export default function Conversation({
 			>
 				<SafeCategoryImage
 					element={{ dottedName: focusedCategory }}
-					whiteBackground="false"
+					whiteBackground={false}
 				/>
 			</motion.div>
 			<p>
@@ -504,7 +505,7 @@ export default function Conversation({
 						`}
 					>
 						<span
-							tabIndex="0"
+							tabIndex={0}
 							id={'id-question-' + currentQuestionId}
 							data-cypress-id={
 								mosaicRule ? 'mosaic-question' : 'simple-question'
@@ -534,7 +535,9 @@ export default function Conversation({
 						previousAnswers.length > 0 &&
 						// We check that the question is not the first question
 						currentQuestionIndex !== 0 &&
-						// We check that previousQuestion found is in the rules (as the model evolves, the question found can be out of the new rules)
+						// We check that previousQuestion found is in the rules
+						// (as the model evolves, the question found can be out of the new rules)
+						previousQuestion != undefined &&
 						rules[previousQuestion] && (
 							<>
 								<button

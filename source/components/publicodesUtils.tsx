@@ -1,10 +1,23 @@
 import Engine, {
 	EvaluatedNode,
+	Evaluation,
 	Rule,
 	RuleNode,
+	Unit,
 	utils as coreUtils,
 } from 'publicodes'
 import { capitalise0, sortBy } from '../utils'
+
+//--- Publicodes types
+
+export type MissingVariables = Record<string, number>
+
+export type EvaluationDecoration = {
+	nodeValue: Evaluation<number>
+	unit?: Unit
+	traversedVariables?: Array<string>
+	missingVariables: MissingVariables
+}
 
 //---- Extends publicodes types to handle Nos Gestes Climat (NGC) model rules.
 
@@ -75,6 +88,8 @@ export type NGCRulesNodes = Record<DottedName, NGCRuleNode>
  * The implicit assumption here, is that the YAML model is isomorphic with the NGCRules type.
  */
 export type NGCRules = Record<DottedName, NGCRule>
+
+export type NGCEvaluatedRuleNode = NGCRuleNode & EvaluationDecoration
 
 export type Category = EvaluatedNode<number> & {
 	dottedName: DottedName

@@ -194,7 +194,7 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 export const skipTutorial = (
 	id: string,
 	unskip: boolean = false,
-	fromRule: TutorialStateStatus
+	fromRule?: TutorialStateStatus
 ) => ({
 	type: 'SKIP_TUTORIAL',
 	id,
