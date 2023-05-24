@@ -13,8 +13,10 @@ const ratingKeys = {
 }
 export default ({
 	type,
+	animationComplete,
 }: {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
+	animationComplete: boolean
 }) => {
 	const { t, i18n } = useTranslation()
 	const [selectedRating, setSelectedRating] = useState(false)
@@ -39,12 +41,14 @@ export default ({
 		}, 1000)
 	}
 	useEffect(() => {
+		console.log('ratings', ratings)
+		if (!animationComplete) return
 		if (ratings[ratingKeys[type]] != null) return
 		postData(null, simulationId, {
 			...ratings,
 			[ratingKeys[type]]: null,
 		})
-	}, [ratings, type, simulationId])
+	}, [ratings, type, simulationId, animationComplete])
 
 	if (selectedRating) {
 		return (
@@ -113,6 +117,7 @@ export default ({
 }
 
 const postData = async (data, id, ratings) => {
+	console.log('post data called', data, id, ratings)
 	const selectedData = {
 		results: data?.results && {
 			categories: data.results.categories,

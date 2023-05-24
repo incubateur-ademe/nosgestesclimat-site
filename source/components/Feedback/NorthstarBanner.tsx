@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { setRatings } from '../../actions/actions'
@@ -18,6 +19,7 @@ export default ({
 		(state: RootState) => state.ratings.learned
 	)
 	const actionChoices = useSelector((state: RootState) => state.actionChoices)
+
 	const actionChoicesLength = Object.entries(actionChoices).filter(
 		([key, value]) => value
 	).length
@@ -35,6 +37,8 @@ export default ({
 		}, 1000)
 	}
 
+	const [animationComplete, setAnimationComplete] = useState(false)
+
 	if (!testCompleted || (!displayActionRating && !displayLearnedRating)) return
 
 	return (
@@ -43,6 +47,9 @@ export default ({
 			animate={{ opacity: 1, y: 0, scale: 1, display: 'block' }}
 			exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.8 } }}
 			transition={{ delay: 10, duration: 0.8 }}
+			onAnimationComplete={() => {
+				setAnimationComplete(true)
+			}}
 			css={`
 				width: auto;
 				background: #fff;
@@ -91,7 +98,10 @@ export default ({
 								Nos Gestes Climat vous donne envie d'agir pour réduire votre
 								empreinte carbone ?
 							</Trans>
-							<Northstar type="SET_RATING_ACTION"></Northstar>
+							<Northstar
+								type="SET_RATING_ACTION"
+								animationComplete={animationComplete}
+							/>
 						</div>
 					)}
 					{displayLearnedRating && (
@@ -103,7 +113,10 @@ export default ({
 							<Trans i18nKey={`publicodes.northstar.learned`}>
 								Nos Gestes Climat vous a appris quelque chose ?
 							</Trans>
-							<Northstar type="SET_RATING_LEARNED"></Northstar>
+							<Northstar
+								type="SET_RATING_LEARNED"
+								animationComplete={animationComplete}
+							/>
 						</div>
 					)}
 				</div>
