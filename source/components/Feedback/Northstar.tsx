@@ -103,16 +103,12 @@ export default ({
 }
 
 const postData = async (data, id, ratings) => {
-	data.situation = {}
-	data.extraSituation = {
-		storedTrajets: {},
-		actionChoices: {},
-		storedAmortissementAvion: {},
+	const selectedData = {
+		results: { categories: data.results.categories, total: data.results.total },
+		ratings,
 	}
-	data.answeredQuestions = {}
-	data.ratings = ratings
 
-	const body = { data, id }
+	const body = { data: selectedData, id }
 	console.log(body)
 	try {
 		const response = await fetch(simulationURL, {
