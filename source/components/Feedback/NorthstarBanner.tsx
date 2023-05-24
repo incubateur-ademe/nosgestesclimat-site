@@ -1,28 +1,28 @@
+import { setRatings } from '@/actions/actions'
+import { AppState } from '@/reducers/rootReducer'
+import { useTestCompleted } from '@/selectors/simulationSelectors'
 import { motion } from 'framer-motion'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { setRatings } from '../../actions/actions'
-import { RootState } from '../../reducers/rootReducer'
-import { useTestCompleted } from '../../selectors/simulationSelectors'
 import Northstar from './Northstar'
 
 export default ({
 	type,
 }: {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
-}) => {
+}): JSX.Element | null => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
 	const testCompleted = useTestCompleted()
-	const hasRatedAction = useSelector((state: RootState) => state.ratings.action)
+	const hasRatedAction = useSelector((state: AppState) => state.ratings.action)
 	const hasRatedLearning = useSelector(
-		(state: RootState) => state.ratings.learned
+		(state: AppState) => state.ratings.learned
 	)
-	const actionChoices = useSelector((state: RootState) => state.actionChoices)
+	const actionChoices = useSelector((state: AppState) => state.actionChoices)
 
 	const actionChoicesLength = Object.entries(actionChoices).filter(
-		([, value]) => value
+		([_, value]) => value
 	).length
 
 	const displayActionRating =

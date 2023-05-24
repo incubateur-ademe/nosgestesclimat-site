@@ -1,3 +1,4 @@
+import NorthstarBanner from '@/components/Feedback/NorthstarBanner'
 import Title from '@/components/Title'
 import Meta from '@/components/utils/Meta'
 import { Trans, useTranslation } from 'react-i18next'

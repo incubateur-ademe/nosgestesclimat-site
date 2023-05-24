@@ -71,7 +71,8 @@ export function goToQuestionOrNavigate(
 		const rulePath = utils.encodeRuleName(question)
 
 		toUse['navigate'](
-			`/simulateur/${MODEL_ROOT_RULE_NAME}/${rulePath}${params}`
+			`/simulateur/${MODEL_ROOT_RULE_NAME}/${rulePath}${params}`,
+			{ replace: true }
 		)
 	} else {
 		toUse['dispatch'](goToQuestion(question))
