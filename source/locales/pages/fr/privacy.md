@@ -56,7 +56,8 @@ Au cours de la simulation en mode conférence, les résultats décrits en introd
 
 #### Mode sondage
 
-Le mode sondage repose sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code est ouvert et disponible [sur github](https://github.com/datagir/nosgestesclimat-server).
+Le mode sondage repose sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code est 
+et disponible [sur github](https://github.com/datagir/nosgestesclimat-server).
 
 Au préalable de tout partage de données avec notre serveur, l'utilisateur se voit demander s'il veut participer au mode sondage.
 
@@ -71,7 +72,7 @@ Des cookies sont utilisés afin de suivre l’utilisation du simulateur, telles 
 ### e) Questions d'évaluation
 
 Afin de mieux comprendre vos attentes, nous avons ajouter deux questions d'évaluation : à la fin du test, et lors du parcours action.
-Vos réponses sont enregistrées anonymement sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code est ouvert et disponible [sur github](https://github.com/datagir/nosgestesclimat-server) avec le résultat de la simulation.
+Vos résultats aggrégés de simulation sont alors enregistrés au côté de votre évaluation, anonymement, sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code sera bientôt ouvert [sur github](https://github.com/datagir/nosgestesclimat-server) avec le résultat de la simulation.
 
 ## Bases juridiques des traitements de données
 
