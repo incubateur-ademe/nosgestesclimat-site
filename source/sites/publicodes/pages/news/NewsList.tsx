@@ -1,21 +1,19 @@
 import { localStorageKey } from 'Components/NewsBanner'
-import { usePersistingState } from 'Components/utils/persistState'
 import { ScrollToTop } from 'Components/utils/Scroll'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { getCurrentLangInfos } from 'Source/locales/translation'
+import { usePersistingState } from '../../../../hooks/usePersistState'
 import { dateCool, extractImage, getPath, sortReleases } from './NewsItem'
 
 export default () => {
-	const { t, i18n } = useTranslation()
+	const { i18n } = useTranslation()
 	const currentLangInfos = getCurrentLangInfos(i18n)
 	const [, setLastViewedRelease] = usePersistingState(localStorageKey, null)
 
 	const data = sortReleases(currentLangInfos.releases),
 		lastRelease = data && data[0]
-
-	console.log(data)
 
 	useEffect(() => {
 		setLastViewedRelease(lastRelease.name)

@@ -13,21 +13,22 @@ module.exports.default = {
 	resolveLoader: {
 		modules: ['node_modules', path.resolve('loaders/')],
 	},
-
 	resolve: {
 		fallback: {
 			path: 'path-browserify',
 			buffer: 'buffer',
 		},
 		alias: {
-			Source: path.resolve('source/'),
-			Actions: path.resolve('source/actions/'),
-			Components: path.resolve('source/components/'),
-			Pages: path.resolve('source/sites/publicodes/pages/'),
-			Selectors: path.resolve('source/selectors/'),
-			Reducers: path.resolve('source/reducers/'),
-			Types: path.resolve('source/types/'),
-			Images: path.resolve('source/images/'),
+			'@': path.resolve(__dirname, 'source/'),
+			Source: path.resolve(__dirname, 'source/'),
+			Actions: path.resolve(__dirname, 'source/actions/'),
+			Components: path.resolve(__dirname, 'source/components/'),
+			Pages: path.resolve(__dirname, 'source/sites/publicodes/pages/'),
+			Enquête: path.resolve(__dirname, 'source/sites/publicodes/enquête/'),
+			Selectors: path.resolve(__dirname, 'source/selectors/'),
+			Reducers: path.resolve(__dirname, 'source/reducers/'),
+			Types: path.resolve(__dirname, 'source/types/'),
+			Images: path.resolve(__dirname, 'source/images/'),
 		},
 		extensions: ['.js', '.ts', '.tsx'],
 	},
@@ -38,6 +39,7 @@ module.exports.default = {
 	output: {
 		path: path.resolve('./dist/'),
 		globalObject: 'self',
+		chunkFilename: '[name].chunk.js',
 	},
 	plugins: [
 		new CopyPlugin({
@@ -45,6 +47,7 @@ module.exports.default = {
 				'./manifest.webmanifest',
 				'./source/sites/publicodes/sitemap.txt',
 				'./source/sites/publicodes/robots.txt',
+				'./4dc3300c431ca82c00785768559ea871.html',
 				{
 					from: './source/images',
 					to: 'images',

@@ -24,7 +24,7 @@ export default ({
 			}
 			align-items: center;
 			${inline &&
-			`flex-direction: row; justify-content: start; max-width: 100%; p {margin: 0}`}
+			'flex-direction: row; justify-content: start; max-width: 100%; p {margin: 0}'}
 		`}
 	>
 		{e ? (

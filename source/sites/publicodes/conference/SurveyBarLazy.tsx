@@ -5,7 +5,9 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { WithEngine } from '../../../RulesProvider'
 
-const SurveyBar = React.lazy(() => import('./SurveyBar'))
+const SurveyBar = React.lazy(
+	() => import(/* webpackChunkName: 'SurveyBar' */ './SurveyBar')
+)
 
 export default () => {
 	const survey = useSelector((state) => state.survey)

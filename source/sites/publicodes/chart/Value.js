@@ -21,7 +21,7 @@ export default ({ nodeValue, color, completed, demoMode }) => {
 				css={`
 					visibility: ${completed ? 'visible' : 'hidden'};
 					display: inline;
-					${demoMode && `display: none`};
+					${demoMode && 'display: none'};
 					width: 1.2rem;
 					margin-left: 0.2rem;
 				`}

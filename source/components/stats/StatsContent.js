@@ -159,7 +159,7 @@ export default function Data() {
 					<Trans>Intégrations et Iframes</Trans>
 				</Section.Title>
 				<Section.Intro>
-					<Trans i18nKey={`components.stats.StatsContent.integrationEtIframes`}>
+					<Trans i18nKey={'components.stats.StatsContent.integrationEtIframes'}>
 						<summary>En savoir plus</summary>
 						<p>
 							Les intégrations en iframe sont détéctées via le paramètre
@@ -190,7 +190,7 @@ export default function Data() {
 					<Trans>Durée des visites</Trans>
 				</Section.Title>
 				<Section.Intro>
-					<Trans i18nKey={`components.stats.StatsContent.dureeDesVisites`}>
+					<Trans i18nKey={'components.stats.StatsContent.dureeDesVisites'}>
 						<summary>En savoir plus</summary>
 						<p>
 							Cette section est générée à partir des visites des 60 derniers
@@ -217,7 +217,7 @@ export default function Data() {
 					<Trans>Score de nos utilisateurs</Trans>
 				</Section.Title>
 				<Section.Intro>
-					<Trans i18nKey={`components.stats.StatsContent.scoreUtilisateurs`}>
+					<Trans i18nKey={'components.stats.StatsContent.scoreUtilisateurs'}>
 						<summary>En savoir plus</summary>
 						<p>
 							Bien sûr, nous ne collectons pas{' '}

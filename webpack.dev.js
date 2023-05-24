@@ -30,6 +30,7 @@ module.exports = {
 			NODE_ENV: JSON.stringify('development'),
 			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
 			CONTEXT: JSON.stringify(process.env.CONTEXT),
+			SENTRY_DSN: JSON.stringify(process.env.SENTRY_DSN),
 		}),
 		new ReactRefreshWebpackPlugin(),
 		/*

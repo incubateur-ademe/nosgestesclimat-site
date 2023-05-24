@@ -8,12 +8,12 @@ import { RootState } from 'Reducers/rootReducer'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { resetLocalisation } from '../actions/actions'
+import { usePersistingState } from '../hooks/usePersistState'
 import { useTestCompleted } from '../selectors/simulationSelectors'
 import { enquêteSelector } from '../sites/publicodes/enquête/enquêteSelector'
 import { omit } from '../utils'
 import CardGameIcon from './CardGameIcon'
 import ProgressCircle from './ProgressCircle'
-import { usePersistingState } from './utils/persistState'
 
 const ActionsInteractiveIcon = () => {
 	const actionChoices = useSelector((state) => state.actionChoices),
@@ -170,7 +170,7 @@ export default function SessionBar({
 
 	const testCompleted = useTestCompleted()
 
-	let elements = [
+	const elements = [
 		<Button className="simple small" url="/simulateur/bilan">
 			<ProgressCircle />
 			<Trans>Le test</Trans>

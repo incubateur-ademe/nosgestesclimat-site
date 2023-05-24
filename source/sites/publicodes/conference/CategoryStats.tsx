@@ -64,7 +64,7 @@ export default ({
 										left: ${(value / maxCategory) * 100}%;
 										cursor: pointer;
 										${spotlight === username
-											? `background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important`
+											? 'background: yellow !important; opacity: 1 !important; z-index: 2; border: 2px solid black; width: 10px !important'
 											: ''}
 									`}
 									title={`${username} : ${humanWeight(

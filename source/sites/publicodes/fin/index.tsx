@@ -2,13 +2,14 @@ import animate from 'Components/ui/animate'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
+import { matomoEventSwipeEndPage } from '../../../analytics/matomo-events'
 import NorthstarBanner from '../../../components/Feedback/NorthstarBanner'
 import SlidesLayout from '../../../components/SlidesLayout'
-import { useNextQuestions } from '../../../components/utils/useNextQuestion'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useNextQuestions } from '../../../hooks/useNextQuestion'
 import { arrayLoopIteration } from '../../../utils'
 import EnqueteBannerContent from '../enquête/BannerContent'
 import { enquêteSelector } from '../enquête/enquêteSelector'
@@ -47,10 +48,9 @@ export default ({}) => {
 	const headlessMode =
 		!window || window.navigator.userAgent.includes('HeadlessChrome')
 
-	const dispatch = useDispatch(),
-		answeredQuestions = useSelector(answeredQuestionsSelector)
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const enquête = useSelector(enquêteSelector)
 
@@ -72,7 +72,7 @@ export default ({}) => {
 			diapo: arrayLoopIteration(componentKeys, slideName),
 			details: encodedDetails,
 		}),
-			tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
+			trackEvent(matomoEventSwipeEndPage)
 	}
 
 	const previous = () => {
@@ -81,7 +81,7 @@ export default ({}) => {
 			details: encodedDetails,
 		})
 
-		tracker.push(['trackEvent', 'NGC', 'Swipe page de fin'])
+		trackEvent(matomoEventSwipeEndPage)
 	}
 	const nextQuestions = useNextQuestions()
 

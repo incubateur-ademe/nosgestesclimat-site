@@ -46,7 +46,7 @@ export default ({ categories, metric, selected, countByCategory }) => {
 					`}
 				>
 					<button
-						tabindex="-1"
+						tabIndex="-1"
 						css="text-transform: capitalize"
 						onClick={() =>
 							setSearchParams(

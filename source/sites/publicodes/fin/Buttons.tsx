@@ -4,7 +4,8 @@ import { IframeOptionsContext } from 'Components/utils/IframeOptionsProvider'
 import { motion } from 'framer-motion'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { getMatomoEventClickActionButtonEndPage } from '../../../analytics/matomo-events'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 
 export const ActionButton = ({
 	text,
@@ -13,22 +14,21 @@ export const ActionButton = ({
 	invertImage = true,
 	url = '/actions',
 	large,
+}: {
+	text: string
+	score: number
+	imgSrc?: string
+	invertImage?: boolean
+	url?: string
+	large?: boolean
 }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	return (
 		<Link
 			to={url}
 			className="ui__ button plain cta"
-			onClick={() =>
-				tracker.push([
-					'trackEvent',
-					'NGC',
-					'Clic bouton action page /fin',
-					null,
-					score,
-				])
-			}
+			onClick={() => trackEvent(getMatomoEventClickActionButtonEndPage(score))}
 			css={`
 				margin: 0.6rem auto;
 				${large && 'width: 90%;'}

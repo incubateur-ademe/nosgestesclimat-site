@@ -32,7 +32,7 @@ export default ({ endURL }) => {
 				/>
 				<div
 					css="display: flex; flex-direction: column; padding: 0 .4rem"
-					title={roundedValue + ' ' + t(`pleins de pétrole`)}
+					title={roundedValue + ' ' + t('pleins de pétrole')}
 				>
 					<div
 						css={`

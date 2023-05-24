@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default () => (
 	<>
-		<Trans i18nKey={`publicodes.Tutorial.slide7`}>
+		<Trans i18nKey={'publicodes.Tutorial.slide7'}>
 			<h1>Alors, c'est parti ?</h1>
 			<p>Quelques astuces pour vous aider à compléter le test :</p>
 			<blockquote key="individuel">

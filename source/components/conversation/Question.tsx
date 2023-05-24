@@ -12,7 +12,10 @@ import {
 	RuleInputProps,
 } from './RuleInput'
 const ReferencesLazy = React.lazy(
-	() => import('../../sites/publicodes/DocumentationReferences')
+	() =>
+		import(
+			/* webpackChunkName: 'DocumentationReferences' */ '../../sites/publicodes/DocumentationReferences'
+		)
 )
 
 /* Ceci est une saisie de type "radio" : l'utilisateur choisit une réponse dans

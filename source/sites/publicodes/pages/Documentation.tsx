@@ -1,11 +1,11 @@
-import SearchButton from 'Components/SearchButton'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import SearchButton from '@/components/SearchButton'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { RootState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import React, { Suspense, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
-import { RootState } from 'Reducers/rootReducer'
 import AnimatedLoader from '../../../AnimatedLoader'
 import { WithEngine } from '../../../RulesProvider'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
@@ -13,7 +13,10 @@ import BandeauContribuer from '../BandeauContribuer'
 import DocumentationLanding from './DocumentationLanding'
 import QuickDocumentationPage from './QuickDocumentationPage'
 
-const DocumentationPageLazy = React.lazy(() => import('./DocumentationPage'))
+const DocumentationPageLazy = React.lazy(
+	() =>
+		import(/* webpackChunkName: 'DocumentationPage' */ './DocumentationPage')
+)
 
 export default function () {
 	const currentSimulation = useSelector(

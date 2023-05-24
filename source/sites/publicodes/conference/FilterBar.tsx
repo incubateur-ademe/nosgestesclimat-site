@@ -6,10 +6,11 @@ import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
-import { TrackerContext } from '../../../contexts/TrackerContext'
+import { matomoEventModeGroupeFiltres } from '../../../analytics/matomo-events'
+import { MatomoContext } from '../../../contexts/MatomoContext'
 
 export default ({ threshold, setThreshold, setContextFilter }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const [visible, setVisible] = useState(false)
 	const survey = useSelector((state) => state.survey)
@@ -37,7 +38,7 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 					title={t('Ouvrir les options de tri')}
 					onClick={() => {
 						setVisible(true)
-						tracker.push(['trackEvent', 'Mode Groupe', 'Ouvre filtres'])
+						trackEvent(matomoEventModeGroupeFiltres)
 					}}
 				>
 					<div

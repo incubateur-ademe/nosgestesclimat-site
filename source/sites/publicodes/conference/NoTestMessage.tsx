@@ -8,7 +8,7 @@ export default ({ setHasDataState }) => (
 		message={
 			<div>
 				<p>
-					<Trans i18nKey={`publicodes.conference.NoTestMessage.bienvenue`}>
+					<Trans i18nKey={'publicodes.conference.NoTestMessage.bienvenue'}>
 						Bienvenue dans le mode groupe de Nos Gestes Climat ! Vous n'avez pas
 						encore débuté votre test, lancez-vous !
 					</Trans>

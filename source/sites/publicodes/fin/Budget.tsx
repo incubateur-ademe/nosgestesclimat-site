@@ -116,7 +116,7 @@ export default ({
 
 				{integratorYoutubeVideo && (
 					<div
-						class="videoWrapper"
+						className="videoWrapper"
 						css={`
 							iframe {
 								width: 100%;
@@ -128,7 +128,7 @@ export default ({
 							height="315"
 							src={integratorYoutubeVideo}
 							title="YouTube video player"
-							frameborder="0"
+							frameBorder="0"
 							allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
 							allowfullscreen
 						></iframe>

@@ -183,7 +183,7 @@
 	font-size: 90%;
 	line-height: 0.8rem;
 	padding: 0.2rem 0.4rem;
-	text-transform: lowerCase;
+	text-transform: none;
 	opacity: 0.75;
 }
 

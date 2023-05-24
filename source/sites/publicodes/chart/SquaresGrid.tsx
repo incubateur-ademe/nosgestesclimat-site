@@ -11,7 +11,7 @@ export default ({ pixelRemSize, elements, pixel, gridLength, pixelMargin }) => {
 	const [isVisible, setVisibility] = useState(false)
 
 	useEffect(() => {
-		let timer = setTimeout(() => setVisibility(true), 400)
+		const timer = setTimeout(() => setVisibility(true), 400)
 		return () => {
 			clearTimeout(timer)
 		}

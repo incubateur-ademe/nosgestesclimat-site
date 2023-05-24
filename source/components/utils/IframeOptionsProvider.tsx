@@ -1,5 +1,7 @@
 import { createContext, useContext } from 'react'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { getMatomoEventVisitViaIframe } from '../../analytics/matomo-events'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import { getIsIframe } from '../../utils'
 
 export const IframeOptionsContext = createContext<{ isIframe?: boolean }>({})
 
@@ -8,10 +10,10 @@ const nullDecode = (string) =>
 
 export default function IframeOptionsProvider({ children }) {
 	const urlParams = new URLSearchParams(window.location.search)
-	const isIframe = window.self !== window.top
+	const isIframe = getIsIframe()
 	const isIframeParameterDefined = urlParams.get('iframe') !== null
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	// Si l'on détecte que l'on est dans un iframe sans paramètre iframe défini
 	// on essaie de récupérer l'URL du referrer
@@ -20,13 +22,12 @@ export default function IframeOptionsProvider({ children }) {
 		urlParams.set('integratorUrl', document.referrer)
 	}
 
-	if (isIframe && tracker) {
-		tracker.push([
-			'trackEvent',
-			'iframe',
-			'visites via iframe',
-			urlParams.get('integratorUrl') || "Pas d'URL d'intégration",
-		])
+	if (isIframe && trackEvent) {
+		trackEvent(
+			getMatomoEventVisitViaIframe(
+				urlParams.get('integratorUrl') || "Pas d'URL d'intégration"
+			)
+		)
 	}
 
 	const iframeIntegratorOptions = Object.fromEntries(

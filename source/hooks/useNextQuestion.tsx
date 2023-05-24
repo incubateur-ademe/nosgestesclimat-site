@@ -30,7 +30,7 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from 'Selectors/simulationSelectors'
-import { EngineContext } from './EngineContext'
+import { EngineContext } from '../components/utils/EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(
@@ -98,7 +98,7 @@ export function getNextQuestions(
 	)
 
 	const nextQuestions = nextSteps.filter((name) => {
-		const rule = engine.getRule(name)
+		const rule = engine?.getRule(name)
 		return rule.rawNode.question != null
 	})
 	const lastStep = last(answeredQuestions)
@@ -137,6 +137,7 @@ export const useNextQuestions = function (): Array<DottedName> {
 	const missingVariables = objectifs.map((node) =>
 		!engine ? {} : engine.evaluate(node).missingVariables ?? {}
 	)
+
 	const nextQuestions = useMemo(() => {
 		return engine
 			? getNextQuestions(
@@ -147,7 +148,8 @@ export const useNextQuestions = function (): Array<DottedName> {
 					engine
 			  )
 			: []
-	}, [missingVariables, questionsConfig, answeredQuestions, situation])
+	}, [missingVariables, questionsConfig, answeredQuestions, situation, engine])
+
 	if (currentQuestion && currentQuestion !== nextQuestions[0]) {
 		return [currentQuestion, ...nextQuestions]
 	}
@@ -157,6 +159,10 @@ export const useNextQuestions = function (): Array<DottedName> {
 export function useSimulationProgress(): number {
 	const numberQuestionAnswered = useSelector(answeredQuestionsSelector).length
 	const numberQuestionLeft = useNextQuestions().length
+
+	if (!numberQuestionAnswered) {
+		return 0
+	}
 
 	return (
 		numberQuestionAnswered / (numberQuestionAnswered + numberQuestionLeft) || 0

@@ -50,7 +50,7 @@ export function SituationProvider({
 		}
 	} catch (e) {
 		console.log(
-			`Il est probable qu'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l'utilisateur ou du persona chargé ↙️`
+			'Il est probable qu\'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l\'utilisateur ou du persona chargé ↙️'
 		)
 		console.log(e)
 	}

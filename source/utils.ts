@@ -20,7 +20,7 @@ export const debounce = <F extends (...args: any[]) => void>(
 
 export const fetcher = (url: RequestInfo) => fetch(url).then((r) => r.json())
 
-export function inIframe(): boolean {
+export function getIsIframe(): boolean {
 	try {
 		return window.self !== window.top
 	} catch (e) {
@@ -135,7 +135,7 @@ export function isIterable<T>(obj: unknown): obj is Iterable<T> {
 
 //https://stackoverflow.com/questions/1885557/simplest-code-for-array-intersection-in-javascript
 export function intersect(a, b) {
-	var setB = new Set(b)
+	const setB = new Set(b)
 	return [...new Set(a)].filter((x) => setB.has(x))
 }
 

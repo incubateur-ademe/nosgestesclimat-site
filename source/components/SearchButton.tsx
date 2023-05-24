@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
 import { Navigate } from 'react-router'
-import useKeypress from './utils/useKeyPress'
+import useKeypress from '../hooks/useKeyPress'
 
 type SearchButtonProps = {
 	invisibleButton?: boolean

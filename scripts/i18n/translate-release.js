@@ -13,7 +13,7 @@ const cli = require('../../nosgestesclimat/scripts/i18n/cli')
 const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
 
 const { srcLang, destLangs } = cli.getArgs(
-	`Calls the DeepL API to translate the JSON release files.`,
+	'Calls the DeepL API to translate the JSON release files.',
 	{ source: true, target: true }
 )
 

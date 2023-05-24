@@ -1,27 +1,31 @@
+import { ErrorFallback } from '@/components/ErrorFallback'
+import Logo from '@/components/Logo'
+import Route404 from '@/components/Route404'
+import { sessionBarMargin } from '@/components/SessionBar'
+import '@/components/ui/index.css'
 import * as Sentry from '@sentry/react'
-import Logo from 'Components/Logo'
-import Route404 from 'Components/Route404'
-import { sessionBarMargin } from 'Components/SessionBar'
-import 'Components/ui/index.css'
 import React, { Suspense, useContext, useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import { matomoEventInteractionIframe } from '../../analytics/matomo-events'
 import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
-import useMediaQuery from '../../components/utils/useMediaQuery'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
 import { AppState } from '../../reducers/rootReducer'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
+import { getIsIframe } from '../../utils'
 import {
 	changeLangTo,
 	getLangFromAbreviation,
 	getLangInfos,
+	Lang,
 } from './../../locales/translation'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import EnquêteBanner from './enquête/BannerWrapper'
@@ -29,7 +33,7 @@ import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
 import Diffuser from './pages/Diffuser'
-import Profil from './Profil.tsx'
+import Profil from './Profil'
 import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
 import { isFluidLayout } from './utils'
@@ -37,35 +41,87 @@ import { isFluidLayout } from './utils'
 // All those lazy components, could be probably be handled another more consise way
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
 
-const ActionsLazy = React.lazy(() => import('./Actions'))
-const QuestionList = React.lazy(() => import('./pages/QuestionList'))
-const FinLazy = React.lazy(() => import('./fin'))
-const SimulateurLazy = React.lazy(() => import('./Simulateur'))
-const PetrogazLandingLazy = React.lazy(() => import('./pages/PetrogazLanding'))
-const ModelLazy = React.lazy(() => import('./Model'))
-const PersonasLazy = React.lazy(() => import('./Personas'))
-const DocumentationLazy = React.lazy(() => import('./pages/Documentation'))
-const TutorialLazy = React.lazy(() => import('./tutorial/Tutorial'))
-const GroupSwitchLazy = React.lazy(() => import('./conference/GroupSwitch'))
-const ContributionLazy = React.lazy(() => import('./Contribution'))
-const ConferenceLazy = React.lazy(() => import('./conference/Conference'))
-const StatsLazy = React.lazy(() => import('./pages/Stats'))
-const SurveyLazy = React.lazy(() => import('./conference/Survey'))
-const EnquêteLazy = React.lazy(() => import('./enquête/Enquête'))
-const CGULazy = React.lazy(() => import('./pages/CGU'))
-const PrivacyLazy = React.lazy(() => import('./pages/Privacy'))
-const AccessibilityLazy = React.lazy(() => import('./pages/Accessibility'))
-const GuideGroupeLazy = React.lazy(() => import('./pages/GuideGroupe'))
-const International = React.lazy(() => import('./pages/International'))
-const DocumentationContexteLazy = React.lazy(
-	() => import('./pages/DocumentationContexte')
+const ActionsLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Actions' */ './Actions')
 )
-const News = React.lazy(() => import('Pages/news/News'))
+const QuestionList = React.lazy(
+	() => import(/* webpackChunkName: 'QuestionList' */ './pages/QuestionList')
+)
+const FinLazy = React.lazy(() => import(/* webpackChunkName: 'Fin' */ './fin'))
+const SimulateurLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Simulateur' */ './Simulateur')
+)
+const PetrogazLandingLazy = React.lazy(
+	() =>
+		import(/* webpackChunkName: 'PetrogazLanding' */ './pages/PetrogazLanding')
+)
+const ModelLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Model' */ './Model')
+)
+const PersonasLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Personas' */ './Personas')
+)
+const DocumentationLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Documentation' */ './pages/Documentation')
+)
+const TutorialLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Tutorial' */ './tutorial/Tutorial')
+)
+const GroupSwitchLazy = React.lazy(
+	() => import(/* webpackChunkName: 'GroupSwitch' */ './conference/GroupSwitch')
+)
+const ContributionLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Contribution' */ './Contribution')
+)
+const ConferenceLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Conference' */ './conference/Conference')
+)
+const StatsLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Stats' */ './pages/Stats')
+)
+const SurveyLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Survey' */ './conference/Survey')
+)
+const EnquêteLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Enquête' */ './enquête/Enquête')
+)
+const CGULazy = React.lazy(
+	() => import(/* webpackChunkName: 'CGU' */ './pages/CGU')
+)
+const PrivacyLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Privacy' */ './pages/Privacy')
+)
+const AccessibilityLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Accessibility' */ './pages/Accessibility')
+)
+const GuideGroupeLazy = React.lazy(
+	() => import(/* webpackChunkName: 'GuideGroupe' */ './pages/GuideGroupe')
+)
+const International = React.lazy(
+	() => import(/* webpackChunkName: 'International' */ './pages/International')
+)
+const DocumentationContexteLazy = React.lazy(
+	() =>
+		import(
+			/* webpackChunkName: 'DocumentationContexte' */ './pages/DocumentationContexte'
+		)
+)
+const News = React.lazy(
+	() => import(/* webpackChunkName: 'News' */ './pages/news/News')
+)
 
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
-export default function Root({}) {
+declare global {
+	interface Window {
+		FORCE_LANGUAGE?: string
+	}
+}
+
+export default function Root() {
 	const paths = sitePaths()
+
+	const { trackEvent } = useContext(MatomoContext)
 
 	const iframeShareData = new URLSearchParams(
 		document?.location.search.substring(1)
@@ -83,6 +139,22 @@ export default function Root({}) {
 		getLangFromAbreviation(
 			window.FORCE_LANGUAGE || window.navigator.language.toLowerCase()
 		)
+
+	const isIframe = getIsIframe()
+
+	const handleClickIframe = () => {
+		// Envoi un évènement pour permettre de discriminer les iframes "fantômes"
+		// des iframes avec lesquelles il y a eu interaction
+		trackEvent(matomoEventInteractionIframe)
+		document.body.removeEventListener('click', handleClickIframe)
+	}
+
+	useEffect(() => {
+		if (!isIframe) {
+			document.body.addEventListener('click', handleClickIframe)
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	return (
 		<Provider
@@ -114,23 +186,25 @@ export default function Root({}) {
 	)
 }
 
-const Main = ({}) => {
+const Main = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const { i18n, t } = useTranslation()
 	const [searchParams, _] = useSearchParams()
-	const isHomePage = location.pathname === '/',
-		isTuto = location.pathname.indexOf('/tutoriel') === 0
+	const isHomePage = location.pathname === '/'
+	const isTuto = location.pathname.startsWith('/tutoriel')
 
-	const tracker = useContext(TrackerContext)
+	const { trackPageView } = useContext(MatomoContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	useEffect(() => {
-		tracker?.track(location)
-	}, [location])
+		trackPageView(location)
+	}, [location, trackPageView])
 
 	// Manage the language change from the URL search param
-	const currentLangState = useSelector((state: AppState) => state.currentLang)
+	const currentLangState: Lang = useSelector(
+		(state: AppState) => state.currentLang
+	)
 	const currentLangParam = searchParams.get('lang')
 
 	if (i18n.language !== getLangInfos(currentLangState).abrv) {
@@ -154,32 +228,8 @@ const Main = ({}) => {
 	return (
 		<Sentry.ErrorBoundary
 			showDialog
-			fallback={() => (
-				<div
-					css={`
-						text-align: center;
-					`}
-				>
-					<Logo showText size={largeScreen ? 'large' : 'medium'} />
-					<h1>{t("Une erreur s'est produite")}</h1>
-					<p
-						css={`
-							margin-bottom: 2rem;
-						`}
-					>
-						{t(
-							'Notre équipe a été notifiée, nous allons résoudre le problème au plus vite.'
-						)}
-					</p>
-					<button
-						className="ui__ button plain"
-						onClick={() => {
-							window.location.reload()
-						}}
-					>
-						{t('Recharger la page')}
-					</button>
-				</div>
+			fallback={({ error }) => (
+				<ErrorFallback error={error} largeScreen={largeScreen} />
 			)}
 		>
 			<>
@@ -204,7 +254,7 @@ const Main = ({}) => {
 				>
 					<Navigation fluidLayout={fluidLayout} />
 					<main
-						tabIndex="0"
+						tabIndex={0}
 						id="mainContent"
 						css={`
 							outline: none !important;
@@ -247,7 +297,7 @@ const Main = ({}) => {
 	)
 }
 
-const Router = ({}) => {
+const Router = () => {
 	return (
 		<Routes>
 			<Route path="/" element={<Landing />} />
@@ -383,7 +433,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`nouveautés/*`}
+				path={'nouveautés/*'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<News />
@@ -407,7 +457,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`conférence/:room`}
+				path={'conférence/:room'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<ConferenceLazy />
@@ -463,7 +513,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`/pétrole-et-gaz`}
+				path={'/pétrole-et-gaz'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<PetrogazLandingLazy />
@@ -471,7 +521,7 @@ const Router = ({}) => {
 				}
 			/>
 			<Route
-				path={`/international`}
+				path={'/international'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<International />

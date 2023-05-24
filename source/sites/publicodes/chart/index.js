@@ -7,7 +7,7 @@ import { useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import { useNextQuestions } from '../../../components/utils/useNextQuestion'
+import { useNextQuestions } from '../../../hooks/useNextQuestion'
 import Bar from './Bar'
 
 export default ({
@@ -112,7 +112,7 @@ export default ({
 												cursor: pointer;
 											`}
 											title={
-												t(`N'afficher que les questions `) + category.dottedName
+												t('N\'afficher que les questions ') + category.dottedName
 											}
 											onClick={() =>
 												navigate(`${pathname}?catégorie=${category.dottedName}`)

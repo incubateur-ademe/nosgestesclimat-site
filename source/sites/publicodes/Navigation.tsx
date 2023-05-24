@@ -3,7 +3,7 @@ import { useContext } from 'react'
 import LangSwitcher from '../../components/LangSwitcher'
 import Logo from '../../components/Logo'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
-import useMediaQuery from '../../components/utils/useMediaQuery'
+import useMediaQuery from '../../hooks/useMediaQuery'
 import SkipLinks from './SkipLinks'
 
 export default ({ fluidLayout }) => {
@@ -29,7 +29,7 @@ export default ({ fluidLayout }) => {
 							flex-shrink: 0;
 							width: 12rem;
 							height: 100vh;
-							${isIframe && `height: 100% !important;`}
+							${isIframe && 'height: 100% !important;'}
 							overflow: none;
 							margin: 0 auto;
 							position: sticky;

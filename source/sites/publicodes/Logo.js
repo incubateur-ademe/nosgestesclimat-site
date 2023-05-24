@@ -50,7 +50,7 @@ export const InlineLogo = () => {
 							align-items: center;
 						`}
 					>
-						<img src={integratorLogo} width="40px" css={``} />
+						<img src={integratorLogo} width="40px" css={''} />
 						<span css="font-size: 70%">{integratorName}</span>
 					</span>
 					<span css="margin: 0 .6rem; font-size: 80%">x</span>

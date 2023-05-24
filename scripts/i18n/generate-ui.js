@@ -21,17 +21,17 @@ const printResult = (prefix, array, style) => {
 	if (array.length > 0) {
 		const entries = array.length > 10 ? array.slice(0, 10) : array
 
-		console.log(prefix, style(array.length), `translations:`)
+		console.log(prefix, style(array.length), 'translations:')
 		entries.sort().forEach((key) => {
 			console.log(style(`    ${key}`))
 		})
 		if (array.length > 10) {
-			console.log(style(`    ...`))
+			console.log(style('    ...'))
 		}
 	}
 }
 
-console.log(`Static analysis of the source code...`)
+console.log('Static analysis of the source code...')
 try {
 	if (fs.existsSync(paths.staticAnalysisFrRes)) {
 		fs.unlinkSync(paths.staticAnalysisFrRes)

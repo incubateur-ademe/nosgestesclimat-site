@@ -38,7 +38,7 @@ export const groupTooSmallCategories = (
 	return { rest, bigEnough, total, restWidth }
 }
 
-export const getTitle = (title: String) => {
+export const getTitle = (title: string) => {
 	const percentRegex = /^[0-9% ]*/
 	const newTitle = title?.replace(percentRegex, '')
 	return capitalise0(newTitle)

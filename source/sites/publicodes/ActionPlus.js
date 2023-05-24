@@ -41,7 +41,7 @@ export default () => {
 			</Link>
 			<div css="margin: 1.6rem 0">
 				<Markdown
-					children={rule.plus || t(`Cette fiche détaillée n'existe pas encore`)}
+					children={rule.plus || t('Cette fiche détaillée n\'existe pas encore')}
 				/>
 			</div>
 		</div>

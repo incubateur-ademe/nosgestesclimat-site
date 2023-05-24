@@ -6,16 +6,17 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { skipTutorial } from '../../actions/actions'
+import { getMatomoEventParcoursTestTutorialProgress } from '../../analytics/matomo-events'
 import SlidesLayout from '../../components/SlidesLayout'
 import Meta from '../../components/utils/Meta'
-import useKeypress from '../../components/utils/useKeyPress'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import useKeypress from '../../hooks/useKeyPress'
 import { WithEngine } from '../../RulesProvider'
 import Chart from './chart/index.js'
 import HorizontalSwipe from './HorizontalSwipe'
 import Slide from './TutorialSlide'
 
-export default ({}) => {
+export default () => {
 	const navigate = useNavigate()
 	const tutorials = useSelector((state) => state.tutorials)
 
@@ -25,28 +26,26 @@ export default ({}) => {
 
 	const index = tutos.length
 
-	const skip = (name, unskip) => dispatch(skipTutorial(name, unskip)),
-		last = index === slides.length - 1,
-		next = () => {
-			tracker.push([
-				'trackEvent',
-				'testIntro',
-				last ? `tuto passé` : `diapo ${index} passée`,
-			])
+	const skip = (name, unskip) => {
+		dispatch(skipTutorial(name, unskip))
+	}
+	const last = index === slides.length - 1
+	const next = () => {
+		trackEvent(getMatomoEventParcoursTestTutorialProgress(last, index + 1))
 
-			skip(last ? 'testIntro' : 'testIntro' + index)
-			if (last) {
-				navigate('/simulateur/bilan')
-			}
-		},
-		previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
+		skip(last ? 'testIntro' : 'testIntro' + index)
+		if (last) {
+			navigate('/simulateur/bilan')
+		}
+	}
+	const previous = () => dispatch(skipTutorial('testIntro' + (index - 1), true))
 
 	useKeypress('Escape', false, () => skip('testIntro'), 'keyup', [])
 
 	const Component = slides[index]
 
 	const dispatch = useDispatch()
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	// This results from a bug that introduced "slide5" in users' cache :/
 	// Here we correct the bug in the user's cache
@@ -93,7 +92,7 @@ const slides = [
 			<h1>
 				<Trans>Mon empreinte climat 😶‍🌫️</Trans> ?
 			</h1>
-			<Trans i18nKey={`publicodes.Tutorial.slide1.p1`}>
+			<Trans i18nKey={'publicodes.Tutorial.slide1.p1'}>
 				<p>Pas de panique, on vous explique ce que c'est.</p>
 				<p>
 					La planète <strong>se réchauffe dangereusement</strong>, au fur et à
@@ -101,7 +100,7 @@ const slides = [
 				</p>
 			</Trans>
 			<GreenhouseEffect css="width: 60%; max-height: 20rem" />
-			<Trans i18nKey={`publicodes.Tutorial.slide1.p2`}>
+			<Trans i18nKey={'publicodes.Tutorial.slide1.p2'}>
 				<p>
 					Ce test vous donne en ⏱️ 10 minutes chrono{' '}
 					<strong>une mesure de votre part </strong> dans ce réchauffement.
@@ -115,7 +114,7 @@ const slides = [
 				<Trans>On la mesure comment ?</Trans>
 			</h1>
 			<p>
-				<Trans i18nKey={`publicodes.Tutorial.slide2.p1`}>
+				<Trans i18nKey={'publicodes.Tutorial.slide2.p1'}>
 					Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de
 					carbone
 					<img
@@ -183,7 +182,7 @@ const slides = [
 				<CO2e />
 			</div>
 			<p>
-				<Trans i18nKey={`publicodes.Tutorial.slide2.p2`}>
+				<Trans i18nKey={'publicodes.Tutorial.slide2.p2'}>
 					Ce sont les machines qui font notre confort moderne qui en rejettent
 					massivement, à tel point qu'on le compte en milliers de kilos par an
 					et par personne, donc en <strong>tonnes</strong> de CO₂e !
@@ -196,7 +195,7 @@ const slides = [
 							💡 Mais que veut dire ce petit <em>e</em> ?
 						</Trans>
 					</summary>{' '}
-					<Trans i18nKey={`publicodes.Tutorial.slide2.blockquote`}>
+					<Trans i18nKey={'publicodes.Tutorial.slide2.blockquote'}>
 						D'autres gaz, surtout le méthane{' '}
 						<img
 							alt=""
@@ -218,7 +217,7 @@ const slides = [
 	),
 	() => (
 		<>
-			<Trans i18nKey={`publicodes.Tutorial.slide5.p1`}>
+			<Trans i18nKey={'publicodes.Tutorial.slide5.p1'}>
 				<h1>Et l'objectif ?</h1>
 				<p>Nous devons diminuer notre empreinte climat au plus vite.</p>
 				<p>
@@ -276,7 +275,7 @@ const slides = [
 	),
 	() => (
 		<>
-			<Trans i18nKey={`publicodes.Tutorial.slide6`}>
+			<Trans i18nKey={'publicodes.Tutorial.slide6'}>
 				<h1>D'où vient notre empreinte ?</h1>
 				<p>
 					Prendre la voiture, manger un steak, chauffer sa maison, se faire
@@ -300,7 +299,7 @@ const slides = [
 	),
 	() => (
 		<>
-			<Trans i18nKey={`publicodes.Tutorial.slide7`}>
+			<Trans i18nKey={'publicodes.Tutorial.slide7'}>
 				<h1>Alors, c'est parti ?</h1>
 				<p>Quelques astuces pour vous aider à compléter le test :</p>
 				<blockquote key="individuel">

@@ -4,7 +4,7 @@ const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
 const paths = require('./paths')
 
 const { srcLang, destLangs, markdown } = cli.getArgs(
-	`Check missing translations for UI texts.`,
+	'Check missing translations for UI texts.',
 	{ source: true, target: true, markdown: true }
 )
 

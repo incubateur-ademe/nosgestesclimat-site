@@ -10,7 +10,7 @@ import LocalisationProvider from './components/localisation/LocalisationProvider
 
 import useBranchData from 'Components/useBranchData'
 import Engine from 'publicodes'
-import { ReactNode, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -136,19 +136,23 @@ const EngineWrapper = ({ children }) => {
 	)
 }
 
+type AnyObjectType = {
+	[key: string]: any
+}
+
 export const WithEngine = ({
 	options = defaultRulesOptions,
 	children,
 	fallback = <AnimatedLoader />,
-}: {
-	options: RulesOptions
-	children: ReactNode
-	fallback: ReactNode
-}) => {
+}: React.PropsWithChildren & {
+	options?: RulesOptions
+	children: JSX.Element
+	fallback?: JSX.Element
+}): JSX.Element => {
 	console.log('calling WithEngine with options', options)
 	const dispatch = useDispatch()
-	const engineState = useSelector((state) => state.engineState)
-	const currentRulesOptions = engineState?.options
+	const engineState = useSelector((state: any) => state.engineState)
+	const currentRulesOptions: AnyObjectType[] = engineState?.options
 
 	useEffect(() => {
 		options?.optimized
@@ -172,9 +176,12 @@ export const WithEngine = ({
 		engineState.state !== 'ready' ||
 		(!sameOptions(options, currentRulesOptions) &&
 			!sameOptions({ parsed: true, optimized: false }, currentRulesOptions))
-	)
+	) {
 		return fallback
+	}
+
 	return children
 }
 
-const sameOptions = (a, b) => Object.keys(a).every((k) => a[k] === b[k])
+const sameOptions = (a: AnyObjectType, b: AnyObjectType) =>
+	Object.keys(a).every((k) => a[k] === b[k])

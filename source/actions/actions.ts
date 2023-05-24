@@ -1,4 +1,5 @@
 import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 import { DottedName } from 'Rules'
 import { Localisation } from '../components/localisation/utils'
@@ -264,4 +265,11 @@ export const resetLocalisation = () =>
 export const updateAmortissementAvion = (amortissementAvionObject: Object) => ({
 	type: 'SET_AMORTISSEMENT',
 	amortissementAvionObject,
+})
+
+export const updateEventsSent = (eventSent: {
+	[key: string]: boolean
+}): AnyAction => ({
+	type: 'UPDATE_EVENTS_SENT',
+	eventSent,
 })

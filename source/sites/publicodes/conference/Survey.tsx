@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom'
 import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
-import { usePersistingState } from '../../../components/utils/persistState'
+import { usePersistingState } from '../../../hooks/usePersistState'
 import Navigation from '../Navigation'
 import { useProfileData } from '../Profil'
 import { ConferenceTitle } from './Conference'
@@ -158,14 +158,14 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 			) : isRegisteredSurvey ? (
 				<div className="ui__ card content">
 					<p>
-						<Trans i18nKey={`publicodes.conference.Survey.csv`}>
+						<Trans i18nKey={'publicodes.conference.Survey.csv'}>
 							Vous pouvez récupérer les résultats du sondage dans le format
 							.csv.
 						</Trans>
 					</p>
 					<ul>
 						<li>
-							<Trans i18nKey={`publicodes.conference.Survey.libreOffice`}>
+							<Trans i18nKey={'publicodes.conference.Survey.libreOffice'}>
 								Pour l'ouvrir avec{' '}
 								<a href="https://fr.libreoffice.org" target="_blank">
 									LibreOffice
@@ -174,14 +174,14 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 							</Trans>
 						</li>
 						<li>
-							<Trans i18nKey={`publicodes.conference.Survey.excel`}>
+							<Trans i18nKey={'publicodes.conference.Survey.excel'}>
 								Pour l'ouvrir avec Microsoft Excel, ouvrez un tableur vide, puis
 								Données {'>'} À partir d'un fichier texte / CSV. Sélectionnez
 								"Origine : Unicode UTF-8" et "Délimiteur : virgule".
 							</Trans>
 						</li>
 						<li>
-							<Trans i18nKey={`publicodes.conference.Survey.resultat`}>
+							<Trans i18nKey={'publicodes.conference.Survey.resultat'}>
 								Les résultats de la page de visualisation ne prennent en compte
 								que les participants ayant rempli <b>au moins 10% du test</b>.
 								En revanche le CSV contient les simulations de toutes les

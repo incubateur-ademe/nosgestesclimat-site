@@ -54,7 +54,7 @@ export default function KmFigures(props) {
 						)}
 						%
 					</Number>
-					<Label>{t(`ont utilisé l'aide à la saisie des km`)}</Label>
+					<Label>{t('ont utilisé l\'aide à la saisie des km')}</Label>
 				</Tile.Content>
 			</TileWrapper>
 			<TileWrapper>
@@ -62,7 +62,7 @@ export default function KmFigures(props) {
 					<Number>
 						{Math.round(ridesavg).toLocaleString(currentLangInfos.abrvLocale)}
 					</Number>
-					<Label>{t(`trajets saisis en moyenne`)}</Label>
+					<Label>{t('trajets saisis en moyenne')}</Label>
 				</Tile.Content>
 			</TileWrapper>
 		</FigureWrapper>

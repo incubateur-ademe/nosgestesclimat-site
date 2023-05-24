@@ -86,7 +86,7 @@ export default () => {
 						})}
 					</div>
 					<Markdown
-						children={t(`sites.publicodes.LandingExplanations.faqLink`)}
+						children={t('sites.publicodes.LandingExplanations.faqLink')}
 					/>
 				</LandingContent>
 			</div>

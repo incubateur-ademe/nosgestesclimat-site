@@ -3,7 +3,9 @@ import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { WithEngine } from '../../../RulesProvider'
 
-const ConferenceBar = React.lazy(() => import('./ConferenceBar'))
+const ConferenceBar = React.lazy(
+	() => import(/* webpackChunkName: 'ConferenceBar' */ './ConferenceBar')
+)
 
 export default () => {
 	const conference = useSelector((state) => state.conference)

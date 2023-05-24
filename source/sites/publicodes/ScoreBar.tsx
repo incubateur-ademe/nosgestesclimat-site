@@ -3,11 +3,12 @@ import { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { matomoEventClickBanner } from '../../analytics/matomo-events'
 import { correctValue, splitName } from '../../components/publicodesUtils'
 import ScoreExplanation from '../../components/ScoreExplanation'
 import { buildEndURL } from '../../components/SessionBar'
 import { lightenColor } from '../../components/utils/colors'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
 import {
 	objectifsSelector,
 	situationSelector,
@@ -40,7 +41,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const { t } = useTranslation()
 	const [openExplanation, setOpenExplanation] = useState(false)
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const situationLength = Object.keys(situation).length
@@ -139,7 +140,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 								title={t("Afficher l'explication du score")}
 								onClick={() => {
 									setOpenExplanation(!openExplanation)
-									tracker.push(['trackEvent', 'NGC', 'Clic explication score'])
+									trackEvent(matomoEventClickBanner)
 								}}
 								css={`
 									position: relative;

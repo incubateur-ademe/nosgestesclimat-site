@@ -1,12 +1,30 @@
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { TrackerContext } from '../contexts/TrackerContext'
+import {
+	getMatomoEventShareDesktop,
+	getMatomoEventShareMobile,
+} from '../analytics/matomo-events'
+import { MatomoContext } from '../contexts/MatomoContext'
 import ShareButtonIcon from './ShareButtonIcon'
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
 
-export default ({ text, url, title, color, label, score }) => {
-	const tracker = useContext(TrackerContext)
+export default ({
+	text,
+	url,
+	title,
+	color,
+	label,
+	score,
+}: {
+	text: string
+	url: string
+	title: string
+	color: string
+	label: string
+	score: number
+}) => {
+	const { trackEvent } = useContext(MatomoContext)
 	const { t } = useTranslation()
 
 	return navigator.share ? (
@@ -14,7 +32,7 @@ export default ({ text, url, title, color, label, score }) => {
 			color={color}
 			title={t('Cliquez pour partager le lien')}
 			onClick={() => {
-				tracker.push([...eventData, 'mobile', score])
+				trackEvent(getMatomoEventShareMobile(score))
 				navigator
 					.share({ text, url, title, color, label })
 					.then(() => console.log('Successful share'))
@@ -32,7 +50,7 @@ export default ({ text, url, title, color, label, score }) => {
 				color,
 				text,
 				url,
-				trackEvent: () => tracker.push([...eventData, 'bureau', score]),
+				trackEventDesktop: () => trackEvent(getMatomoEventShareDesktop(score)),
 			}}
 		/>
 	)
@@ -44,7 +62,19 @@ const copyToClipboardAsync = (str) => {
 	return Promise.reject('The Clipboard API is not available.')
 }
 
-export const DesktopShareButton = ({ label, text, color, url, trackEvent }) => {
+export const DesktopShareButton = ({
+	label,
+	text,
+	color,
+	url,
+	trackEventDesktop,
+}: {
+	label: string
+	text: string
+	color: string
+	url: string
+	trackEventDesktop: () => void
+}) => {
 	const [copySuccess, setCopySuccess] = useState(false)
 	const { t } = useTranslation()
 
@@ -57,7 +87,7 @@ ${decodeURIComponent(url)}`
 			title={t('Cliquez pour partager le lien')}
 			color={color}
 			onClick={() => {
-				trackEvent()
+				trackEventDesktop()
 				copyToClipboardAsync(clipboardText).then(
 					() => {
 						/* clipboard successfully set */

@@ -33,7 +33,7 @@ export default ({
 	const URLbase = `https://${window.location.hostname}`
 	const URLPath = `/${mode}/${room || newRoom}`,
 		shareURL = URLbase + URLPath
-	const URLGuide = `/guide`
+	const URLGuide = '/guide'
 
 	const { t } = useTranslation()
 
@@ -59,13 +59,13 @@ export default ({
 					title={<span>{t('💡 Choisissez un nom de salle')}</span>}
 				>
 					{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
-					{room && <p>{t(`✅ C'est fait`)}</p>}
+					{room && <p>{t('✅ C\'est fait')}</p>}
 				</InstructionBlock>
 			)}
 			{!started && newRoom !== '' && !room && (
 				<InstructionBlock
 					index="2"
-					title={<span>{t(`⏲️  Choisissez votre mode de simulation`)}</span>}
+					title={<span>{t('⏲️  Choisissez votre mode de simulation')}</span>}
 				>
 					<div
 						css={`
@@ -143,7 +143,7 @@ export default ({
 							<p>
 								⚠️{' '}
 								<Trans
-									i18nKey={`publicodes.conference.Instructions.avertissementModeConference`}
+									i18nKey={'publicodes.conference.Instructions.avertissementModeConference'}
 								>
 									<strong
 										css={`
@@ -162,7 +162,7 @@ export default ({
 						{mode == 'sondage' && (
 							<p>
 								<Trans
-									i18nKey={`publicodes.conference.Instructions.contextualisationLink`}
+									i18nKey={'publicodes.conference.Instructions.contextualisationLink'}
 								>
 									💡 Vous souhaitez ajouter des questions pour obtenir des
 									informations supplémentaires sur les répondants ?{' '}
@@ -184,7 +184,7 @@ export default ({
 				index="4"
 				noIndex={started}
 				title={
-					<span>{t(`🔗 Partagez le lien à vos amis, collègues, etc.`)}</span>
+					<span>{t('🔗 Partagez le lien à vos amis, collègues, etc.')}</span>
 				}
 			>
 				{!newRoom && !room ? (
@@ -223,13 +223,13 @@ export default ({
 			<InstructionBlock
 				index="5"
 				noIndex={started}
-				title={<span>{t(`🎰 Faites toutes et tous votre simulation`)}</span>}
+				title={<span>{t('🎰 Faites toutes et tous votre simulation')}</span>}
 			>
 				{!room ? null : mode === 'conférence' ? (
 					<>
 						<p>
 							<Trans
-								i18nKey={`publicodes.conference.Instructions.liensSimulationConference`}
+								i18nKey={'publicodes.conference.Instructions.liensSimulationConference'}
 							>
 								Au moment convenu, ouvrez ce lien tous en même temps et faites
 								chacun de votre côté votre simulation.
@@ -237,7 +237,7 @@ export default ({
 						</p>
 						<Link to={'/simulateur/bilan'}>
 							<button className="ui__ button plain">
-								{t(`Faites votre test`)}
+								{t('Faites votre test')}
 							</button>
 						</Link>
 					</>
@@ -245,7 +245,7 @@ export default ({
 					<>
 						<Link to={'/simulateur/bilan'}>
 							<button className="ui__ button plain">
-								{t(`Faites votre test`)}
+								{t('Faites votre test')}
 							</button>
 						</Link>
 					</>
@@ -256,20 +256,20 @@ export default ({
 				noIndex={started}
 				title={
 					<span>
-						{t(`🧮 Visualisez à tout moment les résultats de votre groupe`)}
+						{t('🧮 Visualisez à tout moment les résultats de votre groupe')}
 					</span>
 				}
 			>
-				<Trans i18nKey={`publicodes.conference.Instructions.resultatInfos`}>
+				<Trans i18nKey={'publicodes.conference.Instructions.resultatInfos'}>
 					Les résultats pour chaque catégorie (alimentation, transport, logement
 					...) s'affichent progressivement et en temps réel pour l'ensemble du
 					groupe sur{' '}
 				</Trans>
 				{!started ? (
-					t(`la page à partager à l'étape 3`)
+					t('la page à partager à l\'étape 3')
 				) : (
 					<span>
-						{t(`cette page`)} <Link to={URLPath}>{URLPath}</Link>
+						{t('cette page')} <Link to={URLPath}>{URLPath}</Link>
 					</span>
 				)}
 				.
@@ -285,7 +285,7 @@ export default ({
 						</span>
 					}
 				>
-					<Trans i18nKey={`publicodes.conference.Instructions.guideLien`}>
+					<Trans i18nKey={'publicodes.conference.Instructions.guideLien'}>
 						Les résultats sont là, que faire ? Notre guide vous accompagne dans
 						vos réflexions et vos discussions sur cette page
 					</Trans>

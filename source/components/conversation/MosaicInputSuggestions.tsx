@@ -96,7 +96,7 @@ export default function MosaicInputSuggestions({
 						}}
 						title={t('Insérer cette suggestion')}
 					>
-						{emoji(t(('aucun' === text ? 'Aucun' : text) as string))}
+						{emoji(t(('aucun' === text ? 'Aucun' : text)))}
 					</button>
 				)
 			})}

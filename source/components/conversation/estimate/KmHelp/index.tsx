@@ -15,7 +15,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { DottedName } from 'Rules'
 import styled from 'styled-components'
 import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
-import { TrackerContext } from '../../../../contexts/TrackerContext'
+import {
+	matomoEventKilometerHelpClickClose,
+	matomoEventKilometerHelpClickOpen,
+} from '../../../../analytics/matomo-events'
+import { MatomoContext } from '../../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -52,7 +56,7 @@ export default function KmHelp({
 }: KmHelpProps) {
 	const { t, i18n } = useTranslation()
 
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)
@@ -181,20 +185,12 @@ export default function KmHelp({
 						isFormOpen
 							? () => {
 									setIsFormOpen(false)
-									tracker.push([
-										'trackEvent',
-										'Aide saisie km',
-										'Ferme aide à la saisie km voiture',
-									])
+									trackEvent(matomoEventKilometerHelpClickOpen)
 							  }
 							: () => {
 									setIsFormOpen(true)
 									setFinalValue(Math.round(+sum))
-									tracker.push([
-										'trackEvent',
-										'Aide saisie km',
-										'Ouvre aide à la saisie km voiture',
-									])
+									trackEvent(matomoEventKilometerHelpClickClose)
 							  }
 					}
 				/>
@@ -309,7 +305,7 @@ export default function KmHelp({
 												</Fragment>
 											))}
 											{sum > 0 && (
-												<td colspan="6">
+												<td colSpan="6">
 													<span
 														css={`
 															display: flex;
@@ -347,7 +343,6 @@ export default function KmHelp({
 								trajets={trajets}
 								setTrajets={setTrajets}
 								openmojiURL={openmojiURL}
-								tracker={tracker}
 							/>
 						</div>
 					</div>

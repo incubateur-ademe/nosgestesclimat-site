@@ -1,6 +1,5 @@
 import { ASTNode } from 'publicodes'
 import { useState } from 'react'
-import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
 
 type InputSuggestionsProps = {
@@ -74,7 +73,7 @@ export default function InputSuggestions({
 								: t('Insérer cette suggestion')
 						}
 					>
-						{emoji(text)}
+						{text}
 					</button>
 				)
 			})}

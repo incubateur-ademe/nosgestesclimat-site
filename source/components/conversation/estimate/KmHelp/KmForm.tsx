@@ -1,12 +1,15 @@
+import { matomoEventKilometerHelp } from '@/analytics/matomo-events'
+import { MatomoContext } from '@/contexts/MatomoContext'
 import { nanoid } from 'nanoid'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
 import { freqList, motifList } from './dataHelp'
 
-export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
+export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 	const { t } = useTranslation()
+	const { trackEvent } = useContext(MatomoContext)
 
 	const [addFormData, setAddFormData] = useState({
 		motif: '',
@@ -37,7 +40,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 		// native function "checkValidity" for instance doesn't work on "NumberFormat" component
 		const peopleFieldToCheck = document.getElementById('peopleFieldinForm')
 
-		if (peopleFieldToCheck.value == 0) {
+		if (peopleFieldToCheck?.value == 0) {
 			peopleFieldToCheck.setCustomValidity(
 				'Vous êtes au moins présent dans la voiture'
 			)
@@ -50,7 +53,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 		// we have to check the form validity if we want 'required' attribute to be taken into account with preventDefault function
 		const formToCheck = formRef.current
 
-		const isValidForm = formToCheck.checkValidity()
+		const isValidForm = formToCheck?.checkValidity()
 		if (!isValidForm) {
 			formToCheck.reportValidity()
 			return null
@@ -241,11 +244,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL, tracker }) {
 					css="max-height: 2rem"
 					onClick={(event) => {
 						handleAddFormSubmit(event)
-						tracker.push([
-							'trackEvent',
-							'Aide saisie km',
-							'Ajout trajet km voiture',
-						])
+						trackEvent(matomoEventKilometerHelp)
 					}}
 				>
 					<Trans>Ajouter</Trans>

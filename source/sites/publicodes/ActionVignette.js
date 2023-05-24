@@ -5,6 +5,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { setActionChoice } from '../../actions/actions'
+import {
+	getMatomoEventActionAccepted,
+	getMatomoEventActionRejected,
+} from '../../analytics/matomo-events'
 import NotificationBubble from '../../components/NotificationBubble'
 import {
 	correctValue,
@@ -12,8 +16,8 @@ import {
 	splitName,
 } from '../../components/publicodesUtils'
 import { useEngine } from '../../components/utils/EngineContext'
-import { getNextQuestions } from '../../components/utils/useNextQuestion'
-import { TrackerContext } from '../../contexts/TrackerContext'
+import { MatomoContext } from '../../contexts/MatomoContext'
+import { getNextQuestions } from '../../hooks/useNextQuestion'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -51,15 +55,15 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
-	const tracker = useContext(TrackerContext)
+	const { trackEvent } = useContext(MatomoContext)
 
 	const dispatch = useDispatch()
-	const rules = useSelector((state) => state.rules),
-		{ nodeValue, dottedName, title } = evaluation,
-		{ icônes: icons } = rule
-	const actionChoices = useSelector((state) => state.actionChoices),
-		situation = useSelector(situationSelector),
-		answeredQuestions = useSelector(answeredQuestionsSelector)
+	const rules = useSelector((state) => state.rules)
+	const { nodeValue, dottedName, title } = evaluation
+	const { icônes: icons } = rule
+	const actionChoices = useSelector((state) => state.actionChoices)
+	const situation = useSelector(situationSelector)
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	const engine = useEngine()
 
@@ -68,21 +72,21 @@ export const ActionListCard = ({
 		disabled = disabledAction(flatRule, nodeValue)
 
 	const remainingQuestions = getNextQuestions(
-			[evaluation.missingVariables],
-			questionConfig,
-			answeredQuestions,
-			situation,
-			engine
-		),
-		nbRemainingQuestions = remainingQuestions.length,
-		hasRemainingQuestions = nbRemainingQuestions > 0,
-		pluralSuffix = nbRemainingQuestions > 1 ? 's' : '',
-		remainingQuestionsText = (
-			<Trans i18nKey={'publicodes.ActionVignette.questionsRestantesText'}>
-				{{ nbRemainingQuestions }} question{{ pluralSuffix }} restante
-				{{ pluralSuffix }}
-			</Trans>
-		)
+		[evaluation.missingVariables],
+		questionConfig,
+		answeredQuestions,
+		situation,
+		engine
+	)
+	const nbRemainingQuestions = remainingQuestions.length
+	const hasRemainingQuestions = nbRemainingQuestions > 0
+	const pluralSuffix = nbRemainingQuestions > 1 ? 's' : ''
+	const remainingQuestionsText = (
+		<Trans i18nKey={'publicodes.ActionVignette.questionsRestantesText'}>
+			{{ nbRemainingQuestions }} question{{ pluralSuffix }} restante
+			{{ pluralSuffix }}
+		</Trans>
+	)
 	const categories = extractCategoriesNamespaces(rules, engine)
 	const foundCategory = categories.find(
 		(cat) => cat.dottedName === splitName(dottedName)[0]
@@ -105,7 +109,7 @@ export const ActionListCard = ({
 				align-items: center;
 				height: 14.5rem;
 				${noFormula && 'height: 13rem;'}
-				${hasRemainingQuestions && `background: #eee !important; `}
+				${hasRemainingQuestions && 'background: #eee !important; '}
 				position: relative;
 				> div {
 					padding: 0.4rem !important;
@@ -116,7 +120,7 @@ export const ActionListCard = ({
 				box-shadow: 2px 2px 10px #bbb;
 
 				${disabled ? disabledStyle : ''}
-				${focused && `border: 4px solid var(--color) !important;`}
+				${focused && 'border: 4px solid var(--color) !important;'}
 				${actionChoices[evaluation.dottedName] &&
 				`
 				  border: 6px solid #2da44e;
@@ -182,7 +186,7 @@ export const ActionListCard = ({
 					`}
 				>
 					<div
-						css={hasRemainingQuestions ? `filter: blur(1px) grayscale(1)` : ''}
+						css={hasRemainingQuestions ? 'filter: blur(1px) grayscale(1)' : ''}
 					>
 						<ActionValue
 							{...{ dottedName, total, disabled, noFormula, engine }}
@@ -200,6 +204,12 @@ export const ActionListCard = ({
 						<p
 							css="color: var(--color); height: 0; cursor: pointer"
 							onClick={() => focusAction(dottedName)}
+							onKeyDown={(e) => {
+								if (e.key === 'Enter') {
+									focusAction(dottedName)
+								}
+							}}
+							tabIndex="0"
 						>
 							{remainingQuestionsText}
 						</p>
@@ -234,20 +244,13 @@ export const ActionListCard = ({
 								)
 							)
 							if (!actionChoices[dottedName]) {
-								const eventData = [
-									'trackEvent',
-									'/actions',
-									'Action sélectionnée',
-									dottedName,
-									nodeValue,
-								]
-								tracker.push(eventData)
+								trackEvent(getMatomoEventActionAccepted(dottedName, nodeValue))
 							}
 							e.stopPropagation()
 							e.preventDefault()
 						}}
 					>
-						<img src="/images/2714.svg" css="width: 3rem" />
+						<img src="/images/2714.svg" css="width: 3rem" alt="" />
 					</button>
 					<button
 						title={t("Rejeter l'action")}
@@ -259,18 +262,12 @@ export const ActionListCard = ({
 									actionChoices[dottedName] === false ? null : false
 								)
 							)
-							tracker.push([
-								'trackEvent',
-								'/actions',
-								'Action rejetée',
-								dottedName,
-								nodeValue,
-							])
+							trackEvent(getMatomoEventActionRejected(dottedName, nodeValue))
 							e.stopPropagation()
 							e.preventDefault()
 						}}
 					>
-						<img src="/images/274C.svg" css="width: 1.8rem" />
+						<img src="/images/274C.svg" css="width: 1.8rem" alt="" />
 					</button>
 				</div>
 			</div>
@@ -296,9 +293,9 @@ export const ActionGameCard = ({ evaluation, total, rule }) => {
 			`}
 			to={'/actions/' + utils.encodeRuleName(dottedName)}
 		>
-			<div css={``}>
+			<div css={''}>
 				<h2>{title}</h2>
-				<div css={``}>
+				<div css={''}>
 					{icons && (
 						<div
 							css={`
@@ -361,7 +358,7 @@ export const ActionValue = ({
 							padding-right: 0;
 							border: 2px solid var(--color);
 							border-radius: 0.3rem;
-							${correctedValue < 0 && `background: #e33e3e`};
+							${correctedValue < 0 && 'background: #e33e3e'};
 						`}
 					>
 						<strong>{stringValue}</strong>&nbsp;

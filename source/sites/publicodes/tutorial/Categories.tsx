@@ -4,7 +4,7 @@ import Chart from '../chart'
 
 export default () => (
 	<>
-		<Trans i18nKey={`publicodes.Tutorial.slide6`}>
+		<Trans i18nKey={'publicodes.Tutorial.slide6'}>
 			<h1>D'où vient notre empreinte ?</h1>
 			<p>
 				Prendre la voiture, manger un steak, chauffer sa maison, se faire
