@@ -714,3 +714,45 @@ entries:
   Blog: Blog
   Générales: General
   simulations terminées: completed simulations
+  publicodes.planDuSite.actions: Your actions
+  publicodes.planDuSite.actions.lock: Vos actions
+  publicodes.planDuSite.aPropos: About us
+  publicodes.planDuSite.aPropos.lock: À propos
+  publicodes.planDuSite.modele: Model
+  publicodes.planDuSite.modele.lock: Modèle
+  publicodes.planDuSite.contribuer: Contribute
+  publicodes.planDuSite.contribuer.lock: Contribuer
+  publicodes.planDuSite.nouveautes: News
+  publicodes.planDuSite.nouveautes.lock: Nouveautés
+  publicodes.planDuSite.actionsPlus: The actions
+  publicodes.planDuSite.actionsPlus.lock: Les actions
+  publicodes.planDuSite.informations: Information
+  publicodes.planDuSite.informations.lock: Informations
+  publicodes.planDuSite.guide: Facilitator's Guide
+  publicodes.planDuSite.guide.lock: Guide de l'animateur
+  publicodes.planDuSite.petroleEtGaz: Oil and gas
+  publicodes.planDuSite.petroleEtGaz.lock: Pétrole et gaz
+  publicodes.planDuSite.profil: Your simulation
+  publicodes.planDuSite.profil.lock: Votre simulation
+  publicodes.planDuSite.methodologie: Methodology
+  publicodes.planDuSite.methodologie.lock: Méthodologie
+  publicodes.planDuSite.partenaires: For partners
+  publicodes.planDuSite.partenaires.lock: Pour les partenaires
+  publicodes.planDuSite.personas: Typical simulations
+  publicodes.planDuSite.personas.lock: Les simulations types
+  publicodes.planDuSite.title: Plan
+  publicodes.planDuSite.title.lock: Plan
+  publicodes.planDuSite.groupe: Group simulation
+  publicodes.planDuSite.groupe.lock: La simulation en groupe
+  publicodes.planDuSite.documentation: Documentation
+  publicodes.planDuSite.documentation.lock: Documentation
+  publicodes.planDuSite.viePrivee: Privacy Policy
+  publicodes.planDuSite.viePrivee.lock: Vie privée
+  publicodes.planDuSite.bilan: The simulator
+  publicodes.planDuSite.bilan.lock: Le simulateur
+  publicodes.planDuSite.outils: Tools
+  publicodes.planDuSite.outils.lock: Outils
+  publicodes.planDuSite.stats: Statistics Page
+  publicodes.planDuSite.stats.lock: Page des Statistiques
+  publicodes.planDuSite.sondageDoc: Survey documentation
+  publicodes.planDuSite.sondageDoc.lock: Documentation sondage

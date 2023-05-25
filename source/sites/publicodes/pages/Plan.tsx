@@ -110,11 +110,7 @@ const PlanDuSite = () => {
 				</SectionTitle>
 				{actionsList.map((link) => (
 					<li key={link}>
-						<Link to={link}>
-							<Trans i18nKey={`${link}`}>
-								{decodeURI(link.replace('/actions/', ''))}
-							</Trans>
-						</Link>
+						<Link to={link}>{decodeURI(link.replace('/actions/', ''))}</Link>
 					</li>
 				))}
 			</Section>

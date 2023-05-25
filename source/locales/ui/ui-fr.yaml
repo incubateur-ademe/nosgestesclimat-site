@@ -424,6 +424,7 @@ entries:
   publicodes.fin.Petrogaz.equivalenceVolume: Soit {{secondaryValue}} litres (plein de {{pleinVolume}} litres).
   publicodes.fin.Petrogaz.explications: <0>C'est une estimation <1>a minima</1> de votre consommation de pétrole brut à l'année.</0><1>Estimée via vos trajets en voiture, en avion, en bus, consommation de fioul pour chauffage, elle ne prend pas (encore) en compte le pétrole utilisé pour acheminer vos achats, et l'énergie grise de vos diverses possessions.</1>
   publicodes.fin.Petrogaz.petroleBrut: de <1>pétrole brut par an</1>
+<<<<<<< HEAD
   publicodes.northstar.title: <0>Petite question entre nous...</0>
   publicodes.northstar.action: Est-ce que "Nos Gestes Climat" vous donne envie d'agir pour réduire votre empreinte carbone ?
   publicodes.northstar.learned: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
@@ -439,7 +440,7 @@ entries:
   publicodes.planDuSite.profil: Votre simulation
   publicodes.planDuSite.personas: Les simulations types
   publicodes.planDuSite.actions: Vos actions
-  publicodes.planDuSite.actionsPlus: La liste de actions
+  publicodes.planDuSite.actionsPlus: Les actions
   publicodes.planDuSite.informations: Informations
   publicodes.planDuSite.nouveautes: Nouveautés
   publicodes.planDuSite.guide: Guide de l'animateur
