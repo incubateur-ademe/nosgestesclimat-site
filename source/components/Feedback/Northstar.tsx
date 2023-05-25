@@ -48,10 +48,11 @@ export default ({
 		}, 1000)
 	}
 	useEffect(() => {
-		console.log('ratings', ratings)
 		if (!animationComplete) return
-		if (ratings[ratingKeys[type]] != null) return
+		if (ratings[ratingKeys[type]] != 'no_display') return
+		dispatch(setRatings(type, 'display'))
 		const newRatings = setRating(ratings, type, 'display', text)
+		console.log(newRatings)
 		if (
 			[0, 1, 2, 3].includes(ratings.learned) ||
 			[0, 1, 2, 3].includes(ratings.action)

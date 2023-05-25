@@ -2,7 +2,7 @@ import { RootState, Simulation } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
 import { Lang } from '../locales/translation'
 
-export type Rating = 0 | 1 | 2 | 3 | 'no_answer' | 'refuse'
+export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
 
 export type SavedSimulation = {
 	situation: Simulation['situation']

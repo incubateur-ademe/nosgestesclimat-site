@@ -27,10 +27,11 @@ export default ({
 
 	const displayActionRating =
 		type === 'SET_RATING_ACTION' &&
-		hasRatedAction == 'no_answer' &&
+		hasRatedAction.toString().includes('display') &&
 		actionChoicesLength > 2
 	const displayLearnedRating =
-		type === 'SET_RATING_LEARNED' && hasRatedLearning == 'no_answer'
+		type === 'SET_RATING_LEARNED' &&
+		hasRatedLearning.toString().includes('display')
 
 	const closeFeedback = () => {
 		setTimeout(() => {

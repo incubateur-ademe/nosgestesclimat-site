@@ -402,8 +402,8 @@ function simulations(
 // for northstar ratings Pick<Person, "address.postalCode">
 function ratings(
 	state: SavedSimulation['ratings'] = {
-		learned: 'no_answer',
-		action: 'no_answer',
+		learned: 'no_display',
+		action: 'no_display',
 	},
 	{ type, value }
 ) {
