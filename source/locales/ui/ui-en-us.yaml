@@ -680,3 +680,15 @@ entries:
   Le logo vert et bleu de la campagne Printemps pour la planète: The green and blue logo of the Spring for the Planet campaign
   model.questions: Discover the <2>list of questions available in the template</2>.
   model.questions.lock: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
+  publicodes.northstar.title: <0>Small question between us...</0>
+  publicodes.northstar.title.lock: <0>Petite question entre nous...</0>
+  'Oui plutôt, envoyer cette réponse': Yes, send this answer instead
+  publicodes.northstar.thankyou: Thank you for your feedback!
+  publicodes.northstar.thankyou.lock: Merci pour votre retour !
+  'Tout à fait, envoyer cette réponse': Absolutely, send this answer
+  publicodes.northstar.action: Does "Nos Gestes Climat" make you want to take action to reduce your carbon footprint?
+  publicodes.northstar.action.lock: Est-ce que "Nos Gestes Climat" vous donne envie d'agir pour réduire votre empreinte carbone ?
+  'Moyennement, envoyer cette réponse': Moderately, send this answer
+  'Pas vraiment, envoyer cette réponse': Not really, send this answer
+  publicodes.northstar.learned: Did "Nos Gestes Climat" allow you to learn something?
+  publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?

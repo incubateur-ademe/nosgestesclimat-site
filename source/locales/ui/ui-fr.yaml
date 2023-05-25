@@ -427,10 +427,10 @@ entries:
   publicodes.northstar.action: Est-ce que "Nos Gestes Climat" vous donne envie d'agir pour réduire votre empreinte carbone ?
   publicodes.northstar.learned: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
   publicodes.northstar.thankyou: Merci pour votre retour !
-  Pas vraiment, envoyer cette réponse: Pas vraiment, envoyer cette réponse
-  Oui plutôt, envoyer cette réponse: Oui plutôt, envoyer cette réponse
-  Moyennement, envoyer cette réponse: Moyennement, envoyer cette réponse
-  Tout à fait, envoyer cette réponse: Tout à fait, envoyer cette réponse
+  'Pas vraiment, envoyer cette réponse': Pas vraiment, envoyer cette réponse
+  'Oui plutôt, envoyer cette réponse': Oui plutôt, envoyer cette réponse
+  'Moyennement, envoyer cette réponse': Moyennement, envoyer cette réponse
+  'Tout à fait, envoyer cette réponse': Tout à fait, envoyer cette réponse
   période: période
   semaine: semaine
   semaines: semaines
