@@ -4,11 +4,12 @@ import Route404 from '@/components/Route404'
 import { sessionBarMargin } from '@/components/SessionBar'
 import '@/components/ui/index.css'
 import * as Sentry from '@sentry/react'
-import React, { Suspense, useContext, useEffect } from 'react'
+import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import { setDifferentSituation } from '../../actions/actions'
 import { matomoEventInteractionIframe } from '../../analytics/matomo-events'
 import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
@@ -140,8 +141,6 @@ export default function Root() {
 
 	// We retrieve the User object from local storage to initialize the store.
 	const persistedUser = fetchUser()
-	// Or we retrive the simulation from the URL
-	const simulationFromURL = useLoadSimulationFromURL()
 
 	// We use the 'currentSimulationId' pointer to retrieve the latest simulation in the list.
 	const persistedSimulation = persistedUser.simulations.filter(
@@ -179,14 +178,9 @@ export default function Root() {
 			}}
 			initialStore={{
 				// If a simulation is loaded via URL, we use it as the current simulation
-				simulation: simulationFromURL ?? persistedSimulation,
-				simulations: [
-					...(simulationFromURL ? [simulationFromURL] : []),
-					...persistedUser.simulations,
-				],
-				currentSimulationId: simulationFromURL
-					? simulationFromURL.id
-					: persistedUser.currentSimulationId,
+				simulation: persistedSimulation,
+				simulations: [...persistedUser.simulations],
+				currentSimulationId: persistedUser.currentSimulationId,
 				tutorials: persistedUser.tutorials,
 				localisation: persistedUser.localisation,
 				currentLang,
@@ -209,13 +203,29 @@ export default function Root() {
 const Main = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const { i18n, t } = useTranslation()
-	const [searchParams, _] = useSearchParams()
+	const { i18n } = useTranslation()
+	const [searchParams] = useSearchParams()
 	const isHomePage = location.pathname === '/'
 	const isTuto = location.pathname.startsWith('/tutoriel')
+	const [simulationFromUrlHasBeenSet, setSimulationFromUrlHasBeenSet] =
+		useState(false)
 
 	const { trackPageView } = useContext(MatomoContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
+
+	// Or we retrive the simulation from the URL
+	const simulationFromURL = useLoadSimulationFromURL()
+
+	useEffect(() => {
+		if (simulationFromURL && !simulationFromUrlHasBeenSet) {
+			setSimulationFromUrlHasBeenSet(true)
+			dispatch(setDifferentSituation(simulationFromURL))
+		}
+	}, [dispatch, simulationFromURL, simulationFromUrlHasBeenSet])
+
+	if (simulationFromURL && !simulationFromURL?.situation) {
+		simulationFromURL.situation = {}
+	}
 
 	useEffect(() => {
 		trackPageView(location)

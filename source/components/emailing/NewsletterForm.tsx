@@ -1,6 +1,7 @@
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
-import { currentSimulationSelector } from '@/selectors/storageSelectors'
+import { AppState } from '@/reducers/rootReducer'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import * as Sentry from '@sentry/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
@@ -17,7 +18,15 @@ export const NewsletterForm = () => {
 
 	const { t } = useTranslation()
 
-	const currentSimulation = useSelector(currentSimulationSelector)
+	const currentSimulationId = useSelector(
+		(state: AppState) => state.currentSimulationId
+	)
+
+	const simulationList = useSelector((state: AppState) => state.simulations)
+
+	const currentSimulation = simulationList.find(
+		(simulation) => simulation.id === currentSimulationId
+	)
 
 	const saveSimulationInDB = async (data) => {
 		const dataFormatted = { ...data }
@@ -27,7 +36,7 @@ export const NewsletterForm = () => {
 		}
 
 		try {
-			const response = await fetch(emailSimulationURL, {
+			const response = await fetch(emailSimulationURL as string, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -40,7 +49,7 @@ export const NewsletterForm = () => {
 			const simulationSaved = await response.json()
 			return simulationSaved
 		} catch (e) {
-			console.log(e)
+			Sentry.captureException(e)
 		}
 	}
 
@@ -84,6 +93,7 @@ export const NewsletterForm = () => {
 			setIsSent(true)
 		} catch (e) {
 			console.log(e)
+			Sentry.captureException(e)
 		} finally {
 			setIsSending(false)
 		}
@@ -243,9 +253,10 @@ export const NewsletterForm = () => {
 								css={`
 									visibility: hidden;
 								`}
+								readOnly
 							/>
-							<input type="hidden" name="locale" value="en" />
-							<input type="hidden" name="html_type" value="simple" />
+							<input type="hidden" name="locale" value="en" readOnly />
+							<input type="hidden" name="html_type" value="simple" readOnly />
 						</form>
 					)}
 				</div>

@@ -27,8 +27,9 @@ import {
 import SimulationList from './SimulationList'
 
 export const useProfileData = () => {
-	const answeredQuestions = useSelector(answeredQuestionsSelector),
-		answeredQuestionsLength = answeredQuestions.length
+	const answeredQuestions = useSelector(answeredQuestionsSelector)
+	const answeredQuestionsLength = answeredQuestions.length
+
 	const tutorials = useSelector((state) => state.tutorials)
 
 	const hasData = answeredQuestionsLength > 0
