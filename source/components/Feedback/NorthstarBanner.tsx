@@ -22,7 +22,7 @@ export default ({
 	const actionChoices = useSelector((state: RootState) => state.actionChoices)
 
 	const actionChoicesLength = Object.entries(actionChoices).filter(
-		([key, value]) => value
+		([, value]) => value
 	).length
 
 	const displayActionRating =
@@ -43,8 +43,9 @@ export default ({
 	if (
 		!testCompleted ||
 		(!displayActionRating && !displayLearnedRating) ||
-		// Display only the Northstar banner in production
-		(NODE_ENV !== 'production' && CONTEXT !== 'deploy-preview')
+		// Display only the Northstar banner in production mode
+		NODE_ENV === 'development' ||
+		CONTEXT === 'deploy-preview'
 	) {
 		return null
 	}
