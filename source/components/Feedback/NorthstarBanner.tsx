@@ -40,7 +40,14 @@ export default ({
 
 	const [animationComplete, setAnimationComplete] = useState(false)
 
-	if (!testCompleted || (!displayActionRating && !displayLearnedRating)) return
+	if (
+		!testCompleted ||
+		(!displayActionRating && !displayLearnedRating) ||
+		// Display only the Northstar banner in production
+		(NODE_ENV !== 'production' && CONTEXT !== 'deploy-preview')
+	) {
+		return null
+	}
 
 	return (
 		<motion.div

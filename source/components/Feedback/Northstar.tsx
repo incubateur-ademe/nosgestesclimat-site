@@ -25,7 +25,7 @@ export default ({
 	animationComplete: boolean
 	text: string
 }) => {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 	const [selectedRating, setSelectedRating] = useState(false)
 	const dispatch = useDispatch()
 
@@ -48,7 +48,6 @@ export default ({
 		}, 1000)
 	}
 	useEffect(() => {
-		console.log('ratings', ratings)
 		if (!animationComplete) return
 		if (ratings[ratingKeys[type]] != null) return
 		const newRatings = setRating(ratings, type, null, text)
