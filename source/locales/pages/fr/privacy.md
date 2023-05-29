@@ -27,6 +27,11 @@ Les modes de simulation en groupe, conférence et sondage, font eux appel à nos
 Nos Gestes Climat est développé au sein de l’Agence de la transition écologique (ADEME). La plateforme numérique Nos Gestes Climat permet grâce à un calculateur d’empreinte carbone personnel de référence d’estimer l’empreinte carbone de consommation des utilisateurs.
 Le responsable de l’utilisation des données est l’Agence de la transition écologique (ADEME) représentée par Monsieur Boris RAVIGNON, Président-directeur général par interim de l’ADEME.
 
+## Qui héberge Nos Gestes Climat ?
+
+L’entreprise Netlify héberge Nos Gestes Climat. Netlify est une entreprise américaine dont le siège social est situé à San Francisco en Californie : https://www.netlify.com/gdpr-ccpa/
+Scalingo héberge les données du sondage : https://scalingo.com/fr/contrat-gestion-traitements-donnees-personnelles
+
 ## Données à caractère personnel traitées
 
 ### a) Données relatives à la simulation
@@ -121,12 +126,6 @@ Le responsable de traitement s’engage à ce que les données soient traitées 
 ### Sous-traitants
 
 Certaines données sont envoyées à des sous-traitants pour réaliser certaines missions. Le responsable de traitement s'est assuré de la mise en œuvre par ses sous-traitants de garanties adéquates et du respect de conditions strictes de confidentialité, d’usage et de protection des données.
-
-### Hébergement du site Web
-
-Le site Web est hébergé par Netlify, comme indiqué dans les mentions légales sur la page [à propos](/à-propos).
-
-Le serveur de stockage des données du sondage est hébergé par [Scalingo](https://scalingo.com) SAS, 15 avenue du Rhin 67100 Strasbourg France.
 
 ## Cookies
 
