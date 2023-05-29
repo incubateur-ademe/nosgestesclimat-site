@@ -16,8 +16,7 @@ Climatique](https://avenirclimatique.org/les-outils/) et
 
 ## Qui le développe ?
 
-Ce calculateur carbone est développé par l'équipe
-Nosgestesclimat de l'[Agence de la transition
+Ce calculateur carbone est développé par l'[Agence de la transition
 écologique](https://www.ademe.fr/) (ADEME) et
 [beta.gouv.fr](https://beta.gouv.fr/), en partenariat avec
 l'[Association Bilan Carbone](https://www.associationbilancarbone.fr/)
@@ -101,4 +100,3 @@ l'Europe](https://answers.netlify.com/t/is-there-a-list-of-where-netlifys-cdn-po
 ## Conditions générales d'utilisation
 
 Elles sont disponibles sur [cette page](/cgu).
-
