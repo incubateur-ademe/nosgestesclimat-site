@@ -20,10 +20,6 @@ css="border: 2px dashed var(--color); max-height: 200px; width: 600px;"
 src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&language=fr&backgroundColor=&fontColor=&fontSize=&fontFamily="
 ></iframe>
 
-> À partir du 18 avril 2023, nous testons un nouvel outil de suivi, lui aussi open source, Plausible, dans l'objectif d'améliorer le service.
-
-> Plausible [est respectueux de votre vie privé](https://plausible.io/data-policy), les informations collectées sont les mêmes qu'à l'heure actuelle et sont totalement anonymes. Vous pouvez refuser ce suivi via [les instructions sur cette page](https://plausible.io/docs/excluding), qui peuvent se résumer à l'[installation du blockeur de publicités uBlock Origin sur le navigateur Firefox](https://addons.mozilla.org/fr/firefox/addon/ublock-origin/).
-
 Les modes de simulation en groupe, conférence et sondage, font eux appel à nos serveurs pour aggréger les multiples simulations et les communiquer entre les participants.
 
 ## Traitement des données à caractère personnel
@@ -56,7 +52,7 @@ Au cours de la simulation en mode conférence, les résultats décrits en introd
 
 #### Mode sondage
 
-Le mode sondage repose sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code est 
+Le mode sondage repose sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code est
 et disponible [sur github](https://github.com/datagir/nosgestesclimat-server).
 
 Au préalable de tout partage de données avec notre serveur, l'utilisateur se voit demander s'il veut participer au mode sondage.
