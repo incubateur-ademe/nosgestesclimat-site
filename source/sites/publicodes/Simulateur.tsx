@@ -69,14 +69,14 @@ const availableCategories = [
 const Simulateur = () => {
 	const dispatch = useDispatch()
 	const urlParams = useParams()
-	const path = urlParams['*']?.split('/')
-	if (!path) {
+	const pathElems = urlParams['*']?.split('/')
+	if (!pathElems) {
 		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
 
-	const category = path[0]
+	const category = pathElems[0]
 	const isMainSimulation = isRootRule(category)
-	const selectedRuleNameURLPath = path.slice(1)
+	const selectedRuleNameURLPath = pathElems.slice(1)
 
 	if (!availableCategories.includes(category)) {
 		console.log(
@@ -215,11 +215,10 @@ function getValidSelectedRuleInfos(
 			return false
 		}
 		const rule = rules[ruleName]
-		const isAQuestion =
+		const isQuestion =
 			rule != undefined && 'rawNode' in rule && 'question' in rule.rawNode
-		const isAMosaicChild = rule != undefined && isMosaicChild(rules, ruleName)
 
-		return isAQuestion && !isAMosaicChild
+		return isQuestion && !isMosaicChild(rules, ruleName)
 	}
 
 	if (selectedRuleName != '' && !isValidRule(selectedRuleName)) {
