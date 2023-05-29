@@ -22,9 +22,10 @@ src="https://stats.data.gouv.fr/index.php?module=CoreAdminHome&action=optOut&lan
 
 Les modes de simulation en groupe, conférence et sondage, font eux appel à nos serveurs pour aggréger les multiples simulations et les communiquer entre les participants.
 
-## Traitement des données à caractère personnel
+## Qui est responsable de Nos Gestes Climat ?
 
-La présente plateforme Nos Gestes Climat est à l’initiative de l’Agence de la transition écologique, l'ADEME, qui est responsable de traitement des données à caractère personnel collectées par la plateforme.
+Nos Gestes Climat est développé au sein de l’Agence de la transition écologique (ADEME). La plateforme numérique Nos Gestes Climat permet grâce à un calculateur d’empreinte carbone personnel de référence d’estimer l’empreinte carbone de consommation des utilisateurs.
+Le responsable de l’utilisation des données est l’Agence de la transition écologique (ADEME) représentée par Monsieur Boris RAVIGNON, Président-directeur général par interim de l’ADEME.
 
 ## Données à caractère personnel traitées
 
