@@ -2,16 +2,12 @@
 
 ## Introduction
 
-La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux
-questions restent chez vous, nous n'en collectons aucune.
+La simulation et les calculs se font dans votre navigateur Web, donc les réponses aux questions restent chez vous, nous n'en collectons aucune.
 
-Cependant, nous suivons quelques informations sur votre utilisation de ce
-simulateur, telles que les pages consultées et le temps passé, dans
+Cependant, nous suivons quelques informations sur votre utilisation de ce simulateur, telles que les pages consultées et le temps passé, dans
 l'unique but de l'améliorer.
 
-En particulier, nous suivons l'adresse de la page de fin de simulation,
-qui contient le total de votre empreinte et sa répartition en grande
-catégories (transport, logement, ...).
+En particulier, nous suivons l'adresse de la page de fin de simulation, qui contient le total de votre empreinte et sa répartition en grande catégories (transport, logement, ...).
 
 Vous pouvez en savoir plus et désactiver ce suivi, qui est fait via une instance étatique du logiciel ouvert Matomo, ci-dessous.
 
@@ -32,7 +28,33 @@ Le responsable de l’utilisation des données est l’Agence de la transition �
 L’entreprise Netlify héberge Nos Gestes Climat. Netlify est une entreprise américaine dont le siège social est situé à San Francisco en Californie : https://www.netlify.com/gdpr-ccpa/
 Scalingo héberge les données du sondage : https://scalingo.com/fr/contrat-gestion-traitements-donnees-personnelles
 
-## Données à caractère personnel traitées
+## Cookies
+
+En application de l’article 5(3) de la directive 2002/58/CE modifiée concernant le traitement des données à caractère personnel et la protection de la vie privée dans le secteur des
+communications électroniques, transposée à l’article 82 de la loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, les traceurs ou cookies suivent deux
+régimes distincts.
+Les cookies strictement nécessaires au service ou ayant pour finalité exclusive de faciliter la communication par voie électronique sont dispensés de consentement préalable au titre de
+l’article 82 de la loi n°78-17 du 6 janvier 1978. Les cookies n’étant pas strictement nécessaires au service ou n’ayant pas pour finalité exclusive de faciliter la communication par voie électronique doivent être consenti par l’utilisateur.
+Ce consentement de la personne concernée pour une ou plusieurs finalités spécifiques constitue une base légale au sens du RGPD et doit être entendu au sens de l&#39;article 6-a du
+Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016 relatif à la protection des personnes physiques à l&#39;égard du traitement des données à caractère personnel
+et à la libre circulation de ces données.
+Un cookie est un fichier déposé sur votre terminal lors de la visite d’un site. Il a pour but de collecter des informations relatives à votre navigation et de vous adresser des services adaptés
+à votre terminal (ordinateur, mobile ou tablette).
+
+Nos Gestes Climat utilise Matomo de manière anonymisée et ne nécessite donc pas le consentement conformément aux recommandations de la CNIL. Cela signifie que votre adresse IP, par exemple, est anonymisée avant d’être enregistrée. Il est donc impossible d’associer vos visites sur ce site à votre personne.
+Il convient d’indiquer que :
+
+-   Les données collectées ne sont pas recoupées avec d’autres traitements
+-   Les cookies ne permettent pas de suivre la navigation de l’internaute sur d’autres sites
+
+À tout moment, vous pouvez refuser l’utilisation des cookies et désactiver le dépôt sur votre ordinateur en utilisant la fonction dédiée de votre navigateur (fonction disponible notamment
+sur Microsoft Internet Explorer 11, Google Chrome, Mozilla Firefox, Apple Safari et Opera).
+Pour aller plus loin, vous pouvez consulter les ﬁches proposées par la Commission Nationale de l'Informatique et des Libertés (CNIL) :
+
+-   [Cookies & traceurs : que dit la loi ?](https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi)
+-   [Cookies : les outils pour les maîtriser](https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser)
+
+## Plus de précisions sur les données traitées
 
 ### a) Données relatives à la simulation
 
@@ -73,8 +95,7 @@ Des cookies sont utilisés afin de suivre l’utilisation du simulateur, telles 
 
 ### e) Questions d'évaluation
 
-Afin de mieux comprendre vos attentes, nous avons ajouter deux questions d'évaluation : à la fin du test, et lors du parcours action.
-Vos résultats aggrégés de simulation sont alors enregistrés au côté de votre évaluation, anonymement, sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code sera bientôt ouvert [sur github](https://github.com/datagir/nosgestesclimat-server) avec le résultat de la simulation.
+Afin de mieux comprendre vos attentes, nous avons ajouter deux questions d'évaluation : à la fin du test, et lors du parcours action. Vos résultats aggrégés de simulation sont alors enregistrés au côté de votre évaluation, anonymement, sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code sera bientôt ouvert sur github avec le résultat de la simulation.
 
 ## Bases juridiques des traitements de données
 
@@ -84,22 +105,10 @@ Les données traitées à l’occasion de ces traitements ont plusieurs fondemen
 
 Ces fondements sont précisés ci-dessous :
 
-### a) Données relatives aux résultats de la simulation
+### Données relatives aux résultats de la simulation
 
 Ce traitement est nécessaire à l’exécution d’une mission d’intérêt public ou relevant de l’exercice de l’autorité publique dont est investi le responsable de traitement au sens de l’article 6-e du règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016 relatif à la protection des personnes physiques à l’égard du traitement des données à caractère personnel et à la libre circulation de ces données.
 Elles permettent de réaliser des statistiques anonymisées sur l’empreinte carbone en France.
-
-### b) Cookies
-
-En application de l’article 5(3) de la directive 2002/58/CE modifiée concernant le traitement des données à caractère personnel et la protection de la vie privée dans le secteur des communications électroniques, transposée à l’article 83 de la loi n°78-17 du 6 janvier 1978 relative à l’informatique, aux fichiers et aux libertés, les traceurs ou cookies suivent deux régimes distincts.
-
-Les cookies strictement nécessaires au service ou n’ayant pas pour finalité exclusive de faciliter la communication par voie électronique sont dispensés de consentement préalable au titre de l’article 83 de la loi n°78-17 du 6 janvier 1978.
-
-Les cookies n’étant pas strictement nécessaires au service ou n’ayant pas pour finalité exclusive de faciliter la communication par voie électronique doivent être consenti par l’utilisateur.
-
-Ce consentement de la personne concernée pour une ou plusieurs finalités spécifiques constitue une base légale au sens du RGPD et doit être entendu au sens de l'article 6-a du Règlement (UE) 2016/679 du Parlement européen et du Conseil du 27 avril 2016 relatif à la protection des personnes physiques à l'égard du traitement des données à caractère personnel et à la libre circulation de ces données.
-
-Les cookies de mesure d’audience, lorsque les données sont anonymisées, ne nécessitent pas de consentement. En l’occurrence, la plateforme utilise Matomo dans sa version anonymisée, vous pouvez néanmoins vous opposer au suivi de votre navigation sur ce site web, via l'encart en début de de document.
 
 ## Durée de conservation des données
 
@@ -126,21 +135,3 @@ Le responsable de traitement s’engage à ce que les données soient traitées 
 ### Sous-traitants
 
 Certaines données sont envoyées à des sous-traitants pour réaliser certaines missions. Le responsable de traitement s'est assuré de la mise en œuvre par ses sous-traitants de garanties adéquates et du respect de conditions strictes de confidentialité, d’usage et de protection des données.
-
-## Cookies
-
-Un cookie est un fichier déposé sur votre terminal lors de la visite d’un site. Il a pour but de collecter des informations relatives à votre navigation.
-
-Le site dépose des cookies de mesure d’audience (notamment nombre de visites, pages consultées), respectant les conditions d’exemption du consentement de l’internaute définies par la recommandation « Cookies » de la Commission nationale informatique et libertés (CNIL). Cela signifie, notamment, que ces cookies ne servent qu’à la production de statistiques anonymes et ne permettent pas de suivre la navigation de l’internaute sur d’autres sites.
-
-Nous utilisons pour cela Matomo, un outil de mesure d’audience web libre, paramétré pour être en conformité avec la recommandation « Cookies » de la CNIL. Cela signifie que votre adresse IP, par exemple, est anonymisée avant d’être enregistrée. Il est donc impossible d’associer vos visites sur ce site à votre personne.
-
-Il convient d’indiquer que :
-
--   Les données collectées ne sont pas recoupées avec d’autres traitements
--   Les cookies ne permettent pas de suivre la navigation de l’internaute sur d’autres sites
-
-Pour aller plus loin, vous pouvez consulter les fiches proposées par la Commission Nationale de l'Informatique et des Libertés (CNIL) :
-
--   [Cookies & traceurs : que dit la loi ?](https://www.cnil.fr/fr/cookies-traceurs-que-dit-la-loi)
--   [Cookies : les outils pour les maîtriser](https://www.cnil.fr/fr/cookies-les-outils-pour-les-maitriser)
