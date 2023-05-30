@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 
 const links = {
-	Outils: {
+	"Nos outils": {
 		'publicodes.planDuSite.bilan':
 			'https://nosgestesclimat.fr/simulateur/bilan',
 		'publicodes.planDuSite.groupe': 'https://nosgestesclimat.fr/groupe',
@@ -84,7 +84,7 @@ const PlanDuSite = () => {
 	return (
 		<Container>
 			<Title>
-				<Trans i18nKey="publicodes.planDuSite.title">Plan</Trans>
+				<Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
 			</Title>
 			{Object.entries(links).map(([categoryTitle, categoryLinks]) => (
 				<Section key={categoryTitle}>
@@ -108,11 +108,13 @@ const PlanDuSite = () => {
 						Les actions
 					</Trans>
 				</SectionTitle>
+				<List>
 				{actionsList.map((link) => (
 					<li key={link}>
 						<Link to={link}>{decodeURI(link.replace('/actions/', ''))}</Link>
 					</li>
 				))}
+				</List>
 			</Section>
 		</Container>
 	)

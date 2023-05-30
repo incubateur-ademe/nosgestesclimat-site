@@ -740,8 +740,8 @@ entries:
   publicodes.planDuSite.partenaires.lock: Pour les partenaires
   publicodes.planDuSite.personas: Typical simulations
   publicodes.planDuSite.personas.lock: Les simulations types
-  publicodes.planDuSite.title: Plan
-  publicodes.planDuSite.title.lock: Plan
+  publicodes.planDuSite.title: Sitemap
+  publicodes.planDuSite.title.lock: Plan du site
   publicodes.planDuSite.groupe: Group simulation
   publicodes.planDuSite.groupe.lock: La simulation en groupe
   publicodes.planDuSite.documentation: Documentation
@@ -751,7 +751,7 @@ entries:
   publicodes.planDuSite.bilan: The simulator
   publicodes.planDuSite.bilan.lock: Le simulateur
   publicodes.planDuSite.outils: Tools
-  publicodes.planDuSite.outils.lock: Outils
+  publicodes.planDuSite.outils.lock: Nos outils
   publicodes.planDuSite.stats: Statistics Page
   publicodes.planDuSite.stats.lock: Page des Statistiques
   publicodes.planDuSite.sondageDoc: Survey documentation
