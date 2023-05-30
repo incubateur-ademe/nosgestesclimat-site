@@ -22,7 +22,7 @@ export default ({
 	const actionChoices = useSelector((state: RootState) => state.actionChoices)
 
 	const actionChoicesLength = Object.entries(actionChoices).filter(
-		([key, value]) => value
+		([, value]) => value
 	).length
 
 	const displayActionRating =
@@ -41,7 +41,15 @@ export default ({
 
 	const [animationComplete, setAnimationComplete] = useState(false)
 
-	if (!testCompleted || (!displayActionRating && !displayLearnedRating)) return
+	if (
+		!testCompleted ||
+		(!displayActionRating && !displayLearnedRating) ||
+		// Display only the Northstar banner in production mode
+		NODE_ENV === 'development' ||
+		CONTEXT === 'deploy-preview'
+	) {
+		return null
+	}
 
 	return (
 		<motion.div

@@ -25,7 +25,7 @@ export default ({
 	animationComplete: boolean
 	text: string
 }) => {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 	const [selectedRating, setSelectedRating] = useState(false)
 	const dispatch = useDispatch()
 
@@ -52,7 +52,6 @@ export default ({
 		if (ratings[ratingKeys[type]] != 'no_display') return
 		dispatch(setRatings(type, 'display'))
 		const newRatings = setRating(ratings, type, 'display', text)
-		console.log(newRatings)
 		if (
 			[0, 1, 2, 3].includes(ratings.learned) ||
 			[0, 1, 2, 3].includes(ratings.action)
