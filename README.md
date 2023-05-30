@@ -46,4 +46,4 @@ files](https://github.com/datagir/nosgestesclimat-site/wiki/Contributing#tests).
 
 ## Réutilisations de ce code
 
-Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md)
+Attention, même si la licence MIT vous permet de réutiliser ce code à votre guise, en citant clairement le fait que vous reprenez nos travaux, vous ne pouvez pas réutiliser la marque Nos Gestes Climat. [Veuillez lire notre guide de personnalisation](https://github.com/datagir/nosgestesclimat-site/blob/master/PERSONNALISATION.md)
