@@ -16,8 +16,7 @@ Climatique](https://avenirclimatique.org/les-outils/) and
 
 ## Who is developing it?
 
-This carbon calculator is developed by the [Datagir](https://datagir.ademe.fr/)
-team of [The French Agency for Ecological Transition ](https://www.ademe.fr/)
+This carbon calculator is developed by [The French Agency for Ecological Transition ](https://www.ademe.fr/)
 (ADEME) and [beta.gouv.fr](https://beta.gouv.fr/), in partnership with
 the [Association Bilan Carbone](https://www.associationbilancarbone.fr/) (ABC).
 
@@ -94,7 +93,3 @@ Europe](https://answers.netlify.com/t/is-there-a-list-of-where-netlifys-cdn-pops
 
 They are available on [this page](/cgu).
 
-## Budget
-
-The budget of Datagir, the organization that develops nosgestesclimat.fr
-is available on the [budget page](https://datagir.ademe.fr/budget/).

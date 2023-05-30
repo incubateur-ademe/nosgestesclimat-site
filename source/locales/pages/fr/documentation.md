@@ -31,7 +31,7 @@ le dossier
 Les questions sont écrites dans le langage [publicodes](https://publi.codes/)
 au format 'yaml'.
 
-**Nous avons fait le choix de garder la main sur les contextes de sondage publiés, l'équipe Datagir joue donc un rôle d'administrateur et vous accompagne pour créer votre contexte et le publier pour votre sondage.**
+**Nous avons fait le choix de garder la main sur les contextes de sondage publiés, l'équipe Nosgestesclimat joue donc un rôle d'administrateur et vous accompagne pour créer votre contexte et le publier pour votre sondage.**
 
 Un
 [template](https://github.com/datagir/nosgestesclimat-server/tree/master/contextes-sondage/template%20de%20contexte.yaml)

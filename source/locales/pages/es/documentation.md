@@ -32,7 +32,7 @@ Las preguntas están escritas en el lenguaje
 [publicodes](https://publi.codes/) en formato 'yaml'.
 
 **Hemos optado por mantener el control de los contextos de encuesta
-publicados, por lo que el equipo de Datagir desempeña el papel de
+publicados, por lo que el equipo de Nosgestesclimat desempeña el papel de
 administrador y le ayuda a crear su contexto y publicarlo para su
 encuesta.**
 

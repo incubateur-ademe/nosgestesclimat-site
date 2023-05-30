@@ -83,18 +83,18 @@ richiederne la correzione e aggiorneremo la biblioteca quando gli autori
 avranno trasmesso la correzione. Data la natura del problema, non è
 possibile proporre un'alternativa.
 
-Il team Datagir utilizza documenti d'ufficio prodotti dall'ADEME. Questi
+Il team Nosgestesclimat utilizza documenti d'ufficio prodotti dall'ADEME. Questi
 documenti sono derogati dall'ADEME, ma è possibile contattarla per
 ottenere alternative accessibili:
 https://agirpourlatransition.ademe.fr/particuliers/accessibilite.
 
-Il team di Datagir utilizza i documenti d'ufficio prodotti
+Il team di Nosgestesclimat utilizza i documenti d'ufficio prodotti
 dall'Associazione Bilan Carbone (ABC). Questi documenti sono derogati
 dall'ADEME. Non c'è alternativa.
 
 Le pagine "azioni" contengono grafici e tabelle senza descrizioni
 dettagliate. Aggiungere queste descrizioni dettagliate è un onere
-sproporzionato per Datagir. Non c'è alternativa.
+sproporzionato per Nosgestesclimat. Non c'è alternativa.
 
 ## Definizione di questa dichiarazione di accessibilità
 

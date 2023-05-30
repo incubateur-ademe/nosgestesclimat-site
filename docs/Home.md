@@ -7,7 +7,7 @@
 
   <div align="center">
    	The official french personal carbon footprint calculator, developed by the
-   	Datagir team of The French Agency for Ecological Transition (ADEME).
+    The French Agency for Ecological Transition (ADEME).
    	<br />
    	<a href="https://nosgestesclimat.fr/documentation?lang=en" target="blank"><strong>Explore the model »</strong>
 	<br />

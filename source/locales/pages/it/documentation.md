@@ -32,7 +32,7 @@ Le domande sono scritte nel linguaggio
 [publicodes](https://publi.codes/) in formato "yaml".
 
 **Abbiamo scelto di mantenere il controllo dei contesti d'indagine
-pubblicati, quindi il team Datagir svolge il ruolo di amministratore e
+pubblicati, quindi il team Nosgestesclimat svolge il ruolo di amministratore e
 vi aiuta a creare il vostro contesto e a pubblicarlo per la vostra
 indagine.**
 
