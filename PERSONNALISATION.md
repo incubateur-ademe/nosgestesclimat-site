@@ -53,6 +53,8 @@ Pour les besoins d'une enquête, nous avons construit un nouveau parcours utilis
 
 Il permet donc une meilleure neutralité de la captation des résultats, mais au prix d'une perte totale d'intéractivité de l'expérience, la force du mode groupe. 
 
+> Attention, ce mode a déjà été utilisé en production avec un partenaire, mais il vient tout juste d'être généralisé, rendu disponible librement. Nous ne sommes donc pas à l'abri d'inconvénients dans son utilisation. 
+
 Concrètement : 
 - sur votre site, abc.xyz, vous créez une session pour un utilisateur. Vous l'identifiez, couramment via l'inscription par email. Si vous avez déjà un compte utilisateur, c'est tout bon. Pour chaque utilisateur, vous devez disposer d'un identifiant unique, long (donc sécurisé) et secret (seuls vous et l'utilisateur le connaissent). C'est typiquement quelque chose qu'on appelle l'[UUID](https://fr.wikipedia.org/wiki/Universally_unique_identifier). Nous l'appellerons [UUID]. Vous pouvez d'ailleurs ne reposer que sur l'UUID pour identifier de façon non nominative votre utilisateur
 - vous informez l'utilisateur des aspects vie privée de cette enquête. Notamment, que nosgestesclimat.fr lui fera passer le test, et sockera ses données, et vous y donnera accès, CF notre page https://nosgestesclimat.fr/vie-privée
