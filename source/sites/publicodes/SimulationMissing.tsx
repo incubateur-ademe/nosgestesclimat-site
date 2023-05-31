@@ -1,7 +1,6 @@
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
-import { PersonaGrid } from './Personas'
 
 export default ({}) => {
 	return (
@@ -9,36 +8,28 @@ export default ({}) => {
 			className="ui__ card light colored content"
 			css="margin: 1.6em 0.5rem 1.6rem 0.5rem"
 		>
-			<h1>
-				<Trans>Simulation manquante</Trans>
-			</h1>
 			<IllustratedMessage
 				inline
-				emoji="⏳"
+				emoji="🔒"
 				message={
 					<p>
 						<Trans i18nKey={'publicodes.SimulationMissing.simulationManquante'}>
-							Vous n'avez pas encore fait le test. Pour débloquer ce parcours,
-							vous devez nous en dire un peu plus sur votre mode de vie.
+							Pour débloquer ce parcours, vous devez d'abord terminer le test.
 						</Trans>
 					</p>
 				}
 			/>
-			<div css="margin: 2rem auto 4rem; text-align: center">
+			<div css="margin: 2rem auto 1rem; text-align: center">
 				<Link to="/simulateur/bilan" className="ui__ plain button">
 					<Trans>Faire le test</Trans>
 				</Link>
 			</div>
-			<p css="text-align: center; max-width: 26rem; margin: 0 auto;">
+			<p css="text-align: center; max-width: 100%; margin: 0 auto;">
 				<Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
-					💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un
-					de ces profils types.
+					💡 Vous pouvez aussi continuer avec un{' '}
+					<Link to="/personas">profil type</Link>.
 				</Trans>
 			</p>
-			<PersonaGrid
-				additionnalOnClick={() => null}
-				warningIfSituationExists={true}
-			/>
 		</div>
 	)
 }

@@ -62,14 +62,7 @@ export default ({ display }) => {
 	// but is it too restrictive ?
 	const simulationWellStarted = answeredQuestions.length > 50
 
-	if (!simulationWellStarted) {
-		return <SimulationMissing />
-	}
-
-	if (tutorials.actions !== 'skip') {
-		const [value, unit] = humanWeight({ t, i18n }, bilan.nodeValue)
-		return <ActionTutorial {...{ value, unit }} />
-	}
+	const [value, unit] = humanWeight({ t, i18n }, bilan.nodeValue)
 
 	return (
 		<div
@@ -79,6 +72,10 @@ export default ({ display }) => {
 				margin: 1rem auto;
 			`}
 		>
+			{!simulationWellStarted && <SimulationMissing />}
+			{simulationWellStarted && tutorials.actions !== 'skip' && (
+				<ActionTutorial {...{ value, unit }} />
+			)}
 			<MetricFilters selected={metric} />
 			<CategoryFilters
 				categories={categories}

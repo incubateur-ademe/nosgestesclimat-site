@@ -470,10 +470,10 @@ entries:
   publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
   publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
-  publicodes.SimulationMissing.personnas: 💡 You can also see the action course as if you were one of these sample profiles.
-  publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un de ces profils types.
-  publicodes.SimulationMissing.simulationManquante: You haven't taken the test yet. To unlock this course, you need to tell us a little more about your lifestyle.
-  publicodes.SimulationMissing.simulationManquante.lock: Vous n'avez pas encore fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur votre mode de vie.
+  publicodes.SimulationMissing.personnas: 💡 You can also continue with a <2>typical profile</2>.
+  publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi continuer avec un <2>profil type</2>.
+  publicodes.SimulationMissing.simulationManquante: To unlock this course, you must first complete the test.
+  publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   publicodes.TranslationContribution.commentaireAugmenté: |-
 
     &gt; This ticket was created automatically by our robot from our [translation contribution page](https://nosgestesclimat.fr/contribuer-traduction).
