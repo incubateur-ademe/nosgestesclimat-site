@@ -1,9 +1,10 @@
 # Comment personnaliser Nos Gestes Climat pour vos besoins
 
-> En bref, deux possibilités s'offrent à vous :
+> En bref, trois possibilités s'offrent à vous :
 >
 > -   A) forker le code -> prévoir plusieurs semaines de temps de développement d'un développeur Web
 > -   B) intégrer notre iframe personnalisé -> 15 minutes d'effort d'une personne qui touche au Web
+> -   C) gérer les comptes utilisateurs chez vous, créer un lien vers nosgestesclimat.fr, et récupérer les données via notre API -> 1h de développement de votre côté
 
 ## A) Forker
 
