@@ -32,7 +32,7 @@ The questions are written in the [publicodes](https://publi.codes/)
 language in 'yaml' format.
 
 **We have chosen to keep control of the published survey contexts, so
-the Datagir team plays the role of administrator and helps you create
+the Nosgestesclimat team plays the role of administrator and helps you create
 your context and publish it for your survey.**
 
 A

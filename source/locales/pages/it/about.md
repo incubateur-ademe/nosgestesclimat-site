@@ -17,7 +17,7 @@ Climatique](https://avenirclimatique.org/les-outils/) e
 ## Chi lo sta sviluppando?
 
 Questo calcolatore di carbonio è stato sviluppato dal team
-[Datagir](https://datagir.ademe.fr/)
+Nosgestesclimat
 dell'[Agenzia](https://www.ademe.fr/) francese[per la transizione
 ecologica](https://www.ademe.fr/) (ADEME) e da
 [beta.gouv.fr](https://beta.gouv.fr/), in collaborazione con
@@ -99,8 +99,3 @@ tramite un CDN: nonostante la sede in California, il sito sarà servito
 
 Sono disponibili in [questa pagina](/cgu).
 
-## Bilancio
-
-Il bilancio di Datagir, l'organizzazione che sviluppa
-nosgestesclimat.fr, è disponibile alla [pagina del
-bilancio](https://datagir.ademe.fr/budget/).

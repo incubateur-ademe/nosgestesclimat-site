@@ -158,15 +158,6 @@ export default () => {
 				<a href="https://ademe.fr" css="svg {width: 4rem !important}">
 					<LogoADEME />
 				</a>
-				<a href="https://datagir.ademe.fr">
-					<img
-						css="height: 3.4rem; width: auto;"
-						width="120"
-						height="60"
-						src="https://datagir.ademe.fr/logo.jpg"
-						alt="Logo de Datagir"
-					/>
-				</a>
 				<a href="https://abc-transitionbascarbone.fr">
 					<img
 						css="width: 6rem; height: auto;margin-left: 1rem !important"

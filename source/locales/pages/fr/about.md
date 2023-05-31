@@ -17,7 +17,7 @@ Climatique](https://avenirclimatique.org/les-outils/) et
 ## Qui le développe ?
 
 Ce calculateur carbone est développé par l'équipe
-[Datagir](https://datagir.ademe.fr/) de l'[Agence de la transition
+Nosgestesclimat de l'[Agence de la transition
 écologique](https://www.ademe.fr/) (ADEME) et
 [beta.gouv.fr](https://beta.gouv.fr/), en partenariat avec
 l'[Association Bilan Carbone](https://www.associationbilancarbone.fr/)
@@ -102,7 +102,3 @@ l'Europe](https://answers.netlify.com/t/is-there-a-list-of-where-netlifys-cdn-po
 
 Elles sont disponibles sur [cette page](/cgu).
 
-## Budget
-
-Le budget de Datagir, l'organisation qui développe nosgestesclimat.fr
-est disponible sur la [page budget](https://datagir.ademe.fr/budget/).

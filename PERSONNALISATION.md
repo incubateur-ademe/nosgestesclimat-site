@@ -12,13 +12,13 @@ L'ensemble du code du projet est libre, sous licence MIT : vous êtes donc libre
 
 Nous vous proposons de placer ce paragraphe sur la page d'accueil de votre site.
 
-> Cette déclinaison s'appuie librement sur la version officielle de Nos Gestes Climat développée par [Datagir (ADEME)](datagir.ademe.fr) et l'[ABC](https://associationbilancarbone.fr).
+> Cette déclinaison s'appuie librement sur la version officielle de Nos Gestes Climat développée par l'[ADEME](ademe.fr) et l'[ABC](https://associationbilancarbone.fr).
 
 ⚠️ Attention ! Si vous décidez de forker notre code, vous devez enlever toute mention de la marque Nos Gestes Climat, ainsi que les formulaires de contact et de retour de bugs qui pointent vers nos domaines.
 
 En effet, nosgestesclimat.fr est activement développé, nous ne pouvons nous permettre que les citoyens aient accès à plusieurs versions désynchronisées de l'outil, à la fois en termes de modèle d'empreinte climat que d'interface utilisateur.
 
-**Sauf accord explicite, les logos ADEME, ABC, Datagir, Nos Gestes Climat, doivent être enlevés par vos soins de votre version du code.**
+**Sauf accord explicite, les logos ADEME, ABC, Nos Gestes Climat, doivent être enlevés par vos soins de votre version du code.**
 
 ## B) Intégrer notre iframe personnalisé
 

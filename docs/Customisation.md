@@ -18,7 +18,7 @@ content of this repository as long as you credit the source.
 For example you can add this paragraph on your home page:
 
 > _"This version is freely based on the official version of Nos Gestes Climat
-> developed by Datagir (ADEME) and ABC."_
+> developed by ADEME and ABC."_
 
  **Important, If you decide to fork the project, you need to remove any
  reference to the brand _Nos Gestes Climat_ as well as form contact and bug
@@ -27,7 +27,7 @@ For example you can add this paragraph on your home page:
  desynchronized versions of the tool, both in terms of climate footprint model
  and user interface.
 
- **Unless explicitly agreed, the logos ADEME, ABC, Datagir, Nos Gestes Climat,
+ **Unless explicitly agreed, the logos ADEME, ABC, Nos Gestes Climat,
  must be removed by your care in your own version.**
 
 ## Custom iframe integration

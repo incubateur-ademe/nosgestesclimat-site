@@ -16,28 +16,28 @@
 <summary>Table of content</summary>
 <!-- vim-markdown-toc GitLab -->
 
-* [Configuration](#configuration)
-   * [DeepL API key](#deepl-api-key)
-   * [Dev dependencies](#dev-dependencies)
-* [Available languages](#available-languages)
-* [Workflows](#workflows)
-   * [Editing the source code](#editing-the-source-code)
-      * [Adding content](#adding-content)
-      * [Adding units translation](#adding-units-translation)
-      * [Updating the translation](#updating-the-translation)
-         * [For non-tech users](#for-non-tech-users)
-   * [Improving an existing translation](#improving-an-existing-translation)
-      * [Contribution guide for translation from GitHub](#contribution-guide-for-translation-from-github)
-   * [Adding a new language](#adding-a-new-language)
-* [Architecture](#architecture)
-* [Available scripts](#available-scripts)
-   * [`generate-ui.js`](#generate-uijs)
-   * [`translate-ui.js`](#translate-uijs)
-   * [`check-ui.js`](#check-uijs)
-   * [`translate-pages.js`](#translate-pagesjs)
-   * [`translate-faq.js`](#translate-faqjs)
-   * [`check-faq.js`](#check-faqjs)
-   * [`translate-releases.js`](#translate-releasesjs)
+- [Configuration](#configuration)
+  - [DeepL API key](#deepl-api-key)
+  - [Dev dependencies](#dev-dependencies)
+- [Available languages](#available-languages)
+- [Workflows](#workflows)
+  - [Editing the source code](#editing-the-source-code)
+    - [Adding content](#adding-content)
+    - [Adding units translation](#adding-units-translation)
+    - [Updating the translation](#updating-the-translation)
+      - [For non-tech users](#for-non-tech-users)
+  - [Improving an existing translation](#improving-an-existing-translation)
+    - [Contribution guide for translation from GitHub](#contribution-guide-for-translation-from-github)
+  - [Adding a new language](#adding-a-new-language)
+- [Architecture](#architecture)
+- [Available scripts](#available-scripts)
+  - [`generate-ui.js`](#generate-uijs)
+  - [`translate-ui.js`](#translate-uijs)
+  - [`check-ui.js`](#check-uijs)
+  - [`translate-pages.js`](#translate-pagesjs)
+  - [`translate-faq.js`](#translate-faqjs)
+  - [`check-faq.js`](#check-faqjs)
+  - [`translate-releases.js`](#translate-releasesjs)
 
 <!-- vim-markdown-toc -->
 
@@ -248,7 +248,7 @@ If you are ready to create a [Pull
 Request](https://docs.github.com/en/pull-requests/collaborating-with-pull-requests/proposing-changes-to-your-work-with-pull-requests/creating-a-pull-request)
 to push your suggestion directly to the project, please refer to the
 contribution guide below. Otherwise, you can simply send your suggestion in a
-mail to: datagir@ademe.fr.
+mail to: contact@nosgestesclimat.fr.
 
 #### Contribution guide for translation from GitHub
 

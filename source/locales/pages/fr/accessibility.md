@@ -50,11 +50,11 @@ Les pages de documentation utilisent la bibliothèque « Publicodes » qui est e
 
 La modification de cette bibliothèque pour modifier ce comportement nécessiterait un volume de travail conséquent pour lequel nous n'avons pas les compétences. Néanmoins, conscients du problème, nous avons ouvert une [issue](https://github.com/betagouv/publicodes/issues/226) pour demander la correction de ce problème et nous mettrons à jour la bibliothèque quand ses auteurs auront répercuté la correction. Compte tenu de la teneur du problème, il n'est pas possible de proposer une alternative.
 
-L’équipe Datagir utilise des documents bureautiques produits par l’ADEME. Ces documents sont dérogés par l’ADEME, mais il est possible de les contacter pour obtenir des alternatives accessibles : https://agirpourlatransition.ademe.fr/particuliers/accessibilite.
+L’équipe Nosgestesclimat utilise des documents bureautiques produits par l’ADEME. Ces documents sont dérogés par l’ADEME, mais il est possible de les contacter pour obtenir des alternatives accessibles : https://agirpourlatransition.ademe.fr/particuliers/accessibilite.
 
-L’équipe Datagir utilise des documents bureautiques produits par l’Association Bilan Carbone (ABC). Ces documents sont dérogés par l’ADEME. Il n’y a pas d’alternative.
+L’équipe Nosgestesclimat utilise des documents bureautiques produits par l’Association Bilan Carbone (ABC). Ces documents sont dérogés par l’ADEME. Il n’y a pas d’alternative.
 
-Les pages « actions » contiennent des graphiques et des tableaux qui ne possèdent pas de descriptions détaillées. Ajouter ces descriptions détaillées représente une charge disproportionnée pour Datagir. Il n’y a pas d’alternative.
+Les pages « actions » contiennent des graphiques et des tableaux qui ne possèdent pas de descriptions détaillées. Ajouter ces descriptions détaillées représente une charge disproportionnée pour Nosgestesclimat. Il n’y a pas d’alternative.
 
 ## Établissement de cette déclaration d’accessibilité
 

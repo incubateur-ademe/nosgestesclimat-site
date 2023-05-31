@@ -74,18 +74,18 @@ the correction of this problem and we will update the library when its
 authors have passed on the correction. Due to the nature of the problem,
 it is not possible to propose an alternative.
 
-The Datagir team uses office documents produced by ADEME. These
+The Nosgestesclimat team uses office documents produced by ADEME. These
 documents are derogated by ADEME, but it is possible to contact them to
 obtain accessible alternatives:
 https://agirpourlatransition.ademe.fr/particuliers/accessibilite.
 
-The Datagir team uses office documents produced by the Association Bilan
+The Nosgestesclimat team uses office documents produced by the Association Bilan
 Carbone (ABC). These documents are waived by ADEME. There is no
 alternative.
 
 The "actions" pages contain graphs and tables that do not have detailed
 descriptions. Adding these detailed descriptions is a disproportionate
-burden for Datagir. There is no alternative.
+burden for Nosgestesclimat. There is no alternative.
 
 ## Establishment of this accessibility declaration
 
