@@ -30,7 +30,7 @@ export default ({}) => {
 				<small>
 					<Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
 						Vous pouvez aussi continuer avec un{' '}
-						<Link to="/personas">profil type</Link>.
+						<Link to={'/personas?redirect=/actions'}>profil type</Link>.
 					</Trans>
 				</small>
 			</p>

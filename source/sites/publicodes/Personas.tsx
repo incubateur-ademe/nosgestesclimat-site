@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { setDifferentSituation } from '../../actions/actions'
 import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import useBranchData from '../../components/useBranchData'
@@ -148,6 +148,10 @@ export const PersonaGrid = ({
 	const branchData = useBranchData()
 	const lang = i18n.language === 'en' ? 'en-us' : i18n.language
 
+	const navigate = useNavigate()
+	const [params] = useSearchParams()
+	const redirect = params.get('redirect')
+
 	useEffect(() => {
 		if (!branchData.loaded) return
 		const fileName = `/personas-${lang}.json`
@@ -192,6 +196,7 @@ export const PersonaGrid = ({
 				foldedSteps: defaultMissingVariables,
 			})
 		)
+		if (redirect) navigate(redirect)
 	}
 	const hasSituation = Object.keys(situation).length
 	if (warning)
