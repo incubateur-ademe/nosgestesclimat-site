@@ -185,7 +185,7 @@ export default function Question({
 								{choices.children.map((node, index) => (
 									<option
 										key={node.dottedName + '-' + index}
-										value={relativeDottedName(node.dottedName)}
+										value={`'${relativeDottedName(node.dottedName)}'`}
 									>
 										{node.title}
 									</option>
