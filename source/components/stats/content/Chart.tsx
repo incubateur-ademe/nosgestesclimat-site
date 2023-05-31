@@ -9,13 +9,11 @@ import {
 	YAxis,
 } from 'recharts'
 import styled from 'styled-components'
-import {
-	getLangFromAbreviation,
-	getLangInfos,
-} from '../../../locales/translation.ts'
-import { useChart } from '../matomo'
-import CustomTooltip from './chart/CustomTooltip'
-import Search from './chart/Search'
+
+import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
+import { useChart } from '../matomo.js'
+import CustomTooltip from './chart/CustomTooltip.js'
+import Search from './chart/Search.js'
 
 const Wrapper = styled.div`
 	width: 60%;
@@ -33,7 +31,14 @@ const Wrapper = styled.div`
 const ChartWrapper = styled.div`
 	height: 22rem;
 `
-export default function AreaWeekly(props) {
+type Props = {
+	period: string
+	elementAnalysedTitle: string
+	target: string
+	tooltipLabel?: string
+}
+
+export default function Chart(props: Props) {
 	const { i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
@@ -43,27 +48,31 @@ export default function AreaWeekly(props) {
 	const { data: chart } = useChart({
 		chartDate: Number(chartDate) + 1,
 		chartPeriod,
+		target: props.target,
 	})
 
-	const [data, setData] = useState(null)
+	const [data, setData] = useState<{ date: string }[] | undefined>(undefined)
 
 	useEffect(() => {
 		if (chart) {
-			let dates = Object.keys(chart)
+			// eslint-disable-next-line @typescript-eslint/no-unsafe-argument
+			const dates = Object.keys(chart)
 			dates.length-- //last period is removed from data
-			setData(
-				dates.map((date) => {
-					let points = { date }
-					points['Visiteurs'] = chart[date]
-					return points
-				})
-			)
+			const dataDots = dates?.map((date) => {
+				const points = { date }
+				console.log(chart[date])
+				points['Visiteurs'] =
+					chart[date] === 'number' ? chart[date] : chart[date]?.[0]?.nb_visits
+				return points
+			})
+			setData(dataDots)
 		}
 	}, [chart])
 
 	return chart && data ? (
 		<Wrapper>
 			<Search
+				elementAnalysedTitle={props.elementAnalysedTitle}
 				period={chartPeriod}
 				date={chartDate}
 				setPeriod={setChartPeriod}
@@ -75,7 +84,7 @@ export default function AreaWeekly(props) {
 						<XAxis
 							dataKey="date"
 							tick={{ fontSize: 12 }}
-							tickFormatter={(tick) => {
+							tickFormatter={(tick: string) => {
 								const date = new Date(tick.split(',')[0])
 								return props.period === 'month'
 									? date.toLocaleDateString(currentLangInfos.abrvLocale, {
@@ -95,7 +104,14 @@ export default function AreaWeekly(props) {
 								tick.toString().replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0')
 							}
 						/>
-						<Tooltip content={<CustomTooltip period={chartPeriod} />} />
+						<Tooltip
+							content={
+								<CustomTooltip
+									period={chartPeriod}
+									naming={props.tooltipLabel}
+								/>
+							}
+						/>
 						<Area
 							type="monotone"
 							dataKey={'Visiteurs'}

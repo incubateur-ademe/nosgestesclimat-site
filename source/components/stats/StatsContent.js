@@ -1,10 +1,15 @@
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 
 import Chart from './content/Chart'
 import DurationChart from './content/DurationChart'
 import DurationFigures from './content/DurationFigures'
-import Evolution from './content/Evolution'
+import Evolution, {
+	Block,
+	BlockWrapper,
+	Number,
+	Wrapper as EvolutionWrapper,
+} from './content/Evolution'
 import IframeFigures from './content/IframeFigures'
 import KmFigures from './content/KmFigures'
 import ScoreFromURL from './content/ScoreFromURL'
@@ -12,7 +17,9 @@ import Sources from './content/Sources'
 import {
 	useActiveEntryPages,
 	useAllTime,
+	useEndSimulationVisitors,
 	useEntryPages,
+	useHomepageVisitors,
 	useKeywords,
 	useKmHelp,
 	useOldWebsites,
@@ -55,6 +62,7 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
 					if (isError) {
 						return (
 							<p
+								key={JSON.stringify(error)}
 								css={`
 									font-size: small;
 									font-style: italic;
@@ -71,6 +79,7 @@ const UseQueryResultHandler = ({ requestResults, toRenderWithRequestData }) => {
 					if (isLoading) {
 						return (
 							<p
+								key={JSON.stringify(error)}
 								css={`
 									font-size: small;
 									font-style: italic;
@@ -106,6 +115,10 @@ export default function Data() {
 	const kmhelp = useKmHelp()
 	const simulationsfromhelp = useSimulationsfromKmHelp()
 	const ridesnumber = useRidesNumber()
+	const homepageVisitorsData = useHomepageVisitors()
+	const endSimulationVisitors = useEndSimulationVisitors()
+
+	const { t } = useTranslation()
 
 	return (
 		<div>
@@ -114,7 +127,7 @@ export default function Data() {
 			</Section.TopTitle>
 			<Section>
 				<Section.Title>
-					<Trans>Stats générales</Trans>
+					<Trans>Générales</Trans>
 				</Section.Title>
 				<UseQueryResultHandler
 					requestResults={[period, reference, allTime, simulations]}
@@ -131,10 +144,70 @@ export default function Data() {
 								allTime={allTimeData.value}
 								simulations={simulationsData}
 							/>
-							<Chart />
+							<Chart elementAnalysedTitle={t('visites')} />
 						</Wrapper>
 					)}
 				/>
+				<Wrapper>
+					<EvolutionWrapper>
+						<BlockWrapper
+							css={`
+								margin-bottom: 1rem;
+							`}
+						>
+							<Block>
+								<Number>
+									{homepageVisitorsData?.data?.[0]?.nb_visits
+										?.toString()
+										?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
+										<span
+											css={`
+												color: grey;
+												font-size: 0.5rem;
+											`}
+										>
+											Chargement...
+										</span>
+									)}
+								</Number>{' '}
+								&nbsp;<Trans>visites sur la page d'accueil</Trans>
+							</Block>
+						</BlockWrapper>
+						<BlockWrapper>
+							<Block>
+								<Number>
+									{endSimulationVisitors?.data
+										?.reduce((sum, urlObject) => {
+											if (urlObject.nb_visits) {
+												return sum + urlObject.nb_visits
+											}
+											return sum
+										}, 0)
+										?.toString()
+										?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
+										<span
+											css={`
+												color: grey;
+												font-size: 0.5rem;
+											`}
+										>
+											Chargement...
+										</span>
+									)}
+								</Number>{' '}
+								&nbsp;<Trans>visites sur la page de fin</Trans>
+							</Block>
+						</BlockWrapper>
+					</EvolutionWrapper>
+
+					<Chart
+						name="chart-simulation-terminees"
+						elementAnalysedTitle={t('simulations terminées')}
+						target="Events.getAction&label=A%20termin%C3%A9%20la%20simulation%0A"
+						tooltipLabel={t('simulations terminées')}
+					/>
+				</Wrapper>
+
 				<UseQueryResultHandler
 					requestResults={[total, websites, oldWebsites, socials, keywords]}
 					toRenderWithRequestData={([
