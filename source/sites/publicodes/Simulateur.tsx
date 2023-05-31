@@ -29,6 +29,7 @@ import InlineCategoryChart from './chart/InlineCategoryChart'
 import { enquêteSelector } from './enquête/enquêteSelector'
 import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
+import { getQuestionURLSearchParams } from './utils'
 
 const equivalentTargetArrays = (array1, array2) =>
 	array1.length === array2.length &&
@@ -36,70 +37,46 @@ const equivalentTargetArrays = (array1, array2) =>
 
 /*
  * Here the URL specs:
-
-```
-URL := /simulateur/<category>/<dotted-name>
-
-<category> := 'bilan' // main simulator
-            | 'transport'
-            | 'alimentation'
-            | 'logement'
-            | 'service-sociétaux'
-            | 'divers'
-
-<dotted-name> := // dotted-name with ' . ' replaced by '/' and whitespaces by '-'
-```
-
-Examples:
-
-* The URL corresponding to the question `logement . saisie habitants`
-	of the main simulator is `/simulateur/bilan/logement/saisie-habitants`
-* The URL corresponding to the question  `logement . électricité . consommation`
-  of the sub-simulator `logement` is `/simulateur/logement/électricité/consommation`. Indeed, we only want to access to the sub rules corresponding to the category of the sub-simulator.
-*/
-const availableCategories = [
-	'bilan',
-	'transport',
-	'alimentation',
-	'logement',
-	'services-sociétaux',
-	'divers',
-]
+ * TODO: document this
+ */
 
 const Simulateur = () => {
+	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const urlParams = useParams()
-	const pathElems = urlParams['*']?.split('/')
-	if (!pathElems) {
+	const searchParams = new URLSearchParams(window.location.search)
+	const simulatorRootNameURL = urlParams['*']
+	if (!simulatorRootNameURL) {
 		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
 
-	const category = pathElems[0]
-	const isMainSimulation = isRootRule(category)
-	const selectedRuleNameURLPath = pathElems.slice(1)
+	const isMainSimulation = isRootRule(simulatorRootNameURL)
+	const selectedRuleNameURLPath = searchParams.get('question') ?? ''
+	const rules = useSelector((state: AppState) => state.rules)
+	const ruleNames: DottedName[] = Object.keys(rules)
+	const simulatorRootRuleName = utils.decodeRuleName(simulatorRootNameURL)
 
-	if (!availableCategories.includes(category)) {
+	if (!ruleNames.includes(simulatorRootRuleName)) {
 		console.log(
-			`Unknown category ${category}, redirecting to /simulateur/bilan...`
+			`Unknown rule ${simulatorRootNameURL}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
 		)
 		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
 
 	const currentSimulation = useSelector((state: AppState) => state.simulation)
-	const rules = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
-	const parsedRules = engine.getParsedRules()
+	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 
 	const { selectedRuleDottedName, selectedRuleURL } = getValidSelectedRuleInfos(
-		utils.decodeRuleName(selectedRuleNameURLPath.join('/')),
-		category,
+		utils.decodeRuleName(selectedRuleNameURLPath),
+		simulatorRootNameURL,
 		parsedRules
 	)
 
-	const categoryRule = rules[category]
-	const evaluation = engine.evaluate(category)
+	const simulatorRule = rules[simulatorRootNameURL]
+	const evaluation = engine.evaluate(simulatorRule)
 	const config = {
-		objectifs: [category],
+		objectifs: [simulatorRootNameURL],
 		questions: questionConfig,
 	}
 	const configSet = currentSimulation?.config
@@ -133,6 +110,16 @@ const Simulateur = () => {
 			// we want to display the tutorial
 			(!isSpecificRule(selectedRuleDottedName) && tutorials.fromRule == 'skip'))
 
+	if (displayTutorial) {
+		if (selectedRuleURL != undefined && selectedRuleDottedName != undefined) {
+			const searchParams = new URLSearchParams({
+				fromRuleURL: selectedRuleURL,
+			})
+			return navigate(`/tutoriel?${searchParams}`, { replace: true })
+		}
+		return navigate(`/tutoriel`, { replace: true })
+	}
+
 	return (
 		<div>
 			<Meta
@@ -161,31 +148,19 @@ const Simulateur = () => {
 						)}
 					</h1>
 				)}
-				{!displayTutorial ? (
-					!displayScoreExplanation && (
-						<Simulation
-							conversationProps={{
-								orderByCategories: categories,
-								customEnd: isMainSimulation ? (
-									<MainSimulationEnding {...{ rules, engine }} />
-								) : categoryRule.description ? (
-									<Markdown
-										children={categoryRule.description}
-										noRouter={false}
-									/>
-								) : (
-									<EndingCongratulations />
-								),
-							}}
-							explanations={<InlineCategoryChart givenEngine={undefined} />}
-						/>
-					)
-				) : (
-					<TutorialRedirection
-						selectedRuleDottedName={selectedRuleDottedName}
-						selectedRuleURL={selectedRuleURL}
-					/>
-				)}
+				<Simulation
+					conversationProps={{
+						orderByCategories: categories,
+						customEnd: isMainSimulation ? (
+							<MainSimulationEnding {...{ rules, engine }} />
+						) : simulatorRule.description ? (
+							<Markdown children={simulatorRule.description} noRouter={false} />
+						) : (
+							<EndingCongratulations />
+						),
+					}}
+					explanations={<InlineCategoryChart givenEngine={undefined} />}
+				/>
 			</div>
 			<BandeauContribuer />
 		</div>
@@ -206,7 +181,7 @@ type SelectedRuleInfos = {
  */
 function getValidSelectedRuleInfos(
 	selectedRuleName: DottedName,
-	categoryName: string,
+	simulatorRootRuleName: string,
 	rules: NGCRulesNodes
 ): SelectedRuleInfos {
 	const navigate = useNavigate()
@@ -217,6 +192,8 @@ function getValidSelectedRuleInfos(
 		const rule = rules[ruleName]
 		const isQuestion =
 			rule != undefined && 'rawNode' in rule && 'question' in rule.rawNode
+
+		console.log('isValidRule:', ruleName, isQuestion)
 
 		return isQuestion && !isMosaicChild(rules, ruleName)
 	}
@@ -241,9 +218,12 @@ function getValidSelectedRuleInfos(
 		} else {
 			const encodedParentRuleName = utils.encodeRuleName(selectedRuleName)
 			console.log(
-				`Found parent rule for ${selectedRuleName}, redirecting to /simulateur/${categoryName}/${encodedParentRuleName}...`
+				`Found parent rule for ${selectedRuleName}, redirecting to /simulateur/${simulatorRootRuleName}/${encodedParentRuleName}...`
 			)
-			navigate(`/simulateur/${categoryName}/${encodedParentRuleName}`, {
+			const searchParams = new URLSearchParams({
+				question: encodedParentRuleName,
+			})
+			navigate(`/simulateur/${simulatorRootRuleName}?${searchParams}`, {
 				replace: true,
 			})
 		}
@@ -259,7 +239,7 @@ function getValidSelectedRuleInfos(
 		selectedRuleDottedName: isMosaic
 			? mosaicDottedNames[0][1].dottedName
 			: selectedRuleName,
-		selectedRuleURL: `/simulateur/${categoryName}/${utils.encodeRuleName(
+		selectedRuleURL: `/simulateur/${simulatorRootRuleName}?${getQuestionURLSearchParams(
 			selectedRuleName
 		)}`,
 	}
@@ -267,20 +247,6 @@ function getValidSelectedRuleInfos(
 
 function isSpecificRule(selectedRuleName: DottedName) {
 	return selectedRuleName != ''
-}
-
-const TutorialRedirection = ({ selectedRuleDottedName, selectedRuleURL }) => {
-	const searchParams = new URLSearchParams({
-		fromRuleURL: selectedRuleURL,
-	})
-	return (
-		<Navigate
-			to={`/tutoriel${
-				isSpecificRule(selectedRuleDottedName) ? `?${searchParams}` : ''
-			}`}
-			replace
-		/>
-	)
 }
 
 const MainSimulationEnding = ({ rules, engine }) => {

@@ -3,7 +3,7 @@ import { findContrastedTextColor } from '@/components/utils/colors'
 import { motion } from 'framer-motion'
 import { useLocation } from 'react-router'
 import { useNavigate } from 'react-router-dom'
-import { getFocusedCategoryURLParams } from '../utils'
+import { getFocusedCategoryURLSearchParams } from '../utils'
 import TriangleShape from './TriangleShape'
 
 export default ({
@@ -39,7 +39,9 @@ export default ({
 			data-cypress-id={`sub-category-bar-${dottedName}`}
 			onClick={() =>
 				filterSimulationOnClick
-					? navigate(`${pathname}${getFocusedCategoryURLParams(dottedName)}`)
+					? navigate(
+							`${pathname}?${getFocusedCategoryURLSearchParams(dottedName)}`
+					  )
 					: click(dottedName)
 			}
 		>

@@ -1,3 +1,6 @@
+import { utils } from 'publicodes'
+import { DottedName } from '../../components/publicodesUtils'
+
 export const isFluidLayout = (encodedPathname) => {
 	const pathname = decodeURIComponent(encodedPathname)
 
@@ -9,9 +12,22 @@ export const isFluidLayout = (encodedPathname) => {
 	)
 }
 
-export function getFocusedCategoryURLParams(
+export function getFocusedCategoryURLSearchParams(
 	focusedCategory: string | null
-): string {
-	const params = focusedCategory ? `?catégorie=${focusedCategory}` : ''
-	return params
+): URLSearchParams {
+	return new URLSearchParams(
+		focusedCategory != undefined
+			? {
+					catégorie: focusedCategory,
+			  }
+			: {}
+	)
+}
+
+export function getQuestionURLSearchParams(
+	ruleName: DottedName
+): URLSearchParams {
+	return new URLSearchParams({
+		question: utils.encodeRuleName(ruleName),
+	})
 }

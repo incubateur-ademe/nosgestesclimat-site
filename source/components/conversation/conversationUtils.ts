@@ -9,7 +9,7 @@ import { Dispatch } from 'react'
 import { NavigateFunction } from 'react-router'
 import { AnyAction } from 'redux'
 import { goToQuestion } from '../../actions/actions'
-import { getFocusedCategoryURLParams } from '../../sites/publicodes/utils'
+import { getFocusedCategoryURLSearchParams } from '../../sites/publicodes/utils'
 
 export function sortQuestionsByCategory(
 	nextQuestions: DottedName[],
@@ -67,13 +67,12 @@ export function goToQuestionOrNavigate(
 	toUse: { dispatch: Dispatch<AnyAction> } | { navigate: NavigateFunction }
 ): void {
 	if (toUse['navigate'] != undefined) {
-		const params = getFocusedCategoryURLParams(focusedCategory)
-		const rulePath = utils.encodeRuleName(question)
+		let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
+		searchParams.append('question', utils.encodeRuleName(question))
 
-		toUse['navigate'](
-			`/simulateur/${MODEL_ROOT_RULE_NAME}/${rulePath}${params}`,
-			{ replace: true }
-		)
+		toUse['navigate'](`/simulateur/${MODEL_ROOT_RULE_NAME}?${searchParams}`, {
+			replace: true,
+		})
 	} else {
 		toUse['dispatch'](goToQuestion(question))
 	}

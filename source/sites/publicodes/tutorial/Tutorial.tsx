@@ -25,6 +25,7 @@ export default ({}) => {
 	const urlParams = new URLSearchParams(window.location.search)
 
 	const fromRuleURLParam = urlParams.get('fromRuleURL')
+
 	const targetUrl = fromRuleURLParam
 		? fromRuleURLParam
 		: `/simulateur/${MODEL_ROOT_RULE_NAME}`

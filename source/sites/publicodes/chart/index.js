@@ -8,7 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { useNextQuestions } from '../../../hooks/useNextQuestion'
-import { getFocusedCategoryURLParams } from '../utils'
+import { getFocusedCategoryURLSearchParams } from '../utils'
 import Bar from './Bar'
 
 export default ({
@@ -117,7 +117,7 @@ export default ({
 											}
 											onClick={() =>
 												navigate(
-													`${pathname}${getFocusedCategoryURLParams(
+													`${pathname}?${getFocusedCategoryURLSearchParams(
 														category.dottedName
 													)}`
 												)
