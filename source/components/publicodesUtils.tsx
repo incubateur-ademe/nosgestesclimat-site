@@ -59,6 +59,8 @@ export type NGCRule = Rule & {
 	mosaique?: MosaiqueNode
 	type?: 'notification'
 	sévérité?: 'avertissement' | 'information' | 'invalide'
+	// NOTE(@EmileRolley): used in Action.tsx but I don't if it is really needed..
+	plus?: boolean
 }
 
 /**
