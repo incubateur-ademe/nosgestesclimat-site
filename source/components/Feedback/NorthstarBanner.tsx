@@ -22,25 +22,34 @@ export default ({
 	const actionChoices = useSelector((state: RootState) => state.actionChoices)
 
 	const actionChoicesLength = Object.entries(actionChoices).filter(
-		([key, value]) => value
+		([, value]) => value
 	).length
 
 	const displayActionRating =
 		type === 'SET_RATING_ACTION' &&
-		hasRatedAction == null &&
+		hasRatedAction.toString().includes('display') &&
 		actionChoicesLength > 2
 	const displayLearnedRating =
-		type === 'SET_RATING_LEARNED' && hasRatedLearning == null
+		type === 'SET_RATING_LEARNED' &&
+		hasRatedLearning.toString().includes('display')
 
 	const closeFeedback = () => {
 		setTimeout(() => {
-			dispatch(setRatings(type, 0))
+			dispatch(setRatings(type, 'refuse'))
 		}, 1000)
 	}
 
 	const [animationComplete, setAnimationComplete] = useState(false)
 
-	if (!testCompleted || (!displayActionRating && !displayLearnedRating)) return
+	if (
+		!testCompleted ||
+		(!displayActionRating && !displayLearnedRating) ||
+		// Display only the Northstar banner in production mode
+		NODE_ENV === 'development' ||
+		CONTEXT === 'deploy-preview'
+	) {
+		return null
+	}
 
 	return (
 		<motion.div

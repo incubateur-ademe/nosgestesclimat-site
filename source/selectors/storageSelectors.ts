@@ -2,6 +2,8 @@ import { RootState, Simulation } from 'Reducers/rootReducer'
 import { DottedName } from 'Rules'
 import { Lang } from '../locales/translation'
 
+export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
+
 export type SavedSimulation = {
 	situation: Simulation['situation']
 	foldedSteps: Array<DottedName> | undefined
@@ -9,13 +11,10 @@ export type SavedSimulation = {
 	persona?: string
 	storedTrajets: Object
 	storedAmortissementAvion: { [key: string]: number }
-	// Current language used for the UI translation -- not the model.
-	currentLang: Lang
-	localisation: Object | undefined
 	conference: { room: string } | null
 	survey: { room: string } | null
 	enquête: { userID: string; date: string } | null
-	ratings: { learned: number; action: number }
+	ratings: { learned: Rating; action: Rating }
 	url?: string
 	date?: Date
 	id?: string
