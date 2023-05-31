@@ -24,13 +24,14 @@ export const useChart = ({
 	chartDate,
 	target = 'VisitsSummary.getVisits',
 	name = 'chart-visites',
-}) =>
-	useX(
-		[name, chartPeriod, chartDate],
+}) => {
+	return useX(
+		`${name}, ${chartPeriod}, ${chartDate}`,
 		`module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=${target}`,
 		(res) => res.data,
 		true
 	)
+}
 
 export const useSimulationsTerminees = () =>
 	useX(
@@ -176,26 +177,16 @@ export const useRidesNumber = () =>
 			res.data.find((action) => action.label === 'Ajout trajet km voiture')
 	)
 
-export const useTotalUniqueVisitors = () =>
-	useX(
-		'totalUniqueVisitors',
-		`module=API&method=Actions.getPageUrl&pageUrl=https://nosgestesclimat.fr/fin&idSite=${idSite}&period=day&date=yesterday&format=JSON`,
-		//`module=API&method=VisitsSummary.getUniqueVisitors&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
-		(res) => res.data
-	)
-
 export const useHomepageVisitors = () =>
 	useX(
 		'homepageVisitors',
 		`module=API&method=Actions.getPageUrl&pageUrl=https://nosgestesclimat.fr&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
-		//`module=API&method=VisitsSummary.getUniqueVisitors&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
 		(res) => res.data
 	)
 
-export const useEndSimulationVisitors = () =>
+export const useGetSharedSimulationEvents = () =>
 	useX(
-		'endSimulationVisitors',
-		`module=API&method=Actions.getPageUrls&filter_limit=-1&filter_column=label&filter_pattern=%5E%2Ffin&flat=1&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
-		//`module=API&method=VisitsSummary.getUniqueVisitors&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
+		'sharedSimulation',
+		`module=API&method=Events.getCategory&label=partage&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
 		(res) => res.data
 	)

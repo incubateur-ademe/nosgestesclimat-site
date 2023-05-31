@@ -17,8 +17,8 @@ import Sources from './content/Sources'
 import {
 	useActiveEntryPages,
 	useAllTime,
-	useEndSimulationVisitors,
 	useEntryPages,
+	useGetSharedSimulationEvents,
 	useHomepageVisitors,
 	useKeywords,
 	useKmHelp,
@@ -116,7 +116,7 @@ export default function Data() {
 	const simulationsfromhelp = useSimulationsfromKmHelp()
 	const ridesnumber = useRidesNumber()
 	const homepageVisitorsData = useHomepageVisitors()
-	const endSimulationVisitors = useEndSimulationVisitors()
+	const sharedSimulations = useGetSharedSimulationEvents()
 
 	const { t } = useTranslation()
 
@@ -149,14 +149,22 @@ export default function Data() {
 					)}
 				/>
 				<Wrapper>
-					<EvolutionWrapper>
+					<EvolutionWrapper
+						css={`
+							padding-top: 1rem;
+						`}
+					>
 						<BlockWrapper
 							css={`
 								margin-bottom: 1rem;
 							`}
 						>
 							<Block>
-								<Number>
+								<Number
+									css={`
+										color: #30c691 !important;
+									`}
+								>
 									{homepageVisitorsData?.data?.[0]?.nb_visits
 										?.toString()
 										?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
@@ -175,16 +183,12 @@ export default function Data() {
 						</BlockWrapper>
 						<BlockWrapper>
 							<Block>
-								<Number>
-									{endSimulationVisitors?.data
-										?.reduce((sum, urlObject) => {
-											if (urlObject.nb_visits) {
-												return sum + urlObject.nb_visits
-											}
-											return sum
-										}, 0)
-										?.toString()
-										?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
+								<Number
+									css={`
+										color: #30c691 !important;
+									`}
+								>
+									{sharedSimulations?.data?.[0]?.nb_events || (
 										<span
 											css={`
 												color: grey;
@@ -195,7 +199,7 @@ export default function Data() {
 										</span>
 									)}
 								</Number>{' '}
-								&nbsp;<Trans>visites sur la page de fin</Trans>
+								&nbsp;<Trans>partages du site</Trans>
 							</Block>
 						</BlockWrapper>
 					</EvolutionWrapper>
@@ -205,6 +209,8 @@ export default function Data() {
 						elementAnalysedTitle={t('simulations terminées')}
 						target="Events.getAction&label=A%20termin%C3%A9%20la%20simulation%0A"
 						tooltipLabel={t('simulations terminées')}
+						key="chart-simulation-terminees"
+						color="#30C691"
 					/>
 				</Wrapper>
 

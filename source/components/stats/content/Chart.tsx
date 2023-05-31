@@ -36,6 +36,7 @@ type Props = {
 	elementAnalysedTitle: string
 	target: string
 	tooltipLabel?: string
+	color?: string
 }
 
 export default function Chart(props: Props) {
@@ -49,6 +50,7 @@ export default function Chart(props: Props) {
 		chartDate: Number(chartDate) + 1,
 		chartPeriod,
 		target: props.target,
+		name: props.elementAnalysedTitle,
 	})
 
 	const [data, setData] = useState<{ date: string }[] | undefined>(undefined)
@@ -60,9 +62,11 @@ export default function Chart(props: Props) {
 			dates.length-- //last period is removed from data
 			const dataDots = dates?.map((date) => {
 				const points = { date }
-				console.log(chart[date])
+
 				points['Visiteurs'] =
-					chart[date] === 'number' ? chart[date] : chart[date]?.[0]?.nb_visits
+					typeof chart[date] === 'number'
+						? chart[date]
+						: chart[date]?.[0]?.nb_visits
 				return points
 			})
 			setData(dataDots)
@@ -115,8 +119,8 @@ export default function Chart(props: Props) {
 						<Area
 							type="monotone"
 							dataKey={'Visiteurs'}
-							stroke="var(--darkColor)"
-							fill="var(--color)"
+							stroke={props.color ?? 'var(--darkColor)'}
+							fill={props.color ?? 'var(--color)'}
 							fillOpacity={1}
 						/>
 					</AreaChart>
