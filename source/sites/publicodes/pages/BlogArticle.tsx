@@ -9,9 +9,10 @@ const MarkdownPageWrapper = () => {
 	const { t } = useTranslation()
 	const { slug } = useParams()
 
-	const title = t('Le blog')
-	const description = t('pages.News.premierParagraphe')
-	const markdownFile = blogData.find((element) => element.slug == slug)?.content
+	const markdownFile = blogData.find((element) => element.slug == slug)
+	const content = markdownFile?.content || ''
+	const title = markdownFile?.title
+	const description = markdownFile?.description
 
 	if (!markdownFile) {
 		return (
@@ -27,7 +28,7 @@ const MarkdownPageWrapper = () => {
 		<div>
 			<Link to="/blog">← {t('Retour à la liste des articles')}</Link>
 			<MarkdownPage
-				markdownFiles={[[Lang.Fr, markdownFile]]}
+				markdownFiles={[[Lang.Fr, content]]}
 				title={title}
 				description={description}
 			/>

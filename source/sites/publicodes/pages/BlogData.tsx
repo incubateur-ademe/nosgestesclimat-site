@@ -4,7 +4,7 @@ import historyFr from '../../../locales/blog/fr/historique.md'
 import dayFr from '../../../locales/blog/fr/mondialEnvironnement.md'
 
 type BlogPost = {
-	id: number
+	date: string
 	title: string
 	slug: string
 	description: string
@@ -13,16 +13,15 @@ type BlogPost = {
 
 export const blogData: BlogPost[] = [
 	{
-		id: 4,
-		title:
-			'Journée mondiale de l’environnement : s’engager pour le climat, ça commence par calculer son empreinte !',
+		date: '2023-06-05',
+		title: 'Journée mondiale de l’environnement',
 		slug: 'journée-mondial-environnement',
 		description:
 			'Entre les actuelles 9 tonnes de l’empreinte moyenne d’un citoyen français, et l’objectif affiché de 2 tonnes , il y a beaucoup de pas à faire ! ',
 		content: dayFr,
 	},
 	{
-		id: 3,
+		date: '2021-05-11',
 		title: 'Nos Gestes Climat adapté pour un campus',
 		slug: 'campus',
 		description:
@@ -30,7 +29,7 @@ export const blogData: BlogPost[] = [
 		content: campusFr,
 	},
 	{
-		id: 2,
+		date: '2023-09-21',
 		title: 'Envie de perdre quelques tonnes ?',
 		slug: 'historique',
 		description:
@@ -38,7 +37,7 @@ export const blogData: BlogPost[] = [
 		content: historyFr,
 	},
 	{
-		id: 1,
+		date: '2020-05-16',
 		title: "Le budget et l'empreinte carbone, c'est quoi ?",
 		slug: 'budget',
 		description:
