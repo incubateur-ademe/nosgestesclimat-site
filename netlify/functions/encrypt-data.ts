@@ -1,6 +1,10 @@
+/* eslint-disable @typescript-eslint/require-await */
 import CryptoJS from 'crypto-js'
 
-// eslint-disable-next-line @typescript-eslint/require-await
+/**
+ * Encrypts data with AES
+ * @param {string} data - Data to encrypt
+ */
 exports.handler = async (event) => {
 	const data = JSON.parse(event.body as string)
 

@@ -1,13 +1,12 @@
-import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { Simulation } from '@/reducers/rootReducer'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import * as Sentry from '@sentry/react'
 import { useEffect, useState } from 'react'
-
+type DataSimulationObject = { data: Simulation }
 export const useLoadSimulationFromURL = () => {
-	const [simulation, setSimulation] = useState<Simulation | undefined>(
-		undefined
-	)
+	const [simulation, setSimulation] = useState<
+		DataSimulationObject | undefined
+	>(undefined)
 
 	// Get search params from URL
 	const searchParams = new URL(window.location.toString()).searchParams
@@ -19,17 +18,7 @@ export const useLoadSimulationFromURL = () => {
 	useEffect(() => {
 		const loadSimulation = async (id: string) => {
 			try {
-				const responseDecryption = await fetch(
-					`${NETLIFY_FUNCTIONS_URL}/decrypt-data`,
-					{
-						method: 'POST',
-						body: id,
-					}
-				)
-
-				const decryptedId = await responseDecryption.json()
-
-				const response = await fetch(`${emailSimulationURL}${decryptedId}`, {
+				const response = await fetch(`${emailSimulationURL}${id}`, {
 					method: 'GET',
 					headers: {
 						'Content-Type': 'application/json',
@@ -46,7 +35,7 @@ export const useLoadSimulationFromURL = () => {
 
 		if (idSimulationDecoded) {
 			loadSimulation(idSimulationDecoded)
-				.then((simulation: Simulation) => {
+				.then((simulation: DataSimulationObject) => {
 					setSimulation(simulation)
 				})
 				.catch((e) => {
@@ -54,5 +43,6 @@ export const useLoadSimulationFromURL = () => {
 				})
 		}
 	}, [idSimulationDecoded])
+
 	return simulation?.data
 }

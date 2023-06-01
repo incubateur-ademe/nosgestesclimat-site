@@ -60,18 +60,9 @@ export const NewsletterForm = () => {
 			if (!currentSimulation) return
 
 			// Save simulation in DB
-			const idSimulationSaved = await saveSimulationInDB(currentSimulation)
-
-			// Encrypt simulation id
-			const encryptedIdSimulationResponse = await fetch(
-				`${NETLIFY_FUNCTIONS_URL}/encrypt-data`,
-				{
-					method: 'POST',
-					body: JSON.stringify(idSimulationSaved),
-				}
+			const idSimulationSaved: string = await saveSimulationInDB(
+				currentSimulation
 			)
-			const encryptedIdSimulation: string =
-				await encryptedIdSimulationResponse.json()
 
 			await fetch(`${NETLIFY_FUNCTIONS_URL}/email-service`, {
 				method: 'POST',
@@ -79,7 +70,7 @@ export const NewsletterForm = () => {
 					email: (document.getElementById('EMAIL') as HTMLInputElement).value,
 					optIn: (document.getElementById('OPT_IN') as HTMLInputElement).value,
 					simulationURL: `${appURL}/mon-empreinte-carbone?sid=${encodeURIComponent(
-						encryptedIdSimulation
+						idSimulationSaved
 					)}&mtm_campaign=retrouver-ma-simulation`,
 					// URL already contains the query param details
 					shareURL:
