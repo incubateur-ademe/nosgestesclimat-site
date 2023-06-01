@@ -38,6 +38,7 @@ export type User = {
 	tutorials: Object
 	currentLang: Lang
 	localisation: Object | undefined
+	hasSubscribedToNewsletter: boolean
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list

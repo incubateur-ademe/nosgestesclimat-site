@@ -193,6 +193,8 @@ export default function Root() {
 				survey: persistedSimulation?.survey,
 				enquête: persistedSimulation?.enquête,
 				ratings: persistedSimulation?.ratings,
+				hasSubscribedToNewsletter:
+					persistedUser.hasSubscribedToNewsletter ?? false,
 			}}
 		>
 			<Main />

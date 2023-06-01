@@ -4,11 +4,15 @@ import Meta from 'Components/utils/Meta'
 import { motion, useSpring } from 'framer-motion'
 import { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import tinygradient from 'tinygradient'
 import { generateImageLink } from '.'
 import { ActionButton, IntegratorActionButton } from './Buttons'
 import ClimateTargetChart from './ClimateTargetChart'
 import FinShareButton from './FinShareButton'
+
+import { hasSubscribedToNewsletterSelector } from '@/selectors/simulationSelectors'
+
 const gradient = tinygradient([
 		'#78e08f',
 		'#e1d738',
@@ -62,6 +66,10 @@ export default ({
 
 	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
 		useContext(IframeOptionsContext)
+
+	const hasSubscribedToNewsletter = useSelector(
+		hasSubscribedToNewsletterSelector
+	)
 
 	return (
 		<div
@@ -119,45 +127,55 @@ export default ({
 						margin: 1rem 0;
 					`}
 				>
-					<button
-						onClick={() => {
-							document
-								.getElementById('newsletter-form-container')
-								.scrollIntoView({
-									behavior: 'smooth',
-								})
-						}}
-						css={`
-							font-size: 1rem !important;
-							display: flex !important;
-							align-items: center;
-							padding: 0.25rem 1rem !important;
-							background-image: linear-gradient(
-								50deg,
-								var(--darkestColor) -50%,
-								var(--color) 30%
-							);
-							color: white;
-							border-radius: 0.6rem;
-							text-transform: inherit !important;
-						`}
-						className="ui__ plain button"
-					>
-						<span
-							role="img"
-							aria-label="Emoji save"
+					{!hasSubscribedToNewsletter && (
+						<button
+							onClick={() => {
+								document
+									.getElementById('newsletter-form-container')
+									?.scrollIntoView({
+										behavior: 'smooth',
+									})
+							}}
 							css={`
-								font-size: 1.25rem;
-								display: inline-block;
-								margin-right: 0.4rem;
+								font-size: 1rem !important;
+								display: flex !important;
+								align-items: center;
+								padding: 0.25rem 1rem !important;
+								background-image: linear-gradient(
+									50deg,
+									var(--darkestColor) -50%,
+									var(--color) 30%
+								);
+								color: white;
+								border-radius: 0.6rem;
+								text-transform: inherit !important;
 							`}
+							className="ui__ plain button"
 						>
-							📩
-						</span>
-						{t('Sauvegarder mes résultats')}
-					</button>
+							<span
+								role="img"
+								aria-label="Emoji save"
+								css={`
+									font-size: 1.25rem;
+									display: inline-block;
+									margin-right: 0.4rem;
+								`}
+							>
+								📩
+							</span>
+							{t('Sauvegarder mes résultats')}
+						</button>
+					)}
+
 					{noQuestionsLeft && (
-						<FinShareButton label={t('Partager')} textColor={textColor} />
+						<FinShareButton
+							label={t(
+								hasSubscribedToNewsletter
+									? 'Partager mes résultats'
+									: 'Partager'
+							)}
+							textColor={textColor}
+						/>
 					)}
 				</div>
 

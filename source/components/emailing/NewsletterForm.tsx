@@ -1,10 +1,12 @@
+import { setHasSubscribedToNewsletter } from '@/actions/actions'
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { AppState } from '@/reducers/rootReducer'
+import { hasSubscribedToNewsletterSelector } from '@/selectors/simulationSelectors'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import * as Sentry from '@sentry/react'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { formatDataForDB } from '../utils/formatDataForDB'
 
 const appURL =
@@ -16,6 +18,11 @@ export const NewsletterForm = () => {
 	const [isSent, setIsSent] = useState(false)
 	const [isSending, setIsSending] = useState(false)
 
+	const dispatch = useDispatch()
+
+	const hasSubscribedToNewsletter = useSelector(
+		hasSubscribedToNewsletterSelector
+	)
 	const { t } = useTranslation()
 
 	const currentSimulationId = useSelector(
@@ -81,6 +88,7 @@ export const NewsletterForm = () => {
 				}),
 			})
 
+			dispatch(setHasSubscribedToNewsletter())
 			setIsSent(true)
 		} catch (e) {
 			Sentry.captureException(e)
@@ -88,6 +96,8 @@ export const NewsletterForm = () => {
 			setIsSending(false)
 		}
 	}
+
+	if (hasSubscribedToNewsletter) return null
 
 	return (
 		<div
