@@ -139,7 +139,7 @@ export default ({}) => {
 					</button>
 				) : (
 					<button
-						className="ui__ simple small push-left button"
+						className="ui__ small cta button"
 						css={`
 							text-transform: none !important;
 							padding: 0 !important;

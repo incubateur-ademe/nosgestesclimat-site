@@ -1,5 +1,7 @@
 import SibApiV3Sdk from 'sib-api-v3-sdk'
 
+const NGC_LIST_ID = 22
+
 exports.handler = async (event) => {
 	const data = JSON.parse(event.body)
 
@@ -12,7 +14,7 @@ exports.handler = async (event) => {
 	apiKey.apiKey = process.env.BREVO_API_KEY
 
 	// Add contact to list
-	let contactApiInstance = new SibApiV3Sdk.ContactsApi()
+	const contactApiInstance = new SibApiV3Sdk.ContactsApi()
 
 	const createContact = new SibApiV3Sdk.CreateContact()
 
@@ -21,7 +23,7 @@ exports.handler = async (event) => {
 		OPT_IN: true,
 	}
 
-	createContact.listIds = [22]
+	createContact.listIds = [NGC_LIST_ID]
 	try {
 		await contactApiInstance.createContact(createContact)
 	} catch (e) {
@@ -30,7 +32,7 @@ exports.handler = async (event) => {
 
 	const transacApiInstance = new SibApiV3Sdk.TransactionalEmailsApi()
 
-	let sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail() // SendSmtpEmail | Values to send a transactional email
+	const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail() // SendSmtpEmail | Values to send a transactional email
 	sendSmtpEmail.to = [
 		{
 			name: email,
