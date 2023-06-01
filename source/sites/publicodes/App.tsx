@@ -38,12 +38,22 @@ import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
 import { isFluidLayout } from './utils'
 
+
 // All those lazy components, could be probably be handled another more consise way
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
 
 const ActionsLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Actions' */ './Actions')
 )
+
+const BlogArticleLazy = React.lazy(
+	() => import(/* webpackChunkName: 'BlogArticle' */ './pages/BlogArticle')
+)
+
+const BlogLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Blog' */ './pages/Blog')
+)
+
 const QuestionList = React.lazy(
 	() => import(/* webpackChunkName: 'QuestionList' */ './pages/QuestionList')
 )
@@ -437,6 +447,22 @@ const Router = () => {
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<News />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={'blog'}
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<BlogLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path={'blog/:slug'}
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<BlogArticleLazy />
 					</Suspense>
 				}
 			/>
