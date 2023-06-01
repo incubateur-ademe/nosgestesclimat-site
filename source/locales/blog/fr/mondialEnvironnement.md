@@ -2,6 +2,7 @@
 
 ## Un million de citoyens déjà engagés avec Nos Gestes Climat
 
+![Logo de la journée mondiale de l’environnement ](https://socenv.org.uk/wp-content/uploads/2023/02/WED.jpg)
 N’attendez plus, [faites votre bilan carbone](https://nosgestesclimat.fr/).
 
 Entre les actuelles 9 tonnes de l’empreinte moyenne d’un citoyen français, et l’[objectif affiché de 2 tonnes](https://www.ecologie.gouv.fr/sites/default/files/2021_Indicateurs%20de%20r%C3%A9sultats_SNBC-vF.pdf) , il y a beaucoup de pas à faire ! Dans un contexte où le climat s’emballe chaque année un peu plus, la journée de l’environnement est une nouvelle occasion de sensibiliser aux enjeux du réchauffement !
