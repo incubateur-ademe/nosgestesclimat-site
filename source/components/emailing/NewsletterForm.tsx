@@ -5,7 +5,7 @@ import { hasSubscribedToNewsletterSelector } from '@/selectors/simulationSelecto
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import * as Sentry from '@sentry/react'
 import { useState } from 'react'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatDataForDB } from '../utils/formatDataForDB'
 
@@ -117,7 +117,9 @@ export const NewsletterForm = () => {
 					{isSent ? (
 						<div css="padding: 8px 0; padding-top: 1rem;">
 							<div css="font-size:1.5rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left">
-								<p>Merci pour votre inscription ! 🌱</p>
+								<p>
+									<Trans>Merci pour votre inscription !</Trans> 🌱
+								</p>
 							</div>
 							<p
 								css={`
@@ -125,7 +127,9 @@ export const NewsletterForm = () => {
 									margin-top: 1rem;
 								`}
 							>
-								Vous allez recevoir un email de notre part sous peu.
+								<Trans>
+									Vous allez recevoir un email de notre part sous peu.
+								</Trans>
 							</p>
 						</div>
 					) : (
@@ -141,18 +145,22 @@ export const NewsletterForm = () => {
 						>
 							<div css="padding: 8px 0;">
 								<div css="font-size:1.25rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left">
-									<p>Vous souhaitez recevoir vos résultats ? 💡</p>
+									<p>
+										<Trans>Vous souhaitez recevoir vos résultats ?</Trans> 💡
+									</p>
 								</div>
 							</div>
 							<div css="padding: 8px 0;">
 								<div css="font-size:16px; text-align:left; color:#3C4858; background-color:transparent; text-align:left">
 									<div>
-										<p>
-											Laissez-nous votre email pour recevoir{' '}
-											<strong>votre résultat</strong> et{' '}
-											<strong>des conseils</strong> pour réduire votre empreinte
-											carbone (1 fois par mois max.).
-										</p>
+										<Trans>
+											<p>
+												Laissez-nous votre email pour recevoir{' '}
+												<strong>votre résultat</strong> et{' '}
+												<strong>des conseils</strong> pour réduire votre
+												empreinte carbone (1 fois par mois max.).
+											</p>
+										</Trans>
 									</div>
 								</div>
 							</div>
@@ -165,7 +173,7 @@ export const NewsletterForm = () => {
 												data-required="*"
 												htmlFor="EMAIL"
 											>
-												Entrez votre adresse email
+												<Trans>Entrez votre adresse email</Trans>
 											</label>
 
 											<div>
@@ -200,26 +208,30 @@ export const NewsletterForm = () => {
 													/>
 													<span css="margin-left:"></span>
 													<span css="font-size:14px; text-align:left; color:#3C4858; background-color:transparent;">
-														<p>
-															J'accepte de recevoir des informations de la part
-															de Nos Gestes Climat et sa{' '}
-															<a
-																target="_blank"
-																href="https://nosgestesclimat.fr/vie-privée"
-																aria-label={t(
-																	'politique de confidentialité, nouvelle fenêtre'
-																)}
-															>
-																politique de confidentialité
-															</a>
-														</p>
+														<Trans>
+															<p>
+																J'accepte de recevoir des informations de la
+																part de Nos Gestes Climat et sa{' '}
+																<a
+																	target="_blank"
+																	href="https://nosgestesclimat.fr/vie-privée"
+																	aria-label={t(
+																		'politique de confidentialité, nouvelle fenêtre'
+																	)}
+																>
+																	politique de confidentialité
+																</a>
+															</p>
+														</Trans>
 													</span>{' '}
 												</label>
 											</div>
 										</div>
 										<p css="font-size:12px; color:#8390A4; line-height: 1rem; display: flex; justify-content: flex-start; align-items: flex-start; text-align: left;">
-											Vous pourrez choisir de ne plus recevoir nos emails à tout
-											moment
+											<Trans>
+												Vous pourrez choisir de ne plus recevoir nos emails à
+												tout moment
+											</Trans>
 										</p>
 									</div>
 								</div>
@@ -232,7 +244,7 @@ export const NewsletterForm = () => {
 										type="submit"
 										disabled={isSending}
 									>
-										Envoyer
+										<Trans>Envoyer</Trans>
 									</button>
 								</div>
 							</div>

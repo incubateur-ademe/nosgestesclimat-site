@@ -140,7 +140,7 @@ export default ({
 								font-size: 1rem !important;
 								display: flex !important;
 								align-items: center;
-								padding: 0.25rem 1rem !important;
+								padding: 0rem 1rem !important;
 								background-image: linear-gradient(
 									50deg,
 									var(--darkestColor) -50%,

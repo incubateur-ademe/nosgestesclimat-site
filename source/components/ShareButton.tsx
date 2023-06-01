@@ -99,6 +99,10 @@ ${decodeURIComponent(url)}`
 					}
 				)
 			}}
+			css={`
+				padding-left: 0 !important;
+				padding-right: 0 !important;
+			`}
 		>
 			<ShareButtonIcon />
 			{!copySuccess ? (

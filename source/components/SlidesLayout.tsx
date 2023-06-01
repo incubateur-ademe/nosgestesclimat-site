@@ -10,9 +10,9 @@ export default ({ children, length, active }) => {
 	const { t } = useTranslation()
 
 	return (
-		<Container isIframe={isIframe} slide={active + 1}>
+		<>
 			{length && (
-				<ol
+				<Ol
 					title={t('Progression dans les diapo')}
 					role="progressbar"
 					aria-valuenow={active + 1}
@@ -33,10 +33,12 @@ export default ({ children, length, active }) => {
 							`}
 						></li>
 					))}
-				</ol>
+				</Ol>
 			)}
-			<MainContent>{children}</MainContent>
-		</Container>
+			<Container isIframe={isIframe} slide={active + 1}>
+				<MainContent>{children}</MainContent>
+			</Container>
+		</>
 	)
 }
 
@@ -47,46 +49,19 @@ const MainContent = styled.div`
 `
 
 const Container = styled.div<{ isIframe?: boolean; slide: number }>`
-	height: 533px;
-	@media (max-width: 800px) {
-		height: 506px;
-	}
-	@media (min-aspect-ratio: 1280/700) {
-		// height: 95vh;
-	}
-	${(props) =>
-		props.slide === 2 &&
-		`height: 688px;
-		@media (max-width: 800px) {
-			height: 562px;
-		}
-	`}
-	${(props) =>
-		props.slide === 3 &&
-		`height: 635px;
-		@media (max-width: 800px) {
-			height: 545px;
-		}
-	`}
-	${(props) =>
-		props.slide === 4 &&
-		`height: 673px;
-		@media (max-width: 800px) {
-			height: 551px;
-		}
-	`}
+	height: fit-content;
 	${(props) => props.isIframe && 'height: 45rem !important;'}
 	position: relative;
+`
 
-	> ol {
-		@media (min-height: 800px) {
-			display: flex;
-		}
-
-		margin-top: 0.5rem;
-		display: none;
-		padding: 1rem;
-		list-style-type: none;
-		justify-content: center;
+const Ol = styled.ol`
+	@media (min-height: 800px) {
+		display: flex;
 	}
+
+	display: none;
+	padding: 1rem;
+	list-style-type: none;
+	justify-content: center;
+	padding-bottom: 0 !important;
 `
