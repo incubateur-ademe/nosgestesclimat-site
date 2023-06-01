@@ -10,7 +10,7 @@ export default ({ children, length, active }) => {
 	const { t } = useTranslation()
 
 	return (
-		<Container isIframe={isIframe}>
+		<Container isIframe={isIframe} slide={active + 1}>
 			{length && (
 				<ol
 					title={t('Progression dans les diapo')}
@@ -46,7 +46,35 @@ const MainContent = styled.div`
 	align-items: center;
 `
 
-const Container = styled.div<{ isIframe?: boolean }>`
+const Container = styled.div<{ isIframe?: boolean; slide: number }>`
+	height: 533px;
+	@media (max-width: 800px) {
+		height: 506px;
+	}
+	@media (min-aspect-ratio: 1280/700) {
+		// height: 95vh;
+	}
+	${(props) =>
+		props.slide === 2 &&
+		`height: 688px;
+		@media (max-width: 800px) {
+			height: 562px;
+		}
+	`}
+	${(props) =>
+		props.slide === 3 &&
+		`height: 635px;
+		@media (max-width: 800px) {
+			height: 545px;
+		}
+	`}
+	${(props) =>
+		props.slide === 4 &&
+		`height: 673px;
+		@media (max-width: 800px) {
+			height: 551px;
+		}
+	`}
 	${(props) => props.isIframe && 'height: 45rem !important;'}
 	position: relative;
 

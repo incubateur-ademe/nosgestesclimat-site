@@ -78,21 +78,20 @@ export const NewsletterForm = () => {
 				body: JSON.stringify({
 					email: (document.getElementById('EMAIL') as HTMLInputElement).value,
 					optIn: (document.getElementById('OPT_IN') as HTMLInputElement).value,
-					simulationURL: `${appURL}?sid=${encodeURIComponent(
+					simulationURL: `${appURL}/mon-empreinte-carbone?sid=${encodeURIComponent(
 						encryptedIdSimulation
 					)}&mtm_campaign=retrouver-ma-simulation`,
-					shareURL: location
-						.toString()
-						.replace(
-							'/fin',
-							'/mon-empreinte-carbone/partage&mtm_campaign=partage-email'
-						),
+					// URL already contains the query param details
+					shareURL:
+						location
+							.toString()
+							.replace('/fin', '/mon-empreinte-carbone/partage') +
+						'&mtm_campaign=partage-email',
 				}),
 			})
 
 			setIsSent(true)
 		} catch (e) {
-			console.log(e)
 			Sentry.captureException(e)
 		} finally {
 			setIsSending(false)
@@ -107,14 +106,14 @@ export const NewsletterForm = () => {
 				width: 35rem;
 				max-width: 100%;
 				margin: 0 auto;
-				margin-top: 2rem;
+				margin-top: 1.5rem;
 				position: relative;
 			`}
 		>
 			<div>
 				<div css="text-align:center; max-width:540px; margin: 0 auto;">
 					{isSent ? (
-						<div css="padding: 8px 0;">
+						<div css="padding: 8px 0; padding-top: 1rem;">
 							<div css="font-size:1.5rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left">
 								<p>Merci pour votre inscription ! 🌱</p>
 							</div>
@@ -135,19 +134,9 @@ export const NewsletterForm = () => {
 								margin: 0 auto;
 								box-sizing: border-box;
 								position: relative;
-								padding-top: 1rem;
+								padding-top: 0.5rem;
 							`}
 						>
-							<div
-								css={`
-									position: absolute;
-									top: 0;
-									left: 0;
-									width: 3rem;
-									height: 3px;
-									background-color: #00a4ac;
-								`}
-							></div>
 							<div css="padding: 8px 0;">
 								<div css="font-size:1.25rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left">
 									<p>Bravo pour ce premier pas ! 👏</p>

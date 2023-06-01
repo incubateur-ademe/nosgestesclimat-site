@@ -138,13 +138,7 @@ export default ({}) => {
 						← <Trans>Revenir aux questions</Trans>
 					</button>
 				) : (
-					<button
-						className="ui__ small cta button"
-						css={`
-							text-transform: none !important;
-							padding: 0 !important;
-						`}
-					>
+					<button className="ui__ simple small push-left button">
 						{' '}
 						← <Trans>Revenir au test</Trans>
 					</button>

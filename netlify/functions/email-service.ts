@@ -33,6 +33,14 @@ exports.handler = async (event) => {
 	const transacApiInstance = new SibApiV3Sdk.TransactionalEmailsApi()
 
 	const sendSmtpEmail = new SibApiV3Sdk.SendSmtpEmail() // SendSmtpEmail | Values to send a transactional email
+	sendSmtpEmail.sender = {
+		name: 'Nos Gestes Climat',
+		email: 'contact@nosgestesclimat.fr',
+	}
+	sendSmtpEmail.replyTo = {
+		name: 'Nos Gestes Climat',
+		email: 'contact@nosgestesclimat.fr',
+	}
 	sendSmtpEmail.to = [
 		{
 			name: email,

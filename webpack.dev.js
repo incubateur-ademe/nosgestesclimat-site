@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const path = require('path')
-require('dotenv').config()
 
 const {
 	commonLoaders,

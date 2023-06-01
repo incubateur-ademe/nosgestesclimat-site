@@ -45,8 +45,8 @@ export default ({
 		!testCompleted ||
 		(!displayActionRating && !displayLearnedRating) ||
 		// Display only the Northstar banner in production mode
-		NODE_ENV === 'development' ||
-		CONTEXT === 'deploy-preview'
+		process.env.NODE_ENV === 'development' ||
+		process.env.CONTEXT === 'deploy-preview'
 	) {
 		return null
 	}

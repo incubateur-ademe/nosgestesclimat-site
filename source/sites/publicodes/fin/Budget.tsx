@@ -102,13 +102,6 @@ export default ({
 				`}
 			>
 				<div id="shareImage" css="padding: 2rem 0 .6rem;">
-					<p
-						css={`
-							margin-bottom: 1rem;
-						`}
-					>
-						Mon empreinte carbone est de :
-					</p>
 					<ClimateTargetChart
 						value={value}
 						details={details}
