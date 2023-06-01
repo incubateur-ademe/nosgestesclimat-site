@@ -100,6 +100,7 @@ export const NewsletterForm = () => {
 				margin-top: 1.5rem;
 				position: relative;
 			`}
+			id="newsletter-form-container"
 		>
 			<div>
 				<div css="text-align:center; max-width:540px; margin: 0 auto;">
@@ -130,13 +131,12 @@ export const NewsletterForm = () => {
 						>
 							<div css="padding: 8px 0;">
 								<div css="font-size:1.25rem; text-align:left; font-weight:700; color:#3C4858; background-color:transparent; text-align:left">
-									<p>Bravo pour ce premier pas ! 👏</p>
+									<p>Vous souhaitez recevoir vos résultats ? 💡</p>
 								</div>
 							</div>
 							<div css="padding: 8px 0;">
 								<div css="font-size:16px; text-align:left; color:#3C4858; background-color:transparent; text-align:left">
 									<div>
-										<p>Vous souhaitez continuer sur votre lancée ?</p>
 										<p>
 											Laissez-nous votre email pour recevoir{' '}
 											<strong>votre résultat</strong> et{' '}
