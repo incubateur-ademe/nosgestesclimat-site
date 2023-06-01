@@ -1,12 +1,16 @@
 import { motion } from 'framer-motion'
 import { Trans } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { skipTutorial } from '../actions/actions'
 import TriangleShape from '../sites/publicodes/chart/TriangleShape'
 
 export default ({ openExplanation, setOpenExplanation, situationLength }) => {
 	const dispatch = useDispatch()
+	const location = useLocation()
+
+	if (!location.pathname.includes('simulateur/')) return null
+
 	const close = () => {
 		dispatch(skipTutorial('scoreExplanation'))
 		setOpenExplanation(false)

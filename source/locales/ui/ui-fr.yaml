@@ -380,8 +380,8 @@ entries:
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles. <2></2>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
   publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
-  publicodes.SimulationMissing.personnas: 💡 Vous pouvez aussi voir le parcours action comme si vous étiez l'un de ces profils types.
-  publicodes.SimulationMissing.simulationManquante: Vous n'avez pas encore fait le test. Pour débloquer ce parcours, vous devez nous en dire un peu plus sur votre mode de vie.
+  publicodes.SimulationMissing.personnas: 💡 Vous pouvez aussi continuer avec un <2>profil type</2>.
+  publicodes.SimulationMissing.simulationManquante: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   publicodes.TranslationContribution.commentaireAugmenté: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution pour la traduction](https://nosgestesclimat.fr/contribuer-traduction).
