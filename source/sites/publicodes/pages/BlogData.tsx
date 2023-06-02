@@ -2,6 +2,7 @@ import budgetFR from '../../../locales/blog/fr/budget.md'
 import campusFr from '../../../locales/blog/fr/campus.md'
 import gesTransportFr from '../../../locales/blog/fr/gesTransport.md'
 import historyFr from '../../../locales/blog/fr/historique.md'
+import impactMobiliteFR from '../../../locales/blog/fr/mobilite.md'
 import dayFr from '../../../locales/blog/fr/mondialEnvironnement.md'
 
 type BlogPost = {
@@ -52,5 +53,13 @@ export const blogData: BlogPost[] = [
 		description:
 			"Une explication pas à pas des objectifs climat, de l'échelle de la Terre à celle de l'individu.",
 		content: budgetFR,
+	},
+	{
+		date: '2020-03-30',
+		title: "L'impact carbone de notre mobilité",
+		slug: 'impact-mobilite',
+		description:
+			"Mon Impact Transport pour rendre visible l'impact carbone du transport",
+		content: impactMobiliteFR,
 	},
 ]
