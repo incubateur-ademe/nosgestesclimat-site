@@ -1,5 +1,6 @@
 import budgetFR from '../../../locales/blog/fr/budget.md'
 import campusFr from '../../../locales/blog/fr/campus.md'
+import gesTransportFr from '../../../locales/blog/fr/gesTransport.md'
 import historyFr from '../../../locales/blog/fr/historique.md'
 import dayFr from '../../../locales/blog/fr/mondialEnvironnement.md'
 
@@ -35,6 +36,14 @@ export const blogData: BlogPost[] = [
 		description:
 			'Cette invitation à perdre quelques tonnes, un brin provoquante, ne date pas d’hier : c’était déjà celle du Coach Carbone lancé en 2010 par l’ADEME et la FNH (Fondation pour la Nature et l’Homme) créée par Nicolas Hulot. ',
 		content: historyFr,
+	},
+	{
+		date: '2020-07-29',
+		title: "L'affichage des GES sur les titres de transport",
+		slug: 'affichage-ges-transport',
+		description:
+			"Petit état des lieux de l'affichage des gaz à effet de serre (GES) sur les sites de mobilité et les justificatifs de transport…",
+		content: gesTransportFr,
 	},
 	{
 		date: '2020-05-16',
