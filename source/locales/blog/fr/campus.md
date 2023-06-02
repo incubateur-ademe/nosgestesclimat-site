@@ -4,9 +4,9 @@
 
 ### Ne pas réinventer la roue
 
-C’est la vocation de Datagir que de développer des outils en _open source_ qui puissent être repris et diffusés au plus grand nombre. _[Nos Gestes Climat](https://nosgestesclimat.fr/)_ n’échappe pas à cette règle et a été construit en ce sens pour permettre à tous les acteurs qui le souhaitent de s’approprier le [code source](https://github.com/datagir/nosgestesclimat) et adapter l’outil à leur écosystème.
+_[Nos Gestes Climat](https://nosgestesclimat.fr/)_ est un outil qui a été développé en _open source_ afin d'être repris et diffusé au plus grand nombre. Tous les acteurs qui le souhaitent peuvent ainsi s’approprier le [code source](https://github.com/datagir/nosgestesclimat) et adapter l’outil à leur écosystème.
 
-Dans le cadre de leur option-projet, les étudiants de Centrale Nantes se sont attelés à cette tâche et ont repris le simulateur pour en faire une version adaptée à leur campus et ainsi dresser le bilan carbone de l’établissement et des occupants. Une belle démonstration du potentiel de l’open source. Clément Auger, étudiant en Master 2 et membre de l’option-projet « Neutralité Carbone » nous raconte :
+Dans le cadre de leur option-projet, les étudiants de Centrale Nantes se sont attelés à cette tâche et ont repris le simulateur pour en faire une version adaptée à leur campus et ainsi dresser le bilan carbone de l’établissement et des occupants. Une belle démonstration du potentiel de l’open source ! Clément Auger, étudiant en Master 2 et membre de l’option-projet « Neutralité Carbone » nous raconte :
 
 ### Peux-tu te présenter ?
 
@@ -26,7 +26,7 @@ Dans le cadre de leur option-projet, les étudiants de Centrale Nantes se sont a
 
 ### Pourquoi avez-vous choisi de travailler sur _Nos Gestes Climat_ ?
 
-> En premier lieu, on a été attirés par la clarté des informations autour du simulateur en lui-même, de la [documentation](https://datagir.gitbook.io/documentation/carbone/ateliers-developpeurs-nos-gestes-climat), des [webinaires associés](https://datagir.gitbook.io/documentation/carbone/webinaire-carbone).
+> En premier lieu, on a été attirés par la clarté des informations autour du simulateur en lui-même et de la [documentation](https://nosgestesclimat.fr/documentation).
 >
 > Avec du recul, je pense que _Nos Gestes Climat_ présente 3 avantages particulièrement importants :
 >

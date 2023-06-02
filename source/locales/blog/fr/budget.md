@@ -1,4 +1,4 @@
-# Le budget et l'empreinte carbone, c'est quoi ? | Datagir
+# Le budget et l'empreinte carbone, c'est quoi ?
 
 Le climat est partout. Même en pleine crise du coronavirus, de nombreux articles nous rappelent que le dérèglement du climat prendra le relais des mauvaises nouvelles. Preuve que le sujet inquiète.
 
@@ -14,7 +14,7 @@ Mais quel est exactement notre objectif ? Nous devons baisser nos émissions de 
 
 Le _e_ de CO₂e n’est vraiment pas un détail : un voyage en avion Paris-New York émet 1 tonne de CO₂, mais 2 tonnes de CO₂e !
 
-📗 _Lisez [notre lexique](https://datagir.gitbook.io/documentation/lexique-environnemental-et-changement-climat#lequivalent-co2-ou-co2-equivalent-co-2-e) pour aller plus loin._
+📗 _Lisez [ce lexique](https://datagir.gitbook.io/documentation/lexique-environnemental-et-changement-climat#lequivalent-co2-ou-co2-equivalent-co-2-e) pour aller plus loin._
 
 Pourquoi se soucie-t-on de ces gaz ? Plus nous en rejetons, plus ils s’accumulent dans l’atmosphère et réchauffent la Terre. Aujourd’hui, sa température moyenne a déjà grimpé de [plus de 1,2 degrés](https://www.lemonde.fr/blog/huet/2020/04/14/pas-de-repit-pour-le-climat-durant-la-covid-19) par rapport aux années 1900.
 
@@ -122,8 +122,6 @@ Une réduction de 320kg chaque année, est-ce conséquent ? Chacun a une appréc
 
 Vous l’aurez compris, ce ne sont que des exemples, il y a beaucoup d’autres chemins pour y arriver et aucun programme rigide de ce type ne sera imposé.
 
-[C’est la raison d’être de Datagir](https://datagir.ademe.fr/qui-sommes-nous) : apporter cette information aux citoyens via les services ou applications que nous utilisons déjà ou que nous utiliserons bientôt.
-
 ### Limiter le risque, ou atteindre l’équilibre
 
 Nous venons d’explorer le scénario qui nous permettrait à limiter le réchauffement à 1.75°.
@@ -144,8 +142,6 @@ L’action individuelle et l’action collective sont intimement liées, et tout
 
 **Alors, prêt à trouver vos 320 premiers kilos à perdre ?**
 
-**[Testez notre calculateur Nos Gestes Climat](http://nosgestesclimat.fr/)**.
-
-![(https://imgur.com/6OIkPa0.png)](https://datagir.ademe.fr/apps/climat)
+**[Testez votre empreinte !](http://nosgestesclimat.fr/)**.
 
 ![Trois personnes, au lieu d'un seul individu, marchent dans une nature luxuriante bien qu'en contexte urbain, contrastant avec l'image d'introduction de l'article](https://images.unsplash.com/photo-1542113028-b526238297f1?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=975&q=80)
