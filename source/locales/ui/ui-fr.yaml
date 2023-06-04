@@ -341,6 +341,7 @@ entries:
   nouveautés: nouveautés
   ont utilisé l'aide à la saisie des km: ont utilisé l'aide à la saisie des km
   ou: ou
+  pages.Blog.premierParagraphe: Découvrez nos articles.
   pages.News.determinant: of
   pages.News.premierParagraphe: Nous améliorons le site en continu à partir de vos retours. Découvrez ici les dernières nouveautés.
   participant: participant
@@ -529,3 +530,6 @@ entries:
   Reprendre mon test: Reprendre mon test
   Voir le détail de ma simulation: Voir le détail de ma simulation
   model.questions: Découvrez <2>la liste des questions disponibles dans le modèle</2>.
+  Le blog: Le blog
+  "Oups, nous n'avons pas d'article correspondant": Oups, nous n'avons pas d'article correspondant
+  Retour à la liste des articles: Retour à la liste des articles

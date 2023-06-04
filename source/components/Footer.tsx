@@ -94,6 +94,9 @@ export default ({}) => {
 					<Link to="/international">
 						<Trans>International</Trans>
 					</Link>
+					<Link to="/blog">
+						<Trans>Blog</Trans>
+					</Link>
 				</div>
 				<div
 					css={`

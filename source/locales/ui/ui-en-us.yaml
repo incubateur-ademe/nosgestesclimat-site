@@ -470,8 +470,8 @@ entries:
   publicodes.Profil.recap.lock: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
   publicodes.Profil.simulations: Every simulation you make is saved in your web browser. Only you have access to it.
   publicodes.Profil.simulations.lock: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
-  publicodes.SimulationMissing.personnas: 💡 You can also continue with a <2>typical profile</2>.
-  publicodes.SimulationMissing.personnas.lock: 💡 Vous pouvez aussi continuer avec un <2>profil type</2>.
+  publicodes.SimulationMissing.personnas: You can also continue with a <2>typical profile</2>.
+  publicodes.SimulationMissing.personnas.lock: Vous pouvez aussi continuer avec un <2>profil type</2>.
   publicodes.SimulationMissing.simulationManquante: To unlock this course, you must first complete the test.
   publicodes.SimulationMissing.simulationManquante.lock: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   publicodes.TranslationContribution.commentaireAugmenté: |-
@@ -692,3 +692,8 @@ entries:
   'Pas vraiment, envoyer cette réponse': Not really, send this answer
   publicodes.northstar.learned: Did "Nos Gestes Climat" allow you to learn something?
   publicodes.northstar.learned.lock: Est-ce que "Nos Gestes Climat" vous a permis d'apprendre quelque chose ?
+  pages.Blog.premierParagraphe: Discover our articles.
+  pages.Blog.premierParagraphe.lock: Découvrez nos articles.
+  Retour à la liste des articles: Back to article list
+  "Oups, nous n'avons pas d'article correspondant": Oops, we don't have a matching article
+  Le blog: The blog
