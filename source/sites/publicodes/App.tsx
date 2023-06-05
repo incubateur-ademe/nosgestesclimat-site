@@ -10,6 +10,7 @@ import Route404 from '@/components/Route404'
 import { sessionBarMargin } from '@/components/SessionBar'
 import '@/components/ui/index.css'
 import { MatomoContext } from '@/contexts/MatomoContext'
+import '@/global.css'
 import { useLoadSimulationFromURL } from '@/hooks/useLoadSimulationFromURL'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import {
@@ -127,6 +128,10 @@ const News = React.lazy(
 const NorthstarStatsLazy = React.lazy(
 	() =>
 		import(/* webpackChunkName: 'NorthstarStats' */ './pages/NorthstarStats')
+)
+
+const GroupeAmisLazy = React.lazy(
+	() => import(/* webpackChunkName: 'GroupeAmis' */ '@/pages/groupe-amis')
 )
 
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
@@ -564,6 +569,14 @@ const Router = () => {
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<SurveyLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/empreinte-carbone-amis"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<GroupeAmisLazy />
 					</Suspense>
 				}
 			/>
