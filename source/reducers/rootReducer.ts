@@ -4,7 +4,10 @@ import { omit } from '@/utils'
 import { Localisation, SupportedRegions } from '@/components/localisation/utils'
 import { DottedName } from '@/components/publicodesUtils'
 import { objectifsSelector } from '@/selectors/simulationSelectors'
-import { SavedSimulationList } from '@/selectors/storageSelectors'
+import {
+	SavedSimulation,
+	SavedSimulationList,
+} from '@/selectors/storageSelectors'
 import { generateSimulationId } from '@/storage/persistSimulation'
 import reduceReducers from 'reduce-reducers'
 import { CombinedState, combineReducers, Reducer } from 'redux'
