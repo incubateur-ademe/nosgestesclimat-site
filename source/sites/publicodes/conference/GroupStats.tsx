@@ -141,32 +141,28 @@ export default ({
 						</div>
 					</div>
 				</div>
-				{filteredRawTests.length > 0 && (
-					<small>
-						<Checkbox
-							name="setRealTimeMode"
-							id="setRealTimeMode"
-							label="Afficher seulement les simulations terminées"
-							showLabel
-							checked={!realTimeMode}
-							onChange={() => {
-								trackEvent(
-									getMatomoEventModeGroupeRealtimeActivation(realTimeMode)
-								)
-								setRealTimeMode(!realTimeMode)
-							}}
-						/>
-					</small>
-				)}
-				{displayedTests.length > 0 && (
-					<WithEngine>
-						<FilterBar
-							threshold={threshold}
-							setThreshold={setThreshold}
-							setContextFilter={setContextFilter}
-						/>
-					</WithEngine>
-				)}
+				<small>
+					<Checkbox
+						name="setRealTimeMode"
+						id="setRealTimeMode"
+						label="Afficher seulement les simulations terminées"
+						showLabel
+						checked={!realTimeMode}
+						onChange={() => {
+							trackEvent(
+								getMatomoEventModeGroupeRealtimeActivation(realTimeMode)
+							)
+							setRealTimeMode(!realTimeMode)
+						}}
+					/>
+				</small>
+				<WithEngine>
+					<FilterBar
+						threshold={threshold}
+						setThreshold={setThreshold}
+						setContextFilter={setContextFilter}
+					/>
+				</WithEngine>
 				{displayedTests.length > 0 && (
 					<div>
 						<ul
