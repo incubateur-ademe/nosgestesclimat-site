@@ -76,16 +76,13 @@ export const getElements = (
 		(el) => el.total > 0 && el.total < threshold && el.progress >= progressMin
 	)
 	const elements =
-		elementsWithinThreshold.length !== 0 &&
-		contextRules &&
-		contextRules.length !== 0
+		contextRules && contextRules.length !== 0
 			? elementsWithinThreshold.filter(
 					(el) =>
 						Object.keys(el.context).length ===
 						Object.values(contextRules).filter((rule) => rule?.question).length
 			  )
 			: elementsWithinThreshold
-
 	return elements
 }
 
