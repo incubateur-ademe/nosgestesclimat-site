@@ -84,11 +84,13 @@ Le plus simple pourrait être de les brancher sur une *unique* base de données 
 
 ### Tests
 
-Pour l'instant, nous n'avons pas mis en place de tests, si ce n'est la relique de tests provenant du fait que ce dépôt est un clone de betagouv/mon-entreprise.
+Nous mettons en place des tests progressivement dans ce dépôt : 
+- nous avons introduit des tests de score de notre dizaine de personas pour suivre l'évolution des résultats calculés du modèle à chaque PR côté modèle
+- nous avons introduit des tests bout-à-bout (E2E) qui simulent des utilisateurs sur un certain nombre de parcours (exemple : trouver un bouton contenant "Faire le test" sur la page d'accueil)
 
 Cela dit, la bibliothèque publicodes sur laquelle notre calcul est basée est bien testée.
 
-Nous privilégions pour l'instant une écoute attentive des retours utilisateurs : nous en avons eu et traité plus de 500 dans les 6 premiers mois du développement.
+Nous privilégions pour l'instant une écoute attentive des retours utilisateurs : nous en avons eu et traité plus de 500 dans les 6 premiers mois du développement, et des milliers depuis. 
 
 ### Traduction 👽
 
