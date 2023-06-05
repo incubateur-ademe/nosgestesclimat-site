@@ -143,6 +143,7 @@ const Questions = ({ nextQuestions, engine, situation, setSituation }) => {
 				const { question } = engine.getRule(dottedName).rawNode
 				return (
 					<div
+						key={dottedName}
 						css={`
 							display: flex;
 							justify-content: start;
