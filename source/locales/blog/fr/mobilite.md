@@ -1,5 +1,7 @@
 # L'impact carbone de notre mobilité
 
+![Des cyclistes à l'heure de pointe](https://imgur.com/NIS3ZZa.jpg)
+
 Avec [31% des émissions françaises de gaz à effet de serre](https://www.hautconseilclimat.fr/wp-content/uploads/2019/09/hcc_rapport_annuel_grand_public_2019.pdf), le transport est la première source d’émissions, devant les bâtiments, l’agriculture et l’industrie tous trois ex æquo. Parmi les transports, la voiture représente plus de la moitié des émissions.
 
 En effet, la voiture personnelle constitue l’un des modes de transport principaux au quotidien pour [72% des français](http://barometremobilites-quotidien.org/wp-content/uploads/2020/01/Document-technique.pdf). Pourtant, [47% des Français](http://barometremobilites-quotidien.org/wp-content/uploads/2020/01/Document-technique.pdf) considèrent qu’au moins une partie des trajets qu’ils réalisent au quotidien pourraient être réalisés à vélo. Et ils ont raison : [la moitié des trajets effectués en France font moins de 5 km](http://multimedia.ademe.fr/infographies/infographie-la-mobilite-ademe/). Et 5 km en voiture, c’est déjà plus d’1 kg de CO2 émis. C’est que bien souvent une voiture pèse entre une tonne et une tonne et demi : elle consomme et émet donc essentiellement… pour se déplacer elle-même.
@@ -22,7 +24,7 @@ Ainsi, ce simulateur permet par exemple de visualiser facilement qu’en partage
 > -   [L’évolution et la répartition des ventes de voitures neuves par type et par classe CO2](http://carlabelling.ademe.fr/chiffrescles/)
 > -   L’écoconduite : [une baisse jusqu’à 20% de la consommation de carburant](https://www.ademe.fr/particuliers-eco-citoyens/deplacements/choisir-voiture-adopter-lecoconduite/adopter-leco-conduite)
 
-![Mon Impact Transport](https://impactco2.fr/transport)
+![Démonstration GIF de Mon Impact Transport](https://imgur.com/99D9E7K.gif)
 
 > Démonstration de Mon Impact Transport
 
