@@ -71,6 +71,17 @@ Et ceux spécifiques au projet :
 -   :fountain_pen: `:fountain_pen:` pour séparer les commits liés à la modification du contenu
 -   :mag: `:mag:` pour les modifications liées au référencement naturel
 
+### Serveur
+
+La fonctionnalité principale de Nos Gestes Climat, le parcours test-action se fait totalement côté client, sans serveur. Nous utilisons par contre un serveur sur les modes groupe, ainsi que pour la fonctionnalité de partage de simulation. Le code du serveur [sera rendu public bientôt](https://github.com/datagir/nosgestesclimat-site/issues/1100).
+
+Le sondage fonctionne avec un serveur qui héberge une base de données Mongo. Quand on lance une branche de démo, c'est une branche qui peut avoir des problèmes, par définition. Donc on ne la branche pas sur la base de données de production.
+
+Nos branches de démo n'ont pas été configurées pour se brancher sur une base de données de dev automatiquement. Les instructions sont côté serveur pour le faire manuellement. 
+
+Le plus simple pourrait être de les brancher sur une *unique* base de données de test, qui ne contiendrait rien d'important : elle pourrait être corrompue, fuitées, etc. En effet, la base n'étant pas nécessaire au fonctionnement de NGC, le sondage n'étant qu'un dixième du parcours, ça me semble inutile de faire naitre une BDD toute neuve à chaque branche de dev. 
+
+
 ### Tests
 
 Pour l'instant, nous n'avons pas mis en place de tests, si ce n'est la relique de tests provenant du fait que ce dépôt est un clone de betagouv/mon-entreprise.
