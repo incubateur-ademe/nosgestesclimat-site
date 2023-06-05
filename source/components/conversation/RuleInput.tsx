@@ -82,7 +82,7 @@ export type MosaicInfos = {
  */
 export function getRelatedMosaicInfosIfExists(
 	rules: NGCRulesNodes,
-	dottedName: DottedName
+	dottedName: DottedName | null
 ): MosaicInfos | undefined {
 	if (!dottedName) {
 		return undefined

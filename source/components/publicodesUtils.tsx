@@ -269,8 +269,12 @@ export function relegateCommonCategories(array) {
 }
 
 /** Like publicodes's encodeRuleName function but use '.' instead of '/' */
-export function encodeRuleNameToSearchParam(dottedName: DottedName): string {
-	return coreUtils.encodeRuleName(dottedName).replaceAll('/', '.')
+export function encodeRuleNameToSearchParam(
+	dottedName: DottedName | null
+): string | undefined {
+	return dottedName != undefined
+		? coreUtils.encodeRuleName(dottedName).replaceAll('/', '.')
+		: undefined
 }
 
 export function decodeRuleNameFromSearchParam(encodedName: string): DottedName {

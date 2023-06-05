@@ -47,6 +47,7 @@ import {
 import { useQuery } from '@/utils'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
+import { utils } from 'publicodes'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -80,8 +81,8 @@ export default function Conversation({
 	isFromActionCard,
 }: ConversationProps) {
 	const dispatch = useDispatch()
-	const engine = useContext(EngineContext),
-		rules = engine.getParsedRules()
+	const engine = useContext(EngineContext)
+	const rules = engine.getParsedRules()
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
@@ -116,7 +117,12 @@ export default function Conversation({
 		(state: AppState) => state.simulation?.unfoldedStep
 	)
 	const isMainSimulation = objectifs.length === 1 && isRootRule(objectifs[0])
-	const currentQuestion: DottedName = !isMainSimulation
+	const simulateurRootRuleURL =
+		objectifs.length === 1 && !isMainSimulation
+			? utils.encodeRuleName(objectifs[0])
+			: MODEL_ROOT_RULE_NAME
+
+	const currentQuestion: DottedName | null = !isMainSimulation
 		? nextQuestions[0]
 		: focusedCategory
 		? sortedQuestions[0]
@@ -144,39 +150,42 @@ export default function Conversation({
 			!previousSimulation &&
 			currentQuestion !== unfoldedStep
 		) {
-			// TODO: should be aware of the simulator used
-			goToQuestionOrNavigate(
-				currentQuestion,
+			goToQuestionOrNavigate({
+				question: currentQuestion,
+				simulateurRootURL: simulateurRootRuleURL,
 				focusedCategory,
 				// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
 				// to trigger the [navigate] (or we must add url for action questions
 				// which add not needed complexity for now).
-				isFromActionCard ? { dispatch } : { navigate }
-			)
+				toUse: isFromActionCard ? { dispatch } : { navigate },
+			})
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
 	const currentQuestionId = encodeRuleNameToSearchParam(currentQuestion)
 
 	useEffect(() => {
-		// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question
-		const questionElement =
-			rules[currentQuestion] &&
-			document.getElementById('id-question-' + currentQuestionId)
-		questionElement?.focus()
+		if (currentQuestion != undefined) {
+			// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question
+			const questionElement =
+				rules[currentQuestion] &&
+				document.getElementById('id-question-' + currentQuestionId)
+			questionElement?.focus()
+		}
 	}, [currentQuestion])
 
 	const goToPrevious = () => {
-		goToQuestionOrNavigate(
+		goToQuestionOrNavigate({
 			// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
 			// could be a reason of the 'previous button bug'?
-			previousQuestion,
+			question: previousQuestion,
+			simulateurRootURL: simulateurRootRuleURL,
 			focusedCategory,
 			// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
 			// to trigger the [navigate] (or we must add url for action questions
 			// which add not needed complexity for now).
-			isFromActionCard ? { dispatch } : { navigate }
-		)
+			toUse: isFromActionCard ? { dispatch } : { navigate },
+		})
 	}
 
 	// Some questions are grouped in an artifical questions, called mosaic questions,
@@ -192,7 +201,9 @@ export default function Conversation({
 
 	const questionText = isMosaic
 		? mosaicRule.rawNode?.question
-		: rules[currentQuestion]?.rawNode?.question
+		: currentQuestion !== null
+		? rules[currentQuestion]?.rawNode?.question
+		: undefined
 
 	const questionsToSubmit = isMosaic
 		? mosaicDottedNames?.map(([dottedName]) => dottedName)
@@ -202,12 +213,16 @@ export default function Conversation({
 		isMosaic &&
 		currentQuestion &&
 		questionsToSubmit
-			?.map((question) => situation[question] != null)
+			?.map((question) =>
+				question !== null ? situation[question] != null : false
+			)
 			.some((bool) => bool === true)
 
 	const currentQuestionIsAnswered = isAnsweredMosaic
 		? true
-		: situation[currentQuestion] != null
+		: currentQuestion !== null
+		? situation[currentQuestion] != null
+		: undefined
 
 	const isMosaicSelection =
 		isAnsweredMosaic && mosaicParams['type'] === 'selection'
@@ -216,7 +231,12 @@ export default function Conversation({
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
 		if (isMosaicSelection) {
 			questionsToSubmit?.map((question) =>
-				dispatch(updateSituation(question, situation[question] || 'non'))
+				dispatch(
+					updateSituation(
+						question,
+						question !== null ? situation[question] ?? 'non' : 'non'
+					)
+				)
 			)
 		}
 	}, [isAnsweredMosaic])
@@ -229,7 +249,9 @@ export default function Conversation({
 		// This hook enables to set 0 to mosaic question if the mosaic has been answered and
 		// nothing is checked.
 		const oneIsChecked = questionsToSubmit
-			?.map((question) => situation[question] === 'oui')
+			?.map((question) =>
+				question !== null ? situation[question] === 'oui' : false
+			)
 			.some((bool) => bool === true)
 
 		if (
@@ -376,10 +398,6 @@ export default function Conversation({
 			trackEvent(getMatomoEventParcoursTestOver(bilan))
 		}
 	}, [noQuestionsLeft, bilan, trackEvent, endEventFired, isPersona])
-
-	if (noQuestionsLeft) {
-		return <SimulationEnding {...{ customEnd, customEndMessages }} />
-	}
 
 	if (noQuestionsLeft) {
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />

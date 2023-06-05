@@ -2,7 +2,6 @@ import {
 	Category,
 	DottedName,
 	encodeRuleNameToSearchParam,
-	MODEL_ROOT_RULE_NAME,
 } from '@/components/publicodesUtils'
 import { sortBy } from '@/utils'
 import { Dispatch } from 'react'
@@ -35,7 +34,7 @@ export function getPreviousQuestion(
 	currentQuestionIndex: number,
 	previousAnswers: DottedName[],
 	isMosaic: boolean,
-	questionsToSubmit: DottedName[] | undefined
+	questionsToSubmit: (DottedName | null)[] | undefined
 ): DottedName | undefined {
 	const currentIsNew = currentQuestionIndex < 0
 
@@ -61,16 +60,24 @@ export function getPreviousQuestion(
 	return previousAnswers[currentQuestionIndex - 1]
 }
 
-export function goToQuestionOrNavigate(
-	question: DottedName,
-	focusedCategory: string | null,
+export function goToQuestionOrNavigate({
+	question,
+	simulateurRootURL,
+	focusedCategory,
+	toUse,
+}: {
+	question: DottedName | undefined
+	simulateurRootURL: string
+	focusedCategory: string | null
 	toUse: { dispatch: Dispatch<AnyAction> } | { navigate: NavigateFunction }
-): void {
+}): void {
 	if (toUse['navigate'] != undefined) {
 		let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
-		searchParams.append('question', encodeRuleNameToSearchParam(question))
+		if (question !== undefined) {
+			searchParams.append('question', encodeRuleNameToSearchParam(question))
+		}
 
-		toUse['navigate'](`/simulateur/${MODEL_ROOT_RULE_NAME}?${searchParams}`, {
+		toUse['navigate'](`/simulateur/${simulateurRootURL}?${searchParams}`, {
 			replace: true,
 		})
 	} else {

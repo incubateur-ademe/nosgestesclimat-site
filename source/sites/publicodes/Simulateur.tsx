@@ -65,7 +65,6 @@ const Simulateur = () => {
 		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
 
-	const currentSimulation = useSelector((state: AppState) => state.simulation)
 	const engine = useEngine()
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 
@@ -75,13 +74,13 @@ const Simulateur = () => {
 		parsedRules
 	)
 
-	const simulatorRule = rules[simulatorRootNameURL]
-	const evaluation = engine.evaluate(simulatorRule)
+	const simulatorRule = rules[simulatorRootRuleName]
+	const evaluation = engine.evaluate(simulatorRootRuleName)
 	const config = {
-		objectifs: [simulatorRootNameURL],
+		objectifs: [simulatorRootRuleName],
 		questions: questionConfig,
 	}
-	const configSet = currentSimulation?.config
+	const configSet = useSelector((state: AppState) => state.simulation?.config)
 
 	const categories: Category[] = isMainSimulation
 		? extractCategories(rules, engine)
@@ -91,15 +90,19 @@ const Simulateur = () => {
 		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
 			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
-	}, [config, selectedRuleURL, configSet])
+	}, [dispatch, config, selectedRuleURL, configSet])
 
 	useEffect(() => {
 		if (selectedRuleDottedName != undefined) {
 			dispatch(goToQuestion(selectedRuleDottedName))
 		}
-	}, [selectedRuleDottedName])
+	}, [dispatch, selectedRuleDottedName])
 
 	const tutorials = useSelector((state: AppState) => state.tutorials)
+
+	if (!configSet) {
+		return null
+	}
 
 	const displayScoreExplanation =
 		isMainSimulation && !tutorials.scoreExplanation
@@ -149,9 +152,12 @@ const Simulateur = () => {
 				)}
 				{!isMainSimulation && (
 					<h1>
-						{evaluation.rawNode.title || (
-							<FullName dottedName={evaluation.rawNode.dottedName} />
-						)}
+						{
+							// FIXME(@EmileRolley): expected to be rawNode.title, why?
+							evaluation.title || (
+								<FullName dottedName={evaluation.rawNode.dottedName} />
+							)
+						}
 					</h1>
 				)}
 				<Simulation
@@ -187,7 +193,7 @@ type SelectedRuleInfos = {
  */
 function getValidSelectedRuleInfos(
 	selectedRuleName: DottedName,
-	simulatorRootRuleName: string,
+	simulatorRootRuleNameURL: string,
 	rules: NGCRulesNodes
 ): SelectedRuleInfos {
 	const navigate = useNavigate()
@@ -223,12 +229,12 @@ function getValidSelectedRuleInfos(
 			const encodedParentRuleName =
 				encodeRuleNameToSearchParam(selectedRuleName)
 			console.log(
-				`Found parent rule for ${selectedRuleName}, redirecting to /simulateur/${simulatorRootRuleName}/${encodedParentRuleName}...`
+				`Found parent rule for ${selectedRuleName}, redirecting to /simulateur/${simulatorRootRuleNameURL}/${encodedParentRuleName}...`
 			)
 			const searchParams = new URLSearchParams({
 				question: encodedParentRuleName,
 			})
-			navigate(`/simulateur/${simulatorRootRuleName}?${searchParams}`, {
+			navigate(`/simulateur/${simulatorRootRuleNameURL}?${searchParams}`, {
 				replace: true,
 			})
 		}
@@ -244,7 +250,7 @@ function getValidSelectedRuleInfos(
 		selectedRuleDottedName: isMosaic
 			? mosaicDottedNames[0][1].dottedName
 			: selectedRuleName,
-		selectedRuleURL: `/simulateur/${simulatorRootRuleName}?${getQuestionURLSearchParams(
+		selectedRuleURL: `/simulateur/${simulatorRootRuleNameURL}?${getQuestionURLSearchParams(
 			selectedRuleName
 		)}`,
 	}

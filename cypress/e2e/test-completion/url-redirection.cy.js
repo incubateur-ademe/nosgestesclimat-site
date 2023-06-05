@@ -4,6 +4,7 @@ import {
 	clickSkipTutoButton,
 	clickUnderstoodButton,
 	clickCategoryStartButton,
+	walkthroughTest,
 } from './utils'
 
 const params =
@@ -14,8 +15,12 @@ const params =
 const firstQuestion = "transport.voiture.km"
 const mainSimulator = "bilan"
 
-function goToQuestionAndGet(question, category = mainSimulator, mosaicFirstQuestion = '') {
-	cy.visit(`/simulateur/${category}?question=${question}`)
+function goToQuestionAndGet(
+	question,
+	rootSimulatorURL = mainSimulator,
+	mosaicFirstQuestion = '',
+) {
+	cy.visit(`/simulateur/${rootSimulatorURL}?question=${question}`)
 	clickUnderstoodButton()
 	clickCategoryStartButton()
 	cy.get(`[id="id-question-${question}${mosaicFirstQuestion}"]`)
@@ -34,7 +39,7 @@ function shouldRedirectTo(entryPoint, expectedURL, category = mainSimulator) {
 	)
 }
 
-describe('check question redirection from the URL', () => {
+describe('check question redirection from the URL for the category "bilan"', () => {
 	it(`should redirect to a question without space in the name`, () => {
 		goToQuestionAndGet('logement.surface')
 	})
@@ -79,4 +84,29 @@ describe('check question redirection from the URL', () => {
 			'transport.voiture.motorisation'
 		)
 	})
+})
+
+describe('check question redirection from the URL for sub-simulators', () => {
+	it(`should redirect to the first question of the sub-simulator /transport/avion`,
+		() => {
+			cy.visit(`/simulateur/transport/avion`)
+			cy.get(`[id="id-question-transport.avion.usager"]`)
+		}
+	)
+
+	it(`should redirect to the first question of the sub-simulator /transport/avion`,
+		() => {
+			cy.visit(`/simulateur/divers/produits-consommables`)
+			cy.get(`[id="id-question-divers.produits-consommables.consommation"]`)
+		}
+	)
+
+	it(`should arrive to the simulation ending page when the last question is answered`,
+		() => {
+			cy.visit(`/simulateur/transport/avion`)
+			cy.get(`[id="id-question-transport.avion.usager"]`)
+			walkthroughTest({})
+			cy.get(`[data-cypress-id="simulation-ending"`)
+		}
+	)
 })
