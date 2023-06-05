@@ -5,6 +5,8 @@ import {
 	clickUnderstoodButton,
 	clickCategoryStartButton,
 	walkthroughTest,
+	waitWhileLoading,
+	clickDontKnowButton,
 } from './utils'
 
 const params =
@@ -44,8 +46,6 @@ describe('check question redirection from the URL for the category "bilan"', () 
 		goToQuestionAndGet('logement.surface')
 	})
 
-	// TODO: test category
-
 	it(`tutorial should be displayed when going to root after having visited a specific rule URL`, () => {
 		goToQuestionAndGet('logement.surface')
 		cy.visit(`/simulateur/bilan`)
@@ -70,13 +70,14 @@ describe('check question redirection from the URL for the category "bilan"', () 
 	})
 
 	it(`should redirect to the first existing parent rule if the URL doesn't correspond to a parsed rule`,
-	() => {
-		shouldRedirectTo('logement.unknown-rule', firstQuestion)
-		shouldRedirectTo(
-		  'logement.appartement.unknown-rule.adaf.adf',
-		  'logement.appartement'
-		)
-	})
+	  () => {
+			shouldRedirectTo('logement.unknown-rule', firstQuestion)
+			shouldRedirectTo(
+				'logement.appartement.unknown-rule.adaf.adf',
+				'logement.appartement'
+			)
+		}
+	)
 
 	it(`should redirect to the first existing parent rule if the URL doesn't correspond to a parsed rule with a question`, () => {
 		shouldRedirectTo(

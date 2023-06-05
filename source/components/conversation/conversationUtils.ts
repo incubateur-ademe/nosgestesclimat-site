@@ -74,7 +74,10 @@ export function goToQuestionOrNavigate({
 	if (toUse['navigate'] != undefined) {
 		let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
 		if (question !== undefined) {
-			searchParams.append('question', encodeRuleNameToSearchParam(question))
+			searchParams.append(
+				'question',
+				encodeRuleNameToSearchParam(question) ?? ''
+			)
 		}
 
 		toUse['navigate'](`/simulateur/${simulateurRootURL}?${searchParams}`, {

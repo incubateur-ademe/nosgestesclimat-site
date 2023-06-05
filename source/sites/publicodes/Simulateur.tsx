@@ -207,6 +207,7 @@ function getValidSelectedRuleInfos(
 
 		return isQuestion && !isMosaicChild(rules, ruleName)
 	}
+	const searchParams = new URLSearchParams(window.location.search)
 
 	if (selectedRuleName != '' && !isValidRule(selectedRuleName)) {
 		while (selectedRuleName != '' && !isValidRule(selectedRuleName)) {
@@ -231,9 +232,7 @@ function getValidSelectedRuleInfos(
 			console.log(
 				`Found parent rule for ${selectedRuleName}, redirecting to /simulateur/${simulatorRootRuleNameURL}/${encodedParentRuleName}...`
 			)
-			const searchParams = new URLSearchParams({
-				question: encodedParentRuleName,
-			})
+			searchParams.set('question', encodedParentRuleName ?? '')
 			navigate(`/simulateur/${simulatorRootRuleNameURL}?${searchParams}`, {
 				replace: true,
 			})
