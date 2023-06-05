@@ -75,6 +75,7 @@ export default ({
 	const progressList = filteredRawTests.map((el) => {
 			const contextCompleted =
 				contextRules &&
+				el?.context.length !== 0 &&
 				!(
 					Object.keys(el.context).length ===
 					Object.values(contextRules).filter((rule) => rule?.question).length
