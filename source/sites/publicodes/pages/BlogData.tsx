@@ -31,7 +31,7 @@ export const blogData: BlogPost[] = [
 		content: campusFr,
 	},
 	{
-		date: '2023-09-21',
+		date: '2020-09-21',
 		title: 'Envie de perdre quelques tonnes ?',
 		slug: 'historique',
 		description:
