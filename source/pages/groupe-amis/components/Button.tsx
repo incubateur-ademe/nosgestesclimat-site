@@ -1,0 +1,21 @@
+type Props = {
+	onClick: () => void
+	className?: string
+} & React.PropsWithChildren
+
+export default function Button({
+	onClick,
+	children,
+	className,
+	...props
+}: Props) {
+	return (
+		<button
+			onClick={onClick}
+			className={`inline-flex items-center px-4 py-4 border border-transparent text-sm font-medium rounded-sm shadow-sm text-white bg-violet-800 hover:bg-violet-900 focus:text-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 ${className}`}
+			{...props}
+		>
+			{children}
+		</button>
+	)
+}

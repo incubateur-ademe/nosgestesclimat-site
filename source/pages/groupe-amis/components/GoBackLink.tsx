@@ -1,10 +1,14 @@
 import { Trans } from 'react-i18next'
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export default function GoBackLink({ className }: { className?: string }) {
+	const navigate = useNavigate()
 	return (
-		<Link to={'..'} className={`${className} inline-block`}>
+		<button
+			onClick={() => navigate(-1)}
+			className={`${className} inline-block`}
+		>
 			← <Trans>Retour</Trans>
-		</Link>
+		</button>
 	)
 }
