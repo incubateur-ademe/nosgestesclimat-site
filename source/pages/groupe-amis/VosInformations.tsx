@@ -40,7 +40,7 @@ export default function VosInformations() {
 				placeholder="jean-michel@nosgestesclimat.fr"
 				className="mt-6 mb-6"
 			/>
-			<ButtonLink href={'informations-du-groupe'}>
+			<ButtonLink href={'../informations-de-groupe'}>
 				<Trans>Continuer</Trans> →
 			</ButtonLink>
 		</>

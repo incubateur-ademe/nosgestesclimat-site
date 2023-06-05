@@ -573,7 +573,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/empreinte-carbone-amis"
+				path="/creer-groupe-amis/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<GroupeAmisLazy />
