@@ -1,5 +1,7 @@
-import { utils } from 'publicodes'
-import { DottedName } from '../../components/publicodesUtils'
+import {
+	DottedName,
+	encodeRuleNameToSearchParam,
+} from '../../components/publicodesUtils'
 
 export const isFluidLayout = (encodedPathname) => {
 	const pathname = decodeURIComponent(encodedPathname)
@@ -28,6 +30,6 @@ export function getQuestionURLSearchParams(
 	ruleName: DottedName
 ): URLSearchParams {
 	return new URLSearchParams({
-		question: utils.encodeRuleName(ruleName),
+		question: encodeRuleNameToSearchParam(ruleName),
 	})
 }

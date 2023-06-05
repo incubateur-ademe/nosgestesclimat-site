@@ -267,3 +267,12 @@ export function relegateCommonCategories(array) {
 	const keys = ['services sociétaux']
 	return relegate(keys, array)
 }
+
+/** Like publicodes's encodeRuleName function but use '.' instead of '/' */
+export function encodeRuleNameToSearchParam(dottedName: DottedName): string {
+	return coreUtils.encodeRuleName(dottedName).replaceAll('/', '.')
+}
+
+export function decodeRuleNameFromSearchParam(encodedName: string): DottedName {
+	return coreUtils.decodeRuleName(encodedName.replaceAll('.', '/'))
+}

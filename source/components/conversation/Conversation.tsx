@@ -22,6 +22,7 @@ import Notifications, {
 import {
 	Category,
 	DottedName,
+	encodeRuleNameToSearchParam,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
 	questionCategoryName,
@@ -46,7 +47,6 @@ import {
 import { useQuery } from '@/utils'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
-import { utils } from 'publicodes'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -122,8 +122,6 @@ export default function Conversation({
 		? sortedQuestions[0]
 		: unfoldedStep || sortedQuestions[0]
 
-	debugger
-
 	const [finder, setFinder] = useState(false)
 	const tutorials = useSelector((state: AppState) => state.tutorials)
 
@@ -158,7 +156,7 @@ export default function Conversation({
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
-	const currentQuestionId = utils.encodeRuleName(currentQuestion)
+	const currentQuestionId = encodeRuleNameToSearchParam(currentQuestion)
 
 	useEffect(() => {
 		// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question

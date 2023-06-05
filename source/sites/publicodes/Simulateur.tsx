@@ -2,7 +2,9 @@ import { goToQuestion, setSimulationConfig } from '@/actions/actions'
 import { getRelatedMosaicInfosIfExists } from '@/components/conversation/RuleInput'
 import {
 	Category,
+	decodeRuleNameFromSearchParam,
 	DottedName,
+	encodeRuleNameToSearchParam,
 	extractCategories,
 	FullName,
 	isMosaicChild,
@@ -68,7 +70,7 @@ const Simulateur = () => {
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 
 	const { selectedRuleDottedName, selectedRuleURL } = getValidSelectedRuleInfos(
-		utils.decodeRuleName(selectedRuleNameURLPath),
+		decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
 		simulatorRootNameURL,
 		parsedRules
 	)
@@ -111,7 +113,11 @@ const Simulateur = () => {
 			(!isSpecificRule(selectedRuleDottedName) && tutorials.fromRule == 'skip'))
 
 	if (displayTutorial) {
-		if (selectedRuleURL != undefined && selectedRuleDottedName != undefined) {
+		if (
+			selectedRuleURL != undefined &&
+			selectedRuleDottedName != undefined &&
+			isSpecificRule(selectedRuleDottedName)
+		) {
 			const searchParams = new URLSearchParams({
 				fromRuleURL: selectedRuleURL,
 			})
@@ -193,8 +199,6 @@ function getValidSelectedRuleInfos(
 		const isQuestion =
 			rule != undefined && 'rawNode' in rule && 'question' in rule.rawNode
 
-		console.log('isValidRule:', ruleName, isQuestion)
-
 		return isQuestion && !isMosaicChild(rules, ruleName)
 	}
 
@@ -216,7 +220,8 @@ function getValidSelectedRuleInfos(
 				replace: true,
 			})
 		} else {
-			const encodedParentRuleName = utils.encodeRuleName(selectedRuleName)
+			const encodedParentRuleName =
+				encodeRuleNameToSearchParam(selectedRuleName)
 			console.log(
 				`Found parent rule for ${selectedRuleName}, redirecting to /simulateur/${simulatorRootRuleName}/${encodedParentRuleName}...`
 			)

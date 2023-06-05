@@ -1,10 +1,10 @@
 import {
 	Category,
 	DottedName,
+	encodeRuleNameToSearchParam,
 	MODEL_ROOT_RULE_NAME,
 } from '@/components/publicodesUtils'
 import { sortBy } from '@/utils'
-import { utils } from 'publicodes'
 import { Dispatch } from 'react'
 import { NavigateFunction } from 'react-router'
 import { AnyAction } from 'redux'
@@ -68,7 +68,7 @@ export function goToQuestionOrNavigate(
 ): void {
 	if (toUse['navigate'] != undefined) {
 		let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
-		searchParams.append('question', utils.encodeRuleName(question))
+		searchParams.append('question', encodeRuleNameToSearchParam(question))
 
 		toUse['navigate'](`/simulateur/${MODEL_ROOT_RULE_NAME}?${searchParams}`, {
 			replace: true,
