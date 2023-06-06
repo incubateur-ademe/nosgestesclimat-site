@@ -1,26 +1,25 @@
 import styled from 'styled-components'
 
-const Stamp = styled.button`
+const MosaicStamp = styled.div`
 	position: absolute;
-	font-size: 100%;
+	font-size: 75%;
 	font-weight: bold;
 	display: inline-block;
-	padding: 0.3rem 0.2rem 0;
+	padding: 0.2rem 0.2rem 0;
 	text-transform: uppercase;
+	text-align: center;
 	font-family: 'Courier';
 	mix-blend-mode: multiply;
-	border: 3px solid var(--color);
-	color: grey;
 	mask-position: 13rem 6rem;
 	transform: rotate(-10deg);
 	border-radius: 4px;
-	right: 2.5rem;
+	right: 0.5rem;
 	line-height: 1rem;
-	${({ clickable }) => clickable && 'cursor: pointer'}
-
-	@media (min-width: 600px) {
-		right: 0%;
-	}
+	z-index: 0;
+	max-width: 8rem;
+	border: 3px solid var(--darkColor);
+	color: var(--darkColor);
+	cursor: not-allowed !important;
 `
 
-export default Stamp
+export default MosaicStamp
