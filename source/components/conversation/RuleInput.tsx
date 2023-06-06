@@ -2,7 +2,7 @@ import Input from 'Components/conversation/Input'
 import Question, { Choice } from 'Components/conversation/Question'
 import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
 import PercentageField from 'Components/PercentageField'
-import { parentName } from 'Components/publicodesUtils'
+import { parentName, splitName } from 'Components/publicodesUtils'
 import ToggleSwitch from 'Components/ui/ToggleSwitch'
 import { EngineContext } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
@@ -61,25 +61,27 @@ We take into account if the evaluated rule is already a mosaic
 */
 export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
 	if (!dottedName) return
-	const potentialMosaicRule = engine.getRule(dottedName).rawNode['mosaique']
+	const potentialMosaicDottedName = engine.getRule(dottedName).rawNode[
+		'mosaique'
+	]
 		? dottedName
 		: parentName(dottedName, ' . ', 0, 2)
+	const potentialMosaicRule = engine.getRule(potentialMosaicDottedName)
 	const mosaicParams =
-		potentialMosaicRule &&
-		engine.getRule(potentialMosaicRule).rawNode['mosaique']
+		potentialMosaicDottedName && potentialMosaicRule.rawNode['mosaique']
 	if (!mosaicParams) return
 	if (
-		dottedName !== potentialMosaicRule &&
+		dottedName !== potentialMosaicDottedName &&
 		!dottedName.includes(` . ${mosaicParams['clé']}`)
 	)
 		return
 	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
 		return (
-			rule.includes(potentialMosaicRule) &&
+			rule.includes(potentialMosaicDottedName) &&
 			rule.includes(` . ${mosaicParams['clé']}`)
 		)
 	})
-	return [engine.getRule(potentialMosaicRule), mosaicParams, mosaicDottedNames]
+	return [potentialMosaicRule, mosaicParams, mosaicDottedNames]
 }
 
 export const isTransportEstimation = (dottedName) =>
@@ -132,12 +134,21 @@ export default function RuleInput<Name extends string = DottedName>({
 	)
 	if (ruleMosaicInfos) {
 		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
-		const selectedRules = mosaicDottedNames.map(
-			([dottedName, questionRule]) => {
+		const orderedSumFromSourceRule = question.rawNode.formule.somme
+		const selectedRules = mosaicDottedNames
+			.map(([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
 				return [rules[parentRule], questionRule]
-			}
-		)
+			})
+			.sort((a, b) => {
+				const indexA = orderedSumFromSourceRule.indexOf(
+					splitName(a[0].dottedName)[splitName(a[0].dottedName).length - 1]
+				)
+				const indexB = orderedSumFromSourceRule.indexOf(
+					splitName(b[0].dottedName)[splitName(b[0].dottedName).length - 1]
+				)
+				return indexA - indexB
+			})
 		if (mosaicParams['type'] === 'selection')
 			return (
 				<SelectDevices
