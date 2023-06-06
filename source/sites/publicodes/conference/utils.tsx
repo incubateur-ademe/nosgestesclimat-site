@@ -79,10 +79,8 @@ export const getElements = (
 		contextRules && contextRules.length !== 0
 			? elementsWithinThreshold.filter(
 					(el) =>
-						el.context.length !== 0 &&
-						Object.keys(el.context).length ===
-							Object.values(contextRules).filter((rule) => rule?.question)
-								.length
+						Object.keys(el?.context)?.length ===
+						Object.values(contextRules).filter((rule) => rule?.question).length
 			  )
 			: elementsWithinThreshold
 
