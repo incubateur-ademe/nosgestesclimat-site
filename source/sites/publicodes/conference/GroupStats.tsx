@@ -1,4 +1,3 @@
-import { AppState } from '@/reducers/rootReducer'
 import { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -43,8 +42,7 @@ export default ({
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	const survey = useSelector((state: AppState) => state.survey)
-
+	const survey = useSelector((state) => state.survey)
 	const contextRules = existContext && survey.contextRules
 
 	const completedTests = getElements(
@@ -306,7 +304,7 @@ const filterElements = (rawElements, contextFilter) =>
 			([key, value]) =>
 				!value ||
 				value === '' ||
-				el?.context?.[key]?.toLowerCase()?.includes(value?.toLowerCase())
+				el.context[key]?.toLowerCase().includes(value.toLowerCase())
 		)
 		return matches.every((bool) => bool === true)
 	})
