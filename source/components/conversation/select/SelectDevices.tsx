@@ -4,8 +4,8 @@ import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import Stamp from '../../Stamp'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
+import MosaicStamp from './MosaicStamp'
 import { Mosaic, MosaicItemLabel, mosaicLabelStyle } from './UI'
 
 const MosaicLabelDiv = styled.div`
@@ -99,18 +99,9 @@ export default function SelectDevices({
 									</div>
 								)}
 								{isNotActive && (
-									<Stamp
-										css={`
-											z-index: 0;
-											max-width: 8rem;
-											text-align: center;
-											border: 3px solid var(--darkColor);
-											color: var(--darkColor);
-											font-size: 10%;
-										`}
-									>
+									<MosaicStamp>
 										<Trans>Bientôt disponible !</Trans>
-									</Stamp>
+									</MosaicStamp>
 								)}
 							</li>
 						)
