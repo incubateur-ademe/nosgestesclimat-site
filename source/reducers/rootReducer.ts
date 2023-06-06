@@ -1,8 +1,6 @@
 import { Action } from 'Actions/actions'
 import { omit } from 'Source/utils'
 
-import { objectifsSelector } from '@/selectors/simulationSelectors'
-import { ParsedRules } from 'publicodes'
 import reduceReducers from 'reduce-reducers'
 import { CombinedState, combineReducers, Reducer } from 'redux'
 import {
@@ -10,6 +8,7 @@ import {
 	SupportedRegions,
 } from '../components/localisation/utils'
 import { DottedName } from '../rules/index'
+import { objectifsSelector } from '../selectors/simulationSelectors'
 import {
 	SavedSimulation,
 	SavedSimulationList,
@@ -441,23 +440,7 @@ export type AppState = CombinedState<{
 	rules: any
 	actionChoices: any
 	conference: never
-	survey: {
-		room: string
-		answers: {
-			[key: string]: {
-				data: {
-					total: number
-					progress: number
-					byCategory: { [key: string]: number }
-					context: { [key: string]: string } | {}
-				}
-				id: string
-			}
-		}
-		contextFile: string
-		contextRules: ParsedRules<DottedName>
-	}
-
+	survey: never
 	iframeOptions: any
 	tutorials: {}
 	storedTrajets: any
