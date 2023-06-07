@@ -4,11 +4,15 @@ import Meta from 'Components/utils/Meta'
 import { motion, useSpring } from 'framer-motion'
 import { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import tinygradient from 'tinygradient'
-import { DocumentationEndButton, generateImageLink } from '.'
+import { generateImageLink } from '.'
 import { ActionButton, IntegratorActionButton } from './Buttons'
 import ClimateTargetChart from './ClimateTargetChart'
 import FinShareButton from './FinShareButton'
+
+import { hasSubscribedToNewsletterSelector } from '@/selectors/simulationSelectors'
+
 const gradient = tinygradient([
 		'#78e08f',
 		'#e1d738',
@@ -63,8 +67,16 @@ export default ({
 	const { integratorYoutubeVideo, integratorActionText, integratorActionUrl } =
 		useContext(IframeOptionsContext)
 
+	const hasSubscribedToNewsletter = useSelector(
+		hasSubscribedToNewsletterSelector
+	)
+
 	return (
-		<div>
+		<div
+			css={`
+				width: 100%;
+			`}
+		>
 			<Meta
 				title={t('Mon empreinte climat')}
 				description={t('meta.publicodes.fin.Budget.description', {
@@ -94,9 +106,10 @@ export default ({
 
 					text-align: center;
 					font-size: 110%;
+					width: 100%;
 				`}
 			>
-				<div id="shareImage" css="padding: 2rem 0 .6rem ">
+				<div id="shareImage" css="padding: 2rem 0 .6rem;">
 					<ClimateTargetChart
 						value={value}
 						details={details}
@@ -107,8 +120,72 @@ export default ({
 						nextSlide={nextSlide}
 					/>
 				</div>
+				<div
+					css={`
+						display: flex;
+						flex-wrap: wrap;
+						justify-content: center;
+						margin: 1rem 0;
+						gap: 1rem;
+					`}
+				>
+					{!hasSubscribedToNewsletter && (
+						<button
+							onClick={() => {
+								document
+									.getElementById('newsletter-form-container')
+									?.scrollIntoView({
+										behavior: 'smooth',
+									})
+							}}
+							css={`
+								font-size: 1rem !important;
+								display: flex !important;
+								align-items: center;
+								padding: 0rem 1rem !important;
+								background-image: linear-gradient(
+									50deg,
+									var(--darkestColor) -50%,
+									var(--color) 30%
+								);
+								color: white;
+								border-radius: 0.6rem;
+								text-transform: inherit !important;
+								@media (max-width: 340px) {
+								}
+								padding: 0.875rem 1rem !important;
+							`}
+							className="ui__ plain button"
+						>
+							<span
+								role="img"
+								aria-label="Emoji save"
+								css={`
+									font-size: 1.25rem;
+									display: inline-block;
+									margin-right: 0.4rem;
+									@media (max-width: 340px) {
+										font-size: 0.875rem;
+									}
+								`}
+							>
+								📩
+							</span>
+							{t('Sauvegarder mes résultats')}
+						</button>
+					)}
 
-				{noQuestionsLeft && <FinShareButton textColor={textColor} />}
+					{noQuestionsLeft && (
+						<FinShareButton
+							label={t(
+								hasSubscribedToNewsletter
+									? 'Partager mes résultats'
+									: 'Partager'
+							)}
+							textColor={textColor}
+						/>
+					)}
+				</div>
 
 				{integratorActionText && integratorActionUrl && (
 					<IntegratorActionButton />
@@ -138,7 +215,6 @@ export default ({
 				{integratorActionText && (
 					<ActionButton text={t('Réduire mon empreinte')} />
 				)}
-				<DocumentationEndButton ruleName={'bilan'} color={textColor} />
 			</motion.div>
 		</div>
 	)

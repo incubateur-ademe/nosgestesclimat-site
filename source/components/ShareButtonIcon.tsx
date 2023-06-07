@@ -2,13 +2,17 @@ export default ({}) => (
 	<div
 		css={`
 			background: var(--color);
-			width: 3rem;
-			height: 3rem;
+			width: 2rem;
+			height: 2rem;
 			border-radius: 2rem;
 			padding: 0.5rem;
 			margin: 0.6rem;
+			display: flex;
+			justify-content: center;
+			align-items: center;
 			svg {
-				width: 2rem;
+				width: 1.5rem;
+				flex-shrink: 0;
 			}
 		`}
 	>
@@ -18,7 +22,7 @@ export default ({}) => (
 			x="0px"
 			y="0px"
 			viewBox="0 0 100 100"
-			width="4rem"
+			width="2rem"
 		>
 			<g transform="translate(0,-952.36218)">
 				<path

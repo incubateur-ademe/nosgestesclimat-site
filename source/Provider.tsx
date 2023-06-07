@@ -22,7 +22,7 @@ declare global {
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 if (
-	NODE_ENV === 'production' &&
+	process.env.NODE_ENV === 'production' &&
 	'serviceWorker' in navigator &&
 	!getIsIframe()
 ) {

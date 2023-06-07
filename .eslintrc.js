@@ -101,6 +101,7 @@ module.exports = {
 				'@typescript-eslint/naming-convention': 'off',
 				'@typescript-eslint/prefer-regexp-exec': 'off',
 				'@typescript-eslint/no-explicit-any': 'off',
+				'@typescript-eslint/no-misused-promises': 'off',
 			},
 			extends: [
 				'plugin:@typescript-eslint/recommended',

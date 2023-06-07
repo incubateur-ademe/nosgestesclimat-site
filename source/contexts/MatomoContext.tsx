@@ -8,7 +8,8 @@ import { getIsIframe } from '../utils'
 const groupExclusionRegexp = /\/(sondage|conférence)\//
 
 const shouldUseDevTracker =
-	NODE_ENV === 'development' || CONTEXT === 'deploy-preview'
+	process.env.NODE_ENV === 'development' ||
+	process.env.CONTEXT === 'deploy-preview'
 
 const ua = window.navigator.userAgent
 // https://chromium.googlesource.com/chromium/src.git/+/master/docs/ios/user_agent.md

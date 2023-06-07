@@ -22,7 +22,7 @@ export default () => {
 
 	const deployURL = pullRequestNumber
 		? `https://deploy-preview-${pullRequestNumber}--ecolab-data.netlify.app`
-		: NODE_ENV === 'development'
+		: process.env.NODE_ENV === 'development'
 		? 'http://localhost:8081'
 		: 'https://data.nosgestesclimat.fr'
 
