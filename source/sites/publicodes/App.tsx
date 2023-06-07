@@ -592,7 +592,9 @@ const Router = () => {
 				path={'/plan'}
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
-						<PlanDuSite />
+						<WithEngine>
+							<PlanDuSite />
+						</WithEngine>
 					</Suspense>
 				}
 			/>

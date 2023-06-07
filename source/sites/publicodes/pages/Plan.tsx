@@ -2,85 +2,53 @@ import 'Components/ui/index.css'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import { useSelector } from 'react-redux'
+import { RootState } from '@/reducers/rootReducer'
+import { utils } from 'publicodes'
+
+const appURL =
+	process.env.NODE_ENV === 'development'
+		? 'http://localhost:8080'
+		: 'https://nosgestesclimat.fr'
 
 const links = {
 	"Nos outils": {
 		'publicodes.planDuSite.bilan':
-			'https://nosgestesclimat.fr/simulateur/bilan',
-		'publicodes.planDuSite.groupe': 'https://nosgestesclimat.fr/groupe',
-		'publicodes.planDuSite.profil': 'https://nosgestesclimat.fr/profil',
-		'publicodes.planDuSite.personas': 'https://nosgestesclimat.fr/personas',
-		'publicodes.planDuSite.actions': 'https://nosgestesclimat.fr/actions',
+			`${appURL}/simulateur/bilan`,
+		'publicodes.planDuSite.groupe': `${appURL}/groupe`,
+		'publicodes.planDuSite.profil': `${appURL}/profil`,
+		'publicodes.planDuSite.personas': `${appURL}/personas`,
+		'publicodes.planDuSite.actions': `${appURL}/actions`,
 		'publicodes.planDuSite.actionsPlus':
-			'https://nosgestesclimat.fr/actions/plus',
+		`${appURL}/actions/plus`,
 	},
 	Informations: {
-		'publicodes.planDuSite.nouveautes': 'https://nosgestesclimat.fr/nouveautes',
-		'publicodes.planDuSite.aPropos': 'https://nosgestesclimat.fr/a-propos',
-		'publicodes.planDuSite.viePrivee': 'https://nosgestesclimat.fr/vie-privee',
+		'publicodes.planDuSite.nouveautes': `${appURL}/nouveautes`,
+		'publicodes.planDuSite.aPropos': `${appURL}/a-propos`,
+		'publicodes.planDuSite.viePrivee': `${appURL}/vie-privee`,
 		'publicodes.planDuSite.partenaires':
-			'https://nosgestesclimat.fr/partenaires',
-		'publicodes.planDuSite.contribuer': 'https://nosgestesclimat.fr/contribuer',
-		'publicodes.planDuSite.stats': 'https://nosgestesclimat.fr/stats',
+		`${appURL}/partenaires`,
+		'publicodes.planDuSite.contribuer': `${appURL}/contribuer`,
+		'publicodes.planDuSite.stats': `${appURL}/stats`,
 	},
 	Documentations: {
-		'publicodes.planDuSite.guide': 'https://nosgestesclimat.fr/guide',
+		'publicodes.planDuSite.guide': `${appURL}/guide`,
 		'publicodes.planDuSite.sondageDoc':
-			'https://nosgestesclimat.fr/groupe/documentation-contexte',
+		`${appURL}/groupe/documentation-contexte`,
 		'publicodes.planDuSite.methodologie':
-			'https://nosgestesclimat.fr/methodologie',
-		'publicodes.planDuSite.modele': 'https://nosgestesclimat.fr/modele',
+		`${appURL}/methodologie`,
+		'publicodes.planDuSite.modele': `${appURL}/modele`,
 		'publicodes.planDuSite.petroleEtGaz':
-			'https://nosgestesclimat.fr/petrole-et-gaz',
+		`${appURL}/petrole-et-gaz`,
 		'publicodes.planDuSite.documentation':
-			'https://nosgestesclimat.fr/documentation',
+		`${appURL}/documentation`,
 	},
 }
 
-const actionsList = [
-	"/actions/transport/arrêter-l'avion",
-	"/actions/transport/arrêter-l'avion-court",
-	"/actions/transport/prendre-moins-l'avion",
-	'/actions/alimentation/réduire-viande/par-deux',
-	'/actions/alimentation/réduire-viande/par-quatre',
-	'/actions/alimentation/devenir-végétarien',
-	'/actions/alimentation/devenir-végétalien',
-	'/actions/alimentation/viande-faible-empreinte',
-	'/actions/alimentation/manger-de-saison',
-	'/actions/alimentation/boisson/eau-en-bouteille/arrêter',
-	'/actions/alimentation/manger-local',
-	'/actions/alimentation/déchets/réduire-gaspillage',
-	'/actions/alimentation/déchets/composter',
-	'/actions/logement/éteindre-appareils',
-	'/actions/logement/remplacer-fioul-par-bois',
-	'/actions/logement/remplacer-gaz-par-PAC',
-	'/actions/logement/séchage-air-libre',
-	'/actions/transport/éco‑conduite',
-	'/actions/logement/baisse-température',
-	'/actions/logement/éclairage/LED',
-	'/actions/logement/rénovation-énergétique',
-	'/actions/logement/rénovation-énergétique-BBC',
-	'/actions/logement/raccordement-réseau-de-chaleur',
-	'/actions/transport/boulot/covoiturage',
-	'/actions/transport/boulot/commun',
-	'/actions/transport/boulot/télétravail',
-	'/actions/transport/covoiturage',
-	'/actions/transport/voiture-5km',
-	'/actions/transport/voiture-électrique',
-	'/actions/transport/voiture/limitation-autoroute',
-	'/actions/divers/numérique/internet/diminuer',
-	'/actions/divers/partage-NGC',
-	'/actions/divers/aider-les-autres',
-	'/actions/divers/électroménager/allongement',
-	'/actions/divers/ameublement/allongement',
-	'/actions/services-sociétaux/voter',
-	'/actions/services-sociétaux/pression-locale',
-	'/actions/divers/publicité',
-	'/actions/divers/avoir-un-stop-pub',
-	'/actions/divers/numérique/appareils/allongement',
-]
-
 const PlanDuSite = () => {
+	const rules = useSelector((state:RootState) => state.rules)
+	const actionsList = rules['actions']['formule']['somme']
+
 	return (
 		<Container>
 			<Title>
@@ -109,9 +77,9 @@ const PlanDuSite = () => {
 					</Trans>
 				</SectionTitle>
 				<List>
-				{actionsList.map((link) => (
-					<li key={link}>
-						<Link to={link}>{decodeURI(link.replace('/actions/', ''))}</Link>
+				{actionsList.map((action) => (
+					<li key={action}>
+						<Link to={`${appURL}/actions/${utils.encodeRuleName(action)}`}>{action.split(' . ').slice(-1)}</Link>
 					</li>
 				))}
 				</List>
