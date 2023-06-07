@@ -13,9 +13,8 @@ on:
       - ready_for_review
 
   workflow_run:
-    workflows: [Mixed content - nosgestesclimat]
-    types:
-      - completed
+    workflows: [ "Mixed content - nosgestesclimat" ]
+    types: [ completed ]
 
 jobs:
   e2e:
@@ -50,14 +49,6 @@ jobs:
         run: |
             echo "CYPRESS_baseUrl=https://nosgestesclimat.fr" >> "$GITHUB_ENV"
             echo "MODE=production" >> "$GITHUB_ENV"
-
-      # - name: Wait for the Netlify preview to be deployed
-      #   uses: lewagon/wait-on-check-action@v1.3.1
-      #   with:
-      #     ref: ${{ github.ref }}
-      #     check-name: 'Mixed content - nosgestesclimat'
-      #     repo-token: ${{ secrets.GITHUB_TOKEN }}
-      #     wait-interval: 20
 
       - name: Test - e2e [${{ env.MODE }}]
         uses: cypress-io/github-action@v5.6.1
