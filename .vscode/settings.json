@@ -1,25 +1,26 @@
 {
-  "editor.formatOnSave": true,
-  "spellright.language": [
-    "fr",
-    "en"
-  ],
-  "spellright.documentTypes": [
-    "yaml",
-    "git-commit",
-    "markdown"
-  ],
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "editor.tabSize": 2,
-  "files.exclude": {
-    "**/node_modules": true
-  },
-  "eslint.enable": true,
-  "deno.enable": true,
-  "deno.enablePaths": [
-    "netlify/edge-functions"
-  ],
-  "deno.unstable": true,
-  "deno.importMap": ".netlify/edge-functions-import-map.json",
-  "deno.path": "/Users/benjaminarias/Library/Preferences/netlify/deno-cli/deno"
+	"editor.formatOnSave": true,
+	"spellright.language": ["fr", "en"],
+	"spellright.documentTypes": ["yaml", "git-commit", "markdown"],
+	"typescript.tsdk": "node_modules/typescript/lib",
+	"editor.tabSize": 2,
+	"files.exclude": {
+		"**/node_modules": true
+	},
+	"eslint.enable": true,
+	"deno.enable": true,
+	"deno.enablePaths": ["netlify/edge-functions"],
+	"deno.unstable": true,
+	"deno.importMap": ".netlify/edge-functions-import-map.json",
+	"deno.path": "/Users/benjaminarias/Library/Preferences/netlify/deno-cli/deno",
+	"editor.defaultFormatter": "esbenp.prettier-vscode",
+	"[javascript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescript]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	}
 }
