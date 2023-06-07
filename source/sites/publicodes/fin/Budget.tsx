@@ -123,8 +123,10 @@ export default ({
 				<div
 					css={`
 						display: flex;
+						flex-wrap: wrap;
 						justify-content: center;
 						margin: 1rem 0;
+						gap: 1rem;
 					`}
 				>
 					{!hasSubscribedToNewsletter && (
@@ -149,6 +151,9 @@ export default ({
 								color: white;
 								border-radius: 0.6rem;
 								text-transform: inherit !important;
+								@media (max-width: 340px) {
+								}
+								padding: 0.875rem 1rem !important;
 							`}
 							className="ui__ plain button"
 						>
@@ -159,6 +164,9 @@ export default ({
 									font-size: 1.25rem;
 									display: inline-block;
 									margin-right: 0.4rem;
+									@media (max-width: 340px) {
+										font-size: 0.875rem;
+									}
 								`}
 							>
 								📩
