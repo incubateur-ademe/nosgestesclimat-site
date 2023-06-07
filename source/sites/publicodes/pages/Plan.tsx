@@ -30,6 +30,7 @@ const links = {
 		`${appURL}/partenaires`,
 		'publicodes.planDuSite.contribuer': `${appURL}/contribuer`,
 		'publicodes.planDuSite.stats': `${appURL}/stats`,
+		'Blog': `${appURL}/blog`,
 	},
 	Documentations: {
 		'publicodes.planDuSite.guide': `${appURL}/guide`,
