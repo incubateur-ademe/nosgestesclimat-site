@@ -1,3 +1,4 @@
+import { reformateDataFromDB } from '@/components/utils/formatDataForDB'
 import { Simulation } from '@/reducers/rootReducer'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import * as Sentry from '@sentry/react'
@@ -25,9 +26,13 @@ export const useLoadSimulationFromURL = () => {
 					},
 				})
 
-				const simulation = await response.json()
+				const simulation: DataSimulationObject = await response.json()
+				const simulationReformatted = { ...simulation }
+				simulationReformatted.data.situation = reformateDataFromDB(
+					simulationReformatted.data
+				)
 
-				return simulation
+				return simulationReformatted
 			} catch (e) {
 				Sentry.captureException(e)
 			}
@@ -35,7 +40,7 @@ export const useLoadSimulationFromURL = () => {
 
 		if (idSimulationDecoded) {
 			loadSimulation(idSimulationDecoded)
-				.then((simulation: DataSimulationObject) => {
+				.then((simulation: DataSimulationObject | undefined) => {
 					setSimulation(simulation)
 				})
 				.catch((e) => {

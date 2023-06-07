@@ -1,6 +1,6 @@
 import { setHasSubscribedToNewsletter } from '@/actions/actions'
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
-import { AppState } from '@/reducers/rootReducer'
+import { AppState, Simulation } from '@/reducers/rootReducer'
 import { hasSubscribedToNewsletterSelector } from '@/selectors/simulationSelectors'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import * as Sentry from '@sentry/react'
@@ -38,7 +38,7 @@ export const NewsletterForm = () => {
 		(simulation) => simulation.id === currentSimulationId
 	)
 
-	const saveSimulationInDB = async (data) => {
+	const saveSimulationInDB = async (data: Simulation) => {
 		const dataFormatted = { ...data }
 
 		if (dataFormatted.situation) {
