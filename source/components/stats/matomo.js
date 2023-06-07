@@ -4,6 +4,9 @@ import { serverURL } from '../../sites/publicodes/conference/useDatabase'
 
 const idSite = 153
 
+const kmDate = '2022-02-24,today'
+const MESURE_START_DATE = '2021-02-01,today'
+
 export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
 	useQuery(
 		queryName,
@@ -16,13 +19,19 @@ export const useX = (queryName, urlQuery, transformResult, keepPreviousData) =>
 		{ keepPreviousData }
 	)
 
-export const useChart = ({ chartPeriod, chartDate }) =>
-	useX(
-		['chart', chartPeriod, chartDate],
-		`module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=VisitsSummary.getVisits`,
+export const useChart = ({
+	chartPeriod,
+	chartDate,
+	target = 'VisitsSummary.getVisits',
+	name = 'chart-visites',
+}) => {
+	return useX(
+		`${name}, ${chartPeriod}, ${chartDate}`,
+		`module=API&date=last${chartDate}&period=${chartPeriod}&format=json&idSite=${idSite}&method=${target}`,
 		(res) => res.data,
 		true
 	)
+}
 
 export const useSimulationsTerminees = () =>
 	useX(
@@ -136,8 +145,6 @@ export const useAllTime = () =>
 		}
 	)
 
-const kmDate = '2022-02-24,today'
-
 export const useKmHelp = () =>
 	useX(
 		'KmHelp',
@@ -168,4 +175,18 @@ export const useRidesNumber = () =>
 		`module=API&method=Events.getAction&idSite=${idSite}&period=range&date=${kmDate}&format=JSON`,
 		(res) =>
 			res.data.find((action) => action.label === 'Ajout trajet km voiture')
+	)
+
+export const useHomepageVisitors = () =>
+	useX(
+		'homepageVisitors',
+		`module=API&method=Actions.getPageUrl&pageUrl=https://nosgestesclimat.fr&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
+		(res) => res.data
+	)
+
+export const useGetSharedSimulationEvents = () =>
+	useX(
+		'sharedSimulation',
+		`module=API&method=Events.getCategory&label=partage&idSite=${idSite}&period=range&date=${MESURE_START_DATE}&format=JSON`,
+		(res) => res.data
 	)
