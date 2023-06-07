@@ -325,9 +325,9 @@ function storedAmortissementAvion(
 	} else return state
 }
 
-function hasSubscribedToNewsletter(state = {}, { type }) {
+function hasSubscribedToNewsletter(state = false, { type }) {
 	if (type === 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER') return true
-	else return false
+	else return state
 }
 
 // optimized=true will load optimized version of the rules, treated by publiopti

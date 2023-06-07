@@ -9,6 +9,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import { Store } from 'redux'
 import { setDifferentSituation } from '../../actions/actions'
 import { matomoEventInteractionIframe } from '../../analytics/matomo-events'
 import AnimatedLoader from '../../AnimatedLoader'
@@ -19,7 +20,7 @@ import { MatomoContext } from '../../contexts/MatomoContext'
 import { useLoadSimulationFromURL } from '../../hooks/useLoadSimulationFromURL'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
-import { AppState } from '../../reducers/rootReducer'
+import { AppState, RootState } from '../../reducers/rootReducer'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
 import { getIsIframe } from '../../utils'
@@ -173,7 +174,7 @@ export default function Root() {
 		<Provider
 			sitePaths={paths}
 			reduxMiddlewares={[]}
-			onStoreCreated={(store) => {
+			onStoreCreated={(store: Store<RootState>) => {
 				persistUser(store)
 			}}
 			initialStore={{

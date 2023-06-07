@@ -36,7 +36,7 @@ export const rehydrateDetails = (encodedDetails) =>
 		)
 
 export const sumFromDetails = (details) =>
-	details.reduce((memo, [name, value]) => memo + value, 0)
+	details?.reduce((memo, [name, value]) => memo + value, 0) || 0
 
 const EnqueteReminder = () => <EnqueteBannerContent noFirstButton={true} />
 export default ({}) => {
@@ -89,7 +89,7 @@ export default ({}) => {
 
 	const slideProps = {
 		score,
-		details: Object.fromEntries(rehydratedDetails),
+		details: rehydratedDetails ? Object.fromEntries(rehydratedDetails) : {},
 		headlessMode,
 		nextSlide: next,
 		noQuestionsLeft: !nextQuestions.length,

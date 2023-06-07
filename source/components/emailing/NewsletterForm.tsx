@@ -4,7 +4,7 @@ import { AppState } from '@/reducers/rootReducer'
 import { hasSubscribedToNewsletterSelector } from '@/selectors/simulationSelectors'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import * as Sentry from '@sentry/react'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatDataForDB } from '../utils/formatDataForDB'
@@ -20,9 +20,12 @@ export const NewsletterForm = () => {
 
 	const dispatch = useDispatch()
 
+	const hasSubscribedToNewsletterRef = useRef(false)
+
 	const hasSubscribedToNewsletter = useSelector(
 		hasSubscribedToNewsletterSelector
 	)
+
 	const { t } = useTranslation()
 
 	const currentSimulationId = useSelector(
@@ -63,6 +66,7 @@ export const NewsletterForm = () => {
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setIsSending(true)
+
 		try {
 			if (!currentSimulation) return
 
@@ -76,9 +80,11 @@ export const NewsletterForm = () => {
 				body: JSON.stringify({
 					email: (document.getElementById('EMAIL') as HTMLInputElement).value,
 					optIn: (document.getElementById('OPT_IN') as HTMLInputElement).value,
-					simulationURL: `${appURL}/mon-empreinte-carbone?sid=${encodeURIComponent(
-						idSimulationSaved
-					)}&mtm_campaign=retrouver-ma-simulation`,
+					simulationURL:
+						location.toString().replace('/fin', '/mon-empreinte-carbone') +
+						`&sid=${encodeURIComponent(
+							idSimulationSaved
+						)}&mtm_campaign=retrouver-ma-simulation`,
 					// URL already contains the query param details
 					shareURL:
 						location
@@ -87,7 +93,7 @@ export const NewsletterForm = () => {
 						'&mtm_campaign=partage-email',
 				}),
 			})
-
+			hasSubscribedToNewsletterRef.current = true
 			dispatch(setHasSubscribedToNewsletter())
 			setIsSent(true)
 		} catch (e) {
@@ -97,7 +103,8 @@ export const NewsletterForm = () => {
 		}
 	}
 
-	if (hasSubscribedToNewsletter) return null
+	if (hasSubscribedToNewsletter && !hasSubscribedToNewsletterRef.current)
+		return null
 
 	return (
 		<div
