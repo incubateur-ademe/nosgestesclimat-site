@@ -2,7 +2,7 @@ import SibApiV3Sdk from 'sib-api-v3-sdk'
 
 const NGC_LIST_ID = 22
 
-exports.handler = async (event) => {
+exports.handler = async (event: { body: string }) => {
 	const data = JSON.parse(event.body)
 
 	const { email, shareURL, simulationURL } = data
@@ -56,7 +56,9 @@ exports.handler = async (event) => {
 	try {
 		await transacApiInstance.sendTransacEmail(sendSmtpEmail)
 	} catch (e) {
-		console.log(e)
+		return {
+			statusCode: 404,
+		}
 	}
 
 	return {

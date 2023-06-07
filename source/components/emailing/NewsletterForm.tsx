@@ -9,14 +9,10 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { formatDataForDB } from '../utils/formatDataForDB'
 
-const appURL =
-	process.env.NODE_ENV === 'development'
-		? 'http://localhost:8080'
-		: 'https://nosgestesclimat.fr'
-
 export const NewsletterForm = () => {
 	const [isSent, setIsSent] = useState(false)
 	const [isSending, setIsSending] = useState(false)
+	const [error, setError] = useState(false)
 
 	const dispatch = useDispatch()
 
@@ -46,7 +42,7 @@ export const NewsletterForm = () => {
 		}
 
 		try {
-			const response = await fetch(emailSimulationURL as string, {
+			const response = await fetch(emailSimulationURL, {
 				method: 'POST',
 				headers: {
 					'Content-Type': 'application/json',
@@ -68,11 +64,14 @@ export const NewsletterForm = () => {
 		setIsSending(true)
 
 		try {
-			if (!currentSimulation) return
+			if (!currentSimulation) {
+				setError(t("Vous n'avez pas de simulation en cours à sauvegarder."))
+				return
+			}
 
 			// Save simulation in DB
 			const idSimulationSaved: string = await saveSimulationInDB(
-				currentSimulation
+				currentSimulation as Simulation
 			)
 
 			await fetch(`${NETLIFY_FUNCTIONS_URL}/email-service`, {
@@ -93,8 +92,13 @@ export const NewsletterForm = () => {
 						'&mtm_campaign=partage-email',
 				}),
 			})
+
+			// This is to avoid hiding directly the form, so that the user can see the confirmation message
 			hasSubscribedToNewsletterRef.current = true
+
+			// This is to avoid showing the form again if the user visits the page again
 			dispatch(setHasSubscribedToNewsletter())
+
 			setIsSent(true)
 		} catch (e) {
 			Sentry.captureException(e)
@@ -241,8 +245,21 @@ export const NewsletterForm = () => {
 											</Trans>
 										</p>
 									</div>
+									{error && (
+										<div
+											css={`
+												padding: 8px 0;
+												text-align: left;
+												color: #d82424;
+												font-size: 0.75rem;
+											`}
+										>
+											{error}
+										</div>
+									)}
 								</div>
 							</div>
+
 							<div css="padding: 8px 0;">
 								<div css="text-align: left">
 									<button

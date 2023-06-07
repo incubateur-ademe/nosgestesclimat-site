@@ -38,7 +38,7 @@ export const useLoadSimulationFromURL = () => {
 			}
 		}
 
-		if (idSimulationDecoded) {
+		if (idSimulationDecoded && !simulation) {
 			loadSimulation(idSimulationDecoded)
 				.then((simulation: DataSimulationObject | undefined) => {
 					setSimulation(simulation)
@@ -47,7 +47,7 @@ export const useLoadSimulationFromURL = () => {
 					Sentry.captureException(e)
 				})
 		}
-	}, [idSimulationDecoded])
+	}, [idSimulationDecoded, simulation])
 
 	return simulation?.data
 }
