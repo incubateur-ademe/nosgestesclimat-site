@@ -1,10 +1,12 @@
-import 'Components/ui/index.css'
+import { title } from '@/components/publicodesUtils'
+import '@/components/ui/index.css'
+import { RootState } from '@/reducers/rootReducer'
+import Engine, { utils } from 'publicodes'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
-import { useSelector } from 'react-redux'
-import { RootState } from '@/reducers/rootReducer'
-import { utils } from 'publicodes'
+import useActions from '../useActions'
 
 const appURL =
 	process.env.NODE_ENV === 'development'
@@ -12,43 +14,44 @@ const appURL =
 		: 'https://nosgestesclimat.fr'
 
 const links = {
-	"Nos outils": {
-		'publicodes.planDuSite.bilan':
-			`${appURL}/simulateur/bilan`,
+	'Nos outils': {
+		'publicodes.planDuSite.bilan': `${appURL}/simulateur/bilan`,
 		'publicodes.planDuSite.groupe': `${appURL}/groupe`,
 		'publicodes.planDuSite.profil': `${appURL}/profil`,
 		'publicodes.planDuSite.personas': `${appURL}/personas`,
 		'publicodes.planDuSite.actions': `${appURL}/actions`,
-		'publicodes.planDuSite.actionsPlus':
-		`${appURL}/actions/plus`,
+		'publicodes.planDuSite.actionsPlus': `${appURL}/actions/plus`,
 	},
 	Informations: {
 		'publicodes.planDuSite.nouveautes': `${appURL}/nouveautes`,
 		'publicodes.planDuSite.aPropos': `${appURL}/a-propos`,
 		'publicodes.planDuSite.viePrivee': `${appURL}/vie-privee`,
-		'publicodes.planDuSite.partenaires':
-		`${appURL}/partenaires`,
+		'publicodes.planDuSite.partenaires': `${appURL}/partenaires`,
 		'publicodes.planDuSite.contribuer': `${appURL}/contribuer`,
 		'publicodes.planDuSite.stats': `${appURL}/stats`,
-		'Blog': `${appURL}/blog`,
+		Blog: `${appURL}/blog`,
 	},
 	Documentations: {
 		'publicodes.planDuSite.guide': `${appURL}/guide`,
-		'publicodes.planDuSite.sondageDoc':
-		`${appURL}/groupe/documentation-contexte`,
-		'publicodes.planDuSite.methodologie':
-		`${appURL}/methodologie`,
+		'publicodes.planDuSite.sondageDoc': `${appURL}/groupe/documentation-contexte`,
+		'publicodes.planDuSite.methodologie': `${appURL}/methodologie`,
 		'publicodes.planDuSite.modele': `${appURL}/modele`,
-		'publicodes.planDuSite.petroleEtGaz':
-		`${appURL}/petrole-et-gaz`,
-		'publicodes.planDuSite.documentation':
-		`${appURL}/documentation`,
+		'publicodes.planDuSite.petroleEtGaz': `${appURL}/petrole-et-gaz`,
+		'publicodes.planDuSite.documentation': `${appURL}/documentation`,
 	},
 }
 
 const PlanDuSite = () => {
-	const rules = useSelector((state:RootState) => state.rules)
-	const actionsList = rules['actions']['formule']['somme']
+	const rules = useSelector((state: RootState) => state.rules)
+	const engine = new Engine(rules)
+
+	const { rawActionsList } = useActions({
+		focusedAction: null,
+		rules,
+		radical: true,
+		engine,
+		metric: null,
+	})
 
 	return (
 		<Container>
@@ -78,11 +81,19 @@ const PlanDuSite = () => {
 					</Trans>
 				</SectionTitle>
 				<List>
-				{actionsList.map((action) => (
-					<li key={action}>
-						<Link to={`${appURL}/actions/${utils.encodeRuleName(action)}`}>{action.split(' . ').slice(-1)}</Link>
-					</li>
-				))}
+					{rawActionsList.map((action) => {
+						return (
+							<li key={action.dottedName}>
+								<Link
+									to={`${appURL}/actions/${utils.encodeRuleName(
+										action.dottedName
+									)}`}
+								>
+									{title(action)}
+								</Link>
+							</li>
+						)
+					})}
 				</List>
 			</Section>
 		</Container>
