@@ -176,5 +176,11 @@
 		</script>
 		<% } %>
 		<!-- End Matomo Code -->
+
+		<!-- Polyfill and source for old browser -->
+		<!-- Add polyfill.io for a very narrow web feature
+			IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
+		-->
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
 	</body>
 </html>
