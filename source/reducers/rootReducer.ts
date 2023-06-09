@@ -92,6 +92,35 @@ function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation {
+	if (action.type === 'SET_CURRENT_SIMULATION') {
+		// Update the date when loading the simulation.
+		// Also triggers an update of the 'simulationsList' component when changing simulations.
+		action.simulation.date = new Date()
+		return action.simulation
+	}
+
+	if (action.type === 'SET_SIMULATION') {
+		const { config, url } = action
+
+		if (state && state.config && !action.situation === config) {
+			return state
+		}
+
+		return {
+			config,
+			url,
+			hiddenNotifications: state?.hiddenControls || [], // todo : hiddenControls ?
+			situation: action.situation || state?.situation || {},
+			targetUnit: config['unité par défaut'] || '€/mois',
+			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
+			unfoldedStep: null,
+			persona: action.persona,
+			id: action.persona || state?.id || generateSimulationId(), // Unique identifier of the simulation, used for the 'currentSimulationId' pointer.
+			date: !action.persona && state?.date ? state?.date : new Date(),
+			eventsSent: state?.eventsSent || {},
+		}
+	}
+
 	if (state === null) {
 		return { ...(state ?? {}), eventsSent: {} }
 	}
@@ -170,7 +199,8 @@ function simulation(
 						: [...state.foldedSteps, step],
 					unfoldedStep: null,
 				}
-			} else if (name === 'unfold') {
+			}
+			if (name === 'unfold') {
 				return {
 					...state,
 					unfoldedStep: step,
