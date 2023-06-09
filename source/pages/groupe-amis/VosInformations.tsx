@@ -1,12 +1,30 @@
+import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import ButtonLink from './components/ButtonLink'
+import { useNavigate } from 'react-router-dom'
+import Button from './components/Button'
 import GoBackLink from './components/GoBackLink'
 import StepperIndicator from './components/StepperIndicator'
 import TextInputGroup from './components/TextInputGroup'
 import Title from './components/Title'
 
 export default function VosInformations() {
+	const [prenom, setPrenom] = useState('')
+	const [errorPrenom, setErrorPrenom] = useState('')
+	const [email, setEmail] = useState('')
+
 	const { t } = useTranslation()
+
+	const navigate = useNavigate()
+
+	const handleSubmit = () => {
+		if (!prenom) {
+			setErrorPrenom(t('Ce champ est obligatoire'))
+			return
+		}
+
+		navigate('../informations-de-groupe')
+	}
+
 	return (
 		<>
 			<GoBackLink className="mb-4 font-bold" />
@@ -25,6 +43,11 @@ export default function VosInformations() {
 				name="prenom"
 				placeholder="Jean-Michel"
 				className="mt-4"
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+					setPrenom(e.target.value)
+				}
+				error={errorPrenom}
+				value={prenom}
 			/>
 			<TextInputGroup
 				label={
@@ -39,10 +62,12 @@ export default function VosInformations() {
 				name="prenom"
 				placeholder="jean-michel@nosgestesclimat.fr"
 				className="mt-6 mb-6"
+				onChange={(e) => setEmail(e.target.value)}
+				value={email}
 			/>
-			<ButtonLink href={'../informations-de-groupe'}>
+			<Button onClick={handleSubmit} aria-disabled={!prenom}>
 				<Trans>Continuer</Trans> →
-			</ButtonLink>
+			</Button>
 		</>
 	)
 }
