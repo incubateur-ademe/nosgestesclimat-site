@@ -1,5 +1,5 @@
 import { Route, Routes } from 'react-router-dom'
-import Commencer from './Commencer'
+import Accueil from './Accueil'
 import { DataProvider } from './contexts/DataContext'
 import InformationsGroupe from './InformationsGroupe'
 import InvitezVosProches from './InvitezVosProches'
@@ -18,7 +18,7 @@ export default function GroupeAmis() {
 
 					<Route path="inviter-vos-proches" element={<InvitezVosProches />} />
 
-					<Route index element={<Commencer />} />
+					<Route index element={<Accueil />} />
 				</Routes>
 			</div>
 		</DataProvider>
