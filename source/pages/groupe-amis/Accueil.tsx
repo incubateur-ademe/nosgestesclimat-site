@@ -36,7 +36,7 @@ export default function Accueil() {
 				<>
 					<GroupList groups={groups} className="mt-8" />
 					<Separator className="mb-4 mt-8" />
-					<h3 className="text-sm font-bold mb-1">
+					<h3 className="text-md font-bold mb-1">
 						<Trans>Créez un autre groupe</Trans>
 					</h3>
 					<p className="text-sm mb-6">
