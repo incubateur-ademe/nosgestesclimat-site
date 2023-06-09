@@ -20,7 +20,7 @@ export default function VosInformations() {
 	const navigate = useNavigate()
 
 	const handleSubmit = () => {
-		if (!prenom) {
+		if (!prenomLocalState) {
 			setErrorPrenom(t('Ce champ est obligatoire'))
 			return
 		}
