@@ -37,7 +37,7 @@
 		"illustration": "cat source/images/illustration.svg | sed -e 's/inkscape:label/class/g; s/#6861b3/var(--color)/g' | svgr --ref > source/components/IllustrationSVG.tsx",
 		"lint": "eslint . --ext .js,.ts,.tsx",
 		"lint:fix": "eslint . --ext .js,.ts,.tsx --fix",
-		"sitemap": "node ./scripts/generateSitemap.js "
+		"sitemap": "ts-node ./scripts/generateSitemap.ts "
 	},
 	"browserslist": [
 		"> 1% in FR"
@@ -55,6 +55,7 @@
 		"@svgr/cli": "^6.3.1",
 		"@types/cheerio": "^0.22.31",
 		"@types/mini-css-extract-plugin": "^2.5.1",
+		"@types/node": "^20.3.0",
 		"@types/react": "^18.0.14",
 		"@types/react-color": "^3.0.6",
 		"@types/react-dom": "^18.0.5",
@@ -98,6 +99,8 @@
 		"prompt-sync": "^4.2.0",
 		"style-loader": "^3.3.1",
 		"toml-loader": "^1.0.0",
+		"ts-node": "^10.9.1",
+		"tslib": "^2.5.3",
 		"typescript": "^4.7.4",
 		"url-loader": "^4.1.0",
 		"wait-on": "^7.0.1",

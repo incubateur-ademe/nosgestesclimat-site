@@ -30,5 +30,10 @@
 		"outDir": "build"
 	},
 	"include": ["source/**/*"],
-  "exclude": ["node_modules", "build/**/*"]
+	"exclude": ["node_modules", "build/**/*"],
+	"ts-node": {
+		"compilerOptions": {
+			"module": "commonjs"
+		}
+	}
 }

@@ -1,5 +1,11 @@
-const fs = require('fs')
-const path = require('path')
+import * as fs from 'fs'
+import * as path from 'path'
+import Engine, { utils } from 'publicodes'
+import {
+	encodeRuleNameToSearchParam,
+	isValidRule,
+	NGCRulesNodes,
+} from '../source/components/publicodesUtils'
 
 const destinationURL = path.resolve(
 	__dirname,
@@ -23,15 +29,15 @@ https://nosgestesclimat.fr/actions
 https://nosgestesclimat.fr/actions/plus
 `
 
-/* Unfortunately, we can't yet import this function from engine/rules */
-const encodeRuleNameURL = (name) =>
-	name
-		.replaceAll(/\s\.\s/g, '/')
-		.replaceAll(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
-		.replaceAll(/\s/g, '-')
-
-const encodeRuleNameSearchParam = (name) =>
-	encodeRuleNameURL(name).replaceAll('/', '.')
+// /* Unfortunately, we can't yet import this function from engine/rules */
+// const encodeRuleNameURL = (name) =>
+// 	name
+// 		.replaceAll(/\s\.\s/g, '/')
+// 		.replaceAll(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
+// 		.replaceAll(/\s/g, '-')
+//
+// const encodeRuleNameSearchParam = (name) =>
+// 	encodeRuleNameURL(name).replaceAll('/', '.')
 
 fs.writeFileSync(destinationURL, baseURLs, 'utf8')
 
@@ -40,11 +46,13 @@ const releasePath = path.resolve(
 	'../source/locales/releases/releases-fr.json'
 )
 const rawdata = fs.readFileSync(releasePath)
-const data = JSON.parse(rawdata)
+const data = JSON.parse(rawdata.toString())
 const newsURL = Object.values(data)
 	.map(
-		(version) =>
-			`https://nosgestesclimat.fr/nouveautés/${encodeRuleNameURL(version.name)}`
+		(version: any) =>
+			`https://nosgestesclimat.fr/nouveautés/${utils.encodeRuleName(
+				version.name
+			)}`
 	)
 	.join('\n')
 fs.appendFileSync(destinationURL, newsURL + '\n', 'utf8')
@@ -58,21 +66,17 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 		const documentationURLs = ruleNames
 			.map(
 				(dottedName) =>
-					`https://nosgestesclimat.fr/documentation/${encodeRuleNameURL(
+					`https://nosgestesclimat.fr/documentation/${utils.encodeRuleName(
 						dottedName
 					)}`
 			)
 			.join('\n')
+		const parsedRules: NGCRulesNodes = new Engine(json).getParsedRules()
 		const questionURLs = ruleNames
-			.filter((dottedName) => {
-				const rule = json[dottedName]
-				return (
-					rule != undefined && typeof rule === 'object' && 'question' in rule
-				)
-			})
+			.filter((dottedName) => isValidRule(dottedName, parsedRules))
 			.map(
 				(dottedName) =>
-					`http://localhost:8080/simulateur/bilan?question=${encodeRuleNameSearchParam(
+					`http://localhost:8080/simulateur/bilan?question=${encodeRuleNameToSearchParam(
 						dottedName
 					)}`
 			)
