@@ -12,10 +12,7 @@ import {
 	matomoEvent90PercentProgress,
 	matomoEventFirstAnswer,
 } from '@/analytics/matomo-events'
-import RuleInput, {
-	getRelatedMosaicInfosIfExists,
-	RuleInputProps,
-} from '@/components/conversation/RuleInput'
+import RuleInput, { RuleInputProps } from '@/components/conversation/RuleInput'
 import Notifications, {
 	getCurrentNotification,
 } from '@/components/Notifications'
@@ -23,6 +20,7 @@ import {
 	Category,
 	DottedName,
 	encodeRuleNameToSearchParam,
+	getRelatedMosaicInfosIfExists,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
 	questionCategoryName,

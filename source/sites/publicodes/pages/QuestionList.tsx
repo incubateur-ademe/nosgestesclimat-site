@@ -1,5 +1,5 @@
-import { getRelatedMosaicInfosIfExists } from '@/components/conversation/RuleInput'
 import {
+	getRelatedMosaicInfosIfExists,
 	NGCRuleNode,
 	NGCRulesNodes,
 	parentName,

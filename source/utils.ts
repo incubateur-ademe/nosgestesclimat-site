@@ -97,7 +97,7 @@ export const sortBy = (f) => (list) =>
 		return fa < fb ? -1 : fa > fb ? 1 : 0
 	})
 
-export const last = (array) => {
+export const last = (array: any[]) => {
 	const [lastItem] = array.slice(-1)
 	return lastItem
 }
@@ -106,9 +106,9 @@ export function useQuery() {
 	return new URLSearchParams(useLocation().search)
 }
 
-export function range(start, end) {
+export function range(start: number, end: number) {
 	return Array(end - start + 1)
-		.fill()
+		.fill(0)
 		.map((_, idx) => start + idx)
 }
 

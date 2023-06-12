@@ -4,9 +4,7 @@ import CurrencyInput from '@/components/CurrencyInput/CurrencyInput'
 import PercentageField from '@/components/PercentageField'
 import {
 	DottedName,
-	MosaiqueNode,
-	NGCRuleNode,
-	NGCRulesNodes,
+	getRelatedMosaicInfosIfExists,
 	parentName,
 	SuggestionsNode,
 } from '@/components/publicodesUtils'
@@ -62,60 +60,6 @@ export type BinaryQuestionType = [
 	{ value: string; label: string },
 	{ value: string; label: string }
 ]
-
-export type MosaicInfos = {
-	mosaicRule: RuleNode
-	mosaicParams: MosaiqueNode
-	mosaicDottedNames: [string, NGCRuleNode][]
-}
-
-/**
- * Function to detect if the question evaluated should be displayed as a child of a mosaic.
- *
- * We only test parent of degree 2 and not all the parents of each rules:
- * this requires to be careful on model side.
- * If parent of degree 2 doesn't contain mosaic, returns empty array.
- * If parent of degree 2 contains mosaic but rule is a child not included in the mosaic,
- * returns undefined.
- *
- * We take into account if the evaluated rule is already a mosaic.
- */
-export function getRelatedMosaicInfosIfExists(
-	rules: NGCRulesNodes,
-	dottedName: DottedName | null
-): MosaicInfos | undefined {
-	if (!dottedName) {
-		return undefined
-	}
-
-	const potentialMosaicRule = rules[dottedName].rawNode['mosaique']
-		? dottedName
-		: parentName(dottedName, ' . ', 0, 2)
-
-	const mosaicParams =
-		potentialMosaicRule && rules[potentialMosaicRule].rawNode['mosaique']
-
-	if (
-		!mosaicParams ||
-		(dottedName !== potentialMosaicRule &&
-			!dottedName.includes(` . ${mosaicParams['clé']}`))
-	) {
-		return undefined
-	}
-
-	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
-		return (
-			rule.includes(potentialMosaicRule) &&
-			rule.includes(` . ${mosaicParams['clé']}`)
-		)
-	})
-
-	return {
-		mosaicRule: rules[potentialMosaicRule],
-		mosaicParams,
-		mosaicDottedNames,
-	}
-}
 
 export const isTransportEstimation = (dottedName) =>
 	estimationQuestions.find(({ isApplicable }) => isApplicable(dottedName))

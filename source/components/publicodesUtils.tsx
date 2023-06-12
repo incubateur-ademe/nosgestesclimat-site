@@ -5,7 +5,6 @@ import Engine, {
 	utils as coreUtils,
 } from 'publicodes'
 import { capitalise0, sortBy } from '../utils'
-import { getRelatedMosaicInfosIfExists } from './conversation/RuleInput'
 
 export type DottedName = string
 
@@ -29,6 +28,12 @@ export type MosaiqueNode = {
 	suggestions?: SuggestionsNode
 }
 
+export type MosaicInfos = {
+	mosaicRule: RuleNode
+	mosaicParams: MosaiqueNode
+	mosaicDottedNames: [string, NGCRuleNode][]
+}
+
 /**
  * NOTE(@EmileRolley): prefixing with NGC to avoid conflicts with publicodes,
  * and to make it clear that this is a specific type for the NGC model.
@@ -44,6 +49,54 @@ export const MODEL_ROOT_RULE_NAME = 'bilan'
 
 export function isRootRule(dottedName: DottedName): boolean {
 	return dottedName === MODEL_ROOT_RULE_NAME
+}
+
+/**
+ * Function to detect if the question evaluated should be displayed as a child of a mosaic.
+ *
+ * We only test parent of degree 2 and not all the parents of each rules:
+ * this requires to be careful on model side.
+ * If parent of degree 2 doesn't contain mosaic, returns empty array.
+ * If parent of degree 2 contains mosaic but rule is a child not included in the mosaic,
+ * returns undefined.
+ *
+ * We take into account if the evaluated rule is already a mosaic.
+ */
+export function getRelatedMosaicInfosIfExists(
+	rules: NGCRulesNodes,
+	dottedName: DottedName | null
+): MosaicInfos | undefined {
+	if (!dottedName) {
+		return undefined
+	}
+
+	const potentialMosaicRule = rules[dottedName].rawNode['mosaique']
+		? dottedName
+		: parentName(dottedName, ' . ', 0, 2)
+
+	const mosaicParams =
+		potentialMosaicRule && rules[potentialMosaicRule].rawNode['mosaique']
+
+	if (
+		!mosaicParams ||
+		(dottedName !== potentialMosaicRule &&
+			!dottedName.includes(` . ${mosaicParams['clé']}`))
+	) {
+		return undefined
+	}
+
+	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
+		return (
+			rule.includes(potentialMosaicRule) &&
+			rule.includes(` . ${mosaicParams['clé']}`)
+		)
+	})
+
+	return {
+		mosaicRule: rules[potentialMosaicRule],
+		mosaicParams,
+		mosaicDottedNames,
+	}
 }
 
 export function isMosaicChild(
@@ -268,12 +321,7 @@ export function relegateCommonCategories(array) {
 	return relegate(keys, array)
 }
 
-/**
- * Like publicodes's encodeRuleName function but use '.' instead of '/'
- *
- * NOTE(@EmileRolley): if this function is updated, please update the
- * generateSitemap.js script accordingly -- or find a way to factorize it.
- */
+/** Like publicodes's encodeRuleName function but use '.' instead of '/' */
 export function encodeRuleNameToSearchParam(
 	dottedName: DottedName | null
 ): string | undefined {
@@ -284,4 +332,15 @@ export function encodeRuleNameToSearchParam(
 
 export function decodeRuleNameFromSearchParam(encodedName: string): DottedName {
 	return coreUtils.decodeRuleName(encodedName.replaceAll('.', '/'))
+}
+
+export function isValidRule(ruleName: DottedName, rules: NGCRulesNodes) {
+	if (rules == undefined) {
+		return false
+	}
+	const rule = rules[ruleName]
+	const isQuestion =
+		rule != undefined && 'rawNode' in rule && 'question' in rule.rawNode
+
+	return isQuestion && !isMosaicChild(rules, ruleName)
 }

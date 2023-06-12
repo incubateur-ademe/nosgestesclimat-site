@@ -1,5 +1,4 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
-import { getRelatedMosaicInfosIfExists } from '@/components/conversation/RuleInput'
 import {
 	Category,
 	decodeRuleNameFromSearchParam,
@@ -7,8 +6,9 @@ import {
 	encodeRuleNameToSearchParam,
 	extractCategories,
 	FullName,
-	isMosaicChild,
+	getRelatedMosaicInfosIfExists,
 	isRootRule,
+	isValidRule,
 	MODEL_ROOT_RULE_NAME,
 	NGCRulesNodes,
 } from '@/components/publicodesUtils'
@@ -197,20 +197,10 @@ function getValidSelectedRuleInfos(
 	rules: NGCRulesNodes
 ): SelectedRuleInfos {
 	const navigate = useNavigate()
-	const isValidRule = (ruleName: DottedName) => {
-		if (rules == undefined) {
-			return false
-		}
-		const rule = rules[ruleName]
-		const isQuestion =
-			rule != undefined && 'rawNode' in rule && 'question' in rule.rawNode
-
-		return isQuestion && !isMosaicChild(rules, ruleName)
-	}
 	const searchParams = new URLSearchParams(window.location.search)
 
-	if (selectedRuleName != '' && !isValidRule(selectedRuleName)) {
-		while (selectedRuleName != '' && !isValidRule(selectedRuleName)) {
+	if (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
+		while (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
 			const parentRuleName = utils.ruleParent(selectedRuleName)
 			console.log(
 				`Unknown question ${selectedRuleName}, trying ${parentRuleName}...`
