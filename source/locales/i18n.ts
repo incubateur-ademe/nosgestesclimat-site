@@ -21,7 +21,6 @@ i18next
 		react: {
 			useSuspense: false,
 		},
-		compatibilityJSON: 'v3',
 	})
 	.catch((err) => console?.error('Error from i18n load', err))
 
