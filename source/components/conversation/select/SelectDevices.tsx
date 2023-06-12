@@ -25,9 +25,6 @@ export default function SelectDevices({
 		[]
 	)
 
-	// we want to sort the cards so that the inactive ones are at the end
-	selectedRules.sort(([{ _ }, q], [_b]) => ('inactif' in q.rawNode ? 1 : -1))
-
 	// for now, if nothing is checked, after having check something, 'suivant' button will have same effect as 'je ne sais pas'
 	// we can imagine a useeffect that set to 0 situation of dottedname every time all card are unchecked (after user checked something at least once)
 

@@ -66,9 +66,9 @@ export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
 	]
 		? dottedName
 		: parentName(dottedName, ' . ', 0, 2)
+	if (!potentialMosaicDottedName) return
 	const potentialMosaicRule = engine.getRule(potentialMosaicDottedName)
-	const mosaicParams =
-		potentialMosaicDottedName && potentialMosaicRule.rawNode['mosaique']
+	const mosaicParams = potentialMosaicRule.rawNode['mosaique']
 	if (!mosaicParams) return
 	if (
 		dottedName !== potentialMosaicDottedName &&
@@ -132,22 +132,27 @@ export default function RuleInput<Name extends string = DottedName>({
 		rules,
 		rule.dottedName
 	)
+
 	if (ruleMosaicInfos) {
 		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
-		const orderedSumFromSourceRule = question.rawNode.formule.somme
+		const orderedSumFromSourceRule = question?.rawNode?.formule?.somme
 		const selectedRules = mosaicDottedNames
 			.map(([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
 				return [rules[parentRule], questionRule]
 			})
+			// we want to sort the cards so that the inactive ones are at the end and the active ones are ordered as the `somme` defined as model side.
 			.sort((a, b) => {
-				const indexA = orderedSumFromSourceRule.indexOf(
-					splitName(a[0].dottedName)[splitName(a[0].dottedName).length - 1]
-				)
-				const indexB = orderedSumFromSourceRule.indexOf(
-					splitName(b[0].dottedName)[splitName(b[0].dottedName).length - 1]
-				)
-				return indexA - indexB
+				if ('inactif' in a[0].rawNode) return 1
+				if (orderedSumFromSourceRule) {
+					const indexA = orderedSumFromSourceRule.indexOf(
+						splitName(a[0].dottedName)[splitName(a[0].dottedName).length - 1]
+					)
+					const indexB = orderedSumFromSourceRule.indexOf(
+						splitName(b[0].dottedName)[splitName(b[0].dottedName).length - 1]
+					)
+					return indexA - indexB
+				}
 			})
 		if (mosaicParams['type'] === 'selection')
 			return (
