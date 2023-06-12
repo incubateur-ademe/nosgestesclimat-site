@@ -52,6 +52,8 @@ const Simulateur = () => {
 		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
 
+	// The main simulation corresponds to the whole test, i.e selected rule is the
+	// model root rule.
 	const isMainSimulation = isRootRule(simulatorRootNameURL)
 	const selectedRuleNameURLPath = searchParams.get('question') ?? ''
 	const rules = useSelector((state: AppState) => state.rules)

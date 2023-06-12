@@ -45,6 +45,7 @@ export type NGCRuleNode = RuleNode & {
 
 export type NGCRulesNodes = Record<string, NGCRuleNode>
 
+/** It's the name of the node at the root of the model. */
 export const MODEL_ROOT_RULE_NAME = 'bilan'
 
 export function isRootRule(dottedName: DottedName): boolean {
