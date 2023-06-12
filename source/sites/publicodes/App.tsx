@@ -377,7 +377,7 @@ const Router = () => {
 				path="simulateur/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
-						<WithEngine options={{ parsed: true, optimized: false }}>
+						<WithEngine>
 							<SimulateurLazy />
 						</WithEngine>
 					</Suspense>
