@@ -29,7 +29,7 @@
 		},
 		"outDir": "build"
 	},
-	"include": ["source/**/*"],
+	"include": ["source/**/*", "netlify/**/*"],
 	"exclude": ["node_modules", "build/**/*"],
 	"ts-node": {
 		"compilerOptions": {
