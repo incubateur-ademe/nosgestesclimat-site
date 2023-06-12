@@ -1,5 +1,4 @@
 import {
-	goToQuestion,
 	setTrackingVariable,
 	skipTutorial,
 	updateSituation,
@@ -13,17 +12,19 @@ import {
 	matomoEvent90PercentProgress,
 	matomoEventFirstAnswer,
 } from '@/analytics/matomo-events'
-import RuleInput, {
-	getRelatedMosaicInfosIfExists,
-	RuleInputProps,
-} from '@/components/conversation/RuleInput'
+import RuleInput, { RuleInputProps } from '@/components/conversation/RuleInput'
 import Notifications, {
 	getCurrentNotification,
 } from '@/components/Notifications'
 import {
+	Category,
+	DottedName,
+	encodeRuleNameToSearchParam,
+	getRelatedMosaicInfosIfExists,
+	isRootRule,
+	MODEL_ROOT_RULE_NAME,
 	questionCategoryName,
 	splitName,
-	title,
 } from '@/components/publicodesUtils'
 import SafeCategoryImage from '@/components/SafeCategoryImage'
 import { EngineContext } from '@/components/utils/EngineContext'
@@ -34,22 +35,30 @@ import {
 	useNextQuestions,
 	useSimulationProgress,
 } from '@/hooks/useNextQuestion'
+import { AppState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	isPersonaSelector,
 	objectifsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { sortBy, useQuery } from '@/utils'
+import { useQuery } from '@/utils'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
+import { utils } from 'publicodes'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import Aide from './Aide'
 import CategoryRespiration from './CategoryRespiration'
 import './conversation.css'
+import {
+	focusByCategory,
+	getPreviousQuestion,
+	goToQuestionOrNavigate,
+	sortQuestionsByCategory,
+} from './conversationUtils'
 import { ExplicableRule } from './Explicable'
 import QuestionFinderWrapper from './QuestionFinderWrapper'
 import SimulationEnding from './SimulationEnding'
@@ -57,6 +66,9 @@ import SimulationEnding from './SimulationEnding'
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 	customEnd?: React.ReactNode
+	orderByCategories?: Category[]
+	questionHeadingLevel?: number
+	isFromActionCard?: boolean
 }
 
 export default function Conversation({
@@ -64,181 +76,211 @@ export default function Conversation({
 	customEnd,
 	orderByCategories,
 	questionHeadingLevel,
+	isFromActionCard,
 }: ConversationProps) {
 	const dispatch = useDispatch()
-	const engine = useContext(EngineContext),
-		rules = engine.getParsedRules()
+	const engine = useContext(EngineContext)
+	const rules = engine.getParsedRules()
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	const { trackEvent } = useContext(MatomoContext)
 	const objectifs = useSelector(objectifsSelector)
-	const previousSimulation = useSelector((state) => state.previousSimulation)
 
 	// We want to get the initial order category to avoid reordering the questions
 	const initialOrderByCategories = useRef(orderByCategories).current
+	const previousSimulation = useSelector(
+		(state: AppState) => state.previousSimulation
+	)
 
+	// [initialOrderByCategories] is the list of categories, ordered by decreasing nodeValue
 	const questionsSortedByCategory = initialOrderByCategories
-		? sortBy((question) => {
-				const category = initialOrderByCategories.find(
-					(c) => question.indexOf(c.dottedName) === 0
-				)
-				if (!category) return 1000000
-				// We artificially put this category (since it has no actionable question) at the end
-				if (category.name === 'services sociétaux') return 100000
-				const value = -category?.nodeValue
-				return value
-		  })(nextQuestions)
+		? sortQuestionsByCategory(nextQuestions, initialOrderByCategories)
 		: nextQuestions
 
-	const focusedCategory = useQuery().get('catégorie'),
-		pathname = useLocation().pathname
-	const focusedCategoryTitle = rules[focusedCategory]?.title ?? focusedCategory
+	const focusedCategory = useQuery().get('catégorie')
+	const pathname = useLocation().pathname
 
-	const focusByCategory = (questions) => {
-		if (!focusedCategory) return questions
-		const filtered = questionsSortedByCategory.filter(
-			(q) => q.indexOf(focusedCategory) === 0
-		)
-		//this is important : if all questions of a focus have been answered
-		// then don't triggered the end screen, just ask the other questions
-		// as if no focus
-		if (!filtered.length) return questions
-		return filtered
-	}
+	const focusedCategoryTitle =
+		focusedCategory !== null
+			? rules[focusedCategory]?.title ?? focusedCategory
+			: null
 
-	const sortedQuestions = focusByCategory(questionsSortedByCategory)
+	const sortedQuestions = focusByCategory(
+		questionsSortedByCategory,
+		focusedCategory
+	)
 
-	const unfoldedStep = useSelector((state) => state.simulation.unfoldedStep)
-	const isMainSimulation = objectifs.length === 1 && objectifs[0] === 'bilan',
-		currentQuestion: string = !isMainSimulation
-			? nextQuestions[0]
-			: focusedCategory
-			? sortedQuestions[0]
-			: unfoldedStep || sortedQuestions[0]
+	const unfoldedStep = useSelector(
+		(state: AppState) => state.simulation?.unfoldedStep
+	)
+	const isMainSimulation = objectifs.length === 1 && isRootRule(objectifs[0])
+	const simulateurRootRuleURL =
+		objectifs.length === 1 && !isMainSimulation
+			? utils.encodeRuleName(objectifs[0])
+			: MODEL_ROOT_RULE_NAME
+
+	const currentQuestion: DottedName | null = !isMainSimulation
+		? nextQuestions[0]
+		: focusedCategory
+		? sortedQuestions[0]
+		: unfoldedStep || sortedQuestions[0]
 
 	const [finder, setFinder] = useState(false)
-	const tutorials = useSelector((state) => state.tutorials)
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 
-	const tracking = useSelector((state) => state.tracking)
+	const tracking = useSelector((state: AppState) => state.tracking)
 	const progress = useSimulationProgress()
 	const isPersona = useSelector(isPersonaSelector)
 
 	const enquête = useSelector(enquêteSelector)
+	const navigate = useNavigate()
 
 	useEffect(() => {
-		// This hook lets the user click on the "next" button. Without it, the conversation switches to the next question as soon as an answer is provided.
+		// This hook lets the user click on the "next" button. Without it, the conversation
+		// switches to the next question as soon as an answer is provided.
 		// It introduces a state
-		// It is important to test for "previousSimulation" : if it exists, it's not loaded yet. Then currentQuestion could be the wrong one, already answered, don't put it as the unfoldedStep
+		// It is important to test for "previousSimulation" : if it exists, it's not loaded yet.
+		// Then currentQuestion could be the wrong one, already answered,
+		// don't put it as the unfoldedStep
 		if (
 			currentQuestion &&
 			!previousSimulation &&
 			currentQuestion !== unfoldedStep
 		) {
-			dispatch(goToQuestion(currentQuestion))
+			goToQuestionOrNavigate({
+				question: currentQuestion,
+				simulateurRootURL: simulateurRootRuleURL,
+				focusedCategory,
+				// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
+				// to trigger the [navigate] (or we must add url for action questions
+				// which add not needed complexity for now).
+				toUse: isFromActionCard ? { dispatch } : { navigate },
+			})
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
+	const currentQuestionId = encodeRuleNameToSearchParam(currentQuestion)
+
 	useEffect(() => {
-		// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question
-		const questionElement =
-			rules[currentQuestion] &&
-			document.getElementById('id-question-' + title(rules[currentQuestion]))
-		questionElement?.focus()
+		if (currentQuestion != undefined) {
+			// This hook enables to set the focus on the question span and not on the "Suivant" button when going to next question
+			const questionElement =
+				rules[currentQuestion] &&
+				document.getElementById('id-question-' + currentQuestionId)
+			questionElement?.focus()
+		}
 	}, [currentQuestion])
 
 	const goToPrevious = () => {
-		return dispatch(goToQuestion(previousQuestion))
+		goToQuestionOrNavigate({
+			// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
+			// could be a reason of the 'previous button bug'?
+			question: previousQuestion,
+			simulateurRootURL: simulateurRootRuleURL,
+			focusedCategory,
+			// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
+			// to trigger the [navigate] (or we must add url for action questions
+			// which add not needed complexity for now).
+			toUse: isFromActionCard ? { dispatch } : { navigate },
+		})
 	}
 
-	// Some questions are grouped in an artifical questions, called mosaic questions,  not present in publicodes
-	// here we need to submit all of them when the one that triggered the UI (we don't care which) is submitted, in order to see them in the response list and to avoid repeating the same n times
-	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
-		engine,
-		rules,
-		currentQuestion
-	)
-	const [mosaicQuestion, mosaicParams, mosaicDottedNames] =
-		(currentQuestion && ruleMosaicInfos) || []
+	// Some questions are grouped in an artifical questions, called mosaic questions,
+	// not present in publicodes.
+	// Here we need to submit all of them when the one that triggered the UI
+	// (we don't care which) is submitted, in order to see them in the response
+	// list and to avoid repeating the same n times
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, currentQuestion)
+	const { mosaicRule, mosaicParams, mosaicDottedNames } =
+		(currentQuestion && ruleMosaicInfos) || {}
 
-	const questionText = mosaicQuestion
-		? mosaicQuestion.rawNode?.question
-		: rules[currentQuestion]?.rawNode?.question
+	const isMosaic = mosaicRule && mosaicParams && mosaicDottedNames
 
-	const questionsToSubmit = mosaicQuestion
-		? mosaicDottedNames.map(([dottedName]) => dottedName)
+	const questionText = isMosaic
+		? mosaicRule.rawNode?.question
+		: currentQuestion !== null
+		? rules[currentQuestion]?.rawNode?.question
+		: undefined
+
+	const questionsToSubmit = isMosaic
+		? mosaicDottedNames?.map(([dottedName]) => dottedName)
 		: [currentQuestion]
 
 	const isAnsweredMosaic =
+		isMosaic &&
 		currentQuestion &&
-		mosaicQuestion &&
 		questionsToSubmit
-			.map((question) => situation[question] != null)
+			?.map((question) =>
+				question !== null ? situation[question] != null : false
+			)
 			.some((bool) => bool === true)
 
 	const currentQuestionIsAnswered = isAnsweredMosaic
 		? true
-		: situation[currentQuestion] != null
+		: currentQuestion !== null
+		? situation[currentQuestion] != null
+		: undefined
+
+	const isMosaicSelection =
+		isAnsweredMosaic && mosaicParams['type'] === 'selection'
 
 	useEffect(() => {
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
-		if (isAnsweredMosaic && mosaicParams['type'] === 'selection') {
-			questionsToSubmit.map((question) =>
-				dispatch(updateSituation(question, situation[question] || 'non'))
+		if (isMosaicSelection) {
+			questionsToSubmit?.map((question) =>
+				dispatch(
+					updateSituation(
+						question,
+						question !== null ? situation[question] ?? 'non' : 'non'
+					)
+				)
 			)
 		}
 	}, [isAnsweredMosaic])
 
 	useEffect(() => {
 		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disappear. However, if the user deselect the button, without this hook,
-		// the default value is set back to the question value, but the user doesn't know as there is no "je ne sais pas" button anymore and nothing is selected
-		// This hook enables to set 0 to mosaic question if the mosaic has been answered and nothing is checked.
+		// the default value is set back to the question value,
+		// but the user doesn't know as there is no "je ne sais pas" button anymore and nothing
+		// is selected
+		// This hook enables to set 0 to mosaic question if the mosaic has been answered and
+		// nothing is checked.
 		const oneIsChecked = questionsToSubmit
-			.map((question) => situation[question] === 'oui')
+			?.map((question) =>
+				question !== null ? situation[question] === 'oui' : false
+			)
 			.some((bool) => bool === true)
 
 		if (
-			isAnsweredMosaic &&
-			mosaicParams['type'] === 'selection' &&
+			isMosaicSelection &&
 			!oneIsChecked &&
-			situation[mosaicQuestion.dottedName] !== 0
+			situation[mosaicRule.dottedName] !== 0
 		) {
-			dispatch(updateSituation(mosaicQuestion.dottedName, 0))
+			dispatch(updateSituation(mosaicRule.dottedName, 0))
 		}
 		if (
-			isAnsweredMosaic &&
-			mosaicParams['type'] === 'selection' &&
+			isMosaicSelection &&
 			oneIsChecked &&
-			situation[mosaicQuestion.dottedName] === 0
+			situation[mosaicRule.dottedName] === 0
 		) {
-			dispatch(updateSituation(mosaicQuestion.dottedName, undefined))
+			dispatch(updateSituation(mosaicRule.dottedName, undefined))
 		}
 	}, [isAnsweredMosaic, questionsToSubmit, situation])
 
 	const currentQuestionIndex = previousAnswers.findIndex(
-			(a) => a === unfoldedStep
-		),
-		currentIsNew = currentQuestionIndex < 0,
-		previousQuestion =
-			currentIsNew && previousAnswers.length > 0
-				? // it simply is the last answered question
-				  previousAnswers[previousAnswers.length - 1]
-				: // mosaics are exceptionnal, since they are similar questions grouped for the UI
-				mosaicQuestion
-				? // We'll explore the previous answers starting from the end, to find the first question that is not in the current mosaic
-				  [...previousAnswers].reverse().find((el, index) => {
-						const currentQuestionReversedIndex =
-							previousAnswers.length - currentQuestionIndex
-						return (
-							index > currentQuestionReversedIndex &&
-							// The previous question shouldn't be one of the current mosaic's questions
-							!questionsToSubmit.includes(el)
-						)
-				  })
-				: previousAnswers[currentQuestionIndex - 1]
+		(a) => a === unfoldedStep
+	)
+	const previousQuestion = getPreviousQuestion(
+		currentQuestionIndex,
+		previousAnswers,
+		mosaicRule != undefined,
+		questionsToSubmit
+	)
 
 	const isValidInput = (questionsToSubmit) => {
-		// we want this validation function to work for mosaic questions (we check that all the questions anwsers of a mosaic are valid)
+		// we want this validation function to work for mosaic questions
+		// (we check that all the questions anwsers of a mosaic are valid)
 		// we also want it work for questions with multiple notifications
 		const questionMatches = questionsToSubmit.map((question) => {
 			const notifications = getCurrentNotification(engine, question)
@@ -250,27 +292,30 @@ export default function Conversation({
 	}
 
 	const submit = (source: string) => {
-		// This piece of code enables to set all the checkbox of a mosaic to false when "Next" button is pressed (chen the question is submitted)
-		// It's important in case of someone arrives at the mosaic question, does not select anything and wants to submit "nothing".
-
-		// we don't check question validation status in the same map as the dispatch because we want all answers in mosaic question
+		// This piece of code enables to set all the checkbox of a mosaic to
+		// false when "Next" button is pressed (chen the question is submitted)
+		// It's important in case of someone arrives at the mosaic question,
+		// does not select anything and wants to submit "nothing".
+		// we don't check question validation status in the same map
+		// as the dispatch because we want all answers in mosaic question
 		// to be valid before any dispatch
-		if (!isValidInput(questionsToSubmit)) return null
-
-		questionsToSubmit.map((question) => {
-			dispatch({
-				type: 'STEP_ACTION',
-				name: 'fold',
-				step: question,
-				source,
+		if (isValidInput(questionsToSubmit)) {
+			questionsToSubmit?.map((question) => {
+				dispatch({
+					type: 'STEP_ACTION',
+					name: 'fold',
+					step: question,
+					source,
+				})
 			})
-		})
+		}
 	}
 	const setDefault = () =>
 		// TODO: Skiping a question shouldn't be equivalent to answering the
 		// default value (for instance the question shouldn't appear in the
 		// answered questions).
-		questionsToSubmit.map((question) =>
+		//
+		questionsToSubmit?.map((question) =>
 			dispatch(validateWithDefaultValue(question))
 		)
 
@@ -339,7 +384,9 @@ export default function Conversation({
 
 	const bilan = engine
 		? Math.round(
-				parseFloat((engine?.evaluate('bilan')?.nodeValue as string) || '')
+				parseFloat(
+					(engine?.evaluate(MODEL_ROOT_RULE_NAME)?.nodeValue as string) || ''
+				)
 		  )
 		: undefined
 
@@ -354,10 +401,6 @@ export default function Conversation({
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
 	}
 
-	if (noQuestionsLeft) {
-		return <SimulationEnding {...{ customEnd, customEndMessages }} />
-	}
-
 	const isCategoryFirstQuestion =
 		questionCategory &&
 		previousAnswers.find(
@@ -365,9 +408,9 @@ export default function Conversation({
 		) === undefined
 
 	const hasDescription =
-		((mosaicQuestion &&
-			(mosaicQuestion.description ||
-				rules[mosaicQuestion.dottedName].rawNode.description)) ||
+		((mosaicRule &&
+			(mosaicRule.description ||
+				rules[mosaicRule.dottedName].rawNode.description)) ||
 			rules[currentQuestion]?.rawNode.description) != null
 
 	const displayRespiration =
@@ -440,7 +483,8 @@ export default function Conversation({
 			<QuestionFinderWrapper {...{ finder, setFinder }} />
 			{orderByCategories && (
 				<Meta
-					title={rules[objectifs[0]].title + ' - ' + questionCategory?.title}
+					title={`${rules[objectifs[0]].title} - ${questionCategory?.title}`}
+					description={questionText}
 				/>
 			)}
 			<form
@@ -461,15 +505,17 @@ export default function Conversation({
 					>
 						<span
 							tabIndex="0"
-							id={'id-question-' + title(rules[currentQuestion])}
+							id={'id-question-' + currentQuestionId}
+							data-cypress-id={
+								mosaicRule ? 'mosaic-question' : 'simple-question'
+							}
 						>
 							{questionText}{' '}
 						</span>
 						{hasDescription && (
 							<ExplicableRule
 								dottedName={
-									(mosaicQuestion && mosaicQuestion.dottedName) ||
-									currentQuestion
+									(mosaicRule && mosaicRule.dottedName) || currentQuestion
 								}
 							/>
 						)}
@@ -495,6 +541,7 @@ export default function Conversation({
 									onClick={goToPrevious}
 									type="button"
 									className="ui__ simple small push-left button"
+									data-cypress-id="previous-question-button"
 								>
 									← <Trans>Précédent</Trans>
 								</button>

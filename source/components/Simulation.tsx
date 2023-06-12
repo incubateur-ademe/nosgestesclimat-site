@@ -1,39 +1,30 @@
 import Conversation, {
 	ConversationProps,
-} from 'Components/conversation/Conversation'
-import * as animate from 'Components/ui/animate'
+} from '@/components/conversation/Conversation'
+import * as animate from '@/components/ui/animate'
+
 import React from 'react'
 
 type SimulationProps = {
 	explanations?: React.ReactNode
 	results?: React.ReactNode
-	customEndMessages?: ConversationProps['customEndMessages']
 	showPeriodSwitch?: boolean
 	showLinkToForm?: boolean
-	orderByCategories: Array<Object>
+	animation?: keyof typeof animate
+	conversationProps: Partial<ConversationProps>
 }
-
 export default function Simulation({
 	explanations,
 	results,
-	customEndMessages,
-	customEnd,
-	orderByCategories,
-	showPeriodSwitch,
 	animation = 'appear',
-	questionHeadingLevel,
+	conversationProps,
 }: SimulationProps) {
 	const Animation = animate[animation]
 	return (
 		<>
 			<Animation delay={0.3}>
 				{results}
-				<Questions
-					customEnd={customEnd}
-					orderByCategories={orderByCategories}
-					customEndMessages={customEndMessages}
-					questionHeadingLevel={questionHeadingLevel}
-				/>
+				<Questions conversationProps={conversationProps} />
 				{explanations}
 			</Animation>
 		</>
@@ -41,13 +32,9 @@ export default function Simulation({
 }
 
 function Questions({
-	customEndMessages,
-	customEnd,
-	orderByCategories,
-	questionHeadingLevel,
+	conversationProps,
 }: {
-	customEndMessages?: ConversationProps['customEndMessages']
-	orderByCategories: Array<Object>
+	conversationProps: Partial<ConversationProps>
 }) {
 	return (
 		<>
@@ -60,12 +47,7 @@ function Questions({
 					border-radius: 0.6rem;
 				`}
 			>
-				<Conversation
-					orderByCategories={orderByCategories}
-					customEnd={customEnd}
-					customEndMessages={customEndMessages}
-					questionHeadingLevel={questionHeadingLevel}
-				/>
+				<Conversation {...conversationProps} />
 			</div>
 		</>
 	)

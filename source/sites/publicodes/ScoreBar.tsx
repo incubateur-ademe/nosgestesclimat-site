@@ -1,18 +1,25 @@
-import { useEngine } from 'Components/utils/EngineContext'
+import { matomoEventClickBanner } from '@/analytics/matomo-events'
+import {
+	Category,
+	correctValue,
+	isRootRule,
+	MODEL_ROOT_RULE_NAME,
+	splitName,
+} from '@/components/publicodesUtils'
+import ScoreExplanation from '@/components/ScoreExplanation'
+import { buildEndURL } from '@/components/SessionBar'
+import { lightenColor } from '@/components/utils/colors'
+import { useEngine } from '@/components/utils/EngineContext'
+import { MatomoContext } from '@/contexts/MatomoContext'
+import { AppState } from '@/reducers/rootReducer'
+import {
+	objectifsSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
 import { useContext, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { matomoEventClickBanner } from '../../analytics/matomo-events'
-import { correctValue, splitName } from '../../components/publicodesUtils'
-import ScoreExplanation from '../../components/ScoreExplanation'
-import { buildEndURL } from '../../components/SessionBar'
-import { lightenColor } from '../../components/utils/colors'
-import { MatomoContext } from '../../contexts/MatomoContext'
-import {
-	objectifsSelector,
-	situationSelector,
-} from '../../selectors/simulationSelectors'
 import HumanWeight, { DiffHumanWeight } from './HumanWeight'
 import PetrolScore from './PetrolScore'
 
@@ -24,14 +31,20 @@ const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 export default ({ actionMode = false, demoMode = false }) => {
 	const objectif =
-		actionMode || demoMode ? 'bilan' : useSelector(objectifsSelector)[0]
+		actionMode || demoMode
+			? MODEL_ROOT_RULE_NAME
+			: useSelector(objectifsSelector)[0]
+
 	// needed for this component to refresh on situation change :
 	const situation = useSelector(situationSelector)
 	const engine = useEngine()
-	const rules = useSelector((state) => state.rules),
-		evaluation = engine.evaluate(objectif),
-		{ nodeValue: rawNodeValue, dottedName, unit } = evaluation
-	const actionChoices = useSelector((state) => state.actionChoices)
+	const rules = useSelector((state: AppState) => state.rules)
+	const {
+		nodeValue: rawNodeValue,
+		dottedName,
+		unit,
+	} = engine.evaluate(objectif) as Category // NOTE(@EmileRolley): this is weird to have to cast the type to get the [dottedName]
+	const actionChoices = useSelector((state: AppState) => state.actionChoices)
 
 	const nodeValue = correctValue({ nodeValue: rawNodeValue, unit })
 
@@ -42,12 +55,12 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const [openExplanation, setOpenExplanation] = useState(false)
 
 	const { trackEvent } = useContext(MatomoContext)
-	const tutorials = useSelector((state) => state.tutorials)
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 
 	const situationLength = Object.keys(situation).length
 
 	useEffect(() => {
-		if (objectif === 'bilan' && !tutorials['scoreExplanation']) {
+		if (isRootRule(objectif) && !tutorials['scoreExplanation']) {
 			setTimeout(() => setOpenExplanation(true), 1200)
 		}
 	}, [tutorials])

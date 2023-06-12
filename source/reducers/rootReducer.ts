@@ -1,19 +1,16 @@
-import { Action } from 'Actions/actions'
-import { omit } from 'Source/utils'
+import { Action } from '@/actions/actions'
+import { omit } from '@/utils'
 
-import reduceReducers from 'reduce-reducers'
-import { CombinedState, combineReducers, Reducer } from 'redux'
-import {
-	Localisation,
-	SupportedRegions,
-} from '../components/localisation/utils'
-import { DottedName } from '../rules/index'
-import { objectifsSelector } from '../selectors/simulationSelectors'
+import { Localisation, SupportedRegions } from '@/components/localisation/utils'
+import { DottedName } from '@/components/publicodesUtils'
+import { objectifsSelector } from '@/selectors/simulationSelectors'
 import {
 	SavedSimulation,
 	SavedSimulationList,
-} from '../selectors/storageSelectors'
-import { generateSimulationId } from '../storage/persistSimulation'
+} from '@/selectors/storageSelectors'
+import { generateSimulationId } from '@/storage/persistSimulation'
+import reduceReducers from 'reduce-reducers'
+import { CombinedState, combineReducers, Reducer } from 'redux'
 import storageRootReducer from './storageReducer'
 
 function explainedVariable(
@@ -263,21 +260,34 @@ function conference(state = null, { type, room, ydoc, provider }) {
 	} else return state
 }
 
-//Tutorials are the main tutorial for the /simulateur/bilan simulation,
-//but also the small category pages displayed before starting the category, as a pause for the user
-function tutorials(state = {}, { type, id, unskip }) {
+export type TutorialStateStatus = 'skip' | 'done' | undefined
+export type TutorialState = {
+	[id: string]: TutorialStateStatus
+	/** fromRule is used to know if the tutorial was triggered by a specific rule
+	 (appart from 'bilan') and if so, to know if it was skipped or not.*/
+	fromRule?: TutorialStateStatus
+}
+
+// Tutorials are the main tutorial for the /simulateur/bilan simulation,
+// but also the small category pages displayed before starting the category,
+// as a pause for the user
+function tutorials(state: TutorialState = {}, { type, id, unskip, fromRule }) {
 	if (type === 'SKIP_TUTORIAL') {
-		return { ...state, [id]: unskip ? undefined : 'skip' }
+		return {
+			...state,
+			[id]: unskip ? undefined : 'skip',
+			fromRule: !fromRule ? state.fromRule : fromRule,
+		}
 	} else if (type === 'RESET_INTRO_TUTORIAL') {
 		return Object.fromEntries(
 			Object.entries(state)
-				.map(([k, v]) => (k.includes('testIntro') ? null : [k, v]))
+				.map(([k, v]) => (k.includes('testIntro') ? undefined : [k, v]))
 				.filter(Boolean)
 		)
 	} else if (type === 'RESET_CATEGORY_TUTORIALS') {
 		return Object.fromEntries(
 			Object.entries(state)
-				.map(([k, v]) => (k.includes('testCategory') ? null : [k, v]))
+				.map(([k, v]) => (k.includes('testCategory') ? undefined : [k, v]))
 				.filter(Boolean)
 		)
 	} else return state
@@ -334,8 +344,6 @@ function hasSubscribedToNewsletter(state = false, { type }) {
 // parsed=false will avoid the rules being parsed, which is a heavy operation
 export type RulesOptions = { optimized: boolean; parsed: boolean }
 
-//TODO set to false by default in order to go to production. Forced until this error is fixed and tests are run
-// https://github.com/EmileRolley/publiopti/issues/4
 export const defaultRulesOptions = { optimized: true, parsed: true }
 
 const defaultEngineState = { state: null, options: defaultRulesOptions }
@@ -426,7 +434,7 @@ function ratings(
 function currentSimulationId(
 	state: string | null = null,
 	action: Action
-): string | null {
+): string | undefined {
 	switch (action.type) {
 		case 'SET_CURRENT_SIMULATION':
 			return action.simulation.id
@@ -447,9 +455,9 @@ export type AppState = CombinedState<{
 	conference: never
 	survey: never
 	iframeOptions: any
-	tutorials: {}
+	tutorials: TutorialState
 	storedTrajets: any
-	storedAmortissementAvion: {}
+	storedAmortissementAvion: any
 	thenRedirectTo: any
 	tracking: {
 		endEventFired: boolean
@@ -457,10 +465,10 @@ export type AppState = CombinedState<{
 		progress50EventFired: boolean
 		progress90EventFired: boolean
 	}
-	localisation: Localisation | undefined
+	localisation?: Localisation
 	sessionLocalisationBannersRead: any
 	pullRequestNumber: any
-	engineState: never
+	engineState: EngineState
 	currentLang: any
 	supportedRegions: SupportedRegions
 	ratings: SavedSimulation['ratings']

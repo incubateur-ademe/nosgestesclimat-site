@@ -15,7 +15,7 @@ export default function Input({
 	onChange,
 	onSubmit,
 	id,
-	value,
+	nodeValue: value,
 	missing,
 	unit,
 	autoFocus,
