@@ -24,11 +24,14 @@ https://nosgestesclimat.fr/actions/plus
 `
 
 /* Unfortunately, we can't yet import this function from engine/rules */
-const encodeRuleName = (name) =>
+const encodeRuleNameURL = (name) =>
 	name
-		.replace(/\s\.\s/g, '/')
-		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
-		.replace(/\s/g, '-')
+		.replaceAll(/\s\.\s/g, '/')
+		.replaceAll(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
+		.replaceAll(/\s/g, '-')
+
+const encodeRuleNameSearchParam = (name) =>
+	encodeRuleNameURL(name).replaceAll('/', '.')
 
 fs.writeFileSync(destinationURL, baseURLs, 'utf8')
 
@@ -41,7 +44,7 @@ const data = JSON.parse(rawdata)
 const newsURL = Object.values(data)
 	.map(
 		(version) =>
-			`https://nosgestesclimat.fr/nouveautés/${encodeRuleName(version.name)}`
+			`https://nosgestesclimat.fr/nouveautés/${encodeRuleNameURL(version.name)}`
 	)
 	.join('\n')
 fs.appendFileSync(destinationURL, newsURL + '\n', 'utf8')
@@ -55,7 +58,7 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 		const documentationURLs = ruleNames
 			.map(
 				(dottedName) =>
-					`https://nosgestesclimat.fr/documentation/${encodeRuleName(
+					`https://nosgestesclimat.fr/documentation/${encodeRuleNameURL(
 						dottedName
 					)}`
 			)
@@ -69,7 +72,9 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 			})
 			.map(
 				(dottedName) =>
-					`http://localhost:8080/simulateur/bilan/${encodeRuleName(dottedName)}`
+					`http://localhost:8080/simulateur/bilan?question=${encodeRuleNameSearchParam(
+						dottedName
+					)}`
 			)
 			.join('\n')
 		fs.appendFileSync(

@@ -268,7 +268,12 @@ export function relegateCommonCategories(array) {
 	return relegate(keys, array)
 }
 
-/** Like publicodes's encodeRuleName function but use '.' instead of '/' */
+/**
+ * Like publicodes's encodeRuleName function but use '.' instead of '/'
+ *
+ * NOTE(@EmileRolley): if this function is updated, please update the
+ * generateSitemap.js script accordingly -- or find a way to factorize it.
+ */
 export function encodeRuleNameToSearchParam(
 	dottedName: DottedName | null
 ): string | undefined {
