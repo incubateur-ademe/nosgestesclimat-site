@@ -19,7 +19,7 @@ export default function Meta({
 	image,
 	url,
 	children,
-}: PropType) {
+}: React.PropsWithChildren | PropType) {
 	const { pathname } = useLocation()
 	return (
 		<Helmet>

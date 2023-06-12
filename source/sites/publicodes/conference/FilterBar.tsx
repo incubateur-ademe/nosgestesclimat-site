@@ -113,6 +113,7 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 									const choices = buildVariantTree(engine, rule)
 									return (
 										<div
+											key={rule}
 											aria-labelledby={'id-filtre-' + choices.title}
 											css={`
 												max-width: 10rem;
@@ -135,18 +136,29 @@ export default ({ threshold, setThreshold, setContextFilter }) => {
 													`}
 												>
 													<option value="">{choices.title}</option>
-													{choices.children.map((node, index) => (
-														<option
-															key={node.dottedName + '-' + index}
-															value={
-																node.dottedName.split(
-																	node.dottedName + ' . '
-																)[1]
-															}
-														>
-															{node.title}
-														</option>
-													))}
+													{choices.children ? (
+														choices.children.map((node, index) => (
+															<option
+																key={node.dottedName + '-' + index}
+																value={
+																	node.dottedName.split(
+																		node.dottedName + ' . '
+																	)[1]
+																}
+															>
+																{node.title}
+															</option>
+														))
+													) : (
+														<>
+															<option key={rule + '- oui'} value="oui">
+																Oui
+															</option>
+															<option key={rule + '- non'} value="non">
+																Non
+															</option>
+														</>
+													)}
 												</select>
 											</label>
 										</div>

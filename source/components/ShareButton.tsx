@@ -99,6 +99,10 @@ ${decodeURIComponent(url)}`
 					}
 				)
 			}}
+			css={`
+				padding-left: 0 !important;
+				padding-right: 0 !important;
+			`}
 		>
 			<ShareButtonIcon />
 			{!copySuccess ? (
@@ -119,6 +123,6 @@ const Button = styled.button`
 	margin: 0 auto;
 	display: flex;
 	align-items: center;
-	font-size: 100%;
+	font-size: 1rem;
 	${(props) => `color: ${props.color}`}
 `

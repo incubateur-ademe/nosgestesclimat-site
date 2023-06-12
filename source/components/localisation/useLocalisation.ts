@@ -1,3 +1,4 @@
+import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
@@ -19,7 +20,7 @@ export default () => {
 		}
 
 		const asyncFecthAPI = async () => {
-			await fetch(API)
+			await fetch(`${NETLIFY_FUNCTIONS_URL}${API}`)
 				.then((res) => {
 					const json = res.json()
 					return json

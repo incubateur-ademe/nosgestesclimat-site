@@ -1,3 +1,4 @@
+import { AppState } from '@/reducers/rootReducer'
 import { useContext, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -42,7 +43,8 @@ export default ({
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 
-	const survey = useSelector((state) => state.survey)
+	const survey = useSelector((state: AppState) => state.survey)
+
 	const contextRules = existContext && survey.contextRules
 
 	const completedTests = getElements(
@@ -75,6 +77,8 @@ export default ({
 	const progressList = filteredRawTests.map((el) => {
 			const contextCompleted =
 				contextRules &&
+				el.context &&
+				el.context.length !== 0 &&
 				!(
 					Object.keys(el.context).length ===
 					Object.values(contextRules).filter((rule) => rule?.question).length
@@ -141,32 +145,28 @@ export default ({
 						</div>
 					</div>
 				</div>
-				{filteredRawTests.length > 0 && (
-					<small>
-						<Checkbox
-							name="setRealTimeMode"
-							id="setRealTimeMode"
-							label="Afficher seulement les simulations terminées"
-							showLabel
-							checked={!realTimeMode}
-							onChange={() => {
-								trackEvent(
-									getMatomoEventModeGroupeRealtimeActivation(realTimeMode)
-								)
-								setRealTimeMode(!realTimeMode)
-							}}
-						/>
-					</small>
-				)}
-				{displayedTests.length > 0 && (
-					<WithEngine>
-						<FilterBar
-							threshold={threshold}
-							setThreshold={setThreshold}
-							setContextFilter={setContextFilter}
-						/>
-					</WithEngine>
-				)}
+				<small>
+					<Checkbox
+						name="setRealTimeMode"
+						id="setRealTimeMode"
+						label="Afficher seulement les simulations terminées"
+						showLabel
+						checked={!realTimeMode}
+						onChange={() => {
+							trackEvent(
+								getMatomoEventModeGroupeRealtimeActivation(realTimeMode)
+							)
+							setRealTimeMode(!realTimeMode)
+						}}
+					/>
+				</small>
+				<WithEngine>
+					<FilterBar
+						threshold={threshold}
+						setThreshold={setThreshold}
+						setContextFilter={setContextFilter}
+					/>
+				</WithEngine>
 				{displayedTests.length > 0 && (
 					<div>
 						<ul
@@ -306,7 +306,7 @@ const filterElements = (rawElements, contextFilter) =>
 			([key, value]) =>
 				!value ||
 				value === '' ||
-				el.context[key]?.toLowerCase().includes(value.toLowerCase())
+				el?.context?.[key]?.toLowerCase()?.includes(value?.toLowerCase())
 		)
 		return matches.every((bool) => bool === true)
 	})

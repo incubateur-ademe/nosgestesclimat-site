@@ -335,6 +335,11 @@ function storedAmortissementAvion(
 	} else return state
 }
 
+function hasSubscribedToNewsletter(state = false, { type }) {
+	if (type === 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER') return true
+	else return state
+}
+
 // optimized=true will load optimized version of the rules, treated by publiopti
 // parsed=false will avoid the rules being parsed, which is a heavy operation
 export type RulesOptions = { optimized: boolean; parsed: boolean }
@@ -467,6 +472,7 @@ export type AppState = CombinedState<{
 	currentLang: any
 	supportedRegions: SupportedRegions
 	ratings: SavedSimulation['ratings']
+	hasSubscribedToNewsletter: boolean
 }>
 
 const mainReducer = (state: any, action: Action) =>
@@ -496,6 +502,7 @@ const mainReducer = (state: any, action: Action) =>
 		supportedRegions,
 		enquête,
 		ratings,
+		hasSubscribedToNewsletter,
 	})(state, action)
 
 export default reduceReducers<RootState>(

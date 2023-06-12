@@ -46,14 +46,14 @@ export default function () {
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
 	}
-	const encodedDottedName = pathname.split('/documentation/')[1],
-		dottedName = utils.decodeRuleName(encodedDottedName)
+	const encodedDottedName = pathname.split('/documentation/')[1]
+	const dottedName = utils.decodeRuleName(encodedDottedName)
 
-	if (!dottedName || !rules[dottedName]) {
+	if (!dottedName) {
 		return <Navigate to="/404" replace />
 	}
 
-	const rule = rules[dottedName]
+	const rule = rules[dottedName] ?? {}
 
 	return (
 		<div

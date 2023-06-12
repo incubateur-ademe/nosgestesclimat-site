@@ -72,6 +72,9 @@ type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideNotificationAction = ReturnType<typeof hideNotification>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
 type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
+type SetHasSubscribedToNewsletter = {
+	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER'
+}
 
 export const resetSimulation = () =>
 	({
@@ -280,4 +283,8 @@ export const updateEventsSent = (eventSent: {
 }): AnyAction => ({
 	type: 'UPDATE_EVENTS_SENT',
 	eventSent,
+})
+
+export const setHasSubscribedToNewsletter = (): AnyAction => ({
+	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER',
 })
