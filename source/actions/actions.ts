@@ -1,10 +1,12 @@
-import { Rating } from '@/selectors/storageSelectors'
-import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { Localisation } from '@/components/localisation/utils'
+import {
+	RootState,
+	Simulation,
+	SimulationConfig,
+	TutorialStateStatus,
+} from '@/reducers/rootReducer'
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { DottedName } from 'Rules'
-import { Localisation } from '../components/localisation/utils'
-import { Simulation } from '../reducers/rootReducer'
 
 export type Action =
 	| ResetSimulationAction
@@ -70,6 +72,9 @@ type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
 type HideNotificationAction = ReturnType<typeof hideNotification>
 type ExplainVariableAction = ReturnType<typeof explainVariable>
 type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
+type SetHasSubscribedToNewsletter = {
+	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER'
+}
 
 export const resetSimulation = () =>
 	({
@@ -186,10 +191,15 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 		value,
 	} as const)
 
-export const skipTutorial = (id: string, unskip: boolean) => ({
+export const skipTutorial = (
+	id: string,
+	unskip: boolean = false,
+	fromRule: TutorialStateStatus
+) => ({
 	type: 'SKIP_TUTORIAL',
 	id,
 	unskip,
+	fromRule,
 })
 
 export const setTrackingVariable = (name: string, value: boolean) => ({
@@ -273,4 +283,8 @@ export const updateEventsSent = (eventSent: {
 }): AnyAction => ({
 	type: 'UPDATE_EVENTS_SENT',
 	eventSent,
+})
+
+export const setHasSubscribedToNewsletter = (): AnyAction => ({
+	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER',
 })

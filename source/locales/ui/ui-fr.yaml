@@ -381,7 +381,7 @@ entries:
   publicodes.Profil.locationDonnées: <0>Où sont mes données ? </0>Vos données sont stockées dans votre navigateur, vous avez donc le contrôle total sur elles. <2></2>
   publicodes.Profil.recap: Vous avez terminé le test à {{percentFinished}} % ({{answeredQuestionsLength}} questions) et choisi {{actionChoicesLength}} actions.
   publicodes.Profil.simulations: Chaque simulation que vous faite est sauvegardée dans votre navigateur Web. Vous êtes le seul à y avoir accès.
-  publicodes.SimulationMissing.personnas: 💡 Vous pouvez aussi continuer avec un <2>profil type</2>.
+  publicodes.SimulationMissing.personnas: Vous pouvez aussi continuer avec un <2>profil type</2>.
   publicodes.SimulationMissing.simulationManquante: Pour débloquer ce parcours, vous devez d'abord terminer le test.
   publicodes.TranslationContribution.commentaireAugmenté: |-
 
@@ -533,3 +533,20 @@ entries:
   Le blog: Le blog
   "Oups, nous n'avons pas d'article correspondant": Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
+  <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>: <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>
+  <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>: <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>
+  Entrez votre adresse email: Entrez votre adresse email
+  Merci pour votre inscription !: Merci pour votre inscription !
+  mon empreinte carbone: mon empreinte carbone
+  Mon empreinte carbone: Mon empreinte carbone
+  mon objectif annuel: mon objectif annuel
+  'politique de confidentialité, nouvelle fenêtre': politique de confidentialité, nouvelle fenêtre
+  Sauvegarder mes résultats: Sauvegarder mes résultats
+  Vous allez recevoir un email de notre part sous peu.: Vous allez recevoir un email de notre part sous peu.
+  Vous pourrez choisir de ne plus recevoir nos emails à tout moment: Vous pourrez choisir de ne plus recevoir nos emails à tout moment
+  Vous souhaitez recevoir vos résultats ?: Vous souhaitez recevoir vos résultats ?
+  Blog: Blog
+  Générales: Générales
+  partages du site: partages du site
+  simulations terminées: simulations terminées
+  visites sur la page d'accueil: visites sur la page d'accueil

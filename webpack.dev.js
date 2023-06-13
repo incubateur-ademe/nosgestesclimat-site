@@ -1,7 +1,6 @@
 const webpack = require('webpack')
 const ReactRefreshWebpackPlugin = require('@pmmmwh/react-refresh-webpack-plugin')
 const path = require('path')
-require('dotenv').config()
 
 const {
 	commonLoaders,
@@ -12,6 +11,7 @@ const {
 
 module.exports = {
 	...common,
+	devtool: 'eval-source-map',
 	module: {
 		rules: [...commonLoaders('development'), styleLoader('style-loader')],
 	},
@@ -27,10 +27,11 @@ module.exports = {
 		...(common.plugins || []),
 		...HTMLPlugins({ injectTrackingScript: true }),
 		new webpack.DefinePlugin({
-			NODE_ENV: JSON.stringify('development'),
-			SERVER_URL: JSON.stringify(process.env.SERVER_URL),
-			CONTEXT: JSON.stringify(process.env.CONTEXT),
-			SENTRY_DSN: JSON.stringify(process.env.SENTRY_DSN),
+			'process.env.NODE_ENV': JSON.stringify('development'),
+			'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
+			'process.env.CONTEXT': JSON.stringify(process.env.CONTEXT),
+			'process.env.SENTRY_DSN': JSON.stringify(process.env.SENTRY_DSN),
+			'process.env.ENCRYPTION_KEY': JSON.stringify(process.env.ENCRYPTION_KEY),
 		}),
 		new ReactRefreshWebpackPlugin(),
 		/*

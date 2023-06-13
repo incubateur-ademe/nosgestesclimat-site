@@ -1,9 +1,9 @@
+import { getMatomoEventParcoursTestCategoryStarted } from '@/analytics/matomo-events'
+import { MatomoContext } from '@/contexts/MatomoContext'
+import useKeypress from '@/hooks/useKeyPress'
 import { motion } from 'framer-motion'
 import { useContext, useEffect, useRef } from 'react'
 import { Trans } from 'react-i18next'
-import { getMatomoEventParcoursTestCategoryStarted } from '../../analytics/matomo-events'
-import { MatomoContext } from '../../contexts/MatomoContext'
-import useKeypress from '../../hooks/useKeyPress'
 import SafeCategoryImage from '../SafeCategoryImage'
 
 // Naive implementation - in reality would want to attach
@@ -99,7 +99,9 @@ export default ({ dismiss, questionCategory }) => {
 					},
 				}}
 			>
-				<h2>{questionCategory.title}</h2>
+				<h2 data-cypress-id={`category-title-${questionCategory.dottedName}`}>
+					{questionCategory.title}
+				</h2>
 				<SafeCategoryImage element={questionCategory} />
 				<button
 					className="ui__ plain button attention"

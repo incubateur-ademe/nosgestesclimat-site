@@ -4,20 +4,23 @@ import Route404 from '@/components/Route404'
 import { sessionBarMargin } from '@/components/SessionBar'
 import '@/components/ui/index.css'
 import * as Sentry from '@sentry/react'
-import React, { Suspense, useContext, useEffect } from 'react'
+import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
+import { Store } from 'redux'
+import { setDifferentSituation } from '../../actions/actions'
 import { matomoEventInteractionIframe } from '../../analytics/matomo-events'
 import AnimatedLoader from '../../AnimatedLoader'
 import Footer from '../../components/Footer'
 import LangSwitcher from '../../components/LangSwitcher'
 import LocalisationMessage from '../../components/localisation/LocalisationMessage'
 import { MatomoContext } from '../../contexts/MatomoContext'
+import { useLoadSimulationFromURL } from '../../hooks/useLoadSimulationFromURL'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import Provider from '../../Provider'
-import { AppState } from '../../reducers/rootReducer'
+import { AppState, RootState } from '../../reducers/rootReducer'
 import { WithEngine } from '../../RulesProvider'
 import { fetchUser, persistUser } from '../../storage/persistSimulation'
 import { getIsIframe } from '../../utils'
@@ -139,6 +142,7 @@ export default function Root() {
 
 	// We retrieve the User object from local storage to initialize the store.
 	const persistedUser = fetchUser()
+
 	// We use the 'currentSimulationId' pointer to retrieve the latest simulation in the list.
 	const persistedSimulation = persistedUser.simulations.filter(
 		(simulation) => simulation.id === persistedUser.currentSimulationId
@@ -170,12 +174,13 @@ export default function Root() {
 		<Provider
 			sitePaths={paths}
 			reduxMiddlewares={[]}
-			onStoreCreated={(store) => {
+			onStoreCreated={(store: Store<RootState>) => {
 				persistUser(store)
 			}}
 			initialStore={{
+				// If a simulation is loaded via URL, we use it as the current simulation
 				simulation: persistedSimulation,
-				simulations: persistedUser.simulations,
+				simulations: [...persistedUser.simulations],
 				currentSimulationId: persistedUser.currentSimulationId,
 				tutorials: persistedUser.tutorials,
 				localisation: persistedUser.localisation,
@@ -189,6 +194,8 @@ export default function Root() {
 				survey: persistedSimulation?.survey,
 				enquête: persistedSimulation?.enquête,
 				ratings: persistedSimulation?.ratings,
+				hasSubscribedToNewsletter:
+					persistedUser.hasSubscribedToNewsletter ?? false,
 			}}
 		>
 			<Main />
@@ -199,13 +206,29 @@ export default function Root() {
 const Main = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const { i18n, t } = useTranslation()
-	const [searchParams, _] = useSearchParams()
+	const { i18n } = useTranslation()
+	const [searchParams] = useSearchParams()
 	const isHomePage = location.pathname === '/'
 	const isTuto = location.pathname.startsWith('/tutoriel')
+	const [simulationFromUrlHasBeenSet, setSimulationFromUrlHasBeenSet] =
+		useState(false)
 
 	const { trackPageView } = useContext(MatomoContext)
 	const largeScreen = useMediaQuery('(min-width: 800px)')
+
+	// Or we retrive the simulation from the URL
+	const simulationFromURL = useLoadSimulationFromURL()
+
+	useEffect(() => {
+		if (simulationFromURL && !simulationFromUrlHasBeenSet) {
+			setSimulationFromUrlHasBeenSet(true)
+			dispatch(setDifferentSituation(simulationFromURL))
+		}
+	}, [dispatch, simulationFromURL, simulationFromUrlHasBeenSet])
+
+	if (simulationFromURL && !simulationFromURL?.situation) {
+		simulationFromURL.situation = {}
+	}
 
 	useEffect(() => {
 		trackPageView(location)
@@ -359,6 +382,16 @@ const Router = () => {
 			/>
 			<Route
 				path="/fin/*"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<WithEngine>
+							<FinLazy />
+						</WithEngine>
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/mon-empreinte-carbone/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<WithEngine>

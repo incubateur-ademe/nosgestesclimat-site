@@ -129,7 +129,7 @@ export default ({ details, color, value, score, nextSlide }) => {
 				>
 					<div css="margin: .4rem 0; font-style: italic;">
 						<NeutralH1 id="myFootprint">
-							<Trans>mon empreinte annuelle</Trans>
+							<Trans>mon empreinte carbone</Trans>
 						</NeutralH1>
 						<img
 							src="/images/thin-arrow-left.svg"
@@ -206,7 +206,7 @@ export default ({ details, color, value, score, nextSlide }) => {
 							`}
 						>
 							<div id="objective">
-								<Trans>mon objectif</Trans>
+								<Trans>mon objectif annuel</Trans>
 								<ObjectiveExplanation />
 							</div>
 							<img

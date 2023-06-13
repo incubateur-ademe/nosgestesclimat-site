@@ -127,3 +127,7 @@ export const isPersonaSelector = createSelector(
 	[currentSimulationSelector],
 	(simulation) => simulation?.persona != null
 )
+
+export const hasSubscribedToNewsletterSelector = (state: RootState) => {
+	return state.hasSubscribedToNewsletter ?? ''
+}

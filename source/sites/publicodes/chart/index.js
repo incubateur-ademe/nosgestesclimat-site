@@ -8,6 +8,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { objectifsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
 import { useNextQuestions } from '../../../hooks/useNextQuestion'
+import { getFocusedCategoryURLSearchParams } from '../utils'
 import Bar from './Bar'
 
 export default ({
@@ -25,7 +26,7 @@ export default ({
 	const categories = extractCategories(rules, engine, details).map(
 		(category) => ({
 			...category,
-			abbreviation: rules[category.dottedName].abréviation,
+			abbreviation: rules[category.dottedName]?.abréviation,
 		})
 	)
 	const { pathname } = useLocation(),
@@ -112,10 +113,14 @@ export default ({
 												cursor: pointer;
 											`}
 											title={
-												t('N\'afficher que les questions ') + category.dottedName
+												t("N'afficher que les questions ") + category.dottedName
 											}
 											onClick={() =>
-												navigate(`${pathname}?catégorie=${category.dottedName}`)
+												navigate(
+													`${pathname}?${getFocusedCategoryURLSearchParams(
+														category.dottedName
+													)}`
+												)
 											}
 										>
 											{bar}

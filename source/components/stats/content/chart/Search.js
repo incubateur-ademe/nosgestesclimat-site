@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 import FancySelect from '../../utils/FancySelect'
 
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { range } from '../../../../utils'
 
 const Wrapper = styled.div`
@@ -14,11 +14,11 @@ const Wrapper = styled.div`
 	}
 `
 export default function Search(props) {
-	const { t, i18n } = useTranslation()
+	const { t } = useTranslation()
 
 	return (
 		<Wrapper>
-			<Trans>Nombre de visites pour les</Trans>{' '}
+			Nombre de {props.elementAnalysedTitle} pour les{' '}
 			<FancySelect
 				fancy
 				value={props.date}

@@ -5,7 +5,7 @@ import ShareButton from '../../../components/ShareButton'
 import { useEngine } from '../../../components/utils/EngineContext'
 import { range } from '../../../utils'
 
-export default ({ textColor, showResult }) => {
+export default ({ textColor, showResult, label }) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const categories = extractCategories(rules, engine).map((category) => ({
@@ -24,7 +24,7 @@ export default ({ textColor, showResult }) => {
 				url={'https://nosgestesclimat.fr'}
 				title={'Nos Gestes Climat'}
 				color={textColor}
-				label={t('Partager mes résultats')}
+				label={label ?? t('Partager mes résultats')}
 			/>
 		</div>
 	)

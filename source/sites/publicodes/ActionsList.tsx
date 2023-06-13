@@ -1,11 +1,14 @@
-import { splitName } from 'Components/publicodesUtils'
-import { EngineContext } from 'Components/utils/EngineContext'
+import {
+	extractCategoriesNamespaces,
+	splitName,
+} from '@/components/publicodesUtils'
+import { EngineContext } from '@/components/utils/EngineContext'
+import { AppState } from '@/reducers/rootReducer'
+import { answeredQuestionsSelector } from '@/selectors/simulationSelectors'
+import { useQuery } from '@/utils'
 import { useContext, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { extractCategoriesNamespaces } from '../../components/publicodesUtils'
-import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
-import { useQuery } from '../../utils'
 import ActionsOptionsBar from './ActionsOptionsBar'
 import ActionTutorial from './ActionTutorial'
 import AllActions from './AllActions'
@@ -23,12 +26,12 @@ export default ({ display }) => {
 	const metric = useQuery().get('métrique')
 	const category = useQuery().get('catégorie')
 
-	const rules = useSelector((state) => state.rules)
+	const rules = useSelector((state: AppState) => state.rules)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
 	const [radical, setRadical] = useState(true)
 
-	const tutorials = useSelector((state) => state.tutorials)
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 
 	const [focusedAction, focusAction] = useState(null)
 

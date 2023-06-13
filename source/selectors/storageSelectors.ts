@@ -1,4 +1,4 @@
-import { RootState, Simulation } from 'Reducers/rootReducer'
+import { RootState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
 import { DottedName } from 'Rules'
 import { Lang } from '../locales/translation'
 
@@ -18,6 +18,9 @@ export type SavedSimulation = {
 	url?: string
 	date?: Date
 	id?: string
+	config: SimulationConfig
+	hiddenNotifications: Array<string>
+	targetUnit: string
 }
 
 // This type is used to describe the old format of the simulation stored in users' local storage.
@@ -38,6 +41,7 @@ export type User = {
 	tutorials: Object
 	currentLang: Lang
 	localisation: Object | undefined
+	hasSubscribedToNewsletter: boolean
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list

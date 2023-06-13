@@ -1,22 +1,26 @@
-import { useSelector } from 'react-redux'
-import { getRelatedMosaicInfosIfExists } from '../../../components/conversation/RuleInput'
 import {
+	getRelatedMosaicInfosIfExists,
+	NGCRuleNode,
+	NGCRulesNodes,
 	parentName,
 	questionCategoryName,
-} from '../../../components/publicodesUtils'
-import { useEngine } from '../../../components/utils/EngineContext'
-import toCSV from '../../../components/utils/toCSV'
+} from '@/components/publicodesUtils'
+import { useEngine } from '@/components/utils/EngineContext'
+import toCSV from '@/components/utils/toCSV'
+import { AppState } from '@/reducers/rootReducer'
+import Engine from 'publicodes'
+import { useSelector } from 'react-redux'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
 export default () => {
-	const rules = useSelector((state) => state.rules)
+	const rules: NGCRulesNodes = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
 	const questionRules = Object.entries(rules)
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
 		.filter((el) => el && el.question)
 
 	const jsonList = questionRules.map((rule) => {
-		const { type, mosaic } = getQuestionType(engine, rules, rule)
+		const { type, mosaic } = getQuestionType(rules, rule)
 		const dependenciesData = computeDependencies(engine, rule)
 
 		return {
@@ -85,13 +89,8 @@ export default () => {
 	)
 }
 
-const getQuestionType = (engine, rules, rule) => {
-	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
-		engine,
-		rules,
-		rule.dottedName
-	)
-	console.log(ruleMosaicInfos)
+const getQuestionType = (rules: NGCRulesNodes, rule: NGCRuleNode) => {
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.dottedName)
 	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
 
 	const type = rule.mosaique
@@ -105,15 +104,17 @@ const getQuestionType = (engine, rules, rule) => {
 		: '☑️ Oui/Non'
 	return { type, mosaic: ruleMosaicInfos }
 }
-const computeDependencies = (engine, rule) => {
+
+const computeDependencies = (engine: Engine, rule: NGCRuleNode) => {
 	const { missingVariables } = engine.evaluate(rule.dottedName)
 	const entries = Object.entries(missingVariables).filter(
 		([k]) => k !== rule.dottedName
 	)
 	return entries
 }
+
 const QuestionDescription = ({ engine, rule, rules }) => {
-	const { type, mosaic } = getQuestionType(engine, rules, rule)
+	const { type, mosaic } = getQuestionType(rules, rule)
 	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
 		categoryLetter = category.titre[0]
 

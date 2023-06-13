@@ -1,8 +1,12 @@
+import { splitName } from '@/components/publicodesUtils'
+import Simulation from '@/components/Simulation'
+import { EngineContext } from '@/components/utils/EngineContext'
+import { Markdown } from '@/components/utils/markdown'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { useNextQuestions } from '@/hooks/useNextQuestion'
+import { AppState } from '@/reducers/rootReducer'
 import { setSimulationConfig } from 'Actions/actions'
-import { splitName } from 'Components/publicodesUtils'
-import Simulation from 'Components/Simulation'
-import { Markdown } from 'Components/utils/markdown'
-import { ScrollToTop } from 'Components/utils/Scroll'
 import { utils } from 'publicodes'
 import { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
@@ -10,9 +14,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import { EngineContext } from '../../components/utils/EngineContext'
-import Meta from '../../components/utils/Meta'
-import { useNextQuestions } from '../../hooks/useNextQuestion'
 import { questionConfig } from './questionConfig'
 
 const { decodeRuleName, encodeRuleName } = utils
@@ -22,10 +23,10 @@ export default ({}) => {
 
 	const { t } = useTranslation()
 
-	const rules = useSelector((state) => state.rules)
+	const rules = useSelector((state: AppState) => state.rules)
 	const nextQuestions = useNextQuestions()
 	const dottedName = decodeRuleName(encodedName)
-	const configSet = useSelector((state) => state.simulation?.config)
+	const configSet = useSelector((state: AppState) => state.simulation?.config)
 
 	// TODO here we need to apply a rustine to accommodate for this issue
 	// https://github.com/betagouv/mon-entreprise/issues/1316#issuecomment-758833973
@@ -115,11 +116,11 @@ export default ({}) => {
 						<Trans>Personnalisez cette estimation</Trans>
 					</h3>
 					<Simulation
-						showConversation
-						customEnd={<div />}
-						targets={<div />}
 						explanations={null}
-						questionHeadingLevel="4"
+						conversationProps={{
+							customEnd: <div />,
+							questionHeadingLevel: 4,
+						}}
 					/>
 				</>
 			)}

@@ -1,5 +1,5 @@
+import { AnimatePresence, motion } from 'framer-motion'
 import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import styled from 'styled-components'
 
 const variants = {
@@ -7,18 +7,21 @@ const variants = {
 		return {
 			x: direction > 0 ? 1000 : -1000,
 			opacity: 0,
+			position: 'absolute',
 		}
 	},
 	center: {
 		zIndex: 1,
 		x: 0,
 		opacity: 1,
+		position: 'relative',
 	},
 	exit: (direction: number) => {
 		return {
-			zIndex: 0,
 			x: direction < 0 ? 1000 : -1000,
 			opacity: 0,
+			position: 'absolute',
+			visibility: 'hidden',
 		}
 	},
 }
@@ -48,10 +51,9 @@ export default ({ children, next, previous }) => {
 				<motion.div
 					className="slides"
 					css={`
-						position: absolute;
 						width: 35rem;
 						max-width: 100%;
-						top: 0.4rem;
+
 						@media (min-height: 800px) {
 							top: 1.7rem;
 						}

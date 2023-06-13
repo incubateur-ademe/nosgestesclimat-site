@@ -17,8 +17,9 @@ export default ({
 	filterSimulationOnClick,
 	onRestClick,
 }) => {
-	const [clicked, setClick] = useState(false),
-		click = (dottedName) => (clicked ? setClick(null) : setClick(dottedName))
+	const [clicked, setClick] = useState(false)
+	const click = (dottedName) =>
+		clicked ? setClick(null) : setClick(dottedName)
 
 	const { rest, restWidth, bigEnough, total } =
 		groupTooSmallCategories(categories)

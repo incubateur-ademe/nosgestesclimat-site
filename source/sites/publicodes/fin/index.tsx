@@ -1,11 +1,13 @@
+import Meta from '@/components/utils/Meta'
 import animate from 'Components/ui/animate'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import { matomoEventSwipeEndPage } from '../../../analytics/matomo-events'
+import { NewsletterForm } from '../../../components/emailing/NewsletterForm'
 import NorthstarBanner from '../../../components/Feedback/NorthstarBanner'
 import SlidesLayout from '../../../components/SlidesLayout'
 import { MatomoContext } from '../../../contexts/MatomoContext'
@@ -34,7 +36,7 @@ export const rehydrateDetails = (encodedDetails) =>
 		)
 
 export const sumFromDetails = (details) =>
-	details.reduce((memo, [name, value]) => memo + value, 0)
+	details?.reduce((memo, [name, value]) => memo + value, 0) || 0
 
 const EnqueteReminder = () => <EnqueteBannerContent noFirstButton={true} />
 export default ({}) => {
@@ -87,18 +89,46 @@ export default ({}) => {
 
 	const slideProps = {
 		score,
-		details: Object.fromEntries(rehydratedDetails),
+		details: rehydratedDetails ? Object.fromEntries(rehydratedDetails) : {},
 		headlessMode,
 		nextSlide: next,
 		noQuestionsLeft: !nextQuestions.length,
 	}
+	const { t } = useTranslation()
 
 	return (
-		<div>
+		<div
+			css={`
+				position: relative;
+			`}
+		>
+			{window.location.href.includes('fin') && (
+				<Meta title={t('Mon empreinte carbone')}>
+					<link
+						rel="canonical"
+						href="https://nosgestesclimat.fr/mon-empreinte-carbone"
+					/>
+				</Meta>
+			)}
+
 			<IframeDataShareModal data={rehydratedDetails} />
-			<Link to="/simulateur/bilan" css="display: block; text-align: center">
+			<Link
+				to="/simulateur/bilan"
+				css={`
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					margin-bottom: 0.5rem;
+				`}
+			>
 				{!answeredQuestions.length ? (
-					<button className="ui__ button plain cta">
+					<button
+						className="ui__ button plain small cta"
+						css={`
+							text-transform: none !important;
+							margin: 0 !important;
+						`}
+					>
 						{' '}
 						<Trans>Faire mon test</Trans>
 					</button>
@@ -125,6 +155,7 @@ export default ({}) => {
 					</HorizontalSwipe>
 				</SlidesLayout>
 			</animate.appear>
+			<NewsletterForm />
 		</div>
 	)
 }

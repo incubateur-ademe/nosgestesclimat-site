@@ -18,33 +18,34 @@ export default () => {
 		show && setTimeout(() => setVisible(true), 8000)
 	}, [show])
 
+	if (!show || !visible) {
+		return null
+	}
+
 	return (
-		show &&
-		visible && (
-			<animate.appear>
-				<div
-					css={`
-						display: flex;
-						flex-wrap: wrap;
-						justify-content: center;
-						text-align: center;
-						color: black;
-						margin: 2rem auto;
-						max-width: 16rem;
-						line-height: 1.3rem;
-						background: var(--lightestColor);
-						border-radius: 1rem;
-						padding: 0.4rem;
-					`}
-				>
-					<span>
-						<Trans>Une question, un problème ?</Trans>
-					</span>
-					<Link to={'/contribuer?fromLocation=' + window.location}>
-						<Trans>Découvrez la FAQ !</Trans>
-					</Link>
-				</div>
-			</animate.appear>
-		)
+		<animate.appear>
+			<div
+				css={`
+					display: flex;
+					flex-wrap: wrap;
+					justify-content: center;
+					text-align: center;
+					color: black;
+					margin: 2rem auto;
+					max-width: 16rem;
+					line-height: 1.3rem;
+					background: var(--lightestColor);
+					border-radius: 1rem;
+					padding: 0.4rem;
+				`}
+			>
+				<span>
+					<Trans>Une question, un problème ?</Trans>
+				</span>
+				<Link to={'/contribuer?fromLocation=' + window.location}>
+					<Trans>Découvrez la FAQ !</Trans>
+				</Link>
+			</div>
+		</animate.appear>
 	)
 }

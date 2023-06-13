@@ -15,6 +15,7 @@
 		"strictPropertyInitialization": true,
 		"skipLibCheck": true,
 		"baseUrl": "source",
+		"sourceMap": true,
 		"paths": {
 			"@/*": ["*"],
 			"Actions/*": ["actions/*"],
@@ -26,8 +27,13 @@
 			"Types/*": ["types/*"],
 			"Images/*": ["images/*"]
 		},
-		"outDir": "build",
+		"outDir": "build"
 	},
-	"include": ["source/**/*"],
-  "exclude": ["node_modules", "build/**/*"]
+	"include": ["source/**/*", "netlify/**/*"],
+	"exclude": ["node_modules", "build/**/*"],
+	"ts-node": {
+		"compilerOptions": {
+			"module": "commonjs"
+		}
+	}
 }

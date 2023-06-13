@@ -1,13 +1,14 @@
-import { Markdown } from 'Components/utils/markdown'
+import { useEngine } from '@/components/utils/EngineContext'
+import { Markdown } from '@/components/utils/markdown'
 import { RulePage } from 'publicodes-react'
 import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
-import { useEngine } from '../../../components/utils/EngineContext'
 import RavijenChart from '../chart/RavijenChart'
 import References from '../DocumentationReferences'
 import DocumentationStyle from './DocumentationStyle'
+
 export default ({ engine: givenEngine }) => {
 	const url = useParams()['*']
 	const { i18n } = useTranslation()
@@ -20,8 +21,8 @@ export default ({ engine: givenEngine }) => {
 	return (
 		<DocumentationStyle>
 			<RulePage
-				language={i18n.language}
-				rulePath={url}
+				language={i18n.language as 'fr' | 'en'}
+				rulePath={url ?? ''}
 				engine={engine}
 				documentationPath={documentationPath}
 				renderers={{
@@ -38,7 +39,7 @@ export default ({ engine: givenEngine }) => {
 									)}/${encodeURIComponent('documentation-rule-root header')}`}
 								/>
 							</Helmet>
-							<Markdown children={children} />
+							<Markdown children={children} noRouter={false} />
 							{children.includes('<RavijenChart/>') && (
 								<GraphContainer>
 									<RavijenChart />

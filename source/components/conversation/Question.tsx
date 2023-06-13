@@ -50,7 +50,7 @@ export default function Question({
 	dottedName: questionDottedName,
 	missing,
 	onChange,
-	value: currentValue,
+	nodeValue: currentValue,
 	title: ruleTitle,
 }: QuestionProps) {
 	const [currentSelection, setCurrentSelection] = useState(

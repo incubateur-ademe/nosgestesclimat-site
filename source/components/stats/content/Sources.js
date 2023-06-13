@@ -1,6 +1,6 @@
 import { useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
 import styled from 'styled-components'
-import { useTranslation, Trans } from 'react-i18next'
 
 import Tile from '../utils/Tile'
 import Table from './sources/Table'
@@ -23,7 +23,11 @@ export default function Sources(props) {
 
 	return (
 		<>
-			<Title>
+			<Title
+				css={`
+					text-align: left;
+				`}
+			>
 				<Trans>Origine des visites</Trans>
 			</Title>
 			<StyledTile>

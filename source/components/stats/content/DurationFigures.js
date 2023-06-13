@@ -1,5 +1,5 @@
-import styled from 'styled-components'
 import { Trans, useTranslation } from 'react-i18next'
+import styled from 'styled-components'
 
 import {
 	getLangFromAbreviation,
@@ -27,7 +27,7 @@ const TileWrapper = styled(Tile.Tile)`
 
 const Number = styled.span`
 	display: block;
-	font-size: 5rem;
+	font-size: 2rem;
 	font-weight: 800;
 	line-height: 1;
 	text-align: center;
@@ -38,7 +38,7 @@ const Number = styled.span`
 	justify-content: center;
 `
 const Small = styled(Number)`
-	font-size: 3.5rem;
+	font-size: 2rem;
 `
 const Label = styled.span`
 	text-align: center;
