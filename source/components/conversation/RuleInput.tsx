@@ -120,9 +120,10 @@ export default function RuleInput({
 				return [rules[parentRule], questionRule]
 			})
 			// we want to sort the cards so that the inactive ones are at the end.
-			.sort(([{ _ }, q], [_b]) => ('inactif' in q.rawNode ? 1 : -1))
+			.sort(([_, q], [_b]) => ('inactif' in q.rawNode ? 1 : -1))
 		// and the active ones are ordered as the `somme` defined as model side if the formula in the rule mosaic is a `somme`.
-		const orderedSumFromSourceRule = question?.rawNode?.formule?.somme
+		const orderedSumFromSourceRule =
+			question?.rawNode?.formule && question?.rawNode?.formule['somme']
 		if (orderedSumFromSourceRule) {
 			selectedRules.sort((a, b) => {
 				const indexA = orderedSumFromSourceRule.indexOf(
