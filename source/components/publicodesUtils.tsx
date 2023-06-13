@@ -43,6 +43,12 @@ export type MosaiqueNode = {
 	suggestions?: SuggestionsNode
 }
 
+export type MosaicInfos = {
+	mosaicRule: RuleNode
+	mosaicParams: MosaiqueNode
+	mosaicDottedNames: [string, NGCRuleNode][]
+}
+
 /**
  * Extends publicodes Rule type with NGC specific properties.
  *
@@ -105,30 +111,6 @@ export type Category = EvaluatedNode<number> & {
 }
 
 //----  Utility functions
-
-export type MosaiqueNode = {
-	type: string
-	clé: string
-	total?: number
-	suggestions?: SuggestionsNode
-}
-
-export type MosaicInfos = {
-	mosaicRule: RuleNode
-	mosaicParams: MosaiqueNode
-	mosaicDottedNames: [string, NGCRuleNode][]
-}
-
-/**
- * NOTE(@EmileRolley): prefixing with NGC to avoid conflicts with publicodes,
- * and to make it clear that this is a specific type for the NGC model.
- */
-export type NGCRuleNode = RuleNode & {
-	dottedName: DottedName
-	mosaique?: MosaiqueNode
-}
-
-export type NGCRulesNodes = Record<string, NGCRuleNode>
 
 /** It's the name of the node at the root of the model. */
 export const MODEL_ROOT_RULE_NAME = 'bilan'
