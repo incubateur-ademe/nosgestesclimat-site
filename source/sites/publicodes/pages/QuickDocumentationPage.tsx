@@ -1,7 +1,7 @@
 import { Markdown } from 'Components/utils/markdown'
 import { utils } from 'publicodes'
 import { Link } from 'react-router-dom'
-import { splitName, title } from '../../../components/publicodesUtils'
+import { getTitle, splitName } from '../../../components/publicodesUtils'
 import { RuleListItem } from '../../../components/SearchBar'
 import Meta from '../../../components/utils/Meta'
 import { capitalise0, omit } from '../../../utils'
@@ -30,7 +30,7 @@ const Breadcrumb = ({ rules, dottedName }) => {
 				<span key={parentDottedName}>
 					{rule.icônes !== undefined && <span>{rule.icônes}</span>}
 					<Link to={utils.encodeRuleName(parentDottedName)}>
-						{title({ ...rule, dottedName: parentDottedName })}
+						{getTitle({ ...rule, dottedName: parentDottedName })}
 					</Link>
 
 					<span aria-hidden>{' › '}</span>

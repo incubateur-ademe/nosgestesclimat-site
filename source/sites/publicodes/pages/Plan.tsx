@@ -1,4 +1,4 @@
-import { title } from '@/components/publicodesUtils'
+import { getTitle } from '@/components/publicodesUtils'
 import '@/components/ui/index.css'
 import { RootState } from '@/reducers/rootReducer'
 import Engine, { utils } from 'publicodes'
@@ -89,7 +89,7 @@ const PlanDuSite = () => {
 										action.dottedName
 									)}`}
 								>
-									{title(action)}
+									{getTitle(action)}
 								</Link>
 							</li>
 						)
