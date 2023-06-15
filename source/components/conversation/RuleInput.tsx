@@ -6,6 +6,7 @@ import {
 	DottedName,
 	getRelatedMosaicInfosIfExists,
 	parentName,
+	splitName,
 	SuggestionsNode,
 } from '@/components/publicodesUtils'
 import ToggleSwitch from '@/components/ui/ToggleSwitch'
@@ -113,12 +114,27 @@ export default function RuleInput({
 			mosaicParams,
 			mosaicDottedNames,
 		} = ruleMosaicInfos
-		const selectedRules = mosaicDottedNames.map(
-			([dottedName, questionRule]) => {
+		const selectedRules = mosaicDottedNames
+			.map(([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
 				return [rules[parentRule], questionRule]
-			}
-		)
+			})
+			// we want to sort the cards so that the inactive ones are at the end.
+			.sort(([_, q], [_b]) => ('inactif' in q.rawNode ? 1 : -1))
+		// and the active ones are ordered as the `somme` defined as model side if the formula in the rule mosaic is a `somme`.
+		const orderedSumFromSourceRule =
+			question?.rawNode?.formule && question?.rawNode?.formule['somme']
+		if (orderedSumFromSourceRule) {
+			selectedRules.sort((a, b) => {
+				const indexA = orderedSumFromSourceRule.indexOf(
+					splitName(a[0].dottedName)[splitName(a[0].dottedName).length - 1]
+				)
+				const indexB = orderedSumFromSourceRule.indexOf(
+					splitName(b[0].dottedName)[splitName(b[0].dottedName).length - 1]
+				)
+				return indexA - indexB
+			})
+		}
 		if (mosaicParams['type'] === 'selection')
 			return (
 				<SelectDevices
