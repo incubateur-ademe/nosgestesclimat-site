@@ -1,3 +1,6 @@
+import { matomoEventCreationGroupe } from '@/analytics/matomo-events'
+import { GROUP_URL } from '@/constants/urls'
+import { MatomoContext } from '@/contexts/MatomoContext'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
@@ -9,7 +12,8 @@ import Title from './components/Title'
 import { DataContext } from './contexts/DataContext'
 
 export default function InformationsGroupe() {
-	const { groupeName, setGroupeName } = useContext(DataContext)
+	const { trackEvent } = useContext(MatomoContext)
+	const { prenom, email, groupeName, setGroupeName } = useContext(DataContext)
 
 	const [groupeNameLocalState, setGroupeNameLocalState] = useState(
 		groupeName ?? ''
@@ -20,15 +24,37 @@ export default function InformationsGroupe() {
 
 	const navigate = useNavigate()
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		if (!groupeNameLocalState) {
 			setErrorGroupeName(t('Ce champ est obligatoire'))
 			return
 		}
 
-		setGroupeName(groupeNameLocalState)
+		try {
+			setGroupeName(groupeNameLocalState)
 
-		navigate('../inviter-vos-proches')
+			const response = await fetch(GROUP_URL, {
+				method: 'POST',
+				body: JSON.stringify({
+					name: groupeNameLocalState,
+					ownerEmail: email,
+					ownerName: prenom,
+				}),
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			})
+			const result = await response.json()
+
+			if (!response.ok) {
+				throw new Error(JSON.stringify(result))
+			}
+			trackEvent(matomoEventCreationGroupe)
+			navigate('/creer-groupe-amis/inviter-vos-proches')
+		} catch (e) {
+			console.log(e)
+		}
 	}
 
 	return (
