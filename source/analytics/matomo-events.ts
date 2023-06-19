@@ -188,3 +188,9 @@ export const getMatomoEventActionAccepted = (
 	dottedName: DottedName,
 	nodeValue: string
 ) => ['trackEvent', '/actions', 'Action sélectionnée', dottedName, nodeValue]
+
+export const matomoEventCreationGroupe = [
+	'trackEvent',
+	'Groupes',
+	'Création de groupe',
+]
