@@ -207,6 +207,7 @@ export default function Root() {
 				ratings: persistedSimulation?.ratings,
 				hasSubscribedToNewsletter:
 					persistedUser.hasSubscribedToNewsletter ?? false,
+				groups: persistedUser.groups,
 			}}
 		>
 			<Main />

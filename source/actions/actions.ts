@@ -410,3 +410,8 @@ export const updateGroup = (group: Group) => ({
 	type: 'UPDATE_GROUP',
 	group,
 })
+
+export const setCreatedGroup = (group: Group) => ({
+	type: 'SET_CREATED_GROUP',
+	group,
+})

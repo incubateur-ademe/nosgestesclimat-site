@@ -7,6 +7,7 @@ export type Enquête = {
 	date: string
 }
 
+import { Group } from '@/types/groups'
 import { Rating } from '@/types/rating'
 import { Simulation, SimulationConfig } from '@/types/simulation'
 
@@ -48,6 +49,7 @@ export type User = {
 	currentLang: Lang
 	localisation: Object | undefined
 	hasSubscribedToNewsletter: boolean
+	groups: Group[]
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list

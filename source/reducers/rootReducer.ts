@@ -1,6 +1,6 @@
 import { Action } from '@/actions/actions'
 import { omit } from '@/utils'
-import { groupReducer } from './group/index'
+import { createdGroupReducer, groupsReducer } from './group/index'
 
 import { Localisation, SupportedRegions } from '@/components/localisation/utils'
 import { DottedName, NGCRules } from '@/components/publicodesUtils'
@@ -490,7 +490,8 @@ export type AppState = CombinedState<{
 	ratings: SavedSimulation['ratings']
 	hasSubscribedToNewsletter: boolean
 	enquête: Enquête
-	group: Group
+	groups: Group[]
+	createdGroup: Group | null
 }>
 
 const mainReducer = (state: any, action: Action) =>
@@ -521,7 +522,8 @@ const mainReducer = (state: any, action: Action) =>
 		enquête,
 		ratings,
 		hasSubscribedToNewsletter,
-		group: groupReducer,
+		groups: groupsReducer,
+		createdGroup: createdGroupReducer,
 	})(state, action)
 
 export default reduceReducers<AppState>(

@@ -1,4 +1,5 @@
 import ChevronRight from '@/components/icons/ChevronRight'
+import { Member } from '@/types/groups'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
@@ -6,7 +7,7 @@ type Props = {
 	group: {
 		name: string
 		image: string
-		members: string[]
+		members: Member[]
 	}
 }
 

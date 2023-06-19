@@ -1,8 +1,11 @@
+import { addGroupToUser, setCreatedGroup } from '@/actions/actions'
 import { matomoEventCreationGroupe } from '@/analytics/matomo-events'
 import { GROUP_URL } from '@/constants/urls'
 import { MatomoContext } from '@/contexts/MatomoContext'
+import { Group } from '@/types/groups'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from './components/Button'
 import GoBackLink from './components/GoBackLink'
@@ -23,6 +26,8 @@ export default function InformationsGroupe() {
 	const { t } = useTranslation()
 
 	const navigate = useNavigate()
+
+	const dispatch = useDispatch()
 
 	const handleSubmit = async () => {
 		if (!groupeNameLocalState) {
@@ -45,14 +50,17 @@ export default function InformationsGroupe() {
 					'Content-Type': 'application/json',
 				},
 			})
-			const result = await response.json()
-
-			// Sauvegarder le groupe dans le state redux
+			const group: Group = await response.json()
 
 			if (!response.ok) {
-				throw new Error(JSON.stringify(result))
+				throw new Error(JSON.stringify(group))
 			}
+
+			dispatch(addGroupToUser(group))
+			dispatch(setCreatedGroup(group))
+
 			trackEvent(matomoEventCreationGroupe)
+
 			navigate('/creer-groupe-amis/inviter-vos-proches')
 		} catch (e) {
 			console.log(e)
