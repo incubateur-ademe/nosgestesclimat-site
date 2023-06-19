@@ -1,4 +1,6 @@
+import { AppState } from '@/reducers/rootReducer'
 import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import ButtonLink from './components/ButtonLink'
 import Container from './components/Container'
 import GroupList from './components/GroupList'
@@ -7,7 +9,7 @@ import Title from './components/Title'
 
 export default function Accueil() {
 	const { t } = useTranslation()
-	const groups = [1]
+	const groups = useSelector((state: AppState) => state.groups)
 	return (
 		<>
 			<Title

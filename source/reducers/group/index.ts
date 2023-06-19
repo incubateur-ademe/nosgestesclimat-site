@@ -1,6 +1,6 @@
 import { Group } from '@/types/groups'
 
-export const groupReducer = (
+export const groupsReducer = (
 	state = [],
 	{ type, group }: { type: string; group: Group }
 ) => {
@@ -11,6 +11,18 @@ export const groupReducer = (
 			return state.filter((g: Group) => g._id !== group._id)
 		case 'UPDATE_GROUP':
 			return state.map((g: Group) => (g._id === group._id ? group : g))
+		default:
+			return state
+	}
+}
+
+export const createdGroupReducer = (
+	state = null,
+	{ type, group }: { type: string; group: Group }
+) => {
+	switch (type) {
+		case 'SET_CREATED_GROUP':
+			return group
 		default:
 			return state
 	}
