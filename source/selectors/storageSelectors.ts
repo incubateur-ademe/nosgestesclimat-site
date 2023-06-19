@@ -1,13 +1,14 @@
 import { DottedName } from '@/components/publicodesUtils'
 import { Lang } from '@/locales/translation'
-import { AppState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
-
-export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
+import { AppState } from '@/reducers/rootReducer'
 
 export type Enquête = {
 	userID: string
 	date: string
 }
+
+import { Rating } from '@/types/rating'
+import { Simulation, SimulationConfig } from '@/types/simulation'
 
 export type SavedSimulation = {
 	situation: Simulation['situation']

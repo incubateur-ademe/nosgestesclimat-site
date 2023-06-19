@@ -1,13 +1,10 @@
 import { Value } from '@/components/conversation/RuleInput'
 import { Localisation } from '@/components/localisation/utils'
 import { DottedName } from '@/components/publicodesUtils'
-import {
-	AppState,
-	Simulation,
-	SimulationConfig,
-	StoredTrajets,
-} from '@/reducers/rootReducer'
-import { Rating } from '@/selectors/storageSelectors'
+import { AppState } from '@/reducers/rootReducer'
+import { Group } from '@/types/groups'
+import { Rating } from '@/types/rating'
+import { Simulation, SimulationConfig, StoredTrajets } from '@/types/simulation'
 import { ThunkAction } from 'redux-thunk'
 
 /**
@@ -29,7 +26,6 @@ export type Action =
 	| HasSubscribedToNewsletterAction
 	| HideNotificationAction
 	| LoadPreviousSimulationAction
-	| ResetSimulationAction
 	| ResetActionChoicesAction
 	| ResetIntroTutorialAction
 	| ResetCategoryTutorialsAction
@@ -132,10 +128,6 @@ type UpdateEventsSentAction = {
 
 type HasSubscribedToNewsletterAction = {
 	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER'
-}
-
-type ResetSimulationAction = {
-	type: 'RESET_SIMULATION'
 }
 
 type ResetCategoryTutorialsAction = {
@@ -402,4 +394,19 @@ export const updateEventsSent = (eventSent: {
 
 export const setHasSubscribedToNewsletter = (): Action => ({
 	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER',
+})
+
+export const addGroupToUser = (group: Group) => ({
+	type: 'ADD_GROUP',
+	group,
+})
+
+export const removeGroupToUser = (group: Group) => ({
+	type: 'REMOVE_GROUP',
+	group,
+})
+
+export const updateGroup = (group: Group) => ({
+	type: 'UPDATE_GROUP',
+	group,
 })

@@ -1,6 +1,7 @@
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
-import { AppState, Simulation } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import { Simulation } from '@/types/simulation'
 import * as Sentry from '@sentry/react'
 import { formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'

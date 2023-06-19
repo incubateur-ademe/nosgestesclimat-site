@@ -1,4 +1,4 @@
-import { resetSimulation } from 'Actions/actions'
+import { resetSimulation } from '@/actions/actions'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
