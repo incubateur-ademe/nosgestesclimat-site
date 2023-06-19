@@ -1,5 +1,3 @@
-import { DottedName } from 'Rules'
-
 /*
  * Matomo events
  * https://matomo.org/docs/event-tracking/
@@ -11,6 +9,8 @@ import { DottedName } from 'Rules'
  * 	'Value' (number) // Une valeur numérique (optionnelle)
  * ]
  */
+
+import { DottedName } from '@/components/publicodesUtils'
 
 // Partage
 export const getMatomoEventShareMobile = (score: number) => [

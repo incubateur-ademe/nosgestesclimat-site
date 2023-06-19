@@ -3,8 +3,9 @@ import {
 	resetIntroTutorial,
 	resetSimulation,
 	resetStoredTrajets,
-} from 'Actions/actions'
-import Localisation from 'Components/localisation/Localisation'
+} from '@/actions/actions'
+import Localisation from '@/components/localisation/Localisation'
+import { RootState } from '@/reducers/rootReducer'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
@@ -30,7 +31,7 @@ export const useProfileData = () => {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const answeredQuestionsLength = answeredQuestions.length
 
-	const tutorials = useSelector((state) => state.tutorials)
+	const tutorials = useSelector((state: RootState) => state.tutorials)
 
 	const hasData = answeredQuestionsLength > 0
 	return { hasData, tutorials, answeredQuestionsLength, answeredQuestions }

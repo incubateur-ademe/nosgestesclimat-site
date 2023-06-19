@@ -1,4 +1,7 @@
 import { Action } from '@/actions/actions'
+import { omit } from '@/utils'
+import { groupReducer } from './group/index'
+
 import { Localisation, SupportedRegions } from '@/components/localisation/utils'
 import { DottedName, NGCRules } from '@/components/publicodesUtils'
 import storageRootReducer from '@/reducers/storageReducer'
@@ -9,7 +12,8 @@ import {
 	SavedSimulationList,
 } from '@/selectors/storageSelectors'
 import { generateSimulationId } from '@/storage/persistSimulation'
-import { omit } from '@/utils'
+import { Group } from '@/types/groups'
+import { ObjectifsConfig, Simulation } from '@/types/simulation'
 import reduceReducers from 'reduce-reducers'
 import { CombinedState, combineReducers, Reducer } from 'redux'
 
@@ -36,26 +40,6 @@ function situationBranch(state: number | null = null, action: Action) {
 	}
 }
 
-type QuestionsKind =
-	| "à l'affiche"
-	| 'non prioritaires'
-	| 'liste'
-	| 'liste noire'
-
-export type ObjectifsConfig =
-	| Array<DottedName>
-	| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
-
-export type SimulationConfig = {
-	objectifs: ObjectifsConfig
-	'objectifs cachés': Array<DottedName>
-	situation: Simulation['situation']
-	bloquant?: Array<DottedName>
-	questions?: Partial<Record<QuestionsKind, Array<DottedName>>>
-	branches?: Array<{ nom: string; situation: SimulationConfig['situation'] }>
-	'unité par défaut': string
-}
-
 export function objectifsConfigToDottedNameArray(
 	obj: ObjectifsConfig
 ): Array<DottedName> {
@@ -66,26 +50,6 @@ export function objectifsConfigToDottedNameArray(
 	}
 	// FIXME(@EmileRolley): more explicit type should be used here?
 	return obj
-}
-
-export type Situation = Record<DottedName, any>
-export type StoredTrajets = Record<DottedName, any>
-
-export type Simulation = {
-	config: SimulationConfig
-	url: string
-	hiddenNotifications: Array<string>
-	situation: Situation
-	hiddenControls?: Array<string>
-	targetUnit?: string
-	foldedSteps?: Array<DottedName>
-	unfoldedStep?: DottedName | null
-	persona?: string
-	date?: Date
-	id?: string
-	eventsSent?: Record<string, boolean>
-	actionChoices?: Record<string, boolean>
-	storedTrajets?: StoredTrajets
 }
 
 function simulation(
@@ -528,6 +492,7 @@ export type AppState = CombinedState<{
 	ratings: SavedSimulation['ratings']
 	hasSubscribedToNewsletter: boolean
 	enquête: Enquête
+	group: Group
 }>
 
 const mainReducer = (state: any, action: Action) =>
@@ -558,6 +523,7 @@ const mainReducer = (state: any, action: Action) =>
 		enquête,
 		ratings,
 		hasSubscribedToNewsletter,
+		group: groupReducer,
 	})(state, action)
 
 export default reduceReducers<AppState>(

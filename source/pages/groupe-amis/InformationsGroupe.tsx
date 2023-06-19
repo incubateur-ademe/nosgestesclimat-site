@@ -47,6 +47,8 @@ export default function InformationsGroupe() {
 			})
 			const result = await response.json()
 
+			// Sauvegarder le groupe dans le state redux
+
 			if (!response.ok) {
 				throw new Error(JSON.stringify(result))
 			}

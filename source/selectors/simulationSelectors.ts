@@ -5,10 +5,12 @@ import {
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { AppState, SimulationConfig, Situation } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import useActions from '@/sites/publicodes/useActions'
 import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
+
+import { SimulationConfig, Situation } from '@/types/simulation'
 import { currentSimulationSelector } from './storageSelectors'
 
 export const configSelector = (state: AppState): Partial<SimulationConfig> =>

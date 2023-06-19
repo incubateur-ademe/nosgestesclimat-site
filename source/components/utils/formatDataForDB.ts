@@ -1,4 +1,4 @@
-import { Simulation } from '@/reducers/rootReducer'
+import { Simulation } from '@/types/simulation'
 
 type SimulationFormatted = {
 	[key: string]: any
