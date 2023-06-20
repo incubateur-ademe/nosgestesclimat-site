@@ -139,8 +139,8 @@ export const FullName = ({ dottedName }) => (
 	</span>
 )
 
-export const title = (rule) =>
-	rule.titre ||
+export const getTitle = (rule) =>
+	rule.title ||
 	capitalise0(splitName(rule.dottedName)[splitName(rule.dottedName).length - 1])
 
 // Publicodes's % unit is strangely handlded
