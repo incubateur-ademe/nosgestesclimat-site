@@ -23,5 +23,5 @@ export default ({ focusedAction, rules, radical, engine, metric }) => {
 			const disabled = disabledAction(flatRule, action.nodeValue)
 			return !superseded && (action.dottedName === focusedAction || !disabled)
 		})
-	return { interestingActions, targets }
+	return { interestingActions, targets, rawActionsList: actions }
 }

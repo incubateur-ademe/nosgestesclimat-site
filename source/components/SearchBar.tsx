@@ -5,7 +5,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Worker from 'worker-loader!./SearchBar.worker.js'
-import { title } from './publicodesUtils'
+import { getTitle } from './publicodesUtils'
 import './SearchBar.css'
 
 const worker = new Worker()
@@ -41,7 +41,7 @@ export default function SearchBar({}: SearchBarProps) {
 			Object.values(rulesList)
 				.filter(utils.ruleWithDedicatedDocumentationPage)
 				.map((rule) => ({
-					title: title(rule) + (rule.acronyme ? ` (${rule.acronyme})` : ''),
+					title: getTitle(rule) + (rule.acronyme ? ` (${rule.acronyme})` : ''),
 					dottedName: rule.dottedName,
 					espace: rule.dottedName.split(' . ').reverse(),
 				})),

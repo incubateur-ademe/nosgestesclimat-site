@@ -1,4 +1,4 @@
-import { splitName, title } from 'Components/publicodesUtils'
+import { getTitle, splitName } from 'Components/publicodesUtils'
 import useFetchDocumentation from 'Components/useFetchDocumentation'
 import { Markdown } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
@@ -76,7 +76,9 @@ export default () => {
 									}
 									css="> button {margin: .3rem .6rem}"
 								>
-									<button className="ui__ small button">{title(action)}</button>
+									<button className="ui__ small button">
+										{getTitle(action)}
+									</button>
 								</Link>
 							))}
 						</div>
