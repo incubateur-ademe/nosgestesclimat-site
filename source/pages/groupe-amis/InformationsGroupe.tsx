@@ -7,11 +7,11 @@ import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import Button from './components/Button'
+import Button from '../../components/groupe/Button'
+import TextInputGroup from '../../components/groupe/TextInputGroup'
+import Title from '../../components/groupe/Title'
 import GoBackLink from './components/GoBackLink'
 import StepperIndicator from './components/StepperIndicator'
-import TextInputGroup from './components/TextInputGroup'
-import Title from './components/Title'
 import { DataContext } from './contexts/DataContext'
 
 export default function InformationsGroupe() {
@@ -38,7 +38,7 @@ export default function InformationsGroupe() {
 		try {
 			setGroupeName(groupeNameLocalState)
 
-			const response = await fetch(GROUP_URL, {
+			const response = await fetch(GROUP_URL + '/create', {
 				method: 'POST',
 				body: JSON.stringify({
 					name: groupeNameLocalState,

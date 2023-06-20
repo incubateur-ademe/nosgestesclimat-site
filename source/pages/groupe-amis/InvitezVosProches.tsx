@@ -3,11 +3,11 @@ import { AppState } from '@/reducers/rootReducer'
 import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import Button from './components/Button'
+import Button from '../../components/groupe/Button'
+import Title from '../../components/groupe/Title'
 import CopyInput from './components/CopyInput'
 import Link from './components/Link'
 import StepperIndicator from './components/StepperIndicator'
-import Title from './components/Title'
 
 export default function InvitezVosProches() {
 	const { t } = useTranslation()

@@ -134,6 +134,11 @@ const GroupeAmisLazy = React.lazy(
 	() => import(/* webpackChunkName: 'GroupeAmis' */ '@/pages/groupe-amis')
 )
 
+const RejoindreGroupeLazy = React.lazy(
+	() =>
+		import(/* webpackChunkName: 'RejoindreGroupe' */ '@/pages/rejoindre-groupe')
+)
+
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 declare global {
@@ -574,10 +579,18 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/creer-groupe-amis/*"
+				path="/creer-groupe/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<GroupeAmisLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/rejoindre-groupe/:groupId"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<RejoindreGroupeLazy />
 					</Suspense>
 				}
 			/>
