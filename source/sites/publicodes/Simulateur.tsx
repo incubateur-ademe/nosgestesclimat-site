@@ -18,6 +18,7 @@ import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
+import { useSetUserId } from '@/hooks/useSetUserId'
 import {
 	AppState,
 	objectifsConfigToDottedNameArray,
@@ -53,6 +54,10 @@ const Simulateur = () => {
 	const dispatch = useDispatch()
 	const urlParams = useParams()
 	const searchParams = new URLSearchParams(window.location.search)
+
+	// Sets the user id in the store if not already set
+	useSetUserId()
+
 	const simulatorRootNameURL = urlParams['*']
 	const { t } = useTranslation()
 

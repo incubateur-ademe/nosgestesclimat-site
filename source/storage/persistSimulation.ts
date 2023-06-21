@@ -71,6 +71,7 @@ export function persistUser(store: Store<AppState, Action>): void {
 			hasSubscribedToNewsletter: state.hasSubscribedToNewsletter,
 			groups: state.groups,
 			createdGroup: state.createdGroup,
+			userId: state.userId,
 		}
 		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userData))
 	}

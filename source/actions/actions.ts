@@ -398,3 +398,8 @@ export const setCreatedGroup = (group: Group) => ({
 	type: 'SET_CREATED_GROUP',
 	group,
 })
+
+export const setUserId = (userId: string) => ({
+	type: 'SET_USER_ID',
+	userId,
+})

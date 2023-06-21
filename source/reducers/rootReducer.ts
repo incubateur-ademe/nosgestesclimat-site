@@ -16,6 +16,7 @@ import { Group } from '@/types/groups'
 import { ObjectifsConfig, Simulation } from '@/types/simulation'
 import reduceReducers from 'reduce-reducers'
 import { CombinedState, combineReducers, Reducer } from 'redux'
+import { userIdReducer } from './user'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -494,6 +495,7 @@ export type AppState = CombinedState<{
 	enquête: Enquête
 	groups: Group[]
 	createdGroup: Group | null
+	userId: string | null
 }>
 
 const mainReducer = (state: any, action: Action) =>
@@ -526,6 +528,7 @@ const mainReducer = (state: any, action: Action) =>
 		hasSubscribedToNewsletter,
 		groups: groupsReducer,
 		createdGroup: createdGroupReducer,
+		userId: userIdReducer,
 	})(state, action)
 
 export default reduceReducers<AppState>(

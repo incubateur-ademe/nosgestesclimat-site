@@ -51,6 +51,7 @@ export type User = {
 	hasSubscribedToNewsletter: boolean
 	groups: Group[]
 	createdGroup: Group | null
+	userId: string | null
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list

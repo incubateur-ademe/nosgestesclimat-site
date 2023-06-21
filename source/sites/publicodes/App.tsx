@@ -214,6 +214,7 @@ export default function Root() {
 					persistedUser.hasSubscribedToNewsletter ?? false,
 				groups: persistedUser.groups,
 				createdGroup: persistUser.createdGroup,
+				userId: persistedUser.userId,
 			}}
 		>
 			<Main />
