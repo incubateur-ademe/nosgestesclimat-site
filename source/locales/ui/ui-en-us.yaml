@@ -797,3 +797,32 @@ entries:
   'et ': 'and '
   des conseils: advice
   'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'to reduce your carbon footprint (once a month max.). '
+  Partager: Share
+  'Votre adresse email ': 'Your email address '
+  facultatif: optional
+  Voir mes groupes: See my groups
+  Créer un groupe d'amis: Create a group of friends
+  'Étape {String(currentStep)} sur {String(numberSteps)}': Step {String(currentStep)} on {String(numberSteps)}
+  Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.: Please confirm with the group creator that they have sent you an invitation link.
+  participants: participants
+  Copié !: Copy!
+  Rejoindre: Contact
+  Retour: Back
+  Créer le groupe: Create group
+  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} has invited you to join the <3>{group?.name}</3> group'
+  Votre prénom (ou pseudo): Your first name (or nickname)
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Compare your results with your family or a group of friends.
+  Comparez vos résultats avec votre famille ou un groupe d’amis: Compare your results with your family or a group of friends
+  Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe: Your group is ready! Share this link with your friends and family to invite them to join your group
+  Vous n'avez pas été invité à rejoindre ce groupe: You have not been invited to join this group
+  Groupe d'amis: Group of friends
+  Créer un autre groupe: Create another group
+  Créez un autre groupe: Create another group
+  Retourner à mes groupes: Back to my groups
+  Choisissez un nom pour ce groupe: Choose a name for this group
+  Il sera visible uniquement par les participants du groupe: It will be visible only to group participants
+  Créez votre premier groupe: Create your first group
+  Pour le retrouver facilement dans votre liste: To find it easily in your list
+  Invitez vos proches: Invite your friends and family
+  Ce champ est obligatoire: This field is mandatory
+  Seulement pour te permettre de le retrouver ou de supprimer les données par la suite: Only to allow you to find it or delete the data later

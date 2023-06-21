@@ -600,3 +600,32 @@ entries:
   'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'pour réduire votre empreinte carbone (1 fois par mois max.). '
   votre résultat: votre résultat
   Entrez votre adresse email: Entrez votre adresse email
+  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
+  Ce champ est obligatoire: Ce champ est obligatoire
+  Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
+  Comparez vos résultats avec votre famille ou un groupe d’amis: Comparez vos résultats avec votre famille ou un groupe d’amis
+  Copié !: Copié !
+  Créer le groupe: Créer le groupe
+  Créer un autre groupe: Créer un autre groupe
+  Créer un groupe d'amis: Créer un groupe d'amis
+  Créez un autre groupe: Créez un autre groupe
+  Créez votre premier groupe: Créez votre premier groupe
+  'Étape {String(currentStep)} sur {String(numberSteps)}': Étape {String(currentStep)} sur {String(numberSteps)}
+  facultatif: facultatif
+  Groupe d'amis: Groupe d'amis
+  Il sera visible uniquement par les participants du groupe: Il sera visible uniquement par les participants du groupe
+  Invitez vos proches: Invitez vos proches
+  Partager: Partager
+  participants: participants
+  Pour le retrouver facilement dans votre liste: Pour le retrouver facilement dans votre liste
+  Rejoindre: Rejoindre
+  Retour: Retour
+  Retourner à mes groupes: Retourner à mes groupes
+  Seulement pour te permettre de le retrouver ou de supprimer les données par la suite: Seulement pour te permettre de le retrouver ou de supprimer les données par la suite
+  Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.: Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.
+  Voir mes groupes: Voir mes groupes
+  'Votre adresse email ': 'Votre adresse email '
+  Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe: Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe
+  Votre prénom (ou pseudo): Votre prénom (ou pseudo)
+  Vous n'avez pas été invité à rejoindre ce groupe: Vous n'avez pas été invité à rejoindre ce groupe
