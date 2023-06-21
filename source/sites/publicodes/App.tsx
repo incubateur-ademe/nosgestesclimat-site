@@ -130,6 +130,10 @@ const NorthstarStatsLazy = React.lazy(
 		import(/* webpackChunkName: 'NorthstarStats' */ './pages/NorthstarStats')
 )
 
+const MesGroupesLazy = React.lazy(
+	() => import(/* webpackChunkName: 'MesGroupes' */ '@/pages/mes-groupes')
+)
+
 const GroupeAmisLazy = React.lazy(
 	() => import(/* webpackChunkName: 'GroupeAmis' */ '@/pages/groupe-amis')
 )
@@ -137,6 +141,13 @@ const GroupeAmisLazy = React.lazy(
 const RejoindreGroupeLazy = React.lazy(
 	() =>
 		import(/* webpackChunkName: 'RejoindreGroupe' */ '@/pages/rejoindre-groupe')
+)
+
+const GroupeDashboardLazy = React.lazy(
+	() =>
+		import(
+			/* webpackChunkName: 'GroupeDashboardLazy' */ '@/pages/groupe-dashboard'
+		)
 )
 
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
@@ -581,6 +592,14 @@ const Router = () => {
 				}
 			/>
 			<Route
+				path="/mes-groupes"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<MesGroupesLazy />
+					</Suspense>
+				}
+			/>
+			<Route
 				path="/creer-groupe/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
@@ -596,6 +615,16 @@ const Router = () => {
 					</Suspense>
 				}
 			/>
+
+			<Route
+				path="/groupe/:groupId"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<GroupeDashboardLazy />
+					</Suspense>
+				}
+			/>
+
 			<Route
 				path="/enquête/:userID?"
 				element={

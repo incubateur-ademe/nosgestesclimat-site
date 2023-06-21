@@ -2,12 +2,12 @@ import { AppState } from '@/reducers/rootReducer'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import Title from '../../components/groupe/Title'
-import ButtonLink from './components/ButtonLink'
-import Container from './components/Container'
-import GroupList from './components/GroupList'
-import Separator from './components/Separator'
+import ButtonLink from '../groupe-amis/components/ButtonLink'
+import Container from '../groupe-amis/components/Container'
+import GroupList from '../groupe-amis/components/GroupList'
+import Separator from '../groupe-amis/components/Separator'
 
-export default function Accueil() {
+export default function MesGroupes() {
 	const { t } = useTranslation()
 	const groups = useSelector((state: AppState) => state.groups)
 
@@ -45,7 +45,7 @@ export default function Accueil() {
 					<p className="text-sm mb-6">
 						Vous pouvez créer un nouveau groupe avec d’autres amis.
 					</p>
-					<ButtonLink href={'vos-informations'} color="secondary">
+					<ButtonLink href={'/creer-groupe/vos-informations'} color="secondary">
 						<Trans>Créer un autre groupe</Trans>
 					</ButtonLink>
 				</>
