@@ -10,6 +10,7 @@ import Separator from './components/Separator'
 export default function Accueil() {
 	const { t } = useTranslation()
 	const groups = useSelector((state: AppState) => state.groups)
+
 	return (
 		<>
 			<Title

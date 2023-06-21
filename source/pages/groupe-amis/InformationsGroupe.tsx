@@ -61,7 +61,7 @@ export default function InformationsGroupe() {
 
 			trackEvent(matomoEventCreationGroupe)
 
-			navigate('/creer-groupe-amis/inviter-vos-proches')
+			navigate('/creer-groupe/inviter-vos-proches')
 		} catch (e) {
 			console.log(e)
 		}

@@ -84,16 +84,16 @@ export default function RejoindreGroupe() {
 	}
 
 	if (!group) {
-		return <div>Loading...</div>
+		return null
 	}
 
 	return (
-		<div>
+		<div className="p-4">
 			<Title
 				title={
 					<Trans>
 						{group?.owner?.name} vous a invité à rejoindre le groupe{' '}
-						<span className="text-violet-800">{group?.name}</span>
+						<span className="text-violet-900">{group?.name}</span>
 					</Trans>
 				}
 				subtitle={t(
@@ -131,7 +131,7 @@ export default function RejoindreGroupe() {
 				value={emailLocalState}
 			/>
 			<Button onClick={handleSubmit} aria-disabled={!prenomLocalState}>
-				<Trans>Continuer</Trans> →
+				<Trans>Rejoindre</Trans>
 			</Button>
 		</div>
 	)
