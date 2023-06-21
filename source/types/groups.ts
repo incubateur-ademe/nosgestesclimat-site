@@ -3,8 +3,9 @@ import { Simulation } from './simulation'
 export type Member = {
 	_id: string
 	name: string
-	email: string
+	email?: string
 	simulation: Simulation
+	userId: string
 }
 
 export type Group = {
@@ -14,6 +15,6 @@ export type Group = {
 	owner: {
 		_id: string
 		name: string
-		email: string
+		email?: string
 	}
 }

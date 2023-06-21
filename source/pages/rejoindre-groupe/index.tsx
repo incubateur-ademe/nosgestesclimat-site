@@ -3,10 +3,12 @@ import Button from '@/components/groupe/Button'
 import TextInputGroup from '@/components/groupe/TextInputGroup'
 import Title from '@/components/groupe/Title'
 import { GROUP_URL } from '@/constants/urls'
+import { useSetUserId } from '@/hooks/useSetUserId'
+import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 
 export default function RejoindreGroupe() {
@@ -18,6 +20,11 @@ export default function RejoindreGroupe() {
 
 	const { groupId } = useParams()
 
+	// Ajoute userId si non présente
+	useSetUserId()
+
+	const userId = useSelector((state: AppState) => state.userId)
+	console.log(userId)
 	const { t } = useTranslation()
 
 	const navigate = useNavigate()
@@ -63,6 +70,7 @@ export default function RejoindreGroupe() {
 					member: {
 						name: prenomLocalState,
 						email: emailLocalState,
+						userId,
 					},
 				}),
 				headers: {
