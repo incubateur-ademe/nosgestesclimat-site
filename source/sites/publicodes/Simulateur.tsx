@@ -19,11 +19,11 @@ import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
+import { useSetUserId } from '@/hooks/useSetUserId'
 import {
 	AppState,
 	objectifsConfigToDottedNameArray,
 } from '@/reducers/rootReducer'
-import { useTestCompleted } from '@/selectors/simulationSelectors'
 import BandeauContribuer from '@/sites/publicodes/BandeauContribuer'
 import InlineCategoryChart from '@/sites/publicodes/chart/InlineCategoryChart'
 import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
@@ -81,9 +81,13 @@ const Simulateur = () => {
 const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
+	// Sets the user id in the store if not already set
+	useSetUserId()
+
 	const { t } = useTranslation()
 	const searchParams = new URLSearchParams(window.location.search)
-	const isTestCompleted = useTestCompleted()
+
 	const rules = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
 
