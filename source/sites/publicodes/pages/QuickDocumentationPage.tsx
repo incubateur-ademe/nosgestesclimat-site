@@ -66,8 +66,7 @@ const QuestionRuleSection = ({ title, children }) => (
 
 export default ({ rule, dottedName, setLoadEngine, rules }) => {
 	const split = splitName(dottedName),
-		title = rule.titre || capitalise0(split[splitName.length - 1]),
-		parents = split.slice(0, -1)
+		title = rule.titre || capitalise0(split[splitName.length - 1])
 
 	const yamlAttributesToDisplay = omit(
 		[
@@ -202,11 +201,11 @@ const NamespaceRules = ({ rules, dottedName }) => {
 			>
 				{namespaceRules.map((ruleName) => {
 					const item = {
-							...rules[ruleName],
-							dottedName: ruleName,
-							espace: ruleName.split(' . ').reverse(),
-						},
-						titledItem = { ...item, title: title(item) }
+						...rules[ruleName],
+						dottedName: ruleName,
+						espace: ruleName.split(' . ').reverse(),
+					}
+					const titledItem = { ...item, title: getTitle(item) }
 					return (
 						<RuleListItem
 							{...{
