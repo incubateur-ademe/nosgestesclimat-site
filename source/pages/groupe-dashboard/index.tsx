@@ -8,6 +8,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
 import ButtonLink from '../groupe-amis/components/ButtonLink'
+import Classement from './components/Classement'
 
 export default function Groupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -83,6 +84,7 @@ export default function Groupe() {
 					+ Inviter
 				</ButtonLink>
 			</div>
+			<Classement group={group} />
 		</div>
 	)
 }

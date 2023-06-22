@@ -2,9 +2,10 @@ import { addGroupToUser, setGroupToRedirectTo } from '@/actions/actions'
 import Button from '@/components/groupe/Button'
 import TextInputGroup from '@/components/groupe/TextInputGroup'
 import Title from '@/components/groupe/Title'
+import { useEngine } from '@/components/utils/EngineContext'
 import { GROUP_URL } from '@/constants/urls'
 import { useSetUserId } from '@/hooks/useSetUserId'
-import { AppState } from '@/reducers/rootReducer'
+import { AppState, RootState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { useEffect, useState } from 'react'
@@ -63,6 +64,11 @@ export default function RejoindreGroupe() {
 		}
 	}, [groupId, group])
 
+	const rules = useSelector((state: RootState) => state.rules)
+
+	const engine = useEngine()
+
+	console.log({ engine })
 	const handleSubmit = async () => {
 		if (!group) {
 			return
@@ -73,7 +79,12 @@ export default function RejoindreGroupe() {
 			return
 		}
 
-		const results = getSimulationResults({ simulation: currentSimulation })
+		const results = getSimulationResults({
+			simulation: currentSimulation,
+			engine,
+		})
+
+		console.log({ results, currentSimulation })
 
 		try {
 			const response = await fetch(`${GROUP_URL}/update`, {
@@ -103,7 +114,7 @@ export default function RejoindreGroupe() {
 
 			// Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
 			if (currentSimulation) {
-				navigate(`../groupe/${group._id}`)
+				navigate(`/groupe/${group._id}`)
 			} else {
 				// sinon on le redirige vers le simulateur
 				dispatch(setGroupToRedirectTo(group))
