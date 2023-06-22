@@ -27,14 +27,22 @@ type SetSituationForValidKeysProps = {
 	situation: Partial<
 		Record<DottedName, string | number | Record<string, unknown>>
 	>
+	rules?: Record<DottedName, string>
 }
 
+//TODO
+// Before setting the situation, the existence of the situation's rules must be checked, since publicodes breaks on unexisting <keygen/>
+// This implementation is highly inefficient, since it could be done once when deserialising the stored user situation,
+// (don't forget personas)
+// But I'm waiting for an answer since the publicodes implementation should I believe be less strict
+// https://github.com/betagouv/publicodes/issues/257
 export const setSituationForValidKeys = ({
 	engine,
 	situation,
 }: SetSituationForValidKeysProps) => {
-	const rules = engine.getParsedRules()
-	const validKeys = intersect(Object.keys(rules), Object.keys(situation))
+	const rulesParsed = engine.getParsedRules()
+
+	const validKeys = intersect(Object.keys(rulesParsed), Object.keys(situation))
 	const validSituation = pick(situation, validKeys)
 
 	engine.setSituation(validSituation)
@@ -52,13 +60,6 @@ export function SituationProvider({
 	situation,
 }: SituationProviderProps) {
 	const engine = useContext(EngineContext)
-
-	//TODO
-	// Before setting the situation, the existence of the situation's rules must be checked, since publicodes breaks on unexisting <keygen/>
-	// This implementation is highly inefficient, since it could be done once when deserialising the stored user situation,
-	// (don't forget personas)
-	// But I'm waiting for an answer since the publicodes implementation should I believe be less strict
-	// https://github.com/betagouv/publicodes/issues/257
 
 	try {
 		if (engine) {

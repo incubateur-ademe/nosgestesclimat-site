@@ -1,23 +1,21 @@
 import { correctValue, extractCategories } from '@/components/publicodesUtils'
-import { setSituationForValidKeys } from '@/components/utils/EngineContext'
-import Engine from 'publicodes'
 
-export const getSimulationResults = ({ simulation }) => {
+export const getSimulationResults = ({ simulation, engine }) => {
 	let resultsObject = undefined
 
 	if (simulation) {
 		resultsObject = {}
 
-		const engine = new Engine({})
-
-		setSituationForValidKeys({ engine, situation: simulation.situation })
+		// setSituationForValidKeys({ engine, situation: simulation.situation })
 
 		const rules = engine.getParsedRules()
 
 		const categories = extractCategories(rules, engine)
 
 		categories.forEach((category) => {
-			resultsObject[category.name] = (
+			resultsObject[
+				category.name === 'transport . empreinte' ? 'transports' : category.name
+			] = (
 				Math.round(((category.nodeValue as number) ?? 0) / 10) / 100
 			).toFixed(2)
 		})
@@ -26,7 +24,7 @@ export const getSimulationResults = ({ simulation }) => {
 		const { nodeValue: rawNodeValue, unit } = evaluation
 		const valueTotal = correctValue({ nodeValue: rawNodeValue, unit })
 
-		resultsObject.total = valueTotal
+		resultsObject.total = ((valueTotal as number) / 10 / 100).toFixed(2)
 	}
 
 	return resultsObject

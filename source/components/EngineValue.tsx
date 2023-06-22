@@ -1,7 +1,7 @@
+import { DottedName } from 'modele-social'
 import Engine, { formatValue } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DottedName } from 'modele-social'
 import { coerceArray } from '../utils'
 import RuleLink from './RuleLink'
 import { EngineContext, useEngine } from './utils/EngineContext'
@@ -30,6 +30,7 @@ export default function Value<Names extends string>({
 	}
 	const e = engine ?? useEngine()
 	const isRule = expression in e.getParsedRules()
+
 	const evaluation = e.evaluate({
 		valeur: expression,
 		...(unit && { unité: unit }),

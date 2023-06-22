@@ -326,17 +326,17 @@ export function extractCategories(
 			parent = split.length > 1 ? split[0] : ''
 		return {
 			...node,
-			icons: icônes || rules[parent].icônes,
+			icons: icônes || rules[parent]?.icônes,
 			color:
 				categoryColorOverride[dottedName] ||
 				categoryColorOverride[parent] ||
 				couleur ||
-				rules[parent].couleur,
+				rules[parent]?.couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,
 			dottedName: (isRootRule(parentRule) && parent) || node.dottedName,
 			documentationDottedName: node.dottedName,
 			title:
-				isRootRule(parentRule) && parent ? rules[parent].titre : node.title,
+				isRootRule(parentRule) && parent ? rules[parent]?.titre : node.title,
 			abbreviation: abréviation,
 		}
 	})

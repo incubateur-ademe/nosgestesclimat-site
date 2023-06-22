@@ -611,9 +611,11 @@ const Router = () => {
 			<Route
 				path="/rejoindre-groupe/:groupId"
 				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<RejoindreGroupeLazy />
-					</Suspense>
+					<WithEngine options={{ parsed: true, optimized: false }}>
+						<Suspense fallback={<AnimatedLoader />}>
+							<RejoindreGroupeLazy />
+						</Suspense>
+					</WithEngine>
 				}
 			/>
 

@@ -82,7 +82,7 @@ const Simulateur = () => {
 
 	const engine = useEngine()
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
-
+	console.log('parsedRules', parsedRules)
 	const { selectedRuleDottedName, selectedRuleURL } = getValidSelectedRuleInfos(
 		decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
 		simulatorRootNameURL,

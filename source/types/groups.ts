@@ -7,12 +7,12 @@ export type Member = {
 	simulation: Simulation
 	userId: string
 	results: {
-		total: number
-		transports: number
-		alimentation: number
-		logement: number
-		divers: number
-		services_societaux: number
+		total: string
+		transports: string
+		alimentation: string
+		logement: string
+		divers: string
+		services_societaux: string
 	}
 }
 
