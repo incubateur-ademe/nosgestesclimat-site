@@ -208,6 +208,7 @@ const NamespaceRules = ({ rules, dottedName }) => {
 					const titledItem = { ...item, title: getTitle(item) }
 					return (
 						<RuleListItem
+							key={item.dottedName}
 							{...{
 								rules,
 								item: titledItem,
