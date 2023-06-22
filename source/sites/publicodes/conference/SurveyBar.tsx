@@ -1,11 +1,14 @@
 import {
 	correctValue,
+	DottedName,
 	extractCategories,
 	splitName,
 } from 'Components/publicodesUtils'
+import Engine from 'publicodes'
+
+import { RootState } from '@/reducers/rootReducer'
 import { useEngine } from 'Components/utils/EngineContext'
 import { useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { situationSelector } from 'Selectors/simulationSelectors'
 import { v4 as uuidv4 } from 'uuid'
@@ -19,13 +22,14 @@ import useDatabase, { answersURL } from './useDatabase'
 import { getAllParticipants, getCompletedTests } from './utils'
 
 export default () => {
-	const translation = useTranslation(),
-		t = translation.t
-	const situation = useSelector(situationSelector),
-		engine = useEngine(),
-		evaluation = engine.evaluate('bilan'),
-		{ nodeValue: rawNodeValue, dottedName, unit, rawNode } = evaluation
-	const rules = useSelector((state) => state.rules)
+	const situation = useSelector(situationSelector)
+
+	const engine: Engine<DottedName> = useEngine()
+
+	const evaluation = engine.evaluate('bilan')
+	const { nodeValue: rawNodeValue, unit } = evaluation
+
+	const rules = useSelector((state: RootState) => state.rules)
 
 	const progress = useSimulationProgress()
 

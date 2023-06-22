@@ -24,7 +24,7 @@ export default function RejoindreGroupe() {
 	useSetUserId()
 
 	const userId = useSelector((state: AppState) => state.userId)
-	console.log(userId)
+
 	const { t } = useTranslation()
 
 	const navigate = useNavigate()
