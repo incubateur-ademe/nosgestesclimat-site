@@ -1,3 +1,4 @@
+import GoBackLink from '@/components/groupe/GoBackLink'
 import Title from '@/components/groupe/Title'
 import { GROUP_URL } from '@/constants/urls'
 import { AppState } from '@/reducers/rootReducer'
@@ -71,7 +72,17 @@ export default function Groupe() {
 
 	return (
 		<div className="p-4">
+			<GoBackLink className="mb-4 font-bold" />
 			<Title title={group?.name} />
+			<div className="mt-4 flex justify-between">
+				<h2 className="font-bold text-md text-black">
+					<Trans>Le classement</Trans>
+				</h2>
+
+				<ButtonLink color="secondary" size="sm" href={'/creer-groupe/'}>
+					+ Inviter
+				</ButtonLink>
+			</div>
 		</div>
 	)
 }

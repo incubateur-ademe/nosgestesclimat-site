@@ -22,12 +22,31 @@ export function useEngine(): Engine<DottedName> {
 	return useContext(EngineContext) as Engine<DottedName>
 }
 
+type SetSituationForValidKeysProps = {
+	engine: Engine<DottedName>
+	situation: Partial<
+		Record<DottedName, string | number | Record<string, unknown>>
+	>
+}
+
+export const setSituationForValidKeys = ({
+	engine,
+	situation,
+}: SetSituationForValidKeysProps) => {
+	const rules = engine.getParsedRules()
+	const validKeys = intersect(Object.keys(rules), Object.keys(situation))
+	const validSituation = pick(situation, validKeys)
+
+	engine.setSituation(validSituation)
+}
+
 type SituationProviderProps = {
 	children: React.ReactNode
 	situation: Partial<
 		Record<DottedName, string | number | Record<string, unknown>>
 	>
 }
+
 export function SituationProvider({
 	children,
 	situation,
@@ -43,10 +62,7 @@ export function SituationProvider({
 
 	try {
 		if (engine) {
-			const rules = engine.getParsedRules()
-			const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
-				validSituation = pick(situation, validKeys)
-			engine.setSituation(validSituation)
+			setSituationForValidKeys({ engine, situation })
 		}
 	} catch (e) {
 		console.log(

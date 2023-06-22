@@ -6,6 +6,14 @@ export type Member = {
 	email?: string
 	simulation: Simulation
 	userId: string
+	results: {
+		total: number
+		transports: number
+		alimentation: number
+		logement: number
+		divers: number
+		services_societaux: number
+	}
 }
 
 export type Group = {
