@@ -95,7 +95,7 @@ Des cookies sont utilisés afin de suivre l’utilisation du simulateur, telles 
 
 ### e) Questions d'évaluation
 
-Afin de mieux comprendre vos attentes, nous avons ajouter deux questions d'évaluation : à la fin du test, et lors du parcours action. Vos résultats aggrégés de simulation sont alors enregistrés au côté de votre évaluation, anonymement, sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code sera bientôt ouvert sur github avec le résultat de la simulation.
+Afin de mieux comprendre vos attentes, nous avons ajouté deux questions d'évaluation : à la fin du test, et lors du parcours action. Vos résultats aggrégés de simulation (total ainsi que transport, alimentation, logement, divers) sont alors enregistrés au côté de votre évaluation, anonymement, sur un serveur hébergé par l'ADEME via notre prestataire Scalingo, dont le code sera bientôt ouvert sur github.
 
 ## Bases juridiques des traitements de données
 
