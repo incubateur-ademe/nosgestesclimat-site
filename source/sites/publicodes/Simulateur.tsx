@@ -22,7 +22,7 @@ import { AppState } from '@/reducers/rootReducer'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Navigate, useNavigate } from 'react-router'
 import { Link, useParams } from 'react-router-dom'
@@ -48,6 +48,8 @@ const Simulateur = () => {
 	const urlParams = useParams()
 	const searchParams = new URLSearchParams(window.location.search)
 	const simulatorRootNameURL = urlParams['*']
+	const { t } = useTranslation()
+
 	if (!simulatorRootNameURL) {
 		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
 	}
@@ -134,7 +136,10 @@ const Simulateur = () => {
 	return (
 		<div>
 			<Meta
-				title={evaluation.rawNode?.title}
+				title={
+					evaluation.rawNode?.title ||
+					t('Votre bilan climat personnel - Résultats')
+				}
 				description={evaluation.rawNode?.description}
 			/>
 			<Title>
