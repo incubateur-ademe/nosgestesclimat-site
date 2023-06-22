@@ -1,6 +1,10 @@
 import { Action } from '@/actions/actions'
 import { omit } from '@/utils'
-import { createdGroupReducer, groupsReducer } from './group/index'
+import {
+	createdGroupReducer,
+	groupsReducer,
+	groupToRedirectToReducer,
+} from './group/index'
 
 import { Localisation, SupportedRegions } from '@/components/localisation/utils'
 import { DottedName, NGCRules } from '@/components/publicodesUtils'
@@ -496,6 +500,7 @@ export type AppState = CombinedState<{
 	groups: Group[]
 	createdGroup: Group | null
 	userId: string | null
+	groupToRedirectTo: Group | null
 }>
 
 const mainReducer = (state: any, action: Action) =>
@@ -529,6 +534,7 @@ const mainReducer = (state: any, action: Action) =>
 		groups: groupsReducer,
 		createdGroup: createdGroupReducer,
 		userId: userIdReducer,
+		groupToRedirectTo: groupToRedirectToReducer,
 	})(state, action)
 
 export default reduceReducers<AppState>(

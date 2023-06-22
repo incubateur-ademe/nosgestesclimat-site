@@ -1,4 +1,4 @@
-import { addGroupToUser } from '@/actions/actions'
+import { addGroupToUser, setGroupToRedirectTo } from '@/actions/actions'
 import Button from '@/components/groupe/Button'
 import TextInputGroup from '@/components/groupe/TextInputGroup'
 import Title from '@/components/groupe/Title'
@@ -6,10 +6,11 @@ import { GROUP_URL } from '@/constants/urls'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
+import { getSimulationResults } from '@/utils/getSimulationResults'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { redirect, useNavigate, useParams } from 'react-router-dom'
 
 export default function RejoindreGroupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -30,6 +31,16 @@ export default function RejoindreGroupe() {
 	const navigate = useNavigate()
 
 	const dispatch = useDispatch()
+
+	const currentSimulationId = useSelector(
+		(state: AppState) => state.currentSimulationId
+	)
+
+	const simulationList = useSelector((state: AppState) => state.simulations)
+
+	const currentSimulation = simulationList.find(
+		(simulation) => simulation.id === currentSimulationId
+	)
 
 	useEffect(() => {
 		const handleFetchGroup = async () => {
@@ -62,6 +73,8 @@ export default function RejoindreGroupe() {
 			return
 		}
 
+		const results = getSimulationResults({ simulation: currentSimulation })
+
 		try {
 			const response = await fetch(`${GROUP_URL}/update`, {
 				method: 'POST',
@@ -71,6 +84,8 @@ export default function RejoindreGroupe() {
 						name: prenomLocalState,
 						email: emailLocalState,
 						userId,
+						simulation: currentSimulation ?? undefined,
+						results,
 					},
 				}),
 				headers: {
@@ -83,16 +98,30 @@ export default function RejoindreGroupe() {
 				throw new Error('Error while updating group')
 			}
 
+			// Vérifier si l'utilisateur n'est pas déjà dans le groupe
 			dispatch(addGroupToUser(group))
 
-			navigate('../informations-de-groupe')
+			// Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
+			if (currentSimulation) {
+				navigate(`../groupe/${group._id}`)
+			} else {
+				// sinon on le redirige vers le simulateur
+				dispatch(setGroupToRedirectTo(group))
+				navigate('/simulateur/bilan')
+			}
 		} catch (error) {
 			console.error(error)
 		}
 	}
 
+	// Show nothing if group is not fetched yet
 	if (!group) {
 		return null
+	}
+
+	// If user is already in the group, redirect to group page
+	if (group?.members?.find((member) => member.userId === userId)) {
+		return redirect(`/groupe/${group._id}`)
 	}
 
 	return (

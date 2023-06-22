@@ -226,6 +226,7 @@ export default function Root() {
 				groups: persistedUser.groups,
 				createdGroup: persistUser.createdGroup,
 				userId: persistedUser.userId,
+				groupToRedirectTo: persistedUser.groupToRedirectTo,
 			}}
 		>
 			<Main />

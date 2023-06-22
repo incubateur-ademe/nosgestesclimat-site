@@ -52,6 +52,7 @@ export type User = {
 	groups: Group[]
 	createdGroup: Group | null
 	userId: string | null
+	groupToRedirectTo: Group | null
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list

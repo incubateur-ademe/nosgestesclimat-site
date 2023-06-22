@@ -403,3 +403,8 @@ export const setUserId = (userId: string) => ({
 	type: 'SET_USER_ID',
 	userId,
 })
+
+export const setGroupToRedirectTo = (group: Group) => ({
+	type: 'SET_GROUP_TO_REDIRECT_TO',
+	group,
+})
