@@ -106,9 +106,13 @@ export const NewsletterForm = () => {
 			setIsSending(false)
 		}
 	}
+	/*
+	// Pour permettre à ceux n'ayant pas reçu le premier email d'inscription
+	// je commente ce bloc pour le moment, à décommenter d'ici quelques mois
 
 	if (hasSubscribedToNewsletter && !hasSubscribedToNewsletterRef.current)
 		return null
+	*/
 
 	return (
 		<div
