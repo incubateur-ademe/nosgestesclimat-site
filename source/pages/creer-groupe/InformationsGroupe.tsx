@@ -1,8 +1,11 @@
 import { addGroupToUser, setCreatedGroup } from '@/actions/actions'
 import { matomoEventCreationGroupe } from '@/analytics/matomo-events'
+import { useEngine } from '@/components/utils/EngineContext'
 import { GROUP_URL } from '@/constants/urls'
 import { MatomoContext } from '@/contexts/MatomoContext'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { Group } from '@/types/groups'
+import { getSimulationResults } from '@/utils/getSimulationResults'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
@@ -22,6 +25,8 @@ export default function InformationsGroupe() {
 		groupeName ?? ''
 	)
 	const [errorGroupeName, setErrorGroupeName] = useState('')
+	const [shouldShowErrorSimulation, setShouldShowErrorSimulation] =
+		useState(false)
 
 	const { t } = useTranslation()
 
@@ -29,7 +34,16 @@ export default function InformationsGroupe() {
 
 	const dispatch = useDispatch()
 
+	const currentSimulation = useGetCurrentSimulation()
+
+	const engine = useEngine()
+
 	const handleSubmit = async () => {
+		if (!currentSimulation) {
+			setShouldShowErrorSimulation(true)
+			return
+		}
+
 		if (!groupeNameLocalState) {
 			setErrorGroupeName(t('Ce champ est obligatoire'))
 			return
@@ -38,12 +52,19 @@ export default function InformationsGroupe() {
 		try {
 			setGroupeName(groupeNameLocalState)
 
+			const results = getSimulationResults({
+				simulation: currentSimulation,
+				engine,
+			})
+
 			const response = await fetch(GROUP_URL + '/create', {
 				method: 'POST',
 				body: JSON.stringify({
 					name: groupeNameLocalState,
 					ownerEmail: email,
 					ownerName: prenom,
+					simulation: currentSimulation,
+					results,
 				}),
 				headers: {
 					Accept: 'application/json',
@@ -92,6 +113,13 @@ export default function InformationsGroupe() {
 			<Button onClick={handleSubmit} aria-disabled={!groupeNameLocalState}>
 				<Trans>Créer le groupe</Trans>
 			</Button>
+			{shouldShowErrorSimulation && (
+				<div className="mt-2text-xs text-red-700">
+					<Trans>
+						Vous devez compléter votre test avant de créer un groupe.
+					</Trans>
+				</div>
+			)}
 		</>
 	)
 }

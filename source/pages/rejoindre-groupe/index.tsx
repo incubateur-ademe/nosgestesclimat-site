@@ -3,6 +3,7 @@ import Button from '@/components/groupe/Button'
 import TextInputGroup from '@/components/groupe/TextInputGroup'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
@@ -34,15 +35,9 @@ export default function RejoindreGroupe() {
 
 	const dispatch = useDispatch()
 
-	const currentSimulationId = useSelector(
-		(state: AppState) => state.currentSimulationId
-	)
+	const currentSimulation = useGetCurrentSimulation()
 
-	const simulationList = useSelector((state: AppState) => state.simulations)
-
-	const currentSimulation = simulationList.find(
-		(simulation) => simulation.id === currentSimulationId
-	)
+	const engine = useEngine()
 
 	useEffect(() => {
 		const handleFetchGroup = async () => {
@@ -58,8 +53,6 @@ export default function RejoindreGroupe() {
 			handleFetchGroup()
 		}
 	}, [groupId, group])
-
-	const engine = useEngine()
 
 	const handleSubmit = async () => {
 		if (!group) {
@@ -109,7 +102,7 @@ export default function RejoindreGroupe() {
 
 	// If user is already in the group, redirect to group page
 	if (group?.members?.find((member) => member.userId === userId)) {
-		return redirect(`/groupe/${group._id}`)
+		redirect(`/groupe/${group._id}`)
 	}
 
 	return (
