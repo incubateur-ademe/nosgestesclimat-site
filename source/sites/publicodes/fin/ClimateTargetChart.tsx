@@ -115,43 +115,45 @@ export default ({ details, color, value, score, nextSlide }) => {
 				`}
 			>
 				<div
-					css={`
-						position: absolute;
-						right: 5vw;
-						top: 0rem;
-						margin-bottom: 1.4rem;
-						background: #ffffff26;
-						border-radius: 0.6rem;
-						margin: 0 0.6rem;
-						padding: 0rem 0.6rem;
-						width: 10rem;
-					`}
-				>
-					<div css="margin: .4rem 0; font-style: italic;">
-						<NeutralH1 id="myFootprint">
-							<Trans>mon empreinte carbone</Trans>
-						</NeutralH1>
-						<img
-							src="/images/thin-arrow-left.svg"
-							aria-hidden
-							title="Comprendre l'objectif à atteindre"
-							css={`
-								height: 3rem;
-								position: absolute;
-								left: -2rem;
-								bottom: -3.4rem;
-								${invertWhiteArrows}
-							`}
-						/>
-					</div>
-				</div>
-				<div
-					css=" height: 3rem"
 					title={t('{{res}} tonnes de CO₂e', {
 						res: formatValue(score, currentLangInfos.abrvLocale),
 					})}
 					aria-describedby="myFootprint"
+					css={`
+						position: relative;
+					`}
 				>
+					<div
+						css={`
+							position: absolute;
+							right: -12rem;
+							top: 0rem;
+							margin-bottom: 1.4rem;
+							background: #ffffff26;
+							border-radius: 0.6rem;
+							margin: 0 0.6rem;
+							padding: 0rem 0.6rem;
+							width: 10rem;
+						`}
+					>
+						<div css="margin: .4rem 0; font-style: italic;">
+							<NeutralH1 id="myFootprint">
+								<Trans>mon empreinte carbone</Trans>
+							</NeutralH1>
+							<img
+								src="/images/thin-arrow-left.svg"
+								aria-hidden
+								title="Comprendre l'objectif à atteindre"
+								css={`
+									height: 3rem;
+									position: absolute;
+									left: -2rem;
+									bottom: -3.4rem;
+									${invertWhiteArrows}
+								`}
+							/>
+						</div>
+					</div>
 					<div
 						css={`
 							width: 4rem;
