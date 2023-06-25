@@ -213,9 +213,7 @@ export const getTitle = (rule: NGCRule & { dottedName: DottedName }) =>
 // Publicodes's % unit is strangely handlded
 // the nodeValue is * 100 to account for the unit
 // hence we divide it by 100 and drop the unit
-export function correctValue(evaluated: EvaluatedNode): number | undefined {
-	const { nodeValue, unit } = evaluated
-
+export function correctValue({ nodeValue, unit }): number | undefined {
 	if (nodeValue == undefined || typeof nodeValue !== 'number') {
 		return undefined
 	}

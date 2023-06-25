@@ -24,13 +24,16 @@ import {
 	AppState,
 	objectifsConfigToDottedNameArray,
 } from '@/reducers/rootReducer'
+import { SavedSimulation } from '@/selectors/storageSelectors'
 import BandeauContribuer from '@/sites/publicodes/BandeauContribuer'
 import InlineCategoryChart from '@/sites/publicodes/chart/InlineCategoryChart'
 import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { questionConfig } from '@/sites/publicodes/questionConfig'
 import ScoreBar from '@/sites/publicodes/ScoreBar'
 import { getQuestionURLSearchParams } from '@/sites/publicodes/utils'
-import { Group } from '@/types/groups'
+import { Group, ResultsObject } from '@/types/groups'
+import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
+import { getSimulationResults } from '@/utils/getSimulationResults'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -290,6 +293,36 @@ const MainSimulationEnding = ({ rules, engine }) => {
 		(state: RootState) => state.groupToRedirectTo
 	)
 
+	const simulationList = useSelector((state: AppState) => state.simulations)
+
+	const currentSimulationId = useSelector(
+		(state: AppState) => state.currentSimulationId
+	)
+
+	const currentSimulation = simulationList.find(
+		(simulation) => simulation.id === currentSimulationId
+	)
+
+	const userId = useSelector((state: AppState) => state.userId)
+
+	const handleUpdateGroup = async () => {
+		const results: ResultsObject = getSimulationResults({
+			simulation: currentSimulation,
+			engine,
+		})
+
+		try {
+			await fetchUpdateGroupMember({
+				group: groupToRedirectTo,
+				userId: userId ?? '',
+				simulation: currentSimulation as SavedSimulation,
+				results,
+			})
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	return (
 		<div
 			css={`
@@ -316,6 +349,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				}
 				className="ui__ button cta plain"
 				data-cypress-id="see-results-link"
+				onClick={groupToRedirectTo ? handleUpdateGroup : undefined}
 			>
 				<Trans>Voir mon résultat</Trans>
 			</Link>

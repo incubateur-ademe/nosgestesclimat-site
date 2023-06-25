@@ -80,7 +80,7 @@ export default function Groupe() {
 					<Trans>Le classement</Trans>
 				</h2>
 
-				<ButtonLink color="secondary" size="sm" href={'/creer-groupe/'}>
+				<ButtonLink color="secondary" size="sm" href={'inviter'}>
 					+ Inviter
 				</ButtonLink>
 			</div>
