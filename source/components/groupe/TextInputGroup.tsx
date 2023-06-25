@@ -48,7 +48,7 @@ export default function TextInputGroup({
 				value={value}
 			/>
 			{error && (
-				<span id={`error-${name}`} className="text-sm text-red-700 mt-1">
+				<span id={`error-${name}`} className="text-xs text-red-700 mt-2">
 					{error}
 				</span>
 			)}

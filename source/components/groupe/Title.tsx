@@ -1,4 +1,4 @@
-import Separator from '../../pages/groupe-amis/components/Separator'
+import Separator from '../../pages/creer-groupe/components/Separator'
 
 type Props = {
 	title: string | JSX.Element

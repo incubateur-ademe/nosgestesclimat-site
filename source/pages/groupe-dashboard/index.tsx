@@ -7,7 +7,7 @@ import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useParams } from 'react-router-dom'
-import ButtonLink from '../groupe-amis/components/ButtonLink'
+import ButtonLink from '../creer-groupe/components/ButtonLink'
 import Classement from './components/Classement'
 
 export default function Groupe() {

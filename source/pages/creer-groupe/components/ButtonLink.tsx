@@ -8,7 +8,8 @@ type Props = {
 } & React.PropsWithChildren
 
 const colorClassNames = {
-	primary: 'border-0 text-white bg-primary hover:opacity-0.7',
+	primary:
+		'border-0 transition-opacity text-white bg-primary hover:!opacity-80 hover:!text-white',
 	secondary:
 		'border-2 !border-primary text-primary bg-transparent hover:bg-violet-100',
 }
@@ -23,7 +24,7 @@ const sizeClassNames = {
 export default function ButtonLink({
 	href,
 	children,
-	className,
+	className = '',
 	color = 'primary',
 	size = 'md',
 	...props
