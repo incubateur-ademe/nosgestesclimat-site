@@ -2,17 +2,17 @@ import { AppState } from '@/reducers/rootReducer'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import Title from '../../components/groupe/Title'
-import ButtonLink from '../groupe-amis/components/ButtonLink'
-import Container from '../groupe-amis/components/Container'
-import GroupList from '../groupe-amis/components/GroupList'
-import Separator from '../groupe-amis/components/Separator'
+import ButtonLink from '../creer-groupe/components/ButtonLink'
+import Container from '../creer-groupe/components/Container'
+import GroupList from '../creer-groupe/components/GroupList'
+import Separator from '../creer-groupe/components/Separator'
 
 export default function MesGroupes() {
 	const { t } = useTranslation()
 	const groups = useSelector((state: AppState) => state.groups)
 
 	return (
-		<>
+		<div className="p-4">
 			<Title
 				title={t("Groupe d'amis")}
 				subtitle={t(
@@ -29,7 +29,7 @@ export default function MesGroupes() {
 						Invitez vos proches pour comparer vos résultats. Ça prend{' '}
 						<strong className="text-red-600">1 minute</strong> !
 					</p>
-					<ButtonLink href={'vos-informations'}>
+					<ButtonLink href={'/creer-groupe/vos-informations'}>
 						<Trans>Commencer</Trans>
 					</ButtonLink>
 				</Container>
@@ -50,6 +50,6 @@ export default function MesGroupes() {
 					</ButtonLink>
 				</>
 			)}
-		</>
+		</div>
 	)
 }

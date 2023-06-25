@@ -135,7 +135,7 @@ const MesGroupesLazy = React.lazy(
 )
 
 const GroupeAmisLazy = React.lazy(
-	() => import(/* webpackChunkName: 'GroupeAmis' */ '@/pages/groupe-amis')
+	() => import(/* webpackChunkName: 'GroupeAmis' */ '@/pages/creer-groupe')
 )
 
 const RejoindreGroupeLazy = React.lazy(

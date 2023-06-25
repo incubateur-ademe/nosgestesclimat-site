@@ -49,9 +49,12 @@ export default function VosInformations() {
 				name="prenom"
 				placeholder="Jean-Michel"
 				className="mt-4"
-				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+				onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
 					setPrenomLocalState(e.target.value)
-				}
+					if (errorPrenom) {
+						setErrorPrenom('')
+					}
+				}}
 				error={errorPrenom}
 				value={prenomLocalState}
 			/>
