@@ -5,7 +5,7 @@ import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { GROUP_URL } from '@/constants/urls'
 import { useSetUserId } from '@/hooks/useSetUserId'
-import { AppState, RootState } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { useEffect, useState } from 'react'
@@ -64,11 +64,8 @@ export default function RejoindreGroupe() {
 		}
 	}, [groupId, group])
 
-	const rules = useSelector((state: RootState) => state.rules)
-
 	const engine = useEngine()
 
-	console.log({ engine })
 	const handleSubmit = async () => {
 		if (!group) {
 			return
@@ -83,8 +80,6 @@ export default function RejoindreGroupe() {
 			simulation: currentSimulation,
 			engine,
 		})
-
-		console.log({ results, currentSimulation })
 
 		try {
 			const response = await fetch(`${GROUP_URL}/update`, {

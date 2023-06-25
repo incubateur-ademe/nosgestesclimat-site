@@ -40,7 +40,7 @@ export default function TextInputGroup({
 				name={name}
 				type={type}
 				placeholder={placeholder}
-				className={`border border-slate-200 rounded-sm px-3 py-2 mt-3 focus:ring-2 focus:ring-pink-700 focus:border-transparent ${
+				className={`border border-slate-200 rounded-sm px-3 py-2 mt-3 focus:ring-2 focus:ring-primary focus:border-transparent ${
 					error ? 'ring-2 ring-red-700 border-red-700' : ''
 				}}`}
 				onChange={onChange}
