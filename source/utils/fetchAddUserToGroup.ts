@@ -5,7 +5,7 @@ import { Group, ResultsObject } from '@/types/groups'
 type Props = {
 	group: Group
 	name: string
-	email: string
+	email?: string
 	userId: string
 	simulation?: SavedSimulation
 	results?: ResultsObject
@@ -25,7 +25,7 @@ export const fetchAddUserToGroup = async ({
 			_id: group._id,
 			member: {
 				name,
-				email,
+				email: email || '',
 				userId,
 				simulation,
 				results,
