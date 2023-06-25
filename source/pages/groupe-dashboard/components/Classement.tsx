@@ -45,72 +45,70 @@ export default function Classement({ group }: { group: Group }) {
 
 	return (
 		<>
-			<ul className="mt-2">
-				<div className="rounded-md bg-primary text-white mt-2 py-5 px-3">
-					{topThreeMembers.map((member, index) => {
-						let rank
-						switch (index) {
-							case 0:
-								rank = '🥇'
-								break
-							case 1:
-								rank = '🥈'
-								break
-							case 2:
-								rank = '🥉'
-								break
-							default:
-						}
+			<ul className="rounded-md bg-primary text-white mt-2 py-4 px-4">
+				{topThreeMembers.map((member, index) => {
+					let rank
+					switch (index) {
+						case 0:
+							rank = '🥇'
+							break
+						case 1:
+							rank = '🥈'
+							break
+						case 2:
+							rank = '🥉'
+							break
+						default:
+					}
+					console.log(member?.results?.total)
+					const quantity = member?.results?.total ? (
+						<p className="leading-[160%] m-none">
+							<strong>{member?.results?.total}</strong>{' '}
+							<span className="font-light text-sm">
+								<Trans>tonnes</Trans>
+							</span>
+						</p>
+					) : (
+						'...'
+					)
 
-						const quantity = member?.results?.total ? (
-							<p className="leading-[160%] m-none">
-								<strong>{member?.results?.total}</strong>{' '}
-								<span className="font-light text-sm">
-									<Trans>tonnes</Trans>
-								</span>
-							</p>
-						) : (
-							'...'
-						)
+					return (
+						<ClassementMember
+							key={member._id}
+							name={member.name}
+							rank={rank}
+							quantity={quantity}
+						/>
+					)
+				})}
+			</ul>
+			<ul>
+				{restOfMembers.length > 0 &&
+					restOfMembers
+						.filter((member, index) => isExpanded || index < 2)
+						.map((member, index) => {
+							const rank = `${index + 4}.`
 
-						return (
-							<ClassementMember
-								key={member._id}
-								name={member.name}
-								rank={rank}
-								quantity={quantity}
-							/>
-						)
-					})}
-				</div>
-				<div>
-					{restOfMembers.length > 0 &&
-						restOfMembers
-							.filter((member, index) => isExpanded || index < 2)
-							.map((member, index) => {
-								const rank = `${index + 4}.`
+							const quantity = member?.results?.total ? (
+								<p className="leading-[160%]">
+									<strong>{member?.results?.total}</strong>{' '}
+									<span className="font-light text-sm">
+										<Trans>tonnes</Trans>
+									</span>
+								</p>
+							) : (
+								'...'
+							)
 
-								const quantity = member?.results?.total ? (
-									<p className="leading-[160%]">
-										<strong>{member?.results?.total}</strong>{' '}
-										<span className="font-light text-sm">
-											<Trans>tonnes</Trans>
-										</span>
-									</p>
-								) : (
-									'...'
-								)
-
-								return (
-									<ClassementMember
-										key={member._id}
-										name={member.name}
-										rank={rank}
-										quantity={quantity}
-									/>
-								)
-							})}
-				</div>
+							return (
+								<ClassementMember
+									key={member._id}
+									name={member.name}
+									rank={rank}
+									quantity={quantity}
+								/>
+							)
+						})}
 			</ul>
 			{group.members.length > 5 && (
 				<button className="bg-transparent border-none text-primary underline text-center mt-4 text-sm w-full">

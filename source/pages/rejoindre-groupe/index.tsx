@@ -3,10 +3,11 @@ import Button from '@/components/groupe/Button'
 import TextInputGroup from '@/components/groupe/TextInputGroup'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
-import { GROUP_URL } from '@/constants/urls'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
+import { fetchAddUserToGroup } from '@/utils/fetchAddUserToGroup'
+import { fetchGroup } from '@/utils/fetchGroup'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -46,13 +47,7 @@ export default function RejoindreGroupe() {
 	useEffect(() => {
 		const handleFetchGroup = async () => {
 			try {
-				const response = await fetch(`${GROUP_URL}/${groupId}`)
-
-				if (!response.ok) {
-					throw new Error('Error while fetching group')
-				}
-
-				const group: Group = await response.json()
+				const group = await fetchGroup(groupId || '')
 
 				setGroup(group)
 			} catch (error) {
@@ -82,27 +77,14 @@ export default function RejoindreGroupe() {
 		})
 
 		try {
-			const response = await fetch(`${GROUP_URL}/update`, {
-				method: 'POST',
-				body: JSON.stringify({
-					_id: group._id,
-					member: {
-						name: prenomLocalState,
-						email: emailLocalState,
-						userId,
-						simulation: currentSimulation ?? undefined,
-						results,
-					},
-				}),
-				headers: {
-					Accept: 'application/json',
-					'Content-Type': 'application/json',
-				},
+			await fetchAddUserToGroup({
+				group,
+				name: prenomLocalState,
+				email: emailLocalState,
+				userId: userId ?? '',
+				simulation: currentSimulation ?? undefined,
+				results,
 			})
-
-			if (!response.ok) {
-				throw new Error('Error while updating group')
-			}
 
 			// Vérifier si l'utilisateur n'est pas déjà dans le groupe
 			dispatch(addGroupToUser(group))
