@@ -23,6 +23,7 @@ import {
 	AppState,
 	objectifsConfigToDottedNameArray,
 } from '@/reducers/rootReducer'
+import { Group } from '@/types/groups'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -276,6 +277,10 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const enquête = useSelector(enquêteSelector)
 	// Necessary to call 'buildEndURL' with the latest situation
 
+	const groupToRedirectTo: Group = useSelector(
+		(state: RootState) => state.groupToRedirectTo
+	)
+
 	return (
 		<div
 			css={`
@@ -290,17 +295,16 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				padding: 1rem;
 			`}
 		>
-			<img
-				src="/images/glowing-ngc-star.svg"
-				width="100"
-				height="100"
-				aria-hidden="true"
-			/>
+			<img src="/images/glowing-ngc-star.svg" width="100" height="100" alt="" />
 			<p>
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
 			<Link
-				to={buildEndURL(rules, engine) ?? ''}
+				to={
+					groupToRedirectTo
+						? `/groupe/${groupToRedirectTo._id}`
+						: buildEndURL(rules, engine) ?? ''
+				}
 				className="ui__ button cta plain"
 				data-cypress-id="see-results-link"
 			>
