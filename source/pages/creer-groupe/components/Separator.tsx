@@ -1,3 +1,3 @@
 export default function Separator({ className = '' }) {
-	return <div className={`h-[2px] w-14 bg-pink-700 ${className}`} />
+	return <div className={`h-[3px] w-12 bg-secondary ${className}`} />
 }

@@ -136,7 +136,7 @@ export default function RejoindreGroupe() {
 				label={
 					<span>
 						{t('Votre adresse email ')}{' '}
-						<span className="text-pink-700 italic"> {t('facultatif')}</span>
+						<span className="text-secondary italic"> {t('facultatif')}</span>
 					</span>
 				}
 				helperText={t(

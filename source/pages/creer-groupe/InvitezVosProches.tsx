@@ -76,7 +76,7 @@ export default function InvitezVosProches() {
 				</Button>
 			)}
 
-			<Link href={'..'} className="mt-12">
+			<Link href={'/mes-groupes'} className="mt-12">
 				<span role="img" aria-label="Emoji pointing right">
 					👉
 				</span>{' '}

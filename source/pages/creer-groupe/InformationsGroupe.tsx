@@ -4,11 +4,12 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { GROUP_URL } from '@/constants/urls'
 import { MatomoContext } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
+import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { useContext, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Button from '../../components/groupe/Button'
 import GoBackLink from '../../components/groupe/GoBackLink'
@@ -38,6 +39,8 @@ export default function InformationsGroupe() {
 
 	const engine = useEngine()
 
+	const userId = useSelector((state: AppState) => state.userId)
+
 	const handleSubmit = async () => {
 		if (!currentSimulation) {
 			setShouldShowErrorSimulation(true)
@@ -63,6 +66,7 @@ export default function InformationsGroupe() {
 					name: groupeNameLocalState,
 					ownerEmail: email,
 					ownerName: prenom,
+					userId,
 					simulation: currentSimulation,
 					results,
 				}),

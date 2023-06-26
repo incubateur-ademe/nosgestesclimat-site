@@ -7,7 +7,7 @@ type Props = {
 
 export default function StepperIndicator({ currentStep, numberSteps }: Props) {
 	return (
-		<p className="text-pink-700 mb-2 font-bold">
+		<p className="text-secondary mb-2 font-bold">
 			<Trans>
 				Étape {String(currentStep)} sur {String(numberSteps)}
 			</Trans>

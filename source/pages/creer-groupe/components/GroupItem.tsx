@@ -1,21 +1,17 @@
 import ChevronRight from '@/components/icons/ChevronRight'
-import { Member } from '@/types/groups'
+import { Group } from '@/types/groups'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 type Props = {
-	group: {
-		name: string
-		image: string
-		members: Member[]
-	}
+	group: Group
 }
 
 export default function GroupItem({ group }: Props) {
 	return (
 		<Link
-			to="/"
-			className="border-solid border-[1px] border-gray-200 bg-gray-100 rounded-sm px-5 py-2"
+			to={`/groupe/${group?._id}`}
+			className="border-solid border-[1px] border-gray-200 bg-gray-100 no-underline rounded-sm px-5 py-2 decoration-auto"
 		>
 			<div className="flex items-center justify-between py-4">
 				<div className="flex items-center">

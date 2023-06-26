@@ -6,7 +6,7 @@ export default function GoBackLink({ className }: { className?: string }) {
 	return (
 		<button
 			onClick={() => navigate(-1)}
-			className={`${className} inline-block text-primary hover:opacity-80 transition-opacity`}
+			className={`${className} inline-block text-primary hover:opacity-80 !text-[1rem] transition-opacity px-0`}
 		>
 			← <Trans>Retour</Trans>
 		</button>

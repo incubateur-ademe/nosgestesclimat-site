@@ -27,7 +27,7 @@ export default function MesGroupes() {
 					</h2>
 					<p className="text-sm mb-6">
 						Invitez vos proches pour comparer vos résultats. Ça prend{' '}
-						<strong className="text-red-600">1 minute</strong> !
+						<strong className="text-secondary">1 minute</strong> !
 					</p>
 					<ButtonLink href={'/creer-groupe/vos-informations'}>
 						<Trans>Commencer</Trans>
