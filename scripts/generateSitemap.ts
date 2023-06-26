@@ -76,7 +76,7 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 			.filter((dottedName) => isValidRule(dottedName, parsedRules))
 			.map(
 				(dottedName) =>
-					`http://localhost:8080/simulateur/bilan?question=${encodeRuleNameToSearchParam(
+					`http://nosgestesclimat.fr/simulateur/bilan?question=${encodeRuleNameToSearchParam(
 						dottedName
 					)}`
 			)
