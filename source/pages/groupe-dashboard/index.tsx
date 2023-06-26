@@ -73,7 +73,7 @@ export default function Groupe() {
 			<GoBackLink className="mb-4 font-bold" />
 			<Title title={group?.name} />
 			<div className="mt-4 flex justify-between items-center">
-				<h2 className="font-bold text-md text-black">
+				<h2 className="font-bold text-md m-0">
 					<Trans>Le classement</Trans>
 				</h2>
 
