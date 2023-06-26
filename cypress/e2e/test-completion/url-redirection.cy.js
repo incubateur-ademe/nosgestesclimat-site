@@ -24,6 +24,8 @@ function goToQuestionAndGet(
 ) {
 	cy.visit(`/simulateur/${rootSimulatorURL}?question=${question}`)
 	clickUnderstoodButton()
+
+	waitWhileLoading()
 	clickCategoryStartButton()
 	cy.get(`[id="id-question-${question}${mosaicFirstQuestion}"]`)
 }

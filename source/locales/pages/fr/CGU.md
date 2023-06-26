@@ -10,20 +10,20 @@ L'utilisation de la plateforme est gratuite et ouverte à tous.
 
 ## Article 2 -- Objet
 
-La plateforme Nos Gestes Climat a pour objectif d'évaluer l'empreinte
-carbone individuelle annuelle de consommation, total et par grandes catégories
-(alimentation, transport, logement, divers, services socétaux), de la situer par rapport aux objectifs climatiques. En
-fonction des réponses et du résultat, des gestes personnalisés sont
+La Plateforme Nos Gestes Climat a pour objectif d'évaluer l'empreinte
+carbone individuelle annuelle de consommation, totale et par grandes catégories
+(alimentation, transport, logement, divers, services socétaux), et de la situer par rapport aux objectifs climatiques. En
+fonction des réponses et du résultat, des actions personnalisées sont
 proposés.
 
 Voir [la page à-propos](/à-propos) pour plus de détails.
 
 ## Article 3 -- Définitions
 
-« L'Utilisateur » est toute personne utilisant la plateforme Nos Gestes
+« L'Utilisateur » est toute personne utilisant la Plateforme Nos Gestes
 Climat.
 
-Les « Services » sont les fonctionnalités offertes par la plateforme
+Les « Services » sont les fonctionnalités offertes par la Plateforme
 pour répondre à ses finalités.
 
 « Le responsable de traitement » est la personne qui, au sens de
@@ -37,20 +37,20 @@ traitements de données à caractère personnel.
 
 ### 4.1 Simulation individuelle
 
-L'utilisateur accède au simulateur au travers du bouton « faire le
+L'Utilisateur accède au simulateur au travers du bouton « faire le
 test », qui enclenche un questionnaire afin de déterminer l'empreinte
 carbone. Les thèmes abordés sont notamment, l'alimentation, le
 transport, le logement, les services sociétaux, ...
 
-Il peut à tout moment cliquer sur le bouton « comprendre le calcul »
+L'Utilisateur peut à tout moment cliquer sur le bouton « comprendre le calcul »
 afin d'en apprendre plus sur le simulateur.
 
 ### 4.2 Simulation sous le monde groupe : conférence et sondage
 
-Grâce à la fonctionnalité conférences, il est possible d'effectuer la
+L'Utilisateur peut, grâce à la fonctionnalité conférences, effectuer la
 simulation à plusieurs en cliquant sur le bouton « faire le test à
-plusieurs ». Un lien aléatoire est généré pour accéder à la conférence,
-et des noms aléatoires, et anonymes, sont attribués aux participants.
+plusieurs ». Un lien aléatoire est généré pour accéder à la conférence
+et des noms aléatoires et anonymes sont attribués aux participants.
 
 Dans ce cas, les résultats sont agrégés en pair-à-pair avec les autres participants de
 la conférence. Une moyenne du groupe est transmise, et comparée à la
@@ -86,11 +86,17 @@ réserve la liberté de faire évoluer, de modifier ou de suspendre, sans
 préavis, la plateforme pour des raisons de maintenance ou pour tout
 autre motif jugé nécessaire.
 
+### L'Utilisateur
+
+L’Utilisateur s’engage à ne pas mettre en ligne des contenus ou informations contraires aux
+dispositions légales et réglementaires en vigueur.
+
 ## Article 6 - Mise à jour des conditions d'utilisation
 
 Les termes des présentes conditions d'utilisation peuvent être amendés à
 tout moment, sans préavis, en fonction des modifications apportées à la
 plateforme, de l'évolution de la législation ou pour tout autre motif
-jugé nécessaire.
+jugé nécessaire. Chaque modification donne lieu à une
+nouvelle version qui est acceptée par les parties.
 
 L'historique de ces mises à jour est consultable dans le dépôt de code ouvert https://github.com/datagir/nosgestesclimat-site.
