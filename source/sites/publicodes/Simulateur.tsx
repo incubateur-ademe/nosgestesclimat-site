@@ -285,9 +285,10 @@ const MainSimulationEnding = ({ rules, engine }) => {
 
 	const handleUpdateGroup = async () => {
 		const results: ResultsObject = getSimulationResults({
-			simulation: currentSimulation,
 			engine,
 		})
+
+		console.log({ results })
 
 		try {
 			await fetchUpdateGroupMember({
@@ -321,15 +322,28 @@ const MainSimulationEnding = ({ rules, engine }) => {
 			<p>
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
-			<Link
-				to={buildEndURL(rules, engine) ?? ''}
-				aria-disabled={!currentSimulation}
-				className="ui__ button cta plain"
-				data-cypress-id="see-results-link"
-				onClick={groupToRedirectTo ? handleUpdateGroup : undefined}
-			>
-				<Trans>Voir mon résultat</Trans>
-			</Link>
+			{groupToRedirectTo ? (
+				<button
+					type="button"
+					aria-disabled={!currentSimulation}
+					className="ui__ button cta plain"
+					data-cypress-id="see-results-link"
+					onClick={handleUpdateGroup}
+				>
+					<Trans>Voir mon résultat</Trans>
+				</button>
+			) : (
+				<Link
+					to={buildEndURL(rules, engine) ?? ''}
+					aria-disabled={!currentSimulation}
+					className="ui__ button cta plain"
+					data-cypress-id="see-results-link"
+					onClick={groupToRedirectTo ? handleUpdateGroup : undefined}
+				>
+					<Trans>Voir mon résultat</Trans>
+				</Link>
+			)}
+
 			{!enquête && (
 				<>
 					<Trans>ou</Trans>

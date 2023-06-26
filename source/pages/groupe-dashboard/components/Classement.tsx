@@ -4,7 +4,7 @@ import { Trans } from 'react-i18next'
 
 const ClassementMember = ({ rank, name, quantity, isTopThree }) => {
 	return (
-		<li className="flex justify-between">
+		<li className="flex justify-between items-center">
 			<div>
 				<span className={`mr-2 ${isTopThree ? 'text-2xl' : 'text-lg ml-1'}`}>
 					{rank}
@@ -73,7 +73,7 @@ export default function Classement({ group }: { group: Group }) {
 							break
 						default:
 					}
-					console.log(member?.results?.total)
+
 					const quantity = member?.results?.total ? (
 						<p className="leading-[160%] m-none">
 							<strong>{member?.results?.total}</strong>{' '}
