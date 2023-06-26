@@ -3,7 +3,8 @@ import Title from '@/components/groupe/Title'
 import { GROUP_URL } from '@/constants/urls'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
-import { useEffect, useState } from 'react'
+import * as Sentry from '@sentry/react'
+import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -22,11 +23,14 @@ export default function Groupe() {
 
 	const { t } = useTranslation()
 
+	const intervalRef = useRef<NodeJS.Timer>()
+
 	const results = useGetGroupMembersSubCategoriesFootprints({
 		groupMembers: group?.members,
 		userId,
 	})
 	console.log(results)
+
 	useEffect(() => {
 		const handleFetchGroup = async () => {
 			try {
@@ -36,21 +40,32 @@ export default function Groupe() {
 					throw new Error('Error while fetching group')
 				}
 
-				const group: Group = await response.json()
+				const groupFetched: Group = await response.json()
 
 				// Don't allow users to access groups they are not part of
-				if (!group.members.find((member) => member.userId === userId)) {
+				if (!groupFetched.members.find((member) => member.userId === userId)) {
 					setMemberNotInGroup(true)
 				}
-				setGroup(group)
+				setGroup(groupFetched)
 			} catch (error) {
-				console.error(error)
+				Sentry.captureException(error)
 			}
 		}
+
 		if (groupId && !group) {
 			handleFetchGroup()
+
+			intervalRef.current = setInterval(() => handleFetchGroup(), 60000)
 		}
 	}, [groupId, group, userId])
+
+	useEffect(() => {
+		return () => {
+			if (intervalRef.current) {
+				clearInterval(intervalRef.current)
+			}
+		}
+	}, [])
 
 	if (!group) {
 		return null

@@ -3,7 +3,7 @@ export const NETLIFY_FUNCTIONS_URL =
 		? 'http://localhost:8888/.netlify/functions'
 		: '/.netlify/functions'
 
-const secure = process.env.NODE_ENV === 'development' ? '' : 's'
+export const secure = process.env.NODE_ENV === 'development' ? '' : 's'
 const protocol = `http${secure}://`
 
 export const SERVER_URL = protocol + process.env.SERVER_URL
