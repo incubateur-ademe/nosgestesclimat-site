@@ -15,7 +15,7 @@ export const fetchUpdateGroupMember = async ({
 	simulation,
 	results,
 }: Props) => {
-	const response = await fetch(`${GROUP_URL}/updatr-member`, {
+	const response = await fetch(`${GROUP_URL}/update-member`, {
 		method: 'POST',
 		body: JSON.stringify({
 			_id: group._id,

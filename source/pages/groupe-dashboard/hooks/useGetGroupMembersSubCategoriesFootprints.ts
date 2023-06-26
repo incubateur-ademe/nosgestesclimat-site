@@ -28,6 +28,7 @@ export const useGetGroupMembersSubCategoriesFootprints = ({
 	const allMembersSummedFootprintsByCategoriesAndSubCategories =
 		groupMembers.reduce((acc, groupMember: Member) => {
 			const isCurrentMember = groupMember.userId === userId
+			console.log(isCurrentMember)
 			const updatedAcc = { ...acc }
 			// Set Situation
 			engine.setSituation(groupMember?.simulation?.situation)

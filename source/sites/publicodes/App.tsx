@@ -602,9 +602,11 @@ const Router = () => {
 			<Route
 				path="/mes-groupes"
 				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<MesGroupesLazy />
-					</Suspense>
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<MesGroupesLazy />
+						</Suspense>
+					</WithEngine>
 				}
 			/>
 			<Route
