@@ -4,21 +4,8 @@ import { Link } from 'react-router-dom'
 
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { getCurrentLangInfos } from '@/locales/translation'
-import React, { Suspense } from 'react'
 import { blogData } from './BlogData'
 import { dateCool, extractImage } from './news/NewsItem'
-const LazyIllustration = React.lazy(
-	() =>
-		import(
-			/* webpackChunkName: 'AnimatedIllustration' */ '@/components/AnimatedIllustration'
-		)
-)
-
-const Illustration = () => (
-	<Suspense fallback={null}>
-		<LazyIllustration small={true} />
-	</Suspense>
-)
 
 export default () => {
 	const { t } = useTranslation()
@@ -29,17 +16,14 @@ export default () => {
 
 	return (
 		<div className={'ui__ container fluid'}>
-			<Meta title={title} description={description} />
+			<Meta
+				title={title}
+				description={description}
+				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
+			/>
 			<h1 data-cypress-id="blog-title">{title}</h1>
+			<p>{description}</p>
 
-			<div
-				css={`
-					text-align: center;
-				`}
-			>
-				<Illustration aria-hidden="true" />
-				<p>{description}</p>
-			</div>
 			<ScrollToTop />
 			<ul
 				css={`
