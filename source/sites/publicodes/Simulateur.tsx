@@ -18,11 +18,9 @@ import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
-import {
-	AppState,
-	objectifsConfigToDottedNameArray,
-} from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import { SavedSimulation } from '@/selectors/storageSelectors'
 import { Group, ResultsObject } from '@/types/groups'
 import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
@@ -106,12 +104,7 @@ const Simulateur = () => {
 		: []
 
 	useEffect(() => {
-		if (
-			!isEquivalentTargetArrays(
-				config.objectifs,
-				objectifsConfigToDottedNameArray(configSet?.objectifs ?? [])
-			)
-		) {
+		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
 			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
 	}, [dispatch, config, selectedRuleURL, configSet])
@@ -280,19 +273,13 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const enquête = useSelector(enquêteSelector)
 	// Necessary to call 'buildEndURL' with the latest situation
 
+	const navigate = useNavigate()
+
 	const groupToRedirectTo: Group = useSelector(
 		(state: RootState) => state.groupToRedirectTo
 	)
 
-	const simulationList = useSelector((state: AppState) => state.simulations)
-
-	const currentSimulationId = useSelector(
-		(state: AppState) => state.currentSimulationId
-	)
-
-	const currentSimulation = simulationList.find(
-		(simulation) => simulation.id === currentSimulationId
-	)
+	const currentSimulation = useGetCurrentSimulation()
 
 	const userId = useSelector((state: AppState) => state.userId)
 
@@ -309,6 +296,8 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				simulation: currentSimulation as SavedSimulation,
 				results,
 			})
+
+			navigate(`/groupe/${groupToRedirectTo._id}`)
 		} catch (e) {
 			console.log(e)
 		}
@@ -333,11 +322,8 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
 			<Link
-				to={
-					groupToRedirectTo
-						? `/groupe/${groupToRedirectTo._id}`
-						: buildEndURL(rules, engine) ?? ''
-				}
+				to={buildEndURL(rules, engine) ?? ''}
+				aria-disabled={!currentSimulation}
 				className="ui__ button cta plain"
 				data-cypress-id="see-results-link"
 				onClick={groupToRedirectTo ? handleUpdateGroup : undefined}

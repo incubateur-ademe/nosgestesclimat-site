@@ -26,5 +26,5 @@ export type ResultsObject = {
 	alimentation: string
 	logement: string
 	divers: string
-	services_societaux: string
+	'services sociétaux': string
 }

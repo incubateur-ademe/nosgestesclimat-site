@@ -5,10 +5,11 @@ import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 import ButtonLink from '../creer-groupe/components/ButtonLink'
 import Classement from './components/Classement'
+import VotreEmpreinte from './components/VotreEmpreinte'
 
 export default function Groupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -19,10 +20,6 @@ export default function Groupe() {
 	const userId = useSelector((state: AppState) => state.userId)
 
 	const { t } = useTranslation()
-
-	const navigate = useNavigate()
-
-	const dispatch = useDispatch()
 
 	useEffect(() => {
 		const handleFetchGroup = async () => {
@@ -75,7 +72,7 @@ export default function Groupe() {
 		<div className="p-4">
 			<GoBackLink className="mb-4 font-bold" />
 			<Title title={group?.name} />
-			<div className="mt-4 flex justify-between">
+			<div className="mt-4 flex justify-between items-center">
 				<h2 className="font-bold text-md text-black">
 					<Trans>Le classement</Trans>
 				</h2>
@@ -85,6 +82,12 @@ export default function Groupe() {
 				</ButtonLink>
 			</div>
 			<Classement group={group} />
+
+			<VotreEmpreinte
+				results={
+					group?.members?.find((member) => member.userId === userId)?.results
+				}
+			/>
 		</div>
 	)
 }

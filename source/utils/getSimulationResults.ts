@@ -12,10 +12,8 @@ export const getSimulationResults = ({
 }): ResultsObject => {
 	let resultsObject
 
-	if (simulation) {
+	if (simulation && engine) {
 		resultsObject = {}
-
-		// setSituationForValidKeys({ engine, situation: simulation.situation })
 
 		const rules = engine.getParsedRules()
 

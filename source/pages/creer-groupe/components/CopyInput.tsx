@@ -1,3 +1,4 @@
+import Button from '@/components/groupe/Button'
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
 
@@ -17,9 +18,9 @@ export default function CopyInput({ textToCopy, className = '' }: Props) {
 				value={textToCopy}
 				readOnly
 			/>
-			<button
-				type="button"
-				className="flex-shrink-0 !min-w-[8rem] px-4 py-2 text-sm font-medium text-violet-700 border-solid border-violet-700 bg-transparent hover:bg-violet-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-600 rounded-e-sm"
+			<Button
+				color="secondary"
+				className="flex-shrink-0 !min-w-[8rem] px-4 py-2 text-sm rounded-s-none justify-center"
 				onClick={() => {
 					navigator.clipboard.writeText(textToCopy)
 					setIsCopied(true)
@@ -27,7 +28,7 @@ export default function CopyInput({ textToCopy, className = '' }: Props) {
 				}}
 			>
 				{isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>}
-			</button>
+			</Button>
 		</div>
 	)
 }

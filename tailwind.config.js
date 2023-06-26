@@ -4,7 +4,13 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				primary: '#491273',
+				// primary: '#491273',
+				primary: '#5758BB',
+				primaryLight: '#E8DFEE',
+				primaryDark: '#32337B',
+				primaryBorder: 'rgba(73, 18, 115, 0.1)',
+				title: '#32337B',
+				secondary: '#3496E0',
 			},
 		},
 	},

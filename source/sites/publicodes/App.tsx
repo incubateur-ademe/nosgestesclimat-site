@@ -610,9 +610,11 @@ const Router = () => {
 			<Route
 				path="/creer-groupe/*"
 				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<GroupeAmisLazy />
-					</Suspense>
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<GroupeAmisLazy />
+						</Suspense>
+					</WithEngine>
 				}
 			/>
 			<Route
@@ -629,9 +631,11 @@ const Router = () => {
 			<Route
 				path="/groupe/:groupId"
 				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<GroupeDashboardLazy />
-					</Suspense>
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<GroupeDashboardLazy />
+						</Suspense>
+					</WithEngine>
 				}
 			/>
 

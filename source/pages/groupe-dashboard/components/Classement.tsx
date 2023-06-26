@@ -1,12 +1,14 @@
-import { Group } from '@/types/groups'
+import { Group, Member } from '@/types/groups'
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
 
-const ClassementMember = ({ rank, name, quantity }) => {
+const ClassementMember = ({ rank, name, quantity, isTopThree }) => {
 	return (
 		<li className="flex justify-between">
 			<div>
-				<span className="mr-2 text-2xl">{rank}</span>
+				<span className={`mr-2 ${isTopThree ? 'text-2xl' : 'text-lg ml-1'}`}>
+					{rank}
+				</span>
 				{name}
 			</div>
 			<div>{quantity}</div>
@@ -39,9 +41,20 @@ export default function Classement({ group }: { group: Group }) {
 		return 0
 	})
 
-	const topThreeMembers = sortedMembers.slice(0, 3)
-
-	const restOfMembers = sortedMembers.slice(3)
+	const { topThreeMembers, restOfMembers } = sortedMembers.reduce(
+		(acc, member, index) => {
+			if (index < 3 && member?.results?.total !== undefined) {
+				acc.topThreeMembers.push(member)
+			} else {
+				acc.restOfMembers.push(member)
+			}
+			return acc
+		},
+		{ topThreeMembers: [], restOfMembers: [] } as {
+			topThreeMembers: Member[]
+			restOfMembers: Member[]
+		}
+	)
 
 	return (
 		<>
@@ -78,16 +91,20 @@ export default function Classement({ group }: { group: Group }) {
 							name={member.name}
 							rank={rank}
 							quantity={quantity}
+							isTopThree
 						/>
 					)
 				})}
 			</ul>
-			<ul>
+			<ul className="py-4 px-4">
 				{restOfMembers.length > 0 &&
 					restOfMembers
-						.filter((member, index) => isExpanded || index < 2)
+						.filter(
+							(member, index) =>
+								isExpanded || index + topThreeMembers?.length < 5
+						)
 						.map((member, index) => {
-							const rank = `${index + 4}.`
+							const rank = `${index + 1 + topThreeMembers?.length}.`
 
 							const quantity = member?.results?.total ? (
 								<p className="leading-[160%]">
