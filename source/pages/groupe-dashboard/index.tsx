@@ -10,6 +10,7 @@ import { useParams } from 'react-router-dom'
 import ButtonLink from '../creer-groupe/components/ButtonLink'
 import Classement from './components/Classement'
 import VotreEmpreinte from './components/VotreEmpreinte'
+import { useGetGroupMembersSubCategoriesFootprints } from './hooks/useGetGroupMembersSubCategoriesFootprints'
 
 export default function Groupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -21,6 +22,11 @@ export default function Groupe() {
 
 	const { t } = useTranslation()
 
+	const results = useGetGroupMembersSubCategoriesFootprints({
+		groupMembers: group?.members,
+		userId,
+	})
+	console.log(results)
 	useEffect(() => {
 		const handleFetchGroup = async () => {
 			try {

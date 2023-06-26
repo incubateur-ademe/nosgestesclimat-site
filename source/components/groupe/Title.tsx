@@ -3,7 +3,7 @@ import Separator from '../../pages/creer-groupe/components/Separator'
 type Props = {
 	title: string | JSX.Element
 	subtitle?: string
-	tag: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+	tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
 }
 
 export default function Title({ title, subtitle, tag = 'h1' }: Props) {
