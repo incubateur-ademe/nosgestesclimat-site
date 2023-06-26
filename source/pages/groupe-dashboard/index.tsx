@@ -11,7 +11,7 @@ import { useParams } from 'react-router-dom'
 import ButtonLink from '../creer-groupe/components/ButtonLink'
 import Classement from './components/Classement'
 import VotreEmpreinte from './components/VotreEmpreinte'
-import { useGetGroupMembersSubCategoriesFootprints } from './hooks/useGetGroupMembersSubCategoriesFootprints'
+import { useGetGroupStats } from './hooks/useGetGroupStats'
 
 export default function Groupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -25,11 +25,12 @@ export default function Groupe() {
 
 	const intervalRef = useRef<NodeJS.Timer>()
 
-	const results = useGetGroupMembersSubCategoriesFootprints({
-		groupMembers: group?.members,
-		userId,
-	})
-	console.log(results)
+	const results =
+		useGetGroupStats({
+			groupMembers: group?.members,
+			userId,
+		}) || {}
+	console.log({ results })
 
 	useEffect(() => {
 		const handleFetchGroup = async () => {
