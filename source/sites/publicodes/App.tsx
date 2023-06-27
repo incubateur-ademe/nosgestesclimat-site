@@ -324,8 +324,11 @@ const Main = () => {
 						}
 						@media (max-width: 800px) {
 							margin-bottom: 58px;
+							padding-left: 0 !important;
+							padding-right: 0 !important;
 						}
 					`}
+					className={fluidLayout ? '' : 'ui__ container'}
 				>
 					<Navigation fluidLayout={fluidLayout} />
 					<main
