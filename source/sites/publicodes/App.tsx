@@ -41,6 +41,7 @@ import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
 import { isFluidLayout } from './utils'
 
+
 // All those lazy components, could be probably be handled another more consise way
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
 
@@ -122,9 +123,6 @@ const News = React.lazy(
 	() => import(/* webpackChunkName: 'News' */ './pages/news/News')
 )
 
-const NorthstarStatsLazy = React.lazy(
-	() => import(/* webpackChunkName: 'CGU' */ './pages/NorthstarStats')
-)
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 declare global {
@@ -586,14 +584,6 @@ const Router = () => {
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<International />
-					</Suspense>
-				}
-			/>
-			<Route
-				path={'/northstar'}
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<NorthstarStatsLazy />
 					</Suspense>
 				}
 			/>
