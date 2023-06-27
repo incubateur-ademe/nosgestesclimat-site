@@ -826,3 +826,14 @@ entries:
   Invitez vos proches: Invite your friends and family
   Ce champ est obligatoire: This field is mandatory
   Seulement pour te permettre de le retrouver ou de supprimer les données par la suite: Only to allow you to find it or delete the data later
+  Le classement: The ranking
+  Comment agir: How to act
+  Vos points forts: Your strengths
+  Votre empreinte: Your footprint
+  Vos points faibles: Your weaknesses
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées': Find out how you can take action for the climate today, or take the test to get personalized recommendations
+  Toutes les actions: All actions
+  Par rapport à la moyenne du groupe.: Compared with the group average.
+  Vous devez compléter votre test avant de créer un groupe.: You must complete your test before creating a group.
+  'Voir les {String(group.members.length)} autres participants': See the {String(group.members.length)} other participants
+  'Voir les {String(group.members.length)} autres participants.lock': Voir les {String(group.members.length)} autres participants
