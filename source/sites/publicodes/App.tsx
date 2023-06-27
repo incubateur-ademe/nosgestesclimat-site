@@ -7,7 +7,6 @@ import LangSwitcher from '@/components/LangSwitcher'
 import LocalisationMessage from '@/components/localisation/LocalisationMessage'
 import Logo from '@/components/Logo'
 import Route404 from '@/components/Route404'
-import { sessionBarMargin } from '@/components/SessionBar'
 import '@/components/ui/index.css'
 import { MatomoContext } from '@/contexts/MatomoContext'
 import '@/global.css'
@@ -323,9 +322,10 @@ const Main = () => {
 						transform: translateX(-4vw);
 						`}
 						}
-						${!fluidLayout && !isTuto && sessionBarMargin}
+						@media (max-width: 800px) {
+							margin-bottom: 58px;
+						}
 					`}
-					className={fluidLayout ? '' : 'ui__ container'}
 				>
 					<Navigation fluidLayout={fluidLayout} />
 					<main

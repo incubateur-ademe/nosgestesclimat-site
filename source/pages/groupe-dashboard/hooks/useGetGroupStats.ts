@@ -8,15 +8,24 @@ import { Member } from '@/types/groups'
 import Engine from 'publicodes'
 
 type ValueObject = {
+	title: string
 	value: number
 	mean?: number
 	variation?: number
 	icon?: string
+	isCategory?: boolean
 }
 
 type Points = {
 	key: string
 	resultObject: ValueObject
+}
+
+export type Results = {
+	currentMember: Record<string, ValueObject>
+	allMembers: Record<string, ValueObject>
+	pointsForts: Points[]
+	pointsFaibles: Points[]
 }
 
 export const useGetGroupStats = ({
@@ -55,8 +64,10 @@ export const useGetGroupStats = ({
 				// otherwise we add the value to the existing sum
 				if (!updatedAcc[category.name]) {
 					updatedAcc[category.name] = {
+						title: category.title,
 						value: category.nodeValue as number,
 						icon: rules[category?.name]?.rawNode?.icônes,
+						isCategory: true,
 					}
 				} else {
 					updatedAcc[category.name].value += category.nodeValue as number
@@ -65,8 +76,10 @@ export const useGetGroupStats = ({
 				// Add each category footprint for the current member
 				if (isCurrentMember) {
 					results.currentMember[category.name] = {
+						title: category.title,
 						value: category.nodeValue as number,
 						icon: rules[category?.name]?.rawNode?.icônes,
+						isCategory: true,
 					}
 				}
 
@@ -74,6 +87,7 @@ export const useGetGroupStats = ({
 					(subCategory) => {
 						if (!updatedAcc[subCategory.name]) {
 							updatedAcc[subCategory.name] = {
+								title: subCategory.title,
 								value: subCategory.nodeValue as number,
 								icon:
 									rules[subCategory?.name]?.rawNode?.icônes ??
@@ -87,6 +101,7 @@ export const useGetGroupStats = ({
 						// Add each category footprint for the current member
 						if (isCurrentMember) {
 							results.currentMember[subCategory.name] = {
+								title: subCategory.title,
 								value: subCategory.nodeValue as number,
 								icon:
 									rules[subCategory?.name]?.rawNode?.icônes ??
@@ -119,6 +134,7 @@ export const useGetGroupStats = ({
 	const sortedCurrentMemberByVariation = Object.entries({
 		...results.currentMember,
 	})
+		.filter(([key, resultObject]) => !resultObject?.isCategory)
 		.map(([key, resultObject]) => ({ key, resultObject }))
 		.sort((a, b) => {
 			if (a?.resultObject?.variation === b?.resultObject?.variation) {
@@ -136,5 +152,5 @@ export const useGetGroupStats = ({
 	results.pointsForts = sortedCurrentMemberByVariation.slice(0, 2)
 	results.pointsFaibles = sortedCurrentMemberByVariation.slice(-3)
 
-	return results
+	return results as Results
 }
