@@ -16,9 +16,24 @@ export default () => {
 
 	return (
 		<div className={'ui__ container fluid'}>
-			<Meta title={title} description={description} />
+			<Meta
+				title={title}
+				description={description}
+				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
+			/>
 			<h1 data-cypress-id="blog-title">{title}</h1>
-			<p>{description}</p>
+			<div
+				css={`
+					text-align: center;
+				`}
+			>
+				<img
+					alt={description}
+					css="width: 100%; height: 237px; object-fit: cover; object-position: 100% 0px;"
+					src="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
+				/>
+				<p>{description}</p>
+			</div>
 			<ScrollToTop />
 			<ul
 				css={`
@@ -56,6 +71,7 @@ export default () => {
 									height: 8rem;
 									margin-bottom: 0.6rem;
 								`}
+								alt={`Illustration: ${post.title}`}
 							/>
 							<div
 								css={`
