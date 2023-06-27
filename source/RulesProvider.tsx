@@ -151,8 +151,8 @@ export const WithEngine = ({
 }): JSX.Element => {
 	console.log('calling WithEngine with options', options)
 	const dispatch = useDispatch()
-	const engineState = useSelector((state: any) => state.engineState)
-	const currentRulesOptions: AnyObjectType[] = engineState?.options
+	const engineState = useSelector((state: AppState) => state.engineState)
+	const currentRulesOptions = engineState?.options
 
 	useEffect(() => {
 		options?.optimized
@@ -179,7 +179,6 @@ export const WithEngine = ({
 	) {
 		return fallback
 	}
-
 	return children
 }
 

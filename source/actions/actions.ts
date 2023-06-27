@@ -1,10 +1,12 @@
-import { Rating } from '@/selectors/storageSelectors'
-import { RootState, SimulationConfig } from 'Reducers/rootReducer'
+import { Localisation } from '@/components/localisation/utils'
+import {
+	RootState,
+	Simulation,
+	SimulationConfig,
+	TutorialStateStatus,
+} from '@/reducers/rootReducer'
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { DottedName } from 'Rules'
-import { Localisation } from '../components/localisation/utils'
-import { Simulation } from '../reducers/rootReducer'
 
 export type Action =
 	| ResetSimulationAction
@@ -189,10 +191,15 @@ export const updateSituation = (fieldName: DottedName, value: unknown) =>
 		value,
 	} as const)
 
-export const skipTutorial = (id: string, unskip: boolean) => ({
+export const skipTutorial = (
+	id: string,
+	unskip: boolean = false,
+	fromRule: TutorialStateStatus
+) => ({
 	type: 'SKIP_TUTORIAL',
 	id,
 	unskip,
+	fromRule,
 })
 
 export const setTrackingVariable = (name: string, value: boolean) => ({

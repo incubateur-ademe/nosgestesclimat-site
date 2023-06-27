@@ -1,15 +1,17 @@
+import AnimatedLoader from '@/AnimatedLoader'
 import { extractCategories } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
-import React, { Suspense, useEffect, useState } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
-import AnimatedLoader from '../../../AnimatedLoader'
-import { WithEngine } from '../../../RulesProvider'
+import { AppState } from '@/reducers/rootReducer'
+import { WithEngine } from '@/RulesProvider'
 import {
 	currentQuestionSelector,
 	situationSelector,
-} from '../../../selectors/simulationSelectors'
-import { useQuery } from '../../../utils'
+} from '@/selectors/simulationSelectors'
+import { useQuery } from '@/utils'
+import Engine from 'publicodes'
+import React, { Suspense, useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import CategoryVisualisation from '../CategoryVisualisation'
 import DetailedBarChartIcon from './DetailedBarChartIcon'
 import Chart from './index.js'
@@ -24,26 +26,25 @@ const SpecializedVisualisation = React.lazy(
 		)
 )
 
+function mapAbreviation(rules: any, engine: Engine) {
+	return extractCategories(rules, engine).map((category) => {
+		return {
+			...category,
+			abbreviation: rules[category.dottedName]?.abréviation,
+		}
+	})
+}
+
 export default ({ givenEngine }) => {
 	const { t } = useTranslation()
 	const situation = useSelector(situationSelector) // needed for this component to refresh on situation change :
-	const rules = useSelector((state) => state.rules)
-	const engine = givenEngine || useEngine()
-	const [categories, setCategories] = useState(
-		extractCategories(rules, engine).map((category) => ({
-			...category,
-			abbreviation: rules[category.dottedName].abréviation,
-		}))
-	)
-	const tutorials = useSelector((state) => state.tutorials)
+	const rules = useSelector((state: AppState) => state.rules)
+	const engine = givenEngine ?? useEngine()
+	const [categories, setCategories] = useState(mapAbreviation(rules, engine))
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 
 	useEffect(() => {
-		setCategories(
-			extractCategories(rules, engine).map((category) => ({
-				...category,
-				abbreviation: rules[category.dottedName].abréviation,
-			}))
-		)
+		setCategories(mapAbreviation(rules, engine))
 	}, [rules, situation])
 
 	const displayedCategory = useContinuousCategory(categories)

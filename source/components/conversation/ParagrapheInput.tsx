@@ -4,7 +4,7 @@ import { InputCommonProps } from './RuleInput'
 
 export default function ParagrapheInput({
 	onChange,
-	value,
+	nodeValue: value,
 	id,
 	defaultValue,
 	autoFocus,

@@ -1,11 +1,13 @@
-import animate from 'Components/ui/animate'
+import IllustratedButton from '@/components/IllustratedButton'
+import { correctValue } from '@/components/publicodesUtils'
+import animate from '@/components/ui/animate'
+import { ScrollToElement } from '@/components/utils/Scroll'
+import { AppState } from '@/reducers/rootReducer'
 import { AnimatePresence, motion } from 'framer-motion'
+import { EvaluatedNode } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import styled from 'styled-components'
-import IllustratedButton from '../../components/IllustratedButton'
-import { correctValue } from '../../components/publicodesUtils'
-import { ScrollToElement } from '../../components/utils/Scroll'
 import ActionConversation from './ActionConversation'
 import { ActionListCard } from './ActionVignette'
 
@@ -29,10 +31,13 @@ export default ({
 
 	const actions = rawActions.map((a) => ({
 		...a,
-		value: correctValue({ nodeValue: a.nodeValue, unit: a.unit }),
+		value: correctValue({
+			nodeValue: a.nodeValue,
+			unit: a.unit,
+		} as EvaluatedNode),
 	}))
 
-	const actionChoices = useSelector((state) => state.actionChoices)
+	const actionChoices = useSelector((state: AppState) => state.actionChoices)
 	const rejected = actions.filter((a) => actionChoices[a.dottedName] === false)
 	const notRejected = actions.filter(
 		(a) => actionChoices[a.dottedName] !== false

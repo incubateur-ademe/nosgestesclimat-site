@@ -1,7 +1,6 @@
 import styled from 'styled-components'
 
 const MosaicStamp = styled.div`
-	position: absolute;
 	font-size: 75%;
 	font-weight: bold;
 	display: inline-block;
@@ -13,7 +12,6 @@ const MosaicStamp = styled.div`
 	mask-position: 13rem 6rem;
 	transform: rotate(-10deg);
 	border-radius: 4px;
-	right: 0.5rem;
 	line-height: 1rem;
 	z-index: 0;
 	max-width: 8rem;

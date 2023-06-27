@@ -50,10 +50,18 @@ console.log('Sitemap mis à jour avec les dernières nouveautés :)')
 fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 	.then((res) => res.json())
 	.then((json) => {
+		const actionLines = json.actions.formule.somme.map(
+			(dottedName) =>
+				`https://nosgestesclimat.fr/actions/${encodeRuleName(dottedName)}`
+		)
+		const textAction = actionLines.join('\n')
+		fs.appendFileSync(destinationURL, textAction + '\n', 'utf8')
+
 		const documentationLines = Object.keys(json).map(
 			(dottedName) =>
 				`https://nosgestesclimat.fr/documentation/${encodeRuleName(dottedName)}`
 		)
+
 		const text = documentationLines.join('\n')
 		fs.appendFileSync(destinationURL, text, 'utf8')
 		console.log('Sitemap mis à jour avec les dernières règles publicodes :)')

@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
 	<head>
-		<script
-			defer
-			data-domain="nosgestesclimat.fr"
-			src="https://plausible.io/js/script.js"
-		></script>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="initial-scale=1" />
 
@@ -164,6 +159,11 @@
 				var u = '//stats.data.gouv.fr/'
 				_paq.push(['setTrackerUrl', u + 'matomo.php'])
 				_paq.push(['setSiteId', '153'])
+				_paq.push([
+					'addTracker',
+					'https://nosgestesclimat.matomo.cloud/matomo.php',
+					'2',
+				])
 				var d = document,
 					g = d.createElement('script'),
 					s = d.getElementsByTagName('script')[0]
@@ -180,8 +180,7 @@
 		<!-- Polyfill and source for old browser -->
 		<!-- Add polyfill.io for a very narrow web feature
 			IntersectionObserver : SAFARI 11 & 12.0  https://caniuse.com/#search=intersectionobserver
-			Intl : SAFARI 9 & 10.0  https://caniuse.com/#search=Intl
 		-->
-		<script src="https://polyfill.io/v3/polyfill.min.js?features=Intl.~locale.en%2CIntl.~locale.fr%2CIntersectionObserver"></script>
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver"></script>
 	</body>
 </html>

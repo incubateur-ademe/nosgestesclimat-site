@@ -1,7 +1,7 @@
 import { Markdown } from 'Components/utils/markdown'
 import { utils } from 'publicodes'
 import { Link } from 'react-router-dom'
-import { splitName, title } from '../../../components/publicodesUtils'
+import { getTitle, splitName } from '../../../components/publicodesUtils'
 import { RuleListItem } from '../../../components/SearchBar'
 import Meta from '../../../components/utils/Meta'
 import { capitalise0, omit } from '../../../utils'
@@ -30,7 +30,7 @@ const Breadcrumb = ({ rules, dottedName }) => {
 				<span key={parentDottedName}>
 					{rule.icônes !== undefined && <span>{rule.icônes}</span>}
 					<Link to={utils.encodeRuleName(parentDottedName)}>
-						{title({ ...rule, dottedName: parentDottedName })}
+						{getTitle({ ...rule, dottedName: parentDottedName })}
 					</Link>
 
 					<span aria-hidden>{' › '}</span>
@@ -66,8 +66,7 @@ const QuestionRuleSection = ({ title, children }) => (
 
 export default ({ rule, dottedName, setLoadEngine, rules }) => {
 	const split = splitName(dottedName),
-		title = rule.titre || capitalise0(split[splitName.length - 1]),
-		parents = split.slice(0, -1)
+		title = rule.titre || capitalise0(split[splitName.length - 1])
 
 	const yamlAttributesToDisplay = omit(
 		[
@@ -202,13 +201,14 @@ const NamespaceRules = ({ rules, dottedName }) => {
 			>
 				{namespaceRules.map((ruleName) => {
 					const item = {
-							...rules[ruleName],
-							dottedName: ruleName,
-							espace: ruleName.split(' . ').reverse(),
-						},
-						titledItem = { ...item, title: title(item) }
+						...rules[ruleName],
+						dottedName: ruleName,
+						espace: ruleName.split(' . ').reverse(),
+					}
+					const titledItem = { ...item, title: getTitle(item) }
 					return (
 						<RuleListItem
+							key={item.dottedName}
 							{...{
 								rules,
 								item: titledItem,

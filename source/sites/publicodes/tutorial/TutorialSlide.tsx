@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import { matomoEventParcoursTestSkipTutorial } from '../../../analytics/matomo-events'
 import { MatomoContext } from '../../../contexts/MatomoContext'
 
-export default ({ children, last, skip }) => {
+export default ({ children, last, skip, targetUrl }) => {
 	const { t } = useTranslation()
 	const { trackEvent } = useContext(MatomoContext)
 	return (
@@ -39,7 +39,7 @@ export default ({ children, last, skip }) => {
 					}
 				`}
 			>
-				<Link to="/simulateur/bilan">
+				<Link to={targetUrl}>
 					<button
 						className={`ui__ ${!last ? 'dashed-button' : 'button'}`}
 						onClick={() => {

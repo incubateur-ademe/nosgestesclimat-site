@@ -1,30 +1,29 @@
+import { useEngine } from '@/components/utils/EngineContext'
+import { situationSelector } from '@/selectors/simulationSelectors'
 import { updateSituation } from 'Actions/actions'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import { useEngine } from '../../utils/EngineContext'
 import MosaicInputSuggestions from '../MosaicInputSuggestions'
 import { Mosaic, MosaicItemLabel } from './UI'
 
 export default function NumberedMosaic({
-	name,
-	setFormValue,
 	dottedName,
 	selectedRules,
-	value: currentValue,
-	question,
 	options: { chipsTotal },
 	suggestions,
 }) {
 	const situation = useSelector(situationSelector)
 	const engine = useEngine()
 
-	const chipsCount = selectedRules.reduce((memo, [_, { dottedName }]) => {
-		const evaluated = engine.evaluate(dottedName)
-		return memo + evaluated.nodeValue
-	}, 0)
+	const chipsCount = selectedRules.reduce(
+		(memo: number, [_, { dottedName }]) => {
+			const evaluated = engine.evaluate(dottedName)
+			return memo + (evaluated.nodeValue as number)
+		},
+		0
+	)
 
 	const { t } = useTranslation()
 

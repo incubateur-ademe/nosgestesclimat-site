@@ -1,20 +1,25 @@
-import Input from 'Components/conversation/Input'
-import Question, { Choice } from 'Components/conversation/Question'
-import CurrencyInput from 'Components/CurrencyInput/CurrencyInput'
-import PercentageField from 'Components/PercentageField'
-import { parentName } from 'Components/publicodesUtils'
-import ToggleSwitch from 'Components/ui/ToggleSwitch'
-import { EngineContext } from 'Components/utils/EngineContext'
-import { DottedName } from 'modele-social'
+import Input from '@/components/conversation/Input'
+import Question, { Choice } from '@/components/conversation/Question'
+import CurrencyInput from '@/components/CurrencyInput/CurrencyInput'
+import PercentageField from '@/components/PercentageField'
 import {
+	DottedName,
+	getRelatedMosaicInfosIfExists,
+	parentName,
+	splitName,
+	SuggestionsNode,
+} from '@/components/publicodesUtils'
+import ToggleSwitch from '@/components/ui/ToggleSwitch'
+import { EngineContext } from '@/components/utils/EngineContext'
+import Engine, {
 	ASTNode,
-	EvaluatedRule,
+	EvaluatedNode,
 	formatValue,
 	reduceAST,
+	RuleNode,
 	serializeUnit,
 	utils,
 } from 'publicodes'
-import { Evaluation } from 'publicodes/dist/types/AST/types'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import DateInput from './DateInput'
@@ -25,8 +30,8 @@ import SelectDevices from './select/SelectDevices'
 import TextInput from './TextInput'
 
 type Value = any
-export type RuleInputProps<Name extends string = DottedName> = {
-	dottedName: Name
+export type RuleInputProps = {
+	dottedName: DottedName
 	onChange: (value: Value | null) => void
 	useSwitch?: boolean
 	isTarget?: boolean
@@ -34,16 +39,20 @@ export type RuleInputProps<Name extends string = DottedName> = {
 	id?: string
 	className?: string
 	onSubmit?: (source: string) => void
+	engine?: Engine
+	noSuggestions: boolean
 }
 
-export type InputCommonProps<Name extends string = string> = Pick<
-	RuleInputProps<Name>,
+export type InputCommonProps = Pick<
+	RuleInputProps,
 	'dottedName' | 'onChange' | 'autoFocus' | 'className'
 > &
-	Pick<EvaluatedRule<Name>, 'title' | 'question' | 'suggestions'> & {
+	Pick<EvaluatedNode, 'nodeValue'> & {
+		title: string
+		question?: string
+		suggestions: SuggestionsNode
 		key: string
 		id: string
-		value: any //TODO EvaluatedRule['nodeValue']
 		missing: boolean
 		required: boolean
 	}
@@ -53,43 +62,16 @@ export type BinaryQuestionType = [
 	{ value: string; label: string }
 ]
 
-/* function to detect if the question evaluated should be displayed as a child of a mosaic
-We only test parent of degree 2 and not all the parents of each rules : this requires to be careful on model side.
-If parent of degree 2 doesn't contain mosaic, return empty array
-If parent of degree 2 contains mosaic but rule is a child not included in the mosaic, return empty array
-We take into account if the evaluated rule is already a mosaic
-*/
-export const getRelatedMosaicInfosIfExists = (engine, rules, dottedName) => {
-	if (!dottedName) return
-	const potentialMosaicRule = engine.getRule(dottedName).rawNode['mosaique']
-		? dottedName
-		: parentName(dottedName, ' . ', 0, 2)
-	const mosaicParams =
-		potentialMosaicRule &&
-		engine.getRule(potentialMosaicRule).rawNode['mosaique']
-	if (!mosaicParams) return
-	if (
-		dottedName !== potentialMosaicRule &&
-		!dottedName.includes(` . ${mosaicParams['clé']}`)
-	)
-		return
-	const mosaicDottedNames = Object.entries(rules).filter(([rule]) => {
-		return (
-			rule.includes(potentialMosaicRule) &&
-			rule.includes(` . ${mosaicParams['clé']}`)
-		)
-	})
-	return [engine.getRule(potentialMosaicRule), mosaicParams, mosaicDottedNames]
-}
-
 export const isTransportEstimation = (dottedName) =>
 	estimationQuestions.find(({ isApplicable }) => isApplicable(dottedName))
 
-// This function takes the unknown rule and finds which React component should
-// be displayed to get a user input through successive if statements
-// That's not great, but we won't invest more time until we have more diverse
-// input components and a better type system.
-export default function RuleInput<Name extends string = DottedName>({
+/**
+ * This function takes the unknown rule and finds which React component should
+ * be displayed to get a user input through successive if statements
+ * That's not great, but we won't invest more time until we have more diverse
+ * input components and a better type system.
+ */
+export default function RuleInput({
 	dottedName,
 	onChange,
 	useSwitch = false,
@@ -100,7 +82,7 @@ export default function RuleInput<Name extends string = DottedName>({
 	onSubmit = () => null,
 	engine: givenEngine,
 	noSuggestions = false,
-}: RuleInputProps<Name>) {
+}: RuleInputProps) {
 	const { t } = useTranslation()
 	const engine = givenEngine || useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
 	const rule = engine.getRule(dottedName)
@@ -110,10 +92,10 @@ export default function RuleInput<Name extends string = DottedName>({
 	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
 
-	const commonProps: InputCommonProps<Name> = {
+	const commonProps: InputCommonProps = {
 		key: dottedName,
 		dottedName,
-		value,
+		nodeValue: value,
 		missing: !!evaluation.missingVariables[dottedName],
 		onChange,
 		autoFocus,
@@ -125,19 +107,34 @@ export default function RuleInput<Name extends string = DottedName>({
 		required: true,
 	}
 
-	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(
-		engine,
-		rules,
-		rule.dottedName
-	)
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.dottedName)
 	if (ruleMosaicInfos) {
-		const [question, mosaicParams, mosaicDottedNames] = ruleMosaicInfos
-		const selectedRules = mosaicDottedNames.map(
-			([dottedName, questionRule]) => {
+		const {
+			mosaicRule: question,
+			mosaicParams,
+			mosaicDottedNames,
+		} = ruleMosaicInfos
+		const selectedRules = mosaicDottedNames
+			.map(([dottedName, questionRule]) => {
 				const parentRule = parentName(dottedName)
 				return [rules[parentRule], questionRule]
-			}
-		)
+			})
+			// we want to sort the cards so that the inactive ones are at the end.
+			.sort(([_, q], [_b]) => ('inactif' in q.rawNode ? 1 : -1))
+		// and the active ones are ordered as the `somme` defined as model side if the formula in the rule mosaic is a `somme`.
+		const orderedSumFromSourceRule =
+			question?.rawNode?.formule && question?.rawNode?.formule['somme']
+		if (orderedSumFromSourceRule) {
+			selectedRules.sort((a, b) => {
+				const indexA = orderedSumFromSourceRule.indexOf(
+					splitName(a[0].dottedName)[splitName(a[0].dottedName).length - 1]
+				)
+				const indexB = orderedSumFromSourceRule.indexOf(
+					splitName(b[0].dottedName)[splitName(b[0].dottedName).length - 1]
+				)
+				return indexA - indexB
+			})
+		}
 		if (mosaicParams['type'] === 'selection')
 			return (
 				<SelectDevices
@@ -145,7 +142,10 @@ export default function RuleInput<Name extends string = DottedName>({
 						...commonProps,
 						dottedName: question.dottedName,
 						selectedRules,
-						options: question.options || {},
+						options:
+							// NOTE(@EmileRolley): where this options come from? And what is it?
+							// @ts-ignore
+							question.options ?? {},
 						suggestions: mosaicParams['suggestions'] || {},
 					}}
 				/>
@@ -193,7 +193,7 @@ export default function RuleInput<Name extends string = DottedName>({
 		return (
 			<DateInput
 				{...commonProps}
-				value={commonProps.value}
+				value={commonProps.nodeValue}
 				onChange={commonProps.onChange}
 				onSubmit={onSubmit}
 				suggestions={commonProps.suggestions}
@@ -250,11 +250,16 @@ export default function RuleInput<Name extends string = DottedName>({
 		return <PercentageField {...commonProps} debounce={600} />
 	}
 	if (rule.rawNode.type === 'texte') {
-		return <TextInput {...commonProps} value={value as Evaluation<string>} />
+		return (
+			<TextInput {...commonProps} nodeValue={value as Evaluation<string>} />
+		)
 	}
 	if (rule.rawNode.type === 'paragraphe') {
 		return (
-			<ParagrapheInput {...commonProps} value={value as Evaluation<string>} />
+			<ParagrapheInput
+				{...commonProps}
+				nodeValue={value as Evaluation<string>}
+			/>
 		)
 	}
 
@@ -263,7 +268,7 @@ export default function RuleInput<Name extends string = DottedName>({
 			{...commonProps}
 			onSubmit={onSubmit}
 			unit={evaluation.unit}
-			value={value as Evaluation<number>}
+			nodeValue={value as Evaluation<number>}
 			noSuggestions={noSuggestions}
 			inputEstimation={
 				rule.rawNode.aide &&

@@ -4,10 +4,10 @@ import { InputCommonProps } from './RuleInput'
 
 export default function TextInput({
 	onChange,
-	value,
+	nodeValue: value,
 	id,
 	defaultValue,
-	autoFocus
+	autoFocus,
 }: InputCommonProps) {
 	const debouncedOnChange = useCallback(debounce(1000, onChange), [])
 

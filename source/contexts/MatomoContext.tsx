@@ -28,7 +28,6 @@ interface EventObjectType {
 
 declare global {
 	interface Window {
-		plausible: any
 		_paq: any
 	}
 }
@@ -68,6 +67,7 @@ export const MatomoProvider = ({ children }) => {
 	)
 
 	if (!shouldUseDevTracker) {
+		// eslint-disable-next-line no-console
 		console.warn(
 			'Tracking is disabled in development and deploy-preview contexts.'
 		)
@@ -83,6 +83,7 @@ export const MatomoProvider = ({ children }) => {
 			if (!shouldSendEvent) return
 
 			if (shouldUseDevTracker) {
+				// eslint-disable-next-line no-console
 				console?.debug(args)
 				return
 			}
@@ -97,20 +98,11 @@ export const MatomoProvider = ({ children }) => {
 			// Pass a copy of the array to avoid mutation
 			window._paq.push([...args])
 
-			// pour plausible, je n'envoie que les events
-			// les pages vues sont gérées de base
-			const [typeTracking, eventName, subEvent] = args
+			const [typeTracking] = args
 
 			if (typeTracking === 'trackEvent') {
 				// Mise à jour du state local et du localStorage
 				handleUpdateEventsSent(args)
-
-				// Could be due to an adblocker not allowing the script to set this global attribute
-				if (!window.plausible) return
-				const subEventName = `Details : ${eventName}`
-				window.plausible(eventName, {
-					props: { [subEventName]: subEvent },
-				})
 			}
 		},
 		[checkIfEventAlreadySent, handleUpdateEventsSent]

@@ -1,4 +1,4 @@
-import { title } from 'Components/publicodesUtils'
+import { getTitle } from 'Components/publicodesUtils'
 import { Markdown } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
 import { ScrollToTop } from 'Components/utils/Scroll'
@@ -25,7 +25,7 @@ export default () => {
 
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">
-			<Meta title={title(rule)} />
+			<Meta title={getTitle(rule)} />
 			<ScrollToTop />
 			<div>
 				<Link to={'/actions/plus'}>
@@ -41,7 +41,7 @@ export default () => {
 			</Link>
 			<div css="margin: 1.6rem 0">
 				<Markdown
-					children={rule.plus || t('Cette fiche détaillée n\'existe pas encore')}
+					children={rule.plus || t("Cette fiche détaillée n'existe pas encore")}
 				/>
 			</div>
 		</div>

@@ -1,11 +1,13 @@
-import { goToQuestion } from 'Actions/actions'
+import { AppState } from '@/reducers/rootReducer'
+import { getFocusedCategoryURLSearchParams } from '@/sites/publicodes/utils'
 import {
+	encodeRuleNameToSearchParam,
 	extractCategoriesNamespaces,
 	sortCategories,
 } from 'Components/publicodesUtils'
 import { useEngine } from 'Components/utils/EngineContext'
 import { DottedName } from 'modele-social'
-import { EvaluatedNode, formatValue } from 'publicodes'
+import Engine, { EvaluatedNode, formatValue, RuleNode } from 'publicodes'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -274,13 +276,19 @@ function StepsTable({
 	)
 }
 
-const Answer = ({ rule, dispatch, level, engine }) => {
+type AnswerProps = {
+	rule: RuleNode
+	level: number
+	engine: Engine
+}
+
+const Answer = ({ rule, level, engine }) => {
 	const { t } = useTranslation()
-	const translateUnits = (units: array[string]) => {
+	const translateUnits = (units: string[]) => {
 		return units.map((unit: string) => t(unit, { ns: 'units' }))
 	}
 	const navigate = useNavigate()
-	const storedTrajets = useSelector((state) => state.storedTrajets)
+	const storedTrajets = useSelector((state: AppState) => state.storedTrajets)
 	const levelDottedName = rule.dottedName.split(' . ')
 	const levelRule =
 		levelDottedName.length > level + 1
@@ -335,8 +343,16 @@ const Answer = ({ rule, dispatch, level, engine }) => {
 						}
 					`}
 					onClick={() => {
-						dispatch(goToQuestion(rule.dottedName))
-						navigate('/simulateur/bilan')
+						const searchParams = getFocusedCategoryURLSearchParams(
+							rule.dottedName.split(' . ')[0] as string
+						)
+
+						searchParams.append(
+							'question',
+							encodeRuleNameToSearchParam(rule.dottedName as string) ?? ''
+						)
+
+						navigate(`/simulateur/bilan?${searchParams}`)
 					}}
 				>
 					<span

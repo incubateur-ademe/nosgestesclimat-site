@@ -8,6 +8,7 @@ type PropType = {
 	image?: string
 	url?: string
 	more?: ReactNode | null
+	children?: ReactNode
 }
 
 const websiteURL = 'https://nosgestesclimat.fr'
@@ -18,11 +19,11 @@ export default function Meta({
 	image,
 	url,
 	children,
-}: React.PropsWithChildren | PropType) {
+}: React.PropsWithChildren & PropType) {
 	const { pathname } = useLocation()
 	return (
 		<Helmet>
-			<title>{title} - Nos Gestes Climat</title>
+			<title>{`${title} - Nos Gestes Climat`}</title>
 			<meta name="description" content={description} />
 			<meta property="og:type" content="website" />
 			<meta property="og:title" content={title} />
