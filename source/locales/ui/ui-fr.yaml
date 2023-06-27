@@ -629,3 +629,13 @@ entries:
   Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe: Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe
   Votre prénom (ou pseudo): Votre prénom (ou pseudo)
   Vous n'avez pas été invité à rejoindre ce groupe: Vous n'avez pas été invité à rejoindre ce groupe
+  Comment agir: Comment agir
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées': Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées
+  Le classement: Le classement
+  Par rapport à la moyenne du groupe.: Par rapport à la moyenne du groupe.
+  Toutes les actions: Toutes les actions
+  'Voir les {String(group.members.length)} autres participants': Voir les {String(group.members.length)} autres participants
+  Vos points faibles: Vos points faibles
+  Vos points forts: Vos points forts
+  Votre empreinte: Votre empreinte
+  Vous devez compléter votre test avant de créer un groupe.: Vous devez compléter votre test avant de créer un groupe.
