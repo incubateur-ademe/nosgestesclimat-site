@@ -12,6 +12,7 @@ module.exports = {
 				primaryBorder: 'rgba(73, 18, 115, 0.1)',
 				title: '#32337B',
 				secondary: '#3496E0',
+				lightGrey: '#F8F8F7',
 			},
 		},
 	},

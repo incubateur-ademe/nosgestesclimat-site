@@ -1,7 +1,6 @@
-import Title from '@/components/groupe/Title'
 import ChevronRight from '@/components/icons/ChevronRight'
 import { ResultsObject } from '@/types/groups'
-import { useTranslation } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 
 const EMOJI_TEXT_MAP: {
 	[key in keyof Partial<ResultsObject>]: {
@@ -39,18 +38,20 @@ export default function VotreEmpreinte({
 	const { t } = useTranslation()
 	return (
 		<>
-			<Title
-				title={t('Votre empreinte')}
-				subtitle={t('Par rapport à la moyenne du groupe')}
-			/>
-			<ul className="mt-4">
+			<h2 className="text-[17px] mb-1 mt-0">
+				<Trans>Votre empreinte</Trans>
+			</h2>
+			<p className="text-gray-500">
+				<Trans>Par rapport à la moyenne du groupe.</Trans>
+			</p>
+			<ul className="mt-6 pl-0 mb-16">
 				{Object.entries(results || {}).reduce((acc, [key, value]) => {
 					if (!EMOJI_TEXT_MAP?.[key]) return acc
 					return [
 						...acc,
 						<li
 							key={`cat-${key}`}
-							className="flex items-center justify-between py-4 border-solid border-0 border-b-[1px] border-gray-200"
+							className="flex items-center justify-between py-4 border-solid border-0 border-b-[1px] last:border-b-0 border-gray-200"
 						>
 							<div className="flex items-center">
 								<div className="flex-shrink-0 text-2xl">

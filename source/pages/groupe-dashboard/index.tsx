@@ -9,9 +9,12 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import ButtonLink from '../creer-groupe/components/ButtonLink'
+import Separator from '../creer-groupe/components/Separator'
 import Classement from './components/Classement'
+import Footer from './components/Footer'
+import PointsFortsFaibles from './components/PointsFortsFaibles'
 import VotreEmpreinte from './components/VotreEmpreinte'
-import { useGetGroupStats } from './hooks/useGetGroupStats'
+import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
 
 export default function Groupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -25,12 +28,10 @@ export default function Groupe() {
 
 	const intervalRef = useRef<NodeJS.Timer>()
 
-	const results =
-		useGetGroupStats({
-			groupMembers: group?.members,
-			userId,
-		}) || {}
-	console.log({ results })
+	const results: Results | null = useGetGroupStats({
+		groupMembers: group?.members,
+		userId,
+	})
 
 	useEffect(() => {
 		const handleFetchGroup = async () => {
@@ -91,25 +92,42 @@ export default function Groupe() {
 	}
 
 	return (
-		<div className="p-4">
-			<GoBackLink className="mb-4 font-bold" />
-			<Title title={group?.name} />
-			<div className="mt-4 flex justify-between items-center">
-				<h2 className="font-bold text-md m-0">
-					<Trans>Le classement</Trans>
-				</h2>
+		<>
+			<main className="p-4">
+				<GoBackLink className="mb-4 font-bold" />
+				<Title title={group?.name} />
+				<div className="mt-4 flex justify-between items-center">
+					<h2 className="font-bold text-[17px] m-0">
+						<Trans>Le classement</Trans>
+					</h2>
 
-				<ButtonLink color="secondary" size="sm" href={'inviter'}>
-					+ Inviter
-				</ButtonLink>
-			</div>
-			<Classement group={group} />
+					<ButtonLink
+						color="secondary"
+						size="sm"
+						className="!text-[1rem]"
+						href={'inviter'}
+					>
+						+ Inviter
+					</ButtonLink>
+				</div>
+				<Classement group={group} />
 
-			<VotreEmpreinte
-				results={
-					group?.members?.find((member) => member.userId === userId)?.results
-				}
-			/>
-		</div>
+				<Separator className="mb-8" />
+
+				<PointsFortsFaibles
+					pointsFaibles={results?.pointsFaibles}
+					pointsForts={results?.pointsForts}
+				/>
+
+				<Separator className="mt-10 mb-6" />
+
+				<VotreEmpreinte
+					results={
+						group?.members?.find((member) => member.userId === userId)?.results
+					}
+				/>
+			</main>
+			<Footer />
+		</>
 	)
 }

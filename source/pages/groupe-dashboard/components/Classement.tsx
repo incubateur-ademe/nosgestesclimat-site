@@ -18,7 +18,6 @@ const ClassementMember = ({ rank, name, quantity, isTopThree }) => {
 
 export default function Classement({ group }: { group: Group }) {
 	const [isExpanded, setIsExpanded] = useState(false)
-	console.log(group.members)
 
 	if (!group) {
 		return null
@@ -58,7 +57,7 @@ export default function Classement({ group }: { group: Group }) {
 
 	return (
 		<>
-			<ul className="rounded-md bg-primary text-white mt-2 py-4 px-4">
+			<ul className="rounded-md bg-primary text-white mt-2 py-4 px-3">
 				{topThreeMembers.map((member, index) => {
 					let rank
 					switch (index) {
