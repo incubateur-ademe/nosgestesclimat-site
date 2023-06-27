@@ -22,8 +22,8 @@ type Points = {
 }
 
 export type Results = {
-	currentMember: Record<string, ValueObject>
-	allMembers: Record<string, ValueObject>
+	currentMemberAllFootprints: Record<string, ValueObject>
+	groupCategoriesFootprints: Record<string, ValueObject>
 	pointsForts: Points[]
 	pointsFaibles: Points[]
 }
@@ -42,113 +42,136 @@ export const useGetGroupStats = ({
 	if (!groupMembers || !userId) return null
 
 	const results = {
-		currentMember: {} as Record<string, ValueObject>,
-		allMembers: {} as Record<string, ValueObject>,
+		currentMemberAllFootprints: {} as Record<string, ValueObject>,
+		groupCategoriesFootprints: {},
 		pointsForts: {} as Points[],
 		pointsFaibles: {} as Points[],
 	}
 
-	const allMembersSummedFootprintsByCategoriesAndSubCategories =
-		groupMembers.reduce((acc, groupMember: Member) => {
-			const isCurrentMember = groupMember.userId === userId
-
-			const updatedAcc = { ...acc }
-
-			// Set Situation
-			engine.setSituation(groupMember?.simulation?.situation)
-
-			const categories = extractCategories(rules, engine)
-
-			categories.forEach((category) => {
-				// If the category is not in the accumulator, we add it along with its value
-				// otherwise we add the value to the existing sum
-				if (!updatedAcc[category.name]) {
-					updatedAcc[category.name] = {
-						title: category.title,
-						value: category.nodeValue as number,
-						icon: rules[category?.name]?.rawNode?.icônes,
-						isCategory: true,
-					}
-				} else {
-					updatedAcc[category.name].value += category.nodeValue as number
+	const { groupCategoriesFootprints, currentMemberAllFootprints } =
+		groupMembers.reduce(
+			(
+				{ groupCategoriesFootprints, currentMemberAllFootprints },
+				groupMember: Member
+			) => {
+				// Create a copy of the accumulator
+				const updatedGroupCategoriesFootprints = {
+					...groupCategoriesFootprints,
+				}
+				const updatedCurrentMemberAllFootprints = {
+					...currentMemberAllFootprints,
 				}
 
-				// Add each category footprint for the current member
-				if (isCurrentMember) {
-					results.currentMember[category.name] = {
-						title: category.title,
-						value: category.nodeValue as number,
-						icon: rules[category?.name]?.rawNode?.icônes,
-						isCategory: true,
+				const isCurrentMember = groupMember.userId === userId
+
+				// Set Situation of current member
+				engine.setSituation(groupMember?.simulation?.situation)
+
+				const categories = extractCategories(rules, engine)
+
+				categories.forEach((category) => {
+					// If the category is not in the accumulator, we add its name as a new key in the object along with its value
+					// otherwise we add the value to the existing sum
+					if (!updatedGroupCategoriesFootprints[category.name]) {
+						updatedGroupCategoriesFootprints[category.name] = {
+							title: category.title,
+							value: category.nodeValue as number,
+							icon: rules[category?.name]?.rawNode?.icônes,
+							isCategory: true,
+						}
+					} else {
+						updatedGroupCategoriesFootprints[category.name].value +=
+							category.nodeValue as number
 					}
+
+					// Add each category footprint for the current member
+					if (isCurrentMember) {
+						updatedCurrentMemberAllFootprints[category.name] = {
+							title: category.title,
+							value: category.nodeValue as number,
+							icon: rules[category?.name]?.rawNode?.icônes,
+							isCategory: true,
+						}
+					}
+
+					getSubcategories(rules, category, engine, true).forEach(
+						(subCategory) => {
+							// Same here if the property doesn't exist in the accumulator, we add it
+							// otherwise we add the value to the existing sum
+							if (!updatedGroupCategoriesFootprints[subCategory.name]) {
+								updatedGroupCategoriesFootprints[subCategory.name] = {
+									title: subCategory.title,
+									value: subCategory.nodeValue as number,
+									icon: rules[subCategory?.name]?.rawNode?.icônes,
+								}
+							} else {
+								updatedGroupCategoriesFootprints[subCategory.name].value +=
+									subCategory.nodeValue as number
+							}
+							if (isCurrentMember) {
+								// Add each category footprint for the current member
+								updatedCurrentMemberAllFootprints[subCategory.name] = {
+									title: subCategory.title,
+									value: subCategory.nodeValue as number,
+									icon:
+										rules[subCategory?.name]?.rawNode?.icônes ??
+										rules[category?.name]?.rawNode?.icônes,
+								}
+							}
+						}
+					)
+				})
+
+				return {
+					groupCategoriesFootprints: updatedGroupCategoriesFootprints,
+					currentMemberAllFootprints: updatedCurrentMemberAllFootprints,
 				}
+			},
+			{ groupCategoriesFootprints: {}, currentMemberAllFootprints: {} }
+		)
 
-				getSubcategories(rules, category, engine, true).forEach(
-					(subCategory) => {
-						if (!updatedAcc[subCategory.name]) {
-							updatedAcc[subCategory.name] = {
-								title: subCategory.title,
-								value: subCategory.nodeValue as number,
-								icon:
-									rules[subCategory?.name]?.rawNode?.icônes ??
-									rules[category?.name]?.rawNode?.icônes,
-							}
-						} else {
-							updatedAcc[subCategory.name].value +=
-								subCategory.nodeValue as number
-						}
-
-						// Add each category footprint for the current member
-						if (isCurrentMember) {
-							results.currentMember[subCategory.name] = {
-								title: subCategory.title,
-								value: subCategory.nodeValue as number,
-								icon:
-									rules[subCategory?.name]?.rawNode?.icônes ??
-									rules[category?.name]?.rawNode?.icônes,
-							}
-						}
-					}
-				)
-			})
-
-			return updatedAcc
-		}, {} as Record<string, ValueObject>)
-
-	results.allMembers = allMembersSummedFootprintsByCategoriesAndSubCategories
+	results.groupCategoriesFootprints = groupCategoriesFootprints
+	results.currentMemberAllFootprints = currentMemberAllFootprints
 
 	// Calculate the mean for the group for each category
-	Object.keys(results.allMembers).forEach((key) => {
-		results.allMembers[key].mean =
-			results.allMembers[key].value / groupMembers.length
+	Object.keys(results.groupCategoriesFootprints).forEach((key) => {
+		// Calculate mean for the group for each category
+		results.groupCategoriesFootprints[key].mean =
+			results.groupCategoriesFootprints[key].value / groupMembers.length
 	})
 
-	Object.keys(results.currentMember).forEach((key) => {
-		results.currentMember[key].variation =
-			((results.currentMember[key].value -
-				(results?.allMembers?.[key]?.mean || 0)) /
-				(results?.allMembers?.[key]?.mean || 1)) *
+	// Calculate the current user variation between its value and the group mean for each category
+	// and subcategory
+	Object.keys(results.currentMemberAllFootprints).forEach((key) => {
+		console.log(
+			key,
+			results.groupCategoriesFootprints[key].mean,
+			results?.currentMemberAllFootprints?.[key]?.value
+		)
+		results.currentMemberAllFootprints[key].variation =
+			((results?.currentMemberAllFootprints?.[key]?.value -
+				(results?.groupCategoriesFootprints?.[key]?.mean || 0)) /
+				(results?.groupCategoriesFootprints?.[key]?.mean || 1)) *
 			100
+		/*
+		console.log(key, results.currentMemberAllFootprints[key].variation) */
 	})
 
-	const sortedCurrentMemberByVariation = Object.entries({
-		...results.currentMember,
-	})
-		.filter(([key, resultObject]) => !resultObject?.isCategory)
+	const sortedCurrentMemberByVariation = Object.entries(
+		results.currentMemberAllFootprints
+	)
+		.filter(
+			([key, resultObject]) => !resultObject?.isCategory && resultObject?.value
+		)
 		.map(([key, resultObject]) => ({ key, resultObject }))
 		.sort((a, b) => {
 			if (a?.resultObject?.variation === b?.resultObject?.variation) {
 				return 0
 			}
-			if (a?.resultObject?.variation === undefined) {
-				return 1
-			}
-			if (b?.resultObject?.variation === undefined) {
-				return -1
-			}
-			return b?.resultObject?.variation - a?.resultObject?.variation
-		}) as Points[]
 
+			return b?.resultObject?.variation > a?.resultObject?.variation ? -1 : 1
+		}) as Points[]
+	console.log(sortedCurrentMemberByVariation)
 	results.pointsForts = sortedCurrentMemberByVariation.slice(0, 2)
 	results.pointsFaibles = sortedCurrentMemberByVariation.slice(-3)
 

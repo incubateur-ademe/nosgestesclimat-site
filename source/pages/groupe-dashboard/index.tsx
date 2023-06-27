@@ -90,7 +90,7 @@ export default function Groupe() {
 			</div>
 		)
 	}
-
+	console.log(results)
 	return (
 		<>
 			<main className="p-4">
@@ -122,9 +122,7 @@ export default function Groupe() {
 				<Separator className="mt-10 mb-6" />
 
 				<VotreEmpreinte
-					results={
-						group?.members?.find((member) => member.userId === userId)?.results
-					}
+					categoriesFootprints={results?.currentMemberAllFootprints}
 				/>
 			</main>
 			<Footer />
