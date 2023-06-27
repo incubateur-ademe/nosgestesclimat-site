@@ -284,11 +284,11 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const userId = useSelector((state: AppState) => state.userId)
 
 	const handleUpdateGroup = async () => {
+		engine.setSituation(currentSimulation?.situation)
+
 		const results: ResultsObject = getSimulationResults({
 			engine,
 		})
-
-		console.log({ results })
 
 		try {
 			await fetchUpdateGroupMember({

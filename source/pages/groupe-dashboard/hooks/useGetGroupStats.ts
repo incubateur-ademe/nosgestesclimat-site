@@ -44,6 +44,7 @@ export const useGetGroupStats = ({
 			const isCurrentMember = groupMember.userId === userId
 
 			const updatedAcc = { ...acc }
+
 			// Set Situation
 			engine.setSituation(groupMember?.simulation?.situation)
 
@@ -57,16 +58,16 @@ export const useGetGroupStats = ({
 						value: category.nodeValue as number,
 						icon: rules[category?.name]?.rawNode?.icônes,
 					}
-
-					// Add each category footprint for the current member
-					if (isCurrentMember) {
-						results.currentMember[category.name] = {
-							value: category.nodeValue as number,
-							icon: rules[category?.name]?.rawNode?.icônes,
-						}
-					}
 				} else {
 					updatedAcc[category.name].value += category.nodeValue as number
+				}
+
+				// Add each category footprint for the current member
+				if (isCurrentMember) {
+					results.currentMember[category.name] = {
+						value: category.nodeValue as number,
+						icon: rules[category?.name]?.rawNode?.icônes,
+					}
 				}
 
 				getSubcategories(rules, category, engine, true).forEach(
@@ -78,19 +79,19 @@ export const useGetGroupStats = ({
 									rules[subCategory?.name]?.rawNode?.icônes ??
 									rules[category?.name]?.rawNode?.icônes,
 							}
-
-							// Add each category footprint for the current member
-							if (isCurrentMember) {
-								results.currentMember[subCategory.name] = {
-									value: subCategory.nodeValue as number,
-									icon:
-										rules[subCategory?.name]?.rawNode?.icônes ??
-										rules[category?.name]?.rawNode?.icônes,
-								}
-							}
 						} else {
 							updatedAcc[subCategory.name].value +=
 								subCategory.nodeValue as number
+						}
+
+						// Add each category footprint for the current member
+						if (isCurrentMember) {
+							results.currentMember[subCategory.name] = {
+								value: subCategory.nodeValue as number,
+								icon:
+									rules[subCategory?.name]?.rawNode?.icônes ??
+									rules[category?.name]?.rawNode?.icônes,
+							}
 						}
 					}
 				)
@@ -100,7 +101,7 @@ export const useGetGroupStats = ({
 		}, {} as Record<string, ValueObject>)
 
 	results.allMembers = allMembersSummedFootprintsByCategoriesAndSubCategories
-	console.log('results.allMembers', results.allMembers)
+
 	// Calculate the mean for the group for each category
 	Object.keys(results.allMembers).forEach((key) => {
 		results.allMembers[key].mean =
@@ -115,7 +116,9 @@ export const useGetGroupStats = ({
 			100
 	})
 
-	const sortedCurrentMemberByVariation = Object.entries(results.currentMember)
+	const sortedCurrentMemberByVariation = Object.entries({
+		...results.currentMember,
+	})
 		.map(([key, resultObject]) => ({ key, resultObject }))
 		.sort((a, b) => {
 			if (a?.resultObject?.variation === b?.resultObject?.variation) {

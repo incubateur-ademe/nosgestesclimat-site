@@ -7,7 +7,7 @@ import VosInformations from './VosInformations'
 export default function GroupeAmis() {
 	return (
 		<DataProvider>
-			<div className="p-4">
+			<div className="p-4 md:p-8">
 				<Routes>
 					<Route path="vos-informations" element={<VosInformations />} />
 					<Route

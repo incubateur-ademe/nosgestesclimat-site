@@ -1,4 +1,8 @@
+import { GROUP_URL } from '@/constants/urls'
 import { AppState } from '@/reducers/rootReducer'
+import { Group } from '@/types/groups'
+import { captureException } from '@sentry/react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import Title from '../../components/groupe/Title'
@@ -8,11 +12,35 @@ import GroupList from '../creer-groupe/components/GroupList'
 import Separator from '../creer-groupe/components/Separator'
 
 export default function MesGroupes() {
+	const [groups, setGroups] = useState<Group[] | null>(null)
+
 	const { t } = useTranslation()
-	const groups = useSelector((state: AppState) => state.groups)
+
+	const userId = useSelector((state: AppState) => state.userId)
+
+	useEffect(() => {
+		const handleFetchGroups = async () => {
+			try {
+				const response = await fetch(`${GROUP_URL}/user-groups/${userId}`)
+				if (!response.ok) {
+					throw new Error('Error while fetching groups')
+				}
+
+				const groupsFetched: Group[] = await response.json()
+
+				setGroups(groupsFetched)
+			} catch (error) {
+				captureException(error)
+			}
+		}
+
+		if (userId && !groups) {
+			handleFetchGroups()
+		}
+	}, [groups, userId])
 
 	return (
-		<div className="p-4">
+		<div className="p-4 md:p-8">
 			<Title
 				title={t("Groupe d'amis")}
 				subtitle={t(

@@ -30,6 +30,7 @@ export const useLoadSimulationFromURL = () => {
 
 				const simulation: DataSimulationObject = await response.json()
 				const simulationReformatted = { ...simulation }
+
 				simulationReformatted.data.situation = reformateDataFromDB(
 					simulationReformatted.data
 				)

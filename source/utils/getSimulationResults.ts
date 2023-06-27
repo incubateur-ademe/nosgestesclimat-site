@@ -1,18 +1,15 @@
 import { correctValue, extractCategories } from '@/components/publicodesUtils'
-import { SavedSimulation } from '@/selectors/storageSelectors'
 import { ResultsObject } from '@/types/groups'
 import Engine from 'publicodes'
 
 export const getSimulationResults = ({
-	simulation,
 	engine,
 }: {
-	simulation: SavedSimulation | undefined
 	engine: Engine
 }): ResultsObject => {
 	let resultsObject
 
-	if (simulation && engine) {
+	if (engine) {
 		resultsObject = {}
 
 		const rules = engine.getParsedRules()
