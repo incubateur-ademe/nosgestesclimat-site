@@ -65,7 +65,6 @@ export default function RejoindreGroupe() {
 		}
 
 		const results = getSimulationResults({
-			simulation: currentSimulation,
 			engine,
 		})
 
@@ -106,7 +105,7 @@ export default function RejoindreGroupe() {
 	}
 
 	return (
-		<div className="p-4">
+		<div className="p-4 md:p-8">
 			<Title
 				title={
 					<Trans>
@@ -148,6 +147,11 @@ export default function RejoindreGroupe() {
 				onChange={(e) => setEmailLocalState(e.target.value)}
 				value={emailLocalState}
 			/>
+			{!currentSimulation && (
+				<p className="text-xs mb-2">
+					Vous devrez compléter votre test après avoir rejoint le groupe.
+				</p>
+			)}
 			<Button onClick={handleSubmit} aria-disabled={!prenomLocalState}>
 				<Trans>Rejoindre</Trans>
 			</Button>

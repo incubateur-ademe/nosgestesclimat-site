@@ -14,8 +14,8 @@ export const colorClassNames = {
 
 export const sizeClassNames = {
 	sm: 'px-2 py-1 text-sm',
-	md: 'px-4 py-4 text-md',
-	lg: 'px-6 py-4 text-base',
+	md: 'px-6 py-4 text-md',
+	lg: 'px-8 py-4 text-base',
 }
 
 export default function Button({

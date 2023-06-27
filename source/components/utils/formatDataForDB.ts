@@ -27,6 +27,8 @@ export const reformateDataFromDB = (
 ): SimulationFormatted => {
 	const simulationFormatted = { ...simulation }
 
+	if (!simulationFormatted.situation) return simulationFormatted
+
 	return Object.entries(
 		simulationFormatted.situation as { [key: string]: any }
 	).reduce((acc: { [key: string]: any }, [key, value]: [string, any]) => {
