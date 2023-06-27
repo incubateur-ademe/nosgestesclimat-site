@@ -11,7 +11,7 @@ export default () => {
 			<h1 data-cypress-id="blog-title">{title}</h1>
 			<iframe
 				title="Statistiques Northstar Metabase"
-				src="http://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/0f6974c5-1254-47b4-b6d9-6e6f22a6faf7"
+				src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/0f6974c5-1254-47b4-b6d9-6e6f22a6faf7"
 				frameborder="0"
 				width="100%"
 				height="1000px"
