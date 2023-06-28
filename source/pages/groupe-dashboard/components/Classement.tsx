@@ -30,12 +30,12 @@ export default function Classement({ group }: { group: Group }) {
 		if (
 			parseFloat(memberA?.results?.total) < parseFloat(memberB?.results?.total)
 		) {
-			return 1
+			return -1
 		}
 		if (
 			parseFloat(memberA?.results?.total) > parseFloat(memberB?.results?.total)
 		) {
-			return -1
+			return 1
 		}
 		return 0
 	})
@@ -127,7 +127,10 @@ export default function Classement({ group }: { group: Group }) {
 						})}
 			</ul>
 			{group.members.length > 5 && (
-				<button className="bg-transparent border-none text-primary underline text-center mt-4 text-sm w-full">
+				<button
+					onClick={() => setIsExpanded(true)}
+					className="bg-transparent border-none text-primary underline text-center mt-4 text-sm w-full"
+				>
 					<Trans>
 						Voir les {String(group.members.length)} autres participants
 					</Trans>
