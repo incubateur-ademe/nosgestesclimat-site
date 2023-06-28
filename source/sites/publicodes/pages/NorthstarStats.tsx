@@ -19,6 +19,11 @@ export default () => {
 	return (
 		<div className={'ui__ container fluid'}>
 			<h1>{title}</h1>
+			<p>
+				{t(
+					'Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙'
+				)}
+			</p>
 			{!isIFrameLoaded && <AnimatedLoader />}
 			<iframe
 				ref={iFrameRef}
