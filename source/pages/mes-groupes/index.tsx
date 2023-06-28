@@ -1,4 +1,5 @@
 import { GROUP_URL } from '@/constants/urls'
+import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
@@ -15,6 +16,8 @@ export default function MesGroupes() {
 	const [groups, setGroups] = useState<Group[] | null>(null)
 
 	const { t } = useTranslation()
+
+	useSetUserId()
 
 	const userId = useSelector((state: AppState) => state.userId)
 
