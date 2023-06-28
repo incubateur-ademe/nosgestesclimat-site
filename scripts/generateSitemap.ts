@@ -2,6 +2,7 @@ import * as fs from 'fs'
 import * as path from 'path'
 import Engine, { utils } from 'publicodes'
 import {
+	DottedName,
 	encodeRuleNameToSearchParam,
 	isValidRule,
 	NGCRulesNodes,
@@ -29,16 +30,6 @@ https://nosgestesclimat.fr/actions
 https://nosgestesclimat.fr/actions/plus
 `
 
-// /* Unfortunately, we can't yet import this function from engine/rules */
-// const encodeRuleNameURL = (name) =>
-// 	name
-// 		.replaceAll(/\s\.\s/g, '/')
-// 		.replaceAll(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
-// 		.replaceAll(/\s/g, '-')
-//
-// const encodeRuleNameSearchParam = (name) =>
-// 	encodeRuleNameURL(name).replaceAll('/', '.')
-
 fs.writeFileSync(destinationURL, baseURLs, 'utf8')
 
 const releasePath = path.resolve(
@@ -63,7 +54,7 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 	.then((res) => res.json())
 	.then((json) => {
 		const actionLines = json.actions.formule.somme.map(
-			(dottedName) =>
+			(dottedName: DottedName) =>
 				`https://nosgestesclimat.fr/actions/${utils.encodeRuleName(dottedName)}`
 		)
 		const textAction = actionLines.join('\n')
@@ -78,16 +69,18 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 					)}`
 			)
 			.join('\n')
+
 		const parsedRules: NGCRulesNodes = new Engine(json).getParsedRules()
 		const questionURLs = ruleNames
 			.filter((dottedName) => isValidRule(dottedName, parsedRules))
 			.map(
 				(dottedName) =>
-					`http://nosgestesclimat.fr/simulateur/bilan?question=${encodeRuleNameToSearchParam(
+					`https://nosgestesclimat.fr/simulateur/bilan?question=${encodeRuleNameToSearchParam(
 						dottedName
 					)}`
 			)
 			.join('\n')
+
 		fs.appendFileSync(
 			destinationURL,
 			documentationURLs + '\n' + questionURLs,
