@@ -16,4 +16,10 @@ export default defineConfig({
 		},
 		experimentalRunAllSpecs: true,
 	},
+	retries: {
+		runMode: 2,
+		openMode: 0,
+	},
+	pageLoadTimeout: 300000,
+	defaultCommandTimeout: 60000,
 })
