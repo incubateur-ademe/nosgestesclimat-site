@@ -2,10 +2,11 @@ import {
 	DottedName,
 	extractCategories,
 	getSubcategories,
+	safeGetRule,
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Member } from '@/types/groups'
-import Engine from 'publicodes'
+import Engine, { RuleNode } from 'publicodes'
 
 type ValueObject = {
 	title: string
@@ -65,7 +66,16 @@ export const useGetGroupStats = ({
 				const isCurrentMember = groupMember.userId === userId
 
 				// Set Situation of current member
-				engine.setSituation(groupMember?.simulation?.situation)
+				const safeSituation = Object.entries(
+					groupMember?.simulation?.situation
+				).reduce((acc, [key, ruleNode]) => {
+					if (safeGetRule(engine, key)) {
+						return { ...acc, [key]: ruleNode }
+					}
+					return acc
+				}, {} as Record<string, RuleNode>)
+
+				engine.setSituation(safeSituation)
 
 				const categories = extractCategories(rules, engine)
 
