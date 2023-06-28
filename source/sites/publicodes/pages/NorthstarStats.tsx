@@ -4,10 +4,8 @@ import { useTranslation } from 'react-i18next'
 export default () => {
 	const { t } = useTranslation()
 	const title = t('Statistiques Northstar')
-	const description = t('A compléter')
 	return (
 		<div className={'ui__ container fluid'}>
-			<Meta title={title} description={description} />
 			<h1 data-cypress-id="blog-title">{title}</h1>
 			<iframe
 				title="Statistiques Northstar Metabase"
