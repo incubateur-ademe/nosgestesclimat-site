@@ -67,7 +67,7 @@ export const useGetGroupStats = ({
 
 				// Set Situation of current member
 				const safeSituation = Object.entries(
-					groupMember?.simulation?.situation
+					groupMember?.simulation?.situation || {}
 				).reduce((acc, [key, ruleNode]) => {
 					if (safeGetRule(engine, key)) {
 						return { ...acc, [key]: ruleNode }
