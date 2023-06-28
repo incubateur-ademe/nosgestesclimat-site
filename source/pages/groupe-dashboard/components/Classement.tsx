@@ -151,7 +151,7 @@ export default function Classement({ group }: { group: Group }) {
 							)
 						})}
 			</ul>
-			{group.members.length > 5 && (
+			{group.members.length > 5 && !isExpanded && (
 				<button
 					onClick={() => setIsExpanded(true)}
 					className="bg-transparent border-none text-primary underline text-center mt-4 text-sm w-full"
