@@ -13,47 +13,52 @@ on:
 
 jobs:
   e2e:
-    runs-on: ubuntu-latest
-    container: 
-      image: cypress/browsers:node18.12.0-chrome107
-      options: --user 1001
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
-    name: Testing e2e in worker ${{ matrix.containers }}
-    if: github.event.pull_request.draft == false
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3.5.2
-        with:
-          submodules: recursive
+      - name: Pause until all workflows are completed
+        uses: willgarcia/workflow-wait-action@v0.1.0
 
-      - name: Get current PR number
-        uses: jwalton/gh-find-current-pr@v1
-        id: current-pr
+      - name: Run Cypress e2e tests 
+        runs-on: ubuntu-latest
+        container: 
+          image: cypress/browsers:node18.12.0-chrome107
+          options: --user 1001
+        strategy:
+          fail-fast: false
+          matrix:
+            containers: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14]
+        name: Testing e2e in worker ${{ matrix.containers }}
+        if: github.event.pull_request.draft == false
+        steps:
+          - name: Checkout repository
+            uses: actions/checkout@v3.5.2
+            with:
+              submodules: recursive
 
-      - name: Setup baseUrl to deploy-preview 
-        if: ${{ success() && steps.current-pr.outputs.number }}
-        run: |
-            echo "CYPRESS_baseUrl=https://deploy-preview-${{ steps.current-pr.outputs.pr }}--nosgestesclimat.netlify.app" >> "$GITHUB_ENV";
-            echo "MODE=preview" >> "$GITHUB_ENV";
-      
-      - name: Setup baseUrl to nosgestesclimat.fr
-        if: ${{ !success() || !steps.current-pr.outputs.number }}
-        run: |
-            echo "CYPRESS_baseUrl=https://nosgestesclimat.fr" >> "$GITHUB_ENV"
-            echo "MODE=production" >> "$GITHUB_ENV"
+          - name: Get current PR number
+            uses: jwalton/gh-find-current-pr@v1
+            id: current-pr
 
-      - name: Test - e2e [${{ env.MODE }}]
-        uses: cypress-io/github-action@v5.6.1
-        with:
-          build: yarn run e2e:generate:personas
-          browser: chrome
-          parallel: true
-          record: true
-          group: 'Test - e2e'
-          spec: cypress/e2e/**/*.cy.js
-        env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
+          - name: Setup baseUrl to deploy-preview 
+            if: ${{ success() && steps.current-pr.outputs.number }}
+            run: |
+                echo "CYPRESS_baseUrl=https://deploy-preview-${{ steps.current-pr.outputs.pr }}--nosgestesclimat.netlify.app" >> "$GITHUB_ENV";
+                echo "MODE=preview" >> "$GITHUB_ENV";
+          
+          - name: Setup baseUrl to nosgestesclimat.fr
+            if: ${{ !success() || !steps.current-pr.outputs.number }}
+            run: |
+                echo "CYPRESS_baseUrl=https://nosgestesclimat.fr" >> "$GITHUB_ENV"
+                echo "MODE=production" >> "$GITHUB_ENV"
+
+          - name: Test - e2e [${{ env.MODE }}]
+            uses: cypress-io/github-action@v5.6.1
+            with:
+              build: yarn run e2e:generate:personas
+              browser: chrome
+              parallel: true
+              record: true
+              group: 'Test - e2e'
+              spec: cypress/e2e/**/*.cy.js
+            env:
+              CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+              GITHUB_TOKEN: ${{ secrets.REPO_ACCESS_TOKEN }}
