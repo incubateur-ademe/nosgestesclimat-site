@@ -26,7 +26,7 @@ export default () => {
 				title="Statistiques Northstar Metabase"
 				src="https://metabase-ngc.osc-fr1.scalingo.io/public/dashboard/0f6974c5-1254-47b4-b6d9-6e6f22a6faf7"
 				width="100%"
-				height="1000px"
+				height="1800px"
 				css={`
 					border: none;
 				`}
