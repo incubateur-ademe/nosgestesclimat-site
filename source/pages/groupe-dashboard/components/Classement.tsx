@@ -1,8 +1,23 @@
+import { AppState } from '@/reducers/rootReducer'
 import { Group, Member } from '@/types/groups'
 import { useState } from 'react'
 import { Trans } from 'react-i18next'
+import { useSelector } from 'react-redux'
+import Badge from './Badge'
 
-const ClassementMember = ({ rank, name, quantity, isTopThree }) => {
+const ClassementMember = ({
+	rank,
+	name,
+	quantity,
+	isTopThree,
+	isCurrentMember,
+}: {
+	rank: JSX.Element | string
+	name: string
+	quantity: JSX.Element | string
+	isTopThree?: boolean
+	isCurrentMember?: boolean
+}) => {
 	return (
 		<li className="flex justify-between items-center">
 			<div>
@@ -10,6 +25,11 @@ const ClassementMember = ({ rank, name, quantity, isTopThree }) => {
 					{rank}
 				</span>
 				{name}
+				{isCurrentMember && (
+					<Badge className="text-pink-700 border-pink-300 bg-pink-100 inline !text-xs rounded-sm ml-2">
+						Vous
+					</Badge>
+				)}
 			</div>
 			<div>{quantity}</div>
 		</li>
@@ -18,6 +38,8 @@ const ClassementMember = ({ rank, name, quantity, isTopThree }) => {
 
 export default function Classement({ group }: { group: Group }) {
 	const [isExpanded, setIsExpanded] = useState(false)
+
+	const userId = useSelector((state: AppState) => state.userId)
 
 	if (!group) {
 		return null
@@ -55,6 +77,8 @@ export default function Classement({ group }: { group: Group }) {
 		}
 	)
 
+	const withS = group.members.length - 5 > 1 ? 's' : ''
+
 	return (
 		<>
 			<ul className="rounded-md bg-primary text-white mt-2 py-4 px-3">
@@ -91,6 +115,7 @@ export default function Classement({ group }: { group: Group }) {
 							rank={rank}
 							quantity={quantity}
 							isTopThree
+							isCurrentMember={member.userId === userId}
 						/>
 					)
 				})}
@@ -132,7 +157,8 @@ export default function Classement({ group }: { group: Group }) {
 					className="bg-transparent border-none text-primary underline text-center mt-4 text-sm w-full"
 				>
 					<Trans>
-						Voir les {String(group.members.length)} autres participants
+						Voir les {String(group.members.length - 5)} autre{withS} participant
+						{withS}
 					</Trans>
 				</button>
 			)}
