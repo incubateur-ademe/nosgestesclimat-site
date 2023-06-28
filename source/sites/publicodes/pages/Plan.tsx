@@ -23,9 +23,9 @@ const links = {
 		'publicodes.planDuSite.actionsPlus': `${appURL}/actions/plus`,
 	},
 	Informations: {
-		'publicodes.planDuSite.nouveautes': `${appURL}/nouveautes`,
-		'publicodes.planDuSite.aPropos': `${appURL}/a-propos`,
-		'publicodes.planDuSite.viePrivee': `${appURL}/vie-privee`,
+		'publicodes.planDuSite.nouveautes': `${appURL}/nouveautés`,
+		'publicodes.planDuSite.aPropos': `${appURL}/à-propos`,
+		'publicodes.planDuSite.viePrivee': `${appURL}/vie-privée`,
 		'publicodes.planDuSite.partenaires': `${appURL}/partenaires`,
 		'publicodes.planDuSite.contribuer': `${appURL}/contribuer`,
 		'publicodes.planDuSite.stats': `${appURL}/stats`,
@@ -34,9 +34,8 @@ const links = {
 	Documentations: {
 		'publicodes.planDuSite.guide': `${appURL}/guide`,
 		'publicodes.planDuSite.sondageDoc': `${appURL}/groupe/documentation-contexte`,
-		'publicodes.planDuSite.methodologie': `${appURL}/methodologie`,
-		'publicodes.planDuSite.modele': `${appURL}/modele`,
-		'publicodes.planDuSite.petroleEtGaz': `${appURL}/petrole-et-gaz`,
+		'publicodes.planDuSite.modele': `${appURL}/modèle`,
+		'publicodes.planDuSite.petroleEtGaz': `${appURL}/pétrole-et-gaz`,
 		'publicodes.planDuSite.documentation': `${appURL}/documentation`,
 	},
 }
