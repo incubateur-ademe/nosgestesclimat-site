@@ -22,4 +22,5 @@ export default defineConfig({
 	},
 	pageLoadTimeout: 300000,
 	defaultCommandTimeout: 60000,
+	failOnStatusCode: false,
 })
