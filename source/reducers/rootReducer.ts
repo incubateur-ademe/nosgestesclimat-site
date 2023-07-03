@@ -71,11 +71,11 @@ export type Situation = Record<DottedName, any>
 export type StoredTrajets = Record<DottedName, any>
 
 export type Simulation = {
-	config?: SimulationConfig
-	url?: string
-	hiddenNotifications?: Array<string>
+	config: SimulationConfig
+	url: string
+	hiddenNotifications: Array<string>
+	situation: Situation
 	hiddenControls?: Array<string>
-	situation?: Situation
 	targetUnit?: string
 	foldedSteps?: Array<DottedName>
 	unfoldedStep?: DottedName | null
@@ -158,7 +158,7 @@ function simulation(
 		case 'STEP_ACTION': {
 			const { name, step } = action
 			if (name === 'fold') {
-				if (state.foldedSteps?.includes(step)) {
+				if (!state.foldedSteps?.includes(step)) {
 					state.foldedSteps?.push(step)
 				}
 				return {
