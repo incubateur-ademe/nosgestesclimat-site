@@ -114,7 +114,9 @@ const EngineWrapper = ({ children }) => {
 
 	useEffect(() => {
 		if (!engine || (parsedOption === false && rules))
+		if (engine || (parsedOption === false && rules)) {
 			dispatch({ type: 'SET_ENGINE', to: { ...engineState, state: 'ready' } })
+		}
 		return
 	}, [engine, parsedOption, rules])
 
