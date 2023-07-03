@@ -8,7 +8,7 @@ import { range } from '../../../../utils'
 const Wrapper = styled.div`
 	margin-bottom: 0.5rem;
 	text-align: right;
-	font-size: 0.9rem;
+	font-size: 0.85rem;
 
 	@media screen and (max-width: ${800}px) {
 		font-size: 0.75rem;
