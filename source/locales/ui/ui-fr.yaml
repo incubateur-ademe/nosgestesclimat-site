@@ -579,3 +579,5 @@ entries:
   'Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙': Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙
   Nombre de: Nombre de
   'pour les ': 'pour les '
+  components.stats.StatsContent.infosNorthstar: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
+  'Northstar: les statistiques "étoile du nord"': 'Northstar: les statistiques "étoile du nord"'
