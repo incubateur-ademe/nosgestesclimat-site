@@ -206,7 +206,7 @@ export const FullName = ({ dottedName }) => (
 	</span>
 )
 
-export const title = (rule: NGCRule & { dottedName: DottedName }) =>
+export const getTitle = (rule: NGCRule & { dottedName: DottedName }) =>
 	rule.titre ??
 	capitalise0(splitName(rule.dottedName)[splitName(rule.dottedName).length - 1])
 
