@@ -215,6 +215,9 @@ const Main = () => {
 	const [searchParams] = useSearchParams()
 	const isHomePage = location.pathname === '/'
 	const isTuto = location.pathname.startsWith('/tutoriel')
+	const isStats =
+		location.pathname.startsWith('/stats') ||
+		location.pathname.startsWith('/northstar')
 	const [simulationFromUrlHasBeenSet, setSimulationFromUrlHasBeenSet] =
 		useState(false)
 
@@ -307,6 +310,7 @@ const Main = () => {
 						<GroupModeSessionVignette />
 						{!isHomePage &&
 							!isTuto &&
+							!isStats &&
 							!location.pathname.startsWith('/international') && (
 								<LocalisationMessage />
 							)}
