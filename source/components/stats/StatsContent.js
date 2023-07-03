@@ -160,11 +160,7 @@ export default function Data() {
 							`}
 						>
 							<Block>
-								<Number
-									css={`
-										color: #30c691 !important;
-									`}
-								>
+								<Number>
 									{homepageVisitorsData?.data?.[0]?.nb_visits
 										?.toString()
 										?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
@@ -183,11 +179,7 @@ export default function Data() {
 						</BlockWrapper>
 						<BlockWrapper>
 							<Block>
-								<Number
-									css={`
-										color: #30c691 !important;
-									`}
-								>
+								<Number>
 									{sharedSimulations?.data?.[0]?.nb_events || (
 										<span
 											css={`
