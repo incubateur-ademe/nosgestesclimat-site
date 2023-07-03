@@ -1,4 +1,4 @@
-import { setRatings } from '@/actions/actions'
+import { SetRatingAction, setRatings } from '@/actions/actions'
 import { AppState } from '@/reducers/rootReducer'
 import { useTestCompleted } from '@/selectors/simulationSelectors'
 import { motion } from 'framer-motion'
@@ -10,7 +10,7 @@ import Northstar from './Northstar'
 export default ({
 	type,
 }: {
-	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
+	type: SetRatingAction['type']
 }): JSX.Element | null => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
