@@ -23,7 +23,7 @@ function goToQuestionAndGet(
 	mosaicFirstQuestion = '',
 ) {
 	cy.visit(`/simulateur/${rootSimulatorURL}?question=${question}`)
-	clickUnderstoodButton()
+	clickUnderstoodButtonIfExist()
 
 	waitWhileLoading()
 	clickCategoryStartButton()
