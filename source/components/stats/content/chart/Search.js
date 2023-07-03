@@ -8,6 +8,7 @@ import { range } from '../../../../utils'
 const Wrapper = styled.div`
 	margin-bottom: 0.5rem;
 	text-align: right;
+	font-size: 0.9rem;
 
 	@media screen and (max-width: ${800}px) {
 		font-size: 0.75rem;
@@ -18,7 +19,7 @@ export default function Search(props) {
 
 	return (
 		<Wrapper>
-			Nombre de {props.elementAnalysedTitle} pour les{' '}
+			{t('Nombre de')} {props.elementAnalysedTitle} {t('pour les ')}
 			<FancySelect
 				fancy
 				value={props.date}
