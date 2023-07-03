@@ -1,14 +1,14 @@
-import { hideNotification } from 'Actions/actions'
-import animate from 'Components/ui/animate'
-import { useEngine } from 'Components/utils/EngineContext'
+import { hideNotification } from '@/actions/actions'
+import '@/components/Notifications.css'
+import { DottedName, parentName } from '@/components/publicodesUtils'
+import animate from '@/components/ui/animate'
+import { useEngine } from '@/components/utils/EngineContext'
+import { Markdown } from '@/components/utils/markdown'
+import { ScrollToElement } from '@/components/utils/Scroll'
+import { AppState } from '@/reducers/rootReducer'
 import Engine, { RuleNode } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
-import { RootState } from 'Reducers/rootReducer'
-import './Notifications.css'
-import { parentName } from './publicodesUtils'
-import { Markdown } from './utils/markdown'
-import { ScrollToElement } from './utils/Scroll'
 
 // To add a new notification to a simulator, you should create a publicodes rule
 // with the "type: notification" attribute. The display can be customized with
@@ -35,8 +35,8 @@ export function getNotifications(engine: Engine) {
 }
 
 export function getCurrentNotification(
-	engine,
-	currentQuestion: RuleNode['dottedName']
+	engine: Engine,
+	currentQuestion: DottedName
 ) {
 	const messages: Array<Notification> = getNotifications(
 		engine
@@ -54,15 +54,15 @@ export function getCurrentNotification(
 
 export default function Notifications({ currentQuestion }) {
 	const hiddenNotifications = useSelector(
-		(state: RootState) => state.simulation?.hiddenNotifications
+		(state: AppState) => state.simulation?.hiddenNotifications
 	)
 	const engine = useEngine()
-
 	const dispatch = useDispatch()
 
 	const filteredMessages = getCurrentNotification(engine, currentQuestion)
-
-	if (!filteredMessages) return null
+	if (!filteredMessages) {
+		return null
+	}
 
 	return (
 		<div id="notificationsBlock">

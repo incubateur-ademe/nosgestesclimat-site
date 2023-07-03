@@ -1,18 +1,21 @@
-import { explainVariable } from 'Actions/actions'
+import { explainVariable } from '@/actions/actions'
+import { getMatomoEventClickHelp } from '@/analytics/matomo-events'
+import '@/components/conversation/Explicable.css'
+import { DottedName } from '@/components/publicodesUtils'
+import { MatomoContext } from '@/contexts/MatomoContext'
+import { AppState } from '@/reducers/rootReducer'
 import { useContext } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'Rules'
-import { getMatomoEventClickHelp } from '../../analytics/matomo-events'
-import { MatomoContext } from '../../contexts/MatomoContext'
-import './Explicable.css'
 
 export function ExplicableRule({ dottedName }: { dottedName: DottedName }) {
 	const { trackEvent } = useContext(MatomoContext)
-	const explained = useSelector((state: RootState) => state.explainedVariable)
+	const explained = useSelector((state: AppState) => state.explainedVariable)
 	const dispatch = useDispatch()
 
 	// Rien à expliquer ici, ce n'est pas une règle
-	if (dottedName == null) return null
+	if (dottedName == null) {
+		return null
+	}
 
 	return (
 		<button

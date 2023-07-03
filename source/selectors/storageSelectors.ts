@@ -1,6 +1,6 @@
-import { RootState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
-import { DottedName } from 'Rules'
-import { Lang } from '../locales/translation'
+import { DottedName } from '@/components/publicodesUtils'
+import { Lang } from '@/locales/translation'
+import { AppState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
 
 export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
 
@@ -45,15 +45,15 @@ export type User = {
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list
-export const currentSimulationSelector = (state: RootState) => {
+export const currentSimulationSelector = (state: AppState) => {
 	return state.simulations.filter(
 		(simulation) => simulation.id === state.currentSimulationId
 	)[0]
 }
 
 export const createStateFromSavedSimulation = (
-	state: RootState
-): Partial<RootState> => {
+	state: AppState
+): Partial<AppState> => {
 	if (!state.previousSimulation) return {}
 
 	return {

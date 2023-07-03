@@ -19,7 +19,7 @@ import {
 	Lang,
 } from '@/locales/translation'
 import Provider from '@/Provider'
-import { AppState, RootState } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import { WithEngine } from '@/RulesProvider'
 import { fetchUser, persistUser } from '@/storage/persistSimulation'
 import { getIsIframe } from '@/utils'
@@ -179,7 +179,7 @@ export default function Root() {
 		<Provider
 			sitePaths={paths}
 			reduxMiddlewares={[]}
-			onStoreCreated={(store: Store<RootState>) => {
+			onStoreCreated={(store: Store<AppState>) => {
 				persistUser(store)
 			}}
 			initialStore={{

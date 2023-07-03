@@ -1,15 +1,18 @@
-import { deleteSimulationById } from 'Actions/actions'
-import { Trans } from 'react-i18next'
 import {
+	deleteSimulationById,
 	setActionsChoices,
 	setAllStoredTrajets,
 	setCurrentSimulation,
-} from '../../actions/actions'
+} from '@/actions/actions'
+import { Simulation } from '@/reducers/rootReducer'
+import { Trans } from 'react-i18next'
+
 export default ({ dispatch, list, currentSimulationId }) => {
 	return (
 		<ul>
-			{list.map((simulation) => {
-				const dateSimu = new Date(simulation.date)
+			{list.map((simulation: Simulation) => {
+				const dateSimu =
+					simulation.date !== undefined ? new Date(simulation.date) : new Date()
 				return (
 					<li key={simulation.id} css="list-style-type: none">
 						<details css="display: inline-block;">

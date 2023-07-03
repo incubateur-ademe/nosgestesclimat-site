@@ -1,4 +1,11 @@
 import highlightMatches from '@/components/highlightMatches'
+import {
+	DottedName,
+	getTitle,
+	NGCRule,
+	NGCRules,
+} from '@/components/publicodesUtils'
+import '@/components/SearchBar.css'
 import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
@@ -6,8 +13,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Worker from 'worker-loader!./SearchBar.worker.js'
-import { DottedName, NGCRule, NGCRules, title } from './publicodesUtils'
-import './SearchBar.css'
 
 const worker = new Worker()
 

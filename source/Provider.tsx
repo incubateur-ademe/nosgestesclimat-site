@@ -6,7 +6,7 @@ import { useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import reducers, { RootState } from 'Reducers/rootReducer'
+import reducers, { AppState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
 import { MatomoProvider } from './contexts/MatomoContext'
@@ -43,7 +43,7 @@ if (
 export type ProviderProps = {
 	children: React.ReactNode
 	sitePaths?: SitePaths
-	initialStore?: RootState
+	initialStore?: AppState
 	onStoreCreated?: (store: Store) => void
 	reduxMiddlewares?: Array<Middleware>
 }

@@ -1,6 +1,6 @@
 import SearchButton from '@/components/SearchButton'
 import { ScrollToTop } from '@/components/utils/Scroll'
-import { RootState } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import React, { Suspense, useState } from 'react'
 import { Trans } from 'react-i18next'
@@ -20,9 +20,9 @@ const DocumentationPageLazy = React.lazy(
 
 export default function () {
 	const currentSimulation = useSelector(
-			(state: RootState) => !!state.simulation?.url
+			(state: AppState) => !!state.simulation?.url
 		),
-		rules = useSelector((state) => state.rules),
+		rules = useSelector((state: AppState) => state.rules),
 		//This ensures the disambiguateReference function, which awaits RuleNodes, not RawNodes, doesn't judge some rules private for
 		//our parseless documentation page
 		allPublicRules = Object.fromEntries(

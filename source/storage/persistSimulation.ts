@@ -1,14 +1,14 @@
-import { Action } from 'Actions/actions'
-import { RootState } from 'Reducers/rootReducer'
-import { Store } from 'redux'
-import { v4 as uuidv4 } from 'uuid'
+import { Action } from '@/actions/actions'
+import { AppState } from '@/reducers/rootReducer'
 import {
 	OldSavedSimulation,
 	SavedSimulation,
 	SavedSimulationList,
 	User,
-} from '../selectors/storageSelectors'
-import { debounce } from '../utils'
+} from '@/selectors/storageSelectors'
+import { debounce } from '@/utils'
+import { Store } from 'redux'
+import { v4 as uuidv4 } from 'uuid'
 import safeLocalStorage from './safeLocalStorage'
 
 const VERSION = 2
@@ -18,7 +18,7 @@ export const LOCAL_STORAGE_KEY =
 
 // This function is called after creating the store.
 // It allows to save user data on every state change with a 1-second "delay".
-export function persistUser(store: Store<RootState, Action>): void {
+export function persistUser(store: Store<AppState, Action>): void {
 	const listener = () => {
 		const state = store.getState()
 
