@@ -215,6 +215,7 @@ const Main = () => {
 	const [searchParams] = useSearchParams()
 	const isHomePage = location.pathname === '/'
 	const isTuto = location.pathname.startsWith('/tutoriel')
+	const isGroup = location.pathname.startsWith('/groupe')
 	const isStats =
 		location.pathname.startsWith('/stats') ||
 		location.pathname.startsWith('/northstar')
@@ -311,6 +312,7 @@ const Main = () => {
 						{!isHomePage &&
 							!isTuto &&
 							!isStats &&
+							!isGroup &&
 							!location.pathname.startsWith('/international') && (
 								<LocalisationMessage />
 							)}
