@@ -1,23 +1,25 @@
-import { loadPreviousSimulation } from 'Actions/actions'
-import { extractCategories } from 'Components/publicodesUtils'
+import { loadPreviousSimulation, resetLocalisation } from '@/actions/actions'
+import CardGameIcon from '@/components/CardGameIcon'
+import ProgressCircle from '@/components/ProgressCircle'
+import { extractCategories, NGCRules } from '@/components/publicodesUtils'
+import { usePersistingState } from '@/hooks/usePersistState'
+import { AppState } from '@/reducers/rootReducer'
+import {
+	answeredQuestionsSelector,
+	useTestCompleted,
+} from '@/selectors/simulationSelectors'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
+import { omit } from '@/utils'
+import Engine from 'publicodes'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
-import { RootState } from 'Reducers/rootReducer'
-import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
 import styled from 'styled-components'
-import { resetLocalisation } from '../actions/actions'
-import { usePersistingState } from '../hooks/usePersistState'
-import { useTestCompleted } from '../selectors/simulationSelectors'
-import { enquêteSelector } from '../sites/publicodes/enquête/enquêteSelector'
-import { omit } from '../utils'
-import CardGameIcon from './CardGameIcon'
-import ProgressCircle from './ProgressCircle'
 
 const ActionsInteractiveIcon = () => {
-	const actionChoices = useSelector((state) => state.actionChoices),
-		count = Object.values(actionChoices).filter((a) => a === true).length
+	const actionChoices = useSelector((state: AppState) => state.actionChoices)
+	const count = Object.values(actionChoices).filter((a) => a === true).length
 	return <CardGameIcon number={count} />
 }
 
@@ -31,7 +33,7 @@ const openmojis = {
 	personas: '1F465',
 	github: 'E045',
 }
-export const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
+export const openmojiURL = (name: string) => `/images/${openmojis[name]}.svg`
 export const actionImg = openmojiURL('action')
 export const conferenceImg = openmojiURL('conference')
 
@@ -69,11 +71,12 @@ const MenuButton = styled.div`
 	}
 `
 
-const Button = (props) => {
-	const location = useLocation(),
-		path = location.pathname
+const Button = (props: React.ComponentProps<any> & { url: string }) => {
+	const location = useLocation()
+	const path = location.pathname
 	const isCurrent = path.includes(props.url)
 	const { inactive } = props
+
 	return (
 		<Link
 			to={props.url}
@@ -114,7 +117,7 @@ export const sessionBarMargin = `
 		}
 `
 
-export const buildEndURL = (rules, engine, slide = null) => {
+export const buildEndURL = (rules: NGCRules, engine: Engine, slide = null) => {
 	const categories = extractCategories(rules, engine),
 		detailsString =
 			categories &&
@@ -122,6 +125,7 @@ export const buildEndURL = (rules, engine, slide = null) => {
 				(memo, next) =>
 					memo +
 					next.name[0] +
+					// FIXME: undefined [next.nodeValue] must be handled
 					(Math.round(next.nodeValue / 10) / 100).toFixed(2),
 				''
 			)
@@ -133,7 +137,7 @@ export const buildEndURL = (rules, engine, slide = null) => {
 
 export const useSafePreviousSimulation = () => {
 	const previousSimulation = useSelector(
-		(state: RootState) => state.previousSimulation
+		(state: AppState) => state.previousSimulation
 	)
 
 	const dispatch = useDispatch()
@@ -145,24 +149,23 @@ export const useSafePreviousSimulation = () => {
 	}, [])
 }
 
-export default function SessionBar({
-	answerButtonOnly = false,
-	noResults = false,
-}) {
+export default function SessionBar({}) {
 	useSafePreviousSimulation()
 
 	const dispatch = useDispatch()
 
-	const location = useLocation(),
-		path = location.pathname
+	const location = useLocation()
+	const path = location.pathname
 
-	const persona = useSelector((state) => state.simulation?.persona)
+	const persona = useSelector((state: AppState) => state.simulation?.persona)
 
 	const enquête = useSelector(enquêteSelector)
 
 	const [searchParams, setSearchParams] = useSearchParams()
 
-	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
+	const pullRequestNumber = useSelector(
+		(state: AppState) => state.pullRequestNumber
+	)
 
 	const [chosenIp, chooseIp] = usePersistingState('IP', undefined)
 
