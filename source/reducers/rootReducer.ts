@@ -518,9 +518,7 @@ const mainReducer = (state: any, action: Action) =>
 		hasSubscribedToNewsletter,
 	})(state, action)
 
-export default reduceReducers<RootState>(
+export default reduceReducers<AppState>(
 	mainReducer as any,
 	storageRootReducer as any
-) as Reducer<RootState>
-
-export type RootState = ReturnType<typeof mainReducer>
+) as Reducer<AppState>
