@@ -14,13 +14,13 @@ export default function CopyInput({ textToCopy, className = '' }: Props) {
 		<div className={`flex ${className}`}>
 			<input
 				type="text"
-				className="border flex-1 block w-full min-w-0 rounded-none rounded-l-md sm:text-sm border-gray-300 border-r-0 py-3 px-4"
+				className="border flex-1 block w-full min-w-0 rounded-none rounded-l-md sm:text-sm border-solid border-grey-200 bg-grey-100 border-r-0 py-3 pl-4"
 				value={textToCopy}
 				readOnly
 			/>
 			<Button
 				color="secondary"
-				className="flex-shrink-0 !min-w-[8rem] px-4 py-2 text-sm rounded-s-none justify-center"
+				className="flex-shrink-0 !min-w-[9rem] px-4 py-2 text-sm rounded-s-none justify-center"
 				onClick={() => {
 					navigator.clipboard.writeText(textToCopy)
 					setIsCopied(true)

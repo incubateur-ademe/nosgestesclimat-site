@@ -35,7 +35,7 @@ const EMOJI_TEXT_MAP: {
 export default function VotreEmpreinte({
 	categoriesFootprints,
 }: {
-	categoriesFootprints?: ResultsObject
+	categoriesFootprints?: ResultsObject[]
 }) {
 	return (
 		<>

@@ -17,7 +17,7 @@ import PointsFortsFaibles from './components/PointsFortsFaibles'
 import VotreEmpreinte from './components/VotreEmpreinte'
 import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
 
-export default function Groupe() {
+export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
 	const [memberNotInGroup, setMemberNotInGroup] = useState(false)
 
@@ -91,7 +91,7 @@ export default function Groupe() {
 			</div>
 		)
 	}
-	console.log(results)
+
 	return (
 		<>
 			<main className="p-4">

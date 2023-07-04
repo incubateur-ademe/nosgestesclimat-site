@@ -38,14 +38,18 @@ export default function InvitezVosProches() {
 	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const isShareDefined = typeof navigator !== 'undefined' && navigator.share
 
+	const sharedURL = `${window.location.origin}/rejoindre-groupe/${
+		createdGroup?._id || fetchedGroup?._id
+	}`
+
 	const handleShare = () => {
 		// TODO: replace with new tracking event
 		// trackEvent(getMatomoEventShareMobile(score))
 		if (navigator.share) {
 			navigator
 				.share({
-					text: `https://nosgestesclimat.fr/rejoindre-groupe/${createdGroup?._id}`,
-					url: `https://nosgestesclimat.fr/rejoindre-groupe/${createdGroup?._id}`,
+					text: sharedURL,
+					url: sharedURL,
 					title: 'Rejoindre mon groupe',
 				})
 				.then(() => console.log('Successful share'))
@@ -64,12 +68,7 @@ export default function InvitezVosProches() {
 					}Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe.`
 				)}
 			/>
-			<CopyInput
-				textToCopy={`https://nosgestesclimat.fr/rejoindre-groupe/${
-					createdGroup?._id || fetchedGroup?._id
-				}`}
-				className="mt-6 mb-4"
-			/>
+			<CopyInput textToCopy={sharedURL} className="mt-6 mb-4" />
 
 			{isShareDefined && (
 				<Button onClick={handleShare}>
