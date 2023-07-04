@@ -167,9 +167,24 @@ function ruleSumNode(
 		return undefined
 	}
 
-	return formula['somme'].map((name: string) =>
-		coreUtils.disambiguateReference(rules, rule.dottedName, name)
-	)
+	return formula['somme']
+		?.map((name: string) => {
+			try {
+				const node = coreUtils.disambiguateReference(
+					rules,
+					rule.dottedName,
+					name
+				)
+				return node
+			} catch (e) {
+				console.log(
+					`One element of the sum is not a variable. It could be a raw number injected by the optimisation algorithm.`,
+					e
+				)
+				return null
+			}
+		})
+		.filter(Boolean)
 }
 
 export const extractCategoriesNamespaces = (
