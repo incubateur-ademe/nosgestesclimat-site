@@ -4,6 +4,7 @@ import { DottedName, NGCRules } from '@/components/publicodesUtils'
 import storageRootReducer from '@/reducers/storageReducer'
 import { objectifsSelector } from '@/selectors/simulationSelectors'
 import {
+	Enquête,
 	SavedSimulation,
 	SavedSimulationList,
 } from '@/selectors/storageSelectors'
@@ -396,16 +397,18 @@ function localisation(
 function sessionLocalisationBannersRead(state = [], { type, regions }) {
 	if (type === 'SET_LOCALISATION_BANNERS_READ') {
 		return regions
-	} else return state
+	}
+	return state
 }
 
 function pullRequestNumber(state = null, { type, number }) {
 	if (type === 'SET_PULL_REQUEST_NUMBER') {
 		return number
-	} else return state
+	}
+	return state
 }
 
-function enquête(state = null, { type, userID, date }) {
+function enquête(state: Enquête | null = null, { type, userID, date }) {
 	if (type === 'SET_ENQUÊTE') {
 		return { userID, date }
 	}
@@ -462,11 +465,6 @@ function currentSimulationId(
 		default:
 			return state
 	}
-}
-
-export type Enquête = {
-	userID: string
-	date: string
 }
 
 export type AppState = CombinedState<{

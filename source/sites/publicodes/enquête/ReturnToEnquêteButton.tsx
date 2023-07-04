@@ -1,14 +1,19 @@
+import { useTestCompleted } from '@/selectors/simulationSelectors'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { useDispatch, useSelector } from 'react-redux'
-import { useTestCompleted } from '../../../selectors/simulationSelectors'
-import { enquêteSelector } from './enquêteSelector'
 
 export default ({ simple }) => {
 	const dispatch = useDispatch()
 	const enquête = useSelector(enquêteSelector)
 	const testCompleted = useTestCompleted()
-	if (!enquête) return null
+
+	if (!enquête) {
+		return null
+	}
+
 	const id = enquête.userID
 	const url = 'https://nosgestesclimat.fr'
+
 	return (
 		<a
 			href={url}

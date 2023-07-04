@@ -4,16 +4,21 @@ import { AppState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
 
 export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
 
+export type Enquête = {
+	userID: string
+	date: string
+}
+
 export type SavedSimulation = {
 	situation: Simulation['situation']
-	foldedSteps: Array<DottedName> | undefined
+	foldedSteps?: Array<DottedName>
 	actionChoices: Object
 	persona?: string
 	storedTrajets: Object
 	storedAmortissementAvion: { [key: string]: number }
 	conference: { room: string } | null
 	survey: { room: string } | null
-	enquête: { userID: string; date: string } | null
+	enquête: Enquête | null
 	ratings: { learned: Rating; action: Rating }
 	url?: string
 	date?: Date

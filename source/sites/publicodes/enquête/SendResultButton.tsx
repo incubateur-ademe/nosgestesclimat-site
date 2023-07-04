@@ -1,8 +1,10 @@
+import { buildEndURL } from '@/components/SessionBar'
+import { useEngine } from '@/components/utils/EngineContext'
+import { AppState } from '@/reducers/rootReducer'
+import { situationSelector } from '@/selectors/simulationSelectors'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { buildEndURL } from '../../../components/SessionBar'
-import { useEngine } from '../../../components/utils/EngineContext'
-import { situationSelector } from '../../../selectors/simulationSelectors'
-import { enquêteSelector } from './enquêteSelector'
 
 export default ({}) => {
 	const { userID } = useSelector(enquêteSelector)
@@ -16,17 +18,17 @@ export default ({}) => {
 				encodeURIComponent(typeof v === 'object' ? v.valeur : v),
 			''
 		)
-	const engine = useEngine(),
-		rules = useSelector((state) => state.rules)
-	const endURL = buildEndURL(rules, engine),
-		endQueryString = endURL.replace('/fin?', '&')
+	const engine = useEngine()
+	const rules = useSelector((state: AppState) => state.rules)
+	const endURL = buildEndURL(rules, engine)
+	const endQueryString = endURL?.replace('/fin?', '&')
 
 	return (
 		<a
 			href={`/enquête/${userID}${situationQueryString}${endQueryString}&login=${userID}`}
 			className="ui__ button cta"
 		>
-			Envoyer mes résultats
+			<Trans>Envoyer mes résultats</Trans>
 		</a>
 	)
 }

@@ -765,3 +765,4 @@ entries:
   'Northstar: les statistiques "étoile du nord"': North star statistics
   components.stats.StatsContent.infosNorthstar: <0>At the end of the simulation, a banner appears to collect the feelings of our users on the role of Nos Gestes Climat in their understanding of climate issues, but also in encouraging them to take action via 2 questions at the end of the test. The statistics, available on the dedicated <2>"Northstar</2>" page, were generated via Metabase.</0>
   components.stats.StatsContent.infosNorthstar.lock: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
+  Envoyer mes résultats: Send my results
