@@ -1,5 +1,5 @@
 import { Markdown } from 'Components/utils/markdown'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { renderToString } from 'react-dom/server'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
@@ -57,6 +57,36 @@ export const createIssue = (
 }
 
 export default ({}) => {
+	useEffect(() => {
+		const handleAnchor = () => {
+			if (window.location.hash) {
+				const anchor = decodeURI(window.location.hash.substring(1)) // Extrait l'ancre de l'URL sans le '#'
+				const questionElement = document.getElementById(anchor)
+				if (questionElement) {
+					// Faites défiler jusqu'à la question si nécessaire
+					questionElement.scrollIntoView({ behavior: 'smooth' })
+					questionElement.setAttribute('open', true)
+				}
+			}
+		}
+
+		handleAnchor()
+
+		document.addEventListener('DOMContentLoaded', handleAnchor)
+
+		return () => {
+			document.removeEventListener('DOMContentLoaded', handleAnchor)
+		}
+	}, [])
+
+	const handleDetailsToggle = (id, open) => {
+		let newURL = window.location.pathname
+		if (!open) {
+			newURL = window.location.pathname + `#${id}`
+		}
+		window.history.pushState(null, null, newURL)
+	}
+
 	const fromLocation = useQuery().get('fromLocation')
 
 	const [sujet, setSujet] = useState('')
@@ -126,18 +156,25 @@ export default ({}) => {
 				`}
 			>
 				{categories.map((category) => (
-					<li>
+					<li key={category}>
 						<h2>{category}</h2>
 						<ul>
 							{FAQ.filter((el) => el.catégorie === category).map(
 								({ category, question, réponse, id }) => (
-									<li>
+									<li key={id}>
 										<details id={id}>
-											<summary>
+											<summary
+												onClick={(e) =>
+													handleDetailsToggle(
+														id,
+														e.currentTarget.parentElement.open
+													)
+												}
+											>
 												<h3>{question}</h3>
 											</summary>
 											<div className="ui__ card">
-												<Markdown escapeHtml={false} children={réponse} />
+												<Markdown children={réponse} />
 											</div>
 										</details>
 									</li>
