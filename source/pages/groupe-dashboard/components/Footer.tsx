@@ -3,7 +3,7 @@ import { Trans } from 'react-i18next'
 
 export default function Footer() {
 	return (
-		<footer className="bg-lightGrey p-6 px-8 md:px-6 -ml-4">
+		<footer className="bg-grey-100 p-6 px-8 md:px-6 -ml-4">
 			<h2 className="mt-0">
 				<Trans>Comment agir</Trans>
 			</h2>

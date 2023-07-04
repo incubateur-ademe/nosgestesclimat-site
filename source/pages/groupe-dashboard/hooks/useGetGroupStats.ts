@@ -153,11 +153,6 @@ export const useGetGroupStats = ({
 	// Calculate the current user variation between its value and the group mean for each category
 	// and subcategory
 	Object.keys(results.currentMemberAllFootprints).forEach((key) => {
-		console.log(
-			key,
-			results.groupCategoriesFootprints[key].mean,
-			results?.currentMemberAllFootprints?.[key]?.value
-		)
 		results.currentMemberAllFootprints[key].variation =
 			((results?.currentMemberAllFootprints?.[key]?.value -
 				(results?.groupCategoriesFootprints?.[key]?.mean || 0)) /
@@ -181,7 +176,7 @@ export const useGetGroupStats = ({
 
 			return b?.resultObject?.variation > a?.resultObject?.variation ? -1 : 1
 		}) as Points[]
-	console.log(sortedCurrentMemberByVariation)
+
 	results.pointsForts = sortedCurrentMemberByVariation.slice(0, 2)
 	results.pointsFaibles = sortedCurrentMemberByVariation.slice(-3)
 

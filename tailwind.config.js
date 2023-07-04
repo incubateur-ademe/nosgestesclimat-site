@@ -14,7 +14,8 @@ module.exports = {
 				secondary: '#3496E0',
 				lightGrey: '#F8F8F7',
 				grey: {
-					100: '#E3E3DB',
+					100: '#F8F8F7',
+					200: '#E3E3DB',
 				},
 				pink: {
 					100: '#FAF0FA',
