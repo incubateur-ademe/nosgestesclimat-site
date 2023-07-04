@@ -22,9 +22,28 @@ export type Group = {
 
 export type ResultsObject = {
 	total: string
-	transports: string
-	alimentation: string
-	logement: string
-	divers: string
-	'services sociétaux': string
+	'transport . empreinte': {
+		value: string
+		variation: string
+	}
+	transports: {
+		value: string
+		variation: string
+	}
+	alimentation: {
+		value: string
+		variation: string
+	}
+	logement: {
+		value: string
+		variation: string
+	}
+	divers: {
+		value: string
+		variation: string
+	}
+	'services sociétaux': {
+		value: string
+		variation: string
+	}
 }
