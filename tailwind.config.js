@@ -13,6 +13,14 @@ module.exports = {
 				title: '#32337B',
 				secondary: '#3496E0',
 				lightGrey: '#F8F8F7',
+				grey: {
+					100: '#E3E3DB',
+				},
+				pink: {
+					100: '#FAF0FA',
+					200: '#FEDEF1',
+					500: '#D40983',
+				},
 			},
 		},
 	},
