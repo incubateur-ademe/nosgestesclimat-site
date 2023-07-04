@@ -1,7 +1,8 @@
 import { AppState } from '@/reducers/rootReducer'
 import { Group, Member } from '@/types/groups'
+import { formatValue } from 'publicodes'
 import { useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import Badge from './Badge'
 
@@ -40,6 +41,8 @@ export default function Classement({ group }: { group: Group }) {
 	const [isExpanded, setIsExpanded] = useState(false)
 
 	const userId = useSelector((state: AppState) => state.userId)
+
+	const language = useTranslation().i18n.language
 
 	if (!group) {
 		return null
@@ -99,7 +102,11 @@ export default function Classement({ group }: { group: Group }) {
 
 					const quantity = member?.results?.total ? (
 						<p className="leading-[160%] m-none">
-							<strong>{member?.results?.total}</strong>{' '}
+							<strong>
+								{formatValue(parseFloat(member?.results?.total), {
+									language,
+								})}
+							</strong>{' '}
 							<span className="font-light text-sm">
 								<Trans>tonnes</Trans>
 							</span>
@@ -132,7 +139,11 @@ export default function Classement({ group }: { group: Group }) {
 
 							const quantity = member?.results?.total ? (
 								<p className="leading-[160%]">
-									<strong>{member?.results?.total}</strong>{' '}
+									<strong>
+										{formatValue(parseFloat(member?.results?.total), {
+											language,
+										})}
+									</strong>{' '}
 									<span className="font-light text-sm">
 										<Trans>tonnes</Trans>
 									</span>

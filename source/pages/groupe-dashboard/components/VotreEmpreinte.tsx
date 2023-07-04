@@ -68,7 +68,11 @@ export default function VotreEmpreinte({
 								</div>
 								<div className="flex items-center gap-4">
 									<div className="text-sm text-primary bg-primaryLight border-solid border-[1px] border-primaryBorder rounded-[5px] p-1">
-										{formatValue(categoryObject.value / 1000, { precision: 1 })}{' '}
+										<strong>
+											{formatValue(categoryObject.value / 1000, {
+												precision: 1,
+											})}
+										</strong>{' '}
 										t
 									</div>
 									<div className="flex-shrink-0">
