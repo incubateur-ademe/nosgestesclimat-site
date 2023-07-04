@@ -139,7 +139,7 @@ export default function RejoindreGroupe() {
 					</span>
 				}
 				helperText={t(
-					'Seulement pour te permettre de le retrouver ou de supprimer les données par la suite'
+					'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
 				)}
 				name="prenom"
 				placeholder="jean-michel@nosgestesclimat.fr"

@@ -8,8 +8,9 @@ import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 import Button from '../../components/groupe/Button'
 import Title from '../../components/groupe/Title'
-import CopyInput from './components/CopyInput'
-import Link from './components/Link'
+
+import CopyInput from '@/components/groupe/CopyInput'
+import Link from '@/components/groupe/Link'
 import StepperIndicator from './components/StepperIndicator'
 
 export default function InvitezVosProches() {

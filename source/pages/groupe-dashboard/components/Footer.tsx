@@ -1,4 +1,4 @@
-import ButtonLink from '@/pages/creer-groupe/components/ButtonLink'
+import ButtonLink from '@/components/groupe/ButtonLink'
 import { Trans } from 'react-i18next'
 
 export default function Footer() {
@@ -10,7 +10,7 @@ export default function Footer() {
 			<p className="mb-8">
 				<Trans>
 					Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou
-					passe le test pour obtenir des recommandations personnalisées
+					passez le test pour obtenir des recommandations personnalisées.
 				</Trans>
 			</p>
 			<ButtonLink color="secondary" href="/actions">
