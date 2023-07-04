@@ -1,5 +1,5 @@
 import { Action } from 'Actions/actions'
-import { RootState } from 'Reducers/rootReducer'
+import { AppState } from 'Reducers/rootReducer'
 import { Store } from 'redux'
 import { debounce, omit } from '../utils'
 import safeLocalStorage from './safeLocalStorage'
@@ -13,7 +13,7 @@ type OptionsType = {
 }
 export const persistEverything =
 	(options: OptionsType = {}) =>
-	(store: Store<RootState, Action>): void => {
+	(store: Store<AppState, Action>): void => {
 		const listener = () => {
 			const state = store.getState()
 			safeLocalStorage.setItem(
@@ -24,7 +24,7 @@ export const persistEverything =
 		store.subscribe(debounce(1000, listener))
 	}
 
-export function retrievePersistedState(): RootState {
+export function retrievePersistedState(): AppState {
 	const serializedState = safeLocalStorage.getItem(LOCAL_STORAGE_KEY)
 	return serializedState ? JSON.parse(serializedState) : null
 }

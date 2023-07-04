@@ -1,27 +1,28 @@
+import { setActionChoice } from '@/actions/actions'
+import {
+	getMatomoEventActionAccepted,
+	getMatomoEventActionRejected,
+} from '@/analytics/matomo-events'
+import NotificationBubble from '@/components/NotificationBubble'
+import {
+	correctValue,
+	extractCategoriesNamespaces,
+	splitName,
+} from '@/components/publicodesUtils'
+import { useEngine } from '@/components/utils/EngineContext'
+import { MatomoContext } from '@/contexts/MatomoContext'
+import { getNextQuestions } from '@/hooks/useNextQuestion'
+import { AppState } from '@/reducers/rootReducer'
+import {
+	answeredQuestionsSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
 import { utils } from 'publicodes'
 import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { setActionChoice } from '../../actions/actions'
-import {
-	getMatomoEventActionAccepted,
-	getMatomoEventActionRejected,
-} from '../../analytics/matomo-events'
-import NotificationBubble from '../../components/NotificationBubble'
-import {
-	correctValue,
-	extractCategoriesNamespaces,
-	splitName,
-} from '../../components/publicodesUtils'
-import { useEngine } from '../../components/utils/EngineContext'
-import { MatomoContext } from '../../contexts/MatomoContext'
-import { getNextQuestions } from '../../hooks/useNextQuestion'
-import {
-	answeredQuestionsSelector,
-	situationSelector,
-} from '../../selectors/simulationSelectors'
 import { humanWeight } from './HumanWeight'
 import { questionConfig } from './questionConfig'
 
@@ -58,10 +59,10 @@ export const ActionListCard = ({
 	const { trackEvent } = useContext(MatomoContext)
 
 	const dispatch = useDispatch()
-	const rules = useSelector((state) => state.rules)
+	const rules = useSelector((state: AppState) => state.rules)
 	const { nodeValue, dottedName, title } = evaluation
 	const { icônes: icons } = rule
-	const actionChoices = useSelector((state) => state.actionChoices)
+	const actionChoices = useSelector((state: AppState) => state.actionChoices)
 	const situation = useSelector(situationSelector)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
@@ -321,20 +322,19 @@ export const ActionValue = ({
 	engine,
 }) => {
 	const { t, i18n } = useTranslation()
-	const evaluation = engine.evaluate(dottedName),
-		rawValue = evaluation.nodeValue
-	const correctedValue = correctValue({
-		nodeValue: rawValue,
-		unit: evaluation.unit,
-	})
-	const [stringValue, unit] = humanWeight(
-			{ t, i18n },
-			correctedValue,
-			false,
-			true
-		),
-		relativeValue = Math.round(100 * (correctedValue / total))
+	const correctedValue = correctValue(engine.evaluate(dottedName))
 
+	if (correctedValue == undefined) {
+		return null
+	}
+
+	const [stringValue, unit] = humanWeight(
+		{ t, i18n },
+		correctedValue,
+		false,
+		true
+	)
+	const relativeValue = Math.round(100 * (correctedValue / total))
 	const sign = correctedValue > 0 ? '-' : '+'
 
 	return (
@@ -358,7 +358,9 @@ export const ActionValue = ({
 							padding-right: 0;
 							border: 2px solid var(--color);
 							border-radius: 0.3rem;
-							${correctedValue < 0 && 'background: #e33e3e'};
+							${correctedValue != undefined &&
+							correctedValue < 0 &&
+							'background: #e33e3e'};
 						`}
 					>
 						<strong>{stringValue}</strong>&nbsp;

@@ -1,18 +1,17 @@
-import { useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import {
 	extractCategories,
 	getSubcategories,
 	relegateCommonCategories,
-} from '../../../components/publicodesUtils'
-import { useEngine } from '../../../components/utils/EngineContext'
-
+} from '@/components/publicodesUtils'
+import SafeCategoryImage from '@/components/SafeCategoryImage'
+import { useEngine } from '@/components/utils/EngineContext'
 import { motion } from 'framer-motion'
 import { capitalise0, utils } from 'publicodes'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useElementSize } from 'usehooks-ts'
-import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import { humanWeight } from '../HumanWeight'
 import { getTitle, groupTooSmallCategories } from './chartUtils'
 

@@ -18,7 +18,10 @@ import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
-import { AppState } from '@/reducers/rootReducer'
+import {
+	AppState,
+	objectifsConfigToDottedNameArray,
+} from '@/reducers/rootReducer'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -33,9 +36,12 @@ import { questionConfig } from './questionConfig'
 import ScoreBar from './ScoreBar'
 import { getQuestionURLSearchParams } from './utils'
 
-const equivalentTargetArrays = (array1, array2) =>
-	array1.length === array2.length &&
-	array1.every((value, index) => value === array2[index])
+function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
+	return (
+		array1.length === array2.length &&
+		array1.every((value, index) => value === array2[index])
+	)
+}
 
 /*
  * Here the URL specs:
@@ -91,7 +97,12 @@ const Simulateur = () => {
 		: []
 
 	useEffect(() => {
-		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
+		if (
+			!isEquivalentTargetArrays(
+				config.objectifs,
+				objectifsConfigToDottedNameArray(configSet?.objectifs ?? [])
+			)
+		) {
 			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
 	}, [dispatch, config, selectedRuleURL, configSet])
@@ -161,7 +172,7 @@ const Simulateur = () => {
 					<h1>
 						{
 							// FIXME(@EmileRolley): expected to be rawNode.title, why?
-							evaluation.title || (
+							evaluation.title ?? (
 								<FullName dottedName={evaluation.rawNode.dottedName} />
 							)
 						}
@@ -252,8 +263,8 @@ function getValidSelectedRuleInfos(
 	}
 }
 
-function isSpecificRule(selectedRuleName: DottedName) {
-	return selectedRuleName != ''
+function isSpecificRule(selectedRuleName: DottedName | undefined) {
+	return selectedRuleName !== undefined && selectedRuleName !== ''
 }
 
 const MainSimulationEnding = ({ rules, engine }) => {

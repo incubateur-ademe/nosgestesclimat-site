@@ -1,19 +1,24 @@
-import { RootState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
-import { DottedName } from 'Rules'
-import { Lang } from '../locales/translation'
+import { DottedName } from '@/components/publicodesUtils'
+import { Lang } from '@/locales/translation'
+import { AppState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
 
 export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
 
+export type Enquête = {
+	userID: string
+	date: string
+}
+
 export type SavedSimulation = {
 	situation: Simulation['situation']
-	foldedSteps: Array<DottedName> | undefined
+	foldedSteps?: Array<DottedName>
 	actionChoices: Object
 	persona?: string
 	storedTrajets: Object
 	storedAmortissementAvion: { [key: string]: number }
 	conference: { room: string } | null
 	survey: { room: string } | null
-	enquête: { userID: string; date: string } | null
+	enquête: Enquête | null
 	ratings: { learned: Rating; action: Rating }
 	url?: string
 	date?: Date
@@ -45,15 +50,15 @@ export type User = {
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list
-export const currentSimulationSelector = (state: RootState) => {
+export const currentSimulationSelector = (state: AppState) => {
 	return state.simulations.filter(
 		(simulation) => simulation.id === state.currentSimulationId
 	)[0]
 }
 
 export const createStateFromSavedSimulation = (
-	state: RootState
-): Partial<RootState> => {
+	state: AppState
+): Partial<AppState> => {
 	if (!state.previousSimulation) return {}
 
 	return {

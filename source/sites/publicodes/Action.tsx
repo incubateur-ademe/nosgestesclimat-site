@@ -1,4 +1,9 @@
-import { splitName } from '@/components/publicodesUtils'
+import {
+	DottedName,
+	NGCEvaluatedRuleNode,
+	NGCRuleNode,
+	splitName,
+} from '@/components/publicodesUtils'
 import Simulation from '@/components/Simulation'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
@@ -45,19 +50,19 @@ export default ({}) => {
 	}, [encodedName])
 	if (!configSet) return null
 
-	const evaluation = engine.evaluate(dottedName),
-		{ title } = evaluation
+	const evaluation = engine.evaluate(dottedName) as NGCEvaluatedRuleNode
+	const { title } = evaluation
 
 	const { description, icônes: icons, plus } = rules[dottedName]
 
 	const flatActions = rules['actions']
-	const relatedActions = flatActions.formule.somme
+	const relatedActions: NGCRuleNode[] = flatActions?.formule?.somme
 		.filter(
-			(actionDottedName) =>
+			(actionDottedName: DottedName) =>
 				actionDottedName !== dottedName &&
 				splitName(dottedName)[0] === splitName(actionDottedName)[0]
 		)
-		.map((name) => engine.getRule(name))
+		.map((name: DottedName) => engine.getRule(name))
 
 	return (
 		<div
@@ -67,7 +72,10 @@ export default ({}) => {
 				margin: 1rem auto;
 			`}
 		>
-			<Meta title={t('Action') + ' : ' + title} description={description} />
+			<Meta
+				title={t('Action') + ' : ' + title}
+				description={description ?? ''}
+			/>
 			<ScrollToTop />
 			<Link to="/actions/liste">
 				<button className="ui__ button simple small ">
@@ -93,7 +101,7 @@ export default ({}) => {
 					</h2>
 				</header>
 				<div css="margin: 1.6rem 0">
-					<Markdown children={description} />
+					<Markdown children={description ?? ''} />
 					<div css="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem">
 						<Link to={'/documentation/' + encodedName}>
 							<button className="ui__ button small">

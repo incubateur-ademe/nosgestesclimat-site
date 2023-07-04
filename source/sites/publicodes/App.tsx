@@ -1,8 +1,28 @@
+import { setDifferentSituation } from '@/actions/actions'
+import { matomoEventInteractionIframe } from '@/analytics/matomo-events'
+import AnimatedLoader from '@/AnimatedLoader'
 import { ErrorFallback } from '@/components/ErrorFallback'
+import Footer from '@/components/Footer'
+import LangSwitcher from '@/components/LangSwitcher'
+import LocalisationMessage from '@/components/localisation/LocalisationMessage'
 import Logo from '@/components/Logo'
 import Route404 from '@/components/Route404'
 import { sessionBarMargin } from '@/components/SessionBar'
 import '@/components/ui/index.css'
+import { MatomoContext } from '@/contexts/MatomoContext'
+import { useLoadSimulationFromURL } from '@/hooks/useLoadSimulationFromURL'
+import useMediaQuery from '@/hooks/useMediaQuery'
+import {
+	changeLangTo,
+	getLangFromAbreviation,
+	getLangInfos,
+	Lang,
+} from '@/locales/translation'
+import Provider from '@/Provider'
+import { AppState } from '@/reducers/rootReducer'
+import { WithEngine } from '@/RulesProvider'
+import { fetchUser, persistUser } from '@/storage/persistSimulation'
+import { getIsIframe } from '@/utils'
 import * as Sentry from '@sentry/react'
 import React, { Suspense, useContext, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -10,26 +30,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import { Store } from 'redux'
-import { setDifferentSituation } from '../../actions/actions'
-import { matomoEventInteractionIframe } from '../../analytics/matomo-events'
-import AnimatedLoader from '../../AnimatedLoader'
-import Footer from '../../components/Footer'
-import LangSwitcher from '../../components/LangSwitcher'
-import LocalisationMessage from '../../components/localisation/LocalisationMessage'
-import { MatomoContext } from '../../contexts/MatomoContext'
-import { useLoadSimulationFromURL } from '../../hooks/useLoadSimulationFromURL'
-import useMediaQuery from '../../hooks/useMediaQuery'
-import Provider from '../../Provider'
-import { AppState, RootState } from '../../reducers/rootReducer'
-import { WithEngine } from '../../RulesProvider'
-import { fetchUser, persistUser } from '../../storage/persistSimulation'
-import { getIsIframe } from '../../utils'
-import {
-	changeLangTo,
-	getLangFromAbreviation,
-	getLangInfos,
-	Lang,
-} from './../../locales/translation'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import EnquêteBanner from './enquête/BannerWrapper'
 import Landing from './Landing'
@@ -179,7 +179,7 @@ export default function Root() {
 		<Provider
 			sitePaths={paths}
 			reduxMiddlewares={[]}
-			onStoreCreated={(store: Store<RootState>) => {
+			onStoreCreated={(store: Store<AppState>) => {
 				persistUser(store)
 			}}
 			initialStore={{

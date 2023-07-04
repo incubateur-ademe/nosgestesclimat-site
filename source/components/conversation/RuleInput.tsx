@@ -14,6 +14,7 @@ import { EngineContext } from '@/components/utils/EngineContext'
 import Engine, {
 	ASTNode,
 	EvaluatedNode,
+	Evaluation,
 	formatValue,
 	reduceAST,
 	RuleNode,
@@ -87,7 +88,7 @@ export default function RuleInput({
 	const engine = givenEngine || useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
-	const rules = engine.getParsedRules()
+	const rules = engine.getParsedRules() as NGCRulesNodes
 
 	const language = useTranslation().i18n.language
 	const value = evaluation.nodeValue
@@ -173,8 +174,9 @@ export default function RuleInput({
 				commonProps={commonProps}
 				evaluation={evaluation}
 				onSubmit={onSubmit}
-				setFinalValue={(value) => onChange({ valeur: value, unité })}
-				value={value as Evaluation<string>}
+				setFinalValue={(value: Evaluation) =>
+					onChange({ valeur: value, unité })
+				}
 			/>
 		)
 	}

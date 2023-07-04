@@ -1,18 +1,24 @@
-import highlightMatches from 'Components/highlightMatches'
+import highlightMatches from '@/components/highlightMatches'
+import {
+	DottedName,
+	getTitle,
+	NGCRule,
+	NGCRules,
+} from '@/components/publicodesUtils'
+import '@/components/SearchBar.css'
+import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import Worker from 'worker-loader!./SearchBar.worker.js'
-import { getTitle } from './publicodesUtils'
-import './SearchBar.css'
 
 const worker = new Worker()
 
 type SearchItem = {
 	title: string
-	dottedName: Object
+	dottedName: DottedName
 	espace: Array<string>
 }
 
@@ -22,8 +28,8 @@ type Matches = Array<{
 	indices: Array<[number, number]>
 }>
 
-export default function SearchBar({}: SearchBarProps) {
-	const rules = useSelector((state) => state.rules)
+export default function SearchBar() {
+	const rules = useSelector((state: AppState) => state.rules)
 	const [input, setInput] = useState('')
 	const [results, setResults] = useState<
 		Array<{
@@ -32,10 +38,13 @@ export default function SearchBar({}: SearchBarProps) {
 		}>
 	>([])
 
-	const rulesList = Object.entries(rules).map(([dottedName, value]) => ({
-		...value,
+	const rulesList: (NGCRule & { dottedName: DottedName })[] = Object.entries(
+		rules
+	).map(([dottedName, rule]) => ({
+		...rule,
 		dottedName,
 	}))
+
 	const searchIndex: Array<SearchItem> = useMemo(
 		() =>
 			Object.values(rulesList)
@@ -128,7 +137,15 @@ export default function SearchBar({}: SearchBarProps) {
 	)
 }
 
-export const RuleListItem = ({ rules, item, matches = null }) => (
+export const RuleListItem = ({
+	rules,
+	item,
+	matches = null,
+}: {
+	rules: NGCRules
+	item: SearchItem
+	matches: Matches | null
+}) => (
 	<li
 		key={item.dottedName}
 		css={`

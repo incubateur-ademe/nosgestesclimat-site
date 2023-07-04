@@ -1,9 +1,9 @@
-import { DottedName } from 'modele-social'
+import { DottedName } from '@/components/publicodesUtils'
+import { intersect, pick } from '@/utils'
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
-import { intersect, pick } from '../../utils'
 
-export const EngineContext = createContext<Engine>(new Engine({}))
+export const EngineContext = createContext<Engine | undefined>(new Engine({}))
 export const EngineProvider = EngineContext.Provider
 
 export const engineOptions = {
@@ -50,7 +50,7 @@ export function SituationProvider({
 		}
 	} catch (e) {
 		console.log(
-			'Il est probable qu\'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l\'utilisateur ou du persona chargé ↙️'
+			"Il est probable qu'une règle obsolète (renommée, refactorée ou supprimée) se trouvait dans la situation de l'utilisateur ou du persona chargé ↙️"
 		)
 		console.log(e)
 	}

@@ -116,7 +116,7 @@ export function useCountryNameInCurrentLang(
  * conditionally !!
  */
 export function useCurrentRegionCode(
-	localisation: Localisation | undefined
+	localisation: Localisation | null
 ): RegionCode {
 	const code = localisation?.country?.code
 	if (useSupportedRegion(code)) {

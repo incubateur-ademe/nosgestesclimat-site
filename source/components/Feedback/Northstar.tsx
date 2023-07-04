@@ -1,11 +1,11 @@
+import { SetRatingAction, setRatings } from '@/actions/actions'
+import { AppState } from '@/reducers/rootReducer'
+import { useSimulationData } from '@/selectors/simulationSelectors'
+import { simulationURL } from '@/sites/publicodes/conference/useDatabase'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import styled from 'styled-components'
-import { setRatings } from '../../actions/actions'
-import { RootState } from '../../reducers/rootReducer'
-import { useSimulationData } from '../../selectors/simulationSelectors'
-import { simulationURL } from '../../sites/publicodes/conference/useDatabase'
 
 const ratingKeys = {
 	SET_RATING_ACTION: 'action',
@@ -16,12 +16,13 @@ const setRating = (ratings, reduxKey, value, text) => {
 	const key = ratingKeys[reduxKey]
 	return { ...ratings, [key]: value, [key + '_text']: text }
 }
+
 export default ({
 	type,
 	animationComplete,
 	text,
 }: {
-	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
+	type: SetRatingAction['type']
 	animationComplete: boolean
 	text: string
 }) => {
@@ -29,11 +30,11 @@ export default ({
 	const [selectedRating, setSelectedRating] = useState(false)
 	const dispatch = useDispatch()
 
-	const ratings = useSelector((state: RootState) => state.ratings)
+	const ratings = useSelector((state: AppState) => state.ratings)
 
 	const data = useSimulationData()
 	const simulationId = useSelector(
-		(state: RootState) => state.currentSimulationId
+		(state: AppState) => state.currentSimulationId
 	)
 
 	const submitFeedback = (rating: 0 | 1 | 2 | 3) => {

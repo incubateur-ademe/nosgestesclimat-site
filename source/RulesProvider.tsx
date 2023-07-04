@@ -1,29 +1,26 @@
+import LocalisationProvider from '@/components/localisation/LocalisationProvider'
+import useLocalisation from '@/components/localisation/useLocalisation'
+import { useCurrentRegionCode } from '@/components/localisation/utils'
+import useBranchData from '@/components/useBranchData'
 import {
 	EngineProvider,
 	SituationProvider,
-} from 'Components/utils/EngineContext'
-import {
-	configSituationSelector,
-	situationSelector,
-} from 'Selectors/simulationSelectors'
-import LocalisationProvider from './components/localisation/LocalisationProvider'
-
-import useBranchData from 'Components/useBranchData'
-import Engine from 'publicodes'
-import { useEffect, useMemo } from 'react'
-import { useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-
+} from '@/components/utils/EngineContext'
+import { getCurrentLangAbrv } from '@/locales/translation'
 import {
 	AppState,
 	defaultRulesOptions,
 	RulesOptions,
-} from './reducers/rootReducer'
-
+} from '@/reducers/rootReducer'
+import {
+	configSituationSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
+import Engine from 'publicodes'
+import { useEffect, useMemo } from 'react'
+import { useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
 import AnimatedLoader from './AnimatedLoader'
-import useLocalisation from './components/localisation/useLocalisation'
-import { useCurrentRegionCode } from './components/localisation/utils'
-import { getCurrentLangAbrv } from './locales/translation'
 
 export default ({ children }) => {
 	return <EngineWrapper>{children}</EngineWrapper>
@@ -60,7 +57,9 @@ const EngineWrapper = ({ children }) => {
 
 			if (process.env.NODE_ENV === 'development') {
 				const rules = require('../nosgestesclimat/public' + fileName)
-				if (active) dispatch({ type: 'SET_RULES', rules })
+				if (active) {
+					dispatch({ type: 'SET_RULES', rules })
+				}
 			} else {
 				const url =
 					currLangAbrv && currentRegionCode && branchData.deployURL + fileName
@@ -68,7 +67,9 @@ const EngineWrapper = ({ children }) => {
 				fetch(url, { mode: 'cors' })
 					.then((response) => response.json())
 					.then((json) => {
-						if (active) dispatch({ type: 'SET_RULES', rules: json })
+						if (active) {
+							dispatch({ type: 'SET_RULES', rules: json })
+						}
 					})
 					.catch((err) => {
 						console.log('url:', url)
@@ -102,7 +103,7 @@ const EngineWrapper = ({ children }) => {
 
 			return engine
 		}
-		return false
+		return undefined
 		// We rely on this useMemo hook to store multiple Engines.
 		// Say the test component requests the optimized parsed rules,
 		// then the documentation loads the complete rules, then the user
@@ -112,8 +113,9 @@ const EngineWrapper = ({ children }) => {
 	}, [engineRequestedOnce, branchData.deployURL, rules, parsedOption])
 
 	useEffect(() => {
-		if (engine || (parsedOption === false && rules))
+		if (engine !== undefined || (parsedOption === false && rules)) {
 			dispatch({ type: 'SET_ENGINE', to: { ...engineState, state: 'ready' } })
+		}
 		return
 	}, [engine, parsedOption, rules])
 
@@ -179,6 +181,7 @@ export const WithEngine = ({
 	) {
 		return fallback
 	}
+
 	return children
 }
 

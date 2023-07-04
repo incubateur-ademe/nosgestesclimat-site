@@ -1,17 +1,17 @@
-import { useSelector } from 'react-redux'
-import { RootState, SimulationConfig } from 'Reducers/rootReducer'
-import { createSelector } from 'reselect'
 import {
+	DottedName,
 	extractCategories,
 	minimalCategoryData,
-} from '../components/publicodesUtils'
-import { useEngine } from '../components/utils/EngineContext'
-import { useNextQuestions } from '../hooks/useNextQuestion'
-import { DottedName, Situation } from '../rules/index'
-import useActions from '../sites/publicodes/useActions'
+} from '@/components/publicodesUtils'
+import { useEngine } from '@/components/utils/EngineContext'
+import { useNextQuestions } from '@/hooks/useNextQuestion'
+import { AppState, SimulationConfig, Situation } from '@/reducers/rootReducer'
+import useActions from '@/sites/publicodes/useActions'
+import { useSelector } from 'react-redux'
+import { createSelector } from 'reselect'
 import { currentSimulationSelector } from './storageSelectors'
 
-export const configSelector = (state: RootState): Partial<SimulationConfig> =>
+export const configSelector = (state: AppState): Partial<SimulationConfig> =>
 	state.simulation?.config ?? {}
 
 export const objectifsSelector = createSelector([configSelector], (config) => {
@@ -27,10 +27,10 @@ export const objectifsSelector = createSelector([configSelector], (config) => {
 
 const emptySituation: Situation = {}
 
-export const situationSelector = (state: RootState) =>
+export const situationSelector = (state: AppState) =>
 	state.simulation?.situation ?? emptySituation
 
-export const configSituationSelector = (state: RootState) =>
+export const configSituationSelector = (state: AppState) =>
 	configSelector(state).situation ?? emptySituation
 
 export const firstStepCompletedSelector = createSelector(
@@ -45,13 +45,13 @@ export const firstStepCompletedSelector = createSelector(
 	}
 )
 
-export const targetUnitSelector = (state: RootState) =>
+export const targetUnitSelector = (state: AppState) =>
 	state.simulation?.targetUnit ?? '€/mois'
 
-export const currentQuestionSelector = (state: RootState) =>
+export const currentQuestionSelector = (state: AppState) =>
 	state.simulation?.unfoldedStep ?? null
 
-export const answeredQuestionsSelector = (state: RootState) =>
+export const answeredQuestionsSelector = (state: AppState) =>
 	state.simulation?.foldedSteps ?? []
 
 export const useTestCompleted = () => {
@@ -66,17 +66,17 @@ export const useTestCompleted = () => {
 export const useSimulationData = () => {
 	const situation = useSelector(situationSelector)
 
-	const ratings = useSelector((state: RootState) => state.ratings)
+	const ratings = useSelector((state: AppState) => state.ratings)
 
-	const actionChoices = useSelector((state) => state.actionChoices)
+	const actionChoices = useSelector((state: AppState) => state.actionChoices)
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
-	const rules = useSelector((state) => state.rules),
+	const rules = useSelector((state: AppState) => state.rules),
 		engine = useEngine()
 	const categoriesRaw = extractCategories(rules, engine),
 		categories = minimalCategoryData(categoriesRaw)
-	const storedTrajets = useSelector((state) => state.storedTrajets)
+	const storedTrajets = useSelector((state: AppState) => state.storedTrajets)
 	const storedAmortissementAvion = useSelector(
-		(state) => state.storedAmortissementAvion
+		(state: AppState) => state.storedAmortissementAvion
 	)
 	const { interestingActions: actionResultsRaw } = useActions({
 			focusedAction: null,
@@ -87,8 +87,8 @@ export const useSimulationData = () => {
 		}),
 		actionResults = minimalCategoryData(actionResultsRaw)
 
-	const totalRule = engine.evaluate('bilan'),
-		total = totalRule && Math.round(totalRule.nodeValue || -1)
+	const totalRule = engine.evaluate('bilan')
+	const total = totalRule && Math.round(totalRule.nodeValue || -1)
 
 	const data = {
 		// The situation is a key, value object, keys being the ids of the publicode variables that are questions, called "dottedNames".
@@ -128,6 +128,6 @@ export const isPersonaSelector = createSelector(
 	(simulation) => simulation?.persona != null
 )
 
-export const hasSubscribedToNewsletterSelector = (state: RootState) => {
+export const hasSubscribedToNewsletterSelector = (state: AppState) => {
 	return state.hasSubscribedToNewsletter ?? ''
 }

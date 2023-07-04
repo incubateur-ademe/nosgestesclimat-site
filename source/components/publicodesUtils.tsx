@@ -1,28 +1,43 @@
 import Engine, {
-	ASTNode,
 	EvaluatedNode,
+	Evaluation,
+	Rule,
 	RuleNode,
+	Unit,
 	utils as coreUtils,
 } from 'publicodes'
 import { capitalise0, sortBy } from '../utils'
 
-export type DottedName = string
+//--- Publicodes types
 
-export type Category = EvaluatedNode & {
-	dottedName: DottedName
-	title: string
-	name: string
-	rawNode: RuleNode
-	documentationDottedName: DottedName
-	icons?: string[]
-	color?: string
-	abbreviation: string
+export type MissingVariables = Record<string, number>
+
+export type EvaluationDecoration = {
+	nodeValue: Evaluation<number>
+	unit?: Unit
+	traversedVariables?: Array<string>
+	missingVariables: MissingVariables
 }
 
-export type SuggestionsNode = Record<string, ASTNode>
+//---- Extends publicodes types to handle Nos Gestes Climat (NGC) model rules.
 
+export type Color = `#${string}`
+
+export type SuggestionsNode = Record<
+	string,
+	string | number | Record<string, string | number>
+>
+
+/** Represents a rule name, i.e. root key in the raw parsed YAML. */
+export type DottedName = string
+
+/**
+ * The NGC specific mosaique mechanism.
+ *
+ * @see https://github.com/datagir/nosgestesclimat-site/wiki/mosaic
+ */
 export type MosaiqueNode = {
-	type: string
+	type: 'selection' | 'nombre'
 	clé: string
 	total?: number
 	suggestions?: SuggestionsNode
@@ -35,15 +50,67 @@ export type MosaicInfos = {
 }
 
 /**
- * NOTE(@EmileRolley): prefixing with NGC to avoid conflicts with publicodes,
- * and to make it clear that this is a specific type for the NGC model.
+ * Extends publicodes Rule type with NGC specific properties.
+ *
+ * @note It aims to be isomorphic with the specified YAML model, i.e. their properties
+ * should be the same, there is no specific transformation (apart from casting
+ * to TypeScript types).
+ * It represents a rule before parsing, i.e. before being returned by the engine.
+ *
+ * @see https://github.com/betagouv/publicodes/blob/5a1ba0f09e4b7949ce51b48eabae58b8b606c4b5/packages/core/source/rule.ts#L18-L42
  */
-export type NGCRuleNode = RuleNode & {
-	dottedName: DottedName
+export type NGCRule = Rule & {
+	abréviation?: string
+	couleur?: Color
 	mosaique?: MosaiqueNode
+	type?: 'notification'
+	sévérité?: 'avertissement' | 'information' | 'invalide'
+	// NOTE(@EmileRolley): used in Action.tsx but I don't if it is really needed..
+	plus?: boolean
 }
 
-export type NGCRulesNodes = Record<string, NGCRuleNode>
+/**
+ * Extends publicodes RuleNode type with NGC specific properties.
+ *
+ * @note It represents a node returned after parsing, i.e. returned by the engine.
+ */
+export type NGCRuleNode = Omit<RuleNode<DottedName>, 'rawNode'> & {
+	rawNode: NGCRule
+}
+
+/**
+ * Root of a parsed NGC model.
+ *
+ * It basically maps a rule name to its parsed rule.
+ */
+export type NGCRulesNodes = Record<DottedName, NGCRuleNode>
+
+/**
+ * Root of a non-parsed NGC model.
+ *
+ * @note It is the same as NGCRulesNodes, but with the raw rule instead of the parsed one.
+ * It is used to represent the model before parsing.
+ *
+ * @important YAML parsed object casted is casted in the NGCRules type, so
+ * there is no guarantee that the data corresponds.
+ * The implicit assumption here, is that the YAML model is isomorphic with the NGCRules type.
+ */
+export type NGCRules = Record<DottedName, NGCRule>
+
+export type NGCEvaluatedRuleNode = NGCRuleNode & EvaluationDecoration
+
+export type Category = EvaluatedNode<number> & {
+	dottedName: DottedName
+	title: string
+	name: string
+	rawNode: NGCRuleNode
+	documentationDottedName: DottedName
+	icons?: string[]
+	color?: Color
+	abbreviation: string
+}
+
+//----  Utility functions
 
 /** It's the name of the node at the root of the model. */
 export const MODEL_ROOT_RULE_NAME = 'bilan'
@@ -139,8 +206,8 @@ export const FullName = ({ dottedName }) => (
 	</span>
 )
 
-export const getTitle = (rule) =>
-	rule.title ||
+export const getTitle = (rule: NGCRule & { dottedName: DottedName }) =>
+	rule.titre ??
 	capitalise0(splitName(rule.dottedName)[splitName(rule.dottedName).length - 1])
 
 // Publicodes's % unit is strangely handlded
@@ -188,12 +255,12 @@ function ruleSumNode(
 }
 
 export const extractCategoriesNamespaces = (
-	rules: { [key: string]: { icônes: any; couleur: any } },
+	rules: NGCRules,
 	engine: Engine,
 	parentRule = MODEL_ROOT_RULE_NAME
 ) => {
-	const rule = engine.getRule(parentRule)
-	const sumNodes = ruleSumNode(engine.getParsedRules(), rule)
+	const rule = engine.getRule(parentRule) as NGCRuleNode
+	const sumNodes = ruleSumNode(engine.getParsedRules() as NGCRulesNodes, rule)
 
 	if (sumNodes == undefined) {
 		// NOTE(@EmileRolley): needed to handle custom 'services sociétaux' rule that is not a sum
@@ -242,8 +309,11 @@ export function extractCategories(
 	parentRule = MODEL_ROOT_RULE_NAME,
 	sort = true
 ): Category[] {
-	const rule = engine.getRule(parentRule),
-		sumNodes = ruleSumNode(engine.getParsedRules(), rule)
+	const rule = engine.getRule(parentRule)
+	const sumNodes = ruleSumNode(
+		engine.getParsedRules() as NGCRulesNodes,
+		rule as NGCRuleNode
+	)
 
 	if (sumNodes === undefined) {
 		return []
@@ -275,15 +345,17 @@ export function extractCategories(
 }
 
 export function getSubcategories(
-	rules: any,
+	rules: NGCRules,
 	category: Category,
 	engine: Engine,
-	sort: boolean
+	sort: boolean = false
 ): Category[] {
 	const sumToDisplay =
 		category.name === 'logement' ? 'logement . impact' : category.name
 
-	if (!sumToDisplay) return [category]
+	if (!sumToDisplay) {
+		return [category]
+	}
 
 	const subCategories = extractCategories(
 		rules,
@@ -310,7 +382,7 @@ export function getSubcategories(
 
 export const sortCategories = sortBy(({ nodeValue }) => -nodeValue)
 
-export const safeGetRule = (engine, dottedName) => {
+export const safeGetRule = (engine: Engine, dottedName: DottedName) => {
 	try {
 		const rule = engine.evaluate(engine.getRule(dottedName))
 		return rule
@@ -319,22 +391,30 @@ export const safeGetRule = (engine, dottedName) => {
 	}
 }
 
-export const questionCategoryName = (dottedName) => splitName(dottedName)?.[0]
+export const questionCategoryName = (dottedName: DottedName) =>
+	splitName(dottedName)?.[0]
 
-export function relegate(keys, array) {
-	const categories = keys.reduce((memo, key) => {
-		const isKey = (a) => a.dottedName === key
+function relegate(keys: string[], categories: Category[]) {
+	return keys.reduce((memo: Category[], key: string) => {
+		const isKey = (c: Category) => c.dottedName === key
 		const arrayWithoutKey = memo.filter((a) => !isKey(a))
-		if (arrayWithoutKey.length === array.length)
+
+		if (arrayWithoutKey.length === categories.length) {
 			throw Error('Make sure the key you want to relegate is in array')
-		return [...arrayWithoutKey, memo.find(isKey)]
-	}, array)
-	return categories
+		}
+
+		let elementToRelegate = memo.find(isKey)
+		if (elementToRelegate !== undefined) {
+			arrayWithoutKey.push(categories.find(isKey)!)
+		}
+
+		return arrayWithoutKey
+	}, categories)
 }
 
-export function relegateCommonCategories(array) {
+export function relegateCommonCategories(categories: Category[]) {
 	const keys = ['services sociétaux']
-	return relegate(keys, array)
+	return relegate(keys, categories)
 }
 
 /** Like publicodes's encodeRuleName function but use '.' instead of '/' */

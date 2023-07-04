@@ -1,10 +1,10 @@
-import { RootState } from '../../../reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 
-export const enquêteSelector = (state: RootState) => state.enquête
+export const enquêteSelector = (state: AppState) => state.enquête
 
 /* If we decide that the `enquête` is attached to one of the simulations
  * we should change it for something like this
- 
+
 const simulationEnquêteSelector = createSelector(
 	[currentSimulationSelector],
 	(simulation) => {

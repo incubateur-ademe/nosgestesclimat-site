@@ -1,32 +1,60 @@
 import { Localisation } from '@/components/localisation/utils'
+import { DottedName } from '@/components/publicodesUtils'
 import {
-	RootState,
+	AppState,
 	Simulation,
 	SimulationConfig,
+	StoredTrajets,
 	TutorialStateStatus,
 } from '@/reducers/rootReducer'
-import { AnyAction } from 'redux'
+import { Rating } from '@/selectors/storageSelectors'
 import { ThunkAction } from 'redux-thunk'
 
+/**
+ * The type of the actions that can be dispatched in the app.
+ *
+ * NOTE(@EmileRolley): The workflow to add a new action is the following:
+ * 1. Create a new type for the action in this file
+ *		(e.g. `type MyAction = { type: 'MY_ACTION' }`)
+ * 2. Add the new type to the union type `Action`
+ *		(e.g. `Action = MyAction | ...`)
+ * 3. Create a new function to dispatch the action in `actions.ts`
+ *		(e.g. `export const myAction = (): Action => ({ type: 'MY_ACTION' })`)
+ */
 export type Action =
-	| ResetSimulationAction
-	| StepAction
-	| UpdateAction
-	| SetSimulationConfigAction
+	| AddSimulationToListAction
 	| DeletePreviousSimulationAction
 	| DeleteSimulationByIdAction
 	| ExplainVariableAction
-	| UpdateSituationAction
+	| HasSubscribedToNewsletterAction
 	| HideNotificationAction
 	| LoadPreviousSimulationAction
-	| SetSituationBranchAction
-	| UpdateTargetUnitAction
+	| ResetSimulationAction
+	| ResetActionChoicesAction
+	| ResetIntroTutorialAction
+	| ResetCategoryTutorialsAction
+	| ResetStoredTrajetsAction
 	| SetActiveTargetAction
-	| AddSimulationToListAction
 	| SetCurrentSimulationAction
-	| SetRatings
+	| SetRatingAction
+	| SetActionChoiceAction
+	| SetActionsChoicesAction
+	| SetSimulationAction
+	| SetSituationBranchAction
+	| SetTrackingVariableAction
+	| SetAllStoredTrajetsAction
+	| StepAction
+	| SkipTutorialAction
+	| UpdateEventsSentAction
+	| UpdateSituationAction
+	| UpdateTargetUnitAction
+	| SetStoredTrajets
+	| SetLocalisationAction
+	| SetRatingAction
+	| ResetLocalisationAction
+	| UpdateAmortissementAvionAction
 
-export type ThunkResult<R = void> = ThunkAction<R, RootState, {}, Action>
+export type ThunkResult<R = void> = ThunkAction<R, AppState, {}, Action>
 
 type StepAction = {
 	type: 'STEP_ACTION'
@@ -34,11 +62,9 @@ type StepAction = {
 	step: DottedName
 }
 
-type SetSimulationConfigAction = {
+type SetSimulationAction = {
 	type: 'SET_SIMULATION'
-	url: string
-	config: SimulationConfig
-}
+} & Simulation
 
 type SetCurrentSimulationAction = {
 	type: 'SET_CURRENT_SIMULATION'
@@ -47,12 +73,12 @@ type SetCurrentSimulationAction = {
 
 type AddSimulationToListAction = {
 	type: 'ADD_SIMULATION_TO_LIST'
-	simulation
+	simulation: Simulation
 }
 
-type SetRatings = {
+export type SetRatingAction = {
 	type: 'SET_RATING_LEARNED' | 'SET_RATING_ACTION'
-	value: string
+	value: Rating
 }
 
 type DeletePreviousSimulationAction = {
@@ -61,52 +87,152 @@ type DeletePreviousSimulationAction = {
 
 type DeleteSimulationByIdAction = {
 	type: 'DELETE_SIMULATION'
+	id: string
 }
 
-type ResetSimulationAction = ReturnType<typeof resetSimulation>
-type UpdateAction = ReturnType<typeof updateSituation>
-type UpdateSituationAction = ReturnType<typeof updateSituation>
-type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
-type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
-type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
-type HideNotificationAction = ReturnType<typeof hideNotification>
-type ExplainVariableAction = ReturnType<typeof explainVariable>
-type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
-type SetHasSubscribedToNewsletter = {
+type UpdateSituationAction = {
+	type: 'UPDATE_SITUATION'
+	fieldName: DottedName
+	value: unknown
+}
+
+type LoadPreviousSimulationAction = {
+	type: 'LOAD_PREVIOUS_SIMULATION'
+}
+
+type HideNotificationAction = {
+	type: 'HIDE_NOTIFICATION'
+	id: string
+}
+
+type SetSituationBranchAction = {
+	type: 'SET_SITUATION_BRANCH'
+	id: number
+}
+
+type SetActiveTargetAction = {
+	type: 'SET_ACTIVE_TARGET_INPUT'
+	name: DottedName
+}
+
+type ExplainVariableAction = {
+	type: 'EXPLAIN_VARIABLE'
+	variableName: DottedName | null
+}
+
+type UpdateTargetUnitAction = {
+	type: 'UPDATE_TARGET_UNIT'
+	targetUnit: string
+}
+
+type UpdateEventsSentAction = {
+	type: 'UPDATE_EVENTS_SENT'
+	eventSent: { [key: string]: boolean }
+}
+
+type HasSubscribedToNewsletterAction = {
 	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER'
 }
 
-export const resetSimulation = () =>
-	({
-		type: 'RESET_SIMULATION',
-	} as const)
-export const resetActionChoices = () =>
-	({
-		type: 'RESET_ACTION_CHOICES',
-	} as const)
-export const resetIntroTutorial = () =>
-	({
-		type: 'RESET_INTRO_TUTORIAL',
-	} as const)
-export const resetCategoryTutorials = () =>
-	({
-		type: 'RESET_CATEGORY_TUTORIALS',
-	} as const)
-export const resetStoredTrajets = () =>
-	({
-		type: 'RESET_TRAJETS',
-	} as const)
+type ResetSimulationAction = {
+	type: 'RESET_SIMULATION'
+}
+
+type ResetCategoryTutorialsAction = {
+	type: 'RESET_CATEGORY_TUTORIALS'
+}
+
+type ResetIntroTutorialAction = {
+	type: 'RESET_INTRO_TUTORIAL'
+}
+
+type ResetActionChoicesAction = {
+	type: 'RESET_ACTION_CHOICES'
+}
+
+type ResetStoredTrajetsAction = {
+	type: 'RESET_TRAJETS'
+}
+
+type SkipTutorialAction = {
+	type: 'SKIP_TUTORIAL'
+	id: string
+	unskip: boolean
+	fromRule?: TutorialStateStatus
+}
+
+type SetTrackingVariableAction = {
+	type: 'SET_TRACKING_VARIABLE'
+	name: string
+	value: boolean
+}
+
+type SetActionChoiceAction = {
+	type: 'SET_ACTION_CHOICE'
+	action: string
+	choice: boolean
+}
+
+type SetActionsChoicesAction = {
+	type: 'SET_ACTIONS_CHOICES'
+	actionsChoices?: Record<string, boolean>
+}
+
+type SetAllStoredTrajetsAction = {
+	type: 'SET_ALL_TRAJETS'
+	allTrajets: StoredTrajets
+}
+
+type SetStoredTrajets = {
+	type: 'SET_TRAJETS'
+	vehicule: string
+	// TODO(@EmileRolley): type this
+	trajets: object
+}
+
+type SetLocalisationAction = {
+	type: 'SET_LOCALISATION'
+} & Localisation
+
+type ResetLocalisationAction = {
+	type: 'RESET_LOCALISATION'
+}
+
+type UpdateAmortissementAvionAction = {
+	type: 'SET_AMORTISSEMENT'
+	// TODO(@EmileRolley): type this
+	amortissementAvionObject: Object
+}
+
+export const resetSimulation = (): Action => ({
+	type: 'RESET_SIMULATION',
+})
+
+export const resetActionChoices = (): Action => ({
+	type: 'RESET_ACTION_CHOICES',
+})
+
+export const resetIntroTutorial = (): Action => ({
+	type: 'RESET_INTRO_TUTORIAL',
+})
+
+export const resetCategoryTutorials = (): Action => ({
+	type: 'RESET_CATEGORY_TUTORIALS',
+})
+
+export const resetStoredTrajets = (): Action => ({
+	type: 'RESET_TRAJETS',
+})
 
 export const resetStoredAmortissementAvion = () => ({
 	type: 'RESET_AMORTISSEMENT',
 })
 
-export const goToQuestion = (question: DottedName) =>
-	({
-		type: 'STEP_ACTION',
-		name: 'unfold',
-		step: question,
-	} as const)
+export const goToQuestion = (question: DottedName): Action => ({
+	type: 'STEP_ACTION',
+	name: 'unfold',
+	step: question,
+})
 
 export const validateWithDefaultValue =
 	(dottedName: DottedName): ThunkResult<void> =>
@@ -119,11 +245,15 @@ export const validateWithDefaultValue =
 		})
 	}
 
-export const setSituationBranch = (id: number) =>
-	({
-		type: 'SET_SITUATION_BRANCH',
-		id,
-	} as const)
+export const setSituationBranch = (id: number): Action => ({
+	type: 'SET_SITUATION_BRANCH',
+	id,
+})
+
+const setSimulation = (simulation: Simulation): Action => ({
+	type: 'SET_SIMULATION',
+	...simulation,
+})
 
 export const setDifferentSituation =
 	({
@@ -134,14 +264,7 @@ export const setDifferentSituation =
 		foldedSteps,
 	}: Simulation): ThunkResult<void> =>
 	(dispatch, getState) => {
-		dispatch({
-			type: 'SET_SIMULATION',
-			situation,
-			config,
-			url,
-			persona,
-			foldedSteps,
-		})
+		dispatch(setSimulation({ situation, config, url, persona, foldedSteps }))
 		dispatch(addSimulationToList(getState().simulation))
 		dispatch(setCurrentSimulation(getState().simulation))
 	}
@@ -157,134 +280,132 @@ export const setCurrentSimulation = (simulation: Simulation): Action => ({
 })
 
 export const setSimulationConfig =
-	(config: Object, url): ThunkResult<void> =>
+	(config: SimulationConfig, url: string): ThunkResult<void> =>
 	(dispatch, getState, {}): void => {
 		const pastSimulationConfig = getState().simulation?.config
 		if (pastSimulationConfig === config) {
 			return
 		}
-		dispatch({
-			type: 'SET_SIMULATION',
-			url,
-			config,
-		})
+		dispatch(setSimulation({ config, url }))
 		dispatch(addSimulationToList(getState().simulation))
 		dispatch(setCurrentSimulation(getState().simulation))
 	}
 
-export const setActiveTarget = (targetName: DottedName) =>
-	({
-		type: 'SET_ACTIVE_TARGET_INPUT',
-		name: targetName,
-	} as const)
+export const setActiveTarget = (targetName: DottedName): Action => ({
+	type: 'SET_ACTIVE_TARGET_INPUT',
+	name: targetName,
+})
 
-export const deleteSimulationById = (id: string) =>
-	({
-		type: 'DELETE_SIMULATION',
-		id,
-	} as const)
+export const deleteSimulationById = (id: string): Action => ({
+	type: 'DELETE_SIMULATION',
+	id,
+})
 
-export const updateSituation = (fieldName: DottedName, value: unknown) =>
-	({
-		type: 'UPDATE_SITUATION',
-		fieldName,
-		value,
-	} as const)
+export const updateSituation = (
+	fieldName: DottedName,
+	value: unknown
+): Action => ({
+	type: 'UPDATE_SITUATION',
+	fieldName,
+	value,
+})
 
 export const skipTutorial = (
 	id: string,
 	unskip: boolean = false,
-	fromRule: TutorialStateStatus
-) => ({
+	fromRule?: TutorialStateStatus
+): Action => ({
 	type: 'SKIP_TUTORIAL',
 	id,
 	unskip,
 	fromRule,
 })
 
-export const setTrackingVariable = (name: string, value: boolean) => ({
+export const setTrackingVariable = (name: string, value: boolean): Action => ({
 	type: 'SET_TRACKING_VARIABLE',
 	name,
 	value,
 })
 
-export const updateUnit = (targetUnit: string) =>
-	({
-		type: 'UPDATE_TARGET_UNIT',
-		targetUnit,
-	} as const)
+export const updateUnit = (targetUnit: string): Action => ({
+	type: 'UPDATE_TARGET_UNIT',
+	targetUnit,
+})
 
-export function loadPreviousSimulation() {
-	return {
-		type: 'LOAD_PREVIOUS_SIMULATION',
-	} as const
-}
+export const loadPreviousSimulation = (): Action => ({
+	type: 'LOAD_PREVIOUS_SIMULATION',
+})
 
-export function hideNotification(id: string) {
-	return { type: 'HIDE_NOTIFICATION', id } as const
-}
+export const hideNotification = (id: string): Action => ({
+	type: 'HIDE_NOTIFICATION',
+	id,
+})
 
-export const explainVariable = (variableName: DottedName | null = null) =>
-	({
-		type: 'EXPLAIN_VARIABLE',
-		variableName,
-	} as const)
+export const explainVariable = (
+	variableName: DottedName | null = null
+): Action => ({
+	type: 'EXPLAIN_VARIABLE',
+	variableName,
+})
 
-export const setActionChoice = (action: string, choice: boolean) =>
-	({
-		type: 'SET_ACTION_CHOICE',
-		action,
-		choice,
-	} as const)
+export const setActionChoice = (action: string, choice: boolean): Action => ({
+	type: 'SET_ACTION_CHOICE',
+	action,
+	choice,
+})
 
-export const setActionsChoices = (actionsChoices: Object) =>
-	({
-		type: 'SET_ACTIONS_CHOICES',
-		actionsChoices,
-	} as const)
+export const setActionsChoices = (
+	actionsChoices?: Record<string, boolean>
+): Action => ({
+	type: 'SET_ACTIONS_CHOICES',
+	actionsChoices,
+})
 
-export const setAllStoredTrajets = (allTrajets: Object) =>
-	({
-		type: 'SET_ALL_TRAJETS',
-		allTrajets,
-	} as const)
+export const setAllStoredTrajets = (allTrajets: StoredTrajets) => ({
+	type: 'SET_ALL_TRAJETS',
+	allTrajets,
+})
 
-export const setStoredTrajets = (vehicule: string, trajets: object) =>
-	({
-		type: 'SET_TRAJETS',
-		vehicule,
-		trajets,
-	} as const)
+export const setStoredTrajets = (
+	vehicule: string,
+	trajets: object
+): Action => ({
+	type: 'SET_TRAJETS',
+	vehicule,
+	trajets,
+})
 
-export const setLocalisation = (localisationData: Localisation) =>
-	({
-		type: 'SET_LOCALISATION',
-		...localisationData,
-	} as const)
+export const setLocalisation = (localisationData: Localisation): Action => ({
+	type: 'SET_LOCALISATION',
+	...localisationData,
+})
 
-export const setRatings = (type: string, value: Rating) =>
-	({
-		type,
-		value,
-	} as const)
+export const setRatings = (
+	type: SetRatingAction['type'],
+	value: Rating
+): Action => ({
+	type,
+	value,
+})
 
-export const resetLocalisation = () =>
-	({
-		type: 'RESET_LOCALISATION',
-	} as const)
+export const resetLocalisation = (): Action => ({
+	type: 'RESET_LOCALISATION',
+})
 
-export const updateAmortissementAvion = (amortissementAvionObject: Object) => ({
+export const updateAmortissementAvion = (
+	amortissementAvionObject: Object
+): Action => ({
 	type: 'SET_AMORTISSEMENT',
 	amortissementAvionObject,
 })
 
 export const updateEventsSent = (eventSent: {
 	[key: string]: boolean
-}): AnyAction => ({
+}): Action => ({
 	type: 'UPDATE_EVENTS_SENT',
 	eventSent,
 })
 
-export const setHasSubscribedToNewsletter = (): AnyAction => ({
+export const setHasSubscribedToNewsletter = (): Action => ({
 	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER',
 })

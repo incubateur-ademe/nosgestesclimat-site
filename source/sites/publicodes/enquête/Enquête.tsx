@@ -1,15 +1,15 @@
-import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useParams, useSearchParams } from 'react-router-dom'
-import { v4 as uuidv4 } from 'uuid'
 import {
 	resetIntroTutorial,
 	resetSimulation,
 	skipTutorial,
-} from '../../../actions/actions'
-import { Markdown } from '../../../components/utils/markdown'
-import { rehydrateDetails } from '../fin'
-import FriendlyObjectViewer from '../pages/FriendlyObjectViewer'
+} from '@/actions/actions'
+import { Markdown } from '@/components/utils/markdown'
+import { rehydrateDetails } from '@/sites/publicodes/fin'
+import FriendlyObjectViewer from '@/sites/publicodes/pages/FriendlyObjectViewer'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useParams, useSearchParams } from 'react-router-dom'
+import { v4 as uuidv4 } from 'uuid'
 import { enquêteSelector } from './enquêteSelector'
 import content from './texte.md'
 
@@ -25,7 +25,7 @@ export default () => {
 	useEffect(() => {
 		if (!enquête) {
 			// TODO reset simulation, use the next PR to do so without erasing the old one
-			const userID = paramUserID || uuidv4()
+			const userID = paramUserID ?? uuidv4()
 			dispatch({ type: 'SET_ENQUÊTE', userID, date: new Date().toString() })
 			dispatch(resetSimulation())
 			dispatch(skipTutorial('scoreAnimation', true))

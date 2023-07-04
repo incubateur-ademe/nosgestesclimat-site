@@ -1,18 +1,18 @@
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { WithEngine } from '@/RulesProvider'
+import {
+	answeredQuestionsSelector,
+	useSimulationData,
+	useTestCompleted,
+} from '@/selectors/simulationSelectors'
+import { simulationURL } from '@/sites/publicodes/conference/useDatabase'
+import BannerContent from '@/sites/publicodes/enquête/BannerContent'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
-import { ScrollToTop } from '../../../components/utils/Scroll'
-import { WithEngine } from '../../../RulesProvider'
-import {
-	answeredQuestionsSelector,
-	useSimulationData,
-	useTestCompleted,
-} from '../../../selectors/simulationSelectors'
-import { simulationURL } from '../conference/useDatabase'
-import BannerContent from './BannerContent'
-import { enquêteSelector } from './enquêteSelector'
 
 export default () => {
 	return (
@@ -85,7 +85,9 @@ const BannerWithEngine = () => {
 	}, [enquête, minutes, setTimeMessage])
 	const thinScreen = useMediaQuery('(max-width: 400px)')
 
-	if (!enquête) return null
+	if (!enquête) {
+		return null
+	}
 	const { userID } = enquête
 	const testCompleted = useTestCompleted()
 	const shouldDisplayTimeMessage = testCompleted && timeMessage
