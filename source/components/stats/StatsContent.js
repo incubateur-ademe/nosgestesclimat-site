@@ -160,11 +160,7 @@ export default function Data() {
 							`}
 						>
 							<Block>
-								<Number
-									css={`
-										color: #30c691 !important;
-									`}
-								>
+								<Number>
 									{homepageVisitorsData?.data?.[0]?.nb_visits
 										?.toString()
 										?.replace(/\B(?=(\d{3})+(?!\d))/g, '\u00A0') || (
@@ -183,11 +179,7 @@ export default function Data() {
 						</BlockWrapper>
 						<BlockWrapper>
 							<Block>
-								<Number
-									css={`
-										color: #30c691 !important;
-									`}
-								>
+								<Number>
 									{sharedSimulations?.data?.[0]?.nb_events || (
 										<span
 											css={`
@@ -203,7 +195,6 @@ export default function Data() {
 							</Block>
 						</BlockWrapper>
 					</EvolutionWrapper>
-
 					<Chart
 						name="chart-simulation-terminees"
 						elementAnalysedTitle={t('simulations terminées')}
@@ -213,7 +204,6 @@ export default function Data() {
 						color="#30C691"
 					/>
 				</Wrapper>
-
 				<UseQueryResultHandler
 					requestResults={[total, websites, oldWebsites, socials, keywords]}
 					toRenderWithRequestData={([
@@ -263,6 +253,22 @@ export default function Data() {
 						</Wrapper>
 					)}
 				/>
+			</Section>
+			<Section>
+				<Section.Title>
+					<Trans>Northstar: les statistiques "étoile du nord"</Trans>
+				</Section.Title>
+				<Trans i18nKey={'components.stats.StatsContent.infosNorthstar'}>
+					<p>
+						En fin de simulation, une bannière apparaît afin de recueillir le
+						sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans
+						leur compréhension des enjeux climat mais également dans
+						l'incitation au passage à l'action via 2 questions en fin de test.
+						Les statistiques, disponibles sur la page dédiée{' '}
+						<a href="./northstar">page dédiée "Northstar"</a>, ont été générées
+						via Metabase.
+					</p>
+				</Trans>
 			</Section>
 			<Section>
 				<Section.Title>
