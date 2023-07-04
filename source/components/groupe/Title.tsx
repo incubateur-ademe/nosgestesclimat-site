@@ -1,4 +1,4 @@
-import Separator from '../../pages/creer-groupe/components/Separator'
+import Separator from './Separator'
 
 type Props = {
 	title: string | JSX.Element

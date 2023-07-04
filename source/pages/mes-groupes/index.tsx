@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { GROUP_URL } from '@/constants/urls'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
@@ -6,11 +7,11 @@ import { captureException } from '@sentry/react'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import Title from '../../components/groupe/Title'
-import ButtonLink from '../creer-groupe/components/ButtonLink'
-import Container from '../creer-groupe/components/Container'
-import GroupList from '../creer-groupe/components/GroupList'
-import Separator from '../creer-groupe/components/Separator'
+import ButtonLink from '../../components/groupe/ButtonLink'
+
+import Container from '@/components/groupe/Container'
+import Separator from '@/components/groupe/Separator'
+import GroupList from './components/GroupList'
 
 export default function MesGroupes() {
 	const [groups, setGroups] = useState<Group[] | null>(null)
