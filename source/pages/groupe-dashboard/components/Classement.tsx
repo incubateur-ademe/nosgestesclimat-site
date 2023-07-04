@@ -26,7 +26,7 @@ const ClassementMember = ({
 				</span>
 				{name}
 				{isCurrentMember && (
-					<Badge className="text-pink-700 border-pink-300 bg-pink-100 inline !text-xs rounded-sm ml-2">
+					<Badge className="!text-pink-500 !border-pink-100 !bg-pink-200 inline !text-xs rounded-sm ml-2">
 						Vous
 					</Badge>
 				)}

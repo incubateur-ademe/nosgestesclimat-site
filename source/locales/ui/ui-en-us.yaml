@@ -806,7 +806,7 @@ entries:
   Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.: Please confirm with the group creator that they have sent you an invitation link.
   participants: participants
   Copié !: Copy!
-  Rejoindre: Contact
+  Rejoindre: Join
   Retour: Back
   Créer le groupe: Create group
   '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} has invited you to join the <3>{group?.name}</3> group'
