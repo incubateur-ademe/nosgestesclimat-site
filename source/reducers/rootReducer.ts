@@ -124,8 +124,10 @@ function simulation(
 			}
 		}
 		case 'HIDE_NOTIFICATION': {
-			state.hiddenNotifications?.push(action.id)
-			return state
+			return {
+				...state,
+				hiddenNotifications: [...state.hiddenNotifications, action.id],
+			}
 		}
 		case 'RESET_SIMULATION': {
 			return {
@@ -158,11 +160,11 @@ function simulation(
 		case 'STEP_ACTION': {
 			const { name, step } = action
 			if (name === 'fold') {
-				if (!state.foldedSteps?.includes(step)) {
-					state.foldedSteps?.push(step)
-				}
 				return {
 					...state,
+					foldedSteps: state.foldedSteps?.includes(step)
+						? state.foldedSteps
+						: [...state.foldedSteps, step],
 					unfoldedStep: null,
 				}
 			} else if (name === 'unfold') {
