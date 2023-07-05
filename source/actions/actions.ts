@@ -251,9 +251,7 @@ export const setSituationBranch = (id: number): Action => ({
 	id,
 })
 
-const setSimulation = (
-	simulation: Pick<Simulation, 'config' | 'url'>
-): AnyAction => ({
+const setSimulation = (simulation: Simulation): AnyAction => ({
 	type: 'SET_SIMULATION',
 	...simulation,
 })
