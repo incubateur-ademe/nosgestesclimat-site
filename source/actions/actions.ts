@@ -251,7 +251,9 @@ export const setSituationBranch = (id: number): Action => ({
 	id,
 })
 
-const setSimulation = (simulation: Simulation): AnyAction => ({
+const setSimulation = (
+	simulation: Partial<Simulation> | Simulation
+): AnyAction => ({
 	type: 'SET_SIMULATION',
 	...simulation,
 })
@@ -287,7 +289,7 @@ export const setSimulationConfig =
 		if (pastSimulationConfig === config) {
 			return
 		}
-		dispatch(setSimulation({ config, url: url || '' }))
+		dispatch(setSimulation({ config, url: url ?? '' }))
 		dispatch(addSimulationToList(getState().simulation))
 		dispatch(setCurrentSimulation(getState().simulation))
 	}

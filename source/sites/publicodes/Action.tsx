@@ -30,7 +30,7 @@ export default () => {
 
 	const rules = useSelector((state: AppState) => state.rules)
 	const nextQuestions = useNextQuestions()
-	const dottedName = decodeRuleName(encodedName || '')
+	const dottedName = decodeRuleName(encodedName ?? '')
 	const configSet = useSelector((state: AppState) => state.simulation?.config)
 
 	// TODO here we need to apply a rustine to accommodate for this issue
