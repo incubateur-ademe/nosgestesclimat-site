@@ -27,7 +27,7 @@ import { utils } from 'publicodes'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router'
+import { NavigateFunction, useNavigate } from 'react-router'
 import { Link, useParams } from 'react-router-dom'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
@@ -57,7 +57,7 @@ const Simulateur = () => {
 	const { t } = useTranslation()
 
 	if (!simulatorRootNameURL) {
-		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
+		navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
 	}
 
 	// The main simulation corresponds to the whole test, i.e selected rule is the
@@ -72,7 +72,7 @@ const Simulateur = () => {
 		console.log(
 			`Unknown rule ${simulatorRootNameURL}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
 		)
-		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
+		navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
 	}
 
 	const engine = useEngine()
@@ -141,7 +141,7 @@ const Simulateur = () => {
 			})
 			return navigate(`/tutoriel?${searchParams}`, { replace: true })
 		}
-		return navigate(`/tutoriel`, { replace: true })
+		navigate(`/tutoriel`, { replace: true })
 	}
 
 	return (
@@ -212,9 +212,9 @@ type SelectedRuleInfos = {
 function getValidSelectedRuleInfos(
 	selectedRuleName: DottedName,
 	simulatorRootRuleNameURL: string,
-	rules: NGCRulesNodes
+	rules: NGCRulesNodes,
+	navigate: NavigateFunction
 ): SelectedRuleInfos {
-	const navigate = useNavigate()
 	const searchParams = new URLSearchParams(window.location.search)
 
 	if (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
