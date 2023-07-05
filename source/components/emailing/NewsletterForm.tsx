@@ -1,26 +1,20 @@
-import { setHasSubscribedToNewsletter } from '@/actions/actions'
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { AppState, Simulation } from '@/reducers/rootReducer'
-import { hasSubscribedToNewsletterSelector } from '@/selectors/simulationSelectors'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import * as Sentry from '@sentry/react'
-import { useRef, useState } from 'react'
+import { formatValue } from 'publicodes'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { formatDataForDB } from '../utils/formatDataForDB'
 
 export const NewsletterForm = () => {
 	const [isSent, setIsSent] = useState(false)
 	const [isSending, setIsSending] = useState(false)
 	const [error, setError] = useState(false)
-
-	const dispatch = useDispatch()
-
-	const hasSubscribedToNewsletterRef = useRef(false)
-
-	const hasSubscribedToNewsletter = useSelector(
-		hasSubscribedToNewsletterSelector
-	)
+	const [numberSubscribers, setNumberSubscribers] = useState<
+		number | undefined
+	>(undefined)
 
 	const { t } = useTranslation()
 
@@ -59,6 +53,19 @@ export const NewsletterForm = () => {
 		}
 	}
 
+	useEffect(() => {
+		const handleFetch = async () => {
+			const data = await fetch(
+				`${NETLIFY_FUNCTIONS_URL}/get-newsletter-subscribers-number`
+			)
+			const result: number = await data.json()
+			console.log({ result })
+			setNumberSubscribers(result)
+		}
+
+		handleFetch()
+	}, [])
+
 	const handleSubmit = async (e) => {
 		e.preventDefault()
 		setIsSending(true)
@@ -71,7 +78,7 @@ export const NewsletterForm = () => {
 
 			// Save simulation in DB
 			const idSimulationSaved: string = await saveSimulationInDB(
-				currentSimulation as Simulation
+				currentSimulation as unknown as Simulation
 			)
 
 			await fetch(`${NETLIFY_FUNCTIONS_URL}/email-service`, {
@@ -93,12 +100,6 @@ export const NewsletterForm = () => {
 				}),
 			})
 
-			// This is to avoid hiding directly the form, so that the user can see the confirmation message
-			hasSubscribedToNewsletterRef.current = true
-
-			// This is to avoid showing the form again if the user visits the page again
-			dispatch(setHasSubscribedToNewsletter())
-
 			setIsSent(true)
 		} catch (e) {
 			Sentry.captureException(e)
@@ -106,13 +107,6 @@ export const NewsletterForm = () => {
 			setIsSending(false)
 		}
 	}
-	/*
-	// Pour permettre à ceux n'ayant pas reçu le premier email d'inscription
-	// je commente ce bloc pour le moment, à décommenter d'ici quelques mois
-
-	if (hasSubscribedToNewsletter && !hasSubscribedToNewsletterRef.current)
-		return null
-	*/
 
 	return (
 		<div
@@ -170,8 +164,11 @@ export const NewsletterForm = () => {
 									<div>
 										<Trans>
 											<p>
-												Laissez-nous votre email pour recevoir{' '}
-												<strong>votre résultat</strong> et{' '}
+												Laissez-nous votre email comme déjà{' '}
+												<strong>
+													{formatValue(numberSubscribers)} autres utilisateurs
+												</strong>
+												, pour recevoir <strong>votre résultat</strong> et{' '}
 												<strong>des conseils</strong> pour réduire votre
 												empreinte carbone (1 fois par mois max.).
 											</p>
