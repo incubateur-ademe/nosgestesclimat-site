@@ -2,6 +2,7 @@ import ChevronRight from '@/components/icons/ChevronRight'
 import { ResultsObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
+import { ValueObject } from '../hooks/useGetGroupStats'
 import PercentageDiff from './PercentageDiff'
 
 const EMOJI_TEXT_MAP: {
@@ -34,17 +35,22 @@ const EMOJI_TEXT_MAP: {
 
 export default function VotreEmpreinte({
 	categoriesFootprints,
+	membersLength,
 }: {
-	categoriesFootprints?: ResultsObject[]
+	categoriesFootprints?: Record<string, ValueObject> | undefined
+	membersLength: number
 }) {
 	return (
 		<>
 			<h2 className="text-[17px] mb-1 mt-0">
 				<Trans>Votre empreinte</Trans>
 			</h2>
-			<p className="text-gray-500">
-				<Trans>Par rapport à la moyenne du groupe.</Trans>
-			</p>
+			{membersLength > 1 && (
+				<p className="text-gray-500">
+					<Trans>Par rapport à la moyenne du groupe.</Trans>
+				</p>
+			)}
+
 			<ul className="mt-6 pl-0 mb-16">
 				{Object.entries(categoriesFootprints || {}).reduce(
 					(acc, [key, categoryObject]) => {
@@ -64,7 +70,9 @@ export default function VotreEmpreinte({
 											{EMOJI_TEXT_MAP[key].text}
 										</div>
 									</div>
-									<PercentageDiff variation={categoryObject.variation} />
+									{membersLength > 1 && (
+										<PercentageDiff variation={categoryObject.variation || 0} />
+									)}
 								</div>
 								<div className="flex items-center gap-4">
 									<div className="text-sm text-primary bg-primaryLight border-solid border-[1px] border-primaryBorder rounded-[5px] p-1">

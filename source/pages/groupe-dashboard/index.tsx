@@ -5,7 +5,7 @@ import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import * as Sentry from '@sentry/react'
 import { useEffect, useRef, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import ButtonLink from '../../components/groupe/ButtonLink'
@@ -13,6 +13,7 @@ import ButtonLink from '../../components/groupe/ButtonLink'
 import Separator from '@/components/groupe/Separator'
 import Classement from './components/Classement'
 import Footer from './components/Footer'
+import InviteBlock from './components/InviteBlock'
 import PointsFortsFaibles from './components/PointsFortsFaibles'
 import VotreEmpreinte from './components/VotreEmpreinte'
 import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
@@ -25,8 +26,6 @@ export default function GroupeDashboard() {
 	const groupId = searchParams.get('groupId')
 
 	const userId = useSelector((state: AppState) => state.userId)
-
-	const { t } = useTranslation()
 
 	const intervalRef = useRef<NodeJS.Timer>()
 
@@ -98,17 +97,23 @@ export default function GroupeDashboard() {
 				</div>
 				<Classement group={group} />
 
-				<Separator className="mb-8" />
+				<InviteBlock group={group} />
 
-				<PointsFortsFaibles
-					pointsFaibles={results?.pointsFaibles}
-					pointsForts={results?.pointsForts}
-				/>
+				{group?.members?.length > 1 && (
+					<>
+						<Separator className="mb-8" />
+						<PointsFortsFaibles
+							pointsFaibles={results?.pointsFaibles}
+							pointsForts={results?.pointsForts}
+						/>
+					</>
+				)}
 
 				<Separator className="mt-10 mb-6" />
 
 				<VotreEmpreinte
 					categoriesFootprints={results?.currentMemberAllFootprints}
+					membersLength={group?.members?.length}
 				/>
 			</main>
 			<Footer />
