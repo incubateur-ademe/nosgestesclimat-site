@@ -12,6 +12,7 @@ export type Member = {
 export type Group = {
 	_id: string
 	name: string
+	emoji: string
 	members: Member[]
 	owner: {
 		_id: string

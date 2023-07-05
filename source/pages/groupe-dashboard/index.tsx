@@ -19,7 +19,6 @@ import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
 
 export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
-	const [memberNotInGroup, setMemberNotInGroup] = useState(false)
 
 	const [searchParams] = useSearchParams()
 
@@ -47,10 +46,6 @@ export default function GroupeDashboard() {
 
 				const groupFetched: Group = await response.json()
 
-				// Don't allow users to access groups they are not part of
-				if (!groupFetched.members.find((member) => member.userId === userId)) {
-					setMemberNotInGroup(true)
-				}
 				setGroup(groupFetched)
 			} catch (error) {
 				Sentry.captureException(error)
@@ -76,29 +71,17 @@ export default function GroupeDashboard() {
 		return null
 	}
 
-	if (memberNotInGroup) {
-		return (
-			<div className="p-4">
-				<Title
-					title={
-						<Trans>Vous n'avez pas été invité à rejoindre ce groupe</Trans>
-					}
-					subtitle={t(
-						"Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation."
-					)}
-				/>
-				<ButtonLink href={'/mes-groupes'} className="mt-4">
-					<Trans>Retourner à mes groupes</Trans>
-				</ButtonLink>
-			</div>
-		)
-	}
-
 	return (
 		<>
 			<main className="p-4">
 				<GoBackLink className="mb-4 font-bold" />
-				<Title title={group?.name} />
+				<Title
+					title={
+						<span>
+							<span>{group?.emoji}</span> <span>{group?.name}</span>
+						</span>
+					}
+				/>
 				<div className="mt-4 flex justify-between items-center">
 					<h2 className="font-bold text-[17px] m-0">
 						<Trans>Le classement</Trans>

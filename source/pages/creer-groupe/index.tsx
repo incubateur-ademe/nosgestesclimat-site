@@ -5,18 +5,20 @@ import GoBackLink from '@/components/groupe/GoBackLink'
 import TextInputGroup from '@/components/groupe/TextInputGroup'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
+import { GROUP_NAMES } from '@/constants/groupNames'
 import { GROUP_URL } from '@/constants/urls'
 import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { getSimulationResults } from '@/utils/getSimulationResults'
+import { captureException } from '@sentry/react'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-export default function GroupeAmis() {
+export default function CreerGroupe() {
 	const [prenom, setPrenom] = useState('')
 	const [errorPrenom, setErrorPrenom] = useState('')
 	const [email, setEmail] = useState('')
@@ -35,6 +37,8 @@ export default function GroupeAmis() {
 
 	const userId = useSelector((state: AppState) => state.userId)
 
+	const groups = useSelector((state: AppState) => state.groups) || []
+
 	const handleSubmit = async () => {
 		if (!prenom) {
 			setErrorPrenom(t('Vous devez renseigner un prénom ou un pseudonyme.'))
@@ -43,14 +47,16 @@ export default function GroupeAmis() {
 
 		try {
 			const results = getSimulationResults({
-				simulation: currentSimulation,
 				engine,
 			})
+
+			const groupNameObject = GROUP_NAMES[groups.length % GROUP_NAMES.length]
 
 			const response = await fetch(GROUP_URL + '/create', {
 				method: 'POST',
 				body: JSON.stringify({
-					name: groupeNameLocalState,
+					name: groupNameObject.name,
+					emoji: groupNameObject.emoji,
 					ownerEmail: email,
 					ownerName: prenom,
 					userId,
@@ -71,11 +77,11 @@ export default function GroupeAmis() {
 			dispatch(addGroupToUser(group))
 			dispatch(setCreatedGroup(group))
 
-			trackEvent(matomoEventCreationGroupe)
+			trackEvent([matomoEventCreationGroupe])
 
-			navigate('/creer-groupe/inviter-vos-proches')
+			navigate(`/groupes/resultats?groupId=${group._id}`)
 		} catch (e) {
-			console.log(e)
+			captureException(e)
 		}
 	}
 	return (
