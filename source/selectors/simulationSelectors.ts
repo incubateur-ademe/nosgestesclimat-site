@@ -55,8 +55,8 @@ export const answeredQuestionsSelector = (state: AppState) =>
 	state.simulation?.foldedSteps ?? []
 
 export const useTestCompleted = () => {
-	const nextQuestions = useNextQuestions(),
-		objectives = useSelector(objectifsSelector)
+	const nextQuestions = useNextQuestions()
+	const objectives = useSelector(objectifsSelector)
 
 	const testCompleted = objectives.length > 0 && nextQuestions.length === 0
 	return testCompleted

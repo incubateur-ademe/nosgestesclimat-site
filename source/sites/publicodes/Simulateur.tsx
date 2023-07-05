@@ -29,6 +29,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavigateFunction, useNavigate } from 'react-router'
 import { Link, useParams } from 'react-router-dom'
+import { useTestCompleted } from '../../selectors/simulationSelectors'
 import BandeauContribuer from './BandeauContribuer'
 import InlineCategoryChart from './chart/InlineCategoryChart'
 import { enquêteSelector } from './enquête/enquêteSelector'
@@ -54,6 +55,7 @@ const Simulateur = () => {
 	const urlParams = useParams()
 	const searchParams = new URLSearchParams(window.location.search)
 	const simulatorRootNameURL = urlParams['*']
+	const isTestCompleted = useTestCompleted()
 	const { t } = useTranslation()
 
 	if (!simulatorRootNameURL) {
@@ -78,11 +80,14 @@ const Simulateur = () => {
 	const engine = useEngine()
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 
-	const { selectedRuleDottedName, selectedRuleURL } = getValidSelectedRuleInfos(
-		decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
-		simulatorRootNameURL,
-		parsedRules
-	)
+	const { selectedRuleDottedName, selectedRuleURL } = isTestCompleted
+		? getValidSelectedRuleInfos(
+				decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
+				simulatorRootNameURL,
+				parsedRules,
+				navigate
+		  )
+		: { selectedRuleDottedName: undefined, selectedRuleURL: undefined }
 
 	const simulatorRule = rules[simulatorRootRuleName]
 	const evaluation = engine.evaluate(simulatorRootRuleName)
@@ -122,25 +127,9 @@ const Simulateur = () => {
 	const displayScoreExplanation =
 		isMainSimulation && !tutorials.scoreExplanation
 
-	const displayTutorial =
-		isMainSimulation &&
-		(!tutorials.testIntro ||
-			// Case where we previously visited a specific rule URL and we come back
-			// (the tutorial was skipped) to the simulator root URL,
-			// we want to display the tutorial
-			(!isSpecificRule(selectedRuleDottedName) && tutorials.fromRule == 'skip'))
+	const displayTutorial = isMainSimulation && !tutorials.testIntro
 
 	if (displayTutorial) {
-		if (
-			selectedRuleURL != undefined &&
-			selectedRuleDottedName != undefined &&
-			isSpecificRule(selectedRuleDottedName)
-		) {
-			const searchParams = new URLSearchParams({
-				fromRuleURL: selectedRuleURL,
-			})
-			return navigate(`/tutoriel?${searchParams}`, { replace: true })
-		}
 		navigate(`/tutoriel`, { replace: true })
 	}
 

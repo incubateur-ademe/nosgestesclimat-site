@@ -9,7 +9,7 @@ import { AppState } from '@/reducers/rootReducer'
 import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { useContext, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { generateImageLink } from '../fin'
 import HorizontalSwipe from '../HorizontalSwipe'
 import Categories from './Categories'
@@ -22,21 +22,8 @@ import WarmingMeasure from './WarmingMeasure'
 export default ({}) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const urlParams = new URLSearchParams(window.location.search)
 
-	const fromRuleURLParam = urlParams.get('fromRuleURL')
-
-	const targetUrl = fromRuleURLParam
-		? fromRuleURLParam
-		: `/simulateur/${MODEL_ROOT_RULE_NAME}`
-
-	if (fromRuleURLParam) {
-		// The tutorial is skipped when redirected from a specific rule URL
-		// (e.g. /simulateur/bilan/logement/chauffage)
-		// [tutorials.fromRule = 'skip']
-		dispatch(skipTutorial('testIntro', false, 'skip'))
-		return <Navigate to={targetUrl} replace />
-	}
+	const targetUrl = `/simulateur/${MODEL_ROOT_RULE_NAME}`
 
 	const tutorials = useSelector((state: AppState) => state.tutorials)
 	const tutos = Object.entries(tutorials)
@@ -50,17 +37,7 @@ export default ({}) => {
 	const { trackEvent } = useContext(MatomoContext)
 
 	const skip = (name: string, unskip = false) =>
-		dispatch(
-			skipTutorial(
-				name,
-				unskip,
-				tutorials.fromRule == 'skip'
-					? // Returning to 'simulateur/bilan' after skipping the tutorial from a
-					  // specific rule URL
-					  'done'
-					: tutorials.fromRule
-			)
-		)
+		dispatch(skipTutorial(name, unskip))
 
 	const last = index === slides.length - 1
 	const next = () => {

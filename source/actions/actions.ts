@@ -5,7 +5,6 @@ import {
 	Simulation,
 	SimulationConfig,
 	StoredTrajets,
-	TutorialStateStatus,
 } from '@/reducers/rootReducer'
 import { Rating } from '@/selectors/storageSelectors'
 import { AnyAction } from 'redux'
@@ -159,7 +158,6 @@ type SkipTutorialAction = {
 	type: 'SKIP_TUTORIAL'
 	id: string
 	unskip: boolean
-	fromRule?: TutorialStateStatus
 }
 
 type SetTrackingVariableAction = {
@@ -313,15 +311,10 @@ export const updateSituation = (
 	value,
 })
 
-export const skipTutorial = (
-	id: string,
-	unskip: boolean = false,
-	fromRule?: TutorialStateStatus
-): Action => ({
+export const skipTutorial = (id: string, unskip: boolean = false): Action => ({
 	type: 'SKIP_TUTORIAL',
 	id,
 	unskip,
-	fromRule,
 })
 
 export const setTrackingVariable = (name: string, value: boolean): Action => ({
