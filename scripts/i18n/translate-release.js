@@ -29,10 +29,15 @@ const progressBar = new cliProgress.SingleBar(
 	cliProgress.Presets.shades_grey
 )
 
-const translateTo = async (srcJSON, destPath, destLang) => {
-	const tradJSON = []
+const translateTo = async (srcJSON, tradJSON, destPath, destLang) => {
+	const alreadyTranslatedReleases = tradJSON.map((release) => {
+		return release.name
+	})
 	await Promise.all(
 		srcJSON.map(async (release) => {
+			if (alreadyTranslatedReleases.includes(release.name)) {
+				return
+			}
 			progressBar.update(progressBar.value, {
 				msg: `Translating '${release.name}'...`,
 				lang: destLang,
@@ -59,8 +64,14 @@ const translateTo = async (srcJSON, destPath, destLang) => {
 
 const srcJSON = JSON.parse(fs.readFileSync(srcPath, 'utf8'))
 
-progressBar.start(destLangs.length * srcJSON.length, 0)
 destLangs.forEach((destLang) => {
 	const destPath = `source/locales/releases/releases-${destLang}.json`
-	translateTo(srcJSON, destPath, destLang)
+	const tradJSON = JSON.parse(fs.readFileSync(destPath, 'utf8')) ?? []
+	const numberOfMissingTranslation = srcJSON.length - tradJSON.length
+	if (numberOfMissingTranslation === 0) {
+		console.log(`✅ Releases correctly translated`)
+	} else {
+		progressBar.start(srcJSON.length - tradJSON.length, 0)
+		translateTo(srcJSON, tradJSON, destPath, destLang)
+	}
 })
