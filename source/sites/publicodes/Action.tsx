@@ -1,3 +1,4 @@
+import { setSimulationConfig } from '@/actions/actions'
 import {
 	DottedName,
 	NGCEvaluatedRuleNode,
@@ -11,7 +12,6 @@ import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { AppState } from '@/reducers/rootReducer'
-import { setSimulationConfig } from 'Actions/actions'
 import { utils } from 'publicodes'
 import { useContext, useEffect } from 'react'
 import emoji from 'react-easy-emoji'
@@ -23,14 +23,14 @@ import { questionConfig } from './questionConfig'
 
 const { decodeRuleName, encodeRuleName } = utils
 
-export default ({}) => {
+export default () => {
 	const encodedName = useParams()['*']
 
 	const { t } = useTranslation()
 
 	const rules = useSelector((state: AppState) => state.rules)
 	const nextQuestions = useNextQuestions()
-	const dottedName = decodeRuleName(encodedName)
+	const dottedName = decodeRuleName(encodedName || '')
 	const configSet = useSelector((state: AppState) => state.simulation?.config)
 
 	// TODO here we need to apply a rustine to accommodate for this issue
@@ -45,10 +45,14 @@ export default ({}) => {
 	const engine = useContext(EngineContext)
 
 	const dispatch = useDispatch()
+
 	useEffect(() => {
 		dispatch(setSimulationConfig(config))
+
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [encodedName])
-	if (!configSet) return null
+
+	if (!configSet || !engine) return null
 
 	const evaluation = engine.evaluate(dottedName) as NGCEvaluatedRuleNode
 	const { title } = evaluation
@@ -101,7 +105,7 @@ export default ({}) => {
 					</h2>
 				</header>
 				<div css="margin: 1.6rem 0">
-					<Markdown children={description ?? ''} />
+					<Markdown>{description ?? ''}</Markdown>
 					<div css="display: flex; flex-wrap: wrap; justify-content: space-evenly; margin-top: 1rem">
 						<Link to={'/documentation/' + encodedName}>
 							<button className="ui__ button small">
@@ -128,6 +132,7 @@ export default ({}) => {
 						conversationProps={{
 							customEnd: <div />,
 							questionHeadingLevel: 4,
+							isFromActionCard: true,
 						}}
 					/>
 				</>
@@ -138,8 +143,9 @@ export default ({}) => {
 						<Trans>Sur le même sujet</Trans>
 					</h3>
 					<div>
-						{relatedActions.map((action) => (
+						{relatedActions.map((action, index) => (
 							<Link
+								key={`relatedAction${index}`}
 								to={'/actions/' + encodeRuleName(action.dottedName)}
 								css="> button {margin: .3rem .6rem}"
 							>

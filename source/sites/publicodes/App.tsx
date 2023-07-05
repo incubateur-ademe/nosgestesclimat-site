@@ -346,7 +346,7 @@ const Router = () => {
 		<Routes>
 			<Route path="/" element={<Landing />} />
 			<Route
-				path="documentation/*"
+				path="/documentation/*"
 				element={
 					<WithEngine options={{ parsed: false, optimized: false }}>
 						<Suspense fallback={<AnimatedLoader />}>
@@ -356,7 +356,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="questions"
+				path="/questions"
 				element={
 					<WithEngine options={{ parsed: true, optimized: false }}>
 						<Suspense fallback={<AnimatedLoader />}>
@@ -366,7 +366,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path={'modèle'}
+				path="/modèle"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<ModelLazy />
@@ -374,7 +374,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="simulateur/*"
+				path="/simulateur/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<WithEngine>
@@ -487,7 +487,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path={'nouveautés/*'}
+				path="/nouveautés/*"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<News />
@@ -495,7 +495,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path={'blog'}
+				path="/blog"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<BlogLazy />
@@ -503,7 +503,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path={'blog/:slug'}
+				path="blog/:slug"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<BlogArticleLazy />
@@ -527,7 +527,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path={'conférence/:room'}
+				path="/conférence/:room"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<ConferenceLazy />
@@ -609,7 +609,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path={'/northstar'}
+				path="/northstar"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<NorthstarStatsLazy />
