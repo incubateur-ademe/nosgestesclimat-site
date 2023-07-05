@@ -8,7 +8,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import { Member } from '@/types/groups'
 import Engine, { RuleNode } from 'publicodes'
 
-type ValueObject = {
+export type ValueObject = {
 	title: string
 	value: number
 	mean?: number
