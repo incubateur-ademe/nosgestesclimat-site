@@ -1,11 +1,11 @@
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import styled from 'styled-components'
 import {
 	getMatomoEventShareDesktop,
 	getMatomoEventShareMobile,
 } from '../analytics/matomo-events'
-import { MatomoContext } from '../contexts/MatomoContext'
+import { useMatomo } from '../contexts/MatomoContext'
 import ShareButtonIcon from './ShareButtonIcon'
 const eventData = ['trackEvent', 'partage', 'Partage page fin']
 
@@ -24,7 +24,7 @@ export default ({
 	label: string
 	score: number
 }) => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const { t } = useTranslation()
 
 	return navigator.share ? (

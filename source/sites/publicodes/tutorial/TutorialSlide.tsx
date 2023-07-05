@@ -1,12 +1,11 @@
-import { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { matomoEventParcoursTestSkipTutorial } from '../../../analytics/matomo-events'
-import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useMatomo } from '../../../contexts/MatomoContext'
 
 export default ({ children, last, skip, targetUrl }) => {
 	const { t } = useTranslation()
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	return (
 		<div
 			className="ui__ card light colored content"
