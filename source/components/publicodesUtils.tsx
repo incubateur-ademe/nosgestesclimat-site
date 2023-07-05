@@ -304,7 +304,7 @@ const categoryColorOverride = {
 
 export function extractCategories(
 	rules: any,
-	engine: Engine,
+	engine: Engine<DottedName>,
 	valuesFromURL?: any,
 	parentRule = MODEL_ROOT_RULE_NAME,
 	sort = true

@@ -112,7 +112,7 @@ function simulation(
 
 			return {
 				config,
-				url,
+				url: url ?? state?.url ?? '',
 				hiddenNotifications: state?.hiddenControls ?? [], // todo : hiddenControls ?
 				situation: action.situation ?? state?.situation ?? {},
 				targetUnit: config['unité par défaut'] ?? '€/mois',
