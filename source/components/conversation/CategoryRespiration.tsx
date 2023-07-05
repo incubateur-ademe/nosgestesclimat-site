@@ -1,8 +1,8 @@
 import { getMatomoEventParcoursTestCategoryStarted } from '@/analytics/matomo-events'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import useKeypress from '@/hooks/useKeyPress'
 import { motion } from 'framer-motion'
-import { useContext, useEffect, useRef } from 'react'
+import { useEffect, useRef } from 'react'
 import { Trans } from 'react-i18next'
 import SafeCategoryImage from '../SafeCategoryImage'
 
@@ -45,7 +45,7 @@ export default ({ dismiss, questionCategory }) => {
 	const containerRef = useRef(null)
 	const { width } = useDimensions(containerRef)
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	useKeypress('Escape', false, dismiss, 'keyup', [])
 

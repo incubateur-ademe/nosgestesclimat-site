@@ -45,7 +45,7 @@ import {
 import SafeCategoryImage from '@/components/SafeCategoryImage'
 import { EngineContext } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import useKeypress from '@/hooks/useKeyPress'
 import {
 	useNextQuestions,
@@ -89,7 +89,7 @@ export default function Conversation({
 	const nextQuestions = useNextQuestions()
 	const situation = useSelector(situationSelector)
 	const previousAnswers = useSelector(answeredQuestionsSelector)
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const objectifs = useSelector(objectifsSelector)
 
 	// We want to get the initial order category to avoid reordering the questions

@@ -10,7 +10,7 @@ import {
 	splitName,
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { getNextQuestions } from '@/hooks/useNextQuestion'
 import { AppState } from '@/reducers/rootReducer'
 import {
@@ -18,7 +18,6 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { utils } from 'publicodes'
-import { useContext } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -56,7 +55,7 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const dispatch = useDispatch()
 	const rules = useSelector((state: AppState) => state.rules)

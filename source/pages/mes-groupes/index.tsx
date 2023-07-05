@@ -58,10 +58,10 @@ export default function MesGroupes() {
 						<Trans>Créez votre premier groupe</Trans>
 					</h2>
 					<p className="text-sm mb-6">
-						Invitez vos proches pour comparer vos résultats. Ça prend{' '}
+						Invitez vos proches pour comparer vos résultats. Cela prend{' '}
 						<strong className="text-secondary">1 minute</strong> !
 					</p>
-					<ButtonLink href={'/creer-groupe/vos-informations'}>
+					<ButtonLink href={'/groupes/creer'}>
 						<Trans>Commencer</Trans>
 					</ButtonLink>
 				</Container>

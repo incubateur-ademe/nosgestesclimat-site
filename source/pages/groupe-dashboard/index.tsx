@@ -7,7 +7,7 @@ import * as Sentry from '@sentry/react'
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
+import { useSearchParams } from 'react-router-dom'
 import ButtonLink from '../../components/groupe/ButtonLink'
 
 import Separator from '@/components/groupe/Separator'
@@ -21,7 +21,9 @@ export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
 	const [memberNotInGroup, setMemberNotInGroup] = useState(false)
 
-	const { groupId } = useParams()
+	const [searchParams] = useSearchParams()
+
+	const groupId = searchParams.get('groupId')
 
 	const userId = useSelector((state: AppState) => state.userId)
 

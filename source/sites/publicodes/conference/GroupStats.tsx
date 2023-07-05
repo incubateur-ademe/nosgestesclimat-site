@@ -1,12 +1,12 @@
 import { AppState } from '@/reducers/rootReducer'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { getMatomoEventModeGroupeRealtimeActivation } from '../../../analytics/matomo-events'
 import Checkbox from '../../../components/ui/Checkbox'
 import Progress from '../../../components/ui/Progress'
-import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useMatomo } from '../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -39,7 +39,7 @@ export default ({
 	setThreshold,
 	existContext,
 }) => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const { t, i18n } = useTranslation()
 	const currentLangInfos = getLangInfos(getLangFromAbreviation(i18n.language))
 

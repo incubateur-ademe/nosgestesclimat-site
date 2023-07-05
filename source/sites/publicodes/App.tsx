@@ -8,7 +8,7 @@ import LocalisationMessage from '@/components/localisation/LocalisationMessage'
 import Logo from '@/components/Logo'
 import Route404 from '@/components/Route404'
 import '@/components/ui/index.css'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import '@/global.css'
 import { useLoadSimulationFromURL } from '@/hooks/useLoadSimulationFromURL'
 import useMediaQuery from '@/hooks/useMediaQuery'
@@ -24,7 +24,7 @@ import { WithEngine } from '@/RulesProvider'
 import { fetchUser, persistUser } from '@/storage/persistSimulation'
 import { getIsIframe } from '@/utils'
 import * as Sentry from '@sentry/react'
-import React, { Suspense, useContext, useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
@@ -167,7 +167,7 @@ declare global {
 export default function Root() {
 	const paths = sitePaths()
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const iframeShareData = new URLSearchParams(
 		document?.location.search.substring(1)
@@ -254,7 +254,7 @@ const Main = () => {
 	const [simulationFromUrlHasBeenSet, setSimulationFromUrlHasBeenSet] =
 		useState(false)
 
-	const { trackPageView } = useContext(MatomoContext)
+	const { trackPageView } = useMatomo()
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	// Or we retrive the simulation from the URL
@@ -603,7 +603,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/mes-groupes"
+				path="/groupes"
 				element={
 					<WithEngine>
 						<Suspense fallback={<AnimatedLoader />}>
@@ -613,7 +613,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/creer-groupe/*"
+				path="/groupes/creer"
 				element={
 					<WithEngine>
 						<Suspense fallback={<AnimatedLoader />}>
@@ -623,7 +623,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/rejoindre-groupe/:groupId"
+				path="/groupes/invitation"
 				element={
 					<WithEngine options={{ parsed: true, optimized: false }}>
 						<Suspense fallback={<AnimatedLoader />}>
@@ -634,7 +634,7 @@ const Router = () => {
 			/>
 
 			<Route
-				path="/groupe/:groupId"
+				path="/groupes/resultats"
 				element={
 					<WithEngine>
 						<Suspense fallback={<AnimatedLoader />}>

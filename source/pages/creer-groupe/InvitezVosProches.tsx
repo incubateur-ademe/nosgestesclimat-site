@@ -1,8 +1,8 @@
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { fetchGroup } from '@/utils/fetchGroup'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
@@ -19,7 +19,7 @@ export default function InvitezVosProches() {
 
 	const { groupId } = useParams()
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const createdGroup = useSelector((state: AppState) => state.createdGroup)
 

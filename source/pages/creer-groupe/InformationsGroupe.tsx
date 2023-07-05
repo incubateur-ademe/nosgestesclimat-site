@@ -2,7 +2,7 @@ import { addGroupToUser, setCreatedGroup } from '@/actions/actions'
 import { matomoEventCreationGroupe } from '@/analytics/matomo-events'
 import { useEngine } from '@/components/utils/EngineContext'
 import { GROUP_URL } from '@/constants/urls'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
@@ -19,7 +19,7 @@ import StepperIndicator from './components/StepperIndicator'
 import { DataContext } from './contexts/DataContext'
 
 export default function InformationsGroupe() {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const { prenom, email, groupeName, setGroupeName } = useContext(DataContext)
 
 	const [groupeNameLocalState, setGroupeNameLocalState] = useState(

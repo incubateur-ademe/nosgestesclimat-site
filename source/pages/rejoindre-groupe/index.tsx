@@ -13,7 +13,7 @@ import { getSimulationResults } from '@/utils/getSimulationResults'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { redirect, useNavigate, useParams } from 'react-router-dom'
+import { redirect, useNavigate, useSearchParams } from 'react-router-dom'
 
 export default function RejoindreGroupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -22,7 +22,11 @@ export default function RejoindreGroupe() {
 	const [errorPrenom, setErrorPrenom] = useState('')
 	const [emailLocalState, setEmailLocalState] = useState('')
 
-	const { groupId } = useParams()
+	const [searchParams] = useSearchParams()
+
+	const groupId = searchParams.get('groupId')
+
+	const groupURL = `/groupe/resultats?groupId=${group?._id}`
 
 	// Ajoute userId si non présente
 	useSetUserId()
@@ -83,7 +87,7 @@ export default function RejoindreGroupe() {
 
 			// Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
 			if (currentSimulation) {
-				navigate(`/groupe/${group._id}`)
+				navigate(groupURL)
 			} else {
 				// sinon on le redirige vers le simulateur
 				dispatch(setGroupToRedirectTo(group))
@@ -101,7 +105,7 @@ export default function RejoindreGroupe() {
 
 	// If user is already in the group, redirect to group page
 	if (group?.members?.find((member) => member.userId === userId)) {
-		redirect(`/groupe/${group._id}`)
+		redirect(groupURL)
 	}
 
 	return (
