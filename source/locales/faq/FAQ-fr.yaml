@@ -1,11 +1,3 @@
-- question: Comment utiliser ce calculateur ?
-  catégorie: général
-  id: tuto
-  réponse: |
-    Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de 2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur.
-
-    Si vous l'avez déjà consulté, vous pouvez visiter votre [page profil](/profil) pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
-
 - question: Qu'est-ce que l'empreinte carbone ? Comment se fait-il que ce que je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
   catégorie: général
   id: ges
