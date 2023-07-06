@@ -55,14 +55,16 @@ export const NewsletterForm = () => {
 
 	useEffect(() => {
 		const handleFetch = async () => {
-			const data = await fetch(
-				`${NETLIFY_FUNCTIONS_URL}/get-newsletter-subscribers-number`
-			)
-			const result: number = await data.json()
-			console.log({ result })
-			setNumberSubscribers(result)
+			try {
+				const data = await fetch(
+					`${NETLIFY_FUNCTIONS_URL}/get-newsletter-subscribers-number`
+				)
+				const result: number = await data.json()
+				setNumberSubscribers(result)
+			} catch (e) {
+				Sentry.captureException(e)
+			}
 		}
-
 		handleFetch()
 	}, [])
 
@@ -162,17 +164,30 @@ export const NewsletterForm = () => {
 							<div css="padding: 8px 0;">
 								<div css="font-size:16px; text-align:left; color:#3C4858; background-color:transparent; text-align:left">
 									<div>
-										<Trans>
-											<p>
-												Laissez-nous votre email comme déjà{' '}
-												<strong>
-													{formatValue(numberSubscribers)} autres utilisateurs
-												</strong>
-												, pour recevoir <strong>votre résultat</strong> et{' '}
-												<strong>des conseils</strong> pour réduire votre
-												empreinte carbone (1 fois par mois max.).
-											</p>
-										</Trans>
+										<p>
+											<Trans>Laissez-nous votre email</Trans>
+											{numberSubscribers && (
+												<span>
+													<Trans>, comme déjà </Trans>
+													<strong>
+														{formatValue(numberSubscribers)}{' '}
+														<Trans>autres utilisateurs, </Trans>
+													</strong>
+												</span>
+											)}
+											<Trans> pour recevoir </Trans>
+											<strong>
+												<Trans>votre résultat</Trans>
+											</strong>{' '}
+											<Trans>et </Trans>
+											<strong>
+												<Trans>des conseils</Trans>
+											</strong>{' '}
+											<Trans>
+												pour réduire votre empreinte carbone (1 fois par mois
+												max.).{' '}
+											</Trans>
+										</p>
 									</div>
 								</div>
 							</div>

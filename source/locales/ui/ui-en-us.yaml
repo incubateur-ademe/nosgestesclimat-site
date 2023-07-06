@@ -767,3 +767,11 @@ entries:
   components.stats.StatsContent.infosNorthstar.lock: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
   Envoyer mes résultats: Send my results
   '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Leave us your email address like <2> other {formatValue(numberSubscribers)} users</2>, to receive <4>your results</4> and <7>tips</7> on how to reduce your carbon footprint (once a month max.).</0>
+  votre résultat: your result
+  ', comme déjà ': ', as already '
+  ' pour recevoir ': ' to receive '
+  'autres utilisateurs, ': 'other users, '
+  Laissez-nous votre email: Leave us your email
+  'et ': 'and '
+  des conseils: advice
+  'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'to reduce your carbon footprint (once a month max.). '
