@@ -45,6 +45,30 @@
 
     En parallèle, l’équipe travaille à développer un parcours [« foyer »](https://github.com/datagir/nosgestesclimat/issues/113) afin de pouvoir estimer l’empreinte carbone de sa famille.
 
+- question: Vous ne posez pas la question de faire ou non des enfants ?
+  id: enfants
+  catégorie: général
+  réponse: |
+
+    C'est un sujet, pour le moins, compliqué !
+
+    Nos Gestes Climat est un simulateur d'empreinte individuelle. On considère que chaque humain, enfant ou adulte, a sa propre empreinte.
+
+    Certes, un enfant n'a pas choisi de naître, et quelque-part un ou deux adulte(s) ont décidé de mettre au monde un nouvel individu, qui aura une empreinte carbone. On pourrait se dire que l'on devrait la leur attribuer. Mais alors, pendant combien de temps ? Votre empreinte n'est pas à attribuer à vos parents !
+
+    Par ailleurs, nous avons de la chance : la démographie française est assez stable, et l'on ne risque pas trop de voir nos budgets individuels fondre à cause d'une démographie explosive.
+
+- question: Quels biens sont amortis et comment ?
+  id: amortissement
+  catégorie: général
+  réponse: |
+
+    Fort heureusement, une grande partie des biens que nous utilisons au quotidien a vocation à durer plusieurs années. Pour représenter cet usage, nous amortissons (de la même manière qu'un comptable amortit un achat de bien) l'impact carbone d'une partie de vos biens sur plusieurs années.
+
+    Les voitures sont amorties avec une fonction non linéaire, les premières années "pesant" plus que les suivantes en empreinte carbone.
+
+    Tous les autres biens matériels (petit équipement, autres véhicules, numérique, électroménager...) sont amortis de manière linéaire sur leur durée de vie estimée.
+
 - question: Pourquoi ne pas prendre en compte l'épargne individuelle ?
   id: finance
   catégorie: général
@@ -190,6 +214,8 @@
     Nos Gestes Climat est dédié à l’évaluation de **l’empreinte carbone individuelle**. Les déplacements que vous effectuez dans le cadre de votre travail (comme livrer un client, se rendre à une réunion, prendre l’avion pour assister à 3 jours de séminaire, etc.) ne sont pas à prendre en compte quand vous répondez aux questions du calculateur.
 
     Ces déplacements, relevant de l’activité professionnelle, seront comptabilisés dans l’empreinte carbone de votre organisation (entreprise, collectivité, association, etc). On parle alors de bilans d’émissions de Gaz à Effet de Serre (BEGES).
+
+    > Si vous travaillez pour une compagnie aérienne et que vous prenez l'avion pour des besoins personnels, les émissions de votre vol d'avion incluront ceux des employés de la compagnie aérienne. 
 
     **Néanmoins, les déplacements réguliers domicile-travail vous sont demandés.** Pourquoi ? Car, à titre personnel, vous avez la main sur le type de transports que vous choisissez d’utiliser et sur l’endroit où vous habitez.
 
