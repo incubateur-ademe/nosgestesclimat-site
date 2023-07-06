@@ -128,6 +128,10 @@ const NorthstarStatsLazy = React.lazy(
 		import(/* webpackChunkName: 'NorthstarStats' */ './pages/NorthstarStats')
 )
 
+const Budget = React.lazy(
+	() => import(/* webpackChunkName: 'Budget' */ './pages/Budget')
+)
+
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 declare global {
@@ -617,6 +621,14 @@ const Router = () => {
 				}
 			/>
 			<Route path="*" element={<Route404 />} />
+			<Route
+				path="/budget"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<Budget />
+					</Suspense>
+				}
+			/>
 		</Routes>
 	)
 }

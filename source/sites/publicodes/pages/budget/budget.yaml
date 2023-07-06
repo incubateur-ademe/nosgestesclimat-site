@@ -1,0 +1,59 @@
+# A rentrer en TTC
+
+# markup : 10% (montant HT - markup = montant dispo)
+# markup inverse : (1 / (1 - markup)) - 1 = 11,1% (pour passer du dispo au HT)
+# Pour cette première version, on ne distingue pas la marge du porteur dans le budget.
+
+2019:
+  description: |
+    En 2019, Datagir (alors baptisé Ecolab) entre dans la première phase de construction de son offre. Elle se focalise sur l’accompagnement de services tiers 
+    (ex. applications) à la compréhension et l’intégration des données ouvertes de l’ADEME (alimentation, bâtiment…). 
+    En fin d’année, 4 personnes travaillent dans le service (tout ou partie de leur temps).
+  total:
+    Développement: 14184
+    Déploiement: 0
+    Coaching: 40807
+
+2020:
+  description: |
+    En 2020, Datagir (alors baptisé Ecolab) poursuit la construction et entre en phase d'accélération en fin d'année. 
+    En complément de l’offre sur l’accompagnement à la réutilisation des données de l’ADEME, le service lance deux simulateurs : 
+    un premier sur les transports en début d’année (qui deviendra Mon Impact Transport), puis Nos Gestes Climat en fin d’année.
+    En fin d’année, 4 personnes travaillent dans le service (tout ou partie de leur temps).
+  total:
+    Développement: 101592
+    Déploiement: 0
+    Coaching: 33918
+
+2021:
+  description: |
+    En 2021, Datagir poursuit la phase d'accélération et entame la phase de consolidation au sein de l'ADEME. 
+    Mon Impact Transport est intégralement revu et de nouveaux simulateurs sont lancés en compléments de Nos Gestes Climat : 
+    Mon Convertisseur CO2, Mes Fruits et Légumes de Saison, Que Faire de Mes Déchets.
+    En fin d’année, 7 personnes travaillent dans le service (tout ou partie de leur temps).
+  total:
+    Développement: 267161
+    Déploiement: 42702
+    Coaching: 13567
+
+2022:
+  description: |
+    En 2022, Datagir termine la phase de transfert et de consolidation : le service est pérennisé au sein de l'ADEME.
+    L’amélioration continue et le déploiement des simulateurs existants se poursuit. 
+    L’équipe développe également d’autres outils à destination des collectivités et professionnels.
+    En fin d’année, 9 personnes travaillent dans le service (tout ou partie de leur temps).
+  total:
+    Développement: 457477
+    Déploiement: 60577
+    Produit: 60159
+    Coaching: 26783
+
+2023:
+  description: |
+    Blabla
+  total:
+    Développement: 1000
+    Déploiement: 1000
+    Produit: 1000
+    Design: 1000
+    Coaching: 1000
