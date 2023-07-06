@@ -583,3 +583,11 @@ entries:
   'Northstar: les statistiques "étoile du nord"': 'Northstar: les statistiques "étoile du nord"'
   Envoyer mes résultats: Envoyer mes résultats
   '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>
+  ', comme déjà ': ', comme déjà '
+  'autres utilisateurs, ': 'autres utilisateurs, '
+  des conseils: des conseils
+  'et ': 'et '
+  Laissez-nous votre email: Laissez-nous votre email
+  'pour recevoir ': 'pour recevoir '
+  'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'pour réduire votre empreinte carbone (1 fois par mois max.). '
+  votre résultat: votre résultat
