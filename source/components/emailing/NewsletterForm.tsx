@@ -55,14 +55,16 @@ export const NewsletterForm = () => {
 
 	useEffect(() => {
 		const handleFetch = async () => {
-			const data = await fetch(
-				`${NETLIFY_FUNCTIONS_URL}/get-newsletter-subscribers-number`
-			)
-			const result: number = await data.json()
-			console.log({ result })
-			setNumberSubscribers(result)
+			try {
+				const data = await fetch(
+					`${NETLIFY_FUNCTIONS_URL}/get-newsletter-subscribers-number`
+				)
+				const result: number = await data.json()
+				setNumberSubscribers(result)
+			} catch (e) {
+				Sentry.captureException(e)
+			}
 		}
-
 		handleFetch()
 	}, [])
 
@@ -164,10 +166,16 @@ export const NewsletterForm = () => {
 									<div>
 										<Trans>
 											<p>
-												Laissez-nous votre email comme déjà{' '}
-												<strong>
-													{formatValue(numberSubscribers)} autres utilisateurs
-												</strong>
+												Laissez-nous votre email
+												{numberSubscribers && (
+													<span>
+														comme déjà{' '}
+														<strong>
+															{formatValue(numberSubscribers)} autres
+															utilisateurs
+														</strong>
+													</span>
+												)}
 												, pour recevoir <strong>votre résultat</strong> et{' '}
 												<strong>des conseils</strong> pour réduire votre
 												empreinte carbone (1 fois par mois max.).
