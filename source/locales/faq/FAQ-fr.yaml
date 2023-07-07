@@ -167,7 +167,7 @@
     C’est d’ailleurs tout l’objet de Nos Gestes Climat ! Œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
 
 - question: Pourquoi ne puis-je pas renseigner que j'achète des biens durables et écologiques ?
-  catégorie: consommation
+  catégorie: divers
   id: effet-qualité
   réponse: |
 
@@ -271,7 +271,7 @@
 
 - question: Pourquoi me demande-t-on l’âge de mes équipements électroniques ?
   id: age-électronique
-  catégorie: numérique
+  catégorie: divers
   réponse: |
 
     À l’instar de ce qui est fait pour la voiture, un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat (notamment à cause de la phase d’extraction des matières premières).
@@ -279,7 +279,7 @@
     Nous vous demandons donc l’âge du produit afin de connaître la durée restant à amortir.
 
 - question: L'impact du numérique n'est-il pas plus élevé que cela ?
-  catégorie: numérique
+  catégorie: divers
   id: impact-numérique
   réponse: |
 

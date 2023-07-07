@@ -31,7 +31,7 @@
     > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
 - id: impact-numérique
   question: Isn't the impact of digital technology greater than that?
-  catégorie: digital
+  catégorie: various
   réponse: |
 
     Assessing the impact of digital technology, and more specifically of "dematerialized" content (streaming, videoconferencing, cloud storage, e-mailing, etc.), is still an area of work for technical and institutional players.
@@ -77,7 +77,7 @@
     C’est d’ailleurs tout l’objet de Nos Gestes Climat ! Œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
 - id: effet-qualité
   question: Why can't I say I'm buying sustainable, environmentally-friendly goods?
-  catégorie: consumption
+  catégorie: various
   réponse: |
 
     It's a common remark when it comes to assessing one's carbon footprint.
@@ -108,7 +108,7 @@
     Nous avons fait le choix de focaliser ces questions sur les produits achetés neufs car la différence d’impact avec les produits d’occasion est très significative. La phase de production du produit, qui représente très souvent la majorité des impacts, n’est pas prise en compte pour les produits d’occasion. Quant aux différences d’impacts entre les produits neufs (typiquement entre un jean issu de la fast-fashion et un jean éco-conçu), Nos Gestes Climat choisit, une fois encore, de rester simple.
 - id: régime
   question: Do you plan to integrate other food practices?
-  catégorie: power supply
+  catégorie: food
   réponse: |
 
     Nos Gestes Climat is, above all, a tool designed for the general public. That's why we wanted to limit the number of questions to those aspects of our diet that we know to be the most important.
@@ -212,7 +212,7 @@
     Cependant la réalité est souvent bien différente et loin de nous la volonté de culpabiliser ceux dont la mobilité quotidienne est centrée autour de la voiture car ils sont éloignés de leur lieu de travail. Même si certains choix peuvent être questionnés, beaucoup d’entre nous sont, en effet, contraints à la voiture individuelle, faute d’alternatives sérieuses disponibles (transports en commun, télétravail, covoiturage, etc.).
 - id: age-électronique
   question: Why am I asked about the age of my electronic equipment?
-  catégorie: digital
+  catégorie: various
   réponse: |
 
     As is the case for cars, a write-down is made for electronic products, whose manufacture has a very high impact on the climate (notably due to the raw materials extraction phase).
