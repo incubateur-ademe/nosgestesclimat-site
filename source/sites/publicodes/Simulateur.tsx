@@ -1,4 +1,5 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
+import { getMatomoEventJoinedGroupe } from '@/analytics/matomo-events'
 import {
 	Category,
 	decodeRuleNameFromSearchParam,
@@ -18,6 +19,7 @@ import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
@@ -217,6 +219,7 @@ function getValidSelectedRuleInfos(
 	rules: NGCRulesNodes
 ): SelectedRuleInfos {
 	const navigate = useNavigate()
+
 	const searchParams = new URLSearchParams(window.location.search)
 
 	if (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
@@ -275,6 +278,8 @@ const MainSimulationEnding = ({ rules, engine }) => {
 
 	const navigate = useNavigate()
 
+	const { trackEvent } = useMatomo()
+
 	const groupToRedirectTo: Group = useSelector(
 		(state: RootState) => state.groupToRedirectTo
 	)
@@ -298,7 +303,8 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				results,
 			})
 
-			navigate(`/groupe/${groupToRedirectTo._id}`)
+			trackEvent(getMatomoEventJoinedGroupe(groupToRedirectTo._id))
+			navigate(`/groupe/resultats?groupId=${groupToRedirectTo._id}`)
 		} catch (e) {
 			console.log(e)
 		}
