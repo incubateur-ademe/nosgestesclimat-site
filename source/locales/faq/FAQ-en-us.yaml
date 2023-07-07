@@ -40,7 +40,7 @@
 
     > 🕹️ To find out more, test <a href="https://impactco2.fr/usagenumerique">the impactco2.fr interactive simulator</a>.
   question.lock: L'impact du numérique n'est-il pas plus élevé que cela ?
-  catégorie.lock: numérique
+  catégorie.lock: divers
   réponse.lock: |
 
     L’évaluation des impacts du numérique et plus particulièrement des contenus « dématérialisés » (streaming, visio-conférence, stockage sur un cloud, envoi de mail, etc.) est encore un sujet de travail parmi les acteurs techniques et institutionnels.
@@ -92,7 +92,7 @@
 
     We have chosen to focus these questions on products purchased new, as the difference in impact with second-hand products is very significant. The production phase of the product, which very often represents the majority of impacts, is not taken into account for second-hand products. As for the differences in impact between new products (typically between fast-fashion jeans and eco-designed jeans), Nos Gestes Climat once again chooses to keep things simple.
   question.lock: Pourquoi ne puis-je pas renseigner que j'achète des biens durables et écologiques ?
-  catégorie.lock: consommation
+  catégorie.lock: divers
   réponse.lock: |
 
     C’est une remarque qui revient souvent quand il s’agit d’évaluer son empreinte carbone.
@@ -215,11 +215,11 @@
   catégorie: various
   réponse: |
 
-    As is the case for cars, a write-down is made for electronic products, whose manufacture has a very high impact on the climate (notably due to the raw materials extraction phase).
+    As is the case for cars, depreciation is also applied to electronic products, the manufacture of which has a very high impact on the climate (notably due to the extraction of raw materials).
 
     We therefore ask you for the age of the product in order to determine the remaining depreciation period.
   question.lock: Pourquoi me demande-t-on l’âge de mes équipements électroniques ?
-  catégorie.lock: numérique
+  catégorie.lock: divers
   réponse.lock: |
 
     À l’instar de ce qui est fait pour la voiture, un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat (notamment à cause de la phase d’extraction des matières premières).
@@ -519,3 +519,22 @@
   réponse.lock: |
     Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de 2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur.
     Si vous l'avez déjà consulté, vous pouvez visiter votre [page profil](/profil) pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
+- id: enjeux
+  question: Why don't you deal with other environmental issues?
+  catégorie: general
+  réponse: |
+
+    We are well aware that Nos Gestes Climat is not a complete response to the challenges we face.
+
+    Climate change is just one of the <a href="https://fr.wikipedia.org/wiki/Limites_plan%C3%A9taires">nine planetary limits</a> we are threatening (or have already exceeded) with our lifestyles.
+
+    The "carbon" approach must therefore be complementary to the other eight limits: erosion of biodiversity, disruption of the biogeochemical cycles of nitrogen and phosphorus, changes in land use, ocean acidification, global water use, depletion of the ozone layer, the introduction of new entities into the environment (chemical pollution) and the increase of aerosols in the atmosphere.
+  question.lock: Pourquoi ne traitez-vous pas des autres enjeux environnementaux ?
+  catégorie.lock: général
+  réponse.lock: |
+
+    L'approche de Nos Gestes Climat est incomplète pour répondre aux enjeux auxquels nous faisons face, nous en sommes bien conscients.
+
+    Le changement climatique c'est que l'une des [neuf limites planétaires](https://fr.wikipedia.org/wiki/Limites_plan%C3%A9taires) que nous menaçons (ou que nous avons déjà dépassées) avec nos modes de vie.
+
+    L'approche "carbone" doit donc être complémentaire des huit autres limites : l’érosion de la biodiversité, la perturbation des cycles biogéochimiques de l’azote et du phosphore, les changements d'utilisation des sols, l’acidification des océans, l’utilisation mondiale de l’eau, l’appauvrissement de la couche d'ozone, l'introduction d’entités nouvelles dans l’environnement (pollution chimique) et l'augmentation des aérosols dans l’atmosphère.
