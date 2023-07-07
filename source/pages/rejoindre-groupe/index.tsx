@@ -1,8 +1,10 @@
 import { addGroupToUser, setGroupToRedirectTo } from '@/actions/actions'
+import { getMatomoEventJoinedGroupe } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
 import TextInputGroup from '@/components/groupe/TextInputGroup'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
@@ -10,6 +12,7 @@ import { Group } from '@/types/groups'
 import { fetchAddUserToGroup } from '@/utils/fetchAddUserToGroup'
 import { fetchGroup } from '@/utils/fetchGroup'
 import { getSimulationResults } from '@/utils/getSimulationResults'
+import { captureException } from '@sentry/react'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -43,6 +46,8 @@ export default function RejoindreGroupe() {
 
 	const engine = useEngine()
 
+	const { trackEvent } = useMatomo()
+
 	useEffect(() => {
 		const handleFetchGroup = async () => {
 			try {
@@ -50,7 +55,7 @@ export default function RejoindreGroupe() {
 
 				setGroup(group)
 			} catch (error) {
-				console.error(error)
+				captureException(error)
 			}
 		}
 		if (groupId && !group) {
@@ -87,6 +92,7 @@ export default function RejoindreGroupe() {
 
 			// Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
 			if (currentSimulation) {
+				trackEvent(getMatomoEventJoinedGroupe(group._id))
 				navigate(groupURL)
 			} else {
 				// sinon on le redirige vers le simulateur
@@ -94,7 +100,7 @@ export default function RejoindreGroupe() {
 				navigate('/simulateur/bilan')
 			}
 		} catch (error) {
-			console.error(error)
+			captureException(error)
 		}
 	}
 

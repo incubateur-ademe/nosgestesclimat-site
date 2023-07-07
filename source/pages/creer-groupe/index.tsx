@@ -77,7 +77,7 @@ export default function CreerGroupe() {
 			dispatch(addGroupToUser(group))
 			dispatch(setCreatedGroup(group))
 
-			trackEvent([matomoEventCreationGroupe])
+			trackEvent(matomoEventCreationGroupe)
 
 			navigate(`/groupes/resultats?groupId=${group._id}`)
 		} catch (e) {

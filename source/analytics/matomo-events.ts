@@ -189,8 +189,16 @@ export const getMatomoEventActionAccepted = (
 	nodeValue: string
 ) => ['trackEvent', '/actions', 'Action sélectionnée', dottedName, nodeValue]
 
+// Groupe / Challenge entre amis
 export const matomoEventCreationGroupe = [
 	'trackEvent',
 	'Groupes',
 	'Création de groupe',
+]
+
+export const getMatomoEventJoinedGroupe = (groupId: string) => [
+	'trackEvent',
+	'Groupes',
+	'Groupe rejoint',
+	`Groupe ${groupId}`,
 ]
