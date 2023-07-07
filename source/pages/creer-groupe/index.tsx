@@ -14,7 +14,7 @@ import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { captureException } from '@sentry/react'
-import { useState } from 'react'
+import { FormEventHandler, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
@@ -41,12 +41,17 @@ export default function CreerGroupe() {
 
 	const groups = useSelector((state: AppState) => state.groups) || []
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (event) => {
+		// Avoid reloading page
+		if (event) {
+			event.preventDefault()
+		}
+
+		// Inputs validation
 		if (!prenom) {
 			setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
 			return
 		}
-
 		if (
 			!email.match(
 				/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -105,21 +110,23 @@ export default function CreerGroupe() {
 						'Comparez vos résultats avec votre famille ou un groupe d’amis'
 					)}
 				/>
-				<PrenomInput
-					prenom={prenom}
-					setPrenom={setPrenom}
-					errorPrenom={errorPrenom}
-					setErrorPrenom={setErrorPrenom}
-				/>
-				<EmailInput
-					email={email}
-					setEmail={setEmail}
-					errorEmail={errorEmail}
-					setErrorEmail={setErrorEmail}
-				/>
-				<Button onClick={handleSubmit} aria-disabled={!prenom}>
-					<Trans>Créer le groupe</Trans>
-				</Button>
+				<form onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}>
+					<PrenomInput
+						prenom={prenom}
+						setPrenom={setPrenom}
+						errorPrenom={errorPrenom}
+						setErrorPrenom={setErrorPrenom}
+					/>
+					<EmailInput
+						email={email}
+						setEmail={setEmail}
+						errorEmail={errorEmail}
+						setErrorEmail={setErrorEmail}
+					/>
+					<Button type="submit" onClick={handleSubmit} aria-disabled={!prenom}>
+						<Trans>Créer le groupe</Trans>
+					</Button>
+				</form>
 			</>
 		</div>
 	)
