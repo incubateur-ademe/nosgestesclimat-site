@@ -41,7 +41,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 
 	if (group?.members?.length === 1) {
 		return (
-			<div className="bg-grey-100 rounded-md p-4 flex gap-1">
+			<div className="bg-grey-100 rounded-md p-4 flex gap-1 items-center justify-between">
 				<p>Invitez d'autres personnes à rejoindre votre groupe</p>
 				<Button
 					className="whitespace-nowrap"

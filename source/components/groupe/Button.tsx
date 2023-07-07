@@ -1,8 +1,11 @@
+import { MouseEventHandler } from 'react'
+
 type Props = {
-	onClick: () => void
+	onClick: MouseEventHandler<HTMLButtonElement>
 	className?: string
 	size?: 'sm' | 'md' | 'lg'
 	color?: 'primary' | 'secondary'
+	type?: 'button' | 'submit' | 'reset'
 } & React.PropsWithChildren
 
 export const colorClassNames = {
@@ -24,10 +27,12 @@ export default function Button({
 	className,
 	size = 'md',
 	color = 'primary',
+	type,
 }: Props) {
 	return (
 		<button
 			onClick={onClick}
+			type={type}
 			className={`inline-flex items-center ${sizeClassNames[size]} border border-transparent text-sm font-medium no-underline rounded-md shadow-sm ${colorClassNames[color]} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors ${className}`}
 		>
 			{children}

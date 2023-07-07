@@ -14,7 +14,7 @@ import { fetchAddUserToGroup } from '@/utils/fetchAddUserToGroup'
 import { fetchGroup } from '@/utils/fetchGroup'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { captureException } from '@sentry/react'
-import { useEffect, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { redirect, useNavigate, useSearchParams } from 'react-router-dom'
@@ -64,16 +64,22 @@ export default function RejoindreGroupe() {
 		}
 	}, [groupId, group])
 
-	const handleSubmit = async () => {
+	const handleSubmit = async (event: MouseEvent | FormEvent) => {
+		// Avoid reloading page
+		if (event) {
+			event.preventDefault()
+		}
+
+		// Shouldn't happen but in any case, avoid group joining
 		if (!group) {
 			return
 		}
 
+		// Inputs validation
 		if (!prenom) {
 			setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
 			return
 		}
-
 		if (
 			!email.match(
 				/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
@@ -137,26 +143,28 @@ export default function RejoindreGroupe() {
 					"Comparez vos résultats avec votre famille ou un groupe d'amis."
 				)}
 			/>
-			<PrenomInput
-				prenom={prenom}
-				setPrenom={setPrenom}
-				errorPrenom={errorPrenom}
-				setErrorPrenom={setErrorPrenom}
-			/>
-			<EmailInput
-				email={email}
-				setEmail={setEmail}
-				errorEmail={errorEmail}
-				setErrorEmail={setErrorEmail}
-			/>
-			{!currentSimulation && (
-				<p className="text-xs mb-2">
-					Vous devrez compléter votre test après avoir rejoint le groupe.
-				</p>
-			)}
-			<Button onClick={handleSubmit} aria-disabled={!prenom}>
-				<Trans>Rejoindre</Trans>
-			</Button>
+			<form onSubmit={handleSubmit}>
+				<PrenomInput
+					prenom={prenom}
+					setPrenom={setPrenom}
+					errorPrenom={errorPrenom}
+					setErrorPrenom={setErrorPrenom}
+				/>
+				<EmailInput
+					email={email}
+					setEmail={setEmail}
+					errorEmail={errorEmail}
+					setErrorEmail={setErrorEmail}
+				/>
+				{!currentSimulation && (
+					<p className="text-xs mb-2">
+						Vous devrez compléter votre test après avoir rejoint le groupe.
+					</p>
+				)}
+				<Button type="submit" onClick={handleSubmit} aria-disabled={!prenom}>
+					<Trans>Rejoindre</Trans>
+				</Button>
+			</form>
 		</div>
 	)
 }
