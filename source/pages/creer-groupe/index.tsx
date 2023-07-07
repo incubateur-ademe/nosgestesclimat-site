@@ -22,6 +22,7 @@ export default function CreerGroupe() {
 	const [prenom, setPrenom] = useState('')
 	const [errorPrenom, setErrorPrenom] = useState('')
 	const [email, setEmail] = useState('')
+	const [errorEmail, setErrorEmail] = useState('')
 
 	const { trackEvent } = useMatomo()
 
@@ -41,7 +42,16 @@ export default function CreerGroupe() {
 
 	const handleSubmit = async () => {
 		if (!prenom) {
-			setErrorPrenom(t('Vous devez renseigner un prénom ou un pseudonyme.'))
+			setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
+			return
+		}
+
+		if (
+			!email.match(
+				/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+			)
+		) {
+			setErrorEmail(t('Veuillez renseigner un email valide.'))
 			return
 		}
 
@@ -124,8 +134,14 @@ export default function CreerGroupe() {
 					name="prenom"
 					placeholder="jean-marc@nosgestesclimat.fr"
 					className="mt-6 mb-6"
-					onChange={(e) => setEmail(e.target.value)}
+					onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+						setEmail(e.target.value)
+						if (errorEmail) {
+							setErrorEmail('')
+						}
+					}}
 					value={email}
+					error={errorEmail}
 				/>
 				<Button onClick={handleSubmit} aria-disabled={!prenom}>
 					<Trans>Créer le groupe</Trans>

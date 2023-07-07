@@ -77,7 +77,7 @@ export default function MesGroupes() {
 					<p className="text-sm mb-6">
 						Vous pouvez créer un nouveau groupe avec d’autres amis.
 					</p>
-					<ButtonLink href={'/creer-groupe/vos-informations'} color="secondary">
+					<ButtonLink href={'/groupes/creer'} color="secondary">
 						<Trans>Créer un autre groupe</Trans>
 					</ButtonLink>
 				</>
