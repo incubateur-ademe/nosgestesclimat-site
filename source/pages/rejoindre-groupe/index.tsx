@@ -1,7 +1,8 @@
 import { addGroupToUser, setGroupToRedirectTo } from '@/actions/actions'
 import { getMatomoEventJoinedGroupe } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
-import TextInputGroup from '@/components/groupe/TextInputGroup'
+import EmailInput from '@/components/groupe/EmailInput'
+import PrenomInput from '@/components/groupe/PrenomInput'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useMatomo } from '@/contexts/MatomoContext'
@@ -20,10 +21,10 @@ import { redirect, useNavigate, useSearchParams } from 'react-router-dom'
 
 export default function RejoindreGroupe() {
 	const [group, setGroup] = useState<Group | null>(null)
-
-	const [prenomLocalState, setPrenomLocalState] = useState('')
+	const [prenom, setPrenom] = useState('')
 	const [errorPrenom, setErrorPrenom] = useState('')
-	const [emailLocalState, setEmailLocalState] = useState('')
+	const [email, setEmail] = useState('')
+	const [errorEmail, setErrorEmail] = useState('')
 
 	const [searchParams] = useSearchParams()
 
@@ -68,8 +69,17 @@ export default function RejoindreGroupe() {
 			return
 		}
 
-		if (!prenomLocalState) {
-			setErrorPrenom(t('Ce champ est obligatoire'))
+		if (!prenom) {
+			setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
+			return
+		}
+
+		if (
+			!email.match(
+				/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+			)
+		) {
+			setErrorEmail(t('Veuillez renseigner un email valide.'))
 			return
 		}
 
@@ -80,8 +90,8 @@ export default function RejoindreGroupe() {
 		try {
 			await fetchAddUserToGroup({
 				group,
-				name: prenomLocalState,
-				email: emailLocalState,
+				name: prenom,
+				email,
 				userId: userId ?? '',
 				simulation: currentSimulation ?? undefined,
 				results,
@@ -127,42 +137,24 @@ export default function RejoindreGroupe() {
 					"Comparez vos résultats avec votre famille ou un groupe d'amis."
 				)}
 			/>
-			<TextInputGroup
-				label={t('Votre prénom (ou pseudo)')}
-				helperText={t(
-					'Il sera visible uniquement par les participants du groupe'
-				)}
-				name="prenom"
-				placeholder="Jean-Michel"
-				className="mt-4"
-				onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-					setPrenomLocalState(e.target.value)
-				}
-				error={errorPrenom}
-				value={prenomLocalState}
+			<PrenomInput
+				prenom={prenom}
+				setPrenom={setPrenom}
+				errorPrenom={errorPrenom}
+				setErrorPrenom={setErrorPrenom}
 			/>
-			<TextInputGroup
-				label={
-					<span>
-						{t('Votre adresse email ')}{' '}
-						<span className="text-secondary italic"> {t('facultatif')}</span>
-					</span>
-				}
-				helperText={t(
-					'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
-				)}
-				name="prenom"
-				placeholder="jean-michel@nosgestesclimat.fr"
-				className="mt-6 mb-6"
-				onChange={(e) => setEmailLocalState(e.target.value)}
-				value={emailLocalState}
+			<EmailInput
+				email={email}
+				setEmail={setEmail}
+				errorEmail={errorEmail}
+				setErrorEmail={setErrorEmail}
 			/>
 			{!currentSimulation && (
 				<p className="text-xs mb-2">
 					Vous devrez compléter votre test après avoir rejoint le groupe.
 				</p>
 			)}
-			<Button onClick={handleSubmit} aria-disabled={!prenomLocalState}>
+			<Button onClick={handleSubmit} aria-disabled={!prenom}>
 				<Trans>Rejoindre</Trans>
 			</Button>
 		</div>

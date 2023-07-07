@@ -1,8 +1,9 @@
 import { addGroupToUser, setCreatedGroup } from '@/actions/actions'
 import { matomoEventCreationGroupe } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
+import EmailInput from '@/components/groupe/EmailInput'
 import GoBackLink from '@/components/groupe/GoBackLink'
-import TextInputGroup from '@/components/groupe/TextInputGroup'
+import PrenomInput from '@/components/groupe/PrenomInput'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { GROUP_NAMES } from '@/constants/groupNames'
@@ -104,44 +105,17 @@ export default function CreerGroupe() {
 						'Comparez vos résultats avec votre famille ou un groupe d’amis'
 					)}
 				/>
-				<TextInputGroup
-					label={t('Votre prénom (ou pseudo)')}
-					helperText={t(
-						'Il sera visible uniquement par les participants du groupe'
-					)}
-					name="prenom"
-					placeholder="Jean-Marc"
-					className="mt-4"
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-						setPrenom(e.target.value)
-						if (errorPrenom) {
-							setErrorPrenom('')
-						}
-					}}
-					error={errorPrenom}
-					value={prenom}
+				<PrenomInput
+					prenom={prenom}
+					setPrenom={setPrenom}
+					errorPrenom={errorPrenom}
+					setErrorPrenom={setErrorPrenom}
 				/>
-				<TextInputGroup
-					label={
-						<span>
-							{t('Votre adresse email ')}{' '}
-							<span className="text-secondary italic"> {t('facultatif')}</span>
-						</span>
-					}
-					helperText={t(
-						'Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données'
-					)}
-					name="prenom"
-					placeholder="jean-marc@nosgestesclimat.fr"
-					className="mt-6 mb-6"
-					onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
-						setEmail(e.target.value)
-						if (errorEmail) {
-							setErrorEmail('')
-						}
-					}}
-					value={email}
-					error={errorEmail}
+				<EmailInput
+					email={email}
+					setEmail={setEmail}
+					errorEmail={errorEmail}
+					setErrorEmail={setErrorEmail}
 				/>
 				<Button onClick={handleSubmit} aria-disabled={!prenom}>
 					<Trans>Créer le groupe</Trans>
