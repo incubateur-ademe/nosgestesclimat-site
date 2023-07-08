@@ -23,5 +23,3 @@ Le 5 juin, c'est la journée de l’environnement, vous avez une bonne excuse...
 ## Vous souhaitez diffuser l'outil encore plus largement ?
 
 Nous pouvons nous entendre ! N'hésitez pas à contacter [_Margaux Cosnier, chargée de déploiement Nos Gestes Climat_](mailto:margaux.cosnier@beta.gouv.fr)
-
-5 juin 2023
