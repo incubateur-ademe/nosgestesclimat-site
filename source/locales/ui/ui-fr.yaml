@@ -307,7 +307,7 @@ entries:
   meta.publicodes.Accessibility.title: Accessibilité
   meta.publicodes.CGU.description: Les présentes conditions générales d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation des services par l'Utilisateur.
   meta.publicodes.CGU.title: Conditions générales d'utilisation
-  meta.publicodes.Contribution.description: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
+  meta.publicodes.FAQ.description: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
   meta.publicodes.Diffuser.description: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services publics, numérique), de la situer par rapport aux objectifs climatiques et surtout de passer à l’action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   meta.publicodes.Diffuser.title: Diffuser Nos Gestes Climat
   meta.publicodes.Landing.description: Testez votre empreinte carbone, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire.
@@ -364,12 +364,12 @@ entries:
   publicodes.Contribution.commentaireAugmenté: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.description: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
+  publicodes.FAQ.description: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.descriptionComplèteTraduction: <0>La description complète de votre problème</0>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <1>ce lien</1>.
-  publicodes.Contribution.titreQuestion: J'ai une autre question
+  publicodes.Contact.titreQuestion: J'ai une question
   publicodes.Contribution.traductionIntro: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problèm de traduction sur le site 😊. Nous le prendrons en compte rapidement.
   publicodes.Contribution.translationWikiInvite: 'Suivez notre guide complet pour contribuer directement à la traduction du site : <2>rendez-vous sur notre wiki</2>.'
   publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?

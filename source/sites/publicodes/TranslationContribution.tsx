@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
-import { createIssue, formStyle } from './Contribution'
+import { createIssue, formStyle } from './Contact'
 
 export default ({}) => {
 	const fromLocation = useQuery().get('fromLocation')

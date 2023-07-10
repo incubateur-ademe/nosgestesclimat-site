@@ -340,8 +340,8 @@ entries:
   meta.publicodes.CGU.description.lock: Les présentes conditions générales d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation des services par l'Utilisateur.
   meta.publicodes.CGU.title: Terms and conditions of use
   meta.publicodes.CGU.title.lock: Conditions générales d'utilisation
-  meta.publicodes.Contribution.description: Find out the most common questions about Our Climate Action, and how to ask new ones or help us.
-  meta.publicodes.Contribution.description.lock: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
+  meta.publicodes.FAQ.description: Find out the most common questions about Our Climate Action, and how to ask new ones or help us.
+  meta.publicodes.FAQ.description.lock: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
   meta.publicodes.Diffuser.description: This simulator allows you to evaluate your total annual individual carbon footprint and by major categories (food, transportation, housing, miscellaneous, utilities, digital), to situate it in relation to the climate objectives and above all to take action at your level with personalized gestures according to your answers.
   meta.publicodes.Diffuser.description.lock: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services publics, numérique), de la situer par rapport aux objectifs climatiques et surtout de passer à l’action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   meta.publicodes.Diffuser.title: Sharing Nos Gestes Climat
@@ -436,8 +436,8 @@ entries:
   publicodes.Contribution.commentaireAugmenté.lock: |-
 
     > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.description: Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!
-  publicodes.Contribution.description.lock: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
+  publicodes.FAQ.description: Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!
+  publicodes.FAQ.description.lock: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>
   publicodes.Contribution.descriptionComplète.lock: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.descriptionComplèteTraduction: <0>The complete description of your problem</0>
@@ -446,8 +446,8 @@ entries:
   publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
   publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <1>this link</1>.
   publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <1>ce lien</1>.
-  publicodes.Contribution.titreQuestion: I have another question
-  publicodes.Contribution.titreQuestion.lock: J'ai une autre question
+  publicodes.Contact.titreQuestion: I have a question
+  publicodes.Contact.titreQuestion.lock: J'ai une question
   publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been translated into several languages. Do not hesitate to share your doubts about a translation problem on the site 😊. We will take it into account quickly.
   publicodes.Contribution.traductionIntro.lock: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problèm de traduction sur le site 😊. Nous le prendrons en compte rapidement.
   publicodes.Contribution.translationWikiInvite: 'Follow our complete guide to contribute directly to the translation of the site: <2>go to our wiki</2>.'

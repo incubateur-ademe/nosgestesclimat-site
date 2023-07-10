@@ -83,8 +83,9 @@ const TutorialLazy = React.lazy(
 const GroupSwitchLazy = React.lazy(
 	() => import(/* webpackChunkName: 'GroupSwitch' */ './conference/GroupSwitch')
 )
-const ContributionLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Contribution' */ './Contribution')
+const FAQLazy = React.lazy(() => import(/* webpackChunkName: 'FAQ' */ './FAQ'))
+const ContactLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Contact' */ './Contact')
 )
 const ConferenceLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Conference' */ './conference/Conference')
@@ -440,10 +441,18 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/contribuer/*"
+				path="/contact"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
-						<ContributionLazy />
+						<ContactLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/questions-frequentes/*"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<FAQLazy />
 					</Suspense>
 				}
 			/>
