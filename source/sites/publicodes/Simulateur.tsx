@@ -306,7 +306,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 			})
 
 			trackEvent(getMatomoEventJoinedGroupe(groupToRedirectTo._id))
-			navigate(`/groupe/resultats?groupId=${groupToRedirectTo._id}`)
+			navigate(`/groupes/resultats?groupId=${groupToRedirectTo._id}`)
 		} catch (e) {
 			console.log(e)
 		}
