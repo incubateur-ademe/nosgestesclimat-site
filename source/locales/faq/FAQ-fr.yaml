@@ -148,8 +148,8 @@
     > Par ailleurs, nous cherchons en continu à rendre le modèle [plus précis et plus complet](https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22). Si un sujet important vous semble manquer, n'hésitez pas à nous le signaler sur Github !
 
 - question: Que représente le poste « services sociétaux » ?
-  id: services-publics
-  catégorie: services publics
+  id: services-sociétaux
+  catégorie: services sociétaux
   réponse: |
 
     Ce poste représente l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact de tous ces services sur les 67 millions de Français.
@@ -163,8 +163,8 @@
     Deuxièmement, essayer de comptabiliser la part de service public qu’un individu utilise « pour de vrai » n'est pas actuellement possible avec les données dont nous disposons sur l'empreinte de ce secteur. Ce qui ne nous empêche pas de mener des réflexions pour "variabiliser" le poste services sociétaux selon l'empreinte de la personne !
 
 - question: Peut-on agir sur la partie « services sociétaux » ?
-  catégorie: services publics
-  id: services-publics-majoritaires
+  catégorie: services sociétaux
+  id: services-sociétaux-majoritaires
   réponse: |
 
     En effet, il peut être frustrant de se voir comptabiliser des impacts pour lesquels nous n’avons aucun levier d’action direct.
