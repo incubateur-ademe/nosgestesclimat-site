@@ -22,6 +22,7 @@ export default function InlineTextInput({
 	onClose = () => {},
 	onSubmit,
 	isLoading,
+	...props
 }: Props) {
 	const [error, setError] = useState('')
 
@@ -78,6 +79,7 @@ export default function InlineTextInput({
 					// eslint-disable-next-line jsx-a11y/no-autofocus
 					autoFocus
 					disabled={isLoading}
+					{...props}
 				/>
 				<Button
 					className="rounded-s-none"
@@ -85,6 +87,7 @@ export default function InlineTextInput({
 					onClick={handleSubmit}
 					aria-label={t('Ok, sauvegarder la modification')}
 					disabled={isLoading}
+					data-cypress-id="button-inline-input"
 				>
 					Ok
 				</Button>

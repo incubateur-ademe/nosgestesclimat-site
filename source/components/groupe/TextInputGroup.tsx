@@ -21,6 +21,7 @@ export default function TextInputGroup({
 	placeholder,
 	onChange,
 	value,
+	...props
 }: Props) {
 	return (
 		<div className={`flex flex-col ${className}`} aria-live="polite">
@@ -46,6 +47,7 @@ export default function TextInputGroup({
 				onChange={onChange}
 				aria-describedby={`error-${name}`}
 				value={value}
+				{...props}
 			/>
 			{error && (
 				<span id={`error-${name}`} className="text-xs text-red-700 mt-2">

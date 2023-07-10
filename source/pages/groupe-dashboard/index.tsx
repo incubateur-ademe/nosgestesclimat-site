@@ -126,9 +126,11 @@ export default function GroupeDashboard() {
 							}
 						}}
 						isLoading={isSubmitting}
+						data-cypress-id="group-edit-input-name"
 					/>
 				) : (
 					<Title
+						data-cypress-id="group-name"
 						title={
 							<span className="flex justify-between items-center">
 								<span>
@@ -138,6 +140,7 @@ export default function GroupeDashboard() {
 									className="!p-1"
 									onClick={() => setIsEditingTitle(true)}
 									color="secondary"
+									data-cypress-id="group-name-edit-button"
 								>
 									<img
 										src="/images/pencil.svg"

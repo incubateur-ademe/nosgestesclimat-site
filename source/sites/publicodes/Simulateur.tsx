@@ -132,7 +132,9 @@ const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 		: []
 
 	useEffect(() => {
-		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
+		if (
+			!isEquivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])
+		) {
 			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
 	}, [dispatch, config, selectedRuleURL, configSet])

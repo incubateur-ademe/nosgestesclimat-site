@@ -6,6 +6,7 @@ export default function PrenomInput({
 	setPrenom,
 	errorPrenom,
 	setErrorPrenom,
+	...props
 }) {
 	const { t } = useTranslation()
 
@@ -26,6 +27,7 @@ export default function PrenomInput({
 			}}
 			error={errorPrenom}
 			value={prenom}
+			{...props}
 		/>
 	)
 }

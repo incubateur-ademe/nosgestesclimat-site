@@ -54,6 +54,7 @@ export default function CreerGroupe() {
 			return
 		}
 		if (
+			email &&
 			!email.match(
 				/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 			)
@@ -123,6 +124,7 @@ export default function CreerGroupe() {
 						setPrenom={setPrenom}
 						errorPrenom={errorPrenom}
 						setErrorPrenom={setErrorPrenom}
+						data-cypress-id="group-input-owner-name"
 					/>
 					<EmailInput
 						email={email}
@@ -130,7 +132,12 @@ export default function CreerGroupe() {
 						errorEmail={errorEmail}
 						setErrorEmail={setErrorEmail}
 					/>
-					<Button type="submit" onClick={handleSubmit} aria-disabled={!prenom}>
+					<Button
+						type="submit"
+						data-cypress-id="button-create-group"
+						onClick={handleSubmit}
+						aria-disabled={!prenom}
+					>
 						<Trans>Créer le groupe</Trans>
 					</Button>
 				</form>
