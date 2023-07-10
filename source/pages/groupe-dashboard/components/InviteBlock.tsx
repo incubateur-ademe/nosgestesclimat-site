@@ -39,15 +39,19 @@ export default function InviteBlock({ group }: { group: Group }) {
 		timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
 	}
 
-	if (group?.members?.length === 1) {
+	if (group?.members?.length > 1) {
 		return (
 			<div className="bg-grey-100 rounded-md p-4 flex gap-1 items-center justify-between">
-				<p>Invitez d'autres personnes à rejoindre votre groupe</p>
+				<p className="mb-0">
+					Invitez d'autres personnes à rejoindre votre groupe
+				</p>
 				<Button
-					className="whitespace-nowrap"
+					className="whitespace-nowrap w-[8rem] flex justify-center"
 					onClick={isShareDefined ? handleShare : handleCopy}
 				>
-					{isCopied ? <Trans>Copié !</Trans> : <Trans>Partager</Trans>}
+					{isShareDefined && <Trans>Partager</Trans>}
+					{!isShareDefined &&
+						(isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
 				</Button>
 			</div>
 		)
@@ -58,14 +62,19 @@ export default function InviteBlock({ group }: { group: Group }) {
 			<h2 className="mt-0">
 				<Trans>Vous êtes le premier 🥳</Trans>
 			</h2>
-			<p>
+			<p className="mb-4">
 				<Trans>
 					Partagez cette page à vos proches pour leur permettre de rejoindre
 					votre groupe.
 				</Trans>
 			</p>
-			<Button onClick={isShareDefined ? handleShare : handleCopy}>
-				{isCopied ? <Trans>Lien copié !</Trans> : <Trans>Partager</Trans>}
+			<Button
+				className="w-[8rem] flex justify-center"
+				onClick={isShareDefined ? handleShare : handleCopy}
+			>
+				{isShareDefined && <Trans>Partager</Trans>}
+				{!isShareDefined &&
+					(isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
 			</Button>
 		</div>
 	)
