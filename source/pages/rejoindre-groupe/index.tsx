@@ -6,6 +6,7 @@ import PrenomInput from '@/components/groupe/PrenomInput'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
+import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
@@ -65,6 +66,8 @@ export default function RejoindreGroupe() {
 		}
 	}, [groupId, group])
 
+	const groupBaseURL = `${window.location.origin}/groupes`
+
 	const handleSubmit = async (event: MouseEvent | FormEvent) => {
 		// Avoid reloading page
 		if (event) {
@@ -107,6 +110,22 @@ export default function RejoindreGroupe() {
 
 			// Vérifier si l'utilisateur n'est pas déjà dans le groupe
 			dispatch(addGroupToUser(group))
+
+			// Send email to owner
+			if (email) {
+				await fetch(`${NETLIFY_FUNCTIONS_URL}/group-email-service`, {
+					method: 'POST',
+					body: JSON.stringify({
+						email,
+						name: prenom,
+						groupName: group.name,
+						isCreation: true,
+						groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
+						shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
+						deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
+					}),
+				})
+			}
 
 			// Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
 			if (currentSimulation) {
