@@ -8,31 +8,7 @@ type Props = {
 	index: number
 }
 
-// Create an array of 10 insects emojis
-const EMOJIS = [
-	'🐝',
-	'🐞',
-	'🦋',
-	'🐛',
-	'🐜',
-	'🐌',
-	'🐢',
-	'🐍',
-	'🦎',
-	'🦖',
-	'🦕',
-	'🐙',
-	'🦑',
-	'🦀',
-	'🐡',
-	'🐠',
-	'🐟',
-	'🐬',
-	'🐳',
-	'🐋',
-]
-
-export default function GroupItem({ group, index }: Props) {
+export default function GroupItem({ group }: Props) {
 	return (
 		<Link
 			to={`/groupes/resultats?groupId=${group?._id}`}
@@ -41,7 +17,7 @@ export default function GroupItem({ group, index }: Props) {
 			<div className="flex items-center justify-between py-4">
 				<div className="flex items-center w-full">
 					<div className="flex-shrink-0 text-2xl">
-						<span>{EMOJIS[index]}</span>
+						<span>{group?.emoji}</span>
 					</div>
 					<div className="ml-4">
 						<div className="text-md font-bold text-gray-900">
