@@ -123,7 +123,7 @@ module.exports.commonLoaders = (mode = 'production') => {
 			type: 'asset/source',
 		},
 		{
-			test: /\.(jpe?g|png|gif)$/i,
+			test: /\.(jpe?g|svg|png|gif)$/i,
 			type: 'asset/resource',
 		},
 		{

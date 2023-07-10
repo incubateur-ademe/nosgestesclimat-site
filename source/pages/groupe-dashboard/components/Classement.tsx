@@ -138,7 +138,7 @@ export default function Classement({ group }: { group: Group }) {
 							const rank = `${index + 1 + topThreeMembers?.length}.`
 
 							const quantity = member?.results?.total ? (
-								<p className="leading-[160%]">
+								<span className="leading-[160%]">
 									<strong>
 										{formatValue(parseFloat(member?.results?.total), {
 											language,
@@ -147,7 +147,7 @@ export default function Classement({ group }: { group: Group }) {
 									<span className="font-light text-sm">
 										<Trans>tonnes</Trans>
 									</span>
-								</p>
+								</span>
 							) : (
 								'...'
 							)
