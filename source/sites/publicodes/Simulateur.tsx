@@ -106,7 +106,9 @@ const Simulateur = () => {
 		: []
 
 	useEffect(() => {
-		if (!equivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])) {
+		if (
+			!isEquivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])
+		) {
 			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
 	}, [dispatch, config, selectedRuleURL, configSet])
@@ -145,7 +147,7 @@ const Simulateur = () => {
 			})
 			return navigate(`/tutoriel?${searchParams}`, { replace: true })
 		}
-		return navigate(`/tutoriel`, { replace: true })
+		return navigate('/tutoriel', { replace: true })
 	}
 
 	return (

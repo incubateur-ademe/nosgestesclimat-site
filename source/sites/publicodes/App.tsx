@@ -149,13 +149,6 @@ const GroupeDashboardLazy = React.lazy(
 		)
 )
 
-const GroupeInviterLazy = React.lazy(
-	() =>
-		import(
-			/* webpackChunkName: 'GroupeDashboardLazy' */ '@/pages/creer-groupe/InvitezVosProches.tsx'
-		)
-)
-
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 declare global {
@@ -641,15 +634,6 @@ const Router = () => {
 							<GroupeDashboardLazy />
 						</Suspense>
 					</WithEngine>
-				}
-			/>
-
-			<Route
-				path="/groupe/:groupId/inviter"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<GroupeInviterLazy />
-					</Suspense>
 				}
 			/>
 

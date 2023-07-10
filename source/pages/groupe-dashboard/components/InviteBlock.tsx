@@ -19,7 +19,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 	// eslint-disable-next-line @typescript-eslint/unbound-method
 	const isShareDefined = typeof navigator !== 'undefined' && navigator.share
 
-	const sharedURL = `${window.location.origin}/groupes/invitation?groupId${group?._id}`
+	const sharedURL = `${window.location.origin}/groupes/invitation?groupId=${group?._id}`
 
 	const handleShare = async () => {
 		// TODO: replace with new tracking event
@@ -48,6 +48,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 				<Button
 					className="whitespace-nowrap w-[8rem] flex justify-center"
 					onClick={isShareDefined ? handleShare : handleCopy}
+					data-cypress-id="invite-button"
 				>
 					{isShareDefined && <Trans>Partager</Trans>}
 					{!isShareDefined &&
@@ -71,6 +72,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 			<Button
 				className="w-[8rem] flex justify-center"
 				onClick={isShareDefined ? handleShare : handleCopy}
+				data-cypress-id="invite-button"
 			>
 				{isShareDefined && <Trans>Partager</Trans>}
 				{!isShareDefined &&

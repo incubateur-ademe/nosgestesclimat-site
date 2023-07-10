@@ -69,7 +69,10 @@ export default function MesGroupes() {
 						Invitez vos proches pour comparer vos résultats. Cela prend{' '}
 						<strong className="text-secondary">1 minute</strong> !
 					</p>
-					<ButtonLink href={'/groupes/creer'}>
+					<ButtonLink
+						href={'/groupes/creer'}
+						data-cypress-id="button-create-first-group"
+					>
 						<Trans>Commencer</Trans>
 					</ButtonLink>
 				</Container>
@@ -85,7 +88,11 @@ export default function MesGroupes() {
 					<p className="text-sm mb-6">
 						Vous pouvez créer un nouveau groupe avec d’autres amis.
 					</p>
-					<ButtonLink href={'/groupes/creer'} color="secondary">
+					<ButtonLink
+						href={'/groupes/creer'}
+						color="secondary"
+						data-cypress-id="button-create-other-group"
+					>
 						<Trans>Créer un autre groupe</Trans>
 					</ButtonLink>
 				</>

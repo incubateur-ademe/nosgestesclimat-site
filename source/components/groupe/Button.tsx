@@ -32,6 +32,7 @@ export default function Button({
 	type,
 	disabled,
 	id,
+	...props
 }: Props) {
 	return (
 		<button
@@ -40,6 +41,7 @@ export default function Button({
 			disabled={disabled}
 			id={id}
 			className={`inline-flex items-center ${sizeClassNames[size]} border border-transparent text-sm font-medium no-underline rounded-md shadow-sm ${colorClassNames[color]} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 transition-colors ${className}`}
+			{...props}
 		>
 			{children}
 		</button>

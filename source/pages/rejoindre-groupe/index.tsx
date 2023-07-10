@@ -82,6 +82,7 @@ export default function RejoindreGroupe() {
 			return
 		}
 		if (
+			email &&
 			!email.match(
 				/^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
 			)
@@ -156,6 +157,7 @@ export default function RejoindreGroupe() {
 					setPrenom={setPrenom}
 					errorPrenom={errorPrenom}
 					setErrorPrenom={setErrorPrenom}
+					data-cypress-id="member-name"
 				/>
 				<EmailInput
 					email={email}
@@ -168,7 +170,12 @@ export default function RejoindreGroupe() {
 						Vous devrez compléter votre test après avoir rejoint le groupe.
 					</p>
 				)}
-				<Button type="submit" onClick={handleSubmit} aria-disabled={!prenom}>
+				<Button
+					type="submit"
+					onClick={handleSubmit}
+					aria-disabled={!prenom}
+					data-cypress-id="button-join-group"
+				>
 					<Trans>Rejoindre</Trans>
 				</Button>
 			</form>
