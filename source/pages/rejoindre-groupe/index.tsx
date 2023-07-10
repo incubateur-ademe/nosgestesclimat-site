@@ -5,6 +5,7 @@ import EmailInput from '@/components/groupe/EmailInput'
 import PrenomInput from '@/components/groupe/PrenomInput'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
+import Meta from '@/components/utils/Meta'
 import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
@@ -131,7 +132,13 @@ export default function RejoindreGroupe() {
 	}
 
 	return (
-		<div className="p-4 md:p-8">
+		<main className="p-4 md:p-8">
+			<Meta
+				title={t('Rejoindre un groupe - Nos Gestes Climat')}
+				description={t(
+					"Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
+				)}
+			/>
 			<Title
 				title={
 					<Trans>
@@ -165,6 +172,6 @@ export default function RejoindreGroupe() {
 					<Trans>Rejoindre</Trans>
 				</Button>
 			</form>
-		</div>
+		</main>
 	)
 }

@@ -6,6 +6,7 @@ import GoBackLink from '@/components/groupe/GoBackLink'
 import PrenomInput from '@/components/groupe/PrenomInput'
 import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
+import Meta from '@/components/utils/Meta'
 import { GROUP_NAMES } from '@/constants/groupNames'
 import { GROUP_URL } from '@/constants/urls'
 import { useMatomo } from '@/contexts/MatomoContext'
@@ -101,8 +102,14 @@ export default function CreerGroupe() {
 		}
 	}
 	return (
-		<div className="p-4 md:p-8">
+		<main className="p-4 md:p-8">
 			<>
+				<Meta
+					title={t('Créer un groupe et calculer notre empreinte carbone')}
+					description={t(
+						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
+					)}
+				/>
 				<GoBackLink className="mb-4 font-bold" />
 				<Title
 					title={t("Créer un groupe d'amis")}
@@ -128,6 +135,6 @@ export default function CreerGroupe() {
 					</Button>
 				</form>
 			</>
-		</div>
+		</main>
 	)
 }
