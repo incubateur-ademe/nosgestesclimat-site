@@ -1,4 +1,3 @@
-import ChevronRight from '@/components/icons/ChevronRight'
 import { ResultsObject } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
@@ -82,11 +81,6 @@ export default function VotreEmpreinte({
 											})}
 										</strong>{' '}
 										t
-									</div>
-									<div className="flex-shrink-0">
-										<span className="text-sm text-gray-500">
-											<ChevronRight />
-										</span>
 									</div>
 								</div>
 							</li>,
