@@ -1,4 +1,9 @@
-const { walkthroughTest } = require('../test-completion/utils')
+const {
+	walkthroughTest,
+	clickSkipTutoButton,
+	clickUnderstoodButton,
+	clickCategoryStartButton,
+} = require('../test-completion/utils')
 
 describe('The Group creation page /groupes/creer', () => {
 	let groupURL = ''
@@ -36,6 +41,7 @@ describe('The Group creation page /groupes/creer', () => {
 			.invoke('readText')
 			.then((text) => {
 				text.then((URL) => {
+					console.log(URL)
 					groupURL = URL
 				})
 			})
@@ -48,8 +54,18 @@ describe('The Group creation page /groupes/creer', () => {
 		cy.get('[data-cypress-id="member-name"]').type('Jean-Claude')
 		cy.get('[data-cypress-id="button-join-group"]').click()
 
+		clickSkipTutoButton()
+		clickUnderstoodButton()
+		clickCategoryStartButton()
+
 		walkthroughTest()
 
+		cy.get('[data-cypress-id="see-results-link"]').click()
+
 		cy.get('[data-cypress-id="group-name"]')
+
+		// Check that the main sections are displayed
+		cy.get('[data-cypress-id="points-fort-faibles-title"]')
+		cy.get('[data-cypress-id="votre-empreinte-title"]')
 	})
 })

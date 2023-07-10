@@ -19,7 +19,10 @@ const ListItem = ({ icon, title, value, variation }) => (
 export default function PointsFortsFaibles({ pointsForts, pointsFaibles }) {
 	return (
 		<div>
-			<h2 className="text-[17px] mt-0">
+			<h2
+				className="text-[17px] mt-0"
+				data-cypress-id="points-fort-faibles-title"
+			>
 				<Trans>Vos points forts</Trans>
 			</h2>
 			<ul className="pl-0">
