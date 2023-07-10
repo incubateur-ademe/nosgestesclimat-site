@@ -154,7 +154,7 @@ export default function GroupeDashboard() {
 					/>
 				)}
 				<div className="mt-4">
-					<h2 className="font-bold text-[17px] m-0">
+					<h2 className="font-bold text-lg m-0">
 						<Trans>Le classement</Trans>
 					</h2>
 				</div>

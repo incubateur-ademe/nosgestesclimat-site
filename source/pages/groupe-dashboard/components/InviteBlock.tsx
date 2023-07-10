@@ -60,7 +60,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 
 	return (
 		<div className="bg-grey-100 rounded-md p-4 mt-4">
-			<h2 className="mt-0 text-[17px]">
+			<h2 className="mt-0 text-lg">
 				<Trans>Vous êtes le premier 🥳</Trans>
 			</h2>
 			<p className="mb-4">

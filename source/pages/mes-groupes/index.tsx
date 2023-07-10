@@ -62,7 +62,7 @@ export default function MesGroupes() {
 
 			{groups && groups.length === 0 && (
 				<Container className="mt-7 bg-gray-100 p-4">
-					<h2 className="text-md font-medium mb-2 mt-0">
+					<h2 className="text-lg font-medium mb-2 mt-0">
 						<Trans>Créez votre premier groupe</Trans>
 					</h2>
 					<p className="text-sm mb-6">

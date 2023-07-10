@@ -16,18 +16,6 @@ export const groupsReducer = (
 	}
 }
 
-export const createdGroupReducer = (
-	state = null,
-	{ type, group }: { type: string; group: Group }
-) => {
-	switch (type) {
-		case 'SET_CREATED_GROUP':
-			return group
-		default:
-			return state
-	}
-}
-
 export const groupToRedirectToReducer = (
 	state = null,
 	{ type, group }: { type: string; group: Group }

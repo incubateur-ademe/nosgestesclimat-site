@@ -1,4 +1,4 @@
-import { addGroupToUser, setCreatedGroup } from '@/actions/actions'
+import { addGroupToUser, setGroupToRedirectTo } from '@/actions/actions'
 import { matomoEventCreationGroupe } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
 import EmailInput from '@/components/groupe/EmailInput'
@@ -93,7 +93,10 @@ export default function CreerGroupe() {
 			}
 
 			dispatch(addGroupToUser(group))
-			dispatch(setCreatedGroup(group))
+
+			if (!currentSimulation) {
+				dispatch(setGroupToRedirectTo(group))
+			}
 
 			trackEvent(matomoEventCreationGroupe)
 

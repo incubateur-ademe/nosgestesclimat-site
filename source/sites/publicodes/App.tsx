@@ -230,7 +230,6 @@ export default function Root() {
 				hasSubscribedToNewsletter:
 					persistedUser.hasSubscribedToNewsletter ?? false,
 				groups: persistedUser.groups,
-				createdGroup: persistUser.createdGroup,
 				userId: persistedUser.userId,
 				groupToRedirectTo: persistedUser.groupToRedirectTo,
 			}}
