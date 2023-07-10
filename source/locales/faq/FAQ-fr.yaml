@@ -258,15 +258,6 @@
 
     **Une voiture reste en moyenne 95 % du temps à l’arrêt : vous faites donc bien de la partager !**
 
-- question: Pourquoi est-ce que je ne peux pas renseigner le type de carburant que j’utilise ?
-  id: autres-carburants
-  catégorie: transport
-  réponse: |
-
-    Nos Gestes Climat fait le choix de ne pas poser de question sur le type de carburant, tout simplement car **il n’y a pas beaucoup de différence entre eux.** Qu’il s’agisse d’essence, de gazole ou de GPL, les impacts CO₂ₑ sont très similaires. Nous nous concentrons donc sur les enjeux les plus importants (nombre de km parcourus, nombre d’occupants, utilisation des transports en commun, etc.).
-
-    A ce sujet, n’hésitez pas à consulter ce [simulateur](https://impactco2.fr/transport) pour comparer l’impact sur le climat de différents modes de transport pour un même trajet.
-
 - question: Mon logement est alimenté en électricité verte, pourquoi ne puis-je pas le prendre en compte ?
   id: électricité-dite-verte
   catégorie: logement
