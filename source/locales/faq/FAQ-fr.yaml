@@ -258,6 +258,24 @@
 
     **Une voiture reste en moyenne 95 % du temps à l’arrêt : vous faites donc bien de la partager !**
 
+- question: Voiture thermique, hybride, électrique, quelles différences ?
+  id: différences-motorisations
+  catégorie: transport
+  réponse: |
+
+    La différence d'empreinte entre les différentes motorisations se situe évidemment dans l'**usage du véhicule** (carburant ou électricité) via sa consommation
+    mais surtout dans la **fabrication** associée pour chaque gabarit de véhicule.
+
+    Comme **nous ne considérons pas directement une "empreinte au kilomètre"** comprenant la fabrication et l'usage du véhicule (afin de garantir plus de personnalisation), 
+    et au vu du **caractère très générique des données issues de la base carbone sur l'empreinte du transport en voiture**, nous avons préféré utiliser l'[étude FNH-Carbone4](https://www.carbone4.com/empreinte-environnementale-voitures-france-etude-de-place-carbone-4) : "Quelle contribution du véhicule électrique à la transition écologique en France ?".
+
+    Cette étude nous permet d'obtenir **l'empreinte de la fabrication des véhicules thermiques, hybrides et électriques pour deux gabarits**, la citadine et la berline. 
+    Pour le reste des gabarits, nous attribuons la même empreinte de construction pour les citadines et véhicules moyens d'un côté, et pour les berlines, véhicules utilitaires et SUV de l'autre.
+
+    On pourrait être encore plus précis en recalculant l'empreinte au prorata du poids de véhicule.
+
+    > A noter que nous avons été surpris de voir que l'empreinte de la berline hybride est plus faible que celle de la citadine mais l'étude ne semble pas expliquer ce mystère.
+
 - question: Mon logement est alimenté en électricité verte, pourquoi ne puis-je pas le prendre en compte ?
   id: électricité-dite-verte
   catégorie: logement
