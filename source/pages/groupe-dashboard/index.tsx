@@ -13,6 +13,7 @@ import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
 import InlineTextInput from '@/components/groupe/InlineTextInput'
 import Separator from '@/components/groupe/Separator'
+import Meta from '@/components/utils/Meta'
 import { useMatomo } from '@/contexts/MatomoContext'
 import Classement from './components/Classement'
 import Footer from './components/Footer'
@@ -83,6 +84,12 @@ export default function GroupeDashboard() {
 		<>
 			<main className="p-4">
 				<GoBackLink className="mb-4 font-bold" />
+				<Meta
+					title={t('Mon groupe, nos bilans carbone personnels')}
+					description={t(
+						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
+					)}
+				/>
 				{isEditingTitle ? (
 					<InlineTextInput
 						defaultValue={group?.name}

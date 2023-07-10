@@ -11,6 +11,7 @@ import ButtonLink from '../../components/groupe/ButtonLink'
 
 import Container from '@/components/groupe/Container'
 import Separator from '@/components/groupe/Separator'
+import Meta from '@/components/utils/Meta'
 import GroupList from './components/GroupList'
 
 export default function MesGroupes() {
@@ -44,7 +45,14 @@ export default function MesGroupes() {
 	}, [groups, userId])
 
 	return (
-		<div className="p-4 md:p-8">
+		<main className="p-4 md:p-8">
+			<Meta
+				title={t("Mes groupes, simulateur d'empreinte carbone")}
+				description={t(
+					"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
+				)}
+			/>
+
 			<Title
 				title={t("Groupe d'amis")}
 				subtitle={t(
@@ -82,6 +90,6 @@ export default function MesGroupes() {
 					</ButtonLink>
 				</>
 			)}
-		</div>
+		</main>
 	)
 }
