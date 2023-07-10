@@ -8,7 +8,6 @@ import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
-import ButtonLink from '../../components/groupe/ButtonLink'
 
 import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
@@ -144,35 +143,27 @@ export default function GroupeDashboard() {
 						}
 					/>
 				)}
-				<div className="mt-4 flex justify-between items-center">
+				<div className="mt-4">
 					<h2 className="font-bold text-[17px] m-0">
 						<Trans>Le classement</Trans>
 					</h2>
-
-					<ButtonLink
-						color="secondary"
-						size="sm"
-						className="!text-[1rem]"
-						href={'inviter'}
-					>
-						+ Inviter
-					</ButtonLink>
 				</div>
 				<Classement group={group} />
 
 				<InviteBlock group={group} />
 
-				{group?.members?.length > 1 && (
+				{group?.members?.length > 1 ? (
 					<>
 						<Separator className="mb-8" />
 						<PointsFortsFaibles
 							pointsFaibles={results?.pointsFaibles}
 							pointsForts={results?.pointsForts}
 						/>
+						<Separator className="mt-10 mb-6" />
 					</>
+				) : (
+					<Separator className="mt-8 mb-6" />
 				)}
-
-				<Separator className="mt-10 mb-6" />
 
 				<VotreEmpreinte
 					categoriesFootprints={results?.currentMemberAllFootprints}
