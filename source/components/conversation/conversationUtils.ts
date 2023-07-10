@@ -4,10 +4,6 @@ import {
 	encodeRuleNameToSearchParam,
 } from '@/components/publicodesUtils'
 import { sortBy } from '@/utils'
-import { Dispatch } from 'react'
-import { NavigateFunction } from 'react-router'
-import { AnyAction } from 'redux'
-import { goToQuestion } from '../../actions/actions'
 import { getFocusedCategoryURLSearchParams } from '../../sites/publicodes/utils'
 
 export function sortQuestionsByCategory(
@@ -60,32 +56,30 @@ export function getPreviousQuestion(
 	return previousAnswers[currentQuestionIndex - 1]
 }
 
-export function goToQuestionOrNavigate({
-	question,
-	simulateurRootURL,
+export function updateCurrentURL({
+	paramName,
+	paramValue,
+	simulateurRootRuleURL,
 	focusedCategory,
-	toUse,
 }: {
-	question: DottedName | undefined
-	simulateurRootURL: string
+	paramName: string
+	paramValue?: string | undefined
+	simulateurRootRuleURL: string
 	focusedCategory: string | null
-	toUse: { dispatch: Dispatch<AnyAction> } | { navigate: NavigateFunction }
 }): void {
-	if (toUse['navigate'] != undefined) {
-		let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
-		if (question !== undefined) {
-			searchParams.append(
-				'question',
-				encodeRuleNameToSearchParam(question) ?? ''
-			)
-		}
-
-		toUse['navigate'](`/simulateur/${simulateurRootURL}?${searchParams}`, {
-			replace: true,
-		})
-	} else {
-		toUse['dispatch'](goToQuestion(question))
+	let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
+	if (paramValue != undefined) {
+		searchParams.append(
+			paramName,
+			encodeRuleNameToSearchParam(paramValue) ?? ''
+		)
 	}
+
+	window.history.replaceState(
+		{},
+		'',
+		`/simulateur/${simulateurRootRuleURL}?${searchParams}`
+	)
 }
 
 export function focusByCategory(

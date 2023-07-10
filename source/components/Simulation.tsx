@@ -13,6 +13,7 @@ type SimulationProps = {
 	animation?: keyof typeof animate
 	conversationProps: Partial<ConversationProps>
 }
+
 export default function Simulation({
 	explanations,
 	results,

@@ -58,8 +58,7 @@ export const useTestCompleted = () => {
 	const nextQuestions = useNextQuestions()
 	const objectives = useSelector(objectifsSelector)
 
-	const testCompleted = objectives.length > 0 && nextQuestions.length === 0
-	return testCompleted
+	return objectives.length > 0 && nextQuestions.length === 0
 }
 
 // Designed to store simulation data in a DB, for the purpose of the survey

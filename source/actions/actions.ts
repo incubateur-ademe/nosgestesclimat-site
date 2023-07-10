@@ -237,6 +237,7 @@ export const validateWithDefaultValue =
 	(dottedName: DottedName): ThunkResult<void> =>
 	(dispatch) => {
 		dispatch(updateSituation(dottedName, undefined))
+		console.log('validateWithDefaultValue', dottedName)
 		dispatch({
 			type: 'STEP_ACTION',
 			name: 'fold',

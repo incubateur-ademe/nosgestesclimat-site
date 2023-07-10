@@ -1,4 +1,5 @@
 import {
+	goToQuestion,
 	setTrackingVariable,
 	skipTutorial,
 	updateSituation,
@@ -12,7 +13,19 @@ import {
 	matomoEvent90PercentProgress,
 	matomoEventFirstAnswer,
 } from '@/analytics/matomo-events'
+import Aide from '@/components/conversation/Aide'
+import CategoryRespiration from '@/components/conversation/CategoryRespiration'
+import '@/components/conversation/conversation.css'
+import {
+	focusByCategory,
+	getPreviousQuestion,
+	sortQuestionsByCategory,
+	updateCurrentURL,
+} from '@/components/conversation/conversationUtils'
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import QuestionFinderWrapper from '@/components/conversation/QuestionFinderWrapper'
 import RuleInput, { RuleInputProps } from '@/components/conversation/RuleInput'
+import SimulationEnding from '@/components/conversation/SimulationEnding'
 import Notifications, {
 	getCurrentNotification,
 } from '@/components/Notifications'
@@ -50,26 +63,13 @@ import { utils } from 'publicodes'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import Aide from './Aide'
-import CategoryRespiration from './CategoryRespiration'
-import './conversation.css'
-import {
-	focusByCategory,
-	getPreviousQuestion,
-	goToQuestionOrNavigate,
-	sortQuestionsByCategory,
-} from './conversationUtils'
-import { ExplicableRule } from './Explicable'
-import QuestionFinderWrapper from './QuestionFinderWrapper'
-import SimulationEnding from './SimulationEnding'
+import { useLocation } from 'react-router-dom'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
 	customEnd?: React.ReactNode
 	orderByCategories?: Category[]
 	questionHeadingLevel?: number
-	isFromActionCard?: boolean
 }
 
 export default function Conversation({
@@ -77,7 +77,6 @@ export default function Conversation({
 	customEnd,
 	orderByCategories,
 	questionHeadingLevel,
-	isFromActionCard,
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
@@ -135,7 +134,6 @@ export default function Conversation({
 	const isPersona = useSelector(isPersonaSelector)
 
 	const enquête = useSelector(enquêteSelector)
-	const navigate = useNavigate()
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation
@@ -149,15 +147,16 @@ export default function Conversation({
 			!previousSimulation &&
 			currentQuestion !== unfoldedStep
 		) {
-			goToQuestionOrNavigate({
-				question: currentQuestion,
-				simulateurRootURL: simulateurRootRuleURL,
-				focusedCategory,
-				// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
-				// to trigger the [navigate] (or we must add url for action questions
-				// which add not needed complexity for now).
-				toUse: isFromActionCard ? { dispatch } : { navigate },
-			})
+			dispatch(goToQuestion(currentQuestion))
+			// updateCurrentURL({
+			// 	question: currentQuestion,
+			// 	simulateurRootURL: simulateurRootRuleURL,
+			// 	focusedCategory,
+			// 	// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
+			// 	// to trigger the [navigate] (or we must add url for action questions
+			// 	// which add not needed complexity for now).
+			// 	toUse: /* isFromActionCard ?  */ { dispatch } /*  : { navigate }, */,
+			// })
 		}
 	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
 
@@ -174,17 +173,20 @@ export default function Conversation({
 	}, [currentQuestion])
 
 	const goToPrevious = () => {
-		goToQuestionOrNavigate({
-			// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
-			// could be a reason of the 'previous button bug'?
-			question: previousQuestion,
-			simulateurRootURL: simulateurRootRuleURL,
-			focusedCategory,
-			// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
-			// to trigger the [navigate] (or we must add url for action questions
-			// which add not needed complexity for now).
-			toUse: isFromActionCard ? { dispatch } : { navigate },
-		})
+		if (previousQuestion !== undefined) {
+			dispatch(goToQuestion(previousQuestion))
+		}
+		// updateCurrentURL({
+		// 	// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
+		// 	// could be a reason of the 'previous button bug'?
+		// 	question: previousQuestion,
+		// 	simulateurRootURL: simulateurRootRuleURL,
+		// 	focusedCategory,
+		// 	// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
+		// 	// to trigger the [navigate] (or we must add url for action questions
+		// 	// which add not needed complexity for now).
+		// 	toUse: /* isFromActionCard ?  */ { dispatch } /*  : { navigate }, */,
+		// })
 	}
 
 	// Some questions are grouped in an artifical questions, called mosaic questions,
@@ -229,16 +231,13 @@ export default function Conversation({
 	useEffect(() => {
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
 		if (isMosaicSelection) {
-			questionsToSubmit?.map((question) =>
-				dispatch(
-					updateSituation(
-						question,
-						question !== null ? situation[question] ?? 'non' : 'non'
-					)
-				)
-			)
+			questionsToSubmit?.map((question) => {
+				if (question !== null) {
+					dispatch(updateSituation(question, situation[question] ?? 'non'))
+				}
+			})
 		}
-	}, [isAnsweredMosaic])
+	}, [isAnsweredMosaic, questionsToSubmit])
 
 	useEffect(() => {
 		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disappear. However, if the user deselect the button, without this hook,
@@ -315,7 +314,6 @@ export default function Conversation({
 		// TODO: Skiping a question shouldn't be equivalent to answering the
 		// default value (for instance the question shouldn't appear in the
 		// answered questions).
-		//
 		questionsToSubmit?.map((question) =>
 			dispatch(validateWithDefaultValue(question))
 		)
@@ -399,6 +397,12 @@ export default function Conversation({
 	}, [noQuestionsLeft, bilan, trackEvent, endEventFired, isPersona])
 
 	if (noQuestionsLeft) {
+		updateCurrentURL({
+			paramName: 'respiration',
+			paramValue: 'congrats',
+			simulateurRootRuleURL,
+			focusedCategory,
+		})
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
 	}
 
@@ -418,6 +422,22 @@ export default function Conversation({
 		orderByCategories &&
 		isCategoryFirstQuestion &&
 		!tutorials['testCategory-' + questionCategory.dottedName]
+
+	if (displayRespiration) {
+		updateCurrentURL({
+			paramName: 'respiration',
+			paramValue: questionCategory.dottedName,
+			simulateurRootRuleURL,
+			focusedCategory,
+		})
+	} else if (currentQuestion) {
+		updateCurrentURL({
+			paramName: 'question',
+			paramValue: currentQuestion,
+			simulateurRootRuleURL,
+			focusedCategory,
+		})
+	}
 
 	const displayCompletedCategory =
 		focusedCategory && !nextQuestions.find((q) => q.includes(focusedCategory))

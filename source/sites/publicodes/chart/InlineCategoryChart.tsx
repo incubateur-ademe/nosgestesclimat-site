@@ -35,13 +35,15 @@ function mapAbreviation(rules: any, engine: Engine) {
 	})
 }
 
-export default ({ givenEngine }) => {
+export default ({ givenEngine }: { givenEngine?: Engine }) => {
 	const { t } = useTranslation()
 	const situation = useSelector(situationSelector) // needed for this component to refresh on situation change :
 	const rules = useSelector((state: AppState) => state.rules)
 	const engine = givenEngine ?? useEngine()
 	const [categories, setCategories] = useState(mapAbreviation(rules, engine))
 	const tutorials = useSelector((state: AppState) => state.tutorials)
+
+	const [traditionalChartShown, showTraditionalChart] = useState(false)
 
 	useEffect(() => {
 		setCategories(mapAbreviation(rules, engine))
@@ -52,7 +54,9 @@ export default ({ givenEngine }) => {
 	const currentQuestion = useSelector(currentQuestionSelector)
 	const focusedCategory = useQuery().get('catégorie')
 
-	if (!categories) return null
+	if (!categories) {
+		return null
+	}
 
 	const inRespiration =
 		displayedCategory &&
@@ -61,7 +65,6 @@ export default ({ givenEngine }) => {
 	const categoryColor = displayedCategory && displayedCategory.color
 
 	const value = currentQuestion && engine.evaluate(currentQuestion).nodeValue
-	const [traditionalChartShown, showTraditionalChart] = useState(false)
 
 	const showSecondLevelChart =
 		!inRespiration &&
@@ -71,7 +74,7 @@ export default ({ givenEngine }) => {
 	const specializedVisualisationShown =
 		activatedSpecializedVisualisations.includes(currentQuestion)
 
-	if (!inRespiration && specializedVisualisationShown)
+	if (!inRespiration && specializedVisualisationShown) {
 		return (
 			<div
 				css={`
@@ -90,6 +93,7 @@ export default ({ givenEngine }) => {
 				</Suspense>
 			</div>
 		)
+	}
 
 	return (
 		<div

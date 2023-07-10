@@ -80,14 +80,22 @@ const Simulateur = () => {
 	const engine = useEngine()
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 
-	const { selectedRuleDottedName, selectedRuleURL } = isTestCompleted
-		? getValidSelectedRuleInfos(
-				decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
-				simulatorRootNameURL,
-				parsedRules,
-				navigate
-		  )
-		: { selectedRuleDottedName: undefined, selectedRuleURL: undefined }
+	const noCongratsURL = searchParams.get('respiration') !== 'congrats'
+
+	const { selectedRuleDottedName, selectedRuleURL } =
+		// NOTE(@EmileRolley): we need to differenciate the question search params
+		// set in Conversation when the last question is answered from the one
+		// specified by the user in the URL to redirect only if the test is
+		// completed.
+		/* isTestCompleted && noCongratsURL */
+		false
+			? getValidSelectedRuleInfos(
+					decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
+					simulatorRootNameURL,
+					parsedRules,
+					navigate
+			  )
+			: { selectedRuleDottedName: undefined, selectedRuleURL: undefined }
 
 	const simulatorRule = rules[simulatorRootRuleName]
 	const evaluation = engine.evaluate(simulatorRootRuleName)

@@ -35,7 +35,6 @@ export default ({ dottedName }) => {
 			conversationProps={{
 				customEnd: <div />,
 				questionHeadingLevel: 3,
-				isFromActionCard: true,
 			}}
 		/>
 	) : null
