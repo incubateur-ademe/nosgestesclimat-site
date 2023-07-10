@@ -47,7 +47,7 @@ export default ({ dismiss, questionCategory }) => {
 
 	const { trackEvent } = useContext(MatomoContext)
 
-	useKeypress('Enter', false, dismiss, 'keyup', [])
+	useKeypress('Escape', false, dismiss, 'keyup', [])
 
 	return (
 		<motion.section
