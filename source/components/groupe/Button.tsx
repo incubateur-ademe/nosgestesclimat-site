@@ -6,6 +6,8 @@ type Props = {
 	size?: 'sm' | 'md' | 'lg'
 	color?: 'primary' | 'secondary'
 	type?: 'button' | 'submit' | 'reset'
+	disabled?: boolean
+	id?: string
 } & React.PropsWithChildren
 
 export const colorClassNames = {
@@ -28,12 +30,16 @@ export default function Button({
 	size = 'md',
 	color = 'primary',
 	type,
+	disabled,
+	id,
 }: Props) {
 	return (
 		<button
 			onClick={onClick}
 			type={type}
-			className={`inline-flex items-center ${sizeClassNames[size]} border border-transparent text-sm font-medium no-underline rounded-md shadow-sm ${colorClassNames[color]} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-colors ${className}`}
+			disabled={disabled}
+			id={id}
+			className={`inline-flex items-center ${sizeClassNames[size]} border border-transparent text-sm font-medium no-underline rounded-md shadow-sm ${colorClassNames[color]} focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary disabled:opacity-50 transition-colors ${className}`}
 		>
 			{children}
 		</button>
