@@ -11,7 +11,6 @@
 		"node": ">=18"
 	},
 	"scripts": {
-		"prepare": "node scripts/prepare.js",
 		"model:compile": "yarn --cwd ./nosgestesclimat/ compile",
 		"model:compile:fr": "yarn --cwd ./nosgestesclimat/ compile:fr",
 		"model:rules-watch": "yarn --cwd ./nosgestesclimat/ compile:rules-watch",
