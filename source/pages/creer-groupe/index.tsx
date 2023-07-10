@@ -8,7 +8,7 @@ import Title from '@/components/groupe/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
 import { GROUP_NAMES } from '@/constants/groupNames'
-import { GROUP_URL } from '@/constants/urls'
+import { GROUP_URL, NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { AppState } from '@/reducers/rootReducer'
@@ -41,6 +41,8 @@ export default function CreerGroupe() {
 	const userId = useSelector((state: AppState) => state.userId)
 
 	const groups = useSelector((state: AppState) => state.groups) || []
+
+	const groupBaseURL = `${window.location.origin}/groupes`
 
 	const handleSubmit = async (event) => {
 		// Avoid reloading page
@@ -94,11 +96,28 @@ export default function CreerGroupe() {
 
 			dispatch(addGroupToUser(group))
 
+			// The user will be redirected to the test in order to take it
 			if (!currentSimulation) {
 				dispatch(setGroupToRedirectTo(group))
 			}
 
 			trackEvent(matomoEventCreationGroupe)
+
+			// Send email to owner
+			if (email) {
+				await fetch(`${NETLIFY_FUNCTIONS_URL}/group-email-service`, {
+					method: 'POST',
+					body: JSON.stringify({
+						email,
+						name: prenom,
+						groupName: group.name,
+						isCreation: true,
+						groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
+						shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
+						deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
+					}),
+				})
+			}
 
 			navigate(`/groupes/resultats?groupId=${group._id}`)
 		} catch (e) {
