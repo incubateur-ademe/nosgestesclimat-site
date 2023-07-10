@@ -1,6 +1,6 @@
 import { Member } from '@/types/groups'
 
-export const getTopThreeAndRestMembers = (members: Member[]) => {
+export const getTopThreeAndRestMembers = (members: Member[] = []) => {
 	const sortedMembers = members.sort((memberA, memberB) => {
 		if (!memberA?.results?.total || !memberB?.results?.total) {
 			return -1
