@@ -21,7 +21,7 @@ const ClassementMember = ({
 }) => {
 	return (
 		<li className="flex justify-between items-center">
-			<div className="flex items-center">
+			<p className="mb-0 flex items-center">
 				<span className={`mr-2 ${isTopThree ? 'text-2xl' : 'text-lg ml-1'}`}>
 					{rank}
 				</span>
@@ -31,7 +31,7 @@ const ClassementMember = ({
 						Vous
 					</Badge>
 				)}
-			</div>
+			</p>
 			<div>{quantity}</div>
 		</li>
 	)
@@ -101,7 +101,7 @@ export default function Classement({ group }: { group: Group }) {
 					}
 
 					const quantity = member?.results?.total ? (
-						<p className="leading-[160%] m-none">
+						<span className="leading-[160%] m-none">
 							<strong>
 								{formatValue(parseFloat(member?.results?.total), {
 									language,
@@ -110,7 +110,7 @@ export default function Classement({ group }: { group: Group }) {
 							<span className="font-light text-sm">
 								<Trans>tonnes</Trans>
 							</span>
-						</p>
+						</span>
 					) : (
 						'...'
 					)
