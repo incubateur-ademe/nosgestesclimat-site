@@ -1,0 +1,29 @@
+name: Check webpack compilation
+
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    types: 
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  compile:
+    runs-on: ubuntu-latest
+    name: Check compilation
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: recursive
+
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '18'
+          cache: 'yarn'
+
+      - run: yarn install --immutable
+
+      - run: yarn compile
