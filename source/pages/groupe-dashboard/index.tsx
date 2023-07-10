@@ -5,11 +5,13 @@ import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import * as Sentry from '@sentry/react'
 import { useEffect, useRef, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import ButtonLink from '../../components/groupe/ButtonLink'
 
+import Button from '@/components/groupe/Button'
+import InlineTextInput from '@/components/groupe/InlineTextInput'
 import Separator from '@/components/groupe/Separator'
 import Classement from './components/Classement'
 import Footer from './components/Footer'
@@ -20,8 +22,11 @@ import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
 
 export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
+	const [isEditingTitle, setIsEditingTitle] = useState(false)
 
 	const [searchParams] = useSearchParams()
+
+	const { t } = useTranslation()
 
 	const groupId = searchParams.get('groupId')
 
@@ -74,13 +79,36 @@ export default function GroupeDashboard() {
 		<>
 			<main className="p-4">
 				<GoBackLink className="mb-4 font-bold" />
-				<Title
-					title={
-						<span>
-							<span>{group?.emoji}</span> <span>{group?.name}</span>
-						</span>
-					}
-				/>
+				{isEditingTitle ? (
+					<InlineTextInput
+						value={group?.name}
+						label={t('Modifier le nom du groupe')}
+						name="group-name-input"
+						onClose={() => setIsEditingTitle(false)}
+					/>
+				) : (
+					<Title
+						title={
+							<span className="flex justify-between items-center">
+								<span>
+									<span>{group?.emoji}</span> <span>{group?.name}</span>
+								</span>
+								<Button
+									className="!p-1"
+									onClick={() => setIsEditingTitle(true)}
+									color="secondary"
+								>
+									<img
+										src="/images/pencil.svg"
+										alt={t(
+											'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé'
+										)}
+									/>
+								</Button>
+							</span>
+						}
+					/>
+				)}
 				<div className="mt-4 flex justify-between items-center">
 					<h2 className="font-bold text-[17px] m-0">
 						<Trans>Le classement</Trans>
