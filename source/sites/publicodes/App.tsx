@@ -149,6 +149,13 @@ const GroupeDashboardLazy = React.lazy(
 		)
 )
 
+const GroupeDeleteLazy = React.lazy(
+	() =>
+		import(
+			/* webpackChunkName: 'GroupeDeleteLazy' */ '@/pages/supprimer-groupe'
+		)
+)
+
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 declare global {
@@ -632,6 +639,17 @@ const Router = () => {
 					<WithEngine>
 						<Suspense fallback={<AnimatedLoader />}>
 							<GroupeDashboardLazy />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+
+			<Route
+				path="/groupes/supprimer"
+				element={
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<GroupeDeleteLazy />
 						</Suspense>
 					</WithEngine>
 				}
