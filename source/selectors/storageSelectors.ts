@@ -50,7 +50,6 @@ export type User = {
 	localisation: Object | undefined
 	hasSubscribedToNewsletter: boolean
 	groups: Group[]
-	createdGroup: Group | null
 	userId: string | null
 	groupToRedirectTo: Group | null
 }

@@ -384,7 +384,7 @@ export const addGroupToUser = (group: Group) => ({
 	group,
 })
 
-export const removeGroupToUser = (group: Group) => ({
+export const removeGroupFromUser = (group: Group) => ({
 	type: 'REMOVE_GROUP',
 	group,
 })

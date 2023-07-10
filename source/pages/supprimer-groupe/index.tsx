@@ -1,3 +1,4 @@
+import { removeGroupFromUser } from '@/actions/actions'
 import Button from '@/components/groupe/Button'
 import Title from '@/components/groupe/Title'
 import { GROUP_URL } from '@/constants/urls'
@@ -5,13 +6,16 @@ import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 
 export default function SupprimerDonnees() {
 	const [hasDeleted, setHasDeleted] = useState(false)
 	const [shouldRedirect, setShouldRedirect] = useState(false)
-	const [group, setGroup] = useState<Group | null>(null)
+	const [group, setGroup] = useState<Group>()
 	const [errorGroup, setErrorGroup] = useState('')
+
+	const dispatch = useDispatch()
 
 	const navigate = useNavigate()
 
@@ -19,10 +23,11 @@ export default function SupprimerDonnees() {
 
 	const groupId = searchParams.get('groupId')
 	const userId = searchParams.get('userId')
-	console.log({ groupId, userId })
+
 	const { t } = useTranslation()
 
 	const handleDelete = async () => {
+		if (!group) return
 		try {
 			await fetch(`${GROUP_URL}/delete`, {
 				method: 'POST',
@@ -34,6 +39,8 @@ export default function SupprimerDonnees() {
 					userId,
 				}),
 			})
+
+			dispatch(removeGroupFromUser(group))
 
 			setHasDeleted(true)
 		} catch (error) {
@@ -57,7 +64,7 @@ export default function SupprimerDonnees() {
 				}
 
 				const groupFetched: Group = await response.json()
-				console.log(groupFetched)
+
 				// Redirect to landing if user is not in group
 				if (
 					groupFetched.members.findIndex((member) => member.userId === userId) <
@@ -69,7 +76,6 @@ export default function SupprimerDonnees() {
 
 				setGroup(groupFetched)
 			} catch (error) {
-				console.log(error)
 				setErrorGroup(
 					t(
 						"Oups, une erreur s'est produite au moment de récupérer les données du groupe."

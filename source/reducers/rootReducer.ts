@@ -1,10 +1,6 @@
 import { Action } from '@/actions/actions'
 import { omit } from '@/utils'
-import {
-	createdGroupReducer,
-	groupsReducer,
-	groupToRedirectToReducer,
-} from './group/index'
+import { groupsReducer, groupToRedirectToReducer } from './group/index'
 
 import { Localisation, SupportedRegions } from '@/components/localisation/utils'
 import { DottedName, NGCRules } from '@/components/publicodesUtils'
@@ -498,7 +494,6 @@ export type AppState = CombinedState<{
 	hasSubscribedToNewsletter: boolean
 	enquête: Enquête
 	groups: Group[]
-	createdGroup: Group | null
 	userId: string | null
 	groupToRedirectTo: Group | null
 }>
@@ -532,7 +527,6 @@ const mainReducer = (state: any, action: Action) =>
 		ratings,
 		hasSubscribedToNewsletter,
 		groups: groupsReducer,
-		createdGroup: createdGroupReducer,
 		userId: userIdReducer,
 		groupToRedirectTo: groupToRedirectToReducer,
 	})(state, action)
