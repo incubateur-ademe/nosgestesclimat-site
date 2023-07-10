@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react'
+import { FocusEvent, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Button from './Button'
 
@@ -6,18 +6,22 @@ type Props = {
 	name: string
 	type?: string
 	placeholder?: string
-	value?: string
+	defaultValue?: string
 	label: string
 	onClose: () => void
+	onSubmit: (value: string) => Promise<any>
+	isLoading?: boolean
 }
 
 export default function InlineTextInput({
 	name,
 	type = 'text',
 	placeholder,
-	value,
+	defaultValue,
 	label,
 	onClose = () => {},
+	onSubmit,
+	isLoading,
 }: Props) {
 	const [error, setError] = useState('')
 
@@ -25,7 +29,7 @@ export default function InlineTextInput({
 
 	const { t } = useTranslation()
 
-	const handleSubmit = () => {
+	const handleSubmit = async () => {
 		const inputValue = inputRef.current?.value
 
 		if (!inputValue) {
@@ -33,11 +37,22 @@ export default function InlineTextInput({
 			return
 		}
 
+		await onSubmit(inputValue)
+
 		onClose()
 	}
 
 	return (
-		<div className="flex flex-col" aria-live="polite" onBlurCapture={onClose}>
+		<div
+			className="flex flex-col"
+			aria-live="polite"
+			onBlurCapture={(event: FocusEvent) => {
+				if (event?.relatedTarget?.id === 'inline-input-button') {
+					return
+				}
+				onClose()
+			}}
+		>
 			<label htmlFor={name}>
 				<span
 					className={`text-sm font-bold text-slate-900 ${
@@ -57,16 +72,19 @@ export default function InlineTextInput({
 						error ? 'ring-2 !ring-red-700 !bg-red-50 !border-red-200' : ''
 					}`}
 					aria-describedby={`error-${name}`}
-					value={value}
+					defaultValue={defaultValue}
 					// We alert the user when focusing the button that
 					// display the input
 					// eslint-disable-next-line jsx-a11y/no-autofocus
 					autoFocus
+					disabled={isLoading}
 				/>
 				<Button
 					className="rounded-s-none"
+					id="inline-input-button"
 					onClick={handleSubmit}
 					aria-label={t('Ok, sauvegarder la modification')}
+					disabled={isLoading}
 				>
 					Ok
 				</Button>

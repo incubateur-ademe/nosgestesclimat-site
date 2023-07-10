@@ -202,3 +202,9 @@ export const getMatomoEventJoinedGroupe = (groupId: string) => [
 	'Groupe rejoint',
 	`Groupe ${groupId}`,
 ]
+
+export const matomoEventUpdateGroupName = [
+	'trackEvent',
+	'Groupes',
+	'Nom du groupe modifié',
+]

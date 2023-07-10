@@ -21,7 +21,7 @@ const ClassementMember = ({
 }) => {
 	return (
 		<li className="flex justify-between items-center">
-			<p className="mb-0 flex items-center">
+			<div className="mb-0 flex items-center">
 				<span className={`mr-2 ${isTopThree ? 'text-2xl' : 'text-lg ml-1'}`}>
 					{rank}
 				</span>
@@ -31,7 +31,7 @@ const ClassementMember = ({
 						Vous
 					</Badge>
 				)}
-			</p>
+			</div>
 			<div>{quantity}</div>
 		</li>
 	)

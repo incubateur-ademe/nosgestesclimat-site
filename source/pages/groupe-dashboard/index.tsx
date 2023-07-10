@@ -3,16 +3,18 @@ import Title from '@/components/groupe/Title'
 import { GROUP_URL } from '@/constants/urls'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
-import * as Sentry from '@sentry/react'
+import { captureException } from '@sentry/react'
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useSearchParams } from 'react-router-dom'
 import ButtonLink from '../../components/groupe/ButtonLink'
 
+import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
 import InlineTextInput from '@/components/groupe/InlineTextInput'
 import Separator from '@/components/groupe/Separator'
+import { useMatomo } from '@/contexts/MatomoContext'
 import Classement from './components/Classement'
 import Footer from './components/Footer'
 import InviteBlock from './components/InviteBlock'
@@ -23,8 +25,11 @@ import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
 export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
 	const [isEditingTitle, setIsEditingTitle] = useState(false)
+	const [isSubmitting, setIsSubmitting] = useState(false)
 
 	const [searchParams] = useSearchParams()
+
+	const { trackEvent } = useMatomo()
 
 	const { t } = useTranslation()
 
@@ -52,7 +57,7 @@ export default function GroupeDashboard() {
 
 				setGroup(groupFetched)
 			} catch (error) {
-				Sentry.captureException(error)
+				captureException(error)
 			}
 		}
 
@@ -81,10 +86,40 @@ export default function GroupeDashboard() {
 				<GoBackLink className="mb-4 font-bold" />
 				{isEditingTitle ? (
 					<InlineTextInput
-						value={group?.name}
+						defaultValue={group?.name}
 						label={t('Modifier le nom du groupe')}
 						name="group-name-input"
 						onClose={() => setIsEditingTitle(false)}
+						onSubmit={async (value: string) => {
+							setIsSubmitting(true)
+							try {
+								const response = await fetch(GROUP_URL + '/update', {
+									method: 'POST',
+									body: JSON.stringify({
+										_id: group?._id,
+										name: value,
+									}),
+									headers: {
+										Accept: 'application/json',
+										'Content-Type': 'application/json',
+									},
+								})
+
+								const groupUpdated: Group = await response.json()
+
+								if (!response.ok) {
+									throw new Error(JSON.stringify(group))
+								}
+
+								setGroup(groupUpdated)
+								setIsSubmitting(false)
+								setIsEditingTitle(false)
+								trackEvent(matomoEventUpdateGroupName)
+							} catch (e) {
+								captureException(e)
+							}
+						}}
+						isLoading={isSubmitting}
 					/>
 				) : (
 					<Title
