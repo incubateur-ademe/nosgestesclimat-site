@@ -59,7 +59,7 @@ const Simulateur = () => {
 	const { t } = useTranslation()
 
 	if (!simulatorRootNameURL) {
-		navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
+		return navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
 	}
 
 	// The main simulation corresponds to the whole test, i.e selected rule is the
@@ -74,7 +74,7 @@ const Simulateur = () => {
 		console.log(
 			`Unknown rule ${simulatorRootNameURL}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
 		)
-		navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
+		return navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
 	}
 
 	const engine = useEngine()
@@ -130,7 +130,7 @@ const Simulateur = () => {
 	const displayTutorial = isMainSimulation && !tutorials.testIntro
 
 	if (displayTutorial) {
-		navigate(`/tutoriel`, { replace: true })
+		return navigate(`/tutoriel`, { replace: true })
 	}
 
 	return (
@@ -178,7 +178,7 @@ const Simulateur = () => {
 							<EndingCongratulations />
 						),
 					}}
-					explanations={<InlineCategoryChart givenEngine={undefined} />}
+					explanations={<InlineCategoryChart />}
 				/>
 			</div>
 			<BandeauContribuer />
