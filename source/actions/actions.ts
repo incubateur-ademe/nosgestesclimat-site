@@ -26,6 +26,7 @@ export type Action =
 	| HasSubscribedToNewsletterAction
 	| HideNotificationAction
 	| LoadPreviousSimulationAction
+	| ResetSimulationAction
 	| ResetActionChoicesAction
 	| ResetIntroTutorialAction
 	| ResetCategoryTutorialsAction
@@ -128,6 +129,10 @@ type UpdateEventsSentAction = {
 
 type HasSubscribedToNewsletterAction = {
 	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER'
+}
+
+type ResetSimulationAction = {
+	type: 'RESET_SIMULATION'
 }
 
 type ResetCategoryTutorialsAction = {
