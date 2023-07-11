@@ -179,51 +179,6 @@
 
     C’est d’ailleurs tout l’objet de Nos Gestes Climat ! Œuvrer à sensibiliser et faire prendre conscience de ces enjeux !
 
-- question: Pourquoi ne puis-je pas renseigner que j'achète des biens durables et écologiques ?
-  catégorie: divers
-  id: effet-qualité
-  réponse: |
-
-    C’est une remarque qui revient souvent quand il s’agit d’évaluer son empreinte carbone.
-
-    L’affichage du poids carbone de chaque produit, bien et service que nous consommons n’existant pas encore, **nous devons donc approximer cet impact**. Il faut ici **arbitrer entre simplicité et précision**.
-
-    Nos Gestes Climat étant un calculateur grand public, nous faisons le choix de la simplicité.
-
-    Ainsi, cette approximation se fait par grande famille de produit. Plus concrètement, le calculateur se base sur des ratios monétaires (X g de CO₂ₑ sont émis pour Y € de produits achetés), par type de produits, donnés par la [Base Carbone®](https://www.bilans-ges.ademe.fr/) de l’ADEME.
-
-    Ces ratios monétaires permettent d’estimer le contenu carbone d’un produit ou service acheté à partir de son prix. Pour ce faire, un produit « moyen » standard est considéré. Il ne prend donc pas en compte les spécificités des produits moins impactants (occasion, durables, éco-conçus…), ce qui tend à majorer l’empreinte finale.
-
-    Nous avons fait le choix de focaliser ces questions sur les produits achetés neufs car la différence d’impact avec les produits d’occasion est très significative. La phase de production du produit, qui représente très souvent la majorité des impacts, n’est pas prise en compte pour les produits d’occasion. Quant aux différences d’impacts entre les produits neufs (typiquement entre un jean issu de la fast-fashion et un jean éco-conçu), Nos Gestes Climat choisit, une fois encore, de rester simple.
-
-- question: Pourquoi ne posez-vous pas de question sur le bio ?
-  id: bio
-  catégorie: alimentation
-  réponse: |
-
-    **Attention : manger bio ne réduit pas, en soi, l’empreinte carbone.**
-
-    À ce jour, les données indiquent qu'à production et produits égaux, **une culture bio nécessite des parcelles agricoles plus grandes**, réduisant la taille des forêts et des zones naturelles, zones essentielles à la séquestration du carbone. C’est pourquoi, à l’échelle globale et à quantités consommées égales, on tend à considérer que le bio a « plus d’impact » sur le climat que l’agriculture conventionnelle.
-
-    Bien sûr, **ce n’est pas une raison pour ne pas manger bio**. C'est un biais de notre simulateur. Il ne s'intéresse qu'aux émissions de carbone.
-
-    Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
-
-    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/incubateur-ademe/nosgestesclimat/issues/1799). N'hésitez pas à rejoindre la conversation !
-
-- question: Avez-vous prévu d'intégrer d'autres pratiques alimentaires ?
-  catégorie: alimentation
-  id: régime
-  réponse: |
-
-    Nos Gestes Climat est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants (impactants) de notre alimentation.
-
-    Nous savons qu'il manque beaucoup de choses dans le modèle actuel. De la nourriture auto-produite (poules, potager...) aux plats à base d'insectes, **la diversité des pratiques alimentaires** est presque infinie !
-
-    Notre outil est libre d’accès et la contribution de tous est possible et souhaitée. N’hésitez donc pas à nous faire part de vos suggestions d’amélioration si un manque au modèle vous paraît important.
-
-    On vous explique comment [ici](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
-
 - catégorie: transport
   question: Dois-je renseigner mes déplacements professionnels ?
   id: déplacements-pro
@@ -278,6 +233,34 @@
 
     > A noter que nous avons été surpris de voir que l'empreinte de la berline hybride est plus faible que celle de la citadine mais l'étude ne semble pas expliquer ce mystère.
 
+- question: Pourquoi ne posez-vous pas de question sur le bio ?
+  id: bio
+  catégorie: alimentation
+  réponse: |
+
+    **Attention : manger bio ne réduit pas, en soi, l’empreinte carbone.**
+
+    À ce jour, les données indiquent qu'à production et produits égaux, **une culture bio nécessite des parcelles agricoles plus grandes**, réduisant la taille des forêts et des zones naturelles, zones essentielles à la séquestration du carbone. C’est pourquoi, à l’échelle globale et à quantités consommées égales, on tend à considérer que le bio a « plus d’impact » sur le climat que l’agriculture conventionnelle.
+
+    Bien sûr, **ce n’est pas une raison pour ne pas manger bio**. C'est un biais de notre simulateur. Il ne s'intéresse qu'aux émissions de carbone.
+
+    Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
+
+    Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/incubateur-ademe/nosgestesclimat/issues/1799). N'hésitez pas à rejoindre la conversation !
+
+- question: Avez-vous prévu d'intégrer d'autres pratiques alimentaires ?
+  catégorie: alimentation
+  id: régime
+  réponse: |
+
+    Nos Gestes Climat est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants (impactants) de notre alimentation.
+
+    Nous savons qu'il manque beaucoup de choses dans le modèle actuel. De la nourriture auto-produite (poules, potager...) aux plats à base d'insectes, **la diversité des pratiques alimentaires** est presque infinie !
+
+    Notre outil est libre d’accès et la contribution de tous est possible et souhaitée. N’hésitez donc pas à nous faire part de vos suggestions d’amélioration si un manque au modèle vous paraît important.
+
+    On vous explique comment [ici](https://github.com/incubateur-ademe/nosgestesclimat/issues/185).
+
 - question: Mon logement est alimenté en électricité verte, pourquoi ne puis-je pas le prendre en compte ?
   id: électricité-dite-verte
   catégorie: logement
@@ -310,3 +293,20 @@
     Nous estimons au mieux l’empreinte numérique en nous basant sur les données de la [Base Carbone®](https://www.bilans-ges.ademe.fr/) mais certaines informations ou questionnements peuvent s’avérer manquant.
 
     > 🕹️ Pour aller plus loin, n'hésitez pas à tester [le simulateur interactif d'impactco2.fr](https://impactco2.fr/usagenumerique).
+
+- question: Pourquoi ne puis-je pas renseigner que j'achète des biens durables et écologiques ?
+  catégorie: divers
+  id: effet-qualité
+  réponse: |
+
+    C’est une remarque qui revient souvent quand il s’agit d’évaluer son empreinte carbone.
+
+    L’affichage du poids carbone de chaque produit, bien et service que nous consommons n’existant pas encore, **nous devons donc approximer cet impact**. Il faut ici **arbitrer entre simplicité et précision**.
+
+    Nos Gestes Climat étant un calculateur grand public, nous faisons le choix de la simplicité.
+
+    Ainsi, cette approximation se fait par grande famille de produit. Plus concrètement, le calculateur se base sur des ratios monétaires (X g de CO₂ₑ sont émis pour Y € de produits achetés), par type de produits, donnés par la [Base Carbone®](https://www.bilans-ges.ademe.fr/) de l’ADEME.
+
+    Ces ratios monétaires permettent d’estimer le contenu carbone d’un produit ou service acheté à partir de son prix. Pour ce faire, un produit « moyen » standard est considéré. Il ne prend donc pas en compte les spécificités des produits moins impactants (occasion, durables, éco-conçus…), ce qui tend à majorer l’empreinte finale.
+
+    Nous avons fait le choix de focaliser ces questions sur les produits achetés neufs car la différence d’impact avec les produits d’occasion est très significative. La phase de production du produit, qui représente très souvent la majorité des impacts, n’est pas prise en compte pour les produits d’occasion. Quant aux différences d’impacts entre les produits neufs (typiquement entre un jean issu de la fast-fashion et un jean éco-conçu), Nos Gestes Climat choisit, une fois encore, de rester simple.
