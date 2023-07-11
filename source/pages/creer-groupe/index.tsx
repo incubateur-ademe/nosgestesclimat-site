@@ -99,6 +99,8 @@ export default function CreerGroupe() {
 			// The user will be redirected to the test in order to take it
 			if (!currentSimulation) {
 				dispatch(setGroupToRedirectTo(group))
+				navigate('/simulateur/bilan')
+				return
 			}
 
 			trackEvent(matomoEventCreationGroupe)

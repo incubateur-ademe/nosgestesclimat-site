@@ -32,7 +32,7 @@ export default function RejoindreGroupe() {
 
 	const groupId = searchParams.get('groupId')
 
-	const groupURL = `/groupe/resultats?groupId=${group?._id}`
+	const groupURL = `/groupes/resultats?groupId=${group?._id}`
 
 	// Ajoute userId si non présente
 	useSetUserId()

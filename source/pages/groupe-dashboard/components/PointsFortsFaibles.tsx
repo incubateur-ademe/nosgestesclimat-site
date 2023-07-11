@@ -23,7 +23,7 @@ export default function PointsFortsFaibles({ pointsForts, pointsFaibles }) {
 				<Trans>Vos points forts</Trans>
 			</h2>
 			<ul className="pl-0">
-				{pointsForts.map((point, index) => {
+				{pointsForts?.map((point, index) => {
 					const { icon, title, value, variation } = point.resultObject
 					return (
 						<ListItem
@@ -41,7 +41,7 @@ export default function PointsFortsFaibles({ pointsForts, pointsFaibles }) {
 				<Trans>Vos points faibles</Trans>
 			</h2>
 			<ul className="pl-0">
-				{pointsFaibles.map((point, index) => {
+				{pointsFaibles?.map((point, index) => {
 					const { icon, title, value, variation } = point.resultObject
 					return (
 						<ListItem
