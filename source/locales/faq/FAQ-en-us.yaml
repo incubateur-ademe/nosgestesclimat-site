@@ -40,6 +40,29 @@
     Le but de Nos Gestes Climat est de manipuler ces chiffres pour **questionner simplement notre mode de vie** afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
 
     > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
+- id: international
+  question: Is the calculator just for the French?
+  catégorie: general
+  réponse: |
+
+    By far the most advanced version of the model is for **Metropolitan France**. Little by little, as contributions and requests come in, we're adding building blocks to improve versions dedicated to overseas territories, or to other countries. The available countries can be found on <a href="https://nosgestesclimat.fr/international">our International page</a>. For the time being, these are **"beta" versions, not yet finalized**.
+
+    In addition, the model has already been translated into English, for greater inclusiveness.
+
+    Why is internationalization important? Certain parameters of the model, in particular **the footprint of the electricity mix** (in gCO₂ₑ/kWh), particularly influence the final result, which will therefore not be valid in Belgium, Congo, Quebec, Algeria or elsewhere. Wondering what your footprint would look like in one of these countries? You can change region <a href="https://nosgestesclimat.fr/profil">on this page</a>.
+
+    If you're familiar with the subject in your country or region, come and <a href="https://github.com/datagir/nosgestesclimat-site/issues/71">discuss it</a>.
+  question.lock: Le calculateur est-il destiné uniquement aux Français ?
+  catégorie.lock: général
+  réponse.lock: |
+
+    La version la plus avancée du modèle, et de loin, est celle de **France métropolitaine**. Petit à petit, au fil des contributions et demandes, nous ajoutons des briques permettant d'améliorer des versions dédiées à l'Outre-mer, ou à d'autres pays. Les pays disponibles se trouvent sur [notre page International](https://nosgestesclimat.fr/international) Il faut, actuellement, considérer que ce sont des **versions "beta", non finalisées**.
+
+    Par ailleurs, la traduction du modèle en anglais a déjà été réalisée, pour plus d'inclusivité.
+
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier **l'empreinte du mix électrique** (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs. Vous vous demandez ce que donnerait votre empreinte dans un de ces pays ? Vous pouvez changer de région [sur cette page](https://nosgestesclimat.fr/profil).
+
+    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 
 - id: foyer
   question: Is the footprint calculated for my home, or just mine?
@@ -195,15 +218,6 @@
 
     > Pour en savoir plus, lisez notre article illustré sur ce sujet :
     > 📘 [Le budget et l'empreinte carbone, c'est quoi ? ](https://nosgestesclimat.fr/blog/budget)
-
-
-    La version la plus avancée du modèle, et de loin, est celle de **France métropolitaine**. Petit à petit, au fil des contributions et demandes, nous ajoutons des briques permettant d'améliorer des versions dédiées à l'Outre-mer, ou à d'autres pays. Les pays disponibles se trouvent sur [notre page International](https://nosgestesclimat.fr/international) Il faut, actuellement, considérer que ce sont des **versions "beta", non finalisées**.
-
-    Par ailleurs, la traduction du modèle en anglais a déjà été réalisée, pour plus d'inclusivité.
-
-    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier **l'empreinte du mix électrique** (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs. Vous vous demandez ce que donnerait votre empreinte dans un de ces pays ? Vous pouvez changer de région [sur cette page](https://nosgestesclimat.fr/profil).
-
-    Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 - id: déprime
   question: Is it really possible to reach 2 tonnes?
   catégorie: general
@@ -258,55 +272,54 @@
     > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
 - id: services-sociétaux
   question: What do "societal services" represent?
-  catégorie: utilities
+  catégorie: societal services
   réponse: |
 
-    This item represents the carbon footprint of French public services, as well as a range of "basic" services that are difficult to avoid, scaled down to the individual. In other words, the impact of all these services is spread over the 67 million French people.
+    This item represents **the carbon footprint of French public services, as well as a set of "basic" services that are difficult to avoid**, brought down to an individual scale. In other words, the impact of all these services is spread over the 67 million French people.
 
     > 🔎 Read our <a href="https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22">blog post "The footprint of societal services"</a> to find out more.
 
     So, in a way, everyone takes "their share", and for several reasons.
 
-    Firstly, it's extremely rare, if not almost impossible, to live without ever using a single public service. Whether we're talking about health services, improved roads, education or, more generally, anything else funded by taxes, everyone benefits from public services. What's more, these services and their funding are voted on each year by the Assembly and defined by a regularly elected government.
+    Firstly, it's extremely rare if not **nearly impossible to live without ever using a single public service**. Whether we're talking about health services, improved roads, education or, more generally, anything else funded by taxes, everyone benefits from public services. What's more, these services and their funding are voted on each year by the Assembly and defined by a regularly elected government.
 
     Secondly, trying to account for the share of public services that an individual uses "for real" is not currently possible with the data we have on the footprint of this sector. Which doesn't mean we can't think about "variabilizing" the societal services item according to the individual's footprint!
   question.lock: Que représente le poste « services sociétaux » ?
-  catégorie.lock: services publics
+  catégorie.lock: services sociétaux
   réponse.lock: |
 
-    Ce poste représente l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact de tous ces services sur les 67 millions de Français.
+    Ce poste représente **l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter**, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact de tous ces services sur les 67 millions de Français.
 
     > 🔎 Lisez notre [article de blog "L'empreinte des services sociétaux"](https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22) pour aller plus loin.
 
     Tout le monde prend donc en quelque sorte « sa part », et ce pour plusieurs raisons.
 
-    Tout d’abord, il est extrêmement rare voire quasi impossible de vivre sans jamais utiliser un seul service public. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics. De plus, ces services et leur financement sont votés chaque année par l'Assemblée et définis par un gouvernement élu régulièrement.
+    Tout d’abord, il est extrêmement rare voire **quasi impossible de vivre sans jamais utiliser un seul service public**. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics. De plus, ces services et leur financement sont votés chaque année par l'Assemblée et définis par un gouvernement élu régulièrement.
 
     Deuxièmement, essayer de comptabiliser la part de service public qu’un individu utilise « pour de vrai » n'est pas actuellement possible avec les données dont nous disposons sur l'empreinte de ce secteur. Ce qui ne nous empêche pas de mener des réflexions pour "variabiliser" le poste services sociétaux selon l'empreinte de la personne !
-
-- id: services-publics-majoritaires
+- id: services-sociétaux-majoritaires
   question: Is it possible to act on the "societal services" part?
-  catégorie: utilities
+  catégorie: societal services
   réponse: |
 
-    Indeed, it can be frustrating to have to account for impacts for which we have no direct leverage.
+    In fact, it can be frustrating to have to account for impacts for which we have no direct leverage.
 
     **But that's the whole point of transition in the broadest sense**
 
-    This transition cannot be thought of on an individual scale alone. It is a necessary but not sufficient condition for a more global transition on the scale of our society. This means playing with indirect levers of action (voting, associative involvement, raising awareness around us, etc.). 
+    This transition cannot be thought of on an individual scale alone. It is a **necessary but not sufficient condition** for a more global transition on the scale of our society. This means playing with indirect levers of action (voting, associative involvement, raising awareness around us, etc.). 
 
-    > We've integrated some of these into our post-test <a href="https://nosgestesclimat.fr/actions">action plan</a>.
+    > We've integrated some of these into the post-test <a href="https://nosgestesclimat.fr/actions">action plan</a>.
 
     That's what Nos Gestes Climat is all about! Working to raise awareness of these issues!
   question.lock: Peut-on agir sur la partie « services sociétaux » ?
-  catégorie.lock: services publics
+  catégorie.lock: services sociétaux
   réponse.lock: |
 
     En effet, il peut être frustrant de se voir comptabiliser des impacts pour lesquels nous n’avons aucun levier d’action direct.
 
     **Mais c’est là tout l’enjeu de la transition au sens large.**
 
-    Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une condition nécessaire mais non suffisante d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.). 
+    Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une **condition nécessaire mais non suffisante** d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.). 
 
     > Nous en avons intégré quelques-uns dans le [parcours action](https://nosgestesclimat.fr/actions) après le test.
 
