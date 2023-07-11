@@ -720,8 +720,6 @@ entries:
   publicodes.planDuSite.aPropos.lock: À propos
   publicodes.planDuSite.modele: Model
   publicodes.planDuSite.modele.lock: Modèle
-  publicodes.planDuSite.contribuer: Contribute
-  publicodes.planDuSite.contribuer.lock: Contribuer
   publicodes.planDuSite.nouveautes: News
   publicodes.planDuSite.nouveautes.lock: Nouveautés
   publicodes.planDuSite.actionsPlus: The actions
@@ -789,3 +787,7 @@ entries:
   publicodes.Contact.mail.lock: Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse <2>contact@nosgestesclimat.fr</2>. Cependant, le délais de réponse sera plus long que les solutions précédentes.
   publicodes.FAQ.faireletest: You haven't started your test yet, <2><0>get started!</0></2>
   publicodes.FAQ.faireletest.lock: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
+  publicodes.planDuSite.faq: Frequently asked questions
+  publicodes.planDuSite.faq.lock: Questions fréquentes
+  publicodes.planDuSite.contact: Contact
+  publicodes.planDuSite.contact.lock: Contact

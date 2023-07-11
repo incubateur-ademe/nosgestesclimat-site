@@ -25,9 +25,10 @@ const links = {
 	Informations: {
 		'publicodes.planDuSite.nouveautes': `${appURL}/nouveautés`,
 		'publicodes.planDuSite.aPropos': `${appURL}/à-propos`,
+		'publicodes.planDuSite.contact': `${appURL}/contact`,
 		'publicodes.planDuSite.viePrivee': `${appURL}/vie-privée`,
 		'publicodes.planDuSite.partenaires': `${appURL}/partenaires`,
-		'publicodes.planDuSite.contribuer': `${appURL}/contribuer`,
+		'publicodes.planDuSite.faq': `${appURL}/questions-frequentes`,
 		'publicodes.planDuSite.stats': `${appURL}/stats`,
 		Blog: `${appURL}/blog`,
 	},
