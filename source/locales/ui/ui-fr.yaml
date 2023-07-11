@@ -589,3 +589,6 @@ entries:
   '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>
   publicodes.FAQ.titreQuestion: J'ai une autre question
   Contact: Contact
+  publicodes.Contact.description: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écire, vous y trouverez sans doute la réponse à votre question !
+  publicodes.Contact.form: Pour toute remarque ou question, <2>nous vous recommandons <2>d'ouvrir un ticket directement sur GitHub</2></2> afin de suivre les échanges plus facilement. Vous pouvez également nous envoyer un message via le formulaire de contact ci-dessous.
+  publicodes.Contact.mail: Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse <2>contact@nosgestesclimat.fr</2>. Cependant, le délais de réponse sera plus long que les solutions précédentes.
