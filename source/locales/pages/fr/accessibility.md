@@ -103,7 +103,7 @@ Il est important de rappeler qu’en vertu de l’article 11 de la loi de févri
 
 L’ADEME s'engage à prendre les moyens nécessaires afin de donner accès, dans un délai raisonnable, aux informations et fonctionnalités recherchées par la personne handicapée, que le contenu fasse l'objet d'une dérogation ou non.
 
-L’ADEME invite les personnes qui rencontreraient des difficultés à la contacter ([en bas de la page FAQ](/contribuer) pour contacter directement l'équipe Nos Gestes Climat ou bien via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) afin qu’une assistance puisse être apportée (alternative accessible, information et contenu donnés sous une autre forme).
+L’ADEME invite les personnes qui rencontreraient des difficultés à la contacter ([via notre formulaire de contact](/contact) pour contacter directement l'équipe Nos Gestes Climat ou bien via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) afin qu’une assistance puisse être apportée (alternative accessible, information et contenu donnés sous une autre forme).
 
 ## Voies de recours
 

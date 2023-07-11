@@ -148,8 +148,7 @@ ADEME undertakes to take the necessary steps to provide access, within a
 reasonable time, to the information and functionalities sought by the
 disabled person, whether or not the content is subject to an exemption.
 
-ADEME invites people who encounter difficulties to contact it[(at the
-bottom of the FAQ page](/contribuer) to contact the Nos Gestes Climat
+ADEME invites people who encounter difficulties to contact it[via our contact form](/contact) to contact the Nos Gestes Climat
 team directly or via [rgaa@ademe.fr)](mailto:rgaa@ademe.fr) so that
 assistance can be provided (accessible alternative, information and
 content given in another form).

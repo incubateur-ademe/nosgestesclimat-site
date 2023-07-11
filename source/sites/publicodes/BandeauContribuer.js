@@ -42,7 +42,7 @@ export default () => {
 				<span>
 					<Trans>Une question, un problème ?</Trans>
 				</span>
-				<Link to={'/contribuer?fromLocation=' + window.location}>
+				<Link to={'/questions-frequentes?fromLocation=' + window.location}>
 					<Trans>Découvrez la FAQ !</Trans>
 				</Link>
 			</div>

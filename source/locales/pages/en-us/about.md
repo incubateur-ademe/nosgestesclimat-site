@@ -58,7 +58,7 @@ page](/accessibilite).
 
 If you encounter an accessibility defect that prevents you from
 accessing a content or a functionality of the site, please let us know
-[at the bottom of the FAQ page](/contribuer) or via
+[via our contact form](/contact) or via
 <a href="mailto:rgaa@ademe.fr" class="email">rgaa@ademe.fr</a> so that
 assistance can be provided (accessible alternative, information and
 content given in another form). If you do not receive a quick response
@@ -92,4 +92,3 @@ Europe](https://answers.netlify.com/t/is-there-a-list-of-where-netlifys-cdn-pops
 ## Terms and conditions of use
 
 They are available on [this page](/cgu).
-

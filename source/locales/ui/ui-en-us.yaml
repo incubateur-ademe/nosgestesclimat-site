@@ -432,10 +432,10 @@ entries:
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: |-
 
-    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
+    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contact).
   publicodes.Contribution.commentaireAugmenté.lock: |-
 
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).
   publicodes.FAQ.description: Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!
   publicodes.FAQ.description.lock: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>
@@ -582,12 +582,12 @@ entries:
     ## Any questions?
 
 
-    Find answers to common questions on our [FAQ](/contribuer) page.
+    Find answers to common questions on our [FAQ](/questions-frequentes) page.
   sites.publicodes.LandingExplanations.faqLink.lock: |-
     ## Des questions ?
 
 
-    Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
+    Retrouvez les réponses aux questions courantes sur notre page [FAQ](/questions-frequentes).
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Review the tutorial
   sites.publicodes.Profile.TutorialLink.text.lock: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?

@@ -449,7 +449,7 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/questions-frequentes/*"
+				path="/questions-frequentes"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
 						<FAQLazy />

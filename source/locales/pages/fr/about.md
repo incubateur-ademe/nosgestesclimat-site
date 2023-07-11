@@ -57,10 +57,9 @@ contact\@nosgestesclimat.fr
 Le budget de Datagir, l'organisation qui développe nosgestesclimat.fr
 est disponible sur la [page budget](https://datagir.ademe.fr/budget/).
 
-
 ## Mentions légales
 
-### Editeur de la Plateforme : 
+### Editeur de la Plateforme :
 
 La Plateforme « Nos Gestes Climat » est éditée par :
 
@@ -103,19 +102,21 @@ dédiée](/accessibilite).
 Pour en savoir plus sur la politique d'accessibilité numérique de l'Etat : http://references.modernisation.gouv.fr/accessibilite-numerique
 
 Si vous rencontrez un défaut d'accessibilité vous empêchant d'accéder à
-un contenu ou une fonctionnalité du site, merci de nous en faire part : 
-- [en bas de la page FAQ](/contribuer)
-- via <rgaa@ademe.fr>
-- via <contact@nosgestesclimat.fr>
+un contenu ou une fonctionnalité du site, merci de nous en faire part :
+
+-   [via notre formulaire de contact](/contact)
+-   via <rgaa@ademe.fr>
+-   via <contact@nosgestesclimat.fr>
 
 Si vous n’obtenez pas de réponse rapide de notre part, vous êtes en droit de faire parvenir vos
 doléances ou une demande de saisine au Défenseur des droits.
 Pour le joindre, vous pouvez :
-- Utiliser le formulaire de contact en ligne ici :
-https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016
-- Composer le 09 69 39 00 00 (du lundi au vendredi de 8h à 20h)
-- Envoyer un courrier (sans timbre) à l’adresse suivante : Défenseur des droits, Libre
-réponse 71120, 75342 Paris CEDEX 07.
+
+-   Utiliser le formulaire de contact en ligne ici :
+    https://formulaire.defenseurdesdroits.fr/code/afficher.php?ETAPE=accueil_2016
+-   Composer le 09 69 39 00 00 (du lundi au vendredi de 8h à 20h)
+-   Envoyer un courrier (sans timbre) à l’adresse suivante : Défenseur des droits, Libre
+    réponse 71120, 75342 Paris CEDEX 07.
 
 ### Sécurité
 
