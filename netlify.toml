@@ -5,18 +5,15 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/conference/*"
+  to = "/conférence/:splat"
 
 # As it is an SPA, here, all urls has to be supported in react
 [[redirects]]
   from = "/*"
-  to = "/publicodes.html"
+  to = "/index.html"
   status = 200
-
-[[redirects]]
-  from = "/contribuer"
-  to = "/questions-frequentes"
-  status = 301
-  force = true
 
 [dev]
   framework = "#custom"
@@ -24,7 +21,6 @@
   port = 8888 # The port that the netlify dev will be accessible on
   targetPort = 8080
   publish = "dist" # If you use a _redirect file, provide the path to your static content folder
-
 
 [[edge_functions]]
   path = "/geolocation"
