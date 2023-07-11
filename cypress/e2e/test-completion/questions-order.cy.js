@@ -3,6 +3,7 @@ import {
 	clickCategoryStartButton,
 	clickDontKnowButton,
 	clickPreviousButton,
+	clickNextButton,
 	clickUnderstoodButton
 } from "./utils"
 
@@ -59,6 +60,7 @@ describe('validate the question order behavior', () => {
 		// Questions where skipped when the value passed was too low
 		cy.url().should('include', 'question=transport')
 		cy.get('button.suggestion').first().click()
+		clickNextButton()
 		cy.url().should('include', 'question=transport')
 		clickDontKnowButton()
 		cy.url().should('include', 'question=transport')

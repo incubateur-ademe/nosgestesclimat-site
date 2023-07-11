@@ -22,6 +22,13 @@ import {
 	AppState,
 	objectifsConfigToDottedNameArray,
 } from '@/reducers/rootReducer'
+import { useTestCompleted } from '@/selectors/simulationSelectors'
+import BandeauContribuer from '@/sites/publicodes/BandeauContribuer'
+import InlineCategoryChart from '@/sites/publicodes/chart/InlineCategoryChart'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
+import { questionConfig } from '@/sites/publicodes/questionConfig'
+import ScoreBar from '@/sites/publicodes/ScoreBar'
+import { getQuestionURLSearchParams } from '@/sites/publicodes/utils'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -29,13 +36,6 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavigateFunction, useNavigate } from 'react-router'
 import { Link, useParams } from 'react-router-dom'
-import { useTestCompleted } from '../../selectors/simulationSelectors'
-import BandeauContribuer from './BandeauContribuer'
-import InlineCategoryChart from './chart/InlineCategoryChart'
-import { enquêteSelector } from './enquête/enquêteSelector'
-import { questionConfig } from './questionConfig'
-import ScoreBar from './ScoreBar'
-import { getQuestionURLSearchParams } from './utils'
 
 function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
 	return (
@@ -43,11 +43,6 @@ function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
 		array1.every((value, index) => value === array2[index])
 	)
 }
-
-/*
- * Here the URL specs:
- * TODO: document this
- */
 
 const Simulateur = () => {
 	const navigate = useNavigate()
@@ -83,10 +78,10 @@ const Simulateur = () => {
 	const noCongratsURL = searchParams.get('respiration') !== 'congrats'
 
 	const { selectedRuleDottedName, selectedRuleURL } =
-		// NOTE(@EmileRolley): we need to differenciate the question search params
+		// FIXME(@EmileRolley): we need to differenciate the question search params
 		// set in Conversation when the last question is answered from the one
 		// specified by the user in the URL to redirect only if the test is
-		// completed.
+		// completed. For now, the redirection is deactivated.
 		/* isTestCompleted && noCongratsURL */
 		false
 			? getValidSelectedRuleInfos(

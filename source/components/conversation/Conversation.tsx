@@ -63,7 +63,7 @@ import { utils } from 'publicodes'
 import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { useLocation } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -148,17 +148,8 @@ export default function Conversation({
 			currentQuestion !== unfoldedStep
 		) {
 			dispatch(goToQuestion(currentQuestion))
-			// updateCurrentURL({
-			// 	question: currentQuestion,
-			// 	simulateurRootURL: simulateurRootRuleURL,
-			// 	focusedCategory,
-			// 	// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
-			// 	// to trigger the [navigate] (or we must add url for action questions
-			// 	// which add not needed complexity for now).
-			// 	toUse: /* isFromActionCard ?  */ { dispatch } /*  : { navigate }, */,
-			// })
 		}
-	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
+	}, [dispatch, currentQuestion, unfoldedStep, objectifs, previousSimulation])
 
 	const currentQuestionId = encodeRuleNameToSearchParam(currentQuestion)
 
@@ -170,23 +161,12 @@ export default function Conversation({
 				document.getElementById('id-question-' + currentQuestionId)
 			questionElement?.focus()
 		}
-	}, [currentQuestion])
+	}, [currentQuestion, currentQuestionId, rules])
 
 	const goToPrevious = () => {
 		if (previousQuestion !== undefined) {
 			dispatch(goToQuestion(previousQuestion))
 		}
-		// updateCurrentURL({
-		// 	// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
-		// 	// could be a reason of the 'previous button bug'?
-		// 	question: previousQuestion,
-		// 	simulateurRootURL: simulateurRootRuleURL,
-		// 	focusedCategory,
-		// 	// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
-		// 	// to trigger the [navigate] (or we must add url for action questions
-		// 	// which add not needed complexity for now).
-		// 	toUse: /* isFromActionCard ?  */ { dispatch } /*  : { navigate }, */,
-		// })
 	}
 
 	// Some questions are grouped in an artifical questions, called mosaic questions,
@@ -205,10 +185,6 @@ export default function Conversation({
 		: currentQuestion !== null
 		? rules[currentQuestion]?.rawNode?.question
 		: undefined
-
-	const questionsToSubmit = isMosaic
-		? mosaicDottedNames?.map(([dottedName]) => dottedName)
-		: [currentQuestion]
 
 	const isAnsweredMosaic =
 		isMosaic &&
@@ -231,13 +207,16 @@ export default function Conversation({
 	useEffect(() => {
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
 		if (isMosaicSelection) {
-			questionsToSubmit?.map((question) => {
-				if (question !== null) {
-					dispatch(updateSituation(question, situation[question] ?? 'non'))
-				}
+			questionsToSubmit?.forEach((question) => {
+				dispatch(
+					updateSituation(
+						question,
+						question !== null ? situation[question] ?? 'non' : 'non'
+					)
+				)
 			})
 		}
-	}, [isAnsweredMosaic, questionsToSubmit])
+	}, [isMosaicSelection, questionsToSubmit, dispatch, situation])
 
 	useEffect(() => {
 		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disappear. However, if the user deselect the button, without this hook,
@@ -266,7 +245,17 @@ export default function Conversation({
 		) {
 			dispatch(updateSituation(mosaicRule.dottedName, undefined))
 		}
-	}, [isAnsweredMosaic, questionsToSubmit, situation])
+	}, [
+		isMosaicSelection,
+		questionsToSubmit,
+		situation,
+		mosaicRule?.dottedName,
+		dispatch,
+	])
+
+	const questionsToSubmit = isMosaic
+		? mosaicDottedNames?.map(([dottedName]) => dottedName)
+		: [currentQuestion]
 
 	const currentQuestionIndex = previousAnswers.findIndex(
 		(a) => a === unfoldedStep
@@ -291,7 +280,7 @@ export default function Conversation({
 		return questionMatches.every(Boolean)
 	}
 
-	const submit = (source: string) => {
+	const submit = () => {
 		// This piece of code enables to set all the checkbox of a mosaic to
 		// false when "Next" button is pressed (chen the question is submitted)
 		// It's important in case of someone arrives at the mosaic question,
@@ -305,7 +294,6 @@ export default function Conversation({
 					type: 'STEP_ACTION',
 					name: 'fold',
 					step: question,
-					source,
 				})
 			})
 		}
@@ -476,7 +464,9 @@ export default function Conversation({
 			)}
 			<div css="margin-top: 1rem">
 				<Link to={pathname}>
-					<button className="ui__ button plain small">Continuer le test</button>
+					<button className="ui__ button plain small">
+						<Trans>Continuer le test</Trans>
+					</button>
 				</Link>
 			</div>
 		</div>

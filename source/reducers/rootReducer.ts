@@ -142,20 +142,25 @@ function simulation(
 			}
 		}
 		case 'UPDATE_SITUATION': {
+			console.log('UPDATE_SITUATION', action)
 			const targets = objectifsSelector({ simulation: state } as AppState)
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
+			const newSituation =
+				value === undefined
+					? omit([dottedName], situation)
+					: {
+							...(targets.includes(dottedName)
+								? omit(targets, situation)
+								: situation),
+							[dottedName]: value,
+					  }
+
+			console.log('newSituation', newSituation)
+
 			return {
 				...state,
-				situation:
-					value === undefined
-						? omit([dottedName], situation)
-						: {
-								...(targets.includes(dottedName)
-									? omit(targets, situation)
-									: situation),
-								[dottedName]: value,
-						  },
+				situation: newSituation,
 			}
 		}
 		case 'STEP_ACTION': {

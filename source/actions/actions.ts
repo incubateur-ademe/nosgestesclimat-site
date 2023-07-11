@@ -9,6 +9,7 @@ import {
 import { Rating } from '@/selectors/storageSelectors'
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
+import { Value } from '../components/conversation/RuleInput'
 
 /**
  * The type of the actions that can be dispatched in the app.
@@ -92,8 +93,8 @@ type DeleteSimulationByIdAction = {
 
 type UpdateSituationAction = {
 	type: 'UPDATE_SITUATION'
-	fieldName: DottedName
-	value: unknown
+	fieldName: DottedName | null
+	value: Value
 }
 
 type LoadPreviousSimulationAction = {
@@ -304,8 +305,8 @@ export const deleteSimulationById = (id: string): Action => ({
 })
 
 export const updateSituation = (
-	fieldName: DottedName,
-	value: unknown
+	fieldName: DottedName | null,
+	value: Value
 ): Action => ({
 	type: 'UPDATE_SITUATION',
 	fieldName,
