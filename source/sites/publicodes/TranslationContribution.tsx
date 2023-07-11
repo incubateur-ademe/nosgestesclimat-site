@@ -4,7 +4,7 @@ import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
 import { createIssue, formStyle } from './Contact'
 
-export default ({}) => {
+export default () => {
 	const fromLocation = useQuery().get('fromLocation')
 
 	const [sujet, setSujet] = useState('')

@@ -781,3 +781,9 @@ entries:
   meta.publicodes.Contact.titre.lock: Contact
   meta.publicodes.Contribution.traductionDescription: Use this form to report problems with the translation of the site.
   meta.publicodes.Contribution.traductionDescription.lock: Ce formulaire vous permet de remonter les problèmes liés à la traduction du site.
+  publicodes.Contact.description: Don't hesitate to consult our <2>FAQ</2> before writing to us - you're sure to find the answer you're looking for!
+  publicodes.Contact.description.lock: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écire, vous y trouverez sans doute la réponse à votre question !
+  publicodes.Contact.form: For any comments or questions, <2>we recommend that you <2>open a ticket directly on GitHub</2></2> in order to follow the exchanges more easily. You can also send us a message via the contact form below.
+  publicodes.Contact.form.lock: Pour toute remarque ou question, <2>nous vous recommandons <2>d'ouvrir un ticket directement sur GitHub</2></2> afin de suivre les échanges plus facilement. Vous pouvez également nous envoyer un message via le formulaire de contact ci-dessous.
+  publicodes.Contact.mail: You can also send us an e-mail to <2>contact@nosgestesclimat.fr</2>. However, the response time will be longer than with the previous solutions.
+  publicodes.Contact.mail.lock: Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse <2>contact@nosgestesclimat.fr</2>. Cependant, le délais de réponse sera plus long que les solutions précédentes.

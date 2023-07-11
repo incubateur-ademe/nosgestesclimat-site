@@ -4,9 +4,9 @@ import { renderToString } from 'react-dom/server'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import { getCurrentLangInfos } from '../../locales/translation'
-import { GithubContribution } from './Contact'
+import { GithubContributionCard } from './Contact'
 
-export default ({}) => {
+export default () => {
 	useEffect(() => {
 		const handleAnchor = () => {
 			if (window.location.hash) {
@@ -132,7 +132,7 @@ export default ({}) => {
 					J'ai une autre question
 				</Trans>
 			</h2>
-			<GithubContribution />
+			<GithubContributionCard />
 		</div>
 	)
 }
