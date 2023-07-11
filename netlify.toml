@@ -1,4 +1,10 @@
 [[redirects]]
+  from = "/contribuer"
+  to = "/questions-frequentes"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/*"
   to = "/publicodes.html"
   status = 200
