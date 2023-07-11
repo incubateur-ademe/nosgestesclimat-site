@@ -165,7 +165,7 @@ export default ({}) => {
 	return (
 		<div className="ui__ container" css="padding-bottom: 1rem">
 			<Meta
-				title={t('Contribuer')}
+				title={t('meta.publicodes.Contact.titre')}
 				description={t('meta.publicodes.Contact.description')}
 			></Meta>
 			<h1>
