@@ -3,7 +3,7 @@ import { DottedName } from '@/components/publicodesUtils'
 import { AppState, TutorialStateStatus } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { Rating } from '@/types/rating'
-import { Simulation, SimulationConfig } from '@/types/simulation'
+import { Simulation, SimulationConfig, StoredTrajets } from '@/types/simulation'
 import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
@@ -87,6 +87,41 @@ type DeleteSimulationByIdAction = {
 	id: string
 }
 
+type UpdateSituationAction = {
+	type: 'UPDATE_SITUATION'
+	fieldName: DottedName
+	value: unknown
+}
+
+type LoadPreviousSimulationAction = {
+	type: 'LOAD_PREVIOUS_SIMULATION'
+}
+
+type HideNotificationAction = {
+	type: 'HIDE_NOTIFICATION'
+	id: string
+}
+
+type SetSituationBranchAction = {
+	type: 'SET_SITUATION_BRANCH'
+	id: number
+}
+
+type SetActiveTargetAction = {
+	type: 'SET_ACTIVE_TARGET_INPUT'
+	name: DottedName
+}
+
+type ExplainVariableAction = {
+	type: 'EXPLAIN_VARIABLE'
+	variableName: DottedName | null
+}
+
+type UpdateTargetUnitAction = {
+	type: 'UPDATE_TARGET_UNIT'
+	targetUnit: string
+}
+
 type UpdateEventsSentAction = {
 	type: 'UPDATE_EVENTS_SENT'
 	eventSent: { [key: string]: boolean }
@@ -95,15 +130,10 @@ type UpdateEventsSentAction = {
 type HasSubscribedToNewsletterAction = {
 	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER'
 }
-type ResetSimulationAction = ReturnType<typeof resetSimulation>
-type UpdateAction = ReturnType<typeof updateSituation>
-type UpdateSituationAction = ReturnType<typeof updateSituation>
-type LoadPreviousSimulationAction = ReturnType<typeof loadPreviousSimulation>
-type SetSituationBranchAction = ReturnType<typeof setSituationBranch>
-type SetActiveTargetAction = ReturnType<typeof setActiveTarget>
-type HideNotificationAction = ReturnType<typeof hideNotification>
-type ExplainVariableAction = ReturnType<typeof explainVariable>
-type UpdateTargetUnitAction = ReturnType<typeof updateUnit>
+
+type ResetSimulationAction = {
+	type: 'RESET_SIMULATION'
+}
 
 type ResetCategoryTutorialsAction = {
 	type: 'RESET_CATEGORY_TUTORIALS'
