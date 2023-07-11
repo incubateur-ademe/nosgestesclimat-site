@@ -1,3 +1,12 @@
+# Since 11/07/2023, we do not use "/contribuer" but "questions-frequentes" for de the FAQ.
+[[redirects]]
+  from = "/contribuer"
+  to = "/questions-frequentes"
+  status = 301
+  force = true
+
+
+# As it is an SPA, here, all urls has to be supported in react
 [[redirects]]
   from = "/*"
   to = "/publicodes.html"
