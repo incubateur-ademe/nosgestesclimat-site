@@ -2,8 +2,8 @@
   catégorie: général
   id: tuto
   réponse: |
-    Si vous ne l'avez pas fait, consultez [le tutoriel](/tutoriel) de 2 minutes chrono pour comprendre l'idée et le fonctionnement du calculateur.
-    Si vous l'avez déjà consulté, vous pouvez visiter votre [page profil](/profil) pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
+    Si vous ne l'avez pas fait, consultez **[le tutoriel](/tutoriel) de 2 minutes chrono** pour comprendre l'idée et le fonctionnement du calculateur.
+    Si vous l'avez déjà consulté, vous pouvez **visiter votre [page profil](/profil)** pour relancer le tutoriel et éventuellement repartir de zéro dans votre test.
 
 - question: Qu'est-ce que l'empreinte carbone ?
   catégorie: général
@@ -12,13 +12,13 @@
     En d'autres termes, comment se fait-il que ce que je mange ou que ma poubelle émettent des gaz à effet de serre (GES) ?
 
     Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service.
-    Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. 
+    Ainsi, **toutes nos activités participent à émettre des gaz à effet de serre**. Certaines énormément, d'autres très peu. 
 
     > Manger un kg de patates, rouler 10 000 km en voiture, regarder une vidéo en streaming... émettent des Gaz à Effet de Serre (GES), mais bien évidemment dans des proportions très différentes. Et nous n'avons pas toujours ces chiffres en tête.
 
     Pour savoir combien émettent chacune de nos actions, nous nous en remettons dès que nous le pouvons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'agence française de l'environnement). Cette base regroupe des centaines de "facteurs d'émission" issus d'analyses de cycle de vie qui permettent de passer de kilomètres roulés, de kilogrammes de viande, de kWh consommé, d'une TV à la quantité de gaz à effet de serre émise.
 
-    Le but de Nos Gestes Climat est de manipuler ces chiffres pour questionner simplement notre mode de vie afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
+    Le but de Nos Gestes Climat est de manipuler ces chiffres pour **questionner simplement notre mode de vie** afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
 
     > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
 
@@ -27,11 +27,11 @@
   catégorie: général
   réponse: |
 
-    La version la plus avancée du modèle, et de loin, est celle de France métropolitaine. Petit à petit, au fil des contributions et demandes, nous ajoutons des briques permettant d'améliorer des versions dédiées à l'Outre-mer, ou à d'autres pays. Les pays disponibles se trouvent sur [notre page International](https://nosgestesclimat.fr/international) Il faut, actuellement, considérer que ce sont des versions "beta", non finalisées.
+    La version la plus avancée du modèle, et de loin, est celle de **France métropolitaine**. Petit à petit, au fil des contributions et demandes, nous ajoutons des briques permettant d'améliorer des versions dédiées à l'Outre-mer, ou à d'autres pays. Les pays disponibles se trouvent sur [notre page International](https://nosgestesclimat.fr/international) Il faut, actuellement, considérer que ce sont des **versions "beta", non finalisées**.
 
     Par ailleurs, la traduction du modèle en anglais a déjà été réalisée, pour plus d'inclusivité.
 
-    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier l'empreinte du mix électrique (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier **l'empreinte du mix électrique** (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
 
     Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 
@@ -48,9 +48,9 @@
 
     En effet, au sein d’un foyer, il est très difficile d’arbitrer entre certains biens et services utilisés dans le cadre d’une consommation personnelle et d’autres pouvant être mutualisés (matériel hifi ou informatique, outils, etc.).
 
-    Pour chacun d'entre eux, nous avons donc arbitré entre personnel et partagé (la télévision est partagée, l'ordinateur est personnel). Si pour vous la distinction n'est pas la même, ne vous inquiétez pas : ces postes représentent peu dans votre empreinte finale.
+    Pour chacun d'entre eux, **nous avons donc arbitré entre personnel et partagé** (la télévision est partagée, l'ordinateur est personnel). Si pour vous la distinction n'est pas la même, ne vous inquiétez pas : ces postes représentent peu dans votre empreinte finale.
 
-    En parallèle, l’équipe travaille à développer un parcours [« foyer »](https://github.com/datagir/nosgestesclimat/issues/113) afin de pouvoir estimer l’empreinte carbone de sa famille.
+    En parallèle, l’équipe travaille à développer un **parcours [« foyer »](https://github.com/datagir/nosgestesclimat/issues/113)** afin de pouvoir estimer l’empreinte carbone de sa famille.
 
 - question: Vous ne posez pas de questions sur les enfants ?
   id: enfants
@@ -59,7 +59,7 @@
 
     C'est un sujet, pour le moins, compliqué !
 
-    Nos Gestes Climat est un simulateur d'empreinte individuelle. On considère que chaque humain, enfant ou adulte, a sa propre empreinte.
+    Nos Gestes Climat est un simulateur d'empreinte individuelle. On considère que **chaque humain, enfant ou adulte, a sa propre empreinte**.
 
     Certes, un enfant n'a pas choisi de naître, et quelque part un ou deux adulte(s) ont décidé de mettre au monde un nouvel individu, qui aura une empreinte carbone. On pourrait se dire que l'on devrait la leur attribuer. Mais alors, pendant combien de temps ? Votre empreinte n'est pas à attribuer à vos parents !
 
@@ -72,16 +72,16 @@
 
     L'approche de Nos Gestes Climat est incomplète pour répondre aux enjeux auxquels nous faisons face, nous en sommes bien conscients.
 
-    Le changement climatique c'est que l'une des [neuf limites planétaires](https://fr.wikipedia.org/wiki/Limites_plan%C3%A9taires) que nous menaçons (ou que nous avons déjà dépassées) avec nos modes de vie.
+    Le changement climatique c'est que **l'une des [neuf limites planétaires](https://fr.wikipedia.org/wiki/Limites_plan%C3%A9taires)** que nous menaçons (ou que nous avons déjà dépassées) avec nos modes de vie.
 
-    L'approche "carbone" doit donc être complémentaire des huit autres limites : l’érosion de la biodiversité, la perturbation des cycles biogéochimiques de l’azote et du phosphore, les changements d'utilisation des sols, l’acidification des océans, l’utilisation mondiale de l’eau, l’appauvrissement de la couche d'ozone, l'introduction d’entités nouvelles dans l’environnement (pollution chimique) et l'augmentation des aérosols dans l’atmosphère.
+    L'approche "carbone" doit donc être **complémentaire** des huit autres limites : l’érosion de la biodiversité, la perturbation des cycles biogéochimiques de l’azote et du phosphore, les changements d'utilisation des sols, l’acidification des océans, l’utilisation mondiale de l’eau, l’appauvrissement de la couche d'ozone, l'introduction d’entités nouvelles dans l’environnement (pollution chimique) et l'augmentation des aérosols dans l’atmosphère.
 
 - question: Quels biens sont amortis et comment ?
   id: amortissement
   catégorie: général
   réponse: |
 
-    Fort heureusement, une grande partie des biens que nous utilisons au quotidien a vocation à durer plusieurs années. Pour représenter cet usage, nous amortissons (de la même manière qu'un comptable amortit un achat de bien) l'impact carbone d'une partie de vos biens sur plusieurs années.
+    Fort heureusement, une grande partie des biens que nous utilisons au quotidien a **vocation à durer plusieurs années**. Pour représenter cet usage, nous amortissons (de la même manière qu'un comptable amortit un achat de bien) l'impact carbone d'une partie de vos biens sur plusieurs années.
 
     Les voitures sont amorties avec une fonction non linéaire, les premières années "pesant" plus que les suivantes en empreinte carbone, ceci afin de refléter la rapide décote d'un véhicule après l'achat, et pour décourager l'achat de véhicules neufs.
 
@@ -94,16 +94,16 @@
 
     C'est un sujet très complexe, à plusieurs niveaux.
 
-    Il y a d'abord le problème du double comptage. En effet, les émissions des énergies fossiles financées par les banques sont comptabilisées pour ceux qui les utilisent. Compter l'empreinte de l'épargne, c'est donc compter deux fois les consommations liées à ce qu'a financé cette épargne.
+    Il y a d'abord **le problème du double comptage**. En effet, les émissions des énergies fossiles financées par les banques sont comptabilisées pour ceux qui les utilisent. Compter l'empreinte de l'épargne, c'est donc compter deux fois les consommations liées à ce qu'a financé cette épargne.
 
     > De façon illustrée, votre banque finance peut-être l'extraction du pétrole au large de la Sibérie, mais ce pétrole est extrait pour que quelqu'un, quelque part, puisse faire 10km de voiture, chauffer une maison ou produire du plastique.
-    > Ce sont les consommations voiture, logement et plastique qui dans le modèle se voient attribuer ces émissions.
+    > Ce sont les consommations voiture, logement et plastique qui, dans le modèle, se voient attribuer ces émissions.
 
-    Il y a, également, la difficulté de comptabiliser l'empreinte carbone de l'épargne. Des initiatives existent (comme [celle d'Oxfam](https://www.oxfamfrance.org/climat-et-energie/calculez-lempreinte-carbone-de-votre-compte-bancaire/), par exemple), mais nous sommes loin d'un consensus sur les méthodes de calcul.
+    Il y a, également, **la difficulté de comptabiliser l'empreinte carbone de l'épargne**. Des initiatives existent (comme [celle d'Oxfam](https://www.oxfamfrance.org/climat-et-energie/calculez-lempreinte-carbone-de-votre-compte-bancaire/), par exemple), mais nous sommes loin d'un consensus sur les méthodes de calcul.
 
     Ces deux raisons font qu'actuellement, l'empreinte de votre épargne n'est pas évaluée dans le cadre de Nos Gestes Climat.
 
-    Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au simulateur.
+    _Néanmoins, nous sommes conscients que nous passons sûrement là à côté de notre objectif pédagogique : c'est un sujet qui fait couler encore (trop) peu d'encre, et sur lequel les citoyens méritent d'être informés. Aussi, [la réflexion est toujours ouverte](https://github.com/incubateur-ademe/nosgestesclimat/issues/1823) pour ajouter une composante "épargne individuelle" au simulateur._
 - question: D'où vient cet objectif de 2 tonnes ?
   id: 2tonnes
   catégorie: général
@@ -111,11 +111,11 @@
 
     Soyons honnête, à l'heure actuelle, très peu de gens émettent moins de 2 tonnes de gaz à effet de serre par année. Si votre empreinte se situe autour de 4 ou 5 tonnes, vous avez déjà fait une grande partie du chemin.
 
-    Il s'agit de progresser individuellement vers des modes de vies moins émetteurs de gaz à effet de serre, mais il est également essentiel que des changements s'opèrent à plus large échelle pour faciliter l'émergence de ces mode de vies.
+    Il s'agit de **progresser individuellement** vers des modes de vies moins émetteurs de gaz à effet de serre, mais il est également **essentiel que des changements s'opèrent à plus large échelle** pour faciliter l'émergence de ces mode de vies.
 
     > Ainsi, une collectivité où les citoyens se mettent massivement au vélo (ou à un autre mode bas carbone) poussera ses élus à favoriser de nouvelles infrastructures et politiques adéquates, ce qui en retour aidera les prochains à se mettre au vélo, et ainsi de suite ♻️ !
 
-    Cet objectif de 2 tonnes est compliqué, mais c'est ce que nous devons atteindre collectivement au plus vite, et au plus tard en 2050 avec une progression régulière chaque année, afin de contenir le réchauffement climatique à +2°C, et donc respecter l'accord de Paris. Ce "budget climat" ne relève pas du fait politique, mais découle des limites planétaires identifiées par la science du climat. Il est factuel, non négociable, sauf à vouloir s'exposer aux conséquences désastreuses qui y sont associées et largement décrites dans les [rapports du GIEC](https://www.ipcc.ch/languages-2/francais/).
+    Cet objectif de 2 tonnes est compliqué, mais c'est ce que nous devons **atteindre collectivement** au plus vite, et au plus tard en 2050 avec une progression régulière chaque année, afin de contenir le réchauffement climatique à +2°C, et donc respecter l'accord de Paris. Ce "budget climat" ne relève pas du fait politique, mais découle des limites planétaires identifiées par la science du climat. Il est factuel, non négociable, sauf à vouloir s'exposer aux conséquences désastreuses qui y sont associées et largement décrites dans les [rapports du GIEC](https://www.ipcc.ch/languages-2/francais/).
 
     > Pour en savoir plus, lisez notre article illustré sur ce sujet :
     > 📘 [Le budget et l'empreinte carbone, c'est quoi ? ](https://nosgestesclimat.fr/blog/budget)
@@ -125,40 +125,42 @@
   catégorie: général
   réponse: |
 
-    Il est difficile, aujourd'hui, de nous projeter dans des imaginaires de vies bas carbone. C'est presque à l'opposé du modèle de société qui a été défendu jusqu'ici. Et nous en payons le prix individuel, tout autant que collectif. Comment imaginer une empreinte annuelle à 2 tonnes quand les services sociétaux nous grèvent déjà d'1,6 tonnes ? Par des actions collectives et l'implication politique, le but est que ces services sociétaux diminuent également au fil du temps, ce qui devrait rendre l'objectif plus atteignable.
+    Il est difficile, aujourd'hui, de nous projeter dans des **imaginaires de vies bas carbone**. C'est presque à l'opposé du modèle de société qui a été défendu jusqu'ici. Et nous en payons le prix individuel, tout autant que collectif. 
 
-    Par ailleurs... Marcher dans la nature, jouer de la musique, faire du vélo, naviguer à la voile, profiter du train sur tout le territoire, passer du temps avec ses proches, faire la fête, lire, discuter, faire son potager, apprendre à cuisiner... Une vie bas carbone, c'est plein d'expériences joyeuses, qui ne se retrouvent pas forcément dans un bilan carbone individuel, mais qui seront au coeur des modes de vie que nous inventons en ce moment même.
+    Comment imaginer une empreinte annuelle à 2 tonnes quand les services sociétaux nous grèvent déjà d'1,6 tonnes ? Par des actions collectives et l'implication politique, le but est que ces services sociétaux diminuent également au fil du temps, ce qui devrait rendre l'objectif plus atteignable.
+
+    Par ailleurs... Marcher dans la nature, jouer de la musique, faire du vélo, naviguer à la voile, profiter du train sur tout le territoire, passer du temps avec ses proches, faire la fête, lire, discuter, faire son potager, apprendre à cuisiner... **Une vie bas carbone, c'est plein d'expériences joyeuses**, qui ne se retrouvent pas forcément dans un bilan carbone individuel, mais qui seront au coeur des modes de vie que nous inventons en ce moment même.
 
 - question: Puis-je me comparer à la moyenne française ?
   id: défaut
   catégorie: général
   réponse: |
 
-    Il faut voir l'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, comme un point de départ. Il vous permet, tout au long du simulateur, de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
+    Il faut voir l'empreinte qui s'affiche au début du test, avant que vous n'ayez répondu aux questions, comme un **point de départ**. Il vous permet, tout au long du simulateur, de comparer l'empreinte de vos postes de consommation (km en voiture, chauffage...) à des valeurs qui se veulent les plus proches de la moyenne française. 
 
     Ce point de départ est différent des `8,9 tonnes de CO₂ₑ`, [la dernière moyenne d'empreinte carbone française calculé par le Ministère de l'Environnement en novembre 2022](https://www.statistiques.developpement-durable.gouv.fr/lempreinte-carbone-de-la-france-de-1995-2021).
 
-    Cette différence est normale, car les deux méthodes de calcul sont très différentes :
+    **Cette différence est normale**, car les deux méthodes de calcul sont très différentes :
 
-    - "Par le haut" : La moyenne du ministère englobe l'impact carbone de l’ensemble des activités de l’économie française qu'elle divise ensuite par les 67 millions de Français.
-    - "Par le bas" : Nos Gestes Climat propose d'ajouter, poste par poste, les empreintes de toutes nos consommations réelles et "significatives" (c'est-à-dire représentant la grande majorité de l'empreinte carbone d'un individu). Le modèle n'est pas exhaustif, l'enjeu étant de trouver l'équilibre entre précision / complétude, et complexité / durée du test.
+    - **"Par le haut"** : La moyenne du ministère englobe l'impact carbone de l’ensemble des activités de l’économie française qu'elle divise ensuite par les 67 millions de Français.
+    - **"Par le bas"** : Nos Gestes Climat propose d'ajouter, poste par poste, les empreintes de toutes nos consommations réelles et "significatives" (c'est-à-dire représentant la grande majorité de l'empreinte carbone d'un individu). Le modèle n'est pas exhaustif, l'enjeu étant de trouver l'équilibre entre précision / complétude, et complexité / durée du test.
 
-    Tant que l'ordre de grandeur est identique, tout va bien (ici nous avons un écart de moins d'une tonne, moins de 10%, ce qui semble raisonnable). 
+    Tant que l'ordre de grandeur est identique, tout va bien (ici nous avons un écart de moins d'une tonne, soit moins de 10%, ce qui semble raisonnable). 
 
-    > Par ailleurs, nous cherchons en continu à rendre le modèle [plus précis et plus complet](https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22). Si un sujet important vous semble manquer, n'hésitez pas à nous le signaler sur Github !
+    > Par ailleurs, nous cherchons en continu à **rendre le modèle [plus précis et plus complet](https://github.com/incubateur-ademe/nosgestesclimat/issues?q=is%3Aissue+is%3Aopen+label%3A%22%F0%9F%97%AF+sujet+manquant%22)**. Si un sujet important vous semble manquer, n'hésitez pas à [nous le signaler sur Github](https://github.com/incubateur-ademe/nosgestesclimat) !
 
 - question: Que représente le poste « services sociétaux » ?
   id: services-sociétaux
   catégorie: services sociétaux
   réponse: |
 
-    Ce poste représente l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact de tous ces services sur les 67 millions de Français.
+    Ce poste représente **l’empreinte carbone des services publics français, ainsi qu'un ensemble de services "de base" qui sont difficiles à éviter**, ramenés à une échelle individuelle. C’est-à-dire que l’on répartit l’impact de tous ces services sur les 67 millions de Français.
 
     > 🔎 Lisez notre [article de blog "L'empreinte des services sociétaux"](https://nosgestesclimat.fr/nouveaut%C3%A9s/l'empreinte-climat%20des%20%22services%20soci%C3%A9taux%22) pour aller plus loin.
 
     Tout le monde prend donc en quelque sorte « sa part », et ce pour plusieurs raisons.
 
-    Tout d’abord, il est extrêmement rare voire quasi impossible de vivre sans jamais utiliser un seul service public. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics. De plus, ces services et leur financement sont votés chaque année par l'Assemblée et définis par un gouvernement élu régulièrement.
+    Tout d’abord, il est extrêmement rare voire **quasi impossible de vivre sans jamais utiliser un seul service public**. Qu’il s’agisse de service santé, de routes aménagées, de l'éducation, et plus généralement de tout ce qui est financé par les impôts, tout le monde bénéficie des services publics. De plus, ces services et leur financement sont votés chaque année par l'Assemblée et définis par un gouvernement élu régulièrement.
 
     Deuxièmement, essayer de comptabiliser la part de service public qu’un individu utilise « pour de vrai » n'est pas actuellement possible avec les données dont nous disposons sur l'empreinte de ce secteur. Ce qui ne nous empêche pas de mener des réflexions pour "variabiliser" le poste services sociétaux selon l'empreinte de la personne !
 
@@ -171,7 +173,7 @@
 
     **Mais c’est là tout l’enjeu de la transition au sens large.**
 
-    Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une condition nécessaire mais non suffisante d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.). 
+    Cette transition ne peut se penser seulement à l’échelle individuelle. Elle est une **condition nécessaire mais non suffisante** d’une transition plus globale à l’échelle de notre société. Cela revient donc à jouer avec des leviers d’actions indirects (vote, engagement associatif, sensibilisation autour de soi, etc.). 
 
     > Nous en avons intégré quelques-uns dans le [parcours action](https://nosgestesclimat.fr/actions) après le test.
 
@@ -184,7 +186,7 @@
 
     C’est une remarque qui revient souvent quand il s’agit d’évaluer son empreinte carbone.
 
-    L’affichage du poids carbone de chaque produit, bien et service que nous consommons n’existant pas encore, nous devons donc approximer cet impact. Il faut ici arbitrer entre simplicité et précision.
+    L’affichage du poids carbone de chaque produit, bien et service que nous consommons n’existant pas encore, **nous devons donc approximer cet impact**. Il faut ici **arbitrer entre simplicité et précision**.
 
     Nos Gestes Climat étant un calculateur grand public, nous faisons le choix de la simplicité.
 
@@ -201,11 +203,11 @@
 
     **Attention : manger bio ne réduit pas, en soi, l’empreinte carbone.**
 
-    À ce jour, les données indiquent qu'à production et produits égaux, une culture bio nécessite des parcelles agricoles plus grandes, réduisant la taille des forêts et des zones naturelles, zones essentielles à la séquestration du carbone. C’est pourquoi, à l’échelle globale et à quantités consommées égales, on tend à considérer que le bio a « plus d’impact » sur le climat que l’agriculture conventionnelle.
+    À ce jour, les données indiquent qu'à production et produits égaux, **une culture bio nécessite des parcelles agricoles plus grandes**, réduisant la taille des forêts et des zones naturelles, zones essentielles à la séquestration du carbone. C’est pourquoi, à l’échelle globale et à quantités consommées égales, on tend à considérer que le bio a « plus d’impact » sur le climat que l’agriculture conventionnelle.
 
     Bien sûr, **ce n’est pas une raison pour ne pas manger bio**. C'est un biais de notre simulateur. Il ne s'intéresse qu'aux émissions de carbone.
 
-    Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
+    Or, de la pollution des sols et des nappes phréatiques à la perte de biodiversité en passant par la préservation de la santé des agriculteurs, **une alimentation bio permet de réduire considérablement de nombreux autres impacts environnementaux** tout en réduisant également les risques pour notre santé. Nous touchons ici aux enjeux environnementaux en général, et devons prendre du recul par rapport à notre calcul 100 % centré sur les gaz à effet de serre.
 
     Le débat est vif autour de cette question et fait couler beaucoup d'encre (numérique) [sur notre Github](https://github.com/incubateur-ademe/nosgestesclimat/issues/1799). N'hésitez pas à rejoindre la conversation !
 
@@ -214,9 +216,9 @@
   id: régime
   réponse: |
 
-    Nos Gestes Climat est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants de notre alimentation.
+    Nos Gestes Climat est, avant tout, un outil pensé pour le grand public. C’est pourquoi nous avons souhaité limiter le nombre de questions aux aspects que nous savons les plus importants (impactants) de notre alimentation.
 
-    Nous savons qu'il manque beaucoup de choses dans le modèle actuel. De la nourriture auto-produite (poules, potager...) aux plats à base d'insectes, la diversité des régimes alimentaires est presque infinie !
+    Nous savons qu'il manque beaucoup de choses dans le modèle actuel. De la nourriture auto-produite (poules, potager...) aux plats à base d'insectes, **la diversité des pratiques alimentaires** est presque infinie !
 
     Notre outil est libre d’accès et la contribution de tous est possible et souhaitée. N’hésitez donc pas à nous faire part de vos suggestions d’amélioration si un manque au modèle vous paraît important.
 
@@ -231,7 +233,7 @@
 
     Nos Gestes Climat est dédié à l’évaluation de **l’empreinte carbone individuelle**. Les déplacements que vous effectuez dans le cadre de votre travail (comme livrer un client, se rendre à une réunion, prendre l’avion pour assister à 3 jours de séminaire, etc.) ne sont pas à prendre en compte quand vous répondez aux questions du calculateur.
 
-    Ces déplacements, relevant de l’activité professionnelle, seront comptabilisés dans l’empreinte carbone de votre organisation (entreprise, collectivité, association, etc). On parle alors de bilans d’émissions de Gaz à Effet de Serre (BEGES).
+    Ces déplacements, relevant de l’activité professionnelle, seront comptabilisés dans **l’empreinte carbone de votre organisation** (entreprise, collectivité, association, etc). On parle alors de bilans d’émissions de Gaz à Effet de Serre (BEGES).
 
     > Si vous travaillez pour une compagnie aérienne et que vous prenez l'avion pour des besoins personnels, les émissions de votre vol d'avion incluront ceux des employés de la compagnie aérienne. 
 
@@ -294,7 +296,7 @@
   catégorie: divers
   réponse: |
 
-    À l’instar de ce qui est fait pour la voiture, un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat (notamment à cause de la phase d’extraction des matières premières).
+    À l’instar de ce qui est fait pour la voiture, **un amortissement est réalisé pour les produits électroniques dont la fabrication à un très fort impact sur le climat** (notamment à cause de la phase d’extraction des matières premières).
 
     Nous vous demandons donc l’âge du produit afin de connaître la durée restant à amortir.
 
@@ -303,7 +305,7 @@
   id: impact-numérique
   réponse: |
 
-    L’évaluation des impacts du numérique et plus particulièrement des contenus « dématérialisés » (streaming, visio-conférence, stockage sur un cloud, envoi de mail, etc.) est encore un sujet de travail parmi les acteurs techniques et institutionnels.
+    L’évaluation des impacts du numérique et plus particulièrement des contenus « dématérialisés » (streaming, visio-conférence, stockage sur un cloud, envoi de mail, etc.) est **encore un sujet de travail** parmi les acteurs techniques et institutionnels.
 
     Nous estimons au mieux l’empreinte numérique en nous basant sur les données de la [Base Carbone®](https://www.bilans-ges.ademe.fr/) mais certaines informations ou questionnements peuvent s’avérer manquant.
 
