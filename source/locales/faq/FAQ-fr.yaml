@@ -31,7 +31,7 @@
 
     Par ailleurs, la traduction du modèle en anglais a déjà été réalisée, pour plus d'inclusivité.
 
-    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier **l'empreinte du mix électrique** (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs.
+    Pourquoi l'internationalisation est importante ? Certains paramètres du modèle, en particulier **l'empreinte du mix électrique** (en gCO₂ₑ/kWh), influencent particulièrement le résultat final, qui ne sera donc pas valide en Belgique, au Congo, au Québec, en Algérie ou ailleurs. Vous vous demandez ce que donnerait votre empreinte dans un de ces pays ? Vous pouvez changer de région [sur cette page](https://nosgestesclimat.fr/profil).
 
     Si vous connaissez bien le sujet dans votre pays ou région, venez [en discuter](https://github.com/datagir/nosgestesclimat-site/issues/71).
 
