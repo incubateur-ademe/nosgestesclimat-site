@@ -70,7 +70,7 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 			)
 			.join('\n')
 
-		const parsedRules: NGCRulesNodes = new Engine(json).getParsedRules()
+		const parsedRules = new Engine(json).getParsedRules() as NGCRulesNodes
 		const questionURLs = ruleNames
 			.filter((dottedName) => isValidRule(dottedName, parsedRules))
 			.map(
