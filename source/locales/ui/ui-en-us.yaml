@@ -837,3 +837,26 @@ entries:
   Vous devez compléter votre test avant de créer un groupe.: You must complete your test before creating a group.
   'Voir les {String(group.members.length)} autres participants': See the {String(group.members.length)} other participants
   'Voir les {String(group.members.length)} autres participants.lock': Voir les {String(group.members.length)} autres participants
+  'pour recevoir ': 'to receive '
+  Supprimer mes données: Delete my data
+  "Mes groupes, simulateur d'empreinte carbone": My groups, carbon footprint simulator
+  Créer un groupe et calculer notre empreinte carbone: Create a group and calculate our carbon footprint
+  Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Share this page with your friends and family to let them join your group.
+  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Only to allow you to find your group or delete your data
+  "Oups, une erreur s'est produite au moment de récupérer les données du groupe.": Oops, an error occurred while retrieving the group data.
+  Rejoindre un groupe - Nos Gestes Climat: Join a group - Nos Gestes Climat
+  'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé': Edit group name, opens an automatically focused input field
+  Veuillez renseigner un prénom ou un pseudonyme.: Please enter a first name or pseudonym.
+  Vous êtes le premier 🥳: You are the first 🥳
+  'Ok, sauvegarder la modification': Ok, save the modification
+  Veuillez renseigner un nom.: Please enter a name.
+  Veuillez renseigner un email valide.: Please enter a valid email address.
+  Données supprimées.: Deleted data.
+  Supprimer vos données de groupe enregistrées ? Cette action est irréversible.: Delete your saved group data? This action is irreversible.
+  Modifier le nom du groupe: Change group name
+  'Mon groupe, nos bilans carbone personnels': My group, our personal carbon footprints
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': See {String(group.members.length - 5)} other{withS} participant{withS}
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}.lock': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.': Find out how you can take action for the climate today, or take the test to get personalized recommendations.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Join your group to calculate your carbon footprint and compare it with the footprint of others, using the Nos Gestes Climat personal carbon footprint simulator.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your family and friends using the Nos Gestes Climat personal carbon footprint simulator.

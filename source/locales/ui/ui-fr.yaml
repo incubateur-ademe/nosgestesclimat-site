@@ -639,3 +639,25 @@ entries:
   Vos points forts: Vos points forts
   Votre empreinte: Votre empreinte
   Vous devez compléter votre test avant de créer un groupe.: Vous devez compléter votre test avant de créer un groupe.
+  ' pour recevoir ': ' pour recevoir '
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Créer un groupe et calculer notre empreinte carbone: Créer un groupe et calculer notre empreinte carbone
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.': Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.
+  Données supprimées.: Données supprimées.
+  "Mes groupes, simulateur d'empreinte carbone": Mes groupes, simulateur d'empreinte carbone
+  Modifier le nom du groupe: Modifier le nom du groupe
+  'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé': Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé
+  'Mon groupe, nos bilans carbone personnels': Mon groupe, nos bilans carbone personnels
+  'Ok, sauvegarder la modification': Ok, sauvegarder la modification
+  "Oups, une erreur s'est produite au moment de récupérer les données du groupe.": Oups, une erreur s'est produite au moment de récupérer les données du groupe.
+  Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Rejoindre un groupe - Nos Gestes Climat: Rejoindre un groupe - Nos Gestes Climat
+  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données
+  Supprimer mes données: Supprimer mes données
+  Supprimer vos données de groupe enregistrées ? Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Cette action est irréversible.
+  Veuillez renseigner un email valide.: Veuillez renseigner un email valide.
+  Veuillez renseigner un nom.: Veuillez renseigner un nom.
+  Veuillez renseigner un prénom ou un pseudonyme.: Veuillez renseigner un prénom ou un pseudonyme.
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
+  Vous êtes le premier 🥳: Vous êtes le premier 🥳
