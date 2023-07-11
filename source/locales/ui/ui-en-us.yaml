@@ -326,8 +326,8 @@ entries:
   la page à partager à l'étape 3: the page to be shared in step 3
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
-  meta.pages.actions.description: Find out how you can reduce your climate footprint
-  meta.pages.actions.description.lock: Découvrez les gestes qui veous permettent de réduire votre empreinte climat
+  meta.pages.actions.description: Discover the steps you can take to reduce your climate footprint
+  meta.pages.actions.description.lock: Découvrez les gestes qui vous permettent de réduire votre empreinte climat
   meta.publicodes.About.description: This simulator allows you to evaluate your total annual individual carbon footprint and by major categories (food, transportation, housing, miscellaneous, utilities, digital), to situate it in relation to the climate objectives and above all to take action at your level with personalized gestures according to your answers.
   meta.publicodes.About.description.lock: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services publics, numérique), de la situer par rapport aux objectifs climatiques et surtout de passer à l’action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   meta.publicodes.About.title: About us
@@ -444,12 +444,12 @@ entries:
   publicodes.Contribution.descriptionComplèteTraduction.lock: <0>La description complète de votre problème</0>
   publicodes.Contribution.liensVersGithub: For any comments or questions, we invite you to <2>open a ticket directly on GitHub</2>.
   publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
-  publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <1>this link</1>.
-  publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <1>ce lien</1>.
+  publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <2>this link</2>.
+  publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
   publicodes.Contact.titreQuestion: I have a question
   publicodes.Contact.titreQuestion.lock: J'ai une question
-  publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been translated into several languages. Do not hesitate to share your doubts about a translation problem on the site 😊. We will take it into account quickly.
-  publicodes.Contribution.traductionIntro.lock: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problèm de traduction sur le site 😊. Nous le prendrons en compte rapidement.
+  publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been translated into several languages. If you have any doubts about a translation problem, please let us know 😊. We'll get back to you as soon as possible.
+  publicodes.Contribution.traductionIntro.lock: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problème de traduction sur le site 😊. Nous le prendrons en compte rapidement.
   publicodes.Contribution.translationWikiInvite: 'Follow our complete guide to contribute directly to the translation of the site: <2>go to our wiki</2>.'
   publicodes.Contribution.translationWikiInvite.lock: 'Suivez notre guide complet pour contribuer directement à la traduction du site : <2>rendez-vous sur notre wiki</2>.'
   publicodes.Landing.question: Do you know your climate footprint?
@@ -767,3 +767,17 @@ entries:
   components.stats.StatsContent.infosNorthstar.lock: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
   Envoyer mes résultats: Send my results
   '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Leave us your email address like <2> other {formatValue(numberSubscribers)} users</2>, to receive <4>your results</4> and <7>tips</7> on how to reduce your carbon footprint (once a month max.).</0>
+  Contact: Contact
+  publicodes.FAQ.titreQuestion: I have another question
+  publicodes.FAQ.titreQuestion.lock: J'ai une autre question
+  meta.publicodes.Contact.description: Do you have a question or a problem? Send us a message via this contact form, and we'll get back to you as soon as possible!
+  meta.publicodes.Contact.description.lock: Une question, un problème ? Envoyez-nous un message via ce formulaire de contact, nous vous répondrons au plus vite !
+  meta.publicodes.Contribution.description: meta.publicodes.Contribution.description
+  meta.publicodes.Contribution.description.lock: meta.publicodes.Contribution.description
+  FAQ: FAQ
+  meta.publicodes.FAQ.title: Frequently asked questions
+  meta.publicodes.FAQ.title.lock: Questions fréquentes
+  meta.publicodes.Contact.titre: Contact
+  meta.publicodes.Contact.titre.lock: Contact
+  meta.publicodes.Contribution.traductionDescription: Use this form to report problems with the translation of the site.
+  meta.publicodes.Contribution.traductionDescription.lock: Ce formulaire vous permet de remonter les problèmes liés à la traduction du site.

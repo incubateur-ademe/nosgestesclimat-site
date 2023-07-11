@@ -61,7 +61,10 @@ export default ({}) => {
 	const { t } = useTranslation()
 	return (
 		<div className="ui__ container" css="padding-bottom: 1rem">
-			<Meta title={t('FAQ')} description={t('meta.publicodes.FAQ.description')}>
+			<Meta
+				title={t('meta.publicodes.FAQ.title')}
+				description={t('meta.publicodes.FAQ.description')}
+			>
 				<script type="application/ld+json">
 					{JSON.stringify(structuredFAQ)}
 				</script>
@@ -125,7 +128,7 @@ export default ({}) => {
 			</div>
 			<h2 css="font-size: 180%">
 				🙋‍♀️
-				<Trans i18nKey={'publicodes.Contribution.titreQuestion'}>
+				<Trans i18nKey={'publicodes.FAQ.titreQuestion'}>
 					J'ai une autre question
 				</Trans>
 			</h2>
