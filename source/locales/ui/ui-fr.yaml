@@ -560,8 +560,6 @@ entries:
   "Oups, nous n'avons pas d'article correspondant": Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
   <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>: <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>
-  <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>: <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>
-  Entrez votre adresse email: Entrez votre adresse email
   Merci pour votre inscription !: Merci pour votre inscription !
   mon empreinte carbone: mon empreinte carbone
   Mon empreinte carbone: Mon empreinte carbone
@@ -587,7 +585,6 @@ entries:
   components.stats.StatsContent.infosNorthstar: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
   'Northstar: les statistiques "étoile du nord"': 'Northstar: les statistiques "étoile du nord"'
   Envoyer mes résultats: Envoyer mes résultats
-  '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>
   publicodes.FAQ.titreQuestion: J'ai une autre question
   Contact: Contact
   publicodes.Contact.description: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écire, vous y trouverez sans doute la réponse à votre question !
@@ -599,6 +596,7 @@ entries:
   des conseils: des conseils
   'et ': 'et '
   Laissez-nous votre email: Laissez-nous votre email
-  'pour recevoir ': 'pour recevoir '
+  ' pour recevoir ': ' pour recevoir '
   'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'pour réduire votre empreinte carbone (1 fois par mois max.). '
   votre résultat: votre résultat
+  Entrez votre adresse email: Entrez votre adresse email

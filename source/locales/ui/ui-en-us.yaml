@@ -700,7 +700,6 @@ entries:
   Vous allez recevoir un email de notre part sous peu.: You will receive an email from us shortly.
   mon objectif annuel: my annual target
   <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>: <0>I agree to receive information from Nos Gestes Climat and its <2>privacy policy</2></0>
-  <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>: <0>Leave us your email address to receive <2>your results</2> and <5>tips</5> on how to reduce your carbon footprint (once a month max.).</0>
   Merci pour votre inscription !: Thank you for registering!
   'politique de confidentialité, nouvelle fenêtre': privacy policy, new window
   Vous souhaitez recevoir vos résultats ?: Would you like to receive your results?
@@ -764,7 +763,6 @@ entries:
   components.stats.StatsContent.infosNorthstar: <0>At the end of the simulation, a banner appears to collect the feelings of our users on the role of Nos Gestes Climat in their understanding of climate issues, but also in encouraging them to take action via 2 questions at the end of the test. The statistics, available on the dedicated <2>"Northstar</2>" page, were generated via Metabase.</0>
   components.stats.StatsContent.infosNorthstar.lock: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
   Envoyer mes résultats: Send my results
-  '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Leave us your email address like <2> other {formatValue(numberSubscribers)} users</2>, to receive <4>your results</4> and <7>tips</7> on how to reduce your carbon footprint (once a month max.).</0>
   Contact: Contact
   publicodes.FAQ.titreQuestion: I have another question
   publicodes.FAQ.titreQuestion.lock: J'ai une autre question
