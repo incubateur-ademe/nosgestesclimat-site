@@ -164,7 +164,7 @@ export default function GroupeDashboard() {
 
 				{group?.members?.length > 1 ? (
 					<>
-						<Separator className="mb-8" />
+						<Separator className="my-8" />
 						<PointsFortsFaibles
 							pointsFaibles={results?.pointsFaibles}
 							pointsForts={results?.pointsForts}
