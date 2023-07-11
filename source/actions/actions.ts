@@ -8,6 +8,7 @@ import {
 	TutorialStateStatus,
 } from '@/reducers/rootReducer'
 import { Rating } from '@/selectors/storageSelectors'
+import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
 /**
@@ -250,7 +251,9 @@ export const setSituationBranch = (id: number): Action => ({
 	id,
 })
 
-const setSimulation = (simulation: Simulation): Action => ({
+const setSimulation = (
+	simulation: Partial<Simulation> | Simulation
+): AnyAction => ({
 	type: 'SET_SIMULATION',
 	...simulation,
 })
@@ -280,13 +283,13 @@ export const setCurrentSimulation = (simulation: Simulation): Action => ({
 })
 
 export const setSimulationConfig =
-	(config: SimulationConfig, url: string): ThunkResult<void> =>
-	(dispatch, getState, {}): void => {
+	(config: SimulationConfig, url?: string): ThunkResult =>
+	(dispatch, getState): void => {
 		const pastSimulationConfig = getState().simulation?.config
 		if (pastSimulationConfig === config) {
 			return
 		}
-		dispatch(setSimulation({ config, url }))
+		dispatch(setSimulation({ config, url: url ?? '' }))
 		dispatch(addSimulationToList(getState().simulation))
 		dispatch(setCurrentSimulation(getState().simulation))
 	}

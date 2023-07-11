@@ -138,12 +138,12 @@ export function getRelatedMosaicInfosIfExists(
 		return undefined
 	}
 
-	const potentialMosaicRule = rules[dottedName].rawNode['mosaique']
+	const potentialMosaicRule = rules?.[dottedName]?.rawNode?.['mosaique']
 		? dottedName
 		: parentName(dottedName, ' . ', 0, 2)
 
 	const mosaicParams =
-		potentialMosaicRule && rules[potentialMosaicRule].rawNode['mosaique']
+		potentialMosaicRule && rules?.[potentialMosaicRule]?.rawNode?.['mosaique']
 
 	if (
 		!mosaicParams ||
@@ -304,7 +304,7 @@ const categoryColorOverride = {
 
 export function extractCategories(
 	rules: any,
-	engine: Engine,
+	engine: Engine<DottedName>,
 	valuesFromURL?: any,
 	parentRule = MODEL_ROOT_RULE_NAME,
 	sort = true
