@@ -5,6 +5,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import { getCurrentLangInfos } from '../../locales/translation'
 import { GithubContributionCard } from './Contact'
+import { useProfileData } from './Profil'
 
 export default () => {
 	useEffect(() => {
@@ -39,6 +40,7 @@ export default () => {
 
 	const { i18n } = useTranslation()
 	const FAQ = getCurrentLangInfos(i18n).faqContent
+	const { hasData } = useProfileData()
 
 	const structuredFAQ = {
 		'@context': 'https://schema.org',
@@ -74,11 +76,22 @@ export default () => {
 			</h1>
 			<p>
 				<Trans i18nKey={'publicodes.FAQ.description'}>
-					Vous trouverez ici les réponses aux questions les plus fréquentes.
-					S’il vous reste des interrogations ou si vous souhaitez nous proposer
-					des améliorations, rendez-vous tout en bas. Bonne lecture !
+					Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les
+					réponses aux questions les plus fréquentes. S’il vous reste des
+					interrogations ou si vous souhaitez nous proposer des améliorations,
+					rendez-vous tout en bas. Bonne lecture !
 				</Trans>
 			</p>
+			{!hasData && (
+				<p>
+					<Trans i18nKey={'publicodes.FAQ.faireletest'}>
+						Vous n'avez pas encore débuté votre test,{' '}
+						<strong>
+							<a href="./simulateur/bilan">lancez-vous !</a>
+						</strong>
+					</Trans>
+				</p>
+			)}
 			<div
 				css={`
 					padding-bottom: 1rem;
