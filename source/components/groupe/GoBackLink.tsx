@@ -5,7 +5,7 @@ export default function GoBackLink({ className }: { className?: string }) {
 	return (
 		<Link
 			href="/groupes"
-			className={`${className} inline-block text-primary hover:opacity-80 !text-[1rem] transition-opacity px-0`}
+			className={`${className} no-underline inline-block text-primary hover:opacity-80 !text-[1rem] transition-opacity px-0`}
 		>
 			← <Trans>Retour</Trans>
 		</Link>
