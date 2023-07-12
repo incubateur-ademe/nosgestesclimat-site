@@ -194,7 +194,7 @@ export default function Tutoriel() {
 					</li>
 				</ul>
 				<ButtonLink
-					href="/contribuer"
+					href="/questions-frequentes"
 					className="rounded-full mt-5 mb-10"
 					color="white"
 					size="sm"
