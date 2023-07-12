@@ -73,6 +73,7 @@ export type ConversationProps = {
 	customEnd?: React.ReactNode
 	orderByCategories?: Category[]
 	questionHeadingLevel?: number
+	isFromActionCard?: boolean
 }
 
 export default function Conversation({
@@ -80,6 +81,7 @@ export default function Conversation({
 	customEnd,
 	orderByCategories,
 	questionHeadingLevel,
+	isFromActionCard,
 }: ConversationProps) {
 	const dispatch = useDispatch()
 	const engine = useContext(EngineContext)
@@ -393,7 +395,7 @@ export default function Conversation({
 		}
 	}, [noQuestionsLeft, bilan, trackEvent, endEventFired, isPersona])
 
-	if (noQuestionsLeft) {
+	if (!isFromActionCard && noQuestionsLeft) {
 		updateCurrentURL({
 			paramName: respirationParamName,
 			paramValue: 'congrats',
@@ -420,14 +422,14 @@ export default function Conversation({
 		isCategoryFirstQuestion &&
 		!tutorials['testCategory-' + questionCategory.dottedName]
 
-	if (displayRespiration) {
+	if (!isFromActionCard && displayRespiration) {
 		updateCurrentURL({
 			paramName: respirationParamName,
 			paramValue: questionCategory.dottedName,
 			simulateurRootRuleURL,
 			focusedCategory,
 		})
-	} else if (currentQuestion) {
+	} else if (!isFromActionCard && currentQuestion) {
 		const isMosaicChildRuleName = isMosaicChild(rules, currentQuestion)
 
 		updateCurrentURL({
