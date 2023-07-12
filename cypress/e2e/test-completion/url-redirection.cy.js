@@ -7,6 +7,15 @@ import {
 	clickSeeResultsLink
 } from './utils'
 
+// ============================================================================
+//
+// NOTE(@EmileRolley): for now the URL redirection is disabled, so this tests
+// are disabled too. However, they are still useful to check the redirection
+// logic if we want to re-enable it.
+//
+// ============================================================================
+
+
 const params =
 	// `loc=${Cypress.env('localisation_param')}&lang=${Cypress.env('language_param')}`
 	// FIXME: seems to be broken with the localisation param
@@ -33,9 +42,6 @@ function shouldRedirectTo(entryPoint, expectedURL, category = mainSimulator) {
 		+ `/simulateur/${category}${expectedURL ? `?question=${expectedURL}` : ''}`
 	)
 }
-
-// NOTE(@EmileRolley): for now the URL redirection is disabled, so this tests are disabled too
-// however, they are still useful to check the redirection logic if we want to re-enable it.
 
 // describe('check question redirection from the URL for the category "bilan" (with finished test)', () => {
 	// it(`should redirect to the last question answered`, () => {

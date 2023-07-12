@@ -2,7 +2,6 @@ import {
 	startTestAndSkipTutorial,
 	clickCategoryStartButton,
 	clickDontKnowButton,
-	clickPreviousButton,
 	clickNextButton,
 	clickUnderstoodButton
 } from "./utils"
