@@ -1,3 +1,4 @@
+import { Value } from '@/components/conversation/RuleInput'
 import { Localisation } from '@/components/localisation/utils'
 import { DottedName } from '@/components/publicodesUtils'
 import {
@@ -7,9 +8,7 @@ import {
 	StoredTrajets,
 } from '@/reducers/rootReducer'
 import { Rating } from '@/selectors/storageSelectors'
-import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
-import { Value } from '../components/conversation/RuleInput'
 
 /**
  * The type of the actions that can be dispatched in the app.
@@ -55,7 +54,7 @@ export type Action =
 	| ResetLocalisationAction
 	| UpdateAmortissementAvionAction
 
-export type ThunkResult<R = void> = ThunkAction<R, AppState, {}, Action>
+export type ThunkResult<R = void> = ThunkAction<R, AppState, object, Action>
 
 type StepAction = {
 	type: 'STEP_ACTION'
@@ -65,7 +64,7 @@ type StepAction = {
 
 type SetSimulationAction = {
 	type: 'SET_SIMULATION'
-} & Simulation
+} & Partial<Simulation>
 
 type SetCurrentSimulationAction = {
 	type: 'SET_CURRENT_SIMULATION'
@@ -201,7 +200,7 @@ type ResetLocalisationAction = {
 type UpdateAmortissementAvionAction = {
 	type: 'SET_AMORTISSEMENT'
 	// TODO(@EmileRolley): type this
-	amortissementAvionObject: Object
+	amortissementAvionObject: object
 }
 
 export const resetSimulation = (): Action => ({
@@ -238,7 +237,6 @@ export const validateWithDefaultValue =
 	(dottedName: DottedName): ThunkResult<void> =>
 	(dispatch) => {
 		dispatch(updateSituation(dottedName, undefined))
-		console.log('validateWithDefaultValue', dottedName)
 		dispatch({
 			type: 'STEP_ACTION',
 			name: 'fold',
@@ -251,9 +249,7 @@ export const setSituationBranch = (id: number): Action => ({
 	id,
 })
 
-const setSimulation = (
-	simulation: Partial<Simulation> | Simulation
-): AnyAction => ({
+const setSimulation = (simulation: Partial<Simulation>): Action => ({
 	type: 'SET_SIMULATION',
 	...simulation,
 })
@@ -313,7 +309,7 @@ export const updateSituation = (
 	value,
 })
 
-export const skipTutorial = (id: string, unskip: boolean = false): Action => ({
+export const skipTutorial = (id: string, unskip = false): Action => ({
 	type: 'SKIP_TUTORIAL',
 	id,
 	unskip,
@@ -391,7 +387,7 @@ export const resetLocalisation = (): Action => ({
 })
 
 export const updateAmortissementAvion = (
-	amortissementAvionObject: Object
+	amortissementAvionObject: object
 ): Action => ({
 	type: 'SET_AMORTISSEMENT',
 	amortissementAvionObject,
