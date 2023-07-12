@@ -29,7 +29,7 @@ describe('The Group creation page /groupes/creer', () => {
 
 		// Check that we can create a second group
 		cy.visit('/groupes')
-		cy.get('[data-cypress-id="button-create-first-group"]').click()
+		cy.get('[data-cypress-id="button-create-other-group"]').click()
 		cy.get('input[data-cypress-id="group-input-owner-name"]').type('Jean-Marc')
 		cy.get('[data-cypress-id="button-create-group"]').click()
 		cy.get('[data-cypress-id="group-name"]')
