@@ -77,7 +77,7 @@ export const Emoji = ({ children, ...props }) => {
 	return children
 }
 
-export default (text: string, label: string) => {
+export default (text: string, label?: string) => {
 	return <Twemoji text={text} label={label} />
 }
 
