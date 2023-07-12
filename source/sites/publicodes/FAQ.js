@@ -1,3 +1,4 @@
+import SearchBarFAQ from '@/components/SearchBarFAQ'
 import { Markdown } from 'Components/utils/markdown'
 import { useEffect } from 'react'
 import { renderToString } from 'react-dom/server'
@@ -92,6 +93,7 @@ export default () => {
 					</Trans>
 				</p>
 			)}
+			<SearchBarFAQ />
 			<div
 				css={`
 					padding-bottom: 1rem;
