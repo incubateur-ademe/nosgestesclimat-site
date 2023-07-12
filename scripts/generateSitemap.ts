@@ -4,7 +4,7 @@ import Engine, { utils } from 'publicodes'
 import {
 	DottedName,
 	encodeRuleNameToSearchParam,
-	isValidRule,
+	isValidQuestion,
 	NGCRulesNodes,
 } from '../source/components/publicodesUtils'
 
@@ -73,7 +73,7 @@ fetch('https://data.nosgestesclimat.fr/co2-model.FR-lang.fr.json')
 
 		const parsedRules = new Engine(json).getParsedRules() as NGCRulesNodes
 		const questionURLs = ruleNames
-			.filter((dottedName) => isValidRule(dottedName, parsedRules))
+			.filter((dottedName) => isValidQuestion(dottedName, parsedRules))
 			.map(
 				(dottedName) =>
 					`https://nosgestesclimat.fr/simulateur/bilan?question=${encodeRuleNameToSearchParam(

@@ -1,10 +1,17 @@
+import DateInput from '@/components/conversation/DateInput'
+import estimationQuestions from '@/components/conversation/estimationQuestions'
 import Input from '@/components/conversation/Input'
+import ParagrapheInput from '@/components/conversation/ParagrapheInput'
 import Question, { Choice } from '@/components/conversation/Question'
+import NumberedMosaic from '@/components/conversation/select/NumberedMosaic'
+import SelectDevices from '@/components/conversation/select/SelectDevices'
+import TextInput from '@/components/conversation/TextInput'
 import CurrencyInput from '@/components/CurrencyInput/CurrencyInput'
 import PercentageField from '@/components/PercentageField'
 import {
 	DottedName,
 	getRelatedMosaicInfosIfExists,
+	NGCRulesNodes,
 	parentName,
 	splitName,
 	SuggestionsNode,
@@ -23,14 +30,9 @@ import Engine, {
 } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import DateInput from './DateInput'
-import estimationQuestions from './estimationQuestions'
-import ParagrapheInput from './ParagrapheInput'
-import NumberedMosaic from './select/NumberedMosaic'
-import SelectDevices from './select/SelectDevices'
-import TextInput from './TextInput'
 
-type Value = any
+export type Value = any
+
 export type RuleInputProps = {
 	dottedName: DottedName
 	onChange: (value: Value | null) => void
@@ -85,7 +87,9 @@ export default function RuleInput({
 	noSuggestions = false,
 }: RuleInputProps) {
 	const { t } = useTranslation()
-	const engine = givenEngine || useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
+	// Related to Survey Context : we enable the engine to be different according to
+	// the simulation rules we are working with.
+	const engine = givenEngine ?? useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
 	const rules = engine.getParsedRules() as NGCRulesNodes
@@ -125,6 +129,7 @@ export default function RuleInput({
 		// and the active ones are ordered as the `somme` defined as model side if the formula in the rule mosaic is a `somme`.
 		const orderedSumFromSourceRule =
 			question?.rawNode?.formule && question?.rawNode?.formule['somme']
+
 		if (orderedSumFromSourceRule) {
 			selectedRules.sort((a, b) => {
 				const indexA = orderedSumFromSourceRule.indexOf(
@@ -136,47 +141,52 @@ export default function RuleInput({
 				return indexA - indexB
 			})
 		}
-		if (mosaicParams['type'] === 'selection')
-			return (
-				<SelectDevices
-					{...{
-						...commonProps,
-						dottedName: question.dottedName,
-						selectedRules,
-						options:
-							// NOTE(@EmileRolley): where this options come from? And what is it?
-							// @ts-ignore
-							question.options ?? {},
-						suggestions: mosaicParams['suggestions'] || {},
-					}}
-				/>
-			)
-		if (mosaicParams['type'] === 'nombre')
-			return (
-				<NumberedMosaic
-					{...{
-						...commonProps,
-						dottedName: question.dottedName,
-						selectedRules,
-						options: { chipsTotal: mosaicParams['total'] } || {},
-						suggestions: mosaicParams['suggestions'] || {},
-					}}
-				/>
-			)
-		return
+
+		switch (mosaicParams['type']) {
+			case 'selection': {
+				return (
+					<SelectDevices
+						{...{
+							...commonProps,
+							dottedName: question.dottedName,
+							selectedRules,
+							options:
+								// NOTE(@EmileRolley): where this options come from? And what is it?
+								// @ts-ignore
+								question.options ?? {},
+							suggestions: mosaicParams['suggestions'] ?? {},
+						}}
+					/>
+				)
+			}
+			case 'nombre': {
+				return (
+					<NumberedMosaic
+						{...{
+							...commonProps,
+							dottedName: question.dottedName,
+							selectedRules,
+							options: { chipsTotal: mosaicParams['total'] } ?? {},
+							suggestions: mosaicParams['suggestions'] ?? {},
+						}}
+					/>
+				)
+			}
+			default:
+				return null
+		}
 	}
 
 	if (isTransportEstimation(rule.dottedName)) {
 		const question = isTransportEstimation(rule.dottedName)
 		const unité = serializeUnit(evaluation.unit)
+
 		return (
 			<question.component
 				commonProps={commonProps}
 				evaluation={evaluation}
 				onSubmit={onSubmit}
-				setFinalValue={(value: Evaluation) =>
-					onChange({ valeur: value, unité })
-				}
+				setFinalValue={() => onChange({ valeur: value, unité })}
 			/>
 		)
 	}

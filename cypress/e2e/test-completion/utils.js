@@ -49,6 +49,10 @@ export async function clickNextButton() {
 	cy.get('[data-cypress-id="next-question-button"]').click()
 }
 
+export async function clickSeeResultsLink() {
+	cy.get('[data-cypress-id="see-results-link"]').click()
+}
+
 export async function startTestAndSkipTutorial() {
 	cy.get('[data-cypress-id="do-the-test-link"]').click()
 	waitWhileLoading()

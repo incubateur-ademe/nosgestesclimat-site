@@ -1,3 +1,4 @@
+import { Value } from '@/components/conversation/RuleInput'
 import { Localisation } from '@/components/localisation/utils'
 import { DottedName } from '@/components/publicodesUtils'
 import {
@@ -5,10 +6,8 @@ import {
 	Simulation,
 	SimulationConfig,
 	StoredTrajets,
-	TutorialStateStatus,
 } from '@/reducers/rootReducer'
 import { Rating } from '@/selectors/storageSelectors'
-import { AnyAction } from 'redux'
 import { ThunkAction } from 'redux-thunk'
 
 /**
@@ -55,7 +54,7 @@ export type Action =
 	| ResetLocalisationAction
 	| UpdateAmortissementAvionAction
 
-export type ThunkResult<R = void> = ThunkAction<R, AppState, {}, Action>
+export type ThunkResult<R = void> = ThunkAction<R, AppState, object, Action>
 
 type StepAction = {
 	type: 'STEP_ACTION'
@@ -65,7 +64,7 @@ type StepAction = {
 
 type SetSimulationAction = {
 	type: 'SET_SIMULATION'
-} & Simulation
+} & Partial<Simulation>
 
 type SetCurrentSimulationAction = {
 	type: 'SET_CURRENT_SIMULATION'
@@ -93,8 +92,8 @@ type DeleteSimulationByIdAction = {
 
 type UpdateSituationAction = {
 	type: 'UPDATE_SITUATION'
-	fieldName: DottedName
-	value: unknown
+	fieldName: DottedName | null
+	value: Value
 }
 
 type LoadPreviousSimulationAction = {
@@ -159,7 +158,6 @@ type SkipTutorialAction = {
 	type: 'SKIP_TUTORIAL'
 	id: string
 	unskip: boolean
-	fromRule?: TutorialStateStatus
 }
 
 type SetTrackingVariableAction = {
@@ -202,7 +200,7 @@ type ResetLocalisationAction = {
 type UpdateAmortissementAvionAction = {
 	type: 'SET_AMORTISSEMENT'
 	// TODO(@EmileRolley): type this
-	amortissementAvionObject: Object
+	amortissementAvionObject: object
 }
 
 export const resetSimulation = (): Action => ({
@@ -251,9 +249,7 @@ export const setSituationBranch = (id: number): Action => ({
 	id,
 })
 
-const setSimulation = (
-	simulation: Partial<Simulation> | Simulation
-): AnyAction => ({
+const setSimulation = (simulation: Partial<Simulation>): Action => ({
 	type: 'SET_SIMULATION',
 	...simulation,
 })
@@ -305,23 +301,18 @@ export const deleteSimulationById = (id: string): Action => ({
 })
 
 export const updateSituation = (
-	fieldName: DottedName,
-	value: unknown
+	fieldName: DottedName | null,
+	value: Value
 ): Action => ({
 	type: 'UPDATE_SITUATION',
 	fieldName,
 	value,
 })
 
-export const skipTutorial = (
-	id: string,
-	unskip: boolean = false,
-	fromRule?: TutorialStateStatus
-): Action => ({
+export const skipTutorial = (id: string, unskip = false): Action => ({
 	type: 'SKIP_TUTORIAL',
 	id,
 	unskip,
-	fromRule,
 })
 
 export const setTrackingVariable = (name: string, value: boolean): Action => ({
@@ -396,7 +387,7 @@ export const resetLocalisation = (): Action => ({
 })
 
 export const updateAmortissementAvion = (
-	amortissementAvionObject: Object
+	amortissementAvionObject: object
 ): Action => ({
 	type: 'SET_AMORTISSEMENT',
 	amortissementAvionObject,

@@ -1,4 +1,5 @@
 import {
+	goToQuestion,
 	setTrackingVariable,
 	skipTutorial,
 	updateSituation,
@@ -12,7 +13,20 @@ import {
 	matomoEvent90PercentProgress,
 	matomoEventFirstAnswer,
 } from '@/analytics/matomo-events'
+import Aide from '@/components/conversation/Aide'
+import CategoryRespiration from '@/components/conversation/CategoryRespiration'
+import '@/components/conversation/conversation.css'
+import {
+	focusByCategory,
+	getMosaicParentRuleName,
+	getPreviousQuestion,
+	sortQuestionsByCategory,
+	updateCurrentURL,
+} from '@/components/conversation/conversationUtils'
+import { ExplicableRule } from '@/components/conversation/Explicable'
+import QuestionFinderWrapper from '@/components/conversation/QuestionFinderWrapper'
 import RuleInput, { RuleInputProps } from '@/components/conversation/RuleInput'
+import SimulationEnding from '@/components/conversation/SimulationEnding'
 import Notifications, {
 	getCurrentNotification,
 } from '@/components/Notifications'
@@ -21,6 +35,7 @@ import {
 	DottedName,
 	encodeRuleNameToSearchParam,
 	getRelatedMosaicInfosIfExists,
+	isMosaicChild,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
 	NGCRulesNodes,
@@ -43,26 +58,15 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
+import { respirationParamName } from '@/sites/publicodes/Simulateur'
 import { useQuery } from '@/utils'
-import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
-import Aide from './Aide'
-import CategoryRespiration from './CategoryRespiration'
-import './conversation.css'
-import {
-	focusByCategory,
-	getPreviousQuestion,
-	goToQuestionOrNavigate,
-	sortQuestionsByCategory,
-} from './conversationUtils'
-import { ExplicableRule } from './Explicable'
-import QuestionFinderWrapper from './QuestionFinderWrapper'
-import SimulationEnding from './SimulationEnding'
+import { Link, useLocation } from 'react-router-dom'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -135,7 +139,6 @@ export default function Conversation({
 	const isPersona = useSelector(isPersonaSelector)
 
 	const enquête = useSelector(enquêteSelector)
-	const navigate = useNavigate()
 
 	useEffect(() => {
 		// This hook lets the user click on the "next" button. Without it, the conversation
@@ -149,17 +152,9 @@ export default function Conversation({
 			!previousSimulation &&
 			currentQuestion !== unfoldedStep
 		) {
-			goToQuestionOrNavigate({
-				question: currentQuestion,
-				simulateurRootURL: simulateurRootRuleURL,
-				focusedCategory,
-				// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
-				// to trigger the [navigate] (or we must add url for action questions
-				// which add not needed complexity for now).
-				toUse: isFromActionCard ? { dispatch } : { navigate },
-			})
+			dispatch(goToQuestion(currentQuestion))
 		}
-	}, [dispatch, currentQuestion, previousAnswers, unfoldedStep, objectifs])
+	}, [dispatch, currentQuestion, unfoldedStep, objectifs, previousSimulation])
 
 	const currentQuestionId = encodeRuleNameToSearchParam(currentQuestion)
 
@@ -171,20 +166,12 @@ export default function Conversation({
 				document.getElementById('id-question-' + currentQuestionId)
 			questionElement?.focus()
 		}
-	}, [currentQuestion])
+	}, [currentQuestion, currentQuestionId, rules])
 
 	const goToPrevious = () => {
-		goToQuestionOrNavigate({
-			// NOTE(@EmileRolley): the fact that [prefiousQuestion] is not nullable
-			// could be a reason of the 'previous button bug'?
-			question: previousQuestion,
-			simulateurRootURL: simulateurRootRuleURL,
-			focusedCategory,
-			// NOTE(@EmileRolley): Action card remaining questions are displayed inline, therefore,  we don't want
-			// to trigger the [navigate] (or we must add url for action questions
-			// which add not needed complexity for now).
-			toUse: isFromActionCard ? { dispatch } : { navigate },
-		})
+		if (previousQuestion !== undefined) {
+			dispatch(goToQuestion(previousQuestion))
+		}
 	}
 
 	// Some questions are grouped in an artifical questions, called mosaic questions,
@@ -204,10 +191,6 @@ export default function Conversation({
 		? rules[currentQuestion]?.rawNode?.question
 		: undefined
 
-	const questionsToSubmit = isMosaic
-		? mosaicDottedNames?.map(([dottedName]) => dottedName)
-		: [currentQuestion]
-
 	const isAnsweredMosaic =
 		isMosaic &&
 		currentQuestion &&
@@ -226,19 +209,29 @@ export default function Conversation({
 	const isMosaicSelection =
 		isAnsweredMosaic && mosaicParams['type'] === 'selection'
 
+	// NOTE(@EmileRolley): we need to useMemo here to avoid errors with useEffects that
+	// depends on questionsToSubmit.
+	const questionsToSubmit = useMemo(
+		() =>
+			isMosaic
+				? mosaicDottedNames?.map(([dottedName]) => dottedName)
+				: [currentQuestion],
+		[currentQuestion, isMosaic, mosaicDottedNames]
+	)
+
 	useEffect(() => {
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
 		if (isMosaicSelection) {
-			questionsToSubmit?.map((question) =>
+			questionsToSubmit?.forEach((question) => {
 				dispatch(
 					updateSituation(
 						question,
 						question !== null ? situation[question] ?? 'non' : 'non'
 					)
 				)
-			)
+			})
 		}
-	}, [isAnsweredMosaic])
+	}, [isMosaicSelection, questionsToSubmit, dispatch, situation])
 
 	useEffect(() => {
 		// Pb: for selection mosaics, if the user select a card, the 'je ne sais pas' button disappear. However, if the user deselect the button, without this hook,
@@ -267,7 +260,13 @@ export default function Conversation({
 		) {
 			dispatch(updateSituation(mosaicRule.dottedName, undefined))
 		}
-	}, [isAnsweredMosaic, questionsToSubmit, situation])
+	}, [
+		isMosaicSelection,
+		questionsToSubmit,
+		situation,
+		mosaicRule?.dottedName,
+		dispatch,
+	])
 
 	const currentQuestionIndex = previousAnswers.findIndex(
 		(a) => a === unfoldedStep
@@ -292,7 +291,7 @@ export default function Conversation({
 		return questionMatches.every(Boolean)
 	}
 
-	const submit = (source: string) => {
+	const submit = () => {
 		// This piece of code enables to set all the checkbox of a mosaic to
 		// false when "Next" button is pressed (chen the question is submitted)
 		// It's important in case of someone arrives at the mosaic question,
@@ -306,7 +305,6 @@ export default function Conversation({
 					type: 'STEP_ACTION',
 					name: 'fold',
 					step: question,
-					source,
 				})
 			})
 		}
@@ -315,7 +313,6 @@ export default function Conversation({
 		// TODO: Skiping a question shouldn't be equivalent to answering the
 		// default value (for instance the question shouldn't appear in the
 		// answered questions).
-		//
 		questionsToSubmit?.map((question) =>
 			dispatch(validateWithDefaultValue(question))
 		)
@@ -398,7 +395,13 @@ export default function Conversation({
 		}
 	}, [noQuestionsLeft, bilan, trackEvent, endEventFired, isPersona])
 
-	if (noQuestionsLeft) {
+	if (!isFromActionCard && noQuestionsLeft) {
+		updateCurrentURL({
+			paramName: respirationParamName,
+			paramValue: 'congrats',
+			simulateurRootRuleURL,
+			focusedCategory,
+		})
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
 	}
 
@@ -418,6 +421,26 @@ export default function Conversation({
 		orderByCategories &&
 		isCategoryFirstQuestion &&
 		!tutorials['testCategory-' + questionCategory.dottedName]
+
+	if (!isFromActionCard && displayRespiration) {
+		updateCurrentURL({
+			paramName: respirationParamName,
+			paramValue: questionCategory.dottedName,
+			simulateurRootRuleURL,
+			focusedCategory,
+		})
+	} else if (!isFromActionCard && currentQuestion) {
+		const isMosaicChildRuleName = isMosaicChild(rules, currentQuestion)
+
+		updateCurrentURL({
+			paramName: 'question',
+			paramValue: isMosaicChildRuleName
+				? getMosaicParentRuleName(rules, currentQuestion)
+				: currentQuestion,
+			simulateurRootRuleURL,
+			focusedCategory,
+		})
+	}
 
 	const displayCompletedCategory =
 		focusedCategory && !nextQuestions.find((q) => q.includes(focusedCategory))
@@ -456,7 +479,9 @@ export default function Conversation({
 			)}
 			<div css="margin-top: 1rem">
 				<Link to={pathname}>
-					<button className="ui__ button plain small">Continuer le test</button>
+					<button className="ui__ button plain small">
+						<Trans>Continuer le test</Trans>
+					</button>
 				</Link>
 			</div>
 		</div>

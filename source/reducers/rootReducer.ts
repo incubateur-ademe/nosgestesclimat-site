@@ -145,17 +145,19 @@ function simulation(
 			const targets = objectifsSelector({ simulation: state } as AppState)
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
+			const newSituation =
+				value === undefined
+					? omit([dottedName], situation)
+					: {
+							...(targets.includes(dottedName)
+								? omit(targets, situation)
+								: situation),
+							[dottedName]: value,
+					  }
+
 			return {
 				...state,
-				situation:
-					value === undefined
-						? omit([dottedName], situation)
-						: {
-								...(targets.includes(dottedName)
-									? omit(targets, situation)
-									: situation),
-								[dottedName]: value,
-						  },
+				situation: newSituation,
 			}
 		}
 		case 'STEP_ACTION': {
@@ -281,20 +283,16 @@ function conference(state = null, { type, room, ydoc, provider }) {
 export type TutorialStateStatus = 'skip' | 'done' | undefined
 export type TutorialState = {
 	[id: string]: TutorialStateStatus
-	/** fromRule is used to know if the tutorial was triggered by a specific rule
-	 (appart from 'bilan') and if so, to know if it was skipped or not.*/
-	fromRule?: TutorialStateStatus
 }
 
 // Tutorials are the main tutorial for the /simulateur/bilan simulation,
 // but also the small category pages displayed before starting the category,
 // as a pause for the user
-function tutorials(state: TutorialState = {}, { type, id, unskip, fromRule }) {
+function tutorials(state: TutorialState = {}, { type, id, unskip }) {
 	if (type === 'SKIP_TUTORIAL') {
 		return {
 			...state,
 			[id]: unskip ? undefined : 'skip',
-			fromRule: !fromRule ? state.fromRule : fromRule,
 		}
 	} else if (type === 'RESET_INTRO_TUTORIAL') {
 		return Object.fromEntries(
