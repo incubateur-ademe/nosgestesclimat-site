@@ -62,15 +62,14 @@ const Simulateur = () => {
 		)
 	}
 
-	return <SimulateurCore />
+	return <SimulateurCore simulatorRootNameURL={simulatorRootNameURL} />
 }
 
-const SimulateurCore = () => {
+const SimulateurCore = ({ simulatorRootNameURL }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
 	const searchParams = new URLSearchParams(window.location.search)
-	const simulatorRootNameURL = urlParams['*']
 	const isTestCompleted = useTestCompleted()
 	const rules = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
@@ -141,7 +140,8 @@ const SimulateurCore = () => {
 	const displayTutorial = isMainSimulation && !tutorials.testIntro
 
 	if (displayTutorial) {
-		return navigate(`/tutoriel`, { replace: true })
+		navigate(`/tutoriel`, { replace: true })
+		return null
 	}
 
 	return (
@@ -184,7 +184,7 @@ const SimulateurCore = () => {
 						customEnd: isMainSimulation ? (
 							<MainSimulationEnding {...{ rules, engine }} />
 						) : simulatorRule.description ? (
-							<Markdown children={simulatorRule.description} noRouter={false} />
+							<Markdown noRouter={false}>{simulatorRule.description}</Markdown>
 						) : (
 							<EndingCongratulations />
 						),
@@ -203,6 +203,10 @@ type SelectedRuleInfos = {
 }
 
 /**
+ * NOTE(@EmileRolley): this function is unsused for now, but could be used if we
+ * decide to redirect to specific question when the test is completed according
+ * to the 'question' search param. If not, we could remove it.
+ *
  * A rule is valid if it exists, is a question and is not a mosaic child.
  *
  * However, if the rule is a mosaic question the returned [selectedRuleDottedName] will
