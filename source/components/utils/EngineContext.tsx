@@ -3,7 +3,7 @@ import { intersect, pick } from '@/utils'
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
 
-export const EngineContext = createContext<Engine | undefined>(new Engine({}))
+export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider
 
 export const engineOptions = {
