@@ -1,16 +1,14 @@
-import { resetSimulation } from '@/actions/actions'
 import Title from '@/components/groupe/Title'
+import { AppState, Simulation, Situation } from '@/reducers/rootReducer'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { setDifferentSituation } from '../../actions/actions'
-import IllustratedMessage from '../../components/ui/IllustratedMessage'
 import useBranchData from '../../components/useBranchData'
 import { useEngine } from '../../components/utils/EngineContext'
 import { ScrollToTop } from '../../components/utils/Scroll'
-import { situationSelector } from '../../selectors/simulationSelectors'
 import GridChart from './chart/GridChart'
 import RavijenChart from './chart/RavijenChart'
 import ActionSlide from './fin/ActionSlide'
@@ -129,10 +127,7 @@ export default () => {
 					<VisualisationComponent {...slideProps} />
 				</div>
 			)}
-			<PersonaGrid
-				selectedPersona={selectedPersona}
-				warningIfSituationExists={false}
-			/>
+			<PersonaGrid selectedPersona={selectedPersona} />
 			<p>
 				<Trans i18nKey={'publicodes.Personas.description'}>
 					Les personas nous permettront de prendre le parti d'une diversité
@@ -171,14 +166,12 @@ export default () => {
 	)
 }
 
-export const PersonaGrid = ({ selectedPersona, warningIfSituationExists }) => {
+export const PersonaGrid = ({ selectedPersona }) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
 
-	const situation = useSelector(situationSelector)
 	const [data, setData] = useState()
-	const [warning, setWarning] = useState(false)
 	const engine = useEngine()
 
 	const branchData = useBranchData()
@@ -235,41 +228,6 @@ export const PersonaGrid = ({ selectedPersona, warningIfSituationExists }) => {
 		if (redirect) navigate(redirect)
 	}
 
-	const hasSituation = Object.keys(situation).length
-
-	if (warning)
-		return (
-			<IllustratedMessage
-				emoji="ℹ️"
-				message={
-					<div>
-						<p>
-							<Trans i18nKey={'publicodes.Personas.warningMsg'}>
-								Sélectionner un persona releguera votre simulation en cours dans
-								votre historique de simulations, accessible en bas de votre{' '}
-								<Link to="/profil">page profil</Link>.
-							</Trans>
-						</p>
-						<button
-							className="ui__ button simple"
-							onClick={() => {
-								dispatch(resetSimulation())
-								setPersona(warning)
-								setWarning(false)
-							}}
-						>
-							<Trans>J'ai compris</Trans>
-						</button>
-						<button
-							className="ui__ button simple"
-							onClick={() => setWarning(false)}
-						>
-							<Trans>Annuler</Trans>
-						</button>
-					</div>
-				}
-			/>
-		)
 	return (
 		<CardGrid css="padding: 0; justify-content: center">
 			{personasRules.map((persona) => {
@@ -288,11 +246,7 @@ export const PersonaGrid = ({ selectedPersona, warningIfSituationExists }) => {
 									margin-bottom: 0.5rem;
 								}
 							`}
-							onClick={() =>
-								warningIfSituationExists && hasSituation
-									? setWarning(persona)
-									: setPersona(persona)
-							}
+							onClick={() => setPersona(persona)}
 						>
 							<div
 								css={`
