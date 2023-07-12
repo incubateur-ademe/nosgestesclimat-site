@@ -59,6 +59,7 @@ import {
 	situationSelector,
 } from '@/selectors/simulationSelectors'
 import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
+import { respirationParamName } from '@/sites/publicodes/Simulateur'
 import { useQuery } from '@/utils'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
@@ -394,7 +395,7 @@ export default function Conversation({
 
 	if (noQuestionsLeft) {
 		updateCurrentURL({
-			paramName: 'respiration',
+			paramName: respirationParamName,
 			paramValue: 'congrats',
 			simulateurRootRuleURL,
 			focusedCategory,
@@ -421,7 +422,7 @@ export default function Conversation({
 
 	if (displayRespiration) {
 		updateCurrentURL({
-			paramName: 'respiration',
+			paramName: respirationParamName,
 			paramValue: questionCategory.dottedName,
 			simulateurRootRuleURL,
 			focusedCategory,

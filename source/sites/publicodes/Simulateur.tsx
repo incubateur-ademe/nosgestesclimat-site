@@ -1,4 +1,5 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
+import { getMosaicParentRuleName } from '@/components/conversation/conversationUtils'
 import {
 	Category,
 	decodeRuleNameFromSearchParam,
@@ -35,8 +36,9 @@ import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavigateFunction, useNavigate } from 'react-router'
-import { Link, useParams } from 'react-router-dom'
-import { getMosaicParentRuleName } from '../../components/conversation/conversationUtils'
+import { Link, Navigate, useParams } from 'react-router-dom'
+
+export const respirationParamName = 'thématique'
 
 function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
 	return (
@@ -46,37 +48,42 @@ function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
 }
 
 const Simulateur = () => {
+	const urlParams = useParams()
+	const simulatorRootNameURL = urlParams['*']
+	const rules = useSelector((state: AppState) => state.rules)
+	const ruleNames: DottedName[] = Object.keys(rules)
+
+	if (!simulatorRootNameURL || !ruleNames.includes(simulatorRootNameURL)) {
+		console.log(
+			`Unknown rule ${simulatorRootNameURL}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
+		)
+		return (
+			<Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace={true} />
+		)
+	}
+
+	return <SimulateurCore />
+}
+
+const SimulateurCore = () => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const urlParams = useParams()
+	const { t } = useTranslation()
 	const searchParams = new URLSearchParams(window.location.search)
 	const simulatorRootNameURL = urlParams['*']
 	const isTestCompleted = useTestCompleted()
-	const { t } = useTranslation()
-
-	if (!simulatorRootNameURL) {
-		return navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
-	}
+	const rules = useSelector((state: AppState) => state.rules)
+	const engine = useEngine()
 
 	// The main simulation corresponds to the whole test, i.e selected rule is the
 	// model root rule.
 	const isMainSimulation = isRootRule(simulatorRootNameURL)
 	const selectedRuleNameURLPath = searchParams.get('question') ?? ''
-	const rules = useSelector((state: AppState) => state.rules)
-	const ruleNames: DottedName[] = Object.keys(rules)
 	const simulatorRootRuleName = utils.decodeRuleName(simulatorRootNameURL)
 
-	if (!ruleNames.includes(simulatorRootRuleName)) {
-		console.log(
-			`Unknown rule ${simulatorRootNameURL}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
-		)
-		return navigate(`/simulateur/${MODEL_ROOT_RULE_NAME}`, { replace: true })
-	}
-
-	const engine = useEngine()
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 
-	const noCongratsURL = searchParams.get('respiration') !== 'congrats'
+	const noCongratsURL = searchParams.get(respirationParamName) !== 'congrats'
 
 	const { selectedRuleDottedName, selectedRuleURL } =
 		// FIXME(@EmileRolley): we need to differenciate the question search params
