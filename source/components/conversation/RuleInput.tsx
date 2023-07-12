@@ -1,5 +1,11 @@
+import DateInput from '@/components/conversation/DateInput'
+import estimationQuestions from '@/components/conversation/estimationQuestions'
 import Input from '@/components/conversation/Input'
+import ParagrapheInput from '@/components/conversation/ParagrapheInput'
 import Question, { Choice } from '@/components/conversation/Question'
+import NumberedMosaic from '@/components/conversation/select/NumberedMosaic'
+import SelectDevices from '@/components/conversation/select/SelectDevices'
+import TextInput from '@/components/conversation/TextInput'
 import CurrencyInput from '@/components/CurrencyInput/CurrencyInput'
 import PercentageField from '@/components/PercentageField'
 import {
@@ -24,12 +30,6 @@ import Engine, {
 } from 'publicodes'
 import React, { useContext } from 'react'
 import { useTranslation } from 'react-i18next'
-import DateInput from './DateInput'
-import estimationQuestions from './estimationQuestions'
-import ParagrapheInput from './ParagrapheInput'
-import NumberedMosaic from './select/NumberedMosaic'
-import SelectDevices from './select/SelectDevices'
-import TextInput from './TextInput'
 
 export type Value = any
 
@@ -87,7 +87,9 @@ export default function RuleInput({
 	noSuggestions = false,
 }: RuleInputProps) {
 	const { t } = useTranslation()
-	const engine = givenEngine ?? useContext(EngineContext) //related to Survey Context : we enable the engine to be different according to the simulation rules we are working with.
+	// Related to Survey Context : we enable the engine to be different according to
+	// the simulation rules we are working with.
+	const engine = givenEngine ?? useContext(EngineContext)
 	const rule = engine.getRule(dottedName)
 	const evaluation = engine.evaluate(dottedName)
 	const rules = engine.getParsedRules() as NGCRulesNodes
@@ -142,8 +144,6 @@ export default function RuleInput({
 
 		switch (mosaicParams['type']) {
 			case 'selection': {
-				console.log('DEBUG === mosaicParams', mosaicParams)
-				debugger
 				return (
 					<SelectDevices
 						{...{
