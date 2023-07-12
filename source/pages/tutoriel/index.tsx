@@ -201,7 +201,7 @@ export default function Tutoriel() {
 				>
 					☝️ Consultez la FAQ
 				</ButtonLink>
-				<div className="border-solid border-0 border-t border-gray-200 absolute sm:relative bottom-0 sm:mt-5 -m-4 right:0 left:0 pt-4">
+				<div className="bg-white w-full border-solid border-0 border-t border-gray-200 fixed h-auto sm:relative bottom-0 sm:mt-5 -m-4 right:0 left:0 py-4">
 					<GoBackLink className="mb-4 font-bold mt-3 ml-4" />
 
 					<ButtonLink
@@ -211,7 +211,8 @@ export default function Tutoriel() {
 							skip('testIntro')
 						}}
 						data-cypress-id="skip-tuto-button"
-						className="float-right mr-4"
+						className="float-right mr-4 right-0"
+						size="md"
 					>
 						{t("C'est parti ! →")}
 					</ButtonLink>
