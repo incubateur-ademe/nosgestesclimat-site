@@ -6,6 +6,14 @@ const {
 	startTestAndSkipTutorial,
 } = require('../test-completion/utils')
 
+Cypress.automation('remote:debugger:protocol', {
+	command: 'Browser.grantPermissions',
+	params: {
+		permissions: ['clipboardReadWrite', 'clipboardSanitizedWrite'],
+		origin: window.location.origin,
+	},
+})
+
 describe('The Group creation page /groupes/creer', () => {
 	let groupURL = ''
 	it('allows to create a new group and displays it afterwards', () => {
