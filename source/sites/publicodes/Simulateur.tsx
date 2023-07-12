@@ -282,13 +282,13 @@ const MainSimulationEnding = ({ rules, engine }) => {
 
 	const { trackEvent } = useMatomo()
 
-	const groupToRedirectTo: Group = useSelector(
-		(state: RootState) => state.groupToRedirectTo
+	const groupToRedirectTo: Group | null = useSelector(
+		(state: AppState) => state.groupToRedirectTo
 	)
 
 	const currentSimulation = useGetCurrentSimulation()
 
-	const userId = useSelector((state: AppState) => state.userId)
+	const userId = useSelector((state: AppState) => state.user.userId)
 
 	const handleUpdateGroup = async () => {
 		engine.setSituation(currentSimulation?.situation)
@@ -305,8 +305,8 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				results,
 			})
 
-			trackEvent(getMatomoEventJoinedGroupe(groupToRedirectTo._id))
-			navigate(`/groupes/resultats?groupId=${groupToRedirectTo._id}`)
+			trackEvent(getMatomoEventJoinedGroupe(groupToRedirectTo?._id || ''))
+			navigate(`/groupes/resultats?groupId=${groupToRedirectTo?._id}`)
 		} catch (e) {
 			console.log(e)
 		}

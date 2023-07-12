@@ -7,7 +7,7 @@ import { captureException } from '@sentry/react'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 
 export default function SupprimerDonnees() {
 	const [hasDeleted, setHasDeleted] = useState(false)
@@ -90,6 +90,10 @@ export default function SupprimerDonnees() {
 
 	if (shouldRedirect) {
 		navigate('/')
+	}
+
+	if (!groupId) {
+		return <Navigate to="/groupes" />
 	}
 
 	return (

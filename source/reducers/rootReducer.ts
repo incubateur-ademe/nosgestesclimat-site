@@ -16,7 +16,7 @@ import { Group } from '@/types/groups'
 import { ObjectifsConfig, Simulation } from '@/types/simulation'
 import reduceReducers from 'reduce-reducers'
 import { CombinedState, combineReducers, Reducer } from 'redux'
-import { userIdReducer } from './user'
+import { userReducer } from './user'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -494,7 +494,11 @@ export type AppState = CombinedState<{
 	hasSubscribedToNewsletter: boolean
 	enquête: Enquête
 	groups: Group[]
-	userId: string | null
+	user: {
+		userId?: string
+		email?: string
+		name?: string
+	}
 	groupToRedirectTo: Group | null
 }>
 
@@ -527,7 +531,7 @@ const mainReducer = (state: any, action: Action) =>
 		ratings,
 		hasSubscribedToNewsletter,
 		groups: groupsReducer,
-		userId: userIdReducer,
+		user: userReducer,
 		groupToRedirectTo: groupToRedirectToReducer,
 	})(state, action)
 

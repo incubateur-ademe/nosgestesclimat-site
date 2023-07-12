@@ -50,7 +50,11 @@ export type User = {
 	localisation: Object | undefined
 	hasSubscribedToNewsletter: boolean
 	groups: Group[]
-	userId: string | null
+	user: {
+		userId?: string
+		name?: string
+		email?: string
+	}
 	groupToRedirectTo: Group | null
 }
 

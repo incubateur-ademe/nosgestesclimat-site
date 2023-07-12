@@ -438,3 +438,9 @@ export const setGroupToRedirectTo = (group: Group) => ({
 	type: 'SET_GROUP_TO_REDIRECT_TO',
 	group,
 })
+
+export const setUserNameAndEmail = (name: string, email: string) => ({
+	type: 'SET_USER_NAME_AND_EMAIL',
+	name,
+	email,
+})
