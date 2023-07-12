@@ -18,6 +18,16 @@ import Budget from './fin/Budget'
 import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
 
+export type Persona = {
+	nom: string
+	icônes: string
+	data: Situation
+	description: string
+	résumé: string
+}
+
+export type Personas = Array<Persona>
+
 const Nothing = () => null
 
 const visualisationChoices = {
@@ -32,8 +42,11 @@ const visualisationChoices = {
 	aucun: { titre: 'Aucun', composant: Nothing },
 }
 
-export default ({}) => {
-	const persona = useSelector((state) => state.simulation?.persona)
+export default () => {
+	const selectedPersona = useSelector(
+		(state: AppState) => state.simulation?.persona
+	)
+
 	const [searchParams, setSearchParams] = useSearchParams({
 		visualisation: 'aucun',
 	})
@@ -100,7 +113,7 @@ export default ({}) => {
 					))}
 				</div>
 			</div>
-			{persona && (
+			{selectedPersona && (
 				<div
 					css={`
 						max-width: 35rem;
@@ -116,7 +129,10 @@ export default ({}) => {
 					<VisualisationComponent {...slideProps} />
 				</div>
 			)}
-			<PersonaGrid warningIfSituationExists={false} />
+			<PersonaGrid
+				selectedPersona={selectedPersona}
+				warningIfSituationExists={false}
+			/>
 			<p>
 				<Trans i18nKey={'publicodes.Personas.description'}>
 					Les personas nous permettront de prendre le parti d'une diversité
@@ -155,11 +171,10 @@ export default ({}) => {
 	)
 }
 
-export const PersonaGrid = ({ warningIfSituationExists }) => {
+export const PersonaGrid = ({ selectedPersona, warningIfSituationExists }) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
-	const selectedPersona = useSelector((state) => state.simulation?.persona)
 
 	const situation = useSelector(situationSelector)
 	const [data, setData] = useState()
@@ -197,29 +212,31 @@ export const PersonaGrid = ({ warningIfSituationExists }) => {
 
 	if (!data) return null
 
-	const personasRules = Object.values(data)
+	const personasRules: Personas = Object.values(data)
 
-	const setPersona = (persona) => {
+	const setPersona = (persona: Persona) => {
 		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
-		const { nom, icônes, data, description } = persona
 		const missingVariables = engine.evaluate(objectif).missingVariables ?? {}
 		const defaultMissingVariables = Object.keys(missingVariables)
 
-		dispatch(
-			setDifferentSituation({
-				config: { objectifs: [objectif] },
-				url: '/simulateur/bilan',
-				// the schema of peronas is not fixed yet
-				situation: data.situation || data,
-				persona: nom,
-				// If not specified, act as if all questions were answered : all that is not in
-				// the situation object is a validated default value
-				foldedSteps: defaultMissingVariables,
-			})
-		)
+		const newSimulation: Simulation = {
+			config: { objectifs: [objectif] },
+			url: '/simulateur/bilan',
+			// the schema of personas is not fixed yet
+			situation: persona.data.situation || persona.data,
+			persona: persona.nom,
+			// If not specified, act as if all questions were answered : all that is not in
+			// the situation object is a validated default value
+			foldedSteps: defaultMissingVariables,
+		}
+
+		dispatch(setDifferentSituation(newSimulation))
+
 		if (redirect) navigate(redirect)
 	}
+
 	const hasSituation = Object.keys(situation).length
+
 	if (warning)
 		return (
 			<IllustratedMessage
@@ -253,24 +270,20 @@ export const PersonaGrid = ({ warningIfSituationExists }) => {
 				}
 			/>
 		)
-
 	return (
 		<CardGrid css="padding: 0; justify-content: center">
 			{personasRules.map((persona) => {
-				const { nom, icônes, data, description, résumé } = persona
+				const { nom, icônes, description, résumé } = persona
 				return (
 					<li key={nom}>
 						<button
 							className={`ui__ card box interactive light-border ${
-								selectedPersona === persona.nom ? 'selected' : ''
+								selectedPersona === nom ? 'selected' : ''
 							}`}
 							css={`
 								width: 13rem !important;
 								height: 15rem !important;
 								padding: 0.75rem 0.5rem 0.75rem 0.5rem !important;
-								${nom === persona
-									? 'border: 2px solid var(--color) !important'
-									: ''};
 								img {
 									margin-bottom: 0.5rem;
 								}
