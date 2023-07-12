@@ -7,22 +7,22 @@ import {
 	currentQuestionSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import CategoryVisualisation from '@/sites/publicodes/CategoryVisualisation'
+import DetailedBarChartIcon from '@/sites/publicodes/chart/DetailedBarChartIcon'
+import Chart from '@/sites/publicodes/chart/index.js'
+import { activatedSpecializedVisualisations } from '@/sites/publicodes/chart/SpecializedVisualisation'
+import SubCategoriesChart from '@/sites/publicodes/chart/SubCategoriesChart'
+import useContinuousCategory from '@/sites/publicodes/chart/useContinuousCategory'
 import { useQuery } from '@/utils'
 import Engine from 'publicodes'
 import React, { Suspense, useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import CategoryVisualisation from '../CategoryVisualisation'
-import DetailedBarChartIcon from './DetailedBarChartIcon'
-import Chart from './index.js'
-import { activatedSpecializedVisualisations } from './SpecializedVisualisation'
-import SubCategoriesChart from './SubCategoriesChart'
-import useContinuousCategory from './useContinuousCategory'
 
 const SpecializedVisualisation = React.lazy(
 	() =>
 		import(
-			/* webpackChunkName: 'SpecializedVisualisation' */ './SpecializedVisualisation'
+			/* webpackChunkName: 'SpecializedVisualisation' */ '@/sites/publicodes/chart/SpecializedVisualisation'
 		)
 )
 
@@ -47,7 +47,7 @@ export default ({ givenEngine }: { givenEngine?: Engine }) => {
 
 	useEffect(() => {
 		setCategories(mapAbreviation(rules, engine))
-	}, [rules, situation])
+	}, [rules, engine, situation])
 
 	const displayedCategory = useContinuousCategory(categories)
 
