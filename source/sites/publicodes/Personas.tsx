@@ -19,15 +19,17 @@ import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
 
 const Nothing = () => null
+
 const visualisationChoices = {
-	ravijen: RavijenChart,
-	budget: Budget,
-	'sous-catégories': GridChart,
-	emojis: () => <FinShareButton showResult />,
-
-	action: ActionSlide,
-
-	aucun: Nothing,
+	ravijen: { titre: 'Graphe Bilan', composant: RavijenChart },
+	budget: { titre: 'Page de fin - Budget', composant: Budget },
+	'sous-catégories': { titre: 'Page de fin - Grille', composant: GridChart },
+	action: { titre: 'Page de fin - Top 3 actions', composant: ActionSlide },
+	emojis: {
+		titre: 'Partage RS',
+		composant: () => <FinShareButton showResult />,
+	},
+	aucun: { titre: 'Aucun', composant: Nothing },
 }
 
 export default ({}) => {
@@ -37,7 +39,9 @@ export default ({}) => {
 	})
 
 	const visualisationParam = searchParams.get('visualisation')
-	const Visualisation = visualisationChoices[`${visualisationParam}`]
+
+	const VisualisationComponent =
+		visualisationChoices[`${visualisationParam}`]?.composant
 
 	const engine = useEngine()
 
@@ -50,47 +54,66 @@ export default ({}) => {
 		<div>
 			<ScrollToTop />
 			<Title data-cypress-id="personas-title" title={<Trans>Personas</Trans>} />
-			<p>
-				<Trans>
-					Cette page vous permet de naviguer les parcours Nos Gestes Climat
-					comme si vous étiez l'un des profils types que nous avons listés.
-				</Trans>
-			</p>
-			<p>
-				➡️{' '}
-				<em>
-					<Trans>
-						Sélectionnez un persona et éventuellement un graphique à afficher.
-					</Trans>
-				</em>
-			</p>
-			<form>
-				🧮
-				{Object.keys(visualisationChoices).map((name) => (
-					<label key={name}>
-						<input
-							onChange={() => setSearchParams({ visualisation: name })}
-							type="radio"
-							value={name}
-							checked={searchParams.get('visualisation') === name}
-						/>
-						{name}
-					</label>
-				))}
-			</form>
+			<div
+				css={`
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					margin-bottom: 1rem;
+				`}
+			>
+				<div>
+					<p>
+						<Trans>
+							Cette page vous permet de naviguer les parcours Nos Gestes Climat
+							comme si vous étiez l'un des profils types que nous avons listés.
+						</Trans>
+					</p>
+					<p>
+						➡️{' '}
+						<em>
+							<Trans>
+								Sélectionnez un persona et éventuellement un graphique à
+								afficher.
+							</Trans>
+						</em>
+					</p>
+				</div>
+				<div
+					className="ui__ card box"
+					css={`
+						min-width: 16rem;
+						align-items: flex-start !important;
+						text-align: left !important;
+					`}
+				>
+					{Object.entries(visualisationChoices).map(([id, elt]) => (
+						<label key={id}>
+							<input
+								onChange={() => setSearchParams({ visualisation: id })}
+								type="radio"
+								value={id}
+								checked={searchParams.get('visualisation') === id}
+							/>
+							{elt.titre}
+						</label>
+					))}
+				</div>
+			</div>
 			{persona && (
 				<div
 					css={`
 						max-width: 35rem;
 						margin: 0 auto;
+						display: flex;
+						justify-content: center;
 						${visualisationParam === 'ravijen' &&
 						`
 						height: 45rem;
-						max-width: none;
-						`}
+						`};
 					`}
 				>
-					<Visualisation {...slideProps} />
+					<VisualisationComponent {...slideProps} />
 				</div>
 			)}
 			<PersonaGrid warningIfSituationExists={false} />
@@ -242,9 +265,9 @@ export const PersonaGrid = ({ warningIfSituationExists }) => {
 								selectedPersona === persona.nom ? 'selected' : ''
 							}`}
 							css={`
-								width: 11rem !important;
+								width: 13rem !important;
 								height: 15rem !important;
-								padding: 1rem 0.75rem 1rem 0.75rem !important;
+								padding: 0.75rem 0.5rem 0.75rem 0.5rem !important;
 								${nom === persona
 									? 'border: 2px solid var(--color) !important'
 									: ''};
