@@ -53,19 +53,32 @@ const Simulateur = () => {
 	const rules = useSelector((state: AppState) => state.rules)
 	const ruleNames: DottedName[] = Object.keys(rules)
 
-	if (!simulatorRootNameURL || !ruleNames.includes(simulatorRootNameURL)) {
+	if (simulatorRootNameURL === undefined) {
+		return (
+			<Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace={true} />
+		)
+	}
+
+	const simulatorRootRuleName = utils.decodeRuleName(simulatorRootNameURL)
+
+	if (!ruleNames.includes(simulatorRootRuleName)) {
 		console.log(
-			`Unknown rule ${simulatorRootNameURL}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
+			`Unknown rule ${simulatorRootRuleName}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
 		)
 		return (
 			<Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace={true} />
 		)
 	}
 
-	return <SimulateurCore simulatorRootNameURL={simulatorRootNameURL} />
+	return (
+		<SimulateurCore
+			simulatorRootNameURL={simulatorRootNameURL}
+			simulatorRootRuleName={simulatorRootRuleName}
+		/>
+	)
 }
 
-const SimulateurCore = ({ simulatorRootNameURL }) => {
+const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const { t } = useTranslation()
@@ -78,7 +91,6 @@ const SimulateurCore = ({ simulatorRootNameURL }) => {
 	// model root rule.
 	const isMainSimulation = isRootRule(simulatorRootNameURL)
 	const selectedRuleNameURLPath = searchParams.get('question') ?? ''
-	const simulatorRootRuleName = utils.decodeRuleName(simulatorRootNameURL)
 
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 

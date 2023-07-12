@@ -4,17 +4,10 @@ import {
 	startTestAndSkipTutorial,
 	clickDontKnowButton,
 	clickCategoryStartButton,
-	clickSeeResultsLink
+	clickSeeResultsLink,
+	skipTutoIfExists,
+	clickSkipTutoButton
 } from './utils'
-
-// ============================================================================
-//
-// NOTE(@EmileRolley): for now the URL redirection is disabled, so this tests
-// are disabled too. However, they are still useful to check the redirection
-// logic if we want to re-enable it.
-//
-// ============================================================================
-
 
 const params =
 	// `loc=${Cypress.env('localisation_param')}&lang=${Cypress.env('language_param')}`
@@ -42,6 +35,48 @@ function shouldRedirectTo(entryPoint, expectedURL, category = mainSimulator) {
 		+ `/simulateur/${category}${expectedURL ? `?question=${expectedURL}` : ''}`
 	)
 }
+
+describe('check redirection when an unknow rule is specified for the simulator root rule to use', () => {
+	it(`should redirect to 'bilan'`, () => {
+		cy.visit(`/simulateur/unknown`)
+		cy.wait(1000)
+		clickSkipTutoButton()
+		cy.url().should('includes', Cypress.config().baseUrl + `/simulateur/${mainSimulator}`)
+	})
+})
+
+describe('check question redirection from the URL for sub-simulators', () => {
+	it(`should redirect to the first question of the sub-simulator /transport/avion`,
+		() => {
+			cy.visit(`/simulateur/transport/avion`)
+			cy.get(`[id="id-question-transport.avion.usager"]`)
+		}
+	)
+
+	it(`should redirect to the first question of the sub-simulator /transport/avion`,
+		() => {
+			cy.visit(`/simulateur/divers/produits-consommables`)
+			cy.get(`[id="id-question-divers.produits-consommables.consommation"]`)
+		}
+	)
+
+	it(`should arrive to the simulation ending page when the last question is answered`,
+		() => {
+			cy.visit(`/simulateur/transport/avion`)
+			cy.get(`[id="id-question-transport.avion.usager"]`)
+			walkthroughTest({})
+			cy.get(`[data-cypress-id="simulation-ending"`)
+		}
+	)
+})
+
+// ============================================================================
+//
+// NOTE(@EmileRolley): for now the URL redirection is disabled, so this tests
+// are disabled too. However, they are still useful to check the redirection
+// logic if we want to re-enable it.
+//
+// ============================================================================
 
 // describe('check question redirection from the URL for the category "bilan" (with finished test)', () => {
 	// it(`should redirect to the last question answered`, () => {
@@ -95,29 +130,4 @@ function shouldRedirectTo(entryPoint, expectedURL, category = mainSimulator) {
 	// 		'transport.voiture.motorisation'
 	// 	)
 	// })
-// })
-
-// describe('check question redirection from the URL for sub-simulators', () => {
-// 	it(`should redirect to the first question of the sub-simulator /transport/avion`,
-// 		() => {
-// 			cy.visit(`/simulateur/transport/avion`)
-// 			cy.get(`[id="id-question-transport.avion.usager"]`)
-// 		}
-// 	)
-//
-// 	it(`should redirect to the first question of the sub-simulator /transport/avion`,
-// 		() => {
-// 			cy.visit(`/simulateur/divers/produits-consommables`)
-// 			cy.get(`[id="id-question-divers.produits-consommables.consommation"]`)
-// 		}
-// 	)
-//
-// 	it(`should arrive to the simulation ending page when the last question is answered`,
-// 		() => {
-// 			cy.visit(`/simulateur/transport/avion`)
-// 			cy.get(`[id="id-question-transport.avion.usager"]`)
-// 			walkthroughTest({})
-// 			cy.get(`[data-cypress-id="simulation-ending"`)
-// 		}
-// 	)
 // })
