@@ -39,6 +39,7 @@ describe('The Group creation page /groupes/creer', () => {
 
 		const newName = 'Les amis de Jean-Marc'
 
+		cy.get('input[data-cypress-id="group-edit-input-name"]').clear()
 		cy.get('input[data-cypress-id="group-edit-input-name"]').type(newName)
 		cy.get('[data-cypress-id="button-inline-input"]').click()
 		cy.get('[data-cypress-id="group-name"]').contains(newName)
