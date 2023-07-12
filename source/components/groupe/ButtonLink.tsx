@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 type Props = {
 	href: string
 	className?: string
-	color?: 'primary' | 'secondary'
+	color?: 'primary' | 'secondary' | 'white'
 	size?: 'sm' | 'md' | 'lg'
 } & React.PropsWithChildren
 
