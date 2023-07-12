@@ -142,7 +142,6 @@ function simulation(
 			}
 		}
 		case 'UPDATE_SITUATION': {
-			console.log('UPDATE_SITUATION', action)
 			const targets = objectifsSelector({ simulation: state } as AppState)
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
@@ -155,8 +154,6 @@ function simulation(
 								: situation),
 							[dottedName]: value,
 					  }
-
-			console.log('newSituation', newSituation)
 
 			return {
 				...state,
