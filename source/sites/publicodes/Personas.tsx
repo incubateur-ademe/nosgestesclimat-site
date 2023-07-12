@@ -93,7 +93,7 @@ export default ({}) => {
 					<Visualisation {...slideProps} />
 				</div>
 			)}
-			<PersonaGrid />
+			<PersonaGrid warningIfSituationExists={false} />
 			<p>
 				<Trans i18nKey={'publicodes.Personas.description'}>
 					Les personas nous permettront de prendre le parti d'une diversité
@@ -132,10 +132,7 @@ export default ({}) => {
 	)
 }
 
-export const PersonaGrid = ({
-	additionnalOnClick,
-	warningIfSituationExists,
-}) => {
+export const PersonaGrid = ({ warningIfSituationExists }) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
