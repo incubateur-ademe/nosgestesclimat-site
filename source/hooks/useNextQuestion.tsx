@@ -151,8 +151,6 @@ export const useNextQuestions = function (): Array<DottedName> {
 			: []
 	}, [missingVariables, questionsConfig, answeredQuestions, situation, engine])
 
-	console.log('nextQuestions', nextQuestions)
-	console.log('currentQuestion', currentQuestion)
 	if (currentQuestion && currentQuestion !== nextQuestions[0]) {
 		return [currentQuestion, ...nextQuestions]
 	}

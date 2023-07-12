@@ -2,8 +2,11 @@ import {
 	Category,
 	DottedName,
 	encodeRuleNameToSearchParam,
+	isValidQuestion,
+	NGCRulesNodes,
 } from '@/components/publicodesUtils'
 import { sortBy } from '@/utils'
+import { utils } from 'publicodes'
 import { getFocusedCategoryURLSearchParams } from '../../sites/publicodes/utils'
 
 export function sortQuestionsByCategory(
@@ -54,6 +57,22 @@ export function getPreviousQuestion(
 	// We'll explore the previous answers starting from the end,
 	// to find the first question that is not in the current mosaic
 	return previousAnswers[currentQuestionIndex - 1]
+}
+
+export function getMosaicParentRuleName(
+	rules: NGCRulesNodes,
+	ruleName: DottedName
+): DottedName {
+	let parentRuleName = ruleName
+
+	console.log('getMosaicParent > ', ruleName)
+
+	do {
+		parentRuleName = utils.ruleParent(parentRuleName)
+		console.log('parentRuleName', parentRuleName)
+	} while (parentRuleName != '' && !isValidQuestion(parentRuleName, rules))
+
+	return parentRuleName
 }
 
 export function updateCurrentURL({

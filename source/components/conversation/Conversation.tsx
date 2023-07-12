@@ -18,6 +18,7 @@ import CategoryRespiration from '@/components/conversation/CategoryRespiration'
 import '@/components/conversation/conversation.css'
 import {
 	focusByCategory,
+	getMosaicParentRuleName,
 	getPreviousQuestion,
 	sortQuestionsByCategory,
 	updateCurrentURL,
@@ -34,6 +35,7 @@ import {
 	DottedName,
 	encodeRuleNameToSearchParam,
 	getRelatedMosaicInfosIfExists,
+	isMosaicChild,
 	isRootRule,
 	MODEL_ROOT_RULE_NAME,
 	NGCRulesNodes,
@@ -56,8 +58,8 @@ import {
 	objectifsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { useQuery } from '@/utils'
-import { enquêteSelector } from 'Enquête/enquêteSelector'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import React, { useContext, useEffect, useRef, useState } from 'react'
@@ -419,9 +421,13 @@ export default function Conversation({
 			focusedCategory,
 		})
 	} else if (currentQuestion) {
+		const isMosaicChildRuleName = isMosaicChild(rules, currentQuestion)
+
 		updateCurrentURL({
 			paramName: 'question',
-			paramValue: currentQuestion,
+			paramValue: isMosaicChildRuleName
+				? getMosaicParentRuleName(rules, currentQuestion)
+				: currentQuestion,
 			simulateurRootRuleURL,
 			focusedCategory,
 		})

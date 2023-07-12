@@ -430,7 +430,7 @@ export function decodeRuleNameFromSearchParam(encodedName: string): DottedName {
 	return coreUtils.decodeRuleName(encodedName.replaceAll('.', '/'))
 }
 
-export function isValidRule(ruleName: DottedName, rules: NGCRulesNodes) {
+export function isValidQuestion(ruleName: DottedName, rules: NGCRulesNodes) {
 	if (rules == undefined) {
 		return false
 	}

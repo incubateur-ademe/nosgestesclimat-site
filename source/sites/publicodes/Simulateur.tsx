@@ -8,7 +8,7 @@ import {
 	FullName,
 	getRelatedMosaicInfosIfExists,
 	isRootRule,
-	isValidRule,
+	isValidQuestion,
 	MODEL_ROOT_RULE_NAME,
 	NGCRulesNodes,
 } from '@/components/publicodesUtils'
@@ -36,6 +36,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { NavigateFunction, useNavigate } from 'react-router'
 import { Link, useParams } from 'react-router-dom'
+import { getMosaicParentRuleName } from '../../components/conversation/conversationUtils'
 
 function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
 	return (
@@ -209,14 +210,8 @@ function getValidSelectedRuleInfos(
 ): SelectedRuleInfos {
 	const searchParams = new URLSearchParams(window.location.search)
 
-	if (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
-		while (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
-			const parentRuleName = utils.ruleParent(selectedRuleName)
-			console.log(
-				`Unknown question ${selectedRuleName}, trying ${parentRuleName}...`
-			)
-			selectedRuleName = parentRuleName
-		}
+	if (selectedRuleName != '' && !isValidQuestion(selectedRuleName, rules)) {
+		selectedRuleName = getMosaicParentRuleName(rules, selectedRuleName)
 
 		if (selectedRuleName == '') {
 			console.log(
