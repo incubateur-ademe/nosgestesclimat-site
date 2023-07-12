@@ -62,7 +62,7 @@ import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { useQuery } from '@/utils'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
-import React, { useContext, useEffect, useRef, useState } from 'react'
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
@@ -206,6 +206,16 @@ export default function Conversation({
 	const isMosaicSelection =
 		isAnsweredMosaic && mosaicParams['type'] === 'selection'
 
+	// NOTE(@EmileRolley): we need to useMemo here to avoid errors with useEffects that
+	// depends on questionsToSubmit.
+	const questionsToSubmit = useMemo(
+		() =>
+			isMosaic
+				? mosaicDottedNames?.map(([dottedName]) => dottedName)
+				: [currentQuestion],
+		[currentQuestion, isMosaic, mosaicDottedNames]
+	)
+
 	useEffect(() => {
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
 		if (isMosaicSelection) {
@@ -254,10 +264,6 @@ export default function Conversation({
 		mosaicRule?.dottedName,
 		dispatch,
 	])
-
-	const questionsToSubmit = isMosaic
-		? mosaicDottedNames?.map(([dottedName]) => dottedName)
-		: [currentQuestion]
 
 	const currentQuestionIndex = previousAnswers.findIndex(
 		(a) => a === unfoldedStep
