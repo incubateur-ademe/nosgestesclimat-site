@@ -5,15 +5,15 @@ import {
 	isValidQuestion,
 	NGCRulesNodes,
 } from '@/components/publicodesUtils'
+import { getFocusedCategoryURLSearchParams } from '@/sites/publicodes/utils'
 import { sortBy } from '@/utils'
 import { utils } from 'publicodes'
-import { getFocusedCategoryURLSearchParams } from '../../sites/publicodes/utils'
 
 export function sortQuestionsByCategory(
 	nextQuestions: DottedName[],
 	orderByCategories: Category[]
 ): DottedName[] {
-	let sort = sortBy((question: string | string[]) => {
+	const sort = sortBy((question: string | string[]) => {
 		const category = orderByCategories.find(
 			(c) => question.indexOf(c.dottedName) === 0
 		)
@@ -65,11 +65,8 @@ export function getMosaicParentRuleName(
 ): DottedName {
 	let parentRuleName = ruleName
 
-	console.log('getMosaicParent > ', ruleName)
-
 	do {
 		parentRuleName = utils.ruleParent(parentRuleName)
-		console.log('parentRuleName', parentRuleName)
 	} while (parentRuleName != '' && !isValidQuestion(parentRuleName, rules))
 
 	return parentRuleName
@@ -86,7 +83,7 @@ export function updateCurrentURL({
 	simulateurRootRuleURL: string
 	focusedCategory: string | null
 }): void {
-	let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
+	const searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
 	if (paramValue != undefined) {
 		searchParams.append(
 			paramName,
@@ -108,7 +105,7 @@ export function focusByCategory(
 	if (!focusedCategory) {
 		return questions
 	}
-	const filtered = questions.filter((q) => q.indexOf(focusedCategory) === 0)
+	const filtered = questions.filter((q) => q.startsWith(focusedCategory))
 	//this is important : if all questions of a focus have been answered
 	// then don't triggered the end screen, just ask the other questions
 	// as if no focus
