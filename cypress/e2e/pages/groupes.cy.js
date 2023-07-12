@@ -3,11 +3,20 @@ const {
 	clickSkipTutoButton,
 	clickUnderstoodButton,
 	clickCategoryStartButton,
+	startTestAndSkipTutorial,
 } = require('../test-completion/utils')
 
 describe('The Group creation page /groupes/creer', () => {
 	let groupURL = ''
 	it('allows to create a new group and displays it afterwards', () => {
+		// Fill simulation
+		cy.visit('/')
+
+		startTestAndSkipTutorial()
+
+		walkthroughTest()
+
+		// Then create group
 		cy.visit('/groupes')
 
 		// Check that the list is empty and the message is displayed
