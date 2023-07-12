@@ -10,7 +10,7 @@ import ClassementMember from './ClassementMember'
 export default function Classement({ group }: { group: Group }) {
 	const [isExpanded, setIsExpanded] = useState(false)
 
-	const userId = useSelector((state: AppState) => state.userId)
+	const userId = useSelector((state: AppState) => state.user.userId)
 
 	const language = useTranslation().i18n.language
 

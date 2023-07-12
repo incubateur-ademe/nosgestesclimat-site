@@ -70,7 +70,7 @@ export function persistUser(store: Store<AppState, Action>): void {
 			localisation: state.localisation,
 			hasSubscribedToNewsletter: state.hasSubscribedToNewsletter,
 			groups: state.groups,
-			userId: state.userId,
+			user: state.user,
 			groupToRedirectToReducer: state.groupToRedirectTo,
 		}
 		safeLocalStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(userData))

@@ -7,7 +7,7 @@ import { captureException } from '@sentry/react'
 import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { useSearchParams } from 'react-router-dom'
+import { Navigate, useSearchParams } from 'react-router-dom'
 
 import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
@@ -35,13 +35,13 @@ export default function GroupeDashboard() {
 
 	const groupId = searchParams.get('groupId')
 
-	const userId = useSelector((state: AppState) => state.userId)
+	const userId = useSelector((state: AppState) => state.user.userId)
 
 	const intervalRef = useRef<NodeJS.Timer>()
 
 	const results: Results | null = useGetGroupStats({
 		groupMembers: group?.members,
-		userId,
+		userId: userId || '',
 	})
 
 	useEffect(() => {
@@ -76,8 +76,16 @@ export default function GroupeDashboard() {
 		}
 	}, [])
 
+	if (!groupId) {
+		return <Navigate to="/groupes" />
+	}
+
 	if (!group) {
 		return null
+	}
+
+	if (!group?.members?.some((member) => member.userId === userId)) {
+		return <Navigate to={`/groupes/invitation?groupId=${group._id}`} />
 	}
 
 	return (

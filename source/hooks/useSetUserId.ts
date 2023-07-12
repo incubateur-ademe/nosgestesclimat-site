@@ -7,7 +7,7 @@ import { v4 as uuid } from 'uuid'
 export const useSetUserId = () => {
 	const dispatch = useDispatch()
 
-	const userId = useSelector((state: AppState) => state.userId)
+	const userId = useSelector((state: AppState) => state.user.userId)
 
 	useEffect(() => {
 		if (!userId) {

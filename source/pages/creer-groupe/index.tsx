@@ -1,4 +1,8 @@
-import { addGroupToUser, setGroupToRedirectTo } from '@/actions/actions'
+import {
+	addGroupToUser,
+	setGroupToRedirectTo,
+	setUserNameAndEmail,
+} from '@/actions/actions'
 import { matomoEventCreationGroupe } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
 import EmailInput from '@/components/groupe/EmailInput'
@@ -21,9 +25,13 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 export default function CreerGroupe() {
-	const [prenom, setPrenom] = useState('')
+	const userId = useSelector((state: AppState) => state.user.userId)
+	const usernameFromState = useSelector((state: AppState) => state.user.name)
+	const emailFromState = useSelector((state: AppState) => state.user.email)
+
+	const [prenom, setPrenom] = useState(usernameFromState || '')
 	const [errorPrenom, setErrorPrenom] = useState('')
-	const [email, setEmail] = useState('')
+	const [email, setEmail] = useState(emailFromState || '')
 	const [errorEmail, setErrorEmail] = useState('')
 
 	const { trackEvent } = useMatomo()
@@ -37,8 +45,6 @@ export default function CreerGroupe() {
 	const engine = useEngine()
 
 	const currentSimulation = useGetCurrentSimulation()
-
-	const userId = useSelector((state: AppState) => state.userId)
 
 	const groups = useSelector((state: AppState) => state.groups) || []
 
@@ -95,6 +101,7 @@ export default function CreerGroupe() {
 			}
 
 			dispatch(addGroupToUser(group))
+			dispatch(setUserNameAndEmail(prenom, email))
 
 			// The user will be redirected to the test in order to take it
 			if (!currentSimulation) {

@@ -6,6 +6,7 @@ export default function EmailInput({
 	setEmail,
 	errorEmail,
 	setErrorEmail,
+	...props
 }) {
 	const { t } = useTranslation()
 
@@ -31,6 +32,7 @@ export default function EmailInput({
 			}}
 			value={email}
 			error={errorEmail}
+			{...props}
 		/>
 	)
 }

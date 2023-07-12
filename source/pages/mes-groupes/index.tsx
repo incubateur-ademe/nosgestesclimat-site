@@ -21,7 +21,7 @@ export default function MesGroupes() {
 
 	useSetUserId()
 
-	const userId = useSelector((state: AppState) => state.userId)
+	const userId = useSelector((state: AppState) => state.user.userId)
 
 	useEffect(() => {
 		const handleFetchGroups = async () => {

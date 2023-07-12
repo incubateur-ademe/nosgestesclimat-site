@@ -19,7 +19,12 @@ import { captureException } from '@sentry/react'
 import { FormEvent, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { redirect, useNavigate, useSearchParams } from 'react-router-dom'
+import {
+	Navigate,
+	redirect,
+	useNavigate,
+	useSearchParams,
+} from 'react-router-dom'
 
 export default function RejoindreGroupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -37,7 +42,7 @@ export default function RejoindreGroupe() {
 	// Ajoute userId si non présente
 	useSetUserId()
 
-	const userId = useSelector((state: AppState) => state.userId)
+	const userId = useSelector((state: AppState) => state.user.userId)
 
 	const { t } = useTranslation()
 
@@ -138,6 +143,10 @@ export default function RejoindreGroupe() {
 		} catch (error) {
 			captureException(error)
 		}
+	}
+
+	if (!groupId) {
+		return <Navigate to="/groupes" />
 	}
 
 	// Show nothing if group is not fetched yet

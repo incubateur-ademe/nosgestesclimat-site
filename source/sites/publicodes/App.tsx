@@ -230,7 +230,7 @@ export default function Root() {
 				hasSubscribedToNewsletter:
 					persistedUser.hasSubscribedToNewsletter ?? false,
 				groups: persistedUser.groups,
-				userId: persistedUser.userId,
+				user: persistedUser.user,
 				groupToRedirectTo: persistedUser.groupToRedirectTo,
 			}}
 		>
@@ -624,7 +624,7 @@ const Router = () => {
 			<Route
 				path="/groupes/invitation"
 				element={
-					<WithEngine options={{ parsed: true, optimized: false }}>
+					<WithEngine>
 						<Suspense fallback={<AnimatedLoader />}>
 							<RejoindreGroupeLazy />
 						</Suspense>
