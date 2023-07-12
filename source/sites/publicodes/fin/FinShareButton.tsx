@@ -5,7 +5,15 @@ import ShareButton from '../../../components/ShareButton'
 import { useEngine } from '../../../components/utils/EngineContext'
 import { range } from '../../../utils'
 
-export default ({ textColor, showResult, label }) => {
+export default ({
+	textColor,
+	showResult,
+	label,
+}: {
+	textColor?: string
+	showResult?: boolean
+	label?: string
+}) => {
 	const rules = useSelector((state) => state.rules)
 	const engine = useEngine()
 	const categories = extractCategories(rules, engine).map((category) => ({
