@@ -251,6 +251,9 @@ export const PersonaGrid = ({
 								${nom === persona
 									? 'border: 2px solid var(--color) !important'
 									: ''};
+								img {
+									margin-bottom: 0.5rem;
+								}
 							`}
 							onClick={() =>
 								warningIfSituationExists && hasSituation
