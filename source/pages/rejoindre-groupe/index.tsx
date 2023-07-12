@@ -194,7 +194,11 @@ export default function RejoindreGroupe() {
 					aria-disabled={!prenom}
 					data-cypress-id="button-join-group"
 				>
-					<Trans>Rejoindre</Trans>
+					{currentSimulation ? (
+						<Trans>Rejoindre</Trans>
+					) : (
+						<Trans>Rejoindre et passer mon test</Trans>
+					)}
 				</Button>
 			</form>
 		</main>

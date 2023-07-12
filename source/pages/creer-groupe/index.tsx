@@ -162,7 +162,11 @@ export default function CreerGroupe() {
 						onClick={handleSubmit}
 						aria-disabled={!prenom}
 					>
-						<Trans>Créer le groupe</Trans>
+						{currentSimulation ? (
+							<Trans>Créer le groupe</Trans>
+						) : (
+							<Trans>Créer et passer mon test</Trans>
+						)}
 					</Button>
 				</form>
 			</>
