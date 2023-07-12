@@ -1,3 +1,4 @@
+import { updateSituation } from '@/actions/actions'
 import MosaicInputSuggestions from '@/components/conversation/MosaicInputSuggestions'
 import MosaicStamp from '@/components/conversation/select/MosaicStamp'
 import { Mosaic, MosaicItemLabel } from '@/components/conversation/select/UI'
@@ -5,7 +6,6 @@ import Checkbox from '@/components/ui/Checkbox'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { updateSituation } from '../../../actions/actions'
 
 export default function SelectDevices({
 	dottedName,
