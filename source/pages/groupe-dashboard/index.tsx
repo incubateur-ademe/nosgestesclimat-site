@@ -76,6 +76,36 @@ export default function GroupeDashboard() {
 		}
 	}, [])
 
+	const handleSubmit = async (value: string) => {
+		setIsSubmitting(true)
+		try {
+			const response = await fetch(GROUP_URL + '/update', {
+				method: 'POST',
+				body: JSON.stringify({
+					_id: group?._id,
+					name: value,
+				}),
+				headers: {
+					Accept: 'application/json',
+					'Content-Type': 'application/json',
+				},
+			})
+
+			const groupUpdated: Group = await response.json()
+
+			if (!response.ok) {
+				throw new Error(JSON.stringify(group))
+			}
+
+			setGroup(groupUpdated)
+			setIsSubmitting(false)
+			setIsEditingTitle(false)
+			trackEvent(matomoEventUpdateGroupName)
+		} catch (e) {
+			captureException(e)
+		}
+	}
+
 	if (!groupId) {
 		return <Navigate to="/groupes" />
 	}
@@ -104,35 +134,7 @@ export default function GroupeDashboard() {
 						label={t('Modifier le nom du groupe')}
 						name="group-name-input"
 						onClose={() => setIsEditingTitle(false)}
-						onSubmit={async (value: string) => {
-							setIsSubmitting(true)
-							try {
-								const response = await fetch(GROUP_URL + '/update', {
-									method: 'POST',
-									body: JSON.stringify({
-										_id: group?._id,
-										name: value,
-									}),
-									headers: {
-										Accept: 'application/json',
-										'Content-Type': 'application/json',
-									},
-								})
-
-								const groupUpdated: Group = await response.json()
-
-								if (!response.ok) {
-									throw new Error(JSON.stringify(group))
-								}
-
-								setGroup(groupUpdated)
-								setIsSubmitting(false)
-								setIsEditingTitle(false)
-								trackEvent(matomoEventUpdateGroupName)
-							} catch (e) {
-								captureException(e)
-							}
-						}}
+						onSubmit={handleSubmit}
 						isLoading={isSubmitting}
 						data-cypress-id="group-edit-input-name"
 					/>

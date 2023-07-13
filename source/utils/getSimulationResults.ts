@@ -1,12 +1,12 @@
 import { correctValue, extractCategories } from '@/components/publicodesUtils'
-import { ResultsObject } from '@/types/groups'
+import { SimulationResults } from '@/types/groups'
 import Engine from 'publicodes'
 
 export const getSimulationResults = ({
 	engine,
 }: {
 	engine: Engine
-}): ResultsObject => {
+}): SimulationResults => {
 	let resultsObject
 
 	if (engine) {

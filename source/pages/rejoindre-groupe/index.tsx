@@ -59,7 +59,7 @@ export default function RejoindreGroupe() {
 	useEffect(() => {
 		const handleFetchGroup = async () => {
 			try {
-				const group = await fetchGroup(groupId || '')
+				const group = await fetchGroup(groupId ?? '')
 
 				setGroup(group)
 			} catch (error) {
@@ -72,6 +72,22 @@ export default function RejoindreGroupe() {
 	}, [groupId, group])
 
 	const groupBaseURL = `${window.location.origin}/groupes`
+
+	const sendEmailToGroupOwner = async () => {
+		if (email) {
+			await fetch(`${NETLIFY_FUNCTIONS_URL}/group-email-service`, {
+				method: 'POST',
+				body: JSON.stringify({
+					email,
+					name: prenom,
+					groupName: group?.name ?? '',
+					groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
+					shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
+					deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
+				}),
+			})
+		}
+	}
 
 	const handleSubmit = async (event: MouseEvent | FormEvent) => {
 		// Avoid reloading page
@@ -116,20 +132,8 @@ export default function RejoindreGroupe() {
 			// Vérifier si l'utilisateur n'est pas déjà dans le groupe
 			dispatch(addGroupToUser(group))
 
-			// Send email to owner
-			if (email) {
-				await fetch(`${NETLIFY_FUNCTIONS_URL}/group-email-service`, {
-					method: 'POST',
-					body: JSON.stringify({
-						email,
-						name: prenom,
-						groupName: group.name,
-						groupURL: `${groupBaseURL}/resultats?groupId=${group?._id}&mtm_campaign=voir-mon-groupe-email`,
-						shareURL: `${groupBaseURL}/invitation?groupId=${group?._id}&mtm_campaign=invitation-groupe-email`,
-						deleteURL: `${groupBaseURL}/supprimer?groupId=${group?._id}&userId=${userId}&mtm_campaign=invitation-groupe-email`,
-					}),
-				})
-			}
+			// Send email to owner confirming the group creation
+			sendEmailToGroupOwner()
 
 			// Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
 			if (currentSimulation) {

@@ -1,12 +1,12 @@
 import { GROUP_URL } from '@/constants/urls'
 import { SavedSimulation } from '@/selectors/storageSelectors'
-import { Group, ResultsObject } from '@/types/groups'
+import { Group, SimulationResults } from '@/types/groups'
 
 type Props = {
 	group: Group
 	userId: string
 	simulation: SavedSimulation
-	results: ResultsObject
+	results: SimulationResults
 }
 
 export const fetchUpdateGroupMember = async ({

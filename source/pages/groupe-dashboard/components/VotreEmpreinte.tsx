@@ -1,11 +1,11 @@
-import { ResultsObject } from '@/types/groups'
+import { SimulationResults } from '@/types/groups'
 import { formatValue } from 'publicodes'
 import { Trans } from 'react-i18next'
 import { ValueObject } from '../hooks/useGetGroupStats'
 import PercentageDiff from './PercentageDiff'
 
 const EMOJI_TEXT_MAP: {
-	[key in keyof Partial<ResultsObject>]: {
+	[key in keyof Partial<SimulationResults>]: {
 		emoji: string
 		text: string
 	}

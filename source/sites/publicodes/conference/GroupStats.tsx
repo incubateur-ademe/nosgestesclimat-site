@@ -1,17 +1,14 @@
+import { getMatomoEventModeGroupeRealtimeActivation } from '@/analytics/matomo-events'
+import Checkbox from '@/components/ui/Checkbox'
+import Progress from '@/components/ui/Progress'
+import { useMatomo } from '@/contexts/MatomoContext'
+import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
 import { AppState } from '@/reducers/rootReducer'
+import { WithEngine } from '@/RulesProvider'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { getMatomoEventModeGroupeRealtimeActivation } from '../../../analytics/matomo-events'
-import Checkbox from '../../../components/ui/Checkbox'
-import Progress from '../../../components/ui/Progress'
-import { useMatomo } from '../../../contexts/MatomoContext'
-import {
-	getLangFromAbreviation,
-	getLangInfos,
-} from '../../../locales/translation'
-import { WithEngine } from '../../../RulesProvider'
 import { meanFormatter } from '../DefaultFootprint'
 import { humanWeight } from '../HumanWeight'
 import CategoryStats from './CategoryStats'

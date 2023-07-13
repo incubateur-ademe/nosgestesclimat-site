@@ -6,7 +6,7 @@ export type Member = {
 	email?: string
 	simulation: Simulation
 	userId: string
-	results: ResultsObject
+	results: SimulationResults
 }
 
 export type Group = {
@@ -21,7 +21,7 @@ export type Group = {
 	}
 }
 
-export type ResultsObject = {
+export type SimulationResults = {
 	total: string
 	'transport . empreinte': {
 		value: string

@@ -31,7 +31,7 @@ import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { questionConfig } from '@/sites/publicodes/questionConfig'
 import ScoreBar from '@/sites/publicodes/ScoreBar'
 import { getQuestionURLSearchParams } from '@/sites/publicodes/utils'
-import { Group, ResultsObject } from '@/types/groups'
+import { Group, SimulationResults } from '@/types/groups'
 import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { motion } from 'framer-motion'
@@ -301,7 +301,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const handleUpdateGroup = async () => {
 		engine.setSituation(currentSimulation?.situation)
 
-		const results: ResultsObject = getSimulationResults({
+		const results: SimulationResults = getSimulationResults({
 			engine,
 		})
 

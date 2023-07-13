@@ -3,18 +3,18 @@ import {
 	DottedName,
 	extractCategories,
 	splitName,
-} from 'Components/publicodesUtils'
+} from '@/components/publicodesUtils'
 import Engine from 'publicodes'
 
-import { RootState } from '@/reducers/rootReducer'
-import { useEngine } from 'Components/utils/EngineContext'
+import { minimalCategoryData } from '@/components/publicodesUtils'
+import { useEngine } from '@/components/utils/EngineContext'
+import { useSimulationProgress } from '@/hooks/useNextQuestion'
+import { usePersistingState } from '@/hooks/usePersistState'
+import { AppState } from '@/reducers/rootReducer'
+import { situationSelector } from '@/selectors/simulationSelectors'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
 import { v4 as uuidv4 } from 'uuid'
-import { minimalCategoryData } from '../../../components/publicodesUtils'
-import { useSimulationProgress } from '../../../hooks/useNextQuestion'
-import { usePersistingState } from '../../../hooks/usePersistState'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
 import { computeHumanMean } from './GroupStats'
 import { surveyElementsAdapter } from './Survey'
@@ -29,7 +29,7 @@ export default () => {
 	const evaluation = engine.evaluate('bilan')
 	const { nodeValue: rawNodeValue, unit } = evaluation
 
-	const rules = useSelector((state: RootState) => state.rules)
+	const rules = useSelector((state: AppState) => state.rules)
 
 	const progress = useSimulationProgress()
 
