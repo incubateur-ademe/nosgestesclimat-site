@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
@@ -12,7 +13,6 @@ export default () => {
 	const [URL, setURL] = useState(null)
 	const [buttonDisabled, disableButton] = useState(false)
 
-	const { i18n } = useTranslation()
 	const { t } = useTranslation()
 
 	return (
@@ -21,9 +21,9 @@ export default () => {
 				title={t('Contribuer')}
 				description={t('meta.publicodes.Contribution.traductionDescription')}
 			></Meta>
-			<h1>
-				<Trans>Un problème de traduction ?</Trans>
-			</h1>
+
+			<Title title={<Trans>Un problème de traduction ?</Trans>} />
+
 			<p>
 				<Trans i18nKey={'publicodes.Contribution.traductionIntro'}>
 					Nos Gestes Climat vient tout juste d'être traduit dans plusieurs

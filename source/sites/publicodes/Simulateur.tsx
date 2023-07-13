@@ -1,6 +1,7 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
 import { getMatomoEventJoinedGroupe } from '@/analytics/matomo-events'
 import { getMosaicParentRuleName } from '@/components/conversation/conversationUtils'
+import Title from '@/components/groupe/Title'
 import {
 	Category,
 	decodeRuleNameFromSearchParam,
@@ -16,7 +17,6 @@ import {
 } from '@/components/publicodesUtils'
 import { buildEndURL } from '@/components/SessionBar'
 import Simulation from '@/components/Simulation'
-import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
@@ -170,9 +170,7 @@ const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 				}
 				description={evaluation.rawNode?.description}
 			/>
-			<Title>
-				<Trans>Le test</Trans>
-			</Title>
+			<Title title={t('Votre bilan climat personnel')} />
 			<div>
 				{!displayTutorial && (
 					<motion.div

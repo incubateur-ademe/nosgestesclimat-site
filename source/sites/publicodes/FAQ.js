@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { Markdown } from 'Components/utils/markdown'
 import { useEffect } from 'react'
 import { renderToString } from 'react-dom/server'
@@ -71,9 +72,7 @@ export default () => {
 					{JSON.stringify(structuredFAQ)}
 				</script>
 			</Meta>
-			<h1>
-				<Trans>Questions fréquentes</Trans>
-			</h1>
+			<Title title={t('Questions fréquentes')} />
 			<p>
 				<Trans i18nKey={'publicodes.FAQ.description'}>
 					Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les

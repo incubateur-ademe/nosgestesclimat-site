@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import {
 	getRelatedMosaicInfosIfExists,
 	NGCRuleNode,
@@ -9,6 +10,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import toCSV from '@/components/utils/toCSV'
 import { AppState } from '@/reducers/rootReducer'
 import Engine from 'publicodes'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
@@ -43,7 +45,8 @@ export default () => {
 	const csv = toCSV(header, jsonList)
 	return (
 		<div>
-			<h1>Les questions du modèle Nos Gestes Climat</h1>
+			<Title title={<Trans>Les questions du modèle Nos Gestes Climat</Trans>} />
+
 			<p>
 				Voici une liste des questions qui sont posées à l'utilisateur au cours
 				du test, et dans une moindre mesure au cours du parcours action. Le

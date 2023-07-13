@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import animate from '@/components/ui/animate'
 import LogoADEME from '@/images/logoADEME.svg'
 import React, { Suspense, useContext } from 'react'
@@ -56,11 +57,13 @@ export default () => {
 
 			<LandingHeaderWrapper>
 				<HeaderContent>
-					<h1>
-						<Trans i18nKey={'publicodes.Landing.question'}>
-							Connaissez-vous votre empreinte sur le climat ?
-						</Trans>
-					</h1>
+					<Title
+						title={
+							<Trans i18nKey={'publicodes.Landing.question'}>
+								Connaissez-vous votre empreinte sur le climat ?
+							</Trans>
+						}
+					/>
 					{mobile && <Illustration aria-hidden="true" />}
 					<p>
 						<Trans i18nKey={'sites.publicodes.Landing.description'}>

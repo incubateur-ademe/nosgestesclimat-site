@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
@@ -170,10 +171,9 @@ export default () => {
 				title={t('meta.publicodes.Contact.titre')}
 				description={t('meta.publicodes.Contact.description')}
 			></Meta>
-			<h1>
-				<Trans>Contact</Trans>
-			</h1>
-			<h2 css="font-size: 180%">
+
+			<Title title={<Trans>Contact</Trans>} />
+			<h2>
 				🙋‍♀️{' '}
 				<Trans i18nKey={'publicodes.Contact.titreQuestion'}>
 					J'ai une question

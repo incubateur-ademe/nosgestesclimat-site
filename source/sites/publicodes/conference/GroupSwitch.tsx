@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import Meta from '../../../components/utils/Meta'
@@ -16,7 +17,7 @@ export default () => {
 					'Faites le test à plusieurs via le mode conférence ou sondage'
 				)}
 			/>
-			<h1 data-cypress-id="group-title">{t('Mode groupe')}</h1>
+			<Title data-cypress-id="group-title" title={t('Mode groupe')} />
 
 			<Instructions {...{ newRoom, setNewRoom }} />
 		</div>

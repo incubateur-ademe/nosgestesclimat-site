@@ -1,4 +1,5 @@
 import { resetSimulation } from '@/actions/actions'
+import Title from '@/components/groupe/Title'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -48,7 +49,7 @@ export default ({}) => {
 	return (
 		<div>
 			<ScrollToTop />
-			<h1 data-cypress-id="personas-title">Personas</h1>
+			<Title data-cypress-id="personas-title" title={<Trans>Personas</Trans>} />
 			<p>
 				<Trans>
 					Cette page vous permet de naviguer les parcours Nos Gestes Climat
