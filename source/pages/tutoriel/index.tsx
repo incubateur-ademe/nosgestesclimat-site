@@ -1,4 +1,3 @@
-/* eslint-disable react-hooks/rules-of-hooks */
 import { skipTutorial } from '@/actions/actions'
 import { matomoEventParcoursTestSkipTutorial } from '@/analytics/matomo-events'
 import { Twemoji } from '@/components/emoji'
@@ -54,23 +53,24 @@ export default function Tutoriel() {
 
 	useKeypress('Escape', false, () => skip('testIntro'), 'keyup', [])
 
-	const title = 'Tutorial'
-	const description =
-		'Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.'
 	return (
 		<>
 			<main className="p-4  h-full ">
 				<Meta
-					title={title}
-					description={description}
+					title={t('Tutorial')}
+					description={t(
+						'Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.'
+					)}
 					image={generateImageLink(window.location)}
 				/>
 				<Title
 					data-cypress-id="tutoriel-title"
 					title={
 						<span className="">
-							<span className="text-secondary inline">10 minutes</span> chrono
-							pour calculer votre empreinte sur le climat
+							<span className="text-secondary inline">
+								<Trans>10 minutes</Trans>
+							</span>{' '}
+							<Trans>chrono pour calculer votre empreinte sur le climat</Trans>
 						</span>
 					}
 				/>
@@ -83,25 +83,31 @@ export default function Tutoriel() {
 					>
 						<Twemoji text="💡"></Twemoji>
 					</div>
-					<h3>Avant de commencer</h3>
+					<h3>
+						<Trans>Avant de commencer</Trans>
+					</h3>
 					<div className=" relative pl-8">
 						<h4 className="font-bold before:content-['🏡'] before:absolute before:left-0 overflow-visible ">
-							C'est un test individuel !
+							<Trans>C'est un test individuel !</Trans>
 						</h4>
 						<p>
-							Répondez aux questions{' '}
-							<span className="font-bold">en votre nom</span>, pas pour votre
-							foyer.
+							<Trans>
+								Répondez aux questions{' '}
+								<span className="font-bold">en votre nom</span>, pas pour votre
+								foyer.
+							</Trans>
 						</p>
 					</div>
 					<div className=" relative pl-8">
 						<h4 className="font-bold before:content-['👤'] before:absolute before:left-0 overflow-visible ">
-							Il concerne votre vie personnelle
+							<Trans>foyer.Il concerne votre vie personnelle</Trans>
 						</h4>
 						<p className="ml-6.5">
-							Pas votre boulot ou vos études. Une seule{' '}
-							<span className="font-bold">exception</span> : votre trajet
-							domicile-travail doit être inclus dans les km parcourus.
+							<Trans>
+								Pas votre boulot ou vos études. Une seule{' '}
+								<span className="font-bold">exception</span> : votre trajet
+								domicile-travail doit être inclus dans les km parcourus.
+							</Trans>
 						</p>
 					</div>
 				</div>
@@ -110,17 +116,21 @@ export default function Tutoriel() {
 					<li className="my-1" id={'empreinte'}>
 						<details>
 							<summary className=" font-bold text-primary">
-								C’est quoi mon empreinte carbone ?
+								<Trans>C’est quoi mon empreinte carbone ?</Trans>
 							</summary>
 							<div className="ml-3.5 my-2 text-sm">
 								<p>
-									La planète se réchauffe dangereusement, au fur et à mesure des
-									gaz à effet de serre que l'on émet.
+									<Trans>
+										La planète se réchauffe dangereusement, au fur et à mesure
+										des gaz à effet de serre que l'on émet.
+									</Trans>
 								</p>
 								<p>
-									Pas pour votre boulot ou vos études. Une seule exception :
-									votre trajet domicile-travail doit être inclus dans les km
-									parcourus.
+									<Trans>
+										Pas pour votre boulot ou vos études. Une seule exception :
+										votre trajet domicile-travail doit être inclus dans les km
+										parcourus.
+									</Trans>
 								</p>
 							</div>
 						</details>
@@ -128,18 +138,18 @@ export default function Tutoriel() {
 					<li className="my-1" id={'mesure'}>
 						<details>
 							<summary className=" font-bold text-primary">
-								Comment on la mesure ?
+								<Trans>Comment on la mesure ?</Trans>
 							</summary>
 							<div className="ml-3.5 my-2 text-sm">
 								<p>
-									<Trans i18nKey={'publicodes.Tutorial.slide2.p1'}>
+									<Trans>
 										Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
 										de carbone, vous le connaissez : on l'expire toute la
 										journée, mais sans influence sur le climat.
 									</Trans>
 								</p>
 								<p>
-									<Trans i18nKey={'publicodes.Tutorial.slide2.p2'}>
+									<Trans>
 										Ce sont les machines qui font notre confort moderne qui en
 										rejettent massivement, à tel point qu'on le compte en
 										milliers de kilos par an et par personne, donc en tonnes de
@@ -152,10 +162,10 @@ export default function Tutoriel() {
 					<li className="my-1" id={'objectif'}>
 						<details>
 							<summary className=" font-bold text-primary">
-								Quel est l’objectif à atteindre ?
+								<Trans>Quel est l’objectif à atteindre ?</Trans>
 							</summary>
 							<div className="ml-3.5 my-2 text-sm">
-								<Trans i18nKey={'publicodes.Tutorial.slide5.p1'}>
+								<Trans>
 									<p>
 										Nous devons diminuer notre empreinte climat au plus vite.
 									</p>
@@ -168,23 +178,27 @@ export default function Tutoriel() {
 								<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
 									<Trans>cet article</Trans>
 								</a>
-								<Trans>(15 min de lecture)</Trans>
+								&nbsp;<Trans>(15 min de lecture)</Trans>
 							</div>
 						</details>
 					</li>
 					<li className="my-1" id={'categories'}>
 						<details id={'categories'}>
 							<summary className=" font-bold text-primary">
-								D’où vient mon empreinte ?
+								<Trans>D’où vient mon empreinte ?</Trans>
 							</summary>
 							<div className="ml-3.5 my-2 text-sm">
 								<p>
-									Prendre la voiture, manger un steak, chauffer sa maison, se
-									faire soigner, acheter une TV...
+									<Trans>
+										Prendre la voiture, manger un steak, chauffer sa maison, se
+										faire soigner, acheter une TV...
+									</Trans>
 								</p>
 								<p>
-									L'empreinte de notre consommation individuelle, c'est la somme
-									de toutes ces activités qui font notre vie moderne.
+									<Trans>
+										L'empreinte de notre consommation individuelle, c'est la
+										somme de toutes ces activités qui font notre vie moderne.
+									</Trans>
 								</p>
 							</div>
 						</details>
@@ -196,7 +210,7 @@ export default function Tutoriel() {
 					color="white"
 					size="sm"
 				>
-					☝️ Consultez la FAQ
+					☝️ <Trans>Consultez la FAQ</Trans>
 				</ButtonLink>
 				<div className="bg-white w-full border-solid border-0 border-t border-gray-200 fixed h-auto sm:relative bottom-0 sm:mt-5 -m-4 right:0 left:0 py-4">
 					<ButtonLink
