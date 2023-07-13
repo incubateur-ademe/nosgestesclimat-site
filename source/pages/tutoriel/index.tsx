@@ -117,7 +117,7 @@ export default function Tutoriel() {
 							<summary className=" font-bold text-primary">
 								C’est quoi mon empreinte carbone ?
 							</summary>
-							<div className="ml-3.5 my-2">
+							<div className="ml-3.5 my-2 text-sm">
 								<p>
 									La planète se réchauffe dangereusement, au fur et à mesure des
 									gaz à effet de serre que l'on émet.
