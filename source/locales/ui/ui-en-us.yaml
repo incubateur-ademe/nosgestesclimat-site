@@ -797,3 +797,72 @@ entries:
   'et ': 'and '
   des conseils: advice
   'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'to reduce your carbon footprint (once a month max.). '
+  Partager: Share
+  'Votre adresse email ': 'Your email address '
+  facultatif: optional
+  Voir mes groupes: See my groups
+  Créer un groupe d'amis: Create a group of friends
+  'Étape {String(currentStep)} sur {String(numberSteps)}': Step {String(currentStep)} on {String(numberSteps)}
+  Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.: Please confirm with the group creator that they have sent you an invitation link.
+  participants: participants
+  Copié !: Copy!
+  Rejoindre: Join
+  Retour: Back
+  Créer le groupe: Create group
+  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} has invited you to join the <3>{group?.name}</3> group'
+  Votre prénom (ou pseudo): Your first name (or nickname)
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Compare your results with your family or a group of friends.
+  Comparez vos résultats avec votre famille ou un groupe d’amis: Compare your results with your family or a group of friends
+  Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe: Your group is ready! Share this link with your friends and family to invite them to join your group
+  Vous n'avez pas été invité à rejoindre ce groupe: You have not been invited to join this group
+  Groupe d'amis: Group of friends
+  Créer un autre groupe: Create another group
+  Créez un autre groupe: Create another group
+  Retourner à mes groupes: Back to my groups
+  Choisissez un nom pour ce groupe: Choose a name for this group
+  Il sera visible uniquement par les participants du groupe: It will be visible only to group participants
+  Créez votre premier groupe: Create your first group
+  Pour le retrouver facilement dans votre liste: To find it easily in your list
+  Invitez vos proches: Invite your friends and family
+  Ce champ est obligatoire: This field is mandatory
+  Seulement pour te permettre de le retrouver ou de supprimer les données par la suite: Only to allow you to find it or delete the data later
+  Le classement: The ranking
+  Comment agir: How to act
+  Vos points forts: Your strengths
+  Votre empreinte: Your footprint
+  Vos points faibles: Your weaknesses
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées': Find out how you can take action for the climate today, or take the test to get personalized recommendations
+  Toutes les actions: All actions
+  Par rapport à la moyenne du groupe.: Compared with the group average.
+  Vous devez compléter votre test avant de créer un groupe.: You must complete your test before creating a group.
+  'Voir les {String(group.members.length)} autres participants': See the {String(group.members.length)} other participants
+  'Voir les {String(group.members.length)} autres participants.lock': Voir les {String(group.members.length)} autres participants
+  'pour recevoir ': 'to receive '
+  Supprimer mes données: Delete my data
+  "Mes groupes, simulateur d'empreinte carbone": My groups, carbon footprint simulator
+  Créer un groupe et calculer notre empreinte carbone: Create a group and calculate our carbon footprint
+  Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Share this page with your friends and family to let them join your group.
+  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Only to allow you to find your group or delete your data
+  "Oups, une erreur s'est produite au moment de récupérer les données du groupe.": Oops, an error occurred while retrieving the group data.
+  Rejoindre un groupe - Nos Gestes Climat: Join a group - Nos Gestes Climat
+  'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé': Edit group name, opens an automatically focused input field
+  Veuillez renseigner un prénom ou un pseudonyme.: Please enter a first name or pseudonym.
+  Vous êtes le premier 🥳: You are the first 🥳
+  'Ok, sauvegarder la modification': Ok, save the modification
+  Veuillez renseigner un nom.: Please enter a name.
+  Veuillez renseigner un email valide.: Please enter a valid email address.
+  Données supprimées.: Deleted data.
+  Supprimer vos données de groupe enregistrées ? Cette action est irréversible.: Delete your saved group data? This action is irreversible.
+  Modifier le nom du groupe: Change group name
+  'Mon groupe, nos bilans carbone personnels': My group, our personal carbon footprints
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': See {String(group.members.length - 5)} other{withS} participant{withS}
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}.lock': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.': Find out how you can take action for the climate today, or take the test to get personalized recommendations.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Join your group to calculate your carbon footprint and compare it with the footprint of others, using the Nos Gestes Climat personal carbon footprint simulator.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your family and friends using the Nos Gestes Climat personal carbon footprint simulator.
+  Créer et passer mon test: Create and take my test
+  Continuer le test: Continue testing
+  Votre adresse email: Your email address
+  Rejoindre et passer mon test: Join and take my test
+  Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Delete your saved group data? Only your member data will be deleted. This action is irreversible.
+  'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Delete your group <1>{group?.name}</1>? Saved data will be deleted for all group members. This action is irreversible.

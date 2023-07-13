@@ -1,4 +1,4 @@
-import { createContext, useCallback, useRef } from 'react'
+import { createContext, useCallback, useContext, useRef } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Location as ReactRouterLocation } from 'react-router-dom'
 import { updateEventsSent } from '../actions/actions'
@@ -38,6 +38,12 @@ export const MatomoContext = createContext<MatomoContextType>({
 	trackEvent: () => {},
 	trackPageView: () => {},
 })
+
+export const useMatomo = () => {
+	const { trackEvent, trackPageView } = useContext(MatomoContext)
+
+	return { trackEvent, trackPageView }
+}
 
 export const MatomoProvider = ({ children }) => {
 	const dispatch = useDispatch()

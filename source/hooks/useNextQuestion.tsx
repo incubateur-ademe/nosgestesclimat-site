@@ -22,14 +22,15 @@ import {
 } from 'ramda'
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { Simulation, SimulationConfig } from 'Reducers/rootReducer'
+
 import {
 	answeredQuestionsSelector,
 	configSelector,
 	currentQuestionSelector,
 	objectifsSelector,
 	situationSelector,
-} from 'Selectors/simulationSelectors'
+} from '@/selectors/simulationSelectors'
+import { Simulation, SimulationConfig } from '@/types/simulation'
 import { EngineContext } from '../components/utils/EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>

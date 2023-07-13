@@ -600,3 +600,69 @@ entries:
   'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'pour réduire votre empreinte carbone (1 fois par mois max.). '
   votre résultat: votre résultat
   Entrez votre adresse email: Entrez votre adresse email
+  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
+  Ce champ est obligatoire: Ce champ est obligatoire
+  Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
+  Comparez vos résultats avec votre famille ou un groupe d’amis: Comparez vos résultats avec votre famille ou un groupe d’amis
+  Copié !: Copié !
+  Créer le groupe: Créer le groupe
+  Créer un autre groupe: Créer un autre groupe
+  Créer un groupe d'amis: Créer un groupe d'amis
+  Créez un autre groupe: Créez un autre groupe
+  Créez votre premier groupe: Créez votre premier groupe
+  'Étape {String(currentStep)} sur {String(numberSteps)}': Étape {String(currentStep)} sur {String(numberSteps)}
+  facultatif: facultatif
+  Groupe d'amis: Groupe d'amis
+  Il sera visible uniquement par les participants du groupe: Il sera visible uniquement par les participants du groupe
+  Invitez vos proches: Invitez vos proches
+  Partager: Partager
+  participants: participants
+  Pour le retrouver facilement dans votre liste: Pour le retrouver facilement dans votre liste
+  Rejoindre: Rejoindre
+  Retour: Retour
+  Retourner à mes groupes: Retourner à mes groupes
+  Seulement pour te permettre de le retrouver ou de supprimer les données par la suite: Seulement pour te permettre de le retrouver ou de supprimer les données par la suite
+  Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.: Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.
+  Voir mes groupes: Voir mes groupes
+  'Votre adresse email ': 'Votre adresse email '
+  Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe: Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe
+  Votre prénom (ou pseudo): Votre prénom (ou pseudo)
+  Vous n'avez pas été invité à rejoindre ce groupe: Vous n'avez pas été invité à rejoindre ce groupe
+  Comment agir: Comment agir
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées': Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées
+  Le classement: Le classement
+  Par rapport à la moyenne du groupe.: Par rapport à la moyenne du groupe.
+  Toutes les actions: Toutes les actions
+  'Voir les {String(group.members.length)} autres participants': Voir les {String(group.members.length)} autres participants
+  Vos points faibles: Vos points faibles
+  Vos points forts: Vos points forts
+  Votre empreinte: Votre empreinte
+  Vous devez compléter votre test avant de créer un groupe.: Vous devez compléter votre test avant de créer un groupe.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Créer un groupe et calculer notre empreinte carbone: Créer un groupe et calculer notre empreinte carbone
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.': Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.
+  Données supprimées.: Données supprimées.
+  "Mes groupes, simulateur d'empreinte carbone": Mes groupes, simulateur d'empreinte carbone
+  Modifier le nom du groupe: Modifier le nom du groupe
+  'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé': Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé
+  'Mon groupe, nos bilans carbone personnels': Mon groupe, nos bilans carbone personnels
+  'Ok, sauvegarder la modification': Ok, sauvegarder la modification
+  "Oups, une erreur s'est produite au moment de récupérer les données du groupe.": Oups, une erreur s'est produite au moment de récupérer les données du groupe.
+  Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Rejoindre un groupe - Nos Gestes Climat: Rejoindre un groupe - Nos Gestes Climat
+  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données
+  Supprimer mes données: Supprimer mes données
+  Supprimer vos données de groupe enregistrées ? Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Cette action est irréversible.
+  Veuillez renseigner un email valide.: Veuillez renseigner un email valide.
+  Veuillez renseigner un nom.: Veuillez renseigner un nom.
+  Veuillez renseigner un prénom ou un pseudonyme.: Veuillez renseigner un prénom ou un pseudonyme.
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
+  Vous êtes le premier 🥳: Vous êtes le premier 🥳
+  Continuer le test: Continuer le test
+  Créer et passer mon test: Créer et passer mon test
+  Rejoindre et passer mon test: Rejoindre et passer mon test
+  Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.
+  'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.
+  Votre adresse email: Votre adresse email

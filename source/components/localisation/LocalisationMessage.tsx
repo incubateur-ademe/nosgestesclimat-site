@@ -1,9 +1,8 @@
-import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { getMatomoEventChangeRegion } from '../../analytics/matomo-events'
-import { MatomoContext } from '../../contexts/MatomoContext'
+import { useMatomo } from '../../contexts/MatomoContext'
 import { AppState } from '../../reducers/rootReducer'
 import IllustratedMessage from '../ui/IllustratedMessage'
 import CountryFlag from './CountryFlag'
@@ -16,7 +15,7 @@ import {
 } from './utils'
 
 export default (): JSX.Element => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const messagesRead = useSelector(
 		(state: AppState) => state.sessionLocalisationBannersRead
 	)

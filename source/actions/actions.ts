@@ -1,13 +1,10 @@
 import { Value } from '@/components/conversation/RuleInput'
 import { Localisation } from '@/components/localisation/utils'
 import { DottedName } from '@/components/publicodesUtils'
-import {
-	AppState,
-	Simulation,
-	SimulationConfig,
-	StoredTrajets,
-} from '@/reducers/rootReducer'
-import { Rating } from '@/selectors/storageSelectors'
+import { AppState } from '@/reducers/rootReducer'
+import { Group } from '@/types/groups'
+import { Rating } from '@/types/rating'
+import { Simulation, SimulationConfig, StoredTrajets } from '@/types/simulation'
 import { ThunkAction } from 'redux-thunk'
 
 /**
@@ -53,6 +50,13 @@ export type Action =
 	| SetRatingAction
 	| ResetLocalisationAction
 	| UpdateAmortissementAvionAction
+	| AddGroupToUserAction
+	| RemoveGroupFromUserAction
+	| UpdateGroupAction
+	| SetCreatedGroupAction
+	| SetUserIdAction
+	| SetGroupToRedirectToAction
+	| SetUserNameAndEmailAction
 
 export type ThunkResult<R = void> = ThunkAction<R, AppState, object, Action>
 
@@ -201,6 +205,42 @@ type UpdateAmortissementAvionAction = {
 	type: 'SET_AMORTISSEMENT'
 	// TODO(@EmileRolley): type this
 	amortissementAvionObject: object
+}
+
+type AddGroupToUserAction = {
+	type: 'ADD_GROUP'
+	group: Group
+}
+
+type RemoveGroupFromUserAction = {
+	type: 'REMOVE_GROUP'
+	group: Group
+}
+
+type UpdateGroupAction = {
+	type: 'UPDATE_GROUP'
+	group: Group
+}
+
+type SetCreatedGroupAction = {
+	type: 'SET_CREATED_GROUP'
+	group: Group
+}
+
+type SetUserIdAction = {
+	type: 'SET_USER_ID'
+	userId: string
+}
+
+type SetGroupToRedirectToAction = {
+	type: 'SET_GROUP_TO_REDIRECT_TO'
+	group: Group
+}
+
+type SetUserNameAndEmailAction = {
+	type: 'SET_USER_NAME_AND_EMAIL'
+	name: string
+	email: string
 }
 
 export const resetSimulation = (): Action => ({
@@ -402,4 +442,40 @@ export const updateEventsSent = (eventSent: {
 
 export const setHasSubscribedToNewsletter = (): Action => ({
 	type: 'SET_HAS_SUBSCRIBED_TO_NEWSLETTER',
+})
+
+export const addGroupToUser = (group: Group) => ({
+	type: 'ADD_GROUP',
+	group,
+})
+
+export const removeGroupFromUser = (group: Group) => ({
+	type: 'REMOVE_GROUP',
+	group,
+})
+
+export const updateGroup = (group: Group) => ({
+	type: 'UPDATE_GROUP',
+	group,
+})
+
+export const setCreatedGroup = (group: Group) => ({
+	type: 'SET_CREATED_GROUP',
+	group,
+})
+
+export const setUserId = (userId: string) => ({
+	type: 'SET_USER_ID',
+	userId,
+})
+
+export const setGroupToRedirectTo = (group: Group) => ({
+	type: 'SET_GROUP_TO_REDIRECT_TO',
+	group,
+})
+
+export const setUserNameAndEmail = (name: string, email: string) => ({
+	type: 'SET_USER_NAME_AND_EMAIL',
+	name,
+	email,
 })

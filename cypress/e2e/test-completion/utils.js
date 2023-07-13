@@ -66,21 +66,24 @@ export async function waitWhileLoading() {
 		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
 			// Waiting for rules parsing
 			cy.wait(4000)
-	}})
+		}
+	})
 }
 
 function encodeRuleName(ruleName) {
-	return encodeURI(ruleName
-		?.replace(/\s\.\s/g, '.')
-		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
-		.replace(/\s/g, '-'))
+	return encodeURI(
+		ruleName
+			?.replace(/\s\.\s/g, '.')
+			.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
+			.replace(/\s/g, '-')
+	)
 }
 
 function isMosaicQuestion(body) {
 	return body.find('[data-cypress-id="mosaic-question"]')?.length > 0
 }
 
-export async function walkthroughTest(persona) {
+export async function walkthroughTest(persona = {}) {
 	cy.wait(100)
 
 	waitWhileLoading()
@@ -104,7 +107,7 @@ export async function walkthroughTest(persona) {
 						} else {
 							if (type === 'text') {
 								cy.get(`input[id="${id}"]`).type(persona[id])
-						} else {
+							} else {
 								cy.get(`input[name="${id}"]`).check(persona[id])
 							}
 						}

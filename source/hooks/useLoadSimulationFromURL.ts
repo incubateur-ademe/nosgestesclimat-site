@@ -1,9 +1,11 @@
 import { reformateDataFromDB } from '@/components/utils/formatDataForDB'
-import { Simulation } from '@/reducers/rootReducer'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import { Simulation } from '@/types/simulation'
 import * as Sentry from '@sentry/react'
 import { useEffect, useState } from 'react'
+
 type DataSimulationObject = { data: Simulation }
+
 export const useLoadSimulationFromURL = () => {
 	const [simulation, setSimulation] = useState<
 		DataSimulationObject | undefined
@@ -28,6 +30,7 @@ export const useLoadSimulationFromURL = () => {
 
 				const simulation: DataSimulationObject = await response.json()
 				const simulationReformatted = { ...simulation }
+
 				simulationReformatted.data.situation = reformateDataFromDB(
 					simulationReformatted.data
 				)

@@ -3,7 +3,7 @@ import { getMatomoEventParcoursTestTutorialProgress } from '@/analytics/matomo-e
 import { MODEL_ROOT_RULE_NAME } from '@/components/publicodesUtils'
 import SlidesLayout from '@/components/SlidesLayout'
 import Meta from '@/components/utils/Meta'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import useKeypress from '@/hooks/useKeyPress'
 import { AppState } from '@/reducers/rootReducer'
 import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
@@ -15,7 +15,7 @@ import Instructions from '@/sites/publicodes/tutorial/Instructions'
 import Target from '@/sites/publicodes/tutorial/Target'
 import Slide from '@/sites/publicodes/tutorial/TutorialSlide'
 import WarmingMeasure from '@/sites/publicodes/tutorial/WarmingMeasure'
-import { useCallback, useContext, useEffect } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
@@ -34,7 +34,7 @@ export default () => {
 	const slides = createSlides(enquête)
 	const index = tutos.length
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const skip = useCallback(
 		(name: string, unskip = false) => dispatch(skipTutorial(name, unskip)),

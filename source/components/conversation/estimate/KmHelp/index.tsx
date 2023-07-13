@@ -5,7 +5,6 @@ import {
 	Dispatch,
 	Fragment,
 	SetStateAction,
-	useContext,
 	useEffect,
 	useRef,
 	useState,
@@ -19,7 +18,7 @@ import {
 	matomoEventKilometerHelpClickClose,
 	matomoEventKilometerHelpClickOpen,
 } from '../../../../analytics/matomo-events'
-import { MatomoContext } from '../../../../contexts/MatomoContext'
+import { useMatomo } from '../../../../contexts/MatomoContext'
 import {
 	getLangFromAbreviation,
 	getLangInfos,
@@ -56,7 +55,7 @@ export default function KmHelp({
 }: KmHelpProps) {
 	const { t, i18n } = useTranslation()
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const dispatch = useDispatch()
 	const storedTrajets = useSelector((state) => state.storedTrajets)

@@ -1,4 +1,5 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
+import { getMatomoEventJoinedGroupe } from '@/analytics/matomo-events'
 import { getMosaicParentRuleName } from '@/components/conversation/conversationUtils'
 import {
 	Category,
@@ -19,17 +20,20 @@ import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
-import {
-	AppState,
-	objectifsConfigToDottedNameArray,
-} from '@/reducers/rootReducer'
-import { useTestCompleted } from '@/selectors/simulationSelectors'
+import { useMatomo } from '@/contexts/MatomoContext'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
+import { useSetUserId } from '@/hooks/useSetUserId'
+import { AppState } from '@/reducers/rootReducer'
+import { SavedSimulation } from '@/selectors/storageSelectors'
 import BandeauContribuer from '@/sites/publicodes/BandeauContribuer'
 import InlineCategoryChart from '@/sites/publicodes/chart/InlineCategoryChart'
 import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { questionConfig } from '@/sites/publicodes/questionConfig'
 import ScoreBar from '@/sites/publicodes/ScoreBar'
 import { getQuestionURLSearchParams } from '@/sites/publicodes/utils'
+import { Group, SimulationResults } from '@/types/groups'
+import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
+import { getSimulationResults } from '@/utils/getSimulationResults'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
@@ -81,9 +85,13 @@ const Simulateur = () => {
 const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
+
+	// Sets the user id in the store if not already set
+	useSetUserId()
+
 	const { t } = useTranslation()
 	const searchParams = new URLSearchParams(window.location.search)
-	const isTestCompleted = useTestCompleted()
+
 	const rules = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
 
@@ -125,10 +133,7 @@ const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 
 	useEffect(() => {
 		if (
-			!isEquivalentTargetArrays(
-				config.objectifs,
-				objectifsConfigToDottedNameArray(configSet?.objectifs ?? [])
-			)
+			!isEquivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])
 		) {
 			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
@@ -281,6 +286,40 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const enquête = useSelector(enquêteSelector)
 	// Necessary to call 'buildEndURL' with the latest situation
 
+	const navigate = useNavigate()
+
+	const { trackEvent } = useMatomo()
+
+	const groupToRedirectTo: Group | null = useSelector(
+		(state: AppState) => state.groupToRedirectTo
+	)
+
+	const currentSimulation = useGetCurrentSimulation()
+
+	const userId = useSelector((state: AppState) => state.user.userId)
+
+	const handleUpdateGroup = async () => {
+		engine.setSituation(currentSimulation?.situation)
+
+		const results: SimulationResults = getSimulationResults({
+			engine,
+		})
+
+		try {
+			await fetchUpdateGroupMember({
+				group: groupToRedirectTo,
+				userId: userId ?? '',
+				simulation: currentSimulation as SavedSimulation,
+				results,
+			})
+
+			trackEvent(getMatomoEventJoinedGroupe(groupToRedirectTo?._id || ''))
+			navigate(`/groupes/resultats?groupId=${groupToRedirectTo?._id}`)
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	return (
 		<div
 			css={`
@@ -295,22 +334,32 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				padding: 1rem;
 			`}
 		>
-			<img
-				src="/images/glowing-ngc-star.svg"
-				width="100"
-				height="100"
-				aria-hidden="true"
-			/>
+			<img src="/images/glowing-ngc-star.svg" width="100" height="100" alt="" />
 			<p>
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
-			<Link
-				to={buildEndURL(rules, engine) ?? ''}
-				className="ui__ button cta plain"
-				data-cypress-id="see-results-link"
-			>
-				<Trans>Voir mon résultat</Trans>
-			</Link>
+			{groupToRedirectTo ? (
+				<button
+					type="button"
+					aria-disabled={!currentSimulation}
+					className="ui__ button cta plain"
+					data-cypress-id="see-results-link"
+					onClick={handleUpdateGroup}
+				>
+					<Trans>Voir mon résultat</Trans>
+				</button>
+			) : (
+				<Link
+					to={buildEndURL(rules, engine) ?? ''}
+					aria-disabled={!currentSimulation}
+					className="ui__ button cta plain"
+					data-cypress-id="see-results-link"
+					onClick={groupToRedirectTo ? handleUpdateGroup : undefined}
+				>
+					<Trans>Voir mon résultat</Trans>
+				</Link>
+			)}
+
 			{!enquête && (
 				<>
 					<Trans>ou</Trans>

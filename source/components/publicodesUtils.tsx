@@ -213,9 +213,7 @@ export const getTitle = (rule: NGCRule & { dottedName: DottedName }) =>
 // Publicodes's % unit is strangely handlded
 // the nodeValue is * 100 to account for the unit
 // hence we divide it by 100 and drop the unit
-export function correctValue(evaluated: EvaluatedNode): number | undefined {
-	const { nodeValue, unit } = evaluated
-
+export function correctValue({ nodeValue, unit }): number | undefined {
 	if (nodeValue == undefined || typeof nodeValue !== 'number') {
 		return undefined
 	}
@@ -326,17 +324,17 @@ export function extractCategories(
 			parent = split.length > 1 ? split[0] : ''
 		return {
 			...node,
-			icons: icônes || rules[parent].icônes,
+			icons: icônes || rules[parent]?.icônes,
 			color:
 				categoryColorOverride[dottedName] ||
 				categoryColorOverride[parent] ||
 				couleur ||
-				rules[parent].couleur,
+				rules[parent]?.couleur,
 			nodeValue: valuesFromURL ? valuesFromURL[dottedName[0]] : node.nodeValue,
 			dottedName: (isRootRule(parentRule) && parent) || node.dottedName,
 			documentationDottedName: node.dottedName,
 			title:
-				isRootRule(parentRule) && parent ? rules[parent].titre : node.title,
+				isRootRule(parentRule) && parent ? rules[parent]?.titre : node.title,
 			abbreviation: abréviation,
 		}
 	})

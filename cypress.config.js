@@ -1,6 +1,7 @@
 import { defineConfig } from 'cypress'
 
 console.log('CYPRESS_baseUrl', process.env.CYPRESS_baseUrl)
+
 export default defineConfig({
 	projectId: 'dbxhpr',
 	env: {
@@ -11,9 +12,7 @@ export default defineConfig({
 	},
 	e2e: {
 		baseUrl: process.env.CYPRESS_baseUrl ?? 'http://localhost:8080',
-		setupNodeEvents(on, config) {
-			// implement node event listeners here
-		},
+		setupNodeEvents(on, config) {},
 		experimentalRunAllSpecs: true,
 	},
 })
