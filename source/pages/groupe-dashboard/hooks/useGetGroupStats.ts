@@ -2,7 +2,6 @@ import {
 	DottedName,
 	extractCategories,
 	getSubcategories,
-	NGCRules,
 	safeGetRule,
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
@@ -29,47 +28,6 @@ export type Results = {
 	groupCategoriesFootprints: Record<string, ValueObject>
 	pointsForts: Points[]
 	pointsFaibles: Points[]
-}
-
-const updateGroupCategoriesFootprints = ({
-	updatedGroupCategoriesFootprints,
-	category,
-	rules,
-	isCategory = true,
-}) => {
-	// If the category is not in the accumulator, we add its name as a new key in the object along with its value
-	// otherwise we add the value to the existing sum
-	if (!updatedGroupCategoriesFootprints[category.name]) {
-		updatedGroupCategoriesFootprints[category.name] = {
-			title: category.title,
-			value: category.nodeValue as number,
-			icon: rules[category?.name]?.rawNode?.icônes,
-			isCategory,
-		}
-	} else {
-		updatedGroupCategoriesFootprints[category.name].value +=
-			category.nodeValue as number
-	}
-}
-
-const updateCurrentMemberAllFootprints = ({
-	updatedCurrentMemberAllFootprints,
-	category,
-	alternateCategory = { name: '' },
-	rules,
-	isCurrentMember,
-}) => {
-	// Add each category footprint for the current member
-	if (isCurrentMember) {
-		updatedCurrentMemberAllFootprints[category.name] = {
-			title: category.title,
-			value: category.nodeValue as number,
-			icon:
-				rules[category?.name]?.rawNode?.icônes ??
-				(alternateCategory && rules[alternateCategory?.name]?.rawNode?.icônes),
-			isCategory: true,
-		}
-	}
 }
 
 export const useGetGroupStats = ({
@@ -123,43 +81,56 @@ export const useGetGroupStats = ({
 				const categories = extractCategories(rules, engine)
 
 				categories.forEach((category) => {
-					updateGroupCategoriesFootprints({
-						updatedGroupCategoriesFootprints,
-						category,
-						rules,
-					})
+					// If the category is not in the accumulator, we add its name as a new key in the object along with its value
+					// otherwise we add the value to the existing sum
+					if (!updatedGroupCategoriesFootprints[category.name]) {
+						updatedGroupCategoriesFootprints[category.name] = {
+							title: category.title,
+							value: category.nodeValue as number,
+							icon: rules[category?.name]?.rawNode?.icônes,
+							isCategory: true,
+						}
+					} else {
+						updatedGroupCategoriesFootprints[category.name].value +=
+							category.nodeValue as number
+					}
 
-					updateCurrentMemberAllFootprints({
-						updatedCurrentMemberAllFootprints,
-						category,
-						rules,
-						isCurrentMember,
-					})
+					// Add each category footprint for the current member
+					if (isCurrentMember) {
+						updatedCurrentMemberAllFootprints[category.name] = {
+							title: category.title,
+							value: category.nodeValue as number,
+							icon: rules[category?.name]?.rawNode?.icônes,
+							isCategory: true,
+						}
+					}
 
-					// Repeat the same process for each subcategory
-					getSubcategories(
-						rules as unknown as NGCRules,
-						category,
-						engine,
-						true
-					).forEach((subCategory) => {
-						// Same here if the property doesn't exist in the accumulator, we add it
-						// otherwise we add the value to the existing sum
-						updateGroupCategoriesFootprints({
-							updatedGroupCategoriesFootprints,
-							category: subCategory,
-							rules,
-							isCategory: false,
-						})
-
-						updateCurrentMemberAllFootprints({
-							updatedCurrentMemberAllFootprints,
-							category: subCategory,
-							alternateCategory: category,
-							rules,
-							isCurrentMember,
-						})
-					})
+					getSubcategories(rules, category, engine, true).forEach(
+						(subCategory) => {
+							// Same here if the property doesn't exist in the accumulator, we add it
+							// otherwise we add the value to the existing sum
+							if (!updatedGroupCategoriesFootprints[subCategory.name]) {
+								updatedGroupCategoriesFootprints[subCategory.name] = {
+									title: subCategory.title,
+									value: subCategory.nodeValue as number,
+									icon: rules[subCategory?.name]?.rawNode?.icônes,
+								}
+							} else {
+								updatedGroupCategoriesFootprints[subCategory.name].value +=
+									subCategory.nodeValue as number
+							}
+							if (isCurrentMember) {
+								// Add each category footprint for the current member
+								updatedCurrentMemberAllFootprints[subCategory.name] = {
+									title: subCategory.title,
+									value: subCategory.nodeValue as number,
+									icon:
+										rules[subCategory?.name]?.rawNode?.icônes ??
+										rules[category?.name]?.rawNode?.icônes,
+								}
+							}
+						}
+					)
 				})
 
 				return {
