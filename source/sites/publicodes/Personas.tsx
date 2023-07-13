@@ -41,7 +41,7 @@ const visualisationChoices = {
 }
 
 export default () => {
-	const selectedPersona = useSelector(
+	const selectedPersona: string | undefined = useSelector(
 		(state: AppState) => state.simulation?.persona
 	)
 
@@ -166,7 +166,11 @@ export default () => {
 	)
 }
 
-export const PersonaGrid = ({ selectedPersona }) => {
+export const PersonaGrid = ({
+	selectedPersona,
+}: {
+	selectedPersona: string | undefined
+}) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
