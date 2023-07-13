@@ -1,3 +1,4 @@
+import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
 import { AppState, Simulation, Situation } from '@/reducers/rootReducer'
 import { useEffect, useState } from 'react'
@@ -29,6 +30,7 @@ export type Personas = Array<Persona>
 const Nothing = () => null
 
 const visualisationChoices = {
+	profil: { titre: 'Détail Réponses', composant: AnswerList },
 	ravijen: { titre: 'Graphe Bilan', composant: RavijenChart },
 	budget: { titre: 'Page de fin - Budget', composant: Budget },
 	'sous-catégories': { titre: 'Page de fin - Grille', composant: GridChart },
