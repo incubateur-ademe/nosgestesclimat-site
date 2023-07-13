@@ -1,22 +1,15 @@
 import { Member } from '@/types/groups'
 
 export const getTopThreeAndRestMembers = (members: Member[] = []) => {
-	const sortedMembers = members.sort((memberA, memberB) => {
-		if (!memberA?.results?.total || !memberB?.results?.total) {
-			return -1
-		}
-		if (
-			parseFloat(memberA?.results?.total) < parseFloat(memberB?.results?.total)
-		) {
-			return -1
-		}
-		if (
-			parseFloat(memberA?.results?.total) > parseFloat(memberB?.results?.total)
-		) {
-			return 1
-		}
-		return 0
-	})
+const sortedMembers = members.sort((memberA, memberB) => {
+	const totalA = memberA?.results?.total
+	const totalB = memberB?.results?.total
+
+	return totalA !== undefined && totalA !== undefined
+		? parseFloat(totalA) - parseFloat(totalB)
+		: -1
+})
+
 
 	return sortedMembers.reduce(
 		(acc, member, index) => {
