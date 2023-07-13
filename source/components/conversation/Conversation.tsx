@@ -191,24 +191,6 @@ export default function Conversation({
 		? rules[currentQuestion]?.rawNode?.question
 		: undefined
 
-	const isAnsweredMosaic =
-		isMosaic &&
-		currentQuestion &&
-		questionsToSubmit
-			?.map((question) =>
-				question !== null ? situation[question] != null : false
-			)
-			.some((bool) => bool === true)
-
-	const currentQuestionIsAnswered = isAnsweredMosaic
-		? true
-		: currentQuestion !== null
-		? situation[currentQuestion] != null
-		: undefined
-
-	const isMosaicSelection =
-		isAnsweredMosaic && mosaicParams['type'] === 'selection'
-
 	// NOTE(@EmileRolley): we need to useMemo here to avoid errors with useEffects that
 	// depends on questionsToSubmit.
 	const questionsToSubmit = useMemo(
@@ -219,9 +201,29 @@ export default function Conversation({
 		[currentQuestion, isMosaic, mosaicDottedNames]
 	)
 
+	const isAnsweredMosaic =
+		isMosaic &&
+		currentQuestion &&
+		questionsToSubmit
+			?.map((question) =>
+				question !== null ? situation[question] != null : false
+			)
+			.some((bool) => bool === true)
+
+	const isMosaicSelection =
+		isAnsweredMosaic && mosaicParams['type'] === 'selection'
+
+	const currentQuestionIsAnswered = isAnsweredMosaic
+		? true
+		: currentQuestion !== null
+		? situation[currentQuestion] != null
+		: undefined
+
+	const alreadySet = useRef(false)
+
 	useEffect(() => {
 		// This hook enables to set all the checkbox of a mosaic to false once one is checked
-		if (isMosaicSelection) {
+		if (isMosaicSelection && !alreadySet.current) {
 			questionsToSubmit?.forEach((question) => {
 				dispatch(
 					updateSituation(
@@ -230,6 +232,7 @@ export default function Conversation({
 					)
 				)
 			})
+			alreadySet.current = true
 		}
 	}, [isMosaicSelection, questionsToSubmit, dispatch, situation])
 
@@ -240,11 +243,9 @@ export default function Conversation({
 		// is selected
 		// This hook enables to set 0 to mosaic question if the mosaic has been answered and
 		// nothing is checked.
-		const oneIsChecked = questionsToSubmit
-			?.map((question) =>
-				question !== null ? situation[question] === 'oui' : false
-			)
-			.some((bool) => bool === true)
+		const oneIsChecked = questionsToSubmit?.some((question) =>
+			question !== null ? situation[question] === 'oui' : false
+		)
 
 		if (
 			isMosaicSelection &&
