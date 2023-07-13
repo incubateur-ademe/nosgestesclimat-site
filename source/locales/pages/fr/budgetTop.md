@@ -1,6 +1,6 @@
 # Budget
 
-**Datagir** est un service public numérique, c’est pourquoi nous
+**Nos Gestes Climat** est un service public numérique, c’est pourquoi nous
 sommes transparents sur les ressources allouées et la manière dont elles sont
 employées.
 
@@ -15,10 +15,10 @@ dont nous rappelons les principes ici&nbsp;:
 
 ## Fonctionnement
 
-Datagir est une start-up d'état : l'équipe est donc portée par un intrapreneur qui est responsable du service numérique développé au sein de son administration (l'ADEME en l'occurence)
+Nos Gestes Climat est une start-up d'état : l'équipe est donc portée par un intrapreneur qui est responsable du service numérique développé au sein de son administration (l'ADEME en l'occurence).
 
-Son rôle est multiple : déploiement, gestion des produits, référent auprès de son administration (budget, compte rendus d'avancement)
+Son rôle est multiple : déploiement, gestion des produits, référent auprès de son administration (budget, compte rendus d'avancement).
 
-Le budget exposé ici ne prend pas en compte l'intrapeneur puisque qu'il est salarié de l'ADEME mais concerne les membres de l'équipe.
+Le budget exposé ici ne prend pas en compte l'intrapreneur puisque qu'il est salarié de l'ADEME mais concerne les membres de l'équipe.
 
 ## Budget consommé
