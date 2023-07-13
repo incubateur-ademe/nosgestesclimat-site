@@ -49,7 +49,7 @@ export default ({}) => {
 	return (
 		<div>
 			<ScrollToTop />
-			<Title title={<Trans>Personas</Trans>} />
+			<Title data-cypress-id="personas-title" title={<Trans>Personas</Trans>} />
 			<p>
 				<Trans>
 					Cette page vous permet de naviguer les parcours Nos Gestes Climat
