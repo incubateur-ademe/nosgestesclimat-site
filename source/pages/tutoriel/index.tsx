@@ -3,7 +3,6 @@ import { skipTutorial } from '@/actions/actions'
 import { matomoEventParcoursTestSkipTutorial } from '@/analytics/matomo-events'
 import { Twemoji } from '@/components/emoji'
 import ButtonLink from '@/components/groupe/ButtonLink'
-import GoBackLink from '@/components/groupe/GoBackLink'
 import Separator from '@/components/groupe/Separator'
 import Title from '@/components/groupe/Title'
 import { MODEL_ROOT_RULE_NAME } from '@/components/publicodesUtils'
@@ -74,17 +73,17 @@ export default function Tutoriel() {
 					data-cypress-id="tutoriel-title"
 					title={
 						<span className="">
-							<span className="text-primary inline">10 minutes</span> chrono
+							<span className="text-secondary inline">10 minutes</span> chrono
 							pour calculer votre empreinte sur le climat
 						</span>
 					}
 				/>
-				<Separator className="mb-12" />
+				<Separator className="mb-14" />
 				<div className="bg-grey-100 p-7 relative">
 					<div
 						role="presentation"
 						aria-hidden
-						className="absolute -top-7 p-4 bg-grey-100 rounded-full inline-block text-3xl"
+						className="absolute rounded-md -top-7 p-4 bg-grey-100 rounded-full inline-block text-3xl"
 					>
 						<Twemoji text="💡"></Twemoji>
 					</div>
@@ -195,15 +194,20 @@ export default function Tutoriel() {
 				</ul>
 				<ButtonLink
 					href="/questions-frequentes"
-					className="rounded-full mt-5 mb-10"
+					className="rounded-3xl mt-5 mb-10 border-[1px] !px-4"
 					color="white"
 					size="sm"
 				>
 					☝️ Consultez la FAQ
 				</ButtonLink>
 				<div className="bg-white w-full border-solid border-0 border-t border-gray-200 fixed h-auto sm:relative bottom-0 sm:mt-5 -m-4 right:0 left:0 py-4">
-					<GoBackLink className="mb-4 font-bold mt-3 ml-4" />
-
+					<ButtonLink
+						href="/"
+						className="ml-4 border-[1px] !border-grey-200 !py-3 !px-5 !bg-grey-100 text-gray-700"
+						size="md"
+					>
+						←
+					</ButtonLink>
 					<ButtonLink
 						href="/simulateur/bilan"
 						onClick={() => {
@@ -211,7 +215,7 @@ export default function Tutoriel() {
 							skip('testIntro')
 						}}
 						data-cypress-id="skip-tuto-button"
-						className="float-right mr-4 right-0"
+						className="float-right mr-4 mb-4 right-0 !py-3"
 						size="md"
 					>
 						{t("C'est parti ! →")}

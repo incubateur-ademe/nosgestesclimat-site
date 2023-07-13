@@ -6,6 +6,7 @@ type Props = {
 	className?: string
 	color?: 'primary' | 'secondary' | 'white'
 	size?: 'sm' | 'md' | 'lg'
+	onClick?: CallableFunction
 } & React.PropsWithChildren
 
 // Create a button component styled with tailwindcss
