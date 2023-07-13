@@ -1,9 +1,9 @@
-### Description des catégories
+### Description des catégories de coût
 
--   **Développement et déploiement 👨‍💻**
+-   **Développement, déploiement, produit, design 👨‍💻**
 
-    Les coûts de développement et déploiement représentent la grande majorité de notre budget.
-    Nous sommes une petite équipe de 7 freelances, pluridisciplinaires aussi bien
+    Les coûts de développement, produit, déploiement et design représentent la grande majorité de notre budget.
+    Nous sommes une petite équipe de 9 freelances, pluridisciplinaires aussi bien
     sur les aspects techniques, stratégiques et métiers.
 
 -   **Logiciels et hébergement 💻**
