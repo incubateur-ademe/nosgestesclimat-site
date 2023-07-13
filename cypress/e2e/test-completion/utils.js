@@ -116,12 +116,24 @@ export async function walkthroughTest(persona = {}) {
 							// Close the notification window
 							cy.get('.hide').last().click()
 						}
+						clickNextButton()
+						walkthroughTest(persona)
 					}
 				})
 			}
 
-			cy.get('section button').last().click()
-			walkthroughTest(persona)
+			cy.url().then((url) => {
+				if (url.includes('th%C3%A9matique')) {
+					if (url.includes('congrats')) {
+						return
+					} else {
+						clickCategoryStartButton()
+					}
+				} else {
+					clickDontKnowButton()
+				}
+				walkthroughTest(persona)
+			})
 		}
 	})
 }
