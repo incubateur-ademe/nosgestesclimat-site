@@ -14,11 +14,10 @@ import { AppState } from '@/reducers/rootReducer'
 import { generateImageLink } from '@/sites/publicodes/fin'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 
 export default function Tutoriel() {
 	const { t } = useTranslation()
-	const navigate = useNavigate()
 	const dispatch = useDispatch()
 	const urlParams = new URLSearchParams(window.location.search)
 
@@ -37,9 +36,6 @@ export default function Tutoriel() {
 	}
 
 	const tutorials = useSelector((state: AppState) => state.tutorials)
-	const tutos = Object.entries(tutorials)
-		.map(([k, v]) => v != null && k.split('testIntro')[1])
-		.filter(Boolean)
 
 	const { trackEvent } = useMatomo()
 
