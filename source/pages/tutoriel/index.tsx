@@ -57,7 +57,7 @@ export default function Tutoriel() {
 		<>
 			<main className="p-4  h-full ">
 				<Meta
-					title={t('Tutorial')}
+					title={t('Tutoriel')}
 					description={t(
 						'Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.'
 					)}
@@ -174,10 +174,12 @@ export default function Tutoriel() {
 										tonnes par an.
 									</p>
 								</Trans>
-								<Trans>Pour en savoir plus, tout est expliqué dans </Trans>
-								<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
-									<Trans>cet article</Trans>
-								</a>
+								<p>
+									<Trans>Pour en savoir plus, tout est expliqué dans </Trans>
+									<a href="https://nosgestesclimat.fr/blog/budget">
+										<Trans>cet article</Trans>
+									</a>
+								</p>
 								&nbsp;<Trans>(15 min de lecture)</Trans>
 							</div>
 						</details>
