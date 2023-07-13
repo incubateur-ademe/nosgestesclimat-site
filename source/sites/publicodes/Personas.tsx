@@ -16,6 +16,7 @@ import ActionSlide from './fin/ActionSlide'
 import Budget from './fin/Budget'
 import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
+import RawActionsList from './personas/RawActionsList'
 import Summary from './personas/Summary'
 
 export type Persona = {
@@ -32,6 +33,7 @@ const Nothing = () => null
 
 const visualisationChoices = {
 	summary: { titre: 'Description', composant: Summary },
+	actionList: { titre: 'Actions associées', composant: RawActionsList },
 	profil: { titre: 'Détail Réponses', composant: AnswerList },
 	ravijen: { titre: 'Graphe Bilan', composant: RavijenChart },
 	budget: { titre: 'Page de fin - Budget', composant: Budget },
@@ -63,7 +65,8 @@ export default () => {
 	const visualisationComponentProps = {
 		score: engine.evaluate('bilan').nodeValue,
 		headlessMode: true,
-		summary: selectedPersona?.description,
+		engine: engine,
+		persona: selectedPersona,
 	}
 
 	return (
