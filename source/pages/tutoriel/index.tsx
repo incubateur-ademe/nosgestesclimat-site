@@ -100,7 +100,7 @@ export default function Tutoriel() {
 					</div>
 					<div className=" relative pl-8">
 						<h4 className="font-bold before:content-['👤'] before:absolute before:left-0 overflow-visible ">
-							<Trans>foyer.Il concerne votre vie personnelle</Trans>
+							<Trans>Il concerne votre vie personnelle</Trans>
 						</h4>
 						<p className="ml-6.5">
 							<Trans>
