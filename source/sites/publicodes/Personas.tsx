@@ -171,7 +171,7 @@ export const PersonaGrid = ({ selectedPersona }) => {
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
 
-	const [data, setData] = useState()
+	const [personasList, setPersonasList] = useState<Personas>()
 	const engine = useEngine()
 
 	const branchData = useBranchData()
@@ -187,14 +187,16 @@ export const PersonaGrid = ({ selectedPersona }) => {
 
 		if (process.env.NODE_ENV === 'development') {
 			const json = require('../../../nosgestesclimat/public' + fileName)
-			setData(json)
+			const jsonValues: Personas = Object.values(json)
+			setPersonasList(jsonValues)
 		} else {
 			fetch(branchData.deployURL + fileName, {
 				mode: 'cors',
 			})
 				.then((response) => response.json())
 				.then((json) => {
-					setData(json)
+					const jsonValues: Personas = Object.values(json)
+					setPersonasList(jsonValues)
 				})
 				.catch((err) => {
 					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
@@ -203,9 +205,7 @@ export const PersonaGrid = ({ selectedPersona }) => {
 		}
 	}, [branchData.deployURL, branchData.loaded, lang])
 
-	if (!data) return null
-
-	const personasRules: Personas = Object.values(data)
+	if (!personasList) return null
 
 	const setPersona = (persona: Persona) => {
 		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
@@ -230,7 +230,7 @@ export const PersonaGrid = ({ selectedPersona }) => {
 
 	return (
 		<CardGrid css="padding: 0; justify-content: center">
-			{personasRules.map((persona) => {
+			{personasList.map((persona) => {
 				const { nom, icônes, description, résumé } = persona
 				return (
 					<li key={nom}>
