@@ -313,18 +313,12 @@ export const ActionGameCard = ({ evaluation, total, rule }) => {
 		</Link>
 	)
 }
-export const ActionValue = ({
-	total,
-	disabled,
-	noFormula,
-	dottedName,
-	engine,
-}) => {
-	const { t, i18n } = useTranslation()
+
+export const getFormattedActionValue = ({ t, i18n }, dottedName, engine) => {
 	const correctedValue = correctValue(engine.evaluate(dottedName))
 
 	if (correctedValue == undefined) {
-		return null
+		return {}
 	}
 
 	const [stringValue, unit] = humanWeight(
@@ -333,8 +327,32 @@ export const ActionValue = ({
 		false,
 		true
 	)
-	const relativeValue = Math.round(100 * (correctedValue / total))
+
 	const sign = correctedValue > 0 ? '-' : '+'
+
+	return { correctedValue, stringValue, unit, sign }
+}
+
+export const ActionValue = ({
+	total,
+	disabled,
+	noFormula,
+	dottedName,
+	engine,
+}) => {
+	const { t, i18n } = useTranslation()
+
+	const { correctedValue, stringValue, unit, sign } = getFormattedActionValue(
+		{ t, i18n },
+		dottedName,
+		engine
+	)
+
+	if (correctedValue == undefined) {
+		return
+	}
+
+	const relativeValue = Math.round(100 * (correctedValue / total))
 
 	return (
 		<div
