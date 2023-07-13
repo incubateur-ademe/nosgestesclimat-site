@@ -88,6 +88,8 @@ export default function SupprimerDonnees() {
 		handleFetchGroup()
 	}, [groupId, userId, t])
 
+	const isOwner = group?.owner?.userId === userId
+
 	if (shouldRedirect) {
 		navigate('/')
 	}
@@ -99,16 +101,23 @@ export default function SupprimerDonnees() {
 	return (
 		<main className="p-4 md:p-8">
 			<Title title={t('Supprimer mes données')} />
-			<p className="my-4">
-				{hasDeleted ? (
-					<Trans>Données supprimées.</Trans>
-				) : (
-					<Trans>
-						Supprimer vos données de groupe enregistrées ? Cette action est
-						irréversible.
-					</Trans>
-				)}
-			</p>
+			{hasDeleted && <Trans>Données supprimées.</Trans>}
+			{!hasDeleted && (
+				<p className="my-4">
+					{isOwner ? (
+						<Trans>
+							Supprimer votre groupe <strong>{group?.name}</strong> ? Les
+							données sauvegardées seront supprimées pour tous les membres du
+							groupe. Cette action est irréversible.
+						</Trans>
+					) : (
+						<Trans>
+							Supprimer vos données de groupe enregistrées ? Seules vos données
+							de membre seront supprimées. Cette action est irréversible.
+						</Trans>
+					)}
+				</p>
+			)}
 
 			{errorGroup && <p className="text-red-600 mt-4">{errorGroup}</p>}
 

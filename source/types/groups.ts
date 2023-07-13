@@ -18,6 +18,7 @@ export type Group = {
 		_id: string
 		name: string
 		email?: string
+		userId: string
 	}
 }
 

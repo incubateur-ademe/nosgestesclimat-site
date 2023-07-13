@@ -660,3 +660,9 @@ entries:
   Veuillez renseigner un prénom ou un pseudonyme.: Veuillez renseigner un prénom ou un pseudonyme.
   'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
   Vous êtes le premier 🥳: Vous êtes le premier 🥳
+  Continuer le test: Continuer le test
+  Créer et passer mon test: Créer et passer mon test
+  Rejoindre et passer mon test: Rejoindre et passer mon test
+  Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.
+  'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.
+  Votre adresse email: Votre adresse email

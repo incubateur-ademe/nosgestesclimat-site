@@ -860,3 +860,9 @@ entries:
   'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.': Find out how you can take action for the climate today, or take the test to get personalized recommendations.
   Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Join your group to calculate your carbon footprint and compare it with the footprint of others, using the Nos Gestes Climat personal carbon footprint simulator.
   Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your family and friends using the Nos Gestes Climat personal carbon footprint simulator.
+  Créer et passer mon test: Create and take my test
+  Continuer le test: Continue testing
+  Votre adresse email: Your email address
+  Rejoindre et passer mon test: Join and take my test
+  Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Delete your saved group data? Only your member data will be deleted. This action is irreversible.
+  'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Delete your group <1>{group?.name}</1>? Saved data will be deleted for all group members. This action is irreversible.
