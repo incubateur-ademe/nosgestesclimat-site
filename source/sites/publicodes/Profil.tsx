@@ -1,30 +1,28 @@
 import {
 	resetActionChoices,
+	resetCategoryTutorials,
 	resetIntroTutorial,
 	resetSimulation,
-	resetStoredTrajets,
-} from '@/actions/actions'
-import Localisation from '@/components/localisation/Localisation'
-import { RootState } from '@/reducers/rootReducer'
-import { Trans, useTranslation } from 'react-i18next'
-import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate } from 'react-router-dom'
-import {
-	resetCategoryTutorials,
 	resetStoredAmortissementAvion,
+	resetStoredTrajets,
 	skipTutorial,
-} from '../../actions/actions'
-import AnswerList from '../../components/conversation/AnswerList'
-import Title from '../../components/Title'
-import IllustratedMessage from '../../components/ui/IllustratedMessage'
-import { useEngine } from '../../components/utils/EngineContext'
-import Meta from '../../components/utils/Meta'
-import { ScrollToTop } from '../../components/utils/Scroll'
-import { getNextQuestions } from '../../hooks/useNextQuestion'
+} from '@/actions/actions'
+import AnswerList from '@/components/conversation/AnswerList'
+import Title from '@/components/groupe/Title'
+import Localisation from '@/components/localisation/Localisation'
+import IllustratedMessage from '@/components/ui/IllustratedMessage'
+import { useEngine } from '@/components/utils/EngineContext'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { getNextQuestions } from '@/hooks/useNextQuestion'
+import { RootState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
-} from '../../selectors/simulationSelectors'
+} from '@/selectors/simulationSelectors'
+import { Trans, useTranslation } from 'react-i18next'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate } from 'react-router-dom'
 import SimulationList from './SimulationList'
 
 export const useProfileData = () => {
@@ -83,9 +81,7 @@ export default () => {
 					'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
 				)}
 			/>
-			<Title>
-				<Trans>Mon profil</Trans>
-			</Title>
+			<Title title={<Trans>Mon profil</Trans>} />
 			<div className="ui__ container" css="padding-top: 1rem">
 				<ScrollToTop />
 				{persona && (

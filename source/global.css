@@ -3,3 +3,46 @@
 * {
 	font-family: 'Marianne';
 }
+
+h1 {
+	@apply text-2xl;
+	@apply font-bold mb-1;
+	@apply mb-4;
+}
+
+h2 {
+	@apply text-xl;
+	@apply mb-4;
+}
+
+h3 {
+	@apply mb-2;
+	@apply text-lg;
+}
+
+h4 {
+	@apply mb-2;
+	@apply text-base;
+}
+
+h5 {
+	@apply mb-2;
+	@apply text-base;
+}
+
+h6 {
+	@apply mb-2;
+	@apply text-base;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	@apply mt-0;
+	@apply text-title;
+	@apply font-semibold;
+	@apply scroll-mt-4; /* Add a margin for anchor links */
+}

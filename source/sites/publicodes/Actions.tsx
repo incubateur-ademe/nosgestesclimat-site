@@ -1,5 +1,5 @@
 import NorthstarBanner from '@/components/Feedback/NorthstarBanner'
-import Title from '@/components/Title'
+import Title from '@/components/groupe/Title'
 import Meta from '@/components/utils/Meta'
 import { Trans, useTranslation } from 'react-i18next'
 import { Route, Routes } from 'react-router-dom'
@@ -17,9 +17,8 @@ export default () => {
 				title={t("Passer à l'action")}
 				description={t('meta.pages.actions.description')}
 			/>
-			<Title>
-				<Trans>Agir</Trans>
-			</Title>
+
+			<Title title={<Trans>Agir</Trans>} />
 			<ScoreBar actionMode />
 			<NorthstarBanner type="SET_RATING_ACTION" />
 			<Routes>

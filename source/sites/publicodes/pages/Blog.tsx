@@ -2,6 +2,7 @@ import Meta from 'Components/utils/Meta'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
+import Title from '@/components/groupe/Title'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { blogData } from './BlogData'
@@ -21,7 +22,7 @@ export default () => {
 				description={description}
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
-			<h1 data-cypress-id="blog-title">{title}</h1>
+			<Title title={title} data-cypress-id="blog-title" />
 			<div
 				css={`
 					text-align: center;

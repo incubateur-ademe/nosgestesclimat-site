@@ -14,12 +14,14 @@ export default function Title({
 }: Props) {
 	const Tag = tag
 	return (
-		<div className="relative pb-5">
-			<Tag className="font-bold text-2xl mb-1 text-title mt-0" {...props}>
+		<div className="relative pb-5 mb-4">
+			<Tag className="mb-1" {...props}>
 				{title}
 			</Tag>
-			<p className="text-slate-500">{subtitle}</p>
-			<Separator className="absolute bottom-0 left-0" />
+
+			{subtitle && <p className="text-slate-500">{subtitle}</p>}
+
+			<Separator className="absolute bottom-0 left-0 hidden lg:block" />
 		</div>
 	)
 }

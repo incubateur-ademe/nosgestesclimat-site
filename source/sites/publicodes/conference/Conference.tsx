@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -65,9 +66,7 @@ export default () => {
 				}
 			/>
 			{room && <ScrollToTop />}
-			<h1>
-				<Trans>Conférence</Trans>
-			</h1>
+			<Title title={<Trans>Conférence</Trans>} />
 			<ConferenceTitle>
 				<img src={conferenceImg} alt="" />
 				<span css="text-transform: uppercase">«&nbsp;{room}&nbsp;»</span>
