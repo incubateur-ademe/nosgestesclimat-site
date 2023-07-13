@@ -79,7 +79,7 @@ export default function Tutoriel() {
 					<div
 						role="presentation"
 						aria-hidden
-						className="absolute rounded-md -top-7 p-4 bg-grey-100 rounded-full inline-block text-3xl"
+						className="absolute -top-8 p-4 bg-grey-100 rounded-full inline-block text-3xl"
 					>
 						<Twemoji text="💡"></Twemoji>
 					</div>
