@@ -212,7 +212,7 @@ export default function SessionBar({}) {
 							border-radius: 0.3rem;
 						`}
 					>
-						{persona}
+						{persona.nom}
 					</span>
 				)}
 			</Button>

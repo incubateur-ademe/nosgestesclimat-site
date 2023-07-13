@@ -1,4 +1,5 @@
 import { DottedName } from '@/components/publicodesUtils'
+import { Persona } from '@/sites/publicodes/Personas'
 
 export type Situation = Record<DottedName, any>
 
@@ -33,7 +34,7 @@ export type Simulation = {
 	targetUnit?: string
 	foldedSteps?: Array<DottedName>
 	unfoldedStep?: DottedName | null
-	persona?: string
+	persona?: Persona
 	date?: Date
 	id?: string
 	eventsSent?: Record<string, boolean>

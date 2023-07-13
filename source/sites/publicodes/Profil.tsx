@@ -88,7 +88,7 @@ export default () => {
 					<p>
 						<em>
 							<Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
-							<code>{persona}</code>
+							<code>{persona.nom}</code>
 						</em>
 					</p>
 				)}

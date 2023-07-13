@@ -43,7 +43,7 @@ const visualisationChoices = {
 }
 
 export default () => {
-	const selectedPersona: string | undefined = useSelector(
+	const selectedPersona = useSelector(
 		(state: AppState) => state.simulation?.persona
 	)
 
@@ -171,7 +171,7 @@ export default () => {
 export const PersonaGrid = ({
 	selectedPersona,
 }: {
-	selectedPersona: string | undefined
+	selectedPersona: Persona | undefined
 }) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
@@ -223,7 +223,7 @@ export const PersonaGrid = ({
 			url: '/simulateur/bilan',
 			// the schema of personas is not fixed yet
 			situation: persona.data.situation || persona.data,
-			persona: persona.nom,
+			persona: persona,
 			// If not specified, act as if all questions were answered : all that is not in
 			// the situation object is a validated default value
 			foldedSteps: defaultMissingVariables,
@@ -242,7 +242,7 @@ export const PersonaGrid = ({
 					<li key={nom}>
 						<button
 							className={`ui__ card box interactive light-border ${
-								selectedPersona === nom ? 'selected' : ''
+								selectedPersona?.nom === nom ? 'selected' : ''
 							}`}
 							css={`
 								width: 13rem !important;
