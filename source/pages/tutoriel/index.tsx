@@ -134,18 +134,22 @@ export default function Tutoriel() {
 							<summary className=" font-bold text-primary">
 								Comment on la mesure ?
 							</summary>
-							<div className="ml-3.5 my-2">
-								<Trans i18nKey={'publicodes.Tutorial.slide2.p1'}>
-									Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
-									de carbone , vous le connaissez : on l'expire toute la
-									journée, mais sans influence sur le climat.
-								</Trans>
-								<Trans i18nKey={'publicodes.Tutorial.slide2.p2'}>
-									Ce sont les machines qui font notre confort moderne qui en
-									rejettent massivement, à tel point qu'on le compte en milliers
-									de kilos par an et par personne, donc en{' '}
-									<strong>tonnes</strong> de CO₂e !
-								</Trans>
+							<div className="ml-3.5 my-2 text-sm">
+								<p>
+									<Trans i18nKey={'publicodes.Tutorial.slide2.p1'}>
+										Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde
+										de carbone, vous le connaissez : on l'expire toute la
+										journée, mais sans influence sur le climat.
+									</Trans>
+								</p>
+								<p>
+									<Trans i18nKey={'publicodes.Tutorial.slide2.p2'}>
+										Ce sont les machines qui font notre confort moderne qui en
+										rejettent massivement, à tel point qu'on le compte en
+										milliers de kilos par an et par personne, donc en tonnes de
+										CO₂e !
+									</Trans>
+								</p>
 							</div>
 						</details>
 					</li>
@@ -154,20 +158,20 @@ export default function Tutoriel() {
 							<summary className=" font-bold text-primary">
 								Quel est l’objectif à atteindre ?
 							</summary>
-							<div className="ml-3.5 my-2">
+							<div className="ml-3.5 my-2 text-sm">
 								<Trans i18nKey={'publicodes.Tutorial.slide5.p1'}>
 									<p>
 										Nous devons diminuer notre empreinte climat au plus vite.
 									</p>
 									<p>
-										En France, ça consiste à passer de ~10 tonnes à{' '}
-										<strong>moins de 2 tonnes</strong> par an.
+										En France, ça consiste à passer de ~10 tonnes à moins de 2
+										tonnes par an.
 									</p>
 								</Trans>
 								<Trans>Pour en savoir plus, tout est expliqué dans </Trans>
 								<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
 									<Trans>cet article</Trans>
-								</a>{' '}
+								</a>
 								<Trans>(15 min de lecture)</Trans>
 							</div>
 						</details>
@@ -177,17 +181,15 @@ export default function Tutoriel() {
 							<summary className=" font-bold text-primary">
 								D’où vient mon empreinte ?
 							</summary>
-							<div className="ml-3.5 my-2">
-								<Trans i18nKey={'publicodes.Tutorial.slide6'}>
-									<p>
-										Prendre la voiture, manger un steak, chauffer sa maison, se
-										faire soigner, acheter une TV...
-									</p>
-									<p>
-										L'empreinte de notre consommation individuelle, c'est la
-										somme de toutes ces activités qui font notre vie moderne.{' '}
-									</p>
-								</Trans>
+							<div className="ml-3.5 my-2 text-sm">
+								<p>
+									Prendre la voiture, manger un steak, chauffer sa maison, se
+									faire soigner, acheter une TV...
+								</p>
+								<p>
+									L'empreinte de notre consommation individuelle, c'est la somme
+									de toutes ces activités qui font notre vie moderne.
+								</p>
 							</div>
 						</details>
 					</li>
