@@ -16,6 +16,7 @@ import ActionSlide from './fin/ActionSlide'
 import Budget from './fin/Budget'
 import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
+import Summary from './personas/Summary'
 
 export type Persona = {
 	nom: string
@@ -30,6 +31,7 @@ export type Personas = Array<Persona>
 const Nothing = () => null
 
 const visualisationChoices = {
+	summary: { titre: 'Description', composant: Summary },
 	profil: { titre: 'Détail Réponses', composant: AnswerList },
 	ravijen: { titre: 'Graphe Bilan', composant: RavijenChart },
 	budget: { titre: 'Page de fin - Budget', composant: Budget },
@@ -58,9 +60,10 @@ export default () => {
 
 	const engine = useEngine()
 
-	const slideProps = {
+	const visualisationComponentProps = {
 		score: engine.evaluate('bilan').nodeValue,
 		headlessMode: true,
+		summary: selectedPersona?.description,
 	}
 
 	return (
@@ -126,7 +129,7 @@ export default () => {
 						`};
 					`}
 				>
-					<VisualisationComponent {...slideProps} />
+					<VisualisationComponent {...visualisationComponentProps} />
 				</div>
 			)}
 			<PersonaGrid selectedPersona={selectedPersona} />
