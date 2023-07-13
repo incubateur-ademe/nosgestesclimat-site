@@ -50,6 +50,13 @@ export type Action =
 	| SetRatingAction
 	| ResetLocalisationAction
 	| UpdateAmortissementAvionAction
+	| AddGroupToUserAction
+	| RemoveGroupFromUserAction
+	| UpdateGroupAction
+	| SetCreatedGroupAction
+	| SetUserIdAction
+	| SetGroupToRedirectToAction
+	| SetUserNameAndEmailAction
 
 export type ThunkResult<R = void> = ThunkAction<R, AppState, object, Action>
 
@@ -198,6 +205,42 @@ type UpdateAmortissementAvionAction = {
 	type: 'SET_AMORTISSEMENT'
 	// TODO(@EmileRolley): type this
 	amortissementAvionObject: object
+}
+
+type AddGroupToUserAction = {
+	type: 'ADD_GROUP'
+	group: Group
+}
+
+type RemoveGroupFromUserAction = {
+	type: 'REMOVE_GROUP'
+	group: Group
+}
+
+type UpdateGroupAction = {
+	type: 'UPDATE_GROUP'
+	group: Group
+}
+
+type SetCreatedGroupAction = {
+	type: 'SET_CREATED_GROUP'
+	group: Group
+}
+
+type SetUserIdAction = {
+	type: 'SET_USER_ID'
+	userId: string
+}
+
+type SetGroupToRedirectToAction = {
+	type: 'SET_GROUP_TO_REDIRECT_TO'
+	group: Group
+}
+
+type SetUserNameAndEmailAction = {
+	type: 'SET_USER_NAME_AND_EMAIL'
+	name: string
+	email: string
 }
 
 export const resetSimulation = (): Action => ({

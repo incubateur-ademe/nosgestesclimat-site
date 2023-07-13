@@ -3,6 +3,32 @@ import { Group } from '@/types/groups'
 import { useEffect, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 
+type SubmitButtonProps = {
+	isShareDefined: boolean
+	handleShare: () => void
+	handleCopy: () => void
+	isCopied: boolean
+}
+
+const SubmitButton = ({
+	isShareDefined,
+	handleShare,
+	handleCopy,
+	isCopied,
+}: SubmitButtonProps) => {
+	return (
+		<Button
+			className="whitespace-nowrap w-[8rem] flex justify-center"
+			onClick={isShareDefined ? handleShare : handleCopy}
+			data-cypress-id="invite-button"
+		>
+			{isShareDefined && <Trans>Partager</Trans>}
+			{!isShareDefined &&
+				(isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
+		</Button>
+	)
+}
+
 export default function InviteBlock({ group }: { group: Group }) {
 	const [isCopied, setIsCopied] = useState(false)
 
@@ -17,7 +43,8 @@ export default function InviteBlock({ group }: { group: Group }) {
 	}, [])
 
 	// eslint-disable-next-line @typescript-eslint/unbound-method
-	const isShareDefined = typeof navigator !== 'undefined' && navigator.share
+	const isShareDefined =
+		typeof navigator !== 'undefined' && navigator.share !== undefined
 
 	const sharedURL = `${window.location.origin}/groupes/invitation?groupId=${group?._id}`
 
@@ -39,21 +66,20 @@ export default function InviteBlock({ group }: { group: Group }) {
 		timeoutRef.current = setTimeout(() => setIsCopied(false), 3000)
 	}
 
-	if (group?.members?.length > 1) {
+	const hasMoreThanOneMember = group?.members?.length > 1
+
+	if (hasMoreThanOneMember) {
 		return (
 			<div className="bg-grey-100 rounded-md p-4 flex gap-1 items-center justify-between mt-4">
 				<p className="mb-0">
 					Invitez d'autres personnes à rejoindre votre groupe
 				</p>
-				<Button
-					className="whitespace-nowrap w-[8rem] flex justify-center"
-					onClick={isShareDefined ? handleShare : handleCopy}
-					data-cypress-id="invite-button"
-				>
-					{isShareDefined && <Trans>Partager</Trans>}
-					{!isShareDefined &&
-						(isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
-				</Button>
+				<SubmitButton
+					isShareDefined={isShareDefined}
+					isCopied={isCopied}
+					handleCopy={handleCopy}
+					handleShare={handleShare}
+				/>
 			</div>
 		)
 	}
@@ -69,15 +95,12 @@ export default function InviteBlock({ group }: { group: Group }) {
 					votre groupe.
 				</Trans>
 			</p>
-			<Button
-				className="w-[8rem] flex justify-center"
-				onClick={isShareDefined ? handleShare : handleCopy}
-				data-cypress-id="invite-button"
-			>
-				{isShareDefined && <Trans>Partager</Trans>}
-				{!isShareDefined &&
-					(isCopied ? <Trans>Copié !</Trans> : <Trans>Copier le lien</Trans>)}
-			</Button>
+			<SubmitButton
+				isShareDefined={isShareDefined}
+				isCopied={isCopied}
+				handleCopy={handleCopy}
+				handleShare={handleShare}
+			/>
 		</div>
 	)
 }

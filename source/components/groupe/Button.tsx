@@ -1,9 +1,10 @@
+import { ButtonSize } from '@/types/values'
 import { MouseEventHandler } from 'react'
 
 type Props = {
 	onClick: MouseEventHandler<HTMLButtonElement>
 	className?: string
-	size?: 'sm' | 'md' | 'lg'
+	size?: ButtonSize
 	color?: 'primary' | 'secondary'
 	type?: 'button' | 'submit' | 'reset'
 	disabled?: boolean

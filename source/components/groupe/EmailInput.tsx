@@ -14,7 +14,7 @@ export default function EmailInput({
 		<TextInputGroup
 			label={
 				<span>
-					{t('Votre adresse email ')}{' '}
+					{t('Votre adresse email')}{' '}
 					<span className="text-secondary italic"> {t('facultatif')}</span>
 				</span>
 			}

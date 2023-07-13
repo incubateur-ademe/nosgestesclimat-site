@@ -1,11 +1,12 @@
 import { colorClassNames, sizeClassNames } from '@/components/groupe/Button'
+import { ButtonSize } from '@/types/values'
 import { Link } from 'react-router-dom'
 
 type Props = {
 	href: string
 	className?: string
 	color?: 'primary' | 'secondary'
-	size?: 'sm' | 'md' | 'lg'
+	size?: ButtonSize
 } & React.PropsWithChildren
 
 // Create a button component styled with tailwindcss
