@@ -13,6 +13,7 @@ import { usePersistingState } from '@/hooks/usePersistState'
 import { AppState } from '@/reducers/rootReducer'
 import { situationSelector } from '@/selectors/simulationSelectors'
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { v4 as uuidv4 } from 'uuid'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
@@ -22,6 +23,7 @@ import useDatabase, { answersURL } from './useDatabase'
 import { getAllParticipants, getCompletedTests } from './utils'
 
 export default () => {
+	const translation = useTranslation()
 	const situation = useSelector(situationSelector)
 
 	const engine: Engine<DottedName> = useEngine()
