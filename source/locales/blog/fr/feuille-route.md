@@ -1,3 +1,9 @@
+# Notre feuille de route : les objectifs pour Nos Gestes Climat sur les mois à venir
+
+> Aujourd'hui, Nos Gestes Climat a trois ans. Avec une toute petite équipe, le projet a déjà pris une ampleur considérable : plus d'un million de simulations d'empreinte carbone réalisées en ligne !
+> Ces dernières semaines, [l'équipe a bien grandi](https://beta.gouv.fr/startups/nosgestesclimat.html). Et si nous visions encore plus haut ?
+> Pour contribuer toujours plus à la transition vers des modes de vie bas carbone, nous nous sommes penchés sur nos chantiers prioritaires et avons défini une feuille de route. La voici !
+>
 > 📢 **Nos objectifs :** que l’utilisateur ait appris des choses avec Nos Gestes Climat, et que Nos Gestes Climat lui ait donné envie de s’engager et d’agir pour réduire son empreinte carbone
 >
 > **Nous voulons être** :
@@ -17,8 +23,8 @@
 
 -   **Complétion du modèle de calcul** pour avoir une vision non sous-estimée, sans trou dans la raquette :
     -   Ajout des briques manquantes identifiées (ex : loisirs, animaux domestiques, tabac…).
-    -   Harmonisation méthodologique : travail lancé avec les autres calculateurs existants, mené par l’Association Bilan Carbone.
--   **Amélioration continue** du modèle (affinage de l’existant, mise à jour des données, définition de la méthode de travail pour le faire).
+    -   Harmonisation méthodologique : travail lancé avec les autres calculateurs existants, mené par [l’Association pour la transition Bas Carbone](https://abc-transitionbascarbone.fr/).
+-   **Amélioration continue** du modèle : affinage de l’existant, mise à jour des données, définition de la méthode de travail pour le faire.
 -   **Modularisation du modèle** pour pouvoir être utilisé par d’autres réutilisateurs, potentiellement par bout du modèle.
 -   Focus sur du **déploiement** auprès d’acteurs de référence (ex : médias, politiques, scientifiques).
 
@@ -33,7 +39,7 @@
 -   Augmentation de l’**acquisition via** différents canaux : partenariats entreprises / collectivités, medias, influenceurs sur les réseaux, affichage public, social ads.
 -   Amélioration du **SEO, avec notamment le développement du blog** à partir de ce qui existe déjà, puis en créant du contenu supplémentaire.
 -   Amplification de la **viralité**, avec amélioration du partage / challenge entre proches
--   Stratégie d’**activation** : amélioration du taux de rétention des pages les plus quittées du funnel (de l’arrivée sur le site à la simulation terminée).
+-   Stratégie d’**activation** : amélioration du taux de rétention des pages les plus quittées du parcours utilisateur (de l’arrivée sur le site à la simulation terminée).
 
 ## 3. Être toujours plus pédagogique
 
