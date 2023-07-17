@@ -660,3 +660,10 @@ entries:
   Veuillez renseigner un prénom ou un pseudonyme.: Veuillez renseigner un prénom ou un pseudonyme.
   'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
   Vous êtes le premier 🥳: Vous êtes le premier 🥳
+  publicodes.Tutoriel.slide1.p1: <0>Pas de panique, on vous explique ce que c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à mesure des gaz à effet de serre que l'on émet.</1>
+  publicodes.Tutoriel.slide1.p2: <0>Ce test vous donne en ⏱️ 10 minutes chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>
+  publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.p1: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
+  publicodes.Tutoriel.slide2.p2: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <1>tonnes</1> de CO₂e !
+  publicodes.Tutoriel.slide5.p1: <0>Nous devons diminuer notre empreinte climat au plus vite.</0><1>En France, ça consiste à passer de ~10 tonnes à <1>moins de 2 tonnes</1> par an.</1>
+  publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1><0><0></0></0></1><2>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </2>
