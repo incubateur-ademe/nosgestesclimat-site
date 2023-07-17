@@ -7,9 +7,9 @@ import LangSwitcher from '@/components/LangSwitcher'
 import LocalisationMessage from '@/components/localisation/LocalisationMessage'
 import Logo from '@/components/Logo'
 import Route404 from '@/components/Route404'
-import { sessionBarMargin } from '@/components/SessionBar'
 import '@/components/ui/index.css'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
+import '@/global.css'
 import { useLoadSimulationFromURL } from '@/hooks/useLoadSimulationFromURL'
 import useMediaQuery from '@/hooks/useMediaQuery'
 import {
@@ -24,7 +24,7 @@ import { WithEngine } from '@/RulesProvider'
 import { fetchUser, persistUser } from '@/storage/persistSimulation'
 import { getIsIframe } from '@/utils'
 import * as Sentry from '@sentry/react'
-import React, { Suspense, useContext, useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
@@ -83,8 +83,9 @@ const TutorialLazy = React.lazy(
 const GroupSwitchLazy = React.lazy(
 	() => import(/* webpackChunkName: 'GroupSwitch' */ './conference/GroupSwitch')
 )
-const ContributionLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Contribution' */ './Contribution')
+const FAQLazy = React.lazy(() => import(/* webpackChunkName: 'FAQ' */ './FAQ'))
+const ContactLazy = React.lazy(
+	() => import(/* webpackChunkName: 'Contact' */ './Contact')
 )
 const ConferenceLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Conference' */ './conference/Conference')
@@ -132,6 +133,33 @@ const Budget = React.lazy(
 	() => import(/* webpackChunkName: 'Budget' */ './pages/Budget')
 )
 
+const MesGroupesLazy = React.lazy(
+	() => import(/* webpackChunkName: 'MesGroupes' */ '@/pages/mes-groupes')
+)
+
+const GroupeAmisLazy = React.lazy(
+	() => import(/* webpackChunkName: 'GroupeAmis' */ '@/pages/creer-groupe')
+)
+
+const RejoindreGroupeLazy = React.lazy(
+	() =>
+		import(/* webpackChunkName: 'RejoindreGroupe' */ '@/pages/rejoindre-groupe')
+)
+
+const GroupeDashboardLazy = React.lazy(
+	() =>
+		import(
+			/* webpackChunkName: 'GroupeDashboardLazy' */ '@/pages/groupe-dashboard'
+		)
+)
+
+const GroupeDeleteLazy = React.lazy(
+	() =>
+		import(
+			/* webpackChunkName: 'GroupeDeleteLazy' */ '@/pages/supprimer-groupe'
+		)
+)
+
 // Do not export anything else than React components here. Exporting isFulidLayout breaks the hot reloading
 
 declare global {
@@ -143,7 +171,7 @@ declare global {
 export default function Root() {
 	const paths = sitePaths()
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const iframeShareData = new URLSearchParams(
 		document?.location.search.substring(1)
@@ -205,6 +233,9 @@ export default function Root() {
 				ratings: persistedSimulation?.ratings,
 				hasSubscribedToNewsletter:
 					persistedUser.hasSubscribedToNewsletter ?? false,
+				groups: persistedUser.groups,
+				user: persistedUser.user,
+				groupToRedirectTo: persistedUser.groupToRedirectTo,
 			}}
 		>
 			<Main />
@@ -226,7 +257,7 @@ const Main = () => {
 	const [simulationFromUrlHasBeenSet, setSimulationFromUrlHasBeenSet] =
 		useState(false)
 
-	const { trackPageView } = useContext(MatomoContext)
+	const { trackPageView } = useMatomo()
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	// Or we retrive the simulation from the URL
@@ -294,7 +325,11 @@ const Main = () => {
 						transform: translateX(-4vw);
 						`}
 						}
-						${!fluidLayout && !isTuto && sessionBarMargin}
+						@media (max-width: 800px) {
+							margin-bottom: 58px;
+							padding-left: 0 !important;
+							padding-right: 0 !important;
+						}
 					`}
 					className={fluidLayout ? '' : 'ui__ container'}
 				>
@@ -444,10 +479,18 @@ const Router = () => {
 				}
 			/>
 			<Route
-				path="/contribuer/*"
+				path="/contact"
 				element={
 					<Suspense fallback={<AnimatedLoader />}>
-						<ContributionLazy />
+						<ContactLazy />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="/questions-frequentes"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<FAQLazy />
 					</Suspense>
 				}
 			/>
@@ -562,6 +605,59 @@ const Router = () => {
 					</Suspense>
 				}
 			/>
+			<Route
+				path="/groupes"
+				element={
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<MesGroupesLazy />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/groupes/creer"
+				element={
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<GroupeAmisLazy />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+			<Route
+				path="/groupes/invitation"
+				element={
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<RejoindreGroupeLazy />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+
+			<Route
+				path="/groupes/resultats"
+				element={
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<GroupeDashboardLazy />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+
+			<Route
+				path="/groupes/supprimer"
+				element={
+					<WithEngine>
+						<Suspense fallback={<AnimatedLoader />}>
+							<GroupeDeleteLazy />
+						</Suspense>
+					</WithEngine>
+				}
+			/>
+
 			<Route
 				path="/enquête/:userID?"
 				element={

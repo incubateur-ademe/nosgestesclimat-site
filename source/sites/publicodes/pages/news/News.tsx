@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import Meta from 'Components/utils/Meta'
 import { useTranslation } from 'react-i18next'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
@@ -12,8 +13,6 @@ export default () => {
 	const path = decodeURIComponent(useLocation().pathname),
 		isReleasePage = path.length > '/nouveautés/'.length
 
-	console.log(path, isReleasePage)
-
 	return (
 		<div className={'ui__ container ' + (isReleasePage ? '' : 'fluid')}>
 			<Meta title={title} description={description} />
@@ -22,7 +21,7 @@ export default () => {
 					<strong data-cypress-id="news-title">{title}</strong>
 				</Link>
 			) : (
-				<h1 data-cypress-id="news-title">{title}</h1>
+				<Title data-cypress-id="news-title" title={title} />
 			)}
 			<p>{description}</p>
 			<Routes>

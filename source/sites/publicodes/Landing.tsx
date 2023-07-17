@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import animate from '@/components/ui/animate'
 import LogoADEME from '@/images/logoADEME.svg'
 import React, { Suspense, useContext } from 'react'
@@ -20,7 +21,7 @@ import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Meta from '../../components/utils/Meta'
-import { MatomoContext } from '../../contexts/MatomoContext'
+import { useMatomo } from '../../contexts/MatomoContext'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
@@ -39,7 +40,7 @@ const Illustration = () => (
 )
 
 export default () => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const { t } = useTranslation()
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 	const { isIframe } = useContext(IframeOptionsContext)
@@ -56,11 +57,13 @@ export default () => {
 
 			<LandingHeaderWrapper>
 				<HeaderContent>
-					<h1>
-						<Trans i18nKey={'publicodes.Landing.question'}>
-							Connaissez-vous votre empreinte sur le climat ?
-						</Trans>
-					</h1>
+					<Title
+						title={
+							<Trans i18nKey={'publicodes.Landing.question'}>
+								Connaissez-vous votre empreinte sur le climat ?
+							</Trans>
+						}
+					/>
 					{mobile && <Illustration aria-hidden="true" />}
 					<p>
 						<Trans i18nKey={'sites.publicodes.Landing.description'}>

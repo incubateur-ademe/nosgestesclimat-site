@@ -119,8 +119,11 @@ export function range(start: number, end: number) {
 }
 
 export function omit(keys, obj) {
-	if (!keys.length) return obj
+	if (!keys.length) {
+		return obj
+	}
 	const { [keys.pop()]: omitted, ...rest } = obj
+
 	return omit(keys, rest)
 }
 

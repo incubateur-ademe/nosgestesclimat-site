@@ -1,17 +1,21 @@
 import {
 	correctValue,
+	DottedName,
 	extractCategories,
 	splitName,
-} from 'Components/publicodesUtils'
-import { useEngine } from 'Components/utils/EngineContext'
+} from '@/components/publicodesUtils'
+import Engine from 'publicodes'
+
+import { minimalCategoryData } from '@/components/publicodesUtils'
+import { useEngine } from '@/components/utils/EngineContext'
+import { useSimulationProgress } from '@/hooks/useNextQuestion'
+import { usePersistingState } from '@/hooks/usePersistState'
+import { AppState } from '@/reducers/rootReducer'
+import { situationSelector } from '@/selectors/simulationSelectors'
 import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
 import { v4 as uuidv4 } from 'uuid'
-import { minimalCategoryData } from '../../../components/publicodesUtils'
-import { useSimulationProgress } from '../../../hooks/useNextQuestion'
-import { usePersistingState } from '../../../hooks/usePersistState'
 import { GroupModeMenuEntryContent } from './GroupModeSessionVignette'
 import { computeHumanMean } from './GroupStats'
 import { surveyElementsAdapter } from './Survey'
@@ -19,13 +23,15 @@ import useDatabase, { answersURL } from './useDatabase'
 import { getAllParticipants, getCompletedTests } from './utils'
 
 export default () => {
-	const translation = useTranslation(),
-		t = translation.t
-	const situation = useSelector(situationSelector),
-		engine = useEngine(),
-		evaluation = engine.evaluate('bilan'),
-		{ nodeValue: rawNodeValue, dottedName, unit, rawNode } = evaluation
-	const rules = useSelector((state) => state.rules)
+	const translation = useTranslation()
+	const situation = useSelector(situationSelector)
+
+	const engine: Engine<DottedName> = useEngine()
+
+	const evaluation = engine.evaluate('bilan')
+	const { nodeValue: rawNodeValue, unit } = evaluation
+
+	const rules = useSelector((state: AppState) => state.rules)
 
 	const progress = useSimulationProgress()
 

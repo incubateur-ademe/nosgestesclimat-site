@@ -1,4 +1,7 @@
 import { Action } from '@/actions/actions'
+import { omit } from '@/utils'
+import { groupsReducer, groupToRedirectToReducer } from './group/index'
+
 import { Localisation, SupportedRegions } from '@/components/localisation/utils'
 import { DottedName, NGCRules } from '@/components/publicodesUtils'
 import storageRootReducer from '@/reducers/storageReducer'
@@ -9,9 +12,11 @@ import {
 	SavedSimulationList,
 } from '@/selectors/storageSelectors'
 import { generateSimulationId } from '@/storage/persistSimulation'
-import { omit } from '@/utils'
+import { Group } from '@/types/groups'
+import { ObjectifsConfig, Simulation, StoredTrajets } from '@/types/simulation'
 import reduceReducers from 'reduce-reducers'
 import { CombinedState, combineReducers, Reducer } from 'redux'
+import { userReducer } from './user'
 
 function explainedVariable(
 	state: DottedName | null = null,
@@ -36,26 +41,6 @@ function situationBranch(state: number | null = null, action: Action) {
 	}
 }
 
-type QuestionsKind =
-	| "à l'affiche"
-	| 'non prioritaires'
-	| 'liste'
-	| 'liste noire'
-
-export type ObjectifsConfig =
-	| Array<DottedName>
-	| Array<{ icône: string; nom: string; objectifs: Array<DottedName> }>
-
-export type SimulationConfig = {
-	objectifs: ObjectifsConfig
-	'objectifs cachés': Array<DottedName>
-	situation: Simulation['situation']
-	bloquant?: Array<DottedName>
-	questions?: Partial<Record<QuestionsKind, Array<DottedName>>>
-	branches?: Array<{ nom: string; situation: SimulationConfig['situation'] }>
-	'unité par défaut': string
-}
-
 export function objectifsConfigToDottedNameArray(
 	obj: ObjectifsConfig
 ): Array<DottedName> {
@@ -68,30 +53,39 @@ export function objectifsConfigToDottedNameArray(
 	return obj
 }
 
-export type Situation = Record<DottedName, any>
-export type StoredTrajets = Record<DottedName, any>
-
-export type Simulation = {
-	config: SimulationConfig
-	url: string
-	hiddenNotifications: Array<string>
-	situation: Situation
-	hiddenControls?: Array<string>
-	targetUnit?: string
-	foldedSteps?: Array<DottedName>
-	unfoldedStep?: DottedName | null
-	persona?: string
-	date?: Date
-	id?: string
-	eventsSent?: Record<string, boolean>
-	actionChoices?: Record<string, boolean>
-	storedTrajets?: StoredTrajets
-}
-
 function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation {
+	if (action.type === 'SET_CURRENT_SIMULATION') {
+		// Update the date when loading the simulation.
+		// Also triggers an update of the 'simulationsList' component when changing simulations.
+		action.simulation.date = new Date()
+		return action.simulation
+	}
+
+	if (action.type === 'SET_SIMULATION') {
+		const { config, url } = action
+
+		if (state && state.config && !action.situation === config) {
+			return state
+		}
+
+		return {
+			config,
+			url,
+			hiddenNotifications: state?.hiddenControls || [], // todo : hiddenControls ?
+			situation: action.situation || state?.situation || {},
+			targetUnit: config['unité par défaut'] || '€/mois',
+			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
+			unfoldedStep: null,
+			persona: action.persona,
+			id: action.persona || state?.id || generateSimulationId(), // Unique identifier of the simulation, used for the 'currentSimulationId' pointer.
+			date: !action.persona && state?.date ? state?.date : new Date(),
+			eventsSent: state?.eventsSent || {},
+		}
+	}
+
 	if (state === null) {
 		return { ...(state ?? {}), eventsSent: {} }
 	}
@@ -145,17 +139,19 @@ function simulation(
 			const targets = objectifsSelector({ simulation: state } as AppState)
 			const situation = state.situation
 			const { fieldName: dottedName, value } = action
+			const newSituation =
+				value === undefined
+					? omit([dottedName], situation)
+					: {
+							...(targets.includes(dottedName)
+								? omit(targets, situation)
+								: situation),
+							[dottedName]: value,
+					  }
+
 			return {
 				...state,
-				situation:
-					value === undefined
-						? omit([dottedName], situation)
-						: {
-								...(targets.includes(dottedName)
-									? omit(targets, situation)
-									: situation),
-								[dottedName]: value,
-						  },
+				situation: newSituation,
 			}
 		}
 		case 'STEP_ACTION': {
@@ -168,7 +164,8 @@ function simulation(
 						: [...state.foldedSteps, step],
 					unfoldedStep: null,
 				}
-			} else if (name === 'unfold') {
+			}
+			if (name === 'unfold') {
 				return {
 					...state,
 					unfoldedStep: step,
@@ -281,20 +278,16 @@ function conference(state = null, { type, room, ydoc, provider }) {
 export type TutorialStateStatus = 'skip' | 'done' | undefined
 export type TutorialState = {
 	[id: string]: TutorialStateStatus
-	/** fromRule is used to know if the tutorial was triggered by a specific rule
-	 (appart from 'bilan') and if so, to know if it was skipped or not.*/
-	fromRule?: TutorialStateStatus
 }
 
 // Tutorials are the main tutorial for the /simulateur/bilan simulation,
 // but also the small category pages displayed before starting the category,
 // as a pause for the user
-function tutorials(state: TutorialState = {}, { type, id, unskip, fromRule }) {
+function tutorials(state: TutorialState = {}, { type, id, unskip }) {
 	if (type === 'SKIP_TUTORIAL') {
 		return {
 			...state,
 			[id]: unskip ? undefined : 'skip',
-			fromRule: !fromRule ? state.fromRule : fromRule,
 		}
 	} else if (type === 'RESET_INTRO_TUTORIAL') {
 		return Object.fromEntries(
@@ -498,6 +491,13 @@ export type AppState = CombinedState<{
 	ratings: SavedSimulation['ratings']
 	hasSubscribedToNewsletter: boolean
 	enquête: Enquête
+	groups: Group[]
+	user: {
+		userId?: string
+		email?: string
+		name?: string
+	}
+	groupToRedirectTo: Group | null
 }>
 
 const mainReducer = (state: any, action: Action) =>
@@ -528,6 +528,9 @@ const mainReducer = (state: any, action: Action) =>
 		enquête,
 		ratings,
 		hasSubscribedToNewsletter,
+		groups: groupsReducer,
+		user: userReducer,
+		groupToRedirectTo: groupToRedirectToReducer,
 	})(state, action)
 
 export default reduceReducers<AppState>(

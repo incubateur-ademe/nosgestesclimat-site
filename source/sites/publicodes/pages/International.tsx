@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import {
 	HeaderContent,
 	HeaderCTAs,
@@ -40,7 +41,7 @@ export default () => {
 
 			<LandingHeaderWrapper>
 				<HeaderContent>
-					<h1>{title}</h1>
+					<Title title={title} />
 					{mobile && <Illustration aira-hidden="true" />}
 					<p>{description}</p>
 					<div>

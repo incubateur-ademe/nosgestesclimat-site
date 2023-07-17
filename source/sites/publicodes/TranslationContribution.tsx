@@ -1,10 +1,11 @@
+import Title from '@/components/groupe/Title'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
 import { useQuery } from '../../utils'
-import { createIssue, formStyle } from './Contribution'
+import { createIssue, formStyle } from './Contact'
 
-export default ({}) => {
+export default () => {
 	const fromLocation = useQuery().get('fromLocation')
 
 	const [sujet, setSujet] = useState('')
@@ -12,23 +13,22 @@ export default ({}) => {
 	const [URL, setURL] = useState(null)
 	const [buttonDisabled, disableButton] = useState(false)
 
-	const { i18n } = useTranslation()
 	const { t } = useTranslation()
 
 	return (
 		<div className="ui__ container" css="padding-bottom: 1rem">
 			<Meta
 				title={t('Contribuer')}
-				description={t('meta.publicodes.Contribution.description')}
+				description={t('meta.publicodes.Contribution.traductionDescription')}
 			></Meta>
-			<h1>
-				<Trans>Un problème de traduction ?</Trans>
-			</h1>
+
+			<Title title={<Trans>Un problème de traduction ?</Trans>} />
+
 			<p>
 				<Trans i18nKey={'publicodes.Contribution.traductionIntro'}>
 					Nos Gestes Climat vient tout juste d'être traduit dans plusieurs
 					langues. N'hésitez pas à vous faire part de vos doutes quand à un
-					problèm de traduction sur le site 😊. Nous le prendrons en compte
+					problème de traduction sur le site 😊. Nous le prendrons en compte
 					rapidement.
 				</Trans>
 			</p>

@@ -1,4 +1,7 @@
 import { goToQuestion, setSimulationConfig } from '@/actions/actions'
+import { getMatomoEventJoinedGroupe } from '@/analytics/matomo-events'
+import { getMosaicParentRuleName } from '@/components/conversation/conversationUtils'
+import Title from '@/components/groupe/Title'
 import {
 	Category,
 	decodeRuleNameFromSearchParam,
@@ -8,33 +11,38 @@ import {
 	FullName,
 	getRelatedMosaicInfosIfExists,
 	isRootRule,
-	isValidRule,
+	isValidQuestion,
 	MODEL_ROOT_RULE_NAME,
 	NGCRulesNodes,
 } from '@/components/publicodesUtils'
 import { buildEndURL } from '@/components/SessionBar'
 import Simulation from '@/components/Simulation'
-import Title from '@/components/Title'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
-import {
-	AppState,
-	objectifsConfigToDottedNameArray,
-} from '@/reducers/rootReducer'
+import { useMatomo } from '@/contexts/MatomoContext'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
+import { useSetUserId } from '@/hooks/useSetUserId'
+import { AppState } from '@/reducers/rootReducer'
+import { SavedSimulation } from '@/selectors/storageSelectors'
+import BandeauContribuer from '@/sites/publicodes/BandeauContribuer'
+import InlineCategoryChart from '@/sites/publicodes/chart/InlineCategoryChart'
+import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
+import { questionConfig } from '@/sites/publicodes/questionConfig'
+import ScoreBar from '@/sites/publicodes/ScoreBar'
+import { getQuestionURLSearchParams } from '@/sites/publicodes/utils'
+import { Group, SimulationResults } from '@/types/groups'
+import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
+import { getSimulationResults } from '@/utils/getSimulationResults'
 import { motion } from 'framer-motion'
 import { utils } from 'publicodes'
 import { useEffect } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Navigate, useNavigate } from 'react-router'
-import { Link, useParams } from 'react-router-dom'
-import BandeauContribuer from './BandeauContribuer'
-import InlineCategoryChart from './chart/InlineCategoryChart'
-import { enquêteSelector } from './enquête/enquêteSelector'
-import { questionConfig } from './questionConfig'
-import ScoreBar from './ScoreBar'
-import { getQuestionURLSearchParams } from './utils'
+import { NavigateFunction, useNavigate } from 'react-router'
+import { Link, Navigate, useParams } from 'react-router-dom'
+
+export const respirationParamName = 'thématique'
 
 function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
 	return (
@@ -43,46 +51,73 @@ function isEquivalentTargetArrays<T>(array1: T[], array2: T[]): boolean {
 	)
 }
 
-/*
- * Here the URL specs:
- * TODO: document this
- */
-
 const Simulateur = () => {
+	const urlParams = useParams()
+	const simulatorRootNameURL = urlParams['*']
+	const rules = useSelector((state: AppState) => state.rules)
+	const ruleNames: DottedName[] = Object.keys(rules)
+
+	if (simulatorRootNameURL === undefined) {
+		return (
+			<Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace={true} />
+		)
+	}
+
+	const simulatorRootRuleName = utils.decodeRuleName(simulatorRootNameURL)
+
+	if (!ruleNames.includes(simulatorRootRuleName)) {
+		console.log(
+			`Unknown rule ${simulatorRootRuleName}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
+		)
+		return (
+			<Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace={true} />
+		)
+	}
+
+	return (
+		<SimulateurCore
+			simulatorRootNameURL={simulatorRootNameURL}
+			simulatorRootRuleName={simulatorRootRuleName}
+		/>
+	)
+}
+
+const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 	const navigate = useNavigate()
 	const dispatch = useDispatch()
-	const urlParams = useParams()
-	const searchParams = new URLSearchParams(window.location.search)
-	const simulatorRootNameURL = urlParams['*']
-	const { t } = useTranslation()
 
-	if (!simulatorRootNameURL) {
-		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
-	}
+	// Sets the user id in the store if not already set
+	useSetUserId()
+
+	const { t } = useTranslation()
+	const searchParams = new URLSearchParams(window.location.search)
+
+	const rules = useSelector((state: AppState) => state.rules)
+	const engine = useEngine()
 
 	// The main simulation corresponds to the whole test, i.e selected rule is the
 	// model root rule.
 	const isMainSimulation = isRootRule(simulatorRootNameURL)
 	const selectedRuleNameURLPath = searchParams.get('question') ?? ''
-	const rules = useSelector((state: AppState) => state.rules)
-	const ruleNames: DottedName[] = Object.keys(rules)
-	const simulatorRootRuleName = utils.decodeRuleName(simulatorRootNameURL)
 
-	if (!ruleNames.includes(simulatorRootRuleName)) {
-		console.log(
-			`Unknown rule ${simulatorRootNameURL}, redirecting to /simulateur/${MODEL_ROOT_RULE_NAME}...`
-		)
-		return <Navigate to={`/simulateur/${MODEL_ROOT_RULE_NAME}`} replace />
-	}
-
-	const engine = useEngine()
 	const parsedRules = engine.getParsedRules() as NGCRulesNodes
 
-	const { selectedRuleDottedName, selectedRuleURL } = getValidSelectedRuleInfos(
-		decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
-		simulatorRootNameURL,
-		parsedRules
-	)
+	const noCongratsURL = searchParams.get(respirationParamName) !== 'congrats'
+
+	const { selectedRuleDottedName, selectedRuleURL } =
+		// FIXME(@EmileRolley): we need to differenciate the question search params
+		// set in Conversation when the last question is answered from the one
+		// specified by the user in the URL to redirect only if the test is
+		// completed. For now, the redirection is deactivated.
+		/* isTestCompleted && noCongratsURL */
+		false
+			? getValidSelectedRuleInfos(
+					decodeRuleNameFromSearchParam(selectedRuleNameURLPath),
+					simulatorRootNameURL,
+					parsedRules,
+					navigate
+			  )
+			: { selectedRuleDottedName: undefined, selectedRuleURL: undefined }
 
 	const simulatorRule = rules[simulatorRootRuleName]
 	const evaluation = engine.evaluate(simulatorRootRuleName)
@@ -98,10 +133,7 @@ const Simulateur = () => {
 
 	useEffect(() => {
 		if (
-			!isEquivalentTargetArrays(
-				config.objectifs,
-				objectifsConfigToDottedNameArray(configSet?.objectifs ?? [])
-			)
+			!isEquivalentTargetArrays(config.objectifs, configSet?.objectifs ?? [])
 		) {
 			dispatch(setSimulationConfig(config, selectedRuleURL))
 		}
@@ -122,26 +154,11 @@ const Simulateur = () => {
 	const displayScoreExplanation =
 		isMainSimulation && !tutorials.scoreExplanation
 
-	const displayTutorial =
-		isMainSimulation &&
-		(!tutorials.testIntro ||
-			// Case where we previously visited a specific rule URL and we come back
-			// (the tutorial was skipped) to the simulator root URL,
-			// we want to display the tutorial
-			(!isSpecificRule(selectedRuleDottedName) && tutorials.fromRule == 'skip'))
+	const displayTutorial = isMainSimulation && !tutorials.testIntro
 
 	if (displayTutorial) {
-		if (
-			selectedRuleURL != undefined &&
-			selectedRuleDottedName != undefined &&
-			isSpecificRule(selectedRuleDottedName)
-		) {
-			const searchParams = new URLSearchParams({
-				fromRuleURL: selectedRuleURL,
-			})
-			return navigate(`/tutoriel?${searchParams}`, { replace: true })
-		}
-		return navigate(`/tutoriel`, { replace: true })
+		navigate(`/tutoriel`, { replace: true })
+		return null
 	}
 
 	return (
@@ -153,9 +170,7 @@ const Simulateur = () => {
 				}
 				description={evaluation.rawNode?.description}
 			/>
-			<Title>
-				<Trans>Le test</Trans>
-			</Title>
+			<Title title={t('Votre bilan climat personnel')} />
 			<div>
 				{!displayTutorial && (
 					<motion.div
@@ -184,12 +199,12 @@ const Simulateur = () => {
 						customEnd: isMainSimulation ? (
 							<MainSimulationEnding {...{ rules, engine }} />
 						) : simulatorRule.description ? (
-							<Markdown children={simulatorRule.description} noRouter={false} />
+							<Markdown noRouter={false}>{simulatorRule.description}</Markdown>
 						) : (
 							<EndingCongratulations />
 						),
 					}}
-					explanations={<InlineCategoryChart givenEngine={undefined} />}
+					explanations={<InlineCategoryChart />}
 				/>
 			</div>
 			<BandeauContribuer />
@@ -203,6 +218,10 @@ type SelectedRuleInfos = {
 }
 
 /**
+ * NOTE(@EmileRolley): this function is unsused for now, but could be used if we
+ * decide to redirect to specific question when the test is completed according
+ * to the 'question' search param. If not, we could remove it.
+ *
  * A rule is valid if it exists, is a question and is not a mosaic child.
  *
  * However, if the rule is a mosaic question the returned [selectedRuleDottedName] will
@@ -212,19 +231,13 @@ type SelectedRuleInfos = {
 function getValidSelectedRuleInfos(
 	selectedRuleName: DottedName,
 	simulatorRootRuleNameURL: string,
-	rules: NGCRulesNodes
+	rules: NGCRulesNodes,
+	navigate: NavigateFunction
 ): SelectedRuleInfos {
-	const navigate = useNavigate()
 	const searchParams = new URLSearchParams(window.location.search)
 
-	if (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
-		while (selectedRuleName != '' && !isValidRule(selectedRuleName, rules)) {
-			const parentRuleName = utils.ruleParent(selectedRuleName)
-			console.log(
-				`Unknown question ${selectedRuleName}, trying ${parentRuleName}...`
-			)
-			selectedRuleName = parentRuleName
-		}
+	if (selectedRuleName != '' && !isValidQuestion(selectedRuleName, rules)) {
+		selectedRuleName = getMosaicParentRuleName(rules, selectedRuleName)
 
 		if (selectedRuleName == '') {
 			console.log(
@@ -271,6 +284,40 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const enquête = useSelector(enquêteSelector)
 	// Necessary to call 'buildEndURL' with the latest situation
 
+	const navigate = useNavigate()
+
+	const { trackEvent } = useMatomo()
+
+	const groupToRedirectTo: Group | null = useSelector(
+		(state: AppState) => state.groupToRedirectTo
+	)
+
+	const currentSimulation = useGetCurrentSimulation()
+
+	const userId = useSelector((state: AppState) => state.user.userId)
+
+	const handleUpdateGroup = async () => {
+		engine.setSituation(currentSimulation?.situation)
+
+		const results: SimulationResults = getSimulationResults({
+			engine,
+		})
+
+		try {
+			await fetchUpdateGroupMember({
+				group: groupToRedirectTo,
+				userId: userId ?? '',
+				simulation: currentSimulation as SavedSimulation,
+				results,
+			})
+
+			trackEvent(getMatomoEventJoinedGroupe(groupToRedirectTo?._id || ''))
+			navigate(`/groupes/resultats?groupId=${groupToRedirectTo?._id}`)
+		} catch (e) {
+			console.log(e)
+		}
+	}
+
 	return (
 		<div
 			css={`
@@ -285,22 +332,32 @@ const MainSimulationEnding = ({ rules, engine }) => {
 				padding: 1rem;
 			`}
 		>
-			<img
-				src="/images/glowing-ngc-star.svg"
-				width="100"
-				height="100"
-				aria-hidden="true"
-			/>
+			<img src="/images/glowing-ngc-star.svg" width="100" height="100" alt="" />
 			<p>
 				<Trans>Vous avez terminé le test 👏</Trans>
 			</p>
-			<Link
-				to={buildEndURL(rules, engine) ?? ''}
-				className="ui__ button cta plain"
-				data-cypress-id="see-results-link"
-			>
-				<Trans>Voir mon résultat</Trans>
-			</Link>
+			{groupToRedirectTo ? (
+				<button
+					type="button"
+					aria-disabled={!currentSimulation}
+					className="ui__ button cta plain"
+					data-cypress-id="see-results-link"
+					onClick={handleUpdateGroup}
+				>
+					<Trans>Voir mon résultat</Trans>
+				</button>
+			) : (
+				<Link
+					to={buildEndURL(rules, engine) ?? ''}
+					aria-disabled={!currentSimulation}
+					className="ui__ button cta plain"
+					data-cypress-id="see-results-link"
+					onClick={groupToRedirectTo ? handleUpdateGroup : undefined}
+				>
+					<Trans>Voir mon résultat</Trans>
+				</Link>
+			)}
+
 			{!enquête && (
 				<>
 					<Trans>ou</Trans>

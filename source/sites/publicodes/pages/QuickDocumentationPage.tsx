@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { Markdown } from 'Components/utils/markdown'
 import { utils } from 'publicodes'
 import { Link } from 'react-router-dom'
@@ -104,9 +105,8 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				/>
 				<header id="shareImage">
 					<Breadcrumb dottedName={dottedName} rules={rules} />
-					<h1>
-						{rule.icônes} {title}
-					</h1>
+
+					<Title title={`${rule.icônes} ${title}`} />
 				</header>
 				{rule.question && (
 					<>

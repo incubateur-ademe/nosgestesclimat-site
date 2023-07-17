@@ -50,11 +50,11 @@ On vous dit tout sur notre page [diffuser](/diffuser).
 
 ## Nous contacter
 
-contact\@nosgestesclimat.fr
+<contact@nosgestesclimat.fr>
 
 ## Budget
 
-Le budget de l'équipe est accessible sur notre [page budget](/budget).
+Le budget de l'équipe est accessible sur notre [page "Budget"](/budget).
 
 ## Mentions légales
 
@@ -103,7 +103,7 @@ Pour en savoir plus sur la politique d'accessibilité numérique de l'Etat : ht
 Si vous rencontrez un défaut d'accessibilité vous empêchant d'accéder à
 un contenu ou une fonctionnalité du site, merci de nous en faire part :
 
--   [en bas de la page FAQ](/contribuer)
+-   [via notre formulaire de contact](/contact)
 -   via <rgaa@ademe.fr>
 -   via <contact@nosgestesclimat.fr>
 

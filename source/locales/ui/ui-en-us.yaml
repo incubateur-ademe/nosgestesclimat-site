@@ -326,8 +326,8 @@ entries:
   la page à partager à l'étape 3: the page to be shared in step 3
   le + d'impact climat: the + of climate impact
   le - d'impact climat: the - climate impact
-  meta.pages.actions.description: Find out how you can reduce your climate footprint
-  meta.pages.actions.description.lock: Découvrez les gestes qui veous permettent de réduire votre empreinte climat
+  meta.pages.actions.description: Discover the steps you can take to reduce your climate footprint
+  meta.pages.actions.description.lock: Découvrez les gestes qui vous permettent de réduire votre empreinte climat
   meta.publicodes.About.description: This simulator allows you to evaluate your total annual individual carbon footprint and by major categories (food, transportation, housing, miscellaneous, utilities, digital), to situate it in relation to the climate objectives and above all to take action at your level with personalized gestures according to your answers.
   meta.publicodes.About.description.lock: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services publics, numérique), de la situer par rapport aux objectifs climatiques et surtout de passer à l’action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   meta.publicodes.About.title: About us
@@ -340,8 +340,8 @@ entries:
   meta.publicodes.CGU.description.lock: Les présentes conditions générales d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation des services par l'Utilisateur.
   meta.publicodes.CGU.title: Terms and conditions of use
   meta.publicodes.CGU.title.lock: Conditions générales d'utilisation
-  meta.publicodes.Contribution.description: Find out the most common questions about Our Climate Action, and how to ask new ones or help us.
-  meta.publicodes.Contribution.description.lock: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
+  meta.publicodes.FAQ.description: Find out the most common questions about Our Climate Action, and how to ask new ones or help us.
+  meta.publicodes.FAQ.description.lock: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
   meta.publicodes.Diffuser.description: This simulator allows you to evaluate your total annual individual carbon footprint and by major categories (food, transportation, housing, miscellaneous, utilities, digital), to situate it in relation to the climate objectives and above all to take action at your level with personalized gestures according to your answers.
   meta.publicodes.Diffuser.description.lock: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services publics, numérique), de la situer par rapport aux objectifs climatiques et surtout de passer à l’action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   meta.publicodes.Diffuser.title: Sharing Nos Gestes Climat
@@ -432,24 +432,24 @@ entries:
   publicodes.Contribution.bugQuestion.lock: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: |-
 
-    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contribuer).
+    > This ticket was created automatically by our robot from our [contribution page](https://nosgestesclimat.fr/contact).
   publicodes.Contribution.commentaireAugmenté.lock: |-
 
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.description: Here you will find answers to the most frequently asked questions. If you still have questions or if you want to suggest improvements, go to the bottom of the page. Have a good read!
-  publicodes.Contribution.description.lock: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).
+  publicodes.FAQ.description: Welcome to Nos Gestes Climat FAQ! Here you'll find answers to the most frequently asked questions. If you still have questions or would like to suggest improvements, please go to the bottom of the page. Have a good read!
+  publicodes.FAQ.description.lock: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>A complete description of your problem</0><1><0>By indicating the browser you are using (e.g. Firefox version 93, Chrome version 95, Safari, etc.), and the platform (iPhone, Android, Windows computer, etc.), you will help us resolve the bug faster.</0></1>
   publicodes.Contribution.descriptionComplète.lock: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.descriptionComplèteTraduction: <0>The complete description of your problem</0>
   publicodes.Contribution.descriptionComplèteTraduction.lock: <0>La description complète de votre problème</0>
   publicodes.Contribution.liensVersGithub: For any comments or questions, we invite you to <2>open a ticket directly on GitHub</2>.
   publicodes.Contribution.liensVersGithub.lock: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
-  publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <1>this link</1>.
-  publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <1>ce lien</1>.
-  publicodes.Contribution.titreQuestion: I have another question
-  publicodes.Contribution.titreQuestion.lock: J'ai une autre question
-  publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been translated into several languages. Do not hesitate to share your doubts about a translation problem on the site 😊. We will take it into account quickly.
-  publicodes.Contribution.traductionIntro.lock: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problèm de traduction sur le site 😊. Nous le prendrons en compte rapidement.
+  publicodes.Contribution.remerciements: Thank you 😍! Follow the progress of your suggestion by clicking on <2>this link</2>.
+  publicodes.Contribution.remerciements.lock: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
+  publicodes.Contact.titreQuestion: I have a question
+  publicodes.Contact.titreQuestion.lock: J'ai une question
+  publicodes.Contribution.traductionIntro: Nos Gestes Climat has just been translated into several languages. If you have any doubts about a translation problem, please let us know 😊. We'll get back to you as soon as possible.
+  publicodes.Contribution.traductionIntro.lock: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problème de traduction sur le site 😊. Nous le prendrons en compte rapidement.
   publicodes.Contribution.translationWikiInvite: 'Follow our complete guide to contribute directly to the translation of the site: <2>go to our wiki</2>.'
   publicodes.Contribution.translationWikiInvite.lock: 'Suivez notre guide complet pour contribuer directement à la traduction du site : <2>rendez-vous sur notre wiki</2>.'
   publicodes.Landing.question: Do you know your climate footprint?
@@ -582,12 +582,12 @@ entries:
     ## Any questions?
 
 
-    Find answers to common questions on our [FAQ](/contribuer) page.
+    Find answers to common questions on our [FAQ](/questions-frequentes) page.
   sites.publicodes.LandingExplanations.faqLink.lock: |-
     ## Des questions ?
 
 
-    Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
+    Retrouvez les réponses aux questions courantes sur notre page [FAQ](/questions-frequentes).
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Review the tutorial
   sites.publicodes.Profile.TutorialLink.text.lock: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 But what does that little <1>e</1> mean?
@@ -700,7 +700,6 @@ entries:
   Vous allez recevoir un email de notre part sous peu.: You will receive an email from us shortly.
   mon objectif annuel: my annual target
   <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>: <0>I agree to receive information from Nos Gestes Climat and its <2>privacy policy</2></0>
-  <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>: <0>Leave us your email address to receive <2>your results</2> and <5>tips</5> on how to reduce your carbon footprint (once a month max.).</0>
   Merci pour votre inscription !: Thank you for registering!
   'politique de confidentialité, nouvelle fenêtre': privacy policy, new window
   Vous souhaitez recevoir vos résultats ?: Would you like to receive your results?
@@ -720,8 +719,6 @@ entries:
   publicodes.planDuSite.aPropos.lock: À propos
   publicodes.planDuSite.modele: Model
   publicodes.planDuSite.modele.lock: Modèle
-  publicodes.planDuSite.contribuer: Contribute
-  publicodes.planDuSite.contribuer.lock: Contribuer
   publicodes.planDuSite.nouveautes: News
   publicodes.planDuSite.nouveautes.lock: Nouveautés
   publicodes.planDuSite.actionsPlus: The actions
@@ -766,7 +763,32 @@ entries:
   components.stats.StatsContent.infosNorthstar: <0>At the end of the simulation, a banner appears to collect the feelings of our users on the role of Nos Gestes Climat in their understanding of climate issues, but also in encouraging them to take action via 2 questions at the end of the test. The statistics, available on the dedicated <2>"Northstar</2>" page, were generated via Metabase.</0>
   components.stats.StatsContent.infosNorthstar.lock: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
   Envoyer mes résultats: Send my results
-  '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Leave us your email address like <2> other {formatValue(numberSubscribers)} users</2>, to receive <4>your results</4> and <7>tips</7> on how to reduce your carbon footprint (once a month max.).</0>
+  Contact: Contact
+  publicodes.FAQ.titreQuestion: I have another question
+  publicodes.FAQ.titreQuestion.lock: J'ai une autre question
+  meta.publicodes.Contact.description: Do you have a question or a problem? Send us a message via this contact form, and we'll get back to you as soon as possible!
+  meta.publicodes.Contact.description.lock: Une question, un problème ? Envoyez-nous un message via ce formulaire de contact, nous vous répondrons au plus vite !
+  meta.publicodes.Contribution.description: meta.publicodes.Contribution.description
+  meta.publicodes.Contribution.description.lock: meta.publicodes.Contribution.description
+  FAQ: FAQ
+  meta.publicodes.FAQ.title: Frequently asked questions
+  meta.publicodes.FAQ.title.lock: Questions fréquentes
+  meta.publicodes.Contact.titre: Contact
+  meta.publicodes.Contact.titre.lock: Contact
+  meta.publicodes.Contribution.traductionDescription: Use this form to report problems with the translation of the site.
+  meta.publicodes.Contribution.traductionDescription.lock: Ce formulaire vous permet de remonter les problèmes liés à la traduction du site.
+  publicodes.Contact.description: Don't hesitate to consult our <2>FAQ</2> before writing to us - you're sure to find the answer you're looking for!
+  publicodes.Contact.description.lock: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écire, vous y trouverez sans doute la réponse à votre question !
+  publicodes.Contact.form: For any comments or questions, <2>we recommend that you <2>open a ticket directly on GitHub</2></2> in order to follow the exchanges more easily. You can also send us a message via the contact form below.
+  publicodes.Contact.form.lock: Pour toute remarque ou question, <2>nous vous recommandons <2>d'ouvrir un ticket directement sur GitHub</2></2> afin de suivre les échanges plus facilement. Vous pouvez également nous envoyer un message via le formulaire de contact ci-dessous.
+  publicodes.Contact.mail: You can also send us an e-mail to <2>contact@nosgestesclimat.fr</2>. However, the response time will be longer than with the previous solutions.
+  publicodes.Contact.mail.lock: Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse <2>contact@nosgestesclimat.fr</2>. Cependant, le délais de réponse sera plus long que les solutions précédentes.
+  publicodes.FAQ.faireletest: You haven't started your test yet, <2><0>get started!</0></2>
+  publicodes.FAQ.faireletest.lock: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
+  publicodes.planDuSite.faq: Frequently asked questions
+  publicodes.planDuSite.faq.lock: Questions fréquentes
+  publicodes.planDuSite.contact: Contact
+  publicodes.planDuSite.contact.lock: Contact
   votre résultat: your result
   ', comme déjà ': ', as already '
   ' pour recevoir ': ' to receive '
@@ -775,3 +797,72 @@ entries:
   'et ': 'and '
   des conseils: advice
   'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'to reduce your carbon footprint (once a month max.). '
+  Partager: Share
+  'Votre adresse email ': 'Your email address '
+  facultatif: optional
+  Voir mes groupes: See my groups
+  Créer un groupe d'amis: Create a group of friends
+  'Étape {String(currentStep)} sur {String(numberSteps)}': Step {String(currentStep)} on {String(numberSteps)}
+  Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.: Please confirm with the group creator that they have sent you an invitation link.
+  participants: participants
+  Copié !: Copy!
+  Rejoindre: Join
+  Retour: Back
+  Créer le groupe: Create group
+  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} has invited you to join the <3>{group?.name}</3> group'
+  Votre prénom (ou pseudo): Your first name (or nickname)
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Compare your results with your family or a group of friends.
+  Comparez vos résultats avec votre famille ou un groupe d’amis: Compare your results with your family or a group of friends
+  Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe: Your group is ready! Share this link with your friends and family to invite them to join your group
+  Vous n'avez pas été invité à rejoindre ce groupe: You have not been invited to join this group
+  Groupe d'amis: Group of friends
+  Créer un autre groupe: Create another group
+  Créez un autre groupe: Create another group
+  Retourner à mes groupes: Back to my groups
+  Choisissez un nom pour ce groupe: Choose a name for this group
+  Il sera visible uniquement par les participants du groupe: It will be visible only to group participants
+  Créez votre premier groupe: Create your first group
+  Pour le retrouver facilement dans votre liste: To find it easily in your list
+  Invitez vos proches: Invite your friends and family
+  Ce champ est obligatoire: This field is mandatory
+  Seulement pour te permettre de le retrouver ou de supprimer les données par la suite: Only to allow you to find it or delete the data later
+  Le classement: The ranking
+  Comment agir: How to act
+  Vos points forts: Your strengths
+  Votre empreinte: Your footprint
+  Vos points faibles: Your weaknesses
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées': Find out how you can take action for the climate today, or take the test to get personalized recommendations
+  Toutes les actions: All actions
+  Par rapport à la moyenne du groupe.: Compared with the group average.
+  Vous devez compléter votre test avant de créer un groupe.: You must complete your test before creating a group.
+  'Voir les {String(group.members.length)} autres participants': See the {String(group.members.length)} other participants
+  'Voir les {String(group.members.length)} autres participants.lock': Voir les {String(group.members.length)} autres participants
+  'pour recevoir ': 'to receive '
+  Supprimer mes données: Delete my data
+  "Mes groupes, simulateur d'empreinte carbone": My groups, carbon footprint simulator
+  Créer un groupe et calculer notre empreinte carbone: Create a group and calculate our carbon footprint
+  Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Share this page with your friends and family to let them join your group.
+  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Only to allow you to find your group or delete your data
+  "Oups, une erreur s'est produite au moment de récupérer les données du groupe.": Oops, an error occurred while retrieving the group data.
+  Rejoindre un groupe - Nos Gestes Climat: Join a group - Nos Gestes Climat
+  'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé': Edit group name, opens an automatically focused input field
+  Veuillez renseigner un prénom ou un pseudonyme.: Please enter a first name or pseudonym.
+  Vous êtes le premier 🥳: You are the first 🥳
+  'Ok, sauvegarder la modification': Ok, save the modification
+  Veuillez renseigner un nom.: Please enter a name.
+  Veuillez renseigner un email valide.: Please enter a valid email address.
+  Données supprimées.: Deleted data.
+  Supprimer vos données de groupe enregistrées ? Cette action est irréversible.: Delete your saved group data? This action is irreversible.
+  Modifier le nom du groupe: Change group name
+  'Mon groupe, nos bilans carbone personnels': My group, our personal carbon footprints
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': See {String(group.members.length - 5)} other{withS} participant{withS}
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}.lock': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.': Find out how you can take action for the climate today, or take the test to get personalized recommendations.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Join your group to calculate your carbon footprint and compare it with the footprint of others, using the Nos Gestes Climat personal carbon footprint simulator.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculate your carbon footprint as a group and compare it with the footprint of your family and friends using the Nos Gestes Climat personal carbon footprint simulator.
+  Créer et passer mon test: Create and take my test
+  Continuer le test: Continue testing
+  Votre adresse email: Your email address
+  Rejoindre et passer mon test: Join and take my test
+  Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Delete your saved group data? Only your member data will be deleted. This action is irreversible.
+  'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Delete your group <1>{group?.name}</1>? Saved data will be deleted for all group members. This action is irreversible.

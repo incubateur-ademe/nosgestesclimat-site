@@ -5,10 +5,12 @@ import {
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
-import { AppState, SimulationConfig, Situation } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import useActions from '@/sites/publicodes/useActions'
 import { useSelector } from 'react-redux'
 import { createSelector } from 'reselect'
+
+import { SimulationConfig, Situation } from '@/types/simulation'
 import { currentSimulationSelector } from './storageSelectors'
 
 export const configSelector = (state: AppState): Partial<SimulationConfig> =>
@@ -55,11 +57,10 @@ export const answeredQuestionsSelector = (state: AppState) =>
 	state.simulation?.foldedSteps ?? []
 
 export const useTestCompleted = () => {
-	const nextQuestions = useNextQuestions(),
-		objectives = useSelector(objectifsSelector)
+	const nextQuestions = useNextQuestions()
+	const objectives = useSelector(objectifsSelector)
 
-	const testCompleted = objectives.length > 0 && nextQuestions.length === 0
-	return testCompleted
+	return objectives.length > 0 && nextQuestions.length === 0
 }
 
 // Designed to store simulation data in a DB, for the purpose of the survey

@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
@@ -23,7 +24,7 @@ export default function DocumentationLanding() {
 				title={t('Comprendre nos calculs')}
 				description={t('meta.publicodes.pages.Documentation.description')}
 			/>
-			<h1>Documentation</h1>
+			<Title title={<Trans>Documentation</Trans>} />
 			<p>
 				<Trans i18nKey={'meta.publicodes.pages.Documentation.intro'}>
 					Le simulateur Nos Gestes Climat est basé sur le modèle de calcul du

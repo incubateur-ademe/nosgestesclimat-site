@@ -2,19 +2,18 @@ import {
 	Category,
 	DottedName,
 	encodeRuleNameToSearchParam,
+	isValidQuestion,
+	NGCRulesNodes,
 } from '@/components/publicodesUtils'
+import { getFocusedCategoryURLSearchParams } from '@/sites/publicodes/utils'
 import { sortBy } from '@/utils'
-import { Dispatch } from 'react'
-import { NavigateFunction } from 'react-router'
-import { AnyAction } from 'redux'
-import { goToQuestion } from '../../actions/actions'
-import { getFocusedCategoryURLSearchParams } from '../../sites/publicodes/utils'
+import { utils } from 'publicodes'
 
 export function sortQuestionsByCategory(
 	nextQuestions: DottedName[],
 	orderByCategories: Category[]
 ): DottedName[] {
-	let sort = sortBy((question: string | string[]) => {
+	const sort = sortBy((question: string | string[]) => {
 		const category = orderByCategories.find(
 			(c) => question.indexOf(c.dottedName) === 0
 		)
@@ -60,32 +59,43 @@ export function getPreviousQuestion(
 	return previousAnswers[currentQuestionIndex - 1]
 }
 
-export function goToQuestionOrNavigate({
-	question,
-	simulateurRootURL,
-	focusedCategory,
-	toUse,
-}: {
-	question: DottedName | undefined
-	simulateurRootURL: string
-	focusedCategory: string | null
-	toUse: { dispatch: Dispatch<AnyAction> } | { navigate: NavigateFunction }
-}): void {
-	if (toUse['navigate'] != undefined) {
-		let searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
-		if (question !== undefined) {
-			searchParams.append(
-				'question',
-				encodeRuleNameToSearchParam(question) ?? ''
-			)
-		}
+export function getMosaicParentRuleName(
+	rules: NGCRulesNodes,
+	ruleName: DottedName
+): DottedName {
+	let parentRuleName = ruleName
 
-		toUse['navigate'](`/simulateur/${simulateurRootURL}?${searchParams}`, {
-			replace: true,
-		})
-	} else {
-		toUse['dispatch'](goToQuestion(question))
+	do {
+		parentRuleName = utils.ruleParent(parentRuleName)
+	} while (parentRuleName != '' && !isValidQuestion(parentRuleName, rules))
+
+	return parentRuleName
+}
+
+export function updateCurrentURL({
+	paramName,
+	paramValue,
+	simulateurRootRuleURL,
+	focusedCategory,
+}: {
+	paramName: string
+	paramValue?: string | undefined
+	simulateurRootRuleURL: string
+	focusedCategory: string | null
+}): void {
+	const searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
+	if (paramValue != undefined) {
+		searchParams.append(
+			paramName,
+			encodeRuleNameToSearchParam(paramValue) ?? ''
+		)
 	}
+
+	window.history.replaceState(
+		{},
+		'',
+		`/simulateur/${simulateurRootRuleURL}?${searchParams}`
+	)
 }
 
 export function focusByCategory(
@@ -95,7 +105,7 @@ export function focusByCategory(
 	if (!focusedCategory) {
 		return questions
 	}
-	const filtered = questions.filter((q) => q.indexOf(focusedCategory) === 0)
+	const filtered = questions.filter((q) => q.startsWith(focusedCategory))
 	//this is important : if all questions of a focus have been answered
 	// then don't triggered the end screen, just ask the other questions
 	// as if no focus

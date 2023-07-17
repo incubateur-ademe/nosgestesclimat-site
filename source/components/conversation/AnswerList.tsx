@@ -1,7 +1,6 @@
-import { goToQuestion } from '@/actions/actions'
 import {
-	encodeRuleNameToSearchParam,
 	Category,
+	encodeRuleNameToSearchParam,
 	extractCategoriesNamespaces,
 	NGCEvaluatedRuleNode,
 	NGCRuleNode,
@@ -17,6 +16,7 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { getFocusedCategoryURLSearchParams } from '@/sites/publicodes/utils'
 import Engine, { formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'

@@ -300,7 +300,7 @@ entries:
   la page à partager à l'étape 3: la page à partager à l'étape 3
   le + d'impact climat: le + d'impact climat
   le - d'impact climat: le - d'impact climat
-  meta.pages.actions.description: Découvrez les gestes qui veous permettent de réduire votre empreinte climat
+  meta.pages.actions.description: Découvrez les gestes qui vous permettent de réduire votre empreinte climat
   meta.publicodes.About.description: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services publics, numérique), de la situer par rapport aux objectifs climatiques et surtout de passer à l’action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   meta.publicodes.About.title: À propos
   meta.publicodes.Accessibility.description: Le site Nos Gestes Climat est partiellement conforme avec le référentiel général d’amélioration de l’accessibilité, RGAA version 4.1
@@ -309,9 +309,13 @@ entries:
   meta.publicodes.Budget.description: Nos Gestes Climat est une start-up d'état portée par l'ADEME. Parcourez cette page pour en savoir plus sur le fonctionnement de l'équipe et son budget annuel.
   meta.publicodes.CGU.description: Les présentes conditions générales d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation des services par l'Utilisateur.
   meta.publicodes.CGU.title: Conditions générales d'utilisation
-  meta.publicodes.Contribution.description: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
+  meta.publicodes.Contact.titre: Contact
+  meta.publicodes.Contact.description: Une question, un problème ? Envoyez-nous un message via ce formulaire de contact, nous vous répondrons au plus vite !
+  meta.publicodes.Contribution.traductionDescription: Ce formulaire vous permet de remonter les problèmes liés à la traduction du site.
   meta.publicodes.Diffuser.description: Ce simulateur vous permet d'évaluer votre empreinte carbone individuelle annuelle totale et par grandes catégories (alimentation, transport, logement, divers, services publics, numérique), de la situer par rapport aux objectifs climatiques et surtout de passer à l’action à votre niveau avec des gestes personnalisés en fonction de vos réponses.
   meta.publicodes.Diffuser.title: Diffuser Nos Gestes Climat
+  meta.publicodes.FAQ.title: Questions fréquentes
+  meta.publicodes.FAQ.description: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
   meta.publicodes.Landing.description: Testez votre empreinte carbone, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire.
   meta.publicodes.LandingExplanations.description: Testez votre empreinte carbone, tout seul ou en groupe. Découvrez la répartition de votre empreinte. Suivez le parcours de passage à l'action pour la réduire.
   meta.publicodes.Méthode.description: Notre modèle de calcul est entièrement transparent. Chacun peut l'explorer, donner son avis, l'améliorer.
@@ -365,14 +369,14 @@ entries:
   publicodes.Contribution.bugQuestion: 🐛 Vous avez un bug qui vous empêche d'utiliser Nos Gestes Climat ?
   publicodes.Contribution.commentaireAugmenté: |-
 
-    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contribuer).
-  publicodes.Contribution.description: Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
+    > Ce ticket a été créé automatiquement par notre robot depuis notre [page de contribution](https://nosgestesclimat.fr/contact).
+  publicodes.FAQ.description: Bienvenue sur la FAQ Nos Gestes Climat ! Vous trouverez ici les réponses aux questions les plus fréquentes. S’il vous reste des interrogations ou si vous souhaitez nous proposer des améliorations, rendez-vous tout en bas. Bonne lecture !
   publicodes.Contribution.descriptionComplète: <0>La description complète de votre problème</0><1><0>En indiquant le navigateur que vous utilisez (par exemple Firefox version 93, Chrome version 95, Safari, etc.), et la plateforme (iPhone, Android, ordinateur Windows, etc.), vous nous aiderez à résoudre le bug plus rapidement.</0></1>
   publicodes.Contribution.descriptionComplèteTraduction: <0>La description complète de votre problème</0>
   publicodes.Contribution.liensVersGithub: Pour toute remarque ou question, nous vous invitons à <2>ouvrir un ticket directement sur GitHub</2>.
-  publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <1>ce lien</1>.
-  publicodes.Contribution.titreQuestion: J'ai une autre question
-  publicodes.Contribution.traductionIntro: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problèm de traduction sur le site 😊. Nous le prendrons en compte rapidement.
+  publicodes.Contribution.remerciements: Merci 😍! Suivez l'avancement de votre suggestion en cliquant sur <2>ce lien</2>.
+  publicodes.Contact.titreQuestion: J'ai une question
+  publicodes.Contribution.traductionIntro: Nos Gestes Climat vient tout juste d'être traduit dans plusieurs langues. N'hésitez pas à vous faire part de vos doutes quand à un problème de traduction sur le site 😊. Nous le prendrons en compte rapidement.
   publicodes.Contribution.translationWikiInvite: 'Suivez notre guide complet pour contribuer directement à la traduction du site : <2>rendez-vous sur notre wiki</2>.'
   publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?
   publicodes.LandingExplanations.question: Connaissez-vous votre empreinte sur le climat ?
@@ -449,7 +453,8 @@ entries:
   publicodes.planDuSite.aPropos: À propos
   publicodes.planDuSite.viePrivee: Vie privée
   publicodes.planDuSite.partenaires: Pour les partenaires
-  publicodes.planDuSite.contribuer: Contribuer
+  publicodes.planDuSite.faq: Questions fréquentes
+  publicodes.planDuSite.contact: Contact
   publicodes.planDuSite.stats: Page des Statistiques
   publicodes.planDuSite.documentation: Documentation
   publicodes.planDuSite.methodologie: Méthodologie
@@ -471,7 +476,7 @@ entries:
     ## Des questions ?
 
 
-    Retrouvez les réponses aux questions courantes sur notre page [FAQ](/contribuer).
+    Retrouvez les réponses aux questions courantes sur notre page [FAQ](/questions-frequentes).
   sites.publicodes.Profile.TutorialLink.text: 🧑‍🏫 Revoir le tutoriel
   sites.publicodes.Tutorial.questionE: 💡 Mais que veut dire ce petit <1>e</1> ?
   supprimer: supprimer
@@ -557,8 +562,6 @@ entries:
   "Oups, nous n'avons pas d'article correspondant": Oups, nous n'avons pas d'article correspondant
   Retour à la liste des articles: Retour à la liste des articles
   <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>: <0>J'accepte de recevoir des informations de la part de Nos Gestes Climat et sa <2>politique de confidentialité</2></0>
-  <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>: <0>Laissez-nous votre email pour recevoir <2>votre résultat</2> et <5>des conseils</5> pour réduire votre empreinte carbone (1 fois par mois max.).</0>
-  Entrez votre adresse email: Entrez votre adresse email
   Merci pour votre inscription !: Merci pour votre inscription !
   mon empreinte carbone: mon empreinte carbone
   Mon empreinte carbone: Mon empreinte carbone
@@ -584,12 +587,84 @@ entries:
   components.stats.StatsContent.infosNorthstar: <0>En fin de simulation, une bannière apparaît afin de recueillir le sentiment de nos utilisateurs sur le rôle de Nos Gestes Climat dans leur compréhension des enjeux climat mais également dans l'incitation au passage à l'action via 2 questions en fin de test. Les statistiques, disponibles sur la page dédiée <2>page dédiée "Northstar"</2>, ont été générées via Metabase.</0>
   'Northstar: les statistiques "étoile du nord"': 'Northstar: les statistiques "étoile du nord"'
   Envoyer mes résultats: Envoyer mes résultats
-  '<0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>': <0>Laissez-nous votre email comme déjà <2>{formatValue(numberSubscribers)} autres utilisateurs</2>, pour recevoir <4>votre résultat</4> et <7>des conseils</7> pour réduire votre empreinte carbone (1 fois par mois max.).</0>
+  publicodes.FAQ.titreQuestion: J'ai une autre question
+  Contact: Contact
+  publicodes.Contact.description: N'hésitez pas à consulter notre <2>FAQ</2> avant de nous écire, vous y trouverez sans doute la réponse à votre question !
+  publicodes.Contact.form: Pour toute remarque ou question, <2>nous vous recommandons <2>d'ouvrir un ticket directement sur GitHub</2></2> afin de suivre les échanges plus facilement. Vous pouvez également nous envoyer un message via le formulaire de contact ci-dessous.
+  publicodes.Contact.mail: Enfin, vous avez la possibilité de nous envoyer un mail à l'adresse <2>contact@nosgestesclimat.fr</2>. Cependant, le délais de réponse sera plus long que les solutions précédentes.
+  publicodes.FAQ.faireletest: Vous n'avez pas encore débuté votre test, <2><0>lancez-vous !</0></2>
   ', comme déjà ': ', comme déjà '
   'autres utilisateurs, ': 'autres utilisateurs, '
   des conseils: des conseils
   'et ': 'et '
   Laissez-nous votre email: Laissez-nous votre email
-  'pour recevoir ': 'pour recevoir '
+  ' pour recevoir ': ' pour recevoir '
   'pour réduire votre empreinte carbone (1 fois par mois max.). ': 'pour réduire votre empreinte carbone (1 fois par mois max.). '
   votre résultat: votre résultat
+  Entrez votre adresse email: Entrez votre adresse email
+  '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>': '{group?.owner?.name} vous a invité à rejoindre le groupe <3>{group?.name}</3>'
+  Ce champ est obligatoire: Ce champ est obligatoire
+  Choisissez un nom pour ce groupe: Choisissez un nom pour ce groupe
+  Comparez vos résultats avec votre famille ou un groupe d'amis.: Comparez vos résultats avec votre famille ou un groupe d'amis.
+  Comparez vos résultats avec votre famille ou un groupe d’amis: Comparez vos résultats avec votre famille ou un groupe d’amis
+  Copié !: Copié !
+  Créer le groupe: Créer le groupe
+  Créer un autre groupe: Créer un autre groupe
+  Créer un groupe d'amis: Créer un groupe d'amis
+  Créez un autre groupe: Créez un autre groupe
+  Créez votre premier groupe: Créez votre premier groupe
+  'Étape {String(currentStep)} sur {String(numberSteps)}': Étape {String(currentStep)} sur {String(numberSteps)}
+  facultatif: facultatif
+  Groupe d'amis: Groupe d'amis
+  Il sera visible uniquement par les participants du groupe: Il sera visible uniquement par les participants du groupe
+  Invitez vos proches: Invitez vos proches
+  Partager: Partager
+  participants: participants
+  Pour le retrouver facilement dans votre liste: Pour le retrouver facilement dans votre liste
+  Rejoindre: Rejoindre
+  Retour: Retour
+  Retourner à mes groupes: Retourner à mes groupes
+  Seulement pour te permettre de le retrouver ou de supprimer les données par la suite: Seulement pour te permettre de le retrouver ou de supprimer les données par la suite
+  Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.: Veuillez confirmer avec le créateur du groupe qu'il vous a bien envoyé un lien d'invitation.
+  Voir mes groupes: Voir mes groupes
+  'Votre adresse email ': 'Votre adresse email '
+  Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe: Votre groupe est prêt ! Partagez ce lien à vos proches pour les inviter à rejoindre votre groupe
+  Votre prénom (ou pseudo): Votre prénom (ou pseudo)
+  Vous n'avez pas été invité à rejoindre ce groupe: Vous n'avez pas été invité à rejoindre ce groupe
+  Comment agir: Comment agir
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées': Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passe le test pour obtenir des recommandations personnalisées
+  Le classement: Le classement
+  Par rapport à la moyenne du groupe.: Par rapport à la moyenne du groupe.
+  Toutes les actions: Toutes les actions
+  'Voir les {String(group.members.length)} autres participants': Voir les {String(group.members.length)} autres participants
+  Vos points faibles: Vos points faibles
+  Vos points forts: Vos points forts
+  Votre empreinte: Votre empreinte
+  Vous devez compléter votre test avant de créer un groupe.: Vous devez compléter votre test avant de créer un groupe.
+  Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Créer un groupe et calculer notre empreinte carbone: Créer un groupe et calculer notre empreinte carbone
+  'Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.': Découvrez nos pistes pour agir dès aujourd’hui pour le climat, ou passez le test pour obtenir des recommandations personnalisées.
+  Données supprimées.: Données supprimées.
+  "Mes groupes, simulateur d'empreinte carbone": Mes groupes, simulateur d'empreinte carbone
+  Modifier le nom du groupe: Modifier le nom du groupe
+  'Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé': Modifier le nom du groupe, ouvre un champ de saisie automatiquement focalisé
+  'Mon groupe, nos bilans carbone personnels': Mon groupe, nos bilans carbone personnels
+  'Ok, sauvegarder la modification': Ok, sauvegarder la modification
+  "Oups, une erreur s'est produite au moment de récupérer les données du groupe.": Oups, une erreur s'est produite au moment de récupérer les données du groupe.
+  Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.: Partagez cette page à vos proches pour leur permettre de rejoindre votre groupe.
+  Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.: Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat.
+  Rejoindre un groupe - Nos Gestes Climat: Rejoindre un groupe - Nos Gestes Climat
+  Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données: Seulement pour vous permettre de retrouver votre groupe ou de supprimer vos données
+  Supprimer mes données: Supprimer mes données
+  Supprimer vos données de groupe enregistrées ? Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Cette action est irréversible.
+  Veuillez renseigner un email valide.: Veuillez renseigner un email valide.
+  Veuillez renseigner un nom.: Veuillez renseigner un nom.
+  Veuillez renseigner un prénom ou un pseudonyme.: Veuillez renseigner un prénom ou un pseudonyme.
+  'Voir les {String(group.members.length - 5)} autre{withS} participant{withS}': Voir les {String(group.members.length - 5)} autre{withS} participant{withS}
+  Vous êtes le premier 🥳: Vous êtes le premier 🥳
+  Continuer le test: Continuer le test
+  Créer et passer mon test: Créer et passer mon test
+  Rejoindre et passer mon test: Rejoindre et passer mon test
+  Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.
+  'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.
+  Votre adresse email: Votre adresse email

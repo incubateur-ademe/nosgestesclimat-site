@@ -113,7 +113,6 @@ opacity: .5;
 
 export const sessionBarMargin = `
 		@media (max-width: 800px) {
-			margin-bottom: 10rem;
 		}
 `
 

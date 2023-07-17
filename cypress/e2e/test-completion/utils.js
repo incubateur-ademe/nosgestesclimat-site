@@ -49,6 +49,10 @@ export async function clickNextButton() {
 	cy.get('[data-cypress-id="next-question-button"]').click()
 }
 
+export async function clickSeeResultsLink() {
+	cy.get('[data-cypress-id="see-results-link"]').click()
+}
+
 export async function startTestAndSkipTutorial() {
 	cy.get('[data-cypress-id="do-the-test-link"]').click()
 	waitWhileLoading()
@@ -62,21 +66,24 @@ export async function waitWhileLoading() {
 		if (body.find('[data-cypress-id="loader"]')?.length > 0) {
 			// Waiting for rules parsing
 			cy.wait(4000)
-	}})
+		}
+	})
 }
 
 function encodeRuleName(ruleName) {
-	return encodeURI(ruleName
-		?.replace(/\s\.\s/g, '.')
-		.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
-		.replace(/\s/g, '-'))
+	return encodeURI(
+		ruleName
+			?.replace(/\s\.\s/g, '.')
+			.replace(/-/g, '\u2011') // replace with a insecable tiret to differenciate from space
+			.replace(/\s/g, '-')
+	)
 }
 
 function isMosaicQuestion(body) {
 	return body.find('[data-cypress-id="mosaic-question"]')?.length > 0
 }
 
-export async function walkthroughTest(persona) {
+export async function walkthroughTest(persona = {}) {
 	cy.wait(100)
 
 	waitWhileLoading()
@@ -100,7 +107,7 @@ export async function walkthroughTest(persona) {
 						} else {
 							if (type === 'text') {
 								cy.get(`input[id="${id}"]`).type(persona[id])
-						} else {
+							} else {
 								cy.get(`input[name="${id}"]`).check(persona[id])
 							}
 						}
@@ -109,12 +116,24 @@ export async function walkthroughTest(persona) {
 							// Close the notification window
 							cy.get('.hide').last().click()
 						}
+						clickNextButton()
+						walkthroughTest(persona)
 					}
 				})
 			}
 
-			cy.get('section button').last().click()
-			walkthroughTest(persona)
+			cy.url().then((url) => {
+				if (url.includes('th%C3%A9matique')) {
+					if (url.includes('congrats')) {
+						return
+					} else {
+						clickCategoryStartButton()
+					}
+				} else {
+					clickDontKnowButton()
+				}
+				walkthroughTest(persona)
+			})
 		}
 	})
 }
