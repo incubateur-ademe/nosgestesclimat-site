@@ -866,3 +866,6 @@ entries:
   Rejoindre et passer mon test: Join and take my test
   Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Delete your saved group data? Only your member data will be deleted. This action is irreversible.
   'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Delete your group <1>{group?.name}</1>? Saved data will be deleted for all group members. This action is irreversible.
+  Votre bilan climat personnel: Your personal climate report
+  Personas: Personas
+  Les questions du modèle Nos Gestes Climat: Nos Gestes Climat model questions

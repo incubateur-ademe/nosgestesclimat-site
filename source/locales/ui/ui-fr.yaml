@@ -666,3 +666,6 @@ entries:
   Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.: Supprimer vos données de groupe enregistrées ? Seules vos données de membre seront supprimées. Cette action est irréversible.
   'Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.': Supprimer votre groupe <1>{group?.name}</1> ? Les données sauvegardées seront supprimées pour tous les membres du groupe. Cette action est irréversible.
   Votre adresse email: Votre adresse email
+  Les questions du modèle Nos Gestes Climat: Les questions du modèle Nos Gestes Climat
+  Personas: Personas
+  Votre bilan climat personnel: Votre bilan climat personnel

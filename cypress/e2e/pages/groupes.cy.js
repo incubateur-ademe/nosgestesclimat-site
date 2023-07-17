@@ -1,10 +1,10 @@
-const {
-	walkthroughTest,
+import {
+	clickCategoryStartButton,
 	clickSkipTutoButton,
 	clickUnderstoodButton,
-	clickCategoryStartButton,
 	startTestAndSkipTutorial,
-} = require('../test-completion/utils')
+	walkthroughTest,
+} from '../utils'
 
 Cypress.automation('remote:debugger:protocol', {
 	command: 'Browser.grantPermissions',
