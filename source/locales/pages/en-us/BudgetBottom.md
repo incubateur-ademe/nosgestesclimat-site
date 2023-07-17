@@ -13,12 +13,12 @@
     site is hosted on <a href="https://www.netlify.com">Netlify</a>.
 
 > #### About VAT
-&gt
+>
 > Unlike private-sector companies, public-sector bodies are not entitled to
 > VAT on purchases made in the course of their business
 > activity.
-&gt
+>
 > The amount including VAT includes VAT at the rate of 20%.
-&gt
+>
 > VAT is collected and paid back to the government, reducing the budget available for > the project
 > budget available for the project.
