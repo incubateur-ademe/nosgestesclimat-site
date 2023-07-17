@@ -1,5 +1,6 @@
 import Title from '@/components/groupe/Title'
 import {
+	DottedName,
 	getRelatedMosaicInfosIfExists,
 	NGCRuleNode,
 	NGCRulesNodes,
@@ -21,19 +22,8 @@ export default () => {
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
 		.filter((el) => el && el.question)
 
-	const jsonList = questionRules.map((rule) => {
-		const { type, mosaic } = getQuestionType(rules, rule)
-		const dependenciesData = computeDependencies(engine, rule)
+	const jsonList = getQuestionList(engine, rules)
 
-		return {
-			dottedName: rule.dottedName,
-			question: rule.question,
-			type,
-			catégorie: questionCategoryName(rule.dottedName),
-			'dans mosaïque': mosaic != null,
-			dépendances: dependenciesData.map(([k, v]) => k),
-		}
-	})
 	const header = [
 		'dottedName',
 		'question',
@@ -43,6 +33,7 @@ export default () => {
 		'dépendances',
 	]
 	const csv = toCSV(header, jsonList)
+
 	return (
 		<div>
 			<Title title={<Trans>Les questions du modèle Nos Gestes Climat</Trans>} />
@@ -90,6 +81,37 @@ export default () => {
 			</ul>
 		</div>
 	)
+}
+
+type QuestionList = Array<{
+	dottedName: DottedName
+	question: string
+	type: string
+	catégorie: string
+	'dans mosaïque': boolean
+	dépendances: Array<any>
+}>
+
+export const getQuestionList = (engine, rules) => {
+	const questionRules = Object.entries(rules)
+		.map(([dottedName, v]) => ({ ...v, dottedName }))
+		.filter((el) => el && el.question)
+
+	const jsonList: QuestionList = questionRules.map((rule) => {
+		const { type, mosaic } = getQuestionType(rules, rule)
+		const dependenciesData = computeDependencies(engine, rule)
+
+		return {
+			dottedName: rule.dottedName,
+			question: rule.question,
+			type,
+			catégorie: questionCategoryName(rule.dottedName),
+			'dans mosaïque': mosaic != null,
+			dépendances: dependenciesData.map(([k, v]) => k),
+		}
+	})
+
+	return jsonList
 }
 
 const getQuestionType = (rules: NGCRulesNodes, rule: NGCRuleNode) => {
@@ -180,7 +202,11 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 						<MissingVariables data={dependenciesData} />
 					</div>
 				</summary>
-				<FriendlyObjectViewer data={rule} options={{ capitalise0: false }} />
+				<FriendlyObjectViewer
+					data={rule}
+					context={false}
+					options={{ capitalise0: false }}
+				/>
 			</details>
 		</li>
 	)

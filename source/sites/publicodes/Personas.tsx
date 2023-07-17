@@ -16,6 +16,7 @@ import ActionSlide from './fin/ActionSlide'
 import Budget from './fin/Budget'
 import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
+import { getQuestionList } from './pages/QuestionList'
 import RawActionsList from './personas/RawActionsList'
 import Summary from './personas/Summary'
 
@@ -61,6 +62,16 @@ export default () => {
 		visualisationChoices[`${visualisationParam}`]?.composant
 
 	const engine = useEngine()
+	const rules = useSelector((state: AppState) => state.rules)
+	const rawQuestionList = getQuestionList(engine, rules)
+	const personasQuestionList = rawQuestionList.reduce((acc, rule) => {
+		if (rule.type !== '🪟 Mosaïque de type nombre') {
+			acc.push(rule.dottedName)
+		}
+		return acc
+	}, [])
+
+	console.log(JSON.stringify(personasQuestionList))
 
 	const visualisationComponentProps = {
 		score: engine.evaluate('bilan').nodeValue,
@@ -170,6 +181,30 @@ export default () => {
 				</Trans>
 				.
 			</p>
+			<h2>
+				<Trans>Liste des questions du modèle</Trans>
+			</h2>
+			<p>
+				<Trans i18nKey={'publicodes.Personas.listeQuestions'}>
+					La liste des questions du modèle est accessible sur la page{' '}
+					<a href="/questions">/questions</a>
+				</Trans>
+				. La liste exhaustive de toutes les règles pour définir un persona est :
+			</p>
+			<textarea
+				value={JSON.stringify(personasQuestionList)}
+				css={`
+					width: 90%;
+				`}
+			/>
+			<button
+				className="ui__ button small"
+				onClick={() => {
+					navigator.clipboard.writeText(JSON.stringify(personasQuestionList))
+				}}
+			>
+				Copier le JSON
+			</button>
 		</div>
 	)
 }
