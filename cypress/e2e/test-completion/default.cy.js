@@ -2,7 +2,7 @@ import {
 	clickSeeResultsLink,
 	startTestAndSkipTutorial,
 	walkthroughTest,
-} from './utils'
+} from '../utils'
 
 describe('check for test completion', () => {
 	it('can finish the test with the default values with unspecified search params', () => {
