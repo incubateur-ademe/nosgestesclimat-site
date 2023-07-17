@@ -305,6 +305,8 @@ entries:
   meta.publicodes.About.title: À propos
   meta.publicodes.Accessibility.description: Le site Nos Gestes Climat est partiellement conforme avec le référentiel général d’amélioration de l’accessibilité, RGAA version 4.1
   meta.publicodes.Accessibility.title: Accessibilité
+  meta.publicodes.Budget.title: Budget
+  meta.publicodes.Budget.description: Nos Gestes Climat est une start-up d'état portée par l'ADEME. Parcourez cette page pour en savoir plus sur le fonctionnement de l'équipe et son budget annuel.
   meta.publicodes.CGU.description: Les présentes conditions générales d'utilisation (dites « CGU ») fixent le cadre juridique de la Plateforme "Nos Gestes Climat" et définissent les conditions d'accès et d'utilisation des services par l'Utilisateur.
   meta.publicodes.CGU.title: Conditions générales d'utilisation
   meta.publicodes.Contribution.description: Découvrez les questions fréquentes sur Nos Gestes Climat, et comment en poser de nouvelles ou nous aider.
