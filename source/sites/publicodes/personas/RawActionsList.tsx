@@ -80,14 +80,31 @@ export default () => {
 	)
 
 	const numberOfActions = actionsList.length
+
+	const numberOfActionsWithImpact = actionsList.reduce(
+		(obj, { correctedValue, sign }) => {
+			if (correctedValue > 1000 && sign === '-') {
+				obj['> 1 tonne'] += 1
+				return obj
+			} else if (correctedValue > 100 && sign === '-') {
+				obj['> 100 kgCO2e'] += 1
+				return obj
+			} else {
+				return obj
+			}
+		},
+		{ '> 100 kgCO2e': 0, '> 1 tonne': 0 }
+	)
+
 	const rawTotalReduction = actionsList.reduce(
 		(acc, { correctedValue, sign }) => {
 			if (correctedValue) {
-				return sign === '+' ? acc + correctedValue : acc - correctedValue
+				return sign === '+' ? acc - correctedValue : acc + correctedValue
 			} else return acc
 		},
 		0
 	)
+
 	const [totalReduction, unit] = humanWeight(
 		{ t, i18n },
 		rawTotalReduction,
@@ -110,7 +127,10 @@ export default () => {
 				<strong>
 					{totalReduction} {unit}
 				</strong>
-				.
+				. {numberOfActionsWithImpact['> 1 tonne']}
+				<Trans> présentent un impact de plus de 1 tonne de CO2e,</Trans>{' '}
+				{numberOfActionsWithImpact['> 100 kgCO2e']}{' '}
+				<Trans>plus de 100 kgCO2e</Trans>.
 			</p>
 			{Object.values(actionsListByCategory).map(
 				(category) =>
