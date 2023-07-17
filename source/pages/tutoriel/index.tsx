@@ -232,7 +232,7 @@ export default function Tutoriel() {
 												💡 Mais que veut dire ce petit <em>e</em> ?
 											</Trans>
 										</summary>{' '}
-										<Trans i18nKey={'publicodes.Tutorial.slide2.blockquote'}>
+										<Trans i18nKey={'publicodes.Tutoriel.slide2.blockquote'}>
 											D'autres gaz, surtout le méthane{' '}
 											<img
 												alt=""
