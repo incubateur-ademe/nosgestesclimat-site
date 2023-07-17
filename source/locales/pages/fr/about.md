@@ -50,7 +50,7 @@ On vous dit tout sur notre page [diffuser](/diffuser).
 
 ## Nous contacter
 
-<contact@nosgestesclimat.fr>
+Vous pouvez nous contacter via [via notre formulaire de contact](/contact) ou directement à l'adresse <contact@nosgestesclimat.fr>.
 
 ## Budget
 
