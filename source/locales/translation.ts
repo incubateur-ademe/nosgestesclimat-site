@@ -120,3 +120,14 @@ export function changeLangTo(i18n: i18n, currentLangState: Lang) {
 		console.log('[i18next] current language:', i18n.language)
 	}
 }
+
+export function getMarkdownInCurrentLang(
+	markdownFiles: Array<[Lang, string]>,
+	currentLangState: Lang
+) {
+	return (
+		markdownFiles.find(
+			([lang]) => getLangInfos(lang).abrv === currentLangState
+		)?.[1] || markdownFiles[0][1]
+	)
+}
