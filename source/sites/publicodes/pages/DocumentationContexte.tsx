@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom'
 
 import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
 
-import contentEn from '@/locales/pages/en-us/documentation.md'
-import contentFr from '@/locales/pages/fr/documentation.md'
+import contentEn from '../../../locales/pages/en-us/documentation.md'
+import contentFr from '../../../locales/pages/fr/documentation.md'
 
 export default () => {
 	const { t, i18n } = useTranslation()
