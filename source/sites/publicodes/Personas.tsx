@@ -32,6 +32,7 @@ export type Personas = Array<Persona>
 const Nothing = () => null
 
 const visualisationChoices = {
+	aucun: { titre: 'Aucun', composant: Nothing },
 	summary: { titre: 'Description', composant: Summary },
 	actionList: { titre: 'Actions associées', composant: RawActionsList },
 	profil: { titre: 'Détail Réponses', composant: AnswerList },
@@ -43,7 +44,6 @@ const visualisationChoices = {
 		titre: 'Partage RS',
 		composant: () => <FinShareButton showResult />,
 	},
-	aucun: { titre: 'Aucun', composant: Nothing },
 }
 
 export default () => {
