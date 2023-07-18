@@ -364,65 +364,37 @@ export const PersonaExplanations = ({ personasQuestionList }) => {
 			<details>
 				<summary>
 					<h2>
-						<Trans>Comment créer un persona ?</Trans>
-					</h2>
-				</summary>
-				<div>
-					<Trans>C'est dans le fichier</Trans>{' '}
-					<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/personas.yaml">
-						personas.yaml
-					</a>{' '}
-					<Trans i18nKey={'publicodes.Personas.tuto'}>
-						que ça se passe. On peut soit copier coller les données d'un autre
-						persona et les modifier, soit en créer un de zéro depuis la
-						simulation. Une fois la simulation satisfaisante, cliquer sur
-						"Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du
-						navigateur (F12), vérifiez bien que vous êtes dans l'onglet
-						"Console", allez tout en bas de la console (elle est un peu
-						chargée...), puis copier le JSON affiché, le coller dans{' '}
-						<a href="https://www.json2yaml.com">cet outil</a> pour générer un
-						YAML, puis l'insérer dans personas.yaml.
-					</Trans>
-				</div>
-				<p>
-					<Trans i18nKey={'publicodes.Personas.lienGenerateur'}>
-						Pour les prénoms, on peut utiliser{' '}
-						<a href="https://lorraine-hipseau.me">ce générateur</a>
-					</Trans>
-					.
-				</p>
-			</details>
-			<details>
-				<summary>
-					<h2>
 						<Trans>Quelle est la liste des questions du modèle ?</Trans>
 					</h2>
 				</summary>
 				<div>
-					<Trans i18nKey={'publicodes.Personas.listeQuestions'}>
-						La liste des questions du modèle est accessible sur la page{' '}
-						<a href="/questions">/questions</a>
-					</Trans>
-					. La liste exhaustive de toutes les règles pour définir un persona est
-					:
+					<p>
+						<Trans i18nKey={'publicodes.Personas.listeQuestions'}>
+							La liste des questions du modèle est accessible sur la page{' '}
+							<a href="/questions">/questions</a>. La liste exhaustive de toutes
+							les règles pour définir un persona est :
+						</Trans>
+					</p>
+					<pre
+						className="ui__ code"
+						css={`
+							font-size: 90%;
+							height: 10rem;
+						`}
+					>
+						<code>{yaml.stringify(personasQuestionList)}</code>
+					</pre>
+					<button
+						className="ui__ button small"
+						onClick={() => {
+							navigator.clipboard.writeText(
+								JSON.stringify(personasQuestionList)
+							)
+						}}
+					>
+						<Trans>Copier le YAML</Trans>
+					</button>
 				</div>
-				<pre
-					className="ui__ code"
-					css={`
-						font-size: 90%;
-						height: 10rem;
-					`}
-				>
-					<code>{yaml.stringify(personasQuestionList)}</code>
-				</pre>
-				<button
-					className="ui__ button small"
-					onClick={() => {
-						navigator.clipboard.writeText(JSON.stringify(personasQuestionList))
-					}}
-				>
-					<Trans>Copier le YAML</Trans>
-				</button>
 			</details>
 			<details>
 				<summary>

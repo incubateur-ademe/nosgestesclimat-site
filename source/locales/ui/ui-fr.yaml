@@ -681,7 +681,7 @@ entries:
   'Complétude des règles du personas:': 'Complétude des règles du personas:'
   Copier le YAML: Copier le YAML
   Liste des questions du modèle: Liste des questions du modèle
-  publicodes.Personas.listeQuestions: La liste des questions du modèle est accessible sur la page <2>/questions</2>
+  publicodes.Personas.listeQuestions: 'La liste des questions du modèle est accessible sur la page <2>/questions</2>. La liste exhaustive de toutes les règles pour définir un persona est :'
   Qui sont-ils ?: Qui sont-ils ?
   règle a été définie dans le persona mais est absente du modèle: règle a été définie dans le persona mais est absente du modèle
   règle est absente du persona: règle est absente du persona

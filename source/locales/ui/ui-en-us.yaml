@@ -880,8 +880,8 @@ entries:
   règle est absente du persona: rule is absent from the persona
   ✅ Aucune règle du persona n'est absente du modèle.: ✅ No persona rules are missing from the model.
   Liste des questions du modèle: List of template questions
-  publicodes.Personas.listeQuestions: The list of questions in the template is available on the <2>/questions</2> page
-  publicodes.Personas.listeQuestions.lock: La liste des questions du modèle est accessible sur la page <2>/questions</2>
+  publicodes.Personas.listeQuestions: 'The list of template questions is available on the <2>/questions</2> page. The exhaustive list of all the rules for defining a persona is :'
+  publicodes.Personas.listeQuestions.lock: 'La liste des questions du modèle est accessible sur la page <2>/questions</2>. La liste exhaustive de toutes les règles pour définir un persona est :'
   Copier le YAML: Copy YAML
   'Complétude des règles du personas:': 'Completeness of personas rules:'
   règles sont absentes du persona: rules are absent from the persona
