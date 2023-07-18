@@ -51,16 +51,19 @@ module.exports = {
 				},
 			},
 		],
-		'@typescript-eslint/explicit-function-return-type': 'off',
+		// TODO - enable these new recommended rules, a first step would be to switch from "off" to "warn"
 		'@typescript-eslint/prefer-string-starts-ends-with': 'warn',
 		'@typescript-eslint/no-unnecessary-type-assertion': 'warn', // has false positives (Object.values result) v 2.29.0
 		'@typescript-eslint/no-inferrable-types': 'warn', // causes problems with unknown values v 2.29.0 typescript v 3.8.3
+		'@typescript-eslint/no-unused-vars': 'warn',
+		'@typescript-eslint/explicit-function-return-type': 'off',
+		'@typescript-eslint/no-unsafe-return': 'off',
 		'@typescript-eslint/no-var-requires': 'off',
-		// TODO - enable these new recommended rules, a first step would be to switch from "off" to "warn"
 		'@typescript-eslint/explicit-module-boundary-types': 'off',
 		'@typescript-eslint/no-floating-promises': 'off',
 		'@typescript-eslint/no-extra-semi': 'off',
 		'@typescript-eslint/no-unsafe-assignment': 'off',
+		'@typescript-eslint/no-unsafe-argument': 'off',
 		'@typescript-eslint/no-unsafe-call': 'off',
 		'@typescript-eslint/no-unsafe-member-access': 'off',
 		'@typescript-eslint/no-unsafe-return': 'off',
