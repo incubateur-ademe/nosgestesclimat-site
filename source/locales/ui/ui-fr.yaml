@@ -378,7 +378,7 @@ entries:
   publicodes.Contribution.translationWikiInvite: 'Suivez notre guide complet pour contribuer directement à la traduction du site : <2>rendez-vous sur notre wiki</2>.'
   publicodes.Landing.question: Connaissez-vous votre empreinte sur le climat ?
   publicodes.LandingExplanations.question: Connaissez-vous votre empreinte sur le climat ?
-  publicodes.Personas.description: Les personas nous permettront de prendre le parti d'une diversité d'utilisateurs quand ils voient notamment notre écran "passer à l'action".
+  publicodes.Personas.description: 'Nous les avons définis pour qu’ils représentent la diversité des cas d’usage du simulateur. <2>Toute ressemblance avec une personne existant ou ayant existé serait purement fortuite !</2> En aucune mesure, on ne peut dire qu’ils sont représentatifs de la distribution de la population française : il ne s’agit pas de coller aux statistiques de la population, mais de retrouver parmi nos dix personas au moins un qui représente chaque usage majeur et différenciant pour le simulateur. Ainsi, nous avons fait varier pour chacun d’entre eux :<5><0>Leur genre : même s’il n’influe pas sur l’empreinte, il serait étonnant de n’avoir que des personas “femmes”.</0> <2>Leur âge et situation personnelle / professionnelle : au moins un étudiant, un retraité, un adulte au foyer</2> <4>La taille de leur foyer : de 1 personne à famille nombreuse</4> <6>Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans le nord, dans le sud, les plaines, la montagne et sur une île</6> <8>Leur logement : de l’appartement à la maison, du neuf à l’ancien</8><9>Leurs modes de transport : de la marche à la voiture en passant par le ferry et l’avion</9> <11>Leur régime alimentaire : au moins un végétalien, un végétarien, une personne ne mangeant que du poisson, et un amateur de viande rouge</11> <13>Leur tendance à l’achat : du tout occasion au tout neuf, de l’acheteur compulsif à celui ou celle qui n’achète presque rien</13> <15>Leur façon de partir en vacances : mode de transport, hébergement, on trouve de tout</15> <17>Leurs loisirs : de la culture, du sport, du bien-être…</17></5>'
   publicodes.Personas.lienGenerateur: Pour les prénoms, on peut utiliser <2>ce générateur</2>
   publicodes.Personas.tuto: que ça se passe. On peut soit copier coller les données d'un autre persona et les modifier, soit en créer un de zéro depuis la simulation. Une fois la simulation satisfaisante, cliquer sur "Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du navigateur (F12), vérifiez bien que vous êtes dans l'onglet "Console", allez tout en bas de la console (elle est un peu chargée...), puis copier le JSON affiché, le coller dans <2>cet outil</2> pour générer un YAML, puis l'insérer dans personas.yaml.
   publicodes.Personas.warningMsg: Sélectionner un persona releguera votre simulation en cours dans votre historique de simulations, accessible en bas de votre <2>page profil</2>.
@@ -675,3 +675,19 @@ entries:
   'Les actions associées:': 'Les actions associées:'
   plus de 100 kgCO2e: plus de 100 kgCO2e
   'proposées au total pour un empreinte de réduction cumulée de ': 'proposées au total pour un empreinte de réduction cumulée de '
+  ✅ Aucune règle du modèle est absente du persona.: ✅ Aucune règle du modèle est absente du persona.
+  ✅ Aucune règle du persona n'est absente du modèle.: ✅ Aucune règle du persona n'est absente du modèle.
+  C'est le persona par défaut.: C'est le persona par défaut.
+  'Complétude des règles du personas:': 'Complétude des règles du personas:'
+  Copier le YAML: Copier le YAML
+  Liste des questions du modèle: Liste des questions du modèle
+  publicodes.Personas.listeQuestions: La liste des questions du modèle est accessible sur la page <2>/questions</2>
+  Qui sont-ils ?: Qui sont-ils ?
+  règle a été définie dans le persona mais est absente du modèle: règle a été définie dans le persona mais est absente du modèle
+  règle est absente du persona: règle est absente du persona
+  règles ont été définies dans le persona mais sont absentes du modèle: règles ont été définies dans le persona mais sont absentes du modèle
+  règles sont absentes du persona: règles sont absentes du persona
+  Comment les mettons-nous à jour ?: Comment les mettons-nous à jour ?
+  'Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier. ': 'Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier. '
+  publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0> <2>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</2></1>
+  Quelle est la liste des questions du modèle ?: Quelle est la liste des questions du modèle ?

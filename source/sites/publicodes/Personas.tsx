@@ -430,7 +430,7 @@ export const PersonaExplanations = (personasQuestionList) => {
 					</h2>
 				</summary>
 				<div>
-					<Trans>
+					<Trans i18nKey={'publicodes.Personas.maj'}>
 						Pour qu’ils ou elles continuent de représenter la diversité des cas
 						d’usage du simulateur d’empreinte carbone, nous les éditons à chaque
 						ajout ou modification de ce dernier, en respectant les règles
