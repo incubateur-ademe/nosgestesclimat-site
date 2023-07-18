@@ -111,7 +111,7 @@ export function fetchUser(): User {
 		  }
 
 	// Case of the new format.
-	if (deserializedUser.hasOwnProperty('simulations')) {
+	if (Object.prototype.hasOwnProperty.call(deserializedUser, 'simulations')) {
 		return deserializedUser as User
 	}
 	// Case where the user has the old simulation format in their local storage.
