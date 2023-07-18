@@ -1,8 +1,8 @@
+import FieldTravelDuration from '@/components/conversation/amortissement-avion/FieldTravelDuration'
+import KmEstimation from '@/components/conversation/estimate/KmEstimation'
+import { DottedName } from '@/components/publicodesUtils'
 import { Evaluation } from 'publicodes'
 import { InputHTMLAttributes } from 'react'
-import { DottedName } from 'Rules'
-import FieldTravelDuration from './amortissement-avion/FieldTravelDuration'
-import KmEstimation from './estimate/KmEstimation'
 
 const estimationQuestions: Array<{
 	isApplicable: Function

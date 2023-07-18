@@ -1,8 +1,8 @@
+import KmHelp from '@/components/conversation/estimate/KmHelp'
+import KmInput from '@/components/conversation/estimate/KmHelp/KmInput'
+import { DottedName } from '@/components/publicodesUtils'
 import { Evaluation } from 'publicodes'
 import { InputHTMLAttributes, useState } from 'react'
-import { DottedName } from 'Rules'
-import KmHelp from './KmHelp'
-import KmInput from './KmHelp/KmInput'
 
 interface Props {
 	commonProps: InputHTMLAttributes<HTMLInputElement> & {

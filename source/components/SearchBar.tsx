@@ -12,6 +12,8 @@ import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+
+/** eslint-disable-next-line import/no-unresolved */
 import Worker from 'worker-loader!./SearchBar.worker.js'
 
 const worker = new Worker()

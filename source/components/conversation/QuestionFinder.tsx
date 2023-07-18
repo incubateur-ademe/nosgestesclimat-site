@@ -1,9 +1,11 @@
-import { goToQuestion } from 'Actions/actions'
-import highlightMatches from 'Components/highlightMatches'
-import { useEngine } from 'Components/utils/EngineContext'
+import { goToQuestion } from '@/actions/actions'
+import highlightMatches from '@/components/highlightMatches'
+import { useEngine } from '@/components/utils/EngineContext'
 import { useEffect, useMemo, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
+
+/** eslint-disable-next-line import/no-unresolved */
 import Worker from 'worker-loader!./QuestionFinder.worker.ts'
 
 const worker = new Worker()

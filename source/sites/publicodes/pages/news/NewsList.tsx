@@ -1,11 +1,15 @@
-import { localStorageKey } from 'Components/NewsBanner'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import { localStorageKey } from '@/components/NewsBanner'
+import { usePersistingState } from '@/hooks/usePersistState'
+import { getCurrentLangInfos } from '@/locales/translation'
+import {
+	dateCool,
+	extractImage,
+	getPath,
+	sortReleases,
+} from '@/sites/publicodes/pages/news/NewsItem'
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
-import { getCurrentLangInfos } from 'Source/locales/translation'
-import { usePersistingState } from '../../../../hooks/usePersistState'
-import { dateCool, extractImage, getPath, sortReleases } from './NewsItem'
 
 export default () => {
 	const { i18n } = useTranslation()

@@ -1,10 +1,10 @@
+import Amortissement from '@/components/conversation/amortissement-avion/Amortissement'
+import KmInput from '@/components/conversation/estimate/KmHelp/KmInput'
+import { DottedName } from '@/components/publicodesUtils'
 import { Evaluation } from 'publicodes'
 import { InputHTMLAttributes, useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { AnyAction } from 'redux'
-import { DottedName } from 'Rules'
-import KmInput from '../estimate/KmHelp/KmInput'
-import Amortissement from './Amortissement'
 
 interface Props {
 	commonProps: InputHTMLAttributes<HTMLInputElement> & {

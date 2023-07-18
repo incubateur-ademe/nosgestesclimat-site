@@ -1,4 +1,13 @@
-import { DottedName } from 'modele-social'
+import { DottedName } from '@/components/publicodesUtils'
+import { EngineContext } from '@/components/utils/EngineContext'
+import {
+	answeredQuestionsSelector,
+	configSelector,
+	currentQuestionSelector,
+	objectifsSelector,
+	situationSelector,
+} from '@/selectors/simulationSelectors'
+import { Simulation, SimulationConfig } from '@/types/simulation'
 import Engine from 'publicodes'
 import {
 	countBy,
@@ -22,16 +31,6 @@ import {
 } from 'ramda'
 import { useContext, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-
-import {
-	answeredQuestionsSelector,
-	configSelector,
-	currentQuestionSelector,
-	objectifsSelector,
-	situationSelector,
-} from '@/selectors/simulationSelectors'
-import { Simulation, SimulationConfig } from '@/types/simulation'
-import { EngineContext } from '../components/utils/EngineContext'
 
 type MissingVariables = Partial<Record<DottedName, number>>
 export function getNextSteps(

@@ -1,5 +1,18 @@
-import emoji from 'Components/emoji'
-import animate from 'Components/ui/animate'
+import { setStoredTrajets, updateSituation } from '@/actions/actions'
+import {
+	matomoEventKilometerHelpClickClose,
+	matomoEventKilometerHelpClickOpen,
+} from '@/analytics/matomo-events'
+import { freqList } from '@/components/conversation/estimate/KmHelp/dataHelp'
+import EditableRow from '@/components/conversation/estimate/KmHelp/EditableRow'
+import KmForm from '@/components/conversation/estimate/KmHelp/KmForm'
+import KmHelpButton from '@/components/conversation/estimate/KmHelp/KmHelpButton'
+import ReadOnlyRow from '@/components/conversation/estimate/KmHelp/ReadOnlyRow'
+import emoji from '@/components/emoji'
+import { DottedName } from '@/components/publicodesUtils'
+import animate from '@/components/ui/animate'
+import { useMatomo } from '@/contexts/MatomoContext'
+import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
 import { motion } from 'framer-motion'
 import {
 	Dispatch,
@@ -11,23 +24,7 @@ import {
 } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { DottedName } from 'Rules'
 import styled from 'styled-components'
-import { setStoredTrajets, updateSituation } from '../../../../actions/actions'
-import {
-	matomoEventKilometerHelpClickClose,
-	matomoEventKilometerHelpClickOpen,
-} from '../../../../analytics/matomo-events'
-import { useMatomo } from '../../../../contexts/MatomoContext'
-import {
-	getLangFromAbreviation,
-	getLangInfos,
-} from '../../../../locales/translation'
-import { freqList } from './dataHelp'
-import EditableRow from './EditableRow'
-import KmForm from './KmForm'
-import KmHelpButton from './KmHelpButton'
-import ReadOnlyRow from './ReadOnlyRow'
 
 const openmojis = {
 	calendrier: '1F4C5',

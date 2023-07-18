@@ -1,20 +1,20 @@
-import classnames from 'classnames'
-import animate from 'Components/ui/animate'
-import { Markdown } from 'Components/utils/markdown'
-import { ASTNode } from 'publicodes'
-import { Rule } from 'publicodes/dist/types/rule'
-import React, { Suspense, useCallback, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import AnimatedLoader from '../../AnimatedLoader'
+import AnimatedLoader from '@/AnimatedLoader'
 import {
 	BinaryQuestionType,
 	InputCommonProps,
 	RuleInputProps,
-} from './RuleInput'
+} from '@/components/conversation/RuleInput'
+import animate from '@/components/ui/animate'
+import { Markdown } from '@/components/utils/markdown'
+import classnames from 'classnames'
+import { ASTNode, Rule } from 'publicodes'
+import React, { Suspense, useCallback, useEffect, useState } from 'react'
+import { Trans, useTranslation } from 'react-i18next'
+
 const ReferencesLazy = React.lazy(
 	() =>
 		import(
-			/* webpackChunkName: 'DocumentationReferences' */ '../../sites/publicodes/DocumentationReferences'
+			/* webpackChunkName: 'DocumentationReferences' */ '@/sites/publicodes/DocumentationReferences'
 		)
 )
 

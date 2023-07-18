@@ -4,13 +4,19 @@
 
 import { i18n } from 'i18next'
 
+/** eslint-disable-next-line import/no-unresolved */
 import uiEn from '!locale-yaml-loader!./ui/ui-en-us.yaml'
 // import uiEs from '!locale-yaml-loader!./ui/ui-es.yaml'
+
+/** eslint-disable-next-line import/no-unresolved */
 import uiFr from '!locale-yaml-loader!./ui/ui-fr.yaml'
 // import uiIt from '!locale-yaml-loader!./ui/ui-it.yaml'
 
+/** eslint-disable-next-line import/no-unresolved */
 import faqEn from '!locale-yaml-loader!./faq/FAQ-en-us.yaml'
 // import faqEs from '!locale-yaml-loader!./faq/FAQ-es.yaml'
+
+/** eslint-disable-next-line import/no-unresolved */
 import faqFr from '!locale-yaml-loader!./faq/FAQ-fr.yaml'
 // import faqIt from '!locale-yaml-loader!./faq/FAQ-it.yaml'
 
