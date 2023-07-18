@@ -691,3 +691,11 @@ entries:
   'Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier. ': 'Les personas nous servent à tester le simulateur sous toutes ses coutures, et à vérifier qu’il s’adapte bien à toutes les situations de vie des citoyens métropolitains. De par leur présence, ils nous forcent à penser à tous les cas d’usage, pour nous projeter dans différentes réalités, et inclure ces réalités dans nos refontes du parcours de test et des actions proposées à la fin de ce dernier. '
   publicodes.Personas.maj: Pour qu’ils ou elles continuent de représenter la diversité des cas d’usage du simulateur d’empreinte carbone, nous les éditons à chaque ajout ou modification de ce dernier, en respectant les règles suivantes :<1><0>Chaque réponse possible est attribuée à au moins un persona</0> <2>Au moins un persona ne répond rien à la question (il lui est donc attribué la valeur par défaut donnée dans le simulateur).</2></1>
   Quelle est la liste des questions du modèle ?: Quelle est la liste des questions du modèle ?
+  ✅ Aucune règle nécessitant un réponse n'a été répondue par défaut.: ✅ Aucune règle nécessitant un réponse n'a été répondue par défaut.
+  C'est le persona par défaut. Toutes les règles ont été répondues par défaut.: C'est le persona par défaut. Toutes les règles ont été répondues par défaut.
+  règle a été définie dans le persona mais est absente du modèle.: règle a été définie dans le persona mais est absente du modèle.
+  règle est absente du persona.: règle est absente du persona.
+  règle nécessitant une réponse a été répondue par défaut.: règle nécessitant une réponse a été répondue par défaut.
+  règles nécessitant une réponse ont été répondues par défaut.: règles nécessitant une réponse ont été répondues par défaut.
+  règles ont été définies dans le persona mais sont absentes du modèle.: règles ont été définies dans le persona mais sont absentes du modèle.
+  règles sont absentes du persona.: règles sont absentes du persona.

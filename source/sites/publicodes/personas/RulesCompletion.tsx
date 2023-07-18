@@ -1,18 +1,13 @@
 import { NGCRules } from '@/components/publicodesUtils'
-import Engine from 'publicodes'
+import { EngineContext } from '@/components/utils/EngineContext'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
 import { getQuestionList } from '../pages/QuestionList'
 import { Persona } from '../Personas'
 
-export default ({
-	engine,
-	rules,
-	persona,
-}: {
-	engine: Engine
-	rules: NGCRules
-	persona: Persona
-}) => {
+export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
+	const engine = useContext(EngineContext)
+
 	const rawQuestionList = getQuestionList(engine, rules)
 	const completeQuestionList = rawQuestionList.reduce((arr, rule) => {
 		if (!rule.type.includes('Mosaïque')) {
@@ -21,11 +16,17 @@ export default ({
 		return arr
 	}, [])
 
+	const intersectListToInclude = completeQuestionList.filter(
+		(dottedName) => !Object.keys(persona?.data).includes(dottedName)
+	)
+
 	const intersectListToExclude = Object.keys(persona?.data).filter(
 		(dottedName) => !completeQuestionList.includes(dottedName)
 	)
-	const intersectListToInclude = completeQuestionList.filter(
-		(dottedName) => !Object.keys(persona?.data).includes(dottedName)
+
+	const { missingVariables } = engine.evaluate('bilan')
+	const missingRules = Object.keys(missingVariables).filter((dottedName) =>
+		completeQuestionList.includes(dottedName)
 	)
 
 	return (
@@ -35,10 +36,41 @@ export default ({
 			</h2>
 			{Object.keys(persona?.data).length === 0 ? (
 				<p>
-					<Trans>C'est le persona par défaut.</Trans>
+					<Trans>
+						C'est le persona par défaut. Toutes les règles ont été répondues par
+						défaut.
+					</Trans>
 				</p>
 			) : (
 				<div>
+					{missingRules.length === 0 ? (
+						<p>
+							<Trans>
+								✅ Aucune règle nécessitant un réponse n'a été répondue par
+								défaut.
+							</Trans>
+						</p>
+					) : (
+						<details>
+							<summary>
+								{missingRules.length}{' '}
+								{missingRules.length === 1 ? (
+									<Trans>
+										règle nécessitant une réponse a été répondue par défaut.
+									</Trans>
+								) : (
+									<Trans>
+										règles nécessitant une réponse ont été répondues par défaut.
+									</Trans>
+								)}
+							</summary>
+							<ul>
+								{missingRules.map((dottedName) => (
+									<li key={dottedName}>{dottedName}</li>
+								))}
+							</ul>
+						</details>
+					)}
 					{intersectListToInclude.length === 0 ? (
 						<p>
 							<Trans>✅ Aucune règle du modèle est absente du persona.</Trans>
@@ -48,9 +80,9 @@ export default ({
 							<summary>
 								{intersectListToInclude.length}{' '}
 								{intersectListToInclude.length === 1 ? (
-									<Trans>règle est absente du persona</Trans>
+									<Trans>règle est absente du persona.</Trans>
 								) : (
-									<Trans>règles sont absentes du persona</Trans>
+									<Trans>règles sont absentes du persona.</Trans>
 								)}
 							</summary>
 							<ul>
@@ -71,12 +103,12 @@ export default ({
 								{intersectListToExclude.length === 1 ? (
 									<Trans>
 										règle a été définie dans le persona mais est absente du
-										modèle
+										modèle.
 									</Trans>
 								) : (
 									<Trans>
 										règles ont été définies dans le persona mais sont absentes
-										du modèle
+										du modèle.
 									</Trans>
 								)}
 							</summary>
