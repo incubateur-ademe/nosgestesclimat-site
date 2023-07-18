@@ -1,7 +1,6 @@
 /* eslint-env node */
 const HTMLPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
-const ESLintPlugin = require('eslint-webpack-plugin')
 const path = require('path')
 const { NormalModuleReplacementPlugin } = require('webpack')
 
@@ -43,7 +42,6 @@ module.exports.default = {
 		chunkFilename: '[name].chunk.js',
 	},
 	plugins: [
-		new ESLintPlugin({}),
 		new CopyPlugin({
 			patterns: [
 				'./manifest.webmanifest',
