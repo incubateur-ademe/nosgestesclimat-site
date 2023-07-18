@@ -28,6 +28,7 @@ module.exports = {
 		...HTMLPlugins({ injectTrackingScript: true }),
 		new webpack.DefinePlugin({
 			'process.env.NODE_ENV': JSON.stringify('development'),
+			'process.env.BRANCH': JSON.stringify(process.env.BRANCH),
 			'process.env.SERVER_URL': JSON.stringify(process.env.SERVER_URL),
 			'process.env.CONTEXT': JSON.stringify(process.env.CONTEXT),
 			'process.env.SENTRY_DSN': JSON.stringify(process.env.SENTRY_DSN),

@@ -4,7 +4,7 @@ import {
 	clickNextButton,
 	clickUnderstoodButton,
 	startTestAndSkipTutorial,
-} from './utils'
+} from '../utils'
 
 function getAll3FirstLogementQuestions() {
 	cy.get('[id="id-question-logement.saisie-habitants"]')

@@ -11,6 +11,7 @@ export default ({ showText, size = 'large' }) => (
 	>
 		<Link
 			to="/"
+			data-cypress-id="home-logo-link"
 			css={`
 				display: flex;
 				align-items: center;
