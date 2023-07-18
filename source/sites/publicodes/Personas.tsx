@@ -152,67 +152,7 @@ export default () => {
 				</div>
 			)}
 			<PersonaGrid selectedPersona={selectedPersona} />
-			<p>
-				<Trans i18nKey={'publicodes.Personas.description'}>
-					Les personas nous permettront de prendre le parti d'une diversité
-					d'utilisateurs quand ils voient notamment notre écran "passer à
-					l'action".
-				</Trans>
-			</p>
-			<h2>
-				<Trans>Comment créer un persona ?</Trans>
-			</h2>
-			<p>
-				<Trans>C'est dans le fichier</Trans>{' '}
-				<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/personas.yaml">
-					personas.yaml
-				</a>{' '}
-				<Trans i18nKey={'publicodes.Personas.tuto'}>
-					que ça se passe. On peut soit copier coller les données d'un autre
-					persona et les modifier, soit en créer un de zéro depuis la
-					simulation. Une fois la simulation satisfaisante, cliquer sur
-					"Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du
-					navigateur (F12), vérifiez bien que vous êtes dans l'onglet "Console",
-					allez tout en bas de la console (elle est un peu chargée...), puis
-					copier le JSON affiché, le coller dans{' '}
-					<a href="https://www.json2yaml.com">cet outil</a> pour générer un
-					YAML, puis l'insérer dans personas.yaml.
-				</Trans>
-			</p>
-			<p>
-				<Trans i18nKey={'publicodes.Personas.lienGenerateur'}>
-					Pour les prénoms, on peut utiliser{' '}
-					<a href="https://lorraine-hipseau.me">ce générateur</a>
-				</Trans>
-				.
-			</p>
-			<h2>
-				<Trans>Liste des questions du modèle</Trans>
-			</h2>
-			<p>
-				<Trans i18nKey={'publicodes.Personas.listeQuestions'}>
-					La liste des questions du modèle est accessible sur la page{' '}
-					<a href="/questions">/questions</a>
-				</Trans>
-				. La liste exhaustive de toutes les règles pour définir un persona est :
-			</p>
-			<pre
-				className="ui__ code"
-				css={`
-					font-size: 90%;
-					height: 10rem;
-				`}
-			>
-				<code>{yaml.stringify(personasQuestionList)}</code>
-			</pre>
-			<button
-				className="ui__ button small"
-				onClick={() => {
-					navigator.clipboard.writeText(JSON.stringify(personasQuestionList))
-				}}
-			>
-				<Trans>Copier le YAML</Trans>
-			</button>
+			<PersonaExplanations personasQuestionList={personasQuestionList} />
 		</div>
 	)
 }
@@ -321,5 +261,169 @@ export const PersonaGrid = ({
 				)
 			})}
 		</CardGrid>
+	)
+}
+
+export const PersonaExplanations = (personasQuestionList) => {
+	return (
+		<div
+			css={`
+				h2 {
+					display: inline;
+				}
+				details {
+					padding-bottom: 1rem;
+				}
+			`}
+		>
+			<details>
+				<summary>
+					<h2>
+						<Trans>Qui sont-ils ?</Trans>
+					</h2>
+				</summary>
+				<div>
+					<Trans i18nKey={'publicodes.Personas.description'}>
+						Nous les avons définis pour qu’ils représentent la diversité des cas
+						d’usage du simulateur.{' '}
+						<i>
+							Toute ressemblance avec une personne existant ou ayant existé
+							serait purement fortuite !
+						</i>{' '}
+						En aucune mesure, on ne peut dire qu’ils sont représentatifs de la
+						distribution de la population française : il ne s’agit pas de coller
+						aux statistiques de la population, mais de retrouver parmi nos dix
+						personas au moins un qui représente chaque usage majeur et
+						différenciant pour le simulateur. Ainsi, nous avons fait varier pour
+						chacun d’entre eux :
+						<ul>
+							<li>
+								Leur genre : même s’il n’influe pas sur l’empreinte, il serait
+								étonnant de n’avoir que des personas “femmes”.
+							</li>{' '}
+							<li>
+								Leur âge et situation personnelle / professionnelle : au moins
+								un étudiant, un retraité, un adulte au foyer
+							</li>{' '}
+							<li>
+								La taille de leur foyer : de 1 personne à famille nombreuse
+							</li>{' '}
+							<li>
+								Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans
+								le nord, dans le sud, les plaines, la montagne et sur une île
+							</li>{' '}
+							<li>
+								Leur logement : de l’appartement à la maison, du neuf à l’ancien
+							</li>
+							<li>
+								Leurs modes de transport : de la marche à la voiture en passant
+								par le ferry et l’avion
+							</li>{' '}
+							<li>
+								Leur régime alimentaire : au moins un végétalien, un végétarien,
+								une personne ne mangeant que du poisson, et un amateur de viande
+								rouge
+							</li>{' '}
+							<li>
+								Leur tendance à l’achat : du tout occasion au tout neuf, de
+								l’acheteur compulsif à celui ou celle qui n’achète presque rien
+							</li>{' '}
+							<li>
+								Leur façon de partir en vacances : mode de transport,
+								hébergement, on trouve de tout
+							</li>{' '}
+							<li>Leurs loisirs : de la culture, du sport, du bien-être…</li>
+						</ul>
+					</Trans>
+				</div>
+			</details>
+			<details>
+				<summary>
+					<h2>
+						<Trans>Comment créer un persona ?</Trans>
+					</h2>
+				</summary>
+				<div>
+					<Trans>C'est dans le fichier</Trans>{' '}
+					<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/personas.yaml">
+						personas.yaml
+					</a>{' '}
+					<Trans i18nKey={'publicodes.Personas.tuto'}>
+						que ça se passe. On peut soit copier coller les données d'un autre
+						persona et les modifier, soit en créer un de zéro depuis la
+						simulation. Une fois la simulation satisfaisante, cliquer sur
+						"Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du
+						navigateur (F12), vérifiez bien que vous êtes dans l'onglet
+						"Console", allez tout en bas de la console (elle est un peu
+						chargée...), puis copier le JSON affiché, le coller dans{' '}
+						<a href="https://www.json2yaml.com">cet outil</a> pour générer un
+						YAML, puis l'insérer dans personas.yaml.
+					</Trans>
+				</div>
+				<p>
+					<Trans i18nKey={'publicodes.Personas.lienGenerateur'}>
+						Pour les prénoms, on peut utiliser{' '}
+						<a href="https://lorraine-hipseau.me">ce générateur</a>
+					</Trans>
+					.
+				</p>
+			</details>
+			<details>
+				<summary>
+					<h2>
+						<Trans>Quelle est la liste des questions du modèle ?</Trans>
+					</h2>
+				</summary>
+				<div>
+					<Trans i18nKey={'publicodes.Personas.listeQuestions'}>
+						La liste des questions du modèle est accessible sur la page{' '}
+						<a href="/questions">/questions</a>
+					</Trans>
+					. La liste exhaustive de toutes les règles pour définir un persona est
+					:
+				</div>
+				<pre
+					className="ui__ code"
+					css={`
+						font-size: 90%;
+						height: 10rem;
+					`}
+				>
+					<code>{yaml.stringify(personasQuestionList)}</code>
+				</pre>
+				<button
+					className="ui__ button small"
+					onClick={() => {
+						navigator.clipboard.writeText(JSON.stringify(personasQuestionList))
+					}}
+				>
+					<Trans>Copier le YAML</Trans>
+				</button>
+			</details>
+			<details>
+				<summary>
+					<h2>
+						<Trans>Comment les mettons-nous à jour ?</Trans>
+					</h2>
+				</summary>
+				<div>
+					<Trans>
+						Pour qu’ils ou elles continuent de représenter la diversité des cas
+						d’usage du simulateur d’empreinte carbone, nous les éditons à chaque
+						ajout ou modification de ce dernier, en respectant les règles
+						suivantes :
+						<ul>
+							<li>
+								Chaque réponse possible est attribuée à au moins un persona
+							</li>{' '}
+							<li>
+								Au moins un persona ne répond rien à la question (il lui est
+								donc attribué la valeur par défaut donnée dans le simulateur).
+							</li>
+						</ul>
+					</Trans>
+				</div>
+			</details>
+		</div>
 	)
 }
