@@ -76,7 +76,7 @@ const PlanDuSite = () => {
 			))}
 			<Section>
 				<SectionTitle>
-					<Trans i18nKey={`publicodes.planDuSite.actionsPlus`}>
+					<Trans i18nKey={'publicodes.planDuSite.actionsPlus'}>
 						Les actions
 					</Trans>
 				</SectionTitle>

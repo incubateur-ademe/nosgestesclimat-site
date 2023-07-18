@@ -47,7 +47,6 @@ export type Action =
 	| UpdateTargetUnitAction
 	| SetStoredTrajets
 	| SetLocalisationAction
-	| SetRatingAction
 	| ResetLocalisationAction
 	| UpdateAmortissementAvionAction
 	| AddGroupToUserAction

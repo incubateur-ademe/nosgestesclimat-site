@@ -71,7 +71,7 @@ export default ({
 					margin: 10px;
 				`}
 			>
-				<Trans i18nKey={`publicodes.northstar.thankyou`}>
+				<Trans i18nKey={'publicodes.northstar.thankyou'}>
 					Merci pour votre retour !
 				</Trans>
 			</p>

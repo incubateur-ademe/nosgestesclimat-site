@@ -1,5 +1,8 @@
 import { setDifferentSituation } from '@/actions/actions'
-import { matomoEventInteractionIframe } from '@/analytics/matomo-events'
+import {
+	getMatomoEventBranch,
+	matomoEventInteractionIframe,
+} from '@/analytics/matomo-events'
 import AnimatedLoader from '@/AnimatedLoader'
 import { ErrorFallback } from '@/components/ErrorFallback'
 import Footer from '@/components/Footer'
@@ -21,6 +24,17 @@ import {
 import Provider from '@/Provider'
 import { AppState } from '@/reducers/rootReducer'
 import { WithEngine } from '@/RulesProvider'
+import GroupModeSessionVignette from '@/sites/publicodes/conference/GroupModeSessionVignette'
+import EnquêteBanner from '@/sites/publicodes/enquête/BannerWrapper'
+import Landing from '@/sites/publicodes/Landing'
+import Navigation from '@/sites/publicodes/Navigation'
+import About from '@/sites/publicodes/pages/About'
+import Diffuser from '@/sites/publicodes/pages/Diffuser'
+import PlanDuSite from '@/sites/publicodes/pages/Plan'
+import Profil from '@/sites/publicodes/Profil'
+import sitePaths from '@/sites/publicodes/sitePaths'
+import TranslationContribution from '@/sites/publicodes/TranslationContribution'
+import { isFluidLayout } from '@/sites/publicodes/utils'
 import { fetchUser, persistUser } from '@/storage/persistSimulation'
 import { getIsIframe } from '@/utils'
 import * as Sentry from '@sentry/react'
@@ -30,19 +44,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import { Store } from 'redux'
-import { getMatomoEventBranch } from '../../analytics/matomo-events'
-import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
-import EnquêteBanner from './enquête/BannerWrapper'
-
-import Landing from './Landing'
-import Navigation from './Navigation'
-import About from './pages/About'
-import Diffuser from './pages/Diffuser'
-import PlanDuSite from './pages/Plan'
-import Profil from './Profil'
-import sitePaths from './sitePaths'
-import TranslationContribution from './TranslationContribution'
-import { isFluidLayout } from './utils'
 
 // All those lazy components, could be probably be handled another more consise way
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801

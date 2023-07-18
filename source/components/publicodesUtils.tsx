@@ -243,7 +243,7 @@ function ruleSumNode(
 				return node
 			} catch (e) {
 				console.log(
-					`One element of the sum is not a variable. It could be a raw number injected by the optimisation algorithm.`,
+					'One element of the sum is not a variable. It could be a raw number injected by the optimisation algorithm.',
 					e
 				)
 				return null
@@ -346,7 +346,7 @@ export function getSubcategories(
 	rules: NGCRules,
 	category: Category,
 	engine: Engine,
-	sort: boolean = false
+	sort = false
 ): Category[] {
 	const sumToDisplay =
 		category.name === 'logement' ? 'logement . impact' : category.name
@@ -401,7 +401,7 @@ function relegate(keys: string[], categories: Category[]) {
 			throw Error('Make sure the key you want to relegate is in array')
 		}
 
-		let elementToRelegate = memo.find(isKey)
+		const elementToRelegate = memo.find(isKey)
 		if (elementToRelegate !== undefined) {
 			arrayWithoutKey.push(categories.find(isKey)!)
 		}

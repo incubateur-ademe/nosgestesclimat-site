@@ -82,7 +82,7 @@ export default ({
 				`}
 				onClick={closeFeedback}
 			>
-				<img src={`/images/274C.svg`} />
+				<img src={'/images/274C.svg'} />
 			</button>
 			<div
 				css={`
@@ -100,11 +100,11 @@ export default ({
 				>
 					{displayActionRating && (
 						<div>
-							<Trans i18nKey={`publicodes.northstar.title`}>
+							<Trans i18nKey={'publicodes.northstar.title'}>
 								<b>Petite question entre nous...</b>
 							</Trans>
 							<br />
-							<Trans i18nKey={`publicodes.northstar.action`}>
+							<Trans i18nKey={'publicodes.northstar.action'}>
 								Nos Gestes Climat vous donne envie d'agir pour réduire votre
 								empreinte carbone ?
 							</Trans>
@@ -117,11 +117,11 @@ export default ({
 					)}
 					{displayLearnedRating && (
 						<div>
-							<Trans i18nKey={`publicodes.northstar.title`}>
+							<Trans i18nKey={'publicodes.northstar.title'}>
 								<b>Petite question entre nous...</b>
 							</Trans>
 							<br />
-							<Trans i18nKey={`publicodes.northstar.learned`}>
+							<Trans i18nKey={'publicodes.northstar.learned'}>
 								Nos Gestes Climat vous a appris quelque chose ?
 							</Trans>
 							<Northstar

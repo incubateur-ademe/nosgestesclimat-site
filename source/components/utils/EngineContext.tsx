@@ -19,7 +19,7 @@ export const engineOptions = {
 }
 
 export function useEngine(): Engine<DottedName> {
-	return useContext(EngineContext) as Engine<DottedName>
+	return useContext(EngineContext) 
 }
 
 type SetSituationForValidKeysProps = {

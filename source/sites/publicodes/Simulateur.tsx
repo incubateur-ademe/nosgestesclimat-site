@@ -160,7 +160,7 @@ const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 		// NOTE(@EmileRolley): initally, we used a `navigate` + `return null` to redirect
 		// to the tutorial page. However, this was causing a bug (see
 		// '../../../cypress/e2e/pages/simulation.cy.js'), so we use a `Navigate` component.
-		return <Navigate to={`/tutoriel`} replace={true} />
+		return <Navigate to={'/tutoriel'} replace={true} />
 	}
 
 	return (
