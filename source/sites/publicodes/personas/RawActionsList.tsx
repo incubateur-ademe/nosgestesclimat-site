@@ -2,20 +2,18 @@ import {
 	Category,
 	DottedName,
 	extractCategoriesNamespaces,
+	NGCRules,
 	splitName,
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
-import { AppState } from '@/reducers/rootReducer'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { getFormattedActionValue } from '../ActionVignette'
 import { humanWeight } from '../HumanWeight'
 import useActions from '../useActions'
 
-export default () => {
+export default ({ rules }: { rules: NGCRules }) => {
 	const { t, i18n } = useTranslation()
 	const engine = useEngine()
-	const rules = useSelector((state: AppState) => state.rules)
 	const { interestingActions: actionResultsRaw } = useActions({
 		focusedAction: null,
 		rules,
