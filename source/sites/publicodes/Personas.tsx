@@ -238,7 +238,15 @@ export const PersonaGrid = ({
 	}
 
 	return (
-		<CardGrid css="padding: 0; justify-content: center">
+		<CardGrid
+			css={`
+				padding: 0;
+				justify-content: center;
+				li {
+					margin: 0.4rem;
+				}
+			`}
+		>
 			{personasList.map((persona) => {
 				const { nom, icônes, description, résumé } = persona
 				return (
@@ -248,9 +256,10 @@ export const PersonaGrid = ({
 								selectedPersona?.nom === nom ? 'selected' : ''
 							}`}
 							css={`
-								width: 13rem !important;
-								height: 15rem !important;
-								padding: 0.75rem 0.5rem 0.75rem 0.5rem !important;
+								width: 11rem !important;
+								height: 13rem !important;
+								padding: 0.5rem 0.25rem 0.5rem 0.25rem !important;
+								margin: 0 !important;
 								img {
 									margin-bottom: 0.5rem;
 								}
@@ -261,7 +270,7 @@ export const PersonaGrid = ({
 								css={`
 									text-transform: uppercase;
 									color: var(--color);
-									font-size: 90%;
+									font-size: 80%;
 								`}
 							>
 								<div>{emoji(icônes || '👥')}</div>
