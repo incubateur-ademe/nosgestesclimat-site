@@ -115,8 +115,9 @@ export default () => {
 					</p>
 					<p>
 						<Trans>
-							Cette page vous permet de naviguer les parcours Nos Gestes Climat
-							comme si vous étiez l'un des profils types que nous avons listés.
+							Cette page vous permet de naviguer dans les parcours Nos Gestes
+							Climat comme si vous étiez l'un des profils types que nous avons
+							listés.
 						</Trans>
 					</p>
 					<p>
@@ -323,11 +324,11 @@ export const PersonaExplanations = ({ personasQuestionList }) => {
 						<ul>
 							<li>
 								Leur genre : même s’il n’influe pas sur l’empreinte, il serait
-								étonnant de n’avoir que des personas “femmes”.
+								étonnant de n’avoir que des personas “femmes”
 							</li>{' '}
 							<li>
 								Leur âge et situation personnelle / professionnelle : au moins
-								un étudiant, un retraité, un adulte au foyer
+								un étudiant, un retraité, un adulte au foyer, un actif
 							</li>{' '}
 							<li>
 								La taille de leur foyer : de 1 personne à famille nombreuse
