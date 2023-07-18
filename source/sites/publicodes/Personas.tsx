@@ -95,6 +95,9 @@ export default () => {
 					flex-direction: row;
 					align-items: center;
 					margin-bottom: 1rem;
+					@media (max-width: 800px) {
+						flex-direction: column;
+					}
 				`}
 			>
 				<div>
