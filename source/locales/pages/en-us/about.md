@@ -1,4 +1,4 @@
-# About us
+<h1 data-cypress-id="about-us-title">About us</h1>
 
 ## What is it?
 
@@ -103,7 +103,7 @@ To find out more about the French government's digital accessibility policy: htt
 If you encounter an accessibility problem that prevents you from accessing
 content or functionality, please let us know:
 
--  <a href="/contact">via our contact form</a>
+-   <a href="/contact">via our contact form</a>
 -   via <rgaa@ademe.fr>
 -   via <contact@nosgestesclimat.fr>
 
