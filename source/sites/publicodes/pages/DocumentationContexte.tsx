@@ -1,27 +1,25 @@
-import { Markdown } from 'Components/utils/markdown'
-import Meta from 'Components/utils/Meta'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import { Markdown } from '@/components/utils/markdown'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-import { getLangInfos, Lang } from '../../../locales/translation'
+import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
 
 import contentEn from '../../../locales/pages/en-us/documentation.md'
-// import contentEs from '../../../locales/pages/es/documentation.md'
 import contentFr from '../../../locales/pages/fr/documentation.md'
-// import contentIt from '../../../locales/pages/it/documentation.md'
 
 export default () => {
 	const { t, i18n } = useTranslation()
 	const l: Lang = i18n.language as Lang
 
-	const content =
+	const content = getMarkdownInCurrentLang(
 		[
 			[Lang.Fr, contentFr],
 			[Lang.En, contentEn],
-			// [Lang.Es, contentEs],
-			// [Lang.It, contentIt],
-		].find(([lang]) => getLangInfos(lang).abrv === l)?.[1] || contentFr
+		],
+		l
+	)
 
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">

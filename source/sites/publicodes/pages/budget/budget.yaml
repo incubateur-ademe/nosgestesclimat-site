@@ -1,0 +1,46 @@
+# A rentrer en TTC
+
+# markup : 10% (montant HT - markup = montant dispo)
+# markup inverse : (1 / (1 - markup)) - 1 = 11,1% (pour passer du dispo au HT)
+# Pour cette première version, on ne distingue pas la marge du porteur dans le budget.
+
+
+2020:
+  description: |
+    En 2020, Datagir (alors baptisé Ecolab) lance le simulateur Nos Gestes Climat.  
+    En fin d’année, 4 personnes travaillent dans le service (tout ou partie de leur temps). Le budget présenté est celui de Datagir, incluant les autres produits de Datagir.
+  total:
+    Développement: 101592
+    Déploiement: 0
+    Coaching: 33918
+
+2021:
+  description: |
+    En 2021, Nos Gestes Climat est développé au sein de Datagir. Le produit poursuit sa phase d'accélération et entame une phase de consolidation au sein de l'ADEME. 
+    En fin d’année, 7 personnes travaillent dans le service (tout ou partie de leur temps). Le budget présenté est celui de Datagir, incluant les autres produits de Datagir.
+  total:
+    Développement: 267161
+    Déploiement: 42702
+    Coaching: 13567
+
+2022:
+  description: |
+    En 2022, Nos Gestes Climat est développé au sein de Datagir, et termine la phase de transfert et de consolidation. Le service est pérennisé au sein de l'ADEME.
+    En fin d’année, 9 personnes travaillent dans le service Datagir (tout ou partie de leur temps). Le budget présenté est celui de Datagir, incluant les autres produits de Datagir. 
+  total:
+    Développement: 457477
+    Déploiement: 60577
+    Produit: 60159
+    Coaching: 26783
+
+2023:
+  description: |
+    En 2023, Nos Gestes Climat est un service pérennisé, porté par l'Accélérateur de la transition écologique au sein de l'ADEME.
+    L’amélioration continue et le déploiement du simulateur existant se poursuivent.
+    A mi-année, 9 personnes travaillent pour Nos Gestes Climat (tout ou partie de leur temps). Le budget présenté est le budget prévisionnel jusqu'à fin 2023.
+  total:
+    Développement: 430023
+    Déploiement: 75998
+    Produit: 114740
+    Design: 84933
+    Coaching: 27648
