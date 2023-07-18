@@ -287,7 +287,7 @@ export const PersonaGrid = ({
 	)
 }
 
-export const PersonaExplanations = (personasQuestionList) => {
+export const PersonaExplanations = ({ personasQuestionList }) => {
 	return (
 		<div
 			css={`
