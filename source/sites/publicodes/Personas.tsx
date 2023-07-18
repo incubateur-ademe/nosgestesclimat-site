@@ -6,6 +6,7 @@ import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
+import yaml from 'yaml'
 import { setDifferentSituation } from '../../actions/actions'
 import useBranchData from '../../components/useBranchData'
 import { useEngine } from '../../components/utils/EngineContext'
@@ -64,14 +65,12 @@ export default () => {
 	const engine = useEngine()
 	const rules = useSelector((state: AppState) => state.rules)
 	const rawQuestionList = getQuestionList(engine, rules)
-	const personasQuestionList = rawQuestionList.reduce((acc, rule) => {
-		if (rule.type !== '🪟 Mosaïque de type nombre') {
-			acc.push(rule.dottedName)
+	const personasQuestionList = rawQuestionList.reduce((obj, rule) => {
+		if (!rule.type.includes('Mosaïque')) {
+			obj[rule.dottedName] = ''
 		}
-		return acc
-	}, [])
-
-	console.log(JSON.stringify(personasQuestionList))
+		return obj
+	}, {})
 
 	const visualisationComponentProps = {
 		score: engine.evaluate('bilan').nodeValue,
@@ -191,19 +190,22 @@ export default () => {
 				</Trans>
 				. La liste exhaustive de toutes les règles pour définir un persona est :
 			</p>
-			<textarea
-				value={JSON.stringify(personasQuestionList)}
+			<pre
+				className="ui__ code"
 				css={`
-					width: 90%;
+					font-size: 90%;
+					height: 10rem;
 				`}
-			/>
+			>
+				<code>{yaml.stringify(personasQuestionList)}</code>
+			</pre>
 			<button
 				className="ui__ button small"
 				onClick={() => {
 					navigator.clipboard.writeText(JSON.stringify(personasQuestionList))
 				}}
 			>
-				Copier le JSON
+				<Trans>Copier le YAML</Trans>
 			</button>
 		</div>
 	)
