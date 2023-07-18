@@ -17,10 +17,10 @@ export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
 	}, [])
 
 	const intersectListToInclude = completeQuestionList.filter(
-		(dottedName) => !Object.keys(persona?.data).includes(dottedName)
+		(dottedName) => !Object.keys(persona?.situation).includes(dottedName)
 	)
 
-	const intersectListToExclude = Object.keys(persona?.data).filter(
+	const intersectListToExclude = Object.keys(persona?.situation).filter(
 		(dottedName) => !completeQuestionList.includes(dottedName)
 	)
 
@@ -34,7 +34,7 @@ export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
 			<h2>
 				<Trans>Complétude des règles du personas:</Trans>
 			</h2>
-			{Object.keys(persona?.data).length === 0 ? (
+			{Object.keys(persona?.situation).length === 0 ? (
 				<p>
 					<Trans>
 						C'est le persona par défaut. Toutes les règles ont été répondues par
@@ -46,7 +46,7 @@ export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
 				<div>
 					<p>
 						{persona?.nom} <Trans>a répondu à </Trans>{' '}
-						{Object.keys(persona?.data).length} <Trans>questions</Trans>.
+						{Object.keys(persona?.situation).length} <Trans>questions</Trans>.
 					</p>
 					{missingRules.length === 0 ? (
 						<p>

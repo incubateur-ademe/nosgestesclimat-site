@@ -26,7 +26,7 @@ import Summary from './personas/Summary'
 export type Persona = {
 	nom: string
 	icônes: string
-	data: Situation
+	situation: Situation
 	description: string
 	résumé: string
 }
@@ -226,7 +226,7 @@ export const PersonaGrid = ({
 			config: { objectifs: [objectif] },
 			url: '/simulateur/bilan',
 			// the schema of personas is not fixed yet
-			situation: persona.data.situation || persona.data,
+			situation: persona.situation,
 			persona: persona,
 			// If not specified, act as if all questions were answered : all that is not in
 			// the situation object is a validated default value
