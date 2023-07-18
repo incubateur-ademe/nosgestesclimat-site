@@ -1,6 +1,7 @@
 import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
-import { AppState, Simulation, Situation } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
+import { Simulation, Situation } from '@/types/simulation'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
