@@ -19,6 +19,7 @@ import FinShareButton from './fin/FinShareButton'
 import { CardGrid } from './ListeActionPlus'
 import { getQuestionList } from './pages/QuestionList'
 import RawActionsList from './personas/RawActionsList'
+import RulesCompletion from './personas/RulesCompletion'
 import Summary from './personas/Summary'
 
 export type Persona = {
@@ -37,6 +38,10 @@ const visualisationChoices = {
 	aucun: { titre: 'Aucun', composant: Nothing },
 	summary: { titre: 'Description', composant: Summary },
 	actionList: { titre: 'Actions associées', composant: RawActionsList },
+	exhaustivite: {
+		titre: 'Exhaustivité des règles',
+		composant: RulesCompletion,
+	},
 	profil: { titre: 'Détail Réponses', composant: AnswerList },
 	ravijen: { titre: 'Graphe Bilan', composant: RavijenChart },
 	budget: { titre: 'Page de fin - Budget', composant: Budget },
@@ -76,6 +81,7 @@ export default () => {
 		score: engine.evaluate('bilan').nodeValue,
 		headlessMode: true,
 		engine: engine,
+		rules: rules,
 		persona: selectedPersona,
 	}
 
