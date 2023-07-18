@@ -38,11 +38,16 @@ export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
 				<p>
 					<Trans>
 						C'est le persona par défaut. Toutes les règles ont été répondues par
-						défaut.
-					</Trans>
+						défaut
+					</Trans>{' '}
+					({completeQuestionList.length}).
 				</p>
 			) : (
 				<div>
+					<p>
+						{persona?.nom} <Trans>a répondu à </Trans>{' '}
+						{Object.keys(persona?.data).length} <Trans>questions</Trans>.
+					</p>
 					{missingRules.length === 0 ? (
 						<p>
 							<Trans>
