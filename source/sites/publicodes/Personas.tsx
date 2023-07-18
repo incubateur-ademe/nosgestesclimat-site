@@ -103,6 +103,17 @@ export default () => {
 				<div>
 					<p>
 						<Trans>
+							Les personas nous servent à tester le simulateur sous toutes ses
+							coutures, et à vérifier qu’il s’adapte bien à toutes les
+							situations de vie des citoyens métropolitains. De par leur
+							présence, ils nous forcent à penser à tous les cas d’usage, pour
+							nous projeter dans différentes réalités, et inclure ces réalités
+							dans nos refontes du parcours de test et des actions proposées à
+							la fin de ce dernier.{' '}
+						</Trans>
+					</p>
+					<p>
+						<Trans>
 							Cette page vous permet de naviguer les parcours Nos Gestes Climat
 							comme si vous étiez l'un des profils types que nous avons listés.
 						</Trans>
