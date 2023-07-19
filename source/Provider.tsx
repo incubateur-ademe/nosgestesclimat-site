@@ -1,17 +1,20 @@
-import { ThemeColorsProvider } from 'Components/utils/colors'
-import IframeOptionsProvider from 'Components/utils/IframeOptionsProvider'
-import { SitePathProvider, SitePaths } from 'Components/utils/SitePathsContext'
+import { ThemeColorsProvider } from '@/components/utils/colors'
+import IframeOptionsProvider from '@/components/utils/IframeOptionsProvider'
+import {
+	SitePathProvider,
+	SitePaths,
+} from '@/components/utils/SitePathsContext'
+import { MatomoProvider } from '@/contexts/MatomoContext'
+import reducers, { AppState } from '@/reducers/rootReducer'
+import RulesProvider from '@/RulesProvider'
+import { getIsIframe } from '@/utils'
 import i18next from 'i18next'
 import { useMemo } from 'react'
 import { I18nextProvider } from 'react-i18next'
 import { Provider as ReduxProvider } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
-import reducers, { AppState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
-import { MatomoProvider } from './contexts/MatomoContext'
-import RulesProvider from './RulesProvider'
-import { getIsIframe } from './utils'
 
 declare global {
 	interface Window {
