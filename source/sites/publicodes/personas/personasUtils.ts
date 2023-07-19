@@ -16,10 +16,10 @@ export function parsePersonasFromJSON(json: object): Persona[] {
 		if (
 			'nom' in persona &&
 			'icônes' in persona &&
-			('description' in persona || 'résumé' in persona) &&
-			'situation' in persona
+			'situation' in persona &&
+			('description' in persona || 'résumé' in persona)
 		) {
-			personas.push(persona)
+			personas.push({ ...persona })
 		} else {
 			console.warn('Persona invalide :', persona)
 		}
