@@ -22,7 +22,7 @@ export default () => {
 	const engine = useEngine()
 	const questionRules = Object.entries(rules)
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
-		.filter((el) => el && el.question && !el.inactif)
+		.filter((el) => el && el.question)
 
 	const jsonList = getQuestionsInRules(engine, rules)
 
@@ -101,7 +101,7 @@ export function getQuestionsInRules(
 	const rulesNodes = engine.getParsedRules() as NGCRulesNodes
 	const questionRules = Object.entries(rules)
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
-		.filter((el) => el && el.question && !el.inactif)
+		.filter((el) => el && el.question)
 
 	const questions = questionRules.map((rule) => {
 		const { type, mosaic } = getQuestionType(rulesNodes, rule)
