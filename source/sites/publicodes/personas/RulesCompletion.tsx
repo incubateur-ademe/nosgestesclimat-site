@@ -2,13 +2,13 @@ import { NGCRules } from '@/components/publicodesUtils'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { getQuestionList } from '../pages/QuestionList'
+import { getQuestionsInRules } from '../pages/QuestionList'
 import { Persona } from '../Personas'
 
 export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
 	const engine = useContext(EngineContext)
 
-	const rawQuestionList = getQuestionList(engine, rules)
+	const rawQuestionList = getQuestionsInRules(engine, rules)
 	const completeQuestionList = rawQuestionList.reduce((arr, rule) => {
 		if (!rule.type.includes('Mosaïque')) {
 			arr.push(rule.dottedName)

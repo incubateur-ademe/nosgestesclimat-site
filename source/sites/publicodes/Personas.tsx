@@ -1,7 +1,7 @@
 import { setDifferentSituation } from '@/actions/actions'
 import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
-import useBranchData from '@/components/useBranchData'
+import useBranchData, { BranchData } from '@/components/useBranchData'
 import { useEngine } from '@/components/utils/EngineContext'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
@@ -13,7 +13,7 @@ import FinShareButton from '@/sites/publicodes/fin/FinShareButton'
 import { CardGrid } from '@/sites/publicodes/ListeActionPlus'
 import { getQuestionsInRules } from '@/sites/publicodes/pages/QuestionList'
 import {
-	parsePersonasFromJSON,
+	fetchAndSetAvailablePersonas,
 	Persona,
 } from '@/sites/publicodes/personas/personasUtils'
 import RawActionsList from '@/sites/publicodes/personas/RawActionsList'
@@ -61,13 +61,9 @@ export default () => {
 
 	const engine = useEngine()
 	const rules = useSelector((state: AppState) => state.rules)
-	const rawQuestionList = getQuestionsInRules(engine, rules)
-	const personasQuestionList = rawQuestionList.reduce((obj, rule) => {
-		if (!rule.type.includes('Mosaïque')) {
-			obj[rule.dottedName] = ''
-		}
-		return obj
-	}, {})
+	const personasQuestions = getQuestionsInRules(engine, rules).filter(
+		({ type }) => !type.includes('Mosaïque')
+	)
 
 	const visualisationComponentProps = {
 		score: engine.evaluate('bilan').nodeValue,
@@ -159,7 +155,7 @@ export default () => {
 				</div>
 			)}
 			<PersonaGrid selectedPersona={selectedPersona} />
-			<PersonaExplanations personasQuestionList={personasQuestionList} />
+			<PersonaExplanations personasQuestionList={personasQuestions} />
 		</div>
 	)
 }
@@ -176,7 +172,7 @@ export const PersonaGrid = ({
 	const [availablePersonas, setAvailablePersonas] = useState<Persona[]>([])
 	const engine = useEngine()
 
-	const branchData = useBranchData()
+	const branchData: BranchData = useBranchData()
 	const lang = i18n.language === 'en' ? 'en-us' : i18n.language
 
 	const navigate = useNavigate()
@@ -184,28 +180,14 @@ export const PersonaGrid = ({
 	const redirect = params.get('redirect')
 
 	useEffect(() => {
-		if (!branchData.loaded) return
-		const fileName = `/personas-${lang}.json`
-
-		if (process.env.NODE_ENV === 'development') {
-			const json: object = require('../../../nosgestesclimat/public' + fileName)
-			const personas: Persona[] = parsePersonasFromJSON(json)
-			setAvailablePersonas(personas)
-		} else {
-			fetch(branchData.deployURL + fileName, {
-				mode: 'cors',
-			})
-				.then((response) => response.json())
-				.then((json) => {
-					const personas: Persona[] = parsePersonasFromJSON(json)
-					setAvailablePersonas(personas)
-				})
-				.catch((err) => {
-					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
-					console.log('err:', err)
-				})
+		if (branchData.loaded) {
+			fetchAndSetAvailablePersonas(
+				`/personas-${lang}.json`,
+				branchData,
+				setAvailablePersonas
+			)
 		}
-	}, [branchData.deployURL, branchData.loaded, lang])
+	}, [branchData, lang])
 
 	if (availablePersonas.length === 0) {
 		return null

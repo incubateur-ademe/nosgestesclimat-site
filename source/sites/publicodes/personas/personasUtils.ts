@@ -1,3 +1,4 @@
+import { BranchData } from '@/components/useBranchData'
 import { Situation } from '@/types/simulation'
 
 export type Persona = {
@@ -25,4 +26,30 @@ export function parsePersonasFromJSON(json: object): Persona[] {
 	})
 
 	return personas
+}
+
+export function fetchAndSetAvailablePersonas(
+	fileName: string,
+	branchData: BranchData,
+	setAvailablePersonas: (personas: Persona[]) => void
+) {
+	if (process.env.NODE_ENV === 'development') {
+		const json: object = require('../../../../nosgestesclimat/public' +
+			fileName)
+		const personas: Persona[] = parsePersonasFromJSON(json)
+		setAvailablePersonas(personas)
+	} else {
+		fetch(branchData.deployURL + fileName, {
+			mode: 'cors',
+		})
+			.then((response) => response.json())
+			.then((json) => {
+				const personas: Persona[] = parsePersonasFromJSON(json)
+				setAvailablePersonas(personas)
+			})
+			.catch((err) => {
+				console.log('url:', branchData.deployURL + fileName)
+				console.log('err:', err)
+			})
+	}
 }
