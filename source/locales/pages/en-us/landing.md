@@ -1,6 +1,6 @@
 ## The reference simulator
 
-With **more than [a million tests completed](/stats)**, nosgestesclimat.fr
+With **over [a million tests completed](/stats)**, nosgestesclimat.fr
 is the reference personal carbon footprint calculator.
 
 ## What is my climate footprint?
