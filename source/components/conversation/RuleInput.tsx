@@ -35,7 +35,7 @@ export type Value = any
 
 export type RuleInputProps = {
 	dottedName: DottedName
-	onChange: (value: Value | null) => void
+	onChange: (value: Value) => void
 	useSwitch?: boolean
 	isTarget?: boolean
 	autoFocus?: boolean

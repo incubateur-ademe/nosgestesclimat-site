@@ -17,7 +17,7 @@ type SearchBarProps = {
 
 type SearchItem = {
 	title: string
-	dottedName: Object
+	dottedName: object
 	espace: Array<string>
 }
 

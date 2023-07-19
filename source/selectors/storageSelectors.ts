@@ -14,9 +14,9 @@ import { Simulation, SimulationConfig } from '@/types/simulation'
 export type SavedSimulation = {
 	situation: Simulation['situation']
 	foldedSteps?: Array<DottedName>
-	actionChoices: Object
+	actionChoices: object
 	persona?: string
-	storedTrajets: Object
+	storedTrajets: object
 	storedAmortissementAvion: { [key: string]: number }
 	conference: { room: string } | null
 	survey: { room: string } | null
@@ -32,9 +32,9 @@ export type SavedSimulation = {
 
 // This type is used to describe the old format of the simulation stored in users' local storage.
 export type OldSavedSimulation = SavedSimulation & {
-	tutorials: Object
+	tutorials: object
 	currentLang: Lang
-	localisation: Object | undefined
+	localisation: object | undefined
 }
 
 export type SavedSimulationList = SavedSimulation[]
@@ -45,9 +45,9 @@ export type SavedSimulationList = SavedSimulation[]
 export type User = {
 	simulations: SavedSimulationList
 	currentSimulationId: string | undefined
-	tutorials: Object
+	tutorials: object
 	currentLang: Lang
-	localisation: Object | undefined
+	localisation: object | undefined
 	hasSubscribedToNewsletter: boolean
 	groups: Group[]
 	user: {

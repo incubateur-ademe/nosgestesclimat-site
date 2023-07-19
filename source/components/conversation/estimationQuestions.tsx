@@ -5,7 +5,7 @@ import { Evaluation } from 'publicodes'
 import { InputHTMLAttributes } from 'react'
 
 const estimationQuestions: Array<{
-	isApplicable: Function
+	isApplicable: (dottedName: DottedName) => boolean
 	component: ({
 		dottedName,
 		commonProps,

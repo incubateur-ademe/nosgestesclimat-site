@@ -1,4 +1,5 @@
 import { localStorageKey } from '@/components/NewsBanner'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { usePersistingState } from '@/hooks/usePersistState'
 import { getCurrentLangInfos } from '@/locales/translation'
 import {

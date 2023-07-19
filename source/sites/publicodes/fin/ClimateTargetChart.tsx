@@ -1,18 +1,16 @@
-import NeutralH1 from 'Components/ui/NeutralH1'
-import { AnimatePresence, motion } from 'framer-motion'
-import emoji from 'react-easy-emoji'
-import { useSelector } from 'react-redux'
-import { extractCategories } from '../../../components/publicodesUtils'
-import { useEngine } from '../../../components/utils/EngineContext'
-
-import { relegateCommonCategories } from 'Components/publicodesUtils'
-import { useLayoutEffect, useRef, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import {
-	getLangFromAbreviation,
-	getLangInfos,
-} from '../../../locales/translation'
+	extractCategories,
+	relegateCommonCategories,
+} from '@/components/publicodesUtils'
+import SafeCategoryImage from '@/components/SafeCategoryImage'
+import NeutralH1 from '@/components/ui/NeutralH1'
+import { useEngine } from '@/components/utils/EngineContext'
+import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
+import { AnimatePresence, motion } from 'framer-motion'
+import { useLayoutEffect, useRef, useState } from 'react'
+import emoji from 'react-easy-emoji'
+import { Trans, useTranslation } from 'react-i18next'
+import { useSelector } from 'react-redux'
 
 export const sustainableLifeGoal = 2000 // kgCO2e
 const sustainableBackground = '#78e08f'
@@ -362,7 +360,6 @@ export const ObjectiveExplanation = () => {
 		>
 			<img
 				src="/images/info.svg"
-				aira-hidden
 				css={`
 					width: 1.5rem;
 					vertical-align: middle;

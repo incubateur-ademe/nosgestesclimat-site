@@ -1,8 +1,11 @@
 import Title from '@/components/groupe/Title'
-import { localStorageKey } from 'Components/NewsBanner'
-import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
-import Meta from 'Components/utils/Meta'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import { localStorageKey } from '@/components/NewsBanner'
+import { MarkdownWithAnchorLinks } from '@/components/utils/markdown'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { usePersistingState } from '@/hooks/usePersistState'
+import { getCurrentLangInfos, Release } from '@/locales/translation'
+import { capitalise0 } from '@/utils'
 import { useEffect } from 'react'
 import emoji from 'react-easy-emoji'
 import { useTranslation } from 'react-i18next'
@@ -14,9 +17,6 @@ import {
 	useNavigate,
 } from 'react-router-dom'
 import styled from 'styled-components'
-import { usePersistingState } from '../../../../hooks/usePersistState'
-import { getCurrentLangInfos, Release } from '../../../../locales/translation'
-import { capitalise0 } from '../../../../utils'
 
 export const dateCool = (date: Date, abrvLocale: string) =>
 	date.toLocaleString(abrvLocale, {
@@ -34,7 +34,7 @@ export const sortReleases = (releases) =>
 				-1 * r1.published_at.localeCompare(r2.published_at)
 		)
 
-export const getPath = (index: number, data: Array<Object>) => {
+export const getPath = (index: number, data: object[]) => {
 	return `${'/nouveautés'}/${slugify(data[index]?.name)}`
 }
 

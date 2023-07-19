@@ -163,6 +163,19 @@ const LangSwitcherContainerBase = styled.div`
 	}
 `
 
+const LangSwitcherNav = styled(LangSwitcherContainerBase)`
+	top: auto;
+	@media (min-width: 800px) {
+		position: relative;
+		top: 0px;
+		right: 0px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
+`
+
 function LangSwitcherContainer({
 	from,
 	children,
@@ -175,18 +188,6 @@ function LangSwitcherContainer({
 			return <LangSwitcherContainerBase>{children}</LangSwitcherContainerBase>
 		case 'navigation':
 		default:
-			const LangSwitcherNav = styled(LangSwitcherContainerBase)`
-				top: auto;
-				@media (min-width: 800px) {
-					position: relative;
-					top: 0px;
-					right: 0px;
-					display: flex;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-				}
-			`
 			return <LangSwitcherNav>{children}</LangSwitcherNav>
 	}
 }

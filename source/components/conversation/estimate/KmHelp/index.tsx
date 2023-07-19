@@ -13,6 +13,7 @@ import { DottedName } from '@/components/publicodesUtils'
 import animate from '@/components/ui/animate'
 import { useMatomo } from '@/contexts/MatomoContext'
 import { getLangFromAbreviation, getLangInfos } from '@/locales/translation'
+import { AppState } from '@/reducers/rootReducer'
 import { motion } from 'framer-motion'
 import {
 	Dispatch,
@@ -38,7 +39,7 @@ const openmojis = {
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 interface KmHelpProps {
-	setFinalValue: () => {}
+	setFinalValue: (n: number) => void
 	dottedName: DottedName
 	isFormOpen: boolean
 	setIsFormOpen: Dispatch<SetStateAction<boolean>>
@@ -55,7 +56,7 @@ export default function KmHelp({
 	const { trackEvent } = useMatomo()
 
 	const dispatch = useDispatch()
-	const storedTrajets = useSelector((state) => state.storedTrajets)
+	const storedTrajets = useSelector((state: AppState) => state.storedTrajets)
 
 	const [trajets, setTrajets] = useState(storedTrajets[dottedName] || [])
 

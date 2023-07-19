@@ -7,7 +7,7 @@ import { useEffect } from 'react'
 export default function useKeypress(
 	key: string,
 	control: boolean,
-	action: Function,
+	action: (e: KeyboardEvent) => void,
 	eventType = 'keyup',
 	hookConditions
 ) {

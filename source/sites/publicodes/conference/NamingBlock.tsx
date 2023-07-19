@@ -6,7 +6,7 @@ import { generateRoomName } from './utils'
 export default ({ newRoom, setNewRoom }) => {
 	const inputRef = useRef(null)
 	const [showInvalidMessage, setShowInvalidMessage] = useState(true)
-	const specialCharaters = /[\s!@#$%&*()+\=\[\]{};':"\\|,.<>\/?]+/
+	const specialCharaters = /[\s!@#$%&*()+=[\]{};':"\\|,.<>/?]+/
 	const { t } = useTranslation()
 
 	return (
@@ -60,7 +60,9 @@ export default ({ newRoom, setNewRoom }) => {
 			{newRoom && showInvalidMessage && (
 				<p>
 					<Trans
-						i18nKey={'publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres'}
+						i18nKey={
+							'publicodes.conference.NamingBlock.nomSalleDoitContenirDesLettres'
+						}
 					>
 						💡 Votre nom de salle ne peut que contenir des lettres, des chiffres
 						et des tirets
