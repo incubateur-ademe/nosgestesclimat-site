@@ -32,6 +32,25 @@
     > Manger un kg de patates, rouler 10 000 km en voiture, regarder une vidéo en streaming... émettent des Gaz à Effet de Serre (GES), mais bien évidemment dans des proportions très différentes. Et nous n'avons pas toujours ces chiffres en tête.
 
     Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer l'empreinte carbone individuelle de consommation.
+- id: mesure
+  question: How do you measure a carbon footprint?
+  catégorie: general
+  réponse: |
+
+    To find out how much each of our actions emits, we rely as soon as we can on the <a href="https://www.bilans-ges.ademe.fr/fr/accueil">Base Carbone</a> of ADEME (the French Agency for Ecological Transition). This database contains hundreds of "emission factors" derived from life-cycle analyses, enabling us to go from kilometers driven, kilograms of meat, kWh consumed, of a TV to the quantity of greenhouse gases emitted.
+
+    The aim of Nos Gestes Climat is to manipulate these figures to **simply question our lifestyles** in order to identify what contributes more or less to our carbon footprint.
+
+    > 💡 To discover the climate footprint consumption by consumption, do not hesitate to continue on <a href="https://impactco2.fr">impactCO2.fr</a> after your Nos Gestes Climat test.
+  question.lock: Comment mesure-t-on une empreinte carbone ?
+  catégorie.lock: général
+  réponse.lock: |
+
+    Pour savoir combien émettent chacune de nos actions, nous nous en remettons dès que nous le pouvons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'Agence française de la transition écologique). Cette base regroupe des centaines de "facteurs d'émission" issus d'analyses de cycle de vie qui permettent de passer de kilomètres roulés, de kilogrammes de viande, de kWh consommé, d'une TV à la quantité de gaz à effet de serre émise.
+
+    Le but de Nos Gestes Climat est de manipuler ces chiffres pour **questionner simplement notre mode de vie** afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
+
+    > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
 - id: international
   question: Is the calculator just for the French?
   catégorie: general
@@ -552,22 +571,3 @@
     Ces ratios monétaires permettent d’estimer le contenu carbone d’un produit ou service acheté à partir de son prix. Pour ce faire, un produit « moyen » standard est considéré. Il ne prend donc pas en compte les spécificités des produits moins impactants (occasion, durables, éco-conçus…), ce qui tend à majorer l’empreinte finale.
 
     Nous avons fait le choix de focaliser ces questions sur les produits achetés neufs car la différence d’impact avec les produits d’occasion est très significative. La phase de production du produit, qui représente très souvent la majorité des impacts, n’est pas prise en compte pour les produits d’occasion. Quant aux différences d’impacts entre les produits neufs (typiquement entre un jean issu de la fast-fashion et un jean éco-conçu), Nos Gestes Climat choisit, une fois encore, de rester simple.
-- id: mesure
-  question: How do you measure a carbon footprint?
-  catégorie: general
-  réponse: |
-
-    To find out how much each of our actions emits, we rely as soon as we can on the <a href="https://www.bilans-ges.ademe.fr/fr/accueil">Base Carbone</a> of ADEME (the French Agency for Ecological Transition). This database contains hundreds of "emission factors" derived from life-cycle analyses, enabling us to go from kilometers driven, kilograms of meat, kWh consumed, of a TV to the quantity of greenhouse gases emitted.
-
-    The aim of Nos Gestes Climat is to manipulate these figures to **simply question our lifestyles** in order to identify what contributes more or less to our carbon footprint.
-
-    > 💡 To discover the climate footprint consumption by consumption, do not hesitate to continue on <a href="https://impactco2.fr">impactCO2.fr</a> after your Nos Gestes Climat test.
-  question.lock: Comment mesure-t-on une empreinte carbone ?
-  catégorie.lock: général
-  réponse.lock: |
-
-    Pour savoir combien émettent chacune de nos actions, nous nous en remettons dès que nous le pouvons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'Agence française de la transition écologique). Cette base regroupe des centaines de "facteurs d'émission" issus d'analyses de cycle de vie qui permettent de passer de kilomètres roulés, de kilogrammes de viande, de kWh consommé, d'une TV à la quantité de gaz à effet de serre émise.
-
-    Le but de Nos Gestes Climat est de manipuler ces chiffres pour **questionner simplement notre mode de vie** afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
-
-    > 💡 Pour découvrir l'empreinte climat consommation par consommation, n'hésitez pas à poursuivre sur [impactCO2.fr](https://impactco2.fr) après votre test Nos Gestes Climat.
