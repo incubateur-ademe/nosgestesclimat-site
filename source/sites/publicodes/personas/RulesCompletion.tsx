@@ -1,32 +1,29 @@
-import { NGCRules } from '@/components/publicodesUtils'
+import { MODEL_ROOT_RULE_NAME, NGCRules } from '@/components/publicodesUtils'
 import { EngineContext } from '@/components/utils/EngineContext'
+import { getQuestionsInRules } from '@/sites/publicodes/pages/QuestionList'
+import { Persona } from '@/sites/publicodes/personas/personasUtils'
 import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { getQuestionsInRules } from '../pages/QuestionList'
-import { Persona } from '../Personas'
 
 export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
 	const engine = useContext(EngineContext)
 
-	const rawQuestionList = getQuestionsInRules(engine, rules)
-	const completeQuestionList = rawQuestionList.reduce((arr, rule) => {
-		if (!rule.type.includes('Mosaïque')) {
-			arr.push(rule.dottedName)
-		}
-		return arr
-	}, [])
+	const completeQuestionList = getQuestionsInRules(engine, rules).filter(
+		({ type }) => !type.includes('Mosaïque')
+	)
 
 	const intersectListToInclude = completeQuestionList.filter(
-		(dottedName) => !Object.keys(persona?.situation).includes(dottedName)
+		({ dottedName }) => !Object.keys(persona?.situation).includes(dottedName)
 	)
 
 	const intersectListToExclude = Object.keys(persona?.situation).filter(
-		(dottedName) => !completeQuestionList.includes(dottedName)
+		(dottedName) =>
+			!completeQuestionList.find(({ dottedName: d }) => d === dottedName)
 	)
 
-	const { missingVariables } = engine.evaluate('bilan')
+	const { missingVariables } = engine.evaluate(MODEL_ROOT_RULE_NAME)
 	const missingRules = Object.keys(missingVariables).filter((dottedName) =>
-		completeQuestionList.includes(dottedName)
+		completeQuestionList.find(({ dottedName: d }) => d === dottedName)
 	)
 
 	return (
@@ -91,7 +88,7 @@ export default ({ rules, persona }: { rules: NGCRules; persona: Persona }) => {
 								)}
 							</summary>
 							<ul>
-								{intersectListToInclude.map((dottedName) => (
+								{intersectListToInclude.map(({ dottedName }) => (
 									<li key={dottedName}>{dottedName}</li>
 								))}
 							</ul>
