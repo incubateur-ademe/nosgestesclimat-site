@@ -318,7 +318,7 @@ export const ActionGameCard = ({ evaluation, total, rule }) => {
 	)
 }
 
-export const getFormattedActionValue = ({ t, i18n }, dottedName, engine) => {
+export const getFormattedActionValue = ({ t, i18n }, ruleName: DottedName, engine: Engine) => {
 	const correctedValue = correctValue(engine.evaluate(dottedName))
 
 	if (correctedValue == undefined) {
