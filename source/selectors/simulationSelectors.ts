@@ -126,7 +126,7 @@ export const useSimulationData = () => {
 }
 export const isPersonaSelector = createSelector(
 	[currentSimulationSelector],
-	(simulation) => simulation?.persona != null
+	(simulation) => simulation?.persona != undefined
 )
 
 export const hasSubscribedToNewsletterSelector = (state: AppState) => {

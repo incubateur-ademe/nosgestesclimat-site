@@ -1,5 +1,12 @@
+import { AppState } from '@/reducers/rootReducer'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+export type BranchData = {
+	deployURL: string
+	pullRequestNumber?: string
+	loaded: boolean
+}
 
 export default () => {
 	const dispatch = useDispatch()
@@ -7,7 +14,9 @@ export default () => {
 
 	const searchPR = urlParams.get('PR')
 
-	const pullRequestNumber = useSelector((state) => state.pullRequestNumber)
+	const pullRequestNumber = useSelector(
+		(state: AppState) => state.pullRequestNumber
+	)
 
 	const setPullRequestNumber = (number) =>
 		dispatch({ type: 'SET_PULL_REQUEST_NUMBER', number })

@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
-export default ({}) => {
+export default () => {
 	return (
 		<div
 			className="ui__ card light colored content"
@@ -30,7 +30,7 @@ export default ({}) => {
 				<small>
 					<Trans i18nKey={'publicodes.SimulationMissing.personnas'}>
 						Vous pouvez aussi continuer avec un{' '}
-						<Link to={'/personas?redirect=/actions'}>profil type</Link>.
+						<Link to={'/personas'}>profil type</Link>.
 					</Trans>
 				</small>
 			</p>
