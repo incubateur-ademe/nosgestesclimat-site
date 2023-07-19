@@ -1,14 +1,15 @@
 import { Markdown } from '@/components/utils/markdown'
+import { Persona } from '@/sites/publicodes/personas/personasUtils'
 import { Trans } from 'react-i18next'
-import { Persona } from '../Personas'
 
 export default ({ persona }: { persona: Persona }) => {
-	return (
+	return persona.description !== undefined ? (
 		<div>
 			<h2>
-				<Trans>Description:</Trans>
+				<Trans>Description</Trans>
+				{':'}
 			</h2>
-			<Markdown children={persona?.description} />
+			<Markdown>{persona.description}</Markdown>
 		</div>
-	)
+	) : null
 }
