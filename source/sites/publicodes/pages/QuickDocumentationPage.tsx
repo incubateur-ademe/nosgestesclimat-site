@@ -105,8 +105,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				/>
 				<header id="shareImage">
 					<Breadcrumb dottedName={dottedName} rules={rules} />
-
-					<Title title={`${rule.icônes} ${title}`} />
+					<Title title={`${rule?.icônes ?? ''} ${title}`} />
 				</header>
 				{rule.question && (
 					<>
