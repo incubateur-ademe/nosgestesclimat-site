@@ -11,6 +11,22 @@ import { getFormattedActionValue, supersededAction } from '../ActionVignette'
 import { humanWeight } from '../HumanWeight'
 import useActions from '../useActions'
 
+type CustomAction = {
+	correctedValue: number
+	dottedName: DottedName
+	sign: string
+	stringValue: string
+	title: string
+	unit: string
+	isSurpassed: boolean
+}
+
+type ActionsListByCategory = Array<
+	Category & {
+		actions?: CustomAction[]
+	}
+>
+
 export default ({ rules }: { rules: NGCRules }) => {
 	const { t, i18n } = useTranslation()
 	const engine = useEngine()
@@ -22,25 +38,7 @@ export default ({ rules }: { rules: NGCRules }) => {
 		metric: null,
 	})
 
-	type CustomAction = {
-		correctedValue: number
-		dottedName: DottedName
-		sign: string
-		stringValue: string
-		title: string
-		unit: string
-		isSurpassed: boolean
-	}
-
-	type ActionsList = Array<CustomAction>
-
-	type ActionsListByCategory = Array<
-		Category & {
-			actions?: ActionsList
-		}
-	>
-
-	const actionsList: ActionsList = actionResultsRaw.map((actionRule) => {
+	const actionsList: CustomAction[] = actionResultsRaw.map((actionRule) => {
 		const { dottedName, title }: { dottedName: DottedName; title: string } =
 			actionRule
 		const { correctedValue, stringValue, unit, sign } = getFormattedActionValue(
