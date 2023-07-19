@@ -57,6 +57,10 @@ function simulation(
 	state: Simulation | null = null,
 	action: Action
 ): Simulation {
+	if (state === null) {
+		return { ...(state ?? {}), eventsSent: {} }
+	}
+
 	switch (action.type) {
 		case 'SET_CURRENT_SIMULATION': {
 			// Update the date when loading the simulation.

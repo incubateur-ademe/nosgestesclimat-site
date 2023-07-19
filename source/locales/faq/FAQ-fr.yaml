@@ -16,7 +16,14 @@
 
     > Manger un kg de patates, rouler 10 000 km en voiture, regarder une vidéo en streaming... émettent des Gaz à Effet de Serre (GES), mais bien évidemment dans des proportions très différentes. Et nous n'avons pas toujours ces chiffres en tête.
 
-    Pour savoir combien émettent chacune de nos actions, nous nous en remettons dès que nous le pouvons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'agence française de l'environnement). Cette base regroupe des centaines de "facteurs d'émission" issus d'analyses de cycle de vie qui permettent de passer de kilomètres roulés, de kilogrammes de viande, de kWh consommé, d'une TV à la quantité de gaz à effet de serre émise.
+    Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer l'empreinte carbone individuelle de consommation.
+
+- question: Comment mesure-t-on une empreinte carbone ?
+  catégorie: général
+  id: mesure
+  réponse: |
+
+    Pour savoir combien émettent chacune de nos actions, nous nous en remettons dès que nous le pouvons à la [Base Carbone](https://www.bilans-ges.ademe.fr/fr/accueil) de l'ADEME (l'Agence française de la transition écologique). Cette base regroupe des centaines de "facteurs d'émission" issus d'analyses de cycle de vie qui permettent de passer de kilomètres roulés, de kilogrammes de viande, de kWh consommé, d'une TV à la quantité de gaz à effet de serre émise.
 
     Le but de Nos Gestes Climat est de manipuler ces chiffres pour **questionner simplement notre mode de vie** afin d'identifier ce qui contribue plus ou moins à notre empreinte carbone.
 
