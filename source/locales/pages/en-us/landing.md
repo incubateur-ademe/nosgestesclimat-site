@@ -1,6 +1,6 @@
 ## The reference simulator
 
-With **almost [a million tests completed](/stats)**, nosgestesclimat.fr
+With **more than [a million tests completed](/stats)**, nosgestesclimat.fr
 is the reference personal carbon footprint calculator.
 
 ## What is my climate footprint?
@@ -29,6 +29,6 @@ electrifying our lifestyle...).
 
 Of course, even though it is essential to measure the footprint of our
 consumptions and to understand their magnitude in relation to the [climate
-budget](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/),
+budget](https://nosgestesclimat.fr/blog/budget),
 some improvements are outside of our personal control:
 for example, if you're renting and the landlord refuses to insulate the building to reduce energy consumption.
