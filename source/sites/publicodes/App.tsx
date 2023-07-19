@@ -131,6 +131,10 @@ const NorthstarStatsLazy = React.lazy(
 		import(/* webpackChunkName: 'NorthstarStats' */ './pages/NorthstarStats')
 )
 
+const Budget = React.lazy(
+	() => import(/* webpackChunkName: 'Budget' */ './pages/Budget')
+)
+
 const MesGroupesLazy = React.lazy(
 	() => import(/* webpackChunkName: 'MesGroupes' */ '@/pages/mes-groupes')
 )
@@ -718,6 +722,14 @@ const Router = () => {
 				}
 			/>
 			<Route path="*" element={<Route404 />} />
+			<Route
+				path="/budget"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<Budget />
+					</Suspense>
+				}
+			/>
 		</Routes>
 	)
 }

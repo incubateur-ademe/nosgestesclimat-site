@@ -1,6 +1,6 @@
+import { goToQuestion } from '@/actions/actions'
 import {
 	Category,
-	encodeRuleNameToSearchParam,
 	extractCategoriesNamespaces,
 	NGCEvaluatedRuleNode,
 	NGCRuleNode,
@@ -16,7 +16,6 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { getFocusedCategoryURLSearchParams } from '@/sites/publicodes/utils'
 import Engine, { formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
@@ -318,6 +317,7 @@ const Answer = ({ rule, level, engine }) => {
 	const translateUnits = (units: string[]) => {
 		return units.map((unit: string) => t(unit, { ns: 'units' }))
 	}
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const storedTrajets = useSelector((state: AppState) => state.storedTrajets)
 	const levelDottedName = rule.dottedName.split(' . ')
@@ -374,16 +374,9 @@ const Answer = ({ rule, level, engine }) => {
 						}
 					`}
 					onClick={() => {
-						const searchParams = getFocusedCategoryURLSearchParams(
-							rule.dottedName.split(' . ')[0] as string
-						)
-
-						searchParams.append(
-							'question',
-							encodeRuleNameToSearchParam(rule.dottedName as string) ?? ''
-						)
-
-						navigate(`/simulateur/bilan?${searchParams}`)
+						console.log('goToQuestion:', rule.dottedName)
+						dispatch(goToQuestion(rule.dottedName))
+						navigate('/simulateur/bilan')
 					}}
 				>
 					<span

@@ -906,3 +906,7 @@ entries:
   règle est absente du persona.: rule is absent from the persona.
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: This page lets you navigate through the Nos Gestes Climat paths as if you were one of the profiles we've listed.
   'proposées au total pour un potentiel de réduction de ': 'proposed for a total reduction potential of '
+  meta.publicodes.Budget.title: Budget
+  meta.publicodes.Budget.title.lock: Budget
+  meta.publicodes.Budget.description: Nos Gestes Climat is a state-owned start-up supported by ADEME. Browse this page to find out more about how the team works and its annual budget.
+  meta.publicodes.Budget.description.lock: Nos Gestes Climat est une start-up d'état portée par l'ADEME. Parcourez cette page pour en savoir plus sur le fonctionnement de l'équipe et son budget annuel.
