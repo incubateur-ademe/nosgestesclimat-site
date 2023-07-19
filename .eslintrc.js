@@ -1,5 +1,5 @@
 module.exports = {
-	parser: '@typescript-eslint/parser',
+	parser: '@babel/eslint-parser',
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true,
@@ -7,18 +7,22 @@ module.exports = {
 		tsconfigRootDir: __dirname,
 		project: ['./tsconfig.json'],
 	},
+
 	ignorePatterns: ['node_modules/', 'webpack.*.js', 'tailwind.config.js'],
 
 	settings: {
 		react: {
 			version: 'detect',
 		},
-		'import/resolver': {
-			typescript: {},
-		},
 	},
 
-	plugins: ['react', 'react-hooks', 'jsx-a11y', '@typescript-eslint'],
+	env: {
+		browser: true,
+		node: true,
+		es6: true,
+	},
+
+	plugins: ['react', 'react-hooks', 'jsx-a11y'],
 
 	rules: {
 		quotes: [
@@ -47,39 +51,6 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'react/no-children-prop': 'warn',
 		'react/no-unknown-property': ['error', { ignore: ['css'] }],
-		'@typescript-eslint/ban-ts-comment': 'warn',
-		'@typescript-eslint/no-unsafe-enum-comparison': 'warn',
-		'@typescript-eslint/no-empty-function': 'off',
-		'@typescript-eslint/no-use-before-define': 'off',
-		'@typescript-eslint/member-delimiter-style': [
-			2,
-			{
-				multiline: {
-					delimiter: 'none',
-				},
-			},
-		],
-		'@typescript-eslint/prefer-string-starts-ends-with': 'warn',
-		'@typescript-eslint/no-unnecessary-type-assertion': 'warn', // has false positives (Object.values result) v 2.29.0
-		'@typescript-eslint/no-inferrable-types': 'warn', // causes problems with unknown values v 2.29.0 typescript v 3.8.3
-		'@typescript-eslint/no-unused-vars': 'warn',
-		'@typescript-eslint/explicit-function-return-type': 'off',
-		'@typescript-eslint/no-unsafe-return': 'off',
-		'@typescript-eslint/no-var-requires': 'off',
-		'@typescript-eslint/explicit-module-boundary-types': 'off',
-		'@typescript-eslint/no-floating-promises': 'off',
-		'@typescript-eslint/no-extra-semi': 'off',
-		'@typescript-eslint/no-unsafe-assignment': 'off',
-		'@typescript-eslint/no-unsafe-argument': 'off',
-		'@typescript-eslint/no-unsafe-call': 'off',
-		'@typescript-eslint/no-unsafe-member-access': 'off',
-		'@typescript-eslint/no-unsafe-return': 'off',
-		'@typescript-eslint/restrict-plus-operands': 'off',
-		'@typescript-eslint/restrict-template-expressions': 'off',
-		'@typescript-eslint/naming-convention': 'off',
-		'@typescript-eslint/prefer-regexp-exec': 'off',
-		'@typescript-eslint/no-explicit-any': 'off',
-		'@typescript-eslint/no-misused-promises': 'off',
 	},
 
 	extends: [
@@ -97,14 +68,57 @@ module.exports = {
 
 	overrides: [
 		{
-			files: ['*.js'],
+			files: ['*.ts', '*.tsx'],
+			parser: '@typescript-eslint/parser',
 			parserOptions: {
-				ecmaVersion: 2020,
-				sourceType: 'module',
+				tsconfigRootDir: __dirname,
+				project: ['./tsconfig.json'],
 			},
-			env: {
-				browser: true,
-				node: true,
+			settings: {
+				react: {
+					version: 'detect',
+				},
+				'import/resolver': {
+					typescript: {},
+				},
+			},
+
+			plugins: ['react', 'react-hooks', 'jsx-a11y', '@typescript-eslint'],
+
+			rules: {
+				'@typescript-eslint/ban-ts-comment': 'warn',
+				'@typescript-eslint/no-unsafe-enum-comparison': 'warn',
+				'@typescript-eslint/no-empty-function': 'off',
+				'@typescript-eslint/no-use-before-define': 'off',
+				'@typescript-eslint/member-delimiter-style': [
+					2,
+					{
+						multiline: {
+							delimiter: 'none',
+						},
+					},
+				],
+				'@typescript-eslint/prefer-string-starts-ends-with': 'warn',
+				'@typescript-eslint/no-unnecessary-type-assertion': 'warn', // has false positives (Object.values result) v 2.29.0
+				'@typescript-eslint/no-inferrable-types': 'warn', // causes problems with unknown values v 2.29.0 typescript v 3.8.3
+				'@typescript-eslint/no-unused-vars': 'warn',
+				'@typescript-eslint/explicit-function-return-type': 'off',
+				'@typescript-eslint/no-unsafe-return': 'off',
+				'@typescript-eslint/no-var-requires': 'off',
+				'@typescript-eslint/explicit-module-boundary-types': 'off',
+				'@typescript-eslint/no-floating-promises': 'off',
+				'@typescript-eslint/no-extra-semi': 'off',
+				'@typescript-eslint/no-unsafe-assignment': 'off',
+				'@typescript-eslint/no-unsafe-argument': 'off',
+				'@typescript-eslint/no-unsafe-call': 'off',
+				'@typescript-eslint/no-unsafe-member-access': 'off',
+				'@typescript-eslint/no-unsafe-return': 'off',
+				'@typescript-eslint/restrict-plus-operands': 'off',
+				'@typescript-eslint/restrict-template-expressions': 'off',
+				'@typescript-eslint/naming-convention': 'off',
+				'@typescript-eslint/prefer-regexp-exec': 'off',
+				'@typescript-eslint/no-explicit-any': 'off',
+				'@typescript-eslint/no-misused-promises': 'off',
 			},
 		},
 	],
