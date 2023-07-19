@@ -146,12 +146,20 @@ const computeDependencies = (engine: Engine, ruleName: DottedName) => {
 	return entries
 }
 
-const QuestionDescription = ({ engine, rule, rules }) => {
+const QuestionDescription = ({
+	engine,
+	rule,
+	rules,
+}: {
+	engine: Engine
+	rule: NGCRule
+	rules: NGCRulesNodes
+}) => {
 	const { type, mosaic } = getQuestionType(rules, rule)
-	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
-		categoryLetter = category.titre[0]
+	const category = rules[parentName(rule.dottedName, undefined, 0, -1)]
+	const categoryLetter = category.titre[0]
 
-	const dependenciesData = computeDependencies(engine, rule)
+	const dependenciesData = computeDependencies(engine, rule.dottedName)
 	return (
 		<li
 			css={`
