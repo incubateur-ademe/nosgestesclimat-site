@@ -66,6 +66,7 @@ export type NGCRule = Rule & {
 	type?: 'notification'
 	sévérité?: 'avertissement' | 'information' | 'invalide'
 	action?: { dépasse: DottedName[] }
+	inactif?: 'oui'
 	// NOTE(@EmileRolley): used in Action.tsx but I don't if it is really needed..
 	plus?: boolean
 }
