@@ -33,10 +33,7 @@ export type Persona = {
 
 export type Personas = Array<Persona>
 
-const Nothing = () => null
-
 const visualisationChoices = {
-	aucun: { titre: 'Aucun', composant: Nothing },
 	summary: { titre: 'Description', composant: Summary },
 	actionList: { titre: 'Actions associées', composant: RawActionsList },
 	exhaustivite: {
@@ -60,7 +57,7 @@ export default () => {
 	)
 
 	const [searchParams, setSearchParams] = useSearchParams({
-		visualisation: 'aucun',
+		visualisation: 'summary',
 	})
 
 	const visualisationParam = searchParams.get('visualisation')
