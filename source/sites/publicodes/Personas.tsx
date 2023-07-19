@@ -1,4 +1,8 @@
-import { setDifferentSituation } from '@/actions/actions'
+import {
+	resetActionChoices,
+	resetSimulation,
+	setDifferentSituation,
+} from '@/actions/actions'
 import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
 import useBranchData, { BranchData } from '@/components/useBranchData'
@@ -241,7 +245,14 @@ export const PersonaGrid = ({
 									margin-bottom: 0.5rem;
 								}
 							`}
-							onClick={() => setPersona(persona)}
+							onClick={() => {
+								if (selectedPersona?.nom === nom) {
+									dispatch(resetSimulation())
+									dispatch(resetActionChoices())
+								} else {
+									setPersona(persona)
+								}
+							}}
 						>
 							<div
 								css={`
