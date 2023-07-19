@@ -1,13 +1,19 @@
 import Title from '@/components/groupe/Title'
+import {
+	DottedName,
+	getTitle,
+	NGCRule,
+	NGCRules,
+	splitName,
+} from '@/components/publicodesUtils'
+import { RuleListItem } from '@/components/SearchBar'
+import Meta from '@/components/utils/Meta'
+import References from '@/sites/publicodes/DocumentationReferences'
+import { generateImageLink } from '@/sites/publicodes/fin'
+import { capitalise0, omit } from '@/utils'
 import { Markdown } from 'Components/utils/markdown'
 import { utils } from 'publicodes'
 import { Link } from 'react-router-dom'
-import { getTitle, splitName } from '../../../components/publicodesUtils'
-import { RuleListItem } from '../../../components/SearchBar'
-import Meta from '../../../components/utils/Meta'
-import { capitalise0, omit } from '../../../utils'
-import References from '../DocumentationReferences'
-import { generateImageLink } from '../fin'
 import DocumentationStyle from './DocumentationStyle'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
@@ -65,9 +71,19 @@ const QuestionRuleSection = ({ title, children }) => (
 	</section>
 )
 
-export default ({ rule, dottedName, setLoadEngine, rules }) => {
-	const split = splitName(dottedName),
-		title = rule.titre || capitalise0(split[splitName.length - 1])
+export default ({
+	rule,
+	dottedName,
+	setLoadEngine,
+	rules,
+}: {
+	rule: NGCRule
+	dottedName: DottedName
+	setLoadEngine: (value: boolean) => void
+	rules: NGCRules
+}) => {
+	const split = splitName(dottedName)
+	const title = rule.titre ?? capitalise0(split[splitName.length - 1])
 
 	const yamlAttributesToDisplay = omit(
 		[
@@ -105,8 +121,7 @@ export default ({ rule, dottedName, setLoadEngine, rules }) => {
 				/>
 				<header id="shareImage">
 					<Breadcrumb dottedName={dottedName} rules={rules} />
-
-					<Title title={`${rule.icônes} ${title}`} />
+					<Title title={`${rule.icônes ?? ''} ${title}`} />
 				</header>
 				{rule.question && (
 					<>
