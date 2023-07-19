@@ -187,7 +187,7 @@ export const PersonaGrid = ({
 				setAvailablePersonas
 			)
 		}
-	}, [branchData, lang])
+	}, [branchData.loaded, branchData.deployURL, lang])
 
 	if (availablePersonas.length === 0) {
 		return null
