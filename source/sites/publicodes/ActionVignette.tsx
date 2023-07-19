@@ -34,7 +34,11 @@ export const supersededAction = (dottedName, rules, actionChoices) => {
 	return (
 		Object.entries(rules).find(([key, r]) => {
 			const supersedes = r?.action?.dépasse
-			return supersedes && supersedes.includes(dottedName) && actionChoices[key]
+			return (
+				supersedes &&
+				supersedes.includes(dottedName) &&
+				(actionChoices ? actionChoices[key] : true)
+			)
 		}) != null
 	)
 }

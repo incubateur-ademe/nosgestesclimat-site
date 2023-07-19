@@ -7,7 +7,7 @@ import {
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Trans, useTranslation } from 'react-i18next'
-import { getFormattedActionValue } from '../ActionVignette'
+import { getFormattedActionValue, supersededAction } from '../ActionVignette'
 import { humanWeight } from '../HumanWeight'
 import useActions from '../useActions'
 
@@ -29,6 +29,7 @@ export default ({ rules }: { rules: NGCRules }) => {
 		stringValue: string
 		title: string
 		unit: string
+		isSurpassed: boolean
 	}
 
 	type ActionsList = Array<CustomAction>
@@ -47,6 +48,8 @@ export default ({ rules }: { rules: NGCRules }) => {
 			dottedName,
 			engine
 		)
+		const isSurpassed = supersededAction(dottedName, rules, null)
+
 		return {
 			dottedName,
 			title,
@@ -54,6 +57,7 @@ export default ({ rules }: { rules: NGCRules }) => {
 			stringValue,
 			unit,
 			sign,
+			isSurpassed,
 		}
 	})
 
@@ -95,8 +99,8 @@ export default ({ rules }: { rules: NGCRules }) => {
 	)
 
 	const rawTotalReduction = actionsList.reduce(
-		(acc, { correctedValue, sign }) => {
-			if (correctedValue) {
+		(acc, { correctedValue, sign, isSurpassed }) => {
+			if (correctedValue && !isSurpassed) {
 				return sign === '+' ? acc - correctedValue : acc + correctedValue
 			} else return acc
 		},
@@ -119,9 +123,7 @@ export default ({ rules }: { rules: NGCRules }) => {
 				<strong>
 					{numberOfActions} <Trans>actions</Trans>
 				</strong>{' '}
-				<Trans>
-					proposées au total pour un empreinte de réduction cumulée de{' '}
-				</Trans>
+				<Trans>proposées au total pour un potentiel de réduction de </Trans>
 				<strong>
 					{totalReduction} {unit}
 				</strong>
