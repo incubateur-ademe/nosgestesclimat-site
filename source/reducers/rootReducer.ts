@@ -80,7 +80,7 @@ function simulation(
 			foldedSteps: action.foldedSteps || state?.foldedSteps || [],
 			unfoldedStep: null,
 			persona: action.persona,
-			id: action.persona || state?.id || generateSimulationId(), // Unique identifier of the simulation, used for the 'currentSimulationId' pointer.
+			id: action.persona?.nom || state?.id || generateSimulationId(), // Unique identifier of the simulation, used for the 'currentSimulationId' pointer.
 			date: !action.persona && state?.date ? state?.date : new Date(),
 			eventsSent: state?.eventsSent || {},
 		}

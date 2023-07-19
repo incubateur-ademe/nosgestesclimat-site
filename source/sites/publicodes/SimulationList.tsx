@@ -4,7 +4,7 @@ import {
 	setAllStoredTrajets,
 	setCurrentSimulation,
 } from '@/actions/actions'
-import { Simulation } from '@/reducers/rootReducer'
+import { Simulation } from '@/types/simulation'
 import { Trans } from 'react-i18next'
 
 export default ({ dispatch, list, currentSimulationId }) => {
