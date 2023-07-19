@@ -1,5 +1,5 @@
 import { DottedName } from '@/components/publicodesUtils'
-import { Persona } from '@/sites/publicodes/Personas'
+import { Persona } from '@/sites/publicodes/personas/personasUtils'
 
 export type Situation = Record<DottedName, any>
 

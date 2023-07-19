@@ -1,20 +1,18 @@
 import { DottedName } from '@/components/publicodesUtils'
 import { Lang } from '@/locales/translation'
-import { AppState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
-import { Persona } from '@/sites/publicodes/Personas'
-
-export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
+import { AppState } from '@/reducers/rootReducer'
+import { Persona } from '@/sites/publicodes/personas/personasUtils'
+import { Group } from '@/types/groups'
+import { Rating } from '@/types/rating'
+import { SimulationConfig, Situation } from '@/types/simulation'
 
 export type Enquête = {
 	userID: string
 	date: string
 }
 
-import { Group } from '@/types/groups'
-import { Rating } from '@/types/rating'
-
 export type SavedSimulation = {
-	situation: Simulation['situation']
+	situation: Situation
 	foldedSteps?: Array<DottedName>
 	actionChoices: Object
 	persona?: Persona
