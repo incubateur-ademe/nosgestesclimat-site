@@ -1,37 +1,31 @@
+import { setDifferentSituation } from '@/actions/actions'
 import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
+import useBranchData from '@/components/useBranchData'
+import { useEngine } from '@/components/utils/EngineContext'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
-import { Simulation, Situation } from '@/types/simulation'
+import GridChart from '@/sites/publicodes/chart/GridChart'
+import RavijenChart from '@/sites/publicodes/chart/RavijenChart'
+import ActionSlide from '@/sites/publicodes/fin/ActionSlide'
+import Budget from '@/sites/publicodes/fin/Budget'
+import FinShareButton from '@/sites/publicodes/fin/FinShareButton'
+import { CardGrid } from '@/sites/publicodes/ListeActionPlus'
+import { getQuestionsInRules } from '@/sites/publicodes/pages/QuestionList'
+import {
+	parsePersonasFromJSON,
+	Persona,
+} from '@/sites/publicodes/personas/personasUtils'
+import RawActionsList from '@/sites/publicodes/personas/RawActionsList'
+import RulesCompletion from '@/sites/publicodes/personas/RulesCompletion'
+import Summary from '@/sites/publicodes/personas/Summary'
+import { Simulation } from '@/types/simulation'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import yaml from 'yaml'
-import { setDifferentSituation } from '../../actions/actions'
-import useBranchData from '../../components/useBranchData'
-import { useEngine } from '../../components/utils/EngineContext'
-import { ScrollToTop } from '../../components/utils/Scroll'
-import GridChart from './chart/GridChart'
-import RavijenChart from './chart/RavijenChart'
-import ActionSlide from './fin/ActionSlide'
-import Budget from './fin/Budget'
-import FinShareButton from './fin/FinShareButton'
-import { CardGrid } from './ListeActionPlus'
-import { getQuestionList } from './pages/QuestionList'
-import RawActionsList from './personas/RawActionsList'
-import RulesCompletion from './personas/RulesCompletion'
-import Summary from './personas/Summary'
-
-export type Persona = {
-	nom: string
-	icônes: string
-	situation: Situation
-	description: string
-	résumé: string
-}
-
-export type Personas = Array<Persona>
 
 const visualisationChoices = {
 	summary: { titre: 'Description', composant: Summary },
@@ -67,7 +61,7 @@ export default () => {
 
 	const engine = useEngine()
 	const rules = useSelector((state: AppState) => state.rules)
-	const rawQuestionList = getQuestionList(engine, rules)
+	const rawQuestionList = getQuestionsInRules(engine, rules)
 	const personasQuestionList = rawQuestionList.reduce((obj, rule) => {
 		if (!rule.type.includes('Mosaïque')) {
 			obj[rule.dottedName] = ''
@@ -179,7 +173,7 @@ export const PersonaGrid = ({
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
 
-	const [personasList, setPersonasList] = useState<Personas>()
+	const [availablePersonas, setAvailablePersonas] = useState<Persona[]>([])
 	const engine = useEngine()
 
 	const branchData = useBranchData()
@@ -194,17 +188,17 @@ export const PersonaGrid = ({
 		const fileName = `/personas-${lang}.json`
 
 		if (process.env.NODE_ENV === 'development') {
-			const json = require('../../../nosgestesclimat/public' + fileName)
-			const jsonValues: Personas = Object.values(json)
-			setPersonasList(jsonValues)
+			const json: object = require('../../../nosgestesclimat/public' + fileName)
+			const personas: Persona[] = parsePersonasFromJSON(json)
+			setAvailablePersonas(personas)
 		} else {
 			fetch(branchData.deployURL + fileName, {
 				mode: 'cors',
 			})
 				.then((response) => response.json())
 				.then((json) => {
-					const jsonValues: Personas = Object.values(json)
-					setPersonasList(jsonValues)
+					const personas: Persona[] = parsePersonasFromJSON(json)
+					setAvailablePersonas(personas)
 				})
 				.catch((err) => {
 					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
@@ -213,7 +207,9 @@ export const PersonaGrid = ({
 		}
 	}, [branchData.deployURL, branchData.loaded, lang])
 
-	if (!personasList) return null
+	if (availablePersonas.length === 0) {
+		return null
+	}
 
 	const setPersona = (persona: Persona) => {
 		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
@@ -246,7 +242,7 @@ export const PersonaGrid = ({
 				}
 			`}
 		>
-			{personasList.map((persona) => {
+			{availablePersonas.map((persona) => {
 				const { nom, icônes, description, résumé } = persona
 				return (
 					<li key={nom}>
@@ -272,11 +268,11 @@ export const PersonaGrid = ({
 									font-size: 80%;
 								`}
 							>
-								<div>{emoji(icônes || '👥')}</div>
+								<div>{emoji(icônes ?? '👥')}</div>
 								<div>{nom}</div>
 							</div>
 							<p>
-								<small>{résumé || description}</small>
+								<small>{résumé ?? description}</small>
 							</p>
 						</button>
 					</li>
