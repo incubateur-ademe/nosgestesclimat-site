@@ -6,7 +6,7 @@ const personas = parse(
 )
 
 const getFileContent = (name, data) => `
-import { walkthroughTest, startTestAndSkipTutorial, clickSeeResultsLink } from './utils'
+import { walkthroughTest, startTestAndSkipTutorial, clickSeeResultsLink } from '../utils'
 describe('check for test completion', () => {
 	it("can finish the test with persona '${name}' values", () => {
 		cy.session('${name}', () => {

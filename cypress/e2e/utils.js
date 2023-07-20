@@ -1,6 +1,10 @@
 // TODO: should be in the same file as the test
 export const defaultTotalValue = '8,4'
 
+export const mainSimulator = 'bilan'
+
+export const encodedRespirationParam = 'th%C3%A9matique'
+
 export async function clickUnderstoodButton() {
 	cy.get('[data-cypress-id="understood-button"]').click()
 }
@@ -53,8 +57,12 @@ export async function clickSeeResultsLink() {
 	cy.get('[data-cypress-id="see-results-link"]').click()
 }
 
-export async function startTestAndSkipTutorial() {
+export async function clickDoTheTestLink() {
 	cy.get('[data-cypress-id="do-the-test-link"]').click()
+}
+
+export async function startTestAndSkipTutorial() {
+	clickDoTheTestLink()
 	waitWhileLoading()
 	clickSkipTutoButton()
 	clickUnderstoodButton()
@@ -123,7 +131,7 @@ export async function walkthroughTest(persona = {}) {
 			}
 
 			cy.url().then((url) => {
-				if (url.includes('th%C3%A9matique')) {
+				if (url.includes(encodedRespirationParam)) {
 					if (url.includes('congrats')) {
 						return
 					} else {

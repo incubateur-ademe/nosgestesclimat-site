@@ -15,7 +15,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { getNextQuestions } from '@/hooks/useNextQuestion'
-import { RootState } from '@/reducers/rootReducer'
+import { AppState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
@@ -29,7 +29,7 @@ export const useProfileData = () => {
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 	const answeredQuestionsLength = answeredQuestions.length
 
-	const tutorials = useSelector((state: RootState) => state.tutorials)
+	const tutorials = useSelector((state: AppState) => state.tutorials)
 
 	const hasData = answeredQuestionsLength > 0
 	return { hasData, tutorials, answeredQuestionsLength, answeredQuestions }
@@ -38,20 +38,22 @@ export const useProfileData = () => {
 export default () => {
 	const { t } = useTranslation()
 	const dispatch = useDispatch()
-	const persona = useSelector((state) => state.simulation?.persona)
-	const currentSimulationId = useSelector((state) => state.currentSimulationId)
+	const persona = useSelector((state: AppState) => state.simulation?.persona)
+	const currentSimulationId = useSelector(
+		(state: AppState) => state.currentSimulationId
+	)
 
-	const simulationList = useSelector((state) => state.simulations)
+	const simulationList = useSelector((state: AppState) => state.simulations)
 
 	const { hasData, answeredQuestionsLength, tutorials, answeredQuestions } =
 		useProfileData()
 	const navigate = useNavigate()
 	const actionChoicesLength = Object.keys(
-			useSelector((state) => state.actionChoices)
-		).length,
-		situation = useSelector(situationSelector)
-	const engine = useEngine(),
-		bilan = engine.evaluate('bilan')
+		useSelector((state: AppState) => state.actionChoices)
+	).length
+	const situation = useSelector(situationSelector)
+	const engine = useEngine()
+	const bilan = engine.evaluate('bilan')
 	const engineNextQuestions = getNextQuestions(
 			[bilan.missingVariables],
 			{},
@@ -73,6 +75,7 @@ export default () => {
 		answeredQuestionsLength &&
 		answeredQuestionsLength > 0 &&
 		percentFinished < 100
+
 	return (
 		<div>
 			<Meta
@@ -88,7 +91,7 @@ export default () => {
 					<p>
 						<em>
 							<Trans>👤 Vous utilisez actuellement le persona</Trans>{' '}
-							<code>{persona}</code>
+							<code>{persona.nom}</code>
 						</em>
 					</p>
 				)}

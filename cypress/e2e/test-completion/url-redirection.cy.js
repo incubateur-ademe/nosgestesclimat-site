@@ -1,4 +1,4 @@
-import { clickSkipTutoButton, walkthroughTest } from './utils'
+import { clickSkipTutoButton, mainSimulator, walkthroughTest } from '../utils'
 
 // const params =
 // `loc=${Cypress.env('localisation_param')}&lang=${Cypress.env('language_param')}`
@@ -7,7 +7,6 @@ import { clickSkipTutoButton, walkthroughTest } from './utils'
 
 // const firstQuestion = "transport.voiture.km"
 // const thirdQuestion = "transport.voiture.motorisation"
-const mainSimulator = 'bilan'
 
 // function goToQuestionAndGet(
 // 	question,

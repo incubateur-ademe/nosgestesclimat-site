@@ -30,8 +30,10 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
 import { Store } from 'redux'
+import { getMatomoEventBranch } from '../../analytics/matomo-events'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import EnquêteBanner from './enquête/BannerWrapper'
+
 import Landing from './Landing'
 import Navigation from './Navigation'
 import About from './pages/About'
@@ -127,6 +129,10 @@ const News = React.lazy(
 const NorthstarStatsLazy = React.lazy(
 	() =>
 		import(/* webpackChunkName: 'NorthstarStats' */ './pages/NorthstarStats')
+)
+
+const Budget = React.lazy(
+	() => import(/* webpackChunkName: 'Budget' */ './pages/Budget')
 )
 
 const MesGroupesLazy = React.lazy(
@@ -253,7 +259,10 @@ const Main = () => {
 	const [simulationFromUrlHasBeenSet, setSimulationFromUrlHasBeenSet] =
 		useState(false)
 
-	const { trackPageView } = useMatomo()
+	const { trackPageView, trackEvent } = useMatomo()
+
+	trackEvent(getMatomoEventBranch(process.env.BRANCH))
+
 	const largeScreen = useMediaQuery('(min-width: 800px)')
 
 	// Or we retrive the simulation from the URL
@@ -713,6 +722,14 @@ const Router = () => {
 				}
 			/>
 			<Route path="*" element={<Route404 />} />
+			<Route
+				path="/budget"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<Budget />
+					</Suspense>
+				}
+			/>
 		</Routes>
 	)
 }

@@ -72,6 +72,20 @@
 			}
 		</style>
 		<meta name="theme-color" content="#5758BB" />
+
+		<script type="text/javascript">
+			/* 
+				Manually setting Netlify code spliting cookie in iframe with sameSite=None and secure. 
+				See : https://answers.netlify.com/t/running-split-tests-in-an-iframe-adjust-nf-ab-cookie-settings/28754
+			*/
+			if (window.location.href.includes('iframe')) {
+				let cookieIsSet = document.cookie.includes('nf_ab')
+				if (!cookieIsSet) {
+					document.cookie = `nf_ab=${Math.random()}; sameSite=None; secure=true`
+					window.location.reload(true) // We need to reload the page for the client to match the server
+				}
+			}
+		</script>
 	</head>
 
 	<body>

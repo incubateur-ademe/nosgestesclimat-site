@@ -50,7 +50,7 @@ export default () => (
 		<p css="text-align: center; line-height: 1.2rem; max-width: 18rem; margin: 0 auto">
 			<em>
 				<Trans>Pour en savoir plus, tout est expliqué dans </Trans>
-				<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
+				<a href="https://nosgestesclimat.fr/blog/budget">
 					<Trans>cet article</Trans>
 				</a>{' '}
 				<Trans>(15 min de lecture)</Trans>

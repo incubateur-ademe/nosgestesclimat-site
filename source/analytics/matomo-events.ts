@@ -76,6 +76,14 @@ export const getMatomoEventChangeRegion = (code: string) => [
 	code,
 ]
 
+// Current Branch
+export const getMatomoEventBranch = (branch: string) => [
+	'trackEvent',
+	'User',
+	'Branche',
+	branch,
+]
+
 // Iframe
 export const getMatomoEventVisitViaIframe = (url: string) => [
 	'trackEvent',

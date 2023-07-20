@@ -69,9 +69,6 @@ export default () => {
 		return null
 	}
 
-	// FIXME: cannot use useTranslation here...
-	// const { t } = useTranslation()
-
 	const title = 'Tutorial'
 	const description =
 		'Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.'

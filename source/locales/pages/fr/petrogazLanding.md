@@ -4,7 +4,7 @@ Parmi les gaz à effet de serre qui réchauffent le climat, il y a surtout le di
 
 Pour chaque litre de carburant (par exemple diesel dans la voiture, mais également kérosène dans l'avion), environ 2,5 kg de CO₂ sont rejettés dans l'atmosphère. Ainsi, pour un [plein de voiture de 50 L](https://nosgestesclimat.fr/documentation/p%C3%A9trole/volume-plein), 125 kg de CO₂ sont émis.
 
-> Autrement dit, il suffit d'un plein de carburant par mois pour déjà quasiment arriver à son [budget carbone annuel](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/).
+> Autrement dit, il suffit d'un plein de carburant par mois pour déjà quasiment arriver à son [budget carbone annuel](https://nosgestesclimat.fr/blog/budget/).
 
 Mais bien avant le CO₂ émis lors de la combustion du pétrole et du gaz qui fait avancer votre voiture et chauffe votre logement, n'oublions pas l'_amont_, avant la combustion dans le moteur ou la chaudière : l'extraction, le raffinage, le transport à différentes étapes et notamment en camion jusqu'aux stations services, sont autant d'étapes qui nécessitent de l'énergie ou occasionnent des émissions de méthane.
 
