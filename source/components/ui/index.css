@@ -123,8 +123,8 @@ section {
 	); /* accomodate for the left navigation bar and margin on desktop */
 	margin-right: auto;
 	margin-left: auto;
-	padding-right: 0.6rem;
-	padding-left: 0.6rem;
+	padding-right: 0.6rem !important;
+	padding-left: 0.6rem !important;
 }
 .ui__.container.fluid {
 	max-width: calc(
