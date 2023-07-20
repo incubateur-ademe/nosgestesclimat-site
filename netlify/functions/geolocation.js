@@ -1,6 +1,6 @@
 exports.handler = async function (event) {
-	return Promise.resolve({
+	return {
 		statusCode: 200,
-		body: event.headers['x-nf-geo'],
-	})
+		body: JSON.stringify(event.headers['x-nf-geo']),
+	}
 }
