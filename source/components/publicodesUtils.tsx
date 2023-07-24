@@ -391,13 +391,15 @@ export const safeGetRule = (engine: Engine, dottedName: DottedName) => {
 	}
 }
 
-export const safeGetSituation = (situation: Situation, engine: Engine) =>
-	Object.entries(situation || {}).reduce((acc, [key, ruleNode]) => {
-		if (safeGetRule(engine, key)) {
-			return { ...acc, [key]: ruleNode }
-		}
-		return acc
-	}, {} as Situation)
+export const safeGetSituation = (
+	situation: Situation,
+	engine: Engine
+): Situation =>
+	Object.fromEntries(
+		Object.entries(situation).filter(
+			([dottedName, _]) => safeGetRule(engine, dottedName) != null
+		)
+	)
 
 export const questionCategoryName = (dottedName: DottedName) =>
 	splitName(dottedName)?.[0]
