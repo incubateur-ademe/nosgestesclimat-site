@@ -19,12 +19,7 @@ import { captureException } from '@sentry/react'
 import { FormEvent, useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import {
-	Navigate,
-	redirect,
-	useNavigate,
-	useSearchParams,
-} from 'react-router-dom'
+import { Navigate, useNavigate, useSearchParams } from 'react-router-dom'
 
 export default function RejoindreGroupe() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -160,7 +155,7 @@ export default function RejoindreGroupe() {
 
 	// If user is already in the group, redirect to group page
 	if (group?.members?.find((member) => member.userId === userId)) {
-		redirect(groupURL)
+		return <Navigate to={groupURL} />
 	}
 
 	return (
