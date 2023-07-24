@@ -1,3 +1,4 @@
+import { Situation } from '@/types/simulation'
 import Engine, {
 	EvaluatedNode,
 	Evaluation,
@@ -389,6 +390,14 @@ export const safeGetRule = (engine: Engine, dottedName: DottedName) => {
 		console.log(e)
 	}
 }
+
+export const safeGetSituation = (situation: Situation, engine: Engine) =>
+	Object.entries(situation || {}).reduce((acc, [key, ruleNode]) => {
+		if (safeGetRule(engine, key)) {
+			return { ...acc, [key]: ruleNode }
+		}
+		return acc
+	}, {} as Situation)
 
 export const questionCategoryName = (dottedName: DottedName) =>
 	splitName(dottedName)?.[0]
