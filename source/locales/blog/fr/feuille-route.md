@@ -64,3 +64,5 @@
 -   **Suivi dans le temps par mail pour pousser du contenu afin d’aider les utilisateurs à réduire leur empreinte** : collecte mails, processus d’engagement par mail.
 -   **Amélioration de la partie actions immédiates** (l’actuelle [page “Agir”](https://nosgestesclimat.fr/actions))
 -   **Comparaison** **dans le temps** : pouvoir refaire le test et avoir une vision comparative dans le temps de son évolution, pouvoir se fixer des objectifs de réduction (par exemple par année).
+
+N'hésitez pas à [suivre nos nouveautés pour voir comment tout cela avance](https://nosgestesclimat.fr/nouveaut%C3%A9s), et à [nous faire vos retours si vous avez des idées ou suggestions](https://nosgestesclimat.fr/contact). Cette feuille de route évoluera probablement au cours de l'année. Affaire à suivre !
