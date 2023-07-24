@@ -1,5 +1,7 @@
 # Notre feuille de route : les objectifs pour Nos Gestes Climat sur les mois à venir
 
+![Feuille de route](source/images/pexels-helena-lopes-4409455.jpg 'Des vélos sur un chemin en bord de mer')
+
 > Aujourd'hui, Nos Gestes Climat a trois ans. Avec une toute petite équipe, le projet a déjà pris une ampleur considérable : plus d'un million de simulations d'empreinte carbone réalisées en ligne !
 > Ces dernières semaines, [l'équipe a bien grandi](https://beta.gouv.fr/startups/nosgestesclimat.html). Et si nous visions encore plus haut ?
 > Pour contribuer toujours plus à la transition vers des modes de vie bas carbone, nous nous sommes penchés sur nos chantiers prioritaires et avons défini une feuille de route. La voici !
