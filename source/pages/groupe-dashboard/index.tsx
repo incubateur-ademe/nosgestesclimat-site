@@ -16,6 +16,7 @@ import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import Classement from './components/Classement'
+import FeedbackBlock from './components/FeedbackBlock'
 import Footer from './components/Footer'
 import InviteBlock from './components/InviteBlock'
 import PointsFortsFaibles from './components/PointsFortsFaibles'
@@ -195,6 +196,7 @@ export default function GroupeDashboard() {
 						}
 					/>
 				)}
+				<FeedbackBlock />
 				<div className="mt-4">
 					<h2 className="font-bold text-lg m-0">
 						<Trans>Le classement</Trans>
