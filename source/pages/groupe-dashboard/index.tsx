@@ -154,6 +154,7 @@ export default function GroupeDashboard() {
 	return (
 		<>
 			<main className="p-4">
+				<FeedbackBlock />
 				<GoBackLink className="mb-4 font-bold" />
 				<Meta
 					title={t('Mon groupe, nos bilans carbone personnels')}
@@ -161,6 +162,7 @@ export default function GroupeDashboard() {
 						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 					)}
 				/>
+
 				{isEditingTitle ? (
 					<InlineTextInput
 						defaultValue={group?.name}
@@ -196,7 +198,7 @@ export default function GroupeDashboard() {
 						}
 					/>
 				)}
-				<FeedbackBlock />
+
 				<div className="mt-4">
 					<h2 className="font-bold text-lg m-0">
 						<Trans>Le classement</Trans>
