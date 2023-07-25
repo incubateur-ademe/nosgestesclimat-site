@@ -13,6 +13,7 @@ import Container from '@/components/groupe/Container'
 import Separator from '@/components/groupe/Separator'
 import Meta from '@/components/utils/Meta'
 import FeedbackBlock from '../groupe-dashboard/components/FeedbackBlock'
+import SondagesBlock from '../groupe-dashboard/components/SondagesBlock'
 import GroupList from './components/GroupList'
 
 export default function MesGroupes() {
@@ -98,6 +99,7 @@ export default function MesGroupes() {
 					</ButtonLink>
 				</>
 			)}
+			<SondagesBlock />
 		</main>
 	)
 }
