@@ -161,7 +161,6 @@ export default function GroupeDashboard() {
 						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 					)}
 				/>
-				<FeedbackBlock />
 				{isEditingTitle ? (
 					<InlineTextInput
 						defaultValue={group?.name}
@@ -197,7 +196,7 @@ export default function GroupeDashboard() {
 						}
 					/>
 				)}
-
+				<FeedbackBlock />
 				<div className="mt-4">
 					<h2 className="font-bold text-lg m-0">
 						<Trans>Le classement</Trans>

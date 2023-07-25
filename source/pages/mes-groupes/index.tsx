@@ -54,14 +54,13 @@ export default function MesGroupes() {
 					"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 				)}
 			/>
-			<FeedbackBlock />
 			<Title
 				title={t("Groupe d'amis")}
 				subtitle={t(
 					'Comparez vos résultats avec votre famille ou un groupe d’amis'
 				)}
 			/>
-
+			<FeedbackBlock />
 			{groups && groups.length === 0 && (
 				<Container className="mt-7 bg-gray-100 p-4">
 					<h2 className="text-lg font-medium mb-2 mt-0">

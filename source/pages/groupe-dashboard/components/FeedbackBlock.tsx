@@ -2,7 +2,7 @@ import { Trans } from 'react-i18next'
 
 export default function FeedbackBlock() {
 	return (
-		<div className="border-solid border-1 border-grey-200 rounded-md p-4 flex gap-3 items-top justify-between mb-4">
+		<div className="border-solid border-[1px] border-grey-200 rounded-md p-4 flex gap-3 items-top justify-between mt-4">
 			<Flask />
 			<div>
 				<p className="mb-0">
