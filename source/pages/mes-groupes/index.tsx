@@ -12,6 +12,7 @@ import ButtonLink from '../../components/groupe/ButtonLink'
 import Container from '@/components/groupe/Container'
 import Separator from '@/components/groupe/Separator'
 import Meta from '@/components/utils/Meta'
+import FeedbackBlock from '../groupe-dashboard/components/FeedbackBlock'
 import GroupList from './components/GroupList'
 
 export default function MesGroupes() {
@@ -52,7 +53,7 @@ export default function MesGroupes() {
 					"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 				)}
 			/>
-
+			<FeedbackBlock />
 			<Title
 				title={t("Groupe d'amis")}
 				subtitle={t(
