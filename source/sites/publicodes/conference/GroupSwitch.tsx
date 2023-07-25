@@ -1,7 +1,8 @@
 import Title from '@/components/groupe/Title'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import Meta from '../../../components/utils/Meta'
 import Instructions from './Instructions'
 import { generateRoomName } from './utils'
 
@@ -18,7 +19,7 @@ export default () => {
 				)}
 			/>
 			<Title data-cypress-id="group-title" title={t('Mode groupe')} />
-
+			<ScrollToTop />
 			<Instructions {...{ newRoom, setNewRoom }} />
 		</div>
 	)
