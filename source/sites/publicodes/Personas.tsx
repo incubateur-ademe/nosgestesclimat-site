@@ -200,8 +200,11 @@ export const PersonaGrid = ({
 	}
 
 	const setPersona = (persona: Persona) => {
-		const safeSituation = safeGetSituation(persona.situation, engine)
 		engine.setSituation(safeSituation) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
+		const safeSituation = safeGetSituation(
+			persona.situation,
+			engine.getParsedRules() as NGCRulesNodes
+		)
 		const missingVariables = engine.evaluate(objectif).missingVariables
 		const defaultMissingVariables = Object.keys(missingVariables)
 

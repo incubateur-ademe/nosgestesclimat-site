@@ -393,11 +393,11 @@ export const safeGetRule = (engine: Engine, dottedName: DottedName) => {
 
 export const safeGetSituation = (
 	situation: Situation,
-	engine: Engine
+	rules: NGCRulesNodes
 ): Situation =>
 	Object.fromEntries(
-		Object.entries(situation).filter(
-			([dottedName, _]) => safeGetRule(engine, dottedName) != null
+		Object.entries(situation).filter(([ruleName, _]) =>
+			Object.keys(rules).includes(ruleName)
 		)
 	)
 
