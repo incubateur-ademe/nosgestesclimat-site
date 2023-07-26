@@ -1,8 +1,8 @@
-import { getTitle, splitName } from 'Components/publicodesUtils'
-import useFetchDocumentation from 'Components/useFetchDocumentation'
-import { Markdown } from 'Components/utils/markdown'
-import Meta from 'Components/utils/Meta'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import { getTitle, splitName } from '@/components/publicodesUtils'
+import useFetchDocumentation from '@/components/useFetchDocumentation'
+import { Markdown } from '@/components/utils/markdown'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { utils } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useParams } from 'react-router'
@@ -50,12 +50,12 @@ export default () => {
 	return (
 		<GuideWrapper>
 			<Meta title={titre} />
-			<ScrollToTop />
 			<Link to={'/guide'}>
 				<button className="ui__ button simple">
 					<Trans>◀ Retour</Trans>
 				</button>
 			</Link>
+			<ScrollToTop />
 			<div>
 				<Markdown
 					children={
