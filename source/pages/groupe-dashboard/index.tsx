@@ -45,9 +45,11 @@ export default function GroupeDashboard() {
 
 	const intervalRef = useRef<NodeJS.Timer>()
 
+	const [synced, setSynced] = useState(false)
 	const results: Results | null = useGetGroupStats({
 		groupMembers: group?.members,
 		userId: userId || '',
+		synced,
 	})
 
 	const engine = useEngine()
@@ -78,18 +80,17 @@ export default function GroupeDashboard() {
 		const currentMember = group?.members.find(
 			(groupMember) => groupMember.userId === userId
 		)
-		if (
-			group &&
-			currentMember &&
-			currentSimulation &&
-			resultsOfUser?.total !== currentMember?.results?.total
-		) {
-			fetchUpdateGroupMember({
-				group,
-				userId: userId ?? '',
-				simulation: currentSimulation,
-				results: resultsOfUser,
-			}).then(() => handleFetchGroup())
+		if (group && currentMember && currentSimulation) {
+			if (resultsOfUser?.total !== currentMember?.results?.total) {
+				fetchUpdateGroupMember({
+					group,
+					userId: userId ?? '',
+					simulation: currentSimulation,
+					results: resultsOfUser,
+				}).then(() => handleFetchGroup())
+			} else {
+				setSynced(true)
+			}
 		}
 	}, [group, userId, resultsOfUser, currentSimulation, handleFetchGroup])
 
