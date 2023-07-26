@@ -2,9 +2,11 @@ import {
 	DottedName,
 	extractCategories,
 	getSubcategories,
-	safeGetSituation,
 } from '@/components/publicodesUtils'
-import { useEngine } from '@/components/utils/EngineContext'
+import {
+	setSituationForValidKeys,
+	useEngine,
+} from '@/components/utils/EngineContext'
 import { Member } from '@/types/groups'
 import Engine from 'publicodes'
 
@@ -66,14 +68,10 @@ export const useGetGroupStats = ({
 
 				const isCurrentMember = groupMember.userId === userId
 
-				// Set Situation of current member
-				// Should use safeGetSituation from publicodesUl
-				const safeSituation = safeGetSituation(
-					groupMember?.simulation?.situation,
-					engine
-				)
-
-				engine.setSituation(safeSituation)
+				setSituationForValidKeys({
+					engine,
+					situation: groupMember?.simulation?.situation,
+				})
 
 				const categories = extractCategories(rules, engine)
 

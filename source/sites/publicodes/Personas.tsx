@@ -5,9 +5,12 @@ import {
 } from '@/actions/actions'
 import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
-import { safeGetSituation } from '@/components/publicodesUtils'
+import { NGCRulesNodes, safeGetSituation } from '@/components/publicodesUtils'
 import useBranchData, { BranchData } from '@/components/useBranchData'
-import { useEngine } from '@/components/utils/EngineContext'
+import {
+	setSituationForValidKeys,
+	useEngine,
+} from '@/components/utils/EngineContext'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
 import GridChart from '@/sites/publicodes/chart/GridChart'
@@ -200,11 +203,14 @@ export const PersonaGrid = ({
 	}
 
 	const setPersona = (persona: Persona) => {
-		engine.setSituation(safeSituation) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
 		const safeSituation = safeGetSituation(
 			persona.situation,
 			engine.getParsedRules() as NGCRulesNodes
 		)
+		setSituationForValidKeys({
+			engine,
+			situation: persona.situation,
+		})
 		const missingVariables = engine.evaluate(objectif).missingVariables
 		const defaultMissingVariables = Object.keys(missingVariables)
 
