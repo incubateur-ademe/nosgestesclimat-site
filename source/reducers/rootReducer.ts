@@ -104,6 +104,7 @@ function simulation(
 				unfoldedStep: null,
 				persona: undefined,
 				eventsSent: {},
+				id: generateSimulationId(),
 			}
 		}
 		case 'UPDATE_SITUATION': {

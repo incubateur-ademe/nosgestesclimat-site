@@ -300,10 +300,13 @@ export const setDifferentSituation =
 		config,
 		url,
 		persona,
+		id,
 		foldedSteps,
 	}: Simulation): ThunkResult<void> =>
 	(dispatch, getState) => {
-		dispatch(setSimulation({ situation, config, url, persona, foldedSteps }))
+		dispatch(
+			setSimulation({ situation, config, url, persona, id, foldedSteps })
+		)
 		dispatch(addSimulationToList(getState().simulation))
 		dispatch(setCurrentSimulation(getState().simulation))
 	}

@@ -208,6 +208,7 @@ export const PersonaGrid = ({
 			// the schema of personas is not fixed yet
 			situation: persona.situation,
 			persona: persona,
+			id: persona.nom,
 			// If not specified, act as if all questions were answered : all that is not in
 			// the situation object is a validated default value
 			foldedSteps: defaultMissingVariables,

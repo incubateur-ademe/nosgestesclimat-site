@@ -5,6 +5,7 @@ import {
 	resetSimulation,
 	resetStoredAmortissementAvion,
 	resetStoredTrajets,
+	setDifferentSituation,
 	skipTutorial,
 } from '@/actions/actions'
 import AnswerList from '@/components/conversation/AnswerList'
@@ -20,9 +21,11 @@ import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
+import { generateSimulationId } from '@/storage/persistSimulation'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
+import { questionConfig } from './questionConfig'
 import SimulationList from './SimulationList'
 
 export const useProfileData = () => {
@@ -148,6 +151,19 @@ export default () => {
 								css="margin: 1rem 0"
 								onClick={() => {
 									dispatch(resetSimulation())
+									const newSimulation = {
+										situation: {},
+										config: {
+											objectifs: ['bilan'],
+											questions: questionConfig,
+										},
+										url: '/simulateur/bilan',
+										persona: undefined,
+										foldedSteps: [],
+										id: generateSimulationId(),
+									}
+
+									dispatch(setDifferentSituation(newSimulation))
 									dispatch(resetActionChoices())
 									dispatch(resetStoredTrajets())
 									dispatch(resetStoredAmortissementAvion())
