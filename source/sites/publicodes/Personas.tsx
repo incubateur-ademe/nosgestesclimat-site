@@ -5,8 +5,12 @@ import {
 } from '@/actions/actions'
 import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
+import { NGCRulesNodes, safeGetSituation } from '@/components/publicodesUtils'
 import useBranchData, { BranchData } from '@/components/useBranchData'
-import { useEngine } from '@/components/utils/EngineContext'
+import {
+	setSituationForValidKeys,
+	useEngine,
+} from '@/components/utils/EngineContext'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
 import GridChart from '@/sites/publicodes/chart/GridChart'
@@ -30,6 +34,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate, useSearchParams } from 'react-router-dom'
 import yaml from 'yaml'
+import { questionConfig } from './questionConfig'
 
 const visualisationChoices = {
 	summary: { titre: 'Description', composant: Summary },
@@ -198,19 +203,29 @@ export const PersonaGrid = ({
 	}
 
 	const setPersona = (persona: Persona) => {
-		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
-		const missingVariables = engine.evaluate(objectif).missingVariables ?? {}
+		const safeSituation = safeGetSituation(
+			persona.situation,
+			engine.getParsedRules() as NGCRulesNodes
+		)
+		setSituationForValidKeys({
+			engine,
+			situation: persona.situation,
+		})
+		const missingVariables = engine.evaluate(objectif).missingVariables
 		const defaultMissingVariables = Object.keys(missingVariables)
 
 		const newSimulation: Simulation = {
-			config: { objectifs: [objectif] },
+			config: { objectifs: [objectif], questions: questionConfig },
 			url: '/simulateur/bilan',
 			// the schema of personas is not fixed yet
 			situation: persona.situation,
 			persona: persona,
 			// If not specified, act as if all questions were answered : all that is not in
 			// the situation object is a validated default value
-			foldedSteps: defaultMissingVariables,
+			foldedSteps:
+				Object.entries(persona.situation)?.length === 0
+					? defaultMissingVariables
+					: Object.keys(safeSituation),
 		}
 
 		dispatch(setDifferentSituation(newSimulation))

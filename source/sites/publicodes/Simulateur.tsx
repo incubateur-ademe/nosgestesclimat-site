@@ -301,6 +301,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const userId = useSelector((state: AppState) => state.user.userId)
 
 	const handleUpdateGroup = async () => {
+		// Should use setSituationForValidKeys ?
 		engine.setSituation(currentSimulation?.situation)
 
 		const results: SimulationResults = getSimulationResults({

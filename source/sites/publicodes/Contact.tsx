@@ -30,7 +30,7 @@ export const createIssue = (
 	body,
 	setURL,
 	disableButton,
-	labels = ['contribution externe']
+	labels = ['💁 contribution externe']
 ) => {
 	if (title == null || body == null || [title, body].includes('')) {
 		return null
@@ -122,7 +122,7 @@ export const GithubContributionForm = () => {
 						t('publicodes.Contribution.commentaireAugmenté')
 					createIssue(sujet, augmentedComment, setURL, disableButton, [
 						'FAQ',
-						'contribution externe',
+						'💁 contribution externe',
 					])
 				}}
 			>
