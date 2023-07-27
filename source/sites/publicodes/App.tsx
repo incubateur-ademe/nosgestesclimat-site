@@ -39,6 +39,7 @@ import Navigation from './Navigation'
 import About from './pages/About'
 import Diffuser from './pages/Diffuser'
 import PlanDuSite from './pages/Plan'
+import Reutilisateurs from './pages/Reutilisateurs'
 import Profil from './Profil'
 import sitePaths from './sitePaths'
 import TranslationContribution from './TranslationContribution'
@@ -522,6 +523,7 @@ const Router = () => {
 			/>
 			<Route path="/partenaires" element={<Diffuser />} />
 			<Route path="/diffuser" element={<Diffuser />} />
+			<Route path="/reutilisateurs" element={<Reutilisateurs />} />
 			<Route
 				path={'vie-privée'}
 				element={
