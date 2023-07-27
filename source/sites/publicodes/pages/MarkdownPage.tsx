@@ -2,6 +2,7 @@ import { Markdown } from '@/components/utils/markdown'
 import { useTranslation } from 'react-i18next'
 
 import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
 
 export type PageProps = {
@@ -23,6 +24,7 @@ export default ({ markdownFiles, title, description, image }: PageProps) => {
 			{title && description && (
 				<Meta title={title} description={description} image={image} />
 			)}
+			<ScrollToTop />
 			<Markdown children={content} />
 		</section>
 	)
