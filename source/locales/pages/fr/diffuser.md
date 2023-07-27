@@ -60,7 +60,7 @@ Les contributions sont libres. Nous recherchons notamment :
 -   des personnes qui aiment jongler avec les unités physiques et modéliser des calculs en trouvant les meilleures sources de données disponibles
 -   des développeurs et designers pour améliorer le site, son design et ses fonctionnalités
 
-Tout est sur [Github](https://github.com/datagir/?q=nosgestesclimat&type=&language=&sort=), mais n'hésitez pas à nous contacter directement.
+Tout est sur [Github]([https://github.com/datagir/?q=nosgestesclimat&type=&language=&sort=](https://github.com/search?q=nosgestesclimat&type=repositories), mais n'hésitez pas à nous contacter directement.
 
 ## Nous contacter
 
