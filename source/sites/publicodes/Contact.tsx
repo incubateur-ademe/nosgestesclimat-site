@@ -121,7 +121,7 @@ export const GithubContributionForm = () => {
 							: '') +
 						t('publicodes.Contribution.commentaireAugmenté')
 					createIssue(sujet, augmentedComment, setURL, disableButton, [
-						'FAQ',
+						'❓ FAQ',
 						'💁 contribution externe',
 					])
 				}}
