@@ -392,14 +392,18 @@ export const safeGetRule = (engine: Engine, dottedName: DottedName) => {
 }
 
 export const safeGetSituation = (
-	situation: Situation,
+	situation: Situation | undefined,
 	rules: NGCRulesNodes
-): Situation =>
-	Object.fromEntries(
+): Situation => {
+	if (situation == undefined) {
+		return {}
+	}
+	return Object.fromEntries(
 		Object.entries(situation).filter(([ruleName, _]) =>
 			Object.keys(rules).includes(ruleName)
 		)
 	)
+}
 
 export const questionCategoryName = (dottedName: DottedName) =>
 	splitName(dottedName)?.[0]

@@ -1,5 +1,9 @@
-import { DottedName } from '@/components/publicodesUtils'
-import { intersect, pick } from '@/utils'
+import {
+	DottedName,
+	NGCRulesNodes,
+	safeGetSituation,
+} from '@/components/publicodesUtils'
+import { Situation } from '@/types/simulation'
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
 
@@ -23,11 +27,8 @@ export function useEngine(): Engine<DottedName> {
 }
 
 type SetSituationForValidKeysProps = {
-	engine: Engine<DottedName>
-	situation: Partial<
-		Record<DottedName, string | number | Record<string, unknown>>
-	>
-	rules?: Record<DottedName, string>
+	engine: Engine
+	situation: Situation
 }
 
 //TODO
@@ -40,11 +41,8 @@ export const setSituationForValidKeys = ({
 	engine,
 	situation,
 }: SetSituationForValidKeysProps) => {
-	const rulesParsed = engine.getParsedRules()
-
-	const validKeys = intersect(Object.keys(rulesParsed), Object.keys(situation))
-	const validSituation = pick(situation, validKeys)
-
+	const rulesParsed = engine.getParsedRules() as NGCRulesNodes
+	const validSituation = safeGetSituation(situation, rulesParsed)
 	engine.setSituation(validSituation)
 }
 
