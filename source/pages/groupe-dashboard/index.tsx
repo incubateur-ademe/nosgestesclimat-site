@@ -1,26 +1,32 @@
 import GoBackLink from '@/components/groupe/GoBackLink'
 import Title from '@/components/groupe/Title'
+import Meta from '@/components/utils/Meta'
 import { GROUP_URL } from '@/constants/urls'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Navigate, useSearchParams } from 'react-router-dom'
 
-import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
-import Button from '@/components/groupe/Button'
-import InlineTextInput from '@/components/groupe/InlineTextInput'
-import Separator from '@/components/groupe/Separator'
-import Meta from '@/components/utils/Meta'
-import { useMatomo } from '@/contexts/MatomoContext'
+import { useEngine } from '@/components/utils/EngineContext'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
+import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
+import { getSimulationResults } from '@/utils/getSimulationResults'
 import Classement from './components/Classement'
+import FeedbackBlock from './components/FeedbackBlock'
 import Footer from './components/Footer'
 import InviteBlock from './components/InviteBlock'
 import PointsFortsFaibles from './components/PointsFortsFaibles'
 import VotreEmpreinte from './components/VotreEmpreinte'
 import { Results, useGetGroupStats } from './hooks/useGetGroupStats'
+
+import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
+import Button from '@/components/groupe/Button'
+import InlineTextInput from '@/components/groupe/InlineTextInput'
+import Separator from '@/components/groupe/Separator'
 
 export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -39,34 +45,62 @@ export default function GroupeDashboard() {
 
 	const intervalRef = useRef<NodeJS.Timer>()
 
+	const [synced, setSynced] = useState(false)
 	const results: Results | null = useGetGroupStats({
 		groupMembers: group?.members,
 		userId: userId || '',
+		synced,
 	})
 
+	const engine = useEngine()
+
+	const currentSimulation = useGetCurrentSimulation()
+	const resultsOfUser = getSimulationResults({
+		engine,
+	})
+	const handleFetchGroup = useCallback(async () => {
+		try {
+			const response = await fetch(`${GROUP_URL}/${groupId}`)
+
+			if (!response.ok) {
+				throw new Error('Error while fetching group')
+			}
+
+			const groupFetched: Group = await response.json()
+
+			setGroup(groupFetched)
+		} catch (error) {
+			captureException(error)
+		}
+	}, [groupId])
+
+	// If the user has a simulation we update the group accordingly
+	// This is flaky and should incorporate a failsafe to ensure we do not update ad aeternam
 	useEffect(() => {
-		const handleFetchGroup = async () => {
-			try {
-				const response = await fetch(`${GROUP_URL}/${groupId}`)
-
-				if (!response.ok) {
-					throw new Error('Error while fetching group')
-				}
-
-				const groupFetched: Group = await response.json()
-
-				setGroup(groupFetched)
-			} catch (error) {
-				captureException(error)
+		const currentMember = group?.members.find(
+			(groupMember) => groupMember.userId === userId
+		)
+		if (group && currentMember && currentSimulation) {
+			if (resultsOfUser?.total !== currentMember?.results?.total) {
+				fetchUpdateGroupMember({
+					group,
+					userId: userId ?? '',
+					simulation: currentSimulation,
+					results: resultsOfUser,
+				}).then(() => handleFetchGroup())
+			} else {
+				setSynced(true)
 			}
 		}
+	}, [group, userId, resultsOfUser, currentSimulation, handleFetchGroup])
 
+	useEffect(() => {
 		if (groupId && !group) {
 			handleFetchGroup()
 
 			intervalRef.current = setInterval(() => handleFetchGroup(), 60000)
 		}
-	}, [groupId, group, userId])
+	}, [groupId, group, userId, handleFetchGroup])
 
 	useEffect(() => {
 		return () => {
@@ -163,6 +197,7 @@ export default function GroupeDashboard() {
 						}
 					/>
 				)}
+				<FeedbackBlock />
 				<div className="mt-4">
 					<h2 className="font-bold text-lg m-0">
 						<Trans>Le classement</Trans>
