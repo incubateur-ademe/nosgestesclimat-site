@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux'
 import { Navigate, useSearchParams } from 'react-router-dom'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import Classement from './components/Classement'
@@ -55,7 +54,7 @@ export default function GroupeDashboard() {
 
 	const engine = useEngine()
 
-	const currentSimulation = useGetCurrentSimulation()
+	const currentSimulation = useSelector((state: AppState) => state.simulation)
 	const resultsOfUser = getSimulationResults({
 		engine,
 	})

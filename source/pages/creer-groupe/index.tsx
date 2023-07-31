@@ -15,7 +15,6 @@ import Meta from '@/components/utils/Meta'
 import { GROUP_NAMES } from '@/constants/groupNames'
 import { GROUP_URL, NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { useMatomo } from '@/contexts/MatomoContext'
-import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { getSimulationResults } from '@/utils/getSimulationResults'
@@ -45,7 +44,7 @@ export default function CreerGroupe() {
 
 	const engine = useEngine()
 
-	const currentSimulation = useGetCurrentSimulation()
+	const currentSimulation = useSelector((state: AppState) => state.simulation)
 
 	const groups = useSelector((state: AppState) => state.groups) || []
 
