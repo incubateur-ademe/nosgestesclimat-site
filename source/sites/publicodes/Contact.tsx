@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
@@ -29,7 +30,7 @@ export const createIssue = (
 	body,
 	setURL,
 	disableButton,
-	labels = ['contribution externe']
+	labels = ['💁 contribution externe']
 ) => {
 	if (title == null || body == null || [title, body].includes('')) {
 		return null
@@ -120,8 +121,8 @@ export const GithubContributionForm = () => {
 							: '') +
 						t('publicodes.Contribution.commentaireAugmenté')
 					createIssue(sujet, augmentedComment, setURL, disableButton, [
-						'FAQ',
-						'contribution externe',
+						'❓ FAQ',
+						'💁 contribution externe',
 					])
 				}}
 			>
@@ -171,7 +172,7 @@ export default () => {
 				title={t('meta.publicodes.Contact.titre')}
 				description={t('meta.publicodes.Contact.description')}
 			></Meta>
-
+			<ScrollToTop />
 			<Title title={<Trans>Contact</Trans>} />
 			<h2>
 				🙋‍♀️{' '}

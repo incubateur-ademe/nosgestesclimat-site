@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import { AppState } from '../../reducers/rootReducer'
 
-const API = '/geolocation'
+const API = '/.netlify/functions/geolocation'
 
 // Other alternatives :
 // https://positionstack.com/product
@@ -24,23 +24,17 @@ export default () => {
 					const json = res.json()
 					return json
 				})
-				.then(
-					({
-						geo: {
-							country: { code, name },
-						},
-					}) => {
-						dispatch(
-							setLocalisation({
-								country: {
-									code,
-									name,
-								},
-								userChosen: false,
-							})
-						)
-					}
-				)
+				.then(({ country: { code, name } }) => {
+					dispatch(
+						setLocalisation({
+							country: {
+								code,
+								name,
+							},
+							userChosen: false,
+						})
+					)
+				})
 				.catch((e) => {
 					console.log(
 						'erreur dans la récupération des infos de localisation\n\n',

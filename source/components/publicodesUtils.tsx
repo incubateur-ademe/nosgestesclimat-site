@@ -1,3 +1,4 @@
+import { Situation } from '@/types/simulation'
 import Engine, {
 	EvaluatedNode,
 	Evaluation,
@@ -388,6 +389,20 @@ export const safeGetRule = (engine: Engine, dottedName: DottedName) => {
 	} catch (e) {
 		console.log(e)
 	}
+}
+
+export const safeGetSituation = (
+	situation: Situation | undefined,
+	rules: NGCRulesNodes
+): Situation => {
+	if (situation == undefined) {
+		return {}
+	}
+	return Object.fromEntries(
+		Object.entries(situation).filter(([ruleName, _]) =>
+			Object.keys(rules).includes(ruleName)
+		)
+	)
 }
 
 export const questionCategoryName = (dottedName: DottedName) =>

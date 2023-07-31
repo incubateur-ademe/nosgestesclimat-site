@@ -2,11 +2,13 @@ import {
 	DottedName,
 	extractCategories,
 	getSubcategories,
-	safeGetRule,
 } from '@/components/publicodesUtils'
-import { useEngine } from '@/components/utils/EngineContext'
+import {
+	setSituationForValidKeys,
+	useEngine,
+} from '@/components/utils/EngineContext'
 import { Member } from '@/types/groups'
-import Engine, { RuleNode } from 'publicodes'
+import Engine from 'publicodes'
 
 export type ValueObject = {
 	title: string
@@ -33,15 +35,17 @@ export type Results = {
 export const useGetGroupStats = ({
 	groupMembers,
 	userId,
+	synced,
 }: {
 	groupMembers: Member[] | undefined
 	userId: string | null
+	synced: boolean
 }) => {
 	const engine: Engine<DottedName> = useEngine()
 
 	const rules = engine.getParsedRules()
 
-	if (!groupMembers || !userId) return null
+	if (!groupMembers || !userId || !synced) return null
 
 	const results = {
 		currentMemberAllFootprints: {} as Record<string, ValueObject>,
@@ -50,8 +54,10 @@ export const useGetGroupStats = ({
 		pointsFaibles: {} as Points[],
 	}
 
-	const { groupCategoriesFootprints, currentMemberAllFootprints } =
-		groupMembers.reduce(
+	const { groupCategoriesFootprints, currentMemberAllFootprints } = groupMembers
+		// We sort the members to have the current user as last to set the engine
+		.sort((a) => (a.userId === userId ? 1 : -1))
+		.reduce(
 			(
 				{ groupCategoriesFootprints, currentMemberAllFootprints },
 				groupMember: Member
@@ -66,17 +72,10 @@ export const useGetGroupStats = ({
 
 				const isCurrentMember = groupMember.userId === userId
 
-				// Set Situation of current member
-				const safeSituation = Object.entries(
-					groupMember?.simulation?.situation || {}
-				).reduce((acc, [key, ruleNode]) => {
-					if (safeGetRule(engine, key)) {
-						return { ...acc, [key]: ruleNode }
-					}
-					return acc
-				}, {} as Record<string, RuleNode>)
-
-				engine.setSituation(safeSituation)
+				setSituationForValidKeys({
+					engine,
+					situation: groupMember?.simulation?.situation,
+				})
 
 				const categories = extractCategories(rules, engine)
 
@@ -159,8 +158,8 @@ export const useGetGroupStats = ({
 				(results?.groupCategoriesFootprints?.[key]?.mean || 0)) /
 				(results?.groupCategoriesFootprints?.[key]?.mean || 1)) *
 			100
-		/*
-		console.log(key, results.currentMemberAllFootprints[key].variation) */
+
+		//console.log(key, results.currentMemberAllFootprints)
 	})
 
 	const sortedCurrentMemberByVariation = Object.entries(

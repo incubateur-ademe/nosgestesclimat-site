@@ -20,6 +20,7 @@ import Simulation from '@/components/Simulation'
 import { useEngine } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { useMatomo } from '@/contexts/MatomoContext'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
@@ -173,6 +174,7 @@ const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 				description={evaluation.rawNode?.description}
 			/>
 			<Title title={t('Votre bilan climat personnel')} />
+			<ScrollToTop />
 			<div>
 				{!displayTutorial && (
 					<motion.div
@@ -299,6 +301,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 	const userId = useSelector((state: AppState) => state.user.userId)
 
 	const handleUpdateGroup = async () => {
+		// Should use setSituationForValidKeys ?
 		engine.setSituation(currentSimulation?.situation)
 
 		const results: SimulationResults = getSimulationResults({
