@@ -128,7 +128,10 @@ export default function SearchBar() {
 							? searchIndex.map((item) => ({ item, matches: [] }))
 							: results
 						).map(({ item, matches }) => (
-							<RuleListItem {...{ item, matches, rules }} />
+							<RuleListItem
+								key={item.dottedName}
+								{...{ item, matches, rules }}
+							/>
 						))}
 					</ul>
 				)
