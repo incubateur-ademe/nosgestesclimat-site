@@ -125,7 +125,7 @@ Color Contrast Analyser).
 -   The test : https://nosgestesclimat.fr/simulateur/bilan
 -   End :
     https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
--   Act: https://nosgestesclimat.fr/actions/liste
+-   Act: https://nosgestesclimat.fr/actions
 -   Action :
     https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
 -   Conference: https://nosgestesclimat.fr/conf%C3%A9rence

@@ -23,7 +23,7 @@ carbonio personale, che può essere visualizzata in tre infografiche.
 ## Agite sulla mia impronta, adesso
 
 Dopo un test di 10 minuti, il [percorso
-d'azione](https://nosgestesclimat.fr/actions/liste) permette di dare
+d'azione](https://nosgestesclimat.fr/actions) permette di dare
 priorità agli eco-gesti per ridurre la propria impronta, distinguendo
 tra piccoli gesti per il clima (sostituire le lampadine, spegnere gli
 elettrodomestici in standby) e grandi gesti (mangiare meno carne,

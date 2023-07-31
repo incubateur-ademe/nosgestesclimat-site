@@ -1,7 +1,7 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
-import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -20,13 +20,7 @@ export default function DocumentationLanding() {
 	const getColor = (dottedName) => rules[splitName(dottedName)[0]].couleur
 	return (
 		<div className="ui__ container">
-			<Helmet>
-				<link
-					rel="canonical"
-					href={`${window.location.origin}${window.location.pathname}`}
-					data-rh="true"
-				/>
-			</Helmet>
+			<AutoCanonicalTag />
 
 			<Title title={<Trans>Documentation</Trans>} />
 			<p>

@@ -14,7 +14,7 @@ Au fil des questions portant sur tous les aspects de nos modes de vie, découpé
 
 ## Réduire son empreinte, dès maintenant !
 
-Connaitre son empreinte c’est bien, savoir comment la réduire c’est mieux. Après 10 minutes de test, le [parcours action](https://nosgestesclimat.fr/actions/liste) vous permet de prioriser les éco-gestes pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les grands gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
+Connaitre son empreinte c’est bien, savoir comment la réduire c’est mieux. Après 10 minutes de test, le [parcours action](https://nosgestesclimat.fr/actions) vous permet de prioriser les éco-gestes pour réduire votre empreinte en faisant la part des choses entre les petits gestes pour le climat (remplacer nos ampoules, éteindre nos appareils en veille), et les grands gestes (manger moins de viande, électrifier nos usages...) qui ont un impact significatif.
 
 Bien entendu, même s'il est incontournable de mesurer l'empreinte d'une consommation et d'en comprendre l'ampleur par rapport au [budget climat](https://nosgestesclimat.fr/blog/budget), il arrive souvent qu'elle ne soit pas complètement de notre ressort personnel : par exemple, je suis locataire en zone tendue et mon propriétaire refuse d'isoler mon appartement.
 

@@ -10,7 +10,7 @@ El clima se está calentando debido a las actividades humanas, eso es un
 hecho. Pero, ¿cuál es nuestro papel como ciudadanos?
 
 Para estimar nuestro propio impacto en el calentamiento global, es
-habitual calcular *la huella de carbono individual de nuestro consumo*.
+habitual calcular _la huella de carbono individual de nuestro consumo_.
 
 El principio es sencillo: para cada consumo (coger el coche 10 km, comer
 un filete, calentar la casa con gas...), contamos las emisiones de gases
@@ -23,7 +23,7 @@ que puedes consultar en tres infografías.
 ## Actuar sobre mi huella, ahora mismo
 
 Tras una prueba de 10 minutos, la [ruta de
-acción](https://nosgestesclimat.fr/actions/liste) permite priorizar los
+acción](https://nosgestesclimat.fr/actions) permite priorizar los
 gestos ecológicos para reducir la huella, distinguiendo entre los
 pequeños gestos por el clima (sustituir las bombillas, apagar los
 aparatos en espera) y los grandes gestos (comer menos carne,

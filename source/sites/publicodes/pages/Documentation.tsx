@@ -1,9 +1,9 @@
 import SearchButton from '@/components/SearchButton'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import React, { Suspense, useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Navigate, useLocation, useNavigate } from 'react-router-dom'
@@ -66,13 +66,7 @@ export default function () {
 				margin: 0 auto;
 			`}
 		>
-			<Helmet>
-				<link
-					rel="canonical"
-					href={`${window.location.origin}${window.location.pathname}`}
-					data-rh="true"
-				/>
-			</Helmet>
+			<AutoCanonicalTag />
 
 			<ScrollToTop key={pathname} />
 			<div

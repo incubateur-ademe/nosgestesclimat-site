@@ -76,12 +76,14 @@ export default () => {
 				margin: 1rem auto;
 			`}
 		>
-			<Meta
-				title={t('Action') + ' : ' + title}
-				description={description ?? ''}
-			/>
+			<Meta title={t('Action') + ' : ' + title} description={description ?? ''}>
+				<link
+					rel="canonical"
+					href={`${window.location.origin}${window.location.pathname}`}
+				/>
+			</Meta>
 			<ScrollToTop />
-			<Link to="/actions/liste">
+			<Link to="/actions">
 				<button className="ui__ button simple small ">
 					<Trans>◀ Retour à la liste</Trans>
 				</button>

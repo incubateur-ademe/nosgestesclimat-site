@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
@@ -11,6 +12,8 @@ import ModelStatsBlock from './ModelStatsBlock'
 export default () => {
 	return (
 		<div>
+			<AutoCanonicalTag />
+
 			<ScrollToTop />
 
 			<Title

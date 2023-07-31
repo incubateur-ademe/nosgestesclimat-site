@@ -7,6 +7,7 @@ import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
 import { NGCRulesNodes, safeGetSituation } from '@/components/publicodesUtils'
 import useBranchData, { BranchData } from '@/components/useBranchData'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import {
 	setSituationForValidKeys,
 	useEngine,
@@ -84,7 +85,10 @@ export default () => {
 
 	return (
 		<div>
+			<AutoCanonicalTag />
+
 			<ScrollToTop />
+
 			<Title data-cypress-id="personas-title" title={<Trans>Personas</Trans>} />
 			<div
 				css={`
