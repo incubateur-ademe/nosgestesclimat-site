@@ -1,5 +1,5 @@
 // TODO: should be in the same file as the test
-export const defaultTotalValue = '8,5'
+export const defaultTotalValue = '8,6'
 
 export const mainSimulator = 'bilan'
 
