@@ -27,7 +27,7 @@ import Button from '@/components/groupe/Button'
 import InlineTextInput from '@/components/groupe/InlineTextInput'
 import Separator from '@/components/groupe/Separator'
 import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
-import { useCurrentSimulation } from '@/hooks/useCurrentSimulation'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 
 export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -55,7 +55,7 @@ export default function GroupeDashboard() {
 
 	const engine = useEngine()
 
-	const currentSimulation = useCurrentSimulation()
+	const currentSimulation = useGetCurrentSimulation()
 
 	const resultsOfUser = getSimulationResults({
 		engine,

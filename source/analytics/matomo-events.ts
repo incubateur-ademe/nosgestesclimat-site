@@ -139,6 +139,7 @@ export const getMatomoEventParcoursTestTutorialProgress = (
 	last: boolean,
 	index: number
 ) => ['trackEvent', 'testIntro', last ? 'Terminer' : `diapo ${index} passée`]
+
 export const matomoEventParcoursTestSkipTutorial = [
 	'trackEvent',
 	'testIntro',

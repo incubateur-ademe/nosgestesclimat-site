@@ -1,5 +1,5 @@
 import { AppState } from '@/reducers/rootReducer'
 import { useSelector } from 'react-redux'
 
-export const useCurrentSimulation = () =>
+export const useGetCurrentSimulation = () =>
 	useSelector((state: AppState) => state.simulation)

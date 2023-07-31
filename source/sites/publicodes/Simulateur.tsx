@@ -22,7 +22,7 @@ import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useMatomo } from '@/contexts/MatomoContext'
-import { useCurrentSimulation } from '@/hooks/useCurrentSimulation'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
 import { SavedSimulation } from '@/selectors/storageSelectors'
@@ -296,7 +296,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 		(state: AppState) => state.groupToRedirectTo
 	)
 
-	const currentSimulation = useCurrentSimulation()
+	const currentSimulation = useGetCurrentSimulation()
 
 	const userId = useSelector((state: AppState) => state.user.userId)
 

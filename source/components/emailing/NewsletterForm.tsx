@@ -1,5 +1,5 @@
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
-import { useCurrentSimulation } from '@/hooks/useCurrentSimulation'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
 import { Simulation } from '@/types/simulation'
 import * as Sentry from '@sentry/react'
@@ -18,7 +18,7 @@ export const NewsletterForm = () => {
 
 	const { t } = useTranslation()
 
-	const currentSimulation = useCurrentSimulation()
+	const currentSimulation = useGetCurrentSimulation()
 
 	const saveSimulationInDB = async (data: Simulation) => {
 		const dataFormatted = { ...data }

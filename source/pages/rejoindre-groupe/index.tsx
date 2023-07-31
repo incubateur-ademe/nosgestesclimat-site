@@ -9,7 +9,7 @@ import { useEngine } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
 import { useMatomo } from '@/contexts/MatomoContext'
-import { useCurrentSimulation } from '@/hooks/useCurrentSimulation'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
@@ -46,7 +46,7 @@ export default function RejoindreGroupe() {
 
 	const dispatch = useDispatch()
 
-	const currentSimulation = useCurrentSimulation()
+	const currentSimulation = useGetCurrentSimulation()
 
 	const engine = useEngine()
 
