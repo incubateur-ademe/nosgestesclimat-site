@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
@@ -65,6 +66,7 @@ export default () => {
 					t('et visualisez les résultats du groupe')
 				}
 			/>
+			<AutoCanonicalTag />
 			{room && <ScrollToTop />}
 			<Title title={<Trans>Conférence</Trans>} />
 			<ConferenceTitle>

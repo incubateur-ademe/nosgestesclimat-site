@@ -15,7 +15,12 @@ export default () => {
 
 	return (
 		<div className={'ui__ container ' + (isReleasePage ? '' : 'fluid')}>
-			<Meta title={title} description={description} />
+			<Meta title={title} description={description}>
+				<link
+					rel="canonical"
+					href={`${window.location.origin}${window.location.pathname}`}
+				/>
+			</Meta>
 			{isReleasePage ? (
 				<Link to="/nouveautés">
 					<strong data-cypress-id="news-title">{title}</strong>

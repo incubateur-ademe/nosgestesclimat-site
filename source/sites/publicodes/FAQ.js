@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { Markdown } from 'Components/utils/markdown'
 import { useEffect } from 'react'
 import { renderToString } from 'react-dom/server'
@@ -72,6 +73,9 @@ export default () => {
 					{JSON.stringify(structuredFAQ)}
 				</script>
 			</Meta>
+
+			<AutoCanonicalTag />
+
 			<Title title={t('Questions fréquentes')} />
 			<p>
 				<Trans i18nKey={'publicodes.FAQ.description'}>

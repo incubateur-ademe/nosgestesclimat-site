@@ -1,5 +1,6 @@
 import { getTitle } from '@/components/publicodesUtils'
 import '@/components/ui/index.css'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { AppState } from '@/reducers/rootReducer'
 import Engine, { utils } from 'publicodes'
 import { Trans } from 'react-i18next'
@@ -58,6 +59,7 @@ const PlanDuSite = () => {
 			<Title>
 				<Trans i18nKey="publicodes.planDuSite.title">Plan du site</Trans>
 			</Title>
+			<AutoCanonicalTag />
 			{Object.entries(links).map(([categoryTitle, categoryLinks]) => (
 				<Section key={categoryTitle}>
 					<SectionTitle>

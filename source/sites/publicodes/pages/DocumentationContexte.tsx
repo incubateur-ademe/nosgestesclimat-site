@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 
 import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
 
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import contentEn from '../../../locales/pages/en-us/documentation.md'
 import contentFr from '../../../locales/pages/fr/documentation.md'
 
@@ -23,7 +24,13 @@ export default () => {
 
 	return (
 		<div css="padding: 0 .3rem 1rem; max-width: 600px; margin: 1rem auto;">
-			<Meta title={t('Documentation Contexte Sondage')} />
+			<Meta
+				title={t('Documentation Contexte Sondage')}
+				description={t(
+					"Informations relatives à la création d'un contexte spécifique."
+				)}
+			/>
+			<AutoCanonicalTag />
 			<ScrollToTop />
 			<div>
 				<Link to={'/groupe'}>

@@ -11,6 +11,7 @@ import ButtonLink from '../../components/groupe/ButtonLink'
 
 import Container from '@/components/groupe/Container'
 import Separator from '@/components/groupe/Separator'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Meta from '@/components/utils/Meta'
 import FeedbackBlock from '../groupe-dashboard/components/FeedbackBlock'
 import SondagesBlock from '../groupe-dashboard/components/SondagesBlock'
@@ -54,6 +55,9 @@ export default function MesGroupes() {
 					"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 				)}
 			/>
+
+			<AutoCanonicalTag />
+
 			<Title
 				title={t("Groupe d'amis")}
 				subtitle={t(

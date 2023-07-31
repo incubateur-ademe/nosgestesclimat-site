@@ -2,6 +2,7 @@ import { skipTutorial } from '@/actions/actions'
 import { getMatomoEventParcoursTestTutorialProgress } from '@/analytics/matomo-events'
 import { MODEL_ROOT_RULE_NAME } from '@/components/publicodesUtils'
 import SlidesLayout from '@/components/SlidesLayout'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Meta from '@/components/utils/Meta'
 import { useMatomo } from '@/contexts/MatomoContext'
 import useKeypress from '@/hooks/useKeyPress'
@@ -80,6 +81,7 @@ export default () => {
 				description={description}
 				image={generateImageLink(window.location)}
 			/>
+			<AutoCanonicalTag />
 			<SlidesLayout length={slides.length} active={index}>
 				<HorizontalSwipe {...{ next, previous }}>
 					<Slide
