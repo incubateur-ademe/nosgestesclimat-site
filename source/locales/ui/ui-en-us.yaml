@@ -910,3 +910,32 @@ entries:
   meta.publicodes.Budget.title.lock: Budget
   meta.publicodes.Budget.description: Nos Gestes Climat is a state-owned start-up supported by ADEME. Browse this page to find out more about how the team works and its annual budget.
   meta.publicodes.Budget.description.lock: Nos Gestes Climat est une start-up d'état portée par l'ADEME. Parcourez cette page pour en savoir plus sur le fonctionnement de l'équipe et son budget annuel.
+  10 minutes: 10 minutes
+  Avant de commencer: Before you start
+  Consultez la FAQ: Consult the FAQ
+  'Répondez aux questions <2>en votre nom</2>, pas pour votre foyer.': Answer the questions <2>on behalf of yourself</2>, not your household.
+  Description: Description
+  publicodes.Tutoriel.slide1.p2: <0>This 10-minute test ⏱️ gives you <2>a measure of your contribution </2> to this warming.</0>
+  publicodes.Tutoriel.slide1.p2.lock: <0>Ce test vous donne en ⏱️ 10 minutes chrono <2>une mesure de votre part </2> dans ce réchauffement.</0>
+  D’où vient mon empreinte ?: Where does my footprint come from?
+  Quel est l’objectif à atteindre ?: What's the objective?
+  C'est un test individuel !: It's an individual test!
+  Tutoriel: Tutorial
+  Comment on la mesure ?: How do you measure it?
+  Il concerne votre vie personnelle: It concerns your personal life
+  publicodes.Tutoriel.slide1.p1: <0>Don't panic, we'll explain what it is.</0><1>The planet is <1>warming up dangerously</1>, as we emit more and more greenhouse gases.</1>
+  publicodes.Tutoriel.slide1.p1.lock: <0>Pas de panique, on vous explique ce que c'est.</0><1>La planète <1>se réchauffe dangereusement</1>, au fur et à mesure des gaz à effet de serre que l'on émet.</1>
+  publicodes.Tutoriel.slide2.p1: 'With a unit with a barbaric name: the CO₂ equivalent. Carbon dioxide<1></1>, you know it: we breathe it out all day long, but with no influence on the climate.'
+  publicodes.Tutoriel.slide2.p1.lock: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
+  chrono pour calculer votre empreinte sur le climat: chrono to calculate your climate footprint
+  C’est quoi mon empreinte carbone ?: What's my carbon footprint?
+  Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.: Read the Nos Gestes Climat tutorial before starting your simulation.
+  'Pas votre boulot ou vos études. Une seule <2>exception</2> : votre trajet domicile-travail doit être inclus dans les km parcourus.': "Not your job or your studies. There's just one <2>exception</2>: your commute to work must be included in the kilometers traveled."
+  publicodes.Tutoriel.slide5.p1: <0>We need to reduce our climate footprint as quickly as possible.</0><1>In France, that means going from ~10 tonnes to less than<1>2 tonnes</1> per year.</1>
+  publicodes.Tutoriel.slide5.p1.lock: <0>Nous devons diminuer notre empreinte climat au plus vite.</0><1>En France, ça consiste à passer de ~10 tonnes à<1>moins de 2 tonnes</1> par an.</1>
+  publicodes.Tutoriel.slide2.p2: It's the machines that make our modern comforts that release massive amounts of it, so much so that we count it in thousands of kilos per year and per person, so in <2>tons</2> of CO₂e!
+  publicodes.Tutoriel.slide2.p2.lock: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
+  publicodes.Tutoriel.slide2.blockquote: 'Other gases, especially methane <2></2> and nitrous oxide <6></6> also warm the planet: we convert their warming potential into CO₂ equivalent to simplify measurement. '
+  publicodes.Tutoriel.slide2.blockquote.lock: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide6: <0>Driving a car, eating a steak, heating your home, getting medical treatment, buying a TV...</0><1><0><0></0></0></1><2>Our individual consumption footprint is the sum total of all the activities that make up our modern lives. </2>
+  publicodes.Tutoriel.slide6.lock: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1><0><0></0></0></1><2>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </2>
