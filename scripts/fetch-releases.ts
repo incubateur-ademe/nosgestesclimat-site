@@ -9,17 +9,17 @@
 // "public repo" authorization when generating the access token.
 require('dotenv').config()
 require('isomorphic-fetch')
-const path = require('path')
-const fs = require('fs')
+import { writeFileSync } from 'fs'
+import { join, resolve } from 'path'
 
-const repository = 'nosgestesclimat',
-	organization = 'datagir'
+const repository = 'nosgestesclimat'
+const organization = 'datagir'
 
 async function main() {
-	const dir = path.resolve(__dirname, '../source/locales/releases/')
+	const dir = resolve(__dirname, '../source/locales/releases/')
 	const releases = await fetchReleases()
-	fs.writeFileSync(
-		path.join(dir, 'releases-fr.json'),
+	writeFileSync(
+		join(dir, 'releases-fr.json'),
 		JSON.stringify(releases, null, 2)
 	)
 
@@ -29,6 +29,7 @@ async function main() {
 }
 
 let { GITHUB_TOKEN } = process.env
+
 async function fetchReleases() {
 	const headers = {
 		...(GITHUB_TOKEN
