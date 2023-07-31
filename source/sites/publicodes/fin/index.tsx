@@ -102,7 +102,12 @@ export default ({}) => {
 			`}
 		>
 			{window.location.href.includes('fin') && (
-				<Meta title={t('Mon empreinte carbone')}>
+				<Meta
+					title={t('Mon empreinte carbone')}
+					description={t(
+						'Votre bilan carbone personnel calculé avec le calculateur Nos Gestes Climat.'
+					)}
+				>
 					<link
 						rel="canonical"
 						href="https://nosgestesclimat.fr/mon-empreinte-carbone"

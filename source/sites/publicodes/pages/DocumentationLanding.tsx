@@ -1,13 +1,13 @@
 import Title from '@/components/groupe/Title'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
+import { Helmet } from 'react-helmet'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { splitName } from '../../../components/publicodesUtils'
 import SafeCategoryImage from '../../../components/SafeCategoryImage'
 import SearchBar from '../../../components/SearchBar'
-import Meta from '../../../components/utils/Meta'
 import editorialisedModels from './editorialisedModels.yaml'
 
 export default function DocumentationLanding() {
@@ -20,10 +20,14 @@ export default function DocumentationLanding() {
 	const getColor = (dottedName) => rules[splitName(dottedName)[0]].couleur
 	return (
 		<div className="ui__ container">
-			<Meta
-				title={t('Comprendre nos calculs')}
-				description={t('meta.publicodes.pages.Documentation.description')}
-			/>
+			<Helmet>
+				<link
+					rel="canonical"
+					href={`${window.location.origin}${window.location.pathname}`}
+					data-rh="true"
+				/>
+			</Helmet>
+
 			<Title title={<Trans>Documentation</Trans>} />
 			<p>
 				<Trans i18nKey={'meta.publicodes.pages.Documentation.intro'}>
