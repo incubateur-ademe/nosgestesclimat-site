@@ -1,9 +1,5 @@
-import { exec } from 'child_process'
-import { promisify } from 'util'
-
-import dotenv from 'dotenv'
-
-dotenv.config()
+const exec = require('child_process').exec
+const promisify = require('util').promisify
 
 // Extrait la liste des liens référencés dans la base de code
 const { stdout, stderr } = await promisify(exec)(
