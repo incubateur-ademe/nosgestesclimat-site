@@ -16,7 +16,7 @@ export default function FeedbackBlock() {
 					href="https://tally.so/r/meDdDJ"
 					target="_blank"
 				>
-					Donnez votre avis !
+					<Trans>Donnez votre avis !</Trans>
 				</a>
 			</div>
 		</div>
