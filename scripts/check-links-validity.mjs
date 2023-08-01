@@ -1,8 +1,7 @@
 import { exec } from 'child_process'
 import { promisify } from 'util'
 
-const core = require('@actions/core')
-
+import * as core from '@actions/core'
 import dotenv from 'dotenv'
 
 dotenv.config()
