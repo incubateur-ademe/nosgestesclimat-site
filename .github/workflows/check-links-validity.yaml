@@ -1,15 +1,9 @@
 name: Check links validity
 on:
-  pull_request:
-    types:
-      - opened
-      - reopened
-      - synchronize
-      - ready_for_review
-  #workflow_dispatch:
-  #schedule:
-  # https://crontab.guru/#0_11_*_*_2
-  #- cron: '0 11 * * 2'
+  workflow_dispatch:
+  schedule:
+    # https://crontab.guru/#0_11_*_*_2
+    - cron: '0 11 * * 2'
 jobs:
   run:
     runs-on: ubuntu-latest

@@ -12,6 +12,7 @@ const whiteList = [
 	'https://api.github.com/repos/',
 	'https://deploy-preview-',
 	'https://xxx.png/jpg',
+	'https://ogimager.osc-fr1.scalingo.io/capture/',
 ]
 
 // Extrait la liste des liens référencés dans la base de code
