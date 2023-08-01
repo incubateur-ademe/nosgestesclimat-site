@@ -1,5 +1,8 @@
 const exec = require('child_process').exec
 const promisify = require('util').promisify
+const dotenv = require('dotenv')
+
+dotenv.config()
 
 const checkLinksValidity = async () => {
 	// Extrait la liste des liens référencés dans la base de code
