@@ -18,10 +18,10 @@ jobs:
       - name: Install RipGrep
         run: sudo apt install -y ripgrep
       - id: invalid_links
-        run: node ./scripts/check-links-validity.js --ci
+        run: node ./scripts/check-links-validity.mjs --ci
         timeout-minutes: 15
       - if: steps.invalid_links.outputs.comment
         uses: ./.github/actions/reopen-issue-with-comment
         with:
-          issue-number: 2165
+          issue-number: 1272
           comment: ${{ steps.invalid_links.outputs.comment }}
