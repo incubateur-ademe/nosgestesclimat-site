@@ -1,6 +1,8 @@
 import { exec } from 'child_process'
-import dotenv from 'dotenv'
 import { promisify } from 'util'
+
+import * as core from '@actions/core'
+import dotenv from 'dotenv'
 
 dotenv.config()
 
@@ -48,7 +50,7 @@ async function fetchAndReport(link) {
 	let remainingRetries = 3
 	while (status === 499 && remainingRetries > 0) {
 		remainingRetries--
-		await sleep(20_000)
+		await sleep(15_000)
 		status = await getHTTPStatus(link)
 	}
 	report({ status, link })
@@ -67,7 +69,7 @@ async function getHTTPStatus(link) {
 	}
 }
 
-async function report({ status, link }) {
+function report({ status, link }) {
 	console.log(status >= 404 ? '❌' : status >= 400 ? '⬛' : '✅', status, link)
 	if (status >= 404 && status !== 499) {
 		detectedErrors.push({ status, link })
@@ -81,6 +83,9 @@ function sleep(ms) {
 await Promise.allSettled(
 	Array.from({ length: simultaneousItems }).map(processNextQueueItem)
 )
+
+console.log('Terminé')
+
 if (detectedErrors.length > 0) {
 	// Formattage spécifique pour récupérer le résultat avec l'action Github
 	if (process.argv.slice(2).includes('--ci')) {
@@ -100,15 +105,15 @@ if (detectedErrors.length > 0) {
 				.split('\n')
 				.map((line) => line.trim())
 				.join('<br />')
-		console.log(`comment=${format(message)} >> $GITHUB_OUTPUT`)
+		core.setOutput('comment', format(message))
 	} else if (detectedErrors) {
-		console.log(
+		core.setFailed(
 			'Liens invalides :' +
 				detectedErrors
 					.map(({ status, link }) => `\n- [${status}] ${link}`)
 					.join('')
 		)
 	}
-
-	console.log('Terminé')
 }
+
+process.exit(0)
