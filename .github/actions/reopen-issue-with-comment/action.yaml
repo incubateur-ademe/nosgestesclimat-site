@@ -10,4 +10,4 @@ inputs:
     description: 'The comment body.'
 runs:
   using: 'node16'
-  main: './main.js'
+  main: './main.mjs'
