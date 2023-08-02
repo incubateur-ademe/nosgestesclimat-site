@@ -65,6 +65,11 @@ en:
   oui: yes
   non: no
   Non applicable: inapplicable
+  km.voyageur: km
+  nuit: night
+  tasse: cup
+  tasse / semaine: cup / week
+  bouteille: bottle
 # es:
 #   € / an: € / año
 #   an: año
