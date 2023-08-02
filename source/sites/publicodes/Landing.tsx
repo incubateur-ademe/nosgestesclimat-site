@@ -1,7 +1,8 @@
+import AnimatedIllustration from '@/components/AnimatedIllustration'
 import Title from '@/components/groupe/Title'
 import animate from '@/components/ui/animate'
 import LogoADEME from '@/images/logoADEME.svg'
-import React, { Suspense, useContext } from 'react'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
@@ -25,19 +26,6 @@ import { useMatomo } from '../../contexts/MatomoContext'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
-
-const LazyIllustration = React.lazy(
-	() =>
-		import(
-			/* webpackChunkName: 'AnimatedIllustration' */ '@/components/AnimatedIllustration'
-		)
-)
-
-const Illustration = () => (
-	<Suspense fallback={null}>
-		<LazyIllustration />
-	</Suspense>
-)
 
 export default () => {
 	const { trackEvent } = useMatomo()
@@ -64,7 +52,7 @@ export default () => {
 							</Trans>
 						}
 					/>
-					{mobile && <Illustration aria-hidden="true" />}
+					{mobile && <AnimatedIllustration />}
 					<p>
 						<Trans i18nKey={'sites.publicodes.Landing.description'}>
 							En 10 minutes, obtenez une estimation de votre empreinte carbone
@@ -129,7 +117,7 @@ export default () => {
 						</div>
 					</div>
 				</HeaderContent>
-				{!mobile && <Illustration aria-hidden="true" />}
+				{!mobile && <AnimatedIllustration />}
 			</LandingHeaderWrapper>
 
 			<div
