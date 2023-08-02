@@ -1,31 +1,33 @@
 fr:
   € / an: € / an
-  an: an
-  année: année
-  années: années
+  an: an(s)
   ans: ans
-  climatiseur: climatiseur
+  climatiseur: climatiseur(s)
   h / an: h / an
-  heure: heure
-  heures: heure
+  heure: heure(s)
+  heures: heures
   h / semaine: h / semaine
-  jour: jour
+  jour: jour(s)
   jours: jours
   km / an: km / an
   km: km
-  litre: litre
+  km.voyageur: km
+  litre: litre(s)
   litres: litres
   l / semaine: l / semaine
   mois: mois
-  personne: personne
+  personne: personne(s)
   personnes: personnes
-  point: point
-  points: points
-  semaine: semaine
+  semaine: semaine(s)
   semaines: semaines
+  voyageur: voyageur(s)
   voyageurs: voyageurs
-  voyageur: voyageur
-  l / centkm: l / centkm
+  l / centkm: l / 100km
+  stère: stère(s)
+  nuit: nuit(s)
+  tasse: tasse(s)
+  tasse / semaine: tasse(s) / semaine
+  bouteille: bouteille(s)
   # NOTE: following entries should be moved in a separated file?
   oui: oui
   non: non
@@ -59,70 +61,70 @@ en:
   voyageurs: travelers
   voyageur: traveler
   l / centkm: l / hundred km
+  stère: cubic meter
   oui: yes
   non: no
   Non applicable: inapplicable
+# es:
+#   € / an: € / año
+#   an: año
+#   année: año
+#   années: años
+#   ans: años
+#   climatiseur: aire acondicionado
+#   h / an: h / año
+#   heure: hora
+#   heures: horas
+#   h / semaine: h / semana
+#   jour: día
+#   jours: días
+#   km / an: km / año
+#   km: km
+#   litre: litro
+#   litres: litros
+#   l / semaine: l / semana
+#   mois: mes
+#   personne: persona
+#   personnes: personas
+#   point: punto
+#   points: puntos
+#   semaine: semana
+#   semaines: semanas
+#   voyageurs: viajeros
+#   voyageur: viajero
+#   l / centkm: l / cien km
+#   oui: sí
+#   non: no
+#   Non applicable: no se aplica
 
-es:
-  € / an: € / año
-  an: año
-  année: año
-  années: años
-  ans: años
-  climatiseur: aire acondicionado
-  h / an: h / año
-  heure: hora
-  heures: horas
-  h / semaine: h / semana
-  jour: día
-  jours: días
-  km / an: km / año
-  km: km
-  litre: litro
-  litres: litros
-  l / semaine: l / semana
-  mois: mes
-  personne: persona
-  personnes: personas
-  point: punto
-  points: puntos
-  semaine: semana
-  semaines: semanas
-  voyageurs: viajeros
-  voyageur: viajero
-  l / centkm: l / cien km
-  oui: sí
-  non: no
-  Non applicable: no se aplica
-
-it:
-  € / an: € / anno
-  an: anno
-  année: anno
-  années: anni
-  ans: anni
-  climatiseur: condizionatore
-  h / an: o / anno
-  heure: ora
-  heures: ore
-  h / semaine: o / settimiana
-  jour: giorno
-  jours: giorni
-  km / an: km / anno
-  km: km
-  litre: litro
-  litres: litri
-  l / semaine: l / settimiana
-  mois: mese
-  personne: persona
-  personnes: persone
-  point: punto
-  points: punti
-  semaine: settimana
-  semaines: settimane
-  voyageurs: viaggiatori
-  voyageur: viaggiatore
-  l / centkm: l / cento km
-  oui: sí
-  non: no
-  Non applicable: non applicabile
+# it:
+#   € / an: € / anno
+#   an: anno
+#   année: anno
+#   années: anni
+#   ans: anni
+#   climatiseur: condizionatore
+#   h / an: o / anno
+#   heure: ora
+#   heures: ore
+#   h / semaine: o / settimiana
+#   jour: giorno
+#   jours: giorni
+#   km / an: km / anno
+#   km: km
+#   litre: litro
+#   litres: litri
+#   l / semaine: l / settimiana
+#   mois: mese
+#   personne: persona
+#   personnes: persone
+#   point: punto
+#   points: punti
+#   semaine: settimana
+#   semaines: settimane
+#   voyageurs: viaggiatori
+#   voyageur: viaggiatore
+#   l / centkm: l / cento km
+#   oui: sí
+#   non: no
+#   Non applicable: non applicabile
