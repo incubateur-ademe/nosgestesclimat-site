@@ -11,6 +11,7 @@ import { useSelector } from 'react-redux'
 import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Meta from '@/components/utils/Meta'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
+import { getIsSimulationValid } from '@/utils/getIsSimulationValid'
 import FeedbackBlock from '../groupe-dashboard/components/FeedbackBlock'
 import SondagesBlock from '../groupe-dashboard/components/SondagesBlock'
 import CreateFirstGroupSection from './components/CreateFirstGroupSection'
@@ -27,6 +28,8 @@ export default function MesGroupes() {
 	const userId = useSelector((state: AppState) => state.user.userId)
 
 	const currentSimulation = useGetCurrentSimulation()
+
+	const isCurrentSimulationValid = getIsSimulationValid(currentSimulation)
 
 	useEffect(() => {
 		const handleFetchGroups = async () => {
@@ -68,13 +71,13 @@ export default function MesGroupes() {
 			/>
 			<FeedbackBlock />
 
-			{!currentSimulation?.date && <NoSimulationSection />}
+			{!isCurrentSimulationValid && <NoSimulationSection />}
 
-			{currentSimulation && groups && groups.length === 0 && (
+			{isCurrentSimulationValid && groups && groups.length === 0 && (
 				<CreateFirstGroupSection />
 			)}
 
-			{currentSimulation && groups && groups.length > 0 && (
+			{isCurrentSimulationValid && groups && groups.length > 0 && (
 				<CreateOtherGroupsSection groups={groups} />
 			)}
 

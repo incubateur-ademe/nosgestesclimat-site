@@ -15,6 +15,7 @@ import { AppState } from '@/reducers/rootReducer'
 import { Group } from '@/types/groups'
 import { fetchAddUserToGroup } from '@/utils/fetchAddUserToGroup'
 import { fetchGroup } from '@/utils/fetchGroup'
+import { getIsSimulationValid } from '@/utils/getIsSimulationValid'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { captureException } from '@sentry/react'
 import { FormEvent, useEffect, useState } from 'react'
@@ -47,6 +48,8 @@ export default function RejoindreGroupe() {
 	const dispatch = useDispatch()
 
 	const currentSimulation = useGetCurrentSimulation()
+
+	const isCurrentSimulationValid = getIsSimulationValid(currentSimulation)
 
 	const engine = useEngine()
 
@@ -121,7 +124,7 @@ export default function RejoindreGroupe() {
 				name: prenom,
 				email,
 				userId: userId ?? '',
-				simulation: currentSimulation ?? undefined,
+				simulation: isCurrentSimulationValid ? currentSimulation : undefined,
 				results,
 			})
 
@@ -132,7 +135,7 @@ export default function RejoindreGroupe() {
 			sendEmailToGroupOwner()
 
 			// Si l'utilisateur a déjà une simulation de complétée, on le redirige vers le dashboard
-			if (currentSimulation) {
+			if (isCurrentSimulationValid) {
 				trackEvent(getMatomoEventJoinedGroupe(group._id))
 				navigate(groupURL)
 			} else {
@@ -193,7 +196,7 @@ export default function RejoindreGroupe() {
 					errorEmail={errorEmail}
 					setErrorEmail={setErrorEmail}
 				/>
-				{!currentSimulation && (
+				{!isCurrentSimulationValid && (
 					<p className="text-xs mb-2">
 						Vous devrez compléter votre test après avoir rejoint le groupe.
 					</p>
@@ -204,7 +207,7 @@ export default function RejoindreGroupe() {
 					aria-disabled={!prenom}
 					data-cypress-id="button-join-group"
 				>
-					{currentSimulation ? (
+					{isCurrentSimulationValid ? (
 						<Trans>Rejoindre</Trans>
 					) : (
 						<Trans>Rejoindre et passer mon test</Trans>
