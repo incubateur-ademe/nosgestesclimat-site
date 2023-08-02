@@ -6,6 +6,7 @@ import {
 	splitName,
 } from '@/components/publicodesUtils'
 import Simulation from '@/components/Simulation'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
@@ -76,12 +77,11 @@ export default () => {
 				margin: 1rem auto;
 			`}
 		>
-			<Meta title={t('Action') + ' : ' + title} description={description ?? ''}>
-				<link
-					rel="canonical"
-					href={`${window.location.origin}${window.location.pathname}`}
-				/>
-			</Meta>
+			<Meta
+				title={t('Action') + ' : ' + title}
+				description={description ?? ''}
+			/>
+			<AutoCanonicalTag />
 			<ScrollToTop />
 			<Link to="/actions">
 				<button className="ui__ button simple small ">

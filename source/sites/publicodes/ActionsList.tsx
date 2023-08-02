@@ -2,12 +2,12 @@ import {
 	extractCategoriesNamespaces,
 	splitName,
 } from '@/components/publicodesUtils'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { AppState } from '@/reducers/rootReducer'
 import { answeredQuestionsSelector } from '@/selectors/simulationSelectors'
 import { useQuery } from '@/utils'
 import { useContext, useState } from 'react'
-import { Helmet } from 'react-helmet'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import ActionsOptionsBar from './ActionsOptionsBar'
@@ -76,9 +76,7 @@ export default ({ display }) => {
 				margin: 1rem auto;
 			`}
 		>
-			<Helmet>
-				<link rel="canonical" href={`${window.location.origin}/actions`} />
-			</Helmet>
+			<AutoCanonicalTag overrideHref={`${window.location.origin}/actions`} />
 			{!isSimulationWellStarted && <SimulationMissing />}
 			{isSimulationWellStarted && tutorials.actions !== 'skip' && (
 				<ActionTutorial {...{ value, unit }} />

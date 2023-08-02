@@ -1,11 +1,17 @@
 import { Helmet } from 'react-helmet'
 
-export default function AutoCanonicalTag() {
+export default function AutoCanonicalTag({
+	overrideHref,
+}: {
+	overrideHref?: string
+}) {
 	return (
 		<Helmet>
 			<link
 				rel="canonical"
-				href={`${window.location.origin}${window.location.pathname}`}
+				href={
+					overrideHref ?? `${window.location.origin}${window.location.pathname}`
+				}
 			/>
 		</Helmet>
 	)

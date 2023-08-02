@@ -1,5 +1,6 @@
 import Title from '@/components/groupe/Title'
 import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import Meta from '@/components/utils/Meta'
 import Markdown from 'markdown-to-jsx'
 import { utils } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
@@ -11,8 +12,10 @@ import SearchBar from '../../../components/SearchBar'
 import editorialisedModels from './editorialisedModels.yaml'
 
 export default function DocumentationLanding() {
-	const { t } = useTranslation()
 	const rules = useSelector((state) => state.rules)
+
+	const { t } = useTranslation()
+
 	const editos = editorialisedModels.map((dottedName) => ({
 		...rules[dottedName],
 		dottedName,
@@ -20,6 +23,13 @@ export default function DocumentationLanding() {
 	const getColor = (dottedName) => rules[splitName(dottedName)[0]].couleur
 	return (
 		<div className="ui__ container">
+			<Meta
+				title={t('Votre empreinte carbone - détails des calculs')}
+				description={t(
+					'Notre documentation liste le détails des calculs qui nous ont permis de calculer votre bilan carbone personnel.'
+				)}
+			/>
+
 			<AutoCanonicalTag />
 
 			<Title title={<Trans>Documentation</Trans>} />

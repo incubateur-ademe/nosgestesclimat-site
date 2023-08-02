@@ -1,6 +1,6 @@
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import animate from 'Components/ui/animate'
 import { utils } from 'publicodes'
-import { Helmet } from 'react-helmet'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
@@ -101,12 +101,7 @@ export default ({}) => {
 			`}
 		>
 			{window.location.href.includes('fin') && (
-				<Helmet>
-					<link
-						rel="canonical"
-						href="https://nosgestesclimat.fr/mon-empreinte-carbone"
-					/>
-				</Helmet>
+				<AutoCanonicalTag overrideHref="https://nosgestesclimat.fr/mon-empreinte-carbone" />
 			)}
 
 			<IframeDataShareModal data={rehydratedDetails} />
