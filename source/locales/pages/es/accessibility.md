@@ -137,7 +137,7 @@ Analyser).
 -   La prueba: https://nosgestesclimat.fr/simulateur/bilan
 -   Fin:
     https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
--   Acto: https://nosgestesclimat.fr/actions/liste
+-   Acto: https://nosgestesclimat.fr/actions
 -   Acción:
     https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
 -   Conferencia: https://nosgestesclimat.fr/conf%C3%A9rence

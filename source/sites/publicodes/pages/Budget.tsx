@@ -1,3 +1,4 @@
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
@@ -34,6 +35,7 @@ export default () => {
 				title={t('meta.publicodes.Budget.title')}
 				description={t('meta.publicodes.Budget.description')}
 			/>
+			<AutoCanonicalTag />
 			<Markdown children={contentTop} />
 			<SelectYear />
 			<Markdown children={contentBottom} />

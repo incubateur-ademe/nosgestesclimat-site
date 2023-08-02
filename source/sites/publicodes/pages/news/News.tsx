@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Meta from 'Components/utils/Meta'
 import { useTranslation } from 'react-i18next'
 import { Link, Route, Routes, useLocation } from 'react-router-dom'
@@ -16,6 +17,9 @@ export default () => {
 	return (
 		<div className={'ui__ container ' + (isReleasePage ? '' : 'fluid')}>
 			<Meta title={title} description={description} />
+			<AutoCanonicalTag
+				overrideHref={`${window.location.origin}${window.location.pathname}`}
+			/>
 			{isReleasePage ? (
 				<Link to="/nouveautés">
 					<strong data-cypress-id="news-title">{title}</strong>

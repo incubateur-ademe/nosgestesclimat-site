@@ -1,6 +1,7 @@
 import { Markdown } from '@/components/utils/markdown'
 import { useTranslation } from 'react-i18next'
 
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
@@ -24,6 +25,7 @@ export default ({ markdownFiles, title, description, image }: PageProps) => {
 			{title && description && (
 				<Meta title={title} description={description} image={image} />
 			)}
+			<AutoCanonicalTag />
 			<ScrollToTop />
 			<Markdown children={content} />
 		</section>

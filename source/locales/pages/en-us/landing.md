@@ -21,7 +21,7 @@ etc.) is added to make up your personal carbon footprint, and then explained vis
 ## Acting on my footprint, right now
 
 After a 10-minute test, the [action
-pages](https://nosgestesclimat.fr/actions/liste) allow you to prioritize
+pages](https://nosgestesclimat.fr/actions) allow you to prioritize
 the means to reduce your footprint and distinguish
 the actions with the least impact on the climate (replacing our light bulbs, turning off
 our appliances on standby) from the most impactful ones (eating less meat,

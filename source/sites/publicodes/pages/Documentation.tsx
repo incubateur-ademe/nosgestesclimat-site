@@ -1,11 +1,13 @@
 import SearchButton from '@/components/SearchButton'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import React, { Suspense, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import AnimatedLoader from '../../../AnimatedLoader'
 import { WithEngine } from '../../../RulesProvider'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
@@ -32,14 +34,14 @@ export default function () {
 			])
 		)
 
+	const { t } = useTranslation()
+
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)
 
-	const url = useParams()['*']
-
 	const [loadEngine, setLoadEngine] = useState(false)
 
-	const engineState = useSelector((state) => state.engineState),
+	const engineState = useSelector((state: AppState) => state.engineState),
 		parsedEngineReady =
 			engineState.state === 'ready' && engineState.options.parsed
 
@@ -65,6 +67,14 @@ export default function () {
 				margin: 0 auto;
 			`}
 		>
+			<Meta
+				title={t('Votre empreinte carbone - détails des calculs')}
+				description={t(
+					'Notre documentation liste le détails des calculs qui nous ont permis de calculer votre bilan carbone personnel.'
+				)}
+			/>
+			<AutoCanonicalTag />
+
 			<ScrollToTop key={pathname} />
 			<div
 				css={`
@@ -105,8 +115,6 @@ export default function () {
 function BackToSimulation() {
 	const url = useSelector(currentSimulationSelector)?.url
 	const navigate = useNavigate()
-
-	console.log('url', url)
 
 	return (
 		<button

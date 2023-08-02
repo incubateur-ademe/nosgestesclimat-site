@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { getCurrentLangInfos } from '@/locales/translation'
 import { blogData } from './BlogData'
@@ -22,6 +23,7 @@ export default () => {
 				description={description}
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
+			<AutoCanonicalTag />
 			<Title title={title} data-cypress-id="blog-title" />
 			<div
 				css={`

@@ -27,6 +27,7 @@ import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
 import InlineTextInput from '@/components/groupe/InlineTextInput'
 import Separator from '@/components/groupe/Separator'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 
 export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -162,6 +163,7 @@ export default function GroupeDashboard() {
 						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 					)}
 				/>
+				<AutoCanonicalTag />
 				{isEditingTitle ? (
 					<InlineTextInput
 						defaultValue={group?.name}

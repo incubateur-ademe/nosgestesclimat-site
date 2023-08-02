@@ -2,6 +2,7 @@ import {
 	extractCategoriesNamespaces,
 	splitName,
 } from '@/components/publicodesUtils'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { AppState } from '@/reducers/rootReducer'
 import { answeredQuestionsSelector } from '@/selectors/simulationSelectors'
@@ -75,6 +76,7 @@ export default ({ display }) => {
 				margin: 1rem auto;
 			`}
 		>
+			<AutoCanonicalTag overrideHref={`${window.location.origin}/actions`} />
 			{!isSimulationWellStarted && <SimulationMissing />}
 			{isSimulationWellStarted && tutorials.actions !== 'skip' && (
 				<ActionTutorial {...{ value, unit }} />

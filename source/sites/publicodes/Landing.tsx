@@ -38,8 +38,10 @@ export default () => {
 	return (
 		<LandingLayout>
 			<Meta
-				title={t('Connaissez-vous votre empreinte climat ?')}
-				description={t('meta.publicodes.Landing.description')}
+				title={t('Calculer votre empreinte climat - Nos Gestes Climat')}
+				description={t(
+					"Nos Gestes Climat est le calculateur d'empreinte carbone individuelle de référence porté par l'ADEME. Mesurez votre bilan carbone en 10 minutes !"
+				)}
 				image="https://nosgestesclimat.fr/images/dessin-nosgestesclimat.png"
 			/>
 
