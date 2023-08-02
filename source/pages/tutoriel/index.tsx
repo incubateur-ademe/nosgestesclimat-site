@@ -17,7 +17,6 @@ import { Navigate } from 'react-router-dom'
 import Chart from '@/sites/publicodes/chart'
 import CO2e from 'Images/co2e.svg'
 import GreenhouseEffect from 'Images/greenhouse-effect.svg'
-import ObjectifClimat from 'Images/objectif-climat.svg'
 import { WithEngine } from '../../RulesProvider'
 
 export default function Tutoriel() {
@@ -96,23 +95,20 @@ export default function Tutoriel() {
 						</h4>
 						<p>
 							<Trans>
-								Répondez aux questions{' '}
-								<span className="font-bold">en votre nom</span>, pas pour votre
-								foyer.
+								Répondez aux questions en votre nom, pas pour votre foyer. Bien
+								sûr, certaines choses sont partagées (au sein de mon logement
+								avec ma famille, la voiture avec les covoitureurs) : cela sera
+								bien pris en compte dans le calcul de votre empreinte carbone,
+								ne vous inquiétez pas !
 							</Trans>
 						</p>
 					</div>
 					<div className="relative pl-8">
 						<h4 className="font-bold before:content-['👤'] before:absolute before:left-0 overflow-visible ">
-							<Trans>Il concerne votre vie personnelle</Trans>
-						</h4>
-						<p className="ml-6.5">
 							<Trans>
-								Pas votre boulot ou vos études. Une seule{' '}
-								<span className="font-bold">exception</span> : votre trajet
-								domicile-travail doit être inclus dans les km parcourus.
+								Il concerne votre vie personnelle, et non pas votre boulot.
 							</Trans>
-						</p>
+						</h4>
 					</div>
 				</div>
 				<h5 className="mt-10 text-lg">D’autres questions ?</h5>
@@ -124,18 +120,24 @@ export default function Tutoriel() {
 							</summary>
 							<div className="ml-3.5 my-2 text-sm">
 								<Trans i18nKey={'publicodes.Tutoriel.slide1.p1'}>
-									<p>Pas de panique, on vous explique ce que c'est.</p>
 									<p>
-										La planète <strong>se réchauffe dangereusement</strong>, au
-										fur et à mesure des gaz à effet de serre que l'on émet.
+										Le climat se réchauffe à cause des activités humaines, c'est
+										un fait. Tout ce que nous consommons, utilisons, puis jetons
+										a nécessité de la matière et de l'énergie. Que ce soit pour
+										la phase de production, d'utilisation, ou de fin de vie du
+										bien, ou du service. Ainsi, toutes nos activités participent
+										à émettre des gaz à effet de serre. Certaines énormément,
+										d'autres très peu. Mais quel est notre impact, à notre
+										échelle de citoyen ?
 									</p>
 								</Trans>
 								<GreenhouseEffect css="width: 60%; max-height: 20rem; margin: 0 auto 1rem; display: block;" />
 								<Trans i18nKey={'publicodes.Tutoriel.slide1.p2'}>
 									<p>
-										Ce test vous donne en ⏱️ 10 minutes chrono{' '}
-										<strong>une mesure de votre part </strong> dans ce
-										réchauffement.
+										Pour estimer sa propre contribution au réchauffement de la
+										planète (son "impact climat"), il est d'usage de calculer ce
+										qu'on appelle l'empreinte carbone individuelle de
+										consommation.
 									</p>
 								</Trans>
 							</div>
@@ -249,71 +251,6 @@ export default function Tutoriel() {
 										</Trans>
 									</details>
 								</blockquote>
-							</div>
-						</details>
-					</li>
-					<li className="my-1" id={'objectif'}>
-						<details>
-							<summary className=" font-bold text-primary">
-								<Trans>Quel est l’objectif à atteindre ?</Trans>
-							</summary>
-							<div className="ml-3.5 my-2 text-sm">
-								<Trans i18nKey={'publicodes.Tutoriel.slide5.p1'}>
-									<p>
-										Nous devons diminuer notre empreinte climat au plus vite.
-									</p>
-									<p>
-										En France, ça consiste à passer de ~10 tonnes à
-										<strong>moins de 2 tonnes</strong> par an.
-									</p>
-								</Trans>
-								<div className="text-center">
-									<ObjectifClimat
-										aria-hidden="true"
-										css={`
-											width: 16rem;
-											g path:first-child {
-												stroke-dasharray: 1000;
-												stroke-dashoffset: 1000;
-												animation: dash 5s ease-in forwards;
-												animation-delay: 1s;
-											}
-
-											@keyframes dash {
-												to {
-													stroke-dashoffset: 0;
-												}
-											}
-											g path:nth-child(2) {
-												animation: objective-line-appear 2s ease-in;
-											}
-											@keyframes objective-line-appear {
-												from {
-													opacity: 0;
-												}
-												30% {
-													opacity: 0;
-												}
-												100% {
-													opacity: 1;
-												}
-											}
-											path[fill='#532fc5'] {
-												fill: var(--color);
-											}
-										`}
-									/>
-								</div>
-								<p css="text-align: center; line-height: 1.2rem; max-width: 18rem; margin: 0 auto">
-									<em>
-										<Trans>Pour en savoir plus, tout est expliqué dans </Trans>
-										<a href="https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/">
-											<Trans>cet article</Trans>
-										</a>{' '}
-										<Trans>(15 min de lecture)</Trans>
-									</em>
-									.
-								</p>
 							</div>
 						</details>
 					</li>
