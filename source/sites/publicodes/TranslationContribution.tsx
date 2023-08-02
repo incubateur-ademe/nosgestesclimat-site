@@ -103,7 +103,7 @@ export default () => {
 									})
 								createIssue(sujet, augmentedComment, setURL, disableButton, [
 									'i18n',
-									'contribution externe',
+									'💁 contribution externe',
 								])
 							}}
 						>

@@ -1,7 +1,7 @@
 @tailwind utilities;
 
 * {
-	font-family: 'Marianne';
+	font-family: 'Marianne', Arial, sans-serif;
 }
 
 h1 {

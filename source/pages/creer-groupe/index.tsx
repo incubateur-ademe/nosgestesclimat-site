@@ -33,7 +33,7 @@ export default function CreerGroupe() {
 	const [errorPrenom, setErrorPrenom] = useState('')
 	const [email, setEmail] = useState(emailFromState || '')
 	const [errorEmail, setErrorEmail] = useState('')
-
+	const [fetching, setFetching] = useState(false)
 	const { trackEvent } = useMatomo()
 
 	const { t } = useTranslation()
@@ -51,6 +51,7 @@ export default function CreerGroupe() {
 	const groupBaseURL = `${window.location.origin}/groupes`
 
 	const handleSubmit = async (event) => {
+		setFetching(true)
 		// Avoid reloading page
 		if (event) {
 			event.preventDefault()
@@ -59,6 +60,7 @@ export default function CreerGroupe() {
 		// Inputs validation
 		if (!prenom) {
 			setErrorPrenom(t('Veuillez renseigner un prénom ou un pseudonyme.'))
+			setFetching(false)
 			return
 		}
 		if (
@@ -68,6 +70,7 @@ export default function CreerGroupe() {
 			)
 		) {
 			setErrorEmail(t('Veuillez renseigner un email valide.'))
+			setFetching(false)
 			return
 		}
 
@@ -97,6 +100,7 @@ export default function CreerGroupe() {
 			const group: Group = await response.json()
 
 			if (!response.ok) {
+				setFetching(false)
 				throw new Error(JSON.stringify(group))
 			}
 
@@ -106,6 +110,7 @@ export default function CreerGroupe() {
 			// The user will be redirected to the test in order to take it
 			if (!currentSimulation) {
 				dispatch(setGroupToRedirectTo(group))
+				setFetching(false)
 				navigate('/simulateur/bilan')
 				return
 			}
@@ -127,9 +132,10 @@ export default function CreerGroupe() {
 					}),
 				})
 			}
-
+			setFetching(false)
 			navigate(`/groupes/resultats?groupId=${group._id}`)
 		} catch (e) {
+			setFetching(false)
 			captureException(e)
 		}
 	}
@@ -167,7 +173,7 @@ export default function CreerGroupe() {
 						type="submit"
 						data-cypress-id="button-create-group"
 						onClick={handleSubmit}
-						aria-disabled={!prenom}
+						aria-disabled={!prenom && !fetching}
 					>
 						{currentSimulation ? (
 							<Trans>Créer le groupe</Trans>

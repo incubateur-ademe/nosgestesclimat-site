@@ -46,7 +46,7 @@ export default function InviteBlock({ group }: { group: Group }) {
 	const isShareDefined =
 		typeof navigator !== 'undefined' && navigator.share !== undefined
 
-	const sharedURL = `${window.location.origin}/groupes/invitation?groupId=${group?._id}`
+	const sharedURL = `${window.location.origin}/groupes/invitation?groupId=${group?._id}&mtm_campaign=challenge-amis`
 
 	const handleShare = async () => {
 		// TODO: replace with new tracking event
