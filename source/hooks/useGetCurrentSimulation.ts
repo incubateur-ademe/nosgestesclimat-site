@@ -1,16 +1,10 @@
 import { AppState } from '@/reducers/rootReducer'
+import { getIsSimulationValid } from '@/utils/getIsSimulationValid'
 import { useSelector } from 'react-redux'
 
 export const useGetCurrentSimulation = () => {
-	const currentSimulationId = useSelector(
-		(state: AppState) => state.currentSimulationId
-	)
+	const currentSimulation = useSelector((state: AppState) => state.simulation)
+	const isCurrentSimulationValid = getIsSimulationValid(currentSimulation)
 
-	const simulationList = useSelector((state: AppState) => state.simulations)
-
-	const currentSimulation = simulationList.find(
-		(simulation) => simulation.id === currentSimulationId
-	)
-
-	return currentSimulation
+	return isCurrentSimulationValid ? currentSimulation : null
 }

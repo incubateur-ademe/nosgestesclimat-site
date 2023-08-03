@@ -22,17 +22,8 @@ const DocumentationPageLazy = React.lazy(
 
 export default function () {
 	const currentSimulation = useSelector(
-			(state: AppState) => !!state.simulation?.url
-		),
-		rules = useSelector((state: AppState) => state.rules),
-		//This ensures the disambiguateReference function, which awaits RuleNodes, not RawNodes, doesn't judge some rules private for
-		//our parseless documentation page
-		allPublicRules = Object.fromEntries(
-			Object.entries(rules).map(([key, value]) => [
-				key,
-				{ ...value, private: false },
-			])
-		)
+		(state: AppState) => !!state.simulation?.url
+	)
 
 	const { t } = useTranslation()
 
@@ -41,9 +32,20 @@ export default function () {
 
 	const [loadEngine, setLoadEngine] = useState(false)
 
-	const engineState = useSelector((state: AppState) => state.engineState),
-		parsedEngineReady =
-			engineState.state === 'ready' && engineState.options.parsed
+	const rules = useSelector((state: AppState) => state.rules)
+
+	//This ensures the disambiguateReference function, which awaits RuleNodes, not RawNodes, doesn't judge some rules private for
+	//our parseless documentation page
+	const allPublicRules = Object.fromEntries(
+		Object.entries(rules).map(([key, value]) => [
+			key,
+			{ ...value, private: false },
+		])
+	)
+
+	const engineState = useSelector((state: AppState) => state.engineState)
+	const parsedEngineReady =
+		engineState.state === 'ready' && engineState.options.parsed
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
@@ -114,13 +116,14 @@ export default function () {
 
 function BackToSimulation() {
 	const url = useSelector(currentSimulationSelector)?.url
+
 	const navigate = useNavigate()
 
 	return (
 		<button
 			className="ui__ simple small push-left button"
 			onClick={() => {
-				navigate(url)
+				navigate(url || '/')
 			}}
 		>
 			<Trans>Reprendre la simulation</Trans>
