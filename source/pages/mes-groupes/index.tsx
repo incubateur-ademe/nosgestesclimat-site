@@ -11,15 +11,16 @@ import { useSelector } from 'react-redux'
 import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Meta from '@/components/utils/Meta'
 import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
-import { getIsSimulationValid } from '@/utils/getIsSimulationValid'
 import FeedbackBlock from '../groupe-dashboard/components/FeedbackBlock'
 import SondagesBlock from '../groupe-dashboard/components/SondagesBlock'
 import CreateFirstGroupSection from './components/CreateFirstGroupSection'
 import CreateOtherGroupsSection from './components/CreateOtherGroupsSection'
 import NoSimulationSection from './components/NoSimulationSection'
+import { ServerErrorSection } from './components/ServerErrorSection'
 
 export default function MesGroupes() {
 	const [groups, setGroups] = useState<Group[] | null>(null)
+	const [isFetched, setIsFetched] = useState(false)
 
 	const { t } = useTranslation()
 
@@ -29,10 +30,9 @@ export default function MesGroupes() {
 
 	const currentSimulation = useGetCurrentSimulation()
 
-	const isCurrentSimulationValid = getIsSimulationValid(currentSimulation)
-
 	useEffect(() => {
 		const handleFetchGroups = async () => {
+			setIsFetched(true)
 			try {
 				const response = await fetch(`${GROUP_URL}/user-groups/${userId}`)
 				if (!response.ok) {
@@ -71,13 +71,15 @@ export default function MesGroupes() {
 			/>
 			<FeedbackBlock />
 
-			{!isCurrentSimulationValid && <NoSimulationSection />}
+			{isFetched && !groups && <ServerErrorSection />}
 
-			{isCurrentSimulationValid && groups && groups.length === 0 && (
+			{!currentSimulation && <NoSimulationSection />}
+
+			{currentSimulation && groups && groups.length === 0 && (
 				<CreateFirstGroupSection />
 			)}
 
-			{isCurrentSimulationValid && groups && groups.length > 0 && (
+			{currentSimulation && groups && groups.length > 0 && (
 				<CreateOtherGroupsSection groups={groups} />
 			)}
 
