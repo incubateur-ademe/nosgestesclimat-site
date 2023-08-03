@@ -73,8 +73,6 @@ export function useFlag(inputCode: RegionCode | undefined): string | undefined {
 export function getFlagImgSrc(
 	inputCode: RegionCode | undefined
 ): string | undefined {
-	//	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
-	//	was down 27/09
 	if (!inputCode) {
 		return undefined
 	}
