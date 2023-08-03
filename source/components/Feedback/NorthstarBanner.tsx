@@ -2,7 +2,7 @@ import { SetRatingAction, setRatings } from '@/actions/actions'
 import { AppState } from '@/reducers/rootReducer'
 import { useTestCompleted } from '@/selectors/simulationSelectors'
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import Northstar from './Northstar'
@@ -45,17 +45,27 @@ export default ({
 	const shouldDisplayNorthstarBanner =
 		testCompleted &&
 		(displayActionRating || displayLearnedRating) &&
-		process.env.NODE_ENV === 'development'
+		process.env.NODE_ENV === 'production'
+
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null)
 
 	useEffect(() => {
 		if (shouldDisplayNorthstarBanner && !animationComplete) {
-			setTimeout(() => {
+			timeoutRef.current = setTimeout(() => {
 				document.getElementById('northstarBanner')?.scrollIntoView({
 					behavior: 'smooth',
 				})
 			}, 2000)
 		}
 	}, [shouldDisplayNorthstarBanner, animationComplete])
+
+	useEffect(() => {
+		return () => {
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current)
+			}
+		}
+	}, [])
 
 	if (!shouldDisplayNorthstarBanner) {
 		return null
