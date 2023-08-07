@@ -314,7 +314,7 @@ const Main = () => {
 	const fluidLayout = isFluidLayout(location.pathname)
 
 	if (detectInApp()) {
-		window.open('https://nosgestesclimat.fr', '_blank')
+		window.open('https://nosgestesclimat.fr')
 	}
 
 	return (
@@ -326,6 +326,7 @@ const Main = () => {
 		>
 			<>
 				<EnquêteBanner />
+
 				<div
 					css={`
 						@media (min-width: 800px) {
