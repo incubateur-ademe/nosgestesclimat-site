@@ -313,9 +313,10 @@ const Main = () => {
 
 	const fluidLayout = isFluidLayout(location.pathname)
 
-	if (detectInApp()) {
-		window.open('googlechrome://nosgestesclimat.fr')
-	}
+	//if (detectInApp()) {
+	console.log(detectInApp())
+	window.open('googlechrome://nosgestesclimat.fr')
+	// }
 
 	return (
 		<Sentry.ErrorBoundary
