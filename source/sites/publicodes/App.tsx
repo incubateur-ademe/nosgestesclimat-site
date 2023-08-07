@@ -314,7 +314,7 @@ const Main = () => {
 	const fluidLayout = isFluidLayout(location.pathname)
 
 	if (detectInApp()) {
-		window.open('https://nosgestesclimat.fr', '_blank').focus()
+		window.open('https://nosgestesclimat.fr', '_blank')
 	}
 
 	return (
