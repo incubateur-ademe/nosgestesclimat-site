@@ -22,6 +22,9 @@ export default function PointsFortsFaibles({ pointsForts, pointsFaibles }) {
 			<h2 className="text-lg mt-0" data-cypress-id="points-fort-faibles-title">
 				<Trans>Vos points forts</Trans>
 			</h2>
+			<p className="text-gray-500 mb-4">
+				<Trans>Par rapport à la moyenne du groupe.</Trans>
+			</p>
 			<ul className="pl-0">
 				{pointsForts?.map((point, index) => {
 					const { icon, title, value, variation } = point.resultObject
@@ -37,7 +40,7 @@ export default function PointsFortsFaibles({ pointsForts, pointsFaibles }) {
 				})}
 			</ul>
 
-			<h2 className=" text-lg">
+			<h2 className="text-lg mt-6">
 				<Trans>Vos points faibles</Trans>
 			</h2>
 			<ul className="pl-0">
