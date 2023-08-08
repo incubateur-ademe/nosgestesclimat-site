@@ -315,7 +315,7 @@ const Main = () => {
 
 	//if (detectInApp()) {
 	console.log(detectInApp())
-	window.open('googlechrome://nosgestesclimat.fr')
+	window.open('nosgestesclimat.fr')
 	// }
 
 	return (
