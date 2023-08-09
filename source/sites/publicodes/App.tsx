@@ -316,6 +316,7 @@ const Main = () => {
 		>
 			<>
 				<EnquêteBanner />
+
 				<div
 					css={`
 						@media (min-width: 800px) {
