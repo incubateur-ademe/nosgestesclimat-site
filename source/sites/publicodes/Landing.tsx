@@ -85,7 +85,7 @@ export default () => {
 								</span>
 							</Link>
 							<Link
-								to="/groupe"
+								to="/groupes"
 								className="ui__ button cta"
 								onClick={() => {
 									trackEvent(matomoEventModeGroupeCTAStart)

@@ -170,12 +170,6 @@ declare global {
 	}
 }
 
-const detectInApp = () => {
-	const rules = ['WebView', '(iPhone|iPod|iPad)(?!.*Safari/)', 'Android.*(wv)']
-	const regex = new RegExp(`(${rules.join('|')})`, 'ig')
-	return Boolean(navigator.userAgent.match(regex))
-}
-
 export default function Root() {
 	const paths = sitePaths()
 
@@ -312,11 +306,6 @@ const Main = () => {
 	}, [currentLangParam])
 
 	const fluidLayout = isFluidLayout(location.pathname)
-
-	//if (detectInApp()) {
-	console.log(detectInApp())
-	window.open('nosgestesclimat.fr')
-	// }
 
 	return (
 		<Sentry.ErrorBoundary
