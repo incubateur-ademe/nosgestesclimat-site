@@ -130,7 +130,7 @@ async function exportSimulationToAgir(
 		const responseData = await response.json()
 		if (responseData.id)
 			window.location.href =
-				'http://localhost:5173/?inportNGC=' + responseData.id
+				'http://localhost:5173/?importNGC=' + responseData.id
 		else console.error("Erreur lors de l'export de la simulation")
 
 		console.log('Simulation exportée avec succès :', responseData)
