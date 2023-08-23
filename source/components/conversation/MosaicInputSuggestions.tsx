@@ -8,6 +8,7 @@ type InputSuggestionsProps = {
 	dottedName: string
 	relatedRuleNames: Array<string>
 	suggestions?: Record<string, ASTNode>
+	mosaicType: 'selection' | 'nombre'
 }
 
 export default function MosaicInputSuggestions({
@@ -74,9 +75,9 @@ export default function MosaicInputSuggestions({
 							if (
 								Object.values(values).every((bool) => bool === 'non') ||
 								String(values) === 'aucun'
-							)
+							) {
 								dispatch(updateSituation(dottedName, 0))
-							else
+							} else {
 								Object.entries(values).forEach(
 									([ruleName, value]: [string, ASTNode]) => {
 										const fullDottedName = `${dottedName} . ${ruleName}`
@@ -93,10 +94,11 @@ export default function MosaicInputSuggestions({
 										dispatch(updateSituation(fullDottedName, value))
 									}
 								)
+							}
 						}}
 						title={t('Insérer cette suggestion')}
 					>
-						{emoji(t(('aucun' === text ? 'Aucun' : text)))}
+						{emoji(t('aucun' === text ? 'Aucun' : text))}
 					</button>
 				)
 			})}

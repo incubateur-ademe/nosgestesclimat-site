@@ -1,11 +1,11 @@
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
-import { AppState, Simulation } from '@/reducers/rootReducer'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { emailSimulationURL } from '@/sites/publicodes/conference/useDatabase'
+import { Simulation } from '@/types/simulation'
 import * as Sentry from '@sentry/react'
 import { formatValue } from 'publicodes'
 import { useEffect, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { formatDataForDB } from '../utils/formatDataForDB'
 
 export const NewsletterForm = () => {
@@ -18,15 +18,7 @@ export const NewsletterForm = () => {
 
 	const { t } = useTranslation()
 
-	const currentSimulationId = useSelector(
-		(state: AppState) => state.currentSimulationId
-	)
-
-	const simulationList = useSelector((state: AppState) => state.simulations)
-
-	const currentSimulation = simulationList.find(
-		(simulation) => simulation.id === currentSimulationId
-	)
+	const currentSimulation = useGetCurrentSimulation()
 
 	const saveSimulationInDB = async (data: Simulation) => {
 		const dataFormatted = { ...data }

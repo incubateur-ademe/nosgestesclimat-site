@@ -1,8 +1,10 @@
 import { DottedName } from '@/components/publicodesUtils'
 import { Lang } from '@/locales/translation'
-import { AppState, Simulation, SimulationConfig } from '@/reducers/rootReducer'
-
-export type Rating = 0 | 1 | 2 | 3 | 'no_display' | 'display' | 'refuse'
+import { AppState } from '@/reducers/rootReducer'
+import { Persona } from '@/sites/publicodes/personas/personasUtils'
+import { Group } from '@/types/groups'
+import { Rating } from '@/types/rating'
+import { SimulationConfig, Situation } from '@/types/simulation'
 
 export type Enquête = {
 	userID: string
@@ -10,10 +12,10 @@ export type Enquête = {
 }
 
 export type SavedSimulation = {
-	situation: Simulation['situation']
+	situation: Situation
 	foldedSteps?: Array<DottedName>
 	actionChoices: Object
-	persona?: string
+	persona?: Persona
 	storedTrajets: Object
 	storedAmortissementAvion: { [key: string]: number }
 	conference: { room: string } | null
@@ -47,6 +49,13 @@ export type User = {
 	currentLang: Lang
 	localisation: Object | undefined
 	hasSubscribedToNewsletter: boolean
+	groups: Group[]
+	user: {
+		userId?: string
+		name?: string
+		email?: string
+	}
+	groupToRedirectTo: Group | null
 }
 
 // In the end, this selector will allow to retrieve the simulation from the list

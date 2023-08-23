@@ -2,7 +2,7 @@ import { SetRatingAction, setRatings } from '@/actions/actions'
 import { AppState } from '@/reducers/rootReducer'
 import { useTestCompleted } from '@/selectors/simulationSelectors'
 import { motion } from 'framer-motion'
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import Northstar from './Northstar'
@@ -28,7 +28,8 @@ export default ({
 	const displayActionRating =
 		type === 'SET_RATING_ACTION' &&
 		hasRatedAction?.toString().includes('display') &&
-		actionChoicesLength > 2
+		actionChoicesLength > 1
+
 	const displayLearnedRating =
 		type === 'SET_RATING_LEARNED' &&
 		hasRatedLearning?.toString().includes('display')
@@ -41,13 +42,32 @@ export default ({
 
 	const [animationComplete, setAnimationComplete] = useState(false)
 
-	if (
-		!testCompleted ||
-		(!displayActionRating && !displayLearnedRating) ||
-		// Display only the Northstar banner in production mode
-		process.env.NODE_ENV === 'development' ||
-		process.env.CONTEXT === 'deploy-preview'
-	) {
+	const shouldDisplayNorthstarBanner =
+		testCompleted &&
+		(displayActionRating || displayLearnedRating) &&
+		process.env.NODE_ENV === 'production'
+
+	const timeoutRef = useRef<NodeJS.Timeout | null>(null)
+
+	useEffect(() => {
+		if (shouldDisplayNorthstarBanner && !animationComplete) {
+			timeoutRef.current = setTimeout(() => {
+				document.getElementById('northstarBanner')?.scrollIntoView({
+					behavior: 'smooth',
+				})
+			}, 2000)
+		}
+	}, [shouldDisplayNorthstarBanner, animationComplete])
+
+	useEffect(() => {
+		return () => {
+			if (timeoutRef.current) {
+				clearTimeout(timeoutRef.current)
+			}
+		}
+	}, [])
+
+	if (!shouldDisplayNorthstarBanner) {
 		return null
 	}
 
@@ -56,33 +76,19 @@ export default ({
 			initial={{ opacity: 0, y: 100, scale: 0, display: 'none' }}
 			animate={{ opacity: 1, y: 0, scale: 1, display: 'block' }}
 			exit={{ opacity: 0, scale: 0.5, transition: { duration: 0.8 } }}
-			transition={{ delay: 10, duration: 0.8 }}
+			transition={{ delay: displayLearnedRating ? 8 : 1, duration: 0.8 }}
 			onAnimationComplete={() => {
 				setAnimationComplete(true)
 			}}
-			css={`
-				width: auto;
-				background: #fff;
-				border-radius: 5px;
-				height: auto;
-				position: relative;
-				margin: 0 10px;
-				box-shadow: rgb(187, 187, 187) 2px 2px 10px;
-			`}
+			id="northstarBanner"
+			className="w-auto bg-green-50 rounded-lg h-auto relative m-0 sm:m-2 shadow-md"
 		>
 			<button
-				css={`
-					position: absolute;
-					top: 10px;
-					right: 10px;
-					padding: 0;
-					img {
-						width: 1.2rem;
-					}
-				`}
+				className="absolute top-0 right-0 text-lg bold w-10 h-10 text-center"
 				onClick={closeFeedback}
+				aria-label={t('Fermer le bandeau de feedback')}
 			>
-				<img src={`/images/274C.svg`} />
+				&#215;
 			</button>
 			<div
 				css={`
@@ -100,11 +106,11 @@ export default ({
 				>
 					{displayActionRating && (
 						<div>
-							<Trans i18nKey={`publicodes.northstar.title`}>
+							<Trans i18nKey={'publicodes.northstar.title'}>
 								<b>Petite question entre nous...</b>
 							</Trans>
 							<br />
-							<Trans i18nKey={`publicodes.northstar.action`}>
+							<Trans i18nKey={'publicodes.northstar.action'}>
 								Nos Gestes Climat vous donne envie d'agir pour réduire votre
 								empreinte carbone ?
 							</Trans>
@@ -117,12 +123,12 @@ export default ({
 					)}
 					{displayLearnedRating && (
 						<div>
-							<Trans i18nKey={`publicodes.northstar.title`}>
+							<Trans i18nKey={'publicodes.northstar.title'}>
 								<b>Petite question entre nous...</b>
 							</Trans>
 							<br />
-							<Trans i18nKey={`publicodes.northstar.learned`}>
-								Nos Gestes Climat vous a appris quelque chose ?
+							<Trans i18nKey={'publicodes.northstar.learned'}>
+								Nos Gestes Climat vous a-t-il appris quelque chose ?
 							</Trans>
 							<Northstar
 								type="SET_RATING_LEARNED"

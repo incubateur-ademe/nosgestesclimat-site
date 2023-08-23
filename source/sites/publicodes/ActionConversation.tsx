@@ -2,9 +2,9 @@ import { setSimulationConfig } from '@/actions/actions'
 import Simulation from '@/components/Simulation'
 import { useNextQuestions } from '@/hooks/useNextQuestion'
 import { AppState } from '@/reducers/rootReducer'
+import { questionConfig } from '@/sites/publicodes/questionConfig'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { questionConfig } from './questionConfig'
 
 export default ({ dottedName }) => {
 	const nextQuestions = useNextQuestions()
@@ -15,7 +15,7 @@ export default ({ dottedName }) => {
 	// to be continued...
 	const config = {
 		objectifs: [dottedName],
-		situation: { ...(configSet?.situation || {}) },
+		situation: { ...(configSet?.situation ?? {}) },
 		questions: questionConfig,
 	}
 

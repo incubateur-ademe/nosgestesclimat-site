@@ -1,11 +1,12 @@
+import RavijenChart from '@/sites/publicodes/chart/RavijenChart'
 import { motion } from 'framer-motion'
-import RavijenChart from './RavijenChart'
 
 export const activatedSpecializedVisualisations = [
 	'services sociétaux . question rhétorique',
 ]
+
 export default ({ currentQuestion, categoryColor, value }) => {
-	if (currentQuestion === 'services sociétaux . question rhétorique')
+	if (currentQuestion === 'services sociétaux . question rhétorique') {
 		return (
 			<motion.div
 				initial={{ scale: 0 }}
@@ -27,6 +28,7 @@ export default ({ currentQuestion, categoryColor, value }) => {
 				/>
 			</motion.div>
 		)
+	}
 
 	// Not ready yet. Animation should start from the bottom
 	// Should be iterated

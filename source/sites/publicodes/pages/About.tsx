@@ -1,16 +1,16 @@
 import { useTranslation } from 'react-i18next'
-import { Lang } from '../../../locales/translation'
-import MarkdownPage from './MarkdownPage'
 
-import contentEn from '../../../locales/pages/en-us/about.md'
-// import contentEs from '../../../locales/pages/es/about.md'
-import contentFr from '../../../locales/pages/fr/about.md'
-// import contentIt from '../../../locales/pages/it/about.md'
+import { Lang } from '../../../locales/translation'
+import MarkdownXPage from './MarkdownXPage'
+
+import contentEn from '../../../locales/pages/en-us/about.mdx'
+
+import contentFr from '../../../locales/pages/fr/about.mdx'
 
 export default () => {
 	const { t } = useTranslation()
 	return (
-		<MarkdownPage
+		<MarkdownXPage
 			markdownFiles={[
 				[Lang.Fr, contentFr],
 				[Lang.En, contentEn],

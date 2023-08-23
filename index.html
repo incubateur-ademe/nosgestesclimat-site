@@ -15,19 +15,22 @@
 			rel="alternate"
 			hreflang="en"
 			href="https://nosgestesclimat.fr/?lang=en"
+			data-react-helmet="true"
 		/>
 		<link
 			rel="alternate"
 			hreflang="fr"
 			href="https://nosgestesclimat.fr/?lang=fr"
+			data-react-helmet="true"
 		/>
 		<link
 			rel="alternate"
 			hreflang="x-default"
 			href="https://nosgestesclimat.fr"
+			data-react-helmet="true"
 		/>
 
-		<meta property="og:type" content="website" />
+		<meta property="og:type" content="website" data-react-helmet="true" />
 		<meta
 			property="og:title"
 			data-react-helmet="true"
@@ -49,7 +52,11 @@
 			content="oQ9gPKS4kocrCJP6CoguSkdIKKZ6ilZz0aQw_ZIgtVc"
 		/>
 
-		<meta property="twitter:card" content="summary_large_image" />
+		<meta
+			property="twitter:card"
+			content="summary_large_image"
+			data-react-helmet="true"
+		/>
 
 		<link rel="manifest" href="/manifest.webmanifest" />
 		<title><%= htmlWebpackPlugin.options.title %></title>
@@ -72,6 +79,20 @@
 			}
 		</style>
 		<meta name="theme-color" content="#5758BB" />
+
+		<script type="text/javascript">
+			/* 
+				Manually setting Netlify code spliting cookie in iframe with sameSite=None and secure. 
+				See : https://answers.netlify.com/t/running-split-tests-in-an-iframe-adjust-nf-ab-cookie-settings/28754
+			*/
+			if (window.location.href.includes('iframe')) {
+				let cookieIsSet = document.cookie.includes('nf_ab')
+				if (!cookieIsSet) {
+					document.cookie = `nf_ab=${Math.random()}; sameSite=None; secure=true`
+					window.location.reload(true) // We need to reload the page for the client to match the server
+				}
+			}
+		</script>
 	</head>
 
 	<body>
@@ -159,11 +180,7 @@
 				var u = '//stats.data.gouv.fr/'
 				_paq.push(['setTrackerUrl', u + 'matomo.php'])
 				_paq.push(['setSiteId', '153'])
-				_paq.push([
-					'addTracker',
-					'https://nosgestesclimat.matomo.cloud/matomo.php',
-					'2',
-				])
+
 				var d = document,
 					g = d.createElement('script'),
 					s = d.getElementsByTagName('script')[0]

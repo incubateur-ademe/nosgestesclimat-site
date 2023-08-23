@@ -4,7 +4,6 @@
 	Command: yarn translate:release [options]
 */
 
-const cliProgress = require('cli-progress')
 const fs = require('fs')
 const stringify = require('json-stable-stringify')
 
@@ -18,35 +17,33 @@ const { srcLang, destLangs } = cli.getArgs(
 )
 
 const srcPath = `source/locales/releases/releases-${srcLang}.json`
+const getDestPath = (destLang) =>
+	`source/locales/releases/releases-${destLang}.json`
 
-const progressBar = new cliProgress.SingleBar(
-	{
-		stopOnComplete: true,
-		clearOnComplete: true,
-		forceRedraw: true,
-		format: '{lang} | {value}/{total} | {bar} | {msg} ',
-	},
-	cliProgress.Presets.shades_grey
-)
+const translateTo = async (srcJSON, tradJSON, destPath, destLang) => {
+	const alreadyTranslatedReleases = tradJSON.map((release) => {
+		return release.name
+	})
 
-const translateTo = async (srcJSON, destPath, destLang) => {
-	const tradJSON = []
 	await Promise.all(
-		srcJSON.map(async (release) => {
-			progressBar.update(progressBar.value, {
-				msg: `Translating '${release.name}'...`,
-				lang: destLang,
+		srcJSON
+			.filter((release) => !alreadyTranslatedReleases.includes(release.name))
+			.map(async (release) => {
+				const translation = await deepl.fetchTranslationMarkdown(
+					release.body,
+					srcLang.toUpperCase(),
+					destLang.toUpperCase()
+				)
+				console.log(
+					`🌍 Translated release ${cli.magenta(release.name)} to ${cli.yellow(
+						destLang
+					)}`
+				)
+				release.body = translation
+				tradJSON.push(release)
 			})
-			const translation = await deepl.fetchTranslationMarkdown(
-				release.body,
-				srcLang.toUpperCase(),
-				destLang.toUpperCase()
-			)
-			release.body = translation
-			tradJSON.push(release)
-			progressBar.increment()
-		})
 	)
+
 	fs.writeFileSync(
 		destPath,
 		stringify(tradJSON, {
@@ -59,8 +56,14 @@ const translateTo = async (srcJSON, destPath, destLang) => {
 
 const srcJSON = JSON.parse(fs.readFileSync(srcPath, 'utf8'))
 
-progressBar.start(destLangs.length * srcJSON.length, 0)
 destLangs.forEach((destLang) => {
-	const destPath = `source/locales/releases/releases-${destLang}.json`
-	translateTo(srcJSON, destPath, destLang)
+	const destPath = getDestPath(destLang)
+	const tradJSON = JSON.parse(fs.readFileSync(destPath, 'utf8')) ?? []
+	const numberOfMissingTranslation = srcJSON.length - tradJSON.length
+
+	if (numberOfMissingTranslation === 0) {
+		console.log(`🌍 ${cli.yellow(destLang)} is already up to date`)
+	} else {
+		translateTo(srcJSON, tradJSON, destPath, destLang)
+	}
 })

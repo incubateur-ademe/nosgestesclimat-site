@@ -1,7 +1,7 @@
 import { matomoEventKilometerHelp } from '@/analytics/matomo-events'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { nanoid } from 'nanoid'
-import { useContext, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import styled from 'styled-components'
@@ -9,7 +9,7 @@ import { freqList, motifList } from './dataHelp'
 
 export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 	const { t } = useTranslation()
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const [addFormData, setAddFormData] = useState({
 		motif: '',

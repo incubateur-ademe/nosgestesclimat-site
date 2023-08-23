@@ -13,11 +13,12 @@ export default ({
 	const categories = sortBy(([key, values]) =>
 		values.reduce((memo, next) => memo + next, 0)
 	)(Object.entries(decreasingCategories))
+
 	const values = Object.values(decreasingCategories)
-			.flat()
-			.map(({ value }) => value),
-		max = Math.max(...values),
-		humanMax = humanWeight({ t, i18n }, max, true)
+		.flat()
+		.map(({ value }) => value)
+	const max = Math.max(...values)
+	const humanMax = humanWeight({ t, i18n }, max, true)
 
 	return (
 		<div>

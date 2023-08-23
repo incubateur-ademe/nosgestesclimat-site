@@ -134,7 +134,7 @@ WebDeveloper Toolbar, Color Contrast Analyser).
 -   Il test: https://nosgestesclimat.fr/simulateur/bilan
 -   Fine:
     https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
--   Atto: https://nosgestesclimat.fr/actions/liste
+-   Atto: https://nosgestesclimat.fr/actions
 -   Azione:
     https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
 -   Conferenza: https://nosgestesclimat.fr/conf%C3%A9rence

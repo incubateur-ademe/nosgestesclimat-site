@@ -1,9 +1,9 @@
-import animate from 'Components/ui/animate'
+import animate from '@/components/ui/animate'
+import { answeredQuestionsSelector } from '@/selectors/simulationSelectors'
 import { useEffect, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { answeredQuestionsSelector } from '../../selectors/simulationSelectors'
 
 export default () => {
 	const answers = useSelector(answeredQuestionsSelector),
@@ -42,7 +42,7 @@ export default () => {
 				<span>
 					<Trans>Une question, un problème ?</Trans>
 				</span>
-				<Link to={'/contribuer?fromLocation=' + window.location}>
+				<Link to={'/questions-frequentes?fromLocation=' + window.location}>
 					<Trans>Découvrez la FAQ !</Trans>
 				</Link>
 			</div>

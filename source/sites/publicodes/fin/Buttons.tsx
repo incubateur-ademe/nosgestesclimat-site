@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { getMatomoEventClickActionButtonEndPage } from '../../../analytics/matomo-events'
-import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useMatomo } from '../../../contexts/MatomoContext'
 
 export const ActionButton = ({
 	text,
@@ -22,7 +22,7 @@ export const ActionButton = ({
 	url?: string
 	large?: boolean
 }) => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	return (
 		<Link

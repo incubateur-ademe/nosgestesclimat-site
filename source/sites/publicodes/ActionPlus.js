@@ -1,13 +1,13 @@
-import { getTitle } from 'Components/publicodesUtils'
-import { Markdown } from 'Components/utils/markdown'
-import Meta from 'Components/utils/Meta'
-import { ScrollToTop } from 'Components/utils/Scroll'
+import { getTitle } from '@/components/publicodesUtils'
+import useFetchDocumentation from '@/components/useFetchDocumentation'
+import { Markdown } from '@/components/utils/markdown'
+import Meta from '@/components/utils/Meta'
+import { ScrollToTop } from '@/components/utils/Scroll'
 import { utils } from 'publicodes'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Link } from 'react-router-dom'
-import useFetchDocumentation from '../../components/useFetchDocumentation'
 
 export default () => {
 	const { t } = useTranslation()
@@ -15,7 +15,9 @@ export default () => {
 	const dottedName = utils.decodeRuleName(encodedName)
 	const rules = useSelector((state) => state.rules)
 	const documentation = useFetchDocumentation()
-	if (!documentation) return null
+	if (!documentation) {
+		return null
+	}
 
 	const rule = {
 		...rules[dottedName],

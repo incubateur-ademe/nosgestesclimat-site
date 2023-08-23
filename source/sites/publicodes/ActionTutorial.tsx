@@ -10,10 +10,10 @@ export default ({ value, unit }) => {
 			className="ui__ card light colored content"
 			css="margin: 1.6rem .6rem "
 		>
-			<h1 css="display: flex; align-items: center">
-				<img src={actionImg} css="width: 2rem" />
+			<h2 css="display: flex; align-items: center">
+				<img src={actionImg} alt="" css="width: 2rem" />
 				<Trans>Passer à l'action !</Trans>
-			</h1>
+			</h2>
 			<p>
 				<Trans i18nKey={'publicodes.ActionTutorial.félicitation'}>
 					Vous avez terminé votre simulation, 👏 bravo !

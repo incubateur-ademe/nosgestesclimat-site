@@ -1,5 +1,3 @@
-import { DottedName } from 'Rules'
-
 /*
  * Matomo events
  * https://matomo.org/docs/event-tracking/
@@ -11,6 +9,8 @@ import { DottedName } from 'Rules'
  * 	'Value' (number) // Une valeur numérique (optionnelle)
  * ]
  */
+
+import { DottedName } from '@/components/publicodesUtils'
 
 // Partage
 export const getMatomoEventShareMobile = (score: number) => [
@@ -76,6 +76,14 @@ export const getMatomoEventChangeRegion = (code: string) => [
 	code,
 ]
 
+// Current Branch
+export const getMatomoEventBranch = (branch: string) => [
+	'trackEvent',
+	'User',
+	'Branche',
+	branch,
+]
+
 // Iframe
 export const getMatomoEventVisitViaIframe = (url: string) => [
 	'trackEvent',
@@ -131,6 +139,7 @@ export const getMatomoEventParcoursTestTutorialProgress = (
 	last: boolean,
 	index: number
 ) => ['trackEvent', 'testIntro', last ? 'Terminer' : `diapo ${index} passée`]
+
 export const matomoEventParcoursTestSkipTutorial = [
 	'trackEvent',
 	'testIntro',
@@ -188,3 +197,23 @@ export const getMatomoEventActionAccepted = (
 	dottedName: DottedName,
 	nodeValue: string
 ) => ['trackEvent', '/actions', 'Action sélectionnée', dottedName, nodeValue]
+
+// Groupe / Challenge entre amis
+export const matomoEventCreationGroupe = [
+	'trackEvent',
+	'Groupes',
+	'Création de groupe',
+]
+
+export const getMatomoEventJoinedGroupe = (groupId: string) => [
+	'trackEvent',
+	'Groupes',
+	'Groupe rejoint',
+	`Groupe ${groupId}`,
+]
+
+export const matomoEventUpdateGroupName = [
+	'trackEvent',
+	'Groupes',
+	'Nom du groupe modifié',
+]

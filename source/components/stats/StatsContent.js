@@ -36,6 +36,7 @@ import {
 	useWebsites,
 } from './matomo'
 
+import Title from '../groupe/Title'
 import Section from './utils/Section'
 
 const Wrapper = styled.div`
@@ -122,9 +123,7 @@ export default function Data() {
 
 	return (
 		<div>
-			<Section.TopTitle>
-				<Trans>Statistiques</Trans>
-			</Section.TopTitle>
+			<Title title={<Trans>Statistiques</Trans>} />
 			<Section>
 				<Section.Title>
 					<Trans>Générales</Trans>

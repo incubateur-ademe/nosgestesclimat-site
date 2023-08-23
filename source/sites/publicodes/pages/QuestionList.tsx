@@ -1,37 +1,32 @@
+import Title from '@/components/groupe/Title'
 import {
+	DottedName,
 	getRelatedMosaicInfosIfExists,
-	NGCRuleNode,
+	NGCRule,
+	NGCRules,
 	NGCRulesNodes,
 	parentName,
 	questionCategoryName,
 } from '@/components/publicodesUtils'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import toCSV from '@/components/utils/toCSV'
 import { AppState } from '@/reducers/rootReducer'
+import { assert } from '@/utils'
 import Engine from 'publicodes'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import FriendlyObjectViewer from './FriendlyObjectViewer'
 
 export default () => {
-	const rules: NGCRulesNodes = useSelector((state: AppState) => state.rules)
+	const rules = useSelector((state: AppState) => state.rules)
 	const engine = useEngine()
 	const questionRules = Object.entries(rules)
 		.map(([dottedName, v]) => ({ ...v, dottedName }))
 		.filter((el) => el && el.question)
 
-	const jsonList = questionRules.map((rule) => {
-		const { type, mosaic } = getQuestionType(rules, rule)
-		const dependenciesData = computeDependencies(engine, rule)
+	const jsonList = getQuestionsInRules(engine, rules)
 
-		return {
-			dottedName: rule.dottedName,
-			question: rule.question,
-			type,
-			catégorie: questionCategoryName(rule.dottedName),
-			'dans mosaïque': mosaic != null,
-			dépendances: dependenciesData.map(([k, v]) => k),
-		}
-	})
 	const header = [
 		'dottedName',
 		'question',
@@ -41,9 +36,13 @@ export default () => {
 		'dépendances',
 	]
 	const csv = toCSV(header, jsonList)
+
 	return (
 		<div>
-			<h1>Les questions du modèle Nos Gestes Climat</h1>
+			<AutoCanonicalTag />
+
+			<Title title={<Trans>Les questions du modèle Nos Gestes Climat</Trans>} />
+
 			<p>
 				Voici une liste des questions qui sont posées à l'utilisateur au cours
 				du test, et dans une moindre mesure au cours du parcours action. Le
@@ -89,9 +88,46 @@ export default () => {
 	)
 }
 
-const getQuestionType = (rules: NGCRulesNodes, rule: NGCRuleNode) => {
-	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.dottedName)
-	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1].type
+export type Question = {
+	dottedName: DottedName
+	question: string
+	type: string
+	catégorie: string
+	'dans mosaïque': boolean
+	dépendances: DottedName[]
+}
+
+export function getQuestionsInRules(
+	engine: Engine,
+	rules: NGCRules
+): Question[] {
+	const rulesNodes = engine.getParsedRules() as NGCRulesNodes
+	const questionRules = Object.entries(rules)
+		.map(([dottedName, v]) => ({ ...v, dottedName }))
+		.filter((el) => el && el.question)
+
+	const questions = questionRules.map((rule) => {
+		const { type, mosaic } = getQuestionType(rulesNodes, rule)
+		const dependenciesData = computeDependencies(engine, rule.dottedName)
+
+		assert(rule.question !== undefined, 'question is defined')
+
+		return {
+			dottedName: rule.dottedName,
+			question: rule.question,
+			type,
+			catégorie: questionCategoryName(rule.dottedName),
+			'dans mosaïque': mosaic != undefined,
+			dépendances: dependenciesData.map(([k, _]) => k),
+		}
+	})
+
+	return questions
+}
+
+const getQuestionType = (rules: NGCRulesNodes, rule: NGCRule) => {
+	const ruleMosaicInfos = getRelatedMosaicInfosIfExists(rules, rule.nom)
+	const mosaicType = ruleMosaicInfos && ruleMosaicInfos[1]?.type
 
 	const type = rule.mosaique
 		? `🪟 Mosaïque de type ${rule.mosaique.type}`
@@ -105,20 +141,28 @@ const getQuestionType = (rules: NGCRulesNodes, rule: NGCRuleNode) => {
 	return { type, mosaic: ruleMosaicInfos }
 }
 
-const computeDependencies = (engine: Engine, rule: NGCRuleNode) => {
-	const { missingVariables } = engine.evaluate(rule.dottedName)
+const computeDependencies = (engine: Engine, ruleName: DottedName) => {
+	const { missingVariables } = engine.evaluate(ruleName)
 	const entries = Object.entries(missingVariables).filter(
-		([k]) => k !== rule.dottedName
+		([k]) => k !== ruleName
 	)
 	return entries
 }
 
-const QuestionDescription = ({ engine, rule, rules }) => {
+const QuestionDescription = ({
+	engine,
+	rule,
+	rules,
+}: {
+	engine: Engine
+	rule: NGCRule
+	rules: NGCRulesNodes
+}) => {
 	const { type, mosaic } = getQuestionType(rules, rule)
-	const category = rules[parentName(rule.dottedName, undefined, 0, -1)],
-		categoryLetter = category.titre[0]
+	const category = rules[parentName(rule.dottedName, undefined, 0, -1)]
+	const categoryLetter = category.titre[0]
 
-	const dependenciesData = computeDependencies(engine, rule)
+	const dependenciesData = computeDependencies(engine, rule.dottedName)
 	return (
 		<li
 			css={`
@@ -177,7 +221,11 @@ const QuestionDescription = ({ engine, rule, rules }) => {
 						<MissingVariables data={dependenciesData} />
 					</div>
 				</summary>
-				<FriendlyObjectViewer data={rule} options={{ capitalise0: false }} />
+				<FriendlyObjectViewer
+					data={rule}
+					context={false}
+					options={{ capitalise0: false }}
+				/>
 			</details>
 		</li>
 	)

@@ -113,7 +113,6 @@ opacity: .5;
 
 export const sessionBarMargin = `
 		@media (max-width: 800px) {
-			margin-bottom: 10rem;
 		}
 `
 
@@ -213,13 +212,13 @@ export default function SessionBar({}) {
 							border-radius: 0.3rem;
 						`}
 					>
-						{persona}
+						{persona.nom}
 					</span>
 				)}
 			</Button>
 		),
 		!enquête && (
-			<Button className="simple small" url="/groupe">
+			<Button className="simple small" url="/groupes">
 				<img
 					src={openmojiURL('silhouettes')}
 					css="width: 2rem"
@@ -227,7 +226,7 @@ export default function SessionBar({}) {
 					width="1"
 					height="1"
 				/>
-				<Trans>Groupe</Trans>
+				<Trans>Groupes</Trans>
 			</Button>
 		),
 

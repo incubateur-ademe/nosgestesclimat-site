@@ -88,7 +88,7 @@ La vérification de l’accessibilité est le résultat de tests manuels, assist
 -   Tutoriel : https://nosgestesclimat.fr/tutoriel
 -   Le test : https://nosgestesclimat.fr/simulateur/bilan
 -   Fin : https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
--   Agir : https://nosgestesclimat.fr/actions/liste
+-   Agir : https://nosgestesclimat.fr/actions
 -   Action : https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
 -   Conférence : https://nosgestesclimat.fr/conf%C3%A9rence
 -   Conférence cambrien-bas-hanté : https://nosgestesclimat.fr/conf%C3%A9rence/cambrien-bas-hant%C3%A9
@@ -103,7 +103,7 @@ Il est important de rappeler qu’en vertu de l’article 11 de la loi de févri
 
 L’ADEME s'engage à prendre les moyens nécessaires afin de donner accès, dans un délai raisonnable, aux informations et fonctionnalités recherchées par la personne handicapée, que le contenu fasse l'objet d'une dérogation ou non.
 
-L’ADEME invite les personnes qui rencontreraient des difficultés à la contacter ([en bas de la page FAQ](/contribuer) pour contacter directement l'équipe Nos Gestes Climat ou bien via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) afin qu’une assistance puisse être apportée (alternative accessible, information et contenu donnés sous une autre forme).
+L’ADEME invite les personnes qui rencontreraient des difficultés à la contacter ([via notre formulaire de contact](/contact) pour contacter directement l'équipe Nos Gestes Climat ou bien via [rgaa@ademe.fr](mailto:rgaa@ademe.fr)) afin qu’une assistance puisse être apportée (alternative accessible, information et contenu donnés sous une autre forme).
 
 ## Voies de recours
 

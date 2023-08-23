@@ -1,4 +1,6 @@
 import AnimatedLoader from '@/AnimatedLoader'
+import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
@@ -18,7 +20,8 @@ export default () => {
 
 	return (
 		<div className={'ui__ container fluid'}>
-			<h1>{title}</h1>
+			<Title title={title} />
+			<AutoCanonicalTag />
 			<p>
 				{t(
 					'Le chargement prend parfois plusieurs minutes, visualiser ce dashboard demande un peu de patience ! 🕙'

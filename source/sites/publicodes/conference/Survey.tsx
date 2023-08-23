@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { useNavigate } from 'react-router-dom'
 
+import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
@@ -82,7 +84,8 @@ export default () => {
 					t(' et visualisez les résultats du groupe')
 				}
 			/>
-			<h1>Sondage</h1>
+			<AutoCanonicalTag />
+			<Title title={t('Sondage')} />
 			{isRegisteredSurvey == false && (
 				<div css="margin-bottom: 3rem">
 					<NoSurveyCreatedWarning />

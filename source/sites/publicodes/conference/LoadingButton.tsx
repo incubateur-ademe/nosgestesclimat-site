@@ -1,13 +1,13 @@
 import { motion } from 'framer-motion'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useNavigate } from 'react-router-dom'
 import { getMatomoEventModeGroupeRoomCreation } from '../../../analytics/matomo-events'
-import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useMatomo } from '../../../contexts/MatomoContext'
 import { surveysURL } from './useDatabase'
 
 export default ({ mode, URLPath, room }) => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const [clicked, setClicked] = useState(false)
 	const [text, setText] = useState(null)
@@ -83,7 +83,7 @@ export default ({ mode, URLPath, room }) => {
 					/>
 				)}
 				<span>
-					{text || (clicked ? t('Initialisation...') : t('C\'est parti !'))}
+					{text || (clicked ? t('Initialisation...') : t("C'est parti !"))}
 				</span>
 			</button>
 		</div>

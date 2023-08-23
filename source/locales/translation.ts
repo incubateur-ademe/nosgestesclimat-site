@@ -1,8 +1,8 @@
 /*
 	This module contains all types and functions related to the translation.
 */
-
 import { i18n } from 'i18next'
+import type { MDXContent } from 'mdx/types'
 
 import uiEn from '!locale-yaml-loader!./ui/ui-en-us.yaml'
 // import uiEs from '!locale-yaml-loader!./ui/ui-es.yaml'
@@ -119,4 +119,26 @@ export function changeLangTo(i18n: i18n, currentLangState: Lang) {
 		i18n.changeLanguage(langInfos.abrv)
 		console.log('[i18next] current language:', i18n.language)
 	}
+}
+
+export function getMarkdownInCurrentLang(
+	markdownFiles: Array<[Lang, string]>,
+	currentLangState: Lang
+) {
+	return (
+		markdownFiles.find(
+			([lang]) => getLangInfos(lang).abrv === currentLangState
+		)?.[1] || markdownFiles[0][1]
+	)
+}
+
+export function getMarkdownXInCurrentLang(
+	markdownFiles: Array<[Lang, MDXContent]>,
+	currentLangState: Lang
+): MDXContent {
+	return (
+		markdownFiles.find(
+			([lang]) => getLangInfos(lang).abrv === currentLangState
+		)?.[1] || markdownFiles[0][1]
+	)
 }

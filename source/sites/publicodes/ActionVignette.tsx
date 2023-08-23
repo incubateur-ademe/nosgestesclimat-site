@@ -6,19 +6,20 @@ import {
 import NotificationBubble from '@/components/NotificationBubble'
 import {
 	correctValue,
+	DottedName,
 	extractCategoriesNamespaces,
+	NGCRules,
 	splitName,
 } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { getNextQuestions } from '@/hooks/useNextQuestion'
 import { AppState } from '@/reducers/rootReducer'
 import {
 	answeredQuestionsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { utils } from 'publicodes'
-import { useContext } from 'react'
+import Engine, { utils } from 'publicodes'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
@@ -31,11 +32,19 @@ export const disabledAction = (flatRule, nodeValue) =>
 		? false
 		: nodeValue === 0 || nodeValue === false || nodeValue === null
 
-export const supersededAction = (dottedName, rules, actionChoices) => {
+export const supersededAction = (
+	dottedName: DottedName,
+	rules: NGCRules,
+	actionChoices: DottedName[] | null
+) => {
 	return (
 		Object.entries(rules).find(([key, r]) => {
 			const supersedes = r?.action?.dépasse
-			return supersedes && supersedes.includes(dottedName) && actionChoices[key]
+			return (
+				supersedes &&
+				supersedes.includes(dottedName) &&
+				(actionChoices ? actionChoices[key] : true)
+			)
 		}) != null
 	)
 }
@@ -56,7 +65,7 @@ export const ActionListCard = ({
 	focusAction,
 	focused,
 }) => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const dispatch = useDispatch()
 	const rules = useSelector((state: AppState) => state.rules)
@@ -314,18 +323,16 @@ export const ActionGameCard = ({ evaluation, total, rule }) => {
 		</Link>
 	)
 }
-export const ActionValue = ({
-	total,
-	disabled,
-	noFormula,
-	dottedName,
-	engine,
-}) => {
-	const { t, i18n } = useTranslation()
+
+export const getFormattedActionValue = (
+	{ t, i18n },
+	dottedName: DottedName,
+	engine: Engine
+) => {
 	const correctedValue = correctValue(engine.evaluate(dottedName))
 
 	if (correctedValue == undefined) {
-		return null
+		return {}
 	}
 
 	const [stringValue, unit] = humanWeight(
@@ -334,8 +341,38 @@ export const ActionValue = ({
 		false,
 		true
 	)
-	const relativeValue = Math.round(100 * (correctedValue / total))
+
 	const sign = correctedValue > 0 ? '-' : '+'
+
+	return { correctedValue, stringValue, unit, sign }
+}
+
+export const ActionValue = ({
+	total,
+	disabled,
+	noFormula,
+	dottedName,
+	engine,
+}: {
+	total: number
+	disabled: boolean
+	noFormula: string | null
+	dottedName: DottedName
+	engine: Engine
+}) => {
+	const { t, i18n } = useTranslation()
+
+	const { correctedValue, stringValue, unit, sign } = getFormattedActionValue(
+		{ t, i18n },
+		dottedName,
+		engine
+	)
+
+	if (correctedValue == undefined) {
+		return
+	}
+
+	const relativeValue = Math.round(100 * (correctedValue / total))
 
 	return (
 		<div

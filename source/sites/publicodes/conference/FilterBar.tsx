@@ -2,15 +2,15 @@ import { buildVariantTree } from 'Components/conversation/RuleInput'
 import emoji from 'Components/emoji'
 import { splitName } from 'Components/publicodesUtils'
 import Engine from 'publicodes'
-import { useContext, useState } from 'react'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import NumberFormat from 'react-number-format'
 import { useSelector } from 'react-redux'
 import { matomoEventModeGroupeFiltres } from '../../../analytics/matomo-events'
-import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useMatomo } from '../../../contexts/MatomoContext'
 
 export default ({ threshold, setThreshold, setContextFilter }) => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const [visible, setVisible] = useState(false)
 	const survey = useSelector((state) => state.survey)

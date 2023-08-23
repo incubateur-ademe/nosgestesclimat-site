@@ -1,5 +1,5 @@
 import animate from 'Components/ui/animate'
-import { useContext, useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useDispatch } from 'react-redux'
 import { AnyAction } from 'redux'
@@ -8,7 +8,7 @@ import {
 	updateSituation,
 } from '../../../actions/actions'
 import { getMatomoEventAmortissement } from '../../../analytics/matomo-events'
-import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useMatomo } from '../../../contexts/MatomoContext'
 import emoji from '../../emoji'
 import { formatFloat } from '../../utils/formatFloat'
 import KmHelpButton from '../estimate/KmHelp/KmHelpButton'
@@ -46,7 +46,7 @@ export default function Amortissement({
 }: Props) {
 	const { t } = useTranslation()
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const dispatch = useDispatch()
 

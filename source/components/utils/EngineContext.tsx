@@ -1,9 +1,13 @@
-import { DottedName } from '@/components/publicodesUtils'
-import { intersect, pick } from '@/utils'
+import {
+	DottedName,
+	NGCRulesNodes,
+	safeGetSituation,
+} from '@/components/publicodesUtils'
+import { Situation } from '@/types/simulation'
 import Engine from 'publicodes'
 import React, { createContext, useContext } from 'react'
 
-export const EngineContext = createContext<Engine | undefined>(new Engine({}))
+export const EngineContext = createContext<Engine>(new Engine({}))
 export const EngineProvider = EngineContext.Provider
 
 export const engineOptions = {
@@ -22,31 +26,42 @@ export function useEngine(): Engine<DottedName> {
 	return useContext(EngineContext) as Engine<DottedName>
 }
 
+type SetSituationForValidKeysProps = {
+	engine: Engine
+	situation: Situation
+}
+
+//TODO
+// Before setting the situation, the existence of the situation's rules must be checked, since publicodes breaks on unexisting <keygen/>
+// This implementation is highly inefficient, since it could be done once when deserialising the stored user situation,
+// (don't forget personas)
+// But I'm waiting for an answer since the publicodes implementation should I believe be less strict
+// https://github.com/betagouv/publicodes/issues/257
+export const setSituationForValidKeys = ({
+	engine,
+	situation,
+}: SetSituationForValidKeysProps) => {
+	const rulesParsed = engine.getParsedRules() as NGCRulesNodes
+	const validSituation = safeGetSituation(situation, rulesParsed)
+	engine.setSituation(validSituation)
+}
+
 type SituationProviderProps = {
 	children: React.ReactNode
 	situation: Partial<
 		Record<DottedName, string | number | Record<string, unknown>>
 	>
 }
+
 export function SituationProvider({
 	children,
 	situation,
 }: SituationProviderProps) {
 	const engine = useContext(EngineContext)
 
-	//TODO
-	// Before setting the situation, the existence of the situation's rules must be checked, since publicodes breaks on unexisting <keygen/>
-	// This implementation is highly inefficient, since it could be done once when deserialising the stored user situation,
-	// (don't forget personas)
-	// But I'm waiting for an answer since the publicodes implementation should I believe be less strict
-	// https://github.com/betagouv/publicodes/issues/257
-
 	try {
 		if (engine) {
-			const rules = engine.getParsedRules()
-			const validKeys = intersect(Object.keys(rules), Object.keys(situation)),
-				validSituation = pick(situation, validKeys)
-			engine.setSituation(validSituation)
+			setSituationForValidKeys({ engine, situation })
 		}
 	} catch (e) {
 		console.log(

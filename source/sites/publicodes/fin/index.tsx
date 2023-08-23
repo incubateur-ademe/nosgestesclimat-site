@@ -1,8 +1,7 @@
-import Meta from '@/components/utils/Meta'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import animate from 'Components/ui/animate'
 import { utils } from 'publicodes'
-import { useContext } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
@@ -10,7 +9,7 @@ import { matomoEventSwipeEndPage } from '../../../analytics/matomo-events'
 import { NewsletterForm } from '../../../components/emailing/NewsletterForm'
 import NorthstarBanner from '../../../components/Feedback/NorthstarBanner'
 import SlidesLayout from '../../../components/SlidesLayout'
-import { MatomoContext } from '../../../contexts/MatomoContext'
+import { useMatomo } from '../../../contexts/MatomoContext'
 import { useNextQuestions } from '../../../hooks/useNextQuestion'
 import { arrayLoopIteration } from '../../../utils'
 import EnqueteBannerContent from '../enquête/BannerContent'
@@ -52,7 +51,7 @@ export default ({}) => {
 
 	const answeredQuestions = useSelector(answeredQuestionsSelector)
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 
 	const enquête = useSelector(enquêteSelector)
 
@@ -94,7 +93,6 @@ export default ({}) => {
 		nextSlide: next,
 		noQuestionsLeft: !nextQuestions.length,
 	}
-	const { t } = useTranslation()
 
 	return (
 		<div
@@ -103,12 +101,7 @@ export default ({}) => {
 			`}
 		>
 			{window.location.href.includes('fin') && (
-				<Meta title={t('Mon empreinte carbone')}>
-					<link
-						rel="canonical"
-						href="https://nosgestesclimat.fr/mon-empreinte-carbone"
-					/>
-				</Meta>
+				<AutoCanonicalTag overrideHref="https://nosgestesclimat.fr/mon-empreinte-carbone" />
 			)}
 
 			<IframeDataShareModal data={rehydratedDetails} />

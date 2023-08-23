@@ -119,15 +119,15 @@ const EngineWrapper = ({ children }) => {
 		return
 	}, [engine, parsedOption, rules])
 
-	const userSituation = useSelector(situationSelector),
-		configSituation = useSelector(configSituationSelector),
-		situation = useMemo(
-			() => ({
-				...configSituation,
-				...userSituation,
-			}),
-			[configSituation, userSituation]
-		)
+	const userSituation = useSelector(situationSelector)
+	const configSituation = useSelector(configSituationSelector)
+	const situation = useMemo(
+		() => ({
+			...configSituation,
+			...userSituation,
+		}),
+		[configSituation, userSituation]
+	)
 
 	return (
 		<LocalisationProvider>

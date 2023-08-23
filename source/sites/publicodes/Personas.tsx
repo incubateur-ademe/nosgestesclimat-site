@@ -1,151 +1,191 @@
-import { resetSimulation } from 'Actions/actions'
+import {
+	resetActionChoices,
+	resetSimulation,
+	setDifferentSituation,
+} from '@/actions/actions'
+import AnswerList from '@/components/conversation/AnswerList'
+import Title from '@/components/groupe/Title'
+import { NGCRulesNodes, safeGetSituation } from '@/components/publicodesUtils'
+import useBranchData, { BranchData } from '@/components/useBranchData'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import {
+	setSituationForValidKeys,
+	useEngine,
+} from '@/components/utils/EngineContext'
+import { ScrollToTop } from '@/components/utils/Scroll'
+import { AppState } from '@/reducers/rootReducer'
+import GridChart from '@/sites/publicodes/chart/GridChart'
+import RavijenChart from '@/sites/publicodes/chart/RavijenChart'
+import ActionSlide from '@/sites/publicodes/fin/ActionSlide'
+import Budget from '@/sites/publicodes/fin/Budget'
+import FinShareButton from '@/sites/publicodes/fin/FinShareButton'
+import { CardGrid } from '@/sites/publicodes/ListeActionPlus'
+import { getQuestionsInRules } from '@/sites/publicodes/pages/QuestionList'
+import {
+	fetchAndSetAvailablePersonas,
+	Persona,
+} from '@/sites/publicodes/personas/personasUtils'
+import RawActionsList from '@/sites/publicodes/personas/RawActionsList'
+import RulesCompletion from '@/sites/publicodes/personas/RulesCompletion'
+import Summary from '@/sites/publicodes/personas/Summary'
+import { Simulation } from '@/types/simulation'
 import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { Trans, useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
-import { setDifferentSituation } from '../../actions/actions'
-import IllustratedMessage from '../../components/ui/IllustratedMessage'
-import useBranchData from '../../components/useBranchData'
-import { useEngine } from '../../components/utils/EngineContext'
-import { ScrollToTop } from '../../components/utils/Scroll'
-import { situationSelector } from '../../selectors/simulationSelectors'
-import GridChart from './chart/GridChart'
-import RavijenChart from './chart/RavijenChart'
-import ActionSlide from './fin/ActionSlide'
-import Budget from './fin/Budget'
-import FinShareButton from './fin/FinShareButton'
-import { CardGrid } from './ListeActionPlus'
+import { useNavigate, useSearchParams } from 'react-router-dom'
+import yaml from 'yaml'
+import { questionConfig } from './questionConfig'
 
-const Nothing = () => null
 const visualisationChoices = {
-	ravijen: RavijenChart,
-	budget: Budget,
-	'sous-catégories': GridChart,
-	emojis: () => <FinShareButton showResult />,
-
-	action: ActionSlide,
-
-	aucun: Nothing,
+	summary: { titre: 'Description', composant: Summary },
+	actionList: { titre: 'Actions associées', composant: RawActionsList },
+	exhaustivite: {
+		titre: 'Exhaustivité des règles',
+		composant: RulesCompletion,
+	},
+	profil: { titre: 'Détail Réponses', composant: AnswerList },
+	ravijen: { titre: 'Graphe Bilan', composant: RavijenChart },
+	budget: { titre: 'Page de fin - Budget', composant: Budget },
+	'sous-catégories': { titre: 'Page de fin - Grille', composant: GridChart },
+	action: { titre: 'Page de fin - Top 3 actions', composant: ActionSlide },
+	emojis: {
+		titre: 'Partage RS',
+		composant: () => <FinShareButton showResult />,
+	},
 }
 
-export default ({}) => {
-	const persona = useSelector((state) => state.simulation?.persona)
+export default () => {
+	const selectedPersona = useSelector(
+		(state: AppState) => state.simulation?.persona
+	)
+
 	const [searchParams, setSearchParams] = useSearchParams({
-		visualisation: 'aucun',
+		visualisation: 'summary',
 	})
 
 	const visualisationParam = searchParams.get('visualisation')
-	const Visualisation = visualisationChoices[`${visualisationParam}`]
+
+	const VisualisationComponent =
+		visualisationChoices[`${visualisationParam}`]?.composant
 
 	const engine = useEngine()
+	const rules = useSelector((state: AppState) => state.rules)
+	const personasQuestions = getQuestionsInRules(engine, rules).filter(
+		({ type }) => !type.includes('Mosaïque')
+	)
 
-	const slideProps = {
+	const visualisationComponentProps = {
 		score: engine.evaluate('bilan').nodeValue,
 		headlessMode: true,
+		engine: engine,
+		rules: rules,
+		persona: selectedPersona,
 	}
 
 	return (
 		<div>
+			<AutoCanonicalTag />
+
 			<ScrollToTop />
-			<h1 data-cypress-id="personas-title">Personas</h1>
-			<p>
-				<Trans>
-					Cette page vous permet de naviguer les parcours Nos Gestes Climat
-					comme si vous étiez l'un des profils types que nous avons listés.
-				</Trans>
-			</p>
-			<p>
-				➡️{' '}
-				<em>
-					<Trans>
-						Sélectionnez un persona et éventuellement un graphique à afficher.
-					</Trans>
-				</em>
-			</p>
-			<form>
-				🧮
-				{Object.keys(visualisationChoices).map((name) => (
-					<label key={name}>
-						<input
-							onChange={() => setSearchParams({ visualisation: name })}
-							type="radio"
-							value={name}
-							checked={searchParams.get('visualisation') === name}
-						/>
-						{name}
-					</label>
-				))}
-			</form>
-			{persona && (
+
+			<Title data-cypress-id="personas-title" title={<Trans>Personas</Trans>} />
+			<div
+				css={`
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					margin-bottom: 1rem;
+					@media (max-width: 800px) {
+						flex-direction: column;
+					}
+				`}
+			>
+				<div>
+					<p>
+						<Trans>
+							Les personas nous servent à tester le simulateur sous toutes ses
+							coutures, et à vérifier qu’il s’adapte bien à toutes les
+							situations de vie des citoyens métropolitains. De par leur
+							présence, ils nous forcent à penser à tous les cas d’usage, pour
+							nous projeter dans différentes réalités, et inclure ces réalités
+							dans nos refontes du parcours de test et des actions proposées à
+							la fin de ce dernier.{' '}
+						</Trans>
+					</p>
+					<p>
+						<Trans>
+							Cette page vous permet de naviguer dans les parcours Nos Gestes
+							Climat comme si vous étiez l'un des profils types que nous avons
+							listés.
+						</Trans>
+					</p>
+					<p>
+						➡️{' '}
+						<em>
+							<Trans>
+								Sélectionnez un persona et éventuellement un graphique à
+								afficher.
+							</Trans>
+						</em>
+					</p>
+				</div>
+				<div
+					className="ui__ card box"
+					css={`
+						min-width: 16rem;
+						align-items: flex-start !important;
+						text-align: left !important;
+					`}
+				>
+					{Object.entries(visualisationChoices).map(([id, elt]) => (
+						<label key={id}>
+							<input
+								onChange={() => setSearchParams({ visualisation: id })}
+								type="radio"
+								value={id}
+								checked={searchParams.get('visualisation') === id}
+							/>
+							{elt.titre}
+						</label>
+					))}
+				</div>
+			</div>
+			{selectedPersona && (
 				<div
 					css={`
 						max-width: 35rem;
 						margin: 0 auto;
+						display: flex;
+						justify-content: center;
 						${visualisationParam === 'ravijen' &&
 						`
 						height: 45rem;
-						max-width: none;
-						`}
+						`};
 					`}
 				>
-					<Visualisation {...slideProps} />
+					<VisualisationComponent {...visualisationComponentProps} />
 				</div>
 			)}
-			<PersonaGrid />
-			<p>
-				<Trans i18nKey={'publicodes.Personas.description'}>
-					Les personas nous permettront de prendre le parti d'une diversité
-					d'utilisateurs quand ils voient notamment notre écran "passer à
-					l'action".
-				</Trans>
-			</p>
-			<h2>
-				<Trans>Comment créer un persona ?</Trans>
-			</h2>
-			<p>
-				<Trans>C'est dans le fichier</Trans>{' '}
-				<a href="https://github.com/datagir/nosgestesclimat-site/blob/master/source/sites/publicodes/personas.yaml">
-					personas.yaml
-				</a>{' '}
-				<Trans i18nKey={'publicodes.Personas.tuto'}>
-					que ça se passe. On peut soit copier coller les données d'un autre
-					persona et les modifier, soit en créer un de zéro depuis la
-					simulation. Une fois la simulation satisfaisante, cliquer sur
-					"Modifier mes réponses" puis taper Ctrl-C, ouvrir la console du
-					navigateur (F12), vérifiez bien que vous êtes dans l'onglet "Console",
-					allez tout en bas de la console (elle est un peu chargée...), puis
-					copier le JSON affiché, le coller dans{' '}
-					<a href="https://www.json2yaml.com">cet outil</a> pour générer un
-					YAML, puis l'insérer dans personas.yaml.
-				</Trans>
-			</p>
-			<p>
-				<Trans i18nKey={'publicodes.Personas.lienGenerateur'}>
-					Pour les prénoms, on peut utiliser{' '}
-					<a href="https://lorraine-hipseau.me">ce générateur</a>
-				</Trans>
-				.
-			</p>
+			<PersonaGrid selectedPersona={selectedPersona} />
+			<PersonaExplanations personasQuestionList={personasQuestions} />
 		</div>
 	)
 }
 
 export const PersonaGrid = ({
-	additionnalOnClick,
-	warningIfSituationExists,
+	selectedPersona,
+}: {
+	selectedPersona: Persona | undefined
 }) => {
 	const { i18n } = useTranslation()
 	const dispatch = useDispatch(),
 		objectif = 'bilan'
-	const selectedPersona = useSelector((state) => state.simulation?.persona)
 
-	const situation = useSelector(situationSelector)
-	const [data, setData] = useState()
-	const [warning, setWarning] = useState(false)
+	const [availablePersonas, setAvailablePersonas] = useState<Persona[]>([])
 	const engine = useEngine()
 
-	const branchData = useBranchData()
+	const branchData: BranchData = useBranchData()
 	const lang = i18n.language === 'en' ? 'en-us' : i18n.language
 
 	const navigate = useNavigate()
@@ -153,127 +193,239 @@ export const PersonaGrid = ({
 	const redirect = params.get('redirect')
 
 	useEffect(() => {
-		if (!branchData.loaded) return
-		const fileName = `/personas-${lang}.json`
-
-		if (process.env.NODE_ENV === 'development') {
-			const json = require('../../../nosgestesclimat/public' + fileName)
-			setData(json)
-		} else {
-			fetch(branchData.deployURL + fileName, {
-				mode: 'cors',
-			})
-				.then((response) => response.json())
-				.then((json) => {
-					setData(json)
-				})
-				.catch((err) => {
-					console.log('url:', branchData.deployURL + `/personas-${lang}.json`)
-					console.log('err:', err)
-				})
+		if (branchData.loaded) {
+			fetchAndSetAvailablePersonas(
+				`/personas-${lang}.json`,
+				branchData,
+				setAvailablePersonas
+			)
 		}
-	}, [branchData.deployURL, branchData.loaded, lang])
+	}, [branchData.loaded, branchData.deployURL, lang])
 
-	if (!data) return null
+	if (availablePersonas.length === 0) {
+		return null
+	}
 
-	const personasRules = Object.values(data)
-
-	const setPersona = (persona) => {
-		engine.setSituation({}) // Engine should be updated on simulation reset but not working here, useEngine to be investigated
-		const { nom, icônes, data, description } = persona
-		const missingVariables = engine.evaluate(objectif).missingVariables ?? {}
+	const setPersona = (persona: Persona) => {
+		const safeSituation = safeGetSituation(
+			persona.situation,
+			engine.getParsedRules() as NGCRulesNodes
+		)
+		setSituationForValidKeys({
+			engine,
+			situation: persona.situation,
+		})
+		const missingVariables = engine.evaluate(objectif).missingVariables
 		const defaultMissingVariables = Object.keys(missingVariables)
 
-		dispatch(
-			setDifferentSituation({
-				config: { objectifs: [objectif] },
-				url: '/simulateur/bilan',
-				// the schema of peronas is not fixed yet
-				situation: data.situation || data,
-				persona: nom,
-				// If not specified, act as if all questions were answered : all that is not in
-				// the situation object is a validated default value
-				foldedSteps: defaultMissingVariables,
-			})
-		)
+		const newSimulation: Simulation = {
+			config: { objectifs: [objectif], questions: questionConfig },
+			url: '/simulateur/bilan',
+			// the schema of personas is not fixed yet
+			situation: persona.situation,
+			persona: persona,
+			// If not specified, act as if all questions were answered : all that is not in
+			// the situation object is a validated default value
+			foldedSteps:
+				Object.entries(persona.situation)?.length === 0
+					? defaultMissingVariables
+					: Object.keys(safeSituation),
+		}
+
+		dispatch(setDifferentSituation(newSimulation))
+
 		if (redirect) navigate(redirect)
 	}
-	const hasSituation = Object.keys(situation).length
-	if (warning)
-		return (
-			<IllustratedMessage
-				emoji="ℹ️"
-				message={
-					<div>
-						<p>
-							<Trans i18nKey={'publicodes.Personas.warningMsg'}>
-								Sélectionner un persona releguera votre simulation en cours dans
-								votre historique de simulations, accessible en bas de votre{' '}
-								<Link to="/profil">page profil</Link>.
-							</Trans>
-						</p>
-						<button
-							className="ui__ button simple"
-							onClick={() => {
-								dispatch(resetSimulation())
-								setPersona(warning)
-								setWarning(false)
-							}}
-						>
-							<Trans>J'ai compris</Trans>
-						</button>
-						<button
-							className="ui__ button simple"
-							onClick={() => setWarning(false)}
-						>
-							<Trans>Annuler</Trans>
-						</button>
-					</div>
-				}
-			/>
-		)
 
 	return (
-		<CardGrid css="padding: 0; justify-content: center">
-			{personasRules.map((persona) => {
-				const { nom, icônes, data, description, résumé } = persona
+		<CardGrid
+			css={`
+				padding: 0;
+				justify-content: center;
+				li {
+					margin: 0.4rem;
+				}
+			`}
+		>
+			{availablePersonas.map((persona) => {
+				const { nom, icônes, description, résumé } = persona
 				return (
 					<li key={nom}>
 						<button
 							className={`ui__ card box interactive light-border ${
-								selectedPersona === persona.nom ? 'selected' : ''
+								selectedPersona?.nom === nom ? 'selected' : ''
 							}`}
 							css={`
 								width: 11rem !important;
-								height: 15rem !important;
-								padding: 1rem 0.75rem 1rem 0.75rem !important;
-								${nom === persona
-									? 'border: 2px solid var(--color) !important'
-									: ''};
+								height: 13rem !important;
+								padding: 0.5rem 0.25rem 0.5rem 0.25rem !important;
+								margin: 0 !important;
+								img {
+									margin-bottom: 0.5rem;
+								}
 							`}
-							onClick={() =>
-								warningIfSituationExists && hasSituation
-									? setWarning(persona)
-									: setPersona(persona)
-							}
+							onClick={() => {
+								if (selectedPersona?.nom === nom) {
+									dispatch(resetSimulation())
+									dispatch(resetActionChoices())
+								} else {
+									setPersona(persona)
+								}
+							}}
 						>
 							<div
 								css={`
 									text-transform: uppercase;
 									color: var(--color);
-									font-size: 90%;
+									font-size: 80%;
 								`}
 							>
-								<div>{emoji(icônes || '👥')}</div>
+								<div>{emoji(icônes ?? '👥')}</div>
 								<div>{nom}</div>
 							</div>
 							<p>
-								<small>{résumé || description}</small>
+								<small>{résumé ?? description}</small>
 							</p>
 						</button>
 					</li>
 				)
 			})}
 		</CardGrid>
+	)
+}
+
+export const PersonaExplanations = ({ personasQuestionList }) => {
+	return (
+		<div
+			css={`
+				h2 {
+					display: inline;
+				}
+				details {
+					padding-bottom: 1rem;
+				}
+			`}
+		>
+			<details>
+				<summary>
+					<h2>
+						<Trans>Qui sont-ils ?</Trans>
+					</h2>
+				</summary>
+				<div>
+					<Trans i18nKey={'publicodes.Personas.description'}>
+						Nous les avons définis pour qu’ils représentent la diversité des cas
+						d’usage du simulateur.{' '}
+						<i>
+							Toute ressemblance avec une personne existant ou ayant existé
+							serait purement fortuite !
+						</i>{' '}
+						En aucune mesure, on ne peut dire qu’ils sont représentatifs de la
+						distribution de la population française : il ne s’agit pas de coller
+						aux statistiques de la population, mais de retrouver parmi nos dix
+						personas au moins un qui représente chaque usage majeur et
+						différenciant pour le simulateur. Ainsi, nous avons fait varier pour
+						chacun d’entre eux :
+						<ul>
+							<li>
+								Leur genre : même s’il n’influe pas sur l’empreinte, il serait
+								étonnant de n’avoir que des personas “femmes”
+							</li>{' '}
+							<li>
+								Leur âge et situation personnelle / professionnelle : au moins
+								un étudiant, un retraité, un adulte au foyer, un actif
+							</li>{' '}
+							<li>
+								La taille de leur foyer : de 1 personne à famille nombreuse
+							</li>{' '}
+							<li>
+								Leur lieu de vie : de l’urbain, du rural et du péri-urbain, dans
+								le nord, dans le sud, les plaines, la montagne et sur une île
+							</li>{' '}
+							<li>
+								Leur logement : de l’appartement à la maison, du neuf à l’ancien
+							</li>
+							<li>
+								Leurs modes de transport : de la marche à la voiture en passant
+								par le ferry et l’avion
+							</li>{' '}
+							<li>
+								Leur régime alimentaire : au moins un végétalien, un végétarien,
+								une personne ne mangeant que du poisson, et un amateur de viande
+								rouge
+							</li>{' '}
+							<li>
+								Leur tendance à l’achat : du tout occasion au tout neuf, de
+								l’acheteur compulsif à celui ou celle qui n’achète presque rien
+							</li>{' '}
+							<li>
+								Leur façon de partir en vacances : mode de transport,
+								hébergement, on trouve de tout
+							</li>{' '}
+							<li>Leurs loisirs : de la culture, du sport, du bien-être…</li>
+						</ul>
+					</Trans>
+				</div>
+			</details>
+			<details>
+				<summary>
+					<h2>
+						<Trans>Quelle est la liste des questions du modèle ?</Trans>
+					</h2>
+				</summary>
+				<div>
+					<p>
+						<Trans i18nKey={'publicodes.Personas.listeQuestions'}>
+							La liste des questions du modèle est accessible sur la page{' '}
+							<a href="/questions">/questions</a>. La liste exhaustive de toutes
+							les règles pour définir un persona est :
+						</Trans>
+					</p>
+					<pre
+						className="ui__ code"
+						css={`
+							font-size: 90%;
+							height: 10rem;
+						`}
+					>
+						<code>{yaml.stringify(personasQuestionList)}</code>
+					</pre>
+					<button
+						className="ui__ button small"
+						onClick={() => {
+							navigator.clipboard.writeText(
+								JSON.stringify(personasQuestionList)
+							)
+						}}
+					>
+						<Trans>Copier le YAML</Trans>
+					</button>
+				</div>
+			</details>
+			<details>
+				<summary>
+					<h2>
+						<Trans>Comment les mettons-nous à jour ?</Trans>
+					</h2>
+				</summary>
+				<div>
+					<Trans i18nKey={'publicodes.Personas.maj'}>
+						Pour qu’ils ou elles continuent de représenter la diversité des cas
+						d’usage du simulateur d’empreinte carbone, nous les éditons à chaque
+						ajout ou modification de ce dernier, en respectant les règles
+						suivantes :
+						<ul>
+							<li>
+								Chaque réponse possible est attribuée à au moins un persona
+							</li>{' '}
+							<li>
+								Au moins un persona ne répond rien à la question (il lui est
+								donc attribué la valeur par défaut donnée dans le simulateur).
+							</li>
+						</ul>
+					</Trans>
+				</div>
+			</details>
+		</div>
 	)
 }

@@ -1,6 +1,6 @@
 ## The reference simulator
 
-With **almost [a million tests completed](/stats)**, nosgestesclimat.fr
+With **over [a million tests completed](/stats)**, nosgestesclimat.fr
 is the reference personal carbon footprint calculator.
 
 ## What is my climate footprint?
@@ -21,7 +21,7 @@ etc.) is added to make up your personal carbon footprint, and then explained vis
 ## Acting on my footprint, right now
 
 After a 10-minute test, the [action
-pages](https://nosgestesclimat.fr/actions/liste) allow you to prioritize
+pages](https://nosgestesclimat.fr/actions) allow you to prioritize
 the means to reduce your footprint and distinguish
 the actions with the least impact on the climate (replacing our light bulbs, turning off
 our appliances on standby) from the most impactful ones (eating less meat,
@@ -29,6 +29,6 @@ electrifying our lifestyle...).
 
 Of course, even though it is essential to measure the footprint of our
 consumptions and to understand their magnitude in relation to the [climate
-budget](https://datagir.ademe.fr/blog/budget-empreinte-carbone-c-est-quoi/),
+budget](https://nosgestesclimat.fr/blog/budget),
 some improvements are outside of our personal control:
 for example, if you're renting and the landlord refuses to insulate the building to reduce energy consumption.

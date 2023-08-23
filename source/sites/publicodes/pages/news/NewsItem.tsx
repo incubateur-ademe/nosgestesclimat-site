@@ -1,3 +1,4 @@
+import Title from '@/components/groupe/Title'
 import { localStorageKey } from 'Components/NewsBanner'
 import { MarkdownWithAnchorLinks } from 'Components/utils/markdown'
 import Meta from 'Components/utils/Meta'
@@ -120,7 +121,7 @@ export default function NewsItem() {
 					))}
 				</Sidebar>
 				<MainBlock>
-					<h1>{capitalise0(releaseName)}</h1>
+					<Title title={capitalise0(releaseName)} />
 					<MarkdownWithAnchorLinks
 						children={body}
 						escapeHtml={false}

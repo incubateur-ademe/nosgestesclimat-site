@@ -1,6 +1,8 @@
 import { QueryClient, QueryClientProvider } from 'react-query'
 
-import StatsContent from 'Components/stats/StatsContent'
+import StatsContent from '@/components/stats/StatsContent'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import { ScrollToTop } from '@/components/utils/Scroll'
 
 const queryClient = new QueryClient({
 	defaultOptions: {
@@ -15,6 +17,10 @@ const queryClient = new QueryClient({
 export default function Dashboard() {
 	return (
 		<QueryClientProvider client={queryClient}>
+			<AutoCanonicalTag />
+
+			<ScrollToTop />
+
 			<StatsContent />
 		</QueryClientProvider>
 	)

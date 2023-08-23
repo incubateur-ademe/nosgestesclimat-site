@@ -1,6 +1,8 @@
+import AnimatedIllustration from '@/components/AnimatedIllustration'
+import Title from '@/components/groupe/Title'
 import animate from '@/components/ui/animate'
 import LogoADEME from '@/images/logoADEME.svg'
-import React, { Suspense, useContext } from 'react'
+import { useContext } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import {
@@ -20,26 +22,13 @@ import { CircleSVG } from '../../components/ProgressCircle'
 import { openmojiURL } from '../../components/SessionBar'
 import { IframeOptionsContext } from '../../components/utils/IframeOptionsProvider'
 import Meta from '../../components/utils/Meta'
-import { MatomoContext } from '../../contexts/MatomoContext'
+import { useMatomo } from '../../contexts/MatomoContext'
 import useMediaQuery from '../../hooks/useMediaQuery'
 import LandingExplanations from './LandingExplanations'
 import { useProfileData } from './Profil'
 
-const LazyIllustration = React.lazy(
-	() =>
-		import(
-			/* webpackChunkName: 'AnimatedIllustration' */ '@/components/AnimatedIllustration'
-		)
-)
-
-const Illustration = () => (
-	<Suspense fallback={null}>
-		<LazyIllustration />
-	</Suspense>
-)
-
 export default () => {
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const { t } = useTranslation()
 	const mobile = useMediaQuery(`(max-width: ${fluidLayoutMinWidth})`)
 	const { isIframe } = useContext(IframeOptionsContext)
@@ -56,12 +45,14 @@ export default () => {
 
 			<LandingHeaderWrapper>
 				<HeaderContent>
-					<h1>
-						<Trans i18nKey={'publicodes.Landing.question'}>
-							Connaissez-vous votre empreinte sur le climat ?
-						</Trans>
-					</h1>
-					{mobile && <Illustration aria-hidden="true" />}
+					<Title
+						title={
+							<Trans i18nKey={'publicodes.Landing.question'}>
+								Connaissez-vous votre empreinte sur le climat ?
+							</Trans>
+						}
+					/>
+					{mobile && <AnimatedIllustration />}
 					<p>
 						<Trans i18nKey={'sites.publicodes.Landing.description'}>
 							En 10 minutes, obtenez une estimation de votre empreinte carbone
@@ -94,7 +85,7 @@ export default () => {
 								</span>
 							</Link>
 							<Link
-								to="/groupe"
+								to="/groupes"
 								className="ui__ button cta"
 								onClick={() => {
 									trackEvent(matomoEventModeGroupeCTAStart)
@@ -126,7 +117,7 @@ export default () => {
 						</div>
 					</div>
 				</HeaderContent>
-				{!mobile && <Illustration aria-hidden="true" />}
+				{!mobile && <AnimatedIllustration />}
 			</LandingHeaderWrapper>
 
 			<div

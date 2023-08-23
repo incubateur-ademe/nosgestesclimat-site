@@ -1,16 +1,11 @@
-import { updateSituation } from 'Actions/actions'
-import Checkbox from 'Components/ui/Checkbox'
+import { updateSituation } from '@/actions/actions'
+import MosaicInputSuggestions from '@/components/conversation/MosaicInputSuggestions'
+import MosaicStamp from '@/components/conversation/select/MosaicStamp'
+import { Mosaic, MosaicItemLabel } from '@/components/conversation/select/UI'
+import Checkbox from '@/components/ui/Checkbox'
+import { situationSelector } from '@/selectors/simulationSelectors'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { situationSelector } from 'Selectors/simulationSelectors'
-import styled from 'styled-components'
-import MosaicInputSuggestions from '../MosaicInputSuggestions'
-import MosaicStamp from './MosaicStamp'
-import { Mosaic, MosaicItemLabel, mosaicLabelStyle } from './UI'
-
-const MosaicLabelDiv = styled.div`
-	${mosaicLabelStyle}
-`
 
 export default function SelectDevices({
 	dottedName,
@@ -25,8 +20,11 @@ export default function SelectDevices({
 		[]
 	)
 
-	// for now, if nothing is checked, after having check something, 'suivant' button will have same effect as 'je ne sais pas'
-	// we can imagine a useeffect that set to 0 situation of dottedname every time all card are unchecked (after user checked something at least once)
+	// for now, if nothing is checked, after having check something,
+	// 'suivant' button will have same effect as 'je ne sais pas'
+	// we can imagine a useeffect that set to 0 situation
+	// of dottedname every time all card are unchecked
+	// (after user checked something at least once)
 
 	return (
 		<div>
@@ -42,18 +40,19 @@ export default function SelectDevices({
 						{
 							dottedName: name,
 							title,
-							rawNode: { description, icônes },
+							rawNode: { icônes },
 						},
 						question,
 					]) => {
-						const situationValue = situation[question.dottedName],
-							value =
-								situationValue != null
-									? situationValue
-									: // unlike the NumberedMosaic, we don't preselect cards choices here
-									  // user tests showed us it is now well received
-									  'non',
-							isNotActive = 'inactif' in question.rawNode
+						const situationValue = situation[question.dottedName]
+						const value =
+							situationValue != null
+								? situationValue
+								: // unlike the NumberedMosaic, we don't preselect cards choices here
+								  // user tests showed us it is now well received
+								  'non'
+						const isNotActive = 'inactif' in question.rawNode
+
 						return (
 							<li
 								className={
@@ -88,7 +87,7 @@ export default function SelectDevices({
 												dispatch(
 													updateSituation(
 														question.dottedName,
-														value == 'oui' ? 'non' : 'oui'
+														value === 'oui' ? 'non' : 'oui'
 													)
 												)
 											}

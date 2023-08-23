@@ -117,5 +117,6 @@ module.exports = {
 		'plugin:react-hooks/recommended',
 		'plugin:import/errors',
 		'plugin:import/typescript',
+		'plugin:cypress/recommended',
 	],
 }

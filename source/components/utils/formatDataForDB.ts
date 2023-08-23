@@ -1,4 +1,4 @@
-import { Simulation } from '@/reducers/rootReducer'
+import { Simulation } from '@/types/simulation'
 
 type SimulationFormatted = {
 	[key: string]: any
@@ -26,6 +26,8 @@ export const reformateDataFromDB = (
 	simulation: Simulation
 ): SimulationFormatted => {
 	const simulationFormatted = { ...simulation }
+
+	if (!simulationFormatted.situation) return simulationFormatted
 
 	return Object.entries(
 		simulationFormatted.situation as { [key: string]: any }

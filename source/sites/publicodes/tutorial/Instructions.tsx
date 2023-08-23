@@ -17,7 +17,7 @@ export default () => (
 			</blockquote>
 			<blockquote key="questions">
 				❓️ D'autres questions ? Consultez notre{' '}
-				<Link to="/contribuer">FAQ</Link> à tout moment.
+				<Link to="/questions-frequentes">FAQ</Link> à tout moment.
 			</blockquote>
 		</Trans>
 	</>

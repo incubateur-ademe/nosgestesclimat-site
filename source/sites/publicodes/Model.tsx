@@ -1,3 +1,5 @@
+import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { Trans } from 'react-i18next'
 import { Link } from 'react-router-dom'
 import { ScrollToTop } from '../../components/utils/Scroll'
@@ -7,13 +9,17 @@ import ModelIssuePreviews from './ModelIssuePreviews'
 import ModelStatsBlock from './ModelStatsBlock'
 
 // I18N : I didn't write this page as a .md file, even if it's easier to translate and edit, because of its highly interactive nature
-export default ({}) => {
+export default () => {
 	return (
 		<div>
+			<AutoCanonicalTag />
+
 			<ScrollToTop />
-			<h1>
-				<Trans>Le modèle d'empreinte carbone de référence</Trans>
-			</h1>
+
+			<Title
+				title={<Trans>Le modèle d'empreinte carbone de référence</Trans>}
+			/>
+
 			<p>
 				<Trans i18nKey="model.intro">
 					Derrière le site nosgestesclimat.fr, se cache le modèle d'empreinte

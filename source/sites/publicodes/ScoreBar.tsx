@@ -10,13 +10,13 @@ import ScoreExplanation from '@/components/ScoreExplanation'
 import { buildEndURL } from '@/components/SessionBar'
 import { lightenColor } from '@/components/utils/colors'
 import { useEngine } from '@/components/utils/EngineContext'
-import { MatomoContext } from '@/contexts/MatomoContext'
+import { useMatomo } from '@/contexts/MatomoContext'
 import { AppState } from '@/reducers/rootReducer'
 import {
 	objectifsSelector,
 	situationSelector,
 } from '@/selectors/simulationSelectors'
-import { useContext, useEffect, useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -54,7 +54,7 @@ export default ({ actionMode = false, demoMode = false }) => {
 	const { t } = useTranslation()
 	const [openExplanation, setOpenExplanation] = useState(false)
 
-	const { trackEvent } = useContext(MatomoContext)
+	const { trackEvent } = useMatomo()
 	const tutorials = useSelector((state: AppState) => state.tutorials)
 
 	const situationLength = Object.keys(situation).length
