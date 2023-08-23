@@ -1,5 +1,6 @@
 import budgetFR from '../../../locales/blog/fr/budget.md'
 import campusFr from '../../../locales/blog/fr/campus.md'
+import roadmapFr from '../../../locales/blog/fr/feuille-route.md'
 import gesTransportFr from '../../../locales/blog/fr/gesTransport.md'
 import historyFr from '../../../locales/blog/fr/historique.md'
 import impactMobiliteFR from '../../../locales/blog/fr/mobilite.md'
@@ -14,6 +15,14 @@ type BlogPost = {
 }
 
 export const blogData: BlogPost[] = [
+	{
+		date: '2023-08-21',
+		title: 'Notre feuille de route',
+		slug: 'journée-mondial-environnement',
+		description:
+			'Entre les actuelles 9 tonnes de l’empreinte moyenne d’un citoyen français, et l’objectif affiché de 2 tonnes , il y a beaucoup de pas à faire ! ',
+		content: roadmapFr,
+	},
 	{
 		date: '2023-06-05',
 		title: 'Journée mondiale de l’environnement',
