@@ -66,7 +66,7 @@ export default () => {
 			<div>
 				<Markdown
 					children={
-						documentation['guide-mode-groupe/' + encodedName] ||
+						documentation['guide-mode-groupe/' + 'guide-' + encodedName] ||
 						t("Ce guide n'existe pas encore")
 					}
 				/>
