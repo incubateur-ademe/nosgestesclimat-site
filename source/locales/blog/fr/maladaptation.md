@@ -12,7 +12,7 @@ Face à ces bouleversements, [beaucoup sont démunis](https://www.novethic.fr/ac
 
 ### La solution maladaptée : le climatiseur
 
-Chaque année, l’émergence de canicules de plus en plus fortes et de plus en plus longues amène des foyers à se poser la question de l’installation d’une climatisation dans leur logement. En 2020, il s’est vendu 800 000 unités de climatiseurs dans l’Hexagone, un record.
+_Chaque année, l’émergence de canicules de plus en plus fortes et de plus en plus longues amène des foyers à se poser la question de l’installation d’une climatisation dans leur logement. En 2020, il s’est vendu 800 000 unités de climatiseurs dans l’Hexagone, un record._
 
 ![Climatiseurs](/images/alexandre-lecocq-climatiseurs.jpg)
 
