@@ -3,6 +3,7 @@ import campusFr from '../../../locales/blog/fr/campus.md'
 import roadmapFr from '../../../locales/blog/fr/feuille-route.md'
 import gesTransportFr from '../../../locales/blog/fr/gesTransport.md'
 import historyFr from '../../../locales/blog/fr/historique.md'
+import maladaptationFr from '../../../locales/blog/fr/maladaptation.md'
 import impactMobiliteFR from '../../../locales/blog/fr/mobilite.md'
 import dayFr from '../../../locales/blog/fr/mondialEnvironnement.md'
 
@@ -15,6 +16,14 @@ type BlogPost = {
 }
 
 export const blogData: BlogPost[] = [
+	{
+		date: '2023-08-24',
+		title: 'Avez-vous déjà entendu parler de maladaptation ?',
+		slug: 'maladaptation',
+		description:
+			"L'été est un moment particulièrement propice à la mise en place de stratégie d'adaptation face au changement climatique. Mais toutes ne sont pas inoffensives. ",
+		content: maladaptationFr,
+	},
 	{
 		date: '2023-08-21',
 		title: 'Notre feuille de route',
