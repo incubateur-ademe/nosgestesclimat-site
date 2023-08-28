@@ -66,4 +66,4 @@ Nous avons de la chance : nous vivons dans **une des plus belles destinations to
 
 Une autre chance, c’est l’accessibilité en train d’une bonne partie de l’Europe ! Connaissez-vous l’offre [Interrail](https://www.interrail.eu/fr) ? Elle est un bon moyen pour parcourir un, ou plusieurs pays, en train. L'occasion de remonter un peu vers le nord ?
 
-_Vous faites partie d’une collectivité locale ? [Trouvez ici les solutions adaptées à votre territoire](https://plusfraichemaville.fr/)._
+> _Vous faites partie d’une collectivité locale ? [Trouvez ici les solutions adaptées à votre territoire](https://plusfraichemaville.fr/)._
