@@ -19,7 +19,7 @@ Nous utilisons :
 -   [Yarn](https://yarnpkg.com/fr) pour la gestion des dépendances (à la place de NPM qui est souvent utilisé dans les applications JavaScript)
 -   [React](https://reactjs.org) pour la gestion de l'interface utilisateur
 -   [Redux](https://redux.js.org) pour gérer le “state” de l'application côté client
--   [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soit formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
+-   [Prettier](https://prettier.io/) pour formater le code source, l'idéal est de configurer votre éditeur de texte pour que les fichiers soient formatés automatiquement quand vous sauvegardez un fichier. Si vous utilisez [VS Code](https://code.visualstudio.com/) cette configuration est automatique.
 -   [Webpack](https://webpack.js.org) pour le “bundling”
 -   [Eslint](http://eslint.org) qui permet par exemple d'éviter de garder des variables inutilisées
 -   [Ramda](https://ramdajs.com) comme libraire d'utilitaires pour manipuler les listes/objects/etc (c'est une alternative à lodash ou underscore), mais nous voulons nous en débarasser.
@@ -40,7 +40,7 @@ yarn install
 yarn start
 ```
 
-Pour le développement local, il est important de cloner datagir/nosgestesclimat dans le même répertoire que celui-ci : ainsi les modèles sont chargées depuis votre disque, ce qui vous donne accès au rechargement à chaud de l'application si vous modifiez par exemple une question ou un facteur d'émission.
+Pour le développement local, il est important de cloner datagir/nosgestesclimat dans le même répertoire que celui-ci : ainsi les modèles sont chargés depuis votre disque, ce qui vous donne accès au rechargement à chaud de l'application si vous modifiez par exemple une question ou un facteur d'émission.
 
 L'application est exécutée sur https://localhost:8080.
 
@@ -64,7 +64,7 @@ Et ceux spécifiques au projet :
 
 -   :gear: `:gear:` pour une contribution au moteur qui traite les YAML
 -   :hammer: `:hammer:` pour une contribution à la base de règles
--   :calendar: `:calendar:` pour un changement de règle du à une évolution temporelle (en attendant mieux)
+-   :calendar: `:calendar:` pour un changement de règle dû à une évolution temporelle (en attendant mieux)
 -   :chart_with_upwards_trend: `:chart_with_upwards_trend:` pour une amélioration du tracking
 -   :alien: `:alien:` pour ajouter des traductions
 -   :wheelchair: `:wheelchair:` pour corriger les problèmes liés à l'accessibilité
@@ -79,7 +79,7 @@ Le sondage fonctionne avec un serveur qui héberge une base de données Mongo. Q
 
 Nos branches de démo n'ont pas été configurées pour se brancher sur une base de données de dev automatiquement. Les instructions sont côté serveur pour le faire manuellement. 
 
-Le plus simple pourrait être de les brancher sur une *unique* base de données de test, qui ne contiendrait rien d'important : elle pourrait être corrompue, fuitées, etc. En effet, la base n'étant pas nécessaire au fonctionnement de NGC, le sondage n'étant qu'un dixième du parcours, ça me semble inutile de faire naitre une BDD toute neuve à chaque branche de dev. 
+Le plus simple pourrait être de les brancher sur une *unique* base de données de test, qui ne contiendrait rien d'important : elle pourrait être corrompue, fuitées, etc. En effet, la base n'étant pas nécessaire au fonctionnement de NGC, le sondage n'étant qu'un dixième du parcours, ça me semble inutile de faire naître une BDD toute neuve à chaque branche de dev. 
 
 
 ### Tests
@@ -88,13 +88,13 @@ Nous mettons en place des tests progressivement dans ce dépôt :
 - nous avons introduit des tests de score de notre dizaine de personas pour suivre l'évolution des résultats calculés du modèle à chaque PR côté modèle
 - nous avons introduit des tests bout-à-bout (E2E) qui simulent des utilisateurs sur un certain nombre de parcours (exemple : trouver un bouton contenant "Faire le test" sur la page d'accueil)
 
-Cela dit, la bibliothèque publicodes sur laquelle notre calcul est basée est bien testée.
+Cela dit, la bibliothèque publicodes sur laquelle notre calcul est basé est bien testée.
 
 Nous privilégions pour l'instant une écoute attentive des retours utilisateurs : nous en avons eu et traité plus de 500 dans les 6 premiers mois du développement, et des milliers depuis. 
 
 ### Traduction 👽
 
-Les informations sur la traductions sont disponible [ici](./docs/translating.md).
+Les informations sur la traduction sont disponibles [ici](./docs/translating.md).
 
 ### CI/CD
 
@@ -102,7 +102,7 @@ Les informations sur la traductions sont disponible [ici](./docs/translating.md)
 
 ### Analyse des bundles
 
-La commande `yarn stats` gènere une visualisation interactive du contenu packagé, à visualiser avec [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
+La commande `yarn stats` génère une visualisation interactive du contenu packagé, à visualiser avec [webpack-bundle-analyzer](https://github.com/webpack-contrib/webpack-bundle-analyzer)
 
 ### Publicodes
 
