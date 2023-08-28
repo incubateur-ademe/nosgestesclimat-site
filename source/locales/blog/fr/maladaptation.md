@@ -1,3 +1,6 @@
+# Avez-vous déjà entendu parler de "maladaptation" ?
+
+![Climatiseurs contre un mur, une photo d'Alexandre Lecoq](/images/alexandre-lecocq-climatiseurs.jpg)
 Connaissez-vous le concept de “**maladaptation**” ? Voici la définition qu’en ont donnée un groupe de 16 experts qui se sont réunis autour du sujet en novembre 2012 :
 
 > “_La maladaptation désigne un processus d’adaptation qui résulte directement en un accroissement de la vulnérabilité à la variabilité et au changement climatiques et/ou en une altération des capacités et des opportunités actuelles et futures d’adaptation.”_
@@ -13,8 +16,6 @@ Face à ces bouleversements, [beaucoup sont démunis](https://www.novethic.fr/ac
 ### La solution maladaptée : le climatiseur
 
 Chaque année, l’émergence de canicules de plus en plus fortes et de plus en plus longues amène des foyers à se poser la question de l’installation d’une climatisation dans leur logement. En 2020, il s’est vendu 800 000 unités de climatiseurs dans l’Hexagone, un record.
-
-![Climatiseurs](/images/alexandre-lecocq-climatiseurs.jpg)
 
 Il existe de nombreux types de climatiseurs. Leur impact est lié :
 
