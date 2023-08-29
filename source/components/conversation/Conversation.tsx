@@ -66,7 +66,7 @@ import { utils } from 'publicodes'
 import React, { useContext, useEffect, useMemo, useRef, useState } from 'react'
 import { Trans } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 export type ConversationProps = {
 	customEndMessages?: React.ReactNode
@@ -91,6 +91,7 @@ export default function Conversation({
 	const previousAnswers = useSelector(answeredQuestionsSelector)
 	const { trackEvent } = useMatomo()
 	const objectifs = useSelector(objectifsSelector)
+	const navigate = useNavigate()
 
 	// We want to get the initial order category to avoid reordering the questions
 	const initialOrderByCategories = useRef(orderByCategories).current
@@ -402,6 +403,7 @@ export default function Conversation({
 			paramValue: 'congrats',
 			simulateurRootRuleURL,
 			focusedCategory,
+			navigate,
 		})
 		return <SimulationEnding {...{ customEnd, customEndMessages }} />
 	}
@@ -429,6 +431,7 @@ export default function Conversation({
 			paramValue: questionCategory.dottedName,
 			simulateurRootRuleURL,
 			focusedCategory,
+			navigate,
 		})
 	} else if (!isFromActionCard && currentQuestion) {
 		const isMosaicChildRuleName = isMosaicChild(rules, currentQuestion)
@@ -440,6 +443,7 @@ export default function Conversation({
 				: currentQuestion,
 			simulateurRootRuleURL,
 			focusedCategory,
+			navigate,
 		})
 	}
 
