@@ -1,3 +1,6 @@
+# Avez-vous déjà entendu parler de "maladaptation" ?
+
+![Climatiseurs contre un mur, une photo d'Alexandre Lecoq](/images/alexandre-lecocq-climatiseurs.jpg)
 Connaissez-vous le concept de “**maladaptation**” ? Voici la définition qu’en ont donnée un groupe de 16 experts qui se sont réunis autour du sujet en novembre 2012 :
 
 > “_La maladaptation désigne un processus d’adaptation qui résulte directement en un accroissement de la vulnérabilité à la variabilité et au changement climatiques et/ou en une altération des capacités et des opportunités actuelles et futures d’adaptation.”_
@@ -13,8 +16,6 @@ Face à ces bouleversements, [beaucoup sont démunis](https://www.novethic.fr/ac
 ### La solution maladaptée : le climatiseur
 
 Chaque année, l’émergence de canicules de plus en plus fortes et de plus en plus longues amène des foyers à se poser la question de l’installation d’une climatisation dans leur logement. En 2020, il s’est vendu 800 000 unités de climatiseurs dans l’Hexagone, un record.
-
-![Climatiseurs](/images/alexandre-lecocq-climatiseurs.jpg)
 
 Il existe de nombreux types de climatiseurs. Leur impact est lié :
 
@@ -65,4 +66,4 @@ Nous avons de la chance : nous vivons dans **une des plus belles destinations to
 
 Une autre chance, c’est l’accessibilité en train d’une bonne partie de l’Europe ! Connaissez-vous l’offre [Interrail](https://www.interrail.eu/fr) ? Elle est un bon moyen pour parcourir un, ou plusieurs pays, en train. L'occasion de remonter un peu vers le nord ?
 
-_Vous faites partie d’une collectivité locale ? [Trouvez ici les solutions adaptées à votre territoire](https://plusfraichemaville.fr/)._
+> _Vous faites partie d’une collectivité locale ? [Trouvez ici les solutions adaptées à votre territoire](https://plusfraichemaville.fr/)._
