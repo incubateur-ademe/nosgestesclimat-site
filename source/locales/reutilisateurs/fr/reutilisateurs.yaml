@@ -14,9 +14,16 @@ Médias:
   - title: 'À quel point contribuez-vous au réchauffement climatique ? Calculez votre empreinte carbone'
     image: bfntv.png
     link: https://www.bfmtv.com/environnement/climat/2050-le-grand-defi-climatique-calculez-votre-empreinte-carbone_AN-202211070002.html
-Personnalités:
+Personnalités et influenceurs:
   - title: 'Cyril Dion'
-    image: radiofrance.webp
+    image: cyril.jpg
+    link: https://www.instagram.com/cyril_dion/?hl=fr
+   - title: 'Mango & Salt'
+    image: m&s.jpg
+    link: https://www.instagram.com/mangoandsalt/?hl=fr
+  - title: 'Sleud'
+    image: sleud.png
+    link: https://www.youtube.com/watch?v=nU-PdtTcwTk
 Entreprises:
   - title: 'BNP Paribas'
     image: bnpp.jpg
@@ -47,6 +54,37 @@ Collectivités :
   - title: 'Grand Poitiers'
     image: Grandpoitiers.png
     link: https://www.grandpoitiers.fr/grands-projets/actions-pour-le-climat/plan-climat
+Associations:
+  - title: 'Avenir Climatique'
+    image: ac.png
+    link: https://avenirclimatique.org/calculer-empreinte-carbone/
+  - title: 'Makesense'
+    image: mk.png
+    link: https://france.makesense.org/citoyens/s-engager/reaction-dehors/
+  - title: 'Ma Petite Planète'
+    image: mpp.png
+    link: https://mapetiteplanete.org/
+  - title: 'Climates'
+    image: climates.png
+    link: https://www.weareclimates.org/
+Education:
+  - title: 'Université Catholique de Lyon'
+    image: ucl.png
+    link: https://www.ucly.fr/
+  - title: 'L'académie du climat'
+    image: acaclimat.png
+    link: https://www.academieduclimat.paris/
+  - title: 'CNED'
+    image: CNED.png
+    link: https://www.cned.fr/transition-ecologique/ba-ba-du-climat-et-de-la-biodiversite
+Lieux et événements:
+  - title: 'Silicet'
+    image: silicet.png
+    link: https://scilicet.fr/
+  - title: 'SoGood Festival'
+    image: sogood.png
+    link: https://www.sogoodfestival.com/
+
 
 
 
