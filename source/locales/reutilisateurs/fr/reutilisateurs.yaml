@@ -1,19 +1,53 @@
 Médias:
   - title: 'Empreinte carbone : qu’est-ce que c’est et comment calculer la sienne ?'
-    image: radiofrance.webp
+    image: Voixdunord.jpg
     link: https://www.lavoixdunord.fr/1343379/article/2023-06-21/empreinte-carbone-qu-est-ce-que-c-est-et-comment-calculer-la-sienne
   - title: 'Comment s'engager pour le climat au quotidien ?'
-    image: radiofrance.webp
+    image: neon.png
     link: https://www.neonmag.fr/planete-environnement/comment-sengager-pour-le-climat-au-quotidien-560944
   - title: 'Réduire sa consommation de viande est-il le geste écologique individuel "le plus efficace" ?'
-    image: radiofrance.webp
+    image: TF1 info.jpg
     link: https://www.tf1info.fr/environnement-ecologie/environnement-reduire-la-consommation-de-viande-est-il-le-geste-ecologique-individuel-le-plus-efficace-2258749.html
   - title: 'Les Français·es émettent encore dix tonnes de CO2 par an, cinq fois trop pour le climat'
-    image: radiofrance.webp
+    image: vert.jpg
     link: https://vert.eco/articles/les-francais%C2%B7es-emettent-encore-10-tonnes-de-co2-par-an-cinq-fois-trop-pour-le-climat
   - title: 'À quel point contribuez-vous au réchauffement climatique ? Calculez votre empreinte carbone'
-    image: radiofrance.webp
+    image: bfntv.png
     link: https://www.bfmtv.com/environnement/climat/2050-le-grand-defi-climatique-calculez-votre-empreinte-carbone_AN-202211070002.html
 Personnalités:
   - title: 'Cyril Dion'
     image: radiofrance.webp
+Entreprises:
+  - title: 'BNP Paribas'
+    image: bnpp.jpg
+  - title: 'La Poste'
+    image: La Poste.jpg
+    link: https://www.laposte.fr/entreprise-collectivites/politique-rse
+  - title: 'BPCE'
+    image: bpce.png
+  - title: 'Vendredi'
+    image: vendredi.png
+    link: https://www.vendredi.cc/
+  - title: 'Greenly'
+    image: greenly.png
+    link: https://greenly.earth/fr-fr/blog/guide-entreprise/empreinte-carbone-definition-methode-calcul
+Collectivités :
+  - title: 'Ville de Grenoble'
+    image: Grenoble.png
+    link: https://www.grenoble.fr/2294-nos-gestes-climat.htm
+  - title: 'Grand Paris Seine-Ouest'
+    image: gpso.png
+    link: https://www.seineouest.fr/nos-gestes-climat
+  - title: 'La Rochelle'
+    image: la rochelle.png
+    link: https://www.larochelle-zerocarbone.fr/s-engager/la-boite-a-outils-du-zero-carbone/nos-gestes-climat
+  - title: 'Chaville'
+    image: chaville.png
+    link: https://www.ville-chaville.fr/actualites-evenements/toute-l-actualite-77/calculez-votre-empreinte-carbone-6016.html?cHash=c7b2eca484cafc033d891ea10c3d03f8
+  - title: 'Grand Poitiers'
+    image: Grandpoitiers.png
+    link: https://www.grandpoitiers.fr/grands-projets/actions-pour-le-climat/plan-climat
+
+
+
+    
