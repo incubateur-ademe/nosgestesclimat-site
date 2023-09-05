@@ -59,6 +59,10 @@ export function MosaicItemLabel({
 	description,
 	isNotActive,
 }) {
+	// Removes information about the package from the description
+	description = description
+		? description.replace(/(^> ℹ️ .*\[.*\]\(.*\).$)+/, '')
+		: undefined
 	return (
 		<div
 			css={`
@@ -78,14 +82,16 @@ export function MosaicItemLabel({
 				</span>
 				{title}
 			</MosaicLabel>
-			<p
-				id={'description ' + title}
-				css={`
-					text-align: left !important;
-				`}
-			>
-				{description && description.split('\n')[0]}
-			</p>
+			{description !== undefined ? (
+				<p
+					id={'description ' + title}
+					css={`
+						text-align: left !important;
+					`}
+				>
+					{description.split('\n')[0]}
+				</p>
+			) : null}
 		</div>
 	)
 }
