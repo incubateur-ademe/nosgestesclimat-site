@@ -281,7 +281,8 @@ const Main = () => {
 
 	useEffect(() => {
 		trackPageView(location)
-	}, [location, trackPageView])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location.pathname, location.search])
 
 	// Manage the language change from the URL search param
 	const currentLangState: Lang = useSelector(
