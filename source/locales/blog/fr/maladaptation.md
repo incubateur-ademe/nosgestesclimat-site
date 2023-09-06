@@ -44,7 +44,7 @@ Ah, que l’été est plus supportable quand nous pouvons faire trempette régul
 
 ### La solution maladaptée : faire construire une piscine privée
 
-En 2021, la France passait le cap des **trois millions de piscines privées installées** (à peu près la moitié enterrées, l’autre moitié hors-sol). Les piscines privées ont [une empreinte CO2 importante](https://futur.eco/documentation/piscine/empreinte), mais bien sûr ce n’est pas leur seul impact sur l’environnement : en premier lieu, les piscines augmentent une pression déjà croissante sur la ressource en eau.
+En 2021, la France passait le cap des **trois millions de piscines privées installées** (à peu près la moitié enterrées, l’autre moitié hors-sol). Les piscines privées ont [une empreinte CO2 importante](https://futur.eco/simulateur/piscine/empreinte), mais bien sûr ce n’est pas leur seul impact sur l’environnement : en premier lieu, les piscines augmentent une pression déjà croissante sur la ressource en eau.
 
 ### Les solutions adaptées
 
