@@ -20,7 +20,7 @@ Chaque année, l’émergence de canicules de plus en plus fortes et de plus en 
 Il existe de nombreux types de climatiseurs. Leur impact est lié :
 
 -   À leur **consommation énergétique** : celle-ci est massive, et se déroule en été, quand la production d’énergies renouvelables (notamment issue de barrages hydroélectriques) est ralentie.
--   À leur **consommation de fluides frigorigènes** (fluides capables d’absorber la chaleur, utilisés pour tous les systèmes de réfrigération, du frigo au climatiseur) : ceux-ci fuient sur les périodes d’utilisation et de fin de vie. Ces fluides ont un pouvoir réchauffant jusqu’à plusieurs milliers de fois celui du CO2 et contribuent ainsi deux fois plus à l’empreinte de l’appareil que la consommation énergétique.
+-   À leur **consommation de fluides frigorigènes** (fluides capables d’absorber la chaleur, utilisés pour tous les systèmes de réfrigération, du frigo au climatiseur) : ceux-ci fuitent sur les périodes d’utilisation et de fin de vie. Ces fluides ont un pouvoir réchauffant jusqu’à plusieurs milliers de fois celui du CO2 et contribuent ainsi deux fois plus à l’empreinte de l’appareil que la consommation énergétique.
 
 L’[empreinte du climatiseur](https://impactco2.fr/electromenager/climatiseur) est de **350 kg éqCO2 par unité**, pour une durée de vie de 6 ans (soit à peu près 60 kg par an). Pour rappel, l’objectif de neutralité carbone à l’horizon 2050 nous demande de viser des empreintes individuelles de moins de 2 tonnes par an et par personne.
 
@@ -48,7 +48,7 @@ En 2021, la France passait le cap des **trois millions de piscines privées inst
 
 ### Les solutions adaptées
 
-Aller à la **piscine municipale**, utiliser une **piscine partagée**, trouver **un plan d’eau** non loin, **une rivière** ou **une plag**e (et y aller à pied, à vélo ou en transports en commun) sont autant de façons de profiter d'une baignade sans plomber son empreinte carbone.
+Aller à la **piscine municipale**, utiliser une **piscine partagée**, trouver **un plan d’eau** non loin, **une rivière** ou **une plage** (et y aller à pied, à vélo ou en transports en commun) sont autant de façons de profiter d'une baignade sans plomber son empreinte carbone.
 
 ## Pour partir en vacances au frais
 
