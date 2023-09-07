@@ -1,6 +1,6 @@
 # Avez-vous déjà entendu parler de "maladaptation" ?
 
-![Climatiseurs contre un mur, une photo d'Alexandre Lecoq](/images/alexandre-lecocq-climatiseurs.jpg)
+![La fonte des glaces, par William Bossen](/images/william-bossen-fonte-glaces.jpg)
 Connaissez-vous le concept de “**maladaptation**” ? Voici la définition qu’en ont donnée un groupe de 16 experts qui se sont réunis autour du sujet en novembre 2012 :
 
 > “_La maladaptation désigne un processus d’adaptation qui résulte directement en un accroissement de la vulnérabilité à la variabilité et au changement climatiques et/ou en une altération des capacités et des opportunités actuelles et futures d’adaptation.”_
@@ -12,6 +12,8 @@ C’est une idée qui mérite que l’on s’y attarde particulièrement en ét�
 Face à ces bouleversements, [beaucoup sont démunis](https://www.novethic.fr/actualite/energie/transition-energetique/isr-rse/precarite-energetique-d-ete-plus-d-un-francais-sur-deux-souffre-des-vagues-de-chaleur-dans-son-logement-151613.html). Pour d’autres, qui ont plus de moyens, **c’est le moment où ils réfléchissent à la mise en place de stratégies d’adaptation**, certaines inoffensives, d’autres néfastes en termes d’impact climatique, avec pour effet d’accentuer encore plus l’injustice climatique. Et si nous en faisions le tour ?
 
 ## Pour rafraîchir son logement
+
+![Climatiseurs contre un mur, une photo d'Alexandre Lecoq](/images/alexandre-lecocq-climatiseurs.jpg)
 
 ### Attention au climatiseur
 
@@ -45,8 +47,8 @@ Et puis il y a tous les **bons gestes** à faire pour préserver le frais à l�
 
 ## Pour se rafraîchir soi-même
 
+![Un chien court dans l'eau, heureux, par Matt Benson](/images/matt-benson-chien-baignade.jpg)
 Ah, que l’été est plus supportable quand nous pouvons faire trempette régulièrement !
-![Un chien court dans l'eau, heureux](/images/matt-benson-chien-baignade.jpg)
 
 ### La solution maladaptée : faire construire une piscine privée
 
@@ -58,8 +60,8 @@ Aller à la **piscine municipale**, utiliser une **piscine partagée**, trouver 
 
 ## Pour partir en vacances au frais
 
+![Des randonneurs à l'assaut des sommets enneigés, par Ted Bryan Yu](/images/ted-bryan-yu-montagnes.jpg)
 L’été devient de plus en plus chaud en Hexagone, et naturellement pour leurs vacances estivales, les vacanciers commencent à sérieusement chercher du frais.
-![Des randonneurs à l'assaut des sommets enneigés](/images/ted-bryan-yu-montagnes.jpg)
 
 ### La solution maladaptée : partir (trop) loin
 
