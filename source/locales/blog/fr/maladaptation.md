@@ -1,6 +1,6 @@
 # Avez-vous déjà entendu parler de "maladaptation" ?
 
-![Climatiseurs contre un mur, une photo d'Alexandre Lecoq](/images/alexandre-lecocq-climatiseurs.jpg)
+![La fonte des glaces, par William Bossen](/images/william-bossen-fonte-glaces.jpg)
 Connaissez-vous le concept de “**maladaptation**” ? Voici la définition qu’en ont donnée un groupe de 16 experts qui se sont réunis autour du sujet en novembre 2012 :
 
 > “_La maladaptation désigne un processus d’adaptation qui résulte directement en un accroissement de la vulnérabilité à la variabilité et au changement climatiques et/ou en une altération des capacités et des opportunités actuelles et futures d’adaptation.”_
@@ -9,20 +9,27 @@ En d’autres termes, c’est **une adaptation qui, pour faire face au changemen
 
 C’est une idée qui mérite que l’on s’y attarde particulièrement en été, alors que les effets du changement climatique se font cruellement ressentir, avec des feux qui ravagent le monde et, à nouveau, des canicules record qui touchent - entre autres - la France.
 
-Face à ces bouleversements, [beaucoup sont démunis](https://www.novethic.fr/actualite/energie/transition-energetique/isr-rse/precarite-energetique-d-ete-plus-d-un-francais-sur-deux-souffre-des-vagues-de-chaleur-dans-son-logement-151613.html). Pour d’autres, qui ont plus de moyens, **c’est le moment où ils réfléchissent à la mise en place de stratégies d’adaptation**, certaines inoffensives, d’autres profondément néfastes en termes d’impact climatique, avec pour effet d’accentuer encore plus l’injustice climatique. Et si nous en faisions le tour ?
+Face à ces bouleversements, [beaucoup sont démunis](https://www.novethic.fr/actualite/energie/transition-energetique/isr-rse/precarite-energetique-d-ete-plus-d-un-francais-sur-deux-souffre-des-vagues-de-chaleur-dans-son-logement-151613.html). Pour d’autres, qui ont plus de moyens, **c’est le moment où ils réfléchissent à la mise en place de stratégies d’adaptation**, certaines inoffensives, d’autres néfastes en termes d’impact climatique, avec pour effet d’accentuer encore plus l’injustice climatique. Et si nous en faisions le tour ?
 
 ## Pour rafraîchir son logement
 
-### La solution maladaptée : le climatiseur
+![Climatiseurs contre un mur, une photo d'Alexandre Lecoq](/images/alexandre-lecocq-climatiseurs.jpg)
+
+### Attention au climatiseur
 
 Chaque année, l’émergence de canicules de plus en plus fortes et de plus en plus longues amène des foyers à se poser la question de l’installation d’une climatisation dans leur logement. En 2020, il s’est vendu 800 000 unités de climatiseurs dans l’Hexagone, un record.
 
 Il existe de nombreux types de climatiseurs. Leur impact est lié :
 
 -   À leur **consommation énergétique** : celle-ci est massive, et se déroule en été, quand la production d’énergies renouvelables (notamment issue de barrages hydroélectriques) est ralentie.
--   À leur **consommation de fluides frigorigènes** (fluides capables d’absorber la chaleur, utilisés pour tous les systèmes de réfrigération, du frigo au climatiseur) : ceux-ci fuient sur les périodes d’utilisation et de fin de vie. Ces fluides ont un pouvoir réchauffant jusqu’à plusieurs milliers de fois celui du CO2 et contribuent ainsi deux fois plus à l’empreinte de l’appareil que la consommation énergétique.
+-   À leur **consommation de fluides frigorigènes** (fluides capables d’absorber la chaleur, utilisés pour tous les systèmes de réfrigération, du frigo au climatiseur) : ceux-ci fuitent sur les périodes d’utilisation et de fin de vie. Ces fluides ont un pouvoir réchauffant jusqu’à plusieurs milliers de fois celui du CO2 et contribuent ainsi deux fois plus à l’empreinte de l’appareil que la consommation énergétique.
 
 L’[empreinte du climatiseur](https://impactco2.fr/electromenager/climatiseur) est de **350 kg éqCO2 par unité**, pour une durée de vie de 6 ans (soit à peu près 60 kg par an). Pour rappel, l’objectif de neutralité carbone à l’horizon 2050 nous demande de viser des empreintes individuelles de moins de 2 tonnes par an et par personne.
+
+S'il n'est pas possible pour vous d'améliorer assez le confort de votre logement pour maintenir une température intérieure avoisinant les 25° lors des épisodes caniculaires, ou si pour des raisons de santé l'usage d'un climatiseur est nécessaire, voici quelques bons réflexes pour réduire son empreinte sur le climat :
+
+-   Utiliser une température de consigne pas trop basse : tout comme on ne chauffe pas à 25° C en hiver, on ne climatise pas à 20° C en été.
+-   Faire réviser annuellement son matériel par un technicien compétent, pour réduire au maximum les fuites.
 
 > \*Pour aller plus loin sur ce sujet, voici un lien de l'ADEME : **[La climatisation : vers une utilisation raisonnée pour limiter l’impact sur l’environnement](https://presse.ademe.fr/2021/06/la-climatisation-vers-une-utilisation-raisonnee-pour-limiter-limpact-sur-lenvironnement.html)\***
 
@@ -40,18 +47,20 @@ Et puis il y a tous les **bons gestes** à faire pour préserver le frais à l�
 
 ## Pour se rafraîchir soi-même
 
+![Un chien court dans l'eau, heureux, par Matt Benson](/images/matt-benson-chien-baignade.jpg)
 Ah, que l’été est plus supportable quand nous pouvons faire trempette régulièrement !
 
 ### La solution maladaptée : faire construire une piscine privée
 
-En 2021, la France passait le cap des **trois millions de piscines privées installées** (à peu près la moitié enterrées, l’autre moitié hors-sol). Les piscines privées ont [une empreinte CO2 importante](https://futur.eco/documentation/piscine/empreinte), mais bien sûr ce n’est pas leur seul impact sur l’environnement : en premier lieu, les piscines augmentent une pression déjà croissante sur la ressource en eau.
+En 2021, la France passait le cap des **trois millions de piscines privées installées** (à peu près la moitié enterrées, l’autre moitié hors-sol). Les piscines privées ont [une empreinte CO2 importante](https://futur.eco/simulateur/piscine/empreinte), mais bien sûr ce n’est pas leur seul impact sur l’environnement : en premier lieu, les piscines augmentent une pression déjà croissante sur la ressource en eau.
 
 ### Les solutions adaptées
 
-Aller à la **piscine municipale**, utiliser une **piscine partagée**, trouver **un plan d’eau** non loin, **une rivière** ou **une plag**e (et y aller à pied, à vélo ou en transports en commun) sont autant de façons de profiter d'une baignade sans plomber son empreinte carbone.
+Aller à la **piscine municipale**, utiliser une **piscine partagée**, trouver **un plan d’eau** non loin, **une rivière** ou **une plage** (et y aller à pied, à vélo ou en transports en commun) sont autant de façons de profiter d'une baignade sans plomber son empreinte carbone.
 
 ## Pour partir en vacances au frais
 
+![Des randonneurs à l'assaut des sommets enneigés, par Ted Bryan Yu](/images/ted-bryan-yu-montagnes.jpg)
 L’été devient de plus en plus chaud en Hexagone, et naturellement pour leurs vacances estivales, les vacanciers commencent à sérieusement chercher du frais.
 
 ### La solution maladaptée : partir (trop) loin
