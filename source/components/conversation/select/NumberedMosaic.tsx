@@ -55,6 +55,7 @@ export default function NumberedMosaic({
 									title={title}
 									icônes={icônes}
 									description={description}
+									isNotActive={false}
 								/>
 								<NumericInputWithButtons
 									name={name}
