@@ -26,7 +26,7 @@ export default () => {
 	)
 
 	useEffect(() => {
-		if (localisation?.country != null) {
+		if (localisation?.country != null && localisation?.country?.code != null) {
 			return undefined
 		}
 
@@ -71,7 +71,7 @@ export default () => {
 		}
 
 		return undefined
-	}, [localisation])
+	}, [localisation, iframeLocalisationOption])
 
 	return localisation
 }
