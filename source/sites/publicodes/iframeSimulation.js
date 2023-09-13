@@ -11,6 +11,7 @@ const possibleOptions = [
 	{ key: 'shareData', legacy: 'partagedatafinsimulation' },
 	{ key: 'lang' },
 	{ key: 'localisation' },
+	{ key: 'onlySimulation' },
 ]
 
 const optionFragments = possibleOptions.map(({ key, legacy }) => {

@@ -183,6 +183,10 @@ export default function Root() {
 		document?.location.search.substring(1)
 	).get('localisation')
 
+	const iframeOnlySimulation = new URLSearchParams(
+		document?.location.search.substring(1)
+	).get('onlySimulation')
+
 	// We retrieve the User object from local storage to initialize the store.
 	const persistedUser = fetchUser()
 
@@ -228,10 +232,10 @@ export default function Root() {
 				tutorials: persistedUser.tutorials,
 				localisation: persistedUser.localisation,
 				currentLang,
-				iframeOptions: { iframeShareData },
 				iframeOptions: {
 					iframeShareData,
 					iframeLocalisation,
+					iframeOnlySimulation,
 				},
 				actionChoices: persistedSimulation?.actionChoices ?? {},
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
