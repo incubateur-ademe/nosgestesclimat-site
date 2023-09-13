@@ -142,6 +142,7 @@ export default function RuleInput({
 		// Finally if rules are ordered as the `somme` defined as model side if the formula in the rule mosaic is a `somme`.
 		const orderedSumFromSourceRule =
 			question?.rawNode?.formule && question?.rawNode?.formule['somme']
+
 		if (orderedSumFromSourceRule) {
 			selectedRules.sort((a, b) => {
 				const indexA = orderedSumFromSourceRule.indexOf(
@@ -150,6 +151,7 @@ export default function RuleInput({
 				const indexB = orderedSumFromSourceRule.indexOf(
 					splitName(b[0].dottedName)[splitName(b[0].dottedName).length - 1]
 				)
+				if (indexA === -1) return 1 //some element of the sum can not being one of the card (ex: 'animaux domestiques')
 				return indexA - indexB
 			})
 		}
