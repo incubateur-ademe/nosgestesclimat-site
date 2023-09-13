@@ -12,12 +12,13 @@ const possibleOptions = [
 	{ key: 'lang' },
 	{ key: 'localisation' },
 	{ key: 'onlySimulation' },
+	{ key: 'pr' },
 ]
 
 const optionFragments = possibleOptions.map(({ key, legacy }) => {
 	const value = script.dataset[key] || script.dataset[legacy]
 
-	return value != null ? `&${key}=${value}` : ''
+	return value != null ? `&${key === 'pr' ? 'PR' : key}=${value}` : ''
 })
 
 const src = `${hostname}/simulateur/bilan/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
