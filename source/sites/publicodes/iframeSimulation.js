@@ -10,6 +10,7 @@ const hostname = srcURL.origin || 'https://nosgestesclimat.fr'
 const possibleOptions = [
 	{ key: 'shareData', legacy: 'partagedatafinsimulation' },
 	{ key: 'lang' },
+	{ key: 'localisation' },
 ]
 
 const optionFragments = possibleOptions.map(({ key, legacy }) => {

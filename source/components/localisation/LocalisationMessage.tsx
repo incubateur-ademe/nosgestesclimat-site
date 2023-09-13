@@ -32,6 +32,12 @@ export default (): JSX.Element => {
 		? regionParams[currentLang]['gentilé'] ?? regionParams[currentLang]['nom']
 		: localisation?.country?.name
 
+	const iframeLocalisationOption = useSelector(
+		(state: AppState) => state?.iframeOptions?.iframeLocalisation
+	)
+
+	if (iframeLocalisationOption) return
+
 	if (messagesRead.includes(code)) return
 
 	if (code === defaultModelRegionCode) return

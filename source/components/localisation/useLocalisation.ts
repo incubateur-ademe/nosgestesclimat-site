@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { setLocalisation } from '../../actions/actions'
 import { AppState } from '../../reducers/rootReducer'
+import { Region, useSupportedRegion } from './utils'
 
 const API = '/.netlify/functions/geolocation'
 
@@ -12,6 +13,17 @@ const API = '/.netlify/functions/geolocation'
 export default () => {
 	const dispatch = useDispatch()
 	const localisation = useSelector((state: AppState) => state.localisation)
+	const iframeLocalisationOption = useSelector(
+		(state: AppState) => state?.iframeOptions?.iframeLocalisation
+	)
+
+	const currentLang = useSelector(
+		(state: AppState) => state.currentLang
+	).toLowerCase()
+
+	const regionParams: Region | undefined = useSupportedRegion(
+		iframeLocalisationOption
+	)
 
 	useEffect(() => {
 		if (localisation?.country != null) {
@@ -44,7 +56,20 @@ export default () => {
 				})
 		}
 
-		asyncFecthAPI()
+		if (iframeLocalisationOption) {
+			dispatch(
+				setLocalisation({
+					country: {
+						code: regionParams?.[currentLang]?.code,
+						name: regionParams?.[currentLang]?.nom,
+					},
+					userChosen: false,
+				})
+			)
+		} else {
+			asyncFecthAPI()
+		}
+
 		return undefined
 	}, [localisation])
 

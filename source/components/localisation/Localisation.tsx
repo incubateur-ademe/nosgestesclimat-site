@@ -24,6 +24,9 @@ export default ({ title = 'Ma région de simulation' }) => {
 	const [chosenIp, _] = usePersistingState('IP', undefined)
 	const localisation: Localisation | undefined = useLocalisation(chosenIp)
 	const dispatch = useDispatch()
+	const iframeLocalisationOption = useSelector(
+		(state: AppState) => state?.iframeOptions?.iframeLocalisation
+	)
 	const regionParams: Region | undefined = useSupportedRegion(
 		localisation?.country?.code
 	)
@@ -32,6 +35,10 @@ export default ({ title = 'Ma région de simulation' }) => {
 		DEFAULT_REGION_MODEL_AUTHOR,
 	]
 	const countryName = useCountryNameInCurrentLang(localisation)
+
+	const versionName = regionParams
+		? regionParams[currentLang]['gentilé'] ?? regionParams[currentLang]['nom']
+		: localisation?.country?.name
 
 	return (
 		<div>
@@ -44,17 +51,22 @@ export default ({ title = 'Ma région de simulation' }) => {
 								<span>
 									<Trans>Vous avez choisi</Trans>{' '}
 								</span>
+							) : iframeLocalisationOption ? (
+								<span>
+									<Trans> Vous utilisez la version {versionName} du test</Trans>
+								</span>
 							) : (
 								<span>
 									<Trans>
-										Nous avons détecté que vous faites cette simulation depuis
+										Nous avons détecté que vous faites cette simulation depuis{' '}
+										{countryName}
 									</Trans>{' '}
 								</span>
 							)}
-							{countryName}
 							<img
 								src={flag}
 								aria-hidden="true"
+								alt="Country Flag"
 								css={`
 									height: 1rem;
 									margin: 0 0.3rem;
