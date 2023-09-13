@@ -322,7 +322,6 @@ const Main = () => {
 					css={`
 						@media (min-width: 800px) {
 							display: flex;
-							min-height: 100vh;
 							padding-top: 1rem;
 						}
 
