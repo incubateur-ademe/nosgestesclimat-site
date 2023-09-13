@@ -14,7 +14,6 @@ export function IframeResizer() {
 
 		const minHeight = 800 // Also used in iframe.js
 		const observer = new ResizeObserver(([entry]) => {
-			console.log(entry.contentRect.height)
 			const value = Math.max(minHeight, entry.contentRect.height)
 			window.parent?.postMessage({ kind: 'resize-height', value }, '*')
 		})

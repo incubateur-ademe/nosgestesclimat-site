@@ -43,7 +43,6 @@ for (var key in iframeAttributes) {
 script.parentNode.insertBefore(iframe, script)
 
 window.addEventListener('message', function (evt) {
-	console.log(evt)
 	if (evt.data.kind === 'resize-height') {
 		iframe.style.height = `${evt.data.value}px`
 	}
