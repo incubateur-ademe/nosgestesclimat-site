@@ -21,12 +21,25 @@ export default () => {
 		(state: AppState) => state.currentLang
 	).toLowerCase()
 
-	const regionParams: Region | undefined = useSupportedRegion(
-		iframeLocalisationOption
-	)
+	const iframeRegionParams: Region | undefined =
+		iframeLocalisationOption && useSupportedRegion(iframeLocalisationOption)
 
+	console.log(iframeRegionParams)
 	useEffect(() => {
 		if (localisation?.country != null && localisation?.country?.code != null) {
+			return undefined
+		}
+
+		if (iframeLocalisationOption) {
+			dispatch(
+				setLocalisation({
+					country: {
+						code: iframeRegionParams?.[currentLang]?.code,
+						name: iframeRegionParams?.[currentLang]?.nom,
+					},
+					userChosen: false,
+				})
+			)
 			return undefined
 		}
 
@@ -56,20 +69,7 @@ export default () => {
 				})
 		}
 
-		if (iframeLocalisationOption) {
-			dispatch(
-				setLocalisation({
-					country: {
-						code: regionParams?.[currentLang]?.code,
-						name: regionParams?.[currentLang]?.nom,
-					},
-					userChosen: false,
-				})
-			)
-		} else {
-			asyncFecthAPI()
-		}
-
+		asyncFecthAPI()
 		return undefined
 	}, [localisation, iframeLocalisationOption])
 
