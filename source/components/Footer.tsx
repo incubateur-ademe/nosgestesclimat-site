@@ -1,31 +1,24 @@
-import { AppState } from '@/reducers/rootReducer'
-import { getIsIframe } from '@/utils'
+import { useContext } from 'react'
 import { Trans } from 'react-i18next'
-import { useSelector } from 'react-redux'
 import { Link, useLocation } from 'react-router-dom'
 import { useMediaQuery } from 'usehooks-ts'
 import DocumentationButton from '../sites/publicodes/DocumentationButton'
 import LandingContent from '../sites/publicodes/LandingContent'
 import { isFluidLayout } from '../sites/publicodes/utils'
+import { IframeOptionsContext } from './utils/IframeOptionsProvider'
 
 export default ({}) => {
 	const location = useLocation(),
 		path = decodeURIComponent(location.pathname)
 
-	const isIframe = getIsIframe()
-	const iframeOnlySimulationOption = useSelector(
-		(state: AppState) => state?.iframeOptions?.iframeOnlySimulation
-	)
-
-	const displaySponsorLogos =
-		path === '/' &&
-		// would be a repetition with header logos
-		!isIframe
+	const { isIframe } = useContext(IframeOptionsContext),
+		displaySponsorLogos =
+			path === '/' &&
+			// would be a repetition with header logos
+			!isIframe
 
 	const mobileNoFooter = !isFluidLayout(path)
 	const mobileScreen = useMediaQuery('(max-width: 800px)')
-
-	if (iframeOnlySimulationOption) return null
 
 	if (mobileScreen && mobileNoFooter) return null
 

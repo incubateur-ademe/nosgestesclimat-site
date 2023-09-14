@@ -32,19 +32,9 @@ export default (): JSX.Element => {
 		? regionParams[currentLang]['gentilé'] ?? regionParams[currentLang]['nom']
 		: localisation?.country?.name
 
-	const iframeLocalisationOption = useSelector(
-		(state: AppState) => state?.iframeOptions?.iframeLocalisation
-	)
-
-	if (iframeLocalisationOption) return
-
 	if (messagesRead.includes(code)) return
 
 	if (code === defaultModelRegionCode) return
-
-	if (localisation == null) return
-
-	if (!code && !localisation.fetchDone) return
 
 	return (
 		<IllustratedMessage
@@ -72,7 +62,7 @@ export default (): JSX.Element => {
 								</span>
 							)}{' '}
 						</p>
-					) : code ? (
+					) : localisation ? (
 						<p>
 							<Trans>
 								Nous avons détecté que vous faites cette simulation depuis

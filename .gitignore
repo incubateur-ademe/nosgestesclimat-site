@@ -3,7 +3,6 @@
 dist/*
 !dist/_redirects
 !/dist/demo-iframe.html
-!/dist/demo-iframeSimulation.html
 .DS_Store
 yarn-error.log
 
