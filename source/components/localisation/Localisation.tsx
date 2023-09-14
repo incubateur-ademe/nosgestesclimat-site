@@ -49,7 +49,8 @@ export default ({ title = 'Ma région de simulation' }) => {
 						<p>
 							{localisation?.userChosen ? (
 								<span>
-									<Trans>Vous avez choisi</Trans>{' '}
+									<Trans>Vous avez choisi </Trans>
+									{countryName}
 								</span>
 							) : iframeLocalisationOption ? (
 								<span>
@@ -59,8 +60,8 @@ export default ({ title = 'Ma région de simulation' }) => {
 								<span>
 									<Trans>
 										Nous avons détecté que vous faites cette simulation depuis{' '}
-										{countryName}
-									</Trans>{' '}
+									</Trans>
+									{countryName}
 								</span>
 							)}
 							<img
