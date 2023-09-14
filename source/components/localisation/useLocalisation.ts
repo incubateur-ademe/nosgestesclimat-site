@@ -16,9 +16,6 @@ export default () => {
 	const iframeLocalisationOption: string | undefined = useSelector(
 		(state: AppState) => state?.iframeOptions?.iframeLocalisation
 	)
-
-	console.log(iframeLocalisationOption)
-
 	const currentLang = useSelector(
 		(state: AppState) => state.currentLang
 	).toLowerCase()
@@ -27,13 +24,16 @@ export default () => {
 		iframeLocalisationOption
 	)
 
-	console.log(iframeRegionParams)
 	useEffect(() => {
 		if (localisation?.country != null && localisation?.country?.code != null) {
 			return undefined
 		}
 
-		if (iframeLocalisationOption) {
+		if (!iframeRegionParams) {
+			return undefined
+		}
+
+		if (iframeLocalisationOption && iframeRegionParams) {
 			dispatch(
 				setLocalisation({
 					country: {
@@ -43,6 +43,23 @@ export default () => {
 					userChosen: false,
 				})
 			)
+		}
+
+		return undefined
+	}, [
+		localisation,
+		iframeLocalisationOption,
+		iframeRegionParams,
+		dispatch,
+		currentLang,
+	])
+
+	useEffect(() => {
+		if (iframeLocalisationOption) {
+			return undefined
+		}
+
+		if (localisation?.country != null && localisation?.country?.code != null) {
 			return undefined
 		}
 
@@ -74,7 +91,7 @@ export default () => {
 
 		asyncFecthAPI()
 		return undefined
-	}, [localisation, iframeLocalisationOption])
+	}, [localisation, iframeLocalisationOption, dispatch])
 
 	return localisation
 }
