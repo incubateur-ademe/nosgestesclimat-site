@@ -42,6 +42,10 @@ export default (): JSX.Element => {
 
 	if (code === defaultModelRegionCode) return
 
+	if (localisation == null) return
+
+	if (!code && !localisation.fetchDone) return
+
 	return (
 		<IllustratedMessage
 			emoji="📍"
@@ -68,7 +72,7 @@ export default (): JSX.Element => {
 								</span>
 							)}{' '}
 						</p>
-					) : localisation ? (
+					) : code ? (
 						<p>
 							<Trans>
 								Nous avons détecté que vous faites cette simulation depuis

@@ -63,6 +63,10 @@ export default () => {
 			return undefined
 		}
 
+		if (localisation?.fetchDone) {
+			return undefined
+		}
+
 		const asyncFecthAPI = async () => {
 			await fetch(API)
 				.then((res) => {
@@ -88,8 +92,8 @@ export default () => {
 					)
 				})
 		}
-
 		asyncFecthAPI()
+		dispatch(setLocalisation({ ...localisation, fetchDone: true }))
 		return undefined
 	}, [localisation, iframeLocalisationOption, dispatch])
 

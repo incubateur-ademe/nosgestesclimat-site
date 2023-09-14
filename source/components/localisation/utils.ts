@@ -35,8 +35,9 @@ export type SupportedRegions = {
 }
 
 export type Localisation = {
-	country: { code: RegionCode; name: string }
-	userChosen: boolean
+	country?: { code: RegionCode; name: string }
+	userChosen?: boolean
+	fetchDone?: boolean
 }
 
 export const defaultModelRegionCode = 'FR'
