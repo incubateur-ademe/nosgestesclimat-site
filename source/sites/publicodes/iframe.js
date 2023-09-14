@@ -1,11 +1,10 @@
 const script =
-	document.getElementById('ecolab-climat') ||
-	document.getElementById('nosgestesclimat')
-
-const integratorUrl = encodeURIComponent(window.location.href.toString())
+		document.getElementById('ecolab-climat') ||
+		document.getElementById('nosgestesclimat'),
+	integratorUrl = encodeURIComponent(window.location.href.toString())
 
 const srcURL = new URL(script.src)
-const hostname = srcURL.origin || 'https://nosgestesclimat.fr'
+const hostname = srcURL.hostname || 'nosgestesclimat.fr'
 
 const possibleOptions = [
 	{ key: 'shareData', legacy: 'partagedatafinsimulation' },
@@ -18,7 +17,7 @@ const optionFragments = possibleOptions.map(({ key, legacy }) => {
 	return value != null ? `&${key}=${value}` : ''
 })
 
-const src = `${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
+const src = `https://${hostname}/?iframe&integratorUrl=${integratorUrl}${optionFragments.join(
 	''
 )}`
 
