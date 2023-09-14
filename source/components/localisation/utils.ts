@@ -35,9 +35,8 @@ export type SupportedRegions = {
 }
 
 export type Localisation = {
-	country?: { code: RegionCode; name: string }
-	userChosen?: boolean
-	fetchDone?: boolean
+	country: { code: RegionCode; name: string }
+	userChosen: boolean
 }
 
 export const defaultModelRegionCode = 'FR'
@@ -52,6 +51,7 @@ export function useSupportedRegion(
 	const supportedRegions: SupportedRegions = useSelector(
 		(state: AppState) => state.supportedRegions
 	)
+
 	// Check for undefined AFTER useSelector, because hooks can't be called conditionally
 	if (inputCode === undefined) {
 		return undefined

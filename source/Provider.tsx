@@ -9,7 +9,6 @@ import { BrowserRouter } from 'react-router-dom'
 import reducers, { AppState } from 'Reducers/rootReducer'
 import { applyMiddleware, compose, createStore, Middleware, Store } from 'redux'
 import thunk from 'redux-thunk'
-import { IframeResizer } from './components/IframeResizer'
 import { MatomoProvider } from './contexts/MatomoContext'
 import RulesProvider from './RulesProvider'
 import { getIsIframe } from './utils'
@@ -86,7 +85,6 @@ export default function Provider({
 						color={iframeCouleur && decodeURIComponent(iframeCouleur)}
 					>
 						<IframeOptionsProvider>
-							<IframeResizer />
 							<SitePathProvider value={sitePaths}>
 								<I18nextProvider i18n={i18next}>
 									<BrowserRouter>

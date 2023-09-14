@@ -179,14 +179,6 @@ export default function Root() {
 		document?.location.search.substring(1)
 	).get('shareData')
 
-	const iframeLocalisation = new URLSearchParams(
-		document?.location.search.substring(1)
-	).get('localisation')
-
-	const iframeOnlySimulation = new URLSearchParams(
-		document?.location.search.substring(1)
-	).get('onlySimulation')
-
 	// We retrieve the User object from local storage to initialize the store.
 	const persistedUser = fetchUser()
 
@@ -232,11 +224,7 @@ export default function Root() {
 				tutorials: persistedUser.tutorials,
 				localisation: persistedUser.localisation,
 				currentLang,
-				iframeOptions: {
-					iframeShareData,
-					iframeLocalisation,
-					iframeOnlySimulation,
-				},
+				iframeOptions: { iframeShareData },
 				actionChoices: persistedSimulation?.actionChoices ?? {},
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
 				storedAmortissementAvion:
@@ -334,6 +322,7 @@ const Main = () => {
 					css={`
 						@media (min-width: 800px) {
 							display: flex;
+							min-height: 100vh;
 							padding-top: 1rem;
 						}
 

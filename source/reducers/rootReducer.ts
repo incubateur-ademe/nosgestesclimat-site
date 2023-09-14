@@ -348,10 +348,10 @@ type LocalisationAction = { type: string } & Localisation
 
 function localisation(
 	state = null,
-	{ type, country, userChosen, fetchDone = false }: LocalisationAction
+	{ type, country, userChosen }: LocalisationAction
 ): Localisation | null {
 	if (type === 'SET_LOCALISATION') {
-		return { country, userChosen, fetchDone }
+		return { country, userChosen }
 	} else if (type === 'RESET_LOCALISATION') {
 		return null
 	} else {
