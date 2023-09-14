@@ -13,13 +13,14 @@ export default ({ showText, size = 'large' }) => {
 				display: flex;
 				align-items: center;
 				justify-content: center;
+				${iframeOnlySimulationOption &&
+				`
+				pointer-events: none;
+				`}
 			`}
 		>
 			<Link
 				to="/"
-				onClick={(event) =>
-					iframeOnlySimulationOption && event.preventDefault()
-				}
 				data-cypress-id="home-logo-link"
 				css={`
 					display: flex;
