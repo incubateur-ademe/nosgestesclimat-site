@@ -51,7 +51,7 @@ export function useSupportedRegion(
 	const supportedRegions: SupportedRegions = useSelector(
 		(state: AppState) => state.supportedRegions
 	)
-
+	console.log(supportedRegions)
 	// Check for undefined AFTER useSelector, because hooks can't be called conditionally
 	if (inputCode === undefined) {
 		return undefined

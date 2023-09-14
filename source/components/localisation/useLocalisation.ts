@@ -13,16 +13,19 @@ const API = '/.netlify/functions/geolocation'
 export default () => {
 	const dispatch = useDispatch()
 	const localisation = useSelector((state: AppState) => state.localisation)
-	const iframeLocalisationOption = useSelector(
+	const iframeLocalisationOption: string | undefined = useSelector(
 		(state: AppState) => state?.iframeOptions?.iframeLocalisation
 	)
+
+	console.log(iframeLocalisationOption)
 
 	const currentLang = useSelector(
 		(state: AppState) => state.currentLang
 	).toLowerCase()
 
-	const iframeRegionParams: Region | undefined =
-		iframeLocalisationOption && useSupportedRegion(iframeLocalisationOption)
+	const iframeRegionParams: Region | undefined = useSupportedRegion(
+		iframeLocalisationOption
+	)
 
 	console.log(iframeRegionParams)
 	useEffect(() => {
