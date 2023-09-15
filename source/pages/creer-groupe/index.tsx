@@ -157,7 +157,10 @@ export default function CreerGroupe() {
 						'Comparez vos résultats avec votre famille ou un groupe d’amis'
 					)}
 				/>
-				<form onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}>
+				<form
+					onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}
+					autoComplete="off"
+				>
 					<PrenomInput
 						prenom={prenom}
 						setPrenom={setPrenom}
