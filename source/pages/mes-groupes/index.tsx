@@ -15,7 +15,6 @@ import FeedbackBlock from '../groupe-dashboard/components/FeedbackBlock'
 import SondagesBlock from '../groupe-dashboard/components/SondagesBlock'
 import CreateFirstGroupSection from './components/CreateFirstGroupSection'
 import CreateOtherGroupsSection from './components/CreateOtherGroupsSection'
-import NoSimulationSection from './components/NoSimulationSection'
 import { ServerErrorSection } from './components/ServerErrorSection'
 
 export default function MesGroupes() {
@@ -73,11 +72,7 @@ export default function MesGroupes() {
 
 			{isFetched && !groups && <ServerErrorSection />}
 
-			{!currentSimulation && <NoSimulationSection />}
-
-			{currentSimulation && groups && groups.length === 0 && (
-				<CreateFirstGroupSection />
-			)}
+			{groups && groups.length === 0 && <CreateFirstGroupSection />}
 
 			{currentSimulation && groups && groups.length > 0 && (
 				<CreateOtherGroupsSection groups={groups} />
