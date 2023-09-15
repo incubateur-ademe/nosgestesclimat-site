@@ -179,7 +179,7 @@ export default function RejoindreGroupe() {
 					"Comparez vos résultats avec votre famille ou un groupe d'amis."
 				)}
 			/>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} autoComplete="off">
 				<PrenomInput
 					prenom={prenom}
 					setPrenom={setPrenom}
