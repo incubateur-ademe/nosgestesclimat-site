@@ -40,7 +40,7 @@ export default function SelectDevices({
 						{
 							dottedName: name,
 							title,
-							rawNode: { icônes },
+							rawNode: { description, icônes },
 						},
 						question,
 					]) => {
@@ -68,7 +68,7 @@ export default function SelectDevices({
 									question={question}
 									title={title}
 									icônes={icônes}
-									description={false}
+									description={description}
 									isNotActive={isNotActive}
 								/>
 								{!isNotActive && (
