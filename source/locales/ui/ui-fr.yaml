@@ -720,3 +720,6 @@ entries:
   Choisissez une option: Choisissez une option
   Fermer le bandeau de feedback: Fermer le bandeau de feedback
   Groupes: Groupes
+  ' Vous utilisez la version {versionName} du test': ' Vous utilisez la version {versionName} du test'
+  'Nous avons détecté que vous faites cette simulation depuis ': 'Nous avons détecté que vous faites cette simulation depuis '
+  'Vous avez choisi ': 'Vous avez choisi '
