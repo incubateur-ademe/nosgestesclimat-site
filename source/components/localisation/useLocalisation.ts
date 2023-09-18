@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLocalisation } from '../../actions/actions'
+import { resetLocalisation, setLocalisation } from '../../actions/actions'
 import { AppState } from '../../reducers/rootReducer'
 import { Region, useSupportedRegion } from './utils'
 
@@ -23,6 +23,12 @@ export default () => {
 	const iframeRegionParams: Region | undefined = useSupportedRegion(
 		iframeLocalisationOption
 	)
+
+	useEffect(() => {
+		if (iframeLocalisationOption) {
+			dispatch(resetLocalisation())
+		}
+	}, [iframeLocalisationOption, dispatch])
 
 	useEffect(() => {
 		if (localisation?.country != null && localisation?.country?.code != null) {
