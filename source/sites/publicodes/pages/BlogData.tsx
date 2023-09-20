@@ -29,7 +29,7 @@ export const blogData: BlogPost[] = [
 		title: 'Notre feuille de route',
 		slug: 'feuille-de-route',
 		description:
-			'Entre les actuelles 9 tonnes de l’empreinte moyenne d’un citoyen français, et l’objectif affiché de 2 tonnes , il y a beaucoup de pas à faire ! ',
+			"Ces dernières semaines, l'équipe s'est penchée sur ses objectifs à moyen et long terme. Vers quoi tend Nos Gestes Climat ? Cliquez pour découvrir ! ",
 		content: roadmapFr,
 	},
 	{
