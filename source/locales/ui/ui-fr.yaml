@@ -709,3 +709,17 @@ entries:
   Description: Description
   Cette nouvelle fonctionnalité est en expérimentation ! Vous rencontrez un bug ou avez une idée d’amélioration ?: Cette nouvelle fonctionnalité est en expérimentation ! Vous rencontrez un bug ou avez une idée d’amélioration ?
   Donnez votre avis !: Donnez votre avis !
+  Informations relatives à la création d'un contexte spécifique.: Informations relatives à la création d'un contexte spécifique.
+  Notre documentation liste le détails des calculs qui nous ont permis de calculer votre bilan carbone personnel.: Notre documentation liste le détails des calculs qui nous ont permis de calculer votre bilan carbone personnel.
+  Votre empreinte carbone - détails des calculs: Votre empreinte carbone - détails des calculs
+  Créer un groupe: Créer un groupe
+  Passer le test: Passer le test
+  'Oups ! Désolé, une erreur est survenue.': Oups ! Désolé, une erreur est survenue.
+  Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.: Nos équipes ont été prévenues ; veuillez réessayer d'accéder à cette page plus tard.
+  '{node.title}': '{node.title}'
+  Choisissez une option: Choisissez une option
+  Fermer le bandeau de feedback: Fermer le bandeau de feedback
+  Groupes: Groupes
+  ' Vous utilisez la version {versionName} du test': ' Vous utilisez la version {versionName} du test'
+  'Nous avons détecté que vous faites cette simulation depuis ': 'Nous avons détecté que vous faites cette simulation depuis '
+  'Vous avez choisi ': 'Vous avez choisi '

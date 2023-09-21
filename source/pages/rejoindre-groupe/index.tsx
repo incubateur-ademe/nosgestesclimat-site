@@ -4,6 +4,7 @@ import Button from '@/components/groupe/Button'
 import EmailInput from '@/components/groupe/EmailInput'
 import PrenomInput from '@/components/groupe/PrenomInput'
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
 import { NETLIFY_FUNCTIONS_URL } from '@/constants/urls'
@@ -166,6 +167,7 @@ export default function RejoindreGroupe() {
 					"Rejoignez votre groupe pour calculez votre empreinte carbone et la comparer avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 				)}
 			/>
+			<AutoCanonicalTag />
 			<Title
 				title={
 					<Trans>
@@ -177,7 +179,7 @@ export default function RejoindreGroupe() {
 					"Comparez vos résultats avec votre famille ou un groupe d'amis."
 				)}
 			/>
-			<form onSubmit={handleSubmit}>
+			<form onSubmit={handleSubmit} autoComplete="off">
 				<PrenomInput
 					prenom={prenom}
 					setPrenom={setPrenom}

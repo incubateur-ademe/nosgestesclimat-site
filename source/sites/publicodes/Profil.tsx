@@ -11,6 +11,7 @@ import AnswerList from '@/components/conversation/AnswerList'
 import Title from '@/components/groupe/Title'
 import Localisation from '@/components/localisation/Localisation'
 import IllustratedMessage from '@/components/ui/IllustratedMessage'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
@@ -84,6 +85,9 @@ export default () => {
 					'Explorez et modifiez les informations que vous avez saisies dans le parcours nosgestesclimat.'
 				)}
 			/>
+
+			<AutoCanonicalTag />
+
 			<Title title={<Trans>Mon profil</Trans>} />
 			<div className="ui__ container" css="padding-top: 1rem">
 				<ScrollToTop />

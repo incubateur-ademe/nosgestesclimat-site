@@ -35,8 +35,9 @@ export type SupportedRegions = {
 }
 
 export type Localisation = {
-	country: { code: RegionCode; name: string }
-	userChosen: boolean
+	country?: { code: RegionCode; name: string }
+	userChosen?: boolean
+	fetchDone?: boolean
 }
 
 export const defaultModelRegionCode = 'FR'
@@ -51,7 +52,6 @@ export function useSupportedRegion(
 	const supportedRegions: SupportedRegions = useSelector(
 		(state: AppState) => state.supportedRegions
 	)
-
 	// Check for undefined AFTER useSelector, because hooks can't be called conditionally
 	if (inputCode === undefined) {
 		return undefined
@@ -73,8 +73,6 @@ export function useFlag(inputCode: RegionCode | undefined): string | undefined {
 export function getFlagImgSrc(
 	inputCode: RegionCode | undefined
 ): string | undefined {
-	//	code && `https://flagcdn.com/96x72/${code.toLowerCase()}.png`
-	//	was down 27/09
 	if (!inputCode) {
 		return undefined
 	}

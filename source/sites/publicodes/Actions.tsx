@@ -25,9 +25,11 @@ export default () => {
 			<Routes>
 				<Route path="plus" element={<ListeActionPlus />} />
 				<Route path="plus/*" element={<ActionPlus />} />
-				<Route path="liste" element={<ActionsList display="list" />} />
-				<Route path="*" element={<Action />} />
+
 				<Route path="/" element={<ActionsList display="list" />} />
+				<Route path="/liste" element={<ActionsList display="list" />} />
+
+				<Route path="*" element={<Action />} />
 			</Routes>
 		</>
 	)

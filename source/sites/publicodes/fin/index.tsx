@@ -1,7 +1,7 @@
-import Meta from '@/components/utils/Meta'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import animate from 'Components/ui/animate'
 import { utils } from 'publicodes'
-import { Trans, useTranslation } from 'react-i18next'
+import { Trans } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link, useSearchParams } from 'react-router-dom'
 import { answeredQuestionsSelector } from 'Selectors/simulationSelectors'
@@ -93,7 +93,6 @@ export default ({}) => {
 		nextSlide: next,
 		noQuestionsLeft: !nextQuestions.length,
 	}
-	const { t } = useTranslation()
 
 	return (
 		<div
@@ -102,12 +101,7 @@ export default ({}) => {
 			`}
 		>
 			{window.location.href.includes('fin') && (
-				<Meta title={t('Mon empreinte carbone')}>
-					<link
-						rel="canonical"
-						href="https://nosgestesclimat.fr/mon-empreinte-carbone"
-					/>
-				</Meta>
+				<AutoCanonicalTag overrideHref="https://nosgestesclimat.fr/mon-empreinte-carbone" />
 			)}
 
 			<IframeDataShareModal data={rehydratedDetails} />

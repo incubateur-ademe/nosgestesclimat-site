@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import Meta from '../../components/utils/Meta'
@@ -20,7 +21,9 @@ export default () => {
 			<Meta
 				title={t('Contribuer')}
 				description={t('meta.publicodes.Contribution.traductionDescription')}
-			></Meta>
+			/>
+
+			<AutoCanonicalTag />
 
 			<Title title={<Trans>Un problème de traduction ?</Trans>} />
 

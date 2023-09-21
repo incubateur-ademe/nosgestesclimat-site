@@ -179,6 +179,14 @@ export default function Root() {
 		document?.location.search.substring(1)
 	).get('shareData')
 
+	const iframeLocalisation = new URLSearchParams(
+		document?.location.search.substring(1)
+	).get('localisation')
+
+	const iframeOnlySimulation = new URLSearchParams(
+		document?.location.search.substring(1)
+	).get('onlySimulation')
+
 	// We retrieve the User object from local storage to initialize the store.
 	const persistedUser = fetchUser()
 
@@ -224,7 +232,11 @@ export default function Root() {
 				tutorials: persistedUser.tutorials,
 				localisation: persistedUser.localisation,
 				currentLang,
-				iframeOptions: { iframeShareData },
+				iframeOptions: {
+					iframeShareData,
+					iframeLocalisation,
+					iframeOnlySimulation,
+				},
 				actionChoices: persistedSimulation?.actionChoices ?? {},
 				storedTrajets: persistedSimulation?.storedTrajets ?? {},
 				storedAmortissementAvion:
@@ -281,7 +293,8 @@ const Main = () => {
 
 	useEffect(() => {
 		trackPageView(location)
-	}, [location, trackPageView])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [location.pathname, location.search])
 
 	// Manage the language change from the URL search param
 	const currentLangState: Lang = useSelector(
@@ -316,11 +329,11 @@ const Main = () => {
 		>
 			<>
 				<EnquêteBanner />
+
 				<div
 					css={`
 						@media (min-width: 800px) {
 							display: flex;
-							min-height: 100vh;
 							padding-top: 1rem;
 						}
 

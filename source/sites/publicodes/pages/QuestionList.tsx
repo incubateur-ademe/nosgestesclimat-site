@@ -8,6 +8,7 @@ import {
 	parentName,
 	questionCategoryName,
 } from '@/components/publicodesUtils'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import toCSV from '@/components/utils/toCSV'
 import { AppState } from '@/reducers/rootReducer'
@@ -38,6 +39,8 @@ export default () => {
 
 	return (
 		<div>
+			<AutoCanonicalTag />
+
 			<Title title={<Trans>Les questions du modèle Nos Gestes Climat</Trans>} />
 
 			<p>

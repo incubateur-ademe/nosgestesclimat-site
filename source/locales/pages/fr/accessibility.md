@@ -88,7 +88,7 @@ La vérification de l’accessibilité est le résultat de tests manuels, assist
 -   Tutoriel : https://nosgestesclimat.fr/tutoriel
 -   Le test : https://nosgestesclimat.fr/simulateur/bilan
 -   Fin : https://nosgestesclimat.fr/fin?details=a2.87t2.81l2.19s1.11d0.64n0.22
--   Agir : https://nosgestesclimat.fr/actions/liste
+-   Agir : https://nosgestesclimat.fr/actions
 -   Action : https://nosgestesclimat.fr/actions/alimentation/boisson/eau-en-bouteille/arr%C3%Aater
 -   Conférence : https://nosgestesclimat.fr/conf%C3%A9rence
 -   Conférence cambrien-bas-hanté : https://nosgestesclimat.fr/conf%C3%A9rence/cambrien-bas-hant%C3%A9

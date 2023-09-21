@@ -124,9 +124,22 @@ export default function RuleInput({
 				const parentRule = parentName(dottedName)
 				return [rules[parentRule], questionRule]
 			})
-			// we want to sort the cards so that the inactive ones are at the end.
-			.sort(([_, q], [_b]) => ('inactif' in q.rawNode ? 1 : -1))
-		// and the active ones are ordered as the `somme` defined as model side if the formula in the rule mosaic is a `somme`.
+			// Somehow, order of cards in mosaics is not the same between browsers (for Chrome, order is reversed).
+			// Here we manage to keep the initial order of rule appearance in the model code.
+			.sort((a, b) => {
+				// we want to sort the cards so that the inactive ones are at the end.
+				if ('inactif' in a[1].rawNode) {
+					return 1
+				}
+				const initialOrder = mosaicDottedNames.map(([dottedName, _]) =>
+					parentName(dottedName)
+				)
+				const indexA = initialOrder.indexOf(a[0].dottedName)
+				const indexB = initialOrder.indexOf(b[0].dottedName)
+				return indexA - indexB
+			})
+
+		// Finally if rules are ordered as the `somme` defined as model side if the formula in the rule mosaic is a `somme`.
 		const orderedSumFromSourceRule =
 			question?.rawNode?.formule && question?.rawNode?.formule['somme']
 
@@ -138,6 +151,7 @@ export default function RuleInput({
 				const indexB = orderedSumFromSourceRule.indexOf(
 					splitName(b[0].dottedName)[splitName(b[0].dottedName).length - 1]
 				)
+				if (indexA === -1) return 1 //some element of the sum can not being one of the card (ex: 'animaux domestiques')
 				return indexA - indexB
 			})
 		}

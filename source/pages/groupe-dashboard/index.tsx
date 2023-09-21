@@ -12,7 +12,6 @@ import { useSelector } from 'react-redux'
 import { Navigate, useSearchParams } from 'react-router-dom'
 
 import { useEngine } from '@/components/utils/EngineContext'
-import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import Classement from './components/Classement'
@@ -27,6 +26,8 @@ import { matomoEventUpdateGroupName } from '@/analytics/matomo-events'
 import Button from '@/components/groupe/Button'
 import InlineTextInput from '@/components/groupe/InlineTextInput'
 import Separator from '@/components/groupe/Separator'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import { useGetCurrentSimulation } from '@/hooks/useGetCurrentSimulation'
 
 export default function GroupeDashboard() {
 	const [group, setGroup] = useState<Group | null>(null)
@@ -55,6 +56,7 @@ export default function GroupeDashboard() {
 	const engine = useEngine()
 
 	const currentSimulation = useGetCurrentSimulation()
+
 	const resultsOfUser = getSimulationResults({
 		engine,
 	})
@@ -162,6 +164,7 @@ export default function GroupeDashboard() {
 						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 					)}
 				/>
+				<AutoCanonicalTag />
 				{isEditingTitle ? (
 					<InlineTextInput
 						defaultValue={group?.name}

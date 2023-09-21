@@ -1,11 +1,13 @@
 import SearchButton from '@/components/SearchButton'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import React, { Suspense, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Navigate, useLocation, useNavigate, useParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate } from 'react-router-dom'
 import AnimatedLoader from '../../../AnimatedLoader'
 import { WithEngine } from '../../../RulesProvider'
 import { currentSimulationSelector } from '../../../selectors/storageSelectors'
@@ -20,28 +22,30 @@ const DocumentationPageLazy = React.lazy(
 
 export default function () {
 	const currentSimulation = useSelector(
-			(state: AppState) => !!state.simulation?.url
-		),
-		rules = useSelector((state: AppState) => state.rules),
-		//This ensures the disambiguateReference function, which awaits RuleNodes, not RawNodes, doesn't judge some rules private for
-		//our parseless documentation page
-		allPublicRules = Object.fromEntries(
-			Object.entries(rules).map(([key, value]) => [
-				key,
-				{ ...value, private: false },
-			])
-		)
+		(state: AppState) => !!state.simulation?.url
+	)
+
+	const { t } = useTranslation()
 
 	const { pathname: pathnameRaw } = useLocation(),
 		pathname = decodeURIComponent(pathnameRaw)
 
-	const url = useParams()['*']
-
 	const [loadEngine, setLoadEngine] = useState(false)
 
-	const engineState = useSelector((state) => state.engineState),
-		parsedEngineReady =
-			engineState.state === 'ready' && engineState.options.parsed
+	const rules = useSelector((state: AppState) => state.rules)
+
+	//This ensures the disambiguateReference function, which awaits RuleNodes, not RawNodes, doesn't judge some rules private for
+	//our parseless documentation page
+	const allPublicRules = Object.fromEntries(
+		Object.entries(rules).map(([key, value]) => [
+			key,
+			{ ...value, private: false },
+		])
+	)
+
+	const engineState = useSelector((state: AppState) => state.engineState)
+	const parsedEngineReady =
+		engineState.state === 'ready' && engineState.options.parsed
 
 	if (pathname === '/documentation') {
 		return <DocumentationLanding />
@@ -65,6 +69,14 @@ export default function () {
 				margin: 0 auto;
 			`}
 		>
+			<Meta
+				title={t('Votre empreinte carbone - détails des calculs')}
+				description={t(
+					'Notre documentation liste le détails des calculs qui nous ont permis de calculer votre bilan carbone personnel.'
+				)}
+			/>
+			<AutoCanonicalTag />
+
 			<ScrollToTop key={pathname} />
 			<div
 				css={`
@@ -104,15 +116,14 @@ export default function () {
 
 function BackToSimulation() {
 	const url = useSelector(currentSimulationSelector)?.url
-	const navigate = useNavigate()
 
-	console.log('url', url)
+	const navigate = useNavigate()
 
 	return (
 		<button
 			className="ui__ simple small push-left button"
 			onClick={() => {
-				navigate(url)
+				navigate(url || '/')
 			}}
 		>
 			<Trans>Reprendre la simulation</Trans>

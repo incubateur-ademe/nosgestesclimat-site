@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
@@ -66,6 +67,8 @@ export const GithubContributionForm = () => {
 	const { t } = useTranslation()
 	return !URL ? (
 		<form css={formStyle}>
+			<AutoCanonicalTag />
+
 			<label css="color: var(--color)">
 				<Trans>Le titre bref de votre problème</Trans>
 				<input

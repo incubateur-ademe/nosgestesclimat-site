@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import {
 	HeaderContent,
 	HeaderCTAs,
@@ -38,7 +39,7 @@ export default () => {
 				description={description}
 				image="https://nosgestesclimat.fr/images/international-illustration.jpeg"
 			/>
-
+			<AutoCanonicalTag />
 			<LandingHeaderWrapper>
 				<HeaderContent>
 					<Title title={title} />
