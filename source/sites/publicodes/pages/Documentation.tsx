@@ -5,7 +5,7 @@ import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
 import React, { Suspense, useState } from 'react'
-import { Trans } from 'react-i18next'
+import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link, Navigate, useLocation } from 'react-router-dom'
 import AnimatedLoader from '../../../AnimatedLoader'
@@ -20,6 +20,8 @@ const DocumentationPageLazy = React.lazy(
 )
 
 export default function () {
+	const { t } = useTranslation()
+
 	const rules = useSelector((state: AppState) => state.rules)
 
 	//This ensures the disambiguateReference function, which awaits RuleNodes, not RawNodes, doesn't judge some rules private for
