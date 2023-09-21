@@ -39,7 +39,7 @@ export default ({ engine: givenEngine }) => {
 									)}/${encodeURIComponent('documentation-rule-root header')}`}
 								/>
 							</Helmet>
-							<Markdown children={children} noRouter={false} />
+							<Markdown noRouter={false}>{children}</Markdown>
 							{children.includes('<RavijenChart/>') && (
 								<GraphContainer>
 									<RavijenChart />
