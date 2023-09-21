@@ -1,6 +1,7 @@
 import { removeGroupFromUser } from '@/actions/actions'
 import Button from '@/components/groupe/Button'
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { GROUP_URL } from '@/constants/urls'
 import { Group } from '@/types/groups'
 import { captureException } from '@sentry/react'
@@ -100,6 +101,7 @@ export default function SupprimerDonnees() {
 
 	return (
 		<main className="p-4 md:p-8">
+			<AutoCanonicalTag />
 			<Title title={t('Supprimer mes données')} />
 			{hasDeleted && <Trans>Données supprimées.</Trans>}
 			{!hasDeleted && (

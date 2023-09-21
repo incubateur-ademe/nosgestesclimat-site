@@ -1,4 +1,6 @@
 import SearchButton from '@/components/SearchButton'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
+import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { AppState } from '@/reducers/rootReducer'
 import { utils } from 'publicodes'
@@ -60,6 +62,14 @@ export default function () {
 				margin: 0 auto;
 			`}
 		>
+			<Meta
+				title={t('Votre empreinte carbone - détails des calculs')}
+				description={t(
+					'Notre documentation liste le détails des calculs qui nous ont permis de calculer votre bilan carbone personnel.'
+				)}
+			/>
+			<AutoCanonicalTag />
+
 			<ScrollToTop key={pathname} />
 			<div
 				css={`

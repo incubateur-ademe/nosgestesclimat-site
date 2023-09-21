@@ -2,14 +2,20 @@ import { useEffect, useRef, useState } from 'react'
 import IllustrationSVG from './IllustrationSVG'
 
 const windowAnimationDuration = '60s'
+
 export default ({ small }: { small?: boolean }) => {
 	const [cycling, pleaseCycle] = useState(false)
-	const svgRef = useRef(null)
+	const svgRef = useRef<HTMLOrSVGElement & { onclick: () => void }>()
+
 	useEffect(() => {
+		if (!svgRef.current) return
+
 		svgRef.current.onclick = () => pleaseCycle(true)
 	}, [svgRef])
+
 	return (
 		<div
+			aria-hidden="true"
 			css={`
 				svg {
 					max-width: ${small ? '15rem' : '32rem'};

@@ -5,7 +5,7 @@ export default function FeedbackBlock() {
 		<div className="border-solid border-[1px] border-grey-200 rounded-md p-4 flex gap-3 items-top justify-between mt-4">
 			<Flask />
 			<div>
-				<p className="mb-0">
+				<p className="mb-2">
 					<Trans>
 						Cette nouvelle fonctionnalité est en expérimentation ! Vous
 						rencontrez un bug ou avez une idée d’amélioration ?
@@ -16,7 +16,7 @@ export default function FeedbackBlock() {
 					href="https://tally.so/r/meDdDJ"
 					target="_blank"
 				>
-					Donnez votre avis !
+					<Trans>Donnez votre avis !</Trans>
 				</a>
 			</div>
 		</div>

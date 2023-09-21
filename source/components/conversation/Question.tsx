@@ -181,13 +181,15 @@ export default function Question({
 									width: 100% !important;
 								`}
 							>
-								<option value="">Choisissez une option</option>
+								<option value="">
+									<Trans>Choisissez une option</Trans>
+								</option>
 								{choices.children.map((node, index) => (
 									<option
 										key={node.dottedName + '-' + index}
 										value={`'${relativeDottedName(node.dottedName)}'`}
 									>
-										{node.title}
+										<Trans>{node.title}</Trans>
 									</option>
 								))}
 							</select>

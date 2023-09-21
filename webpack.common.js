@@ -35,6 +35,7 @@ module.exports.default = {
 	entry: {
 		publicodes: './source/sites/publicodes/entry.js',
 		iframe: './source/sites/publicodes/iframe.js',
+		iframeSimulation: './source/sites/publicodes/iframeSimulation.js',
 	},
 	output: {
 		path: path.resolve('./dist/'),
@@ -119,10 +120,6 @@ module.exports.commonLoaders = (mode = 'production') => {
 			exclude: /node_modules|dist/,
 		},
 		{
-			test: /\.md/,
-			type: 'asset/source',
-		},
-		{
 			test: /\.(jpe?g|png|gif)$/i,
 			type: 'asset/resource',
 		},
@@ -149,6 +146,18 @@ module.exports.commonLoaders = (mode = 'production') => {
 			options: {
 				replaceAttrValues: { '#4143d6': 'var(--color)' },
 			},
+		},
+		{
+			test: /\.md$/,
+			type: 'asset/source',
+		},
+		{
+			test: /\.mdx$/,
+			use: [
+				{
+					loader: '@mdx-js/loader',
+				},
+			],
 		},
 	]
 }

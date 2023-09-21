@@ -8,6 +8,7 @@ import {
 import { getFocusedCategoryURLSearchParams } from '@/sites/publicodes/utils'
 import { sortBy } from '@/utils'
 import { utils } from 'publicodes'
+import { NavigateOptions } from 'react-router-dom'
 
 export function sortQuestionsByCategory(
 	nextQuestions: DottedName[],
@@ -77,11 +78,13 @@ export function updateCurrentURL({
 	paramValue,
 	simulateurRootRuleURL,
 	focusedCategory,
+	navigate,
 }: {
 	paramName: string
 	paramValue?: string | undefined
 	simulateurRootRuleURL: string
 	focusedCategory: string | null
+	navigate: (url: string, options: NavigateOptions) => void
 }): void {
 	const searchParams = getFocusedCategoryURLSearchParams(focusedCategory)
 	if (paramValue != undefined) {
@@ -91,11 +94,20 @@ export function updateCurrentURL({
 		)
 	}
 
+	const questionUrl = `/simulateur/${simulateurRootRuleURL}?${searchParams}`
+
+	if (window.location.pathname + window.location.search === questionUrl) return
+
+	navigate(`/simulateur/${simulateurRootRuleURL}?${searchParams}`, {
+		replace: true,
+	})
+	/*
 	window.history.replaceState(
 		{},
 		'',
-		`/simulateur/${simulateurRootRuleURL}?${searchParams}`
+		
 	)
+	*/
 }
 
 export function focusByCategory(

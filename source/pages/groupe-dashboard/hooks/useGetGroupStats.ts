@@ -32,6 +32,10 @@ export type Results = {
 	pointsFaibles: Points[]
 }
 
+const getVariation = ({ value, mean }: { value: number; mean: number }) => {
+	return ((value - (mean || 0)) / (mean || 1)) * 100
+}
+
 export const useGetGroupStats = ({
 	groupMembers,
 	userId,
@@ -153,24 +157,25 @@ export const useGetGroupStats = ({
 	// Calculate the current user variation between its value and the group mean for each category
 	// and subcategory
 	Object.keys(results.currentMemberAllFootprints).forEach((key) => {
-		results.currentMemberAllFootprints[key].variation =
-			((results?.currentMemberAllFootprints?.[key]?.value -
-				(results?.groupCategoriesFootprints?.[key]?.mean || 0)) /
-				(results?.groupCategoriesFootprints?.[key]?.mean || 1)) *
-			100
-
-		//console.log(key, results.currentMemberAllFootprints)
+		results.currentMemberAllFootprints[key].variation = getVariation({
+			value: results.currentMemberAllFootprints[key].value,
+			mean: results.groupCategoriesFootprints[key]?.mean,
+		})
 	})
 
 	const sortedCurrentMemberByVariation = Object.entries(
 		results.currentMemberAllFootprints
 	)
 		.filter(
-			([, resultObject]) => !resultObject?.isCategory && resultObject?.value
+			([key, resultObject]) =>
+				!resultObject?.isCategory &&
+				resultObject?.value &&
+				// We don't want to display the "services publics" category
+				key !== 'services publics'
 		)
 		.map(([key, resultObject]) => ({ key, resultObject }))
 		.sort((a, b) => {
-			if (a?.resultObject?.variation === b?.resultObject?.variation) {
+			if (a?.resultObject?.value === b?.resultObject?.value) {
 				return 0
 			}
 

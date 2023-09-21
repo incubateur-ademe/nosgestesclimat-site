@@ -2,6 +2,7 @@ import {
 	extractCategoriesNamespaces,
 	splitName,
 } from '@/components/publicodesUtils'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { EngineContext } from '@/components/utils/EngineContext'
 import { AppState } from '@/reducers/rootReducer'
 import { answeredQuestionsSelector } from '@/selectors/simulationSelectors'
@@ -63,7 +64,7 @@ export default ({ display }) => {
 	//TODO this is quite a bad design
 	// we'd better check if the test is finished
 	// but is it too restrictive ?
-	const simulationWellStarted = answeredQuestions.length > 50
+	const isSimulationWellStarted = answeredQuestions.length > 50
 
 	const [value, unit] = humanWeight({ t, i18n }, bilan.nodeValue)
 
@@ -75,49 +76,37 @@ export default ({ display }) => {
 				margin: 1rem auto;
 			`}
 		>
-			{!simulationWellStarted && <SimulationMissing />}
-			{simulationWellStarted && tutorials.actions !== 'skip' && (
+			<AutoCanonicalTag overrideHref={`${window.location.origin}/actions`} />
+			{!isSimulationWellStarted && <SimulationMissing />}
+			{isSimulationWellStarted && tutorials.actions !== 'skip' && (
 				<ActionTutorial {...{ value, unit }} />
 			)}
-			<MetricFilters selected={metric} />
-			<CategoryFilters
-				categories={categories}
-				metric={metric}
-				selected={category}
-				countByCategory={countByCategory}
-			/>
+			<div
+				className={
+					isSimulationWellStarted ? '' : 'pointer-events-none opacity-70'
+				}
+				aria-hidden={isSimulationWellStarted ? 'false' : 'true'}
+			>
+				<MetricFilters selected={metric} />
+				<CategoryFilters
+					categories={categories}
+					metric={metric}
+					selected={category}
+					countByCategory={countByCategory}
+				/>
 
-			<ActionsOptionsBar {...{ setRadical, radical, finalActions }} />
-			<AllActions
-				{...{
-					actions: finalActions.reverse(),
-					bilan,
-					rules,
-					focusedAction,
-					focusAction,
-					radical,
-				}}
-			/>
-			{/* Désactivation de cette fonctionnalité pas terminée
-			 finalActions.length ? (
-				<ActionStack
-					key={category}
-					actions={finalActions}
-					onVote={(item, vote) => console.log(item.props, vote)}
-					total={bilans.length ? bilans[0].nodeValue : null} ></ActionStack>
-			) : (
-				<p>{emoji('🤷')} Plus d'actions dans cette catégorie</p>
-			)}
-				<Link
-					to={display === 'list' ? '/actions' : '/actions/liste'}
-					css=" text-align: center; display: block; margin: 1rem"
-				>
-					<button className="ui__ button">
-						{display === 'list' ? 'Vue jeu de cartes (en dev)' : 'Vue liste'}
-					</button>
-				</Link>
-
-			*/}
+				<ActionsOptionsBar {...{ setRadical, radical, finalActions }} />
+				<AllActions
+					{...{
+						actions: finalActions.reverse(),
+						bilan,
+						rules,
+						focusedAction,
+						focusAction,
+						radical,
+					}}
+				/>
+			</div>
 		</div>
 	)
 }

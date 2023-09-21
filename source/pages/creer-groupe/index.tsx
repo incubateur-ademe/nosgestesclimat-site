@@ -9,6 +9,7 @@ import EmailInput from '@/components/groupe/EmailInput'
 import GoBackLink from '@/components/groupe/GoBackLink'
 import PrenomInput from '@/components/groupe/PrenomInput'
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { useEngine } from '@/components/utils/EngineContext'
 import Meta from '@/components/utils/Meta'
 import { GROUP_NAMES } from '@/constants/groupNames'
@@ -148,6 +149,7 @@ export default function CreerGroupe() {
 						"Calculez votre empreinte carbone en groupe et comparez la avec l'empreinte de vos proches grâce au simulateur de bilan carbone personnel Nos Gestes Climat."
 					)}
 				/>
+				<AutoCanonicalTag />
 				<GoBackLink className="mb-4 font-bold" />
 				<Title
 					title={t("Créer un groupe d'amis")}
@@ -155,7 +157,10 @@ export default function CreerGroupe() {
 						'Comparez vos résultats avec votre famille ou un groupe d’amis'
 					)}
 				/>
-				<form onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}>
+				<form
+					onSubmit={handleSubmit as FormEventHandler<HTMLFormElement>}
+					autoComplete="off"
+				>
 					<PrenomInput
 						prenom={prenom}
 						setPrenom={setPrenom}

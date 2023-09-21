@@ -114,8 +114,9 @@ export const MatomoProvider = ({ children }) => {
 		[checkIfEventAlreadySent, handleUpdateEventsSent]
 	)
 
-	const trackPageView = (loc: ReactRouterLocation) => {
-		const currentPath = loc.pathname + loc.search
+	const trackPageView = (loc: any) => {
+		const currentPath: string = loc.pathname + loc.search
+
 		if (loc.pathname.match(groupExclusionRegexp)) return
 		if (previousPath?.current === currentPath) {
 			return
@@ -123,6 +124,9 @@ export const MatomoProvider = ({ children }) => {
 		if (previousPath?.current) {
 			trackEvent(['setReferrerUrl', previousPath?.current])
 		}
+
+		console?.debug('Track page with URL : ', currentPath)
+
 		trackEvent(['setCustomUrl', currentPath])
 		// TODO: We should also call 'setDocumentTitle' but at this point the
 		// document.title isn't updated yet.

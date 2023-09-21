@@ -1,4 +1,5 @@
 import Title from '@/components/groupe/Title'
+import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import Meta from '@/components/utils/Meta'
 import { ScrollToTop } from '@/components/utils/Scroll'
 import { useState } from 'react'
@@ -18,6 +19,7 @@ export default () => {
 					'Faites le test à plusieurs via le mode conférence ou sondage'
 				)}
 			/>
+			<AutoCanonicalTag />
 			<Title data-cypress-id="group-title" title={t('Mode groupe')} />
 			<ScrollToTop />
 			<Instructions {...{ newRoom, setNewRoom }} />
