@@ -1,75 +1,62 @@
+# NOTE: This list should be auto generated
 fr:
   € / an: € / an
   an: an(s)
-  ans: ans
-  climatiseur: climatiseur(s)
-  h / an: h / an
   heure: heure(s)
-  heures: heures
+  h / jour: h / jour
   h / semaine: h / semaine
+  h / an: h / an
   jour: jour(s)
-  jours: jours
   km / an: km / an
   km: km
-  km.voyageur: km
   litre: litre(s)
-  litres: litres
   l / semaine: l / semaine
   mois: mois
   personne: personne(s)
-  personnes: personnes
   semaine: semaine(s)
-  semaines: semaines
   voyageur: voyageur(s)
-  voyageurs: voyageurs
   l / centkm: l / 100km
   stère: stère(s)
   nuit: nuit(s)
   tasse: tasse(s)
   tasse / semaine: tasse(s) / semaine
   bouteille: bouteille(s)
+  climatiseur: climatiseur(s)
+  paquet / semaine: paquet(s) / semaine
   # NOTE: following entries should be moved in a separated file?
   oui: oui
   non: non
   Non applicable: Non applicable
 
+# NOTE: Should we use `(s)` for en as well ?
 en:
   € / an: € / year
-  années: years
-  année: year
-  ans: years
   an: year
-  climatiseur: air-conditioner
-  h / an: h / year
   heure: hour
-  heures: hours
+  h / jour: h / day
   h / semaine: h / week
+  h / an: h / year
   jour: day
-  jours: days
   km / an: km / year
   km: km
   litre: liter
-  litres: liters
   l / semaine: l / week
   mois: month
   personne: person
-  personnes: people
-  point: point
-  points: points
-  semaines: weeks
   semaine: week
-  voyageurs: travelers
   voyageur: traveler
-  l / centkm: l / hundred km
+  l / centkm: l / 100km
   stère: cubic meter
-  oui: yes
-  non: no
-  Non applicable: inapplicable
-  km.voyageur: km
   nuit: night
   tasse: cup
   tasse / semaine: cup / week
   bouteille: bottle
+  climatiseur: air-conditioner
+  paquet / semaine: pack / week
+  # NOTE: following entries should be moved in a separated file?
+  oui: yes
+  non: no
+  Non applicable: inapplicable
 # es:
 #   € / an: € / año
 #   an: año
