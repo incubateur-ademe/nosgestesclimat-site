@@ -23,6 +23,7 @@ fr:
   bouteille: bouteille(s)
   climatiseur: climatiseur(s)
   paquet / semaine: paquet(s) / semaine
+  m2: m²
   # NOTE: following entries should be moved in a separated file?
   oui: oui
   non: non
@@ -53,6 +54,7 @@ en:
   bouteille: bottle
   climatiseur: air-conditioner
   paquet / semaine: pack / week
+  m2: m²
   # NOTE: following entries should be moved in a separated file?
   oui: yes
   non: no
