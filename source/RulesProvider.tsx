@@ -103,7 +103,15 @@ const EngineWrapper = ({ children }) => {
 				// NOTE(@ClémentAuger): warnings are ignored for optimized model compilation as units are not managed in optim tool for now.
 				optimizedOption
 					? {
-							logger: { log: (_) => {}, warn: (_) => {}, error: (_) => {} },
+							logger: {
+								log: (message) => {
+									console.log(message)
+								},
+								warn: (_) => {},
+								error: (message) => {
+									console.error(message)
+								},
+							},
 					  }
 					: undefined
 			)
