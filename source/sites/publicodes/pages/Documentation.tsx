@@ -7,10 +7,9 @@ import { utils } from 'publicodes'
 import React, { Suspense, useState } from 'react'
 import { Trans, useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
-import { Navigate, useLocation, useNavigate } from 'react-router-dom'
+import { Link, Navigate, useLocation } from 'react-router-dom'
 import AnimatedLoader from '../../../AnimatedLoader'
 import { WithEngine } from '../../../RulesProvider'
-import { currentSimulationSelector } from '../../../selectors/storageSelectors'
 import BandeauContribuer from '../BandeauContribuer'
 import DocumentationLanding from './DocumentationLanding'
 import QuickDocumentationPage from './QuickDocumentationPage'
@@ -21,16 +20,7 @@ const DocumentationPageLazy = React.lazy(
 )
 
 export default function () {
-	const currentSimulation = useSelector(
-		(state: AppState) => !!state.simulation?.url
-	)
-
 	const { t } = useTranslation()
-
-	const { pathname: pathnameRaw } = useLocation(),
-		pathname = decodeURIComponent(pathnameRaw)
-
-	const [loadEngine, setLoadEngine] = useState(false)
 
 	const rules = useSelector((state: AppState) => state.rules)
 
@@ -43,7 +33,12 @@ export default function () {
 		])
 	)
 
-	const engineState = useSelector((state: AppState) => state.engineState)
+	const { pathname: pathnameRaw } = useLocation(),
+		pathname = decodeURIComponent(pathnameRaw)
+
+	const [loadEngine, setLoadEngine] = useState(false)
+
+	const engineState = useSelector((state) => state.engineState)
 	const parsedEngineReady =
 		engineState.state === 'ready' && engineState.options.parsed
 
@@ -83,14 +78,13 @@ export default function () {
 					display: flex;
 					justify-content: center;
 					> * {
-						margin-right: 2rem;
+						margin: 0 3rem;
 					}
 				`}
 			>
-				{currentSimulation ? <BackToSimulation /> : <span />}
+				<BackToSimulation />
 				<SearchButton key={pathname} />
 			</div>
-
 			{!parsedEngineReady && !loadEngine && (
 				<div>
 					<QuickDocumentationPage
@@ -115,18 +109,9 @@ export default function () {
 }
 
 function BackToSimulation() {
-	const url = useSelector(currentSimulationSelector)?.url
-
-	const navigate = useNavigate()
-
 	return (
-		<button
-			className="ui__ simple small push-left button"
-			onClick={() => {
-				navigate(url || '/')
-			}}
-		>
-			<Trans>Reprendre la simulation</Trans>
-		</button>
+		<Link to="/simulateur/bilan" className="ui__ simple small push-left button">
+			←<Trans>Voir le test</Trans>
+		</Link>
 	)
 }
