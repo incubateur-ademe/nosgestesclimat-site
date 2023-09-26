@@ -43,7 +43,7 @@ const HumanWeight = ({
 	const unitText = givenUnitText || (
 		<span>
 			<Trans i18nKey="humanWeight.unitSuffix">de</Trans> CO₂-e /{' '}
-			{t('an', { ns: 'units' })}
+			{t('an')}
 		</span>
 	)
 

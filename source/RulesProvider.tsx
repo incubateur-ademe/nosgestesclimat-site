@@ -98,7 +98,23 @@ const EngineWrapper = ({ children }) => {
 				`⚙️ will parse ${Object.keys(rules).length} rules,  expensive operation`
 			)
 			console.time('⚙️ parsing rules')
-			const engine = new Engine(rules)
+			const engine = new Engine(
+				rules,
+				// NOTE(@ClémentAuger): warnings are ignored for optimized model compilation as units are not managed in optim tool for now.
+				optimizedOption
+					? {
+							logger: {
+								log: (message) => {
+									console.log(message)
+								},
+								warn: (_) => {},
+								error: (message) => {
+									console.error(message)
+								},
+							},
+					  }
+					: undefined
+			)
 			console.timeEnd('⚙️ parsing rules')
 
 			return engine
