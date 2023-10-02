@@ -200,7 +200,7 @@ export default function RuleInput({
 				commonProps={commonProps}
 				evaluation={evaluation}
 				onSubmit={onSubmit}
-				setFinalValue={() => onChange({ valeur: value, unité })}
+				setFinalValue={(value) => onChange({ valeur: value, unité })}
 			/>
 		)
 	}
