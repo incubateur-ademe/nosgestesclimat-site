@@ -1,4 +1,6 @@
 import AnimatedLoader from '@/AnimatedLoader'
+import useLocalisation from '@/components/localisation/useLocalisation'
+import { defaultModelRegionCode } from '@/components/localisation/utils'
 import { extractCategories } from '@/components/publicodesUtils'
 import { useEngine } from '@/components/utils/EngineContext'
 import { AppState } from '@/reducers/rootReducer'
@@ -42,6 +44,7 @@ export default ({ givenEngine }: { givenEngine?: Engine }) => {
 	const engine = givenEngine ?? useEngine()
 	const [categories, setCategories] = useState(mapAbreviation(rules, engine))
 	const tutorials = useSelector((state: AppState) => state.tutorials)
+	const localisation = useLocalisation()
 
 	const [traditionalChartShown, showTraditionalChart] = useState(false)
 
@@ -72,7 +75,8 @@ export default ({ givenEngine }: { givenEngine?: Engine }) => {
 		(!focusedCategory || focusedCategory === displayedCategory.dottedName)
 
 	const specializedVisualisationShown =
-		activatedSpecializedVisualisations.includes(currentQuestion)
+		activatedSpecializedVisualisations.includes(currentQuestion) &&
+		localisation?.country?.code === defaultModelRegionCode
 
 	if (!inRespiration && specializedVisualisationShown) {
 		return (
