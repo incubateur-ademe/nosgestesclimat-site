@@ -14,15 +14,11 @@ export default () => {
 	const survey = useSelector((state) => state.survey)
 
 	if (
-		![
-			'/simulateur/bilan',
-			'/groupe',
-			'/profil',
-			'/sondage',
-			'/conf%C3%A9rence',
-		].some((el) => {
-			return location.pathname.includes(el)
-		})
+		!['/simulateur/bilan', '/', '/profil', '/sondage', '/conf%C3%A9rence'].some(
+			(el) => {
+				return location.pathname.includes(el)
+			}
+		)
 	) {
 		return null
 	}

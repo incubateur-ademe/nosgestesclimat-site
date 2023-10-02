@@ -14,7 +14,7 @@
 		"model:compile": "yarn --cwd ./nosgestesclimat/ compile",
 		"model:compile:fr": "yarn --cwd ./nosgestesclimat/ compile:fr",
 		"model:rules-watch": "yarn --cwd ./nosgestesclimat/ compile:rules-watch",
-		"serve": "webpack serve --mode development --config webpack.dev.js",
+		"serve": "SERVER_URL=localhost:3000 webpack serve --mode development --config webpack.dev.js",
 		"start": "yarn run serve & yarn run model:watch",
 		"dev": "yarn run model:compile:fr && yarn run serve",
 		"compile": "NODE_ENV=production yarn run webpack --config webpack.prod.js",

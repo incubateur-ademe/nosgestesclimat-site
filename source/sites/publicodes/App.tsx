@@ -2,7 +2,6 @@ import { setDifferentSituation } from '@/actions/actions'
 import { matomoEventInteractionIframe } from '@/analytics/matomo-events'
 import AnimatedLoader from '@/AnimatedLoader'
 import { ErrorFallback } from '@/components/ErrorFallback'
-import Footer from '@/components/Footer'
 import LangSwitcher from '@/components/LangSwitcher'
 import LocalisationMessage from '@/components/localisation/LocalisationMessage'
 import Logo from '@/components/Logo'
@@ -25,7 +24,7 @@ import { fetchUser, persistUser } from '@/storage/persistSimulation'
 import { getIsIframe } from '@/utils'
 import * as Sentry from '@sentry/react'
 import React, { Suspense, useEffect, useState } from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import { useTranslation } from 'react-i18next'
 import { useDispatch, useSelector } from 'react-redux'
 import { useLocation } from 'react-router'
 import { Route, Routes, useSearchParams } from 'react-router-dom'
@@ -34,48 +33,17 @@ import { getMatomoEventBranch } from '../../analytics/matomo-events'
 import GroupModeSessionVignette from './conference/GroupModeSessionVignette'
 import EnquêteBanner from './enquête/BannerWrapper'
 
-import Landing from './Landing'
-import Navigation from './Navigation'
-import About from './pages/About'
-import Diffuser from './pages/Diffuser'
-import PlanDuSite from './pages/Plan'
-import Profil from './Profil'
 import sitePaths from './sitePaths'
-import TranslationContribution from './TranslationContribution'
 import { isFluidLayout } from './utils'
 
 // All those lazy components, could be probably be handled another more consise way
 // Also, see this issue about migrating to SSR https://github.com/datagir/nosgestesclimat-site/issues/801
 
-const ActionsLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Actions' */ './Actions')
-)
-
-const BlogArticleLazy = React.lazy(
-	() => import(/* webpackChunkName: 'BlogArticle' */ './pages/BlogArticle')
-)
-
-const BlogLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Blog' */ './pages/Blog')
-)
-
-const QuestionList = React.lazy(
-	() => import(/* webpackChunkName: 'QuestionList' */ './pages/QuestionList')
-)
 const FinLazy = React.lazy(() => import(/* webpackChunkName: 'Fin' */ './fin'))
 const SimulateurLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Simulateur' */ './Simulateur')
 )
-const PetrogazLandingLazy = React.lazy(
-	() =>
-		import(/* webpackChunkName: 'PetrogazLanding' */ './pages/PetrogazLanding')
-)
-const ModelLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Model' */ './Model')
-)
-const PersonasLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Personas' */ './Personas')
-)
+
 const DocumentationLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Documentation' */ './pages/Documentation')
 )
@@ -85,80 +53,23 @@ const TutorialLazy = React.lazy(
 const GroupSwitchLazy = React.lazy(
 	() => import(/* webpackChunkName: 'GroupSwitch' */ './conference/GroupSwitch')
 )
-const FAQLazy = React.lazy(() => import(/* webpackChunkName: 'FAQ' */ './FAQ'))
-const ContactLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Contact' */ './Contact')
-)
+
 const ConferenceLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Conference' */ './conference/Conference')
 )
-const StatsLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Stats' */ './pages/Stats')
-)
+
 const SurveyLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Survey' */ './conference/Survey')
 )
-const EnquêteLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Enquête' */ './enquête/Enquête')
-)
-const CGULazy = React.lazy(
-	() => import(/* webpackChunkName: 'CGU' */ './pages/CGU')
-)
-const PrivacyLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Privacy' */ './pages/Privacy')
-)
-const AccessibilityLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Accessibility' */ './pages/Accessibility')
-)
+
 const GuideGroupeLazy = React.lazy(
 	() => import(/* webpackChunkName: 'GuideGroupe' */ './pages/GuideGroupe')
 )
-const International = React.lazy(
-	() => import(/* webpackChunkName: 'International' */ './pages/International')
-)
+
 const DocumentationContexteLazy = React.lazy(
 	() =>
 		import(
 			/* webpackChunkName: 'DocumentationContexte' */ './pages/DocumentationContexte'
-		)
-)
-const News = React.lazy(
-	() => import(/* webpackChunkName: 'News' */ './pages/news/News')
-)
-
-const NorthstarStatsLazy = React.lazy(
-	() =>
-		import(/* webpackChunkName: 'NorthstarStats' */ './pages/NorthstarStats')
-)
-
-const Budget = React.lazy(
-	() => import(/* webpackChunkName: 'Budget' */ './pages/Budget')
-)
-
-const MesGroupesLazy = React.lazy(
-	() => import(/* webpackChunkName: 'MesGroupes' */ '@/pages/mes-groupes')
-)
-
-const GroupeAmisLazy = React.lazy(
-	() => import(/* webpackChunkName: 'GroupeAmis' */ '@/pages/creer-groupe')
-)
-
-const RejoindreGroupeLazy = React.lazy(
-	() =>
-		import(/* webpackChunkName: 'RejoindreGroupe' */ '@/pages/rejoindre-groupe')
-)
-
-const GroupeDashboardLazy = React.lazy(
-	() =>
-		import(
-			/* webpackChunkName: 'GroupeDashboardLazy' */ '@/pages/groupe-dashboard'
-		)
-)
-
-const GroupeDeleteLazy = React.lazy(
-	() =>
-		import(
-			/* webpackChunkName: 'GroupeDeleteLazy' */ '@/pages/supprimer-groupe'
 		)
 )
 
@@ -264,7 +175,7 @@ const Main = () => {
 	const [searchParams] = useSearchParams()
 	const isHomePage = location.pathname === '/'
 	const isTuto = location.pathname.startsWith('/tutoriel')
-	const isGroup = location.pathname.startsWith('/groupe')
+	const isGroup = location.pathname.startsWith('/')
 	const isStats =
 		location.pathname.startsWith('/stats') ||
 		location.pathname.startsWith('/northstar')
@@ -349,7 +260,6 @@ const Main = () => {
 					`}
 					className={fluidLayout ? '' : 'ui__ container'}
 				>
-					<Navigation fluidLayout={fluidLayout} />
 					<main
 						tabIndex={0}
 						id="mainContent"
@@ -390,7 +300,6 @@ const Main = () => {
 						<Router />
 					</main>
 				</div>
-				<Footer />
 			</>
 		</Sentry.ErrorBoundary>
 	)
@@ -399,7 +308,15 @@ const Main = () => {
 const Router = () => {
 	return (
 		<Routes>
-			<Route path="/" element={<Landing />} />
+			<Route
+				path="/"
+				element={
+					<Suspense fallback={<AnimatedLoader />}>
+						<GroupSwitchLazy />
+					</Suspense>
+				}
+			/>
+
 			<Route
 				path="/documentation/*"
 				element={
@@ -410,24 +327,7 @@ const Router = () => {
 					</WithEngine>
 				}
 			/>
-			<Route
-				path="/questions"
-				element={
-					<WithEngine options={{ parsed: true, optimized: false }}>
-						<Suspense fallback={<AnimatedLoader />}>
-							<QuestionList />
-						</Suspense>
-					</WithEngine>
-				}
-			/>
-			<Route
-				path="/modèle"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<ModelLazy />
-					</Suspense>
-				}
-			/>
+
 			<Route
 				path="/simulateur/*"
 				element={
@@ -438,14 +338,7 @@ const Router = () => {
 					</Suspense>
 				}
 			/>
-			<Route
-				path="/stats"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<StatsLazy />
-					</Suspense>
-				}
-			/>
+
 			<Route
 				path="/fin/*"
 				element={
@@ -466,113 +359,7 @@ const Router = () => {
 					</Suspense>
 				}
 			/>
-			<Route
-				path="/personas"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<WithEngine>
-							<PersonasLazy />
-						</WithEngine>
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/actions/*"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<WithEngine>
-							<ActionsLazy />
-						</WithEngine>
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/profil"
-				element={
-					<WithEngine>
-						<Profil />
-					</WithEngine>
-				}
-			/>
-			<Route
-				path="/contact"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<ContactLazy />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/questions-frequentes"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<FAQLazy />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/contribuer-traduction"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<TranslationContribution />
-					</Suspense>
-				}
-			/>
-			<Route path={'à-propos'} element={<About />} />
-			<Route
-				path="/cgu"
-				element={
-					<Suspense
-						fallback={
-							<div>
-								<Trans>Chargement</Trans>
-							</div>
-						}
-					>
-						<CGULazy />
-					</Suspense>
-				}
-			/>
-			<Route path="/partenaires" element={<Diffuser />} />
-			<Route path="/diffuser" element={<Diffuser />} />
-			<Route
-				path={'vie-privée'}
-				element={
-					<Suspense
-						fallback={
-							<div>
-								<Trans>Chargement</Trans>
-							</div>
-						}
-					>
-						<PrivacyLazy />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/nouveautés/*"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<News />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/blog"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<BlogLazy />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="blog/:slug"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<BlogArticleLazy />
-					</Suspense>
-				}
-			/>
+
 			<Route
 				path="/guide"
 				element={
@@ -597,14 +384,7 @@ const Router = () => {
 					</Suspense>
 				}
 			/>
-			<Route
-				path="/groupe"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<GroupSwitchLazy />
-					</Suspense>
-				}
-			/>
+
 			<Route
 				path="/groupe/documentation-contexte"
 				element={
@@ -621,75 +401,7 @@ const Router = () => {
 					</Suspense>
 				}
 			/>
-			<Route
-				path="/groupes"
-				element={
-					<WithEngine>
-						<Suspense fallback={<AnimatedLoader />}>
-							<MesGroupesLazy />
-						</Suspense>
-					</WithEngine>
-				}
-			/>
-			<Route
-				path="/groupes/creer"
-				element={
-					<WithEngine>
-						<Suspense fallback={<AnimatedLoader />}>
-							<GroupeAmisLazy />
-						</Suspense>
-					</WithEngine>
-				}
-			/>
-			<Route
-				path="/groupes/invitation"
-				element={
-					<WithEngine>
-						<Suspense fallback={<AnimatedLoader />}>
-							<RejoindreGroupeLazy />
-						</Suspense>
-					</WithEngine>
-				}
-			/>
 
-			<Route
-				path="/groupes/resultats"
-				element={
-					<WithEngine>
-						<Suspense fallback={<AnimatedLoader />}>
-							<GroupeDashboardLazy />
-						</Suspense>
-					</WithEngine>
-				}
-			/>
-
-			<Route
-				path="/groupes/supprimer"
-				element={
-					<WithEngine>
-						<Suspense fallback={<AnimatedLoader />}>
-							<GroupeDeleteLazy />
-						</Suspense>
-					</WithEngine>
-				}
-			/>
-
-			<Route
-				path="/enquête/:userID?"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<EnquêteLazy />
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/accessibilite"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<AccessibilityLazy />
-					</Suspense>
-				}
-			/>
 			<Route
 				path="/tutoriel"
 				element={
@@ -698,49 +410,8 @@ const Router = () => {
 					</Suspense>
 				}
 			/>
-			<Route
-				path={'/pétrole-et-gaz'}
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<PetrogazLandingLazy />
-					</Suspense>
-				}
-			/>
-			<Route
-				path={'/international'}
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<International />
-					</Suspense>
-				}
-			/>
-			<Route
-				path={'/plan'}
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<WithEngine>
-							<PlanDuSite />
-						</WithEngine>
-					</Suspense>
-				}
-			/>
-			<Route
-				path="/northstar"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<NorthstarStatsLazy />
-					</Suspense>
-				}
-			/>
+
 			<Route path="*" element={<Route404 />} />
-			<Route
-				path="/budget"
-				element={
-					<Suspense fallback={<AnimatedLoader />}>
-						<Budget />
-					</Suspense>
-				}
-			/>
 		</Routes>
 	)
 }
