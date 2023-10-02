@@ -41,7 +41,7 @@ const openmojis = {
 const openmojiURL = (name) => `/images/${openmojis[name]}.svg`
 
 interface KmHelpProps {
-	setFinalValue: () => {}
+	setFinalValue: () => void
 	dottedName: DottedName
 	isFormOpen: boolean
 	setIsFormOpen: Dispatch<SetStateAction<boolean>>
@@ -74,7 +74,9 @@ export default function KmHelp({
 	const [editTrajetId, setEditTrajetId] = useState(null)
 
 	const trajetValue = (trajet, factor) => {
-		const period = freqList(t).find((f) => f.name === trajet.periode)
+		const period = freqList(t).find((f) => {
+			return f.name === trajet.periode
+		})
 		const freqValue = period ? period.value * trajet.xfois : 0
 		return trajet.distance * freqValue * factor(trajet)
 	}
@@ -263,7 +265,7 @@ export default function KmHelp({
 												{t('Label')}
 											</th>
 											<th scope="col" css="width: 3rem">
-												{t('KM', { ns: 'units' })}
+												{t('KM')}
 											</th>
 											<th scope="col" css="width: 25%">
 												{t('Fréquence')}

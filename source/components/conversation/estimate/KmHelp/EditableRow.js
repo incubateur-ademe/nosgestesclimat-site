@@ -87,7 +87,7 @@ export default function EditableRow({
 					onChange={handleEditFormChange}
 					required
 				>
-					{freqList((s) => t(s, { ns: 'units' })).map((f) => (
+					{freqList((s) => t(s)).map((f) => (
 						<option key={f.id} value={f.name}>
 							{f.name}
 						</option>

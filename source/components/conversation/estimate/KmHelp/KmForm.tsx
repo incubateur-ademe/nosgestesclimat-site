@@ -188,7 +188,7 @@ export default function KmForm({ trajets, setTrajets, openmojiURL }) {
 										<option value="">
 											<Trans>période</Trans>
 										</option>
-										{freqList((s) => t(s, { ns: 'units' })).map((f) => (
+										{freqList((s) => t(s)).map((f) => (
 											<option key={f.id} value={f.name}>
 												{f.name}
 											</option>
