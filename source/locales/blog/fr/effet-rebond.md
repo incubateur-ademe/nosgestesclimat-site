@@ -1,5 +1,6 @@
 # Il y a réduire, et réduire
 
+![Un grand huit, photo de Priscilla du Preez](/images/priscilla-du-preez-rollercoaster.jpg)
 Si vous vous retrouvez sur Nos Gestes Climat, c'est que vous êtes a priori engagés dans une démarche de réduction de votre empreinte carbone : bravo !
 
 ## Les deux types de réduction d'empreinte
@@ -13,7 +14,7 @@ L'ensemble des actions proposées en fin de parcours par notre simulateur répon
 
 ## Le risque du mieux : l'effet rebond
 
-Faire mieux comprend un risque, et c'est celui de l'effet rebond : il consiste en une hausse de la consommation induite par la baisse des limitations, contraintes et coûts auxquels elle était associée jusque-là. Ce sera plus clair avec quelques exemples...
+Faire mieux comprend un risque, et c'est celui de l'effet rebond, ou paradoxe de Jevons ([cet article](https://bonpote.com/propos-5-paradoxe-de-jevons-et-effet-rebond/) en détaille tous les tenants et aboutissants) : il consiste en une hausse de la consommation induite par la baisse des limitations, contraintes et coûts auxquels elle était associée jusque-là. Ce sera plus clair avec quelques exemples...
 
 > Si vous avez l'habitude de consommer de l'eau pétillante en bouteilles, et que vous basculez vers l'usage d'une machine à eau gazeuse et à soda pour remplacer cet usage, alors au final nous y sommes gagnants. Mais si l'achat de cette nouvelle machine vous amène à consommer beaucoup plus d'eau pétillante qu'auparavant, alors le bilan n'est plus si positif.
 
