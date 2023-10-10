@@ -37,8 +37,6 @@ L'effet rebond est sans effet lorsque la hausse induite est **réellement, enti�
 
 > Ainsi si vous faisiez jusque-là autour de 5 000 km en voiture par an pour de petits trajets, et que vous réussissez à faire ces kilomètres à vélo, alors vous pouvez augmenter sans culpabiliser les distances parcourues et le nombre de trajets ! L'empreinte liée à la construction et aux pièces du vélo est négligeable car, s'il est bien entretenu, celui-ci a une durée de vie quasi infinie. Et l'augmentation de la circulation cycliste n'a pas effet de bord négatif, que ce soit en termes de trafic ou d'emprise au sol, à l'opposé de la voiture individuelle.
 
-> Si vous décidez de ne plus acheter de jeux de société, pour plutôt aller les chercher à la ludothèque qui est toute proche ou sur votre chemin, vous pouvez programmer autant de soirées jeux que vous voulez ! Les médiathèques sont justement là pour que les objets soient utilisés le plus possible.
-
 ## D'abord moins, puis mieux
 
 Pour être sûrs d'inscrire une baisse de votre empreinte dans la durée, et ne pas basculer malgré vous dans un effet rebond nocif pour l'environnement, privilégiez avant tout les actions permettant de réduire votre empreinte en faisant moins : moins de kilomètres au quotidien, moins de viande et de produits animaux aux repas, moins d'achats dans la maison...
