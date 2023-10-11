@@ -10,7 +10,7 @@ const EMOJI_TEXT_MAP: {
 		text: string
 	}
 } = {
-	'transport . empreinte': {
+	transport: {
 		emoji: '🚗',
 		text: 'Transports',
 	},
