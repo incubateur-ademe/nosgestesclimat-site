@@ -18,7 +18,7 @@ type BlogPost = {
 
 export const blogData: BlogPost[] = [
 	{
-		date: '2023-08-24',
+		date: '2023-10-12',
 		title: "Qu'est-ce que l'effet rebond ?",
 		slug: 'effet-rebond',
 		description:
