@@ -18,6 +18,14 @@ type BlogPost = {
 
 export const blogData: BlogPost[] = [
 	{
+		date: '2023-10-12',
+		title: "Qu'est-ce que l'effet rebond ?",
+		slug: 'effet-rebond',
+		description:
+			"Toutes les actions de réduction d'empreinte carbone, quel que soit le domaine, appartiennent à deux catégories : faire moins (réduire l'usage), ou faire mieux (réduire l'empreinte pour le même usage).",
+		content: effetRebondFr,
+	},
+	{
 		date: '2023-08-24',
 		title: "Qu'est-ce que l'effet rebond ?",
 		slug: 'effet-rebond',
