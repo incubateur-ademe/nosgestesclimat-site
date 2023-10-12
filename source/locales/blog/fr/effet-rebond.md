@@ -28,7 +28,7 @@ L'effet-rebond est l'écueil principal auquel se confronte la baisse des émissi
 
 -   La hausse du nombre de véhicules
 -   L'augmentation du confort et de la taille des véhicules, entraînant une hausse de leur poids (+25% en moyenne entre 1990 et 2007)
--   L'utlisation plus courante de la climatisation
+-   L'utilisation plus courante de la climatisation
 -   La compensation morale : puisque le véhicule est moins polluant, je m'autorise à rouler plus
 
 ## Moins, ou pas carboné ?
