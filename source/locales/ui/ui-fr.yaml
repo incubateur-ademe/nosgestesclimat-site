@@ -706,7 +706,26 @@ entries:
   C'est le persona par défaut. Toutes les règles ont été répondues par défaut: C'est le persona par défaut. Toutes les règles ont été répondues par défaut
   Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.: Cette page vous permet de naviguer dans les parcours Nos Gestes Climat comme si vous étiez l'un des profils types que nous avons listés.
   'proposées au total pour un potentiel de réduction de ': 'proposées au total pour un potentiel de réduction de '
+  publicodes.Tutoriel.slide1.p1: <0>Le climat se réchauffe à cause des activités humaines, c'est un fait. Tout ce que nous consommons, utilisons, puis jetons a nécessité de la matière et de l'énergie. Que ce soit pour la phase de production, d'utilisation, ou de fin de vie du bien, ou du service. Ainsi, toutes nos activités participent à émettre des gaz à effet de serre. Certaines énormément, d'autres très peu. Mais quel est notre impact, à notre échelle de citoyen ?</0>
+  publicodes.Tutoriel.slide1.p2: <0>Pour estimer sa propre contribution au réchauffement de la planète (son "impact climat"), il est d'usage de calculer ce qu'on appelle l'empreinte carbone individuelle de consommation.</0>
+  publicodes.Tutoriel.slide2.blockquote: "D'autres gaz, surtout le méthane <2></2> et le protoxyde d'azote <6></6> réchauffent aussi la planète : on convertit leur potentiel de réchauffement en équivalent CO₂ pour simplifier la mesure. "
+  publicodes.Tutoriel.slide2.p1: "Avec une unité au nom barbare : l'équivalent CO₂. Le dioxyde de carbone<1></1>, vous le connaissez : on l'expire toute la journée, mais sans influence sur le climat."
+  publicodes.Tutoriel.slide2.p2: Ce sont les machines qui font notre confort moderne qui en rejettent massivement, à tel point qu'on le compte en milliers de kilos par an et par personne, donc en <2>tonnes</2> de CO₂e !
+  publicodes.Tutoriel.slide5.p1: <0>Nous devons diminuer notre empreinte climat au plus vite.</0><1>En France, ça consiste à passer de ~10 tonnes à <1>moins de 2 tonnes</1> par an.</1>
+  publicodes.Tutoriel.slide6: <0>Prendre la voiture, manger un steak, chauffer sa maison, se faire soigner, acheter une TV...</0><1><0><0></0></0></1><2>L'empreinte de notre consommation individuelle, c'est la somme de toutes ces activités qui font notre vie moderne. </2>
+  10 minutes: 10 minutes
+  Avant de commencer: Avant de commencer
+  C'est un test individuel !: C'est un test individuel !
+  C’est quoi mon empreinte carbone ?: C’est quoi mon empreinte carbone ?
+  chrono pour calculer votre empreinte sur le climat: chrono pour calculer votre empreinte sur le climat
+  Comment on la mesure ?: Comment on la mesure ?
+  Consultez la FAQ: Consultez la FAQ
+  D’où vient mon empreinte ?: D’où vient mon empreinte ?
   Description: Description
+  'Il concerne votre vie personnelle, et non pas votre boulot.': Il concerne votre vie personnelle, et non pas votre boulot.
+  Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.: Parcourez le tutoriel Nos Gestes Climat avant de débuter votre simulation.
+  'Répondez aux questions en votre nom, pas pour votre foyer. Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !': 'Répondez aux questions en votre nom, pas pour votre foyer. Bien sûr, certaines choses sont partagées (au sein de mon logement avec ma famille, la voiture avec les covoitureurs) : cela sera bien pris en compte dans le calcul de votre empreinte carbone, ne vous inquiétez pas !'
+  Tutoriel: Tutoriel
   Cette nouvelle fonctionnalité est en expérimentation ! Vous rencontrez un bug ou avez une idée d’amélioration ?: Cette nouvelle fonctionnalité est en expérimentation ! Vous rencontrez un bug ou avez une idée d’amélioration ?
   Donnez votre avis !: Donnez votre avis !
   Informations relatives à la création d'un contexte spécifique.: Informations relatives à la création d'un contexte spécifique.

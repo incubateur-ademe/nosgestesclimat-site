@@ -80,7 +80,7 @@ const DocumentationLazy = React.lazy(
 	() => import(/* webpackChunkName: 'Documentation' */ './pages/Documentation')
 )
 const TutorialLazy = React.lazy(
-	() => import(/* webpackChunkName: 'Tutorial' */ './tutorial/Tutorial')
+	() => import(/* webpackChunkName: 'Tutorial' */ '../../pages/tutoriel')
 )
 const GroupSwitchLazy = React.lazy(
 	() => import(/* webpackChunkName: 'GroupSwitch' */ './conference/GroupSwitch')
