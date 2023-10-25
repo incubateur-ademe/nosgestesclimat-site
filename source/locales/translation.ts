@@ -50,7 +50,7 @@ export function getLangInfos(lang: Lang): LangInfos {
 			return {
 				name: 'English',
 				abrv: 'en',
-				abrvLocale: 'en-US',
+				abrvLocale: 'en-GB',
 				faqContent: faqEn,
 				releases: releasesEn,
 				uiTrad: uiEn.entries,
