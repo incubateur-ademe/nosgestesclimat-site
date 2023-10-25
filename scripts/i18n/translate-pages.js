@@ -7,9 +7,9 @@
 const fs = require('fs')
 const glob = require('glob')
 
-const utils = require('../../nosgestesclimat/scripts/i18n/utils')
-const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
-const cli = require('../../nosgestesclimat/scripts/i18n/cli')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 
 const { srcLang, destLangs, srcFile, force } = cli.getArgs(
 	'Calls the DeepL API to translate the Markdown files.',
