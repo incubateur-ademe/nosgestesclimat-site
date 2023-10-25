@@ -4,17 +4,17 @@
 import { i18n } from 'i18next'
 import type { MDXContent } from 'mdx/types'
 
-import uiEn from '!locale-yaml-loader!./ui/ui-en-us.yaml'
+import uiEn from '!locale-yaml-loader!./ui/ui-en.yaml'
 // import uiEs from '!locale-yaml-loader!./ui/ui-es.yaml'
 import uiFr from '!locale-yaml-loader!./ui/ui-fr.yaml'
 // import uiIt from '!locale-yaml-loader!./ui/ui-it.yaml'
 
-import faqEn from '!locale-yaml-loader!./faq/FAQ-en-us.yaml'
+import faqEn from '!locale-yaml-loader!./faq/FAQ-en.yaml'
 // import faqEs from '!locale-yaml-loader!./faq/FAQ-es.yaml'
 import faqFr from '!locale-yaml-loader!./faq/FAQ-fr.yaml'
 // import faqIt from '!locale-yaml-loader!./faq/FAQ-it.yaml'
 
-import releasesEn from './releases/releases-en-us.json'
+import releasesEn from './releases/releases-en.json'
 // import releasesEs from './releases/releases-es.json'
 import releasesFr from './releases/releases-fr.json'
 // import releasesIt from './releases/releases-it.json'
@@ -123,22 +123,22 @@ export function changeLangTo(i18n: i18n, currentLangState: Lang) {
 
 export function getMarkdownInCurrentLang(
 	markdownFiles: Array<[Lang, string]>,
-	currentLangState: Lang
+	currentLangState: Lang,
 ) {
 	return (
 		markdownFiles.find(
-			([lang]) => getLangInfos(lang).abrv === currentLangState
+			([lang]) => getLangInfos(lang).abrv === currentLangState,
 		)?.[1] || markdownFiles[0][1]
 	)
 }
 
 export function getMarkdownXInCurrentLang(
 	markdownFiles: Array<[Lang, MDXContent]>,
-	currentLangState: Lang
+	currentLangState: Lang,
 ): MDXContent {
 	return (
 		markdownFiles.find(
-			([lang]) => getLangInfos(lang).abrv === currentLangState
+			([lang]) => getLangInfos(lang).abrv === currentLangState,
 		)?.[1] || markdownFiles[0][1]
 	)
 }
