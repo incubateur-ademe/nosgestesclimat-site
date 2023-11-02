@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Lang } from '../../../locales/translation'
 import MarkdownPage from './MarkdownPage'
 
-import contentEn from '../../../locales/pages/en-us/méthode.md'
+import contentEn from '../../../locales/pages/en/méthode.md'
 // import contentEs from '../../../locales/pages/es/méthode.md'
 import contentFr from '../../../locales/pages/fr/méthode.md'
 // import contentIt from '../../../locales/pages/it/méthode.md'

@@ -24,7 +24,7 @@ export type Group = {
 
 export type SimulationResults = {
 	total: string
-	'transport . empreinte': {
+	transport: {
 		value: string
 		variation: string
 	}

@@ -3,8 +3,8 @@ import { Markdown } from '@/components/utils/markdown'
 import Meta from '@/components/utils/Meta'
 import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
 import { useTranslation } from 'react-i18next'
-import contentEnBottom from '../../../locales/pages/en-us/budgetBottom.md'
-import contentEnTop from '../../../locales/pages/en-us/budgetTop.md'
+import contentEnBottom from '../../../locales/pages/en/budgetBottom.md'
+import contentEnTop from '../../../locales/pages/en/budgetTop.md'
 import contentFrBottom from '../../../locales/pages/fr/budgetBottom.md'
 import contentFrTop from '../../../locales/pages/fr/budgetTop.md'
 import SelectYear from './budget/SelectYear'
@@ -18,7 +18,7 @@ export default () => {
 			[Lang.Fr, contentFrTop],
 			[Lang.En, contentEnTop],
 		],
-		lang
+		lang,
 	)
 
 	const contentBottom = getMarkdownInCurrentLang(
@@ -26,7 +26,7 @@ export default () => {
 			[Lang.Fr, contentFrBottom],
 			[Lang.En, contentEnBottom],
 		],
-		lang
+		lang,
 	)
 
 	return (

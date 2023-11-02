@@ -926,3 +926,4 @@ entries:
   Fermer le bandeau de feedback: Close feedback banner
   ' Vous utilisez la version {versionName} du test': ' You are using the {versionName} version of the test'
   'Nous avons détecté que vous faites cette simulation depuis ': 'We have detected that you have been running this simulation since '
+  Voir le test: See the test

@@ -5,9 +5,9 @@
 */
 
 const paths = require('./paths')
-const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
-const deepl = require('./../../nosgestesclimat/scripts/i18n/deepl')
-const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 
 const { srcLang, destLangs, force } = cli.getArgs(
 	'Calls the DeepL API to translate the FAQ Yaml files.',

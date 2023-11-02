@@ -303,7 +303,7 @@ const categoryColorOverride = {
 }
 
 export function extractCategories(
-	rules: any,
+	rules: NGCRules,
 	engine: Engine<DottedName>,
 	valuesFromURL?: any,
 	parentRule = MODEL_ROOT_RULE_NAME,
@@ -350,8 +350,7 @@ export function getSubcategories(
 	engine: Engine,
 	sort: boolean = false
 ): Category[] {
-	const sumToDisplay =
-		category.name === 'logement' ? 'logement . impact' : category.name
+	const sumToDisplay = category.name
 
 	if (!sumToDisplay) {
 		return [category]

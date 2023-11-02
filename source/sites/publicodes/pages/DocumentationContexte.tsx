@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { getMarkdownInCurrentLang, Lang } from '@/locales/translation'
 
 import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
-import contentEn from '../../../locales/pages/en-us/documentation.md'
+import contentEn from '../../../locales/pages/en/documentation.md'
 import contentFr from '../../../locales/pages/fr/documentation.md'
 
 export default () => {
@@ -19,7 +19,7 @@ export default () => {
 			[Lang.Fr, contentFr],
 			[Lang.En, contentEn],
 		],
-		l
+		l,
 	)
 
 	return (
@@ -27,7 +27,7 @@ export default () => {
 			<Meta
 				title={t('Documentation Contexte Sondage')}
 				description={t(
-					"Informations relatives à la création d'un contexte spécifique."
+					"Informations relatives à la création d'un contexte spécifique.",
 				)}
 			/>
 			<AutoCanonicalTag />

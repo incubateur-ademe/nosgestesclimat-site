@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next'
 import { Lang } from '../../../locales/translation'
 import MarkdownPage from './MarkdownPage'
 
-import contentEn from '../../../locales/pages/en-us/petrogazLanding.md'
+import contentEn from '../../../locales/pages/en/petrogazLanding.md'
 import contentFr from '../../../locales/pages/fr/petrogazLanding.md'
 
 export default () => {

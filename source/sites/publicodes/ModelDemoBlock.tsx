@@ -12,7 +12,7 @@ const demoDottedNames = [
 	"logement . construction . durée d'amortissement",
 ]
 
-const indicatorsKeys = ['bilan', 'transport . empreinte', 'logement']
+const indicatorsKeys = ['bilan', 'transport', 'logement']
 export default () => {
 	const [situation, setSituation] = useState({})
 	const rules = useSelector((state) => state.rules)
@@ -68,8 +68,8 @@ export default () => {
 			<div>
 				<HumanWeight nodeValue={indicators.bilan || 9} />
 				<small css="margin: 0 auto; display: block; text-align: center">
-					Dont {Math.round(indicators['transport . empreinte'])} kgCO2e de
-					transport et {Math.round(indicators.logement)} kgCO2e de logement.
+					Dont {Math.round(indicators['transport'])} kgCO2e de transport et{' '}
+					{Math.round(indicators.logement)} kgCO2e de logement.
 				</small>
 			</div>
 			{/* TODO would be cool, but doesn't work with this new aside Engine 
