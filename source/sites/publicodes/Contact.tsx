@@ -40,7 +40,7 @@ export const createIssue = (
 	fetch(
 		'/.netlify/functions/create-issue?' +
 			Object.entries({
-				repo: 'datagir/nosgestesclimat',
+				repo: 'incubateur-ademe/nosgestesclimat',
 				title,
 				body,
 				labels,
@@ -148,7 +148,7 @@ export const GithubContributionCard = () => {
 			<p>
 				<Trans i18nKey={'publicodes.Contribution.liensVersGithub'}>
 					Pour toute remarque ou question, nous vous invitons à{' '}
-					<a href="https://github.com/datagir/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
+					<a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
 						ouvrir un ticket directement sur GitHub
 					</a>
 					.
@@ -195,7 +195,7 @@ export default () => {
 					Pour toute remarque ou question,{' '}
 					<strong>
 						nous vous recommandons{' '}
-						<a href="https://github.com/datagir/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
+						<a href="https://github.com/incubateur-ademe/nosgestesclimat/issues/new?assignees=&labels=contribution&template=retour-utilisateur.md&title=">
 							d'ouvrir un ticket directement sur GitHub
 						</a>
 					</strong>{' '}
