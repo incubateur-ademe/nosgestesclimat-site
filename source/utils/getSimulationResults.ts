@@ -18,7 +18,7 @@ export const getSimulationResults = ({
 
 		categories.forEach((category) => {
 			resultsObject[
-				category.name === 'transport . empreinte' ? 'transports' : category.name
+				category.name === 'transport' ? 'transports' : category.name
 			] = (
 				Math.round(((category.nodeValue as number) ?? 0) / 10) / 100
 			).toFixed(2)
