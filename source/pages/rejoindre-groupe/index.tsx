@@ -111,9 +111,7 @@ export default function RejoindreGroupe() {
 			return
 		}
 
-		const results = getSimulationResults({
-			engine,
-		})
+		const results = getSimulationResults({ engine })
 
 		try {
 			await fetchAddUserToGroup({
