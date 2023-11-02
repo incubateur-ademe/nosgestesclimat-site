@@ -15,7 +15,6 @@ import { arrayLoopIteration } from '../../../utils'
 import EnqueteBannerContent from '../enquête/BannerContent'
 import { enquêteSelector } from '../enquête/enquêteSelector'
 import HorizontalSwipe from '../HorizontalSwipe'
-import ActionSlide from './ActionSlide'
 import Budget from './Budget'
 import Catégories from './Catégories'
 import IframeDataShareModal from './IframeDataShareModal'
@@ -57,7 +56,6 @@ export default ({}) => {
 	const componentCorrespondenceBasis = {
 		bilan: Budget,
 		categories: Catégories,
-		action: ActionSlide,
 	}
 	const componentCorrespondence = enquête
 		? { ...componentCorrespondenceBasis, enquete: EnqueteReminder }
