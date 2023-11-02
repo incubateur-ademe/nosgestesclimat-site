@@ -19,7 +19,6 @@ import ActionSlide from './ActionSlide'
 import Budget from './Budget'
 import Catégories from './Catégories'
 import IframeDataShareModal from './IframeDataShareModal'
-import Petrogaz from './Petrogaz'
 const { encodeRuleName } = utils
 
 // details=a2.6t2.1s1.3l1.0b0.8f0.2n0.1
@@ -59,7 +58,6 @@ export default ({}) => {
 		bilan: Budget,
 		categories: Catégories,
 		action: ActionSlide,
-		petrogaz: Petrogaz,
 	}
 	const componentCorrespondence = enquête
 		? { ...componentCorrespondenceBasis, enquete: EnqueteReminder }
