@@ -303,7 +303,7 @@ const categoryColorOverride = {
 }
 
 export function extractCategories(
-	rules: any,
+	rules: NGCRules,
 	engine: Engine<DottedName>,
 	valuesFromURL?: any,
 	parentRule = MODEL_ROOT_RULE_NAME,
