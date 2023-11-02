@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next'
 import { Lang } from '../../../locales/translation'
 import MarkdownXPage from './MarkdownXPage'
 
-import contentEn from '../../../locales/pages/en-us/about.mdx'
+import contentEn from '../../../locales/pages/en/about.mdx'
 
 import contentFr from '../../../locales/pages/fr/about.mdx'
 

@@ -4,7 +4,7 @@
 
 const path = require('path')
 
-const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
 
 const localesDir = path.resolve('source/locales')
 const rulesTranslation = path.resolve('source/locales/rules-en.yaml')

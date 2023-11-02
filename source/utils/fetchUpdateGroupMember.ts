@@ -6,7 +6,7 @@ type Props = {
 	group: Group
 	userId: string
 	simulation: SavedSimulation
-	results: SimulationResults
+	results: SimulationResults | undefined
 }
 
 export const fetchUpdateGroupMember = async ({
