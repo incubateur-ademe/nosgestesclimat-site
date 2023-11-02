@@ -27,7 +27,7 @@ export default ({
 	const setMode = (mode) => {
 		setModeState(mode)
 
-		navigate(`/groupe?mode=${mode}`, { replace: true })
+		navigate(`/?mode=${mode}`, { replace: true })
 	}
 	const { color } = useContext(ThemeColorsContext)
 	const URLbase = `https://${window.location.hostname}`
@@ -52,14 +52,14 @@ export default ({
 					</p>
 				</Trans>
 			)}
-			<h2>{t('📘 Comment ça marche ?')}</h2>
+			<h2 className="mt-4">{t('📘 Comment ça marche ?')}</h2>
 			{!started && (
 				<InstructionBlock
 					index="1"
 					title={<span>{t('💡 Choisissez un nom de salle')}</span>}
 				>
 					{!room && <NamingBlock {...{ newRoom, setNewRoom }} />}
-					{room && <p>{t('✅ C\'est fait')}</p>}
+					{room && <p>{t("✅ C'est fait")}</p>}
 				</InstructionBlock>
 			)}
 			{!started && newRoom !== '' && !room && (
@@ -143,7 +143,9 @@ export default ({
 							<p>
 								⚠️{' '}
 								<Trans
-									i18nKey={'publicodes.conference.Instructions.avertissementModeConference'}
+									i18nKey={
+										'publicodes.conference.Instructions.avertissementModeConference'
+									}
 								>
 									<strong
 										css={`
@@ -162,7 +164,9 @@ export default ({
 						{mode == 'sondage' && (
 							<p>
 								<Trans
-									i18nKey={'publicodes.conference.Instructions.contextualisationLink'}
+									i18nKey={
+										'publicodes.conference.Instructions.contextualisationLink'
+									}
 								>
 									💡 Vous souhaitez ajouter des questions pour obtenir des
 									informations supplémentaires sur les répondants ?{' '}
@@ -229,7 +233,9 @@ export default ({
 					<>
 						<p>
 							<Trans
-								i18nKey={'publicodes.conference.Instructions.liensSimulationConference'}
+								i18nKey={
+									'publicodes.conference.Instructions.liensSimulationConference'
+								}
 							>
 								Au moment convenu, ouvrez ce lien tous en même temps et faites
 								chacun de votre côté votre simulation.
@@ -266,7 +272,7 @@ export default ({
 					groupe sur{' '}
 				</Trans>
 				{!started ? (
-					t('la page à partager à l\'étape 3')
+					t("la page à partager à l'étape 3")
 				) : (
 					<span>
 						{t('cette page')} <Link to={URLPath}>{URLPath}</Link>
@@ -299,7 +305,7 @@ export default ({
 
 const InstructionBlock = ({ title, index, children, noIndex }) => (
 	<div
-		className="ui__ card"
+		className="ui__ card !mx-0"
 		css={`
 			display: flex;
 			justify-content: start;

@@ -46,7 +46,7 @@ export default () => {
 	const [hasDataState, setHasDataState] = useState(hasData)
 
 	if (!room || room === '') {
-		return <Navigate to="/groupe" replace />
+		return <Navigate to="/" replace />
 	}
 	const extremes = getExtremes(elements, threshold)
 
