@@ -2,13 +2,13 @@
 
 ## C'est quoi ?
 
-Un simulateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/datagir/nosgestesclimat).
+Un simulateur d'empreinte climat individuelle de consommation à l'année, utilisant le modèle [nosgestesclimat](https://github.com/incubateur-ademe/nosgestesclimat).
 
-Pour contribuer au modèle, données sous-jacentes et textes du questionnaire (calculs, facteurs d'émission, textes, questions, réponses, suggestions de saisie), [suivez le guide de contribution](https://github.com/datagir/nosgestesclimat/blob/master/CONTRIBUTING.md).
+Pour contribuer au modèle, données sous-jacentes et textes du questionnaire (calculs, facteurs d'émission, textes, questions, réponses, suggestions de saisie), [suivez le guide de contribution](https://github.com/incubateur-ademe/nosgestesclimat/blob/master/CONTRIBUTING.md).
 
-Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résultat, code javascript, etc.) c'est ici [sur le dépôt du *site*](https://github.com/datagir/nosgestesclimat-site/issues).
+Pour tout ce qui touche à l'interface (style d'un bouton, graphique de résultat, code javascript, etc.) c'est ici [sur le dépôt du *site*](https://github.com/incubateur-ademe/nosgestesclimat-site/issues).
 
-> 🇬🇧 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/datagir/nosgestesclimat-site/issues/new) if you are interested and do not speak French.
+> 🇬🇧 Most of the documentation (including issues and the wiki) is written in french, please raise an [issue](https://github.com/incubateur-ademe/nosgestesclimat-site/issues/new) if you are interested and do not speak French.
 
 ## Et techniquement ?
 
@@ -18,13 +18,17 @@ Le code est en Javascript / Typescript / React / styled-components / Webpack, Yj
 
 ### 🇬🇧 Installation
 
-The footprint model is stored in the [git submodule](https://git-scm.com/book/en/v2/Git-Tools-Submodules) `nosgestesclimat/` pointing to the corresponding GitHub [repository](https://github.com/datagir/nosgestesclimat).
+The footprint model is available in [`incubateur-ademe/nosgestesclimat`](https://github.com/incubateur-ademe/nosgestesclimat). Therefore, to test the site locally, you must first clone this repo and install the dependencies:
 
-Consequently, to fetch all the data you need to provide the `--recursive` flag when cloning this repository or if it's already cloned you need to run `git submodule update --init --recursive`.
+```
+git clone git@github.com:incubateur-ademe/nosgestesclimat.git
+cd nosgestesclimat
+yarn && yarn compile
+```
 
 The model YAML files will then be loaded locally (no installation needed, they are loaded by webpack), and your changes to these files will refresh the UI instantly.
 
-> The production version fetches the JSON compiled YAML rules deployed by datagir/nosgestesclimat.
+> The production version fetches the compiled JSON rules deployed from [`incubateur-ademe/nosgestesclimat`](https://github.com/incubateur-ademe/nosgestesclimat), they are available here : data.nosgestesclimat.fr
 
 Then run this command from this repo:
 
@@ -42,7 +46,7 @@ If you want to run the automatic localisation, which depends on a Netlify Edge f
 You can run e2e tests (Cypress) by first starting a local server with `yarn run
 serve`, then, run cypress tests with `yarn run test` (or `yarn run e2e` to open
 the Cypress GUI) -- it will generate [personas spec
-files](https://github.com/datagir/nosgestesclimat-site/wiki/Contributing#tests).
+files](https://github.com/incubateur-ademe/nosgestesclimat-site/wiki/Contributing#tests).
 
 ## Réutilisations de ce code
 
