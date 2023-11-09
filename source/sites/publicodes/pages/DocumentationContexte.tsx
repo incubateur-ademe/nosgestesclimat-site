@@ -33,7 +33,7 @@ export default () => {
 			<AutoCanonicalTag />
 			<ScrollToTop />
 			<div>
-				<Link to={'/'}>
+				<Link to={'/groupe'}>
 					<button className="ui__ button simple small ">
 						<Trans>◀ Retour</Trans>
 					</button>

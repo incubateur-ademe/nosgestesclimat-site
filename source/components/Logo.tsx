@@ -20,7 +20,7 @@ export default ({ showText, size = 'large' }) => {
 			`}
 		>
 			<Link
-				to="https://nosgestesclimat.fr"
+				to="/"
 				data-cypress-id="home-logo-link"
 				css={`
 					display: flex;

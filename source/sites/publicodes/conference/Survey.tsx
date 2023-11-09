@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import emoji from 'react-easy-emoji'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 import Title from '@/components/groupe/Title'
 import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
@@ -10,6 +10,7 @@ import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
 import Meta from '../../../components/utils/Meta'
 import { usePersistingState } from '../../../hooks/usePersistState'
+import Navigation from '../Navigation'
 import { useProfileData } from '../Profil'
 import { ConferenceTitle } from './Conference'
 import ContextConversation from './ContextConversation'
@@ -71,10 +72,10 @@ export default () => {
 	const { t } = useTranslation()
 
 	if (!room || room === '') {
-		return <Navigate to="/groupe?mode=sondage" replace />
+		return <Navigation to="/groupe?mode=sondage" replace />
 	}
 	return (
-		<div className="max-w-3xl mx-auto p-4 min-h-[calc(100vh-3rem)]">
+		<div>
 			<Meta
 				title={t('Sondage') + ' ' + room}
 				description={
@@ -203,7 +204,7 @@ const DownloadInteractiveButton = ({ url, isRegisteredSurvey }) => {
 					Le téléchargement pour ce sondage est indisponible. Ce problème vient
 					sans doute du fait que le sondage n'a pas été créé via la page dédiée.
 					N'hésitez pas à créer une salle au nom du sondage via{' '}
-					<a href="https://nosgestesclimat.fr/" target="_blank">
+					<a href="https://nosgestesclimat.fr/groupe" target="_blank">
 						ce formulaire d'instruction
 					</a>{' '}
 					(les réponses ne seront pas supprimées). Si le problème persiste,{' '}

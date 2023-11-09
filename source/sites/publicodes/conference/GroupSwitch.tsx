@@ -12,7 +12,7 @@ export default () => {
 	const { t } = useTranslation()
 
 	return (
-		<div className="max-w-3xl mx-auto p-4">
+		<div>
 			<Meta
 				title={t('Mode groupe')}
 				description={t(
