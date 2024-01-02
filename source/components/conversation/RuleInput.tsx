@@ -90,11 +90,22 @@ export default function RuleInput({
 	// Related to Survey Context : we enable the engine to be different according to
 	// the simulation rules we are working with.
 	const engine = givenEngine ?? useContext(EngineContext)
-	const rule = engine.getRule(dottedName)
-	const evaluation = engine.evaluate(dottedName)
-	const rules = engine.getParsedRules() as NGCRulesNodes
-
 	const language = useTranslation().i18n.language
+
+	let rule
+	let evaluation: EvaluatedNode
+	try {
+		rule = engine.getRule(dottedName)
+		evaluation = engine.evaluate(dottedName)
+	} catch (e) {
+		console.warn(
+			`La règle ${dottedName} n'a pas été trouvée dans le moteur de calcul`
+		)
+		return null
+	}
+
+	const rules = engine.getParsedRules() as NGCRulesNodes
+	console.log(rules)
 	const value = evaluation.nodeValue
 
 	const commonProps: InputCommonProps = {

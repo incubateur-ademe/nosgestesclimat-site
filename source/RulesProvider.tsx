@@ -55,27 +55,24 @@ const EngineWrapper = ({ children }) => {
 					i18n.language === 'en' ? 'en-us' : currLangAbrv
 				}${optimizedOption ? '-opti' : ''}.json`
 
-			if (process.env.NODE_ENV === 'development') {
-				const rules = require('../nosgestesclimat/public' + fileName)
-				if (active) {
-					dispatch({ type: 'SET_RULES', rules })
-				}
-			} else {
-				const url =
-					currLangAbrv && currentRegionCode && branchData.deployURL + fileName
-				console.log('fetching:', url)
-				fetch(url, { mode: 'cors' })
-					.then((response) => response.json())
-					.then((json) => {
-						if (active) {
-							dispatch({ type: 'SET_RULES', rules: json })
-						}
-					})
-					.catch((err) => {
-						console.log('url:', url)
-						console.log('err:', err)
-					})
-			}
+			const url =
+				currLangAbrv &&
+				currentRegionCode &&
+				`https://nosgestesclimat-api.osc-fr1.scalingo.io/1.0.5/${
+					i18n.language === 'en' ? 'en-us' : currLangAbrv
+				}/${currentRegionCode}/${optimizedOption ? 'optim-rules' : 'rules'}`
+			console.log('fetching:', url)
+			fetch(url, { mode: 'cors' })
+				.then((response) => response.json())
+				.then((json) => {
+					if (active) {
+						dispatch({ type: 'SET_RULES', rules: json })
+					}
+				})
+				.catch((err) => {
+					console.log('url:', url)
+					console.log('err:', err)
+				})
 		}
 		fetchAndSetRules()
 		return () => {

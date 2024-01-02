@@ -21,7 +21,6 @@ import { useTranslation } from 'react-i18next'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import HumanWeight, { DiffHumanWeight } from './HumanWeight'
-import PetrolScore from './PetrolScore'
 
 const openmojis = {
 	questionCircle: '2754',
@@ -168,9 +167,6 @@ export default ({ actionMode = false, demoMode = false }) => {
 							</button>
 						)}
 					</div>
-					<PetrolScore
-						endURL={demoMode ? '#' : buildEndURL(rules, engine, 'petrogaz')}
-					/>
 					{/* TODO désactivation de l'explication dans le contexte de l'ajout du pétrole : mieux vaut sûrement
 				mettre le lien d'explication sur l'écran vers lequel les deux métriques pointent. Probablement deux diapo
 				de la page fin.

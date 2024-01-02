@@ -27,7 +27,6 @@ import { useSetUserId } from '@/hooks/useSetUserId'
 import { AppState } from '@/reducers/rootReducer'
 import { SavedSimulation } from '@/selectors/storageSelectors'
 import BandeauContribuer from '@/sites/publicodes/BandeauContribuer'
-import InlineCategoryChart from '@/sites/publicodes/chart/InlineCategoryChart'
 import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { questionConfig } from '@/sites/publicodes/questionConfig'
 import ScoreBar from '@/sites/publicodes/ScoreBar'
@@ -208,7 +207,6 @@ const SimulateurCore = ({ simulatorRootNameURL, simulatorRootRuleName }) => {
 							<EndingCongratulations />
 						),
 					}}
-					explanations={<InlineCategoryChart />}
 				/>
 			</div>
 			<BandeauContribuer />

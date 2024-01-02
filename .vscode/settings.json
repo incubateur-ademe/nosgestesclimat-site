@@ -25,5 +25,10 @@
 	},
 	"files.associations": {
 		"*.publicodes": "yaml"
+	},
+	"workbench.colorCustomizations": {
+		"activityBar.background": "#2e314f",
+		"titleBar.activeBackground": "#2e314f",
+		"statusBar.background": "#2e314f"
 	}
 }
