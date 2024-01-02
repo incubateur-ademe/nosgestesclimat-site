@@ -57,7 +57,7 @@ const visualisationChoices = {
 
 export default () => {
 	const selectedPersona = useSelector(
-		(state: AppState) => state.simulation?.persona
+		(state: AppState) => state.simulation?.persona,
 	)
 
 	const [searchParams, setSearchParams] = useSearchParams({
@@ -72,7 +72,7 @@ export default () => {
 	const engine = useEngine()
 	const rules = useSelector((state: AppState) => state.rules)
 	const personasQuestions = getQuestionsInRules(engine, rules).filter(
-		({ type }) => !type.includes('Mosaïque')
+		({ type }) => !type.includes('Mosaïque'),
 	)
 
 	const visualisationComponentProps = {
@@ -186,7 +186,7 @@ export const PersonaGrid = ({
 	const engine = useEngine()
 
 	const branchData: BranchData = useBranchData()
-	const lang = i18n.language === 'en' ? 'en-us' : i18n.language
+	const lang = i18n.language
 
 	const navigate = useNavigate()
 	const [params] = useSearchParams()
@@ -197,7 +197,7 @@ export const PersonaGrid = ({
 			fetchAndSetAvailablePersonas(
 				`/personas-${lang}.json`,
 				branchData,
-				setAvailablePersonas
+				setAvailablePersonas,
 			)
 		}
 	}, [branchData.loaded, branchData.deployURL, lang])
@@ -209,7 +209,7 @@ export const PersonaGrid = ({
 	const setPersona = (persona: Persona) => {
 		const safeSituation = safeGetSituation(
 			persona.situation,
-			engine.getParsedRules() as NGCRulesNodes
+			engine.getParsedRules() as NGCRulesNodes,
 		)
 		setSituationForValidKeys({
 			engine,
@@ -394,7 +394,7 @@ export const PersonaExplanations = ({ personasQuestionList }) => {
 						className="ui__ button small"
 						onClick={() => {
 							navigator.clipboard.writeText(
-								JSON.stringify(personasQuestionList)
+								JSON.stringify(personasQuestionList),
 							)
 						}}
 					>

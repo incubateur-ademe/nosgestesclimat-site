@@ -49,11 +49,9 @@ const EngineWrapper = ({ children }) => {
 			if (!branchData.loaded) return
 			if (!engineRequestedOnce) return
 
-			const fileName =
-				// TODO: find a better way to manage 'en'
-				`/co2-model.${currentRegionCode}-lang.${
-					i18n.language === 'en' ? 'en-us' : currLangAbrv
-				}${optimizedOption ? '-opti' : ''}.json`
+			const fileName = `/co2-model.${currentRegionCode}-lang.${currLangAbrv}${
+				optimizedOption ? '-opti' : ''
+			}.json`
 
 			const url =
 				currLangAbrv &&

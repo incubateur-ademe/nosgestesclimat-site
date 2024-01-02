@@ -31,7 +31,7 @@ import { enquêteSelector } from '@/sites/publicodes/enquête/enquêteSelector'
 import { questionConfig } from '@/sites/publicodes/questionConfig'
 import ScoreBar from '@/sites/publicodes/ScoreBar'
 import { getQuestionURLSearchParams } from '@/sites/publicodes/utils'
-import { Group, SimulationResults } from '@/types/groups'
+import { Group } from '@/types/groups'
 import { fetchUpdateGroupMember } from '@/utils/fetchUpdateGroupMember'
 import { getSimulationResults } from '@/utils/getSimulationResults'
 import { motion } from 'framer-motion'
@@ -302,9 +302,7 @@ const MainSimulationEnding = ({ rules, engine }) => {
 		// Should use setSituationForValidKeys ?
 		engine.setSituation(currentSimulation?.situation)
 
-		const results: SimulationResults = getSimulationResults({
-			engine,
-		})
+		const results = getSimulationResults({ engine })
 
 		try {
 			await fetchUpdateGroupMember({

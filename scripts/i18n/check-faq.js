@@ -1,6 +1,6 @@
 const paths = require('./paths')
-const utils = require('./../../nosgestesclimat/scripts/i18n/utils')
-const cli = require('./../../nosgestesclimat/scripts/i18n/cli')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
 
 const { srcLang, destLangs, markdown } = cli.getArgs(
 	'Check missing translations for FAQs.',

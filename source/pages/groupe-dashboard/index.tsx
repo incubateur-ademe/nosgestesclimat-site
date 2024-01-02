@@ -57,9 +57,8 @@ export default function GroupeDashboard() {
 
 	const currentSimulation = useGetCurrentSimulation()
 
-	const resultsOfUser = getSimulationResults({
-		engine,
-	})
+	const resultsOfUser = getSimulationResults({ engine })
+
 	const handleFetchGroup = useCallback(async () => {
 		try {
 			const response = await fetch(`${GROUP_URL}/${groupId}`)

@@ -7,9 +7,9 @@
 const fs = require('fs')
 const stringify = require('json-stable-stringify')
 
-const utils = require('../../nosgestesclimat/scripts/i18n/utils')
-const cli = require('../../nosgestesclimat/scripts/i18n/cli')
-const deepl = require('../../nosgestesclimat/scripts/i18n/deepl')
+const utils = require('@incubateur-ademe/nosgestesclimat-scripts/utils')
+const cli = require('@incubateur-ademe/nosgestesclimat-scripts/cli')
+const deepl = require('@incubateur-ademe/nosgestesclimat-scripts/deepl')
 
 const { srcLang, destLangs } = cli.getArgs(
 	'Calls the DeepL API to translate the JSON release files.',
