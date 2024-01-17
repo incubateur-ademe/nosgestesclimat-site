@@ -56,9 +56,9 @@ const EngineWrapper = ({ children }) => {
 			const url =
 				currLangAbrv &&
 				currentRegionCode &&
-				`https://nosgestesclimat-api.osc-fr1.scalingo.io/1.0.5/${
-					i18n.language === 'en' ? 'en-us' : currLangAbrv
-				}/${currentRegionCode}/${optimizedOption ? 'optim-rules' : 'rules'}`
+				`https://nosgestesclimat-api.osc-fr1.scalingo.io/1.0.5/${currLangAbrv}/${currentRegionCode}/${
+					optimizedOption ? 'optim-rules' : 'rules'
+				}`
 			console.log('fetching:', url)
 			fetch(url, { mode: 'cors' })
 				.then((response) => response.json())
