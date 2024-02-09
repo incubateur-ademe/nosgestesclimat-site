@@ -14,6 +14,18 @@ Médias:
   - title: 'À quel point contribuez-vous au réchauffement climatique ? Calculez votre empreinte carbone'
     image: bfntv.png
     link: https://www.bfmtv.com/environnement/climat/2050-le-grand-defi-climatique-calculez-votre-empreinte-carbone_AN-202211070002.html
+ -  title: 'Viande, avion, téléphone, banque : j’ai calculé mon empreinte carbone'
+    image: wedemain.png
+    link: https://www.wedemain.fr/ralentir/j-ai-calcule-mon-empreinte-carbone-viande-avion-telephone-banque/
+-  title: 'Viande, avion, téléphone, banque : j’ai calculé mon empreinte carbone'
+    image: chaleur-humain.gfif
+    link: https://podcasts.lemonde.fr/chaleur-humaine/202210250501-comment-parler-du-climat-avec-valerie-masson-delmotte
+-  title: 'Comment parler du climat ?'
+    image: chaleur-humain.gfif
+    link: https://podcasts.lemonde.fr/chaleur-humaine/202210250501-comment-parler-du-climat-avec-valerie-masson-delmotte
+-  title: 'Rendez-vous en environnement inconnu'
+    image: chiche.gfif
+    link: https://chiche.makesense.org/media/environnement
 Personnalités et influenceurs:
   - title: 'Cyril Dion'
     image: cyril.jpg
@@ -38,6 +50,15 @@ Entreprises:
   - title: 'Greenly'
     image: greenly.png
     link: https://greenly.earth/fr-fr/blog/guide-entreprise/empreinte-carbone-definition-methode-calcul
+  - title: 'Citiz'
+    image: citiz.png
+    link: https://citiz.coop/
+   - title: 'Code Climat'
+    image: code-climat.jfif
+    link: https://www.code-climat.com/
+   - title: 'Ecofrugal'
+    image: ecofrugal.png
+    link: https://www.monatelier-ecofrugal.fr/survey/calculator/
 Collectivités:
   - title: 'Ville de Grenoble'
     image: Grenoble.png
