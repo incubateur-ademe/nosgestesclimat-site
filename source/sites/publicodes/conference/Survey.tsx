@@ -20,6 +20,8 @@ import NoSurveyCreatedWarning from './NoSurveyCreatedWarning'
 import NoTestMessage from './NoTestMessage'
 import { answersURL, surveysURL } from './useDatabase'
 import { defaultThreshold } from './utils'
+import IllustratedMessage from '@/components/ui/IllustratedMessage'
+import ButtonLink from '@/components/groupe/ButtonLink'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -85,6 +87,19 @@ export default () => {
 			/>
 			<AutoCanonicalTag />
 			<Title title={t('Sondage')} />
+			<IllustratedMessage
+				emoji="⚠️"
+				message={
+					<div>
+						<p>Ce sondage ne sera bientôt plus accessible, vous pouvez en recréer un sur notre nouveau mode organisation.</p>
+						<ButtonLink
+							href='https://nosgestesclimat.fr/organisations?mtm_campaign=sondages.nosgestesclimat.fr'
+						>
+							✨ Accéder au nouveau mode organisation
+						</ButtonLink>
+					</div>
+				}
+			/>
 			{isRegisteredSurvey == false && (
 				<div css="margin-bottom: 3rem">
 					<NoSurveyCreatedWarning />
