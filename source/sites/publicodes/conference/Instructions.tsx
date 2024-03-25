@@ -1,4 +1,3 @@
-import Button from '@/components/groupe/Button'
 import ButtonLink from '@/components/groupe/ButtonLink'
 import { Trans } from 'react-i18next'
 
@@ -13,13 +12,13 @@ export default () => {
 		<div>
 			<Trans>
 				<p>
-				Vous souhaitez réaliser une enquête sur le bilan carbone de votre organisation ? Un nouveau mode sondage est disponible. 
+					Vous souhaitez sensibiliser les membres de votre organisation aux
+					enjeux d'empreinte carbone individuelle via notre mode groupe ? Un
+					nouveau mode sondage Nos Gestes Climat est disponible.
 				</p>
 			</Trans>
-			<br/>
-			<ButtonLink
-				href='https://nosgestesclimat.fr/organisations?mtm_campaign=sondages.nosgestesclimat.fr'
-			>
+			<br />
+			<ButtonLink href="https://nosgestesclimat.fr/organisations?mtm_campaign=sondages.nosgestesclimat.fr">
 				✨ Accéder au nouveau mode organisation
 			</ButtonLink>
 		</div>
