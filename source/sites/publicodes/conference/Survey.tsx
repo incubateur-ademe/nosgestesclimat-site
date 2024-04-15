@@ -4,7 +4,9 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router'
 import { Navigate, useNavigate } from 'react-router-dom'
 
+import ButtonLink from '@/components/groupe/ButtonLink'
 import Title from '@/components/groupe/Title'
+import IllustratedMessage from '@/components/ui/IllustratedMessage'
 import AutoCanonicalTag from '@/components/utils/AutoCanonicalTag'
 import { Trans, useTranslation } from 'react-i18next'
 import { conferenceImg } from '../../../components/SessionBar'
@@ -20,8 +22,6 @@ import NoSurveyCreatedWarning from './NoSurveyCreatedWarning'
 import NoTestMessage from './NoTestMessage'
 import { answersURL, surveysURL } from './useDatabase'
 import { defaultThreshold } from './utils'
-import IllustratedMessage from '@/components/ui/IllustratedMessage'
-import ButtonLink from '@/components/groupe/ButtonLink'
 
 export default () => {
 	const [surveyIds] = usePersistingState('surveyIds', {})
@@ -87,19 +87,7 @@ export default () => {
 			/>
 			<AutoCanonicalTag />
 			<Title title={t('Sondage')} />
-			<IllustratedMessage
-				emoji="⚠️"
-				message={
-					<div>
-						<p>Ce sondage ne sera bientôt plus accessible, vous pouvez en recréer un sur notre nouveau mode organisation.</p>
-						<ButtonLink
-							href='https://nosgestesclimat.fr/organisations?mtm_campaign=sondages.nosgestesclimat.fr'
-						>
-							✨ Accéder au nouveau mode organisation
-						</ButtonLink>
-					</div>
-				}
-			/>
+
 			{isRegisteredSurvey == false && (
 				<div css="margin-bottom: 3rem">
 					<NoSurveyCreatedWarning />
@@ -150,6 +138,21 @@ export default () => {
 					<DownloadInteractiveButton
 						url={answersURL + room + '?format=csv'}
 						isRegisteredSurvey={isRegisteredSurvey}
+					/>
+
+					<IllustratedMessage
+						emoji="⚠️"
+						message={
+							<div>
+								<p>
+									Ce sondage ne sera bientôt plus accessible, vous pouvez en
+									recréer un sur notre nouveau mode organisation.
+								</p>
+								<ButtonLink href="https://nosgestesclimat.fr/organisations?mtm_campaign=sondages.nosgestesclimat.fr">
+									✨ Accéder au nouveau mode organisation
+								</ButtonLink>
+							</div>
+						}
 					/>
 				</>
 			)}

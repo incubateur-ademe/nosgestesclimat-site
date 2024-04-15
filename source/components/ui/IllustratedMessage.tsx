@@ -16,7 +16,7 @@ export default ({
 			background-color: ${backgroundcolor} !important;
 			max-width: ${width || '26rem'};
 			margin: 5px auto;
-			margin-bottom: 1rem;
+			margin-top: 1rem;
 			display: flex;
 			flex-direction: column;
 			@media (min-width: 1200px) {
